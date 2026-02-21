@@ -43,6 +43,21 @@ export function KidMissionPanel({
   const [error, setError] = useState<string | null>(null);
   const fetchSeqRef = useRef(0);
   const audioContextRef = useRef<HTMLAudioElement | null>(null);
+  const [mascotMessage, setMascotMessage] = useState("Nhấn vào tớ nhé! Cùng học bài nào!");
+
+  const mascotMessages = [
+    "Cậu học ngoan nhé!",
+    "Tớ luôn ở đây hỗ trợ cậu!",
+    "Cứ từ từ học, không vội!",
+    "Cố lên cố lên nào!",
+    "Wow, hôm nay cậu thật tuyệt!"
+  ];
+
+  const handleMascotClick = () => {
+    playSound(YAY_SOUND);
+    const randomMsg = mascotMessages[Math.floor(Math.random() * mascotMessages.length)];
+    setMascotMessage(randomMsg);
+  };
 
   const playSound = (base64Sound: string) => {
     if (typeof window === "undefined") return;
@@ -242,17 +257,28 @@ export function KidMissionPanel({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 20 }}
             >
-              <div className="mascot-bubble">
-                Nhấn vào tớ nhé! Cùng học bài nào!
-              </div>
-              <div
+              <AnimatePresence mode="wait">
+                <m.div
+                  key={mascotMessage}
+                  className="mascot-bubble"
+                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: 10 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  {mascotMessage}
+                </m.div>
+              </AnimatePresence>
+              <m.div
                 className="mascot-avatar animate-wiggle"
-                onClick={() => playSound(YAY_SOUND)}
+                onClick={handleMascotClick}
+                whileHover={prefersReducedMotion ? undefined : { scale: 1.1 }}
+                whileTap={prefersReducedMotion ? undefined : { scale: 0.9 }}
                 role="button"
                 aria-label="Nhân vật hướng dẫn hỗ trợ trẻ em"
               >
                 🦉
-              </div>
+              </m.div>
             </m.div>
           )}
         </AnimatePresence>
