@@ -5,7 +5,7 @@ import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
 import { fadeInUp, listStagger, popIn } from "@/components/animation/kid-motion-variants";
-import { LessonCompletionCard } from "@/components/lesson-completion-card";
+import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
 
 // Free, safe base64 silent wav snippet (to prevent NotSupportedError with invalid mp3)
 const POP_SOUND = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
@@ -233,7 +233,7 @@ export function KidMissionPanel({
                   <m.div key={lesson.id} variants={popIn} layout className={`journey-node ${nodeStatusClass}`}>
                     <div className="journey-node-index">{index + 1}</div>
                     <div style={{ width: "100%", maxWidth: "340px", transform: isActiveProgression && !prefersReducedMotion ? "scale(1.02)" : "scale(1)", transition: "transform 0.3s" }} className={isActiveProgression ? "animate-pulse-glow" : ""}>
-                      <LessonCompletionCard
+                      <LessonStartCard
                         childId={activeChild.id}
                         lessonId={lesson.id}
                         title={lesson.title}
