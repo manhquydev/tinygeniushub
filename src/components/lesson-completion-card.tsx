@@ -4,8 +4,24 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
-import { Play, CheckCircle, Video } from "lucide-react";
+import { Play, CheckCircle, Video, Check } from "lucide-react";
 import confetti from "canvas-confetti";
+
+// Free, safe base64 silent wav snippet (prevent NotSupportedError)
+const YAY_SOUND = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+
+const playSound = (base64Sound: string) => {
+  if (typeof window === "undefined") return;
+  try {
+    const audio = new Audio();
+    audio.src = base64Sound;
+    audio.volume = 0.5;
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => { });
+    }
+  } catch { }
+};
 
 const EvidenceUploadPanel = dynamic(
   () => import("@/components/evidence-upload-panel").then((module) => module.EvidenceUploadPanel),
@@ -287,22 +303,23 @@ export function LessonCompletionCard({
         setStatus("Bài này đã hoàn thành trước đó.");
       } else {
         setStatus("Đã hoàn thành bài học và nhận thưởng.");
-        // Trigger confetti celebration
-        const duration = 2000;
+        playSound(YAY_SOUND);
+        // Trigger enhanced confetti celebration
+        const duration = 2500;
         const end = Date.now() + duration;
 
         const frame = () => {
           confetti({
-            particleCount: 5,
+            particleCount: 15,
             angle: 60,
-            spread: 55,
+            spread: 80,
             origin: { x: 0 },
             colors: ['#10b981', '#f59e0b', '#3b82f6', '#ec4899']
           });
           confetti({
-            particleCount: 5,
+            particleCount: 15,
             angle: 120,
-            spread: 55,
+            spread: 80,
             origin: { x: 1 },
             colors: ['#10b981', '#f59e0b', '#3b82f6', '#ec4899']
           });
@@ -407,12 +424,12 @@ export function LessonCompletionCard({
         type="button"
         className="solid-button"
         onClick={markCompleted}
-        disabled={loading || (watchRequired && !watchReady)}
-        whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
-        whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
-        style={{ width: "100%", padding: "1.2rem", fontSize: "1.1rem", borderRadius: "20px", marginTop: "0.5rem", background: (loading || (watchRequired && !watchReady)) ? "var(--surface-200)" : undefined, color: (loading || (watchRequired && !watchReady)) ? "var(--ink-700)" : undefined, boxShadow: (loading || (watchRequired && !watchReady)) ? "none" : undefined }}
+        disabled={loading || (watchRequired && !watchReady) || completionDone}
+        whileHover={prefersReducedMotion || completionDone ? undefined : { y: -2, scale: 1.02 }}
+        whileTap={prefersReducedMotion || completionDone ? undefined : { scale: 0.96 }}
+        style={{ width: "100%", padding: "1.2rem", fontSize: "1.1rem", borderRadius: "20px", marginTop: "1rem", background: completionDone ? "var(--brand-600)" : (loading || (watchRequired && !watchReady)) ? "var(--surface-200)" : undefined, color: completionDone ? "white" : (loading || (watchRequired && !watchReady)) ? "var(--ink-700)" : undefined, boxShadow: (loading || (watchRequired && !watchReady) || completionDone) ? "none" : undefined, display: "flex", justifyContent: "center", alignItems: "center", gap: "0.5rem" }}
       >
-        {loading ? "Đang ghi nhận..." : "Hoàn thành bài"}
+        {loading ? "Đang ghi nhận..." : completionDone ? <><Check size={20} /> 🎉 Đã xong!</> : "Hoàn thành bài"}
       </m.button>
       <AnimatePresence mode="wait" initial={false}>
         {status ? (
@@ -431,7 +448,7 @@ export function LessonCompletionCard({
       </AnimatePresence>
       <AnimatePresence initial={false}>
         {completionDone ? (
-          <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+          <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} style={{ marginTop: "1.5rem", borderTop: "2px dashed color-mix(in srgb, var(--surface-200) 60%, transparent)", paddingTop: "1.5rem" }}>
             <EvidenceUploadPanel childId={childId} lessonId={lessonId} />
           </m.div>
         ) : null}
