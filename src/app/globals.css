@@ -663,7 +663,7 @@ ul {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
+  left: 36px;
   width: 12px;
   background: color-mix(in srgb, var(--surface-200) 50%, white);
   border-radius: 999px;
@@ -675,30 +675,16 @@ ul {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 420px;
   display: flex;
-  justify-content: center;
-}
-
-/* Alternate left/right for journey nodes on desktop */
-@media (min-width: 640px) {
-  .journey-node:nth-child(odd) {
-    justify-content: flex-end;
-    padding-right: 55%;
-    /* Push to right side of path */
-  }
-
-  .journey-node:nth-child(even) {
-    justify-content: flex-start;
-    padding-left: 55%;
-    /* Push to left side of path */
-  }
+  justify-content: flex-start;
+  padding-left: 80px;
+  padding-right: 1rem;
 }
 
 .journey-node-index {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 36px;
   transform: translate(-50%, -50%);
   width: 48px;
   height: 48px;
@@ -712,6 +698,34 @@ ul {
   color: var(--ink-700);
   z-index: 20;
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .journey-path {
+    left: 50%;
+  }
+
+  .journey-node-index {
+    left: 50%;
+  }
+
+  .journey-node {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .journey-node:nth-child(odd) {
+    justify-content: flex-end;
+    padding-right: calc(50% + 2.5rem);
+    padding-left: 1rem;
+  }
+
+  .journey-node:nth-child(even) {
+    justify-content: flex-start;
+    padding-left: calc(50% + 2.5rem);
+    padding-right: 1rem;
+  }
 }
 
 .journey-node-active .journey-node-index {
