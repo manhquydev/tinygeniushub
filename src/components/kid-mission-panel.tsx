@@ -7,10 +7,10 @@ import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
 import { fadeInUp, listStagger, popIn } from "@/components/animation/kid-motion-variants";
 import { LessonCompletionCard } from "@/components/lesson-completion-card";
 
-// Free, safe base64 audio snippets for placeholder use
-const POP_SOUND = "data:audio/mp3;base64,//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqpERAAEEoAAgAA//M0xGEAAAANzGwwAAAAMjS0LUAABt2222222//////+w3///E8X//wVv////kR////9H////0v////S/////9L////+S/////L/////F/////C////8P////h////4P///+B////gP///4B///+AP///gB///gB//+AH//4Bf/+AX//gF//wF//wF//wF//wT//AT//AT//AT//AT//wT//wP//+A///4C///gH///AP///A////A///8B////B////h////4f///+P///+T////pf///+n////r////7v////v////v////v///+7////rf///+X////kf///+T////h////4P///+B///+AP///AP///AH///gH///wD//+A///wB///AH//4A///gH//wH//wH//gf//gf//gf//wf//A///A///A///wf//gD//+A///4B///wD///AP///Af///B////h////4f///+P///+X////p////6f///+v////v////v////v////v///+7////rf///+X////kf///+P////h////4P///+B///+AP///AH///gH///wD//+A///wH//4B///A///wB///AH//4H//wP//wj///gf//A///wA///A////A///8B////B////h///+A///+B///+A////A////A///8B////h////4f///+P///+T////p////6f///+v////v////v////v////v///+7////rf///+X////kf///+P////B////4P///+B///+AP///wD///AD//4B///A///wB///AH//4H//wP//h///wP//wf//gf//A///A///A///A///8B////B////h////4f///+P///+T////p////6f///+X////v////v////v////v///+7////rf///+X////kf///+P////B////4P///+B///+AP///AD//+A///wB///AH//4A///gH//wP//h///wP//wj//P////0D//+A///4B///wH///AP///gf///B////4f///+H///+P///+T////pf///+n////r////7v////v////v////v///+7////rf///+X////jf///+P////B////4P///+B///+AP///AP///AH///gD//+A///wB///AH//4A///gH//wP//wP//h///wP//wf//gf//A///A///A///A///8B////B////h////4f///+P///+V////p////6f///+v////u////u////u////u///+v////vf///+n////pf///+T////h////4P///+B///+AP///wD//+A///wB///AP//4A///gH//wP//wP//h///wP//wf//g///g///wf//A///A///A///8H///wh///+If///+P///+T////pf///+n////r////7v////v////v////v///+7////r////5f///+H////gf///+B///+A///+A///wD//+A///wB///AH//4A///h///wH//wP//wP//wj//wP//gf//g///gf//A///wA///A////wf///A///8B////4f///+H///+X////p////6f///+r////v////v////v////v///+7////rf///+X////kf///+P////B////4P///+L///4A///wD///AD//8B///A///wB///AH//4H//wP//wf//wj//wf//gf//g///A///gf///D///wh///+Af///AH///gD///4A///wD//";
-// Free, safe base64 yay sound snippet 
-const YAY_SOUND = "data:audio/mp3;base64,//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqpERAAEEoAAgAA//M0xGEAAAANzGwwAAAAMjS0LUAABt2222222//////+w3///E8X//wVv////kR////9H////0v////S/////9L////+S/////L/////F/////C////8P////h////4P///+B////gP///4B///+AP///gB///gB//+AH//4Bf/+AX//gF//wF//wF//wF//wT//AT//AT//AT//AT//wT//wP//+A///4C///gH///AP///A////A///8B////B////h////4f///+P///+T////pf///+n////r////7v////v////v////v///+7////rf///+X////kf///+T////h////4P///+B///+AP///AP///AH///gH///wD//+A///wB///AH//4A///gH//wH//wH//gf//gf//gf//wf//A///A///A///wf//gD//+A///4B///wD///AP///Af///B////h////4f///+P///+X////p////6f///+v////v////v////v////v///+7////rf///+X////kf///+P////h////4P///+B///+AP///AH///gH///wD//+A///wH//4B///A///wB///AH//4H//wP//wj///gf//A///wA///A////A///8B////B////h///+A///+B///+A////A////A///8B////h////4f///+P///+T////p////6f///+v////v////v////v////v///+7////rf///+X////kf///+P////B////4P///+B///+AP///wD///AD//4B///A///wB///AH//4H//wP//h///wP//wf//gf//A///A///A///A///8B////B////h////4f///+P///+T////p////6f///+X////v////v////v////v///+7////rf///+X////kf///+P////B////4P///+B///+AP///AD//+A///wB///AH//4A///gH//wP//h///wP//wj//P////0D//+A///4B///wH///AP///gf///B////4f///+H///+P///+T////pf///+n////r////7v////v////v////v///+7////rf///+X////jf///+P////B////4P///+B///+AP///AP///AH///gD//+A///wB///AH//4A///gH//wP//wP//h///wP//wf//gf//A///A///A///A///8B////B////h////4f///+P///+V////p////6f///+v////u////u////u////u///+v////vf///+n////pf///+T////h////4P///+B///+AP///wD//+A///wB///AP//4A///gH//wP//wP//h///wP//wf//g///g///wf//A///A///A///8H///wh///+If///+P///+T////pf///+n////r////7v////v////v////v///+7////r////5f///+H////gf///+B///+A///+A///wD//+A///wB///AH//4A///h///wH//wP//wP//wj//wP//gf//g///gf//A///wA///A////wf///A///8B////4f///+H///+X////p////6f///+r////v////v////v////v///+7////rf///+X////kf///+P////B////4P///+L///4A///wD///AD//8B///A///wB///AH//4H//wP//wf//wj//wf//gf//g///A///gf///D///wh///+Af///AH///gD///4A///wD//";
+// Free, safe base64 silent wav snippet (to prevent NotSupportedError with invalid mp3)
+const POP_SOUND = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+// Free, safe base64 silent wav snippet 
+const YAY_SOUND = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
 
 interface MissionChild {
   id: string;
@@ -63,14 +63,20 @@ export function KidMissionPanel({
     if (typeof window === "undefined") return;
     try {
       if (!audioContextRef.current) {
-        audioContextRef.current = new Audio(base64Sound);
-      } else {
-        audioContextRef.current.src = base64Sound;
+        audioContextRef.current = new Audio();
       }
+      audioContextRef.current.src = base64Sound;
       audioContextRef.current.volume = 0.5; // Giảm âm lượng để không làm giật mình
-      void audioContextRef.current.play();
+
+      const playPromise = audioContextRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((e) => {
+          // Ignore promise rejection if browser blocks autoplay or source is unsupported
+          console.warn("Audio playback prevented:", e);
+        });
+      }
     } catch {
-      // Ignore audio playback errors (e.g., auto-play restrictions)
+      // Ignore synchronous audio playback errors
     }
   };
 
