@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
@@ -231,9 +232,22 @@ export function LessonWizardFlow({
         markCompleted();
     };
 
-    return (
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+        // Prevent scrolling on body when wizard is open
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, []);
+
+    if (!mounted) return null;
+
+    const content = (
         <m.div
-            className="fixed inset-0 z-[100] flex flex-col bg-brand-50"
+            className="fixed inset-0 z-[100] flex flex-col"
+            style={{ background: "var(--surface-100, #f8fafc)" }}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
@@ -409,4 +423,6 @@ export function LessonWizardFlow({
             </div>
         </m.div>
     );
+
+    return createPortal(content, document.body);
 }
