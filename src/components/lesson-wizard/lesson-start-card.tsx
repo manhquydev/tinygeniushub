@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import * as m from "motion/react-m";
-import { Play, Check } from "lucide-react";
+import { Play } from "lucide-react";
 import { LessonWizardFlow } from "./lesson-wizard-flow";
 import { useReducedMotion } from "motion/react";
 
@@ -13,11 +13,17 @@ interface LessonStartCardProps {
     objective: string;
     estimatedMinutes: number;
     videoSource?: string | null;
+    onLessonSelect?: (lessonId: string) => void;
+    onLessonComplete?: (lessonId: string) => void;
 }
 
 export function LessonStartCard(props: LessonStartCardProps) {
     const [isOpen, setIsOpen] = useState(false);
     const prefersReducedMotion = useReducedMotion();
+    const handleOpenLesson = () => {
+        props.onLessonSelect?.(props.lessonId);
+        setIsOpen(true);
+    };
 
     return (
         <>
@@ -35,7 +41,7 @@ export function LessonStartCard(props: LessonStartCardProps) {
 
                 <m.button
                     type="button"
-                    onClick={() => setIsOpen(true)}
+                    onClick={handleOpenLesson}
                     className="solid-button w-full mt-4 flex items-center justify-center gap-2"
                     whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.05 }}
                     whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
@@ -46,7 +52,11 @@ export function LessonStartCard(props: LessonStartCardProps) {
             </m.article>
 
             {isOpen && (
-                <LessonWizardFlow {...props} onClose={() => setIsOpen(false)} />
+                <LessonWizardFlow
+                    {...props}
+                    onClose={() => setIsOpen(false)}
+                    onCompleted={props.onLessonComplete}
+                />
             )}
         </>
     );

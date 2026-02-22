@@ -1,16 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
-import { fadeInUp, listStagger, popIn } from "@/components/animation/kid-motion-variants";
+import { bounceIn, fadeInUp, listStagger, popIn, wobble } from "@/components/animation/kid-motion-variants";
 import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
-
-// Free, safe base64 silent wav snippet (to prevent NotSupportedError with invalid mp3)
-const POP_SOUND = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-// Free, safe base64 silent wav snippet 
-const YAY_SOUND = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+import { synth } from "@/lib/audio-utils";
 
 interface MissionChild {
   id: string;
@@ -42,7 +38,11 @@ export function KidMissionPanel({
   const [loadingLessons, setLoadingLessons] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fetchSeqRef = useRef(0);
-  const audioContextRef = useRef<HTMLAudioElement | null>(null);
+  const completionFxResetTimerRef = useRef<number | null>(null);
+  const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
+  const [selectedLessonPulse, setSelectedLessonPulse] = useState(0);
+  const [completedLessonIds, setCompletedLessonIds] = useState<Record<string, true>>({});
+  const [completedLessonFx, setCompletedLessonFx] = useState<{ lessonId: string; pulse: number } | null>(null);
   const [mascotMessage, setMascotMessage] = useState("Nhấn vào tớ nhé! Cùng học bài nào!");
 
   const mascotMessages = [
@@ -53,35 +53,71 @@ export function KidMissionPanel({
     "Wow, hôm nay cậu thật tuyệt!"
   ];
 
+  const completionMessages = [
+    "Qua dinh! Con vua hoan thanh them 1 bai.",
+    "Tuyet voi! Ban do nhiem vu sang len roi.",
+    "Xuat sac! Con dang tien bo rat nhanh.",
+    "Yay! Tiep tuc phat huy nhe.",
+  ];
+
+  useEffect(() => {
+    return () => {
+      if (completionFxResetTimerRef.current !== null) {
+        window.clearTimeout(completionFxResetTimerRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (completionFxResetTimerRef.current !== null) {
+      window.clearTimeout(completionFxResetTimerRef.current);
+      completionFxResetTimerRef.current = null;
+    }
+
+    if (!completedLessonFx || prefersReducedMotion) {
+      return;
+    }
+
+    completionFxResetTimerRef.current = window.setTimeout(() => {
+      setCompletedLessonFx(null);
+      completionFxResetTimerRef.current = null;
+    }, 1100);
+  }, [completedLessonFx, prefersReducedMotion]);
+
   const handleMascotClick = () => {
-    playSound(YAY_SOUND);
+    synth.playYay();
     const randomMsg = mascotMessages[Math.floor(Math.random() * mascotMessages.length)];
     setMascotMessage(randomMsg);
   };
 
-  const playSound = (base64Sound: string) => {
-    if (typeof window === "undefined") return;
-    try {
-      if (!audioContextRef.current) {
-        audioContextRef.current = new Audio();
-      }
-      audioContextRef.current.src = base64Sound;
-      audioContextRef.current.volume = 0.5; // Giảm âm lượng để không làm giật mình
-
-      const playPromise = audioContextRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((e) => {
-          // Ignore promise rejection if browser blocks autoplay or source is unsupported
-          console.warn("Audio playback prevented:", e);
-        });
-      }
-    } catch {
-      // Ignore synchronous audio playback errors
+  const handleLessonSelect = (lessonId: string) => {
+    const selectedLesson = lessons.find((lesson) => lesson.id === lessonId);
+    setSelectedLessonId(lessonId);
+    setSelectedLessonPulse((previous) => previous + 1);
+    if (selectedLesson) {
+      setMascotMessage(`Bat dau ${selectedLesson.title} nha!`);
+    }
+    if (!prefersReducedMotion) {
+      synth.playTing();
     }
   };
 
+  const handleLessonComplete = (lessonId: string) => {
+    setCompletedLessonIds((previous) => ({
+      ...previous,
+      [lessonId]: true,
+    }));
+    setCompletedLessonFx((previous) => ({
+      lessonId,
+      pulse: previous?.lessonId === lessonId ? previous.pulse + 1 : 1,
+    }));
+    setSelectedLessonId(lessonId);
+    const randomMsg = completionMessages[Math.floor(Math.random() * completionMessages.length)];
+    setMascotMessage(randomMsg);
+  };
+
   async function handleSelectChild(childId: string) {
-    playSound(POP_SOUND);
+    synth.playPop();
     if (childId === activeChildId) {
       return;
     }
@@ -89,6 +125,10 @@ export function KidMissionPanel({
     setActiveChildId(childId);
     setError(null);
     setLoadingLessons(true);
+    setSelectedLessonId(null);
+    setSelectedLessonPulse(0);
+    setCompletedLessonIds({});
+    setCompletedLessonFx(null);
     const currentFetchSeq = ++fetchSeqRef.current;
     const url = new URL(window.location.href);
     url.searchParams.set("childId", childId);
@@ -222,8 +262,13 @@ export function KidMissionPanel({
               {lessons.map((lesson, index) => {
                 // Giả lập trạng thái để trực quan (Trong thực tế cần dựa trên dữ liệu thật)
                 // Ví dụ: Bài 0 -> Xong, Bài 1 -> Đang học, Bài 2+ -> Khoá
-                const isCompleted = index === 0 && lessons.length > 1;
+                const isCompletedFromEvent = Boolean(completedLessonIds[lesson.id]);
+                const isCompletedFromSeedData = index === 0 && lessons.length > 1;
+                const isCompleted = isCompletedFromEvent || isCompletedFromSeedData;
                 const isActiveProgression = index === (lessons.length > 1 ? 1 : 0);
+                const isSelectedLesson = selectedLessonId === lesson.id;
+                const isCelebratingCompletion = completedLessonFx?.lessonId === lesson.id;
+                const completionPulse = isCelebratingCompletion ? (completedLessonFx?.pulse ?? 0) : 0;
 
                 let nodeStatusClass = "";
                 if (isCompleted) nodeStatusClass = "journey-node-completed";
@@ -231,17 +276,49 @@ export function KidMissionPanel({
 
                 return (
                   <m.div key={lesson.id} variants={popIn} layout className={`journey-node ${nodeStatusClass}`}>
-                    <div className="journey-node-index">{index + 1}</div>
-                    <div style={{ width: "100%", maxWidth: "340px", transform: isActiveProgression && !prefersReducedMotion ? "scale(1.02)" : "scale(1)", transition: "transform 0.3s" }} className={isActiveProgression ? "animate-pulse-glow" : ""}>
-                      <LessonStartCard
-                        childId={activeChild.id}
-                        lessonId={lesson.id}
-                        title={lesson.title}
-                        objective={lesson.objective}
-                        estimatedMinutes={lesson.estimatedMinutes}
-                        videoSource={lesson.videoSource}
-                      />
-                    </div>
+                    <m.div
+                      key={`lesson-index-${lesson.id}-${isSelectedLesson ? selectedLessonPulse : 0}`}
+                      className="journey-node-index"
+                      variants={wobble}
+                      initial="idle"
+                      animate={prefersReducedMotion ? "idle" : isSelectedLesson ? "wobble" : "idle"}
+                      style={prefersReducedMotion && isSelectedLesson ? { boxShadow: "0 0 0 3px color-mix(in srgb, var(--brand-300) 45%, transparent)" } : undefined}
+                    >
+                      {index + 1}
+                    </m.div>
+                    <m.div
+                      key={`lesson-card-${lesson.id}-${completionPulse}`}
+                      variants={bounceIn}
+                      initial="rest"
+                      animate={prefersReducedMotion ? "rest" : isCelebratingCompletion ? "bounceIn" : "rest"}
+                      style={{ width: "100%", maxWidth: "340px" }}
+                    >
+                      <div
+                        style={{
+                          transform: isActiveProgression && !prefersReducedMotion ? "scale(1.02)" : "scale(1)",
+                          transition: "transform 0.3s, box-shadow 0.3s, background-color 0.3s",
+                          borderRadius: "24px",
+                          backgroundColor: isCompletedFromEvent ? "color-mix(in srgb, #dcfce7 58%, white)" : undefined,
+                          boxShadow: isCompletedFromEvent
+                            ? "0 0 0 3px color-mix(in srgb, #4ade80 35%, transparent)"
+                            : prefersReducedMotion && isSelectedLesson
+                              ? "0 0 0 3px color-mix(in srgb, var(--brand-300) 35%, transparent)"
+                              : undefined,
+                        }}
+                        className={isActiveProgression ? "animate-pulse-glow" : ""}
+                      >
+                        <LessonStartCard
+                          childId={activeChild.id}
+                          lessonId={lesson.id}
+                          title={lesson.title}
+                          objective={lesson.objective}
+                          estimatedMinutes={lesson.estimatedMinutes}
+                          videoSource={lesson.videoSource}
+                          onLessonSelect={handleLessonSelect}
+                          onLessonComplete={handleLessonComplete}
+                        />
+                      </div>
+                    </m.div>
                   </m.div>
                 );
               })}
@@ -276,7 +353,9 @@ export function KidMissionPanel({
                 </m.div>
               </AnimatePresence>
               <m.div
-                className="mascot-avatar animate-wiggle"
+                className="mascot-avatar"
+                animate={prefersReducedMotion ? { y: 0 } : { y: [0, -8, 0] }}
+                transition={prefersReducedMotion ? undefined : { repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
                 onClick={handleMascotClick}
                 whileHover={prefersReducedMotion ? undefined : { scale: 1.1 }}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.9 }}

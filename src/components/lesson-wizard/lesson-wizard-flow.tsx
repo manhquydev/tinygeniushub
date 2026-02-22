@@ -3,27 +3,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
-import { AnimatePresence, useReducedMotion } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
 import { Play, CheckCircle, Video, Check, ArrowRight, X } from "lucide-react";
 import confetti from "canvas-confetti";
-
-// Free, safe base64 silent wav snippet (prevent NotSupportedError)
-const YAY_SOUND = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-const TING_SOUND = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA="; // placeholder for Ting
-
-const playSound = (base64Sound: string) => {
-    if (typeof window === "undefined") return;
-    try {
-        const audio = new Audio();
-        audio.src = base64Sound;
-        audio.volume = 0.5;
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(() => { });
-        }
-    } catch { }
-};
+import { swipeLeft } from "@/components/animation/kid-motion-variants";
+import { synth } from "@/lib/audio-utils";
 
 const EvidenceUploadPanel = dynamic(
     () => import("@/components/evidence-upload-panel").then((module) => module.EvidenceUploadPanel),
@@ -38,6 +23,7 @@ interface LessonWizardFlowProps {
     estimatedMinutes: number;
     videoSource?: string | null;
     onClose: () => void;
+    onCompleted?: (lessonId: string) => void;
 }
 
 interface WatchSessionPayload {
@@ -57,8 +43,8 @@ export function LessonWizardFlow({
     estimatedMinutes,
     videoSource,
     onClose,
+    onCompleted,
 }: LessonWizardFlowProps) {
-    const prefersReducedMotion = useReducedMotion();
     const [step, setStep] = useState(0); // 0: Intro, 1: Video, 2: Quiz, 3: Upload, 4: Done
     const [status, setStatus] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
@@ -193,7 +179,7 @@ export function LessonWizardFlow({
             const body = await response.json();
             if (!response.ok || !body.ok) return;
 
-            playSound(YAY_SOUND);
+            synth.playYay();
             const duration = 2500;
             const end = Date.now() + duration;
             const frame = () => {
@@ -202,6 +188,7 @@ export function LessonWizardFlow({
                 if (Date.now() < end) requestAnimationFrame(frame);
             };
             frame();
+            onCompleted?.(lessonId);
             setStep(4); // Celebration
         } catch { } finally { setLoading(false); }
     }
@@ -221,7 +208,7 @@ export function LessonWizardFlow({
     };
 
     const handleQuizAnswer = () => {
-        playSound(TING_SOUND);
+        synth.playTing();
         setQuizAnswered(true);
         setTimeout(() => {
             setStep(3); // Move to upload after short delay
@@ -272,8 +259,8 @@ export function LessonWizardFlow({
                     {step === 0 && (
                         <m.div
                             key="step0"
-                            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
-                            className="max-w-xl w-full text-center flex flex-col items-center gap-6"
+                            variants={swipeLeft} initial="enter" animate="center" exit="exit"
+                            className="max-w-xl w-full text-center flex flex-col items-center gap-6 absolute"
                         >
                             <div className="w-32 h-32 bg-brand-200 rounded-full flex items-center justify-center shadow-lg border-4 border-white mb-4">
                                 <Play size={48} className="text-brand-600 ml-2" />
@@ -297,8 +284,8 @@ export function LessonWizardFlow({
                     {step === 1 && (
                         <m.div
                             key="step1"
-                            initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }}
-                            className="max-w-4xl w-full flex flex-col gap-6"
+                            variants={swipeLeft} initial="enter" animate="center" exit="exit"
+                            className="max-w-4xl w-full flex flex-col gap-6 absolute"
                         >
                             <div className="w-full aspect-video bg-ink-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-white flex items-center justify-center relative">
                                 {videoSource ? (
@@ -339,8 +326,8 @@ export function LessonWizardFlow({
                     {step === 2 && (
                         <m.div
                             key="step2"
-                            initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, y: -40 }}
-                            className="max-w-3xl w-full text-center"
+                            variants={swipeLeft} initial="enter" animate="center" exit="exit"
+                            className="max-w-3xl w-full text-center absolute"
                         >
                             <h2 className="text-4xl font-black text-ink-800 mb-12">Đố bé biết nhé!</h2>
                             <p className="text-xl text-ink-600 mb-8">Bé vừa học về chủ đề gì nào?</p>
@@ -369,8 +356,8 @@ export function LessonWizardFlow({
                     {step === 3 && (
                         <m.div
                             key="step3"
-                            initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, scale: 0.9 }}
-                            className="max-w-2xl w-full bg-white p-10 rounded-3xl shadow-xl shadow-brand-500/10 border-4 border-brand-100 flex flex-col gap-8"
+                            variants={swipeLeft} initial="enter" animate="center" exit="exit"
+                            className="max-w-2xl w-full bg-white p-10 rounded-3xl shadow-xl shadow-brand-500/10 border-4 border-brand-100 flex flex-col gap-8 absolute"
                         >
                             <div className="text-center">
                                 <h2 className="text-3xl font-black text-brand-700 mb-2">Gửi kết quả cho Thầy Cô nha!</h2>
@@ -396,8 +383,8 @@ export function LessonWizardFlow({
                     {step === 4 && (
                         <m.div
                             key="step4"
-                            initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
-                            className="max-w-xl w-full text-center flex flex-col items-center gap-8"
+                            variants={swipeLeft} initial="enter" animate="center" exit="exit"
+                            className="max-w-xl w-full text-center flex flex-col items-center gap-8 absolute"
                         >
                             <div className="w-48 h-48 bg-yellow-100 rounded-full flex items-center justify-center border-8 border-white shadow-2xl relative">
                                 <span className="text-6xl absolute z-10">🌟</span>
