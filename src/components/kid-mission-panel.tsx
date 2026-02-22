@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
@@ -26,6 +26,17 @@ interface KidMissionPanelProps {
   initialChildId: string;
   initialLessons: MissionLesson[];
 }
+
+const JOURNEY_NODE_BASE_WIDTH = 288;
+const JOURNEY_NODE_GAP = 28;
+const STAR_SEEDS = [
+  { id: "star-1", top: "18%", left: "8%", delay: "0s", duration: "4.8s", className: "journey-space-star-sm" },
+  { id: "star-2", top: "26%", left: "21%", delay: "0.6s", duration: "5.5s", className: "journey-space-star-md" },
+  { id: "star-3", top: "14%", left: "38%", delay: "1.4s", duration: "6.1s", className: "journey-space-star-sm" },
+  { id: "star-4", top: "24%", left: "56%", delay: "0.2s", duration: "5.2s", className: "journey-space-star-lg" },
+  { id: "star-5", top: "16%", left: "72%", delay: "1s", duration: "6.7s", className: "journey-space-star-sm" },
+  { id: "star-6", top: "22%", left: "88%", delay: "0.8s", duration: "4.9s", className: "journey-space-star-md" },
+];
 
 export function KidMissionPanel({
   childrenProfiles,
@@ -162,6 +173,12 @@ export function KidMissionPanel({
   }
 
   const activeChild = childrenProfiles.find((child) => child.id === activeChildId) ?? childrenProfiles[0];
+  const journeyTrackWidth = Math.max(
+    lessons.length * JOURNEY_NODE_BASE_WIDTH + Math.max(lessons.length - 1, 0) * JOURNEY_NODE_GAP + 64,
+    360,
+  );
+  const journeyPathD = `M 24 106 C ${Math.round(journeyTrackWidth * 0.17)} 28, ${Math.round(journeyTrackWidth * 0.34)} 170, ${Math.round(journeyTrackWidth * 0.5)} 104 C ${Math.round(journeyTrackWidth * 0.66)} 44, ${Math.round(journeyTrackWidth * 0.84)} 162, ${journeyTrackWidth - 24} 88`;
+  const journeyTrackStyle = { "--journey-track-width": `${journeyTrackWidth}px` } as CSSProperties;
 
   return (
     <KidMotionProvider>
@@ -255,70 +272,123 @@ export function KidMissionPanel({
               animate="visible"
               exit="exit"
             >
-              {lessons.length > 0 && <div className="journey-path" />}
-              {lessons.map((lesson, index) => {
-                // Giả lập trạng thái để trực quan (Trong thực tế cần dựa trên dữ liệu thật)
-                // Ví dụ: Bài 0 -> Xong, Bài 1 -> Đang học, Bài 2+ -> Khoá
-                const isCompletedFromEvent = Boolean(completedLessonIds[lesson.id]);
-                const isCompletedFromSeedData = index === 0 && lessons.length > 1;
-                const isCompleted = isCompletedFromEvent || isCompletedFromSeedData;
-                const isActiveProgression = index === (lessons.length > 1 ? 1 : 0);
-                const isSelectedLesson = selectedLessonId === lesson.id;
-                const isCelebratingCompletion = completedLessonFx?.lessonId === lesson.id;
-                const completionPulse = isCelebratingCompletion ? (completedLessonFx?.pulse ?? 0) : 0;
+              {lessons.length > 0 ? (
+                <div className="journey-map-track" style={journeyTrackStyle}>
+                  <div className="journey-space-backdrop" aria-hidden="true">
+                    <span className="journey-space-nebula journey-space-nebula-a" />
+                    <span className="journey-space-nebula journey-space-nebula-b" />
+                    <span className="journey-space-streak journey-space-streak-a" />
+                    <span className="journey-space-streak journey-space-streak-b" />
+                    {STAR_SEEDS.map((star) => (
+                      <span
+                        key={star.id}
+                        className={`journey-space-star ${star.className}`}
+                        style={
+                          {
+                            top: star.top,
+                            left: star.left,
+                            animationDelay: star.delay,
+                            animationDuration: star.duration,
+                          } as CSSProperties
+                        }
+                      />
+                    ))}
+                  </div>
 
-                let nodeStatusClass = "";
-                if (isCompleted) nodeStatusClass = "journey-node-completed";
-                if (isActiveProgression) nodeStatusClass = "journey-node-active";
+                  <svg className="journey-path" viewBox={`0 0 ${journeyTrackWidth} 200`} preserveAspectRatio="none" aria-hidden="true">
+                    <path d={journeyPathD} className="journey-path-glow" />
+                    <path d={journeyPathD} className="journey-path-line" />
+                  </svg>
 
-                return (
-                  <m.div key={lesson.id} variants={popIn} layout className={`journey-node ${nodeStatusClass}`}>
-                    <m.div
-                      key={`lesson-index-${lesson.id}-${isSelectedLesson ? selectedLessonPulse : 0}`}
-                      className="journey-node-index"
-                      variants={wobble}
-                      initial="idle"
-                      animate={prefersReducedMotion ? "idle" : isSelectedLesson ? "wobble" : "idle"}
-                      style={prefersReducedMotion && isSelectedLesson ? { boxShadow: "0 0 0 3px color-mix(in srgb, var(--brand-300) 45%, transparent)" } : undefined}
-                    >
-                      {index + 1}
-                    </m.div>
-                    <m.div
-                      key={`lesson-card-${lesson.id}-${completionPulse}`}
-                      variants={bounceIn}
-                      initial="rest"
-                      animate={prefersReducedMotion ? "rest" : isCelebratingCompletion ? "bounceIn" : "rest"}
-                      style={{ width: "100%", maxWidth: "340px" }}
-                    >
-                      <div
-                        style={{
-                          transform: isActiveProgression && !prefersReducedMotion ? "scale(1.02)" : "scale(1)",
-                          transition: "transform 0.3s, box-shadow 0.3s, background-color 0.3s",
-                          borderRadius: "24px",
-                          backgroundColor: isCompletedFromEvent ? "color-mix(in srgb, #dcfce7 58%, white)" : undefined,
-                          boxShadow: isCompletedFromEvent
-                            ? "0 0 0 3px color-mix(in srgb, #4ade80 35%, transparent)"
-                            : prefersReducedMotion && isSelectedLesson
-                              ? "0 0 0 3px color-mix(in srgb, var(--brand-300) 35%, transparent)"
-                              : undefined,
-                        }}
-                        className={isActiveProgression ? "animate-pulse-glow" : ""}
-                      >
-                        <LessonStartCard
-                          childId={activeChild.id}
-                          lessonId={lesson.id}
-                          title={lesson.title}
-                          objective={lesson.objective}
-                          estimatedMinutes={lesson.estimatedMinutes}
-                          videoSource={lesson.videoSource}
-                          onLessonSelect={handleLessonSelect}
-                          onLessonComplete={handleLessonComplete}
-                        />
-                      </div>
-                    </m.div>
-                  </m.div>
-                );
-              })}
+                  <div className="journey-nodes-row">
+                    {lessons.map((lesson, index) => {
+                      const isCompletedFromEvent = Boolean(completedLessonIds[lesson.id]);
+                      const isCompletedFromSeedData = index === 0 && lessons.length > 1;
+                      const isCompleted = isCompletedFromEvent || isCompletedFromSeedData;
+                      const isActiveProgression = index === (lessons.length > 1 ? 1 : 0);
+                      const isLocked = !isCompleted && !isActiveProgression;
+                      const isSelectedLesson = selectedLessonId === lesson.id;
+                      const isCelebratingCompletion = completedLessonFx?.lessonId === lesson.id;
+                      const completionPulse = isCelebratingCompletion ? (completedLessonFx?.pulse ?? 0) : 0;
+                      const waveSeed = lessons.length > 1 ? index / (lessons.length - 1) : 0;
+                      const nodeOffset = Math.round(Math.sin(waveSeed * Math.PI * 2.25) * 22);
+                      const nodeStatusClass = isCompleted
+                        ? "journey-node-completed"
+                        : isActiveProgression
+                          ? "journey-node-active"
+                          : "journey-node-locked";
+
+                      return (
+                        <m.div
+                          key={lesson.id}
+                          variants={popIn}
+                          layout
+                          className={`journey-node ${nodeStatusClass}`}
+                          style={{ "--journey-node-offset": `${nodeOffset}px` } as CSSProperties}
+                        >
+                          {isActiveProgression ? (
+                            <m.div
+                              className="journey-node-mascot"
+                              animate={prefersReducedMotion ? { y: 0 } : { y: [0, -6, 0], rotate: [0, -3, 2, 0] }}
+                              transition={prefersReducedMotion ? undefined : { repeat: Infinity, duration: 2.1, ease: "easeInOut" }}
+                              aria-label="Mascot dong hanh"
+                            >
+                              🦉
+                            </m.div>
+                          ) : null}
+
+                          <m.div
+                            key={`lesson-index-${lesson.id}-${isSelectedLesson ? selectedLessonPulse : 0}`}
+                            className="journey-node-index"
+                            variants={wobble}
+                            initial="idle"
+                            animate={prefersReducedMotion ? "idle" : isSelectedLesson ? "wobble" : "idle"}
+                            style={prefersReducedMotion && isSelectedLesson ? { boxShadow: "0 0 0 3px color-mix(in srgb, var(--brand-300) 45%, transparent)" } : undefined}
+                          >
+                            {isCompleted ? <span className="journey-node-check">✓</span> : index + 1}
+                          </m.div>
+
+                          <m.div
+                            key={`lesson-card-${lesson.id}-${completionPulse}`}
+                            variants={bounceIn}
+                            initial="rest"
+                            animate={prefersReducedMotion ? "rest" : isCelebratingCompletion ? "bounceIn" : "rest"}
+                            style={{ width: "clamp(262px, 74vw, 312px)" }}
+                          >
+                            <div
+                              className={`journey-lesson-shell ${isActiveProgression ? "animate-pulse-glow" : ""}`}
+                              style={{
+                                transform: !prefersReducedMotion
+                                  ? `scale(${isActiveProgression ? 0.98 : isLocked ? 0.9 : 0.93})`
+                                  : "scale(0.95)",
+                                transition: "transform 0.3s, box-shadow 0.3s, background-color 0.3s, opacity 0.3s, filter 0.3s",
+                                borderRadius: "24px",
+                                backgroundColor: isCompletedFromEvent ? "color-mix(in srgb, #dcfce7 58%, white)" : undefined,
+                                boxShadow: isCompletedFromEvent
+                                  ? "0 0 0 3px color-mix(in srgb, #4ade80 35%, transparent)"
+                                  : prefersReducedMotion && isSelectedLesson
+                                    ? "0 0 0 3px color-mix(in srgb, var(--brand-300) 35%, transparent)"
+                                    : undefined,
+                              }}
+                            >
+                              <LessonStartCard
+                                childId={activeChild.id}
+                                lessonId={lesson.id}
+                                title={lesson.title}
+                                objective={lesson.objective}
+                                estimatedMinutes={lesson.estimatedMinutes}
+                                videoSource={lesson.videoSource}
+                                onLessonSelect={handleLessonSelect}
+                                onLessonComplete={handleLessonComplete}
+                              />
+                            </div>
+                          </m.div>
+                        </m.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null}
               {!loadingLessons && lessons.length === 0 ? (
                 <m.div className="list-item" variants={popIn}>
                   <span>Chưa có bài học phù hợp cho hồ sơ này.</span>
@@ -368,3 +438,4 @@ export function KidMissionPanel({
     </KidMotionProvider>
   );
 }
+
