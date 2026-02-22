@@ -1,13 +1,23 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import confetti from "canvas-confetti";
+import { ArrowLeft, Volume2, VolumeX } from "lucide-react";
 import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
-import { KidMascot, type KidMascotState } from "@/components/animation/kid-mascot";
+import { KidMascot, type KidMascotActionProp, type KidMascotState } from "@/components/animation/kid-mascot";
 import { bounceIn, fadeInUp, listStagger, popIn, wobble } from "@/components/animation/kid-motion-variants";
 import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
+import { ParentGateDialog } from "@/components/parent-gate-dialog";
 import { synth } from "@/lib/audio-utils";
 
 interface MissionChild {
@@ -31,7 +41,8 @@ interface KidMissionPanelProps {
 
 const JOURNEY_NODE_BASE_WIDTH = 288;
 const JOURNEY_NODE_GAP = 28;
-const STAR_SEEDS = Array.from({ length: 14 }, (_, index) => {
+const JOURNEY_TAIL_SPACE = 800;
+const JOURNEY_STARS = Array.from({ length: 14 }, (_, index) => {
   const seed = Math.abs(Math.sin((index + 1) * 57.23));
   const sizeClass = index % 5 === 0 ? "journey-space-star-lg" : index % 2 === 0 ? "journey-space-star-md" : "journey-space-star-sm";
   return {
@@ -47,12 +58,60 @@ const STAR_SEEDS = Array.from({ length: 14 }, (_, index) => {
   };
 });
 
+const JOURNEY_PLANETS = [
+  { id: "planet-1", top: "68%", left: "8%", size: "66px", className: "journey-planet-a" },
+  { id: "planet-2", top: "14%", left: "34%", size: "92px", className: "journey-planet-b" },
+  { id: "planet-3", top: "64%", left: "54%", size: "78px", className: "journey-planet-c" },
+  { id: "planet-4", top: "22%", left: "82%", size: "88px", className: "journey-planet-d" },
+];
+
+const mascotMessages = [
+  "C\u1eadu h\u1ecdc ngoan nh\u00e9!",
+  "T\u1edb lu\u00f4n \u1edf \u0111\u00e2y h\u1ed7 tr\u1ee3 c\u1eadu!",
+  "C\u1ee9 t\u1eeb t\u1eeb h\u1ecdc, kh\u00f4ng v\u1ed9i!",
+  "C\u1ed1 l\u00ean c\u1ed1 l\u00ean n\u00e0o!",
+  "H\u00f4m nay c\u1eadu tuy\u1ec7t l\u1eafm!",
+];
+
+const completionMessages = [
+  "Qu\u00e1 \u0111\u1ec9nh! Con v\u1eeba ho\u00e0n th\u00e0nh th\u00eam m\u1ed9t b\u00e0i.",
+  "Tuy\u1ec7t v\u1eddi! B\u1ea3n \u0111\u1ed3 nhi\u1ec7m v\u1ee5 s\u00e1ng l\u00ean r\u1ed3i.",
+  "Xu\u1ea5t s\u1eafc! Con \u0111ang ti\u1ebfn b\u1ed9 r\u1ea5t nhanh.",
+  "Yay! Ti\u1ebfp t\u1ee5c ph\u00e1t huy nh\u00e9.",
+];
+
+const MASCOT_ACTION_PROPS: KidMascotActionProp[] = ["reading", "math", "exploring"];
+
+function resolveMascotAction(lesson: MissionLesson | undefined, seed: string): KidMascotActionProp {
+  if (lesson) {
+    const text = `${lesson.title} ${lesson.objective}`.toLowerCase();
+    if (/(đếm|toán|math|số|count|number|phép)/u.test(text)) {
+      return "math";
+    }
+    if (/(đọc|chữ|vần|read|book|letter|word|story)/u.test(text)) {
+      return "reading";
+    }
+  }
+
+  let hash = 0;
+  for (let index = 0; index < seed.length; index += 1) {
+    hash = (hash * 31 + seed.charCodeAt(index)) >>> 0;
+  }
+  return MASCOT_ACTION_PROPS[hash % MASCOT_ACTION_PROPS.length];
+}
+
 export function KidMissionPanel({
   childrenProfiles,
   initialChildId,
   initialLessons,
 }: KidMissionPanelProps) {
+  const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
+  const journeyContainerRef = useRef<HTMLDivElement | null>(null);
+  const dragActiveRef = useRef(false);
+  const dragPointerIdRef = useRef<number | null>(null);
+  const dragStartXRef = useRef(0);
+  const dragStartScrollLeftRef = useRef(0);
   const [activeChildId, setActiveChildId] = useState(initialChildId);
   const [lessons, setLessons] = useState(initialLessons);
   const [loadingLessons, setLoadingLessons] = useState(false);
@@ -68,22 +127,12 @@ export function KidMissionPanel({
   const [completedLessonIds, setCompletedLessonIds] = useState<Record<string, true>>({});
   const [completedLessonFx, setCompletedLessonFx] = useState<{ lessonId: string; pulse: number } | null>(null);
   const [mascotState, setMascotState] = useState<KidMascotState>("idle");
-  const [mascotMessage, setMascotMessage] = useState("Nhấn vào tớ nhé! Cùng học bài nào!");
-
-  const mascotMessages = [
-    "Cậu học ngoan nhé!",
-    "Tớ luôn ở đây hỗ trợ cậu!",
-    "Cứ từ từ học, không vội!",
-    "Cố lên cố lên nào!",
-    "Wow, hôm nay cậu thật tuyệt!"
-  ];
-
-  const completionMessages = [
-    "Qua dinh! Con vua hoan thanh them 1 bai.",
-    "Tuyet voi! Ban do nhiem vu sang len roi.",
-    "Xuat sac! Con dang tien bo rat nhanh.",
-    "Yay! Tiep tuc phat huy nhe.",
-  ];
+  const [mascotMessage, setMascotMessage] = useState("Nh\u1ea5n v\u00e0o t\u1edb nh\u00e9! C\u00f9ng h\u1ecdc b\u00e0i n\u00e0o!");
+  const [isSoundEnabled, setIsSoundEnabled] = useState(true);
+  const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
+  const [isParentGateOpen, setIsParentGateOpen] = useState(false);
+  const [parentGateSession, setParentGateSession] = useState(0);
+  const [isJourneyDragging, setIsJourneyDragging] = useState(false);
 
   const clearMascotStateResetTimer = useCallback(() => {
     if (mascotStateResetTimerRef.current !== null) {
@@ -114,7 +163,6 @@ export function KidMissionPanel({
           mascotStateResetTimerRef.current = null;
           return;
         }
-
         mascotStateRef.current = "idle";
         setMascotState("idle");
         mascotStateResetTimerRef.current = null;
@@ -134,6 +182,16 @@ export function KidMissionPanel({
       inactivityTimerRef.current = null;
     }, 10000);
   }, [clearInactivityTimer]);
+
+  const playPop = useCallback(() => {
+    if (!isSoundEnabled) return;
+    synth.playPop();
+  }, [isSoundEnabled]);
+
+  const playYay = useCallback(() => {
+    if (!isSoundEnabled) return;
+    synth.playYay();
+  }, [isSoundEnabled]);
 
   useEffect(() => {
     mascotStateRef.current = mascotState;
@@ -195,7 +253,7 @@ export function KidMissionPanel({
   }, [resetInactivityTimer]);
 
   const handleMascotClick = () => {
-    synth.playYay();
+    playYay();
     const randomMsg = mascotMessages[Math.floor(Math.random() * mascotMessages.length)];
     setMascotMessage(randomMsg);
     setMascotStateForDuration("happy", 1200);
@@ -212,13 +270,127 @@ export function KidMissionPanel({
     resetInactivityTimer();
   };
 
+  const handleJourneyPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse" || event.button !== 0) {
+      return;
+    }
+
+    const container = journeyContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    dragActiveRef.current = true;
+    dragPointerIdRef.current = event.pointerId;
+    dragStartXRef.current = event.clientX;
+    dragStartScrollLeftRef.current = container.scrollLeft;
+    setIsJourneyDragging(true);
+    container.setPointerCapture(event.pointerId);
+  };
+
+  const handleJourneyPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const container = journeyContainerRef.current;
+    if (!container || !dragActiveRef.current || dragPointerIdRef.current !== event.pointerId) {
+      return;
+    }
+
+    const deltaX = event.clientX - dragStartXRef.current;
+    container.scrollLeft = dragStartScrollLeftRef.current - deltaX;
+  };
+
+  const stopJourneyDragging = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const container = journeyContainerRef.current;
+    if (!container || !dragActiveRef.current || dragPointerIdRef.current !== event.pointerId) {
+      return;
+    }
+
+    dragActiveRef.current = false;
+    setIsJourneyDragging(false);
+    container.releasePointerCapture(event.pointerId);
+    dragPointerIdRef.current = null;
+  };
+
+  const handleJourneyWheel = useCallback((event: WheelEvent) => {
+    const container = journeyContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const maxHorizontalScroll = container.scrollWidth - container.clientWidth;
+    if (maxHorizontalScroll <= 0) {
+      return;
+    }
+
+    const prefersHorizontal = event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY);
+
+    if (!prefersHorizontal) {
+      const shell = document.querySelector(".kid-app-shell") as HTMLElement | null;
+      const scrollHost =
+        shell && shell.scrollHeight > shell.clientHeight ? shell : (document.scrollingElement as HTMLElement | null);
+      if (scrollHost) {
+        const maxVerticalScroll = scrollHost.scrollHeight - scrollHost.clientHeight;
+        const canScrollDown = event.deltaY > 0 && scrollHost.scrollTop < maxVerticalScroll - 1;
+        const canScrollUp = event.deltaY < 0 && scrollHost.scrollTop > 1;
+        if (canScrollDown || canScrollUp) {
+          const nextScrollTop = Math.min(maxVerticalScroll, Math.max(0, scrollHost.scrollTop + event.deltaY));
+          event.preventDefault();
+          scrollHost.scrollTop = nextScrollTop;
+          return;
+        }
+      }
+    }
+
+    const delta = prefersHorizontal ? event.deltaX || event.deltaY : event.deltaY;
+    const nextScrollLeft = Math.min(maxHorizontalScroll, Math.max(0, container.scrollLeft + delta));
+    if (nextScrollLeft === container.scrollLeft) {
+      return;
+    }
+
+    event.preventDefault();
+    container.scrollLeft = nextScrollLeft;
+  }, []);
+
+  useEffect(() => {
+    const container = journeyContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const wheelListener = (event: WheelEvent) => {
+      handleJourneyWheel(event);
+    };
+
+    container.addEventListener("wheel", wheelListener, { passive: false });
+    return () => {
+      container.removeEventListener("wheel", wheelListener);
+    };
+  }, [activeChildId, handleJourneyWheel]);
+
+  const openParentGate = () => {
+    setParentGateSession((current) => current + 1);
+    setIsParentGateOpen(true);
+    resetInactivityTimer();
+  };
+
+  const closeParentGate = () => {
+    setIsParentGateOpen(false);
+    resetInactivityTimer();
+  };
+
+  const handleParentGateVerified = () => {
+    setIsParentGateOpen(false);
+    router.push("/parent/dashboard");
+  };
+
   const handleLessonSelect = (lessonId: string) => {
     const selectedLesson = lessons.find((lesson) => lesson.id === lessonId);
     setSelectedLessonId(lessonId);
     setSelectedLessonPulse((previous) => previous + 1);
     if (selectedLesson) {
-      setMascotMessage(`Bat dau ${selectedLesson.title} nha!`);
+      setMascotMessage(`B\u1eaft \u0111\u1ea7u ${selectedLesson.title} nh\u00e9!`);
     }
+    setIsProfilePopupOpen(false);
+    resetInactivityTimer();
   };
 
   const handleLessonComplete = (lessonId: string) => {
@@ -231,8 +403,8 @@ export function KidMissionPanel({
       pulse: previous?.lessonId === lessonId ? previous.pulse + 1 : 1,
     }));
     setSelectedLessonId(lessonId);
-    const randomMsg = completionMessages[Math.floor(Math.random() * completionMessages.length)];
-    setMascotMessage(randomMsg);
+    setMascotMessage(completionMessages[Math.floor(Math.random() * completionMessages.length)]);
+
     if (!prefersReducedMotion) {
       const confettiColors = ["#fde047", "#f59e0b", "#0ea5e9", "#22c55e", "#f472b6"];
       confetti({
@@ -250,13 +422,21 @@ export function KidMissionPanel({
         colors: confettiColors,
       });
     }
+
+    playYay();
     setMascotStateForDuration("celebrating", 3000, true);
     resetInactivityTimer();
   };
 
+  const handleSoundToggle = () => {
+    setIsSoundEnabled((previous) => !previous);
+    resetInactivityTimer();
+  };
+
   async function handleSelectChild(childId: string) {
-    synth.playPop();
+    playPop();
     if (childId === activeChildId) {
+      setIsProfilePopupOpen(false);
       return;
     }
 
@@ -267,10 +447,12 @@ export function KidMissionPanel({
     setSelectedLessonPulse(0);
     setCompletedLessonIds({});
     setCompletedLessonFx(null);
+    setIsProfilePopupOpen(false);
     mascotStateRef.current = "idle";
     setMascotState("idle");
     clearMascotStateResetTimer();
     resetInactivityTimer();
+
     const currentFetchSeq = ++fetchSeqRef.current;
     const url = new URL(window.location.href);
     url.searchParams.set("childId", childId);
@@ -285,7 +467,7 @@ export function KidMissionPanel({
       }
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không tải được bài học hôm nay.");
+        setError(body.error?.message ?? "Kh\u00f4ng t\u1ea3i \u0111\u01b0\u1ee3c b\u00e0i h\u1ecdc h\u00f4m nay.");
         setLessons([]);
         return;
       }
@@ -296,8 +478,7 @@ export function KidMissionPanel({
       if (currentFetchSeq !== fetchSeqRef.current) {
         return;
       }
-
-      setError(loadError instanceof Error ? loadError.message : "Lỗi không xác định.");
+      setError(loadError instanceof Error ? loadError.message : "L\u1ed7i kh\u00f4ng x\u00e1c \u0111\u1ecbnh.");
       setLessons([]);
     } finally {
       if (currentFetchSeq === fetchSeqRef.current) {
@@ -307,90 +488,125 @@ export function KidMissionPanel({
   }
 
   const activeChild = childrenProfiles.find((child) => child.id === activeChildId) ?? childrenProfiles[0];
+  const activeProgressIndex = lessons.length > 1 ? 1 : 0;
+  const activeProgressLesson = lessons[activeProgressIndex];
+  const activeMascotAction = resolveMascotAction(
+    activeProgressLesson,
+    `${activeChildId}-${activeProgressLesson?.id ?? "fallback"}`,
+  );
   const journeyTrackWidth = Math.max(
-    lessons.length * JOURNEY_NODE_BASE_WIDTH + Math.max(lessons.length - 1, 0) * JOURNEY_NODE_GAP + 64,
-    360,
+    lessons.length * JOURNEY_NODE_BASE_WIDTH + Math.max(lessons.length - 1, 0) * JOURNEY_NODE_GAP + JOURNEY_TAIL_SPACE,
+    1200,
   );
   const journeyPathD = `M 24 106 C ${Math.round(journeyTrackWidth * 0.17)} 28, ${Math.round(journeyTrackWidth * 0.34)} 170, ${Math.round(journeyTrackWidth * 0.5)} 104 C ${Math.round(journeyTrackWidth * 0.66)} 44, ${Math.round(journeyTrackWidth * 0.84)} 162, ${journeyTrackWidth - 24} 88`;
   const journeyTrackStyle = { "--journey-track-width": `${journeyTrackWidth}px` } as CSSProperties;
 
   return (
     <KidMotionProvider>
-      <div className="page-stack kid-shell">
-        <m.section
-          className="card kid-hero-card"
-          variants={fadeInUp}
-          initial="hidden"
-          animate="visible"
-        >
-          <h1>Bài học hôm nay — {activeChild.nickname}</h1>
-          <p className="muted-text">
-            Chọn đúng hồ sơ bé để hệ thống lấy bài học theo tiến độ.
-          </p>
-          <div className="child-switcher" style={{ gap: "1.5rem", marginTop: "1.5rem", padding: "1rem", background: "color-mix(in srgb, var(--surface-100) 50%, transparent)", borderRadius: "24px", justifyContent: "center", display: "flex", flexWrap: "wrap" }}>
-            {childrenProfiles.map((child) => {
-              const isActive = child.id === activeChildId;
-              const firstLetter = child.nickname.charAt(0).toUpperCase();
+      <div className="kid-mission-root">
+        <m.header className="kid-hud" variants={fadeInUp} initial="hidden" animate="visible">
+          <m.div whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }} whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}>
+            <button type="button" className="kid-hud-button kid-hud-back" onClick={openParentGate}>
+              <ArrowLeft size={20} />
+              <span>{"Quay l\u1ea1i"}</span>
+            </button>
+          </m.div>
 
-              return (
-                <div key={child.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
-                  <m.button
-                    type="button"
-                    onClick={() => handleSelectChild(child.id)}
-                    className={`kid-avatar ${isActive ? "kid-avatar-active" : ""}`}
-                    disabled={loadingLessons}
-                    whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.05 }}
-                    whileTap={prefersReducedMotion ? undefined : { scale: 0.92 }}
-                    layout
-                  >
-                    {firstLetter}
-                  </m.button>
-                  <span style={{ fontWeight: isActive ? 700 : 500, color: isActive ? "var(--ink-900)" : "var(--ink-600)", fontSize: "1.1rem" }}>
-                    {child.nickname}
-                  </span>
-                </div>
-              );
-            })}
+          <div className="kid-hud-center">
+            <m.button
+              type="button"
+              className="kid-profile-badge"
+              onClick={() => {
+                playPop();
+                setIsProfilePopupOpen((previous) => !previous);
+                resetInactivityTimer();
+              }}
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
+            >
+              <span className="kid-profile-avatar" aria-hidden="true">
+                {activeChild.nickname.charAt(0).toUpperCase()}
+              </span>
+              <span className="kid-profile-name">{activeChild.nickname}</span>
+            </m.button>
+
+            <AnimatePresence>
+              {isProfilePopupOpen ? (
+                <m.div
+                  className="kid-profile-popup"
+                  initial={{ opacity: 0, scale: 0.72, y: -8 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.82, y: -8 }}
+                  transition={{ type: "spring", stiffness: 360, damping: 22 }}
+                >
+                  {childrenProfiles.map((child) => {
+                    const isActive = child.id === activeChildId;
+                    return (
+                      <button
+                        key={child.id}
+                        type="button"
+                        className={`kid-profile-option ${isActive ? "kid-profile-option-active" : ""}`}
+                        onClick={() => {
+                          void handleSelectChild(child.id);
+                        }}
+                      >
+                        <span className="kid-profile-avatar-small" aria-hidden="true">
+                          {child.nickname.charAt(0).toUpperCase()}
+                        </span>
+                        <span>{child.nickname}</span>
+                      </button>
+                    );
+                  })}
+                </m.div>
+              ) : null}
+            </AnimatePresence>
           </div>
-        </m.section>
 
-        <m.section
-          className="card"
-          variants={fadeInUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.05 }}
-          aria-busy={loadingLessons}
-        >
-          <h2>Bài học hôm nay</h2>
+          <m.button
+            type="button"
+            className="kid-hud-button kid-hud-sound"
+            onClick={handleSoundToggle}
+            whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
+            aria-pressed={!isSoundEnabled}
+          >
+            {isSoundEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
+            <span>{isSoundEnabled ? "\u00c2m thanh" : "\u0110ang t\u1eaft"}</span>
+          </m.button>
+        </m.header>
+
+        <m.section className="kid-stage" variants={fadeInUp} initial="hidden" animate="visible" transition={{ delay: 0.04 }}>
+          <div className="kid-stage-copy">
+            <h1>{"B\u1ea3n \u0111\u1ed3 h\u00e0nh tr\u00ecnh h\u00f4m nay"}</h1>
+            <p>{"V\u01b0\u1ee3t qua t\u1eebng h\u00e0nh tinh, m\u1edf kh\u00f3a b\u00e0i h\u1ecdc m\u1edbi v\u00e0 nh\u1eadn sao th\u01b0\u1edfng."}</p>
+          </div>
+
           <AnimatePresence mode="wait" initial={false}>
             {loadingLessons ? (
               <m.div
                 key="loading"
-                className="muted-text"
+                className="kid-floating-status"
                 role="status"
                 aria-live="polite"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem", padding: "2rem" }}
               >
-                <div className="animate-float" style={{ width: "40px", height: "40px", borderRadius: "50%", border: "4px solid var(--surface-200)", borderTopColor: "var(--brand-500)", animation: "spin 1s linear infinite" }} />
-                <p style={{ fontWeight: 600, color: "var(--brand-600)" }}>Đang chuẩn bị bài học...</p>
+                <div className="kid-spinner" />
+                <p>{"\u0110ang kh\u1edfi t\u1ea1o b\u1ea3n \u0111\u1ed3 b\u00e0i h\u1ecdc..."}</p>
               </m.div>
             ) : null}
           </AnimatePresence>
+
           <AnimatePresence mode="wait" initial={false}>
             {error ? (
               <m.div
                 key={error}
-                className="error-text"
+                className="kid-floating-error"
                 role="status"
                 aria-live="assertive"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                style={{ background: "#fef2f2", padding: "1rem", borderRadius: "12px", border: "1px solid #fecaca", marginBottom: "1rem" }}
               >
                 {error}
               </m.div>
@@ -400,11 +616,17 @@ export function KidMissionPanel({
           <AnimatePresence mode="wait">
             <m.div
               key={activeChild.id}
-              className="journey-map-container"
+              ref={journeyContainerRef}
+              className={`journey-map-container ${isJourneyDragging ? "journey-map-container-dragging" : ""}`}
               variants={listStagger}
               initial="hidden"
               animate="visible"
               exit="exit"
+              onPointerDown={handleJourneyPointerDown}
+              onPointerMove={handleJourneyPointerMove}
+              onPointerUp={stopJourneyDragging}
+              onPointerCancel={stopJourneyDragging}
+              onPointerLeave={stopJourneyDragging}
             >
               {lessons.length > 0 ? (
                 <div className="journey-map-track" style={journeyTrackStyle}>
@@ -413,7 +635,14 @@ export function KidMissionPanel({
                     <span className="journey-space-nebula journey-space-nebula-b" />
                     <span className="journey-space-streak journey-space-streak-a" />
                     <span className="journey-space-streak journey-space-streak-b" />
-                    {STAR_SEEDS.map((star) => (
+                    {JOURNEY_PLANETS.map((planet) => (
+                      <span
+                        key={planet.id}
+                        className={`journey-planet ${planet.className}`}
+                        style={{ top: planet.top, left: planet.left, width: planet.size, height: planet.size } as CSSProperties}
+                      />
+                    ))}
+                    {JOURNEY_STARS.map((star) => (
                       <span
                         key={star.id}
                         className={`journey-space-star ${star.className}`}
@@ -442,7 +671,7 @@ export function KidMissionPanel({
                       const isCompletedFromEvent = Boolean(completedLessonIds[lesson.id]);
                       const isCompletedFromSeedData = index === 0 && lessons.length > 1;
                       const isCompleted = isCompletedFromEvent || isCompletedFromSeedData;
-                      const isActiveProgression = index === (lessons.length > 1 ? 1 : 0);
+                      const isActiveProgression = index === activeProgressIndex;
                       const isLocked = !isCompleted && !isActiveProgression;
                       const isSelectedLesson = selectedLessonId === lesson.id;
                       const isCelebratingCompletion = completedLessonFx?.lessonId === lesson.id;
@@ -471,11 +700,12 @@ export function KidMissionPanel({
                               className="journey-node-mascot"
                               animate={prefersReducedMotion ? { y: 0 } : { y: [0, -6, 0], rotate: [0, -3, 2, 0] }}
                               transition={prefersReducedMotion ? undefined : { repeat: Infinity, duration: 2.1, ease: "easeInOut" }}
-                              aria-label="Mascot dong hanh"
+                              aria-label={"Mascot \u0111\u1ed3ng h\u00e0nh"}
                             >
                               <KidMascot
                                 size={64}
                                 state={mascotState === "sleeping" ? "idle" : mascotState}
+                                actionProp={activeMascotAction}
                                 className="journey-node-mascot-icon"
                               />
                             </m.div>
@@ -489,7 +719,7 @@ export function KidMissionPanel({
                             animate={prefersReducedMotion ? "idle" : isSelectedLesson ? "wobble" : "idle"}
                             style={prefersReducedMotion && isSelectedLesson ? { boxShadow: "0 0 0 3px color-mix(in srgb, var(--brand-300) 45%, transparent)" } : undefined}
                           >
-                            {isCompleted ? <span className="journey-node-check">✓</span> : index + 1}
+                            {isCompleted ? <span className="journey-node-check">{"\u2713"}</span> : index + 1}
                           </m.div>
 
                           <m.div
@@ -533,23 +763,23 @@ export function KidMissionPanel({
                   </div>
                 </div>
               ) : null}
+
               {!loadingLessons && lessons.length === 0 ? (
-                <m.div className="list-item" variants={popIn}>
-                  <span>Chưa có bài học phù hợp cho hồ sơ này.</span>
+                <m.div className="kid-floating-status" variants={popIn}>
+                  <span>{"Ch\u01b0a c\u00f3 b\u00e0i h\u1ecdc ph\u00f9 h\u1ee3p cho h\u1ed3 s\u01a1 n\u00e0y."}</span>
                 </m.div>
               ) : null}
             </m.div>
           </AnimatePresence>
         </m.section>
 
-        {/* Mascot Character Guide */}
         <AnimatePresence>
-          {!loadingLessons && (
+          {!loadingLessons ? (
             <m.div
               className="mascot-container"
               initial={{ opacity: 0, scale: 0.5, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 20 }}
+              transition={{ delay: 0.45, type: "spring", stiffness: 200, damping: 20 }}
             >
               <AnimatePresence mode="wait">
                 <m.div
@@ -558,28 +788,30 @@ export function KidMissionPanel({
                   initial={{ opacity: 0, scale: 0.8, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 22 }}
                 >
                   {mascotMessage}
                 </m.div>
               </AnimatePresence>
+
               <m.div
                 className="mascot-avatar"
                 animate={prefersReducedMotion ? { y: 0 } : { y: [0, -8, 0] }}
                 transition={prefersReducedMotion ? undefined : { repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
                 onClick={handleMascotClick}
-                whileHover={prefersReducedMotion ? undefined : { scale: 1.1 }}
-                whileTap={prefersReducedMotion ? undefined : { scale: 0.9 }}
+                whileHover={prefersReducedMotion ? undefined : { scale: 1.08 }}
+                whileTap={prefersReducedMotion ? undefined : { scale: 0.92 }}
                 role="button"
-                aria-label="Nhân vật hướng dẫn hỗ trợ trẻ em"
+                aria-label={"Mascot h\u01b0\u1edbng d\u1eabn"}
               >
-                <KidMascot size={72} state={mascotState} className="pointer-events-none" />
+                <KidMascot size={72} state={mascotState} actionProp={activeMascotAction} className="pointer-events-none" />
               </m.div>
             </m.div>
-          )}
+          ) : null}
         </AnimatePresence>
+
+        <ParentGateDialog key={parentGateSession} open={isParentGateOpen} onClose={closeParentGate} onVerified={handleParentGateVerified} />
       </div>
     </KidMotionProvider>
   );
 }
-

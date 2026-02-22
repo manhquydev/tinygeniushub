@@ -1,9 +1,6 @@
 ﻿import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
-import { AppNav } from "@/components/app-nav";
-import { MainShell } from "@/components/main-shell";
-import { SiteFooter } from "@/components/site-footer";
 
 const mainFont = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
@@ -36,11 +33,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={mainFont.variable}>
-        <AppNav />
-        <MainShell>{children}</MainShell>
-        <SiteFooter />
-      </body>
+      <body className={mainFont.variable}>{children}</body>
     </html>
   );
 }
