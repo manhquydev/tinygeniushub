@@ -23,8 +23,8 @@ export default async function KidTodayPage({ searchParams }: KidTodayPageProps) 
   if (children.length === 0) {
     return (
       <section className="kid-empty-state">
-        <h1>Chế độ học tập chưa sẵn sàng</h1>
-        <p>Hãy tạo ít nhất một hồ sơ bé trong khu vực Phụ huynh trước khi vào hành trình.</p>
+        <h1>{"Ch\u1ebf \u0111\u1ed9 h\u1ecdc t\u1eadp ch\u01b0a s\u1eb5n s\u00e0ng"}</h1>
+        <p>{"H\u00e3y t\u1ea1o \u00edt nh\u1ea5t m\u1ed9t h\u1ed3 s\u01a1 b\u00e9 trong khu v\u1ef1c Ph\u1ee5 huynh tr\u01b0\u1edbc khi v\u00e0o h\u00e0nh tr\u00ecnh."}</p>
       </section>
     );
   }

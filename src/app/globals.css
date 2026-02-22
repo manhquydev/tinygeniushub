@@ -27,6 +27,10 @@ body {
   font-family: var(--font-body), sans-serif;
 }
 
+body:has(.kid-app-shell) {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -195,10 +199,13 @@ p {
 }
 
 .kid-app-shell {
-  position: relative;
+  position: fixed;
+  inset: 0;
   width: 100vw;
   height: 100dvh;
+  max-height: 100dvh;
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 .kid-today-scene {
@@ -736,7 +743,8 @@ ul {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: 100dvh;
+  height: 100%;
+  max-height: 100%;
   padding: clamp(0.75rem, 2.4vw, 1.25rem);
   display: flex;
   flex-direction: column;
@@ -749,7 +757,7 @@ ul {
   z-index: 8;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: start;
+  align-items: center;
   gap: 0.7rem;
 }
 
@@ -772,7 +780,7 @@ ul {
 }
 
 .kid-hud-back {
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .kid-hud-sound {
@@ -877,6 +885,7 @@ ul {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: 0.9rem;
+  overflow: hidden;
 }
 
 .kid-stage-copy {
@@ -975,7 +984,10 @@ ul {
   margin-top: 0;
   padding: 0.5rem 0 0.35rem;
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: none;
+  touch-action: pan-x;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   border-radius: 28px;
@@ -1004,6 +1016,7 @@ ul {
   stroke-width: 15;
   stroke-linecap: round;
   opacity: 0.25;
+  animation: journey-path-glow 3.4s ease-in-out infinite;
 }
 
 .journey-path-line {
@@ -1012,7 +1025,9 @@ ul {
   stroke-width: 4;
   stroke-linecap: round;
   stroke-dasharray: 9 11;
+  stroke-dashoffset: 0;
   opacity: 0.94;
+  animation: journey-path-march 1.7s linear infinite;
 }
 
 .journey-map-track {
@@ -1109,27 +1124,45 @@ ul {
   pointer-events: none;
   z-index: 1;
   opacity: 0.8;
+  will-change: transform;
+  animation: journey-planet-drift var(--planet-drift-duration, 18s) ease-in-out infinite;
 }
 
 .journey-planet-a {
+  --planet-drift-duration: 24s;
+  --planet-drift-x: 16px;
+  --planet-drift-y: -8px;
+  --planet-drift-scale: 1.04;
   background:
     radial-gradient(circle at 26% 26%, #fef3c7 0%, #f59e0b 35%, #b45309 100%);
   box-shadow: 0 0 26px color-mix(in srgb, #f59e0b 36%, transparent);
 }
 
 .journey-planet-b {
+  --planet-drift-duration: 30s;
+  --planet-drift-x: -18px;
+  --planet-drift-y: 10px;
+  --planet-drift-scale: 1.06;
   background:
     radial-gradient(circle at 30% 30%, #e0f2fe 0%, #38bdf8 38%, #1d4ed8 100%);
   box-shadow: 0 0 30px color-mix(in srgb, #38bdf8 40%, transparent);
 }
 
 .journey-planet-c {
+  --planet-drift-duration: 27s;
+  --planet-drift-x: 14px;
+  --planet-drift-y: 9px;
+  --planet-drift-scale: 1.05;
   background:
     radial-gradient(circle at 32% 25%, #fbcfe8 0%, #f472b6 40%, #9d174d 100%);
   box-shadow: 0 0 26px color-mix(in srgb, #ec4899 36%, transparent);
 }
 
 .journey-planet-d {
+  --planet-drift-duration: 33s;
+  --planet-drift-x: -12px;
+  --planet-drift-y: -10px;
+  --planet-drift-scale: 1.04;
   background:
     radial-gradient(circle at 24% 22%, #dcfce7 0%, #22c55e 40%, #166534 100%);
   box-shadow: 0 0 26px color-mix(in srgb, #22c55e 36%, transparent);
@@ -1315,6 +1348,38 @@ ul {
   }
 }
 
+@keyframes journey-path-march {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -160;
+  }
+}
+
+@keyframes journey-path-glow {
+  0%,
+  100% {
+    opacity: 0.22;
+  }
+
+  50% {
+    opacity: 0.34;
+  }
+}
+
+@keyframes journey-planet-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(var(--planet-drift-x, 10px), var(--planet-drift-y, -8px), 0) scale(var(--planet-drift-scale, 1.04));
+  }
+}
+
 @keyframes space-fog-drift {
   0% {
     transform: translate3d(-6%, 0, 0);
@@ -1354,6 +1419,14 @@ ul {
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-path-glow,
+  .journey-path-line,
+  .journey-planet {
+    animation: none;
   }
 }
 

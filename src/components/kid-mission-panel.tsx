@@ -57,18 +57,18 @@ const JOURNEY_PLANETS = [
 ];
 
 const mascotMessages = [
-  "Cậu học ngoan nhé!",
-  "Tớ luôn ở đây hỗ trợ cậu!",
-  "Cứ từ từ học, không vội!",
-  "Cố lên cố lên nào!",
-  "Hôm nay cậu tuyệt lắm!",
+  "C\u1eadu h\u1ecdc ngoan nh\u00e9!",
+  "T\u1edb lu\u00f4n \u1edf \u0111\u00e2y h\u1ed7 tr\u1ee3 c\u1eadu!",
+  "C\u1ee9 t\u1eeb t\u1eeb h\u1ecdc, kh\u00f4ng v\u1ed9i!",
+  "C\u1ed1 l\u00ean c\u1ed1 l\u00ean n\u00e0o!",
+  "H\u00f4m nay c\u1eadu tuy\u1ec7t l\u1eafm!",
 ];
 
 const completionMessages = [
-  "Quá đỉnh! Con vừa hoàn thành thêm một bài.",
-  "Tuyệt vời! Bản đồ nhiệm vụ sáng lên rồi.",
-  "Xuất sắc! Con đang tiến bộ rất nhanh.",
-  "Yay! Tiếp tục phát huy nhé.",
+  "Qu\u00e1 \u0111\u1ec9nh! Con v\u1eeba ho\u00e0n th\u00e0nh th\u00eam m\u1ed9t b\u00e0i.",
+  "Tuy\u1ec7t v\u1eddi! B\u1ea3n \u0111\u1ed3 nhi\u1ec7m v\u1ee5 s\u00e1ng l\u00ean r\u1ed3i.",
+  "Xu\u1ea5t s\u1eafc! Con \u0111ang ti\u1ebfn b\u1ed9 r\u1ea5t nhanh.",
+  "Yay! Ti\u1ebfp t\u1ee5c ph\u00e1t huy nh\u00e9.",
 ];
 
 export function KidMissionPanel({
@@ -92,7 +92,7 @@ export function KidMissionPanel({
   const [completedLessonIds, setCompletedLessonIds] = useState<Record<string, true>>({});
   const [completedLessonFx, setCompletedLessonFx] = useState<{ lessonId: string; pulse: number } | null>(null);
   const [mascotState, setMascotState] = useState<KidMascotState>("idle");
-  const [mascotMessage, setMascotMessage] = useState("Nhấn vào tớ nhé! Cùng học bài nào!");
+  const [mascotMessage, setMascotMessage] = useState("Nh\u1ea5n v\u00e0o t\u1edb nh\u00e9! C\u00f9ng h\u1ecdc b\u00e0i n\u00e0o!");
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
 
@@ -237,7 +237,7 @@ export function KidMissionPanel({
     setSelectedLessonId(lessonId);
     setSelectedLessonPulse((previous) => previous + 1);
     if (selectedLesson) {
-      setMascotMessage(`Bắt đầu ${selectedLesson.title} nhé!`);
+      setMascotMessage(`B\u1eaft \u0111\u1ea7u ${selectedLesson.title} nh\u00e9!`);
     }
     setIsProfilePopupOpen(false);
     resetInactivityTimer();
@@ -317,7 +317,7 @@ export function KidMissionPanel({
       }
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không tải được bài học hôm nay.");
+        setError(body.error?.message ?? "Kh\u00f4ng t\u1ea3i \u0111\u01b0\u1ee3c b\u00e0i h\u1ecdc h\u00f4m nay.");
         setLessons([]);
         return;
       }
@@ -328,7 +328,7 @@ export function KidMissionPanel({
       if (currentFetchSeq !== fetchSeqRef.current) {
         return;
       }
-      setError(loadError instanceof Error ? loadError.message : "Lỗi không xác định.");
+      setError(loadError instanceof Error ? loadError.message : "L\u1ed7i kh\u00f4ng x\u00e1c \u0111\u1ecbnh.");
       setLessons([]);
     } finally {
       if (currentFetchSeq === fetchSeqRef.current) {
@@ -349,10 +349,12 @@ export function KidMissionPanel({
     <KidMotionProvider>
       <div className="kid-mission-root">
         <m.header className="kid-hud" variants={fadeInUp} initial="hidden" animate="visible">
-          <Link href="/parent/dashboard" className="kid-hud-button kid-hud-back" onClick={resetInactivityTimer}>
-            <ArrowLeft size={20} />
-            <span>Quay lai</span>
-          </Link>
+          <m.div whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }} whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}>
+            <Link href="/parent/dashboard" className="kid-hud-button kid-hud-back" onClick={resetInactivityTimer}>
+              <ArrowLeft size={20} />
+              <span>{"Quay l\u1ea1i"}</span>
+            </Link>
+          </m.div>
 
           <div className="kid-hud-center">
             <m.button
@@ -407,18 +409,19 @@ export function KidMissionPanel({
             type="button"
             className="kid-hud-button kid-hud-sound"
             onClick={handleSoundToggle}
-            whileTap={prefersReducedMotion ? undefined : { scale: 0.94 }}
+            whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
             aria-pressed={!isSoundEnabled}
           >
             {isSoundEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
-            <span>{isSoundEnabled ? "Am thanh" : "Dang tat"}</span>
+            <span>{isSoundEnabled ? "\u00c2m thanh" : "\u0110ang t\u1eaft"}</span>
           </m.button>
         </m.header>
 
         <m.section className="kid-stage" variants={fadeInUp} initial="hidden" animate="visible" transition={{ delay: 0.04 }}>
           <div className="kid-stage-copy">
-            <h1>Ban do hanh trinh hom nay</h1>
-            <p>Vuot qua tung hanh tinh, mo khoa bai hoc moi va nhan sao thuong.</p>
+            <h1>{"B\u1ea3n \u0111\u1ed3 h\u00e0nh tr\u00ecnh h\u00f4m nay"}</h1>
+            <p>{"V\u01b0\u1ee3t qua t\u1eebng h\u00e0nh tinh, m\u1edf kh\u00f3a b\u00e0i h\u1ecdc m\u1edbi v\u00e0 nh\u1eadn sao th\u01b0\u1edfng."}</p>
           </div>
 
           <AnimatePresence mode="wait" initial={false}>
@@ -433,7 +436,7 @@ export function KidMissionPanel({
                 exit={{ opacity: 0, scale: 0.8 }}
               >
                 <div className="kid-spinner" />
-                <p>Dang khoi tao ban do bai hoc...</p>
+                <p>{"\u0110ang kh\u1edfi t\u1ea1o b\u1ea3n \u0111\u1ed3 b\u00e0i h\u1ecdc..."}</p>
               </m.div>
             ) : null}
           </AnimatePresence>
@@ -535,7 +538,7 @@ export function KidMissionPanel({
                               className="journey-node-mascot"
                               animate={prefersReducedMotion ? { y: 0 } : { y: [0, -6, 0], rotate: [0, -3, 2, 0] }}
                               transition={prefersReducedMotion ? undefined : { repeat: Infinity, duration: 2.1, ease: "easeInOut" }}
-                              aria-label="Mascot dong hanh"
+                              aria-label={"Mascot \u0111\u1ed3ng h\u00e0nh"}
                             >
                               <KidMascot
                                 size={64}
@@ -553,7 +556,7 @@ export function KidMissionPanel({
                             animate={prefersReducedMotion ? "idle" : isSelectedLesson ? "wobble" : "idle"}
                             style={prefersReducedMotion && isSelectedLesson ? { boxShadow: "0 0 0 3px color-mix(in srgb, var(--brand-300) 45%, transparent)" } : undefined}
                           >
-                            {isCompleted ? <span className="journey-node-check">✓</span> : index + 1}
+                            {isCompleted ? <span className="journey-node-check">{"\u2713"}</span> : index + 1}
                           </m.div>
 
                           <m.div
@@ -600,7 +603,7 @@ export function KidMissionPanel({
 
               {!loadingLessons && lessons.length === 0 ? (
                 <m.div className="kid-floating-status" variants={popIn}>
-                  <span>Chua co bai hoc phu hop cho ho so nay.</span>
+                  <span>{"Ch\u01b0a c\u00f3 b\u00e0i h\u1ecdc ph\u00f9 h\u1ee3p cho h\u1ed3 s\u01a1 n\u00e0y."}</span>
                 </m.div>
               ) : null}
             </m.div>
@@ -636,7 +639,7 @@ export function KidMissionPanel({
                 whileHover={prefersReducedMotion ? undefined : { scale: 1.08 }}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.92 }}
                 role="button"
-                aria-label="Mascot huong dan"
+                aria-label={"Mascot h\u01b0\u1edbng d\u1eabn"}
               >
                 <KidMascot size={72} state={mascotState} className="pointer-events-none" />
               </m.div>
@@ -647,4 +650,3 @@ export function KidMissionPanel({
     </KidMotionProvider>
   );
 }
-
