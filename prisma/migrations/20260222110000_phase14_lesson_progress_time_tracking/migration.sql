@@ -1,4 +1,4 @@
-﻿-- phase14: lesson progress time tracking (idempotent + safe backfill)
+-- phase14: lesson progress time tracking (idempotent + safe backfill)
 BEGIN;
 
 CREATE TABLE IF NOT EXISTS "public"."LessonProgress" (
