@@ -197,10 +197,11 @@ p {
 .kid-app-shell {
   position: relative;
   width: 100vw;
+  height: 100dvh;
   min-height: 100dvh;
   overflow-x: hidden;
   overflow-y: auto;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: auto;
 }
 
 .kid-today-scene {
@@ -980,8 +981,8 @@ ul {
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
-  overscroll-behavior-y: none;
-  touch-action: pan-x;
+  overscroll-behavior-y: auto;
+  touch-action: pan-x pan-y;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   cursor: grab;

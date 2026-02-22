@@ -7,7 +7,6 @@ import {
   useState,
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
-  type WheelEvent as ReactWheelEvent,
 } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, useReducedMotion } from "motion/react";
@@ -311,18 +310,61 @@ export function KidMissionPanel({
     dragPointerIdRef.current = null;
   };
 
-  const handleJourneyWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
+  const handleJourneyWheel = useCallback((event: WheelEvent) => {
     const container = journeyContainerRef.current;
     if (!container) {
       return;
     }
 
-    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+    const maxHorizontalScroll = container.scrollWidth - container.clientWidth;
+    if (maxHorizontalScroll <= 0) {
       return;
     }
 
-    container.scrollLeft += event.deltaY;
-  };
+    const prefersHorizontal = event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY);
+
+    if (!prefersHorizontal) {
+      const shell = document.querySelector(".kid-app-shell") as HTMLElement | null;
+      const scrollHost =
+        shell && shell.scrollHeight > shell.clientHeight ? shell : (document.scrollingElement as HTMLElement | null);
+      if (scrollHost) {
+        const maxVerticalScroll = scrollHost.scrollHeight - scrollHost.clientHeight;
+        const canScrollDown = event.deltaY > 0 && scrollHost.scrollTop < maxVerticalScroll - 1;
+        const canScrollUp = event.deltaY < 0 && scrollHost.scrollTop > 1;
+        if (canScrollDown || canScrollUp) {
+          const nextScrollTop = Math.min(maxVerticalScroll, Math.max(0, scrollHost.scrollTop + event.deltaY));
+          event.preventDefault();
+          scrollHost.scrollTop = nextScrollTop;
+          return;
+        }
+      }
+    }
+
+    const delta = prefersHorizontal ? event.deltaX || event.deltaY : event.deltaY;
+    const nextScrollLeft = Math.min(maxHorizontalScroll, Math.max(0, container.scrollLeft + delta));
+    if (nextScrollLeft === container.scrollLeft) {
+      return;
+    }
+
+    event.preventDefault();
+    container.scrollLeft = nextScrollLeft;
+  }, []);
+
+  useEffect(() => {
+    const container = journeyContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const wheelListener = (event: WheelEvent) => {
+      handleJourneyWheel(event);
+    };
+
+    container.addEventListener("wheel", wheelListener, { passive: false });
+    return () => {
+      container.removeEventListener("wheel", wheelListener);
+    };
+  }, [activeChildId, handleJourneyWheel]);
 
   const openParentGate = () => {
     setParentGateSession((current) => current + 1);
@@ -585,7 +627,6 @@ export function KidMissionPanel({
               onPointerUp={stopJourneyDragging}
               onPointerCancel={stopJourneyDragging}
               onPointerLeave={stopJourneyDragging}
-              onWheel={handleJourneyWheel}
             >
               {lessons.length > 0 ? (
                 <div className="journey-map-track" style={journeyTrackStyle}>
