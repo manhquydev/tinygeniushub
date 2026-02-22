@@ -11,7 +11,10 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "coverage/**",
     "next-env.d.ts",
+    // Local skill bundles are not part of the runtime app source.
+    ".codex/**",
   ]),
 ]);
 

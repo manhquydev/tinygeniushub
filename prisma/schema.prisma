@@ -1,0 +1,519 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PlanCode {
+  TRIAL
+  YEARLY_STANDARD
+  YEARLY_FAMILY_PLUS
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE_STANDARD
+  ACTIVE_FAMILYPLUS
+  CANCELED_AT_PERIOD_END
+  EXPIRED
+  GRACE
+  REFUNDED
+}
+
+enum RetentionPolicy {
+  DEFAULT_90D
+  EXTENDED_365D
+}
+
+enum TrackCode {
+  ENGLISH
+  MATH
+  HABIT
+}
+
+enum EvidenceMediaType {
+  PHOTO
+  AUDIO
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+enum WebhookStatus {
+  RECEIVED
+  PROCESSED
+  IGNORED
+  FAILED
+}
+
+enum RewardType {
+  LESSON_COMPLETED
+  STREAK_BADGE
+  MILESTONE_CERTIFICATE
+}
+
+enum EmailStatus {
+  QUEUED
+  PROCESSING
+  SENT
+  BOUNCED
+  OPENED
+  CLICKED
+}
+
+enum CaregiverRole {
+  VIEW_ONLY
+}
+
+model ParentAccount {
+  id                   String                @id @default(cuid())
+  email                String                @unique
+  passwordHash         String
+  displayName          String?
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  lastActiveAt         DateTime?
+  childProfiles        ChildProfile[]
+  sessions             Session[]
+  preferences          ParentPreferences?
+  subscription         Subscription?
+  caregivers           CaregiverAccount[]
+  payments             PaymentRecord[]
+  referralCode         ReferralCode?
+  weeklyEmailOptIns    WeeklyEmailPreference[]
+  referredAttributions ReferralAttribution[] @relation("ReferredParent")
+}
+
+model Session {
+  id        String        @id @default(cuid())
+  tokenHash String        @unique
+  parentId  String
+  expiresAt DateTime
+  createdAt DateTime      @default(now())
+  parent    ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  @@index([parentId])
+}
+
+model User {
+  id           String        @id @default(cuid())
+  name         String
+  email        String        @unique
+  emailVerified Boolean      @default(false)
+  image        String?
+  parentId     String?       @unique
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  accounts     Account[]
+  authSessions AuthSession[]
+}
+
+model AuthSession {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, accountId])
+  @@index([userId])
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+}
+
+model ParentPreferences {
+  id                       String        @id @default(cuid())
+  parentId                 String        @unique
+  weeklyReportChannel      String        @default("IN_APP_AND_EMAIL")
+  weeklyReportEmailEnabled Boolean       @default(true)
+  marketingEmailOptIn      Boolean       @default(false)
+  timezone                 String        @default("Asia/Bangkok")
+  parent                   ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+}
+
+model WeeklyEmailPreference {
+  id       String        @id @default(cuid())
+  parentId String
+  childId  String
+  enabled  Boolean       @default(true)
+  parent   ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  child    ChildProfile  @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@unique([parentId, childId])
+}
+
+model CaregiverAccount {
+  id          String        @id @default(cuid())
+  parentId    String
+  email       String
+  displayName String?
+  role        CaregiverRole @default(VIEW_ONLY)
+  createdAt   DateTime      @default(now())
+  parent      ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  @@unique([parentId, email])
+}
+
+model Subscription {
+  id                       String             @id @default(cuid())
+  parentId                 String             @unique
+  planCode                 PlanCode           @default(TRIAL)
+  status                   SubscriptionStatus @default(TRIALING)
+  childProfileLimit        Int                @default(3)
+  caregiverLimit           Int                @default(2)
+  portfolioRetentionMaxDays Int               @default(90)
+  currentPeriodStart       DateTime           @default(now())
+  currentPeriodEnd         DateTime
+  autoRenew                Boolean            @default(true)
+  createdAt                DateTime           @default(now())
+  updatedAt                DateTime           @updatedAt
+  parent                   ParentAccount      @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  payments                 PaymentRecord[]
+}
+
+model ChildProfile {
+  id                String                  @id @default(cuid())
+  parentId          String
+  nickname          String
+  ageBand           String
+  avatarId          String?
+  placementResult   Json?
+  dailyMinutesLimit Int                     @default(20)
+  preferredLanguage String                  @default("vi")
+  progressSnapshot  Json?
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+  parent            ParentAccount           @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  progressStates    ProgressState[]
+  completions       LessonCompletion[]
+  lessonProgresses  LessonProgress[]
+  evidences         Evidence[]
+  rewardGrants      RewardGrant[]
+  weeklyReports     WeeklyReport[]
+  weeklyEmailOptIns WeeklyEmailPreference[]
+
+  @@index([parentId])
+}
+
+model Track {
+  id             String    @id @default(cuid())
+  code           TrackCode @unique
+  title          String
+  isTrialEnabled Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  levels         Level[]
+}
+
+model Level {
+  id      String @id @default(cuid())
+  trackId String
+  orderNo Int
+  title   String
+  track   Track  @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  units   Unit[]
+  progressStates ProgressState[] @relation("ProgressCurrentLevel")
+
+  @@unique([trackId, orderNo])
+}
+
+model Unit {
+  id      String  @id @default(cuid())
+  levelId String
+  orderNo Int
+  title   String
+  level   Level   @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  lessons Lesson[]
+  progressStates ProgressState[] @relation("ProgressCurrentUnit")
+
+  @@unique([levelId, orderNo])
+}
+
+model Lesson {
+  id                  String             @id @default(cuid())
+  unitId              String
+  orderNo             Int
+  slug                String             @unique
+  title               String
+  objective           String
+  estimatedMinutes    Int
+  trialEnabled        Boolean            @default(false)
+  videoSource         String?
+  offlineCardMarkdown String?
+  parentScriptMarkdown String?
+  unit                Unit               @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  activities          Activity[]
+  completions         LessonCompletion[]
+  lessonProgresses    LessonProgress[]
+  evidences           Evidence[]
+  rewardGrants        RewardGrant[]
+
+  @@unique([unitId, orderNo])
+}
+
+model Activity {
+  id           String @id @default(cuid())
+  lessonId     String
+  type         String
+  prompt       String
+  spec         Json
+  passCriteria Int    @default(80)
+  lesson       Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@index([lessonId])
+}
+
+model LessonProgress {
+  id             String       @id @default(cuid())
+  childId        String
+  lessonId       String
+  timeSpent      Int          @default(0)
+  lastAccessedAt DateTime     @default(now())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  child          ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  lesson         Lesson       @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, lessonId])
+  @@index([childId, lastAccessedAt])
+  @@index([lessonId])
+}
+
+model LessonCompletion {
+  id            String      @id @default(cuid())
+  childId       String
+  lessonId      String
+  completedAt   DateTime    @default(now())
+  minutesLearned Int        @default(0)
+  quizScore     Int
+  checklist     Json
+  child         ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  lesson        Lesson      @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  evidence      Evidence?
+
+  @@unique([childId, lessonId])
+  @@index([childId, completedAt])
+}
+
+model Evidence {
+  id                    String          @id @default(cuid())
+  childId               String
+  lessonId              String
+  completionId          String?         @unique
+  checklist             Json
+  quizScore             Int
+  retentionPolicy       RetentionPolicy @default(DEFAULT_90D)
+  expiresAt             DateTime
+  deletedAt             DateTime?
+  showInPortfolio       Boolean         @default(true)
+  shareableProgressCard Boolean         @default(false)
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  child                 ChildProfile    @relation(fields: [childId], references: [id], onDelete: Cascade)
+  lesson                Lesson          @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  completion            LessonCompletion? @relation(fields: [completionId], references: [id], onDelete: SetNull)
+  media                 EvidenceMedia[]
+
+  @@index([childId, createdAt])
+}
+
+model EvidenceMedia {
+  id                 String            @id @default(cuid())
+  evidenceId         String
+  type               EvidenceMediaType
+  objectPath         String
+  sizeBytes          Int
+  durationSeconds    Int?
+  checksum           String?
+  uploadedByParentId String
+  deletedAt          DateTime?
+  createdAt          DateTime          @default(now())
+  evidence           Evidence          @relation(fields: [evidenceId], references: [id], onDelete: Cascade)
+
+  @@index([evidenceId])
+}
+
+model RewardGrant {
+  id        String     @id @default(cuid())
+  childId   String
+  lessonId  String
+  type      RewardType @default(LESSON_COMPLETED)
+  name      String
+  grantedAt DateTime   @default(now())
+  child     ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  lesson    Lesson     @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, lessonId, type])
+}
+
+model ProgressState {
+  id                    String    @id @default(cuid())
+  childId               String
+  trackCode             TrackCode
+  currentLevelId        String?
+  currentUnitId         String?
+  weekNo                Int?
+  dayNo                 Int?
+  lastLessonCompletedAt DateTime?
+  streakCount           Int       @default(0)
+  weeklyGoalStatus      String?
+  reviewSchedule        Json?
+  child                 ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  currentLevel          Level?    @relation("ProgressCurrentLevel", fields: [currentLevelId], references: [id], onDelete: SetNull)
+  currentUnit           Unit?     @relation("ProgressCurrentUnit", fields: [currentUnitId], references: [id], onDelete: SetNull)
+
+  @@unique([childId, trackCode])
+}
+
+model WeeklyReport {
+  id                 String      @id @default(cuid())
+  childId            String
+  weekStart          DateTime
+  weekEnd            DateTime
+  minutesLearned     Int         @default(0)
+  lessonsCompleted   Int         @default(0)
+  streakDays         Int         @default(0)
+  skillsSummary      Json?
+  recommendations    Json?
+  generatedAt        DateTime    @default(now())
+  deliveredInAppAt   DateTime?
+  deliveredEmailAt   DateTime?
+  emailClaimedAt     DateTime?
+  emailStatus        EmailStatus @default(QUEUED)
+  deepLinkToken      String      @unique
+  child              ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, weekStart])
+  @@index([childId, generatedAt])
+  @@index([emailStatus, deliveredEmailAt, generatedAt])
+  @@index([emailStatus, emailClaimedAt])
+}
+
+model PaymentRecord {
+  id                    String         @id @default(cuid())
+  parentId              String
+  subscriptionId        String?
+  provider              String
+  providerTransactionId String
+  amountVnd             Int
+  currency              String         @default("VND")
+  status                PaymentStatus
+  processedAt           DateTime       @default(now())
+  rawPayload            Json
+  parent                ParentAccount  @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  subscription          Subscription?  @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+
+  @@unique([provider, providerTransactionId])
+  @@index([parentId, processedAt])
+}
+
+model WebhookEvent {
+  id             String        @id @default(cuid())
+  provider       String
+  eventId        String
+  signatureValid Boolean
+  status         WebhookStatus @default(RECEIVED)
+  processedAt    DateTime?
+  errorMessage   String?
+  payload        Json
+  createdAt      DateTime      @default(now())
+  auditTrail     Json?
+
+  @@unique([provider, eventId])
+  @@index([status, createdAt])
+}
+
+model AuditLog {
+  id           String   @id @default(cuid())
+  actorType    String
+  actorId      String?
+  action       String
+  resourceType String
+  resourceId   String?
+  metadata     Json?
+  createdAt    DateTime @default(now())
+
+  @@index([resourceType, resourceId])
+  @@index([createdAt])
+}
+
+model ReferralCode {
+  id           String                @id @default(cuid())
+  parentId     String                @unique
+  code         String                @unique
+  createdAt    DateTime              @default(now())
+  parent       ParentAccount         @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  attributions ReferralAttribution[]
+}
+
+model ReferralAttribution {
+  id               String        @id @default(cuid())
+  referralCodeId   String
+  referredParentId String        @unique
+  signedUpAt       DateTime      @default(now())
+  paidAt           DateTime?
+  rewardGranted    Boolean       @default(false)
+  referralCode     ReferralCode  @relation(fields: [referralCodeId], references: [id], onDelete: Cascade)
+  referredParent   ParentAccount @relation("ReferredParent", fields: [referredParentId], references: [id], onDelete: Cascade)
+
+  @@index([referralCodeId])
+}
+
+model BackgroundJobRun {
+  id         String   @id @default(cuid())
+  jobType    String
+  status     String
+  startedAt  DateTime @default(now())
+  finishedAt DateTime?
+  meta       Json?
+
+  @@index([jobType, startedAt])
+}
+
+model AdminSecuritySettings {
+  id                String   @id @default("default")
+  rateLimitPolicies Json
+  securityControls  Json?
+  updatedByActorId  String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
