@@ -71,14 +71,14 @@ export function KidMascot({
   const eyeWhiteAnimation = prefersReducedMotion || isSleeping || isHappy || isCelebrating
     ? undefined
     : isConfused
-      ? { ry: [9, 3.2, 9, 4, 9, 9], scaleY: [1, 1.08, 1] }
-      : { ry: [9, 9, 9, 1.1, 9, 9, 9, 9, 1.1, 9] };
+      ? { scaleY: [1, 0.32, 1, 0.44, 1, 1] }
+      : { scaleY: [1, 1, 1, 0.12, 1, 1, 1, 1, 0.12, 1] };
 
   const eyePupilAnimation = prefersReducedMotion || isSleeping || isHappy || isCelebrating
     ? undefined
     : isConfused
-      ? { ry: [4, 0.8, 4, 1.2, 4, 4] }
-      : { ry: [4, 4, 4, 0.45, 4, 4, 4, 4, 0.45, 4] };
+      ? { scaleY: [1, 0.24, 1, 0.38, 1, 1] }
+      : { scaleY: [1, 1, 1, 0.08, 1, 1, 1, 1, 0.08, 1] };
 
   const eyeTransition = prefersReducedMotion || isSleeping || isHappy || isCelebrating
     ? undefined
@@ -148,10 +148,46 @@ export function KidMascot({
 
         {!isHappy && !isSleeping && !isCelebrating ? (
           <>
-            <m.ellipse cx="186" cy="160" rx="9" ry="9" fill="#ffffff" animate={eyeWhiteAnimation} transition={eyeTransition} />
-            <m.ellipse cx="214" cy="160" rx="9" ry="9" fill="#ffffff" animate={eyeWhiteAnimation} transition={eyeTransition} />
-            <m.ellipse cx="186" cy="158" rx="4" ry="4" fill="#0f172a" animate={eyePupilAnimation} transition={eyeTransition} />
-            <m.ellipse cx="214" cy="158" rx="4" ry="4" fill="#0f172a" animate={eyePupilAnimation} transition={eyeTransition} />
+            <m.ellipse
+              cx="186"
+              cy="160"
+              rx="9"
+              ry="9"
+              fill="#ffffff"
+              animate={eyeWhiteAnimation}
+              transition={eyeTransition}
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+            />
+            <m.ellipse
+              cx="214"
+              cy="160"
+              rx="9"
+              ry="9"
+              fill="#ffffff"
+              animate={eyeWhiteAnimation}
+              transition={eyeTransition}
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+            />
+            <m.ellipse
+              cx="186"
+              cy="158"
+              rx="4"
+              ry="4"
+              fill="#0f172a"
+              animate={eyePupilAnimation}
+              transition={eyeTransition}
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+            />
+            <m.ellipse
+              cx="214"
+              cy="158"
+              rx="4"
+              ry="4"
+              fill="#0f172a"
+              animate={eyePupilAnimation}
+              transition={eyeTransition}
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+            />
             <circle cx="187.5" cy="156.5" r="1.5" fill="#ffffff" />
             <circle cx="215.5" cy="156.5" r="1.5" fill="#ffffff" />
           </>
@@ -188,4 +224,3 @@ export function KidMascot({
     </m.svg>
   );
 }
-

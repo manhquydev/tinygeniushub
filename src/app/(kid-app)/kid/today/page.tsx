@@ -1,4 +1,5 @@
 import { KidMissionPanel } from "@/components/kid-mission-panel";
+import { SpaceBackground } from "@/components/space-background";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
 import { getTodayMission } from "@/modules/content/service";
@@ -21,9 +22,9 @@ export default async function KidTodayPage({ searchParams }: KidTodayPageProps) 
 
   if (children.length === 0) {
     return (
-      <section className="card">
+      <section className="kid-empty-state">
         <h1>Chế độ học tập chưa sẵn sàng</h1>
-        <p className="muted-text">Hãy tạo ít nhất một hồ sơ bé trong Phụ huynh / Hồ sơ bé.</p>
+        <p>Hãy tạo ít nhất một hồ sơ bé trong khu vực Phụ huynh trước khi vào hành trình.</p>
       </section>
     );
   }
@@ -41,16 +42,20 @@ export default async function KidTodayPage({ searchParams }: KidTodayPageProps) 
   });
 
   return (
-    <KidMissionPanel
-      childrenProfiles={children}
-      initialChildId={initialChild.id}
-      initialLessons={initialLessons.map((lesson) => ({
-        id: lesson.id,
-        title: lesson.title,
-        objective: lesson.objective,
-        estimatedMinutes: lesson.estimatedMinutes,
-        videoSource: lesson.videoSource,
-      }))}
-    />
+    <div className="kid-today-scene">
+      <SpaceBackground className="kid-today-space" />
+      <KidMissionPanel
+        childrenProfiles={children}
+        initialChildId={initialChild.id}
+        initialLessons={initialLessons.map((lesson) => ({
+          id: lesson.id,
+          title: lesson.title,
+          objective: lesson.objective,
+          estimatedMinutes: lesson.estimatedMinutes,
+          videoSource: lesson.videoSource,
+        }))}
+      />
+    </div>
   );
 }
+
