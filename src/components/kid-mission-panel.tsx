@@ -97,9 +97,6 @@ export function KidMissionPanel({
     if (selectedLesson) {
       setMascotMessage(`Bat dau ${selectedLesson.title} nha!`);
     }
-    if (!prefersReducedMotion) {
-      synth.playTing();
-    }
   };
 
   const handleLessonComplete = (lessonId: string) => {
