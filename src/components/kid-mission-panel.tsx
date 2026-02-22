@@ -1,7 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent as ReactPointerEvent,
+  type WheelEvent as ReactWheelEvent,
+} from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import confetti from "canvas-confetti";
@@ -10,6 +18,7 @@ import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
 import { KidMascot, type KidMascotState } from "@/components/animation/kid-mascot";
 import { bounceIn, fadeInUp, listStagger, popIn, wobble } from "@/components/animation/kid-motion-variants";
 import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
+import { ParentGateDialog } from "@/components/parent-gate-dialog";
 import { synth } from "@/lib/audio-utils";
 
 interface MissionChild {
@@ -33,6 +42,7 @@ interface KidMissionPanelProps {
 
 const JOURNEY_NODE_BASE_WIDTH = 288;
 const JOURNEY_NODE_GAP = 28;
+const JOURNEY_TAIL_SPACE = 800;
 const JOURNEY_STARS = Array.from({ length: 14 }, (_, index) => {
   const seed = Math.abs(Math.sin((index + 1) * 57.23));
   const sizeClass = index % 5 === 0 ? "journey-space-star-lg" : index % 2 === 0 ? "journey-space-star-md" : "journey-space-star-sm";
@@ -76,7 +86,13 @@ export function KidMissionPanel({
   initialChildId,
   initialLessons,
 }: KidMissionPanelProps) {
+  const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
+  const journeyContainerRef = useRef<HTMLDivElement | null>(null);
+  const dragActiveRef = useRef(false);
+  const dragPointerIdRef = useRef<number | null>(null);
+  const dragStartXRef = useRef(0);
+  const dragStartScrollLeftRef = useRef(0);
   const [activeChildId, setActiveChildId] = useState(initialChildId);
   const [lessons, setLessons] = useState(initialLessons);
   const [loadingLessons, setLoadingLessons] = useState(false);
@@ -95,6 +111,9 @@ export function KidMissionPanel({
   const [mascotMessage, setMascotMessage] = useState("Nh\u1ea5n v\u00e0o t\u1edb nh\u00e9! C\u00f9ng h\u1ecdc b\u00e0i n\u00e0o!");
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
+  const [isParentGateOpen, setIsParentGateOpen] = useState(false);
+  const [parentGateSession, setParentGateSession] = useState(0);
+  const [isJourneyDragging, setIsJourneyDragging] = useState(false);
 
   const clearMascotStateResetTimer = useCallback(() => {
     if (mascotStateResetTimerRef.current !== null) {
@@ -232,6 +251,75 @@ export function KidMissionPanel({
     resetInactivityTimer();
   };
 
+  const handleJourneyPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse" || event.button !== 0) {
+      return;
+    }
+
+    const container = journeyContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    dragActiveRef.current = true;
+    dragPointerIdRef.current = event.pointerId;
+    dragStartXRef.current = event.clientX;
+    dragStartScrollLeftRef.current = container.scrollLeft;
+    setIsJourneyDragging(true);
+    container.setPointerCapture(event.pointerId);
+  };
+
+  const handleJourneyPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const container = journeyContainerRef.current;
+    if (!container || !dragActiveRef.current || dragPointerIdRef.current !== event.pointerId) {
+      return;
+    }
+
+    const deltaX = event.clientX - dragStartXRef.current;
+    container.scrollLeft = dragStartScrollLeftRef.current - deltaX;
+  };
+
+  const stopJourneyDragging = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const container = journeyContainerRef.current;
+    if (!container || !dragActiveRef.current || dragPointerIdRef.current !== event.pointerId) {
+      return;
+    }
+
+    dragActiveRef.current = false;
+    setIsJourneyDragging(false);
+    container.releasePointerCapture(event.pointerId);
+    dragPointerIdRef.current = null;
+  };
+
+  const handleJourneyWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
+    const container = journeyContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+      return;
+    }
+
+    container.scrollLeft += event.deltaY;
+  };
+
+  const openParentGate = () => {
+    setParentGateSession((current) => current + 1);
+    setIsParentGateOpen(true);
+    resetInactivityTimer();
+  };
+
+  const closeParentGate = () => {
+    setIsParentGateOpen(false);
+    resetInactivityTimer();
+  };
+
+  const handleParentGateVerified = () => {
+    setIsParentGateOpen(false);
+    router.push("/parent/dashboard");
+  };
+
   const handleLessonSelect = (lessonId: string) => {
     const selectedLesson = lessons.find((lesson) => lesson.id === lessonId);
     setSelectedLessonId(lessonId);
@@ -339,8 +427,8 @@ export function KidMissionPanel({
 
   const activeChild = childrenProfiles.find((child) => child.id === activeChildId) ?? childrenProfiles[0];
   const journeyTrackWidth = Math.max(
-    lessons.length * JOURNEY_NODE_BASE_WIDTH + Math.max(lessons.length - 1, 0) * JOURNEY_NODE_GAP + 64,
-    360,
+    lessons.length * JOURNEY_NODE_BASE_WIDTH + Math.max(lessons.length - 1, 0) * JOURNEY_NODE_GAP + JOURNEY_TAIL_SPACE,
+    1200,
   );
   const journeyPathD = `M 24 106 C ${Math.round(journeyTrackWidth * 0.17)} 28, ${Math.round(journeyTrackWidth * 0.34)} 170, ${Math.round(journeyTrackWidth * 0.5)} 104 C ${Math.round(journeyTrackWidth * 0.66)} 44, ${Math.round(journeyTrackWidth * 0.84)} 162, ${journeyTrackWidth - 24} 88`;
   const journeyTrackStyle = { "--journey-track-width": `${journeyTrackWidth}px` } as CSSProperties;
@@ -350,10 +438,10 @@ export function KidMissionPanel({
       <div className="kid-mission-root">
         <m.header className="kid-hud" variants={fadeInUp} initial="hidden" animate="visible">
           <m.div whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }} whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}>
-            <Link href="/parent/dashboard" className="kid-hud-button kid-hud-back" onClick={resetInactivityTimer}>
+            <button type="button" className="kid-hud-button kid-hud-back" onClick={openParentGate}>
               <ArrowLeft size={20} />
               <span>{"Quay l\u1ea1i"}</span>
-            </Link>
+            </button>
           </m.div>
 
           <div className="kid-hud-center">
@@ -460,11 +548,18 @@ export function KidMissionPanel({
           <AnimatePresence mode="wait">
             <m.div
               key={activeChild.id}
-              className="journey-map-container"
+              ref={journeyContainerRef}
+              className={`journey-map-container ${isJourneyDragging ? "journey-map-container-dragging" : ""}`}
               variants={listStagger}
               initial="hidden"
               animate="visible"
               exit="exit"
+              onPointerDown={handleJourneyPointerDown}
+              onPointerMove={handleJourneyPointerMove}
+              onPointerUp={stopJourneyDragging}
+              onPointerCancel={stopJourneyDragging}
+              onPointerLeave={stopJourneyDragging}
+              onWheel={handleJourneyWheel}
             >
               {lessons.length > 0 ? (
                 <div className="journey-map-track" style={journeyTrackStyle}>
@@ -646,6 +741,8 @@ export function KidMissionPanel({
             </m.div>
           ) : null}
         </AnimatePresence>
+
+        <ParentGateDialog key={parentGateSession} open={isParentGateOpen} onClose={closeParentGate} onVerified={handleParentGateVerified} />
       </div>
     </KidMotionProvider>
   );
