@@ -15,7 +15,7 @@ import * as m from "motion/react-m";
 import confetti from "canvas-confetti";
 import { ArrowLeft, Volume2, VolumeX } from "lucide-react";
 import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
-import { KidMascot, type KidMascotState } from "@/components/animation/kid-mascot";
+import { KidMascot, type KidMascotActionProp, type KidMascotState } from "@/components/animation/kid-mascot";
 import { bounceIn, fadeInUp, listStagger, popIn, wobble } from "@/components/animation/kid-motion-variants";
 import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
 import { ParentGateDialog } from "@/components/parent-gate-dialog";
@@ -80,6 +80,26 @@ const completionMessages = [
   "Xu\u1ea5t s\u1eafc! Con \u0111ang ti\u1ebfn b\u1ed9 r\u1ea5t nhanh.",
   "Yay! Ti\u1ebfp t\u1ee5c ph\u00e1t huy nh\u00e9.",
 ];
+
+const MASCOT_ACTION_PROPS: KidMascotActionProp[] = ["reading", "math", "exploring"];
+
+function resolveMascotAction(lesson: MissionLesson | undefined, seed: string): KidMascotActionProp {
+  if (lesson) {
+    const text = `${lesson.title} ${lesson.objective}`.toLowerCase();
+    if (/(đếm|toán|math|số|count|number|phép)/u.test(text)) {
+      return "math";
+    }
+    if (/(đọc|chữ|vần|read|book|letter|word|story)/u.test(text)) {
+      return "reading";
+    }
+  }
+
+  let hash = 0;
+  for (let index = 0; index < seed.length; index += 1) {
+    hash = (hash * 31 + seed.charCodeAt(index)) >>> 0;
+  }
+  return MASCOT_ACTION_PROPS[hash % MASCOT_ACTION_PROPS.length];
+}
 
 export function KidMissionPanel({
   childrenProfiles,
@@ -426,6 +446,12 @@ export function KidMissionPanel({
   }
 
   const activeChild = childrenProfiles.find((child) => child.id === activeChildId) ?? childrenProfiles[0];
+  const activeProgressIndex = lessons.length > 1 ? 1 : 0;
+  const activeProgressLesson = lessons[activeProgressIndex];
+  const activeMascotAction = resolveMascotAction(
+    activeProgressLesson,
+    `${activeChildId}-${activeProgressLesson?.id ?? "fallback"}`,
+  );
   const journeyTrackWidth = Math.max(
     lessons.length * JOURNEY_NODE_BASE_WIDTH + Math.max(lessons.length - 1, 0) * JOURNEY_NODE_GAP + JOURNEY_TAIL_SPACE,
     1200,
@@ -604,7 +630,7 @@ export function KidMissionPanel({
                       const isCompletedFromEvent = Boolean(completedLessonIds[lesson.id]);
                       const isCompletedFromSeedData = index === 0 && lessons.length > 1;
                       const isCompleted = isCompletedFromEvent || isCompletedFromSeedData;
-                      const isActiveProgression = index === (lessons.length > 1 ? 1 : 0);
+                      const isActiveProgression = index === activeProgressIndex;
                       const isLocked = !isCompleted && !isActiveProgression;
                       const isSelectedLesson = selectedLessonId === lesson.id;
                       const isCelebratingCompletion = completedLessonFx?.lessonId === lesson.id;
@@ -638,6 +664,7 @@ export function KidMissionPanel({
                               <KidMascot
                                 size={64}
                                 state={mascotState === "sleeping" ? "idle" : mascotState}
+                                actionProp={activeMascotAction}
                                 className="journey-node-mascot-icon"
                               />
                             </m.div>
@@ -736,7 +763,7 @@ export function KidMissionPanel({
                 role="button"
                 aria-label={"Mascot h\u01b0\u1edbng d\u1eabn"}
               >
-                <KidMascot size={72} state={mascotState} className="pointer-events-none" />
+                <KidMascot size={72} state={mascotState} actionProp={activeMascotAction} className="pointer-events-none" />
               </m.div>
             </m.div>
           ) : null}

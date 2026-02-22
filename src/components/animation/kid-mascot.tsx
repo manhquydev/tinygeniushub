@@ -11,10 +11,13 @@ export type KidMascotState =
   | "sleeping"
   | "celebrating";
 
+export type KidMascotActionProp = "reading" | "math" | "exploring";
+
 interface KidMascotProps {
   size?: number;
   className?: string;
   state?: KidMascotState;
+  actionProp?: KidMascotActionProp;
   title?: string;
 }
 
@@ -30,6 +33,7 @@ export function KidMascot({
   size = 120,
   className,
   state = "idle",
+  actionProp,
   title = "Cu Con",
 }: KidMascotProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
@@ -221,6 +225,45 @@ export function KidMascot({
 
         <polygon points="200,182 202,189 208,189 203,193 205,200 200,195 195,200 197,193 192,189 198,189" fill="#f59e0b" />
       </m.g>
+
+      {actionProp === "reading" ? (
+        <m.g
+          initial={{ opacity: 0, y: 2 }}
+          animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: [0, -1, 0] }}
+          transition={prefersReducedMotion ? undefined : { duration: 2.4, ease: "easeInOut", repeat: Infinity }}
+        >
+          <circle cx="186" cy="160" r="10.5" stroke="#0f172a" strokeWidth="1.6" fill="none" />
+          <circle cx="214" cy="160" r="10.5" stroke="#0f172a" strokeWidth="1.6" fill="none" />
+          <path d="M 196.2 160.2 L 203.8 160.2" stroke="#0f172a" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 177.5 185 L 187.4 183.2 L 188.8 194.8 L 178.9 196.6 Z" fill="#fef3c7" stroke="#b45309" strokeWidth="1" />
+          <path d="M 188.2 183.2 L 198.3 184.4 L 197 196.1 L 186.9 194.9 Z" fill="#fef9c3" stroke="#b45309" strokeWidth="1" />
+        </m.g>
+      ) : null}
+
+      {actionProp === "math" ? (
+        <m.g
+          initial={{ opacity: 0, y: 2 }}
+          animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: [0, -2, 0] }}
+          transition={prefersReducedMotion ? undefined : { duration: 2.1, ease: "easeInOut", repeat: Infinity }}
+        >
+          <path d="M 176 142 L 200 124 L 224 142 Z" fill="#4338ca" stroke="#a5b4fc" strokeWidth="1.2" />
+          <rect x="183.8" y="141.2" width="32.4" height="5.4" rx="2.4" fill="#3730a3" />
+          <path d="M 203.3 127 L 210 117" stroke="#fef08a" strokeWidth="1.2" strokeLinecap="round" />
+          <circle cx="211.4" cy="115.2" r="2" fill="#fef08a" />
+        </m.g>
+      ) : null}
+
+      {actionProp === "exploring" ? (
+        <m.g
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={prefersReducedMotion ? { opacity: 1, scale: 1 } : { opacity: [0.82, 1, 0.82], scale: [1, 1.01, 1] }}
+          transition={prefersReducedMotion ? undefined : { duration: 2.5, ease: "easeInOut", repeat: Infinity }}
+        >
+          <ellipse cx="200" cy="166.5" rx="35.5" ry="33.5" fill="none" stroke="#e0f2fe" strokeWidth="2.1" />
+          <ellipse cx="200" cy="166.5" rx="31.8" ry="30.6" fill="none" stroke="#7dd3fc" strokeWidth="1.2" opacity="0.5" />
+          <ellipse cx="189" cy="148" rx="8.8" ry="5" fill="#f8fafc" opacity="0.16" />
+        </m.g>
+      ) : null}
     </m.svg>
   );
 }
