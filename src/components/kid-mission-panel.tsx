@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
+import confetti from "canvas-confetti";
 import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
+import { KidMascot, type KidMascotState } from "@/components/animation/kid-mascot";
 import { bounceIn, fadeInUp, listStagger, popIn, wobble } from "@/components/animation/kid-motion-variants";
 import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
 import { synth } from "@/lib/audio-utils";
@@ -29,14 +31,21 @@ interface KidMissionPanelProps {
 
 const JOURNEY_NODE_BASE_WIDTH = 288;
 const JOURNEY_NODE_GAP = 28;
-const STAR_SEEDS = [
-  { id: "star-1", top: "18%", left: "8%", delay: "0s", duration: "4.8s", className: "journey-space-star-sm" },
-  { id: "star-2", top: "26%", left: "21%", delay: "0.6s", duration: "5.5s", className: "journey-space-star-md" },
-  { id: "star-3", top: "14%", left: "38%", delay: "1.4s", duration: "6.1s", className: "journey-space-star-sm" },
-  { id: "star-4", top: "24%", left: "56%", delay: "0.2s", duration: "5.2s", className: "journey-space-star-lg" },
-  { id: "star-5", top: "16%", left: "72%", delay: "1s", duration: "6.7s", className: "journey-space-star-sm" },
-  { id: "star-6", top: "22%", left: "88%", delay: "0.8s", duration: "4.9s", className: "journey-space-star-md" },
-];
+const STAR_SEEDS = Array.from({ length: 14 }, (_, index) => {
+  const seed = Math.abs(Math.sin((index + 1) * 57.23));
+  const sizeClass = index % 5 === 0 ? "journey-space-star-lg" : index % 2 === 0 ? "journey-space-star-md" : "journey-space-star-sm";
+  return {
+    id: `star-${index + 1}`,
+    top: `${10 + Math.round(seed * 22)}%`,
+    left: `${5 + Math.round(Math.abs(Math.sin((index + 3) * 18.61)) * 90)}%`,
+    delay: `${(seed * 2.8).toFixed(2)}s`,
+    duration: `${(4.4 + seed * 4).toFixed(2)}s`,
+    alphaMin: (0.18 + seed * 0.2).toFixed(2),
+    alphaMid: (0.45 + seed * 0.24).toFixed(2),
+    alphaMax: (0.78 + seed * 0.2).toFixed(2),
+    className: sizeClass,
+  };
+});
 
 export function KidMissionPanel({
   childrenProfiles,
@@ -50,10 +59,15 @@ export function KidMissionPanel({
   const [error, setError] = useState<string | null>(null);
   const fetchSeqRef = useRef(0);
   const completionFxResetTimerRef = useRef<number | null>(null);
+  const mascotStateResetTimerRef = useRef<number | null>(null);
+  const inactivityTimerRef = useRef<number | null>(null);
+  const mascotMessageHydratedRef = useRef(false);
+  const mascotStateRef = useRef<KidMascotState>("idle");
   const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
   const [selectedLessonPulse, setSelectedLessonPulse] = useState(0);
   const [completedLessonIds, setCompletedLessonIds] = useState<Record<string, true>>({});
   const [completedLessonFx, setCompletedLessonFx] = useState<{ lessonId: string; pulse: number } | null>(null);
+  const [mascotState, setMascotState] = useState<KidMascotState>("idle");
   const [mascotMessage, setMascotMessage] = useState("Nhấn vào tớ nhé! Cùng học bài nào!");
 
   const mascotMessages = [
@@ -71,13 +85,69 @@ export function KidMissionPanel({
     "Yay! Tiep tuc phat huy nhe.",
   ];
 
+  const clearMascotStateResetTimer = useCallback(() => {
+    if (mascotStateResetTimerRef.current !== null) {
+      window.clearTimeout(mascotStateResetTimerRef.current);
+      mascotStateResetTimerRef.current = null;
+    }
+  }, []);
+
+  const clearInactivityTimer = useCallback(() => {
+    if (inactivityTimerRef.current !== null) {
+      window.clearTimeout(inactivityTimerRef.current);
+      inactivityTimerRef.current = null;
+    }
+  }, []);
+
+  const setMascotStateForDuration = useCallback(
+    (nextState: KidMascotState, durationMs: number, force = false) => {
+      if (!force && mascotStateRef.current === "celebrating" && nextState !== "celebrating") {
+        return;
+      }
+
+      clearMascotStateResetTimer();
+      mascotStateRef.current = nextState;
+      setMascotState(nextState);
+
+      mascotStateResetTimerRef.current = window.setTimeout(() => {
+        if (mascotStateRef.current !== nextState) {
+          mascotStateResetTimerRef.current = null;
+          return;
+        }
+
+        mascotStateRef.current = "idle";
+        setMascotState("idle");
+        mascotStateResetTimerRef.current = null;
+      }, durationMs);
+    },
+    [clearMascotStateResetTimer],
+  );
+
+  const resetInactivityTimer = useCallback(() => {
+    clearInactivityTimer();
+    inactivityTimerRef.current = window.setTimeout(() => {
+      if (mascotStateRef.current === "celebrating") {
+        return;
+      }
+      mascotStateRef.current = "sleeping";
+      setMascotState("sleeping");
+      inactivityTimerRef.current = null;
+    }, 10000);
+  }, [clearInactivityTimer]);
+
+  useEffect(() => {
+    mascotStateRef.current = mascotState;
+  }, [mascotState]);
+
   useEffect(() => {
     return () => {
       if (completionFxResetTimerRef.current !== null) {
         window.clearTimeout(completionFxResetTimerRef.current);
       }
+      clearMascotStateResetTimer();
+      clearInactivityTimer();
     };
-  }, []);
+  }, [clearInactivityTimer, clearMascotStateResetTimer]);
 
   useEffect(() => {
     if (completionFxResetTimerRef.current !== null) {
@@ -95,10 +165,51 @@ export function KidMissionPanel({
     }, 1100);
   }, [completedLessonFx, prefersReducedMotion]);
 
+  useEffect(() => {
+    if (!mascotMessageHydratedRef.current) {
+      mascotMessageHydratedRef.current = true;
+      return;
+    }
+
+    setMascotStateForDuration("talking", 2000);
+    resetInactivityTimer();
+  }, [mascotMessage, resetInactivityTimer, setMascotStateForDuration]);
+
+  useEffect(() => {
+    const wakeMascot = () => {
+      if (mascotStateRef.current === "sleeping") {
+        mascotStateRef.current = "idle";
+        setMascotState("idle");
+      }
+      resetInactivityTimer();
+    };
+
+    resetInactivityTimer();
+    window.addEventListener("mousemove", wakeMascot);
+    window.addEventListener("touchstart", wakeMascot);
+
+    return () => {
+      window.removeEventListener("mousemove", wakeMascot);
+      window.removeEventListener("touchstart", wakeMascot);
+    };
+  }, [resetInactivityTimer]);
+
   const handleMascotClick = () => {
     synth.playYay();
     const randomMsg = mascotMessages[Math.floor(Math.random() * mascotMessages.length)];
     setMascotMessage(randomMsg);
+    setMascotStateForDuration("happy", 1200);
+    resetInactivityTimer();
+  };
+
+  const handleLockedLessonInteract = () => {
+    setMascotStateForDuration("confused", 1200);
+    resetInactivityTimer();
+  };
+
+  const handleActiveLessonInteract = () => {
+    setMascotStateForDuration("happy", 1100);
+    resetInactivityTimer();
   };
 
   const handleLessonSelect = (lessonId: string) => {
@@ -122,6 +233,25 @@ export function KidMissionPanel({
     setSelectedLessonId(lessonId);
     const randomMsg = completionMessages[Math.floor(Math.random() * completionMessages.length)];
     setMascotMessage(randomMsg);
+    if (!prefersReducedMotion) {
+      const confettiColors = ["#fde047", "#f59e0b", "#0ea5e9", "#22c55e", "#f472b6"];
+      confetti({
+        particleCount: 70,
+        spread: 76,
+        startVelocity: 42,
+        origin: { x: 0.28, y: 0.68 },
+        colors: confettiColors,
+      });
+      confetti({
+        particleCount: 70,
+        spread: 76,
+        startVelocity: 42,
+        origin: { x: 0.72, y: 0.68 },
+        colors: confettiColors,
+      });
+    }
+    setMascotStateForDuration("celebrating", 3000, true);
+    resetInactivityTimer();
   };
 
   async function handleSelectChild(childId: string) {
@@ -137,6 +267,10 @@ export function KidMissionPanel({
     setSelectedLessonPulse(0);
     setCompletedLessonIds({});
     setCompletedLessonFx(null);
+    mascotStateRef.current = "idle";
+    setMascotState("idle");
+    clearMascotStateResetTimer();
+    resetInactivityTimer();
     const currentFetchSeq = ++fetchSeqRef.current;
     const url = new URL(window.location.href);
     url.searchParams.set("childId", childId);
@@ -289,6 +423,9 @@ export function KidMissionPanel({
                             left: star.left,
                             animationDelay: star.delay,
                             animationDuration: star.duration,
+                            "--star-alpha-min": star.alphaMin,
+                            "--star-alpha-mid": star.alphaMid,
+                            "--star-alpha-max": star.alphaMax,
                           } as CSSProperties
                         }
                       />
@@ -325,6 +462,9 @@ export function KidMissionPanel({
                           layout
                           className={`journey-node ${nodeStatusClass}`}
                           style={{ "--journey-node-offset": `${nodeOffset}px` } as CSSProperties}
+                          onHoverStart={isLocked ? handleLockedLessonInteract : isActiveProgression ? handleActiveLessonInteract : undefined}
+                          onTapStart={isLocked ? handleLockedLessonInteract : isActiveProgression ? handleActiveLessonInteract : undefined}
+                          onClick={isLocked ? handleLockedLessonInteract : undefined}
                         >
                           {isActiveProgression ? (
                             <m.div
@@ -333,7 +473,11 @@ export function KidMissionPanel({
                               transition={prefersReducedMotion ? undefined : { repeat: Infinity, duration: 2.1, ease: "easeInOut" }}
                               aria-label="Mascot dong hanh"
                             >
-                              🦉
+                              <KidMascot
+                                size={64}
+                                state={mascotState === "sleeping" ? "idle" : mascotState}
+                                className="journey-node-mascot-icon"
+                              />
                             </m.div>
                           ) : null}
 
@@ -429,7 +573,7 @@ export function KidMissionPanel({
                 role="button"
                 aria-label="Nhân vật hướng dẫn hỗ trợ trẻ em"
               >
-                🦉
+                <KidMascot size={72} state={mascotState} className="pointer-events-none" />
               </m.div>
             </m.div>
           )}
