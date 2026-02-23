@@ -17,6 +17,10 @@ export const weeklyReportEmailQueue = new Queue("weekly-report-emails", {
   connection: redisConnection,
 });
 
+export const blogNewsletterQueue = new Queue("blog-newsletter", {
+  connection: redisConnection,
+});
+
 export async function enqueueWeeklyReports() {
   return reportsQueue.add(
     "generate-weekly-reports",
@@ -54,4 +58,32 @@ export async function enqueueWeeklyReportEmails() {
       removeOnFail: 50,
     },
   );
+}
+
+export async function enqueueBlogNewsletterEmail(payload: {
+  subscriberId: string;
+  email: string;
+  nameVi: string | null;
+  posts: Array<{
+    id: string;
+    slug: string;
+    titleVi: string;
+    publishedAt: string | null;
+  }>;
+}) {
+  return blogNewsletterQueue.add("dispatch-blog-newsletter-email", payload, {
+    removeOnComplete: true,
+    removeOnFail: 50,
+  });
+}
+
+export async function enqueueSendBlogNewsletter(payload: {
+  subscriberId: string;
+  subscriberEmail: string;
+  postIds: string[];
+}) {
+  return blogNewsletterQueue.add("send-blog-newsletter", payload, {
+    removeOnComplete: true,
+    removeOnFail: 50,
+  });
 }

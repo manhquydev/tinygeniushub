@@ -20,3 +20,8 @@ Dự án nền tảng học tập **Cùng Con Tự Học** dành cho giáo dục
 1. Xử lý trạng thái nội bộ với Server Actions (ở file riêng hoặc trên đỉnh component Server) kết hợp API Routes khi cần truyền JSON ra ngoài.
 2. Dữ liệu nhạy cảm hoặc logic kinh doanh (Business Logic) luôn thuộc về Server.
 3. `console.log()` chỉ dùng để test nhanh cục bộ, khi code hoàn thiện, hãy xóa đi hoặc sử dụng thư viện logging đồng nhất.
+
+## Bắt Buộc Kiểm Tra Encoding Tiếng Việt
+- Trước khi kết thúc bất kỳ task nào có viết JSX/TSX: chạy `pnpm check:i18n`
+- Nếu script báo vi phạm thì sửa hết trước khi báo cáo xong
+- KHÔNG được submit với string tiếng Việt không dấu trong JSX/string literals

@@ -1,7 +1,6 @@
 import type { NextRequest } from "next/server";
 import { redirect } from "next/navigation";
-import { getParentFromRequest } from "@/lib/auth/session";
-import { requireParent } from "@/lib/auth/require-parent";
+import { getAuthenticatedParentFromRequest, getAuthenticatedParentFromServerCookie } from "@/lib/auth/session";
 import { env } from "@/lib/env";
 import { DomainError } from "@/modules/platform/errors";
 
@@ -15,7 +14,11 @@ export function isParentAdmin(parent: { email: string }) {
 }
 
 export async function requireAdminParent() {
-  const parent = await requireParent();
+  const parent = await getAuthenticatedParentFromServerCookie();
+
+  if (!parent) {
+    redirect("/auth/login");
+  }
 
   if (!isParentAdmin(parent)) {
     redirect("/parent/dashboard");
@@ -25,7 +28,7 @@ export async function requireAdminParent() {
 }
 
 export async function requireAdminFromRequest(request: NextRequest) {
-  const parent = await getParentFromRequest(request);
+  const parent = await getAuthenticatedParentFromRequest(request);
   if (!parent) {
     throw new DomainError("Unauthorized", 401, "UNAUTHORIZED");
   }

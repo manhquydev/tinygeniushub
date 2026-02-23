@@ -40,9 +40,7 @@ export function ParentGateDialog({ open, onClose, onVerified }: ParentGateDialog
   const expected = useMemo(() => challenge.left * challenge.right, [challenge.left, challenge.right]);
 
   useEffect(() => {
-    if (!open) {
-      return;
-    }
+    if (!open) return;
 
     const rafId = window.requestAnimationFrame(() => {
       inputRef.current?.focus();

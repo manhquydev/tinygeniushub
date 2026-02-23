@@ -118,3 +118,21 @@ export async function getTodayMission(input: {
       trackCode: lesson.unit.level.track.code,
     }));
 }
+
+export async function listLessonActivitiesForPlayer(lessonId: string) {
+  return prisma.activity.findMany({
+    where: {
+      lessonId,
+    },
+    orderBy: {
+      id: "asc",
+    },
+    select: {
+      id: true,
+      type: true,
+      prompt: true,
+      spec: true,
+      passCriteria: true,
+    },
+  });
+}

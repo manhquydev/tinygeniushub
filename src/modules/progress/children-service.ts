@@ -82,6 +82,15 @@ export const childProfileUpdateSchema = z.object({
   avatarId: z.string().max(120).optional(),
 });
 
+export const childDailyGoalUpdateSchema = z.object({
+  dailyGoalMinutes: z
+    .number()
+    .int()
+    .min(0)
+    .max(120)
+    .refine((value) => value % 5 === 0, "dailyGoalMinutes must be a multiple of 5"),
+});
+
 export async function updateChildProfile(
   parentId: string,
   childId: string,
@@ -122,4 +131,38 @@ export async function deleteChildProfile(parentId: string, childId: string) {
   });
 
   return { deleted: true };
+}
+
+export async function updateChildDailyGoal(
+  parentId: string,
+  childId: string,
+  input: z.infer<typeof childDailyGoalUpdateSchema>,
+) {
+  const parsed = childDailyGoalUpdateSchema.parse(input);
+
+  const child = await prisma.childProfile.findFirst({
+    where: {
+      id: childId,
+      parentId,
+    },
+    select: {
+      id: true,
+    },
+  });
+  if (!child) {
+    throw new DomainError("Child profile not found", 404, "CHILD_NOT_FOUND");
+  }
+
+  return prisma.childProfile.update({
+    where: {
+      id: child.id,
+    },
+    data: {
+      dailyGoalMinutes: parsed.dailyGoalMinutes,
+    },
+    select: {
+      id: true,
+      dailyGoalMinutes: true,
+    },
+  });
 }

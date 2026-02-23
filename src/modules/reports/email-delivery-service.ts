@@ -1,4 +1,4 @@
-import { EmailStatus, ParentPreferences, WeeklyEmailPreference } from "@prisma/client";
+﻿import { EmailStatus, ParentPreferences, WeeklyEmailPreference } from "@prisma/client";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/db";
 
@@ -54,11 +54,11 @@ async function sendWeeklyReportEmailResend(report: {
   };
 }) {
   const to = env.REPORT_EMAIL_TO_OVERRIDE ?? report.child.parent.email;
-  const subject = `Bao cao tuan cua ${report.child.nickname}`;
+  const subject = `Báo cáo tuần của ${report.child.nickname}`;
   const text = [
-    `Bao cao tuan da san sang cho be ${report.child.nickname}.`,
-    `Ma bao cao: ${report.id}`,
-    "Dang nhap he thong de xem chi tiet tien do hoc tap.",
+    `Báo cáo tuần đã sẵn sàng cho bé ${report.child.nickname}.`,
+    `Mã báo cáo: ${report.id}`,
+    "Đăng nhập hệ thống để xem chi tiết tiến độ học tập.",
   ].join("\n");
 
   const payload = {

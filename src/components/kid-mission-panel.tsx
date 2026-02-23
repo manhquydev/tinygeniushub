@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   useCallback,
@@ -14,9 +14,16 @@ import * as m from "motion/react-m";
 import confetti from "canvas-confetti";
 import { ArrowLeft, Volume2, VolumeX } from "lucide-react";
 import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
-import { KidMascot, type KidMascotActionProp, type KidMascotState } from "@/components/animation/kid-mascot";
+import {
+  KidMascot,
+  type KidMascotActionProp,
+  type KidMascotGazeDirection,
+  type KidMascotState,
+} from "@/components/animation/kid-mascot";
 import { bounceIn, fadeInUp, listStagger, popIn, wobble } from "@/components/animation/kid-motion-variants";
+import { DailyGoalReachedScreen } from "@/components/daily-goal-reached-screen";
 import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
+import { Mascot, type MascotActionProp, type MascotState } from "@/components/mascot";
 import { ParentGateDialog } from "@/components/parent-gate-dialog";
 import { synth } from "@/lib/audio-utils";
 
@@ -38,6 +45,23 @@ interface KidMissionPanelProps {
   initialChildId: string;
   initialLessons: MissionLesson[];
 }
+
+type ParentGateIntent = "exit" | "goal-override";
+
+type GoalGuardState = {
+  loading: boolean;
+  dailyGoalMinutes: number;
+  totalMinutesToday: number;
+  reached: boolean;
+};
+
+type ActivityTodayResponse = {
+  ok: boolean;
+  data?: {
+    dailyGoalMinutes?: number;
+    totalMinutesToday?: number;
+  };
+};
 
 const JOURNEY_NODE_BASE_WIDTH = 288;
 const JOURNEY_NODE_GAP = 28;
@@ -81,23 +105,178 @@ const completionMessages = [
 ];
 
 const MASCOT_ACTION_PROPS: KidMascotActionProp[] = ["reading", "math", "exploring"];
+const NODE_GAZE_DIRECTIONS: KidMascotGazeDirection[] = ["left", "center", "right"];
+const ACTIVE_NODE_STATES: KidMascotState[] = ["happy", "playful", "talking", "proud"];
+const LOCKED_NODE_STATES: KidMascotState[] = ["sleeping", "confused", "talking"];
+const COMPLETED_NODE_STATES: KidMascotState[] = ["proud", "happy", "playful"];
+const COMPLETED_NODE_ACTIONS: KidMascotActionProp[] = ["heart", "music", "exploring"];
+const LOCKED_NODE_ACTIONS: KidMascotActionProp[] = ["reading", "exploring", "math"];
 
-function resolveMascotAction(lesson: MissionLesson | undefined, seed: string): KidMascotActionProp {
-  if (lesson) {
-    const text = `${lesson.title} ${lesson.objective}`.toLowerCase();
-    if (/(đếm|toán|math|số|count|number|phép)/u.test(text)) {
-      return "math";
-    }
-    if (/(đọc|chữ|vần|read|book|letter|word|story)/u.test(text)) {
-      return "reading";
-    }
-  }
+interface JourneyNodeMascotProfile {
+  state: KidMascotState;
+  actionProp: KidMascotActionProp;
+  gazeDirection: KidMascotGazeDirection;
+  motionLevel: "full" | "soft" | "minimal";
+  size: number;
+  title: string;
+}
 
+interface GuideMascotProfile {
+  parentState: MascotState;
+  childState: MascotState;
+  parentActionProp: MascotActionProp;
+  childActionProp: MascotActionProp;
+  parentGazeDirection: KidMascotGazeDirection;
+  childGazeDirection: KidMascotGazeDirection;
+  motionLevel: "full" | "soft" | "minimal";
+}
+
+function hashSeed(seed: string): number {
   let hash = 0;
   for (let index = 0; index < seed.length; index += 1) {
     hash = (hash * 31 + seed.charCodeAt(index)) >>> 0;
   }
+  return hash;
+}
+
+function pickBySeed<T>(options: readonly T[], seed: string): T {
+  return options[hashSeed(seed) % options.length];
+}
+
+function resolveMascotAction(lesson: MissionLesson | undefined, seed: string): KidMascotActionProp {
+  if (lesson) {
+    const text = `${lesson.title} ${lesson.objective}`.toLowerCase();
+    if (/(\u0111\u1ebfm|to\u00e1n|math|s\u1ed1|count|number|ph\u00e9p)/u.test(text)) {
+      return "math";
+    }
+    if (/(\u0111\u1ecdc|ch\u1eef|v\u1ea7n|read|book|letter|word|story)/u.test(text)) {
+      return "reading";
+    }
+  }
+
+  const hash = hashSeed(seed);
   return MASCOT_ACTION_PROPS[hash % MASCOT_ACTION_PROPS.length];
+}
+
+function resolveJourneyNodeMascotProfile({
+  lesson,
+  childId,
+  index,
+  status,
+  isSelectedLesson,
+  isCelebratingCompletion,
+}: {
+  lesson: MissionLesson;
+  childId: string;
+  index: number;
+  status: "completed" | "active" | "locked";
+  isSelectedLesson: boolean;
+  isCelebratingCompletion: boolean;
+}): JourneyNodeMascotProfile {
+  const seed = `${childId}-${lesson.id}-${index}`;
+  const baseAction = resolveMascotAction(lesson, `${seed}-action`);
+  const gazeDirection = pickBySeed(NODE_GAZE_DIRECTIONS, `${seed}-gaze`);
+
+  if (status === "completed") {
+    return {
+      state: isCelebratingCompletion ? "celebrating" : pickBySeed(COMPLETED_NODE_STATES, `${seed}-completed-state`),
+      actionProp: isCelebratingCompletion ? "music" : pickBySeed(COMPLETED_NODE_ACTIONS, `${seed}-completed-action`),
+      gazeDirection,
+      motionLevel: isCelebratingCompletion ? "full" : "soft",
+      size: isCelebratingCompletion ? 66 : 56,
+      title: "Mascot mốc hoàn thành",
+    };
+  }
+
+  if (status === "active") {
+    return {
+      state: isSelectedLesson ? "playful" : pickBySeed(ACTIVE_NODE_STATES, `${seed}-active-state`),
+      actionProp: baseAction,
+      gazeDirection,
+      motionLevel: "full",
+      size: 64,
+      title: "Mascot mốc đang học",
+    };
+  }
+
+  return {
+    state: pickBySeed(LOCKED_NODE_STATES, `${seed}-locked-state`),
+    actionProp: pickBySeed(LOCKED_NODE_ACTIONS, `${seed}-locked-action`),
+    gazeDirection,
+    motionLevel: "minimal",
+    size: 52,
+    title: "Mascot mốc sắp mở khóa",
+  };
+}
+
+function resolveGuideMascotProfile({
+  guideState,
+  seed,
+}: {
+  guideState: KidMascotState;
+  seed: string;
+}): GuideMascotProfile {
+  const guideHash = hashSeed(seed);
+  const parentGazeDirection: KidMascotGazeDirection = guideHash % 2 === 0 ? "center" : "right";
+  const childGazeDirection: KidMascotGazeDirection = guideHash % 3 === 0 ? "left" : "center";
+
+  if (guideState === "celebrating") {
+    return {
+      parentState: "celebrating",
+      childState: "playful",
+      parentActionProp: "magic",
+      childActionProp: "music",
+      parentGazeDirection,
+      childGazeDirection,
+      motionLevel: "full",
+    };
+  }
+
+  if (guideState === "sleeping") {
+    return {
+      parentState: "sleepy",
+      childState: "sleepy",
+      parentActionProp: "none",
+      childActionProp: "none",
+      parentGazeDirection: "center",
+      childGazeDirection: "center",
+      motionLevel: "minimal",
+    };
+  }
+
+  if (guideState === "confused") {
+    return {
+      parentState: "thinking",
+      childState: "sad",
+      parentActionProp: "reading",
+      childActionProp: "music",
+      parentGazeDirection,
+      childGazeDirection,
+      motionLevel: "soft",
+    };
+  }
+
+  if (guideState === "talking") {
+    return {
+      parentState: "thinking",
+      childState: "happy",
+      parentActionProp: "reading",
+      childActionProp: "heart",
+      parentGazeDirection,
+      childGazeDirection,
+      motionLevel: "soft",
+    };
+  }
+
+  return {
+    parentState: "proud",
+    childState: guideState === "playful" ? "playful" : "happy",
+    parentActionProp: "heart",
+    childActionProp: "music",
+    parentGazeDirection,
+    childGazeDirection,
+    motionLevel: "soft",
+  };
 }
 
 export function KidMissionPanel({
@@ -132,7 +311,16 @@ export function KidMissionPanel({
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
   const [isParentGateOpen, setIsParentGateOpen] = useState(false);
   const [parentGateSession, setParentGateSession] = useState(0);
+  const [parentGateIntent, setParentGateIntent] = useState<ParentGateIntent>("exit");
+  const [goalGuardState, setGoalGuardState] = useState<GoalGuardState>({
+    loading: false,
+    dailyGoalMinutes: 0,
+    totalMinutesToday: 0,
+    reached: false,
+  });
+  const [goalOverrideByChild, setGoalOverrideByChild] = useState<Record<string, true>>({});
   const [isJourneyDragging, setIsJourneyDragging] = useState(false);
+  const goalCheckSeqRef = useRef(0);
 
   const clearMascotStateResetTimer = useCallback(() => {
     if (mascotStateResetTimerRef.current !== null) {
@@ -275,6 +463,11 @@ export function KidMissionPanel({
       return;
     }
 
+    const target = event.target as HTMLElement | null;
+    if (target?.closest("button, a, input, textarea, select, [data-no-drag='true']")) {
+      return;
+    }
+
     const container = journeyContainerRef.current;
     if (!container) {
       return;
@@ -366,7 +559,94 @@ export function KidMissionPanel({
     };
   }, [activeChildId, handleJourneyWheel]);
 
-  const openParentGate = () => {
+  const fetchGoalGuardSnapshot = useCallback(async (childId: string): Promise<GoalGuardState | null> => {
+    if (!childId) {
+      return null;
+    }
+
+    try {
+      const response = await fetch(`/api/children/${encodeURIComponent(childId)}/activity-today`, {
+        method: "GET",
+        cache: "no-store",
+      });
+      const body = (await response.json()) as ActivityTodayResponse;
+
+      if (!response.ok || !body.ok) {
+        return null;
+      }
+
+      const dailyGoalMinutesRaw = body.data?.dailyGoalMinutes;
+      const totalMinutesRaw = body.data?.totalMinutesToday;
+      const dailyGoalMinutes = typeof dailyGoalMinutesRaw === "number" ? dailyGoalMinutesRaw : 0;
+      const totalMinutesToday = typeof totalMinutesRaw === "number" ? totalMinutesRaw : 0;
+      const reached = dailyGoalMinutes > 0 && totalMinutesToday >= dailyGoalMinutes;
+
+      return {
+        loading: false,
+        dailyGoalMinutes,
+        totalMinutesToday,
+        reached,
+      };
+    } catch {
+      return null;
+    }
+  }, []);
+
+  const refreshGoalGuardForChild = useCallback(
+    async (childId: string, options?: { silent?: boolean }) => {
+      if (!childId) {
+        return true;
+      }
+
+      const fetchSeq = ++goalCheckSeqRef.current;
+      if (!options?.silent) {
+        setGoalGuardState((current) => ({
+          ...current,
+          loading: true,
+        }));
+      }
+
+      const snapshot = await fetchGoalGuardSnapshot(childId);
+      if (fetchSeq !== goalCheckSeqRef.current) {
+        return true;
+      }
+
+      if (!snapshot) {
+        // Fail-open: if goal API fails, do not block kid lesson flow.
+        setGoalGuardState((current) => ({
+          ...current,
+          loading: false,
+          reached: false,
+        }));
+        return true;
+      }
+
+      setGoalGuardState(snapshot);
+      return !(snapshot.reached && !goalOverrideByChild[childId]);
+    },
+    [fetchGoalGuardSnapshot, goalOverrideByChild],
+  );
+
+  useEffect(() => {
+    if (!activeChildId) {
+      return;
+    }
+
+    void refreshGoalGuardForChild(activeChildId);
+  }, [activeChildId, refreshGoalGuardForChild]);
+
+  const ensureGoalAllowsLessonStart = useCallback(async () => {
+    const allowed = await refreshGoalGuardForChild(activeChildId, { silent: true });
+    if (!allowed) {
+      setMascotMessage("HÃ´m nay con Ä‘Ã£ há»c Ä‘á»§ rá»“i, mÃ¬nh nghá»‰ ngÆ¡i má»™t chÃºt nhÃ©!");
+      setIsProfilePopupOpen(false);
+      resetInactivityTimer();
+    }
+    return allowed;
+  }, [activeChildId, refreshGoalGuardForChild, resetInactivityTimer]);
+
+  const openParentGate = (intent: ParentGateIntent = "exit") => {
+    setParentGateIntent(intent);
     setParentGateSession((current) => current + 1);
     setIsParentGateOpen(true);
     resetInactivityTimer();
@@ -379,6 +659,17 @@ export function KidMissionPanel({
 
   const handleParentGateVerified = () => {
     setIsParentGateOpen(false);
+    if (parentGateIntent === "goal-override") {
+      setGoalOverrideByChild((current) => ({
+        ...current,
+        [activeChildId]: true,
+      }));
+      setMascotMessage("Bá»‘ máº¹ Ä‘Ã£ Ä‘á»“ng Ã½, con cÃ³ thá»ƒ há»c thÃªm má»™t chÃºt ná»¯a!");
+      setMascotStateForDuration("happy", 1400, true);
+      resetInactivityTimer();
+      return;
+    }
+
     router.push("/parent/dashboard");
   };
 
@@ -426,6 +717,7 @@ export function KidMissionPanel({
     playYay();
     setMascotStateForDuration("celebrating", 3000, true);
     resetInactivityTimer();
+    void refreshGoalGuardForChild(activeChildId, { silent: true });
   };
 
   const handleSoundToggle = () => {
@@ -488,12 +780,13 @@ export function KidMissionPanel({
   }
 
   const activeChild = childrenProfiles.find((child) => child.id === activeChildId) ?? childrenProfiles[0];
+  const goalGuardBlocked = goalGuardState.reached && !goalOverrideByChild[activeChild.id];
   const activeProgressIndex = lessons.length > 1 ? 1 : 0;
-  const activeProgressLesson = lessons[activeProgressIndex];
-  const activeMascotAction = resolveMascotAction(
-    activeProgressLesson,
-    `${activeChildId}-${activeProgressLesson?.id ?? "fallback"}`,
-  );
+  const activeProgressLesson = lessons[activeProgressIndex] ?? null;
+  const guideMascotProfile = resolveGuideMascotProfile({
+    guideState: mascotState,
+    seed: `${activeChildId}-${activeProgressLesson?.id ?? "guide"}-${mascotMessage}`,
+  });
   const journeyTrackWidth = Math.max(
     lessons.length * JOURNEY_NODE_BASE_WIDTH + Math.max(lessons.length - 1, 0) * JOURNEY_NODE_GAP + JOURNEY_TAIL_SPACE,
     1200,
@@ -506,7 +799,13 @@ export function KidMissionPanel({
       <div className="kid-mission-root">
         <m.header className="kid-hud" variants={fadeInUp} initial="hidden" animate="visible">
           <m.div whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }} whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}>
-            <button type="button" className="kid-hud-button kid-hud-back" onClick={openParentGate}>
+            <button
+              type="button"
+              className="kid-hud-button kid-hud-back"
+              onClick={() => {
+                openParentGate("exit");
+              }}
+            >
               <ArrowLeft size={20} />
               <span>{"Quay l\u1ea1i"}</span>
             </button>
@@ -614,20 +913,39 @@ export function KidMissionPanel({
           </AnimatePresence>
 
           <AnimatePresence mode="wait">
-            <m.div
-              key={activeChild.id}
-              ref={journeyContainerRef}
-              className={`journey-map-container ${isJourneyDragging ? "journey-map-container-dragging" : ""}`}
-              variants={listStagger}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              onPointerDown={handleJourneyPointerDown}
-              onPointerMove={handleJourneyPointerMove}
-              onPointerUp={stopJourneyDragging}
-              onPointerCancel={stopJourneyDragging}
-              onPointerLeave={stopJourneyDragging}
-            >
+            {goalGuardBlocked ? (
+              <m.div
+                key={`goal-guard-${activeChild.id}`}
+                className="kid-floating-status"
+                variants={popIn}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+              >
+                <DailyGoalReachedScreen
+                  childName={activeChild.nickname}
+                  dailyGoalMinutes={goalGuardState.dailyGoalMinutes}
+                  totalMinutesToday={goalGuardState.totalMinutesToday}
+                  onRequestExtraLearning={() => {
+                    openParentGate("goal-override");
+                  }}
+                />
+              </m.div>
+            ) : (
+              <m.div
+                key={activeChild.id}
+                ref={journeyContainerRef}
+                className={`journey-map-container ${isJourneyDragging ? "journey-map-container-dragging" : ""}`}
+                variants={listStagger}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                onPointerDown={handleJourneyPointerDown}
+                onPointerMove={handleJourneyPointerMove}
+                onPointerUp={stopJourneyDragging}
+                onPointerCancel={stopJourneyDragging}
+                onPointerLeave={stopJourneyDragging}
+              >
               {lessons.length > 0 ? (
                 <div className="journey-map-track" style={journeyTrackStyle}>
                   <div className="journey-space-backdrop" aria-hidden="true">
@@ -678,6 +996,41 @@ export function KidMissionPanel({
                       const completionPulse = isCelebratingCompletion ? (completedLessonFx?.pulse ?? 0) : 0;
                       const waveSeed = lessons.length > 1 ? index / (lessons.length - 1) : 0;
                       const nodeOffset = Math.round(Math.sin(waveSeed * Math.PI * 2.25) * 22);
+                      const nodeStatus: "completed" | "active" | "locked" = isCompleted
+                        ? "completed"
+                        : isActiveProgression
+                          ? "active"
+                          : "locked";
+                      const nodeMascot = resolveJourneyNodeMascotProfile({
+                        lesson,
+                        childId: activeChild.id,
+                        index,
+                        status: nodeStatus,
+                        isSelectedLesson,
+                        isCelebratingCompletion,
+                      });
+                      const mascotMotionLevel = prefersReducedMotion ? "minimal" : nodeMascot.motionLevel;
+                      const nodeMascotClassName = isCompleted
+                        ? "journey-node-mascot journey-node-mascot-completed"
+                        : isActiveProgression
+                          ? "journey-node-mascot journey-node-mascot-active"
+                          : "journey-node-mascot journey-node-mascot-locked";
+                      const nodeMascotAnimate = prefersReducedMotion
+                        ? { y: 0, rotate: 0, scale: 1 }
+                        : isActiveProgression
+                          ? { y: [0, -6, 0], rotate: [0, -3, 2, 0], scale: [1, 1.03, 1] }
+                          : isCompleted
+                            ? { y: [0, -2, 0], scale: [1, 1.015, 1] }
+                            : { y: [0, -1, 0], rotate: [0, -1, 0] };
+                      const nodeMascotTransition = prefersReducedMotion
+                        ? undefined
+                        : isActiveProgression
+                          ? { repeat: Infinity, duration: 2.1, ease: "easeInOut" as const }
+                          : { repeat: Infinity, duration: 2.8, ease: "easeInOut" as const };
+                      const nodeMascotStyle = {
+                        "--journey-node-mascot-frame-size": "64px",
+                        "--journey-node-mascot-character-scale": "2",
+                      } as CSSProperties;
                       const nodeStatusClass = isCompleted
                         ? "journey-node-completed"
                         : isActiveProgression
@@ -695,21 +1048,24 @@ export function KidMissionPanel({
                           onTapStart={isLocked ? handleLockedLessonInteract : isActiveProgression ? handleActiveLessonInteract : undefined}
                           onClick={isLocked ? handleLockedLessonInteract : undefined}
                         >
-                          {isActiveProgression ? (
-                            <m.div
-                              className="journey-node-mascot"
-                              animate={prefersReducedMotion ? { y: 0 } : { y: [0, -6, 0], rotate: [0, -3, 2, 0] }}
-                              transition={prefersReducedMotion ? undefined : { repeat: Infinity, duration: 2.1, ease: "easeInOut" }}
-                              aria-label={"Mascot \u0111\u1ed3ng h\u00e0nh"}
-                            >
-                              <KidMascot
-                                size={64}
-                                state={mascotState === "sleeping" ? "idle" : mascotState}
-                                actionProp={activeMascotAction}
-                                className="journey-node-mascot-icon"
-                              />
-                            </m.div>
-                          ) : null}
+                          <m.div
+                            className={nodeMascotClassName}
+                            style={nodeMascotStyle}
+                            animate={nodeMascotAnimate}
+                            transition={nodeMascotTransition}
+                            aria-label={nodeMascot.title}
+                          >
+                            <KidMascot
+                              size={nodeMascot.size}
+                              state={nodeMascot.state}
+                              actionProp={nodeMascot.actionProp}
+                              gazeDirection={nodeMascot.gazeDirection}
+                              motionLevel={mascotMotionLevel}
+                              pauseWhenOffscreen
+                              className="journey-node-mascot-icon"
+                              title={nodeMascot.title}
+                            />
+                          </m.div>
 
                           <m.div
                             key={`lesson-index-${lesson.id}-${isSelectedLesson ? selectedLessonPulse : 0}`}
@@ -754,6 +1110,7 @@ export function KidMissionPanel({
                                 videoSource={lesson.videoSource}
                                 onLessonSelect={handleLessonSelect}
                                 onLessonComplete={handleLessonComplete}
+                                beforeStart={ensureGoalAllowsLessonStart}
                               />
                             </div>
                           </m.div>
@@ -766,10 +1123,15 @@ export function KidMissionPanel({
 
               {!loadingLessons && lessons.length === 0 ? (
                 <m.div className="kid-floating-status" variants={popIn}>
-                  <span>{"Ch\u01b0a c\u00f3 b\u00e0i h\u1ecdc ph\u00f9 h\u1ee3p cho h\u1ed3 s\u01a1 n\u00e0y."}</span>
+                  <div className="mascot-empty-state mascot-empty-state-inline">
+                    <Mascot variant="small" state="sleepy" size={132} actionProp="none" motionLevel="minimal" pauseWhenOffscreen />
+                    <h3>{"Ch\u01b0a c\u00f3 g\u00ec \u1edf \u0111\u00e2y c\u1ea3..."}</h3>
+                    <p className="muted-text">{"Ch\u01b0a c\u00f3 b\u00e0i h\u1ecdc ph\u00f9 h\u1ee3p cho h\u1ed3 s\u01a1 n\u00e0y."}</p>
+                  </div>
                 </m.div>
               ) : null}
-            </m.div>
+              </m.div>
+            )}
           </AnimatePresence>
         </m.section>
 
@@ -795,7 +1157,7 @@ export function KidMissionPanel({
               </AnimatePresence>
 
               <m.div
-                className="mascot-avatar"
+                className="mascot-avatar mascot-avatar-guide"
                 animate={prefersReducedMotion ? { y: 0 } : { y: [0, -8, 0] }}
                 transition={prefersReducedMotion ? undefined : { repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
                 onClick={handleMascotClick}
@@ -804,7 +1166,22 @@ export function KidMissionPanel({
                 role="button"
                 aria-label={"Mascot h\u01b0\u1edbng d\u1eabn"}
               >
-                <KidMascot size={72} state={mascotState} actionProp={activeMascotAction} className="pointer-events-none" />
+                <Mascot
+                  variant="duo"
+                  state={guideMascotProfile.parentState}
+                  actionProp="none"
+                  parentState={guideMascotProfile.parentState}
+                  childState={guideMascotProfile.childState}
+                  parentActionProp={guideMascotProfile.parentActionProp}
+                  childActionProp={guideMascotProfile.childActionProp}
+                  parentGazeDirection={guideMascotProfile.parentGazeDirection}
+                  childGazeDirection={guideMascotProfile.childGazeDirection}
+                  size={94}
+                  motionLevel={prefersReducedMotion ? "minimal" : guideMascotProfile.motionLevel}
+                  pauseWhenOffscreen
+                  className="pointer-events-none"
+                  title="Mascot huong dan"
+                />
               </m.div>
             </m.div>
           ) : null}
@@ -815,3 +1192,4 @@ export function KidMissionPanel({
     </KidMotionProvider>
   );
 }
+

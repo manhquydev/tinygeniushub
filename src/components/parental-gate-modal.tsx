@@ -9,8 +9,8 @@ interface ParentalGateModalProps {
 }
 
 export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProps) {
-    const [num1, setNum1] = useState(0);
-    const [num2, setNum2] = useState(0);
+    const [num1, setNum1] = useState(() => Math.floor(Math.random() * 8) + 3);
+    const [num2, setNum2] = useState(() => Math.floor(Math.random() * 8) + 3);
     const [answer, setAnswer] = useState("");
     const [error, setError] = useState(false);
 
@@ -25,8 +25,6 @@ export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProp
     };
 
     useEffect(() => {
-        generateQuestion();
-
         // Prevent scrolling while modal is open
         document.body.style.overflow = "hidden";
         return () => {
