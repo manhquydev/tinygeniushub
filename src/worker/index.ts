@@ -2,6 +2,7 @@
 import { createWeeklyReportsWorker } from "@/worker/jobs/generate-weekly-reports";
 import { createWeeklyReportEmailsWorker } from "@/worker/jobs/dispatch-weekly-report-emails";
 import { createBlogNewsletterWorker } from "@/worker/jobs/dispatch-blog-newsletter-emails";
+import { createVerifyBlogCommentEmailWorker } from "@/worker/jobs/verify-blog-comment-email";
 import { enqueueRetentionCleanup, enqueueWeeklyReportEmails, enqueueWeeklyReports } from "@/worker/queue";
 import { logError, logInfo } from "@/lib/observability/logger";
 
@@ -9,6 +10,7 @@ const weeklyWorker = createWeeklyReportsWorker();
 const retentionWorker = createPortfolioRetentionWorker();
 const weeklyEmailWorker = createWeeklyReportEmailsWorker();
 const blogNewsletterWorker = createBlogNewsletterWorker();
+const verifyBlogCommentEmailWorker = createVerifyBlogCommentEmailWorker();
 
 weeklyWorker.on("completed", (job) => {
   logInfo("worker.weekly_reports.completed", {
@@ -30,6 +32,12 @@ weeklyEmailWorker.on("completed", (job) => {
 
 blogNewsletterWorker.on("completed", (job) => {
   logInfo("worker.blog_newsletter_email.completed", {
+    jobId: job.id,
+  });
+});
+
+verifyBlogCommentEmailWorker.on("completed", (job) => {
+  logInfo("worker.blog_comment_verify_email.completed", {
     jobId: job.id,
   });
 });
@@ -57,6 +65,13 @@ weeklyEmailWorker.on("failed", (job, error) => {
 
 blogNewsletterWorker.on("failed", (job, error) => {
   logError("worker.blog_newsletter_email.failed", {
+    jobId: job?.id,
+    error,
+  });
+});
+
+verifyBlogCommentEmailWorker.on("failed", (job, error) => {
+  logError("worker.blog_comment_verify_email.failed", {
     jobId: job?.id,
     error,
   });
@@ -105,7 +120,13 @@ bootstrap().catch((error) => {
 
 process.on("SIGINT", async () => {
   logInfo("worker.shutdown_started");
-  await Promise.all([weeklyWorker.close(), retentionWorker.close(), weeklyEmailWorker.close(), blogNewsletterWorker.close()]);
+  await Promise.all([
+    weeklyWorker.close(),
+    retentionWorker.close(),
+    weeklyEmailWorker.close(),
+    blogNewsletterWorker.close(),
+    verifyBlogCommentEmailWorker.close(),
+  ]);
   logInfo("worker.shutdown_completed");
   process.exit(0);
 });

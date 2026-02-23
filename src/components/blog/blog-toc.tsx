@@ -49,8 +49,8 @@ export function BlogToc({ headings }: { headings: Heading[] }) {
   }
 
   return (
-    <nav aria-label="M?c l?c bài vi?t" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <h4 className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-500">M?c l?c</h4>
+    <nav aria-label="Mục lục bài viết" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <h4 className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-500">Mục lục</h4>
       <ul className="space-y-2">
         {safeHeadings.map((heading) => {
           const active = activeId === heading.id;

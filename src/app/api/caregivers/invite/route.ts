@@ -63,6 +63,8 @@ export async function POST(request: NextRequest) {
 
     return ok(
       {
+        inviteId: created.invite.id,
+        token: created.inviteToken,
         invite: created.invite,
         emailDelivery: created.emailDelivery,
         ...snapshot,

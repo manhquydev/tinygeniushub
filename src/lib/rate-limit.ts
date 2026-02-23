@@ -137,7 +137,7 @@ export async function enforceRateLimit(input: {
   key: string;
   limit: number;
   windowMs: number;
-  storeFailureMode?: "fallback_in_memory" | "deny";
+  storeFailureMode?: "fallback_in_memory" | "deny" | "allow";
 }): Promise<RateLimitResult> {
   const redisResult = await enforceRateLimitInRedis(input);
   if (redisResult) {
@@ -149,6 +149,14 @@ export async function enforceRateLimit(input: {
       allowed: false,
       remaining: 0,
       retryAfterMs: input.windowMs,
+      reason: "store_unavailable",
+    };
+  }
+
+  if (input.storeFailureMode === "allow") {
+    return {
+      allowed: true,
+      remaining: input.limit,
       reason: "store_unavailable",
     };
   }

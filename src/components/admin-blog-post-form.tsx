@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import slugify from "slugify";
+import { BlogEditorSplit } from "@/components/blog/blog-editor-split";
+import { BlogImageUploadButton } from "@/components/blog/blog-image-upload-button";
 
 type BlogCategoryOption = {
   id: string;
@@ -331,12 +333,18 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
           </label>
           <label className="space-y-1 text-sm font-semibold text-slate-700 md:col-span-2">
             Cover Image URL
-            <input
-              type="url"
-              value={coverImageUrl}
-              onChange={(event) => setCoverImageUrl(event.target.value)}
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-            />
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <input
+                type="url"
+                value={coverImageUrl}
+                onChange={(event) => setCoverImageUrl(event.target.value)}
+                placeholder="URL ảnh bìa (tự nhập hoặc upload)"
+                className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
+              />
+              <div className="flex items-center gap-2">
+                <BlogImageUploadButton onUpload={(publicUrl) => setCoverImageUrl(publicUrl)} />
+              </div>
+            </div>
           </label>
           <label className="space-y-1 text-sm font-semibold text-slate-700 md:col-span-2">
             Tags (phân tách bằng dấu phẩy)
@@ -351,16 +359,10 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
 
       <section className="space-y-3">
         <h2 className="text-lg font-bold text-slate-900">Nội dung</h2>
-        <label className="space-y-1 text-sm font-semibold text-slate-700">
-          Markdown
-          <textarea
-            value={contentMarkdown}
-            onChange={(event) => setContentMarkdown(event.target.value)}
-            required
-            className="w-full rounded-xl border border-slate-300 p-3 text-sm"
-            style={{ minHeight: 450, fontFamily: "monospace" }}
-          />
-        </label>
+        <div className="space-y-1 text-sm font-semibold text-slate-700">
+          <span>Markdown</span>
+          <BlogEditorSplit value={contentMarkdown} onChange={setContentMarkdown} />
+        </div>
       </section>
 
       <section className="space-y-3">

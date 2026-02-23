@@ -406,6 +406,8 @@ model EvidenceMedia {
   durationSeconds    Int?
   checksum           String?
   uploadedByParentId String
+  uploadStatus       String            @default("PENDING")
+  uploadedAt         DateTime?
   deletedAt          DateTime?
   createdAt          DateTime          @default(now())
   evidence           Evidence          @relation(fields: [evidenceId], references: [id], onDelete: Cascade)
@@ -628,6 +630,13 @@ enum BlogPostStatus {
   ARCHIVED
 }
 
+enum BlogCommentStatus {
+  PENDING
+  APPROVED
+  SPAM
+  DELETED
+}
+
 enum BlogPostType {
   ARTICLE
   TIP
@@ -677,7 +686,7 @@ model BlogAuthor {
   id          String     @id @default(cuid())
   slug        String     @unique
   displayName String
-  role        String     @default("Bien tap vien")
+  role        String     @default("Biên tập viên")
   bio         String?
   avatarUrl   String?
   linkedinUrl String?
@@ -728,12 +737,35 @@ model BlogPost {
   tags             BlogPostTag[]
   relatedPosts     BlogPostRelation[] @relation("SourcePost")
   relatedFrom      BlogPostRelation[] @relation("RelatedPost")
+  comments         BlogComment[]
 
   @@index([status, publishedAt(sort: Desc)])
   @@index([categoryId, status, publishedAt])
   @@index([isFeatured, featuredUntil])
   @@index([ageGroup, status])
   @@index([slug])
+}
+
+model BlogComment {
+  id          String            @id @default(cuid())
+  postId      String
+  parentId    String?
+  authorName  String
+  authorEmail String
+  content     String            @db.Text
+  status      BlogCommentStatus @default(PENDING)
+  verifyToken String?           @unique
+  likeCount   Int               @default(0)
+  ipHash      String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  post        BlogPost          @relation(fields: [postId], references: [id], onDelete: Cascade)
+  parent      BlogComment?      @relation("CommentReplies", fields: [parentId], references: [id])
+  replies     BlogComment[]     @relation("CommentReplies")
+
+  @@index([postId, status, createdAt])
+  @@index([parentId])
+  @@index([authorEmail, createdAt])
 }
 
 model BlogPostTag {

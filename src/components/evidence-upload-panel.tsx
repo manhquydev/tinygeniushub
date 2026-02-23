@@ -107,6 +107,15 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
         return;
       }
 
+      const confirmResponse = await fetch(`/api/evidence/media/${encodeURIComponent(sessionCandidate.media.id)}/confirm`, {
+        method: "POST",
+      });
+      const confirmBody = await confirmResponse.json();
+      if (!confirmResponse.ok || confirmBody?.ok !== true) {
+        setError(confirmBody?.error?.message ?? "Upload thành công nhưng chưa thể xác nhận tệp.");
+        return;
+      }
+
       setInfo(
         `Upload thanh cong (${sessionCandidate.upload.provider}) - mediaId=${sessionCandidate.media.id} - path=${sessionCandidate.media.objectPath}`,
       );

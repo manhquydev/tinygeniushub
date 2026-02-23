@@ -1,11 +1,11 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
-import { Eye, Heart } from "lucide-react";
+import { Clock, Eye, Heart } from "lucide-react";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 function formatDate(value: Date | null) {
   if (!value) {
-    return "Chua xu?t b?n";
+    return "Chưa xuất bản";
   }
 
   return new Intl.DateTimeFormat("vi-VN", {
@@ -37,7 +37,7 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
-            <div className="flex h-full items-center justify-center bg-slate-100 text-sm font-medium text-slate-500">Không có ?nh</div>
+            <div className="flex h-full items-center justify-center bg-slate-100 text-sm font-medium text-slate-500">Không có ảnh</div>
           )}
         </div>
 
@@ -51,7 +51,7 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
             </span>
           </div>
 
-          <h2 className="line-clamp-2 text-xl font-bold text-slate-900">{post.titleVi}</h2>
+          <h2 className="line-clamp-2 break-words text-xl font-bold text-slate-900">{post.titleVi}</h2>
           <p className="line-clamp-3 text-sm leading-relaxed text-slate-600">{post.excerptVi}</p>
 
           <div className="flex items-center gap-2 text-xs text-slate-500">
@@ -71,7 +71,10 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
             )}
             <span>{post.author.displayName}</span>
             <span>·</span>
-            <span>{post.readingTimeMin} phút</span>
+            <span className="inline-flex items-center gap-1">
+              <Clock size={12} />
+              {post.readingTimeMin} phút đọc
+            </span>
             <span>·</span>
             <span>{formatDate(post.publishedAt)}</span>
           </div>
@@ -91,4 +94,3 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
     </article>
   );
 }
-

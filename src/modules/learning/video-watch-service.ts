@@ -245,13 +245,13 @@ function assertWatchSessionContext(params: {
     params.claims.childId !== params.childId ||
     params.claims.lessonId !== params.lessonId
   ) {
-    throw new DomainError("Watch session does not match lesson context", 409, "WATCH_SESSION_MISMATCH");
+    throw new DomainError("Watch session does not match lesson context", 403, "WATCH_SESSION_MISMATCH");
   }
 }
 
 function assertWatchSessionNotExpired(claims: z.infer<typeof watchSessionClaimsSchema>) {
   if (Date.now() > claims.expiresAtMs) {
-    throw new DomainError("Watch session expired. Please start a new session.", 409, "WATCH_SESSION_EXPIRED");
+    throw new DomainError("Watch session expired. Please start a new session.", 401, "WATCH_SESSION_EXPIRED");
   }
 }
 
@@ -512,7 +512,7 @@ export async function markLessonVideoWatched(params: {
   });
   assertWatchSessionNotExpired(claims);
 
-  const { state } = await loadWatchSessionState(claims.nonce);
+  const { key, redis, state } = await loadWatchSessionState(claims.nonce);
   if (!state) {
     throw new DomainError("Watch session not found. Please start a new session.", 409, "WATCH_SESSION_NOT_FOUND");
   }
@@ -549,6 +549,8 @@ export async function markLessonVideoWatched(params: {
   });
 
   if (readyForCompletion) {
+    await redis.del(key);
+
     const hasExistingCompletedEvent = await hasRecentCompletedVideoWatch({
       parentId: params.parentId,
       childId: payload.childId,

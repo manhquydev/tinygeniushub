@@ -32,8 +32,8 @@ export default async function Image({ params }: OpenGraphProps) {
     },
   });
 
-  const title = post?.titleVi ?? "Blog Cùng Con T? H?c";
-  const author = post?.author.displayName ?? "Cùng Con T? H?c";
+  const title = post?.titleVi ?? "Blog Cùng Con Tự Học";
+  const author = post?.author.displayName ?? "Cùng Con Tự Học";
 
   return new ImageResponse(
     (
@@ -62,12 +62,12 @@ export default async function Image({ params }: OpenGraphProps) {
             background: "rgba(255, 255, 255, 0.16)",
           }}
         >
-          Blog Cùng Con T? H?c
+          Blog Cùng Con Tự Học
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 64, fontWeight: 900, lineHeight: 1.1, maxWidth: 1000 }}>{title}</div>
-          <div style={{ fontSize: 30, opacity: 0.9 }}>Tác gi?: {author}</div>
+          <div style={{ fontSize: 30, opacity: 0.9 }}>Tác giả: {author}</div>
         </div>
       </div>
     ),

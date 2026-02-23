@@ -215,6 +215,7 @@ export async function createCaregiverInvite(parentId: string, input: z.infer<typ
       expiresAt: invite.expiresAt,
       status: getInviteStatus(invite, now),
     } satisfies CaregiverInviteSummary,
+    inviteToken: invite.token,
     emailDelivery,
   };
 }

@@ -53,6 +53,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      { source: "/gioi-thieu", destination: "/about", permanent: true },
+      { source: "/lien-he", destination: "/contact", permanent: true },
+      { source: "/gioi-thieu-ban", destination: "/referral", permanent: true },
+      { source: "/chinh-sach-bao-mat", destination: "/privacy", permanent: true },
+      { source: "/dieu-khoan-su-dung", destination: "/terms", permanent: true },
+      { source: "/chinh-sach-hoan-tien", destination: "/refund-policy", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -30,4 +30,8 @@ export class MockR2StorageProviderAdapter implements StorageProviderAdapter {
       },
     };
   }
+
+  async objectExists(_objectPath: string): Promise<boolean> {
+    return true;
+  }
 }

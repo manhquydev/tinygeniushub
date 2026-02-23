@@ -2,7 +2,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlogCard } from "@/components/blog/blog-card";
+import { BlogCommentsSection } from "@/components/blog/blog-comments-section";
 import { BlogNewsletterWidget } from "@/components/blog/blog-newsletter-widget";
+import { BlogReadingProgress } from "@/components/blog/blog-reading-progress";
 import { BlogShare } from "@/components/blog/blog-share";
 import { BlogToc } from "@/components/blog/blog-toc";
 import { env } from "@/lib/env";
@@ -49,7 +51,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 
 function formatDate(value: Date | null) {
   if (!value) {
-    return "Chua xu?t b?n";
+    return "Chưa xuất bản";
   }
 
   return new Intl.DateTimeFormat("vi-VN", {
@@ -73,13 +75,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="page-stack">
+      <BlogReadingProgress />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: generateBlogPostJsonLd(post, siteUrl) }}
       />
 
       <nav className="text-sm text-slate-500">
-        <Link href="/">Trang ch?</Link> <span className="mx-1">/</span> <Link href="/blog">Blog</Link>
+        <Link href="/">Trang chủ</Link> <span className="mx-1">/</span> <Link href="/blog">Blog</Link>
       </nav>
 
       <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
@@ -112,7 +116,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span>·</span>
               <span>{formatDate(post.publishedAt)}</span>
               <span>·</span>
-              <span>{post.readingTimeMin} phút d?c</span>
+              <span>{post.readingTimeMin} phút đọc</span>
             </div>
 
             <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
@@ -129,7 +133,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {post.relatedPosts.length > 0 ? (
         <section className="space-y-4">
-          <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Bài vi?t liên quan</h2>
+          <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Bài viết liên quan</h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {post.relatedPosts.map((relatedPost) => (
               <BlogCard key={relatedPost.id} post={relatedPost} />
@@ -137,6 +141,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </section>
       ) : null}
+
+      <section id="comments">
+        <BlogCommentsSection slug={slug} />
+      </section>
     </div>
   );
 }

@@ -6,24 +6,14 @@ import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { ApiSuccess, NotificationDTO } from "@/lib/api-types";
 
-type NotificationType = "ACHIEVEMENT" | "REPORT" | "TIP" | "STREAK";
-
-type NotificationItem = {
-  id: string;
-  title: string;
-  message: string;
-  createdAt: string;
-  href: string;
-  type: NotificationType;
-  read: boolean;
-};
+type NotificationType = NotificationDTO["type"];
+type NotificationItem = NotificationDTO;
 
 type NotificationResponse = {
   ok: boolean;
-  data?: {
-    notifications?: NotificationItem[];
-  };
+  data?: ApiSuccess<{ notifications: NotificationItem[] }>["data"];
   error?: {
     message?: string;
   };

@@ -1,5 +1,6 @@
 import { SubscriptionStatus, TrackCode } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { parseActivitySpec, parseActivityType } from "@/modules/content/activity-types";
 import { DomainError } from "@/modules/platform/errors";
 
 type MissionTrack = Extract<TrackCode, "ENGLISH" | "MATH">;
@@ -38,6 +39,7 @@ async function findFirstLessonByTrack(input: {
     orderBy: orderByLessonSequence(),
     select: {
       id: true,
+      slug: true,
       title: true,
       objective: true,
       estimatedMinutes: true,
@@ -45,6 +47,7 @@ async function findFirstLessonByTrack(input: {
       trialEnabled: true,
       unit: {
         select: {
+          title: true,
           level: {
             select: {
               track: {
@@ -110,17 +113,20 @@ export async function getTodayMission(input: {
     .filter((lesson): lesson is NonNullable<typeof lesson> => Boolean(lesson))
     .map((lesson) => ({
       id: lesson.id,
+      slug: lesson.slug,
       title: lesson.title,
       objective: lesson.objective,
       estimatedMinutes: lesson.estimatedMinutes,
       videoSource: lesson.videoSource,
       trialEnabled: lesson.trialEnabled,
+      isCompleted: completedLessonIds.includes(lesson.id),
       trackCode: lesson.unit.level.track.code,
+      unitTitle: lesson.unit.title,
     }));
 }
 
 export async function listLessonActivitiesForPlayer(lessonId: string) {
-  return prisma.activity.findMany({
+  const activities = await prisma.activity.findMany({
     where: {
       lessonId,
     },
@@ -134,5 +140,14 @@ export async function listLessonActivitiesForPlayer(lessonId: string) {
       spec: true,
       passCriteria: true,
     },
+  });
+
+  return activities.map((activity) => {
+    const type = parseActivityType(activity.type);
+    return {
+      ...activity,
+      type,
+      spec: parseActivitySpec(activity.spec, type),
+    };
   });
 }

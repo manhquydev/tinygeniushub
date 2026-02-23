@@ -27,12 +27,13 @@
     "release:check": "pnpm lint && pnpm type-check && pnpm test && pnpm test:e2e && pnpm security:baseline && pnpm perf:sanity",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:seed": "tsx prisma/seed.ts",
+    "db:seed": "pnpm db:generate && tsx prisma/seed.ts",
     "worker:dev": "tsx src/worker/index.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.995.0",
     "@aws-sdk/s3-request-presigner": "^3.995.0",
+    "@monaco-editor/react": "^4.7.0",
     "@prisma/client": "^6.16.0",
     "bcryptjs": "^3.0.3",
     "better-auth": "^1.4.18",

@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { DomainError } from "@/modules/platform/errors";
 import { renderMarkdown } from "@/modules/blog/blog-markdown";
 import * as blogRepository from "@/modules/blog/blog-repository";
+import { refreshRelatedPosts } from "@/modules/blog/related-posts-service";
 import type { BlogListParams, BlogListResult, CreateBlogPostInput, UpdateBlogPostInput } from "@/modules/blog/blog-types";
 
 async function getPostBySlug(slug: string) {
@@ -97,7 +98,7 @@ async function updatePost(input: UpdateBlogPostInput) {
 }
 
 async function publishPost(id: string) {
-  return prisma.blogPost.update({
+  const published = await prisma.blogPost.update({
     where: { id },
     data: {
       status: BlogPostStatus.PUBLISHED,
@@ -109,6 +110,9 @@ async function publishPost(id: string) {
       status: true,
     },
   });
+
+  await refreshRelatedPosts(id);
+  return published;
 }
 
 export const blogService = {

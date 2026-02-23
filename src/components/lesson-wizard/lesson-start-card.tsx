@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
@@ -94,7 +94,7 @@ function LessonLaunchButton({ isLaunching, prefersReducedMotion, onLaunch }: Les
           boxShadow: "0 14px 30px rgba(249, 115, 22, 0.28)",
         }}
       >
-        <Play size={22} fill="currentColor" /> {isLaunching ? "Khoi dong..." : "Bắt đầu bài học"}
+        <Play size={22} fill="currentColor" /> {isLaunching ? "Khởi động..." : "Bắt đầu bài học"}
       </m.button>
     </div>
   );

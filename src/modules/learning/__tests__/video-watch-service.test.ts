@@ -8,6 +8,10 @@ const { prismaMock, createAuditLogMock, redisStore, redisMock, randomUuidMock } 
     status: "ready",
     connect: vi.fn(async () => undefined),
     hgetall: vi.fn(async (key: string) => redisStore.get(key) ?? {}),
+    del: vi.fn(async (key: string) => {
+      redisStore.delete(key);
+      return 1;
+    }),
     multi: vi.fn(() => {
       const chain = {
         hset: vi.fn((key: string, values: Record<string, string>) => {
@@ -261,6 +265,61 @@ describe("video watch service integration paths", () => {
     });
   });
 
+  it("returns 401 when watch session token is expired", async () => {
+    const nowSpy = vi
+      .spyOn(Date, "now")
+      .mockReturnValueOnce(1_000_000)
+      .mockReturnValueOnce(1_121_000);
+
+    const session = await createLessonVideoWatchSession({
+      parentId: "parent-1",
+      lessonId: "lesson-1",
+      payload: { childId: "child-1" },
+    });
+
+    await expect(
+      markLessonVideoWatched({
+        parentId: "parent-1",
+        lessonId: "lesson-1",
+        payload: {
+          childId: "child-1",
+          sessionToken: session.sessionToken!,
+        },
+      }),
+    ).rejects.toMatchObject({
+      code: "WATCH_SESSION_EXPIRED",
+      status: 401,
+    });
+
+    nowSpy.mockRestore();
+  });
+
+  it("returns 403 when watch session token context does not match child", async () => {
+    const nowSpy = vi.spyOn(Date, "now").mockReturnValue(1_000_000);
+
+    const session = await createLessonVideoWatchSession({
+      parentId: "parent-1",
+      lessonId: "lesson-1",
+      payload: { childId: "child-1" },
+    });
+
+    await expect(
+      markLessonVideoWatched({
+        parentId: "parent-1",
+        lessonId: "lesson-1",
+        payload: {
+          childId: "child-2",
+          sessionToken: session.sessionToken!,
+        },
+      }),
+    ).rejects.toMatchObject({
+      code: "WATCH_SESSION_MISMATCH",
+      status: 403,
+    });
+
+    nowSpy.mockRestore();
+  });
+
   it("marks watch ready and writes completion audit only once per window", async () => {
     const nowSpy = vi.spyOn(Date, "now").mockReturnValue(1_000_000);
 
@@ -308,6 +367,52 @@ describe("video watch service integration paths", () => {
         action: "learning.lesson.video.watch.completed",
       }),
     );
+  });
+
+  it("rejects replaying the same completion token", async () => {
+    const nowSpy = vi.spyOn(Date, "now").mockReturnValue(1_000_000);
+
+    const session = await createLessonVideoWatchSession({
+      parentId: "parent-1",
+      lessonId: "lesson-1",
+      payload: { childId: "child-1" },
+    });
+
+    const claims = decodeWatchTokenClaims(session.sessionToken!);
+    const key = `learning:watch-session:${claims.nonce}`;
+    const existing = redisStore.get(key)!;
+    redisStore.set(key, {
+      ...existing,
+      lastSequence: "36",
+      creditedWatchSeconds: "180",
+      requiredWatchSeconds: "180",
+      lastHeartbeatAtMs: String(claims.issuedAtMs + 90_000),
+    });
+
+    await markLessonVideoWatched({
+      parentId: "parent-1",
+      lessonId: "lesson-1",
+      payload: {
+        childId: "child-1",
+        sessionToken: session.sessionToken!,
+      },
+    });
+
+    await expect(
+      markLessonVideoWatched({
+        parentId: "parent-1",
+        lessonId: "lesson-1",
+        payload: {
+          childId: "child-1",
+          sessionToken: session.sessionToken!,
+        },
+      }),
+    ).rejects.toMatchObject({
+      code: "WATCH_SESSION_NOT_FOUND",
+      status: 409,
+    });
+
+    nowSpy.mockRestore();
   });
 
   it("enforces watch completion audit requirement when lesson completion requires video watch", async () => {

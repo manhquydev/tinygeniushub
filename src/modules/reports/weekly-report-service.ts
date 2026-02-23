@@ -1,7 +1,7 @@
 ﻿import { endOfWeek, startOfWeek } from "date-fns";
 import { formatInTimeZone, fromZonedTime, toZonedTime } from "date-fns-tz";
 import { randomUUID } from "node:crypto";
-import { EmailStatus, type WeeklyReport } from "@prisma/client";
+import { EmailStatus, Prisma, type WeeklyReport } from "@prisma/client";
 import { prisma } from "@/lib/db";
 
 const REPORT_TIMEZONE = "Asia/Bangkok";
@@ -14,11 +14,32 @@ export type WeeklyTrend = {
 };
 
 function computeStreakDays(completionDates: Date[]) {
-  const uniqueDays = new Set(
-    completionDates.map((date) => formatInTimeZone(date, REPORT_TIMEZONE, "yyyy-MM-dd")),
-  );
+  const uniqueDayKeys = Array.from(
+    new Set(completionDates.map((date) => formatInTimeZone(date, REPORT_TIMEZONE, "yyyy-MM-dd"))),
+  ).sort((a, b) => a.localeCompare(b));
 
-  return uniqueDays.size;
+  if (uniqueDayKeys.length === 0) {
+    return 0;
+  }
+
+  let maxStreak = 1;
+  let currentStreak = 1;
+
+  for (let index = 1; index < uniqueDayKeys.length; index += 1) {
+    const prev = new Date(`${uniqueDayKeys[index - 1]}T00:00:00.000Z`).getTime();
+    const current = new Date(`${uniqueDayKeys[index]}T00:00:00.000Z`).getTime();
+    const dayDiff = Math.round((current - prev) / (24 * 60 * 60 * 1000));
+
+    if (dayDiff === 1) {
+      currentStreak += 1;
+      maxStreak = Math.max(maxStreak, currentStreak);
+      continue;
+    }
+
+    currentStreak = 1;
+  }
+
+  return maxStreak;
 }
 
 export function getWeeklyTrend(
@@ -78,6 +99,19 @@ export function getWeeklyWindow(referenceDate = new Date()) {
 export async function generateWeeklyReportForChild(childId: string, referenceDate = new Date()) {
   const { weekStart, weekEnd } = getWeeklyWindow(referenceDate);
 
+  const existingReport = await prisma.weeklyReport.findUnique({
+    where: {
+      childId_weekStart: {
+        childId,
+        weekStart,
+      },
+    },
+  });
+
+  if (existingReport) {
+    return existingReport;
+  }
+
   const completions = await prisma.lessonCompletion.findMany({
     where: {
       childId,
@@ -124,50 +158,48 @@ export async function generateWeeklyReportForChild(childId: string, referenceDat
     {},
   );
 
-  return prisma.weeklyReport.upsert({
-    where: {
-      childId_weekStart: {
-        childId,
-        weekStart,
-      },
+  const reportData: Prisma.WeeklyReportUncheckedCreateInput = {
+    childId,
+    weekStart,
+    weekEnd,
+    minutesLearned,
+    lessonsCompleted,
+    streakDays,
+    skillsSummary: byTrack,
+    recommendations: {
+      nextWeek: [
+        "Duy trì thói quen học 15-20 phút mỗi ngày để đạt hiệu quả tốt nhất",
+        "Ôn tập lại các trò chơi nhỏ ôn tập (D+1, D+3) để ghi nhớ bài",
+        "Kết hợp thêm 1 hoạt động tương tác gia đình (offline) của Cùng Con Tự Học",
+      ],
     },
-    create: {
-      childId,
-      weekStart,
-      weekEnd,
-      minutesLearned,
-      lessonsCompleted,
-      streakDays,
-      skillsSummary: byTrack,
-      recommendations: {
-        nextWeek: [
-          "Duy trì thói quen học 15-20 phút mỗi ngày để đạt hiệu quả tốt nhất",
-          "Ôn tập lại các trò chơi nhỏ ôn tập (D+1, D+3) để ghi nhớ bài",
-          "Kết hợp thêm 1 hoạt động tương tác gia đình (offline) của Cùng Con Tự Học",
-        ],
-      },
-      deliveredInAppAt: new Date(),
-      emailStatus: EmailStatus.QUEUED,
-      deepLinkToken: randomUUID(),
-    },
-    update: {
-      weekEnd,
-      minutesLearned,
-      lessonsCompleted,
-      streakDays,
-      skillsSummary: byTrack,
-      recommendations: {
-        nextWeek: [
-          "Duy trì thói quen học 15-20 phút mỗi ngày để đạt hiệu quả tốt nhất",
-          "Ôn tập lại các trò chơi nhỏ ôn tập (D+1, D+3) để ghi nhớ bài",
-          "Kết hợp thêm 1 hoạt động tương tác gia đình (offline) của Cùng Con Tự Học",
-        ],
-      },
-      deliveredInAppAt: new Date(),
-      deliveredEmailAt: null,
-      emailStatus: EmailStatus.QUEUED,
-    },
-  });
+    deliveredInAppAt: new Date(),
+    emailStatus: EmailStatus.QUEUED,
+    deepLinkToken: randomUUID(),
+  };
+
+  try {
+    return await prisma.weeklyReport.create({
+      data: reportData,
+    });
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+      const concurrentReport = await prisma.weeklyReport.findUnique({
+        where: {
+          childId_weekStart: {
+            childId,
+            weekStart,
+          },
+        },
+      });
+
+      if (concurrentReport) {
+        return concurrentReport;
+      }
+    }
+
+    throw error;
+  }
 }
 
 export async function getLatestWeeklyReports(parentId: string) {

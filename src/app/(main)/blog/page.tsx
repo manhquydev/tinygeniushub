@@ -40,13 +40,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     <div className="page-stack">
       {subscribed ? (
         <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-semibold text-emerald-700">
-          B?n dã dang ký newsletter thành công.
+          Bạn đã đăng ký newsletter thành công.
         </section>
       ) : null}
 
       {unsubscribed ? (
         <section className="rounded-2xl border border-sky-200 bg-sky-50 p-4 text-sm font-semibold text-sky-700">
-          B?n dã h?y dang ký newsletter.
+          Bạn đã hủy đăng ký newsletter.
         </section>
       ) : null}
 
@@ -69,9 +69,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
       <section className="space-y-4">
         <div className="section-header">
-          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Bài vi?t m?i nh?t</h1>
+          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Bài viết mới nhất</h1>
           <Link href="/blog/search" className="text-sm font-semibold text-teal-700 hover:text-teal-800">
-            Tìm ki?m bài vi?t
+            Tìm kiếm bài viết
           </Link>
         </div>
 

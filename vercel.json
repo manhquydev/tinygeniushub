@@ -11,6 +11,14 @@
     {
       "path": "/api/cron/newsletter-weekly",
       "schedule": "0 4 * * 1"
+    },
+    {
+      "path": "/api/cron/cleanup-pending-media",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/publish-scheduled-posts",
+      "schedule": "*/15 * * * *"
     }
   ]
 }

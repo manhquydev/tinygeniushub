@@ -8,13 +8,17 @@ import * as m from "motion/react-m";
 import { SmallOwl } from "@/components/mascot/characters/SmallOwl";
 import { STATE_EXPRESSIONS } from "@/components/mascot/expressions";
 import { KID_AVATAR_OPTIONS, type KidAvatarId } from "@/components/mascot/kid-avatar-options";
+import type { ApiSuccess, ChildProfileDTO } from "@/lib/api-types";
 
 type AgeBand = "2-3" | "3-4" | "4-5" | "5-6";
-type ChildSummary = {
-  id: string;
-  nickname: string;
-  ageBand: string;
-  avatarId: string | null;
+type ChildSummary = Pick<ChildProfileDTO, "id" | "nickname" | "ageBand" | "avatarId">;
+
+type ApiResponse<T> = {
+  ok: boolean;
+  data?: ApiSuccess<T>["data"];
+  error?: {
+    message?: string;
+  };
 };
 
 interface ChildrenManagerProps {
@@ -352,9 +356,15 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         body: JSON.stringify({ nickname: nicknameTrimmed, ageBand, avatarId }),
       });
 
-      const body = await response.json();
+      const body = (await response.json()) as ApiResponse<{ child: ChildSummary }>;
       if (!response.ok || !body.ok) {
         setError(body.error?.message ?? "Không thể tạo hồ sơ bé.");
+        revealFeedback();
+        return;
+      }
+
+      if (!body.data?.child) {
+        setError("Không thể tạo hồ sơ bé.");
         revealFeedback();
         return;
       }
@@ -406,9 +416,15 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         body: JSON.stringify({ nickname: editNicknameTrimmed, ageBand: editAgeBand, avatarId: editAvatarId }),
       });
 
-      const body = await response.json();
+      const body = (await response.json()) as ApiResponse<{ child: ChildSummary }>;
       if (!response.ok || !body.ok) {
         setError(body.error?.message ?? "Không thể cập nhật hồ sơ bé.");
+        revealFeedback();
+        return;
+      }
+
+      if (!body.data?.child) {
+        setError("Không thể cập nhật hồ sơ bé.");
         revealFeedback();
         return;
       }
@@ -443,7 +459,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         method: "DELETE",
       });
 
-      const body = await response.json();
+      const body = (await response.json()) as ApiResponse<{ success: boolean }>;
       if (!response.ok || !body.ok) {
         setError(body.error?.message ?? "Không thể xóa hồ sơ bé.");
         revealFeedback();

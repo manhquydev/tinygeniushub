@@ -5,7 +5,7 @@ import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 function formatDate(value: Date | null) {
   if (!value) {
-    return "Chua xu?t b?n";
+    return "Chưa xuất bản";
   }
 
   return new Intl.DateTimeFormat("vi-VN", {
@@ -40,14 +40,14 @@ export function BlogCardFeatured({ post }: { post: BlogPostCardDTO }) {
               {post.category.emoji ?? "??"} {post.category.nameVi}
             </span>
 
-            <h2 className="text-2xl font-black leading-tight tracking-[-0.02em] sm:text-3xl">{post.titleVi}</h2>
+            <h2 className="break-words text-2xl font-black leading-tight tracking-[-0.02em] sm:text-3xl">{post.titleVi}</h2>
 
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-100">
               <span>{post.author.displayName}</span>
               <span>·</span>
               <span>{formatDate(post.publishedAt)}</span>
               <span>·</span>
-              <span>{post.readingTimeMin} phút d?c</span>
+              <span>{post.readingTimeMin} phút đọc</span>
             </div>
 
             <div className="flex items-center gap-4 text-sm text-slate-100">

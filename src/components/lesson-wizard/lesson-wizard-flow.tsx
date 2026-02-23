@@ -12,6 +12,7 @@ import { bounceIn, swipeLeft, wobble } from "@/components/animation/kid-motion-v
 import { ParentGateDialog } from "@/components/parent-gate-dialog";
 import { ActivityRenderer } from "@/components/lesson-wizard/activity-renderer";
 import { synth } from "@/lib/audio-utils";
+import type { ActivitySpec, ActivityType } from "@/modules/content/activity-types";
 
 const EvidenceUploadPanel = dynamic(
   () => import("@/components/evidence-upload-panel").then((module) => module.EvidenceUploadPanel),
@@ -40,9 +41,9 @@ interface WatchSessionPayload {
 
 type ActivityRow = {
   id: string;
-  type: string;
+  type: ActivityType;
   prompt: string;
-  spec: unknown;
+  spec: ActivitySpec;
   passCriteria: number;
 };
 
@@ -332,7 +333,7 @@ export function LessonWizardFlow({
 
     let success = false;
     try {
-      const response = await fetch(`/api/lessons/${lessonId}/watch/record`, {
+      const response = await fetch(`/api/lessons/${lessonId}/watch`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ childId, sessionToken: watchSessionToken }),
@@ -745,6 +746,7 @@ export function LessonWizardFlow({
                   <>
                     <p className="lesson-wizard-quiz-copy">Câu {activityIndex + 1}/{activities.length}</p>
                     <ActivityRenderer
+                      key={currentActivity.id}
                       activity={currentActivity}
                       disabled={loading || activityAnswerLocked}
                       onAnswer={handleActivityAnswer}

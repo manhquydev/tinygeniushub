@@ -1,7 +1,21 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+const { getAdminSecurityControlsMock } = vi.hoisted(() => ({
+  getAdminSecurityControlsMock: vi.fn(),
+}));
+
+vi.mock("@/modules/platform/security-policy-service", () => ({
+  getAdminSecurityControls: getAdminSecurityControlsMock,
+}));
+
 import { enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
+import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
 describe("enforceRateLimit", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it("blocks after reaching limit in the same window", async () => {
     const key = `test:${Date.now()}`;
     const first = await enforceRateLimit({ key, limit: 2, windowMs: 1_000 });
@@ -23,6 +37,18 @@ describe("enforceRateLimit", () => {
     });
 
     expect(result.allowed).toBe(false);
+    expect(result.reason).toBe("store_unavailable");
+  });
+
+  it("supports fail-open mode when distributed store is unavailable", async () => {
+    const result = await enforceRateLimit({
+      key: `test-allow:${Date.now()}`,
+      limit: 10,
+      windowMs: 1_000,
+      storeFailureMode: "allow",
+    });
+
+    expect(result.allowed).toBe(true);
     expect(result.reason).toBe("store_unavailable");
   });
 });
@@ -83,5 +109,29 @@ describe("getRequestIp", () => {
       trustedProxyHops: 1,
     });
     expect(ip).toBe("198.51.100.42");
+  });
+});
+
+describe("blocked cidr integration", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("returns 403 from security guard for blocked source IP before endpoint logic", async () => {
+    getAdminSecurityControlsMock.mockResolvedValue({
+      blockedIpCidrs: ["203.0.113.0/24"],
+      readinessAllowlistCidrs: [],
+    });
+
+    const request = new Request("http://localhost", {
+      headers: {
+        "x-forwarded-for": "203.0.113.8, 10.0.0.2",
+      },
+    });
+
+    await expect(assertRequestAllowedBySecurityControls(request)).rejects.toMatchObject({
+      status: 403,
+      code: "SECURITY_IP_BLOCKED",
+    });
   });
 });
