@@ -1,10 +1,17 @@
 ﻿import { endOfWeek, startOfWeek } from "date-fns";
 import { formatInTimeZone, fromZonedTime, toZonedTime } from "date-fns-tz";
 import { randomUUID } from "node:crypto";
-import { EmailStatus } from "@prisma/client";
+import { EmailStatus, type WeeklyReport } from "@prisma/client";
 import { prisma } from "@/lib/db";
 
 const REPORT_TIMEZONE = "Asia/Bangkok";
+
+export type WeeklyTrend = {
+  lessonsChange: number;
+  minutesChange: number;
+  streakChange: number;
+  overallDirection: "up" | "down" | "stable";
+};
 
 function computeStreakDays(completionDates: Date[]) {
   const uniqueDays = new Set(
@@ -12,6 +19,49 @@ function computeStreakDays(completionDates: Date[]) {
   );
 
   return uniqueDays.size;
+}
+
+export function getWeeklyTrend(
+  childId: string,
+  currentReport: Pick<WeeklyReport, "lessonsCompleted" | "minutesLearned" | "streakDays">,
+  previousReport: Pick<WeeklyReport, "lessonsCompleted" | "minutesLearned" | "streakDays"> | null,
+): WeeklyTrend {
+  if (!childId || !previousReport) {
+    return {
+      lessonsChange: 0,
+      minutesChange: 0,
+      streakChange: 0,
+      overallDirection: "stable",
+    };
+  }
+
+  const lessonsChange = currentReport.lessonsCompleted - previousReport.lessonsCompleted;
+  const minutesChange = currentReport.minutesLearned - previousReport.minutesLearned;
+  const streakChange = currentReport.streakDays - previousReport.streakDays;
+
+  const positiveCount = [lessonsChange, minutesChange, streakChange].filter((value) => value > 0).length;
+  const negativeCount = [lessonsChange, minutesChange, streakChange].filter((value) => value < 0).length;
+
+  let overallDirection: WeeklyTrend["overallDirection"] = "stable";
+  if (positiveCount > 0 && negativeCount === 0) {
+    overallDirection = "up";
+  } else if (negativeCount > 0 && positiveCount === 0) {
+    overallDirection = "down";
+  } else if (positiveCount > 0 && negativeCount > 0) {
+    const aggregateChange = lessonsChange + minutesChange + streakChange;
+    if (aggregateChange > 0) {
+      overallDirection = "up";
+    } else if (aggregateChange < 0) {
+      overallDirection = "down";
+    }
+  }
+
+  return {
+    lessonsChange,
+    minutesChange,
+    streakChange,
+    overallDirection,
+  };
 }
 
 export function getWeeklyWindow(referenceDate = new Date()) {
@@ -128,7 +178,12 @@ export async function getLatestWeeklyReports(parentId: string) {
       },
     },
     include: {
-      child: true,
+      child: {
+        select: {
+          id: true,
+          nickname: true,
+        },
+      },
     },
     orderBy: {
       generatedAt: "desc",
@@ -152,6 +207,7 @@ export async function getLatestWeeklyReportsForChild(childId: string, limit = 12
 export async function generateWeeklyReportsForParent(parentId: string, referenceDate = new Date()) {
   const children = await prisma.childProfile.findMany({
     where: { parentId },
+    select: { id: true },
   });
 
   return Promise.all(children.map((child) => generateWeeklyReportForChild(child.id, referenceDate)));

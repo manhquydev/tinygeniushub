@@ -76,6 +76,7 @@ pnpm worker:dev
 - `POST /api/children`
 - `PATCH /api/children/:childId`
 - `DELETE /api/children/:childId`
+- `GET /api/children/:childId/activity-today`
 - `GET /api/lessons/today?childId=...`
 - `POST /api/lessons/:lessonId/watch/session`
 - `POST /api/lessons/:lessonId/watch/heartbeat`
@@ -85,6 +86,10 @@ pnpm worker:dev
 - `GET /api/reports/weekly`
 - `POST /api/reports/generate`
 - `POST /api/reports/send-email`
+- `GET /api/notifications`
+- `PATCH /api/notifications/:id/read`
+- `GET /api/cron/weekly-reports`
+- `GET /api/cron/streak-alerts`
 - `POST /api/billing/webhooks/mock`
 - `POST /api/billing/webhooks/stripe`
 - `POST /api/billing/checkout`
@@ -170,3 +175,6 @@ Implementation plan and phases:
 - `pnpm test:e2e:security` validates: rate-limit 429, blocked IP policy, readiness allowlist deny, ddos multiplier effect, burst-concurrency throttling (watch/report/readiness), edge export sync.
 - `pnpm test:local:full` runs full local flow end-to-end (infra up, migrate, seed, build, e2e smoke/p0/full/security).
 - Nightly CI workflow: `.github/workflows/nightly-local-full.yml` runs `pnpm test:local:full` on schedule/manual trigger.
+- Vercel Cron setup:
+  - `vercel.json` includes weekly report job at Sunday 20:00 VN (`0 13 * * 0` UTC) and streak alert job at 18:00 VN (`0 11 * * *` UTC).
+  - Set `CRON_SECRET` in environment variables and send it via `x-cron-secret` header (or Bearer token in `Authorization`) when invoking cron endpoints.

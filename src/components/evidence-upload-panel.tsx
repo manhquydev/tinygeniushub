@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ChangeEvent, FormEvent, useMemo, useRef, useState } from "react";
 
@@ -86,7 +86,7 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
       const sessionBody = await sessionResponse.json();
       const sessionCandidate = sessionBody?.data?.session as unknown;
       if (!sessionResponse.ok || sessionBody?.ok !== true || !isUploadSessionPayload(sessionCandidate)) {
-        setError(sessionBody?.error?.message ?? "Khong tao duoc signed upload session.");
+        setError(sessionBody?.error?.message ?? "Không tạo được signed upload session.");
         return;
       }
 
@@ -115,7 +115,7 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
         fileInputRef.current.value = "";
       }
     } catch (uploadError) {
-      setError(uploadError instanceof Error ? uploadError.message : "Loi khong xac dinh khi upload.");
+      setError(uploadError instanceof Error ? uploadError.message : "Lỗi không xác định khi upload.");
     } finally {
       setLoading(false);
     }

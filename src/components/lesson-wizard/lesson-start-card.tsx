@@ -15,6 +15,7 @@ interface LessonStartCardProps {
   videoSource?: string | null;
   onLessonSelect?: (lessonId: string) => void;
   onLessonComplete?: (lessonId: string) => void;
+  beforeStart?: () => Promise<boolean> | boolean;
 }
 
 interface LessonLaunchButtonProps {
@@ -106,6 +107,16 @@ export function LessonStartCard(props: LessonStartCardProps) {
     onSelect: props.onLessonSelect,
     prefersReducedMotion,
   });
+  async function handleLaunch() {
+    if (props.beforeStart) {
+      const shouldStart = await props.beforeStart();
+      if (!shouldStart) {
+        return;
+      }
+    }
+
+    handleStartLesson();
+  }
 
   return (
     <>
@@ -165,7 +176,9 @@ export function LessonStartCard(props: LessonStartCardProps) {
         <LessonLaunchButton
           isLaunching={isLaunching}
           prefersReducedMotion={prefersReducedMotion}
-          onLaunch={handleStartLesson}
+          onLaunch={() => {
+            void handleLaunch();
+          }}
         />
       </m.article>
 

@@ -1,4 +1,5 @@
-import { KidMissionPanel } from "@/components/kid-mission-panel";
+﻿import { KidMissionPanel } from "@/components/kid-mission-panel";
+import { Mascot } from "@/components/mascot";
 import { SpaceBackground } from "@/components/space-background";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
@@ -23,6 +24,8 @@ export default async function KidTodayPage({ searchParams }: KidTodayPageProps) 
   if (children.length === 0) {
     return (
       <section className="kid-empty-state">
+        <Mascot variant="duo" state="thinking" actionProp="reading" size={210} motionLevel="soft" pauseWhenOffscreen />
+        <h2>{"Ch\u01b0a c\u00f3 g\u00ec \u1edf \u0111\u00e2y c\u1ea3..."}</h2>
         <h1>{"Ch\u1ebf \u0111\u1ed9 h\u1ecdc t\u1eadp ch\u01b0a s\u1eb5n s\u00e0ng"}</h1>
         <p>{"H\u00e3y t\u1ea1o \u00edt nh\u1ea5t m\u1ed9t h\u1ed3 s\u01a1 b\u00e9 trong khu v\u1ef1c Ph\u1ee5 huynh tr\u01b0\u1edbc khi v\u00e0o h\u00e0nh tr\u00ecnh."}</p>
       </section>
@@ -58,4 +61,5 @@ export default async function KidTodayPage({ searchParams }: KidTodayPageProps) 
     </div>
   );
 }
+
 

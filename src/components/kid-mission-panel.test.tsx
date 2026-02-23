@@ -1,4 +1,4 @@
-// @vitest-environment jsdom
+﻿// @vitest-environment jsdom
 
 import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
@@ -28,13 +28,16 @@ vi.mock("motion/react-m", () => {
     "layout",
   ]);
 
-  const createMotionTag = (tagName: string) =>
-    React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(({ children, ...props }, ref) => {
+  const createMotionTag = (tagName: string) => {
+    const MotionTag = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(({ children, ...props }, ref) => {
       const domProps = Object.fromEntries(
         Object.entries(props).filter(([key]) => !motionOnlyProps.has(key)),
       );
       return React.createElement(tagName, { ...domProps, ref }, children);
     });
+    MotionTag.displayName = `MotionTag(${tagName})`;
+    return MotionTag;
+  };
 
   return {
     section: createMotionTag("section"),
@@ -90,17 +93,17 @@ describe("KidMissionPanel", () => {
         initialLessons={[
           {
             id: "lesson-1",
-            title: "Hoc chu A",
-            objective: "Nhan dien chu A",
+            title: "Học chữ A",
+            objective: "Nhận diện chữ A",
             estimatedMinutes: 10,
           },
         ]}
       />,
     );
 
-    expect(screen.getByText("Hoc chu A")).toBeInTheDocument();
-    expect(screen.getByText("Nhan dien chu A")).toBeInTheDocument();
-    expect(screen.getByText("10 phut")).toBeInTheDocument();
+    expect(screen.getByText("Học chữ A")).toBeInTheDocument();
+    expect(screen.getByText("Nhận diện chữ A")).toBeInTheDocument();
+    expect(screen.getByText("10 phút")).toBeInTheDocument();
     expect(screen.getByText("Be Na")).toBeInTheDocument();
   });
 
@@ -114,18 +117,18 @@ describe("KidMissionPanel", () => {
         initialLessons={[
           {
             id: "lesson-1",
-            title: "Hoc chu A",
-            objective: "Nhan dien chu A",
+            title: "Học chữ A",
+            objective: "Nhận diện chữ A",
             estimatedMinutes: 10,
           },
         ]}
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Bat dau bai hoc" }));
+    fireEvent.click(screen.getByRole("button", { name: "Bắt đầu bài học" }));
 
     await waitFor(() => {
-      expect(screen.getByText("Bat dau Hoc chu A nha!")).toBeInTheDocument();
+      expect(screen.getByText("Bắt đầu Học chữ A nha!")).toBeInTheDocument();
     });
     expect(playTingMock).toHaveBeenCalledTimes(1);
   });
@@ -143,15 +146,15 @@ describe("KidMissionPanel", () => {
         initialLessons={[
           {
             id: "lesson-1",
-            title: "Hoc chu A",
-            objective: "Nhan dien chu A",
+            title: "Học chữ A",
+            objective: "Nhận diện chữ A",
             estimatedMinutes: 10,
           },
         ]}
       />,
     );
 
-    const mascotButton = screen.getByRole("button", { name: /hỗ trợ trẻ em/i });
+    const mascotButton = screen.getByRole("button", { name: /há»— trá»£ tráº» em/i });
     fireEvent.click(mascotButton);
     expect(playYayMock).toHaveBeenCalledTimes(1);
 

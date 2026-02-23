@@ -1,16 +1,14 @@
 ﻿import { createPortfolioRetentionWorker } from "@/worker/jobs/purge-expired-media";
 import { createWeeklyReportsWorker } from "@/worker/jobs/generate-weekly-reports";
 import { createWeeklyReportEmailsWorker } from "@/worker/jobs/dispatch-weekly-report-emails";
-import {
-  enqueueRetentionCleanup,
-  enqueueWeeklyReportEmails,
-  enqueueWeeklyReports,
-} from "@/worker/queue";
+import { createBlogNewsletterWorker } from "@/worker/jobs/dispatch-blog-newsletter-emails";
+import { enqueueRetentionCleanup, enqueueWeeklyReportEmails, enqueueWeeklyReports } from "@/worker/queue";
 import { logError, logInfo } from "@/lib/observability/logger";
 
 const weeklyWorker = createWeeklyReportsWorker();
 const retentionWorker = createPortfolioRetentionWorker();
 const weeklyEmailWorker = createWeeklyReportEmailsWorker();
+const blogNewsletterWorker = createBlogNewsletterWorker();
 
 weeklyWorker.on("completed", (job) => {
   logInfo("worker.weekly_reports.completed", {
@@ -26,6 +24,12 @@ retentionWorker.on("completed", (job) => {
 
 weeklyEmailWorker.on("completed", (job) => {
   logInfo("worker.weekly_report_email.completed", {
+    jobId: job.id,
+  });
+});
+
+blogNewsletterWorker.on("completed", (job) => {
+  logInfo("worker.blog_newsletter_email.completed", {
     jobId: job.id,
   });
 });
@@ -46,6 +50,13 @@ retentionWorker.on("failed", (job, error) => {
 
 weeklyEmailWorker.on("failed", (job, error) => {
   logError("worker.weekly_report_email.failed", {
+    jobId: job?.id,
+    error,
+  });
+});
+
+blogNewsletterWorker.on("failed", (job, error) => {
+  logError("worker.blog_newsletter_email.failed", {
     jobId: job?.id,
     error,
   });
@@ -94,7 +105,7 @@ bootstrap().catch((error) => {
 
 process.on("SIGINT", async () => {
   logInfo("worker.shutdown_started");
-  await Promise.all([weeklyWorker.close(), retentionWorker.close(), weeklyEmailWorker.close()]);
+  await Promise.all([weeklyWorker.close(), retentionWorker.close(), weeklyEmailWorker.close(), blogNewsletterWorker.close()]);
   logInfo("worker.shutdown_completed");
   process.exit(0);
 });

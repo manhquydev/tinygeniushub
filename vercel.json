@@ -1,0 +1,16 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/weekly-reports",
+      "schedule": "0 13 * * 0"
+    },
+    {
+      "path": "/api/cron/streak-alerts",
+      "schedule": "0 11 * * *"
+    },
+    {
+      "path": "/api/cron/newsletter-weekly",
+      "schedule": "0 4 * * 1"
+    }
+  ]
+}

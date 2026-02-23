@@ -1,5 +1,9 @@
 // src/lib/audio-utils.ts
 
+interface LegacyAudioWindow extends Window {
+    webkitAudioContext?: typeof AudioContext;
+}
+
 class AudioSynthesizer {
     private ctx: AudioContext | null = null;
     private masterGain: GainNode | null = null;
@@ -7,7 +11,7 @@ class AudioSynthesizer {
     private init() {
         if (typeof window === "undefined") return;
         if (!this.ctx) {
-            const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+            const AudioCtx = window.AudioContext || (window as LegacyAudioWindow).webkitAudioContext;
             if (AudioCtx) {
                 this.ctx = new AudioCtx();
                 this.masterGain = this.ctx.createGain();
@@ -71,6 +75,42 @@ class AudioSynthesizer {
 
         osc.start(t);
         osc.stop(t + 0.5);
+    }
+
+    // A short error buzz for wrong answers
+    playBzz() {
+        this.init();
+        const masterGain = this.masterGain;
+        const ctx = this.ctx;
+        if (!ctx || !masterGain) return;
+
+        const t = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const lfo = ctx.createOscillator();
+        const lfoGain = ctx.createGain();
+        const gain = ctx.createGain();
+
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(180, t);
+        osc.frequency.exponentialRampToValueAtTime(92, t + 0.22);
+
+        lfo.type = "square";
+        lfo.frequency.setValueAtTime(22, t);
+        lfoGain.gain.setValueAtTime(24, t);
+        lfo.connect(lfoGain);
+        lfoGain.connect(osc.frequency);
+
+        gain.gain.setValueAtTime(0, t);
+        gain.gain.linearRampToValueAtTime(0.28, t + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.24);
+
+        osc.connect(gain);
+        gain.connect(masterGain);
+
+        lfo.start(t);
+        osc.start(t);
+        osc.stop(t + 0.25);
+        lfo.stop(t + 0.25);
     }
 
     // A triumphant major arpeggio for celebration screens

@@ -1,9 +1,15 @@
-﻿import { AuthForm } from "@/components/auth-form";
+import { AuthForm } from "@/components/auth-form";
+import { AuthSplitShell } from "@/components/auth-split-shell";
 
 export default function SignupPage() {
   return (
-    <div className="auth-wrap">
+    <AuthSplitShell
+      badge="7-Day Trial"
+      title="Tạo tài khoản để bắt đầu chặng học mới cùng bé"
+      description="Mở ngay 7 ngày dùng thử, cá nhân hóa hành trình học và nhận báo cáo tiến bộ trực quan mỗi tuần."
+      actionProp="reading"
+    >
       <AuthForm mode="signup" />
-    </div>
+    </AuthSplitShell>
   );
 }

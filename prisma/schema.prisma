@@ -68,6 +68,13 @@ enum EmailStatus {
   CLICKED
 }
 
+enum NotificationType {
+  ACHIEVEMENT
+  REPORT
+  TIP
+  STREAK
+}
+
 enum CaregiverRole {
   VIEW_ONLY
 }
@@ -77,6 +84,7 @@ model ParentAccount {
   email                String                  @unique
   passwordHash         String
   displayName          String?
+  suspended            Boolean                 @default(false)
   createdAt            DateTime                @default(now())
   updatedAt            DateTime                @updatedAt
   lastActiveAt         DateTime?
@@ -85,10 +93,12 @@ model ParentAccount {
   preferences          ParentPreferences?
   subscription         Subscription?
   caregivers           CaregiverAccount[]
+  caregiverInvites     CaregiverInvite[]
   payments             PaymentRecord[]
   referralCode         ReferralCode?
   weeklyEmailOptIns    WeeklyEmailPreference[]
   referredAttributions ReferralAttribution[]   @relation("ReferredParent")
+  adminNotes           AdminNote[]
 }
 
 model Session {
@@ -113,6 +123,22 @@ model User {
   updatedAt     DateTime      @updatedAt
   accounts      Account[]
   authSessions  AuthSession[]
+  notifications Notification[]
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  type      NotificationType
+  title     String
+  message   String
+  href      String
+  read      Boolean          @default(false)
+  createdAt DateTime         @default(now())
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([userId, read])
 }
 
 model AuthSession {
@@ -194,6 +220,20 @@ model CaregiverAccount {
   @@unique([parentId, email])
 }
 
+model CaregiverInvite {
+  id        String        @id @default(cuid())
+  parentId  String
+  email     String
+  token     String        @unique @default(cuid())
+  accepted  Boolean       @default(false)
+  createdAt DateTime      @default(now())
+  expiresAt DateTime
+  parent    ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  @@unique([parentId, email])
+  @@index([parentId, createdAt])
+}
+
 model Subscription {
   id                        String             @id @default(cuid())
   parentId                  String             @unique
@@ -219,6 +259,7 @@ model ChildProfile {
   avatarId          String?
   placementResult   Json?
   dailyMinutesLimit Int                     @default(20)
+  dailyGoalMinutes  Int                     @default(20)
   preferredLanguage String                  @default("vi")
   progressSnapshot  Json?
   createdAt         DateTime                @default(now())
@@ -476,6 +517,28 @@ model AuditLog {
   @@index([createdAt])
 }
 
+model AdminActionLog {
+  id         String   @id @default(cuid())
+  adminEmail String
+  action     String
+  target     String?
+  detail     Json?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+}
+
+model AdminNote {
+  id        String        @id @default(cuid())
+  parentId  String
+  parent    ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  note      String
+  createdAt DateTime      @default(now())
+  createdBy String
+
+  @@index([parentId, createdAt(sort: Desc)])
+}
+
 model ReferralCode {
   id           String                @id @default(cuid())
   parentId     String                @unique
@@ -516,4 +579,209 @@ model AdminSecuritySettings {
   updatedByActorId  String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
+}
+
+model SystemAnnouncement {
+  id        String   @id @default(cuid())
+  message   String
+  type      String   @default("INFO")
+  active    Boolean  @default(true)
+  scheduledAt DateTime?
+  endsAt    DateTime?
+  createdAt DateTime @default(now())
+  createdBy String
+
+  @@index([active, scheduledAt, endsAt])
+  @@index([createdAt(sort: Desc)])
+}
+
+model FeatureFlag {
+  key         String   @id
+  enabled     Boolean  @default(false)
+  description String?
+  updatedAt   DateTime @updatedAt
+  updatedBy   String?
+}
+
+model CouponCode {
+  id              String   @id @default(cuid())
+  code            String   @unique
+  discountPercent Int
+  maxUses         Int?
+  usedCount       Int      @default(0)
+  active          Boolean  @default(true)
+  expiresAt       DateTime?
+  createdAt       DateTime @default(now())
+  createdBy       String
+
+  @@index([active, expiresAt])
+  @@index([createdAt(sort: Desc)])
+}
+
+// ========== BLOG SYSTEM ==========
+
+enum BlogPostStatus {
+  DRAFT
+  REVIEW
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum BlogPostType {
+  ARTICLE
+  TIP
+  NEWS
+  GUIDE
+  RESEARCH
+  STORY
+}
+
+enum AgeGroup {
+  UNDER_3
+  AGE_3_5
+  AGE_6_8
+  AGE_9_12
+  ALL_AGES
+}
+
+model BlogCategory {
+  id          String         @id @default(cuid())
+  slug        String         @unique
+  nameVi      String
+  nameEn      String?
+  description String?
+  emoji       String?
+  color       String?
+  parentId    String?
+  orderNo     Int            @default(0)
+  active      Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  parent      BlogCategory?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children    BlogCategory[] @relation("CategoryTree")
+  posts       BlogPost[]
+
+  @@index([parentId])
+  @@index([active, orderNo])
+}
+
+model BlogTag {
+  id        String        @id @default(cuid())
+  slug      String        @unique
+  nameVi    String
+  createdAt DateTime      @default(now())
+  posts     BlogPostTag[]
+}
+
+model BlogAuthor {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  displayName String
+  role        String     @default("Bien tap vien")
+  bio         String?
+  avatarUrl   String?
+  linkedinUrl String?
+  email       String?    @unique
+  active      Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  posts       BlogPost[]
+
+  @@index([active])
+}
+
+model BlogPost {
+  id               String             @id @default(cuid())
+  slug             String             @unique
+  type             BlogPostType       @default(ARTICLE)
+  status           BlogPostStatus     @default(DRAFT)
+  titleVi          String
+  titleEn          String?
+  excerptVi        String
+  contentMarkdown  String
+  contentHtml      String?
+  coverImageUrl    String?
+  coverImageAlt    String?
+  coverImageCredit String?
+  categoryId       String
+  ageGroup         AgeGroup           @default(ALL_AGES)
+  metaTitleVi      String?
+  metaDescVi       String?
+  canonicalUrl     String?
+  ogImageUrl       String?
+  structuredData   Json?
+  authorId         String
+  coAuthorIds      String[]           @default([])
+  reviewedBy       String?
+  viewCount        Int                @default(0)
+  likeCount        Int                @default(0)
+  readingTimeMin   Int                @default(3)
+  publishedAt      DateTime?
+  scheduledAt      DateTime?
+  featuredUntil    DateTime?
+  isFeatured       Boolean            @default(false)
+  isPinned         Boolean            @default(false)
+  isIndexed        Boolean            @default(true)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  category         BlogCategory       @relation(fields: [categoryId], references: [id])
+  author           BlogAuthor         @relation(fields: [authorId], references: [id])
+  tags             BlogPostTag[]
+  relatedPosts     BlogPostRelation[] @relation("SourcePost")
+  relatedFrom      BlogPostRelation[] @relation("RelatedPost")
+
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([categoryId, status, publishedAt])
+  @@index([isFeatured, featuredUntil])
+  @@index([ageGroup, status])
+  @@index([slug])
+}
+
+model BlogPostTag {
+  postId String
+  tagId  String
+  post   BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    BlogTag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+}
+
+model BlogPostRelation {
+  sourcePostId  String
+  relatedPostId String
+  sourcePost    BlogPost @relation("SourcePost",  fields: [sourcePostId], references: [id], onDelete: Cascade)
+  relatedPost   BlogPost @relation("RelatedPost", fields: [relatedPostId], references: [id], onDelete: Cascade)
+
+  @@id([sourcePostId, relatedPostId])
+}
+
+model BlogNewsletterSubscriber {
+  id             String     @id @default(cuid())
+  email          String     @unique
+  nameVi         String?
+  verified       Boolean    @default(false)
+  verifyToken    String?    @unique
+  parentId       String?
+  ageGroups      AgeGroup[] @default([ALL_AGES])
+  categoryIds    String[]   @default([])
+  frequency      String     @default("WEEKLY")
+  unsubToken     String     @unique @default(cuid())
+  subscribedAt   DateTime   @default(now())
+  unsubscribedAt DateTime?
+  lastEmailAt    DateTime?
+
+  @@index([verified, unsubscribedAt])
+  @@index([lastEmailAt])
+}
+
+model BlogReadHistory {
+  id         String   @id @default(cuid())
+  postId     String
+  sessionId  String?
+  parentId   String?
+  ipHash     String?
+  readAt     DateTime @default(now())
+  timeOnPage Int?
+
+  @@index([postId, readAt])
+  @@index([parentId, readAt])
 }
