@@ -2,6 +2,11 @@
 import type { NextRequest } from "next/server";
 
 function readSecretFromHeaders(request: NextRequest) {
+  const querySecret = request.nextUrl.searchParams.get("secret");
+  if (querySecret) {
+    return querySecret;
+  }
+
   const directHeader =
     request.headers.get("x-cron-secret") ??
     request.headers.get("cron-secret") ??

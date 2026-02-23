@@ -111,6 +111,150 @@ async function assertUnauthorizedApi(baseUrl) {
   }
 }
 
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+function getSessionCookie(setCookieHeader) {
+  if (!setCookieHeader) {
+    return null;
+  }
+
+  const match = setCookieHeader.match(/ccth_session=[^;]+/);
+  return match ? match[0] : null;
+}
+
+async function requestJson(baseUrl, path, options = {}) {
+  const headers = new Headers(options.headers ?? {});
+  const method = (options.method ?? "GET").toUpperCase();
+  let body = undefined;
+
+  if (options.body !== undefined) {
+    headers.set("content-type", "application/json");
+    body = JSON.stringify(options.body);
+  }
+
+  if (!["GET", "HEAD", "OPTIONS"].includes(method) && !headers.has("origin")) {
+    headers.set("origin", baseUrl);
+  }
+
+  const response = await fetch(`${baseUrl}${path}`, {
+    method,
+    headers,
+    body,
+    redirect: options.redirect ?? "follow",
+  });
+  const json = await response.json().catch(() => null);
+
+  return {
+    response,
+    json,
+  };
+}
+
+async function loginParent(baseUrl) {
+  const email = process.env.E2E_PARENT_EMAIL ?? "demo.parent@cungcontuhoc.vn";
+  const password = process.env.E2E_PARENT_PASSWORD ?? "DemoPass123!";
+  const login = await requestJson(baseUrl, "/api/auth/login", {
+    method: "POST",
+    body: {
+      email,
+      password,
+    },
+  });
+
+  assert(login.response.status === 200, `Parent login failed: status=${login.response.status}`);
+  assert(login.json?.ok === true, "Parent login response must include ok=true");
+
+  const sessionCookie = getSessionCookie(login.response.headers.get("set-cookie"));
+  assert(sessionCookie, "Parent login response missing ccth_session cookie");
+
+  return sessionCookie;
+}
+
+async function runCaregiverInviteSmoke(baseUrl) {
+  const readiness = await fetch(`${baseUrl}/api/health/ready`);
+  if (readiness.status !== 200) {
+    console.log(`Caregiver smoke skipped: /api/health/ready=${readiness.status}`);
+    return;
+  }
+
+  const sessionCookie = await loginParent(baseUrl);
+
+  const initialList = await requestJson(baseUrl, "/api/caregivers", {
+    method: "GET",
+    headers: {
+      cookie: sessionCookie,
+    },
+  });
+  assert(initialList.response.status === 200, `Initial caregiver list failed: status=${initialList.response.status}`);
+  assert(initialList.json?.ok === true, "Initial caregiver list must return ok=true");
+
+  let caregiverLimit = Number(initialList.json?.data?.caregiverLimit ?? 0);
+  let usedSlots = Number(initialList.json?.data?.usedSlots ?? 0);
+  let caregiverRows = Array.isArray(initialList.json?.data?.caregivers) ? initialList.json.data.caregivers : [];
+
+  if (usedSlots >= caregiverLimit) {
+    const pendingInvites = caregiverRows.filter((row) => row.status === "pending");
+
+    for (const pendingInvite of pendingInvites) {
+      const revoke = await requestJson(baseUrl, `/api/caregivers/${encodeURIComponent(pendingInvite.id)}`, {
+        method: "DELETE",
+        headers: {
+          cookie: sessionCookie,
+        },
+      });
+      assert(revoke.response.status === 200, `Caregiver revoke failed: status=${revoke.response.status}`);
+      assert(revoke.json?.ok === true, "Caregiver revoke must return ok=true");
+
+      caregiverLimit = Number(revoke.json?.data?.caregiverLimit ?? caregiverLimit);
+      usedSlots = Number(revoke.json?.data?.usedSlots ?? usedSlots);
+      caregiverRows = Array.isArray(revoke.json?.data?.caregivers) ? revoke.json.data.caregivers : caregiverRows;
+
+      if (usedSlots < caregiverLimit) {
+        break;
+      }
+    }
+  }
+
+  assert(usedSlots < caregiverLimit, "No caregiver slot available for invite smoke test");
+  const inviteEmail = `test.caregiver+${Date.now()}@example.com`;
+
+  const invite = await requestJson(baseUrl, "/api/caregivers/invite", {
+    method: "POST",
+    headers: {
+      cookie: sessionCookie,
+    },
+    body: {
+      email: inviteEmail,
+    },
+  });
+
+  assert(invite.response.status === 201, `Caregiver invite failed: status=${invite.response.status}`);
+  assert(invite.json?.ok === true, "Caregiver invite must return ok=true");
+  const inviteId = invite.json?.data?.inviteId ?? invite.json?.data?.invite?.id;
+  const inviteToken = invite.json?.data?.token;
+  assert(typeof inviteId === "string" && inviteId.length > 0, "Caregiver invite missing inviteId");
+  assert(typeof inviteToken === "string" && inviteToken.length > 0, "Caregiver invite missing token");
+
+  const caregivers = await requestJson(baseUrl, "/api/caregivers", {
+    method: "GET",
+    headers: {
+      cookie: sessionCookie,
+    },
+  });
+
+  assert(caregivers.response.status === 200, `Caregiver list failed: status=${caregivers.response.status}`);
+  assert(caregivers.json?.ok === true, "Caregiver list must return ok=true");
+  const updatedRows = Array.isArray(caregivers.json?.data?.caregivers) ? caregivers.json.data.caregivers : [];
+  const createdInvite = updatedRows.find((row) => row.email === inviteEmail);
+  assert(Boolean(createdInvite), "Invited caregiver email not found in /api/caregivers response");
+
+  console.log(`Caregiver smoke passed: inviteId=${inviteId}`);
+}
+
 async function stopServer(child) {
   if (!child || child.killed) {
     return;
@@ -131,6 +275,7 @@ async function stopServer(child) {
 
 async function main() {
   process.env.RATE_LIMIT_TRUST_PROXY = process.env.RATE_LIMIT_TRUST_PROXY ?? "true";
+  process.env.CRON_SECRET = process.env.CRON_SECRET ?? "e2e-cron-secret-please-change";
   await runBuild();
 
   const port = Number(process.env.E2E_PORT ?? (await getFreePort()));
@@ -146,6 +291,7 @@ async function main() {
     await assertRoute(baseUrl, "/api/health", 200, "\"status\":\"ok\"");
     await assertRouteStatusIn(baseUrl, "/api/health/ready", [200, 503]);
     await assertUnauthorizedApi(baseUrl);
+    await runCaregiverInviteSmoke(baseUrl);
 
     console.log("E2E smoke checks passed");
   } finally {

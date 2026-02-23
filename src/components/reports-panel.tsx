@@ -3,7 +3,9 @@
 import { WeeklyReport } from "@prisma/client";
 import { BookOpenCheck, Brain, Clock3, Flame, Lightbulb, Mail, RefreshCcw, Trophy } from "lucide-react";
 import { useState } from "react";
+import type { ApiSuccess, WeeklyReportDTO } from "@/lib/api-types";
 import { Mascot } from "@/components/mascot";
+import { WeeklyProgressChart } from "@/components/weekly-progress-chart";
 
 type TrackSummary = {
   lessons: number;
@@ -43,6 +45,14 @@ interface ReportsPanelProps {
 type TrendBadgeModel = {
   text: string;
   className: string;
+};
+
+type ReportsWeeklyApiResponse = {
+  ok: boolean;
+  data?: ApiSuccess<{ reports: WeeklyReportDTO[] }>["data"];
+  error?: {
+    message?: string;
+  };
 };
 
 function clampPercent(value: number) {
@@ -218,9 +228,9 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
       }
 
       const refresh = await fetch("/api/reports/weekly");
-      const refreshBody = await refresh.json();
+      const refreshBody = (await refresh.json()) as ReportsWeeklyApiResponse;
       if (refresh.ok && refreshBody.ok) {
-        setReports(refreshBody.data.reports);
+        setReports((refreshBody.data?.reports ?? []) as unknown as ReportWithChild[]);
       }
     } catch (regenerateError) {
       setError(regenerateError instanceof Error ? regenerateError.message : "Lỗi không xác định");
@@ -258,6 +268,45 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
     window.open(`/api/reports/${encodeURIComponent(reportId)}/pdf`, "_blank", "noopener,noreferrer");
   }
 
+  const chartPayload = (() => {
+    if (reports.length === 0) {
+      return null;
+    }
+
+    const countsByChildId = reports.reduce<Map<string, number>>((acc, report) => {
+      acc.set(report.child.id, (acc.get(report.child.id) ?? 0) + 1);
+      return acc;
+    }, new Map());
+
+    let selectedChildId = reports[0]?.child.id ?? "";
+    let selectedCount = countsByChildId.get(selectedChildId) ?? 0;
+    for (const [childId, count] of countsByChildId.entries()) {
+      if (count > selectedCount) {
+        selectedChildId = childId;
+        selectedCount = count;
+      }
+    }
+
+    const selectedChildReports = reports
+      .filter((report) => report.child.id === selectedChildId)
+      .sort((a, b) => new Date(a.weekStart).getTime() - new Date(b.weekStart).getTime())
+      .slice(-6);
+
+    if (selectedChildReports.length === 0) {
+      return null;
+    }
+
+    return {
+      childNickname: selectedChildReports[0].child.nickname,
+      weeks: selectedChildReports.map((report) => ({
+        weekStart: report.weekStart.toISOString(),
+        minutesLearned: report.minutesLearned,
+        lessonsCompleted: report.lessonsCompleted,
+        streakDays: report.streakDays,
+      })),
+    };
+  })();
+
   return (
     <div className="page-stack">
       <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
@@ -291,6 +340,10 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
         {error ? <p className="mt-3 text-sm font-medium text-red-700">{error}</p> : null}
         {info ? <p className="mt-3 text-sm font-medium text-slate-600">{info}</p> : null}
       </section>
+
+      {chartPayload ? (
+        <WeeklyProgressChart weeks={chartPayload.weeks} childNickname={chartPayload.childNickname} />
+      ) : null}
 
       {reports.length === 0 ? (
         <section className="rounded-3xl border border-slate-200/75 bg-white p-6 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">

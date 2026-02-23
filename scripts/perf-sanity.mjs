@@ -123,6 +123,8 @@ async function stopServer(child) {
 }
 
 async function main() {
+  process.env.RATE_LIMIT_TRUST_PROXY = process.env.RATE_LIMIT_TRUST_PROXY ?? "true";
+  process.env.CRON_SECRET = process.env.CRON_SECRET ?? "perf-cron-secret-please-change";
   await runBuildIfNeeded();
 
   const port = Number(process.env.PERF_PORT ?? (await getFreePort()));

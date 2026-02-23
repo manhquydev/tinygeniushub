@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -72,6 +72,7 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
 
   const parentLinks: NavItemConfig[] = [
     { href: "/pricing", label: "Bảng giá", hideOnMobile: true, matchMode: "prefix" },
+    { href: "/about", label: "Giới thiệu", hideOnMobile: true, matchMode: "prefix" },
     { href: "/blog", label: "Blog", hideOnMobile: true, matchMode: "prefix" },
     { href: "/parent/dashboard", label: "Dashboard", matchMode: "prefix" },
     { href: "/parent/children", label: "Hồ sơ bé", matchMode: "prefix" },
@@ -81,6 +82,7 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
 
   const guestLinks: NavItemConfig[] = [
     { href: "/pricing", label: "Bảng giá", hideOnMobile: true, matchMode: "prefix" },
+    { href: "/about", label: "Giới thiệu", hideOnMobile: true, matchMode: "prefix" },
     { href: "/blog", label: "Blog", hideOnMobile: true, matchMode: "prefix" },
   ];
 

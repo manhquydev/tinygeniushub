@@ -21,6 +21,10 @@ export const blogNewsletterQueue = new Queue("blog-newsletter", {
   connection: redisConnection,
 });
 
+export const blogCommentEmailQueue = new Queue("blog-comment-emails", {
+  connection: redisConnection,
+});
+
 export async function enqueueWeeklyReports() {
   return reportsQueue.add(
     "generate-weekly-reports",
@@ -83,6 +87,19 @@ export async function enqueueSendBlogNewsletter(payload: {
   postIds: string[];
 }) {
   return blogNewsletterQueue.add("send-blog-newsletter", payload, {
+    removeOnComplete: true,
+    removeOnFail: 50,
+  });
+}
+
+export async function enqueueVerifyBlogComment(payload: {
+  commentId: string;
+  authorName: string;
+  authorEmail: string;
+  postSlug: string;
+  verifyToken: string;
+}) {
+  return blogCommentEmailQueue.add("verify-blog-comment", payload, {
     removeOnComplete: true,
     removeOnFail: 50,
   });

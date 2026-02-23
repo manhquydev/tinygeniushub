@@ -1,5 +1,6 @@
 ﻿import { notFound } from "next/navigation";
 import { AdminBlogPostForm } from "@/components/admin-blog-post-form";
+import { AdminRefreshRelatedButton } from "@/components/admin-refresh-related-button";
 import { requireAdminParent } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 
@@ -56,6 +57,10 @@ export default async function AdminEditPostPage({ params }: AdminEditPostPagePro
           scheduledAt: post.scheduledAt?.toISOString() ?? "",
         }}
       />
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <AdminRefreshRelatedButton postId={post.id} />
+      </section>
     </div>
   );
 }

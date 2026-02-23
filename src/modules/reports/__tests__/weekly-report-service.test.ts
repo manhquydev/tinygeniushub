@@ -6,7 +6,8 @@ const { prismaMock, randomUuidMock } = vi.hoisted(() => ({
       findMany: vi.fn(),
     },
     weeklyReport: {
-      upsert: vi.fn(),
+      findUnique: vi.fn(),
+      create: vi.fn(),
       findMany: vi.fn(),
     },
     childProfile: {
@@ -37,13 +38,40 @@ import {
   getWeeklyWindow,
 } from "@/modules/reports/weekly-report-service";
 
+function makeCompletion({
+  completedAt,
+  minutesLearned = 10,
+  quizScore = 90,
+  trackCode = "ENGLISH",
+}: {
+  completedAt: string;
+  minutesLearned?: number;
+  quizScore?: number;
+  trackCode?: string;
+}) {
+  return {
+    minutesLearned,
+    quizScore,
+    completedAt: new Date(completedAt),
+    lesson: {
+      unit: {
+        level: {
+          track: {
+            code: trackCode,
+          },
+        },
+      },
+    },
+  };
+}
+
 describe("getWeeklyWindow", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it("returns monday as week start and sunday as week end", () => {
-    const { weekStart, weekEnd } = getWeeklyWindow(new Date("2026-02-20T12:00:00"));
+    const { weekStart, weekEnd } = getWeeklyWindow(new Date("2026-02-20T12:00:00.000Z"));
 
     expect(weekStart.getDay()).toBe(1);
     expect(weekEnd.getDay()).toBe(0);
@@ -54,87 +82,104 @@ describe("getWeeklyWindow", () => {
 describe("generateWeeklyReportForChild", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    prismaMock.weeklyReport.findUnique.mockResolvedValue(null);
   });
 
-  it("aggregates completion metrics by track and queues report email", async () => {
-    prismaMock.lessonCompletion.findMany.mockResolvedValueOnce([
-      {
-        minutesLearned: 12,
-        quizScore: 80,
-        completedAt: new Date("2026-02-16T02:00:00.000Z"),
-        lesson: {
-          unit: {
-            level: {
-              track: {
-                code: "ENGLISH",
-              },
-            },
-          },
-        },
-      },
-      {
-        minutesLearned: 15,
-        quizScore: 100,
-        completedAt: new Date("2026-02-17T03:00:00.000Z"),
-        lesson: {
-          unit: {
-            level: {
-              track: {
-                code: "ENGLISH",
-              },
-            },
-          },
-        },
-      },
-      {
-        minutesLearned: 10,
-        quizScore: 90,
-        completedAt: new Date("2026-02-18T04:00:00.000Z"),
-        lesson: {
-          unit: {
-            level: {
-              track: {
-                code: "MATH",
-              },
-            },
-          },
-        },
-      },
-    ]);
-    prismaMock.weeklyReport.upsert.mockResolvedValueOnce({
-      id: "report-1",
+  it("no completions in week -> minutesLearned: 0, lessonsCompleted: 0, streakDays: 0", async () => {
+    prismaMock.lessonCompletion.findMany.mockResolvedValueOnce([]);
+    prismaMock.weeklyReport.create.mockResolvedValueOnce({
+      id: "report-empty",
+      childId: "child-empty",
+      minutesLearned: 0,
+      lessonsCompleted: 0,
+      streakDays: 0,
     });
 
-    const result = await generateWeeklyReportForChild("child-1", new Date("2026-02-20T12:00:00.000Z"));
+    await generateWeeklyReportForChild("child-empty", new Date("2026-02-20T12:00:00.000Z"));
 
-    expect(result).toEqual({ id: "report-1" });
-    expect(prismaMock.lessonCompletion.findMany).toHaveBeenCalledWith(
+    expect(prismaMock.weeklyReport.create).toHaveBeenCalledWith(
       expect.objectContaining({
-        where: expect.objectContaining({
-          childId: "child-1",
+        data: expect.objectContaining({
+          childId: "child-empty",
+          minutesLearned: 0,
+          lessonsCompleted: 0,
+          streakDays: 0,
         }),
       }),
     );
-    expect(prismaMock.weeklyReport.upsert).toHaveBeenCalledWith(
+  });
+
+  it("3 completions of 10 minutes each -> minutesLearned: 30, lessonsCompleted: 3", async () => {
+    prismaMock.lessonCompletion.findMany.mockResolvedValueOnce([
+      makeCompletion({ completedAt: "2026-02-16T02:00:00.000Z", trackCode: "ENGLISH" }),
+      makeCompletion({ completedAt: "2026-02-17T02:00:00.000Z", trackCode: "MATH" }),
+      makeCompletion({ completedAt: "2026-02-18T02:00:00.000Z", trackCode: "ENGLISH" }),
+    ]);
+    prismaMock.weeklyReport.create.mockResolvedValueOnce({
+      id: "report-30",
+      childId: "child-30",
+      minutesLearned: 30,
+      lessonsCompleted: 3,
+      streakDays: 3,
+    });
+
+    await generateWeeklyReportForChild("child-30", new Date("2026-02-20T12:00:00.000Z"));
+
+    expect(prismaMock.weeklyReport.create).toHaveBeenCalledWith(
       expect.objectContaining({
-        create: expect.objectContaining({
-          childId: "child-1",
-          minutesLearned: 37,
+        data: expect.objectContaining({
+          childId: "child-30",
+          minutesLearned: 30,
           lessonsCompleted: 3,
-          streakDays: 3,
-          emailStatus: "QUEUED",
-          deepLinkToken: "weekly-token-fixed",
-          skillsSummary: {
-            ENGLISH: { lessons: 2, avgQuiz: 90 },
-            MATH: { lessons: 1, avgQuiz: 90 },
-          },
         }),
-        update: expect.objectContaining({
-          minutesLearned: 37,
-          lessonsCompleted: 3,
-          streakDays: 3,
-          emailStatus: "QUEUED",
-          deliveredEmailAt: null,
+      }),
+    );
+  });
+
+  it("duplicate call for same childId + weekStart -> returns existing, no duplicate insert", async () => {
+    const existingReport = {
+      id: "report-existing",
+      childId: "child-dup",
+      minutesLearned: 10,
+      lessonsCompleted: 1,
+      streakDays: 1,
+    };
+
+    prismaMock.weeklyReport.findUnique
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce(existingReport);
+    prismaMock.lessonCompletion.findMany.mockResolvedValueOnce([
+      makeCompletion({ completedAt: "2026-02-17T03:00:00.000Z" }),
+    ]);
+    prismaMock.weeklyReport.create.mockResolvedValueOnce(existingReport);
+
+    const first = await generateWeeklyReportForChild("child-dup", new Date("2026-02-20T12:00:00.000Z"));
+    const second = await generateWeeklyReportForChild("child-dup", new Date("2026-02-20T12:00:00.000Z"));
+
+    expect(first).toEqual(existingReport);
+    expect(second).toEqual(existingReport);
+    expect(prismaMock.weeklyReport.create).toHaveBeenCalledTimes(1);
+    expect(prismaMock.lessonCompletion.findMany).toHaveBeenCalledTimes(1);
+  });
+
+  it("streakDays counts consecutive days, gap breaks streak", async () => {
+    prismaMock.lessonCompletion.findMany.mockResolvedValueOnce([
+      makeCompletion({ completedAt: "2026-02-16T02:00:00.000Z" }), // Monday
+      makeCompletion({ completedAt: "2026-02-17T03:00:00.000Z" }), // Tuesday
+      makeCompletion({ completedAt: "2026-02-19T04:00:00.000Z" }), // Thursday
+    ]);
+    prismaMock.weeklyReport.create.mockResolvedValueOnce({
+      id: "report-gap",
+      childId: "child-gap",
+      streakDays: 2,
+    });
+
+    await generateWeeklyReportForChild("child-gap", new Date("2026-02-20T12:00:00.000Z"));
+
+    expect(prismaMock.weeklyReport.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          streakDays: 2,
         }),
       }),
     );
@@ -180,6 +225,7 @@ describe("weekly report query helpers", () => {
 describe("weekly report batch generation", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    prismaMock.weeklyReport.findUnique.mockResolvedValue(null);
   });
 
   it("generates weekly reports for parent children and for all children", async () => {
@@ -187,7 +233,7 @@ describe("weekly report batch generation", () => {
       .mockResolvedValueOnce([{ id: "child-a" }, { id: "child-b" }])
       .mockResolvedValueOnce([{ id: "child-c" }]);
     prismaMock.lessonCompletion.findMany.mockResolvedValue([]);
-    prismaMock.weeklyReport.upsert
+    prismaMock.weeklyReport.create
       .mockResolvedValueOnce({ id: "report-a" })
       .mockResolvedValueOnce({ id: "report-b" })
       .mockResolvedValueOnce({ id: "report-c" });
@@ -197,8 +243,11 @@ describe("weekly report batch generation", () => {
 
     expect(parentReports).toHaveLength(2);
     expect(allReports).toHaveLength(1);
-    expect(prismaMock.childProfile.findMany).toHaveBeenNthCalledWith(1, { where: { parentId: "parent-1" } });
+    expect(prismaMock.childProfile.findMany).toHaveBeenNthCalledWith(1, {
+      where: { parentId: "parent-1" },
+      select: { id: true },
+    });
     expect(prismaMock.childProfile.findMany).toHaveBeenNthCalledWith(2, { select: { id: true } });
-    expect(prismaMock.weeklyReport.upsert).toHaveBeenCalledTimes(3);
+    expect(prismaMock.weeklyReport.create).toHaveBeenCalledTimes(3);
   });
 });

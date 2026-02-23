@@ -26,19 +26,16 @@ import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
 import { Mascot, type MascotActionProp, type MascotState } from "@/components/mascot";
 import { ParentGateDialog } from "@/components/parent-gate-dialog";
 import { synth } from "@/lib/audio-utils";
+import type { ApiSuccess, LessonCardDTO, TodayMissionDTO } from "@/lib/api-types";
 
 interface MissionChild {
   id: string;
   nickname: string;
 }
 
-interface MissionLesson {
-  id: string;
-  title: string;
-  objective: string;
-  estimatedMinutes: number;
+type MissionLesson = Pick<LessonCardDTO, "id" | "title" | "objective" | "estimatedMinutes"> & {
   videoSource?: string | null;
-}
+};
 
 interface KidMissionPanelProps {
   childrenProfiles: MissionChild[];
@@ -57,9 +54,17 @@ type GoalGuardState = {
 
 type ActivityTodayResponse = {
   ok: boolean;
-  data?: {
+  data?: ApiSuccess<{
     dailyGoalMinutes?: number;
     totalMinutesToday?: number;
+  }>["data"];
+};
+
+type LessonsTodayResponse = {
+  ok: boolean;
+  data?: ApiSuccess<Pick<TodayMissionDTO, "lessons">>["data"];
+  error?: {
+    message?: string;
   };
 };
 
@@ -638,7 +643,7 @@ export function KidMissionPanel({
   const ensureGoalAllowsLessonStart = useCallback(async () => {
     const allowed = await refreshGoalGuardForChild(activeChildId, { silent: true });
     if (!allowed) {
-      setMascotMessage("HÃ´m nay con Ä‘Ã£ há»c Ä‘á»§ rá»“i, mÃ¬nh nghá»‰ ngÆ¡i má»™t chÃºt nhÃ©!");
+      setMascotMessage("Hôm nay con đã học đủ rồi, mình nghỉ ngơi một chút nhé!");
       setIsProfilePopupOpen(false);
       resetInactivityTimer();
     }
@@ -664,7 +669,7 @@ export function KidMissionPanel({
         ...current,
         [activeChildId]: true,
       }));
-      setMascotMessage("Bá»‘ máº¹ Ä‘Ã£ Ä‘á»“ng Ã½, con cÃ³ thá»ƒ há»c thÃªm má»™t chÃºt ná»¯a!");
+      setMascotMessage("Bố mẹ đã đồng ý, con có thể học thêm một chút nữa!");
       setMascotStateForDuration("happy", 1400, true);
       resetInactivityTimer();
       return;
@@ -752,7 +757,7 @@ export function KidMissionPanel({
 
     try {
       const response = await fetch(`/api/lessons/today?childId=${encodeURIComponent(childId)}`);
-      const body = await response.json();
+      const body = (await response.json()) as LessonsTodayResponse;
 
       if (currentFetchSeq !== fetchSeqRef.current) {
         return;
@@ -764,7 +769,9 @@ export function KidMissionPanel({
         return;
       }
 
-      const nextLessons = Array.isArray(body.data?.lessons) ? (body.data.lessons as MissionLesson[]) : [];
+      const nextLessons = Array.isArray(body.data?.lessons)
+        ? (body.data.lessons as unknown as MissionLesson[])
+        : [];
       setLessons(nextLessons);
     } catch (loadError) {
       if (currentFetchSeq !== fetchSeqRef.current) {

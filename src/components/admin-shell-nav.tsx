@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart2, BookOpen, Clock, LayoutDashboard, PenSquare, Settings, Shield, Users } from "lucide-react";
+import { BarChart2, BookOpen, Clock, LayoutDashboard, MessageCircle, PenSquare, Settings, Shield, Users } from "lucide-react";
 
 type AdminShellNavMode = "mobile" | "desktop";
 
@@ -13,6 +13,8 @@ const NAV = [
   { href: "/admin/blog/categories", label: "Danh mục", icon: PenSquare },
   { href: "/admin/blog/authors", label: "Tác giả", icon: PenSquare },
   { href: "/admin/blog/newsletter", label: "Newsletter", icon: PenSquare },
+  { href: "/admin/blog/analytics", label: "Phan tich", icon: BarChart2 },
+  { href: "/admin/blog/comments", label: "Binh luan", icon: MessageCircle },
   { href: "/admin/users", label: "Người dùng", icon: Users },
   { href: "/admin/content", label: "Nội dung", icon: BookOpen },
   { href: "/admin/analytics", label: "Phân tích", icon: BarChart2 },

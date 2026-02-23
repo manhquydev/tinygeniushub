@@ -1,15 +1,16 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as m from "motion/react-m";
 import { bounceIn, wobble } from "@/components/animation/kid-motion-variants";
 import type { KidMascotGazeDirection } from "@/components/animation/kid-mascot";
+import type { ActivitySpec, ActivityType } from "@/modules/content/activity-types";
 
 type ActivityRow = {
   id: string;
-  type: string;
+  type: ActivityType;
   prompt: string;
-  spec: unknown;
+  spec: ActivitySpec;
   passCriteria: number;
 };
 
@@ -34,6 +35,13 @@ type WordMatchPair = {
   right: string;
 };
 
+type Segment = {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+};
+
 function shuffleArray<T>(input: T[]) {
   const next = [...input];
   for (let index = next.length - 1; index > 0; index -= 1) {
@@ -43,109 +51,92 @@ function shuffleArray<T>(input: T[]) {
   return next;
 }
 
-function asMcqChoices(spec: unknown): McqChoice[] {
-  if (!spec || typeof spec !== "object" || !("choices" in spec)) {
+function asMcqChoices(spec: ActivitySpec): McqChoice[] {
+  if (spec.type !== "MULTIPLE_CHOICE") {
     return [];
   }
 
-  const choices = (spec as { choices?: unknown }).choices;
-  if (!Array.isArray(choices)) {
-    return [];
-  }
-
-  return choices
-    .map((choice) => {
-      if (!choice || typeof choice !== "object") {
-        return null;
-      }
-      const value = choice as { id?: unknown; text?: unknown; isCorrect?: unknown };
-      if (typeof value.id !== "string" || typeof value.text !== "string" || typeof value.isCorrect !== "boolean") {
-        return null;
-      }
-      return {
-        id: value.id,
-        text: value.text,
-        isCorrect: value.isCorrect,
-      };
-    })
-    .filter((value): value is McqChoice => value !== null);
+  return spec.options.map((option, index) => ({
+    id: `choice-${index + 1}`,
+    text: option,
+    isCorrect: index === spec.correctIndex,
+  }));
 }
 
-function asTrueFalseAnswer(spec: unknown) {
-  if (!spec || typeof spec !== "object" || !("answer" in spec)) {
+function asTrueFalseAnswer(spec: ActivitySpec) {
+  if (spec.type !== "TRUE_FALSE") {
     return null;
   }
-  const answer = (spec as { answer?: unknown }).answer;
-  return typeof answer === "boolean" ? answer : null;
+
+  return spec.isTrue;
 }
 
-function asWordMatchPairs(spec: unknown): WordMatchPair[] {
-  if (!spec || typeof spec !== "object" || !("pairs" in spec)) {
+function asWordMatchPairs(spec: ActivitySpec): WordMatchPair[] {
+  if (spec.type !== "MATCH_PAIRS") {
     return [];
   }
 
-  const pairs = (spec as { pairs?: unknown }).pairs;
-  if (!Array.isArray(pairs)) {
-    return [];
-  }
-
-  return pairs
-    .map((pair) => {
-      if (!pair || typeof pair !== "object") {
-        return null;
-      }
-      const value = pair as { id?: unknown; left?: unknown; right?: unknown };
-      if (typeof value.id !== "string" || typeof value.left !== "string" || typeof value.right !== "string") {
-        return null;
-      }
-      return {
-        id: value.id,
-        left: value.left,
-        right: value.right,
-      };
-    })
-    .filter((value): value is WordMatchPair => value !== null);
+  return spec.pairs.map((pair, index) => ({
+    id: `pair-${index + 1}`,
+    left: pair.left,
+    right: pair.right,
+  }));
 }
 
-function asFillBlankSpec(spec: unknown) {
-  if (!spec || typeof spec !== "object") {
+function asFillBlankSpec(spec: ActivitySpec) {
+  if (spec.type !== "FILL_BLANK") {
     return null;
   }
-  const value = spec as { sentence?: unknown; answer?: unknown; hint?: unknown };
-  if (typeof value.sentence !== "string" || typeof value.answer !== "string") {
-    return null;
-  }
+
   return {
-    sentence: value.sentence,
-    answer: value.answer,
-    hint: typeof value.hint === "string" ? value.hint : "",
+    sentence: spec.sentence,
+    answer: spec.answer,
+    hint: spec.hint ?? "",
   };
+}
+
+function buildWordMatchSegments(input: {
+  matchedPairs: Record<string, string>;
+  rightItems: WordMatchPair[];
+  board: HTMLDivElement | null;
+  leftRefs: Record<string, HTMLButtonElement | null>;
+  rightRefs: Record<string, HTMLButtonElement | null>;
+}): Segment[] {
+  if (!input.board) {
+    return [];
+  }
+
+  const boardRect = input.board.getBoundingClientRect();
+
+  return Object.entries(input.matchedPairs)
+    .map(([leftId, rightText]) => {
+      const leftElement = input.leftRefs[leftId];
+      const rightItem = input.rightItems.find((item) => item.right === rightText);
+      const rightElement = rightItem ? input.rightRefs[rightItem.id] : null;
+      if (!leftElement || !rightElement) {
+        return null;
+      }
+
+      const leftRect = leftElement.getBoundingClientRect();
+      const rightRect = rightElement.getBoundingClientRect();
+      return {
+        x1: leftRect.right - boardRect.left,
+        y1: leftRect.top - boardRect.top + leftRect.height / 2,
+        x2: rightRect.left - boardRect.left,
+        y2: rightRect.top - boardRect.top + rightRect.height / 2,
+      };
+    })
+    .filter((segment): segment is Segment => segment !== null);
 }
 
 export function ActivityRenderer({
   activity,
   disabled,
   onAnswer,
-  mascotGazeDirection: _mascotGazeDirection,
+  mascotGazeDirection,
   onHoverOption,
   onHoverOptionEnd,
 }: ActivityRendererProps) {
-  const [mcqFeedback, setMcqFeedback] = useState<{ choiceId: string; correct: boolean; pulse: number } | null>(null);
-  const [tfFeedback, setTfFeedback] = useState<boolean | null>(null);
-  const [leftItems, setLeftItems] = useState<WordMatchPair[]>([]);
-  const [rightItems, setRightItems] = useState<WordMatchPair[]>([]);
-  const [selectedLeftId, setSelectedLeftId] = useState<string | null>(null);
-  const [matchedPairs, setMatchedPairs] = useState<Record<string, string>>({});
-  const [wordWrongPulse, setWordWrongPulse] = useState(0);
-  const [fillValue, setFillValue] = useState("");
-  const [fillWrongPulse, setFillWrongPulse] = useState(0);
-  const [fillHintVisible, setFillHintVisible] = useState(false);
-  const [segments, setSegments] = useState<Array<{ x1: number; y1: number; x2: number; y2: number }>>([]);
-
-  const leftRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-  const rightRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-  const boardRef = useRef<HTMLDivElement | null>(null);
-
   const mcqChoices = useMemo(() => asMcqChoices(activity.spec), [activity.spec]);
   const tfAnswer = useMemo(() => asTrueFalseAnswer(activity.spec), [activity.spec]);
   const wordPairs = useMemo(() => asWordMatchPairs(activity.spec), [activity.spec]);
@@ -159,63 +150,40 @@ export function ActivityRenderer({
     [wordPairs],
   );
 
-  useEffect(() => {
-    setMcqFeedback(null);
-    setTfFeedback(null);
-    setSelectedLeftId(null);
-    setMatchedPairs({});
-    setWordWrongPulse(0);
-    setFillValue("");
-    setFillWrongPulse(0);
-    setFillHintVisible(false);
-    setSegments([]);
-    if (wordPairs.length > 0) {
-      setLeftItems(shuffleArray(wordPairs));
-      setRightItems(shuffleArray(wordPairs));
-    } else {
-      setLeftItems([]);
-      setRightItems([]);
-    }
-  }, [activity.id, wordPairs]);
+  const [mcqFeedback, setMcqFeedback] = useState<{ choiceId: string; correct: boolean; pulse: number } | null>(null);
+  const [tfFeedback, setTfFeedback] = useState<boolean | null>(null);
+  const [leftItems] = useState<WordMatchPair[]>(() => shuffleArray(wordPairs));
+  const [rightItems] = useState<WordMatchPair[]>(() => shuffleArray(wordPairs));
+  const [selectedLeftId, setSelectedLeftId] = useState<string | null>(null);
+  const [matchedPairs, setMatchedPairs] = useState<Record<string, string>>({});
+  const [wordWrongPulse, setWordWrongPulse] = useState(0);
+  const [fillValue, setFillValue] = useState("");
+  const [fillWrongPulse, setFillWrongPulse] = useState(0);
+  const [fillHintVisible, setFillHintVisible] = useState(false);
+  const [segments, setSegments] = useState<Segment[]>([]);
 
-  useEffect(() => {
-    if (!boardRef.current) {
-      setSegments([]);
-      return;
-    }
-
-    const rect = boardRef.current.getBoundingClientRect();
-    const nextSegments = Object.entries(matchedPairs)
-      .map(([leftId, rightText]) => {
-        const leftElement = leftRefs.current[leftId];
-        const rightItem = rightItems.find((item) => item.right === rightText);
-        const rightElement = rightItem ? rightRefs.current[rightItem.id] : null;
-        if (!leftElement || !rightElement) {
-          return null;
-        }
-        const leftRect = leftElement.getBoundingClientRect();
-        const rightRect = rightElement.getBoundingClientRect();
-        return {
-          x1: leftRect.right - rect.left,
-          y1: leftRect.top - rect.top + leftRect.height / 2,
-          x2: rightRect.left - rect.left,
-          y2: rightRect.top - rect.top + rightRect.height / 2,
-        };
-      })
-      .filter((segment): segment is { x1: number; y1: number; x2: number; y2: number } => segment !== null);
-
-    setSegments(nextSegments);
-  }, [matchedPairs, rightItems]);
+  const leftRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const rightRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const boardRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onResize = () => {
-      setSegments((current) => [...current]);
+      setSegments(
+        buildWordMatchSegments({
+          matchedPairs,
+          rightItems,
+          board: boardRef.current,
+          leftRefs: leftRefs.current,
+          rightRefs: rightRefs.current,
+        }),
+      );
     };
+
     window.addEventListener("resize", onResize);
     return () => {
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [matchedPairs, rightItems]);
 
   function handleMcqAnswer(choice: McqChoice) {
     if (disabled) {
@@ -235,6 +203,7 @@ export function ActivityRenderer({
     if (disabled || tfAnswer === null) {
       return;
     }
+
     const isCorrect = tfAnswer === value;
     setTfFeedback(isCorrect);
     onAnswer(isCorrect);
@@ -247,6 +216,7 @@ export function ActivityRenderer({
 
     const expectedRight = rightByLeftId[selectedLeftId];
     const isCorrect = expectedRight === pair.right;
+
     if (!isCorrect) {
       setWordWrongPulse((current) => current + 1);
       setSelectedLeftId(null);
@@ -254,14 +224,24 @@ export function ActivityRenderer({
       return;
     }
 
-    const next = {
+    const nextMatchedPairs = {
       ...matchedPairs,
       [selectedLeftId]: pair.right,
     };
-    setMatchedPairs(next);
-    setSelectedLeftId(null);
 
-    if (Object.keys(next).length === wordPairs.length) {
+    setMatchedPairs(nextMatchedPairs);
+    setSelectedLeftId(null);
+    setSegments(
+      buildWordMatchSegments({
+        matchedPairs: nextMatchedPairs,
+        rightItems,
+        board: boardRef.current,
+        leftRefs: leftRefs.current,
+        rightRefs: rightRefs.current,
+      }),
+    );
+
+    if (Object.keys(nextMatchedPairs).length === wordPairs.length) {
       onAnswer(true);
     }
   }
@@ -270,21 +250,24 @@ export function ActivityRenderer({
     if (disabled || !fillSpec) {
       return;
     }
+
     const normalizedInput = fillValue.trim().toLowerCase();
     const normalizedAnswer = fillSpec.answer.trim().toLowerCase();
     const isCorrect = normalizedInput.length > 0 && normalizedInput === normalizedAnswer;
+
     if (!isCorrect) {
       setFillWrongPulse((current) => current + 1);
       setFillHintVisible(true);
       onAnswer(false);
       return;
     }
+
     onAnswer(true);
   }
 
-  if (activity.type === "MCQ") {
+  if (activity.type === "MULTIPLE_CHOICE") {
     return (
-      <div className="grid gap-3">
+      <div className="grid gap-3" data-mascot-gaze={mascotGazeDirection}>
         <p className="lesson-wizard-quiz-copy">{activity.prompt}</p>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {mcqChoices.map((choice, index) => {
@@ -292,6 +275,7 @@ export function ActivityRenderer({
             const isSelected = mcqFeedback?.choiceId === choice.id;
             const isCorrectFeedback = isSelected && mcqFeedback?.correct;
             const isWrongFeedback = isSelected && !mcqFeedback?.correct;
+
             return (
               <m.button
                 key={`${choice.id}-${isWrongFeedback ? mcqFeedback?.pulse ?? 0 : 0}`}
@@ -305,7 +289,7 @@ export function ActivityRenderer({
                 disabled={disabled}
                 variants={isWrongFeedback ? wobble : bounceIn}
                 initial={isWrongFeedback ? "idle" : "rest"}
-                animate={isWrongFeedback ? "wobble" : isCorrectFeedback ? "bounceIn" : isWrongFeedback ? "wobble" : "rest"}
+                animate={isWrongFeedback ? "wobble" : isCorrectFeedback ? "bounceIn" : "rest"}
               >
                 <strong>{choice.text}</strong>
               </m.button>
@@ -318,7 +302,7 @@ export function ActivityRenderer({
 
   if (activity.type === "TRUE_FALSE") {
     return (
-      <div className="grid gap-3">
+      <div className="grid gap-3" data-mascot-gaze={mascotGazeDirection}>
         <p className="lesson-wizard-quiz-copy">{activity.prompt}</p>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           <button
@@ -331,6 +315,7 @@ export function ActivityRenderer({
           >
             <strong>Đúng</strong>
           </button>
+
           <button
             type="button"
             className={`lesson-wizard-option border-rose-300 ${tfFeedback === false ? "lesson-wizard-option-error" : ""}`}
@@ -346,9 +331,9 @@ export function ActivityRenderer({
     );
   }
 
-  if (activity.type === "WORD_MATCH") {
+  if (activity.type === "MATCH_PAIRS") {
     return (
-      <div className="grid gap-3">
+      <div className="grid gap-3" data-mascot-gaze={mascotGazeDirection}>
         <p className="lesson-wizard-quiz-copy">{activity.prompt}</p>
         <div ref={boardRef} className="relative grid gap-3 md:grid-cols-2">
           <svg className="pointer-events-none absolute inset-0 h-full w-full">
@@ -410,8 +395,9 @@ export function ActivityRenderer({
   if (activity.type === "FILL_BLANK") {
     const sentence = fillSpec?.sentence ?? "";
     const [beforeBlank, afterBlank] = sentence.includes("___") ? sentence.split("___") : [sentence, ""];
+
     return (
-      <div className="grid gap-3">
+      <div className="grid gap-3" data-mascot-gaze={mascotGazeDirection}>
         <p className="lesson-wizard-quiz-copy">{activity.prompt}</p>
         <p className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
           {beforeBlank}
@@ -420,6 +406,7 @@ export function ActivityRenderer({
           </span>
           {afterBlank}
         </p>
+
         <m.div key={`fill-${fillWrongPulse}`} variants={wobble} initial="idle" animate={fillWrongPulse > 0 ? "wobble" : "idle"} className="grid gap-2 sm:grid-cols-[1fr_auto]">
           <input
             value={fillValue}
@@ -431,6 +418,7 @@ export function ActivityRenderer({
             placeholder="Nhập đáp án"
             disabled={disabled}
           />
+
           <button
             type="button"
             className="lesson-wizard-secondary-button min-h-10 px-4 text-sm"
@@ -440,6 +428,7 @@ export function ActivityRenderer({
             Kiểm tra
           </button>
         </m.div>
+
         {fillHintVisible && fillSpec?.hint ? <p className="text-xs text-amber-300">Gợi ý: {fillSpec.hint}</p> : null}
       </div>
     );

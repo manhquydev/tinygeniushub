@@ -1,4 +1,4 @@
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { HeadObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { addSeconds } from "date-fns";
 import { env } from "@/lib/env";
@@ -25,10 +25,8 @@ function ensureR2Config() {
 export class CloudflareR2StorageProviderAdapter implements StorageProviderAdapter {
   readonly code = "cloudflare_r2";
 
-  async createSignedUploadUrl(input: SignedUploadRequest): Promise<SignedUploadResponse> {
-    const config = ensureR2Config();
-
-    const client = new S3Client({
+  private createClient(config: ReturnType<typeof ensureR2Config>) {
+    return new S3Client({
       region: "auto",
       endpoint: `https://${config.accountId}.r2.cloudflarestorage.com`,
       credentials: {
@@ -36,6 +34,11 @@ export class CloudflareR2StorageProviderAdapter implements StorageProviderAdapte
         secretAccessKey: config.secretAccessKey,
       },
     });
+  }
+
+  async createSignedUploadUrl(input: SignedUploadRequest): Promise<SignedUploadResponse> {
+    const config = ensureR2Config();
+    const client = this.createClient(config);
 
     const command = new PutObjectCommand({
       Bucket: config.bucketName,
@@ -56,5 +59,22 @@ export class CloudflareR2StorageProviderAdapter implements StorageProviderAdapte
         "content-type": input.contentType,
       },
     };
+  }
+
+  async objectExists(objectPath: string): Promise<boolean> {
+    const config = ensureR2Config();
+    const client = this.createClient(config);
+
+    try {
+      await client.send(
+        new HeadObjectCommand({
+          Bucket: config.bucketName,
+          Key: objectPath,
+        }),
+      );
+      return true;
+    } catch {
+      return false;
+    }
   }
 }

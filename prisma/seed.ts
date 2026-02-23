@@ -3,6 +3,7 @@ import {
   AgeGroup,
   BlogPostStatus,
   BlogPostType,
+  Prisma,
   PrismaClient,
   TrackCode,
   PlanCode,
@@ -10,8 +11,13 @@ import {
 } from "@prisma/client";
 import { addDays } from "date-fns";
 import { hashSync } from "bcryptjs";
+import type { ActivitySpec } from "../src/modules/content/activity-types";
 
 const prisma = new PrismaClient();
+
+function toActivitySpecJson(spec: ActivitySpec): Prisma.InputJsonValue {
+  return spec as unknown as Prisma.InputJsonValue;
+}
 
 function readingTimeFromMarkdown(markdown: string) {
   const words = markdown
@@ -23,111 +29,397 @@ function readingTimeFromMarkdown(markdown: string) {
 }
 
 async function seedContent() {
-  const englishTrack = await prisma.track.upsert({
-    where: { code: TrackCode.ENGLISH },
-    update: { title: "English Journey", isTrialEnabled: true },
-    create: { code: TrackCode.ENGLISH, title: "English Journey", isTrialEnabled: true },
-  });
+  type LessonSeed = {
+    orderNo: number;
+    slug: string;
+    title: string;
+    objective: string;
+    estimatedMinutes: number;
+    trialEnabled: boolean;
+    activity: {
+      prompt: string;
+      spec: ActivitySpec;
+    };
+  };
 
-  const mathTrack = await prisma.track.upsert({
-    where: { code: TrackCode.MATH },
-    update: { title: "Math Journey", isTrialEnabled: true },
-    create: { code: TrackCode.MATH, title: "Math Journey", isTrialEnabled: true },
-  });
+  type UnitSeed = {
+    orderNo: number;
+    title: string;
+    lessons: LessonSeed[];
+  };
 
-  const englishLevel1 = await prisma.level.upsert({
-    where: { trackId_orderNo: { trackId: englishTrack.id, orderNo: 1 } },
-    update: { title: "English Level 1" },
-    create: { trackId: englishTrack.id, orderNo: 1, title: "English Level 1" },
-  });
+  type TrackSeed = {
+    code: TrackCode;
+    title: string;
+    level: {
+      orderNo: number;
+      title: string;
+      units: UnitSeed[];
+    };
+  };
 
-  const mathLevel1 = await prisma.level.upsert({
-    where: { trackId_orderNo: { trackId: mathTrack.id, orderNo: 1 } },
-    update: { title: "Math Level 1" },
-    create: { trackId: mathTrack.id, orderNo: 1, title: "Math Level 1" },
-  });
-
-  const englishUnit = await prisma.unit.upsert({
-    where: { levelId_orderNo: { levelId: englishLevel1.id, orderNo: 1 } },
-    update: { title: "Hello Words" },
-    create: { levelId: englishLevel1.id, orderNo: 1, title: "Hello Words" },
-  });
-
-  const mathUnit = await prisma.unit.upsert({
-    where: { levelId_orderNo: { levelId: mathLevel1.id, orderNo: 1 } },
-    update: { title: "Numbers 1-5" },
-    create: { levelId: mathLevel1.id, orderNo: 1, title: "Numbers 1-5" },
-  });
-
-  const lessons = [
+  const englishUnits: UnitSeed[] = [
     {
-      unitId: englishUnit.id,
       orderNo: 1,
-      slug: "english-l1-u1-lesson-1",
-      title: "Hello and Bye",
-      objective: "Child recognizes hello and bye",
-      estimatedMinutes: 15,
-      trialEnabled: true,
+      title: "Lời Chào & Gia Đình",
+      lessons: [
+        {
+          orderNo: 1,
+          slug: "english-l1-u1-hello-bye-bye",
+          title: "Hello & Bye Bye",
+          objective: "Bé nhận biết lời chào và tạm biệt bằng tiếng Anh trong ngữ cảnh quen thuộc.",
+          estimatedMinutes: 15,
+          trialEnabled: true,
+          activity: {
+            prompt: "Chọn câu chào phù hợp",
+            spec: {
+              type: "MULTIPLE_CHOICE",
+              question: "Nghe và chọn đúng: Khi gặp bạn ta nói gì?",
+              options: ["Hello!", "Goodbye!", "Thank you!", "Sorry!"],
+              correctIndex: 0,
+              explanation: '"Hello" có nghĩa là "Xin chào" - dùng khi gặp bạn!',
+            },
+          },
+        },
+        {
+          orderNo: 2,
+          slug: "english-l1-u1-mum-dad-baby",
+          title: "Mum, Dad, Baby",
+          objective: "Bé gọi đúng các thành viên gia đình gần gũi bằng từ tiếng Anh cơ bản.",
+          estimatedMinutes: 15,
+          trialEnabled: true,
+          activity: {
+            prompt: "Nối từ tiếng Anh với nghĩa tiếng Việt",
+            spec: {
+              type: "MATCH_PAIRS",
+              pairs: [
+                { left: "Mum", right: "Mẹ" },
+                { left: "Dad", right: "Bố" },
+                { left: "Baby", right: "Em bé" },
+              ],
+            },
+          },
+        },
+        {
+          orderNo: 3,
+          slug: "english-l1-u1-how-are-you",
+          title: "How Are You?",
+          objective: "Bé bước đầu sử dụng mẫu câu hỏi thăm đơn giản trong giao tiếp.",
+          estimatedMinutes: 15,
+          trialEnabled: false,
+          activity: {
+            prompt: "Điền từ còn thiếu trong câu hỏi",
+            spec: {
+              type: "FILL_BLANK",
+              sentence: "How ___ you?",
+              answer: "are",
+              hint: "Điền vào chỗ trống để hoàn thành câu hỏi!",
+            },
+          },
+        },
+      ],
     },
     {
-      unitId: englishUnit.id,
       orderNo: 2,
-      slug: "english-l1-u1-lesson-2",
-      title: "Family Words",
-      objective: "Child says mom and dad",
-      estimatedMinutes: 15,
-      trialEnabled: true,
-    },
-    {
-      unitId: mathUnit.id,
-      orderNo: 1,
-      slug: "math-l1-u1-lesson-1",
-      title: "Count to 3",
-      objective: "Child counts from one to three",
-      estimatedMinutes: 15,
-      trialEnabled: true,
-    },
-    {
-      unitId: mathUnit.id,
-      orderNo: 2,
-      slug: "math-l1-u1-lesson-2",
-      title: "Count to 5",
-      objective: "Child counts from one to five",
-      estimatedMinutes: 15,
-      trialEnabled: true,
+      title: "Màu Sắc & Hình Dạng",
+      lessons: [
+        {
+          orderNo: 1,
+          slug: "english-l1-u2-red-blue-yellow",
+          title: "Red, Blue, Yellow",
+          objective: "Bé nhận diện ba màu cơ bản trong sinh hoạt hằng ngày.",
+          estimatedMinutes: 15,
+          trialEnabled: true,
+          activity: {
+            prompt: "Chọn màu đúng",
+            spec: {
+              type: "MULTIPLE_CHOICE",
+              question: "Màu của bầu trời là màu gì?",
+              options: ["Red", "Blue", "Yellow", "Green"],
+              correctIndex: 1,
+              explanation: 'Bầu trời màu xanh - "Blue" nghĩa là màu xanh dương!',
+            },
+          },
+        },
+        {
+          orderNo: 2,
+          slug: "english-l1-u2-circle-and-square",
+          title: "Circle and Square",
+          objective: "Bé phân biệt hai hình dạng cơ bản: hình tròn và hình vuông.",
+          estimatedMinutes: 15,
+          trialEnabled: false,
+          activity: {
+            prompt: "Nối tên hình với hình dạng",
+            spec: {
+              type: "MATCH_PAIRS",
+              pairs: [
+                { left: "Circle", right: "Hình tròn" },
+                { left: "Square", right: "Hình vuông" },
+                { left: "Triangle", right: "Hình tam giác" },
+              ],
+            },
+          },
+        },
+        {
+          orderNo: 3,
+          slug: "english-l1-u2-big-and-small",
+          title: "Big and Small",
+          objective: "Bé hiểu và dùng được cặp từ chỉ kích thước lớn - nhỏ.",
+          estimatedMinutes: 15,
+          trialEnabled: false,
+          activity: {
+            prompt: "Đúng hay sai về kích thước",
+            spec: {
+              type: "TRUE_FALSE",
+              statement: '"Big" nghĩa là "to/lớn".',
+              isTrue: true,
+              explanation: "Đúng! Big dùng để mô tả đồ vật có kích thước lớn.",
+            },
+          },
+        },
+      ],
     },
   ];
 
-  for (const lesson of lessons) {
-    const savedLesson = await prisma.lesson.upsert({
-      where: { slug: lesson.slug },
-      update: lesson,
-      create: lesson,
+  const mathUnits: UnitSeed[] = [
+    {
+      orderNo: 1,
+      title: "Đếm 1-5",
+      lessons: [
+        {
+          orderNo: 1,
+          slug: "math-l1-u1-count-to-3",
+          title: "Count to 3",
+          objective: "Bé sắp xếp đúng thứ tự số từ 1 đến 3.",
+          estimatedMinutes: 15,
+          trialEnabled: true,
+          activity: {
+            prompt: "Sắp xếp số theo thứ tự đúng",
+            spec: {
+              type: "SORT_ORDER",
+              items: ["Ba", "Một", "Hai"],
+              correctOrder: [1, 2, 0],
+            },
+          },
+        },
+        {
+          orderNo: 2,
+          slug: "math-l1-u1-count-to-5",
+          title: "Count to 5",
+          objective: "Bé đếm và sắp xếp đúng dãy số từ 1 đến 5.",
+          estimatedMinutes: 15,
+          trialEnabled: true,
+          activity: {
+            prompt: "Sắp xếp dãy số 1 đến 5",
+            spec: {
+              type: "SORT_ORDER",
+              items: ["Năm", "Hai", "Bốn", "Một", "Ba"],
+              correctOrder: [3, 1, 4, 2, 0],
+            },
+          },
+        },
+        {
+          orderNo: 3,
+          slug: "math-l1-u1-which-is-more",
+          title: "Which is More?",
+          objective: "Bé so sánh số lượng và nhận biết khái niệm nhiều hơn.",
+          estimatedMinutes: 15,
+          trialEnabled: false,
+          activity: {
+            prompt: "Đúng hay sai về so sánh số lượng",
+            spec: {
+              type: "TRUE_FALSE",
+              statement: "5 nhiều hơn 3",
+              isTrue: true,
+              explanation: "Đúng! 5 > 3. Năm kẹo nhiều hơn ba kẹo!",
+            },
+          },
+        },
+      ],
+    },
+    {
+      orderNo: 2,
+      title: "Hình Khối & Không Gian",
+      lessons: [
+        {
+          orderNo: 1,
+          slug: "math-l1-u2-hinh-tron-va-hinh-vuong",
+          title: "Hình tròn & Hình vuông",
+          objective: "Bé nhận diện các hình cơ bản trong môi trường xung quanh.",
+          estimatedMinutes: 15,
+          trialEnabled: true,
+          activity: {
+            prompt: "Nối tên hình với ví dụ thực tế",
+            spec: {
+              type: "MATCH_PAIRS",
+              pairs: [
+                { left: "Hình tròn", right: "Quả bóng" },
+                { left: "Hình vuông", right: "Ô cửa sổ" },
+                { left: "Hình chữ nhật", right: "Cuốn sách" },
+              ],
+            },
+          },
+        },
+        {
+          orderNo: 2,
+          slug: "math-l1-u2-lon-hon-va-nho-hon",
+          title: "Lớn hơn & Nhỏ hơn",
+          objective: "Bé so sánh kích thước đồ vật bằng cặp khái niệm lớn - nhỏ.",
+          estimatedMinutes: 15,
+          trialEnabled: false,
+          activity: {
+            prompt: "Chọn vật lớn hơn",
+            spec: {
+              type: "MULTIPLE_CHOICE",
+              question: "Trong hai vật sau, vật nào lớn hơn?",
+              options: ["Viên bi", "Quả bóng", "Cục tẩy", "Nhãn dán"],
+              correctIndex: 1,
+              explanation: "Quả bóng lớn hơn viên bi, cục tẩy và nhãn dán.",
+            },
+          },
+        },
+        {
+          orderNo: 3,
+          slug: "math-l1-u2-cao-hon-va-ngan-hon",
+          title: "Cao hơn & Ngắn hơn",
+          objective: "Bé nhận biết so sánh chiều cao và độ dài đơn giản.",
+          estimatedMinutes: 15,
+          trialEnabled: false,
+          activity: {
+            prompt: "Đúng hay sai về so sánh chiều cao",
+            spec: {
+              type: "TRUE_FALSE",
+              statement: "Cây cao hơn bút chì",
+              isTrue: true,
+              explanation: "Đúng! Cây thường cao hơn rất nhiều so với bút chì.",
+            },
+          },
+        },
+      ],
+    },
+  ];
+
+  const tracks: TrackSeed[] = [
+    {
+      code: TrackCode.ENGLISH,
+      title: "English Journey",
+      level: {
+        orderNo: 1,
+        title: "Khám Phá Từ Đầu Tiên",
+        units: englishUnits,
+      },
+    },
+    {
+      code: TrackCode.MATH,
+      title: "Math Journey",
+      level: {
+        orderNo: 1,
+        title: "Những Con Số Kỳ Diệu",
+        units: mathUnits,
+      },
+    },
+  ];
+
+  for (const trackSeed of tracks) {
+    const track = await prisma.track.upsert({
+      where: { code: trackSeed.code },
+      update: { title: trackSeed.title, isTrialEnabled: true },
+      create: { code: trackSeed.code, title: trackSeed.title, isTrialEnabled: true },
     });
 
-    await prisma.activity.upsert({
-      where: { id: `activity-${savedLesson.slug}` },
-      update: {
-        prompt: "Tap the correct answer",
-        spec: {
-          attempts: 2,
-          questions: 3,
-          mode: "tap_choose",
-        },
-      },
+    const level = await prisma.level.upsert({
+      where: { trackId_orderNo: { trackId: track.id, orderNo: trackSeed.level.orderNo } },
+      update: { title: trackSeed.level.title },
       create: {
-        id: `activity-${savedLesson.slug}`,
-        lessonId: savedLesson.id,
-        type: "tap_choose",
-        prompt: "Tap the correct answer",
-        spec: {
-          attempts: 2,
-          questions: 3,
-          mode: "tap_choose",
-        },
-        passCriteria: 80,
+        trackId: track.id,
+        orderNo: trackSeed.level.orderNo,
+        title: trackSeed.level.title,
       },
     });
+
+    for (const unitSeed of trackSeed.level.units) {
+      const unit = await prisma.unit.upsert({
+        where: { levelId_orderNo: { levelId: level.id, orderNo: unitSeed.orderNo } },
+        update: { title: unitSeed.title },
+        create: {
+          levelId: level.id,
+          orderNo: unitSeed.orderNo,
+          title: unitSeed.title,
+        },
+      });
+
+      for (const lessonSeed of unitSeed.lessons) {
+        const offlineCardMarkdown = [
+          `## ${lessonSeed.title}`,
+          "",
+          `**Mục tiêu:** ${lessonSeed.objective}`,
+          "",
+          "**Hoạt động offline:**",
+          "- Dùng thẻ hình ảnh hoặc đồ vật thật",
+          "- Lặp lại 3 lần cùng con",
+          "- Khen khi con trả lời đúng",
+        ].join("\n");
+
+        const parentScriptMarkdown = [
+          "## Hướng Dẫn Ba Mẹ",
+          "",
+          "1. Ngồi cùng con, tắt TV/điện thoại",
+          `2. Xem video bài ${lessonSeed.title} cùng con`,
+          '3. Hỏi lại: "Con vừa học được gì?"',
+          "4. Làm hoạt động offline với con",
+        ].join("\n");
+
+        const lesson = await prisma.lesson.upsert({
+          where: {
+            unitId_orderNo: {
+              unitId: unit.id,
+              orderNo: lessonSeed.orderNo,
+            },
+          },
+          update: {
+            slug: lessonSeed.slug,
+            title: lessonSeed.title,
+            objective: lessonSeed.objective,
+            estimatedMinutes: lessonSeed.estimatedMinutes,
+            trialEnabled: lessonSeed.trialEnabled,
+            offlineCardMarkdown,
+            parentScriptMarkdown,
+          },
+          create: {
+            unitId: unit.id,
+            orderNo: lessonSeed.orderNo,
+            slug: lessonSeed.slug,
+            title: lessonSeed.title,
+            objective: lessonSeed.objective,
+            estimatedMinutes: lessonSeed.estimatedMinutes,
+            trialEnabled: lessonSeed.trialEnabled,
+            offlineCardMarkdown,
+            parentScriptMarkdown,
+          },
+        });
+
+        const activityId = `activity-${trackSeed.code.toLowerCase()}-l1-u${unitSeed.orderNo}-lesson-${lessonSeed.orderNo}`;
+
+        await prisma.activity.upsert({
+          where: { id: activityId },
+          update: {
+            lessonId: lesson.id,
+            type: lessonSeed.activity.spec.type,
+            prompt: lessonSeed.activity.prompt,
+            spec: toActivitySpecJson(lessonSeed.activity.spec),
+            passCriteria: 80,
+          },
+          create: {
+            id: activityId,
+            lessonId: lesson.id,
+            type: lessonSeed.activity.spec.type,
+            prompt: lessonSeed.activity.prompt,
+            spec: toActivitySpecJson(lessonSeed.activity.spec),
+            passCriteria: 80,
+          },
+        });
+      }
+    }
   }
 }
 
@@ -218,42 +510,50 @@ async function seedBlog() {
   console.log("Seeding blog data...");
 
   const categories = [
-    { slug: "phat-trien-tre", nameVi: "Phat Trien Tre Em", emoji: "🌱", color: "#10b981", orderNo: 1 },
-    { slug: "phuong-phap-hoc", nameVi: "Phuong Phap Hoc Tap", emoji: "📚", color: "#3b82f6", orderNo: 2 },
-    { slug: "tieng-anh-som", nameVi: "Tieng Anh Cho Tre", emoji: "🌏", color: "#8b5cf6", orderNo: 3 },
-    { slug: "toan-tu-duy", nameVi: "Toan Tu Duy", emoji: "🔢", color: "#f59e0b", orderNo: 4 },
-    { slug: "dinh-huong-phu-huynh", nameVi: "Huong Dan Phu Huynh", emoji: "👪", color: "#ef4444", orderNo: 5 },
-    { slug: "cong-nghe-giao-duc", nameVi: "Cong Nghe Giao Duc", emoji: "💻", color: "#06b6d4", orderNo: 6 },
-    { slug: "suc-khoe-tam-than", nameVi: "Suc Khoe va Can Bang", emoji: "💙", color: "#ec4899", orderNo: 7 },
-    { slug: "thanh-tich-hoc-tap", nameVi: "Cau Chuyen Thanh Cong", emoji: "⭐", color: "#84cc16", orderNo: 8 },
+    { slug: "phat-trien-tre", nameVi: "Phát Triển Trẻ Em", emoji: "🌱", color: "#10b981", orderNo: 1 },
+    { slug: "phuong-phap-hoc", nameVi: "Phương Pháp Học Tập", emoji: "📚", color: "#3b82f6", orderNo: 2 },
+    { slug: "tieng-anh-som", nameVi: "Tiếng Anh Cho Trẻ", emoji: "🌏", color: "#8b5cf6", orderNo: 3 },
+    { slug: "toan-tu-duy", nameVi: "Toán Tư Duy", emoji: "🔢", color: "#f59e0b", orderNo: 4 },
+    { slug: "dinh-huong-phu-huynh", nameVi: "Hướng Dẫn Phụ Huynh", emoji: "👪", color: "#ef4444", orderNo: 5 },
+    { slug: "cong-nghe-giao-duc", nameVi: "Công Nghệ Giáo Dục", emoji: "💻", color: "#06b6d4", orderNo: 6 },
+    { slug: "suc-khoe-tam-than", nameVi: "Sức Khỏe và Cân Bằng", emoji: "💙", color: "#ec4899", orderNo: 7 },
+    { slug: "thanh-tich-hoc-tap", nameVi: "Câu Chuyện Thành Công", emoji: "⭐", color: "#84cc16", orderNo: 8 },
   ];
 
   for (const cat of categories) {
     await prisma.blogCategory.upsert({
       where: { slug: cat.slug },
-      update: {},
+      update: cat,
       create: { ...cat, active: true },
     });
   }
 
   await prisma.blogAuthor.upsert({
     where: { slug: "ban-bien-tap" },
-    update: {},
+    update: {
+      displayName: "Ban Biên Tập",
+      role: "Biên tập viên Cùng Con Tự Học",
+      active: true,
+    },
     create: {
       slug: "ban-bien-tap",
-      displayName: "Ban Bien Tap",
-      role: "Bien tap vien CungConTuHoc",
+      displayName: "Ban Biên Tập",
+      role: "Biên tập viên Cùng Con Tự Học",
       active: true,
     },
   });
 
   await prisma.blogAuthor.upsert({
     where: { slug: "chuyen-gia-giao-duc" },
-    update: {},
+    update: {
+      displayName: "Chuyên Gia Giáo Dục",
+      role: "Chuyên gia Tâm lý Giáo dục",
+      active: true,
+    },
     create: {
       slug: "chuyen-gia-giao-duc",
-      displayName: "Chuyen Gia Giao Duc",
-      role: "Chuyen gia Tam ly Giao duc",
+      displayName: "Chuyên Gia Giáo Dục",
+      role: "Chuyên gia Tâm lý Giáo dục",
       active: true,
     },
   });
@@ -294,25 +594,28 @@ async function seedBlog() {
       slug: "5-meo-hoc-tieng-anh-tai-nha",
       type: "TIP" as const,
       status: "PUBLISHED" as const,
-      titleVi: "5 Meo Giup Con Hoc Tieng Anh Tai Nha Hieu Qua",
+      titleVi: "5 mẹo học tiếng Anh tại nhà cho bé 3-5 tuổi",
       excerptVi:
-        "Phu huynh khong can la giao vien de giup con yeu tieng Anh. Kham pha 5 phuong phap don gian ma bat ky gia dinh nao cung co the ap dung ngay hom nay.",
-      contentMarkdown: `# 5 Tips to Help Children Learn English at Home
+        "Các hoạt động ngắn 5-10 phút giúp bé làm quen tiếng Anh tự nhiên mỗi ngày.",
+      contentMarkdown: `## Bắt đầu từ thói quen nhỏ
 
-## 1. Create an English Environment
-Surround your child with English through songs, cartoons, and picture books every day.
+Hãy dành 5 phút đầu ngày để nghe và lặp lại 3 từ mới.
 
-## 2. Daily Practice (10-15 minutes)
-Consistency beats intensity. Even 10 minutes a day makes a huge difference over months.
+## Học qua bài hát
 
-## 3. Make It Fun
-Use games, songs, and interactive activities. Children learn best when they are enjoying themselves.
+Bật bài hát thiếu nhi tiếng Anh và cho bé vận động theo nhịp.
 
-## 4. Use Technology Wisely
-Apps like CungConTuHoc provide structured, game-based learning that keeps children engaged.
+## Gắn từ vào đồ vật
 
-## 5. Be Patient and Celebrate Progress
-Language learning takes time. Celebrate every new word and every small step forward.
+Dán nhãn từ vựng lên đồ dùng quen thuộc trong nhà.
+
+## Kể chuyện tranh
+
+Đọc truyện ngắn có hình minh họa và đặt câu hỏi đơn giản.
+
+## Khen ngợi đúng lúc
+
+Ghi nhận nỗ lực của bé để duy trì động lực học tập.
 `,
       categoryId: tiengAnh.id,
       ageGroup: "AGE_6_8" as const,
@@ -328,9 +631,9 @@ Language learning takes time. Celebrate every new word and every small step forw
       slug: "tre-hoc-toan-tu-duy-nhu-the-nao",
       type: "GUIDE" as const,
       status: "PUBLISHED" as const,
-      titleVi: "Tre Em Phat Trien Tu Duy Toan Hoc Nhu The Nao",
+      titleVi: "Trẻ em phát triển tư duy toán học như thế nào",
       excerptVi:
-        "Tu duy toan hoc khong chi la tinh toan nhanh. Day la cach giup tre phat trien kha nang giai quyet van de tu nhien nhat thong qua cuoc song hang ngay.",
+        "Tư duy toán học không chỉ là tính toán nhanh mà còn là cách giải quyết vấn đề trong đời sống hằng ngày.",
       contentMarkdown: `# How Children Develop Mathematical Thinking
 
 Mathematical thinking is about logic, patterns, and problem-solving not just arithmetic.
@@ -361,9 +664,9 @@ Children learn math most effectively through play. Puzzle games, strategy board 
       slug: "phuong-phap-giao-duc-som-hieu-qua-2026",
       type: "ARTICLE" as const,
       status: "PUBLISHED" as const,
-      titleVi: "Phuong Phap Giao Duc Som Hieu Qua Nhat Cho Tre 2026",
+      titleVi: "Phương pháp giáo dục sớm hiệu quả nhất cho trẻ năm 2026",
       excerptVi:
-        "Montessori, STEAM, hay Waldorf? Cac chuyen gia giao duc khuyen nghi phuong phap nao phu hop nhat cho tre em Viet Nam trong nam 2026?",
+        "Montessori, STEAM hay Waldorf? Chuyên gia giáo dục khuyến nghị cách tiếp cận nào phù hợp nhất cho trẻ em Việt Nam năm 2026?",
       contentMarkdown: `# Most Effective Early Education Methods in 2026
 
 Modern early childhood education combines proven methods with new research on how children learn.
@@ -395,8 +698,16 @@ The most effective early education balances structured learning with free play, 
   for (const post of posts) {
     await prisma.blogPost.upsert({
       where: { slug: post.slug },
-      update: {},
-      create: post,
+      update: {
+        ...post,
+        contentHtml: null,
+        readingTimeMin: readingTimeFromMarkdown(post.contentMarkdown),
+      },
+      create: {
+        ...post,
+        contentHtml: null,
+        readingTimeMin: readingTimeFromMarkdown(post.contentMarkdown),
+      },
     });
   }
 

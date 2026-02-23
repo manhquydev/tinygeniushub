@@ -15,4 +15,5 @@ export type SignedUploadResponse = {
 export interface StorageProviderAdapter {
   readonly code: string;
   createSignedUploadUrl(input: SignedUploadRequest): Promise<SignedUploadResponse>;
+  objectExists(objectPath: string): Promise<boolean>;
 }
