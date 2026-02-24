@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { formatInTimeZone } from "date-fns-tz";
 
 const { prismaMock, randomUuidMock } = vi.hoisted(() => ({
   prismaMock: {
@@ -73,8 +74,8 @@ describe("getWeeklyWindow", () => {
   it("returns monday as week start and sunday as week end", () => {
     const { weekStart, weekEnd } = getWeeklyWindow(new Date("2026-02-20T12:00:00.000Z"));
 
-    expect(weekStart.getDay()).toBe(1);
-    expect(weekEnd.getDay()).toBe(0);
+    expect(formatInTimeZone(weekStart, "Asia/Bangkok", "i")).toBe("1");
+    expect(formatInTimeZone(weekEnd, "Asia/Bangkok", "i")).toBe("7");
     expect(weekEnd.getTime()).toBeGreaterThan(weekStart.getTime());
   });
 });
