@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Mascot } from "@/components/mascot";
 
@@ -65,12 +66,12 @@ export default function OfflinePage() {
         <p className="max-w-[44ch] text-pretty text-base leading-relaxed text-slate-200/90 sm:text-lg">
           Cú Con không thể kết nối lúc này. Kiểm tra Wi-Fi hoặc 4G rồi thử lại nhé!
         </p>
-        <a
+        <Link
           href="/"
           className="inline-flex min-h-12 items-center justify-center rounded-full border border-emerald-200/45 bg-gradient-to-r from-teal-500 to-cyan-500 px-6 text-sm font-black text-white shadow-[0_16px_32px_rgba(20,184,166,0.3)] transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
         >
           Thử lại
-        </a>
+        </Link>
       </section>
     </main>
   );

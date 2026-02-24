@@ -108,12 +108,6 @@ export default function NotFound() {
 
   useEffect(() => {
     if (prefersReducedMotion) {
-      setPhase(3);
-      setSmallState("happy");
-      setSmallGaze("right");
-      setShowParent(true);
-      setShowRipples(false);
-      setShowGuidePath(true);
       return;
     }
 
@@ -172,6 +166,12 @@ export default function NotFound() {
     };
   }, [prefersReducedMotion]);
 
+  const activePhase: StoryPhase = prefersReducedMotion ? 3 : phase;
+  const activeSmallState: MascotState = prefersReducedMotion ? "happy" : smallState;
+  const activeSmallGaze: MascotGazeDirection = prefersReducedMotion ? "right" : smallGaze;
+  const isParentVisible = prefersReducedMotion ? true : showParent;
+  const isRipplesVisible = prefersReducedMotion ? false : showRipples;
+  const isGuidePathVisible = prefersReducedMotion ? true : showGuidePath;
   const shouldLoop = !prefersReducedMotion;
 
   return (
@@ -260,23 +260,23 @@ export default function NotFound() {
             key={`small-${cycleCount}`}
             className="absolute left-0 top-[48%] -translate-y-1/2"
             initial={prefersReducedMotion ? false : { x: -220, opacity: 1 }}
-            animate={{ x: phase >= 2 ? 80 : 120 }}
+            animate={{ x: activePhase >= 2 ? 80 : 120 }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 2.6, ease: CINEMATIC_EASE }}
           >
             <Mascot
               variant="small"
-              state={smallState}
-              gazeDirection={phase >= 2 ? "right" : smallGaze}
+              state={activeSmallState}
+              gazeDirection={activePhase >= 2 ? "right" : activeSmallGaze}
               size={180}
               motionLevel={prefersReducedMotion ? "minimal" : "full"}
               className="drop-shadow-[0_20px_48px_rgba(14,165,233,0.4)]"
             />
-            {phase === 1 ? <QuestionCloud animated={shouldLoop} /> : null}
-            {showRipples ? <CallRipples animated={shouldLoop} /> : null}
+            {activePhase === 1 ? <QuestionCloud animated={shouldLoop} /> : null}
+            {isRipplesVisible ? <CallRipples animated={shouldLoop} /> : null}
           </m.div>
 
           <AnimatePresence>
-            {showParent ? (
+            {isParentVisible ? (
               <m.div
                 key={`big-owl-${cycleCount}`}
                 className="absolute right-0 top-[44%] -translate-y-1/2"
@@ -300,7 +300,7 @@ export default function NotFound() {
           </AnimatePresence>
 
           <AnimatePresence>
-            {showGuidePath ? (
+            {isGuidePathVisible ? (
               <m.svg
                 key={`guide-${cycleCount}`}
                 className="absolute inset-0 h-full w-full"
@@ -349,27 +349,27 @@ export default function NotFound() {
 
           <AnimatePresence mode="wait">
             <m.h1
-              key={phase === 3 ? "found" : "lost"}
+              key={activePhase === 3 ? "found" : "lost"}
               className="max-w-[22ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl"
               initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.35 }}
             >
-              {getHeadline(phase)}
+              {getHeadline(activePhase)}
             </m.h1>
           </AnimatePresence>
 
           <AnimatePresence mode="wait">
             <m.p
-              key={phase}
+              key={activePhase}
               className="max-w-[50ch] text-pretty text-base leading-relaxed text-slate-200/90 sm:text-lg"
               initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }}
             >
-              {getSubtext(phase)}
+              {getSubtext(activePhase)}
             </m.p>
           </AnimatePresence>
 
@@ -382,7 +382,7 @@ export default function NotFound() {
               animation: shouldLoop ? "notFoundShimmer 2.5s linear infinite" : undefined,
             }}
           >
-            {phase >= 3 ? "🏠 Về trang chủ cùng Cú Mẹ" : "🏠 Về trang chủ"}
+            {activePhase >= 3 ? "🏠 Về trang chủ cùng Cú Mẹ" : "🏠 Về trang chủ"}
           </Link>
 
           <button
