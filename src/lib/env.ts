@@ -102,7 +102,7 @@ const parsedEnv = envSchema.parse({
   REPORT_EMAIL_FROM: process.env.REPORT_EMAIL_FROM,
   REPORT_EMAIL_REPLY_TO: process.env.REPORT_EMAIL_REPLY_TO,
   REPORT_EMAIL_TO_OVERRIDE: process.env.REPORT_EMAIL_TO_OVERRIDE,
-  CRON_SECRET: process.env.CRON_SECRET ?? (isProduction ? undefined : "dev-cron-secret-change-this"),
+  CRON_SECRET: process.env.CRON_SECRET ?? (isProduction && !allowCiFallbacks ? undefined : "dev-cron-secret-change-this"),
   STORAGE_PROVIDER: process.env.STORAGE_PROVIDER,
   MEDIA_UPLOAD_URL_TTL_SECONDS: process.env.MEDIA_UPLOAD_URL_TTL_SECONDS,
   WATCH_SESSION_TTL_SECONDS: process.env.WATCH_SESSION_TTL_SECONDS,
