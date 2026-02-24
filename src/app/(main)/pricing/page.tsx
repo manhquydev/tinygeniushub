@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckoutPlanButton } from "@/components/checkout-plan-button";
 import { getParentFromServerCookie } from "@/lib/auth/session";
+import { IconCheckCircle, IconInfo } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Bảng giá",
@@ -157,7 +158,8 @@ export default async function PricingPage() {
             <li>Portfolio retention 90 ngày</li>
           </ul>
           <p className="pricing-card__tip muted-text">
-            💡 Chọn gói năm để tiết kiệm 50% — 120,000 VND thay vì 240,000 VND
+            <IconInfo size={14} className="pricing-tip-icon" />
+            Chọn gói năm để tiết kiệm 50% — 120,000 VND thay vì 240,000 VND
           </p>
           {/* Monthly plan: anchor card only — no checkout button intentionally.
               Authenticated users are directed to annual plans via the tip above. */}
@@ -171,8 +173,12 @@ export default async function PricingPage() {
 
       {/* Social proof */}
       <section className="card pricing-social-proof">
-        <p className="muted-text">
-          ✅ Không cần thẻ tín dụng &nbsp;·&nbsp; ✅ Hoàn tiền 7 ngày &nbsp;·&nbsp; ✅ Hủy bất kỳ lúc nào
+        <p className="muted-text pricing-trust-row">
+          <span className="pricing-trust-item"><IconCheckCircle size={15} /> Không cần thẻ tín dụng</span>
+          <span className="pricing-trust-sep">·</span>
+          <span className="pricing-trust-item"><IconCheckCircle size={15} /> Hoàn tiền 7 ngày</span>
+          <span className="pricing-trust-sep">·</span>
+          <span className="pricing-trust-item"><IconCheckCircle size={15} /> Hủy bất kỳ lúc nào</span>
         </p>
       </section>
 

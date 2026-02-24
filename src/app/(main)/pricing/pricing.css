@@ -86,6 +86,15 @@
 .pricing-card__tip {
   font-size: 0.85rem;
   margin-top: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.pricing-tip-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.7;
 }
 
 .pricing-card__cta {
@@ -124,16 +133,79 @@
   display: none;
 }
 
+/* FAQ chevron — SVG data URI replaces plain "+" text */
 .faq-question::after {
-  content: "+";
-  font-size: 1.2rem;
-  font-weight: 400;
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: transform var(--motion-quick, 150ms ease);
+}
+
+/* Feature list — outline check icons replacing default bullets */
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pricing-card ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.pricing-card ul li::before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Trust / social proof row */
+.pricing-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+}
+
+.pricing-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ink-700);
+}
+
+.pricing-trust-item svg {
   color: var(--brand-500);
-  transition: transform var(--motion-quick);
+  flex-shrink: 0;
+}
+
+.pricing-trust-sep {
+  color: var(--ink-400, #9ca3af);
+  user-select: none;
 }
 
 details[open] .faq-question::after {
-  transform: rotate(45deg);
+  transform: rotate(180deg);
 }
 
 .faq-answer {
