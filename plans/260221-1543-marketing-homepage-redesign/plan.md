@@ -1,7 +1,7 @@
 ---
 title: "Marketing Homepage Redesign"
 description: "Build a conversion-optimized homepage for Cung Con Tu Hoc EdTech platform"
-status: pending
+status: done
 priority: P1
 effort: 8h
 branch: master
@@ -31,12 +31,12 @@ Redesign the basic homepage into a full marketing-optimized landing page with 10
 
 | # | Phase | Status | Effort | File |
 |---|-------|--------|--------|------|
-| 1 | Foundation & Shared Components | pending | 1.5h | [phase-01](phase-01-foundation-shared-components.md) |
-| 2 | Hero + Problem Sections | pending | 1.5h | [phase-02](phase-02-hero-and-problem-sections.md) |
-| 3 | How It Works + Features | pending | 1.5h | [phase-03](phase-03-how-it-works-and-features.md) |
-| 4 | Social Proof + Product Demo | pending | 1.5h | [phase-04](phase-04-social-proof-and-demo.md) |
-| 5 | Pricing + Trust + FAQ + Final CTA | pending | 1h | [phase-05](phase-05-pricing-trust-faq-cta.md) |
-| 6 | SEO Metadata + Performance | pending | 1h | [phase-06](phase-06-seo-metadata-performance.md) |
+| 1 | Foundation & Shared Components | done | 1.5h | [phase-01](phase-01-foundation-shared-components.md) |
+| 2 | Hero + Problem Sections | done | 1.5h | [phase-02](phase-02-hero-and-problem-sections.md) |
+| 3 | How It Works + Features | done | 1.5h | [phase-03](phase-03-how-it-works-and-features.md) |
+| 4 | Social Proof + Product Demo | done | 1.5h | [phase-04](phase-04-social-proof-and-demo.md) |
+| 5 | Pricing + Trust + FAQ + Final CTA | done | 1h | [phase-05](phase-05-pricing-trust-faq-cta.md) |
+| 6 | SEO Metadata + Performance | done | 1h | [phase-06](phase-06-seo-metadata-performance.md) |
 
 ## Architecture Overview
 ```
@@ -129,3 +129,15 @@ src/app/globals.css                 ← Unchanged (homepage styles in homepage.c
 - Phase 04: Testimonials sub-heading copy change
 - Phase 05: Final CTA sub-text copy change
 - Phase 06: JSON-LD remove AggregateRating block
+
+---
+
+## Completion Note — 2026-02-25
+
+All 6 phases completed. Homepage fully redesigned with conversion-optimized sections. Final SEO pass done in Phase 06:
+- FAQPage + WebSite JSON-LD merged as @graph
+- Twitter large card meta images added
+- AggregateOffer.lowPrice corrected to 120000 VND
+- XSS-safe JSON-LD serialization applied
+- Dead-weight keywords meta removed from layout
+- Robots directives added to homepage metadata

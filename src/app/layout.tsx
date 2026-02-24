@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   description:
     "Learning Journey OS cho phụ huynh có con 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ.",
   metadataBase: new URL("https://cungcontuhoc.vn"),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   openGraph: {
     siteName: "Cùng Con Tự Học",
     locale: "vi_VN",
