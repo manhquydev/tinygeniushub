@@ -6,8 +6,11 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, LazyMotion, domAnimation, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { Mascot } from "@/components/mascot";
+import type { MascotGazeDirection, MascotState } from "@/components/mascot/types";
 
 type StoryPhase = 1 | 2 | 3;
+
+const CINEMATIC_EASE = [0.25, 0.46, 0.45, 0.94] as const;
 
 const STAR_FIELD = [
   { top: "7%", left: "9%", size: 2, opacity: 0.68, delay: 0.1, duration: 3.2 },
@@ -32,21 +35,6 @@ const STAR_FIELD = [
   { top: "94%", left: "33%", size: 2, opacity: 0.57, delay: 2.5, duration: 3.1 },
 ] as const;
 
-const FOOTPRINT_TRAIL = [
-  { left: "20%", top: "70%", opacity: 0.9 },
-  { left: "15%", top: "76%", opacity: 0.72 },
-  { left: "11%", top: "82%", opacity: 0.54 },
-  { left: "7%", top: "88%", opacity: 0.36 },
-  { left: "3%", top: "94%", opacity: 0.2 },
-] as const;
-
-const QUESTION_MARKS = [
-  { top: "22%", left: "24%", delay: 0.1 },
-  { top: "18%", left: "66%", delay: 0.5 },
-  { top: "40%", left: "16%", delay: 0.9 },
-  { top: "38%", left: "76%", delay: 1.3 },
-] as const;
-
 const FIREFLIES = [
   { top: "26%", left: "18%", size: 4, delay: 0.2, duration: 5.1 },
   { top: "30%", left: "72%", size: 3, delay: 1.1, duration: 4.6 },
@@ -56,45 +44,135 @@ const FIREFLIES = [
   { top: "71%", left: "63%", size: 4, delay: 1.4, duration: 4.9 },
 ] as const;
 
+function getHeadline(phase: StoryPhase) {
+  if (phase === 3) {
+    return "Cú Mẹ đã tìm thấy con rồi! 🦉💛";
+  }
+  return "Ôi không! Cú Con đang lạc đường...";
+}
+
 function getSubtext(phase: StoryPhase) {
   if (phase === 2) {
     return "Ồ! Cú Mẹ nghe thấy tiếng kêu của con rồi! Đang bay đến...";
   }
   if (phase === 3) {
-    return "Hai mẹ con Cú sẽ chỉ đường dẫn bạn trở về nhà. Đường dẫn bạn tìm không tồn tại, nhưng trang chủ thì luôn ở đây!";
+    return "Hai mẹ con sẽ dẫn bạn trở về nhà. Đường dẫn này không tồn tại, nhưng trang chủ luôn ở đây!";
   }
-  return "Bé cú đã bay nhầm vào một khu rừng tối. Đừng lo, Cú Mẹ đang trên đường đến rồi!";
+  return "Bé Cú đã bay nhầm vào khu rừng tối. Đừng lo, Cú Mẹ đang đến rồi!";
+}
+
+function QuestionCloud({ animated }: { animated: boolean }) {
+  return (
+    <div className="absolute -top-14 left-1/2 flex -translate-x-1/2 gap-3">
+      {["?", "?", "?"].map((q, i) => (
+        <m.span
+          key={`${q}-${i}`}
+          className="text-xl font-black text-amber-200/80"
+          animate={animated ? { y: [0, -8, 0], opacity: [0.4, 1, 0.4] } : undefined}
+          transition={animated ? { duration: 2, delay: i * 0.3, repeat: Infinity, ease: "easeInOut" } : undefined}
+        >
+          {q}
+        </m.span>
+      ))}
+    </div>
+  );
+}
+
+function CallRipples({ animated }: { animated: boolean }) {
+  return (
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      {[0, 0.35, 0.7].map((delay) => (
+        <m.div
+          key={`ripple-${delay}`}
+          className="absolute h-16 w-16 rounded-full border-2 border-cyan-300/50"
+          style={{ left: "-32px", top: "-32px" }}
+          animate={animated ? { scale: [0, 2.8], opacity: [0.85, 0] } : undefined}
+          transition={animated ? { duration: 1.4, repeat: Infinity, delay, ease: "easeOut" } : undefined}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default function NotFound() {
   const router = useRouter();
   const prefersReducedMotion = useReducedMotion() ?? false;
+
   const [phase, setPhase] = useState<StoryPhase>(1);
+  const [cycleCount, setCycleCount] = useState(0);
+  const [smallState, setSmallState] = useState<MascotState>("sad");
+  const [smallGaze, setSmallGaze] = useState<MascotGazeDirection>("right");
+  const [showParent, setShowParent] = useState(false);
+  const [showRipples, setShowRipples] = useState(false);
+  const [showGuidePath, setShowGuidePath] = useState(false);
 
   useEffect(() => {
     if (prefersReducedMotion) {
+      setPhase(3);
+      setSmallState("happy");
+      setSmallGaze("right");
+      setShowParent(true);
+      setShowRipples(false);
+      setShowGuidePath(true);
       return;
     }
 
-    const phaseResetTimer = window.setTimeout(() => setPhase(1), 0);
-    const phaseTwoTimer = window.setTimeout(() => setPhase(2), 3000);
-    const phaseThreeTimer = window.setTimeout(() => setPhase(3), 6000);
+    let cancelled = false;
+    let timers: number[] = [];
+
+    const clearTimers = () => {
+      for (const timerId of timers) {
+        window.clearTimeout(timerId);
+      }
+      timers = [];
+    };
+
+    const startCycle = (count: number) => {
+      if (cancelled) return;
+
+      clearTimers();
+      setPhase(1);
+      setCycleCount(count);
+      setSmallState("sad");
+      setSmallGaze("right");
+      setShowParent(false);
+      setShowRipples(false);
+      setShowGuidePath(false);
+
+      const t1 = window.setTimeout(() => {
+        if (cancelled) return;
+        setPhase(2);
+        setShowParent(true);
+        setShowRipples(true);
+        setSmallGaze("right");
+      }, 3500);
+
+      const t2 = window.setTimeout(() => {
+        if (cancelled) return;
+        setPhase(3);
+        setSmallState("happy");
+        setShowRipples(false);
+        setShowGuidePath(true);
+      }, 6500);
+
+      const t3 = window.setTimeout(() => {
+        if (!cancelled) {
+          startCycle(count + 1);
+        }
+      }, 14000);
+
+      timers = [t1, t2, t3];
+    };
+
+    startCycle(0);
 
     return () => {
-      window.clearTimeout(phaseResetTimer);
-      window.clearTimeout(phaseTwoTimer);
-      window.clearTimeout(phaseThreeTimer);
+      cancelled = true;
+      clearTimers();
     };
   }, [prefersReducedMotion]);
 
-  const activePhase: StoryPhase = prefersReducedMotion ? 3 : phase;
   const shouldLoop = !prefersReducedMotion;
-  const headline = activePhase === 3 ? "Cú Mẹ đã tìm thấy con! 🦉💛" : "Ôi không! Cú Con đang lạc đường...";
-  const sceneInitial = prefersReducedMotion ? false : { opacity: 0, y: 26, scale: 0.95 };
-  const sceneExit = prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.94 };
-  const sceneTransition = prefersReducedMotion
-    ? { duration: 0 }
-    : { duration: 0.72, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
     <LazyMotion features={domAnimation}>
@@ -108,23 +186,8 @@ export default function NotFound() {
           aria-hidden
           className="pointer-events-none absolute right-[12%] top-[8%] h-20 w-20 rounded-full bg-white/90 blur-[2px]"
           style={{ boxShadow: "0 0 60px 20px rgba(253,224,71,0.25)" }}
-          animate={
-            shouldLoop
-              ? {
-                  scale: [1, 1.06, 1],
-                  opacity: [0.88, 1, 0.88],
-                }
-              : undefined
-          }
-          transition={
-            shouldLoop
-              ? {
-                  duration: 6.2,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                }
-              : undefined
-          }
+          animate={shouldLoop ? { scale: [1, 1.06, 1], opacity: [0.88, 1, 0.88] } : undefined}
+          transition={shouldLoop ? { duration: 6.2, ease: "easeInOut", repeat: Infinity } : undefined}
         />
 
         <div aria-hidden className="not-found-fog not-found-fog-a" />
@@ -164,20 +227,15 @@ export default function NotFound() {
             animate={
               shouldLoop
                 ? {
-                    y: [0, -11, 0, -6, 0],
-                    x: [0, 4, -3, 2, 0],
-                    opacity: [0.35, 0.9, 0.4, 0.8, 0.35],
-                  }
+                  y: [0, -11, 0, -6, 0],
+                  x: [0, 4, -3, 2, 0],
+                  opacity: [0.35, 0.9, 0.4, 0.8, 0.35],
+                }
                 : undefined
             }
             transition={
               shouldLoop
-                ? {
-                    duration: light.duration,
-                    delay: light.delay,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                  }
+                ? { duration: light.duration, delay: light.delay, ease: "easeInOut", repeat: Infinity }
                 : undefined
             }
           />
@@ -197,399 +255,144 @@ export default function NotFound() {
           <path d="M1186 156C1214 112 1248 102 1278 156" fill="#0a1628" fillOpacity="0.1" />
         </svg>
 
-        <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center gap-6 px-6 py-12 text-center">
-          <m.p
-            className="rounded-full border border-cyan-200/30 bg-slate-950/45 px-3 py-1 text-xs font-semibold tracking-[0.2em] text-cyan-100/90"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.35, ease: "easeOut" }}
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-[5] overflow-hidden">
+          <m.div
+            key={`small-${cycleCount}`}
+            className="absolute left-0 top-[48%] -translate-y-1/2"
+            initial={prefersReducedMotion ? false : { x: -220, opacity: 1 }}
+            animate={{ x: phase >= 2 ? 80 : 120 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 2.6, ease: CINEMATIC_EASE }}
           >
-            Lỗi 404
-          </m.p>
+            <Mascot
+              variant="small"
+              state={smallState}
+              gazeDirection={phase >= 2 ? "right" : smallGaze}
+              size={180}
+              motionLevel={prefersReducedMotion ? "minimal" : "full"}
+              className="drop-shadow-[0_20px_48px_rgba(14,165,233,0.4)]"
+            />
+            {phase === 1 ? <QuestionCloud animated={shouldLoop} /> : null}
+            {showRipples ? <CallRipples animated={shouldLoop} /> : null}
+          </m.div>
 
-          <div
-            className="flex items-center gap-2"
-            style={{ filter: "drop-shadow(0 0 24px rgba(99,102,241,0.5))" }}
-          >
-            {[
-              { digit: "4", delay: 0 },
-              { digit: "0", delay: 0.12 },
-              { digit: "4", delay: 0.24 },
-            ].map((item) => (
-              <m.span
-                key={`${item.digit}-${item.delay}`}
-                className="inline-flex min-h-20 min-w-16 items-center justify-center rounded-2xl border border-slate-200/20 bg-slate-900/35 px-3 text-8xl font-black leading-none text-transparent [background-image:linear-gradient(to_bottom,#ffffff,#94a3b8)] bg-clip-text"
-                initial={prefersReducedMotion ? false : { opacity: 0, y: -30 }}
-                animate={{ opacity: 1, y: 0 }}
+          <AnimatePresence>
+            {showParent ? (
+              <m.div
+                key={`big-owl-${cycleCount}`}
+                className="absolute right-0 top-[44%] -translate-y-1/2"
+                initial={prefersReducedMotion ? false : { x: 300, opacity: 0, scale: 0.5 }}
+                animate={{ x: -260, opacity: 1, scale: 1 }}
+                exit={prefersReducedMotion ? { opacity: 1 } : { x: 300, opacity: 0 }}
                 transition={
-                  prefersReducedMotion
-                    ? { duration: 0 }
-                    : { duration: 0.55, ease: "easeOut", delay: item.delay }
+                  prefersReducedMotion ? { duration: 0 } : { duration: 2.2, ease: CINEMATIC_EASE }
                 }
               >
-                {item.digit}
+                <Mascot
+                  variant="big"
+                  state="love"
+                  gazeDirection="left"
+                  size={240}
+                  motionLevel={prefersReducedMotion ? "minimal" : "full"}
+                  className="drop-shadow-[0_20px_48px_rgba(251,191,36,0.3)]"
+                />
+              </m.div>
+            ) : null}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {showGuidePath ? (
+              <m.svg
+                key={`guide-${cycleCount}`}
+                className="absolute inset-0 h-full w-full"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                initial={prefersReducedMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6 }}
+              >
+                <m.path
+                  d="M 32 50 Q 50 68 50 82"
+                  stroke="#fde047"
+                  strokeOpacity="0.65"
+                  strokeWidth="0.4"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeDasharray="2 1.5"
+                  animate={shouldLoop ? { strokeDashoffset: [0, -7] } : undefined}
+                  transition={shouldLoop ? { duration: 1.4, repeat: Infinity, ease: "linear" } : undefined}
+                />
+              </m.svg>
+            ) : null}
+          </AnimatePresence>
+        </div>
+
+        <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-2xl flex-col items-center justify-center gap-5 px-6 py-12 text-center">
+          <p className="rounded-full border border-cyan-200/30 bg-slate-950/45 px-3 py-1 text-xs font-semibold tracking-[0.2em] text-cyan-100/90">
+            Lỗi 404
+          </p>
+
+          <div className="flex items-center gap-2" style={{ filter: "drop-shadow(0 0 28px rgba(99,102,241,0.55))" }}>
+            {["4", "0", "4"].map((digit, index) => (
+              <m.span
+                key={`${digit}-${index}`}
+                className="inline-flex min-h-20 min-w-16 items-center justify-center rounded-2xl border border-slate-200/20 bg-slate-900/35 px-3 text-8xl font-black leading-none text-transparent [background-image:linear-gradient(to_bottom,#ffffff,#94a3b8)] bg-clip-text"
+                initial={prefersReducedMotion ? false : { opacity: 0, y: -28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.12 }}
+              >
+                {digit}
               </m.span>
             ))}
           </div>
 
-          <div className="relative mx-auto h-[264px] w-full max-w-[320px]">
-            {activePhase === 1 && (
-              <div className="pointer-events-none absolute inset-0">
-                {FOOTPRINT_TRAIL.map((step, index) => (
-                  <span
-                    key={`foot-${index}`}
-                    aria-hidden
-                    className="absolute text-lg"
-                    style={{
-                      left: step.left,
-                      top: step.top,
-                      opacity: step.opacity,
-                      animation: shouldLoop ? `notFoundFootprint 1.5s ease-in-out ${index * 0.2}s infinite` : undefined,
-                    }}
-                  >
-                    🐾
-                  </span>
-                ))}
-              </div>
-            )}
+          <div className="h-52 sm:h-60" aria-hidden />
 
-            <AnimatePresence mode="wait" initial={false}>
-              {activePhase === 1 && (
-                <m.div
-                  key="phase-1"
-                  className="relative flex h-full items-center justify-center"
-                  initial={sceneInitial}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={sceneExit}
-                  transition={sceneTransition}
-                >
-                  {QUESTION_MARKS.map((mark, index) => (
-                    <m.span
-                      key={`q-${index}`}
-                      aria-hidden
-                      className="absolute text-2xl font-bold text-amber-200/70"
-                      style={{ top: mark.top, left: mark.left }}
-                      animate={
-                        shouldLoop
-                          ? {
-                              y: [0, -8, 0],
-                              opacity: [0.5, 0.9, 0.5],
-                            }
-                          : undefined
-                      }
-                      transition={
-                        shouldLoop
-                          ? {
-                              duration: 2.4,
-                              ease: "easeInOut",
-                              delay: mark.delay,
-                              repeat: Infinity,
-                            }
-                          : undefined
-                      }
-                    >
-                      ?
-                    </m.span>
-                  ))}
-
-                  <div aria-hidden className="absolute h-52 w-52 rounded-full bg-cyan-300/20 blur-[68px]" />
-                  <m.div
-                    animate={
-                      shouldLoop
-                        ? {
-                            x: [0, -3, 2, 0],
-                            y: [0, -2, 0, 1, 0],
-                            rotate: [0, -1.2, 0.8, 0],
-                          }
-                        : undefined
-                    }
-                    transition={
-                      shouldLoop
-                        ? {
-                            duration: 3,
-                            ease: "easeInOut",
-                            repeat: Infinity,
-                          }
-                        : undefined
-                    }
-                  >
-                    <Mascot
-                      variant="small"
-                      state="sad"
-                      gazeDirection="center"
-                      size={280}
-                      motionLevel={shouldLoop ? "full" : "minimal"}
-                      className="relative h-[238px] w-[238px] drop-shadow-[0_20px_48px_rgba(14,165,233,0.32)]"
-                    />
-                  </m.div>
-                </m.div>
-              )}
-
-              {activePhase === 2 && (
-                <m.div
-                  key="phase-2"
-                  className="relative h-full"
-                  initial={sceneInitial}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={sceneExit}
-                  transition={sceneTransition}
-                >
-                  <m.div className="absolute bottom-2 left-1 h-[190px] w-[190px]">
-                    <Mascot
-                      variant="small"
-                      state="sad"
-                      gazeDirection="right"
-                      size={220}
-                      motionLevel={shouldLoop ? "full" : "minimal"}
-                      className="h-full w-full"
-                    />
-                  </m.div>
-
-                  <m.div
-                    className="absolute right-0 top-2 h-[220px] w-[220px]"
-                    initial={prefersReducedMotion ? false : { opacity: 0, y: 16, scale: 0.94 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={
-                      prefersReducedMotion
-                        ? { duration: 0 }
-                        : { type: "spring", stiffness: 120, damping: 18, duration: 0.95 }
-                    }
-                  >
-                    <div className={shouldLoop ? "not-found-parent-fly-in" : undefined}>
-                      <m.div
-                        animate={
-                          shouldLoop
-                            ? {
-                                y: [0, -6, 0],
-                                rotate: [0, -1.2, 0],
-                              }
-                            : undefined
-                        }
-                        transition={
-                          shouldLoop
-                            ? {
-                                duration: 2.1,
-                                ease: "easeInOut",
-                                repeat: Infinity,
-                              }
-                            : undefined
-                        }
-                      >
-                        <Mascot
-                          variant="big"
-                          state="love"
-                          gazeDirection="left"
-                          size={240}
-                          motionLevel={shouldLoop ? "full" : "minimal"}
-                          className="h-full w-full"
-                        />
-                      </m.div>
-                    </div>
-                  </m.div>
-                </m.div>
-              )}
-
-              {activePhase === 3 && (
-                <m.div
-                  key="phase-3"
-                  className="relative flex h-full items-center justify-center"
-                  initial={sceneInitial}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={sceneExit}
-                  transition={sceneTransition}
-                >
-                  <div aria-hidden className="absolute h-60 w-72 rounded-full bg-amber-200/15 blur-[72px]" />
-                  <Mascot
-                    variant="duo"
-                    state="idle"
-                    parentState="love"
-                    childState="happy"
-                    parentGazeDirection="right"
-                    childGazeDirection="left"
-                    layout="horizontal"
-                    size={320}
-                    motionLevel={shouldLoop ? "full" : "minimal"}
-                    className="relative h-[252px] w-[320px] drop-shadow-[0_22px_52px_rgba(59,130,246,0.32)]"
-                  />
-                </m.div>
-              )}
-            </AnimatePresence>
-
-            {activePhase >= 3 && (
-              <svg
-                aria-hidden
-                className="pointer-events-none absolute left-1/2 top-[62%] h-[210px] w-[320px] -translate-x-1/2"
-                viewBox="0 0 320 210"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <m.path
-                  d="M160 18C198 50 224 100 164 178"
-                  stroke="#fde047"
-                  strokeOpacity="0.6"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeDasharray="8 6"
-                  animate={shouldLoop ? { strokeDashoffset: [0, -42] } : undefined}
-                  transition={
-                    shouldLoop
-                      ? {
-                          duration: 1.8,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }
-                      : undefined
-                  }
-                />
-                <path d="M154 172L164 184L174 172" stroke="#fde047" strokeOpacity="0.78" strokeWidth="3" strokeLinecap="round" />
-              </svg>
-            )}
-          </div>
-
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence mode="wait">
             <m.h1
-              key={`headline-${activePhase === 3 ? "found" : "lost"}`}
+              key={phase === 3 ? "found" : "lost"}
               className="max-w-[22ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl"
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.38, ease: "easeOut" }}
+              exit={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.35 }}
             >
-              {headline}
+              {getHeadline(phase)}
             </m.h1>
           </AnimatePresence>
 
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence mode="wait">
             <m.p
-              key={`subtext-${activePhase}`}
-              className="max-w-[52ch] text-pretty text-base leading-relaxed text-slate-200/92 sm:text-lg"
+              key={phase}
+              className="max-w-[50ch] text-pretty text-base leading-relaxed text-slate-200/90 sm:text-lg"
               initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -6 }}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.34, ease: "easeOut" }}
+              exit={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }}
             >
-              {getSubtext(activePhase)}
+              {getSubtext(phase)}
             </m.p>
           </AnimatePresence>
 
-          <m.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.42, delay: activePhase === 3 ? 0.18 : 0 }}
+          <Link
+            href="/"
+            className="inline-flex min-h-12 items-center justify-center rounded-full border border-emerald-200/45 px-7 text-sm font-black text-slate-950 shadow-[0_18px_36px_rgba(45,212,191,0.34)] transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
+            style={{
+              background: "linear-gradient(90deg, #34d399, #22d3ee, #34d399)",
+              backgroundSize: "200% 100%",
+              animation: shouldLoop ? "notFoundShimmer 2.5s linear infinite" : undefined,
+            }}
           >
-            <Link
-              href="/"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-emerald-200/45 px-7 text-sm font-black text-slate-950 shadow-[0_18px_36px_rgba(45,212,191,0.34)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_40px_rgba(45,212,191,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
-              style={{
-                background: "linear-gradient(90deg, #34d399, #22d3ee, #34d399)",
-                backgroundSize: "200% 100%",
-                animation: shouldLoop ? "notFoundShimmer 2.5s linear infinite" : undefined,
-              }}
-            >
-              {activePhase >= 3 ? "🏠 Về trang chủ cùng Cú Mẹ" : "🏠 Về trang chủ"}
-            </Link>
-          </m.div>
+            {phase >= 3 ? "🏠 Về trang chủ cùng Cú Mẹ" : "🏠 Về trang chủ"}
+          </Link>
 
-          <m.button
+          <button
             type="button"
             onClick={() => router.back()}
-            className="text-sm font-medium text-slate-300/88 underline-offset-4 transition hover:text-slate-100 hover:underline"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.36, delay: 0.08 }}
+            className="text-sm font-medium text-slate-300/80 underline-offset-4 transition hover:text-slate-100 hover:underline"
           >
             ← Quay lại trang trước
-          </m.button>
+          </button>
         </section>
-
-        <style jsx>{`
-          .not-found-fog {
-            position: absolute;
-            border-radius: 999px;
-            filter: blur(42px);
-            pointer-events: none;
-            opacity: 0.3;
-            animation: notFoundFogDrift linear infinite;
-          }
-
-          .not-found-fog-a {
-            width: min(56vw, 560px);
-            height: min(20vh, 180px);
-            top: 12%;
-            left: -16%;
-            background: radial-gradient(circle, rgba(20, 184, 166, 0.28) 0%, transparent 70%);
-            animation-duration: 38s;
-          }
-
-          .not-found-fog-b {
-            width: min(52vw, 520px);
-            height: min(22vh, 190px);
-            top: 48%;
-            right: -16%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.24) 0%, transparent 70%);
-            animation-duration: 44s;
-            animation-delay: 1.2s;
-          }
-
-          @keyframes notFoundTwinkle {
-            0%,
-            100% {
-              opacity: 0.35;
-              transform: scale(0.78);
-            }
-            50% {
-              opacity: 0.95;
-              transform: scale(1.22);
-            }
-          }
-
-          @keyframes notFoundFootprint {
-            0%,
-            100% {
-              transform: translateY(0);
-            }
-            50% {
-              transform: translateY(-4px);
-            }
-          }
-
-          @keyframes notFoundFogDrift {
-            0% {
-              transform: translate3d(-6%, 0, 0);
-            }
-            50% {
-              transform: translate3d(7%, -2%, 0);
-            }
-            100% {
-              transform: translate3d(-6%, 0, 0);
-            }
-          }
-
-          @keyframes notFoundFlyIn {
-            0% {
-              transform: translateX(120px) translateY(-14px) scale(0.95);
-            }
-            68% {
-              transform: translateX(-8px) translateY(2px) scale(1.01);
-            }
-            100% {
-              transform: translateX(0) translateY(0) scale(1);
-            }
-          }
-
-          .not-found-parent-fly-in {
-            animation: notFoundFlyIn 0.95s cubic-bezier(0.22, 1, 0.36, 1);
-          }
-
-          @keyframes notFoundShimmer {
-            0% {
-              background-position: -200% center;
-            }
-            100% {
-              background-position: 200% center;
-            }
-          }
-        `}</style>
       </main>
     </LazyMotion>
   );
