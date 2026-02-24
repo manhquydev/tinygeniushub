@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { WaitlistForm } from "./waitlist-form";
+import { IconStar, IconCalendar } from "@/components/icons";
+import "./waitlist.css";
 
 export const metadata: Metadata = {
   title: "Đăng ký trước — Cùng Con Tự Học",
@@ -27,11 +29,13 @@ export default function WaitlistPage() {
       </section>
 
       <section className="card-grid">
-        <article className="card">
+        <article className="card waitlist-info-card">
+          <IconStar size={28} className="waitlist-card-icon" />
           <h2>Ưu đãi beta</h2>
           <p className="muted-text">50 gia đình đầu tiên nhận 1 tháng Premium miễn phí và không giới hạn feedback trực tiếp với team.</p>
         </article>
-        <article className="card">
+        <article className="card waitlist-info-card">
+          <IconCalendar size={28} className="waitlist-card-icon" />
           <h2>Ra mắt khi nào?</h2>
           <p className="muted-text">Dự kiến tháng 3/2026. Beta families được dùng ngay từ tuần tới.</p>
         </article>

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { getParentFromServerCookie } from "@/lib/auth/session";
 import { getReferralSummaryForParentReadOnly } from "@/modules/referral/service";
 import { buildReferralUrl } from "@/modules/sharing/share-link-builder";
+import { IconGift, IconUsers } from "@/components/icons";
+import "./referral.css";
 
 export const metadata: Metadata = {
   title: "Giới thiệu bạn bè",
@@ -39,11 +41,13 @@ export default async function ReferralPublicPage() {
 
       {/* Dual-sided reward highlight */}
       <section className="card-grid">
-        <article className="card">
+        <article className="card referral-reward-card">
+          <IconGift size={28} className="referral-card-icon" />
           <h2>Bạn nhận</h2>
           <p className="muted-text">+7 ngày Premium mỗi lần giới thiệu thành công.</p>
         </article>
-        <article className="card">
+        <article className="card referral-reward-card">
+          <IconUsers size={28} className="referral-card-icon" />
           <h2>Bạn bè nhận</h2>
           <p className="muted-text">7 ngày dùng thử miễn phí — không cần thẻ tín dụng.</p>
         </article>
@@ -115,7 +119,7 @@ export default async function ReferralPublicPage() {
 
       <section className="card">
         <h2>Điều khoản ngắn gọn</h2>
-        <ul>
+        <ul className="referral-terms-list">
           <li>Phần thưởng chỉ áp dụng cho lượt giới thiệu hợp lệ theo chính sách chương trình.</li>
           <li>Cùng Con Tự Học có quyền từ chối các trường hợp gian lận hoặc trùng lặp.</li>
           <li>Điều khoản chi tiết có thể được cập nhật để đảm bảo công bằng cho cộng đồng.</li>
