@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const runtimeNodeEnv = process.env.NODE_ENV ?? "development";
 const isProduction = runtimeNodeEnv === "production";
+const allowCiFallbacks = process.env.CI === "true";
 
 const envSchema = z.object({
   DATABASE_URL: z.string().min(1),
@@ -83,8 +84,10 @@ const parsedEnv = envSchema.parse({
   SESSION_SECRET:
     process.env.SESSION_SECRET ?? (isProduction ? undefined : "dev-session-secret-change-this-in-production-32"),
   BETTER_AUTH_SECRET:
-    process.env.BETTER_AUTH_SECRET ?? (isProduction ? undefined : "dev-better-auth-secret-change-this-in-production-32"),
-  BETTER_AUTH_URL: process.env.BETTER_AUTH_URL ?? (isProduction ? undefined : "http://localhost:3000"),
+    process.env.BETTER_AUTH_SECRET ??
+    (isProduction && !allowCiFallbacks ? undefined : "dev-better-auth-secret-change-this-in-production-32"),
+  BETTER_AUTH_URL:
+    process.env.BETTER_AUTH_URL ?? (isProduction && !allowCiFallbacks ? undefined : "http://localhost:3000"),
   AUTH_TRUSTED_ORIGINS: process.env.AUTH_TRUSTED_ORIGINS,
   BILLING_WEBHOOK_SECRET: process.env.BILLING_WEBHOOK_SECRET ?? (isProduction ? undefined : "dev-webhook-secret"),
   BILLING_WEBHOOK_MAX_BYTES: process.env.BILLING_WEBHOOK_MAX_BYTES,
@@ -99,7 +102,7 @@ const parsedEnv = envSchema.parse({
   REPORT_EMAIL_FROM: process.env.REPORT_EMAIL_FROM,
   REPORT_EMAIL_REPLY_TO: process.env.REPORT_EMAIL_REPLY_TO,
   REPORT_EMAIL_TO_OVERRIDE: process.env.REPORT_EMAIL_TO_OVERRIDE,
-  CRON_SECRET: process.env.CRON_SECRET ?? (isProduction ? undefined : "dev-cron-secret-change-this"),
+  CRON_SECRET: process.env.CRON_SECRET ?? (isProduction && !allowCiFallbacks ? undefined : "dev-cron-secret-change-this"),
   STORAGE_PROVIDER: process.env.STORAGE_PROVIDER,
   MEDIA_UPLOAD_URL_TTL_SECONDS: process.env.MEDIA_UPLOAD_URL_TTL_SECONDS,
   WATCH_SESSION_TTL_SECONDS: process.env.WATCH_SESSION_TTL_SECONDS,
@@ -110,7 +113,7 @@ const parsedEnv = envSchema.parse({
   MOCK_UPLOAD_SIGNING_SECRET:
     process.env.MOCK_UPLOAD_SIGNING_SECRET ??
     process.env.BETTER_AUTH_SECRET ??
-    (isProduction ? undefined : "dev-mock-upload-signing-secret-change-this-in-production-32"),
+    (isProduction && !allowCiFallbacks ? undefined : "dev-mock-upload-signing-secret-change-this-in-production-32"),
   REDIS_URL: process.env.REDIS_URL ?? (isProduction ? undefined : "redis://localhost:6379"),
   RATE_LIMIT_TRUST_PROXY: process.env.RATE_LIMIT_TRUST_PROXY,
   RATE_LIMIT_TRUSTED_HOPS: process.env.RATE_LIMIT_TRUSTED_HOPS,

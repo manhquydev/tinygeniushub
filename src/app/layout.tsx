@@ -33,7 +33,14 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={mainFont.variable}>{children}</body>
+      <body className={mainFont.variable}>
+        {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(e){console.warn('[SW]',e)})})}`,
+          }}
+        />
+      </body>
     </html>
   );
 }

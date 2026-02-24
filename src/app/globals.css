@@ -1039,6 +1039,7 @@ ul {
 }
 
 @keyframes lessonStarTwinkle {
+
   0%,
   100% {
     opacity: 0.15;
@@ -1050,6 +1051,7 @@ ul {
 }
 
 @keyframes lessonNebulaDrift {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -1895,6 +1897,7 @@ ul {
 }
 
 @keyframes journey-nebula-drift {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -1906,6 +1909,7 @@ ul {
 }
 
 @keyframes journey-star-twinkle {
+
   0%,
   100% {
     opacity: var(--star-alpha-min, 0.26);
@@ -1965,6 +1969,7 @@ ul {
 }
 
 @keyframes journey-path-glow {
+
   0%,
   100% {
     opacity: 0.22;
@@ -1976,6 +1981,7 @@ ul {
 }
 
 @keyframes journey-planet-drift {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -2001,6 +2007,7 @@ ul {
 }
 
 @keyframes space-star-twinkle {
+
   0%,
   100% {
     opacity: var(--space-star-min, 0.2);
@@ -2029,6 +2036,7 @@ ul {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .journey-path-glow,
   .journey-path-line,
   .journey-planet {
@@ -2526,7 +2534,7 @@ ul {
   margin-top: 1rem;
 }
 
-.values-grid > article {
+.values-grid>article {
   text-align: center;
   padding: 1.25rem;
   background: #fafafa;
@@ -2719,8 +2727,122 @@ ul {
     text-align: center;
   }
 }
-.weekly-chart-container { padding: 1.5rem; background: var(--color-surface, #f8fafc); border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid color-mix(in srgb, var(--color-primary, #0f766e) 16%, #dbe2ea); }
-.chart-bar { transition: opacity 0.15s; }
-.chart-bar:hover { opacity: 1; }
-.chart-legend { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; justify-content: space-around; }
-.chart-legend-item { display: flex; flex-direction: column; font-size: 0.7rem; color: var(--color-text-muted, #64748b); text-align: center; }
+
+.weekly-chart-container {
+  padding: 1.5rem;
+  background: var(--color-surface, #f8fafc);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary, #0f766e) 16%, #dbe2ea);
+}
+
+.chart-bar {
+  transition: opacity 0.15s;
+}
+
+.chart-bar:hover {
+  opacity: 1;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.chart-legend-item {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  color: var(--color-text-muted, #64748b);
+  text-align: center;
+}
+
+/* =========================================================
+   404 Not-Found Page Animations
+   ========================================================= */
+
+.not-found-fog {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(42px);
+  pointer-events: none;
+  opacity: 0.3;
+  animation: notFoundFogDrift linear infinite;
+}
+
+.not-found-fog-a {
+  width: min(56vw, 560px);
+  height: min(20vh, 180px);
+  top: 12%;
+  left: -16%;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.28) 0%, transparent 70%);
+  animation-duration: 38s;
+}
+
+.not-found-fog-b {
+  width: min(52vw, 520px);
+  height: min(22vh, 190px);
+  top: 48%;
+  right: -16%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.24) 0%, transparent 70%);
+  animation-duration: 44s;
+  animation-delay: 1.2s;
+}
+
+@keyframes notFoundTwinkle {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.78);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.22);
+  }
+}
+
+@keyframes notFoundFogDrift {
+  0% {
+    transform: translate3d(-6%, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(7%, -2%, 0);
+  }
+
+  100% {
+    transform: translate3d(-6%, 0, 0);
+  }
+}
+
+@keyframes notFoundShimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Loading page progress bar */
+@keyframes loadingBar {
+  0% {
+    transform: translateX(-100%);
+    width: 40%;
+  }
+
+  50% {
+    width: 70%;
+  }
+
+  100% {
+    transform: translateX(200%);
+    width: 40%;
+  }
+}
