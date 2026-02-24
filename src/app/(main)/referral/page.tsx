@@ -1,62 +1,117 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getParentFromServerCookie } from "@/lib/auth/session";
+import { getReferralSummaryForParentReadOnly } from "@/modules/referral/service";
+import { buildReferralUrl } from "@/modules/sharing/share-link-builder";
 
 export const metadata: Metadata = {
-  title: "Giới Thiệu Bạn Bè | Cùng Con Tự Học",
-  description: "Giới thiệu bạn bè dùng Cùng Con Tự Học và nhận ưu đãi hấp dẫn.",
+  title: "Giới thiệu bạn bè",
+  description:
+    "Giới thiệu bạn bè dùng Cùng Con Tự Học — cả hai cùng nhận 7 ngày học miễn phí.",
   alternates: { canonical: "https://cungcontuhoc.vn/referral" },
 };
 
+const TIERS = [
+  { referrals: 1, reward: "7 ngày Premium miễn phí" },
+  { referrals: 3, reward: "1 tháng Premium miễn phí" },
+  { referrals: 10, reward: "1 năm Premium miễn phí" },
+] as const;
+
 export default async function ReferralPublicPage() {
   const parent = await getParentFromServerCookie();
+  const summary = parent
+    ? await getReferralSummaryForParentReadOnly(parent.id)
+    : null;
+
+  const referralUrl = summary?.code
+    ? buildReferralUrl(summary.code, "facebook", "referral_page")
+    : null;
 
   return (
     <div className="page-stack">
       <section className="hero">
-        <h1>Chia sẻ niềm vui học tập</h1>
+        <h1>Chia sẻ — cả hai cùng được</h1>
         <p>
-          Mỗi khi bạn giới thiệu thêm một gia đình bắt đầu hành trình học cùng con, cộng đồng học tập sẽ lớn mạnh hơn và
-          bạn nhận thêm quyền lợi từ chương trình giới thiệu.
+          Mỗi gia đình bạn giới thiệu sẽ nhận <strong>7 ngày học miễn phí</strong>. Bạn
+          cũng nhận thêm <strong>7 ngày Premium</strong> khi họ đăng ký thành công.
         </p>
       </section>
 
+      {/* Dual-sided reward highlight */}
       <section className="card-grid">
         <article className="card">
-          <h2>1. Đăng ký tài khoản</h2>
-          <p className="muted-text">Tạo tài khoản phụ huynh và kích hoạt hồ sơ bé.</p>
+          <h2>Bạn nhận</h2>
+          <p className="muted-text">+7 ngày Premium mỗi lần giới thiệu thành công.</p>
         </article>
-
         <article className="card">
-          <h2>2. Chia sẻ liên kết</h2>
-          <p className="muted-text">Gửi mã hoặc liên kết giới thiệu cho bạn bè, người thân.</p>
-        </article>
-
-        <article className="card">
-          <h2>3. Nhận phần thưởng</h2>
-          <p className="muted-text">Khi lời mời hợp lệ, phần thưởng sẽ được ghi nhận trong dashboard của bạn.</p>
+          <h2>Bạn bè nhận</h2>
+          <p className="muted-text">7 ngày dùng thử miễn phí — không cần thẻ tín dụng.</p>
         </article>
       </section>
 
+      {/* Referral tiers */}
       <section className="card">
-        <h2>Bắt đầu ngay</h2>
-        <p className="muted-text">
-          {parent
-            ? "Bạn đã đăng nhập. Truy cập dashboard để lấy liên kết giới thiệu của riêng bạn."
-            : "Bạn chưa đăng nhập. Tạo tài khoản để tham gia chương trình giới thiệu."}
-        </p>
-        <div className="hero-actions">
-          {parent ? (
-            <Link href="/parent/dashboard" className="solid-button">
-              Mở dashboard phụ huynh
-            </Link>
-          ) : (
-            <Link href="/auth/signup" className="solid-button">
-              Đăng ký tài khoản
-            </Link>
-          )}
-        </div>
+        <h2>Phần thưởng lũy tiến</h2>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              <th style={{ textAlign: "left", padding: "8px 0", borderBottom: "1px solid var(--color-border)" }}>Số lần giới thiệu thành công</th>
+              <th style={{ textAlign: "left", padding: "8px 0", borderBottom: "1px solid var(--color-border)" }}>Phần thưởng bạn nhận</th>
+            </tr>
+          </thead>
+          <tbody>
+            {TIERS.map((tier) => (
+              <tr key={tier.referrals}>
+                <td style={{ padding: "8px 0", borderBottom: "1px solid var(--color-border-subtle)" }}>
+                  {tier.referrals} gia đình
+                </td>
+                <td style={{ padding: "8px 0", borderBottom: "1px solid var(--color-border-subtle)" }}>
+                  {tier.reward}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </section>
+
+      {/* Logged-in: show referral link + stats */}
+      {parent && summary ? (
+        <section className="card">
+          <h2>Liên kết của bạn</h2>
+          {referralUrl ? (
+            <>
+              <p className="muted-text">Chia sẻ link này với bạn bè:</p>
+              <code style={{ display: "block", padding: "12px", background: "var(--color-surface-alt, #f5f5f5)", borderRadius: "6px", wordBreak: "break-all", marginBottom: "16px" }}>
+                {referralUrl}
+              </code>
+              <div className="hero-actions">
+                <Link href="/parent/dashboard" className="solid-button">
+                  Xem dashboard phụ huynh
+                </Link>
+              </div>
+              <p className="muted-text" style={{ marginTop: "16px" }}>
+                Đã giới thiệu: <strong>{summary.totalReferrals}</strong> gia đình &nbsp;·&nbsp;
+                Đã thanh toán: <strong>{summary.paidReferrals}</strong> &nbsp;·&nbsp;
+                Phần thưởng đã nhận: <strong>{summary.rewardedReferrals}</strong> lần
+              </p>
+            </>
+          ) : (
+            <p className="muted-text">Đang tạo mã giới thiệu cho bạn...</p>
+          )}
+        </section>
+      ) : (
+        <section className="card">
+          <h2>Bắt đầu ngay</h2>
+          <p className="muted-text">
+            Đăng ký tài khoản để nhận mã giới thiệu của riêng bạn.
+          </p>
+          <div className="hero-actions">
+            <Link href="/auth/signup" className="solid-button">
+              Đăng ký miễn phí
+            </Link>
+          </div>
+        </section>
+      )}
 
       <section className="card">
         <h2>Điều khoản ngắn gọn</h2>
