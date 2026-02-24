@@ -1,0 +1,145 @@
+/* Pricing page styles — co-located with pricing/page.tsx */
+
+.pricing-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items: start;
+}
+
+/* Featured card (Standard annual) */
+.pricing-card--featured {
+  border: 2px solid var(--brand-500);
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.12);
+  position: relative;
+}
+
+/* Muted card (monthly anchor) */
+.pricing-card--muted {
+  opacity: 0.8;
+  background: rgba(248, 250, 252, 0.6);
+}
+
+.pricing-card--muted h2 {
+  color: var(--ink-700);
+}
+
+/* Badges */
+.pricing-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.pricing-badge--popular {
+  background: var(--brand-500);
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-badge--savings {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--brand-700);
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+}
+
+.pricing-badge--monthly {
+  background: var(--surface-200);
+  color: var(--ink-700);
+  margin-bottom: 0.5rem;
+}
+
+/* Price amount */
+.pricing-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin: 0.25rem 0;
+}
+
+.pricing-amount__main {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink-900);
+}
+
+.pricing-amount__period {
+  font-size: 0.9rem;
+  color: var(--ink-700);
+}
+
+.pricing-amount__monthly {
+  font-size: 0.875rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+/* Monthly anchor tip + CTA */
+.pricing-card__tip {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.pricing-card__cta {
+  margin-top: 1rem;
+}
+
+/* Social proof bar */
+.pricing-social-proof {
+  text-align: center;
+  padding: 1.5rem;
+}
+.faq-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.faq-item {
+  border: 1px solid var(--surface-200);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question::after {
+  content: "+";
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--brand-500);
+  transition: transform var(--motion-quick);
+}
+
+details[open] .faq-question::after {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 0 1rem 0.875rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-700);
+  line-height: 1.6;
+}
