@@ -4,7 +4,7 @@ import { useState, useEffect, useTransition } from "react";
 
 type CourseLesson = {
   orderNo: number;
-  lesson: { id: string; title: string; objective: string; estimatedMinutes: number };
+  lesson: { id: string; title: string; estimatedMinutes: number };
 };
 
 type Props = {
@@ -16,16 +16,43 @@ type Props = {
 
 type VideoState = { status: "loading" | "ready" | "unavailable"; embedUrl?: string };
 
-export function CourseLessonsPlayer({ courseTitle, lessons }: Props) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+const STORAGE_KEY = (slug: string) => `ccth_course_progress_${slug}`;
+
+export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollmentId }: Props) {
+  const [selectedIndex, setSelectedIndex] = useState(() => {
+    // Resume from last position saved in localStorage
+    if (typeof localStorage === "undefined") return 0;
+    const saved = localStorage.getItem(STORAGE_KEY(courseSlug));
+    const savedIdx = saved !== null ? Number(saved) : 0;
+    return Number.isFinite(savedIdx) && savedIdx < lessons.length ? savedIdx : 0;
+  });
   const [video, setVideo] = useState<VideoState>({ status: "loading" });
+  const [completedSet, setCompletedSet] = useState<Set<string>>(() => {
+    if (typeof localStorage === "undefined") return new Set();
+    const raw = localStorage.getItem(`${STORAGE_KEY(courseSlug)}_done`);
+    try {
+      return new Set(JSON.parse(raw ?? "[]") as string[]);
+    } catch {
+      return new Set();
+    }
+  });
+  const [marking, setMarking] = useState(false);
   const [, startTransition] = useTransition();
 
   const selected = lessons[selectedIndex];
+  const isCompleted = selected ? completedSet.has(selected.lesson.id) : false;
+  const isLast = selectedIndex === lessons.length - 1;
 
+  // Persist selected index
+  useEffect(() => {
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem(STORAGE_KEY(courseSlug), String(selectedIndex));
+    }
+  }, [courseSlug, selectedIndex]);
+
+  // Load video on lesson change
   useEffect(() => {
     if (!selected) return;
-    // Use startTransition to avoid synchronous setState inside effect body
     startTransition(() => setVideo({ status: "loading" }));
 
     fetch(`/api/lessons/${selected.lesson.id}/video-token`)
@@ -41,13 +68,38 @@ export function CourseLessonsPlayer({ courseTitle, lessons }: Props) {
         }
       })
       .catch(() => setVideo({ status: "unavailable" }));
-  }, [selected?.lesson.id]);
+  }, [selected?.lesson.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function markComplete() {
+    if (!selected || isCompleted || marking) return;
+    setMarking(true);
+    try {
+      const updated = new Set(completedSet).add(selected.lesson.id);
+      setCompletedSet(updated);
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem(
+          `${STORAGE_KEY(courseSlug)}_done`,
+          JSON.stringify([...updated]),
+        );
+      }
+      // If all lessons complete, call the course complete API
+      if (updated.size === lessons.length) {
+        await fetch(`/api/courses/${courseSlug}/complete`, { method: "POST" });
+      }
+    } finally {
+      setMarking(false);
+    }
+  }
+
+  function goNext() {
+    if (!isLast) setSelectedIndex((i) => i + 1);
+  }
 
   return (
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "280px 1fr",
+        gridTemplateColumns: "260px 1fr",
         gap: "1.25rem",
         alignItems: "start",
       }}
@@ -55,63 +107,57 @@ export function CourseLessonsPlayer({ courseTitle, lessons }: Props) {
     >
       {/* Sidebar */}
       <aside className="card" style={{ padding: "1rem", position: "sticky", top: "1rem" }}>
-        <h2 style={{ fontSize: "0.95rem", fontWeight: 700, marginBottom: "0.75rem" }}>{courseTitle}</h2>
+        <h2 style={{ fontSize: "0.88rem", fontWeight: 700, marginBottom: "0.75rem" }}>
+          {courseTitle}
+        </h2>
+        <p style={{ fontSize: "0.78rem", marginBottom: "0.75rem" }} className="muted-text">
+          {completedSet.size}/{lessons.length} bài hoàn thành
+        </p>
         <nav style={{ display: "grid", gap: "0.25rem" }}>
-          {lessons.map(({ orderNo, lesson }, idx) => (
-            <button
-              key={lesson.id}
-              onClick={() => setSelectedIndex(idx)}
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "0.5rem",
-                padding: "0.6rem 0.75rem",
-                borderRadius: 10,
-                border: "none",
-                cursor: "pointer",
-                textAlign: "left",
-                background: idx === selectedIndex ? "var(--brand-50, #f0fdf4)" : "transparent",
-                color: idx === selectedIndex ? "var(--brand-700, #15803d)" : "inherit",
-                fontWeight: idx === selectedIndex ? 700 : 400,
-                fontSize: "0.875rem",
-                lineHeight: 1.4,
-                width: "100%",
-              }}
-            >
-              <span
-                className="muted-text"
-                style={{ minWidth: "1.4rem", fontVariantNumeric: "tabular-nums" }}
+          {lessons.map(({ orderNo, lesson }, idx) => {
+            const done = completedSet.has(lesson.id);
+            const active = idx === selectedIndex;
+            return (
+              <button
+                key={lesson.id}
+                type="button"
+                onClick={() => setSelectedIndex(idx)}
+                style={{
+                  textAlign: "left",
+                  padding: "0.5rem 0.6rem",
+                  borderRadius: 8,
+                  border: "none",
+                  cursor: "pointer",
+                  background: active ? "rgba(79,70,229,0.1)" : "transparent",
+                  color: active ? "#4f46e5" : done ? "#6b7280" : "#0f172a",
+                  fontWeight: active ? 700 : 500,
+                  fontSize: "0.85rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                }}
               >
-                {orderNo}.
-              </span>
-              <span>{lesson.title}</span>
-            </button>
-          ))}
+                <span style={{ opacity: 0.5, minWidth: 18 }}>{orderNo}.</span>
+                <span style={{ flex: 1 }}>{lesson.title}</span>
+                {done && <span style={{ color: "#10b981" }}>✓</span>}
+              </button>
+            );
+          })}
         </nav>
       </aside>
 
       {/* Main content */}
       <div style={{ display: "grid", gap: "1rem" }}>
-        {/* Video area */}
+        {/* Video */}
         <div
           className="card"
           style={{ padding: 0, overflow: "hidden", aspectRatio: "16/9", position: "relative" }}
         >
           {video.status === "loading" && (
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: "rgba(248,250,252,0.9)",
-              }}
-            >
+            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(248,250,252,0.9)" }}>
               <p className="muted-text">Đang tải video...</p>
             </div>
           )}
-
           {video.status === "ready" && video.embedUrl && (
             <iframe
               src={video.embedUrl}
@@ -121,41 +167,54 @@ export function CourseLessonsPlayer({ courseTitle, lessons }: Props) {
               title={selected?.lesson.title}
             />
           )}
-
           {video.status === "unavailable" && (
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "0.5rem",
-                background: "rgba(248,250,252,0.9)",
-              }}
-            >
+            <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "0.5rem", background: "rgba(248,250,252,0.9)" }}>
               <p style={{ fontWeight: 700, fontSize: "1.1rem" }}>{selected?.lesson.title}</p>
               <p className="muted-text">Video sắp ra mắt</p>
             </div>
           )}
         </div>
 
-        {/* Lesson info */}
+        {/* Lesson info + actions */}
         {selected && (
-          <div className="card">
-            <h1 style={{ fontSize: "1.2rem", fontWeight: 700 }}>
-              <span className="muted-text" style={{ marginRight: "0.5rem" }}>
-                {selected.orderNo}.
-              </span>
+          <div className="card" style={{ display: "grid", gap: "0.75rem" }}>
+            <h1 style={{ fontSize: "1.15rem", fontWeight: 700 }}>
+              <span className="muted-text" style={{ marginRight: "0.5rem" }}>{selected.orderNo}.</span>
               {selected.lesson.title}
             </h1>
-            {selected.lesson.objective && (
-              <p style={{ lineHeight: 1.6 }}>{selected.lesson.objective}</p>
-            )}
-            <p className="muted-text" style={{ fontSize: "0.875rem" }}>
-              {selected.lesson.estimatedMinutes} phút
-            </p>
+            <p className="muted-text" style={{ fontSize: "0.85rem" }}>{selected.lesson.estimatedMinutes} phút</p>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+              {!isCompleted ? (
+                <button
+                  type="button"
+                  className="solid-button"
+                  onClick={markComplete}
+                  disabled={marking}
+                  style={{ width: "fit-content" }}
+                >
+                  {marking ? "Đang lưu..." : "✓ Đánh dấu đã học"}
+                </button>
+              ) : (
+                <span style={{ color: "#10b981", fontWeight: 700, display: "flex", alignItems: "center", gap: "0.3rem" }}>
+                  ✓ Đã hoàn thành
+                </span>
+              )}
+              {!isLast && (
+                <button
+                  type="button"
+                  className="ghost-button"
+                  onClick={goNext}
+                  style={{ width: "fit-content" }}
+                >
+                  Bài tiếp theo →
+                </button>
+              )}
+              {isLast && completedSet.size === lessons.length && (
+                <a href={`/parent/courses`} className="ghost-button" style={{ width: "fit-content" }}>
+                  🎉 Xem chứng chỉ
+                </a>
+              )}
+            </div>
           </div>
         )}
       </div>
