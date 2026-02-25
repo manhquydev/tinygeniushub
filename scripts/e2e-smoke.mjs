@@ -155,7 +155,7 @@ async function requestJson(baseUrl, path, options = {}) {
 }
 
 async function loginParent(baseUrl) {
-  const email = process.env.E2E_PARENT_EMAIL ?? "demo.parent@cungcontuhoc.vn";
+  const email = process.env.E2E_PARENT_EMAIL ?? "demo.parent@cungcontuhoc.io.vn";
   const password = process.env.E2E_PARENT_PASSWORD ?? "DemoPass123!";
   const login = await requestJson(baseUrl, "/api/auth/login", {
     method: "POST",

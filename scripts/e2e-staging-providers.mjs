@@ -393,7 +393,7 @@ async function main() {
   process.env.BILLING_WEBHOOK_SECRET = process.env.BILLING_WEBHOOK_SECRET ?? "dev-webhook-secret";
   process.env.STRIPE_WEBHOOK_SECRETS =
     process.env.STRIPE_WEBHOOK_SECRETS ?? process.env.BILLING_WEBHOOK_SECRET;
-  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@cungcontuhoc.vn";
+  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@cungcontuhoc.io.vn";
   const adminPassword = process.env.E2E_ADMIN_PASSWORD ?? "DemoAdmin123!";
   process.env.ADMIN_EMAILS = process.env.ADMIN_EMAILS ?? adminEmail;
   const billingProvider = process.env.BILLING_PROVIDER ?? "mock_gateway";

@@ -295,7 +295,7 @@ async function main() {
   const defaultParentEmail = `security-${runId}@example.com`;
   const parentEmail = process.env.E2E_PARENT_EMAIL ?? defaultParentEmail;
   const parentPassword = process.env.E2E_PARENT_PASSWORD ?? "DemoPass123!";
-  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@cungcontuhoc.vn";
+  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@cungcontuhoc.io.vn";
   const adminPassword = process.env.E2E_ADMIN_PASSWORD ?? "DemoAdmin123!";
 
   process.env.ADMIN_EMAILS = adminEmail;

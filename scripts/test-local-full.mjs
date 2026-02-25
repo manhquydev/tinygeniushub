@@ -26,7 +26,7 @@ function runCommand(command, options = {}) {
 }
 
 async function main() {
-  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@cungcontuhoc.vn";
+  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@cungcontuhoc.io.vn";
   const adminPassword = process.env.E2E_ADMIN_PASSWORD ?? "DemoAdmin123!";
 
   await runCommand("docker compose up -d");
