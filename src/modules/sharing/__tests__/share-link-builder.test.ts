@@ -37,7 +37,7 @@ describe("buildShareMessage", () => {
   it("includes child name and referral link", () => {
     const msg = buildShareMessage(BASE_INPUT, "facebook");
     expect(msg).toContain("An");
-    expect(msg).toContain("cungcontuhoc.vn");
+    expect(msg).toContain("cungcontuhoc.io.vn");
     expect(msg).toContain("ABC12345");
   });
 
