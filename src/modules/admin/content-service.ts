@@ -285,6 +285,8 @@ export async function listLessonsForUnit(unitId: string) {
       estimatedMinutes: true,
       trialEnabled: true,
       videoSource: true,
+      bunnyVideoId: true,
+      videoStatus: true,
       offlineCardMarkdown: true,
       parentScriptMarkdown: true,
       _count: {
@@ -353,6 +355,8 @@ export async function createLesson(data: {
       estimatedMinutes: true,
       trialEnabled: true,
       videoSource: true,
+      bunnyVideoId: true,
+      videoStatus: true,
       offlineCardMarkdown: true,
       parentScriptMarkdown: true,
       _count: {
@@ -406,6 +410,8 @@ export async function updateLesson(
       estimatedMinutes: true,
       trialEnabled: true,
       videoSource: true,
+      bunnyVideoId: true,
+      videoStatus: true,
       offlineCardMarkdown: true,
       parentScriptMarkdown: true,
       _count: {

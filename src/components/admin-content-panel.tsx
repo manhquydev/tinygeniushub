@@ -53,6 +53,8 @@ type LessonRow = {
   estimatedMinutes: number;
   trialEnabled: boolean;
   videoSource: string | null;
+  bunnyVideoId: string | null;
+  videoStatus: string;
   offlineCardMarkdown: string | null;
   parentScriptMarkdown: string | null;
   _count: {
@@ -318,6 +320,7 @@ export function AdminContentPanel() {
   const [lessonModalOpen, setLessonModalOpen] = useState(false);
   const [lessonModalMode, setLessonModalMode] = useState<"create" | "edit">("create");
   const [editingLessonId, setEditingLessonId] = useState<string | null>(null);
+  const [editingLessonBunny, setEditingLessonBunny] = useState<{ bunnyVideoId: string | null; videoStatus: string } | null>(null);
   const [lessonForm, setLessonForm] = useState<LessonFormState>(buildDefaultLessonForm());
   const [lessonSubmitting, setLessonSubmitting] = useState(false);
 
@@ -503,6 +506,7 @@ export function AdminContentPanel() {
   function openEditLessonModal(lesson: LessonRow) {
     setLessonModalMode("edit");
     setEditingLessonId(lesson.id);
+    setEditingLessonBunny({ bunnyVideoId: lesson.bunnyVideoId, videoStatus: lesson.videoStatus });
     setLessonForm({
       orderNo: String(lesson.orderNo),
       slug: lesson.slug,
@@ -1123,6 +1127,43 @@ export function AdminContentPanel() {
               placeholder="https://..."
             />
           </label>
+
+          {lessonModalMode === "edit" && editingLessonId && (
+            <div className="stack-field">
+              <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--ink-500)" }}>Bunny Stream video</span>
+              {editingLessonBunny?.bunnyVideoId ? (
+                <p style={{ fontSize: "0.82rem", color: "var(--ink-600)" }}>
+                  ID: <code>{editingLessonBunny.bunnyVideoId}</code> &nbsp;·&nbsp;
+                  Trạng thái: <strong>{editingLessonBunny.videoStatus}</strong>
+                </p>
+              ) : (
+                <p className="muted-text" style={{ fontSize: "0.82rem" }}>Chưa có video Bunny</p>
+              )}
+              <button
+                type="button"
+                className="ghost-button"
+                style={{ fontSize: "0.82rem", padding: "0.3rem 0.75rem" }}
+                onClick={async () => {
+                  if (!editingLessonId) return;
+                  const title = lessonForm.title || editingLessonId;
+                  const res = await fetch("/api/admin/videos/upload", {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify({ lessonId: editingLessonId, title }),
+                  });
+                  const json = (await res.json()) as { ok: boolean; data?: { videoId: string; uploadUrl: string } };
+                  if (json.ok && json.data) {
+                    setEditingLessonBunny({ bunnyVideoId: json.data.videoId, videoStatus: "uploading" });
+                    alert(`Tạo video Bunny thành công!\nVideo ID: ${json.data.videoId}\nUpload URL: ${json.data.uploadUrl}\n\nDùng Bunny Dashboard hoặc TUS client để tải file lên URL trên.`);
+                  } else {
+                    alert("Không thể tạo video Bunny. Kiểm tra BUNNY_STREAM_API_KEY trong .env");
+                  }
+                }}
+              >
+                {editingLessonBunny?.bunnyVideoId ? "Tạo video mới" : "Tạo video Bunny"}
+              </button>
+            </div>
+          )}
 
           <label className="stack-field">
             Offline card markdown
