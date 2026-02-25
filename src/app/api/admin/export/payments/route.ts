@@ -2,6 +2,7 @@
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { toCsvLine } from "@/lib/csv";
 import { handleRouteError } from "@/lib/route-error";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { listAdminPaymentsForExport } from "@/modules/admin/service";
 import { DomainError } from "@/modules/platform/errors";
 
@@ -11,6 +12,9 @@ function sanitizeForFileName(value: string) {
 
 export async function GET(request: NextRequest) {
   try {
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
+
     await requireAdminFromRequest(request);
 
     const from = request.nextUrl.searchParams.get("from") ?? undefined;

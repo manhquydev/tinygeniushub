@@ -2,10 +2,14 @@
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { toCsvLine } from "@/lib/csv";
 import { handleRouteError } from "@/lib/route-error";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { listAdminUsersForExport } from "@/modules/admin/service";
 
 export async function GET(request: NextRequest) {
   try {
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
+
     await requireAdminFromRequest(request);
 
     const result = await listAdminUsersForExport();

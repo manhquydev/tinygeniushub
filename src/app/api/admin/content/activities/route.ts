@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { fail, ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { createActivity, listActivitiesForLesson } from "@/modules/admin/content-service";
 
 export async function GET(request: NextRequest) {
@@ -22,6 +23,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const body = (await request.json()) as {
       lessonId?: string;

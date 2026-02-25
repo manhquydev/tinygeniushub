@@ -2,10 +2,16 @@
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { createAdminActionLog, executeAdminBulkUsersAction } from "@/modules/admin/service";
 
 export async function POST(request: NextRequest) {
   try {
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
+
+    assertTrustedOrigin(request);
     const admin = await requireAdminFromRequest(request);
     const input = await request.json();
 

@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { deleteLesson, updateLesson } from "@/modules/admin/content-service";
 
 type RouteParams = {
@@ -10,6 +11,7 @@ type RouteParams = {
 
 export async function PATCH(request: NextRequest, context: RouteParams) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await context.params;
     const body = (await request.json()) as {
@@ -40,6 +42,7 @@ export async function PATCH(request: NextRequest, context: RouteParams) {
 
 export async function DELETE(request: NextRequest, context: RouteParams) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await context.params;
     await deleteLesson(id);

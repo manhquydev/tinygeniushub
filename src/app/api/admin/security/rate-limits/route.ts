@@ -1,33 +1,14 @@
 import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
-import { fail, ok } from "@/lib/http";
-import { enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
+import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 import {
   getAdminSecuritySettings,
-  getRateLimitPolicy,
   updateAdminRateLimitPolicies,
 } from "@/modules/platform/security-policy-service";
-
-async function enforceAdminMutationRateLimit(request: NextRequest) {
-  const ipPolicy = await getRateLimitPolicy("admin.mutation.ip");
-  const ip = getRequestIp(request);
-  const ipRateLimit = await enforceRateLimit({
-    key: `admin:mutation:${ip}`,
-    limit: ipPolicy.limit,
-    windowMs: ipPolicy.windowMs,
-    storeFailureMode: "deny",
-  });
-  if (!ipRateLimit.allowed) {
-    return fail("Too many admin mutation requests. Please retry later.", 429, {
-      retryAfterMs: ipRateLimit.retryAfterMs,
-    });
-  }
-
-  return null;
-}
 
 export async function GET(request: NextRequest) {
   try {

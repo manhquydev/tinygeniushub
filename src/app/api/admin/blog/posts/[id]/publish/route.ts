@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { blogService } from "@/modules/blog/blog-service";
 import { refreshRelatedPosts } from "@/modules/blog/related-posts-service";
 
@@ -12,6 +13,7 @@ export async function POST(
   },
 ) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await context.params;
 

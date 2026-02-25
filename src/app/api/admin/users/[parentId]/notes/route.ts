@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { createAdminNote, getAdminNotes } from "@/modules/admin/service";
 
 type RouteParams = {
@@ -21,6 +22,7 @@ export async function GET(request: NextRequest, context: RouteParams) {
 
 export async function POST(request: NextRequest, context: RouteParams) {
   try {
+    assertTrustedOrigin(request);
     const admin = await requireAdminFromRequest(request);
     const { parentId } = await context.params;
     const body = (await request.json()) as {

@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { blogService } from "@/modules/blog/blog-service";
 
 const updateSchema = z.object({
@@ -30,6 +31,7 @@ export async function PATCH(
   },
 ) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const payload = updateSchema.parse(await request.json());
     const { id } = await context.params;

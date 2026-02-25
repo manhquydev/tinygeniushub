@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { commentService } from "@/modules/blog/comment-service";
 
 const moderationSchema = z.object({
@@ -24,6 +25,7 @@ export async function GET(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const payload = moderationSchema.parse(await request.json());
     await commentService.moderateComment(payload.id, payload.status);

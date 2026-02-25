@@ -4,6 +4,8 @@ import { setImpersonationCookie } from "@/lib/auth/impersonation";
 import { prisma } from "@/lib/db";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { createAdminActionLog } from "@/modules/admin/service";
 import { DomainError } from "@/modules/platform/errors";
 import { z } from "zod";
@@ -14,6 +16,10 @@ const adminImpersonateSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
+
     const admin = await requireAdminFromRequest(request);
     const payload = adminImpersonateSchema.parse(await request.json());
     const targetParent = await prisma.parentAccount.findUnique({

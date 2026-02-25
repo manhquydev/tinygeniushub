@@ -1,8 +1,20 @@
 import type { NextRequest } from "next/server";
 import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
+import { z } from "zod";
+
+const updateCourseSchema = z.object({
+  slug: z.string().min(1).max(100).regex(/^[a-z0-9-]+$/).optional(),
+  title: z.string().min(1).max(200).optional(),
+  description: z.string().max(2000).optional(),
+  priceVnd: z.number().int().min(0).optional(),
+  durationDays: z.number().int().min(1).optional(),
+  coverImageUrl: z.string().url().nullish(),
+  isPublished: z.boolean().optional(),
+});
 
 export async function GET(
   request: NextRequest,
@@ -50,17 +62,10 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await params;
-    const body = (await request.json()) as {
-      slug?: string;
-      title?: string;
-      description?: string;
-      priceVnd?: number;
-      durationDays?: number;
-      coverImageUrl?: string | null;
-      isPublished?: boolean;
-    };
+    const body = updateCourseSchema.parse(await request.json());
 
     const course = await prisma.course.update({
       where: { id },
@@ -86,6 +91,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await params;
 

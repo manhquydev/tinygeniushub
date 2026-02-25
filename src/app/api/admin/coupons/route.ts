@@ -2,7 +2,16 @@ import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { createCoupon, listCoupons } from "@/modules/admin/service";
+import { z } from "zod";
+
+const createCouponSchema = z.object({
+  code: z.string().min(1).max(50).regex(/^[A-Z0-9_-]+$/i),
+  discountPercent: z.number().min(0).max(100),
+  maxUses: z.number().int().min(1).nullish(),
+  expiresAt: z.string().datetime().nullish(),
+});
 
 export async function GET(request: NextRequest) {
   try {
@@ -16,18 +25,14 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
     const admin = await requireAdminFromRequest(request);
-    const body = (await request.json()) as {
-      code?: string;
-      discountPercent?: number;
-      maxUses?: number | null;
-      expiresAt?: string | null;
-    };
+    const body = createCouponSchema.parse(await request.json());
 
     const coupon = await createCoupon(
       {
-        code: body.code ?? "",
-        discountPercent: body.discountPercent ?? 0,
+        code: body.code,
+        discountPercent: body.discountPercent,
         maxUses: body.maxUses ?? null,
         expiresAt: body.expiresAt ? new Date(body.expiresAt) : null,
       },

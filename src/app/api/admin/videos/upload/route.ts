@@ -3,6 +3,7 @@ import { z } from "zod";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { bunnyCreateVideo } from "@/lib/bunny-stream-client";
 import { prisma } from "@/lib/db";
 
@@ -15,6 +16,7 @@ const createVideoSchema = z.object({
 // Creates a Bunny video record + returns tus upload URL
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
 
     const body = createVideoSchema.parse(await request.json());

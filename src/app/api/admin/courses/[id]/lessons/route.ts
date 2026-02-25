@@ -1,6 +1,7 @@
 import type { NextRequest } from "next/server";
 import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 
@@ -41,6 +42,7 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await params;
     const body = (await request.json()) as { lessonId?: string; orderNo?: number };
@@ -69,6 +71,7 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await params;
     const body = (await request.json()) as { orders?: Array<{ lessonId: string; orderNo: number }> };
@@ -97,6 +100,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await params;
     const body = (await request.json()) as { lessonId?: string };

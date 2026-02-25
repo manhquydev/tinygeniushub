@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { addMember, removeMember } from "@/modules/organizations/organization-service";
 import { OrgRole } from "@prisma/client";
 
@@ -10,6 +11,7 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await params;
     const body = await request.json();
@@ -25,6 +27,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await params;
     const body = await request.json();

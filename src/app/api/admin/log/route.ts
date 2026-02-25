@@ -2,6 +2,7 @@
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { createAdminActionLog, getAdminActionLogs } from "@/modules/admin/service";
 
 export async function GET(request: NextRequest) {
@@ -20,6 +21,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
     const admin = await requireAdminFromRequest(request);
     const body = (await request.json()) as {
       action?: string;

@@ -2,7 +2,22 @@ import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { fail, ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { createLesson, listLessonsForUnit } from "@/modules/admin/content-service";
+import { z } from "zod";
+
+const createLessonSchema = z.object({
+  unitId: z.string().min(1),
+  orderNo: z.number().int().min(1).default(1),
+  slug: z.string().min(1).max(100).regex(/^[a-z0-9-]+$/),
+  title: z.string().min(1).max(200),
+  objective: z.string().min(1).max(500),
+  estimatedMinutes: z.number().int().min(1).default(15),
+  trialEnabled: z.boolean().default(false),
+  videoSource: z.string().max(500).nullish(),
+  offlineCardMarkdown: z.string().max(10000).nullish(),
+  parentScriptMarkdown: z.string().max(10000).nullish(),
+});
 
 export async function GET(request: NextRequest) {
   try {
@@ -22,28 +37,18 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
-    const body = (await request.json()) as {
-      unitId?: string;
-      orderNo?: number;
-      slug?: string;
-      title?: string;
-      objective?: string;
-      estimatedMinutes?: number;
-      trialEnabled?: boolean;
-      videoSource?: string | null;
-      offlineCardMarkdown?: string | null;
-      parentScriptMarkdown?: string | null;
-    };
+    const body = createLessonSchema.parse(await request.json());
 
     const lesson = await createLesson({
-      unitId: body.unitId ?? "",
-      orderNo: body.orderNo ?? 1,
-      slug: body.slug ?? "",
-      title: body.title ?? "",
-      objective: body.objective ?? "",
-      estimatedMinutes: body.estimatedMinutes ?? 15,
-      trialEnabled: body.trialEnabled ?? false,
+      unitId: body.unitId,
+      orderNo: body.orderNo,
+      slug: body.slug,
+      title: body.title,
+      objective: body.objective,
+      estimatedMinutes: body.estimatedMinutes,
+      trialEnabled: body.trialEnabled,
       videoSource: body.videoSource ?? null,
       offlineCardMarkdown: body.offlineCardMarkdown ?? null,
       parentScriptMarkdown: body.parentScriptMarkdown ?? null,
