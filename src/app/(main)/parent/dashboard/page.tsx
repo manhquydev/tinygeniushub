@@ -266,6 +266,12 @@ export default async function ParentDashboardPage() {
             Vào bài học hôm nay
           </Link>
           <Link
+            href="/courses"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
+          >
+            Khoá học Premium
+          </Link>
+          <Link
             href="/parent/reports"
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
           >
@@ -333,6 +339,34 @@ export default async function ParentDashboardPage() {
           ) : null}
         </div>
       </section>
+
+      {referral.code ? (
+        <section className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-[0_12px_28px_rgba(251,191,36,0.15)]">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                <Gift size={22} />
+              </div>
+              <div>
+                <h2 className="text-lg font-black tracking-[-0.01em] text-slate-900">Giới thiệu bạn bè — cùng nhận thưởng</h2>
+                <p className="mt-0.5 text-sm text-slate-600">
+                  Mỗi gia đình bạn giới thiệu nhận <strong>7 ngày miễn phí</strong>. Bạn cũng nhận thêm <strong>7 ngày Premium</strong>.
+                </p>
+                <p className="mt-2 rounded-xl border border-amber-200 bg-white px-3 py-1.5 font-mono text-sm font-bold tracking-widest text-amber-700 inline-block">
+                  {referral.code}
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/referral"
+              className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-amber-500 px-5 text-sm font-bold text-white shadow-[0_6px_16px_rgba(245,158,11,0.35)] transition hover:-translate-y-0.5 hover:bg-amber-600"
+            >
+              <Gift size={16} />
+              Chia sẻ ngay
+            </Link>
+          </div>
+        </section>
+      ) : null}
 
       <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
         <h2 className="text-xl font-black tracking-[-0.02em] text-slate-900">Mã giới thiệu</h2>
