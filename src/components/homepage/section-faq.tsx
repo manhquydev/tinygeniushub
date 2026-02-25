@@ -21,11 +21,11 @@ const FAQ_ITEMS = [
   },
   {
     q: "Thanh toán như thế nào?",
-    a: "Thanh toán trực tuyến qua chuyển khoản ngân hàng hoặc ví điện tử. Giá chỉ từ 120,000đ/năm — rẻ hơn 1 ly cà phê mỗi tháng.",
+    a: "Thanh toán trực tuyến qua chuyển khoản ngân hàng hoặc ví điện tử. Gói Standard chỉ 799,000đ/năm — dùng Toán + Tiếng Anh cả năm cho bé.",
   },
   {
     q: "Nếu không hài lòng, có được hoàn tiền không?",
-    a: "Có. Hoàn tiền 100% trong 7 ngày đầu sau khi thanh toán, không hỏi lý do.",
+    a: "Có. Hoàn tiền 100% trong 30 ngày đầu sau khi thanh toán, không hỏi lý do.",
   },
 ] as const;
 

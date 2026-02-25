@@ -14,14 +14,14 @@ type PlanConfig = {
 
 const PLAN_CONFIG: Record<PayablePlanCode, PlanConfig> = {
   YEARLY_STANDARD: {
-    amountVnd: 120_000,
+    amountVnd: 799_000,
     childProfileLimit: 3,
     caregiverLimit: 2,
     portfolioRetentionMaxDays: 90,
     status: SubscriptionStatus.ACTIVE_STANDARD,
   },
   YEARLY_FAMILY_PLUS: {
-    amountVnd: 240_000,
+    amountVnd: 1_199_000,
     childProfileLimit: 5,
     caregiverLimit: 4,
     portfolioRetentionMaxDays: 365,

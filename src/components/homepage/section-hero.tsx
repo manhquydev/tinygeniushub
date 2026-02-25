@@ -12,12 +12,12 @@ export function SectionHero() {
               Dùng thử miễn phí 7 ngày
             </span>
 
-            <h1>Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ theo lộ trình</h1>
+            <h1>Ứng dụng đầu tiên dạy Toán & Tiếng Anh cho bé 2–6 tuổi theo lộ trình</h1>
 
             <p>
-              Cùng Con Tự Học giúp trẻ 2-6 tuổi học qua video ngắn, hoạt động
-              offline và bài kiểm tra nhẹ nhàng &mdash; với báo cáo tuần để phụ
-              huynh yên tâm.
+              15 phút mỗi ngày — phụ huynh thấy kết quả rõ ràng sau 30 ngày.
+              Cùng Con Tự Học kết hợp Toán tư duy và Tiếng Anh Phonics,
+              với báo cáo tuần gửi tự động để bạn yên tâm.
             </p>
 
             <div className="hp-hero-actions">
@@ -31,7 +31,7 @@ export function SectionHero() {
             </div>
 
             <p className="hp-hero-note">
-              Không cần thẻ tín dụng · Hủy bất kỳ lúc nào
+              Không cần thẻ tín dụng · Hoàn tiền 100% trong 30 ngày
             </p>
           </div>
 
@@ -39,12 +39,12 @@ export function SectionHero() {
             <div className="hp-orb hp-orb-main" />
             <div className="hp-orb hp-orb-accent" />
             <div className="hp-mini-card">
-              <strong>3 bước học mỗi ngày</strong>
-              <span>Video · Hoạt động · Quiz</span>
+              <strong>Toán tư duy + Tiếng Anh Phonics</strong>
+              <span>Lộ trình 2–6 tuổi · Không app nào khác có</span>
             </div>
             <div className="hp-mini-card hp-mini-card-offset">
-              <strong>Báo cáo tuần</strong>
-              <span>Tự động gửi cho phụ huynh</span>
+              <strong>Báo cáo tuần tự động</strong>
+              <span>Phụ huynh thấy kết quả sau 30 ngày</span>
             </div>
           </div>
         </div>

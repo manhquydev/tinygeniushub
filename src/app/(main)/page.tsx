@@ -14,10 +14,10 @@ import { SectionTrustSignals } from "@/components/homepage/section-trust-signals
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Cùng Con Tự Học — Lộ trình học tập cho trẻ 2-6 tuổi",
+    absolute: "Cùng Con Tự Học — Toán & Tiếng Anh cho trẻ 2-6 tuổi",
   },
   description:
-    "Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ theo lộ trình. Dùng thử 7 ngày miễn phí, không cần thẻ tín dụng.",
+    "Ứng dụng đầu tiên dạy Toán tư duy + Tiếng Anh Phonics cho bé 2–6 tuổi. 15 phút/ngày, báo cáo tuần tự động. Dùng thử 7 ngày miễn phí.",
   robots: {
     index: true,
     follow: true,
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     canonical: "https://cungcontuhoc.vn",
   },
   openGraph: {
-    title: "Cùng Con Tự Học — Lộ trình học tập cho trẻ 2-6 tuổi",
-    description: "15 phút mỗi ngày, có báo cáo tuần và bằng chứng tiến bộ rõ ràng cho phụ huynh.",
+    title: "Cùng Con Tự Học — Toán & Tiếng Anh cho trẻ 2-6 tuổi",
+    description: "Toán tư duy + Tiếng Anh Phonics trong 1 nền tảng. 15 phút/ngày, phụ huynh thấy kết quả sau 30 ngày.",
     url: "https://cungcontuhoc.vn",
     type: "website",
     locale: "vi_VN",
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Cùng Con Tự Học — Lộ trình học tập cho trẻ 2-6 tuổi",
+        alt: "Cùng Con Tự Học — Toán & Tiếng Anh cho trẻ 2-6 tuổi",
       },
     ],
   },
   twitter: {
-    title: "Cùng Con Tự Học — Lộ trình học tập cho trẻ 2-6 tuổi",
-    description: "Dùng thử 7 ngày miễn phí, không cần thẻ tín dụng.",
+    title: "Cùng Con Tự Học — Toán & Tiếng Anh cho trẻ 2-6 tuổi",
+    description: "Dùng thử 7 ngày miễn phí, không cần thẻ tín dụng. Hoàn tiền 30 ngày.",
     images: ["/opengraph-image"],
   },
 };
@@ -58,8 +58,8 @@ const jsonLdApp = {
   url: "https://cungcontuhoc.vn",
   offers: {
     "@type": "AggregateOffer",
-    lowPrice: "120000",
-    highPrice: "240000",
+    lowPrice: "799000",
+    highPrice: "1199000",
     priceCurrency: "VND",
     offerCount: "2",
   },
@@ -115,7 +115,7 @@ const jsonLdFaq = {
       name: "Thanh toán như thế nào?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Thanh toán trực tuyến qua chuyển khoản ngân hàng hoặc ví điện tử. Giá chỉ từ 120,000đ/năm — rẻ hơn 1 ly cà phê mỗi tháng.",
+        text: "Thanh toán trực tuyến qua chuyển khoản ngân hàng hoặc ví điện tử. Gói Standard chỉ 799,000đ/năm — Toán tư duy + Tiếng Anh Phonics cho bé cả năm.",
       },
     },
     {
@@ -123,7 +123,7 @@ const jsonLdFaq = {
       name: "Nếu không hài lòng, có được hoàn tiền không?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Có. Hoàn tiền 100% trong 7 ngày đầu sau khi thanh toán, không hỏi lý do.",
+        text: "Có. Hoàn tiền 100% trong 30 ngày đầu sau khi thanh toán, không hỏi lý do.",
       },
     },
   ],

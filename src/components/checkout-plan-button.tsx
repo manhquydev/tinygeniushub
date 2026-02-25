@@ -1,8 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "@/lib/analytics/track-event";
 
 type PlanCode = "YEARLY_STANDARD" | "YEARLY_FAMILY_PLUS";
+
+// Plan amounts in VND for analytics (mirrors plan-config.ts)
+const PLAN_AMOUNT_VND: Record<PlanCode, number> = {
+  YEARLY_STANDARD: 799_000,
+  YEARLY_FAMILY_PLUS: 1_199_000,
+};
 
 type CheckoutPlanButtonProps = {
   planCode: PlanCode;
@@ -43,6 +50,10 @@ export function CheckoutPlanButton({ planCode, label, className }: CheckoutPlanB
         return;
       }
 
+      trackEvent("purchase", {
+        value: PLAN_AMOUNT_VND[planCode],
+        currency: "VND",
+      });
       window.location.assign(checkoutUrl);
     } catch (checkoutError) {
       setError(checkoutError instanceof Error ? checkoutError.message : "Lỗi không xác định");

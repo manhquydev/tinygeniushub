@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import { trackEvent } from "@/lib/analytics/track-event";
 
 interface AuthFormProps {
   mode: "signup" | "login";
@@ -120,6 +121,11 @@ export function AuthForm({ mode }: AuthFormProps) {
       if (!response.ok || !body.ok) {
         setError(formatAuthError(response, body));
         return;
+      }
+
+      if (isSignup) {
+        trackEvent("trial_start", { plan: "trial_7day" });
+        trackEvent("complete_registration");
       }
 
       router.push("/parent/dashboard");

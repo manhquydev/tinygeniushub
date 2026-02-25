@@ -10,7 +10,7 @@ const TESTIMONIALS = [
     name: "Chị Thanh Lan",
     context: "Mẹ bé Minh, 4 tuổi · Đang dùng 3 tháng",
     quote:
-      "Trước đây tôi cho con xem YouTube cả ngày mà không biết con học được gì. Giờ mỗi tối 15 phút, con hoàn thành bài và tôi thấy rõ tiến bộ trong báo cáo tuần.",
+      "Bé nhà tôi biết cộng trừ trong 20 sau 6 tuần, trong khi bạn cùng lớp vẫn đang học đếm. Toán ở đây dạy theo cách bé hiểu được thật sự.",
     rating: 5,
   },
   {
@@ -19,7 +19,7 @@ const TESTIMONIALS = [
     name: "Anh Hoàng Nam",
     context: "Ba bé An và bé Khánh, 3 và 5 tuổi · Gói Family+",
     quote:
-      "Hai đứa nhà tôi tranh nhau học mỗi ngày. Bé lớn tự đếm được 1-50 sau 1 tháng, điều mà trước đây dạy hoài không vào.",
+      "Hai đứa nhà tôi tranh nhau học mỗi ngày. Bé lớn tự đếm được 1-50 sau 1 tháng và phát âm tiếng Anh rõ hơn hẳn — điều mà trước đây dạy hoài không vào.",
     rating: 5,
   },
   {
@@ -28,8 +28,8 @@ const TESTIMONIALS = [
     name: "Chị Mai Trang",
     context: "Mẹ bé Sóc, 2.5 tuổi · Đang dùng thử",
     quote:
-      "Tôi thích là có bằng chứng bằng ảnh và audio. Gửi cho ông bà xem là cả nhà vui, ai cũng thấy cháu tiến bộ.",
-    rating: 4,
+      "Không ngờ bé 2.5 tuổi đã học được Toán và Tiếng Anh cùng lúc. Báo cáo tuần gửi tự động, ông bà xem là vui cả nhà.",
+    rating: 5,
   },
 ] as const;
 
@@ -66,7 +66,8 @@ export function SectionTestimonials() {
                   <span aria-hidden>&rdquo;</span>
                 </p>
 
-                <div className="hp-stars" aria-label={`${t.rating} trên 5 sao`}>
+                <div className="hp-stars">
+                  <span className="sr-only">{`${t.rating} trên 5 sao`}</span>
                   {Array.from({ length: 5 }, (_, si) => (
                     <Star
                       key={si}

@@ -8,13 +8,13 @@ import { IconCheckCircle, IconInfo } from "@/components/icons";
 export const metadata: Metadata = {
   title: "Bảng giá",
   description:
-    "Dùng thử miễn phí 7 ngày, không cần thẻ tín dụng. Gói Standard chỉ 10,000 VND/tháng — rẻ hơn 1 ly trà sữa cho cả năm học.",
+    "Dùng thử miễn phí 7 ngày, không cần thẻ tín dụng. Gói Standard 799,000 VND/năm — hoàn tiền 100% trong 30 ngày nếu không thấy tiến bộ.",
   alternates: {
     canonical: "https://cungcontuhoc.vn/pricing",
   },
   openGraph: {
     title: "Bảng giá — Cùng Con Tự Học",
-    description: "Gói Standard 120,000 VND/năm · Family+ 240,000 VND/năm · Dùng thử 7 ngày miễn phí",
+    description: "Gói Standard 799,000 VND/năm · Family+ 1,199,000 VND/năm · Dùng thử 7 ngày miễn phí",
     url: "https://cungcontuhoc.vn/pricing",
     type: "website",
   },
@@ -31,7 +31,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Chính sách hoàn tiền như thế nào?",
-    a: "Hoàn tiền 100% trong 7 ngày đầu sau khi thanh toán, không cần giải thích lý do. Liên hệ support để yêu cầu.",
+    a: "Hoàn tiền 100% trong 30 ngày đầu sau khi thanh toán, không cần giải thích lý do. Liên hệ support để yêu cầu.",
   },
   {
     q: "Tôi có thể nâng cấp từ Standard lên Family+ không?",
@@ -56,8 +56,7 @@ export default async function PricingPage() {
       <section className="hero">
         <h1>Bảng giá rõ ràng cho phụ huynh Việt</h1>
         <p>
-          Dùng thử 7 ngày để thấy con tiến bộ thật sự. Sau trial, chọn gói năm để giữ nguyên lộ trình — giá chỉ bằng
-          1 ly cà phê mỗi tháng.
+          Dùng thử 7 ngày để thấy con tiến bộ thật sự. Sau trial, chọn gói năm để giữ nguyên lộ trình — hoàn tiền 100% trong 30 ngày nếu không hài lòng.
         </p>
         <div className="hero-actions">
           {!parent ? (
@@ -82,12 +81,12 @@ export default async function PricingPage() {
           <div className="pricing-badge pricing-badge--popular">Phổ biến nhất</div>
           <h2>Standard</h2>
           <div className="pricing-amount">
-            <span className="pricing-amount__main">120,000 VND</span>
+            <span className="pricing-amount__main">799,000 VND</span>
             <span className="pricing-amount__period">/ năm</span>
           </div>
           <p className="pricing-amount__monthly">
-            <strong>Chỉ 10,000 VND/tháng</strong>
-            <span className="pricing-badge pricing-badge--savings">Tiết kiệm 50%</span>
+            <strong>Chỉ 66,583 VND/tháng</strong>
+            <span className="pricing-badge pricing-badge--savings">Tiết kiệm 33%</span>
           </p>
           <p>
             <strong>3 hồ sơ bé · 2 caregiver</strong>
@@ -112,12 +111,12 @@ export default async function PricingPage() {
         <article className="card pricing-card">
           <h2>Family+</h2>
           <div className="pricing-amount">
-            <span className="pricing-amount__main">240,000 VND</span>
+            <span className="pricing-amount__main">1,199,000 VND</span>
             <span className="pricing-amount__period">/ năm</span>
           </div>
           <p className="pricing-amount__monthly">
-            <strong>Chỉ 20,000 VND/tháng</strong>
-            <span className="pricing-badge pricing-badge--savings">Tiết kiệm 50%</span>
+            <strong>Chỉ 99,917 VND/tháng</strong>
+            <span className="pricing-badge pricing-badge--savings">Tiết kiệm 33%</span>
           </p>
           <p>
             <strong>5 hồ sơ bé · 4 caregiver</strong>
@@ -143,11 +142,11 @@ export default async function PricingPage() {
           <div className="pricing-badge pricing-badge--monthly">Thanh toán tháng</div>
           <h2>Standard</h2>
           <div className="pricing-amount">
-            <span className="pricing-amount__main">20,000 VND</span>
+            <span className="pricing-amount__main">99,000 VND</span>
             <span className="pricing-amount__period">/ tháng</span>
           </div>
           <p className="pricing-amount__monthly muted-text">
-            240,000 VND/năm nếu thanh toán tháng
+            1,188,000 VND/năm nếu thanh toán tháng
           </p>
           <p>
             <strong>3 hồ sơ bé · 2 caregiver</strong>
@@ -159,7 +158,7 @@ export default async function PricingPage() {
           </ul>
           <p className="pricing-card__tip muted-text">
             <IconInfo size={14} className="pricing-tip-icon" />
-            Chọn gói năm để tiết kiệm 50% — 120,000 VND thay vì 240,000 VND
+            Chọn gói năm để tiết kiệm 33% — 799,000 VND thay vì 1,188,000 VND
           </p>
           {/* Monthly plan: anchor card only — no checkout button intentionally.
               Authenticated users are directed to annual plans via the tip above. */}
@@ -176,7 +175,7 @@ export default async function PricingPage() {
         <p className="muted-text pricing-trust-row">
           <span className="pricing-trust-item"><IconCheckCircle size={15} /> Không cần thẻ tín dụng</span>
           <span className="pricing-trust-sep">·</span>
-          <span className="pricing-trust-item"><IconCheckCircle size={15} /> Hoàn tiền 7 ngày</span>
+          <span className="pricing-trust-item"><IconCheckCircle size={15} /> Hoàn tiền 30 ngày</span>
           <span className="pricing-trust-sep">·</span>
           <span className="pricing-trust-item"><IconCheckCircle size={15} /> Hủy bất kỳ lúc nào</span>
         </p>
