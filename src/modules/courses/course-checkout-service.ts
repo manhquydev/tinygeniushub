@@ -5,32 +5,13 @@ import { env } from "@/lib/env";
 import { DomainError } from "@/modules/platform/errors";
 import { getEnrollment } from "@/modules/courses/course-service";
 
-function ensureSafePath(path: string) {
-  if (!path.startsWith("/")) {
-    throw new DomainError("Redirect path must start with '/'", 400, "INVALID_REDIRECT_PATH");
-  }
-  if (path.startsWith("//")) {
-    throw new DomainError("Redirect path cannot start with '//'", 400, "INVALID_REDIRECT_PATH");
-  }
-  return path;
-}
-
-function resolveAbsoluteUrl(path: string) {
-  const safePath = ensureSafePath(path);
-  return new URL(safePath, env.BETTER_AUTH_URL).toString();
-}
-
 /** Create a course checkout session (mock provider).
  *  Returns checkoutUrl, discountApplied, finalPriceVnd */
 export async function createCourseCheckoutSession(params: {
   parentId: string;
   slug: string;
-  successPath?: string;
-  cancelPath?: string;
 }) {
   const { parentId, slug } = params;
-  const successPath = params.successPath ?? "/parent/dashboard";
-  const cancelPath = params.cancelPath ?? "/courses";
 
   const course = await prisma.course.findUnique({ where: { slug } });
   if (!course) {
@@ -58,16 +39,15 @@ export async function createCourseCheckoutSession(params: {
   const finalPriceVnd = hasActiveSub ? Math.round(course.priceVnd * 0.8) : course.priceVnd;
 
   const sessionId = `mock_course_${randomUUID()}`;
-  const successUrl = resolveAbsoluteUrl(successPath);
-  const target = new URL(successUrl);
-  target.searchParams.set("mockCheckout", "1");
-  target.searchParams.set("courseId", course.id);
-  target.searchParams.set("parentId", parentId);
-  target.searchParams.set("amountVnd", String(finalPriceVnd));
-  target.searchParams.set("sessionId", sessionId);
+  // Redirect to mock-success handler which creates the enrollment, then goes to lessons
+  const mockSuccessUrl = new URL("/api/courses/checkout/mock-success", env.BETTER_AUTH_URL);
+  mockSuccessUrl.searchParams.set("courseId", course.id);
+  mockSuccessUrl.searchParams.set("parentId", parentId);
+  mockSuccessUrl.searchParams.set("amountVnd", String(finalPriceVnd));
+  mockSuccessUrl.searchParams.set("sessionId", sessionId);
 
   return {
-    checkoutUrl: target.toString(),
+    checkoutUrl: mockSuccessUrl.toString(),
     discountApplied,
     finalPriceVnd,
     expiresAt: addMinutes(new Date(), 30),

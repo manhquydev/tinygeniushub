@@ -15,16 +15,10 @@ export async function POST(
     }
 
     const { slug } = await params;
-    const body = (await request.json()) as {
-      successPath?: string;
-      cancelPath?: string;
-    };
 
     const result = await createCourseCheckoutSession({
       parentId: parent.id,
       slug,
-      successPath: body.successPath,
-      cancelPath: body.cancelPath,
     });
 
     return ok(result);
