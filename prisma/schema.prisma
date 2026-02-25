@@ -68,6 +68,12 @@ enum EmailStatus {
   CLICKED
 }
 
+enum LifecycleEmailType {
+  TRIAL_WELCOME
+  TRIAL_D3
+  TRIAL_D7
+}
+
 enum NotificationType {
   ACHIEVEMENT
   REPORT
@@ -99,6 +105,7 @@ model ParentAccount {
   weeklyEmailOptIns    WeeklyEmailPreference[]
   referredAttributions ReferralAttribution[]   @relation("ReferredParent")
   adminNotes           AdminNote[]
+  lifecycleEmails      LifecycleEmailLog[]
 }
 
 model Session {
@@ -319,6 +326,9 @@ model Lesson {
   estimatedMinutes     Int
   trialEnabled         Boolean            @default(false)
   videoSource          String?
+  bunnyVideoId         String?
+  videoStatus          String             @default("none")
+  isPreview            Boolean            @default(false)
   offlineCardMarkdown  String?
   parentScriptMarkdown String?
   unit                 Unit               @relation(fields: [unitId], references: [id], onDelete: Cascade)
@@ -816,4 +826,15 @@ model BlogReadHistory {
 
   @@index([postId, readAt])
   @@index([parentId, readAt])
+}
+
+model LifecycleEmailLog {
+  id       String             @id @default(cuid())
+  parentId String
+  type     LifecycleEmailType
+  sentAt   DateTime           @default(now())
+  parent   ParentAccount      @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  @@unique([parentId, type])
+  @@index([parentId])
 }

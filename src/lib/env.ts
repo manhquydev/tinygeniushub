@@ -51,6 +51,10 @@ const envSchema = z.object({
   R2_ACCESS_KEY_ID: z.string().optional(),
   R2_SECRET_ACCESS_KEY: z.string().optional(),
   MOCK_UPLOAD_SIGNING_SECRET: z.string().min(32),
+  BUNNY_STREAM_API_KEY: z.string().min(1).optional(),
+  BUNNY_STREAM_LIBRARY_ID: z.coerce.number().int().positive().optional(),
+  BUNNY_STREAM_CDN_HOSTNAME: z.string().min(1).optional(),
+  BUNNY_WEBHOOK_SECRET: z.string().min(8).optional(),
   REDIS_URL: z.string().url(),
   RATE_LIMIT_TRUST_PROXY: z
     .enum(["true", "false"])
@@ -114,6 +118,10 @@ const parsedEnv = envSchema.parse({
     process.env.MOCK_UPLOAD_SIGNING_SECRET ??
     process.env.BETTER_AUTH_SECRET ??
     (isProduction && !allowCiFallbacks ? undefined : "dev-mock-upload-signing-secret-change-this-in-production-32"),
+  BUNNY_STREAM_API_KEY: process.env.BUNNY_STREAM_API_KEY,
+  BUNNY_STREAM_LIBRARY_ID: process.env.BUNNY_STREAM_LIBRARY_ID,
+  BUNNY_STREAM_CDN_HOSTNAME: process.env.BUNNY_STREAM_CDN_HOSTNAME,
+  BUNNY_WEBHOOK_SECRET: process.env.BUNNY_WEBHOOK_SECRET,
   REDIS_URL: process.env.REDIS_URL ?? (isProduction ? undefined : "redis://localhost:6379"),
   RATE_LIMIT_TRUST_PROXY: process.env.RATE_LIMIT_TRUST_PROXY,
   RATE_LIMIT_TRUSTED_HOPS: process.env.RATE_LIMIT_TRUSTED_HOPS,

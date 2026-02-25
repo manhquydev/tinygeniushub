@@ -1,4 +1,5 @@
 ﻿import { Queue } from "bullmq";
+import { LifecycleEmailType } from "@prisma/client";
 import { env } from "@/lib/env";
 
 export const redisConnection = {
@@ -22,6 +23,10 @@ export const blogNewsletterQueue = new Queue("blog-newsletter", {
 });
 
 export const blogCommentEmailQueue = new Queue("blog-comment-emails", {
+  connection: redisConnection,
+});
+
+export const lifecycleEmailQueue = new Queue("lifecycle-emails", {
   connection: redisConnection,
 });
 
@@ -103,4 +108,28 @@ export async function enqueueVerifyBlogComment(payload: {
     removeOnComplete: true,
     removeOnFail: 50,
   });
+}
+
+export async function enqueueLifecycleEmail(parentId: string, type: LifecycleEmailType) {
+  return lifecycleEmailQueue.add(
+    "send-lifecycle-email",
+    { parentId, type },
+    {
+      removeOnComplete: true,
+      removeOnFail: 50,
+      // Deduplicate: skip if same job already queued for same parent+type
+      jobId: `lifecycle:${type.toLowerCase()}:${parentId}`,
+    },
+  );
+}
+
+export async function enqueueDispatchPendingLifecycleEmails() {
+  return lifecycleEmailQueue.add(
+    "dispatch-pending-lifecycle-emails",
+    { triggeredAt: new Date().toISOString() },
+    {
+      removeOnComplete: true,
+      removeOnFail: 50,
+    },
+  );
 }

@@ -3,7 +3,8 @@ import { createWeeklyReportsWorker } from "@/worker/jobs/generate-weekly-reports
 import { createWeeklyReportEmailsWorker } from "@/worker/jobs/dispatch-weekly-report-emails";
 import { createBlogNewsletterWorker } from "@/worker/jobs/dispatch-blog-newsletter-emails";
 import { createVerifyBlogCommentEmailWorker } from "@/worker/jobs/verify-blog-comment-email";
-import { enqueueRetentionCleanup, enqueueWeeklyReportEmails, enqueueWeeklyReports } from "@/worker/queue";
+import { createLifecycleEmailsWorker } from "@/worker/jobs/dispatch-lifecycle-emails";
+import { enqueueRetentionCleanup, enqueueWeeklyReportEmails, enqueueWeeklyReports, enqueueDispatchPendingLifecycleEmails } from "@/worker/queue";
 import { logError, logInfo } from "@/lib/observability/logger";
 
 const weeklyWorker = createWeeklyReportsWorker();
@@ -11,6 +12,7 @@ const retentionWorker = createPortfolioRetentionWorker();
 const weeklyEmailWorker = createWeeklyReportEmailsWorker();
 const blogNewsletterWorker = createBlogNewsletterWorker();
 const verifyBlogCommentEmailWorker = createVerifyBlogCommentEmailWorker();
+const lifecycleEmailWorker = createLifecycleEmailsWorker();
 
 weeklyWorker.on("completed", (job) => {
   logInfo("worker.weekly_reports.completed", {
@@ -38,6 +40,12 @@ blogNewsletterWorker.on("completed", (job) => {
 
 verifyBlogCommentEmailWorker.on("completed", (job) => {
   logInfo("worker.blog_comment_verify_email.completed", {
+    jobId: job.id,
+  });
+});
+
+lifecycleEmailWorker.on("completed", (job) => {
+  logInfo("worker.lifecycle_email.completed", {
     jobId: job.id,
   });
 });
@@ -77,12 +85,20 @@ verifyBlogCommentEmailWorker.on("failed", (job, error) => {
   });
 });
 
+lifecycleEmailWorker.on("failed", (job, error) => {
+  logError("worker.lifecycle_email.failed", {
+    jobId: job?.id,
+    error,
+  });
+});
+
 async function bootstrap() {
   logInfo("worker.bootstrap_started");
 
   await enqueueWeeklyReports();
   await enqueueRetentionCleanup();
   await enqueueWeeklyReportEmails();
+  await enqueueDispatchPendingLifecycleEmails();
 
   logInfo("worker.bootstrap_completed");
 
@@ -109,6 +125,13 @@ async function bootstrap() {
       });
     });
   }, 1000 * 60 * 30);
+
+  // Dispatch D3/D7 lifecycle emails every hour
+  setInterval(() => {
+    enqueueDispatchPendingLifecycleEmails().catch((error) => {
+      logError("worker.lifecycle_email.enqueue_failed", { error });
+    });
+  }, 1000 * 60 * 60);
 }
 
 bootstrap().catch((error) => {
@@ -126,6 +149,7 @@ process.on("SIGINT", async () => {
     weeklyEmailWorker.close(),
     blogNewsletterWorker.close(),
     verifyBlogCommentEmailWorker.close(),
+    lifecycleEmailWorker.close(),
   ]);
   logInfo("worker.shutdown_completed");
   process.exit(0);
