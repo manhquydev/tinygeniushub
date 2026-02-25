@@ -4,25 +4,28 @@ import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { deleteLesson, updateLesson } from "@/modules/admin/content-service";
+import { z } from "zod";
 
 type RouteParams = {
   params: Promise<{ id: string }>;
 };
+
+const updateLessonSchema = z.object({
+  title: z.string().min(1).max(200).optional(),
+  objective: z.string().min(1).max(500).optional(),
+  estimatedMinutes: z.number().int().min(1).optional(),
+  trialEnabled: z.boolean().optional(),
+  videoSource: z.string().max(500).nullish(),
+  offlineCardMarkdown: z.string().max(10000).nullish(),
+  parentScriptMarkdown: z.string().max(10000).nullish(),
+});
 
 export async function PATCH(request: NextRequest, context: RouteParams) {
   try {
     assertTrustedOrigin(request);
     await requireAdminFromRequest(request);
     const { id } = await context.params;
-    const body = (await request.json()) as {
-      title?: string;
-      objective?: string;
-      estimatedMinutes?: number;
-      trialEnabled?: boolean;
-      videoSource?: string | null;
-      offlineCardMarkdown?: string | null;
-      parentScriptMarkdown?: string | null;
-    };
+    const body = updateLessonSchema.parse(await request.json());
 
     const lesson = await updateLesson(id, {
       title: body.title,

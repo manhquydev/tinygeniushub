@@ -14,11 +14,11 @@ const createLogSchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
-    await requireAdminFromRequest(request);
+    await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
 
     const limitRaw = request.nextUrl.searchParams.get("limit");
     const limit = limitRaw ? Number.parseInt(limitRaw, 10) : 50;
-    const logs = await getAdminActionLogs(Number.isFinite(limit) ? limit : 50);
+    const logs = await getAdminActionLogs(Number.isFinite(limit) ? Math.min(limit, 200) : 50);
 
     return ok({ logs });
   } catch (error) {
@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
-    const admin = await requireAdminFromRequest(request);
+    const admin = await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
     const body = createLogSchema.parse(await request.json());
 
     const entry = await createAdminActionLog({

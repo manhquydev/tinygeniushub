@@ -13,7 +13,7 @@ import {
 export async function GET(request: NextRequest) {
   try {
     await assertRequestAllowedBySecurityControls(request);
-    await requireAdminFromRequest(request);
+    await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
     const settings = await getAdminSecuritySettings();
     return ok(settings);
   } catch (error) {
@@ -29,7 +29,7 @@ export async function PATCH(request: NextRequest) {
     if (rateLimit) {
       return rateLimit;
     }
-    const admin = await requireAdminFromRequest(request);
+    const admin = await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
     const input = await request.json();
     const policies = await updateAdminRateLimitPolicies({
       actorId: admin.id,

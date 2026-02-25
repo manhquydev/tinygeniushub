@@ -92,7 +92,7 @@ export async function DELETE(
 ) {
   try {
     assertTrustedOrigin(request);
-    await requireAdminFromRequest(request);
+    await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
     const { id } = await params;
 
     const course = await prisma.course.findUnique({ where: { id } });
