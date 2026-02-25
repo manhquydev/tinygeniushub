@@ -11,7 +11,7 @@ const contactPayloadSchema = z.object({
   name: z.string().trim().min(2).max(120),
   email: z.string().email(),
   subject: z.enum(["Hỗ trợ kỹ thuật", "Hợp tác / B2B", "Báo lỗi", "Khác"]),
-  message: z.string().trim().min(10).max(2000),
+  message: z.string().trim().min(10).max(500),
 });
 
 const CONTACT_WINDOW_MS = 60 * 60 * 1000;

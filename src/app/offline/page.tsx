@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Mascot } from "@/components/mascot";
 
 export const metadata: Metadata = {
-  title: "Mất kết nối | Cùng Con Tự Học",
+  title: "Mất kết nối",
 };
 
 const STAR_FIELD = [

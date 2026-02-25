@@ -4,7 +4,7 @@ import { Clock3, Mail, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 
 export const metadata: Metadata = {
-  title: "Liên Hệ | Cùng Con Tự Học",
+  title: "Liên hệ",
   description: "Liên hệ với đội ngũ Cùng Con Tự Học để được hỗ trợ hoặc hợp tác.",
   alternates: { canonical: "https://cungcontuhoc.vn/contact" },
 };

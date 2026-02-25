@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Chính Sách Hoàn Tiền | Cùng Con Tự Học",
+  title: "Chính sách hoàn tiền",
   description: "Chính sách hoàn tiền minh bạch của Cùng Con Tự Học.",
   alternates: { canonical: "https://cungcontuhoc.vn/refund-policy" },
 };

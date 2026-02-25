@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Điều Khoản Sử Dụng | Cùng Con Tự Học",
+  title: "Điều khoản sử dụng",
   description: "Điều khoản và điều kiện sử dụng dịch vụ Cùng Con Tự Học.",
   alternates: { canonical: "https://cungcontuhoc.vn/terms" },
 };

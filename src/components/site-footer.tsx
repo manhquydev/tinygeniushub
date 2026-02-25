@@ -20,28 +20,28 @@ export function SiteFooter() {
 
         <nav className="footer-links-group">
           <div className="footer-col">
-            <h4>Sản phẩm</h4>
+            <p className="footer-col-title">Sản phẩm</p>
             <Link href="/#features">Tính năng</Link>
             <Link href="/pricing">Bảng giá</Link>
             <Link href="/#faq">Câu hỏi thường gặp</Link>
           </div>
 
           <div className="footer-col">
-            <h4>Về chúng tôi</h4>
+            <p className="footer-col-title">Về chúng tôi</p>
             <Link href="/about">Giới thiệu</Link>
             <Link href="/contact">Liên hệ</Link>
             <Link href="/referral">Giới thiệu bạn</Link>
           </div>
 
           <div className="footer-col">
-            <h4>Pháp lý</h4>
+            <p className="footer-col-title">Pháp lý</p>
             <Link href="/privacy">Chính sách bảo mật</Link>
             <Link href="/terms">Điều khoản sử dụng</Link>
             <Link href="/refund-policy">Chính sách hoàn tiền</Link>
           </div>
 
           <div className="footer-col">
-            <h4>Tài khoản</h4>
+            <p className="footer-col-title">Tài khoản</p>
             <Link href="/auth/login">Đăng nhập</Link>
             <Link href="/auth/signup">Đăng ký</Link>
           </div>

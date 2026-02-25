@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Mascot } from "@/components/mascot";
 
 export const metadata: Metadata = {
-  title: "Bảo trì | Cùng Con Tự Học",
+  title: "Bảo trì",
 };
 
 const STAR_FIELD = [

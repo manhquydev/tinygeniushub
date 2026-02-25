@@ -3,6 +3,7 @@
 import { FormEvent, useMemo, useState } from "react";
 
 type ContactStatus = "idle" | "loading" | "success" | "error";
+const MAX_MESSAGE_LENGTH = 500;
 
 const SUBJECT_OPTIONS = [
   "Hỗ trợ kỹ thuật",
@@ -24,7 +25,7 @@ export function ContactForm() {
       return true;
     }
 
-    return name.trim().length === 0 || email.trim().length === 0 || message.trim().length < 10;
+    return name.trim().length === 0 || email.trim().length === 0 || message.trim().length < 10 || message.length > MAX_MESSAGE_LENGTH;
   }, [email, message, name, status]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -115,8 +116,10 @@ export function ContactForm() {
           placeholder="Vui lòng mô tả chi tiết để chúng tôi hỗ trợ nhanh hơn."
           rows={6}
           minLength={10}
+          maxLength={MAX_MESSAGE_LENGTH}
           required
         />
+        <p className="muted-text text-right">{message.length}/{MAX_MESSAGE_LENGTH}</p>
       </div>
 
       <button type="submit" className="contact-form-submit" disabled={submitDisabled}>

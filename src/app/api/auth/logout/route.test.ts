@@ -102,6 +102,25 @@ describe("auth logout route", () => {
     );
   });
 
+  it("redirects browser form submissions to home after logout", async () => {
+    const response = await POST(
+      new Request("http://localhost/api/auth/logout", {
+        method: "POST",
+        headers: {
+          origin: "http://localhost",
+          host: "localhost",
+          accept: "text/html,application/xhtml+xml",
+          "sec-fetch-mode": "navigate",
+          "sec-fetch-dest": "document",
+        },
+      }) as never,
+    );
+
+    expect(response.status).toBe(303);
+    expect(response.headers.get("location")).toBe("http://localhost/");
+    expect(response.headers.get("set-cookie")).toContain("Max-Age=0");
+  });
+
   it("returns normalized auth error when sign out fails", async () => {
     signOutMock.mockRejectedValueOnce({
       name: "APIError",

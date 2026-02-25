@@ -54,7 +54,7 @@ export function generateBlogPostJsonLd(post: BlogPostFullDTO, siteUrl: string): 
     },
     publisher: {
       "@type": "Organization",
-      name: "Cùng Con T? H?c",
+      name: "Cùng Con Tự Học",
       logo: {
         "@type": "ImageObject",
         url: `${baseUrl}/logo-cungcontuhoc-horizontal.svg`,
@@ -68,11 +68,14 @@ export function generateBlogPostJsonLd(post: BlogPostFullDTO, siteUrl: string): 
 
 export function generateBlogListMetadata(): Metadata {
   return {
-    title: "Blog Cùng Con T? H?c",
-    description: "Ki?n th?c, phuong pháp và tài nguyên giúp ph? huynh d?ng hành cùng bé h?c t?i nhà.",
+    title: "Blog Cùng Con Tự Học",
+    description: "Kiến thức, phương pháp và tài nguyên giúp phụ huynh đồng hành cùng bé học tại nhà.",
+    alternates: {
+      canonical: "/blog",
+    },
     openGraph: {
-      title: "Blog Cùng Con T? H?c",
-      description: "Ki?n th?c, phuong pháp và tài nguyên giúp ph? huynh d?ng hành cùng bé h?c t?i nhà.",
+      title: "Blog Cùng Con Tự Học",
+      description: "Kiến thức, phương pháp và tài nguyên giúp phụ huynh đồng hành cùng bé học tại nhà.",
       type: "website",
       url: "/blog",
     },

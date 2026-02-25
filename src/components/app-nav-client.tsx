@@ -2,11 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import dynamic from "next/dynamic";
+import { Menu, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useRef, useState } from "react";
-import { ParentNotificationCenter } from "./parent-notification-center";
-import { ParentalGateModal } from "./parental-gate-modal";
+import { useEffect, useRef, useState } from "react";
+
+const ParentNotificationCenter = dynamic(
+  () => import("./parent-notification-center").then((module) => module.ParentNotificationCenter),
+  { ssr: false },
+);
+
+const ParentalGateModal = dynamic(
+  () => import("./parental-gate-modal").then((module) => module.ParentalGateModal),
+  { ssr: false },
+);
 
 interface AppNavClientProps {
   hasParent: boolean;
@@ -38,22 +47,27 @@ interface NavTextLinkProps {
   item: NavItemConfig;
   pathname: string;
   onIntercept: (event: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+  onNavigate?: () => void;
+  className?: string;
 }
 
-function NavTextLink({ item, pathname, onIntercept }: NavTextLinkProps) {
+function NavTextLink({ item, pathname, onIntercept, onNavigate, className }: NavTextLinkProps) {
   const active = isPathActive(pathname, item.href, item.matchMode ?? "prefix");
-  const className = ["nav-link-item", active ? "nav-link-item-active" : "nav-link-item-inactive", item.hideOnMobile ? "nav-hide-mobile" : ""]
+  const resolvedClassName = ["nav-link-item", active ? "nav-link-item-active" : "nav-link-item-inactive", item.hideOnMobile ? "nav-hide-mobile" : "", className]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <Link href={item.href} className={className} onClick={(event) => onIntercept(event, item.href)}>
+    <Link
+      href={item.href}
+      className={resolvedClassName}
+      onClick={(event) => {
+        onIntercept(event, item.href);
+        onNavigate?.();
+      }}
+    >
       {active ? (
-        <motion.div
-          layoutId="nav-active-indicator"
-          className="nav-active-indicator"
-          transition={{ type: "spring", stiffness: 560, damping: 38, mass: 0.6 }}
-        />
+        <span className="nav-active-indicator" />
       ) : null}
       <span className="relative z-[1]">{item.label}</span>
     </Link>
@@ -65,6 +79,7 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
   const router = useRouter();
 
   const [gateOpen, setGateOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pendingHrefRef = useRef<string | null>(null);
   const pendingFormRef = useRef<HTMLFormElement | null>(null);
 
@@ -85,6 +100,12 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
     { href: "/about", label: "Giới thiệu", hideOnMobile: true, matchMode: "prefix" },
     { href: "/blog", label: "Blog", hideOnMobile: true, matchMode: "prefix" },
   ];
+  const currentLinks = hasParent ? parentLinks : guestLinks;
+  const mobileLinks = currentLinks.map((item) => ({ ...item, hideOnMobile: false }));
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   const handleInterceptNavigation = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!isKidUI) return;
@@ -131,8 +152,20 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
             <Image src="/logo-cungcontuhoc-horizontal.svg" alt="Cùng Con Tự Học Logo" width={180} height={50} priority />
           </Link>
 
-          <nav className="nav-links">
-            {(hasParent ? parentLinks : guestLinks).map((item) => (
+          <button
+            type="button"
+            className="nav-mobile-toggle"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="primary-nav-mobile"
+            aria-label={mobileMenuOpen ? "Đóng menu điều hướng" : "Mở menu điều hướng"}
+            onClick={() => setMobileMenuOpen((current) => !current)}
+          >
+            {mobileMenuOpen ? <X size={18} aria-hidden /> : <Menu size={18} aria-hidden />}
+            <span>{mobileMenuOpen ? "Đóng menu" : "Mở menu"}</span>
+          </button>
+
+          <nav className="nav-links nav-links-desktop">
+            {currentLinks.map((item) => (
               <NavTextLink key={item.href} item={item} pathname={pathname} onIntercept={handleInterceptNavigation} />
             ))}
 
@@ -162,6 +195,61 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
             )}
           </nav>
         </div>
+
+        {mobileMenuOpen ? (
+          <div id="primary-nav-mobile" className="container nav-mobile-panel">
+            {mobileLinks.map((item) => (
+              <NavTextLink
+                key={`${item.href}-mobile`}
+                item={item}
+                pathname={pathname}
+                onIntercept={handleInterceptNavigation}
+                onNavigate={() => setMobileMenuOpen(false)}
+                className="nav-mobile-link"
+              />
+            ))}
+
+            {hasParent ? (
+              <div className="nav-mobile-actions">
+                <div className="relative z-[90] shrink-0">
+                  <ParentNotificationCenter />
+                </div>
+                <form
+                  action="/api/auth/logout"
+                  method="post"
+                  onSubmit={(event) => {
+                    handleInterceptLogout(event);
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  <button type="submit" className="ghost-button nav-mobile-button">
+                    Đăng xuất
+                  </button>
+                </form>
+              </div>
+            ) : (
+              <div className="nav-mobile-actions">
+                <NavTextLink
+                  item={{ href: "/auth/login", label: "Đăng nhập", matchMode: "prefix" }}
+                  pathname={pathname}
+                  onIntercept={handleInterceptNavigation}
+                  onNavigate={() => setMobileMenuOpen(false)}
+                  className="nav-mobile-link"
+                />
+                <Link
+                  href="/auth/signup"
+                  className="solid-button nav-mobile-button"
+                  onClick={(event) => {
+                    handleInterceptNavigation(event, "/auth/signup");
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  Bắt đầu trial 7 ngày
+                </Link>
+              </div>
+            )}
+          </div>
+        ) : null}
       </header>
 
       {gateOpen && <ParentalGateModal onSuccess={handleGateSuccess} onCancel={handleGateCancel} />}

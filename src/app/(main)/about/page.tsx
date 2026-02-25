@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Giới Thiệu | Cùng Con Tự Học",
+  title: "Giới thiệu",
   description: "Câu chuyện đằng sau Cùng Con Tự Học - nền tảng học tập cho trẻ 2-6 tuổi được xây dựng bởi phụ huynh Việt.",
   alternates: { canonical: "https://cungcontuhoc.vn/about" },
 };

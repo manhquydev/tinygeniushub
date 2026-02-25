@@ -8,7 +8,22 @@ import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { DomainError } from "@/modules/platform/errors";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+
+function shouldRedirectAfterLogout(request: NextRequest) {
+  const fetchMode = request.headers.get("sec-fetch-mode");
+  const fetchDest = request.headers.get("sec-fetch-dest");
+  if (fetchMode === "navigate" || fetchDest === "document") {
+    return true;
+  }
+
+  if (!fetchMode && !fetchDest) {
+    const accept = request.headers.get("accept") ?? "";
+    return accept.includes("text/html");
+  }
+
+  return false;
+}
 
 export async function POST(request: NextRequest) {
   let clientIp = "unknown";
@@ -44,7 +59,9 @@ export async function POST(request: NextRequest) {
       returnStatus: true,
     });
 
-    const response = ok({ signedOut: true });
+    const response = shouldRedirectAfterLogout(request)
+      ? NextResponse.redirect(new URL("/", request.url), { status: 303 })
+      : ok({ signedOut: true });
     appendSetCookieHeaders(response, signOut.headers);
 
     logInfo("auth.logout.succeeded", {

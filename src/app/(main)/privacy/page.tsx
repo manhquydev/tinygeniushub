@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Chính Sách Bảo Mật | Cùng Con Tự Học",
+  title: "Chính sách bảo mật",
   description: "Cam kết bảo vệ thông tin cá nhân và dữ liệu của trẻ em trên nền tảng Cùng Con Tự Học.",
   alternates: { canonical: "https://cungcontuhoc.vn/privacy" },
 };

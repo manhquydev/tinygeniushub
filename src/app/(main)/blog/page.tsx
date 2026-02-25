@@ -10,9 +10,7 @@ export const revalidate = 600;
 export const metadata = generateBlogListMetadata();
 
 type BlogPageProps = {
-  searchParams?:
-    | Promise<{ subscribed?: string | string[]; unsubscribed?: string | string[] }>
-    | { subscribed?: string | string[]; unsubscribed?: string | string[] };
+  searchParams?: Promise<{ subscribed?: string | string[]; unsubscribed?: string | string[] }>;
 };
 
 function firstParamValue(value: string | string[] | undefined) {

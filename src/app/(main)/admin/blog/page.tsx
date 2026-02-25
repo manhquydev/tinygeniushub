@@ -57,16 +57,16 @@ export default async function AdminBlogDashboardPage() {
 
       <section className="grid gap-3 sm:grid-cols-2">
         <Link href="/admin/blog/posts/new" className="rounded-2xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
-          Viet bai moi
+          Viết bài mới
         </Link>
         <Link href="/admin/blog/posts" className="rounded-2xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
-          Quan ly bai viet
+          Quản lý bài viết
         </Link>
       </section>
 
       {topPost ? (
         <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-black text-slate-900">Bai viet xem nhieu nhat</h2>
+          <h2 className="text-xl font-black text-slate-900">Bài viết xem nhiều nhất</h2>
           <p className="mt-3 text-lg font-bold text-slate-800">{topPost.titleVi}</p>
           <p className="mt-2 text-sm text-slate-600">{topPost.viewCount} lượt xem</p>
         </section>

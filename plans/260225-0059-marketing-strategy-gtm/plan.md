@@ -36,9 +36,9 @@ Xây dựng hệ thống marketing hoàn chỉnh: business model tối ưu, funn
 |---|-------|--------|--------|------|
 | 1 | Business Model & Pricing Optimization | done | 3h | [phase-01](phase-01-business-model-pricing.md) |
 | 2 | Marketing Funnel & Content Strategy | pending | 4h | [phase-02](phase-02-marketing-funnel-content.md) |
-| 3 | Technical Marketing Implementation | pending | 6h | [phase-03](phase-03-technical-marketing.md) |
-| 4 | Growth & Viral Mechanics | pending | 4h | [phase-04](phase-04-growth-viral-mechanics.md) |
-| 5 | Go-to-Market Launch Playbook | pending | 3h | [phase-05](phase-05-gtm-launch-playbook.md) |
+| 3 | Technical Marketing Implementation | done | 6h | [phase-03](phase-03-technical-marketing.md) |
+| 4 | Growth & Viral Mechanics | done | 4h | [phase-04](phase-04-growth-viral-mechanics.md) |
+| 5 | Go-to-Market Launch Playbook | done | 3h | [phase-05](phase-05-gtm-launch-playbook.md) |
 
 ## Architecture Impact
 ```
