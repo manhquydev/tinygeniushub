@@ -58,6 +58,9 @@ export default async function TeacherDashboardPage() {
           >
             Tải báo cáo lớp PDF
           </a>
+          <a href="/teacher/bulk-enroll" className="solid-button">
+            + Tải lên học sinh
+          </a>
         </div>
       </section>
 
