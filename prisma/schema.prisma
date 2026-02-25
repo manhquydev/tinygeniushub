@@ -9,6 +9,7 @@ datasource db {
 
 enum PlanCode {
   TRIAL
+  MONTHLY_STANDARD
   YEARLY_STANDARD
   YEARLY_FAMILY_PLUS
 }

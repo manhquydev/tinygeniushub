@@ -1,7 +1,7 @@
 import { PlanCode, SubscriptionStatus } from "@prisma/client";
 import { z } from "zod";
 
-export const payablePlanCodeSchema = z.enum(["YEARLY_STANDARD", "YEARLY_FAMILY_PLUS"]);
+export const payablePlanCodeSchema = z.enum(["MONTHLY_STANDARD", "YEARLY_STANDARD", "YEARLY_FAMILY_PLUS"]);
 export type PayablePlanCode = z.infer<typeof payablePlanCodeSchema>;
 
 type PlanConfig = {
@@ -13,6 +13,13 @@ type PlanConfig = {
 };
 
 const PLAN_CONFIG: Record<PayablePlanCode, PlanConfig> = {
+  MONTHLY_STANDARD: {
+    amountVnd: 99_000,
+    childProfileLimit: 3,
+    caregiverLimit: 2,
+    portfolioRetentionMaxDays: 90,
+    status: SubscriptionStatus.ACTIVE_STANDARD,
+  },
   YEARLY_STANDARD: {
     amountVnd: 799_000,
     childProfileLimit: 3,
@@ -34,5 +41,7 @@ export function getPayablePlanConfig(planCode: PayablePlanCode) {
 }
 
 export function toPrismaPlanCode(planCode: PayablePlanCode) {
-  return planCode === "YEARLY_FAMILY_PLUS" ? PlanCode.YEARLY_FAMILY_PLUS : PlanCode.YEARLY_STANDARD;
+  if (planCode === "YEARLY_FAMILY_PLUS") return PlanCode.YEARLY_FAMILY_PLUS;
+  if (planCode === "MONTHLY_STANDARD") return PlanCode.MONTHLY_STANDARD;
+  return PlanCode.YEARLY_STANDARD;
 }

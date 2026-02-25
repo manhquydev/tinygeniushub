@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { trackEvent } from "@/lib/analytics/track-event";
 
-type PlanCode = "YEARLY_STANDARD" | "YEARLY_FAMILY_PLUS";
+type PlanCode = "MONTHLY_STANDARD" | "YEARLY_STANDARD" | "YEARLY_FAMILY_PLUS";
 
 // Plan amounts in VND for analytics (mirrors plan-config.ts)
 const PLAN_AMOUNT_VND: Record<PlanCode, number> = {
+  MONTHLY_STANDARD: 99_000,
   YEARLY_STANDARD: 799_000,
   YEARLY_FAMILY_PLUS: 1_199_000,
 };
