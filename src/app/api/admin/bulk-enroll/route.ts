@@ -2,12 +2,18 @@ import type { NextRequest } from "next/server";
 import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { parseCsvRows, processBulkEnrollRows } from "@/modules/organizations/bulk-enroll-service";
 
 // POST /api/admin/bulk-enroll
 // Body: multipart/form-data with fields: orgId (string) + csv (file)
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
+
     await requireAdminFromRequest(request);
 
     const formData = await request.formData();

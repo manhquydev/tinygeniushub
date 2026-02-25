@@ -93,6 +93,7 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
     { href: "/parent/children", label: "Hồ sơ bé", matchMode: "prefix" },
     { href: "/parent/courses", label: "Khóa học", matchMode: "prefix" },
     { href: "/parent/reports", label: "Báo cáo", matchMode: "prefix" },
+    { href: "/parent/billing", label: "Gói dịch vụ", matchMode: "prefix", hideOnMobile: true },
     ...(isAdmin ? [{ href: "/admin", label: "Admin", matchMode: "prefix" as const }] : []),
   ];
 
