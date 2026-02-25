@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart2, BookOpen, Clock, LayoutDashboard, MessageCircle, PenSquare, Settings, Shield, Users } from "lucide-react";
+import { BarChart2, BookOpen, Clock, GraduationCap, LayoutDashboard, MessageCircle, PenSquare, Settings, Shield, Users } from "lucide-react";
 
 type AdminShellNavMode = "mobile" | "desktop";
 
 const NAV = [
   { href: "/admin/overview", label: "Tổng quan", icon: LayoutDashboard },
+  { href: "/admin/courses", label: "Khoá học", icon: GraduationCap },
   { href: "/admin/blog", label: "Blog", icon: PenSquare },
   { href: "/admin/blog/posts", label: "Bài viết", icon: PenSquare },
   { href: "/admin/blog/categories", label: "Danh mục", icon: PenSquare },
