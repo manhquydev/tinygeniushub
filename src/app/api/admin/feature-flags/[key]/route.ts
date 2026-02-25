@@ -1,3 +1,4 @@
+import { z } from "zod";
 import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
@@ -14,9 +15,7 @@ export async function PATCH(request: NextRequest, context: RouteParams) {
     assertTrustedOrigin(request);
     const admin = await requireAdminFromRequest(request);
     const { key } = await context.params;
-    const body = (await request.json()) as {
-      enabled?: boolean;
-    };
+    const body = z.object({ enabled: z.boolean().optional() }).parse(await request.json());
 
     const featureFlag = await updateFeatureFlag({
       key,

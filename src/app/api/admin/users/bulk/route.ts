@@ -8,10 +8,10 @@ import { createAdminActionLog, executeAdminBulkUsersAction } from "@/modules/adm
 
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
+
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-
-    assertTrustedOrigin(request);
     const admin = await requireAdminFromRequest(request);
     const input = await request.json();
 
