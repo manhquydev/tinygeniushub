@@ -4,6 +4,13 @@ import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { createAdminActionLog, getAdminActionLogs } from "@/modules/admin/service";
+import { z } from "zod";
+
+const createLogSchema = z.object({
+  action: z.string().trim().min(1),
+  target: z.string().trim().min(1).optional(),
+  detail: z.unknown().optional(),
+});
 
 export async function GET(request: NextRequest) {
   try {
@@ -23,15 +30,11 @@ export async function POST(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
     const admin = await requireAdminFromRequest(request);
-    const body = (await request.json()) as {
-      action?: string;
-      target?: string;
-      detail?: unknown;
-    };
+    const body = createLogSchema.parse(await request.json());
 
     const entry = await createAdminActionLog({
       adminEmail: admin.email,
-      action: body.action ?? "",
+      action: body.action,
       target: body.target,
       detail: body.detail,
     });

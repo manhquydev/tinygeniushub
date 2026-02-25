@@ -474,17 +474,21 @@ export async function getAdminParentDetail(parentId: string) {
       })
     : 0;
 
-  const subscriptionHistory = subscriptionHistoryRaw.map((record) => ({
-    id: record.id,
-    provider: record.provider,
-    providerTransactionId: record.providerTransactionId,
-    amountVnd: record.amountVnd,
-    status: record.status,
-    processedAt: record.processedAt,
-    planCode: readStringFromUnknownRecord(record.rawPayload, "planCode"),
-    eventType: readStringFromUnknownRecord(record.rawPayload, "eventType"),
-    subscription: record.subscription,
-  }));
+  const subscriptionHistory = subscriptionHistoryRaw.map((record) => {
+    const planCode = readStringFromUnknownRecord(record.rawPayload, "planCode");
+    const eventType = readStringFromUnknownRecord(record.rawPayload, "eventType");
+    return {
+      id: record.id,
+      provider: record.provider,
+      providerTransactionId: record.providerTransactionId,
+      amountVnd: record.amountVnd,
+      status: record.status,
+      processedAt: record.processedAt,
+      planCode,
+      eventType,
+      subscription: record.subscription,
+    };
+  });
 
   return {
     parent: {

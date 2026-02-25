@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { createCoupon, listCoupons } from "@/modules/admin/service";
 import { z } from "zod";
@@ -26,6 +27,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
+
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     const admin = await requireAdminFromRequest(request);
     const body = createCouponSchema.parse(await request.json());
 
