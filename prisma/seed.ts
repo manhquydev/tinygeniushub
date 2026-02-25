@@ -718,6 +718,7 @@ async function main() {
   await seedContent();
   await seedDemoParent();
   await seedBlog();
+  await seedBlogArticles();
   console.log("Seed completed");
 }
 
@@ -730,3 +731,139 @@ main()
     await prisma.$disconnect();
   });
 
+
+async function seedBlogArticles() {
+  console.log("Seeding 10 SEO blog articles...");
+
+  // Resolve categories and author
+  const catTiengAnh = await prisma.blogCategory.findUnique({ where: { slug: "tieng-anh-som" } });
+  const catToanTuDuy = await prisma.blogCategory.findUnique({ where: { slug: "toan-tu-duy" } });
+  const catCongNghe = await prisma.blogCategory.findUnique({ where: { slug: "cong-nghe-giao-duc" } });
+  const catPhatTrien = await prisma.blogCategory.findUnique({ where: { slug: "phat-trien-tre" } });
+  const author = await prisma.blogAuthor.findUnique({ where: { slug: "ban-bien-tap" } });
+
+  if (!catTiengAnh || !catToanTuDuy || !catCongNghe || !catPhatTrien || !author) {
+    console.warn("Required categories or author not found. Run seedBlog() first.");
+    return;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const fs = require("fs") as typeof import("fs");
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const path = require("path") as typeof import("path");
+
+  const articlesDir = path.join(
+    __dirname,
+    "../plans/260225-1017-product-marketing-roadmap/research/blog-articles"
+  );
+
+  function readArticle(filename: string): string {
+    return fs.readFileSync(path.join(articlesDir, filename), "utf-8");
+  }
+
+  /**
+   * Extract first H1 title from markdown (# Title line)
+   */
+  function extractTitle(md: string): string {
+    const match = md.match(/^#\s+(.+)$/m);
+    return match ? match[1].trim() : "";
+  }
+
+  /**
+   * Extract first real paragraph after the metadata block (after ---)
+   */
+  function extractExcerpt(md: string, maxLen = 200): string {
+    // Skip metadata lines (lines starting with ** or empty) until we find prose
+    const lines = md.split("\n");
+    let afterMeta = false;
+    const paraLines: string[] = [];
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!afterMeta) {
+        if (trimmed === "---") { afterMeta = true; }
+        continue;
+      }
+      if (trimmed.startsWith("#") || trimmed.startsWith("**") || trimmed === "") {
+        if (paraLines.length > 0) break;
+        continue;
+      }
+      paraLines.push(trimmed);
+    }
+    const text = paraLines.join(" ");
+    return text.length > maxLen ? text.slice(0, maxLen - 1) + "…" : text;
+  }
+
+  type ArticleDef = {
+    slug: string;
+    filename: string;
+    categoryId: string;
+  };
+
+  const articles: ArticleDef[] = [
+    // Tiếng Anh sớm (01, 02, 03)
+    { slug: "top-7-app-tieng-anh-cho-be", filename: "01-top-7-app-tieng-anh.md", categoryId: catTiengAnh.id },
+    { slug: "day-tieng-anh-cho-be-tai-nha", filename: "02-day-tieng-anh-tai-nha.md", categoryId: catTiengAnh.id },
+    { slug: "bai-hat-tieng-anh-cho-be", filename: "03-bai-hat-tieng-anh-cho-be.md", categoryId: catTiengAnh.id },
+    // Toán tư duy (04, 05, 06)
+    { slug: "day-toan-cho-tre-3-tuoi", filename: "04-day-toan-cho-tre-3-tuoi.md", categoryId: catToanTuDuy.id },
+    { slug: "tro-choi-hoc-toan-cho-be", filename: "05-tro-choi-hoc-toan-cho-be.md", categoryId: catToanTuDuy.id },
+    { slug: "app-hoc-toan-cho-be", filename: "06-app-hoc-toan-cho-be.md", categoryId: catToanTuDuy.id },
+    // Công nghệ giáo dục (07, 08)
+    { slug: "ung-dung-giao-duc-cho-be", filename: "07-ung-dung-giao-duc-cho-be.md", categoryId: catCongNghe.id },
+    { slug: "app-hoc-cho-be-3-tuoi", filename: "08-app-hoc-cho-be-3-tuoi.md", categoryId: catCongNghe.id },
+    // Phát triển trẻ (09, 10)
+    { slug: "giao-duc-som-cho-tre", filename: "09-giao-duc-som-cho-tre.md", categoryId: catPhatTrien.id },
+    { slug: "phuong-phap-giao-duc-som", filename: "10-phuong-phap-giao-duc-som.md", categoryId: catPhatTrien.id },
+  ];
+
+  for (const art of articles) {
+    const contentMarkdown = readArticle(art.filename);
+    const titleVi = extractTitle(contentMarkdown);
+    const excerptVi = extractExcerpt(contentMarkdown);
+
+    await prisma.blogPost.upsert({
+      where: { slug: art.slug },
+      update: {
+        titleVi,
+        excerptVi,
+        contentMarkdown,
+        contentHtml: null,
+        type: BlogPostType.ARTICLE,
+        status: BlogPostStatus.PUBLISHED,
+        publishedAt: new Date(),
+        authorId: author.id,
+        categoryId: art.categoryId,
+        ageGroup: AgeGroup.AGE_3_5,
+        readingTimeMin: readingTimeFromMarkdown(contentMarkdown),
+        isIndexed: true,
+        isFeatured: false,
+        metaTitleVi: titleVi,
+        metaDescVi: excerptVi,
+      },
+      create: {
+        slug: art.slug,
+        titleVi,
+        excerptVi,
+        contentMarkdown,
+        contentHtml: null,
+        type: BlogPostType.ARTICLE,
+        status: BlogPostStatus.PUBLISHED,
+        publishedAt: new Date(),
+        authorId: author.id,
+        categoryId: art.categoryId,
+        ageGroup: AgeGroup.AGE_3_5,
+        readingTimeMin: readingTimeFromMarkdown(contentMarkdown),
+        isIndexed: true,
+        isFeatured: false,
+        isPinned: false,
+        coAuthorIds: [],
+        metaTitleVi: titleVi,
+        metaDescVi: excerptVi,
+      },
+    });
+
+    console.log(`  + ${art.slug}`);
+  }
+
+  console.log("seedBlogArticles: 10 articles upserted.");
+}

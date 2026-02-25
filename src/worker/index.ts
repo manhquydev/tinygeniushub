@@ -4,6 +4,7 @@ import { createWeeklyReportEmailsWorker } from "@/worker/jobs/dispatch-weekly-re
 import { createBlogNewsletterWorker } from "@/worker/jobs/dispatch-blog-newsletter-emails";
 import { createVerifyBlogCommentEmailWorker } from "@/worker/jobs/verify-blog-comment-email";
 import { createLifecycleEmailsWorker } from "@/worker/jobs/dispatch-lifecycle-emails";
+import { createCertificateWorker } from "@/worker/jobs/generate-certificate";
 import { enqueueRetentionCleanup, enqueueWeeklyReportEmails, enqueueWeeklyReports, enqueueDispatchPendingLifecycleEmails } from "@/worker/queue";
 import { logError, logInfo } from "@/lib/observability/logger";
 
@@ -13,6 +14,7 @@ const weeklyEmailWorker = createWeeklyReportEmailsWorker();
 const blogNewsletterWorker = createBlogNewsletterWorker();
 const verifyBlogCommentEmailWorker = createVerifyBlogCommentEmailWorker();
 const lifecycleEmailWorker = createLifecycleEmailsWorker();
+const certificateWorker = createCertificateWorker();
 
 weeklyWorker.on("completed", (job) => {
   logInfo("worker.weekly_reports.completed", {
@@ -46,6 +48,12 @@ verifyBlogCommentEmailWorker.on("completed", (job) => {
 
 lifecycleEmailWorker.on("completed", (job) => {
   logInfo("worker.lifecycle_email.completed", {
+    jobId: job.id,
+  });
+});
+
+certificateWorker.on("completed", (job) => {
+  logInfo("worker.certificate.completed", {
     jobId: job.id,
   });
 });
@@ -87,6 +95,13 @@ verifyBlogCommentEmailWorker.on("failed", (job, error) => {
 
 lifecycleEmailWorker.on("failed", (job, error) => {
   logError("worker.lifecycle_email.failed", {
+    jobId: job?.id,
+    error,
+  });
+});
+
+certificateWorker.on("failed", (job, error) => {
+  logError("worker.certificate.failed", {
     jobId: job?.id,
     error,
   });
@@ -150,6 +165,7 @@ process.on("SIGINT", async () => {
     blogNewsletterWorker.close(),
     verifyBlogCommentEmailWorker.close(),
     lifecycleEmailWorker.close(),
+    certificateWorker.close(),
   ]);
   logInfo("worker.shutdown_completed");
   process.exit(0);

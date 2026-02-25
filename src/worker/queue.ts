@@ -30,6 +30,22 @@ export const lifecycleEmailQueue = new Queue("lifecycle-emails", {
   connection: redisConnection,
 });
 
+export const certificateQueue = new Queue("certificates", {
+  connection: redisConnection,
+});
+
+export async function enqueueCertificateGeneration(enrollmentId: string) {
+  return certificateQueue.add(
+    "generate-certificate",
+    { enrollmentId },
+    {
+      removeOnComplete: true,
+      removeOnFail: 50,
+      jobId: `certificate:${enrollmentId}`,
+    },
+  );
+}
+
 export async function enqueueWeeklyReports() {
   return reportsQueue.add(
     "generate-weekly-reports",
