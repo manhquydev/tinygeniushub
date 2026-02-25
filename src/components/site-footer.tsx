@@ -12,7 +12,7 @@ export function SiteFooter() {
             <Image src="/logo-cungcontuhoc-horizontal.svg" alt="Cùng Con Tự Học Logo" width={200} height={55} />
           </Link>
           <p className="footer-tagline">
-            Learning Journey OS cho phụ huynh Việt.
+            Toán &amp; Tiếng Anh cho bé 2–6 tuổi.
             <br />
             Mỗi ngày 15 phút, thấy rõ con tiến bộ.
           </p>
@@ -34,6 +34,8 @@ export function SiteFooter() {
             <Link href="/blog">Blog</Link>
             <Link href="/contact">Liên hệ</Link>
             <Link href="/referral">Giới thiệu bạn</Link>
+            <Link href="/gift-code">Mã quà tặng</Link>
+            <Link href="/waitlist">Đặt chỗ sớm</Link>
           </div>
 
           <div className="footer-col">
