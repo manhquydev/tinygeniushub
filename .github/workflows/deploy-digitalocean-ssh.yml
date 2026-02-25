@@ -101,23 +101,16 @@ jobs:
           DEPLOY_REF: ${{ env.DEPLOY_REF }}
         run: |
           set -euo pipefail
-          DO_POST_DEPLOY_COMMAND_B64="$(printf '%s' "$DO_POST_DEPLOY_COMMAND" | base64 -w0)"
-          DO_APP_DIR_B64="$(printf '%s' "$DO_APP_DIR" | base64 -w0)"
-          DEPLOY_REF_B64="$(printf '%s' "$DEPLOY_REF" | base64 -w0)"
+          POST_CMD_B64="$(printf '%s' "$DO_POST_DEPLOY_COMMAND" | base64 -w0)"
 
           ssh \
             -i ~/.ssh/do_deploy_key \
             -o BatchMode=yes \
             -o IdentitiesOnly=yes \
             -o StrictHostKeyChecking=yes \
-            "$DO_SSH_USER@$DO_SSH_HOST" \
-            "APP_DIR_B64='$DO_APP_DIR_B64' REF_B64='$DEPLOY_REF_B64' CMD_B64='$DO_POST_DEPLOY_COMMAND_B64' bash -s" <<'REMOTE_SCRIPT'
+            "$DO_SSH_USER@$DO_SSH_HOST" "bash -s" <<REMOTE_SCRIPT
           set -euo pipefail
-          app_dir="$(printf '%s' "$APP_DIR_B64" | base64 -d)"
-          deploy_ref="$(printf '%s' "$REF_B64" | base64 -d)"
-          post_deploy_cmd="$(printf '%s' "$CMD_B64" | base64 -d)"
-
-          cd "$app_dir"
-          export POST_DEPLOY_CMD="$post_deploy_cmd"
-          bash scripts/deploy/remote-deploy.sh "$deploy_ref"
+          cd "$DO_APP_DIR"
+          export POST_DEPLOY_CMD="\$(printf '%s' '$POST_CMD_B64' | base64 -d)"
+          bash scripts/deploy/remote-deploy.sh "$DEPLOY_REF"
           REMOTE_SCRIPT
