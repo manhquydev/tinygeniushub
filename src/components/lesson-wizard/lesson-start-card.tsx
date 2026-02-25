@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import { useState } from "react";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { Play } from "lucide-react";
@@ -13,6 +14,8 @@ interface LessonStartCardProps {
   objective: string;
   estimatedMinutes: number;
   videoSource?: string | null;
+  bunnyVideoId?: string | null;
+  videoStatus?: string;
   onLessonSelect?: (lessonId: string) => void;
   onLessonComplete?: (lessonId: string) => void;
   beforeStart?: () => Promise<boolean> | boolean;
@@ -107,12 +110,31 @@ export function LessonStartCard(props: LessonStartCardProps) {
     onSelect: props.onLessonSelect,
     prefersReducedMotion,
   });
+  const [resolvedVideoSource, setResolvedVideoSource] = useState<string | null | undefined>(undefined);
+
   async function handleLaunch() {
     if (props.beforeStart) {
       const shouldStart = await props.beforeStart();
       if (!shouldStart) {
         return;
       }
+    }
+
+    // Resolve video source: prefer Bunny signed URL, fall back to videoSource
+    if (props.bunnyVideoId && props.videoStatus === "ready") {
+      try {
+        const res = await fetch(`/api/lessons/${props.lessonId}/video-token`);
+        if (res.ok) {
+          const json = (await res.json()) as { data: { embedUrl: string } };
+          setResolvedVideoSource(json.data.embedUrl);
+        } else {
+          setResolvedVideoSource(props.videoSource ?? null);
+        }
+      } catch {
+        setResolvedVideoSource(props.videoSource ?? null);
+      }
+    } else {
+      setResolvedVideoSource(props.videoSource ?? null);
     }
 
     handleStartLesson();
@@ -189,7 +211,7 @@ export function LessonStartCard(props: LessonStartCardProps) {
           title={props.title}
           objective={props.objective}
           estimatedMinutes={props.estimatedMinutes}
-          videoSource={props.videoSource}
+          videoSource={resolvedVideoSource ?? props.videoSource}
           onClose={handleCloseLesson}
           onCompleted={props.onLessonComplete}
         />

@@ -56,6 +56,8 @@ export default async function KidTodayPage({ searchParams }: KidTodayPageProps) 
           objective: lesson.objective,
           estimatedMinutes: lesson.estimatedMinutes,
           videoSource: lesson.videoSource,
+          bunnyVideoId: lesson.bunnyVideoId ?? null,
+          videoStatus: lesson.videoStatus,
         }))}
       />
     </div>

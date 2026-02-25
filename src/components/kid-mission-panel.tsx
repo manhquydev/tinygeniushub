@@ -35,6 +35,8 @@ interface MissionChild {
 
 type MissionLesson = Pick<LessonCardDTO, "id" | "title" | "objective" | "estimatedMinutes"> & {
   videoSource?: string | null;
+  bunnyVideoId?: string | null;
+  videoStatus?: string;
 };
 
 interface KidMissionPanelProps {
@@ -1115,6 +1117,8 @@ export function KidMissionPanel({
                                 objective={lesson.objective}
                                 estimatedMinutes={lesson.estimatedMinutes}
                                 videoSource={lesson.videoSource}
+                                bunnyVideoId={lesson.bunnyVideoId}
+                                videoStatus={lesson.videoStatus}
                                 onLessonSelect={handleLessonSelect}
                                 onLessonComplete={handleLessonComplete}
                                 beforeStart={ensureGoalAllowsLessonStart}

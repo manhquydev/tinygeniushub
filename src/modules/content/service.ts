@@ -44,6 +44,8 @@ async function findFirstLessonByTrack(input: {
       objective: true,
       estimatedMinutes: true,
       videoSource: true,
+      bunnyVideoId: true,
+      videoStatus: true,
       trialEnabled: true,
       unit: {
         select: {
@@ -118,6 +120,8 @@ export async function getTodayMission(input: {
       objective: lesson.objective,
       estimatedMinutes: lesson.estimatedMinutes,
       videoSource: lesson.videoSource,
+      bunnyVideoId: lesson.bunnyVideoId,
+      videoStatus: lesson.videoStatus,
       trialEnabled: lesson.trialEnabled,
       isCompleted: completedLessonIds.includes(lesson.id),
       trackCode: lesson.unit.level.track.code,
