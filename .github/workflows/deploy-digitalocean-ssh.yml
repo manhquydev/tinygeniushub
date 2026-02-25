@@ -1,0 +1,122 @@
+name: Deploy DigitalOcean via SSH
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Git ref to deploy (branch, tag, or commit SHA)"
+        required: false
+        default: "main"
+      dry_run:
+        description: "Run SSH connectivity check only"
+        required: false
+        type: boolean
+        default: false
+  workflow_run:
+    workflows:
+      - Release Check
+    types:
+      - completed
+    branches:
+      - main
+
+concurrency:
+  group: deploy-digitalocean-main
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    env:
+      DEPLOY_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.event.workflow_run.head_sha }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DEPLOY_REF }}
+          fetch-depth: 0
+
+      - name: Validate required secrets
+        env:
+          DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
+          DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
+          DO_SSH_PRIVATE_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          DO_SSH_KNOWN_HOSTS: ${{ secrets.DO_SSH_KNOWN_HOSTS }}
+          DO_APP_DIR: ${{ secrets.DO_APP_DIR }}
+          DO_POST_DEPLOY_COMMAND: ${{ secrets.DO_POST_DEPLOY_COMMAND }}
+        run: |
+          set -euo pipefail
+          missing=0
+          for name in DO_SSH_HOST DO_SSH_USER DO_SSH_PRIVATE_KEY DO_SSH_KNOWN_HOSTS DO_APP_DIR DO_POST_DEPLOY_COMMAND; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error::Missing required secret: $name"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Prepare SSH key material
+        env:
+          DO_SSH_PRIVATE_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          DO_SSH_KNOWN_HOSTS: ${{ secrets.DO_SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DO_SSH_PRIVATE_KEY" > ~/.ssh/do_deploy_key
+          chmod 600 ~/.ssh/do_deploy_key
+          printf '%s\n' "$DO_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Verify SSH connectivity
+        env:
+          DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
+          DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
+        run: |
+          set -euo pipefail
+          ssh \
+            -i ~/.ssh/do_deploy_key \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            "$DO_SSH_USER@$DO_SSH_HOST" \
+            "echo 'SSH connection established'"
+
+      - name: Deploy on remote server
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        env:
+          DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
+          DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
+          DO_APP_DIR: ${{ secrets.DO_APP_DIR }}
+          DO_POST_DEPLOY_COMMAND: ${{ secrets.DO_POST_DEPLOY_COMMAND }}
+          DEPLOY_REF: ${{ env.DEPLOY_REF }}
+        run: |
+          set -euo pipefail
+          DO_POST_DEPLOY_COMMAND_B64="$(printf '%s' "$DO_POST_DEPLOY_COMMAND" | base64 -w0)"
+
+          ssh \
+            -i ~/.ssh/do_deploy_key \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            "$DO_SSH_USER@$DO_SSH_HOST" \
+            "bash -se -- '$DO_APP_DIR' '$DEPLOY_REF' '$DO_POST_DEPLOY_COMMAND_B64'" <<'REMOTE_SCRIPT'
+          set -euo pipefail
+          app_dir="$1"
+          deploy_ref="$2"
+          post_deploy_cmd_b64="$3"
+          post_deploy_cmd="$(printf '%s' "$post_deploy_cmd_b64" | base64 -d)"
+
+          cd "$app_dir"
+          export POST_DEPLOY_CMD="$post_deploy_cmd"
+          bash scripts/deploy/remote-deploy.sh "$deploy_ref"
+          REMOTE_SCRIPT
