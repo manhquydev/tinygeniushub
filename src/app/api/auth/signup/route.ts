@@ -9,6 +9,8 @@ import { registerParent, signupSchema } from "@/modules/identity/service";
 import { DomainError } from "@/modules/platform/errors";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
+import { enqueueLifecycleEmail } from "@/worker/queue";
+import { LifecycleEmailType } from "@prisma/client";
 
 export async function POST(request: Request) {
   let clientIp = "unknown";
@@ -93,6 +95,11 @@ export async function POST(request: Request) {
     logInfo("auth.signup.succeeded", {
       parentId: parent.id,
       ip: clientIp,
+    });
+
+    // Fire-and-forget: queue D0 welcome email (errors are non-fatal)
+    enqueueLifecycleEmail(parent.id, LifecycleEmailType.TRIAL_WELCOME).catch(() => {
+      logWarn("auth.signup.lifecycle_email_enqueue_failed", { parentId: parent.id });
     });
 
     return response;
