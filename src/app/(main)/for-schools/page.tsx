@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   title: "Phần Mềm Học Tập Cho Trường Mầm Non — Cùng Con Tự Học",
   description:
     "Nền tảng Toán tư duy + Tiếng Anh Phonics cho trường mầm non. Dashboard giáo viên, báo cáo phụ huynh, đăng ký hàng loạt bằng CSV. Dùng thử miễn phí 30 ngày.",
-  alternates: { canonical: "https://cungcontuhoc.vn/for-schools" },
+  alternates: { canonical: "https://cungcontuhoc.io.vn/for-schools" },
   openGraph: {
     title: "Phần Mềm Học Tập Cho Trường Mầm Non — Cùng Con Tự Học",
     description: "Dashboard giáo viên · Báo cáo phụ huynh tự động · Đăng ký hàng loạt bằng CSV",
-    url: "https://cungcontuhoc.vn/for-schools",
+    url: "https://cungcontuhoc.io.vn/for-schools",
     type: "website",
   },
 };

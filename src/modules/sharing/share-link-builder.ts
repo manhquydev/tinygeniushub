@@ -3,7 +3,7 @@
  * Supports Zalo, Facebook, and WhatsApp (fallback).
  */
 
-const BASE_URL = "https://cungcontuhoc.vn";
+const BASE_URL = "https://cungcontuhoc.io.vn";
 
 export type SharePlatform = "zalo" | "facebook" | "whatsapp";
 

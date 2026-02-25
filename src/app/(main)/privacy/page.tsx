@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Chính sách bảo mật",
   description: "Cam kết bảo vệ thông tin cá nhân và dữ liệu của trẻ em trên nền tảng Cùng Con Tự Học.",
-  alternates: { canonical: "https://cungcontuhoc.vn/privacy" },
+  alternates: { canonical: "https://cungcontuhoc.io.vn/privacy" },
 };
 
 export default function PrivacyPolicyPage() {
@@ -49,7 +49,7 @@ export default function PrivacyPolicyPage() {
       <ul>
         <li>Quyền xem, chỉnh sửa hoặc yêu cầu xóa dữ liệu cá nhân.</li>
         <li>Quyền rút lại đồng ý nhận thông báo bất kỳ lúc nào.</li>
-        <li>Liên hệ yêu cầu quyền dữ liệu qua email: privacy@cungcontuhoc.vn.</li>
+        <li>Liên hệ yêu cầu quyền dữ liệu qua email: privacy@cungcontuhoc.io.vn.</li>
       </ul>
 
       <h2>6. Cookies</h2>
@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
 
       <h2>8. Liên hệ</h2>
       <ul>
-        <li>Email: privacy@cungcontuhoc.vn</li>
+        <li>Email: privacy@cungcontuhoc.io.vn</li>
         <li>Đơn vị vận hành: Cùng Con Tự Học</li>
       </ul>
 

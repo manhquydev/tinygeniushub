@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Điều khoản sử dụng",
   description: "Điều khoản và điều kiện sử dụng dịch vụ Cùng Con Tự Học.",
-  alternates: { canonical: "https://cungcontuhoc.vn/terms" },
+  alternates: { canonical: "https://cungcontuhoc.io.vn/terms" },
 };
 
 export default function TermsOfServicePage() {
@@ -70,7 +70,7 @@ export default function TermsOfServicePage() {
       <p>Các điều khoản này được điều chỉnh theo pháp luật nước Cộng hòa Xã hội Chủ nghĩa Việt Nam.</p>
 
       <h2>10. Liên hệ</h2>
-      <p>Email hỗ trợ: support@cungcontuhoc.vn</p>
+      <p>Email hỗ trợ: support@cungcontuhoc.io.vn</p>
 
       <p className="last-updated">Ngày cập nhật gần nhất: 23/02/2026</p>
     </article>

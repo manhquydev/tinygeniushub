@@ -115,7 +115,7 @@ export async function generateCertificate(params: {
   });
 
   // Site URL
-  const siteUrl = "cungcontuhoc.vn";
+  const siteUrl = "cungcontuhoc.io.vn";
   const siteUrlSize = 11;
   const siteUrlWidth = regularFont.widthOfTextAtSize(siteUrl, siteUrlSize);
   page.drawText(siteUrl, {

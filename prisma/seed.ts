@@ -424,7 +424,7 @@ async function seedContent() {
 }
 
 async function seedDemoParent() {
-  const email = (process.env.SEED_PARENT_EMAIL ?? "demo.parent@cungcontuhoc.vn").toLowerCase();
+  const email = (process.env.SEED_PARENT_EMAIL ?? "demo.parent@cungcontuhoc.io.vn").toLowerCase();
   const password = process.env.SEED_PARENT_PASSWORD ?? "DemoPass123!";
 
   const parent = await prisma.parentAccount.upsert({

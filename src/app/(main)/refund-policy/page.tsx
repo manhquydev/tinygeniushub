@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Chính sách hoàn tiền",
   description: "Chính sách hoàn tiền minh bạch của Cùng Con Tự Học.",
-  alternates: { canonical: "https://cungcontuhoc.vn/refund-policy" },
+  alternates: { canonical: "https://cungcontuhoc.io.vn/refund-policy" },
 };
 
 export default function RefundPolicyPage() {
@@ -24,7 +24,7 @@ export default function RefundPolicyPage() {
 
       <h2>Cách gửi yêu cầu</h2>
       <ul>
-        <li>Gửi email về: billing@cungcontuhoc.vn</li>
+        <li>Gửi email về: billing@cungcontuhoc.io.vn</li>
         <li>Tiêu đề gợi ý: Yêu cầu hoàn tiền</li>
         <li>Nội dung cần có: email tài khoản, thời điểm thanh toán và lý do yêu cầu.</li>
       </ul>

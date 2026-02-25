@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Đăng ký trước — Cùng Con Tự Học",
   description:
     "Đăng ký trước để nhận thông báo khi Cùng Con Tự Học ra mắt và ưu đãi dành riêng cho 50 gia đình đầu tiên.",
-  alternates: { canonical: "https://cungcontuhoc.vn/waitlist" },
+  alternates: { canonical: "https://cungcontuhoc.io.vn/waitlist" },
   robots: { index: false, follow: false }, // noindex until launch
 };
 

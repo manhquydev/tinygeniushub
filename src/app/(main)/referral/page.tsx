@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Giới thiệu bạn bè",
   description:
     "Giới thiệu bạn bè dùng Cùng Con Tự Học — cả hai cùng nhận 7 ngày học miễn phí.",
-  alternates: { canonical: "https://cungcontuhoc.vn/referral" },
+  alternates: { canonical: "https://cungcontuhoc.io.vn/referral" },
 };
 
 const TIERS = [

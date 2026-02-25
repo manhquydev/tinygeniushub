@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Khóa học Premium — Cùng Con Tự Học",
   description:
     "Học chuyên sâu theo lộ trình có cấu trúc. Toán tư duy, tiếng Anh Phonics và nhiều khóa học premium dành cho bé.",
-  alternates: { canonical: "https://cungcontuhoc.vn/courses" },
+  alternates: { canonical: "https://cungcontuhoc.io.vn/courses" },
 };
 
 type Course = {

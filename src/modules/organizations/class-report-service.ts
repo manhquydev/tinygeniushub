@@ -106,8 +106,8 @@ export async function generateClassReport(orgId: string, teacherParentId: string
 
   // Footer
   page.drawLine({ start: { x: margin, y: 28 }, end: { x: width - margin, y: 28 }, thickness: 0.5, color: lightGray });
-  page.drawText("cungcontuhoc.vn", {
-    x: (width - regularFont.widthOfTextAtSize("cungcontuhoc.vn", 9)) / 2,
+  page.drawText("cungcontuhoc.io.vn", {
+    x: (width - regularFont.widthOfTextAtSize("cungcontuhoc.io.vn", 9)) / 2,
     y: 14,
     size: 9,
     font: regularFont,

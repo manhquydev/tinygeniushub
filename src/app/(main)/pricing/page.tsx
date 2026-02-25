@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   description:
     "Dùng thử miễn phí 7 ngày, không cần thẻ tín dụng. Gói Standard 799,000 VND/năm — hoàn tiền 100% trong 30 ngày nếu không thấy tiến bộ.",
   alternates: {
-    canonical: "https://cungcontuhoc.vn/pricing",
+    canonical: "https://cungcontuhoc.io.vn/pricing",
   },
   openGraph: {
     title: "Bảng giá — Cùng Con Tự Học",
     description: "Gói Standard 799,000 VND/năm · Family+ 1,199,000 VND/năm · Dùng thử 7 ngày miễn phí",
-    url: "https://cungcontuhoc.vn/pricing",
+    url: "https://cungcontuhoc.io.vn/pricing",
     type: "website",
   },
 };

@@ -24,12 +24,12 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: "https://cungcontuhoc.vn",
+    canonical: "https://cungcontuhoc.io.vn",
   },
   openGraph: {
     title: "Cùng Con Tự Học — Toán & Tiếng Anh cho trẻ 2-6 tuổi",
     description: "Toán tư duy + Tiếng Anh Phonics trong 1 nền tảng. 15 phút/ngày, phụ huynh thấy kết quả sau 30 ngày.",
-    url: "https://cungcontuhoc.vn",
+    url: "https://cungcontuhoc.io.vn",
     type: "website",
     locale: "vi_VN",
     images: [
@@ -55,7 +55,7 @@ const jsonLdApp = {
   applicationCategory: "EducationalApplication",
   operatingSystem: "Web",
   inLanguage: "vi",
-  url: "https://cungcontuhoc.vn",
+  url: "https://cungcontuhoc.io.vn",
   offers: {
     "@type": "AggregateOffer",
     lowPrice: "799000",
@@ -69,7 +69,7 @@ const jsonLdWebsite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Cùng Con Tự Học",
-  url: "https://cungcontuhoc.vn",
+  url: "https://cungcontuhoc.io.vn",
   inLanguage: "vi",
   description: "Lộ trình học tập cho trẻ 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ.",
 };

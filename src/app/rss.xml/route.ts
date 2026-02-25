@@ -5,7 +5,7 @@ function escapeForCdata(value: string) {
 }
 
 export async function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cungcontuhoc.vn";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cungcontuhoc.io.vn";
   const channelTitle = "C\u00f9ng Con T\u1ef1 H\u1ecdc - Blog";
   const channelDescription =
     "Ki\u1ebfn th\u1ee9c nu\u00f4i d\u1ea1y con v\u00e0 ph\u00e1t tri\u1ec3n to\u00e0n di\u1ec7n cho tr\u1ebb 2-6 tu\u1ed5i";
