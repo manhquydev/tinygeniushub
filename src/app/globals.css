@@ -2919,3 +2919,16 @@ ul {
     width: 40%;
   }
 }
+
+
+/* Mascot state animations */
+@keyframes mascot-nervous {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes mascot-bored {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.97); }
+}

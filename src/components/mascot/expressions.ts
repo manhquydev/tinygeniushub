@@ -20,6 +20,11 @@ export const STATE_EXPRESSIONS: Record<MascotState, MascotExpression> = {
   playful: { eye: "wink", beak: "talking" },
   proud: { eye: "open", beak: "cheer" },
   love: { eye: "smile", beak: "cheer" },
+  surprised: { eye: "star", beak: "cheer" },
+  excited: { eye: "wink", beak: "cheer" },
+  nervous: { eye: "open", beak: "rest" },
+  angry: { eye: "sad", beak: "frown" },
+  bored: { eye: "sleep", beak: "rest" },
 };
 
 export const BIG_EYE_PATHS = {

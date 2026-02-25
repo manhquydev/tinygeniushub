@@ -114,6 +114,37 @@ export async function bunnyDeleteVideo(videoId: string): Promise<void> {
   }
 }
 
+// ---- TUS direct upload token (for browser-side upload) ----
+// Browser uploads directly to Bunny TUS endpoint using server-generated signature
+// https://docs.bunny.net/docs/stream-tus-uploading
+
+export interface BunnyTusToken {
+  tusEndpoint: string;
+  authSignature: string;
+  authExpire: number;
+  videoId: string;
+  libraryId: string; // stringified for use as HTTP header
+}
+
+export function bunnyGenerateTusToken(videoId: string, expirySeconds = 3600): BunnyTusToken {
+  const apiKey = getApiKey();
+  const libraryId = getLibraryId();
+
+  const authExpire = Math.floor(Date.now() / 1000) + expirySeconds;
+  // Bunny TUS signature: SHA256(libraryId + apiKey + expiry + videoId)
+  const authSignature = createHmac("sha256", apiKey)
+    .update(`${libraryId}${apiKey}${authExpire}${videoId}`)
+    .digest("hex");
+
+  return {
+    tusEndpoint: "https://video.bunnycdn.com/tusupload",
+    authSignature,
+    authExpire,
+    videoId,
+    libraryId: String(libraryId),
+  };
+}
+
 // ---- Signed embed URL for playback ----
 // Bunny token-auth: token = sha256(libraryId + secret + expiry + videoId)
 // https://docs.bunny.net/docs/stream-embed-token-authentication

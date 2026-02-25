@@ -4,7 +4,9 @@ export type ActivityType =
   | "FILL_BLANK"
   | "MATCH_PAIRS"
   | "SORT_ORDER"
-  | "LISTEN_IDENTIFY";
+  | "LISTEN_IDENTIFY"
+  | "DRAG_DROP"
+  | "DRAWING";
 
 export interface MultipleChoiceSpec {
   type: "MULTIPLE_CHOICE";
@@ -47,13 +49,56 @@ export interface ListenIdentifySpec {
   correctIndex: number;
 }
 
+// ---- DRAG_DROP ----
+
+export interface DragDropItem {
+  id: string;
+  label: string;
+  imageUrl?: string;
+}
+
+export interface DragDropZone {
+  id: string;
+  label: string;
+  acceptsItemId: string; // the itemId that belongs in this zone
+}
+
+export interface DragDropSpec {
+  type: "DRAG_DROP";
+  instruction: string;
+  items: DragDropItem[];
+  dropZones: DragDropZone[];
+}
+
+// ---- DRAWING ----
+
+export interface DrawingShape {
+  id: string;
+  kind: "rect" | "circle" | "ellipse";
+  props: Record<string, number>; // x, y, width, height, radius, radiusX, radiusY
+  initialFill: string;
+  targetFill?: string; // if set: guided coloring mode
+  label?: string;
+}
+
+export interface DrawingSpec {
+  type: "DRAWING";
+  instruction: string;
+  canvasWidth: number;
+  canvasHeight: number;
+  shapes: DrawingShape[];
+  colorPalette: string[];
+}
+
 export type ActivitySpec =
   | MultipleChoiceSpec
   | TrueFalseSpec
   | FillBlankSpec
   | MatchPairsSpec
   | SortOrderSpec
-  | ListenIdentifySpec;
+  | ListenIdentifySpec
+  | DragDropSpec
+  | DrawingSpec;
 
 function asRecord(raw: unknown): Record<string, unknown> {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
@@ -87,6 +132,8 @@ function normalizeType(rawType: string): ActivityType {
     case "MATCH_PAIRS":
     case "SORT_ORDER":
     case "LISTEN_IDENTIFY":
+    case "DRAG_DROP":
+    case "DRAWING":
       return rawType;
     case "MCQ":
       return "MULTIPLE_CHOICE";
@@ -212,6 +259,32 @@ export function parseActivitySpec(raw: unknown, fallbackType?: string): Activity
       type: "SORT_ORDER",
       items: asStringArray(spec.items, "items"),
       correctOrder: asNumberArray(spec.correctOrder, "correctOrder"),
+    };
+  }
+
+  if (resolvedType === "DRAG_DROP") {
+    if (!Array.isArray(spec.items) || !Array.isArray(spec.dropZones)) {
+      throw new Error("Invalid activity spec: DRAG_DROP requires items and dropZones arrays");
+    }
+    return {
+      type: "DRAG_DROP",
+      instruction: typeof spec.instruction === "string" ? spec.instruction : "",
+      items: (spec.items as DragDropItem[]),
+      dropZones: (spec.dropZones as DragDropZone[]),
+    };
+  }
+
+  if (resolvedType === "DRAWING") {
+    if (!Array.isArray(spec.shapes) || !Array.isArray(spec.colorPalette)) {
+      throw new Error("Invalid activity spec: DRAWING requires shapes and colorPalette arrays");
+    }
+    return {
+      type: "DRAWING",
+      instruction: typeof spec.instruction === "string" ? spec.instruction : "",
+      canvasWidth: typeof spec.canvasWidth === "number" ? spec.canvasWidth : 400,
+      canvasHeight: typeof spec.canvasHeight === "number" ? spec.canvasHeight : 300,
+      shapes: (spec.shapes as DrawingShape[]),
+      colorPalette: asStringArray(spec.colorPalette, "colorPalette"),
     };
   }
 

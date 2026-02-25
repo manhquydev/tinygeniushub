@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import * as m from "motion/react-m";
 import { BIG_BEAK_PATHS, BIG_EYE_PATHS, type MascotExpression } from "@/components/mascot/expressions";
 import type { MascotGazeDirection, MascotMotionLevel, MascotState } from "@/components/mascot/types";
@@ -76,8 +76,15 @@ export function BigOwl({ state, expression, gazeDirection, reducedMotion, motion
     ? undefined
     : { duration: state === "celebrating" ? (motionLevel === "soft" ? 0.36 : 0.26) : motionLevel === "soft" ? 0.58 : 0.44, ease: "easeInOut" as const, repeat: Infinity };
 
+  const stateStyle: React.CSSProperties =
+    state === "nervous"
+      ? { animation: "mascot-nervous 0.3s ease-in-out infinite" }
+      : state === "bored"
+        ? { animation: "mascot-bored 3s ease-in-out infinite" }
+        : {};
+
   return (
-    <m.g>
+    <m.g data-state={state} style={stateStyle}>
       <path d="M 125,188 C 125,73 150,48 200,48 C 250,48 275,73 275,188 C 275,233 125,233 125,188 Z" fill="#172554" opacity="0.15" />
       <path d="M 125,185 C 125,70 150,45 200,45 C 250,45 275,70 275,185 C 275,230 125,230 125,185 Z" fill="#1e3a8a" />
       <path d="M 145,185 C 145,115 255,115 255,185 C 255,225 145,225 145,185 Z" fill="#3b82f6" opacity="0.25" />

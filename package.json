@@ -33,6 +33,9 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.995.0",
     "@aws-sdk/s3-request-presigner": "^3.995.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@monaco-editor/react": "^4.7.0",
     "@prisma/client": "^6.16.0",
     "bcryptjs": "^3.0.3",
@@ -44,6 +47,7 @@
     "dotenv": "^17.3.1",
     "ioredis": "^5.9.3",
     "jose": "^6.1.3",
+    "konva": "^10.2.0",
     "lucide-react": "^0.575.0",
     "motion": "^12.34.3",
     "next": "16.1.6",
@@ -51,11 +55,13 @@
     "prisma": "^6.16.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-konva": "^19.2.2",
     "reading-time": "^1.5.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
     "slugify": "^1.6.6",
+    "tus-js-client": "^4.3.1",
     "zod": "^4.3.6"
   },
   "devDependencies": {

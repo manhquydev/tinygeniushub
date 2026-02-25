@@ -11,7 +11,12 @@ export type KidMascotState =
   | "sleeping"
   | "celebrating"
   | "playful"
-  | "proud";
+  | "proud"
+  | "surprised"
+  | "excited"
+  | "nervous"
+  | "angry"
+  | "bored";
 
 export type KidMascotActionProp = "reading" | "math" | "exploring" | "heart" | "music";
 export type KidMascotGazeDirection = MascotGazeDirection;
@@ -36,6 +41,11 @@ const STATE_MAP: Record<KidMascotState, MascotState> = {
   celebrating: "celebrating",
   playful: "playful",
   proud: "proud",
+  surprised: "surprised",
+  excited: "excited",
+  nervous: "nervous",
+  angry: "angry",
+  bored: "bored",
 };
 
 const ACTION_MAP: Record<KidMascotActionProp, MascotActionProp> = {

@@ -2,6 +2,7 @@
 
 import { BookOpen, ChevronRight, Pencil, Plus, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { VideoTusUploader } from "@/components/admin/video-tus-uploader";
 
 type ApiResponse<TData> = {
   ok: boolean;
@@ -1139,29 +1140,38 @@ export function AdminContentPanel() {
               ) : (
                 <p className="muted-text" style={{ fontSize: "0.82rem" }}>Chưa có video Bunny</p>
               )}
-              <button
-                type="button"
-                className="ghost-button"
-                style={{ fontSize: "0.82rem", padding: "0.3rem 0.75rem" }}
-                onClick={async () => {
-                  if (!editingLessonId) return;
-                  const title = lessonForm.title || editingLessonId;
-                  const res = await fetch("/api/admin/videos/upload", {
-                    method: "POST",
-                    headers: { "content-type": "application/json" },
-                    body: JSON.stringify({ lessonId: editingLessonId, title }),
-                  });
-                  const json = (await res.json()) as { ok: boolean; data?: { videoId: string; uploadUrl: string } };
-                  if (json.ok && json.data) {
-                    setEditingLessonBunny({ bunnyVideoId: json.data.videoId, videoStatus: "uploading" });
-                    alert(`Tạo video Bunny thành công!\nVideo ID: ${json.data.videoId}\nUpload URL: ${json.data.uploadUrl}\n\nDùng Bunny Dashboard hoặc TUS client để tải file lên URL trên.`);
-                  } else {
-                    alert("Không thể tạo video Bunny. Kiểm tra BUNNY_STREAM_API_KEY trong .env");
-                  }
-                }}
-              >
-                {editingLessonBunny?.bunnyVideoId ? "Tạo video mới" : "Tạo video Bunny"}
-              </button>
+
+              {editingLessonBunny?.bunnyVideoId ? (
+                // Show TUS uploader for direct browser upload
+                <VideoTusUploader
+                  videoId={editingLessonBunny.bunnyVideoId}
+                  lessonId={editingLessonId}
+                  onComplete={() => setEditingLessonBunny((current) => current ? { ...current, videoStatus: "ready" } : current)}
+                />
+              ) : (
+                <button
+                  type="button"
+                  className="ghost-button"
+                  style={{ fontSize: "0.82rem", padding: "0.3rem 0.75rem" }}
+                  onClick={async () => {
+                    if (!editingLessonId) return;
+                    const title = lessonForm.title || editingLessonId;
+                    const res = await fetch("/api/admin/videos/upload", {
+                      method: "POST",
+                      headers: { "content-type": "application/json" },
+                      body: JSON.stringify({ lessonId: editingLessonId, title }),
+                    });
+                    const json = (await res.json()) as { ok: boolean; data?: { videoId: string; uploadUrl: string } };
+                    if (json.ok && json.data) {
+                      setEditingLessonBunny({ bunnyVideoId: json.data.videoId, videoStatus: "uploading" });
+                    } else {
+                      alert("Không thể tạo video Bunny. Kiểm tra BUNNY_STREAM_API_KEY trong .env");
+                    }
+                  }}
+                >
+                  Tạo video Bunny
+                </button>
+              )}
             </div>
           )}
 

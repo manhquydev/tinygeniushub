@@ -1,10 +1,19 @@
 ﻿"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import * as m from "motion/react-m";
 import { bounceIn, wobble } from "@/components/animation/kid-motion-variants";
 import type { KidMascotGazeDirection } from "@/components/animation/kid-mascot";
 import type { ActivitySpec, ActivityType } from "@/modules/content/activity-types";
+import { DragDropActivity } from "@/components/lesson-wizard/drag-drop-activity";
+import { SortOrderActivity } from "@/components/lesson-wizard/sort-order-activity";
+
+// Dynamic import for Konva (canvas — no SSR)
+const DrawingActivity = dynamic(
+  () => import("@/components/lesson-wizard/drawing-activity").then((m) => m.DrawingActivity),
+  { ssr: false },
+);
 
 type ActivityRow = {
   id: string;
@@ -434,5 +443,47 @@ export function ActivityRenderer({
     );
   }
 
+  if (activity.type === "SORT_ORDER") {
+    return (
+      <SortOrderActivity
+        spec={activity.spec as import("@/modules/content/activity-types").SortOrderSpec}
+        prompt={activity.prompt}
+        disabled={disabled}
+        onAnswer={onAnswer}
+        onHoverOption={onHoverOption}
+        onHoverOptionEnd={onHoverOptionEnd}
+      />
+    );
+  }
+
+  if (activity.type === "DRAG_DROP") {
+    return (
+      <DragDropActivity
+        spec={activity.spec as import("@/modules/content/activity-types").DragDropSpec}
+        prompt={activity.prompt}
+        disabled={disabled}
+        onAnswer={onAnswer}
+        onHoverOption={onHoverOption}
+        onHoverOptionEnd={onHoverOptionEnd}
+      />
+    );
+  }
+
+  if (activity.type === "DRAWING") {
+    return (
+      <DrawingActivity
+        spec={activity.spec as import("@/modules/content/activity-types").DrawingSpec}
+        prompt={activity.prompt}
+        disabled={disabled}
+        onAnswer={onAnswer}
+        onHoverOption={onHoverOption}
+        onHoverOptionEnd={onHoverOptionEnd}
+      />
+    );
+  }
+
   return <p className="lesson-wizard-quiz-copy">Loại hoạt động chưa được hỗ trợ.</p>;
 }
+
+// Re-export sub-components for direct use if needed
+export { DragDropActivity, SortOrderActivity };

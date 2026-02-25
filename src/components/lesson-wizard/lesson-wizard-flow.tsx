@@ -97,6 +97,9 @@ export function LessonWizardFlow({
   const [activityIndex, setActivityIndex] = useState(0);
   const [activityLoading, setActivityLoading] = useState(false);
   const [activityAnswerLocked, setActivityAnswerLocked] = useState(false);
+  const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
+  const [totalWrong, setTotalWrong] = useState(0);
+  const [lastInteractionTime, setLastInteractionTime] = useState(Date.now);
 
   const quizCelebrateTimerRef = useRef<number | null>(null);
   const quizCompleteTimerRef = useRef<number | null>(null);
@@ -281,6 +284,15 @@ export function LessonWizardFlow({
     };
   }, [lessonId, step]);
 
+  // Inactivity: set bored state after 30s with no interaction during quiz
+  useEffect(() => {
+    if (step !== 2) return;
+    const timer = window.setTimeout(() => {
+      setMascotState('bored');
+    }, 30000);
+    return () => window.clearTimeout(timer);
+  }, [lastInteractionTime, step]);
+
   useEffect(() => {
     setMounted(true);
     const previousBodyOverflow = document.body.style.overflow;
@@ -434,6 +446,7 @@ export function LessonWizardFlow({
   const handleOptionHoverStart = useCallback(
     (direction: KidMascotGazeDirection) => {
       setMascotGazeDirection(direction);
+      setLastInteractionTime(Date.now());
       const now = window.performance.now();
       if (now - hoverSoundAtRef.current > 110) {
         synth.playPop();
@@ -455,12 +468,34 @@ export function LessonWizardFlow({
 
       clearQuizTimers();
       setMascotGazeDirection("center");
+      setLastInteractionTime(Date.now());
 
       if (isCorrect) {
         synth.playTing();
         setStatus("ChÃ­nh xÃ¡c!");
         setActivityAnswerLocked(true);
-        setMascotStateForDuration("happy", 1000);
+
+        setConsecutiveCorrect((prev) => {
+          const next = prev + 1;
+          if (next >= 5) {
+            setMascotState("celebrating");
+            synth.playYay();
+            if (!prefersReducedMotion) {
+              confetti({
+                particleCount: 92,
+                spread: 88,
+                scalar: 1.02,
+                origin: { x: 0.5, y: 0.6 },
+                colors: ["#22d3ee", "#facc15", "#a78bfa", "#fb7185", "#34d399"],
+              });
+            }
+          } else if (next >= 3) {
+            setMascotStateForDuration("excited", 1200);
+          } else {
+            setMascotStateForDuration("happy", 1000);
+          }
+          return next;
+        });
 
         const isLastActivity = activityIndex >= activities.length - 1;
         if (isLastActivity) {
@@ -488,8 +523,6 @@ export function LessonWizardFlow({
         }
 
         quizCelebrateTimerRef.current = window.setTimeout(() => {
-          setMascotState("celebrating");
-          synth.playYay();
           setActivityIndex((current) => current + 1);
           setActivityAnswerLocked(false);
           setStatus(null);
@@ -501,7 +534,16 @@ export function LessonWizardFlow({
       synth.playBzz();
       setStatus("ChÆ°a Ä‘Ãºng rá»“i, con thá»­ láº¡i nhÃ©!");
       setActivityAnswerLocked(true);
-      setMascotStateForDuration("confused", 1100);
+      setConsecutiveCorrect(0);
+      setTotalWrong((prev) => {
+        const next = prev + 1;
+        if (next >= 3) {
+          setMascotStateForDuration("angry", 1100);
+        } else {
+          setMascotStateForDuration("nervous", 1100);
+        }
+        return next;
+      });
       quizCelebrateTimerRef.current = window.setTimeout(() => {
         setActivityAnswerLocked(false);
         quizCelebrateTimerRef.current = null;
