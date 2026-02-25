@@ -24,6 +24,9 @@ concurrency:
   group: deploy-digitalocean-main
   cancel-in-progress: false
 
+env:
+  APP_DIR: /root/cungcontuhoc
+
 jobs:
   deploy:
     if: >
@@ -50,12 +53,11 @@ jobs:
           DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
           DO_SSH_PRIVATE_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
           DO_SSH_KNOWN_HOSTS: ${{ secrets.DO_SSH_KNOWN_HOSTS }}
-          DO_APP_DIR: ${{ secrets.DO_APP_DIR }}
           DO_POST_DEPLOY_COMMAND: ${{ secrets.DO_POST_DEPLOY_COMMAND }}
         run: |
           set -euo pipefail
           missing=0
-          for name in DO_SSH_HOST DO_SSH_USER DO_SSH_PRIVATE_KEY DO_SSH_KNOWN_HOSTS DO_APP_DIR DO_POST_DEPLOY_COMMAND; do
+          for name in DO_SSH_HOST DO_SSH_USER DO_SSH_PRIVATE_KEY DO_SSH_KNOWN_HOSTS DO_POST_DEPLOY_COMMAND; do
             if [ -z "${!name:-}" ]; then
               echo "::error::Missing required secret: $name"
               missing=1
@@ -96,7 +98,6 @@ jobs:
         env:
           DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
           DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
-          DO_APP_DIR: ${{ secrets.DO_APP_DIR }}
           DO_POST_DEPLOY_COMMAND: ${{ secrets.DO_POST_DEPLOY_COMMAND }}
           DEPLOY_REF: ${{ env.DEPLOY_REF }}
         run: |
@@ -110,7 +111,7 @@ jobs:
             -o StrictHostKeyChecking=yes \
             "$DO_SSH_USER@$DO_SSH_HOST" "bash -s" <<REMOTE_SCRIPT
           set -euo pipefail
-          cd "$DO_APP_DIR"
+          cd ${{ env.APP_DIR }}
           export POST_DEPLOY_CMD="\$(printf '%s' '$POST_CMD_B64' | base64 -d)"
           bash scripts/deploy/remote-deploy.sh "$DEPLOY_REF"
           REMOTE_SCRIPT
