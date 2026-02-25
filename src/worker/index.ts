@@ -5,6 +5,7 @@ import { createBlogNewsletterWorker } from "@/worker/jobs/dispatch-blog-newslett
 import { createVerifyBlogCommentEmailWorker } from "@/worker/jobs/verify-blog-comment-email";
 import { createLifecycleEmailsWorker } from "@/worker/jobs/dispatch-lifecycle-emails";
 import { createCertificateWorker } from "@/worker/jobs/generate-certificate";
+import { createBulkEnrollWorker } from "@/worker/jobs/bulk-enroll-processor";
 import { enqueueRetentionCleanup, enqueueWeeklyReportEmails, enqueueWeeklyReports, enqueueDispatchPendingLifecycleEmails } from "@/worker/queue";
 import { logError, logInfo } from "@/lib/observability/logger";
 
@@ -15,6 +16,7 @@ const blogNewsletterWorker = createBlogNewsletterWorker();
 const verifyBlogCommentEmailWorker = createVerifyBlogCommentEmailWorker();
 const lifecycleEmailWorker = createLifecycleEmailsWorker();
 const certificateWorker = createCertificateWorker();
+const bulkEnrollWorker = createBulkEnrollWorker();
 
 weeklyWorker.on("completed", (job) => {
   logInfo("worker.weekly_reports.completed", {
@@ -56,6 +58,14 @@ certificateWorker.on("completed", (job) => {
   logInfo("worker.certificate.completed", {
     jobId: job.id,
   });
+});
+
+bulkEnrollWorker.on("completed", (job) => {
+  logInfo("worker.bulk_enroll.completed", { jobId: job.id });
+});
+
+bulkEnrollWorker.on("failed", (job, error) => {
+  logError("worker.bulk_enroll.failed", { jobId: job?.id, error });
 });
 
 weeklyWorker.on("failed", (job, error) => {
@@ -166,6 +176,7 @@ process.on("SIGINT", async () => {
     verifyBlogCommentEmailWorker.close(),
     lifecycleEmailWorker.close(),
     certificateWorker.close(),
+    bulkEnrollWorker.close(),
   ]);
   logInfo("worker.shutdown_completed");
   process.exit(0);

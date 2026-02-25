@@ -1,6 +1,7 @@
 ﻿import { Queue } from "bullmq";
 import { LifecycleEmailType } from "@prisma/client";
 import { env } from "@/lib/env";
+import type { BulkEnrollRow } from "@/modules/organizations/bulk-enroll-service";
 
 export const redisConnection = {
   url: env.REDIS_URL,
@@ -33,6 +34,21 @@ export const lifecycleEmailQueue = new Queue("lifecycle-emails", {
 export const certificateQueue = new Queue("certificates", {
   connection: redisConnection,
 });
+
+export const bulkEnrollQueue = new Queue("bulk-enroll", {
+  connection: redisConnection,
+});
+
+export async function enqueueBulkEnroll(payload: {
+  orgId: string;
+  rows: BulkEnrollRow[];
+  requestedByParentId: string;
+}) {
+  return bulkEnrollQueue.add("bulk-enroll", payload, {
+    removeOnComplete: true,
+    removeOnFail: 50,
+  });
+}
 
 export async function enqueueCertificateGeneration(enrollmentId: string) {
   return certificateQueue.add(

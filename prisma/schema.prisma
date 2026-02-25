@@ -104,9 +104,10 @@ model ParentAccount {
   referralCode         ReferralCode?
   weeklyEmailOptIns    WeeklyEmailPreference[]
   referredAttributions ReferralAttribution[]   @relation("ReferredParent")
-  adminNotes           AdminNote[]
-  lifecycleEmails      LifecycleEmailLog[]
-  courseEnrollments    CourseEnrollment[]
+  adminNotes               AdminNote[]
+  lifecycleEmails          LifecycleEmailLog[]
+  courseEnrollments        CourseEnrollment[]
+  organizationMemberships  OrganizationMember[]
 }
 
 model Session {
@@ -895,4 +896,40 @@ model GiftCode {
   expiresAt        DateTime
   createdAt        DateTime  @default(now())
   createdBy        String
+}
+
+// ========== B2B KINDERGARTEN ==========
+
+enum OrgRole {
+  TEACHER_ADMIN
+  STUDENT_PARENT
+}
+
+model Organization {
+  id           String               @id @default(cuid())
+  name         String
+  slug         String               @unique
+  logoUrl      String?
+  primaryColor String               @default("#4F46E5")
+  domain       String?
+  billingStart DateTime?
+  billingEnd   DateTime?
+  isActive     Boolean              @default(true)
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  members      OrganizationMember[]
+}
+
+model OrganizationMember {
+  id             String       @id @default(cuid())
+  organizationId String
+  parentId       String
+  role           OrgRole      @default(STUDENT_PARENT)
+  joinedAt       DateTime     @default(now())
+  organization   Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  parent         ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, parentId])
+  @@index([organizationId, role])
+  @@index([parentId])
 }
