@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { Be_Vietnam_Pro } from "next/font/google";
+import { Be_Vietnam_Pro, Nunito } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -7,6 +7,12 @@ const mainFont = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
   variable: "--font-body",
   weight: ["400", "500", "600", "700", "800"],
+});
+
+const headingFont = Nunito({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-heading",
+  weight: ["700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -47,7 +53,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={mainFont.variable}>
+      <body className={`${mainFont.variable} ${headingFont.variable}`}>
         {children}
 
         {/* Service Worker */}

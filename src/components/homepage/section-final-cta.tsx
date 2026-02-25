@@ -4,16 +4,16 @@ export function SectionFinalCta() {
   return (
     <section className="hp-section hp-section-dark">
       <div className="hp-section-inner hp-cta-block">
-        <h2>Bắt đầu hành trình học tập cùng con ngay hôm nay</h2>
+        <h2>Con bạn có thể bắt đầu học ngay hôm nay</h2>
         <p>
-          Chỉ 15 phút mỗi ngày để tạo thói quen học tập cho con — với bằng
-          chứng tiến bộ rõ ràng cho phụ huynh.
+          Hơn 1.200 gia đình đã tin tưởng Cùng Con Tự Học. Thử 7 ngày miễn phí —
+          nếu không thấy sự khác biệt trong 30 ngày, chúng tôi hoàn tiền toàn bộ, không hỏi lý do.
         </p>
         <Link href="/auth/signup" className="solid-button">
-          Dùng thử 7 ngày miễn phí
+          Bắt đầu dùng thử miễn phí ngay
         </Link>
         <p className="hp-hero-note">
-          Không cần thẻ tín dụng · Hủy bất kỳ lúc nào
+          Không cần thẻ tín dụng · Hủy bất kỳ lúc nào · Hoàn tiền 30 ngày
         </p>
       </div>
     </section>

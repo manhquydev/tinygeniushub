@@ -11,6 +11,12 @@
   --motion-standard: 420ms;
   --motion-quick: 220ms;
   --app-nav-height: 56px;
+  --accent-amber: #f59e0b;
+  --accent-amber-light: #fef3c7;
+  --accent-amber-dark: #b45309;
+  --accent-coral: #f97316;
+  --accent-coral-light: #fff7ed;
+  --accent-coral-dark: #c2410c;
 }
 
 * {
@@ -46,6 +52,12 @@ h4 {
   margin: 0;
   font-family: var(--font-body), sans-serif;
   letter-spacing: -0.02em;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading, var(--font-body)), sans-serif;
 }
 
 p {

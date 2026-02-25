@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight, Star } from "lucide-react";
 
 const STANDARD_FEATURES = [
   "3 hồ sơ bé",
@@ -9,7 +10,7 @@ const STANDARD_FEATURES = [
 
 const FAMILY_FEATURES = [
   "5 hồ sơ bé",
-  "Toàn bộ Standard",
+  "Toàn bộ tính năng Standard",
   "Lưu trữ bằng chứng 365 ngày",
   "Báo cáo gộp cho nhiều bé",
 ];
@@ -20,41 +21,43 @@ export function SectionPricingPreview() {
       <div className="hp-section-inner">
         <div className="hp-section-heading">
           <h2>Đầu tư cho con chỉ từ 2,189đ/ngày</h2>
-          <p className="muted-text">
-            Hai gói rõ ràng để phụ huynh chọn theo nhu cầu gia đình.
-          </p>
+          <p className="muted-text">Hai gói rõ ràng để phụ huynh chọn theo nhu cầu gia đình.</p>
         </div>
 
         <div className="hp-grid-2">
-          {/* Standard plan */}
+          {/* Standard */}
           <article className="hp-price-card">
             <h3>Standard</h3>
             <p className="hp-price-main">799,000đ/năm</p>
             <p className="muted-text">~2,189đ/ngày</p>
             <ul className="hp-feature-list">
-              {STANDARD_FEATURES.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
+              {STANDARD_FEATURES.map((f) => <li key={f}>{f}</li>)}
             </ul>
             <Link href="/auth/signup" className="solid-button full-width">
               Chọn Standard
             </Link>
           </article>
 
-          {/* Family+ plan — recommended */}
+          {/* Family+ — recommended */}
           <article className="hp-price-card hp-price-highlight">
-            <span className="hp-price-chip">Được chọn nhiều nhất</span>
+            <div className="hp-price-popular-badge">
+              <Star size={12} aria-hidden />
+              Phổ biến nhất
+            </div>
             <h3>Family+</h3>
             <p className="hp-price-main">1,199,000đ/năm</p>
-            <p className="muted-text">~3,285đ/ngày</p>
+            <p className="muted-text">~3,285đ/ngày · Rẻ hơn 1 ly cà phê</p>
+            <div className="hp-price-urgency">
+              Còn <strong>7 ngày</strong> dùng thử miễn phí
+            </div>
             <ul className="hp-feature-list">
-              {FAMILY_FEATURES.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
+              {FAMILY_FEATURES.map((f) => <li key={f}>{f}</li>)}
             </ul>
-            <Link href="/auth/signup" className="solid-button full-width">
-              Chọn Family+
+            <Link href="/auth/signup" className="solid-button full-width hp-price-cta-main">
+              Bắt đầu miễn phí 7 ngày
+              <ArrowRight size={14} aria-hidden />
             </Link>
+            <p className="hp-price-cta-note">Không cần thẻ · Huỷ bất cứ lúc nào</p>
           </article>
         </div>
 
