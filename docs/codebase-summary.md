@@ -1,6 +1,17 @@
 # Codebase Summary
 
-**Last updated:** 2026-02-25 — Phases 01–04 complete.
+**Last updated:** 2026-02-25 — Phases 01–04 complete. Deployed to production at https://cungcontuhoc.io.vn.
+
+---
+
+## Production Deployment
+
+- **Server:** DigitalOcean Ubuntu 24.04, IP `152.42.246.218`
+- **Domain:** cungcontuhoc.io.vn — A records set, SSL via Let's Encrypt
+- **Runtime:** PM2 process manager + Nginx reverse proxy
+- **Services:** Docker Compose — PostgreSQL 16 + Redis 7
+- **CI/CD:** `.github/workflows/deploy-digitalocean-ssh.yml` (GitHub Actions SSH deploy key)
+- **Seed data:** 13 blog articles, categories, tags
 
 ---
 
@@ -103,7 +114,7 @@
 - D3/D7 dispatched via 1-hour cron in worker
 
 ### SEO Blog Content
-- 10 Vietnamese SEO articles seeded via `prisma/seed.ts`
+- 13 Vietnamese SEO articles seeded via `prisma/seed.ts`
 - Categories: tieng-anh-som, toan-tu-duy, cong-nghe-giao-duc, phat-trien-tre
 
 ### Admin Service Refactor
