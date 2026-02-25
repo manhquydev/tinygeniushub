@@ -19,6 +19,8 @@ const eslintConfig = defineConfig([
     "plans/.qa-artifacts/**",
     "tests/**",
     "*.cjs",
+    // Temporary Chrome profiles and other local tooling artifacts.
+    ".tmp-*/**",
   ]),
 ]);
 

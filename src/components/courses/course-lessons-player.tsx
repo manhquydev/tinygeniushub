@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 
 type CourseLesson = {
   orderNo: number;
@@ -19,12 +19,14 @@ type VideoState = { status: "loading" | "ready" | "unavailable"; embedUrl?: stri
 export function CourseLessonsPlayer({ courseTitle, lessons }: Props) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [video, setVideo] = useState<VideoState>({ status: "loading" });
+  const [, startTransition] = useTransition();
 
   const selected = lessons[selectedIndex];
 
   useEffect(() => {
     if (!selected) return;
-    setVideo({ status: "loading" });
+    // Use startTransition to avoid synchronous setState inside effect body
+    startTransition(() => setVideo({ status: "loading" }));
 
     fetch(`/api/lessons/${selected.lesson.id}/video-token`)
       .then((res) => {

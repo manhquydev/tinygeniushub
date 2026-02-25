@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Cùng Con Tự Học - Learning Journey OS";
+export const alt = "Cùng Con Tự Học — Toán & Tiếng Anh cho bé 2–6 tuổi";
 export const size = {
     width: 1200,
     height: 630,
@@ -104,7 +104,7 @@ export default async function Image() {
                         fontFamily: "sans-serif",
                     }}
                 >
-                    Learning Journey OS
+                    Toán & Tiếng Anh cho bé 2–6 tuổi
                 </div>
                 <div
                     style={{
@@ -115,7 +115,7 @@ export default async function Image() {
                         fontFamily: "sans-serif",
                     }}
                 >
-                    Cho phụ huynh Việt bận rộn
+                    15 phút/ngày · Thấy rõ con tiến bộ
                 </div>
             </div>
         ),
