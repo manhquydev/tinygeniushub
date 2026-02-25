@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Khóa học Premium — Cùng Con Tự Học",
@@ -8,32 +9,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://cungcontuhoc.io.vn/courses" },
 };
 
-type Course = {
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  priceVnd: number;
-  durationDays: number;
-  coverImageUrl: string | null;
-  isPublished: boolean;
-};
-
-async function fetchCourses(): Promise<Course[]> {
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/courses`, { cache: "no-store" });
-    if (!res.ok) return [];
-    const json = (await res.json()) as { ok: boolean; data: { courses: Course[] } };
-    return json.ok ? json.data.courses : [];
-  } catch {
-    return [];
-  }
-}
-
 export default async function CoursesPage() {
-  const courses = await fetchCourses();
-  const published = courses.filter((c) => c.isPublished);
+  const courses = await prisma.course.findMany({
+    where: { isPublished: true },
+    orderBy: { createdAt: "asc" },
+    select: {
+      id: true,
+      slug: true,
+      title: true,
+      description: true,
+      priceVnd: true,
+      durationDays: true,
+      coverImageUrl: true,
+    },
+  });
 
   return (
     <div className="page-stack">
@@ -42,7 +31,7 @@ export default async function CoursesPage() {
         <p className="muted-text">Học chuyên sâu theo lộ trình có cấu trúc</p>
       </section>
 
-      {published.length === 0 ? (
+      {courses.length === 0 ? (
         <section className="card" style={{ textAlign: "center", padding: "2.5rem 1.5rem" }}>
           <p style={{ fontSize: "1.1rem", fontWeight: 600 }}>Sắp ra mắt</p>
           <p className="muted-text">Đăng ký nhận thông báo khi khóa học mới được phát hành.</p>
@@ -52,7 +41,7 @@ export default async function CoursesPage() {
         </section>
       ) : (
         <section className="card-grid">
-          {published.map((course) => (
+          {courses.map((course) => (
             <article key={course.id} className="card" style={{ display: "grid", gap: "0.75rem" }}>
               {course.coverImageUrl && (
                 // eslint-disable-next-line @next/next/no-img-element
