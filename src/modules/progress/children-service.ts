@@ -80,6 +80,7 @@ export const childProfileUpdateSchema = z.object({
   nickname: z.string().min(1).max(60).optional(),
   ageBand: z.enum(["2-3", "3-4", "4-5", "5-6"]).optional(),
   avatarId: z.string().max(120).optional(),
+  adaptiveEnabled: z.boolean().optional(),
 });
 
 export const childDailyGoalUpdateSchema = z.object({

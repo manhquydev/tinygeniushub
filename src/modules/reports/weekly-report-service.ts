@@ -3,6 +3,7 @@ import { formatInTimeZone, fromZonedTime, toZonedTime } from "date-fns-tz";
 import { randomUUID } from "node:crypto";
 import { EmailStatus, Prisma, type WeeklyReport } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { enrichWeeklyReport } from "@/modules/adaptive/weekly-report-enricher";
 
 const REPORT_TIMEZONE = "Asia/Bangkok";
 
@@ -112,30 +113,36 @@ export async function generateWeeklyReportForChild(childId: string, referenceDat
     return existingReport;
   }
 
-  const completions = await prisma.lessonCompletion.findMany({
-    where: {
-      childId,
-      completedAt: {
-        gte: weekStart,
-        lte: weekEnd,
+  const [completions, child] = await Promise.all([
+    prisma.lessonCompletion.findMany({
+      where: {
+        childId,
+        completedAt: {
+          gte: weekStart,
+          lte: weekEnd,
+        },
       },
-    },
-    include: {
-      lesson: {
-        include: {
-          unit: {
-            include: {
-              level: {
-                include: {
-                  track: true,
+      include: {
+        lesson: {
+          include: {
+            unit: {
+              include: {
+                level: {
+                  include: {
+                    track: true,
+                  },
                 },
               },
             },
           },
         },
       },
-    },
-  });
+    }),
+    prisma.childProfile.findUnique({
+      where: { id: childId },
+      select: { adaptiveEnabled: true },
+    }),
+  ]);
 
   const minutesLearned = completions.reduce((total, completion) => total + completion.minutesLearned, 0);
   const lessonsCompleted = completions.length;
@@ -158,6 +165,15 @@ export async function generateWeeklyReportForChild(childId: string, referenceDat
     {},
   );
 
+  // Enrich with adaptive skill data when enabled
+  const enrichedSkills = child?.adaptiveEnabled
+    ? await enrichWeeklyReport(childId, weekStart, weekEnd).catch(() => null)
+    : null;
+
+  const skillsSummaryData: Prisma.InputJsonValue = enrichedSkills
+    ? { ...byTrack, adaptive: enrichedSkills as unknown as Prisma.InputJsonValue }
+    : byTrack;
+
   const reportData: Prisma.WeeklyReportUncheckedCreateInput = {
     childId,
     weekStart,
@@ -165,7 +181,7 @@ export async function generateWeeklyReportForChild(childId: string, referenceDat
     minutesLearned,
     lessonsCompleted,
     streakDays,
-    skillsSummary: byTrack,
+    skillsSummary: skillsSummaryData,
     recommendations: {
       nextWeek: [
         "Duy trì thói quen học 15-20 phút mỗi ngày để đạt hiệu quả tốt nhất",

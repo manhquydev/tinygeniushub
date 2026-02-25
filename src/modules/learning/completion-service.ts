@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { isPrismaUniqueConstraintError } from "@/lib/prisma-error";
 import { assertLessonVideoWatchCompleted } from "@/modules/learning/video-watch-service";
 import { DomainError } from "@/modules/platform/errors";
+import { recordSkillAttempt } from "@/modules/adaptive/skill-attempt-service";
 import { z } from "zod";
 
 export const completeLessonSchema = z.object({
@@ -50,6 +51,11 @@ export async function completeLesson(params: {
       where: {
         id: payload.childId,
         parentId: params.parentId,
+      },
+      select: {
+        id: true,
+        parentId: true,
+        adaptiveEnabled: true,
       },
     }),
     prisma.lesson.findUnique({
@@ -98,7 +104,7 @@ export async function completeLesson(params: {
   }
 
   try {
-    return await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx) => {
       const existing = await tx.lessonCompletion.findUnique({
         where: {
           childId_lessonId: {
@@ -218,6 +224,29 @@ export async function completeLesson(params: {
         evidence,
       };
     });
+
+    // After transaction: record skill attempts for adaptive learning
+    if (!result.idempotent && child.adaptiveEnabled) {
+      const lessonSkills = await prisma.lessonSkill.findMany({
+        where: { lessonId: params.lessonId },
+        select: { skillId: true },
+      });
+
+      // Fire-and-forget: don't block response on skill recording
+      Promise.all(
+        lessonSkills.map((ls) =>
+          recordSkillAttempt({
+            childId: payload.childId,
+            skillId: ls.skillId,
+            isCorrect: true,
+          }).catch(() => {
+            // Non-critical: log silently
+          }),
+        ),
+      ).catch(() => {});
+    }
+
+    return result;
   } catch (error) {
     if (isPrismaUniqueConstraintError(error, ["childid", "lessonid"])) {
       const existing = await prisma.lessonCompletion.findUnique({

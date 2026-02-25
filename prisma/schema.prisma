@@ -86,29 +86,35 @@ enum CaregiverRole {
   VIEW_ONLY
 }
 
+enum AdminRole {
+  SUPER_ADMIN
+  CONTENT_EDITOR
+  SUPPORT_AGENT
+}
+
 model ParentAccount {
-  id                   String                  @id @default(cuid())
-  email                String                  @unique
-  passwordHash         String
-  displayName          String?
-  suspended            Boolean                 @default(false)
-  createdAt            DateTime                @default(now())
-  updatedAt            DateTime                @updatedAt
-  lastActiveAt         DateTime?
-  childProfiles        ChildProfile[]
-  sessions             Session[]
-  preferences          ParentPreferences?
-  subscription         Subscription?
-  caregivers           CaregiverAccount[]
-  caregiverInvites     CaregiverInvite[]
-  payments             PaymentRecord[]
-  referralCode         ReferralCode?
-  weeklyEmailOptIns    WeeklyEmailPreference[]
-  referredAttributions ReferralAttribution[]   @relation("ReferredParent")
-  adminNotes               AdminNote[]
-  lifecycleEmails          LifecycleEmailLog[]
-  courseEnrollments        CourseEnrollment[]
-  organizationMemberships  OrganizationMember[]
+  id                      String                  @id @default(cuid())
+  email                   String                  @unique
+  passwordHash            String
+  displayName             String?
+  suspended               Boolean                 @default(false)
+  createdAt               DateTime                @default(now())
+  updatedAt               DateTime                @updatedAt
+  lastActiveAt            DateTime?
+  childProfiles           ChildProfile[]
+  sessions                Session[]
+  preferences             ParentPreferences?
+  subscription            Subscription?
+  caregivers              CaregiverAccount[]
+  caregiverInvites        CaregiverInvite[]
+  payments                PaymentRecord[]
+  referralCode            ReferralCode?
+  weeklyEmailOptIns       WeeklyEmailPreference[]
+  referredAttributions    ReferralAttribution[]   @relation("ReferredParent")
+  adminNotes              AdminNote[]
+  lifecycleEmails         LifecycleEmailLog[]
+  courseEnrollments       CourseEnrollment[]
+  organizationMemberships OrganizationMember[]
 }
 
 model Session {
@@ -123,14 +129,14 @@ model Session {
 }
 
 model User {
-  id            String        @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String
-  email         String        @unique
-  emailVerified Boolean       @default(false)
+  email         String         @unique
+  emailVerified Boolean        @default(false)
   image         String?
-  parentId      String?       @unique
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  parentId      String?        @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   accounts      Account[]
   authSessions  AuthSession[]
   notifications Notification[]
@@ -272,6 +278,7 @@ model ChildProfile {
   dailyGoalMinutes  Int                     @default(20)
   preferredLanguage String                  @default("vi")
   progressSnapshot  Json?
+  adaptiveEnabled   Boolean                 @default(false)
   createdAt         DateTime                @default(now())
   updatedAt         DateTime                @updatedAt
   parent            ParentAccount           @relation(fields: [parentId], references: [id], onDelete: Cascade)
@@ -282,6 +289,10 @@ model ChildProfile {
   rewardGrants      RewardGrant[]
   weeklyReports     WeeklyReport[]
   weeklyEmailOptIns WeeklyEmailPreference[]
+  skillStates        ChildSkillState[]
+  skillAttempts      SkillAttempt[]
+  placementAttempts  PlacementTestAttempt[]
+  reviewQueues       ReviewQueue[]
 
   @@index([parentId])
 }
@@ -341,20 +352,26 @@ model Lesson {
   evidences            Evidence[]
   rewardGrants         RewardGrant[]
   courseItems          CourseLesson[]
+  lessonSkills         LessonSkill[]
 
   @@unique([unitId, orderNo])
 }
 
 model Activity {
-  id           String @id @default(cuid())
-  lessonId     String
-  type         String
-  prompt       String
-  spec         Json
-  passCriteria Int    @default(80)
-  lesson       Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  id            String          @id @default(cuid())
+  lessonId      String
+  type          String
+  prompt        String
+  spec          Json
+  passCriteria  Int             @default(80)
+  difficulty    DifficultyLevel @default(MEDIUM)
+  skillId       String?
+  lesson        Lesson          @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  skill         Skill?          @relation(fields: [skillId], references: [id], onDelete: SetNull)
+  skillAttempts SkillAttempt[]
 
   @@index([lessonId])
+  @@index([skillId])
 }
 
 model LessonProgress {
@@ -542,6 +559,19 @@ model AdminActionLog {
   createdAt  DateTime @default(now())
 
   @@index([createdAt(sort: Desc)])
+  @@index([adminEmail])
+}
+
+model AdminAccount {
+  id           String           @id @default(cuid())
+  email        String           @unique
+  passwordHash String
+  displayName  String
+  role         AdminRole        @default(SUPPORT_AGENT)
+  isActive     Boolean          @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
 }
 
 model AdminNote {
@@ -598,14 +628,14 @@ model AdminSecuritySettings {
 }
 
 model SystemAnnouncement {
-  id        String   @id @default(cuid())
-  message   String
-  type      String   @default("INFO")
-  active    Boolean  @default(true)
+  id          String    @id @default(cuid())
+  message     String
+  type        String    @default("INFO")
+  active      Boolean   @default(true)
   scheduledAt DateTime?
-  endsAt    DateTime?
-  createdAt DateTime @default(now())
-  createdBy String
+  endsAt      DateTime?
+  createdAt   DateTime  @default(now())
+  createdBy   String
 
   @@index([active, scheduledAt, endsAt])
   @@index([createdAt(sort: Desc)])
@@ -620,14 +650,14 @@ model FeatureFlag {
 }
 
 model CouponCode {
-  id              String   @id @default(cuid())
-  code            String   @unique
+  id              String    @id @default(cuid())
+  code            String    @unique
   discountPercent Int
   maxUses         Int?
-  usedCount       Int      @default(0)
-  active          Boolean  @default(true)
+  usedCount       Int       @default(0)
+  active          Boolean   @default(true)
   expiresAt       DateTime?
-  createdAt       DateTime @default(now())
+  createdAt       DateTime  @default(now())
   createdBy       String
 
   @@index([active, expiresAt])
@@ -794,7 +824,7 @@ model BlogPostTag {
 model BlogPostRelation {
   sourcePostId  String
   relatedPostId String
-  sourcePost    BlogPost @relation("SourcePost",  fields: [sourcePostId], references: [id], onDelete: Cascade)
+  sourcePost    BlogPost @relation("SourcePost", fields: [sourcePostId], references: [id], onDelete: Cascade)
   relatedPost   BlogPost @relation("RelatedPost", fields: [relatedPostId], references: [id], onDelete: Cascade)
 
   @@id([sourcePostId, relatedPostId])
@@ -888,15 +918,147 @@ model CourseEnrollment {
 }
 
 model GiftCode {
-  id               String    @id @default(cuid())
-  code             String    @unique
-  planCode         String    @default("YEARLY_STANDARD")
-  durationDays     Int       @default(365)
-  usedByParentId   String?
-  usedAt           DateTime?
-  expiresAt        DateTime
-  createdAt        DateTime  @default(now())
-  createdBy        String
+  id             String    @id @default(cuid())
+  code           String    @unique
+  planCode       String    @default("YEARLY_STANDARD")
+  durationDays   Int       @default(365)
+  usedByParentId String?
+  usedAt         DateTime?
+  expiresAt      DateTime
+  createdAt      DateTime  @default(now())
+  createdBy      String
+}
+
+// ========== ADAPTIVE LEARNING ENGINE ==========
+
+enum SkillDomain {
+  MATH
+  ENGLISH_PHONICS
+}
+
+enum MasteryLevel {
+  NOT_STARTED
+  NOVICE
+  DEVELOPING
+  PROFICIENT
+  MASTERED
+}
+
+enum DifficultyLevel {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model Skill {
+  id            String              @id @default(cuid())
+  code          String              @unique // e.g. "MATH_ADD_1DIGIT"
+  domain        SkillDomain
+  nameVi        String
+  nameEn        String?
+  description   String?
+  gradeLevel    Int
+  orderNo       Int                 @default(0)
+  parentId      String?
+  iconEmoji     String?
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  parent        Skill?              @relation("SkillTree", fields: [parentId], references: [id])
+  children      Skill[]             @relation("SkillTree")
+  prerequisites SkillPrerequisite[] @relation("DependentSkill")
+  dependents    SkillPrerequisite[] @relation("PrereqSkill")
+  lessonSkills  LessonSkill[]
+  childStates   ChildSkillState[]
+  attempts      SkillAttempt[]
+  activities    Activity[]
+  placementItems PlacementTestItem[]
+  reviewQueues  ReviewQueue[]
+
+  @@index([domain, gradeLevel, orderNo])
+  @@index([parentId])
+}
+
+model SkillPrerequisite {
+  id             String @id @default(cuid())
+  skillId        String
+  prerequisiteId String
+  skill          Skill  @relation("DependentSkill", fields: [skillId], references: [id], onDelete: Cascade)
+  prerequisite   Skill  @relation("PrereqSkill", fields: [prerequisiteId], references: [id], onDelete: Cascade)
+
+  @@unique([skillId, prerequisiteId])
+}
+
+model LessonSkill {
+  id        String  @id @default(cuid())
+  lessonId  String
+  skillId   String
+  isPrimary Boolean @default(false)
+  lesson    Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  skill     Skill   @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([lessonId, skillId])
+  @@index([skillId])
+}
+
+model ChildSkillState {
+  id              String       @id @default(cuid())
+  childId         String
+  skillId         String
+  masteryScore    Float        @default(0)
+  masteryLevel    MasteryLevel @default(NOT_STARTED)
+  totalAttempts   Int          @default(0)
+  correctAttempts Int          @default(0)
+  lastAttemptAt   DateTime?
+  lastReviewAt    DateTime?
+  nextReviewAt    DateTime?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  child           ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  skill           Skill        @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, skillId])
+  @@index([childId, masteryLevel])
+  @@index([childId, nextReviewAt])
+}
+
+model SkillAttempt {
+  id          String          @id @default(cuid())
+  childId     String
+  skillId     String
+  activityId  String?
+  isCorrect   Boolean
+  responseMs  Int?
+  difficulty  DifficultyLevel @default(MEDIUM)
+  rawResponse Json?
+  createdAt   DateTime        @default(now())
+
+  child       ChildProfile    @relation(fields: [childId], references: [id], onDelete: Cascade)
+  skill       Skill           @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  activity    Activity?       @relation(fields: [activityId], references: [id], onDelete: SetNull)
+
+  @@index([childId, skillId, createdAt])
+  @@index([childId, createdAt])
+}
+
+model ReviewQueue {
+  id           String       @id @default(cuid())
+  childId      String
+  skillId      String
+  scheduledAt  DateTime
+  intervalDays Int          @default(1)
+  easeFactor   Float        @default(2.5)
+  repetitions  Int          @default(0)
+  completedAt  DateTime?
+  createdAt    DateTime     @default(now())
+
+  child        ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  skill        Skill        @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, skillId, scheduledAt])
+  @@index([childId, scheduledAt])
+  @@index([childId, completedAt])
 }
 
 // ========== B2B KINDERGARTEN ==========
@@ -922,15 +1084,86 @@ model Organization {
 }
 
 model OrganizationMember {
-  id             String       @id @default(cuid())
+  id             String        @id @default(cuid())
   organizationId String
   parentId       String
-  role           OrgRole      @default(STUDENT_PARENT)
-  joinedAt       DateTime     @default(now())
+  role           OrgRole       @default(STUDENT_PARENT)
+  joinedAt       DateTime      @default(now())
   organization   Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   parent         ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
 
   @@unique([organizationId, parentId])
   @@index([organizationId, role])
   @@index([parentId])
+}
+
+// ========== PLACEMENT TEST SYSTEM ==========
+
+model PlacementTest {
+  id          String               @id @default(cuid())
+  domain      SkillDomain
+  title       String
+  description String?
+  isActive    Boolean              @default(true)
+  minItems    Int                  @default(10)
+  maxItems    Int                  @default(15)
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  items       PlacementTestItem[]
+  attempts    PlacementTestAttempt[]
+
+  @@unique([domain, isActive])
+}
+
+model PlacementTestItem {
+  id           String                  @id @default(cuid())
+  testId       String
+  skillId      String
+  difficulty   DifficultyLevel
+  activityType String
+  activitySpec Json
+  orderHint    Int                     @default(0)
+  audioUrl     String?
+  createdAt    DateTime                @default(now())
+
+  test         PlacementTest           @relation(fields: [testId], references: [id], onDelete: Cascade)
+  skill        Skill                   @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  responses    PlacementTestResponse[]
+
+  @@index([testId, difficulty])
+  @@index([skillId])
+}
+
+model PlacementTestAttempt {
+  id            String                  @id @default(cuid())
+  childId       String
+  testId        String
+  startedAt     DateTime                @default(now())
+  completedAt   DateTime?
+  totalItems    Int                     @default(0)
+  correctItems  Int                     @default(0)
+  resultSummary Json?
+  createdAt     DateTime                @default(now())
+
+  child         ChildProfile            @relation(fields: [childId], references: [id], onDelete: Cascade)
+  test          PlacementTest           @relation(fields: [testId], references: [id], onDelete: Cascade)
+  responses     PlacementTestResponse[]
+
+  @@index([childId, testId])
+}
+
+model PlacementTestResponse {
+  id          String               @id @default(cuid())
+  attemptId   String
+  itemId      String
+  isCorrect   Boolean
+  responseMs  Int?
+  rawResponse Json?
+  answeredAt  DateTime             @default(now())
+
+  attempt     PlacementTestAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  item        PlacementTestItem    @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@index([attemptId])
 }

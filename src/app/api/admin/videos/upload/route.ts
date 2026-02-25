@@ -4,7 +4,7 @@ import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
-import { bunnyCreateVideo } from "@/lib/bunny-stream-client";
+import { bunnyCreateVideo, bunnyDeleteVideo } from "@/lib/bunny-stream-client";
 import { prisma } from "@/lib/db";
 
 const createVideoSchema = z.object({
@@ -36,14 +36,19 @@ export async function POST(request: NextRequest) {
 
     const { videoId, uploadUrl } = await bunnyCreateVideo(body.title);
 
-    // Link to lesson immediately
-    await prisma.lesson.update({
-      where: { id: body.lessonId },
-      data: {
-        bunnyVideoId: videoId,
-        videoStatus: "uploading",
-      },
-    });
+    // Link to lesson — cleanup orphaned Bunny video if DB update fails
+    try {
+      await prisma.lesson.update({
+        where: { id: body.lessonId },
+        data: {
+          bunnyVideoId: videoId,
+          videoStatus: "uploading",
+        },
+      });
+    } catch (dbError) {
+      await bunnyDeleteVideo(videoId).catch(() => {});
+      throw dbError;
+    }
 
     return ok({ videoId, uploadUrl });
   } catch (error) {

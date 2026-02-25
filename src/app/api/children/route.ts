@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     const input = await request.json();
     const child = await createChildProfile(parent.id, input);
 
-    return ok({ child }, { status: 201 });
+    return ok({ child, placement_required: true }, { status: 201 });
   } catch (error) {
     return handleRouteError(error);
   }

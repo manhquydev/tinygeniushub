@@ -60,17 +60,17 @@ export async function listAdminUsersForExport() {
     parentIds.length === 0
       ? []
       : await prisma.paymentRecord.groupBy({
-          by: ["parentId"],
-          where: {
-            parentId: {
-              in: parentIds,
-            },
-            status: PaymentStatus.SUCCEEDED,
+        by: ["parentId"],
+        where: {
+          parentId: {
+            in: parentIds,
           },
-          _count: {
-            parentId: true,
-          },
-        });
+          status: PaymentStatus.SUCCEEDED,
+        },
+        _count: {
+          parentId: true,
+        },
+      });
 
   const successfulPaymentCountByParentId = new Map(
     successfulPaymentsByParent.map((row) => [row.parentId, row._count.parentId]),
@@ -186,30 +186,26 @@ export async function executeAdminBulkUsersAction(input: unknown) {
     payload.payload?.message ??
     "Phá»¥ huynh vui lÃ²ng kiá»ƒm tra cáº­p nháº­t má»›i trong báº£ng Ä‘iá»u khiá»ƒn.";
 
-  for (const parentId of uniqueParentIds) {
-    const parent = parentById.get(parentId);
-    if (!parent) {
-      failed += 1;
-      continue;
-    }
+  const results = await Promise.all(
+    uniqueParentIds.map(async (parentId) => {
+      const parent = parentById.get(parentId);
+      if (!parent) return false;
+      const notification = await createNotificationForParent({
+        parentId: parent.id,
+        parentEmail: parent.email,
+        notification: {
+          type: "TIP",
+          title: "ThÃ´ng bÃ¡o tá»« quáº£n trá»‹ viÃªn",
+          message,
+          href: "/parent/dashboard",
+        },
+      });
+      return !!notification;
+    }),
+  );
 
-    const notification = await createNotificationForParent({
-      parentId: parent.id,
-      parentEmail: parent.email,
-      notification: {
-        type: "TIP",
-        title: "ThÃ´ng bÃ¡o tá»« quáº£n trá»‹ viÃªn",
-        message,
-        href: "/parent/dashboard",
-      },
-    });
-
-    if (notification) {
-      succeeded += 1;
-    } else {
-      failed += 1;
-    }
-  }
+  succeeded = results.filter(Boolean).length;
+  failed = results.filter((r) => !r).length;
 
   return { succeeded, failed };
 }
@@ -383,7 +379,7 @@ export async function getAdminParentDetail(parentId: string) {
     throw new DomainError("Parent account not found", 404, "PARENT_NOT_FOUND");
   }
 
-  const [lessonCounts30dByChildRows, paymentHistory, subscriptionHistoryRaw, caregiverInvites, userId] =
+  const [lessonCounts30dByChildRows, allPaymentRecords, caregiverInvites, userId] =
     await Promise.all([
       prisma.lessonCompletion.groupBy({
         by: ["childId"],
@@ -397,6 +393,7 @@ export async function getAdminParentDetail(parentId: string) {
         },
         _count: { childId: true },
       }),
+      // Single query for both paymentHistory and subscriptionHistory
       prisma.paymentRecord.findMany({
         where: {
           parentId: parent.id,
@@ -404,29 +401,13 @@ export async function getAdminParentDetail(parentId: string) {
         orderBy: {
           processedAt: "desc",
         },
-        take: 10,
+        take: 50,
         select: {
           id: true,
           provider: true,
           providerTransactionId: true,
           amountVnd: true,
           currency: true,
-          status: true,
-          processedAt: true,
-        },
-      }),
-      prisma.paymentRecord.findMany({
-        where: {
-          parentId: parent.id,
-        },
-        orderBy: {
-          processedAt: "desc",
-        },
-        select: {
-          id: true,
-          provider: true,
-          providerTransactionId: true,
-          amountVnd: true,
           status: true,
           processedAt: true,
           rawPayload: true,
@@ -468,13 +449,24 @@ export async function getAdminParentDetail(parentId: string) {
   );
   const notificationCount = userId
     ? await prisma.notification.count({
-        where: {
-          userId,
-        },
-      })
+      where: {
+        userId,
+      },
+    })
     : 0;
 
-  const subscriptionHistory = subscriptionHistoryRaw.map((record) => {
+  // Derive paymentHistory (top 10) and subscriptionHistory from the single merged query
+  const paymentHistory = allPaymentRecords.slice(0, 10).map((record) => ({
+    id: record.id,
+    provider: record.provider,
+    providerTransactionId: record.providerTransactionId,
+    amountVnd: record.amountVnd,
+    currency: record.currency,
+    status: record.status,
+    processedAt: record.processedAt,
+  }));
+
+  const subscriptionHistory = allPaymentRecords.map((record) => {
     const planCode = readStringFromUnknownRecord(record.rawPayload, "planCode");
     const eventType = readStringFromUnknownRecord(record.rawPayload, "eventType");
     return {

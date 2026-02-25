@@ -47,7 +47,11 @@ const defaultFeatureFlags = [
   },
 ] as const;
 
+// Module-level cache: only seed default flags once per process lifetime
+let defaultFlagsEnsured = false;
+
 async function ensureDefaultFeatureFlags() {
+  if (defaultFlagsEnsured) return;
   await prisma.$transaction(
     defaultFeatureFlags.map((flag) =>
       prisma.featureFlag.upsert({
@@ -66,6 +70,7 @@ async function ensureDefaultFeatureFlags() {
       }),
     ),
   );
+  defaultFlagsEnsured = true;
 }
 
 export async function getActiveAnnouncement() {

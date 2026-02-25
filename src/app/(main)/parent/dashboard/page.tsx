@@ -57,6 +57,7 @@ export default async function ParentDashboardPage() {
       select: {
         id: true,
         nickname: true,
+        adaptiveEnabled: true,
       },
     }),
     prisma.weeklyReport.findMany({
@@ -327,13 +328,23 @@ export default async function ParentDashboardPage() {
                   </div>
                 </div>
 
-                <Link
-                  href={`/kid/today?childId=${encodeURIComponent(child.id)}`}
-                  className="inline-flex min-h-11 items-center justify-center gap-1 rounded-full bg-white px-4 text-sm font-bold text-slate-700 ring-1 ring-slate-300 transition hover:-translate-y-0.5"
-                >
-                  Vào bài học
-                  <ChevronRight size={16} />
-                </Link>
+                <div className="flex shrink-0 flex-wrap gap-2">
+                  {child.adaptiveEnabled ? (
+                    <Link
+                      href={`/parent/dashboard/${encodeURIComponent(child.id)}/skills`}
+                      className="inline-flex min-h-11 items-center justify-center gap-1 rounded-full bg-indigo-50 px-4 text-sm font-bold text-indigo-700 ring-1 ring-indigo-200 transition hover:-translate-y-0.5"
+                    >
+                      Xem bản đồ kỹ năng
+                    </Link>
+                  ) : null}
+                  <Link
+                    href={`/kid/today?childId=${encodeURIComponent(child.id)}`}
+                    className="inline-flex min-h-11 items-center justify-center gap-1 rounded-full bg-white px-4 text-sm font-bold text-slate-700 ring-1 ring-slate-300 transition hover:-translate-y-0.5"
+                  >
+                    Vào bài học
+                    <ChevronRight size={16} />
+                  </Link>
+                </div>
               </article>
             );
           })}
