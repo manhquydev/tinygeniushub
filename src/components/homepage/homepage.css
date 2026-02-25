@@ -1213,3 +1213,231 @@
     0 16px 36px color-mix(in srgb, var(--brand-500, #14b8a6) 16%, transparent) !important;
 }
 
+/* ── Product Demo CSS Mocks ── */
+
+.hp-mock-kid,
+.hp-mock-dash,
+.hp-mock-report {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0.85rem;
+  gap: 0.55rem;
+}
+
+/* === Kid mock === */
+.hp-mock-lesson-card {
+  background: white;
+  border-radius: 12px;
+  padding: 0.65rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.hp-mock-lesson-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #0d9488;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  width: fit-content;
+}
+
+.hp-mock-lesson-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.hp-mock-video-thumb {
+  height: 48px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #0f2438, #267a4e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hp-mock-play-btn {
+  font-size: 1rem;
+  color: white;
+  opacity: 0.9;
+}
+
+.hp-mock-quiz {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hp-mock-quiz-q {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.hp-mock-quiz-options {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.hp-mock-opt {
+  flex: 1;
+  text-align: center;
+  padding: 0.25rem 0;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1.5px solid #e2e8f0;
+}
+
+.hp-mock-opt.is-correct {
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: #86efac;
+}
+
+/* === Dashboard mock === */
+.hp-mock-dash-header {
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(15,23,42,0.07);
+}
+
+.hp-mock-dash-greeting {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.hp-mock-dash-sub {
+  font-size: 0.63rem;
+  color: #64748b;
+}
+
+.hp-mock-stats-row {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.hp-mock-stat {
+  flex: 1;
+  background: white;
+  border-radius: 10px;
+  padding: 0.45rem 0.35rem;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.hp-mock-stat-val {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.hp-mock-stat-label {
+  font-size: 0.55rem;
+  color: #94a3b8;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.hp-mock-stat-streak .hp-mock-stat-val {
+  color: #f59e0b;
+}
+
+.hp-mock-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hp-mock-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.hp-mock-progress-track {
+  height: 7px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.hp-mock-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #34d399, #0d9488);
+}
+
+/* === Report email mock === */
+.hp-mock-email-chrome {
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.hp-mock-email-from {
+  font-size: 0.6rem;
+  color: #94a3b8;
+}
+
+.hp-mock-email-subject {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 2px;
+}
+
+.hp-mock-report-body {
+  background: white;
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.hp-mock-report-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #475569;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.hp-mock-report-row:last-of-type {
+  border-bottom: none;
+}
+
+.hp-mock-report-row strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.hp-mock-report-highlight {
+  font-size: 0.68rem;
+  color: #0d9488;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
