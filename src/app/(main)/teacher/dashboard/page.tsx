@@ -34,8 +34,14 @@ export default async function TeacherDashboardPage() {
   const org = membership.organization;
   const students = await getOrgStudentProgress(org.id, parent.id);
 
+  const sevenDaysAgo = new Date(Date.now() - 7 * 86400000);
   const activeThisWeek = students.filter((s) =>
     s.children.some((c) => c.lessonsCompleted > 0),
+  ).length;
+  const atRiskCount = students.filter((s) =>
+    s.children.every(
+      (c) => !c.lastActiveAt || new Date(c.lastActiveAt) < sevenDaysAgo,
+    ),
   ).length;
   const totalLessons = students.reduce(
     (sum, s) => sum + s.children.reduce((cs, c) => cs + c.lessonsCompleted, 0),
@@ -68,12 +74,13 @@ export default async function TeacherDashboardPage() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "1rem" }}>
         {[
           { label: "Tổng học sinh", value: students.length },
-          { label: "Học sinh hoạt động (30 ngày)", value: activeThisWeek },
+          { label: "Hoạt động (30 ngày)", value: activeThisWeek },
+          { label: "Cần chú ý (>7 ngày)", value: atRiskCount, warn: atRiskCount > 0 },
           { label: "Tổng bài hoàn thành", value: totalLessons },
         ].map((stat) => (
           <div key={stat.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{stat.label}</p>
-            <p className="mt-1 text-2xl font-black text-slate-900">{stat.value}</p>
+            <p className={`mt-1 text-2xl font-black ${"warn" in stat && stat.warn ? "text-amber-600" : "text-slate-900"}`}>{stat.value}</p>
           </div>
         ))}
       </div>
@@ -99,11 +106,24 @@ export default async function TeacherDashboardPage() {
                   </td>
                 </tr>
               ) : (
-                students.map((s) => (
-                  <tr key={s.parentId} className="border-t border-slate-100 hover:bg-slate-50">
+                students.map((s) => {
+                  const isAtRisk = s.children.every(
+                    (c) => !c.lastActiveAt || new Date(c.lastActiveAt) < sevenDaysAgo,
+                  );
+                  return (
+                  <tr key={s.parentId} className={`border-t border-slate-100 hover:bg-slate-50 ${isAtRisk ? "bg-amber-50/50" : ""}`}>
                     <td className="px-4 py-3">
-                      <div className="font-semibold text-slate-900">{s.displayName || s.email}</div>
-                      <div className="text-xs text-slate-500">{s.email}</div>
+                      <div className="flex items-center gap-2">
+                        <div>
+                          <div className="font-semibold text-slate-900">{s.displayName || s.email}</div>
+                          <div className="text-xs text-slate-500">{s.email}</div>
+                        </div>
+                        {isAtRisk && (
+                          <span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-700">
+                            Cần chú ý
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td className="px-4 py-3 text-slate-700">
                       {s.children.map((c) => c.nickname).join(", ") || "—"}
@@ -122,7 +142,8 @@ export default async function TeacherDashboardPage() {
                         : "—"}
                     </td>
                   </tr>
-                ))
+                  );
+                })
               )}
             </tbody>
           </table>
