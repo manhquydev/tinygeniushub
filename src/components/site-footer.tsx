@@ -23,12 +23,15 @@ export function SiteFooter() {
             <p className="footer-col-title">Sản phẩm</p>
             <Link href="/#features">Tính năng</Link>
             <Link href="/pricing">Bảng giá</Link>
+            <Link href="/courses">Khóa học</Link>
+            <Link href="/for-schools">Cho trường học</Link>
             <Link href="/#faq">Câu hỏi thường gặp</Link>
           </div>
 
           <div className="footer-col">
             <p className="footer-col-title">Về chúng tôi</p>
             <Link href="/about">Giới thiệu</Link>
+            <Link href="/blog">Blog</Link>
             <Link href="/contact">Liên hệ</Link>
             <Link href="/referral">Giới thiệu bạn</Link>
           </div>
