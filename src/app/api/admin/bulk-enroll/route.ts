@@ -5,6 +5,7 @@ import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { parseCsvRows, processBulkEnrollRows } from "@/modules/organizations/bulk-enroll-service";
+import { createAdminActionLog } from "@/modules/admin/service";
 
 // POST /api/admin/bulk-enroll
 // Body: multipart/form-data with fields: orgId (string) + csv (file)
@@ -14,7 +15,7 @@ export async function POST(request: NextRequest) {
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
 
-    await requireAdminFromRequest(request);
+    const admin = await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
 
     const formData = await request.formData();
     const orgId = formData.get("orgId");
@@ -41,6 +42,14 @@ export async function POST(request: NextRequest) {
     }
 
     const result = await processBulkEnrollRows(orgId, rows);
+
+    await createAdminActionLog({
+      adminEmail: admin.email,
+      action: "BULK_ENROLL",
+      target: orgId,
+      detail: { rowCount: rows.length, succeeded: result.succeeded, failed: result.failed },
+    });
+
     return ok({ result });
   } catch (error) {
     return handleRouteError(error);

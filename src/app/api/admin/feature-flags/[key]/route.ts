@@ -13,7 +13,7 @@ type RouteParams = {
 export async function PATCH(request: NextRequest, context: RouteParams) {
   try {
     assertTrustedOrigin(request);
-    const admin = await requireAdminFromRequest(request);
+    const admin = await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
     const { key } = await context.params;
     const body = z.object({ enabled: z.boolean().optional() }).parse(await request.json());
 

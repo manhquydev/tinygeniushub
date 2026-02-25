@@ -7,7 +7,7 @@ import { getAdminSecuritySettings } from "@/modules/platform/security-policy-ser
 
 export async function GET(request: NextRequest) {
   try {
-    await requireAdminFromRequest(request);
+    await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
     const settings = await getAdminSecuritySettings();
     const exportPayload = buildSecurityEdgePolicyExport({
       controls: settings.controls,

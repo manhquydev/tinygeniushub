@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
 
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    const admin = await requireAdminFromRequest(request);
+    const admin = await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
     const input = await request.json();
 
     const result = await executeAdminBulkUsersAction(input);

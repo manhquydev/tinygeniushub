@@ -3,6 +3,7 @@ import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { createAnnouncement, listSystemAnnouncements } from "@/modules/admin/service";
 import { z } from "zod";
 
@@ -26,6 +27,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
+
     const admin = await requireAdminFromRequest(request);
     const body = createAnnouncementSchema.parse(await request.json());
 

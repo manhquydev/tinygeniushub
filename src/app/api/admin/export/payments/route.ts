@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
 
-    await requireAdminFromRequest(request);
+    await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
 
     const from = request.nextUrl.searchParams.get("from") ?? undefined;
     const to = request.nextUrl.searchParams.get("to") ?? undefined;

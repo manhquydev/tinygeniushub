@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
 
-    await requireAdminFromRequest(request);
+    await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
 
     const result = await listAdminUsersForExport();
 

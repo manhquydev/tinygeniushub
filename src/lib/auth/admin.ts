@@ -1,8 +1,7 @@
 import type { NextRequest } from "next/server";
 import { redirect } from "next/navigation";
-import { getAuthenticatedParentFromRequest, getAuthenticatedParentFromServerCookie } from "@/lib/auth/session";
+import { requireAdminSession } from "@/modules/admin/admin-auth-service";
 import { env } from "@/lib/env";
-import { DomainError } from "@/modules/platform/errors";
 
 export function isAdminEmail(email: string, adminEmails = env.ADMIN_EMAILS) {
   const normalizedEmail = email.trim().toLowerCase();
@@ -14,28 +13,19 @@ export function isParentAdmin(parent: { email: string }) {
 }
 
 export async function requireAdminParent() {
-  const parent = await getAuthenticatedParentFromServerCookie();
+  const session = await requireAdminSession().catch(() => null);
 
-  if (!parent) {
-    redirect("/auth/login");
+  if (!session) {
+    redirect("/admin/login");
   }
 
-  if (!isParentAdmin(parent)) {
-    redirect("/parent/dashboard");
-  }
-
-  return parent;
+  return session.user;
 }
 
-export async function requireAdminFromRequest(request: NextRequest) {
-  const parent = await getAuthenticatedParentFromRequest(request);
-  if (!parent) {
-    throw new DomainError("Unauthorized", 401, "UNAUTHORIZED");
-  }
-
-  if (!isParentAdmin(parent)) {
-    throw new DomainError("Admin access required", 403, "ADMIN_ONLY");
-  }
-
-  return parent;
+export async function requireAdminFromRequest(
+  request: NextRequest,
+  allowedRoles?: string[],
+) {
+  const session = await requireAdminSession(allowedRoles);
+  return session.user;
 }
