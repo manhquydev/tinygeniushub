@@ -1,7 +1,7 @@
 ---
 title: "Product & Marketing Roadmap — 3 Phases"
 description: "Full growth roadmap: Homepage/SEO → Course System → B2B Kindergarten for cungcontuhoc.vn"
-status: pending
+status: complete
 priority: P1
 effort: 12 months
 branch: main
@@ -24,10 +24,10 @@ created: 2026-02-25
 
 | # | Phase | Status | Goal | Duration |
 |---|---|---|---|---|
-| 01 | [Foundation & Marketing](./phase-01-foundation-marketing.md) | 🔄 in progress | 100 paying users | Month 0–3 |
-| 02 | [Video Infrastructure](./phase-02-video-infrastructure.md) | ⬜ pending | Bunny Stream live, 10–20 lessons | Month 0–2 |
-| 03 | [Course System](./phase-03-course-system.md) | ⬜ pending | 500 paying users, MRR 30–50M VND | Month 3–6 |
-| 04 | [B2B Kindergarten](./phase-04-b2b-kindergarten.md) | ⬜ pending | 3–5 school contracts | Month 6–12 |
+| 01 | [Foundation & Marketing](./phase-01-foundation-marketing.md) | ✅ complete | 100 paying users | Month 0–3 |
+| 02 | [Video Infrastructure](./phase-02-video-infrastructure.md) | ✅ complete | Bunny Stream live, 10–20 lessons | Month 0–2 |
+| 03 | [Course System](./phase-03-course-system.md) | ✅ complete | 500 paying users, MRR 30–50M VND | Month 3–6 |
+| 04 | [B2B Kindergarten](./phase-04-b2b-kindergarten.md) | ✅ complete | 3–5 school contracts | Month 6–12 |
 
 > Phase 01 and 02 run **in parallel** (marketing ≠ blocked by video infra).
 
