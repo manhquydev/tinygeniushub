@@ -181,6 +181,63 @@ export default async function PricingPage() {
         </p>
       </section>
 
+      {/* Premium Courses */}
+      <section className="card">
+        <div style={{ display: "grid", gap: "0.4rem" }}>
+          <h2>Khóa học Premium</h2>
+          <p className="muted-text">Học chuyên sâu — không cần đăng ký gói dịch vụ</p>
+        </div>
+        <div className="card-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
+          <article
+            style={{
+              border: "1px solid rgba(15,23,42,0.1)",
+              borderRadius: 16,
+              padding: "1.2rem",
+              background: "rgba(255,255,255,0.7)",
+              display: "grid",
+              gap: "0.6rem",
+            }}
+          >
+            <h3 style={{ fontWeight: 700, fontSize: "1rem" }}>Toán Tư Duy</h3>
+            <p className="muted-text" style={{ fontSize: "0.88rem" }}>
+              Lộ trình 30 ngày giúp bé phát triển tư duy logic và kỹ năng toán học nền tảng.
+            </p>
+            <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+              <span style={{ fontWeight: 700, color: "var(--brand-700)" }}>299,000đ</span>
+              <span className="muted-text" style={{ fontSize: "0.82rem" }}>30 ngày</span>
+            </div>
+            <Link href="/courses" className="ghost-button" style={{ width: "fit-content", fontSize: "0.88rem" }}>
+              Xem khóa học
+            </Link>
+          </article>
+          <article
+            style={{
+              border: "1px solid rgba(15,23,42,0.1)",
+              borderRadius: 16,
+              padding: "1.2rem",
+              background: "rgba(255,255,255,0.7)",
+              display: "grid",
+              gap: "0.6rem",
+            }}
+          >
+            <h3 style={{ fontWeight: 700, fontSize: "1rem" }}>Tiếng Anh Phonics</h3>
+            <p className="muted-text" style={{ fontSize: "0.88rem" }}>
+              Lộ trình 60 ngày xây dựng nền tảng đọc tiếng Anh theo phương pháp phonics chuẩn quốc tế.
+            </p>
+            <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+              <span style={{ fontWeight: 700, color: "var(--brand-700)" }}>499,000đ</span>
+              <span className="muted-text" style={{ fontSize: "0.82rem" }}>60 ngày</span>
+            </div>
+            <Link href="/courses" className="ghost-button" style={{ width: "fit-content", fontSize: "0.88rem" }}>
+              Xem khóa học
+            </Link>
+          </article>
+        </div>
+        <p className="muted-text" style={{ fontSize: "0.88rem" }}>
+          * Đăng ký gói Standard hoặc Family+: giảm thêm 20% cho tất cả khóa học
+        </p>
+      </section>
+
       {/* FAQ */}
       <section className="card">
         <h2>Câu hỏi thường gặp</h2>

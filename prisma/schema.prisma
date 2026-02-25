@@ -106,6 +106,7 @@ model ParentAccount {
   referredAttributions ReferralAttribution[]   @relation("ReferredParent")
   adminNotes           AdminNote[]
   lifecycleEmails      LifecycleEmailLog[]
+  courseEnrollments    CourseEnrollment[]
 }
 
 model Session {
@@ -337,6 +338,7 @@ model Lesson {
   lessonProgresses     LessonProgress[]
   evidences            Evidence[]
   rewardGrants         RewardGrant[]
+  courseItems          CourseLesson[]
 
   @@unique([unitId, orderNo])
 }
@@ -837,4 +839,60 @@ model LifecycleEmailLog {
 
   @@unique([parentId, type])
   @@index([parentId])
+}
+
+// ========== COURSE SYSTEM ==========
+
+model Course {
+  id            String             @id @default(cuid())
+  slug          String             @unique
+  title         String
+  description   String
+  priceVnd      Int
+  durationDays  Int
+  isPublished   Boolean            @default(false)
+  coverImageUrl String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  lessons       CourseLesson[]
+  enrollments   CourseEnrollment[]
+}
+
+model CourseLesson {
+  id       String @id @default(cuid())
+  courseId String
+  lessonId String
+  orderNo  Int
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, lessonId])
+  @@index([courseId, orderNo])
+}
+
+model CourseEnrollment {
+  id             String        @id @default(cuid())
+  courseId       String
+  parentId       String
+  paymentId      String?
+  completedAt    DateTime?
+  certificateUrl String?
+  enrolledAt     DateTime      @default(now())
+  course         Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  parent         ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, parentId])
+  @@index([parentId])
+}
+
+model GiftCode {
+  id               String    @id @default(cuid())
+  code             String    @unique
+  planCode         String    @default("YEARLY_STANDARD")
+  durationDays     Int       @default(365)
+  usedByParentId   String?
+  usedAt           DateTime?
+  expiresAt        DateTime
+  createdAt        DateTime  @default(now())
+  createdBy        String
 }
