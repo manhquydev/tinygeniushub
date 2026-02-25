@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 type CourseRow = {
@@ -291,6 +292,12 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
                       >
                         Xem
                       </a>
+                      <Link
+                        href={`/admin/courses/${course.id}`}
+                        className="text-sm font-semibold text-indigo-600 hover:text-indigo-800"
+                      >
+                        Quản lý
+                      </Link>
                       <button
                         type="button"
                         className="text-sm font-semibold text-red-600 hover:text-red-800"

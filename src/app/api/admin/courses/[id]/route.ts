@@ -4,6 +4,47 @@ import { handleRouteError } from "@/lib/route-error";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    await requireAdminFromRequest(request);
+    const { id } = await params;
+
+    const course = await prisma.course.findUnique({
+      where: { id },
+      include: {
+        lessons: {
+          orderBy: { orderNo: "asc" },
+          include: {
+            lesson: {
+              select: {
+                id: true,
+                slug: true,
+                title: true,
+                estimatedMinutes: true,
+                trialEnabled: true,
+                videoStatus: true,
+                _count: { select: { activities: true } },
+              },
+            },
+          },
+        },
+        _count: { select: { enrollments: true } },
+      },
+    });
+
+    if (!course) {
+      return fail("Course not found", 404);
+    }
+
+    return ok({ course });
+  } catch (error) {
+    return handleRouteError(error);
+  }
+}
+
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
