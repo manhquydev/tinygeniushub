@@ -54,6 +54,27 @@ export async function completeCourse(enrollmentId: string) {
   return enrollment;
 }
 
+/** Return all enrollments for a parent ordered by most recent */
+export async function getParentEnrollments(parentId: string) {
+  return prisma.courseEnrollment.findMany({
+    where: { parentId },
+    orderBy: { enrolledAt: "desc" },
+    include: {
+      course: {
+        select: {
+          id: true,
+          slug: true,
+          title: true,
+          description: true,
+          priceVnd: true,
+          durationDays: true,
+          coverImageUrl: true,
+        },
+      },
+    },
+  });
+}
+
 /** Whether parent is enrolled in any course containing this lesson */
 export async function canParentAccessCourseLesson(parentId: string, lessonId: string): Promise<boolean> {
   const courseLesson = await prisma.courseLesson.findFirst({
