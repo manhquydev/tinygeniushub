@@ -31,8 +31,6 @@ export function TeacherDashboardClient() {
 
   useEffect(() => {
     if (!orgId) {
-      setError("Thiếu orgId trong URL.");
-      setLoading(false);
       return;
     }
 
@@ -72,6 +70,14 @@ export function TeacherDashboardClient() {
     a.click();
     URL.revokeObjectURL(url);
   };
+
+  if (!orgId) {
+    return (
+      <div className="page-stack" style={{ textAlign: "center", padding: "4rem 0" }}>
+        <p style={{ color: "#ef4444" }}>Thiếu orgId trong URL.</p>
+      </div>
+    );
+  }
 
   if (loading) {
     return (

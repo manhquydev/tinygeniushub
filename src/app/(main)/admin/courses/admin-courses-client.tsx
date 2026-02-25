@@ -305,7 +305,7 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
               {courses.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="px-4 py-8 text-center text-sm text-slate-500">
-                    Chưa có khoá học nào. Nhấn "Tạo khoá học" để bắt đầu.
+                    Chưa có khoá học nào. Nhấn &quot;Tạo khoá học&quot; để bắt đầu.
                   </td>
                 </tr>
               ) : null}

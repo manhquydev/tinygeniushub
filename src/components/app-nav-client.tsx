@@ -105,6 +105,7 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
   const mobileLinks = currentLinks.map((item) => ({ ...item, hideOnMobile: false }));
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileMenuOpen(false);
   }, [pathname]);
 
