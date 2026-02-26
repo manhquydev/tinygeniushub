@@ -754,7 +754,7 @@ async function seedBlogArticles() {
 
   const articlesDir = path.join(
     __dirname,
-    "../plans/260225-1017-product-marketing-roadmap/research/blog-articles"
+    "../plans/_archive/260225-1017-product-marketing-roadmap/research/blog-articles"
   );
 
   function readArticle(filename: string): string {
