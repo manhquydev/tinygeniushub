@@ -17,10 +17,10 @@ const tagSkillsSchema = z.object({
   primarySkillId: z.string().optional(),
 });
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ lessonId: string }> }) {
   try {
     await requireAdminFromRequest(request);
-    const { id: lessonId } = await params;
+    const { lessonId } = await params;
     const lessonSkills = await prisma.lessonSkill.findMany({
       where: { lessonId },
       include: {
@@ -35,13 +35,13 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   }
 }
 
-export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(request: NextRequest, { params }: { params: Promise<{ lessonId: string }> }) {
   try {
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
-    const { id: lessonId } = await params;
+    const { lessonId } = await params;
     const body = tagSkillsSchema.parse(await request.json());
 
     // Verify lesson exists
@@ -65,13 +65,13 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ lessonId: string }> }) {
   try {
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
-    const { id: lessonId } = await params;
+    const { lessonId } = await params;
     const body = z.object({ skillId: z.string() }).parse(await request.json());
     await prisma.lessonSkill.deleteMany({ where: { lessonId, skillId: body.skillId } });
     return ok({ message: "Skill removed from lesson" });
