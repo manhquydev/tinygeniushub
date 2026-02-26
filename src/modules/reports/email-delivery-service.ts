@@ -1,6 +1,7 @@
 ﻿import { EmailStatus, ParentPreferences, WeeklyEmailPreference } from "@prisma/client";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/db";
+import type { EnrichedSkillsSummary, SkillProgressByDomain } from "@/modules/adaptive/weekly-report-enricher";
 
 const EMAIL_CLAIM_TTL_MS = 15 * 60 * 1000;
 export const EMAIL_DELIVERY_PROVIDER = env.REPORT_EMAIL_PROVIDER;
@@ -9,6 +10,77 @@ type EmailEligibilityInput = {
   preferences: ParentPreferences | null;
   childOptIn: WeeklyEmailPreference | null;
 };
+
+export type WeeklyReportEmailPayload = {
+  id: string;
+  skillsSummary?: unknown;
+  child: {
+    nickname: string;
+    parent: {
+      email: string;
+    };
+  };
+};
+
+function formatDomainName(domain: string): string {
+  if (domain === "MATH") return "Toán";
+  if (domain === "ENGLISH_PHONICS") return "Tiếng Anh Phonics";
+  return domain;
+}
+
+function formatSkillProgressSection(progress: SkillProgressByDomain): string {
+  const lines: string[] = [];
+  lines.push(`  ${formatDomainName(progress.domain)}:`);
+  lines.push(`    Tổng kỹ năng: ${progress.totalSkills}`);
+  lines.push(`    Thành thạo: ${progress.masteredCount} | Khá: ${progress.proficientCount} | Đang học: ${progress.developingCount}`);
+  lines.push(`    Mức độ chung: ${Math.round(progress.overallMastery * 100)}%`);
+
+  if (progress.topImprovements.length > 0) {
+    lines.push("    Tiến bộ nổi bật:");
+    for (const imp of progress.topImprovements) {
+      lines.push(`      - ${imp.skillNameVi}: ${Math.round(imp.masteryBefore * 100)}% → ${Math.round(imp.masteryAfter * 100)}%`);
+    }
+  }
+
+  if (progress.needsAttention.length > 0) {
+    lines.push("    Cần lưu ý:");
+    for (const att of progress.needsAttention) {
+      lines.push(`      - ${att.skillNameVi} (${Math.round(att.mastery * 100)}%): ${att.reason}`);
+    }
+  }
+
+  return lines.join("\n");
+}
+
+/** Build email text body including adaptive skill data when available. */
+export function buildWeeklyReportEmailText(report: WeeklyReportEmailPayload): string {
+  const lines: string[] = [
+    `Báo cáo tuần đã sẵn sàng cho bé ${report.child.nickname}.`,
+    `Mã báo cáo: ${report.id}`,
+  ];
+
+  const summary = report.skillsSummary as Record<string, unknown> | null | undefined;
+  const adaptive = summary?.adaptive as EnrichedSkillsSummary | undefined;
+
+  if (adaptive && adaptive.skillsProgress?.length > 0) {
+    lines.push("");
+    lines.push("--- Tiến độ kỹ năng ---");
+    for (const progress of adaptive.skillsProgress) {
+      lines.push(formatSkillProgressSection(progress));
+    }
+
+    if (adaptive.reviewStats) {
+      const { scheduled, completed, accuracy } = adaptive.reviewStats;
+      lines.push("");
+      lines.push(`Ôn tập: ${completed}/${scheduled} bài | Độ chính xác: ${Math.round(accuracy * 100)}%`);
+    }
+  }
+
+  lines.push("");
+  lines.push("Đăng nhập hệ thống để xem chi tiết tiến độ học tập.");
+
+  return lines.join("\n");
+}
 
 export function canSendWeeklyEmail(input: EmailEligibilityInput) {
   if (!input.preferences) {
@@ -30,36 +102,16 @@ export function canSendWeeklyEmail(input: EmailEligibilityInput) {
   return true;
 }
 
-async function sendWeeklyReportEmailMock(report: {
-  id: string;
-  child: {
-    nickname: string;
-    parent: {
-      email: string;
-    };
-  };
-}) {
+async function sendWeeklyReportEmailMock(report: WeeklyReportEmailPayload) {
   console.log(
     `[email] weekly report sent (mock): report=${report.id} child=${report.child.nickname} to=${report.child.parent.email}`,
   );
 }
 
-async function sendWeeklyReportEmailResend(report: {
-  id: string;
-  child: {
-    nickname: string;
-    parent: {
-      email: string;
-    };
-  };
-}) {
+async function sendWeeklyReportEmailResend(report: WeeklyReportEmailPayload) {
   const to = env.REPORT_EMAIL_TO_OVERRIDE ?? report.child.parent.email;
   const subject = `Báo cáo tuần của ${report.child.nickname}`;
-  const text = [
-    `Báo cáo tuần đã sẵn sàng cho bé ${report.child.nickname}.`,
-    `Mã báo cáo: ${report.id}`,
-    "Đăng nhập hệ thống để xem chi tiết tiến độ học tập.",
-  ].join("\n");
+  const text = buildWeeklyReportEmailText(report);
 
   const payload = {
     from: env.REPORT_EMAIL_FROM,
@@ -87,15 +139,7 @@ async function sendWeeklyReportEmailResend(report: {
   }
 }
 
-async function sendWeeklyReportEmail(report: {
-  id: string;
-  child: {
-    nickname: string;
-    parent: {
-      email: string;
-    };
-  };
-}) {
+async function sendWeeklyReportEmail(report: WeeklyReportEmailPayload) {
   if (EMAIL_DELIVERY_PROVIDER === "mock_email") {
     await sendWeeklyReportEmailMock(report);
     return;

@@ -1,9 +1,31 @@
-import type { NextRequest } from "next/server";
-import { ok, fail } from "@/lib/http";
+﻿import type { NextRequest } from "next/server";
+import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
+import { z } from "zod";
+
+const addCourseLessonSchema = z.object({
+  lessonId: z.string().min(1),
+  orderNo: z.coerce.number().int().min(1).default(1),
+});
+
+const reorderCourseLessonsSchema = z.object({
+  orders: z
+    .array(
+      z.object({
+        lessonId: z.string().min(1),
+        orderNo: z.coerce.number().int().min(1),
+      }),
+    )
+    .min(1),
+});
+
+const removeCourseLessonSchema = z.object({
+  lessonId: z.string().min(1),
+});
 
 export async function GET(
   request: NextRequest,
@@ -43,19 +65,17 @@ export async function POST(
 ) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id } = await params;
-    const body = (await request.json()) as { lessonId?: string; orderNo?: number };
-
-    if (!body.lessonId) {
-      return fail("lessonId is required", 400);
-    }
+    const body = addCourseLessonSchema.parse(await request.json());
 
     const courseLesson = await prisma.courseLesson.create({
       data: {
         courseId: id,
         lessonId: body.lessonId,
-        orderNo: body.orderNo ?? 1,
+        orderNo: body.orderNo,
       },
     });
 
@@ -65,20 +85,18 @@ export async function POST(
   }
 }
 
-// PATCH /api/admin/courses/[id]/lessons — bulk reorder { orders: [{lessonId, orderNo}] }
+// PATCH /api/admin/courses/[id]/lessons â€” bulk reorder { orders: [{lessonId, orderNo}] }
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id } = await params;
-    const body = (await request.json()) as { orders?: Array<{ lessonId: string; orderNo: number }> };
-
-    if (!Array.isArray(body.orders) || body.orders.length === 0) {
-      return fail("orders array is required", 400);
-    }
+    const body = reorderCourseLessonsSchema.parse(await request.json());
 
     await prisma.$transaction(
       body.orders.map(({ lessonId, orderNo }) =>
@@ -101,13 +119,11 @@ export async function DELETE(
 ) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id } = await params;
-    const body = (await request.json()) as { lessonId?: string };
-
-    if (!body.lessonId) {
-      return fail("lessonId is required", 400);
-    }
+    const body = removeCourseLessonSchema.parse(await request.json());
 
     await prisma.courseLesson.deleteMany({
       where: { courseId: id, lessonId: body.lessonId },
@@ -118,3 +134,5 @@ export async function DELETE(
     return handleRouteError(error);
   }
 }
+
+

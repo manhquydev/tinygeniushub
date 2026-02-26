@@ -1,5 +1,4 @@
-﻿import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
+import { NextResponse } from "next/server";
 import { handleRouteError } from "@/lib/route-error";
 import * as blogRepository from "@/modules/blog/blog-repository";
 
@@ -11,18 +10,10 @@ export async function POST(
 ) {
   try {
     const { slug } = await context.params;
-    const post = await prisma.blogPost.findFirst({
-      where: {
-        slug,
-        status: "PUBLISHED",
-      },
-      select: {
-        id: true,
-      },
-    });
+    const post = await blogRepository.findPostBySlug(slug);
 
     if (!post) {
-      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
 
     const likeCount = await blogRepository.incrementLikeCount(post.id);
@@ -33,4 +24,3 @@ export async function POST(
     });
   }
 }
-

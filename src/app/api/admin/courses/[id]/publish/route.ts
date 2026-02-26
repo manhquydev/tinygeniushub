@@ -1,7 +1,8 @@
-import type { NextRequest } from "next/server";
+﻿import type { NextRequest } from "next/server";
 import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 
@@ -11,6 +12,8 @@ export async function POST(
 ) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id } = await params;
 
@@ -29,3 +32,5 @@ export async function POST(
     return handleRouteError(error);
   }
 }
+
+

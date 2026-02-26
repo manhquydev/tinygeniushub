@@ -12,7 +12,6 @@ export async function POST(request: NextRequest) {
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-
     const admin = await requireAdminFromRequest(request);
 
     const response = ok({ redirectTo: "/admin" });
@@ -28,3 +27,5 @@ export async function POST(request: NextRequest) {
     return handleRouteError(error);
   }
 }
+
+

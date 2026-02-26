@@ -1,4 +1,4 @@
-import type { NextRequest } from "next/server";
+﻿import type { NextRequest } from "next/server";
 import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
@@ -14,7 +14,6 @@ export async function POST(request: NextRequest) {
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-
     const admin = await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
 
     const formData = await request.formData();
@@ -55,3 +54,5 @@ export async function POST(request: NextRequest) {
     return handleRouteError(error);
   }
 }
+
+

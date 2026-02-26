@@ -40,3 +40,23 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temp/log files from dev tools & CI
+.tmp-*
+.tmp-chrome-*/
+.tmp-visual/
+build.log
+type_check*.log
+repomix-output.xml
+nul.bak
+
+# codex agent artifacts
+codex_*.txt
+/.agent/
+
+# test results & reports (generated, not committed)
+/test-results/
+/reports/security/
+
+# stray plan output files
+parent_onboarding_plan.md

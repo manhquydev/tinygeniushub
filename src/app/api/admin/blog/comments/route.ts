@@ -1,9 +1,10 @@
-import type { NextRequest } from "next/server";
+﻿import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { commentService } from "@/modules/blog/comment-service";
 
 const moderationSchema = z.object({
@@ -26,6 +27,8 @@ export async function GET(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const payload = moderationSchema.parse(await request.json());
     await commentService.moderateComment(payload.id, payload.status);
@@ -36,3 +39,5 @@ export async function PATCH(request: NextRequest) {
     });
   }
 }
+
+

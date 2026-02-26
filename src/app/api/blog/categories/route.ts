@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const categories = await blogRepository.findCategories();
     const response = NextResponse.json({ categories });
-    response.headers.set("Cache-Control", "public, max-age=3600, s-maxage=3600, stale-while-revalidate=7200");
+    response.headers.set("Cache-Control", "public, max-age=3600");
     return response;
   } catch (error) {
     return handleRouteError(error, {

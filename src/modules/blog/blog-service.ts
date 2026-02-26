@@ -61,7 +61,7 @@ async function searchPosts(query: string) {
   return blogRepository.searchPosts(normalized, 20);
 }
 
-async function createPost(input: CreateBlogPostInput) {
+async function createPost(input: CreateBlogPostInput, _adminEmail?: string) {
   const existing = await prisma.blogPost.count({
     where: {
       slug: input.slug,
@@ -75,7 +75,7 @@ async function createPost(input: CreateBlogPostInput) {
   return blogRepository.createPost(input);
 }
 
-async function updatePost(input: UpdateBlogPostInput) {
+async function updatePost(input: UpdateBlogPostInput, _adminEmail?: string) {
   if (input.slug) {
     const existing = await prisma.blogPost.findFirst({
       where: {
@@ -97,7 +97,7 @@ async function updatePost(input: UpdateBlogPostInput) {
   return blogRepository.updatePost(input);
 }
 
-async function publishPost(id: string) {
+async function publishPost(id: string, _adminEmail?: string) {
   const published = await prisma.blogPost.update({
     where: { id },
     data: {

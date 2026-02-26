@@ -13,10 +13,10 @@ export async function GET(
     const post = await blogService.getPostBySlug(slug);
 
     if (!post) {
-      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
 
-    const response = NextResponse.json(post);
+    const response = NextResponse.json({ post });
     response.headers.set("Cache-Control", "public, max-age=600, s-maxage=600, stale-while-revalidate=7200");
     return response;
   } catch (error) {

@@ -4,9 +4,10 @@ import { z } from "zod";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { blogService } from "@/modules/blog/blog-service";
 
-const updateSchema = z.object({
+const updateBlogPostInputSchema = z.object({
   slug: z.string().trim().min(2).max(160).optional(),
   type: z.enum(["ARTICLE", "TIP", "NEWS", "GUIDE", "RESEARCH", "STORY"]).optional(),
   titleVi: z.string().trim().min(2).max(250).optional(),
@@ -32,14 +33,16 @@ export async function PATCH(
 ) {
   try {
     assertTrustedOrigin(request);
-    await requireAdminFromRequest(request);
-    const payload = updateSchema.parse(await request.json());
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
+    const admin = await requireAdminFromRequest(request);
+    const payload = updateBlogPostInputSchema.parse(await request.json());
     const { id } = await context.params;
 
     const post = await blogService.updatePost({
       id,
       ...payload,
-    });
+    }, admin.email);
 
     return NextResponse.json({ post });
   } catch (error) {
@@ -48,4 +51,7 @@ export async function PATCH(
     });
   }
 }
+
+
+
 

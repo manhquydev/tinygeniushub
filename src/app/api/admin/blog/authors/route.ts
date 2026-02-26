@@ -5,6 +5,7 @@ import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import * as blogRepository from "@/modules/blog/blog-repository";
 
 const createSchema = z.object({
@@ -33,6 +34,8 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const payload = createSchema.parse(await request.json());
 
@@ -59,4 +62,6 @@ export async function POST(request: NextRequest) {
     });
   }
 }
+
+
 

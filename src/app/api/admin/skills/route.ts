@@ -1,13 +1,14 @@
-/**
- * GET /api/admin/skills — list all skills as tree
- * POST /api/admin/skills — create a new skill
+﻿/**
+ * GET /api/admin/skills â€” list all skills as tree
+ * POST /api/admin/skills â€” create a new skill
  */
 
 import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
-import { fail, ok } from "@/lib/http";
+import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { createSkill, listAllSkillsAsTree } from "@/modules/adaptive/skill-taxonomy-service";
 import { z } from "zod";
 
@@ -36,6 +37,8 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const body = createSkillSchema.parse(await request.json());
     const skill = await createSkill(body);
@@ -44,3 +47,5 @@ export async function POST(request: NextRequest) {
     return handleRouteError(error);
   }
 }
+
+

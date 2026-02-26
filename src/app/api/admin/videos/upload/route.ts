@@ -1,9 +1,10 @@
-import type { NextRequest } from "next/server";
+﻿import type { NextRequest } from "next/server";
 import { z } from "zod";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { bunnyCreateVideo, bunnyDeleteVideo } from "@/lib/bunny-stream-client";
 import { prisma } from "@/lib/db";
 
@@ -17,6 +18,8 @@ const createVideoSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
 
     const body = createVideoSchema.parse(await request.json());
@@ -36,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     const { videoId, uploadUrl } = await bunnyCreateVideo(body.title);
 
-    // Link to lesson — cleanup orphaned Bunny video if DB update fails
+    // Link to lesson â€” cleanup orphaned Bunny video if DB update fails
     try {
       await prisma.lesson.update({
         where: { id: body.lessonId },
@@ -55,3 +58,5 @@ export async function POST(request: NextRequest) {
     return handleRouteError(error);
   }
 }
+
+

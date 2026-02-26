@@ -110,13 +110,8 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
         setCategories(categoriesPayload.categories);
         setAuthors(authorsPayload.authors);
 
-        if (!categoryId && categoriesPayload.categories[0]?.id) {
-          setCategoryId(categoriesPayload.categories[0].id);
-        }
-
-        if (!authorId && authorsPayload.authors[0]?.id) {
-          setAuthorId(authorsPayload.authors[0].id);
-        }
+        setCategoryId((current) => current || categoriesPayload.categories[0]?.id || "");
+        setAuthorId((current) => current || authorsPayload.authors[0]?.id || "");
       } catch {
         if (active) {
           setFormError("Không thể tải danh mục hoặc tác giả.");

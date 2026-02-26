@@ -1,6 +1,6 @@
-/**
- * POST /api/admin/lessons/[id]/skills — tag a lesson with skills
- * GET /api/admin/lessons/[id]/skills — get skills tagged to a lesson
+﻿/**
+ * POST /api/admin/lessons/[id]/skills â€” tag a lesson with skills
+ * GET /api/admin/lessons/[id]/skills â€” get skills tagged to a lesson
  */
 
 import type { NextRequest } from "next/server";
@@ -8,6 +8,7 @@ import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { fail, ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
 
@@ -37,6 +38,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id: lessonId } = await params;
     const body = tagSkillsSchema.parse(await request.json());
@@ -65,6 +68,8 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
 export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id: lessonId } = await params;
     const body = z.object({ skillId: z.string() }).parse(await request.json());
@@ -74,3 +79,5 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     return handleRouteError(error);
   }
 }
+
+

@@ -1,4 +1,4 @@
-import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
+﻿import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { format } from "date-fns";
 import { getOrgStudentProgress } from "./organization-service";
 import { getOrganization } from "./organization-service";
@@ -39,7 +39,7 @@ export async function generateClassReport(orgId: string, teacherParentId: string
   });
 
   // Report title
-  const subtitle = `Bao cao lop hoc — ${dateStr}`;
+  const subtitle = `Báo cáo lớp học — ${dateStr}`;
   page.drawText(subtitle, {
     x: margin,
     y: height - 52,
@@ -51,7 +51,7 @@ export async function generateClassReport(orgId: string, teacherParentId: string
   // Table headers
   const tableTop = height - 90;
   const colWidths = [120, 120, 100, 80, 95];
-  const colHeaders = ["Ten hoc sinh", "Email phu huynh", "Bai hoc (30 ngay)", "Streak (ngay)", "Hoat dong cuoi"];
+  const colHeaders = ["Tên học sinh", "Email phụ huynh", "Bài học (30 ngày)", "Streak (ngày)", "Hoạt động cuối"];
   const rowHeight = 20;
 
   let x = margin;
@@ -68,14 +68,14 @@ export async function generateClassReport(orgId: string, teacherParentId: string
     x += colWidths[i];
   });
 
-  // Table rows — flatten children
+  // Table rows â€” flatten children
   let currentY = tableTop - rowHeight * 2;
 
   for (const student of progressRows) {
     if (student.children.length === 0) {
       // Parent with no children
       if (currentY < margin + 30) break;
-      const cols = ["—", student.email, "0", "0", "—"];
+      const cols = ["â€”", student.email, "0", "0", "â€”"];
       let cx = margin;
       cols.forEach((val, i) => {
         page.drawText(val, { x: cx + 4, y: currentY + 4, size: 8, font: regularFont, color: textColor });
@@ -87,7 +87,7 @@ export async function generateClassReport(orgId: string, teacherParentId: string
 
     for (const child of student.children) {
       if (currentY < margin + 30) break;
-      const lastActive = child.lastActiveAt ? format(child.lastActiveAt, "dd/MM/yy") : "—";
+      const lastActive = child.lastActiveAt ? format(child.lastActiveAt, "dd/MM/yy") : "â€”";
       const cols = [
         child.nickname.slice(0, 18),
         student.email.slice(0, 20),
@@ -116,3 +116,4 @@ export async function generateClassReport(orgId: string, teacherParentId: string
 
   return pdfDoc.save();
 }
+

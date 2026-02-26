@@ -13,6 +13,7 @@ const { prismaMock, randomUuidMock } = vi.hoisted(() => ({
     },
     childProfile: {
       findMany: vi.fn(),
+      findUnique: vi.fn(),
     },
   },
   randomUuidMock: vi.fn(() => "weekly-token-fixed"),
@@ -84,6 +85,7 @@ describe("generateWeeklyReportForChild", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     prismaMock.weeklyReport.findUnique.mockResolvedValue(null);
+    prismaMock.childProfile.findUnique.mockResolvedValue({ adaptiveEnabled: false });
   });
 
   it("no completions in week -> minutesLearned: 0, lessonsCompleted: 0, streakDays: 0", async () => {
@@ -227,6 +229,7 @@ describe("weekly report batch generation", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     prismaMock.weeklyReport.findUnique.mockResolvedValue(null);
+    prismaMock.childProfile.findUnique.mockResolvedValue({ adaptiveEnabled: false });
   });
 
   it("generates weekly reports for parent children and for all children", async () => {

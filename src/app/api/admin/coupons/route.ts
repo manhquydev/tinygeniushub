@@ -1,4 +1,4 @@
-import type { NextRequest } from "next/server";
+﻿import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
@@ -48,3 +48,5 @@ export async function POST(request: NextRequest) {
     return handleRouteError(error);
   }
 }
+
+

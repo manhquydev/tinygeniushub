@@ -34,7 +34,8 @@ export default async function TeacherDashboardPage() {
   const org = membership.organization;
   const students = await getOrgStudentProgress(org.id, parent.id);
 
-  const sevenDaysAgo = new Date(Date.now() - 7 * 86400000);
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
   const activeThisWeek = students.filter((s) =>
     s.children.some((c) => c.lessonsCompleted > 0),
   ).length;
@@ -60,7 +61,7 @@ export default async function TeacherDashboardPage() {
           <a
             href={`/api/teacher/class-report?orgId=${org.id}`}
             className="ghost-button"
-            download={`bao-cao-${org.slug}.pdf`}
+            download={`class-report-${org.slug}.pdf`}
           >
             Tải báo cáo lớp PDF
           </a>

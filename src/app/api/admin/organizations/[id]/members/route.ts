@@ -1,8 +1,9 @@
-import type { NextRequest } from "next/server";
+﻿import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { addMember, removeMember } from "@/modules/organizations/organization-service";
 import { OrgRole } from "@prisma/client";
 import { z } from "zod";
@@ -22,6 +23,8 @@ export async function POST(
 ) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id } = await params;
     const body = addMemberSchema.parse(await request.json());
@@ -38,6 +41,8 @@ export async function DELETE(
 ) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id } = await params;
     const body = removeMemberSchema.parse(await request.json());
@@ -47,3 +52,5 @@ export async function DELETE(
     return handleRouteError(error);
   }
 }
+
+

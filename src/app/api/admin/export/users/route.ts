@@ -9,7 +9,6 @@ export async function GET(request: NextRequest) {
   try {
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-
     await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
 
     const result = await listAdminUsersForExport();
@@ -50,3 +49,4 @@ export async function GET(request: NextRequest) {
     return handleRouteError(error);
   }
 }
+

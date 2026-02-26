@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { blogService } from "@/modules/blog/blog-service";
-import { refreshRelatedPosts } from "@/modules/blog/related-posts-service";
 
 export async function POST(
   request: NextRequest,
@@ -14,16 +14,20 @@ export async function POST(
 ) {
   try {
     assertTrustedOrigin(request);
-    await requireAdminFromRequest(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
+    const admin = await requireAdminFromRequest(request);
     const { id } = await context.params;
 
-    const published = await blogService.publishPost(id);
-    await refreshRelatedPosts(id);
-    return NextResponse.json({ success: true, publishedAt: published.publishedAt });
+    await blogService.publishPost(id, admin.email);
+    return NextResponse.json({ success: true, publishedAt: new Date() });
   } catch (error) {
     return handleRouteError(error, {
       routeId: "admin.blog.posts.publish",
     });
   }
 }
+
+
+
 

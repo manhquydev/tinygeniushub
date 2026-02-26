@@ -229,8 +229,10 @@ export async function completeLesson(params: {
     if (!result.idempotent && child.adaptiveEnabled) {
       const lessonSkills = await prisma.lessonSkill.findMany({
         where: { lessonId: params.lessonId },
-        select: { skillId: true },
+        select: { skillId: true, isPrimary: true },
       });
+
+      const isCorrect = payload.quizScore >= 80;
 
       // Fire-and-forget: don't block response on skill recording
       Promise.all(
@@ -238,7 +240,7 @@ export async function completeLesson(params: {
           recordSkillAttempt({
             childId: payload.childId,
             skillId: ls.skillId,
-            isCorrect: true,
+            isCorrect,
           }).catch(() => {
             // Non-critical: log silently
           }),

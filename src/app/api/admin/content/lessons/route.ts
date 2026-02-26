@@ -1,8 +1,9 @@
-import type { NextRequest } from "next/server";
+﻿import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { fail, ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { createLesson, listLessonsForUnit } from "@/modules/admin/content-service";
 import { z } from "zod";
 
@@ -38,6 +39,8 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const body = createLessonSchema.parse(await request.json());
 
@@ -59,3 +62,5 @@ export async function POST(request: NextRequest) {
     return handleRouteError(error);
   }
 }
+
+

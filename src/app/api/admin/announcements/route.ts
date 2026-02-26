@@ -1,4 +1,4 @@
-import type { NextRequest } from "next/server";
+﻿import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
@@ -29,7 +29,6 @@ export async function POST(request: NextRequest) {
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-
     const admin = await requireAdminFromRequest(request);
     const body = createAnnouncementSchema.parse(await request.json());
 
@@ -46,3 +45,5 @@ export async function POST(request: NextRequest) {
     return handleRouteError(error);
   }
 }
+
+

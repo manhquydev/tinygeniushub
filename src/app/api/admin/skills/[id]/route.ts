@@ -1,5 +1,5 @@
-/**
- * PATCH /api/admin/skills/[id] — update a skill
+﻿/**
+ * PATCH /api/admin/skills/[id] â€” update a skill
  */
 
 import type { NextRequest } from "next/server";
@@ -7,6 +7,7 @@ import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { fail, ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { getSkillWithPrerequisites, updateSkill } from "@/modules/adaptive/skill-taxonomy-service";
 import { z } from "zod";
 
@@ -35,6 +36,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     assertTrustedOrigin(request);
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id } = await params;
     const body = updateSkillSchema.parse(await request.json());
@@ -44,3 +47,5 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     return handleRouteError(error);
   }
 }
+
+

@@ -5,6 +5,7 @@ import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { blogService } from "@/modules/blog/blog-service";
 
 const listQuerySchema = z.object({
@@ -14,7 +15,7 @@ const listQuerySchema = z.object({
   q: z.string().trim().min(1).max(200).optional(),
 });
 
-const createSchema = z.object({
+const createBlogPostInputSchema = z.object({
   slug: z.string().trim().min(2).max(160),
   type: z.enum(["ARTICLE", "TIP", "NEWS", "GUIDE", "RESEARCH", "STORY"]),
   titleVi: z.string().trim().min(2).max(250),
@@ -99,15 +100,19 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     assertTrustedOrigin(request);
-    await requireAdminFromRequest(request);
-    const payload = createSchema.parse(await request.json());
-
-    const post = await blogService.createPost(payload);
-    return NextResponse.json({ post }, { status: 201 });
+    const rateLimit = await enforceAdminMutationRateLimit(request);
+    if (rateLimit) return rateLimit;
+    const admin = await requireAdminFromRequest(request);
+    const payload = createBlogPostInputSchema.parse(await request.json());
+    const post = await blogService.createPost(payload, admin.email);
+    return NextResponse.json({ post });
   } catch (error) {
     return handleRouteError(error, {
       routeId: "admin.blog.posts.create",
     });
   }
 }
+
+
+
 
