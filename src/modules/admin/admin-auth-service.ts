@@ -1,53 +1,58 @@
 "use server";
 
-import { headers } from "next/headers";
-import { adminAuth } from "@/lib/auth/admin-auth";
+import { cookies } from "next/headers";
+import { jwtVerify } from "jose";
 import { DomainError } from "@/modules/platform/errors";
 import { prisma } from "@/lib/db";
+import { env } from "@/lib/env";
 
-type AdminSessionUserExt = {
-    role?: string;
-    isActive?: boolean;
+const COOKIE_NAME = "ccth_admin_session";
+
+type AdminSessionPayload = {
+    sub: string;
+    email: string;
+    role: string;
+    displayName: string;
+    isActive: boolean;
 };
 
-function toAdminSessionUserExt(user: unknown): AdminSessionUserExt {
-    if (!user || typeof user !== "object") {
-        return {};
-    }
-    const value = user as Record<string, unknown>;
-    return {
-        role: typeof value.role === "string" ? value.role : undefined,
-        isActive: typeof value.isActive === "boolean" ? value.isActive : undefined,
+type AdminSession = {
+    user: {
+        id: string;
+        email: string;
+        role: string;
+        displayName: string;
+        isActive: boolean;
     };
-}
+};
 
-export async function getAdminSession() {
-    const reqHeaders = await headers();
+export async function getAdminSession(): Promise<AdminSession | null> {
     try {
-        const session = await adminAuth.api.getSession({
-            headers: reqHeaders,
+        const cookieStore = await cookies();
+        const token = cookieStore.get(COOKIE_NAME)?.value;
+        if (!token) return null;
+
+        const secret = new TextEncoder().encode(env.BETTER_AUTH_SECRET + "_admin");
+        const { payload } = await jwtVerify(token, secret) as { payload: AdminSessionPayload };
+
+        if (!payload.sub || !payload.isActive) return null;
+
+        // Verify admin still exists and is active
+        const admin = await prisma.adminAccount.findUnique({
+            where: { id: payload.sub },
+            select: { id: true, isActive: true },
         });
+        if (!admin || !admin.isActive) return null;
 
-        // Verify the session belongs to a real AdminAccount (guards against cross-table confusion)
-        if (session?.user?.id) {
-            const adminRecord = await prisma.adminAccount.findUnique({
-                where: { id: session.user.id },
-                select: { id: true, isActive: true },
-            });
-            if (!adminRecord) {
-                await adminAuth.api.signOut({ headers: reqHeaders });
-                return null;
-            }
-        }
-
-        // Additional domain-level check to ensure the account is still active
-        const userExt = toAdminSessionUserExt(session?.user);
-        if (userExt.isActive === false) {
-            await adminAuth.api.signOut({ headers: reqHeaders });
-            return null;
-        }
-
-        return session;
+        return {
+            user: {
+                id: payload.sub,
+                email: payload.email,
+                role: payload.role,
+                displayName: payload.displayName,
+                isActive: payload.isActive,
+            },
+        };
     } catch {
         return null;
     }
@@ -60,8 +65,7 @@ export async function requireAdminSession(allowedRoles?: string[]) {
     }
 
     if (allowedRoles && allowedRoles.length > 0) {
-        const userExt = toAdminSessionUserExt(session.user);
-        if (!userExt.role || !allowedRoles.includes(userExt.role)) {
+        if (!allowedRoles.includes(session.user.role)) {
             throw new DomainError("Forbidden: Insufficient permissions", 403, "FORBIDDEN");
         }
     }

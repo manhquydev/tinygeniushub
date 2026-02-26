@@ -2,9 +2,9 @@
 
 import { prisma } from "@/lib/db";
 import { AdminRole, Prisma } from "@prisma/client";
+import { hash } from "bcryptjs";
 import { z } from "zod";
 import { requireAdminSession } from "./admin-auth-service";
-import { adminAuth } from "@/lib/auth/admin-auth";
 
 export const adminAccountCreateSchema = z.object({
     email: z.string().email(),
@@ -41,11 +41,7 @@ export async function createAdminStaff(input: unknown) {
     const session = await requireAdminSession(["SUPER_ADMIN"]);
     const payload = adminAccountCreateSchema.parse(input);
 
-    // Hash password using better-auth api directly
-    const hashedPassword = await adminAuth.options.emailAndPassword?.password?.hash?.(payload.password);
-    if (!hashedPassword) {
-        throw new Error("Failed to hash password");
-    }
+    const hashedPassword = await hash(payload.password, 12);
 
     const newAdmin = await prisma.adminAccount.create({
         data: {
