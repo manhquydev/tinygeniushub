@@ -81,7 +81,6 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
   const [gateOpen, setGateOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pendingHrefRef = useRef<string | null>(null);
-  const pendingFormRef = useRef<HTMLFormElement | null>(null);
 
   const isKidUI = pathname.startsWith("/kid");
 
@@ -117,17 +116,32 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
     if (!href.startsWith("/kid")) {
       event.preventDefault();
       pendingHrefRef.current = href;
-      pendingFormRef.current = null;
       setGateOpen(true);
     }
   };
 
-  const handleInterceptLogout = (event: React.FormEvent<HTMLFormElement>) => {
-    if (!isKidUI) return;
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  const handleLogout = async () => {
+    if (loggingOut) return;
+    setLoggingOut(true);
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+    } catch {
+      // ignore
+    }
+    router.push("/");
+    router.refresh();
+  };
+
+  const handleInterceptLogout = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (!isKidUI) {
+      handleLogout();
+      return;
+    }
 
     event.preventDefault();
     pendingHrefRef.current = null;
-    pendingFormRef.current = event.currentTarget;
     setGateOpen(true);
   };
 
@@ -136,16 +150,14 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
     if (pendingHrefRef.current) {
       router.push(pendingHrefRef.current);
       pendingHrefRef.current = null;
-    } else if (pendingFormRef.current) {
-      pendingFormRef.current.submit();
-      pendingFormRef.current = null;
+    } else {
+      handleLogout();
     }
   };
 
   const handleGateCancel = () => {
     setGateOpen(false);
     pendingHrefRef.current = null;
-    pendingFormRef.current = null;
   };
 
   return (
@@ -178,11 +190,9 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
                 <div className="relative z-[90] shrink-0">
                   <ParentNotificationCenter />
                 </div>
-                <form action="/api/auth/logout" method="post" onSubmit={handleInterceptLogout}>
-                  <button type="submit" className="ghost-button">
-                    Đăng xuất
+                <button type="button" className="ghost-button" onClick={handleInterceptLogout} disabled={loggingOut}>
+                    {loggingOut ? "Đang xuất..." : "Đăng xuất"}
                   </button>
-                </form>
               </>
             ) : (
               <>
@@ -218,18 +228,17 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
                 <div className="relative z-[90] shrink-0">
                   <ParentNotificationCenter />
                 </div>
-                <form
-                  action="/api/auth/logout"
-                  method="post"
-                  onSubmit={(event) => {
-                    handleInterceptLogout(event);
-                    setMobileMenuOpen(false);
-                  }}
-                >
-                  <button type="submit" className="ghost-button nav-mobile-button">
-                    Đăng xuất
+                <button
+                    type="button"
+                    className="ghost-button nav-mobile-button"
+                    onClick={(event) => {
+                      handleInterceptLogout(event);
+                      setMobileMenuOpen(false);
+                    }}
+                    disabled={loggingOut}
+                  >
+                    {loggingOut ? "Đang xuất..." : "Đăng xuất"}
                   </button>
-                </form>
               </div>
             ) : (
               <div className="nav-mobile-actions">
