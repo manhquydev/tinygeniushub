@@ -5,6 +5,12 @@
   align-items: start;
 }
 
+.pricing-hero-proof {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--ink-800) 72%, white);
+}
+
 /* Featured card (Standard annual) */
 .pricing-card--featured {
   border: 2px solid var(--brand-500);
@@ -106,6 +112,64 @@
   text-align: center;
   padding: 1.5rem;
 }
+
+.pricing-conversion {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.pricing-conversion-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.pricing-conversion-item {
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--ink-700) 10%, transparent);
+  background: color-mix(in srgb, white 94%, var(--surface-100));
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.pricing-conversion-item h3 {
+  font-size: 0.97rem;
+  letter-spacing: -0.01em;
+}
+
+.pricing-conversion-item p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.86rem;
+}
+
+.pricing-final-cta {
+  text-align: center;
+  display: grid;
+  gap: 0.9rem;
+  justify-items: center;
+}
+
+.pricing-final-cta__actions {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.pricing-final-cta__actions .solid-button,
+.pricing-final-cta__actions .ghost-button {
+  min-width: min(260px, 100%);
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .pricing-final-cta__actions {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .faq-list {
   display: grid;
   gap: 0.5rem;

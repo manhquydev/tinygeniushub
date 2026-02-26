@@ -304,6 +304,72 @@
   box-shadow: 0 16px 32px rgba(12, 36, 50, 0.1);
 }
 
+/* -- Funnel awareness cards -- */
+
+.hp-funnel-card {
+  display: grid;
+  gap: 0.75rem;
+  transition: transform 260ms ease-out, box-shadow 260ms ease-out;
+}
+
+.hp-funnel-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(12, 36, 50, 0.1);
+}
+
+.hp-funnel-stage-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.hp-funnel-stage-badge {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.28rem 0.62rem;
+  background: color-mix(in srgb, var(--brand-500) 14%, white);
+  color: var(--brand-700);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  font-weight: 700;
+}
+
+.hp-funnel-channel-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.hp-funnel-channel-list li {
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ink-700) 14%, transparent);
+  background: color-mix(in srgb, white 92%, var(--surface-100));
+  padding: 0.25rem 0.55rem;
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--ink-700) 86%, white);
+  line-height: 1.2;
+}
+
+.hp-funnel-link {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--brand-700);
+  font-weight: 600;
+}
+
+.hp-funnel-link:hover {
+  color: var(--brand-500);
+}
+
 /* ── Steps (How It Works) ── */
 
 .hp-step-number {
@@ -1440,4 +1506,3 @@
   line-height: 1.4;
   font-weight: 500;
 }
-

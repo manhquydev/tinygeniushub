@@ -6,6 +6,7 @@ import { SectionFinalCta } from "@/components/homepage/section-final-cta";
 import { SectionHero } from "@/components/homepage/section-hero";
 import { SectionHowItWorks } from "@/components/homepage/section-how-it-works";
 import { SectionNav } from "@/components/homepage/section-nav";
+import { SectionFunnelAwareness } from "@/components/homepage/section-funnel-awareness";
 import { SectionPricingPreview } from "@/components/homepage/section-pricing-preview";
 import { SectionProblem } from "@/components/homepage/section-problem";
 import { SectionProductDemo } from "@/components/homepage/section-product-demo";
@@ -137,6 +138,7 @@ export default function HomePage() {
       <SectionHero />
       <SectionNav />
       <SectionProblem />
+      <SectionFunnelAwareness />
       <SectionHowItWorks />
       <SectionFeatures />
       <SectionTestimonials />

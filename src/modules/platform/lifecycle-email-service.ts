@@ -1,27 +1,34 @@
-import { LifecycleEmailType, SubscriptionStatus } from "@prisma/client";
-import { env } from "@/lib/env";
+﻿import { LifecycleEmailType, SubscriptionStatus } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { env } from "@/lib/env";
 
 const PROVIDER = env.REPORT_EMAIL_PROVIDER;
+const BASE_URL = "https://cungcontuhoc.io.vn";
 
-// ---- Email templates ----
+function lifecycleLink(path: string, campaign: string) {
+  return `${BASE_URL}${path}?utm_source=email&utm_medium=lifecycle&utm_campaign=${campaign}`;
+}
 
 function buildTrialWelcomeEmail(displayName: string | null) {
   const name = displayName ?? "bạn";
+  const dashboardUrl = lifecycleLink("/parent/dashboard", "trial_d0");
+
   return {
-    subject: "Chào mừng đến Cùng Con Tự Học — lộ trình Toán & Tiếng Anh cho bé!",
+    subject: "Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉",
     text: [
-      `Chào ${name},`,
+      `Xin chào ${name},`,
       "",
-      "Cảm ơn bạn đã đăng ký Cùng Con Tự Học!",
+      "Cảm ơn bạn đã đăng ký Cùng Con Tự Học.",
+      "Bé nhà bạn sắp bắt đầu lộ trình Toán tư duy + Tiếng Anh Phonics với nhịp học 15 phút/ngày.",
       "",
-      "Bé nhà bạn sắp được học Toán tư duy + Tiếng Anh Phonics qua video ngắn và bài tập thú vị — chỉ 15 phút mỗi ngày.",
+      "Bước tiếp theo (mất khoảng 2 phút):",
+      "1) Mở dashboard phụ huynh",
+      "2) Chọn bài đầu tiên phù hợp độ tuổi của bé",
+      "3) Duy trì lịch học ngắn, đều mỗi ngày",
       "",
-      "Bạn có 7 ngày dùng thử miễn phí. Sau 7 ngày, chọn gói 799.000đ/năm để tiếp tục hành trình cùng bé.",
+      `Bắt đầu ngay: ${dashboardUrl}`,
       "",
-      "👉 Bắt đầu bài học đầu tiên: https://cungcontuhoc.io.vn/parent/dashboard",
-      "",
-      "Nếu cần hỗ trợ, trả lời email này nhé.",
+      "Không cần thẻ tín dụng · Trial 7 ngày miễn phí.",
       "",
       "Thân,",
       "Đội ngũ Cùng Con Tự Học",
@@ -31,21 +38,24 @@ function buildTrialWelcomeEmail(displayName: string | null) {
 
 function buildTrialD3Email(displayName: string | null) {
   const name = displayName ?? "bạn";
+  const reportUrl = lifecycleLink("/parent/reports", "trial_d3_progress");
+
   return {
-    subject: "Bé nhà bạn đã học được gì sau 3 ngày? 🌟",
+    subject: "Báo cáo mini 3 ngày đầu của bé — đang tiến bộ thế nào? 📊",
     text: [
-      `Chào ${name},`,
+      `Xin chào ${name},`,
       "",
-      "Đã 3 ngày từ khi bé bắt đầu Cùng Con Tự Học!",
+      "Bé đã đi được 3 ngày đầu tiên trong trial.",
+      "Đây là mốc quan trọng để giữ nhịp học và xây thói quen đều mỗi ngày.",
       "",
-      "Mẹo để bé tiến bộ nhanh hơn:",
-      "• Học đúng giờ mỗi ngày — não bé sẽ quen thói quen trong 7 ngày",
-      "• Bé học xong, bố/mẹ hỏi lại 1 câu về bài — giúp bé nhớ sâu hơn gấp 2",
-      "• Toán tư duy: đừng vội, mỗi bài 15 phút là đủ",
+      "Mẹo tăng hiệu quả trong tuần đầu:",
+      "• Giữ khung giờ học cố định mỗi ngày",
+      "• Sau mỗi bài, phụ huynh hỏi lại bé 1 câu ngắn để củng cố ghi nhớ",
+      "• Mỗi buổi học chỉ cần 15 phút, không cần kéo dài",
       "",
-      "👉 Xem tiến độ của bé: https://cungcontuhoc.io.vn/parent/dashboard",
+      `Xem báo cáo và tiến độ hiện tại: ${reportUrl}`,
       "",
-      "Còn 4 ngày dùng thử. Nâng cấp ngay hôm nay để không gián đoạn lộ trình của bé.",
+      "Còn 4 ngày trial để kiểm chứng rõ sự phù hợp với gia đình.",
       "",
       "Thân,",
       "Đội ngũ Cùng Con Tự Học",
@@ -55,35 +65,36 @@ function buildTrialD3Email(displayName: string | null) {
 
 function buildTrialD7Email(displayName: string | null) {
   const name = displayName ?? "bạn";
+  const pricingUrl = lifecycleLink("/pricing", "trial_d7_convert");
+  const courseUrl = lifecycleLink("/courses", "trial_d7_courses_upsell");
+
   return {
-    subject: "Hôm nay là ngày cuối dùng thử — giữ lộ trình cho bé nhé!",
+    subject: "Trial sắp kết thúc — giữ lộ trình học cho bé ngay hôm nay",
     text: [
-      `Chào ${name},`,
+      `Xin chào ${name},`,
       "",
       "Hôm nay là ngày cuối của 7 ngày dùng thử miễn phí.",
+      "Nếu bé đã bắt đầu vào nếp học, đây là lúc giữ lộ trình không gián đoạn.",
       "",
-      "Nếu bé đã bắt đầu yêu thích học — đừng để gián đoạn.",
+      "Gói năm hiện tại:",
+      "• Standard: 799,000 VND/năm (~2,189 VND/ngày)",
+      "• Family+: 1,199,000 VND/năm (~3,285 VND/ngày)",
       "",
-      "Gói Standard: 799.000đ/năm (~2.189đ/ngày)",
-      "✓ Toán tư duy + Tiếng Anh Phonics cho bé cả năm",
-      "✓ Báo cáo tuần tự động",
-      "✓ Hoàn tiền 100% trong 30 ngày nếu không hài lòng",
+      "Quyền lợi chính:",
+      "✓ Toán tư duy + Tiếng Anh Phonics trọn năm",
+      "✓ Báo cáo tuần tự động cho phụ huynh",
+      "✓ Hoàn tiền 100% trong 30 ngày đầu nếu chưa phù hợp",
       "",
-      "👉 Nâng cấp ngay: https://cungcontuhoc.io.vn/pricing",
+      `Chọn gói phù hợp: ${pricingUrl}`,
       "",
-      "---",
-      "Muốn đi sâu hơn? Sau khi nâng cấp, bạn được giảm 20% tất cả Khóa học Premium:",
-      "• Toán Tư Duy (30 ngày) — 299.000đ → 239.000đ cho thành viên",
-      "• Tiếng Anh Phonics (60 ngày) — 499.000đ → 399.000đ cho thành viên",
-      "👉 Xem khóa học: https://cungcontuhoc.io.vn/courses",
+      "Ưu đãi thêm cho thành viên gói năm: giảm 20% toàn bộ Khóa học Premium.",
+      `Xem khóa học: ${courseUrl}`,
       "",
       "Thân,",
       "Đội ngũ Cùng Con Tự Học",
     ].join("\n"),
   };
 }
-
-// ---- Send via Resend ----
 
 async function sendEmail(to: string, subject: string, text: string) {
   if (PROVIDER === "mock_email") {
@@ -123,8 +134,6 @@ async function sendEmail(to: string, subject: string, text: string) {
   throw new Error(`Unsupported email provider: ${PROVIDER}`);
 }
 
-// ---- Public API ----
-
 export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailType) {
   const parent = await prisma.parentAccount.findUnique({
     where: { id: parentId },
@@ -133,7 +142,6 @@ export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailT
 
   if (!parent) return;
 
-  // idempotency: skip if already sent
   const existing = await prisma.lifecycleEmailLog.findUnique({
     where: { parentId_type: { parentId, type } },
   });
@@ -157,16 +165,12 @@ export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailT
   });
 }
 
-// ---- Batch job: dispatch pending D3 / D7 for all trialing users ----
-
 export async function dispatchPendingLifecycleEmails() {
   const now = new Date();
 
-  // D3: trial started 3-4 days ago, hasn't received TRIAL_D3 yet
   const d3Start = new Date(now.getTime() - 4 * 24 * 60 * 60 * 1000);
   const d3End = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000);
 
-  // D7: trial started 7-8 days ago, hasn't received TRIAL_D7 yet
   const d7Start = new Date(now.getTime() - 8 * 24 * 60 * 60 * 1000);
   const d7End = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 

@@ -1,14 +1,14 @@
-import "./pricing.css";
+﻿import "./pricing.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckoutPlanButton } from "@/components/checkout-plan-button";
-import { getParentFromServerCookie } from "@/lib/auth/session";
 import { IconCheckCircle, IconInfo } from "@/components/icons";
+import { getParentFromServerCookie } from "@/lib/auth/session";
 
 export const metadata: Metadata = {
   title: "Bảng giá",
   description:
-    "Dùng thử miễn phí 7 ngày, không cần thẻ tín dụng. Gói Standard 799,000 VND/năm — hoàn tiền 100% trong 30 ngày nếu không thấy tiến bộ.",
+    "Dùng thử miễn phí 7 ngày, không cần thẻ tín dụng. Gói Standard 799,000 VND/năm và Family+ 1,199,000 VND/năm, hoàn tiền 100% trong 30 ngày.",
   alternates: {
     canonical: "https://cungcontuhoc.io.vn/pricing",
   },
@@ -27,7 +27,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Sau khi mua, tôi có thể hủy bất kỳ lúc nào không?",
-    a: "Có. Bạn có thể hủy bất kỳ lúc nào. Quyền lợi của gói vẫn được giữ cho đến hết kỳ thanh toán đã mua.",
+    a: "Có. Bạn có thể hủy bất kỳ lúc nào. Quyền lợi của gói vẫn được giữ đến hết kỳ thanh toán đã mua.",
   },
   {
     q: "Chính sách hoàn tiền như thế nào?",
@@ -45,18 +45,33 @@ const FAQ_ITEMS = [
     q: "Thanh toán bằng hình thức nào?",
     a: "Chuyển khoản ngân hàng, ví điện tử MoMo, ZaloPay và các cổng thanh toán trực tuyến phổ biến tại Việt Nam.",
   },
-];
+] as const;
+
+const CONVERSION_POINTS = [
+  {
+    title: "Giữ thói quen học không gián đoạn",
+    description: "Con đang có đà học 15 phút/ngày, gói năm giúp duy trì liên tục thay vì đứt quãng sau trial.",
+  },
+  {
+    title: "Tiết kiệm rõ ràng khi chọn gói năm",
+    description: "Standard năm 799,000 VND thay vì 1,188,000 VND nếu trả tháng. Gia đình tiết kiệm ngay 389,000 VND/năm.",
+  },
+  {
+    title: "Rủi ro gần như bằng 0",
+    description: "Dùng thử 7 ngày không cần thẻ và hoàn tiền 100% trong 30 ngày đầu nếu chưa phù hợp.",
+  },
+] as const;
 
 export default async function PricingPage() {
   const parent = await getParentFromServerCookie();
 
   return (
     <div className="page-stack">
-      {/* Hero */}
       <section className="hero">
         <h1>Bảng giá rõ ràng cho phụ huynh Việt</h1>
         <p>
-          Dùng thử 7 ngày để thấy con tiến bộ thật sự. Sau trial, chọn gói năm để giữ nguyên lộ trình — hoàn tiền 100% trong 30 ngày nếu không hài lòng.
+          Dùng thử 7 ngày để thấy con tiến bộ thật sự. Sau trial, chọn gói năm để giữ nguyên lộ trình và
+          tiết kiệm hơn so với thanh toán tháng.
         </p>
         <div className="hero-actions">
           {!parent ? (
@@ -72,11 +87,13 @@ export default async function PricingPage() {
             Xem mẫu báo cáo tuần
           </Link>
         </div>
+        <p className="pricing-hero-proof">
+          Gợi ý chốt nhanh: chọn trial trước, xem báo cáo tuần đầu tiên, rồi nâng cấp gói năm để giữ nhịp
+          học cho bé.
+        </p>
       </section>
 
-      {/* Pricing Cards */}
-      <section className="card-grid pricing-grid">
-        {/* Standard Annual — PRIMARY / PRE-SELECTED */}
+      <section className="card-grid pricing-grid" id="pricing-plans">
         <article className="card pricing-card pricing-card--featured">
           <div className="pricing-badge pricing-badge--popular">Phổ biến nhất</div>
           <h2>Standard</h2>
@@ -107,7 +124,6 @@ export default async function PricingPage() {
           )}
         </article>
 
-        {/* Family+ Annual */}
         <article className="card pricing-card">
           <h2>Family+</h2>
           <div className="pricing-amount">
@@ -137,7 +153,6 @@ export default async function PricingPage() {
           )}
         </article>
 
-        {/* Monthly Anchor — DE-EMPHASIZED */}
         <article className="card pricing-card pricing-card--muted">
           <div className="pricing-badge pricing-badge--monthly">Thanh toán tháng</div>
           <h2>Standard</h2>
@@ -145,9 +160,7 @@ export default async function PricingPage() {
             <span className="pricing-amount__main">99,000 VND</span>
             <span className="pricing-amount__period">/ tháng</span>
           </div>
-          <p className="pricing-amount__monthly muted-text">
-            1,188,000 VND/năm nếu thanh toán tháng
-          </p>
+          <p className="pricing-amount__monthly muted-text">1,188,000 VND/năm nếu thanh toán tháng</p>
           <p>
             <strong>3 hồ sơ bé · 2 caregiver</strong>
           </p>
@@ -160,8 +173,6 @@ export default async function PricingPage() {
             <IconInfo size={14} className="pricing-tip-icon" />
             Chọn gói năm để tiết kiệm 33% — 799,000 VND thay vì 1,188,000 VND
           </p>
-          {/* Monthly plan: anchor card only — no checkout button intentionally.
-              Authenticated users are directed to annual plans via the tip above. */}
           {!parent && (
             <Link href="/auth/signup" className="ghost-button pricing-card__cta">
               Dùng thử trước
@@ -170,18 +181,34 @@ export default async function PricingPage() {
         </article>
       </section>
 
-      {/* Social proof */}
+      <section className="card pricing-conversion">
+        <h2>Lý do phụ huynh chốt gói năm ngay sau trial</h2>
+        <div className="pricing-conversion-grid">
+          {CONVERSION_POINTS.map((point) => (
+            <article key={point.title} className="pricing-conversion-item">
+              <h3>{point.title}</h3>
+              <p className="muted-text">{point.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="card pricing-social-proof">
         <p className="muted-text pricing-trust-row">
-          <span className="pricing-trust-item"><IconCheckCircle size={15} /> Không cần thẻ tín dụng</span>
+          <span className="pricing-trust-item">
+            <IconCheckCircle size={15} /> Không cần thẻ tín dụng
+          </span>
           <span className="pricing-trust-sep">·</span>
-          <span className="pricing-trust-item"><IconCheckCircle size={15} /> Hoàn tiền 30 ngày</span>
+          <span className="pricing-trust-item">
+            <IconCheckCircle size={15} /> Hoàn tiền 30 ngày
+          </span>
           <span className="pricing-trust-sep">·</span>
-          <span className="pricing-trust-item"><IconCheckCircle size={15} /> Hủy bất kỳ lúc nào</span>
+          <span className="pricing-trust-item">
+            <IconCheckCircle size={15} /> Hủy bất kỳ lúc nào
+          </span>
         </p>
       </section>
 
-      {/* Premium Courses */}
       <section className="card">
         <div style={{ display: "grid", gap: "0.4rem" }}>
           <h2>Khóa học Premium</h2>
@@ -204,7 +231,9 @@ export default async function PricingPage() {
             </p>
             <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
               <span style={{ fontWeight: 700, color: "var(--brand-700)" }}>299,000đ</span>
-              <span className="muted-text" style={{ fontSize: "0.82rem" }}>30 ngày</span>
+              <span className="muted-text" style={{ fontSize: "0.82rem" }}>
+                30 ngày
+              </span>
             </div>
             <Link href="/courses" className="ghost-button" style={{ width: "fit-content", fontSize: "0.88rem" }}>
               Xem khóa học
@@ -226,7 +255,9 @@ export default async function PricingPage() {
             </p>
             <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
               <span style={{ fontWeight: 700, color: "var(--brand-700)" }}>499,000đ</span>
-              <span className="muted-text" style={{ fontSize: "0.82rem" }}>60 ngày</span>
+              <span className="muted-text" style={{ fontSize: "0.82rem" }}>
+                60 ngày
+              </span>
             </div>
             <Link href="/courses" className="ghost-button" style={{ width: "fit-content", fontSize: "0.88rem" }}>
               Xem khóa học
@@ -238,7 +269,6 @@ export default async function PricingPage() {
         </p>
       </section>
 
-      {/* FAQ */}
       <section className="card">
         <h2>Câu hỏi thường gặp</h2>
         <div className="faq-list">
@@ -248,6 +278,28 @@ export default async function PricingPage() {
               <p className="faq-answer">{item.a}</p>
             </details>
           ))}
+        </div>
+      </section>
+
+      <section className="card pricing-final-cta">
+        <h2>Sẵn sàng giữ lộ trình 12 tháng cho bé?</h2>
+        <p className="muted-text">
+          Bắt đầu bằng trial 7 ngày miễn phí. Sau đó chọn Standard hoặc Family+ để duy trì tiến độ học đều mỗi
+          tuần.
+        </p>
+        <div className="pricing-final-cta__actions">
+          {!parent ? (
+            <Link href="/auth/signup" className="solid-button">
+              Bắt đầu trial ngay
+            </Link>
+          ) : (
+            <Link href="/parent/dashboard" className="solid-button">
+              Vào dashboard và chọn gói
+            </Link>
+          )}
+          <Link href="#pricing-plans" className="ghost-button">
+            So sánh lại các gói
+          </Link>
         </div>
       </section>
     </div>
