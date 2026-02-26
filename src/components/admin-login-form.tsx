@@ -1,6 +1,5 @@
 "use client";
 
-import { adminAuthClient } from "@/lib/auth/admin-auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Shield, Loader2, KeyRound } from "lucide-react";
@@ -17,13 +16,21 @@ export function AdminLoginForm() {
         setIsLoading(true);
         setError(null);
 
-        const { error: authError } = await adminAuthClient.signIn.email({
-            email,
-            password,
-        });
+        try {
+            const res = await fetch("/api/admin/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
 
-        if (authError) {
-            setError(authError.message || "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.");
+            if (!res.ok) {
+                const data = await res.json().catch(() => null);
+                setError(data?.error?.message || "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.");
+                setIsLoading(false);
+                return;
+            }
+        } catch {
+            setError("Lỗi kết nối. Vui lòng thử lại.");
             setIsLoading(false);
             return;
         }

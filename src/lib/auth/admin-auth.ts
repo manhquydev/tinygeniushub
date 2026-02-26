@@ -8,6 +8,7 @@ const PASSWORD_ROUNDS = 12;
 const trustedOrigins = Array.from(new Set([env.BETTER_AUTH_URL, ...env.AUTH_TRUSTED_ORIGINS]));
 
 export const adminAuth = betterAuth({
+    basePath: "/api/admin/auth",
     baseURL: env.BETTER_AUTH_URL,
     secret: env.BETTER_AUTH_SECRET + "_admin", // Salt secret to isolate sessions
     database: prismaAdapter(prisma, {
