@@ -1,18 +1,17 @@
 import type { ReactNode } from "react";
+import { redirect } from "next/navigation";
 import { AdminShellNav } from "@/components/admin-shell-nav";
-import { requireAdminSession } from "@/modules/admin/admin-auth-service";
+import { getAdminSession } from "@/modules/admin/admin-auth-service";
 
-function resolveRole(user: unknown) {
-  if (!user || typeof user !== "object") {
-    return "";
-  }
-  const role = (user as Record<string, unknown>).role;
-  return typeof role === "string" ? role : "";
-}
+export const dynamic = "force-dynamic";
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
-  const session = await requireAdminSession();
-  const role = resolveRole(session.user);
+  const session = await getAdminSession();
+  if (!session?.user) {
+    redirect("/admin/login");
+  }
+
+  const role = session.user.role;
 
   return (
     <div className="page-stack">
