@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@layer base {
+
 :root {
   --ink-900: #0f172a;
   --ink-700: #334155;
@@ -63,6 +65,10 @@ h3 {
 p {
   margin: 0;
 }
+
+} /* end @layer base */
+
+@layer components {
 
 .container {
   width: min(1040px, calc(100% - 2rem));
@@ -2932,3 +2938,5 @@ ul {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(0.97); }
 }
+
+} /* end @layer components */
