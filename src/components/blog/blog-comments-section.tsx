@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { BlogCommentCard } from "@/components/blog/blog-comment-card";
 import { BlogCommentForm } from "@/components/blog/blog-comment-form";
@@ -23,7 +23,7 @@ export function BlogCommentsSection({ slug }: BlogCommentsSectionProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  async function loadComments() {
+  const loadComments = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -42,11 +42,11 @@ export function BlogCommentsSection({ slug }: BlogCommentsSectionProps) {
     } finally {
       setLoading(false);
     }
-  }
+  }, [slug]);
 
   useEffect(() => {
     void loadComments();
-  }, [slug]);
+  }, [loadComments]);
 
   const count = useMemo(
     () => comments.reduce((sum, comment) => sum + 1 + comment.replies.length, 0),

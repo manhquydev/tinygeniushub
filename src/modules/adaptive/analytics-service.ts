@@ -61,7 +61,7 @@ export async function getChildLearningTrajectory(
     const weekStart = startOfWeek(ref, { weekStartsOn: 1 });
     const weekEnd = endOfWeek(ref, { weekStartsOn: 1 });
 
-    const [states, attempts, reviews] = await Promise.all([
+    const [states, attempts] = await Promise.all([
       prisma.childSkillState.findMany({
         where: { childId, updatedAt: { lte: weekEnd } },
         select: { masteryScore: true, masteryLevel: true, updatedAt: true },
@@ -69,10 +69,6 @@ export async function getChildLearningTrajectory(
       prisma.skillAttempt.findMany({
         where: { childId, createdAt: { gte: weekStart, lte: weekEnd } },
         select: { isCorrect: true, createdAt: true },
-      }),
-      prisma.reviewQueue.findMany({
-        where: { childId, scheduledAt: { gte: weekStart, lte: weekEnd } },
-        select: { completedAt: true },
       }),
     ]);
 
@@ -88,7 +84,6 @@ export async function getChildLearningTrajectory(
         s.updatedAt <= weekEnd,
     ).length;
 
-    const completedReviews = reviews.filter((r) => r.completedAt !== null);
     const correctAttempts = attempts.filter((a) => a.isCorrect).length;
     const reviewAccuracy =
       attempts.length > 0 ? correctAttempts / attempts.length : 0;

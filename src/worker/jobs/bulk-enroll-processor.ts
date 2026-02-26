@@ -1,7 +1,7 @@
 import { Job, Worker } from "bullmq";
 import { processBulkEnrollRows, BulkEnrollRow } from "@/modules/organizations/bulk-enroll-service";
 import { redisConnection } from "@/worker/queue";
-import { logError, logInfo } from "@/lib/observability/logger";
+import { logInfo } from "@/lib/observability/logger";
 
 interface BulkEnrollPayload {
   orgId: string;

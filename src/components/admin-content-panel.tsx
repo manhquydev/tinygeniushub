@@ -1,7 +1,7 @@
 "use client";
 
 import { BookOpen, ChevronRight, Pencil, Plus, Trash2 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { VideoTusUploader } from "@/components/admin/video-tus-uploader";
 
 type ApiResponse<TData> = {
@@ -349,7 +349,7 @@ export function AdminContentPanel() {
     [editingLessonId, lessons],
   );
 
-  async function fetchJson<TData>(url: string, init?: RequestInit) {
+  const fetchJson = useCallback(async <TData,>(url: string, init?: RequestInit) => {
     const response = await fetch(url, init);
     const body = (await response.json()) as ApiResponse<TData>;
     if (!response.ok || !body.ok || !body.data) {
@@ -357,9 +357,9 @@ export function AdminContentPanel() {
     }
 
     return body.data;
-  }
+  }, []);
 
-  async function loadTracks() {
+  const loadTracks = useCallback(async () => {
     setLoadingTracks(true);
     setError(null);
     try {
@@ -373,7 +373,7 @@ export function AdminContentPanel() {
     } finally {
       setLoadingTracks(false);
     }
-  }
+  }, [fetchJson]);
 
   async function loadLevels(trackId: string) {
     setLoadingLevels(true);
@@ -451,7 +451,7 @@ export function AdminContentPanel() {
 
   useEffect(() => {
     void loadTracks();
-  }, []);
+  }, [loadTracks]);
 
   function selectTrack(track: TrackRow) {
     setSelectedTrackId(track.id);

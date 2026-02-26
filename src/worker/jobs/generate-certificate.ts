@@ -3,7 +3,7 @@ import { prisma } from "@/lib/db";
 import { generateCertificate } from "@/modules/courses/certificate-service";
 import { resolveStorageProvider } from "@/modules/platform/storage/providers";
 import { redisConnection } from "@/worker/queue";
-import { logError, logInfo } from "@/lib/observability/logger";
+import { logInfo } from "@/lib/observability/logger";
 
 async function processCertificateJob(enrollmentId: string) {
   const enrollment = await prisma.courseEnrollment.findUnique({

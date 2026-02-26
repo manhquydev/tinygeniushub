@@ -141,6 +141,10 @@ export function DragDropActivity({
   }
 
   function handleDragEnd(event: DragEndEvent) {
+    if (disabled) {
+      return;
+    }
+
     const { active, over } = event;
     if (!over) return;
 
@@ -168,7 +172,12 @@ export function DragDropActivity({
 
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-      <div className="grid gap-3" onMouseEnter={() => onHoverOption("center")} onMouseLeave={onHoverOptionEnd}>
+      <div
+        className="grid gap-3"
+        onMouseEnter={() => onHoverOption("center")}
+        onMouseLeave={onHoverOptionEnd}
+        style={disabled ? { pointerEvents: "none", opacity: 0.6 } : undefined}
+      >
         <p className="lesson-wizard-quiz-copy">{prompt}</p>
         {spec.instruction && (
           <p style={{ fontSize: "0.82rem", color: "#64748b" }}>{spec.instruction}</p>

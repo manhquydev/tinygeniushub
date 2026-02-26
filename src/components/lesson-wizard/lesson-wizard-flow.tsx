@@ -97,8 +97,8 @@ export function LessonWizardFlow({
   const [activityIndex, setActivityIndex] = useState(0);
   const [activityLoading, setActivityLoading] = useState(false);
   const [activityAnswerLocked, setActivityAnswerLocked] = useState(false);
-  const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
-  const [totalWrong, setTotalWrong] = useState(0);
+  const consecutiveCorrectRef = useRef(0);
+  const totalWrongRef = useRef(0);
   const [lastInteractionTime, setLastInteractionTime] = useState(Date.now);
 
   const quizCelebrateTimerRef = useRef<number | null>(null);
@@ -364,7 +364,7 @@ export function LessonWizardFlow({
     return success;
   }
 
-  async function markCompleted(options?: { closeAfterSuccess?: boolean; skipCelebrationFx?: boolean }) {
+  const markCompleted = useCallback(async (options?: { closeAfterSuccess?: boolean; skipCelebrationFx?: boolean }) => {
     setLoading(true);
     setStatus(null);
 
@@ -423,7 +423,7 @@ export function LessonWizardFlow({
     } finally {
       setLoading(false);
     }
-  }
+  }, [childId, estimatedMinutes, lessonId, onClose, onCompleted, prefersReducedMotion]);
 
   const handleNextToVideo = () => {
     synth.playPop();
@@ -475,27 +475,25 @@ export function LessonWizardFlow({
         setStatus("ChÃ­nh xÃ¡c!");
         setActivityAnswerLocked(true);
 
-        setConsecutiveCorrect((prev) => {
-          const next = prev + 1;
-          if (next >= 5) {
-            setMascotState("celebrating");
-            synth.playYay();
-            if (!prefersReducedMotion) {
-              confetti({
-                particleCount: 92,
-                spread: 88,
-                scalar: 1.02,
-                origin: { x: 0.5, y: 0.6 },
-                colors: ["#22d3ee", "#facc15", "#a78bfa", "#fb7185", "#34d399"],
-              });
-            }
-          } else if (next >= 3) {
-            setMascotStateForDuration("excited", 1200);
-          } else {
-            setMascotStateForDuration("happy", 1000);
+        consecutiveCorrectRef.current += 1;
+        const nextConsecutiveCorrect = consecutiveCorrectRef.current;
+        if (nextConsecutiveCorrect >= 5) {
+          setMascotState("celebrating");
+          synth.playYay();
+          if (!prefersReducedMotion) {
+            confetti({
+              particleCount: 92,
+              spread: 88,
+              scalar: 1.02,
+              origin: { x: 0.5, y: 0.6 },
+              colors: ["#22d3ee", "#facc15", "#a78bfa", "#fb7185", "#34d399"],
+            });
           }
-          return next;
-        });
+        } else if (nextConsecutiveCorrect >= 3) {
+          setMascotStateForDuration("excited", 1200);
+        } else {
+          setMascotStateForDuration("happy", 1000);
+        }
 
         const isLastActivity = activityIndex >= activities.length - 1;
         if (isLastActivity) {
@@ -534,16 +532,13 @@ export function LessonWizardFlow({
       synth.playBzz();
       setStatus("ChÆ°a Ä‘Ãºng rá»“i, con thá»­ láº¡i nhÃ©!");
       setActivityAnswerLocked(true);
-      setConsecutiveCorrect(0);
-      setTotalWrong((prev) => {
-        const next = prev + 1;
-        if (next >= 3) {
-          setMascotStateForDuration("angry", 1100);
-        } else {
-          setMascotStateForDuration("nervous", 1100);
-        }
-        return next;
-      });
+      consecutiveCorrectRef.current = 0;
+      totalWrongRef.current += 1;
+      if (totalWrongRef.current >= 3) {
+        setMascotStateForDuration("angry", 1100);
+      } else {
+        setMascotStateForDuration("nervous", 1100);
+      }
       quizCelebrateTimerRef.current = window.setTimeout(() => {
         setActivityAnswerLocked(false);
         quizCelebrateTimerRef.current = null;

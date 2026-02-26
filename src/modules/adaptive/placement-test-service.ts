@@ -6,7 +6,6 @@
 import { prisma } from "@/lib/db";
 import type { SkillDomain } from "@prisma/client";
 import { Prisma } from "@prisma/client";
-import { masteryLevelFromScore } from "./child-skill-state-service";
 import {
   createInitialCATState,
   reconstructCATState,

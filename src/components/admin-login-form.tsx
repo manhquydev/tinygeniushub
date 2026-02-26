@@ -4,11 +4,10 @@ import { adminAuthClient } from "@/lib/auth/admin-auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Shield, Loader2, KeyRound } from "lucide-react";
-import Image from "next/image";
 
 export function AdminLoginForm() {
-    const [email, setEmail] = emailState("");
-    const [password, setPassword] = emailState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();
@@ -31,10 +30,6 @@ export function AdminLoginForm() {
 
         router.push("/admin/overview");
         router.refresh();
-    }
-
-    function emailState(initialValue: string) {
-        return useState(initialValue);
     }
 
     return (

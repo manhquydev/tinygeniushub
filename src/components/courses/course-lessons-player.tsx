@@ -18,7 +18,8 @@ type VideoState = { status: "loading" | "ready" | "unavailable"; embedUrl?: stri
 
 const STORAGE_KEY = (slug: string) => `ccth_course_progress_${slug}`;
 
-export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollmentId }: Props) {
+export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollmentId: _enrollmentId }: Props) {
+  void _enrollmentId;
   const [selectedIndex, setSelectedIndex] = useState(() => {
     // Resume from last position saved in localStorage
     if (typeof localStorage === "undefined") return 0;
