@@ -2,20 +2,27 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, useReducedMotion } from "motion/react";
+import type { TargetAndTransition } from "motion/react";
 import * as m from "motion/react-m";
 import { BigOwl } from "@/components/mascot/characters/BigOwl";
 import { SmallOwl } from "@/components/mascot/characters/SmallOwl";
+import { DadOwl } from "@/components/mascot/characters/DadOwl";
+import { SisterOwl } from "@/components/mascot/characters/SisterOwl";
+import { BabyOwl } from "@/components/mascot/characters/BabyOwl";
 import { STATE_EXPRESSIONS } from "@/components/mascot/expressions";
 import { ActionPropLayer } from "@/components/mascot/props";
+import { useMascotTimeline } from "@/components/mascot/hooks/use-mascot-timeline";
 import type {
+  MascotAnimationMode,
   MascotLayout,
   MascotMotionLevel,
   MascotProps,
   MascotState,
   MascotVariant,
+  MascotGesture,
 } from "@/components/mascot/types";
 
-function getMainPose(state: MascotState, motionLevel: MascotMotionLevel) {
+function getMainPose(state: MascotState, motionLevel: MascotMotionLevel, mode: MascotAnimationMode = "loop") {
   if (motionLevel === "minimal") {
     return { animate: { y: 0, rotate: 0, scale: 1 }, transition: undefined };
   }
@@ -24,81 +31,78 @@ function getMainPose(state: MascotState, motionLevel: MascotMotionLevel) {
   const amplitude = soft ? 0.58 : 1;
   const durationScale = soft ? 1.26 : 1;
 
+  let result: { animate: TargetAndTransition; transition: Record<string, unknown> };
+
   if (state === "celebrating") {
-    return {
-      animate: {
-        y: [0, -14 * amplitude, 0],
-        rotate: [0, -4 * amplitude, 4 * amplitude, 0],
-        scale: [1, 1 + 0.05 * amplitude, 1],
-      },
+    result = {
+      animate: { y: [0, -14 * amplitude, 0], rotate: [0, -4 * amplitude, 4 * amplitude, 0], scale: [1, 1 + 0.05 * amplitude, 1] },
       transition: { duration: 1.05 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
     };
-  }
-  if (state === "happy") {
-    return {
+  } else if (state === "happy") {
+    result = {
       animate: { y: [0, -9 * amplitude, 0], scaleY: [1, 1 + 0.04 * amplitude, 1] },
       transition: { duration: 1.1 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
     };
-  }
-  if (state === "thinking") {
-    return {
+  } else if (state === "thinking") {
+    result = {
       animate: { y: [0, -3 * amplitude, 0], rotate: [0, -2 * amplitude, 2 * amplitude, 0] },
       transition: { duration: 1.5 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
     };
-  }
-  if (state === "sad") {
-    return {
+  } else if (state === "sad") {
+    result = {
       animate: { y: [0, 1.8 * amplitude, 0], rotate: [0, -1.8 * amplitude, 0], scaleY: [1, 1 - 0.01 * amplitude, 1] },
       transition: { duration: 1.8 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
     };
-  }
-  if (state === "sleepy") {
-    return {
+  } else if (state === "sleepy") {
+    result = {
       animate: { y: [0, 1.6 * amplitude, 0], scaleY: [1, 1 - 0.03 * amplitude, 1] },
       transition: { duration: 3.3 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
     };
-  }
-  if (state === "playful") {
-    return {
-      animate: {
-        y: [0, -6 * amplitude, 0],
-        rotate: [0, 5 * amplitude, -5 * amplitude, 0],
-        scale: [1, 1 + 0.02 * amplitude, 1],
-      },
+  } else if (state === "playful") {
+    result = {
+      animate: { y: [0, -6 * amplitude, 0], rotate: [0, 5 * amplitude, -5 * amplitude, 0], scale: [1, 1 + 0.02 * amplitude, 1] },
       transition: { duration: 1.25 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
     };
-  }
-  if (state === "proud") {
-    return {
-      animate: {
-        y: [0, -3 * amplitude, 0],
-        scaleY: [1, 1 + 0.04 * amplitude, 1],
-        rotate: [0, -1 * amplitude, 1 * amplitude, 0],
-      },
+  } else if (state === "proud") {
+    result = {
+      animate: { y: [0, -3 * amplitude, 0], scaleY: [1, 1 + 0.04 * amplitude, 1], rotate: [0, -1 * amplitude, 1 * amplitude, 0] },
       transition: { duration: 1.8 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
     };
-  }
-  if (state === "love") {
-    return {
+  } else if (state === "love") {
+    result = {
       animate: { y: [0, -4 * amplitude, 0], scale: [1, 1 + 0.03 * amplitude, 1] },
       transition: { duration: 1.45 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
     };
+  } else {
+    result = {
+      animate: { y: [0, -1.2 * amplitude, 0], scaleY: [1, 1 + 0.01 * amplitude, 1] },
+      transition: { duration: 2.8 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
+    };
   }
-  return {
-    animate: { y: [0, -1.2 * amplitude, 0], scaleY: [1, 1 + 0.01 * amplitude, 1] },
-    transition: { duration: 2.8 * durationScale, ease: "easeInOut" as const, repeat: Infinity },
-  };
+
+  if (mode === "once") {
+    return { animate: result.animate, transition: { ...result.transition, repeat: 0 } };
+  }
+  return result;
 }
 
 function getMarkerAnchor(variant: MascotVariant, layout: MascotLayout) {
   if (variant === "big") return { x: 200, y: 30 };
   if (variant === "small") return { x: 200, y: 120 };
+  if (variant === "dad") return { x: 200, y: 24 };
+  if (variant === "sister") return { x: 200, y: 110 };
+  if (variant === "baby") return { x: 200, y: 148 };
+  if (variant === "family") return layout === "horizontal" ? { x: 280, y: 20 } : { x: 200, y: 20 };
   return layout === "horizontal" ? { x: 268, y: 108 } : { x: 200, y: 132 };
 }
 
 function getZoomAnchor(variant: MascotVariant, layout: MascotLayout) {
   if (variant === "small") return { x: 200, y: 175 };
   if (variant === "big") return { x: 200, y: 154 };
+  if (variant === "dad") return { x: 200, y: 148 };
+  if (variant === "sister") return { x: 200, y: 168 };
+  if (variant === "baby") return { x: 200, y: 190 };
+  if (variant === "family") return { x: 280, y: 164 };
   return layout === "horizontal" ? { x: 200, y: 156 } : { x: 200, y: 164 };
 }
 
@@ -282,15 +286,28 @@ export function Mascot({
   childActionProp,
   parentGazeDirection,
   childGazeDirection,
+  dadState,
+  sisterState,
+  babyState,
+  dadActionProp,
+  sisterActionProp,
+  babyActionProp,
+  dadGazeDirection,
+  sisterGazeDirection,
+  babyGazeDirection,
   layout = "horizontal",
   size = 160,
   className,
   title,
   gazeDirection = "center",
   motionLevel = "full",
+  gesture = "none",
   pauseWhenOffscreen = false,
   showBaseGlow = true,
   zoom = 1,
+  animationMode = "loop",
+  sequence,
+  onSequenceComplete,
 }: MascotProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
   const [isInView, setIsInView] = useState(true);
@@ -321,18 +338,47 @@ export function Mascot({
     prefersReducedMotion || (pauseWhenOffscreen && !isInView) ? "minimal" : motionLevel;
   const gradientId = `mascotGlow-${useId().replace(/:/g, "")}`;
 
+  const { currentStep, isComplete } = useMascotTimeline(sequence, animationMode);
+
+  // Override state/gesture/actionProp in sequence mode
+  const effectiveState = currentStep?.state ?? state;
+  const effectiveGesture = (currentStep?.gesture ?? gesture ?? "none") as MascotGesture;
+  const effectiveActionProp = currentStep?.actionProp ?? actionProp;
+
+  // Fire callback when sequence completes
+  useEffect(() => {
+    if (isComplete && onSequenceComplete) onSequenceComplete();
+  }, [isComplete, onSequenceComplete]);
+
   const resolvedParentState = parentState ?? state;
   const resolvedChildState = childState ?? state;
   const resolvedParentAction = parentActionProp ?? actionProp;
   const resolvedChildAction = childActionProp ?? actionProp;
   const resolvedParentGazeDirection = parentGazeDirection ?? gazeDirection;
   const resolvedChildGazeDirection = childGazeDirection ?? gazeDirection;
+  const resolvedDadState = dadState ?? state;
+  const resolvedSisterState = sisterState ?? state;
+  const resolvedBabyState = babyState ?? state;
+  const resolvedDadAction = dadActionProp ?? actionProp;
+  const resolvedSisterAction = sisterActionProp ?? actionProp;
+  const resolvedBabyAction = babyActionProp ?? actionProp;
+  const resolvedDadGaze = dadGazeDirection ?? gazeDirection;
+  const resolvedSisterGaze = sisterGazeDirection ?? gazeDirection;
+  const resolvedBabyGaze = babyGazeDirection ?? gazeDirection;
 
-  const markerState = variant === "duo" ? resolveDuoMarkerState(resolvedParentState, resolvedChildState) : state;
+  const markerState = variant === "duo" ? resolveDuoMarkerState(resolvedParentState, resolvedChildState) : effectiveState;
   const markerAnchor = getMarkerAnchor(variant, layout);
-  const { animate, transition } = getMainPose(state, effectiveMotionLevel);
-  const duoParentPose = getMainPose(resolvedParentState, effectiveMotionLevel);
-  const resolvedTitle = title ?? (variant === "big" ? "Cu Me" : variant === "small" ? "Cu Con" : "Cap me con Cu");
+  const { animate, transition } = getMainPose(effectiveState, effectiveMotionLevel, animationMode);
+  const duoParentPose = getMainPose(resolvedParentState, effectiveMotionLevel, animationMode);
+  const resolvedTitle = title ?? (
+    variant === "big" ? "Cu Me" :
+    variant === "small" ? "Cu Con" :
+    variant === "dad" ? "Cu Bo" :
+    variant === "sister" ? "Cu Chi" :
+    variant === "baby" ? "Cu Em" :
+    variant === "family" ? "Gia dinh Cu" :
+    "Cap me con Cu"
+  );
   const zoomAnchor = getZoomAnchor(variant, layout);
 
   const duoChildFloatAnimate =
@@ -354,12 +400,13 @@ export function Mascot({
       {variant === "big" ? (
         <m.g animate={animate} transition={transition}>
           <BigOwl
-            state={state}
-            expression={STATE_EXPRESSIONS[state]}
+            state={effectiveState}
+            expression={STATE_EXPRESSIONS[effectiveState]}
             gazeDirection={gazeDirection}
             reducedMotion={effectiveMotionLevel === "minimal"}
             motionLevel={effectiveMotionLevel}
-            accessory={<ActionPropLayer actionProp={actionProp} target="big" reducedMotion={effectiveMotionLevel === "minimal"} />}
+            gesture={effectiveGesture}
+            accessory={<ActionPropLayer actionProp={effectiveActionProp} target="big" reducedMotion={effectiveMotionLevel === "minimal"} />}
           />
         </m.g>
       ) : null}
@@ -367,12 +414,55 @@ export function Mascot({
       {variant === "small" ? (
         <m.g animate={animate} transition={transition}>
           <SmallOwl
-            state={state}
-            expression={STATE_EXPRESSIONS[state]}
+            state={effectiveState}
+            expression={STATE_EXPRESSIONS[effectiveState]}
             gazeDirection={gazeDirection}
             reducedMotion={effectiveMotionLevel === "minimal"}
             motionLevel={effectiveMotionLevel}
-            accessory={<ActionPropLayer actionProp={actionProp} target="small" reducedMotion={effectiveMotionLevel === "minimal"} />}
+            gesture={effectiveGesture}
+            accessory={<ActionPropLayer actionProp={effectiveActionProp} target="small" reducedMotion={effectiveMotionLevel === "minimal"} />}
+          />
+        </m.g>
+      ) : null}
+
+      {variant === "dad" ? (
+        <m.g animate={animate} transition={transition}>
+          <DadOwl
+            state={effectiveState}
+            expression={STATE_EXPRESSIONS[effectiveState]}
+            gazeDirection={gazeDirection}
+            reducedMotion={effectiveMotionLevel === "minimal"}
+            motionLevel={effectiveMotionLevel}
+            gesture={effectiveGesture}
+            accessory={<ActionPropLayer actionProp={effectiveActionProp} target="dad" reducedMotion={effectiveMotionLevel === "minimal"} />}
+          />
+        </m.g>
+      ) : null}
+
+      {variant === "sister" ? (
+        <m.g animate={animate} transition={transition}>
+          <SisterOwl
+            state={effectiveState}
+            expression={STATE_EXPRESSIONS[effectiveState]}
+            gazeDirection={gazeDirection}
+            reducedMotion={effectiveMotionLevel === "minimal"}
+            motionLevel={effectiveMotionLevel}
+            gesture={effectiveGesture}
+            accessory={<ActionPropLayer actionProp={effectiveActionProp} target="sister" reducedMotion={effectiveMotionLevel === "minimal"} />}
+          />
+        </m.g>
+      ) : null}
+
+      {variant === "baby" ? (
+        <m.g animate={animate} transition={transition}>
+          <BabyOwl
+            state={effectiveState}
+            expression={STATE_EXPRESSIONS[effectiveState]}
+            gazeDirection={gazeDirection}
+            reducedMotion={effectiveMotionLevel === "minimal"}
+            motionLevel={effectiveMotionLevel}
+            gesture={effectiveGesture}
+            accessory={<ActionPropLayer actionProp={effectiveActionProp} target="baby" reducedMotion={effectiveMotionLevel === "minimal"} />}
           />
         </m.g>
       ) : null}
@@ -421,6 +511,31 @@ export function Mascot({
           </m.g>
         </>
       ) : null}
+
+      {variant === "family" ? (
+        <>
+          <m.g transform="translate(-160 0)" animate={getMainPose(resolvedDadState, effectiveMotionLevel, animationMode).animate} transition={getMainPose(resolvedDadState, effectiveMotionLevel, animationMode).transition}>
+            <DadOwl state={resolvedDadState} expression={STATE_EXPRESSIONS[resolvedDadState]} gazeDirection={resolvedDadGaze} reducedMotion={effectiveMotionLevel === "minimal"} motionLevel={effectiveMotionLevel}
+              accessory={<ActionPropLayer actionProp={resolvedDadAction} target="dad" reducedMotion={effectiveMotionLevel === "minimal"} />} />
+          </m.g>
+          <m.g transform="translate(-74 0)" animate={duoParentPose.animate} transition={duoParentPose.transition}>
+            <BigOwl state={resolvedParentState} expression={STATE_EXPRESSIONS[resolvedParentState]} gazeDirection={resolvedParentGazeDirection} reducedMotion={effectiveMotionLevel === "minimal"} motionLevel={effectiveMotionLevel}
+              accessory={<ActionPropLayer actionProp={resolvedParentAction} target="big" reducedMotion={effectiveMotionLevel === "minimal"} />} />
+          </m.g>
+          <m.g transform="translate(12 10)" animate={getMainPose(resolvedSisterState, effectiveMotionLevel, animationMode).animate} transition={getMainPose(resolvedSisterState, effectiveMotionLevel, animationMode).transition}>
+            <SisterOwl state={resolvedSisterState} expression={STATE_EXPRESSIONS[resolvedSisterState]} gazeDirection={resolvedSisterGaze} reducedMotion={effectiveMotionLevel === "minimal"} motionLevel={effectiveMotionLevel}
+              accessory={<ActionPropLayer actionProp={resolvedSisterAction} target="sister" reducedMotion={effectiveMotionLevel === "minimal"} />} />
+          </m.g>
+          <m.g transform="translate(86 18)" animate={duoChildFloatAnimate} transition={duoChildFloatTransition}>
+            <SmallOwl state={resolvedChildState} expression={STATE_EXPRESSIONS[resolvedChildState]} gazeDirection={resolvedChildGazeDirection} reducedMotion={effectiveMotionLevel === "minimal"} motionLevel={effectiveMotionLevel}
+              accessory={<ActionPropLayer actionProp={resolvedChildAction} target="small" reducedMotion={effectiveMotionLevel === "minimal"} />} />
+          </m.g>
+          <m.g transform="translate(152 25)" animate={getMainPose(resolvedBabyState, effectiveMotionLevel, animationMode).animate} transition={getMainPose(resolvedBabyState, effectiveMotionLevel, animationMode).transition}>
+            <BabyOwl state={resolvedBabyState} expression={STATE_EXPRESSIONS[resolvedBabyState]} gazeDirection={resolvedBabyGaze} reducedMotion={effectiveMotionLevel === "minimal"} motionLevel={effectiveMotionLevel}
+              accessory={<ActionPropLayer actionProp={resolvedBabyAction} target="baby" reducedMotion={effectiveMotionLevel === "minimal"} />} />
+          </m.g>
+        </>
+      ) : null}
     </>
   );
 
@@ -429,7 +544,7 @@ export function Mascot({
       ref={svgRef}
       width={size}
       height={size}
-      viewBox="0 0 400 280"
+      viewBox={variant === "family" ? "0 0 560 280" : "0 0 400 280"}
       role="img"
       aria-label={resolvedTitle}
       className={className}

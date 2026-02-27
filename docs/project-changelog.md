@@ -1,5 +1,24 @@
 # Project Changelog
 
+## [0.3.0] - 2026-02-27
+
+### Added
+- **Interactive Lesson System** — Full step-based lesson flow replacing passive video: Hook → Concept → Demonstrate → Activity → Reinforce → Celebrate
+- **6 Step Components** — LessonStepHook, LessonStepConcept, LessonStepDemonstrate, LessonStepActivity, LessonStepReinforce, LessonStepCelebrate
+- **Flow Orchestrator** — `InteractiveLessonFlow` with AnimatePresence transitions, ParentGateDialog exit guard, completion API call
+- **State Machine** — `useInteractiveLessonState` hook with retry logic, reinforce skip, score tracking
+- **TTS Audio Pipeline** — Gemini TTS (`gemini-2.5-flash-preview-tts`, Aoede voice) for Vietnamese kindergarten teacher voice. 30 lesson MP3 files generated.
+- **TTS-UI Sync** — Audio-driven keyword card sequencing in demonstrate step (Duolingo pattern). `KeywordWithAudio` type for per-keyword audio URLs.
+- **Speaker Replay Button** — Volume2 icon with pulse animation in concept step for audio replay
+- **AudioPlayer Component** — `forwardRef` with `replay()` method, onEndRef pattern for stale closure safety
+- **7 Demo Lesson Data Files** — am-a, am-e, dien-chu-cvc, van-at, nghe-am-b, so-1-5, hinh-tron-vuong
+- **Interactive Lesson Preview Page** — `/interactive-lesson-preview` with lesson selector
+- **Visual Components** — InteractiveSpeechBubble, InteractiveKeywordDisplay, InteractiveKeywordCards, InteractiveCelebration, InteractiveSceneBackground
+
+### Changed
+- All step components now integrate AudioPlayer for TTS playback (hook, concept, demonstrate, activity, reinforce, celebrate)
+- Activity and reinforce steps use timerRef for proper setTimeout cleanup on unmount
+
 ## [0.2.0] - 2026-02-26
 
 ### Added
