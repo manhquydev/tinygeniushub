@@ -20,22 +20,27 @@ type BlogPostPageProps = {
 };
 
 export async function generateStaticParams() {
-  const posts = await prisma.blogPost.findMany({
-    where: {
-      status: "PUBLISHED",
-    },
-    orderBy: {
-      publishedAt: "desc",
-    },
-    take: 50,
-    select: {
-      slug: true,
-    },
-  });
+  try {
+    const posts = await prisma.blogPost.findMany({
+      where: {
+        status: "PUBLISHED",
+      },
+      orderBy: {
+        publishedAt: "desc",
+      },
+      take: 50,
+      select: {
+        slug: true,
+      },
+    });
 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch {
+    // DB unavailable at build time — pages will be generated on-demand via ISR
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
