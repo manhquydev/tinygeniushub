@@ -25,6 +25,7 @@ export function LessonStepReinforce({ step, onNext, onActivityResult }: StepProp
   const [showActivity, setShowActivity] = useState(false);
   const [mascotState, setMascotState] = useState(step.mascot.state);
   const [disabled, setDisabled] = useState(false);
+  const [audioEnded, setAudioEnded] = useState(!step.audioUrl);
   const [gazeDir, setGazeDir] = useState<KidMascotGazeDirection>("center");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -96,7 +97,7 @@ export function LessonStepReinforce({ step, onNext, onActivityResult }: StepProp
       ) : null}
 
       {/* Audio narration */}
-      <AudioPlayer src={step.audioUrl} autoPlay />
+      <AudioPlayer src={step.audioUrl} autoPlay onEnd={() => setAudioEnded(true)} />
 
       {/* Mascot */}
       <m.div
@@ -118,7 +119,7 @@ export function LessonStepReinforce({ step, onNext, onActivityResult }: StepProp
         <div style={{ width: "100%", maxWidth: 640 }}>
           <ActivityRenderer
             activity={activity}
-            disabled={disabled}
+            disabled={disabled || !audioEnded}
             onAnswer={handleAnswer}
             mascotGazeDirection={gazeDir}
             onHoverOption={(dir) => setGazeDir(dir)}

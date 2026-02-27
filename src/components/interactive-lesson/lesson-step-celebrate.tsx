@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as m from "motion/react-m";
 import { useReducedMotion } from "motion/react";
 import { Mascot } from "@/components/mascot/Mascot";
@@ -21,6 +21,8 @@ interface StepProps {
 export function LessonStepCelebrate({ step, onNext }: StepProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
   const [celebrationTriggered, setCelebrationTriggered] = useState(false);
+  const onNextRef = useRef(onNext);
+  useEffect(() => { onNextRef.current = onNext; });
 
   const autoAdvanceMs = step.autoAdvanceMs ?? 3000;
 
@@ -28,14 +30,14 @@ export function LessonStepCelebrate({ step, onNext }: StepProps) {
     synth.playYay();
     // Trigger celebration after short entrance delay
     const celebTimer = setTimeout(() => setCelebrationTriggered(true), 200);
-    // Auto-advance
-    const advanceTimer = setTimeout(() => onNext(), autoAdvanceMs);
+    // Auto-advance — uses ref to avoid restarting on parent re-render
+    const advanceTimer = setTimeout(() => onNextRef.current(), autoAdvanceMs);
 
     return () => {
       clearTimeout(celebTimer);
       clearTimeout(advanceTimer);
     };
-  }, [autoAdvanceMs, onNext]);
+  }, [autoAdvanceMs]);
 
   return (
     <div

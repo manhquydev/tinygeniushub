@@ -24,6 +24,7 @@ export function LessonStepActivity({ step, onNext, onActivityResult }: StepProps
   const prefersReducedMotion = useReducedMotion() ?? false;
   const [mascotState, setMascotState] = useState(step.mascot.state);
   const [disabled, setDisabled] = useState(false);
+  const [audioEnded, setAudioEnded] = useState(!step.audioUrl); // gate activity behind narration
   const [gazeDir, setGazeDir] = useState<KidMascotGazeDirection>("center");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -100,13 +101,13 @@ export function LessonStepActivity({ step, onNext, onActivityResult }: StepProps
       </m.div>
 
       {/* Audio narration */}
-      <AudioPlayer src={step.audioUrl} autoPlay />
+      <AudioPlayer src={step.audioUrl} autoPlay onEnd={() => setAudioEnded(true)} />
 
-      {/* Activity renderer */}
+      {/* Activity renderer — gated behind audio completion */}
       <div style={{ width: "100%", maxWidth: 640 }}>
         <ActivityRenderer
           activity={activity}
-          disabled={disabled}
+          disabled={disabled || !audioEnded}
           onAnswer={handleAnswer}
           mascotGazeDirection={gazeDir}
           onHoverOption={(dir) => setGazeDir(dir)}

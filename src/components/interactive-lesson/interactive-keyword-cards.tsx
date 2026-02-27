@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { Volume2 } from "lucide-react";
@@ -11,17 +11,22 @@ interface InteractiveKeywordCardsProps {
   activeIndex: number;
   /** Per-keyword audio URLs for replay on tap. Falls back to browser SpeechSynthesis. */
   keywordsWithAudio?: KeywordWithAudio[];
+  /** When true, card taps are disabled (e.g. during step narration) */
+  disabled?: boolean;
 }
 
 const CARD_COLORS = ["#FFE8E8", "#E8F0FF", "#E8FFF0", "#FFF8E8", "#F0E8FF"];
 const CARD_BORDER_COLORS = ["#FF6B6B", "#4D96FF", "#34D399", "#FBBF24", "#A78BFA"];
+
+/** Simple heuristic: contains Vietnamese diacritics or CJK → vi-VN */
+const VI_PATTERN = /[àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ○□●]/i;
 
 /** Speak a word using browser SpeechSynthesis as fallback when no MP3 available */
 function speakWord(word: string) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = "en-US";
+  utterance.lang = VI_PATTERN.test(word) ? "vi-VN" : "en-US";
   utterance.rate = 0.7; // Slow for children
   utterance.pitch = 1.1;
   utterance.volume = 1;
@@ -32,21 +37,38 @@ export function InteractiveKeywordCards({
   keywords,
   activeIndex,
   keywordsWithAudio,
+  disabled = false,
 }: InteractiveKeywordCardsProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
   const audioElRef = useRef<HTMLAudioElement | null>(null);
+  const pulseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Cleanup raw Audio element + pulse timer on unmount
+  useEffect(() => {
+    return () => {
+      audioElRef.current?.pause();
+      audioElRef.current = null;
+      if (pulseTimerRef.current) clearTimeout(pulseTimerRef.current);
+    };
+  }, []);
 
   const handleCardTap = useCallback(
     (index: number, word: string) => {
+      if (disabled) return;
+
       // Find audio URL for this keyword
       const audioUrl = keywordsWithAudio?.[index]?.audioUrl;
 
       setPlayingIndex(index);
-      setTimeout(() => setPlayingIndex(null), 800);
+      if (pulseTimerRef.current) clearTimeout(pulseTimerRef.current);
+      pulseTimerRef.current = setTimeout(() => setPlayingIndex(null), 800);
 
       if (audioUrl) {
-        // Play from MP3 file
+        // Stop any previous card audio first
+        if (audioElRef.current) {
+          audioElRef.current.pause();
+        }
         if (!audioElRef.current) {
           audioElRef.current = new Audio();
         }
@@ -62,7 +84,7 @@ export function InteractiveKeywordCards({
         speakWord(word);
       }
     },
-    [keywordsWithAudio],
+    [keywordsWithAudio, disabled],
   );
 
   return (
@@ -132,9 +154,10 @@ export function InteractiveKeywordCards({
               boxShadow: isActive || isTapping
                 ? `0 6px 24px ${borderColor}44`
                 : "0 2px 8px rgba(0,0,0,0.08)",
-              cursor: "pointer",
-              outline: "none",
+              cursor: disabled ? "default" : "pointer",
+              outline: "2px solid transparent",
               padding: 0,
+              opacity: disabled ? 0.5 : undefined,
             }}
           >
             <span

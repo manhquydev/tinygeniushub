@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as m from "motion/react-m";
 import { useReducedMotion } from "motion/react";
 import { Mascot } from "@/components/mascot/Mascot";
@@ -21,6 +21,8 @@ export function LessonStepHook({ step, onNext }: StepProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
   const [bubbleVisible, setBubbleVisible] = useState(false);
   const [audioEnded, setAudioEnded] = useState(false);
+  const onNextRef = useRef(onNext);
+  useEffect(() => { onNextRef.current = onNext; });
 
   useEffect(() => {
     const timer = setTimeout(() => setBubbleVisible(true), 400);
@@ -30,9 +32,9 @@ export function LessonStepHook({ step, onNext }: StepProps) {
   // Auto-advance after audio ends if autoAdvanceMs is set and audio exists
   useEffect(() => {
     if (!audioEnded || !step.autoAdvanceMs || !step.audioUrl) return;
-    const timer = setTimeout(() => onNext(), step.autoAdvanceMs);
+    const timer = setTimeout(() => onNextRef.current(), step.autoAdvanceMs);
     return () => clearTimeout(timer);
-  }, [audioEnded, step.autoAdvanceMs, step.audioUrl, onNext]);
+  }, [audioEnded, step.autoAdvanceMs, step.audioUrl]);
 
   const handleStart = () => {
     synth.playPop();

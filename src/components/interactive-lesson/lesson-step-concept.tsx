@@ -26,6 +26,7 @@ export function LessonStepConcept({ step, onNext }: StepProps) {
   const [canAdvance, setCanAdvance] = useState(false);
   const [speakerPulsing, setSpeakerPulsing] = useState(false);
   const audioRef = useRef<AudioPlayerRef | null>(null);
+  const pulseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!audioEnded) return;
@@ -43,8 +44,10 @@ export function LessonStepConcept({ step, onNext }: StepProps) {
   useEffect(() => {
     if (!step.audioUrl) return;
     setSpeakerPulsing(true);
-    const t = setTimeout(() => setSpeakerPulsing(false), 2000);
-    return () => clearTimeout(t);
+    pulseTimerRef.current = setTimeout(() => setSpeakerPulsing(false), 2000);
+    return () => {
+      if (pulseTimerRef.current) clearTimeout(pulseTimerRef.current);
+    };
   }, [step.audioUrl]);
 
   const handleNext = () => {
@@ -55,7 +58,8 @@ export function LessonStepConcept({ step, onNext }: StepProps) {
   const handleReplay = () => {
     audioRef.current?.replay();
     setSpeakerPulsing(true);
-    setTimeout(() => setSpeakerPulsing(false), 1200);
+    if (pulseTimerRef.current) clearTimeout(pulseTimerRef.current);
+    pulseTimerRef.current = setTimeout(() => setSpeakerPulsing(false), 1200);
   };
 
   const showButton = canAdvance;

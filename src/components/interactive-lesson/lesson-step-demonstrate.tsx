@@ -48,15 +48,18 @@ export function LessonStepDemonstrate({ step, onNext }: StepProps) {
   };
 
   // Per-keyword audio ended → advance to next keyword or done
+  // Uses functional updater to avoid stale closure on activeIndex
   const handleKeywordAudioEnd = () => {
-    const nextIdx = activeIndex + 1;
-    if (nextIdx >= keywords.length) {
-      setAllCardsShown(true);
-      setPhase("done");
-    } else {
+    setActiveIndex((prev) => {
+      const nextIdx = prev + 1;
+      if (nextIdx >= keywords.length) {
+        setAllCardsShown(true);
+        setPhase("done");
+        return prev;
+      }
       synth.playPop();
-      setActiveIndex(nextIdx);
-    }
+      return nextIdx;
+    });
   };
 
   // Legacy timer fallback: when no keywordsWithAudio, reveal cards every 1.5s
@@ -127,6 +130,7 @@ export function LessonStepDemonstrate({ step, onNext }: StepProps) {
             keywords={keywords}
             activeIndex={activeIndex}
             keywordsWithAudio={kwa}
+            disabled={phase !== "done"}
           />
         ) : null}
       </div>
