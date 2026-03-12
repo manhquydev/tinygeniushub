@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g7",
+    "provider_slug": "g7",
+    "course": "lesson-125",
+    "course_slug": "125",
+    "grade_id": "7",
+    "page_count": 1,
+    "video_count": 5
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "page_key": "g7/125",
+      "path_segments": [
+        "g7",
+        "125"
+      ],
+      "provider": "g7",
+      "course": "lesson-125",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 125,
+      "video_count": 5,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Bible 7",
+          "description": "Bible 7 - Lesson: 125 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI125E/07BI125E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 7",
+          "description": "English 7 - Lesson: 125 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN125E/07EN125E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Intermediate Mathematics",
+          "description": "Intermediate Mathematics - Lesson: 125 - Teacher: Miss Barnhart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM125E/07IM125E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Science 7",
+          "description": "Science 7 - Lesson: 125 - Teacher: Miss de Lima",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC125D/07SC125D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "World History 7",
+          "description": "World History 7 - Lesson: 125 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH125E/07WH125E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g7",
+      "course": "lesson-125",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 125,
+      "page_key": "g7/125",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 1,
+      "title": "Bible 7",
+      "description": "Bible 7 - Lesson: 125 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI125E/07BI125E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-125",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 125,
+      "page_key": "g7/125",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 2,
+      "title": "English 7",
+      "description": "English 7 - Lesson: 125 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN125E/07EN125E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-125",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 125,
+      "page_key": "g7/125",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 3,
+      "title": "Intermediate Mathematics",
+      "description": "Intermediate Mathematics - Lesson: 125 - Teacher: Miss Barnhart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM125E/07IM125E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-125",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 125,
+      "page_key": "g7/125",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 4,
+      "title": "Science 7",
+      "description": "Science 7 - Lesson: 125 - Teacher: Miss de Lima",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC125D/07SC125D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-125",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 125,
+      "page_key": "g7/125",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 5,
+      "title": "World History 7",
+      "description": "World History 7 - Lesson: 125 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH125E/07WH125E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

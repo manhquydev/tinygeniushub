@@ -1,0 +1,59 @@
+/**
+ * Homepage-specific overrides for BeanstalkJourney
+ * 
+ * Problem: BeanstalkJourney uses position:fixed for HUD/tabs/footer
+ * which escapes containment and overlays other homepage sections.
+ * 
+ * Solution: Wrap in .cgh-journey-preview container and change
+ * fixed → absolute positioning to scope within section.
+ */
+
+/* Section container - creates positioning context */
+.cgh-journey-preview {
+  position: relative;
+  isolation: isolate; /* Create stacking context */
+  min-height: 100vh;
+  overflow: hidden; /* Prevent content escape */
+}
+
+/* Override fixed positioning to absolute (contained) */
+.cgh-journey-preview .bs-hud {
+  position: absolute; /* Changed from fixed */
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+
+.cgh-journey-preview .bs-journey-tabs {
+  position: absolute; /* Changed from fixed */
+  top: 5.6rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 95;
+}
+
+.cgh-journey-preview .bs-footer-note {
+  position: absolute; /* Changed from fixed */
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 90;
+}
+
+/* Ensure viewport doesn't create scroll issues on homepage */
+.cgh-journey-preview .bs-viewport {
+  height: 100vh; /* Keep original height */
+  max-height: 100vh; /* Prevent overflow */
+}
+
+/* Optional: Reduce height on mobile for better UX */
+@media (max-width: 768px) {
+  .cgh-journey-preview {
+    min-height: 80vh; /* Shorter on mobile */
+  }
+  
+  .cgh-journey-preview .bs-viewport {
+    height: 80vh;
+    max-height: 80vh;
+  }
+}

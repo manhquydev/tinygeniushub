@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { isKidSkyGardenMvpEnabled } from "@/lib/feature-flags";
 import { logInfo, logWarn } from "@/lib/observability/logger";
 import { enrollParent } from "@/modules/courses/course-service";
 
@@ -34,7 +35,31 @@ export async function GET(request: NextRequest) {
       logInfo("courses.mock_checkout.already_enrolled", { courseId, parentId });
     }
 
-    const course = await prisma.course.findUnique({ where: { id: courseId }, select: { slug: true } });
+    const [course, useSkyGardenMvp] = await Promise.all([
+      prisma.course.findUnique({
+        where: { id: courseId },
+        select: { id: true, slug: true, title: true },
+      }),
+      isKidSkyGardenMvpEnabled(),
+    ]);
+
+    if (useSkyGardenMvp && course) {
+      const firstChild = await prisma.childProfile.findFirst({
+        where: { parentId },
+        orderBy: { createdAt: "asc" },
+        select: { id: true },
+      });
+
+      if (firstChild) {
+        const seedParams = new URLSearchParams({
+          childId: firstChild.id,
+          seedCourseId: course.id,
+          seedCourseTitle: course.title,
+        });
+        return NextResponse.redirect(new URL(`/kid/today?${seedParams.toString()}`, request.nextUrl.origin));
+      }
+    }
+
     const destination = course ? `/courses/${course.slug}/lessons` : "/parent/courses";
     return NextResponse.redirect(new URL(destination, request.nextUrl.origin));
   } catch (err) {

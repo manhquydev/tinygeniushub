@@ -39,6 +39,13 @@ async function main() {
       SEED_PARENT_PASSWORD: adminPassword,
     },
   });
+  await runCommand("pnpm tsx prisma/scripts/seed-admin.ts", {
+    env: {
+      ...process.env,
+      ADMIN_EMAILS: adminEmail,
+      ADMIN_SEED_PASSWORD: adminPassword,
+    },
+  });
 
   await runCommand("pnpm build");
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const NAV_ITEMS = [
   { id: "features", label: "Tính năng" },
-  { id: "pricing", label: "Bảng giá" },
+  { id: "pricing", label: "Gói học" },
   { id: "faq", label: "FAQ" },
 ] as const;
 

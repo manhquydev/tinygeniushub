@@ -1,0 +1,258 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "KLE",
+    "provider_slug": "kle",
+    "course": "Thang_3_Body parts",
+    "course_slug": "thang-3-body-parts",
+    "page_count": 1,
+    "video_count": 12
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "page_key": "KLE/Thang_3_Body parts",
+      "path_segments": [
+        "KLE",
+        "Thang_3_Body parts"
+      ],
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "video_count": 12,
+      "videos": [
+        {
+          "order": 1,
+          "title": "01 10 Little Dinosaurs #2 - Kids Songs - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/01%2010%20Little%20Dinosaurs%20%232%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "02 Animal Magic English Story - Body parts",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/02%20Animal%20Magic%20English%20Story%20-%20Body%20parts.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "03 Body Parts for Kids - Dream English with Steve and Maggie",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/03%20Body%20Parts%20for%20Kids%20-%20Dream%20English%20with%20Steve%20and%20Maggie.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "04 Body Parts  for Kids NEW - Magic English Stories",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/04%20Body%20Parts%20%20for%20Kids%20NEW%20-%20Magic%20English%20Stories.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "05 Head Shoulders Knees   Toes (Speeding Up) - Nursery Rhyme - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/05%20Head%20Shoulders%20Knees%20_%20Toes%20%28Speeding%20Up%29%20-%20Nursery%20Rhyme%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "06 Hello Hello! Can You Clap Your Hands- - Original Kids Song - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/06%20Hello%20Hello%21%20Can%20You%20Clap%20Your%20Hands-%20-%20Original%20Kids%20Song%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 7,
+          "title": "07 How Many Fingers- - Kids Songs - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/07%20How%20Many%20Fingers-%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 8,
+          "title": "09 One Little Finger - featuring Noodle   Pals - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/09%20One%20Little%20Finger%20-%20featuring%20Noodle%20_%20Pals%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 9,
+          "title": "10 Open Shut Them - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/10%20Open%20Shut%20Them%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 10,
+          "title": "11 Twinkle Twinkle Little Star",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/11%20Twinkle%20Twinkle%20Little%20Star.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 11,
+          "title": "12 The Bath Song - Original Kids Song - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/12%20The%20Bath%20Song%20-%20Original%20Kids%20Song%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 12,
+          "title": "13 This Is The Way - Kids Songs - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/13%20This%20Is%20The%20Way%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 1,
+      "title": "01 10 Little Dinosaurs #2 - Kids Songs - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/01%2010%20Little%20Dinosaurs%20%232%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 2,
+      "title": "02 Animal Magic English Story - Body parts",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/02%20Animal%20Magic%20English%20Story%20-%20Body%20parts.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 3,
+      "title": "03 Body Parts for Kids - Dream English with Steve and Maggie",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/03%20Body%20Parts%20for%20Kids%20-%20Dream%20English%20with%20Steve%20and%20Maggie.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 4,
+      "title": "04 Body Parts  for Kids NEW - Magic English Stories",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/04%20Body%20Parts%20%20for%20Kids%20NEW%20-%20Magic%20English%20Stories.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 5,
+      "title": "05 Head Shoulders Knees   Toes (Speeding Up) - Nursery Rhyme - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/05%20Head%20Shoulders%20Knees%20_%20Toes%20%28Speeding%20Up%29%20-%20Nursery%20Rhyme%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 6,
+      "title": "06 Hello Hello! Can You Clap Your Hands- - Original Kids Song - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/06%20Hello%20Hello%21%20Can%20You%20Clap%20Your%20Hands-%20-%20Original%20Kids%20Song%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 7,
+      "title": "07 How Many Fingers- - Kids Songs - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/07%20How%20Many%20Fingers-%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 8,
+      "title": "09 One Little Finger - featuring Noodle   Pals - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/09%20One%20Little%20Finger%20-%20featuring%20Noodle%20_%20Pals%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 9,
+      "title": "10 Open Shut Them - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/10%20Open%20Shut%20Them%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 10,
+      "title": "11 Twinkle Twinkle Little Star",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/11%20Twinkle%20Twinkle%20Little%20Star.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 11,
+      "title": "12 The Bath Song - Original Kids Song - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/12%20The%20Bath%20Song%20-%20Original%20Kids%20Song%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_3_Body parts",
+      "topic": "",
+      "page_key": "KLE/Thang_3_Body parts",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_3_Body%20parts",
+      "order": 12,
+      "title": "13 This Is The Way - Kids Songs - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_3_Body%20parts/13%20This%20Is%20The%20Way%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

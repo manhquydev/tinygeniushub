@@ -1,0 +1,332 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "k5",
+    "provider_slug": "k5",
+    "course": "lesson-083",
+    "course_slug": "083",
+    "grade_id": "14",
+    "page_count": 1,
+    "video_count": 13
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "page_key": "k5/083",
+      "path_segments": [
+        "k5",
+        "083"
+      ],
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "video_count": 13,
+      "videos": [
+        {
+          "order": 1,
+          "title": "K5 Activities: Activity Time",
+          "description": "K5 Activities: Activity Time - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC083D/K5AC083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "K5 Activities: Language Enrichment",
+          "description": "K5 Activities: Language Enrichment - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5LE083D/K5LE083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "K5 Activities: Seatwork (Cursive)",
+          "description": "K5 Activities: Seatwork (Cursive) - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SE083D/K5SE083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "K5 Activities: Seatwork (Manuscript)",
+          "description": "K5 Activities: Seatwork (Manuscript) - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SM083D/K5SM083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "K5 Activities: Skills Development",
+          "description": "K5 Activities: Skills Development - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD083D/K5SD083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "K5 Bible",
+          "description": "K5 Bible - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI083D/K5BI083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "K5 Numbers",
+          "description": "K5 Numbers - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU083D/K5NU083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "K5 Phonics",
+          "description": "K5 Phonics - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH083D/K5PH083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "K5 Reading: Reading Baseballs",
+          "description": "K5 Reading: Reading Baseballs - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BB083D/K5BB083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "K5 Reading: Reading Basketballs",
+          "description": "K5 Reading: Reading Basketballs - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BK083D/K5BK083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "K5 Reading: Reading Footballs",
+          "description": "K5 Reading: Reading Footballs - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5FB083D/K5FB083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 12,
+          "title": "K5 Writing: Cursive Writing",
+          "description": "K5 Writing: Cursive Writing - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5CW083D/K5CW083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 13,
+          "title": "K5 Writing: Manuscript Writing",
+          "description": "K5 Writing: Manuscript Writing - Lesson: 83 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5MW083D/K5MW083D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 1,
+      "title": "K5 Activities: Activity Time",
+      "description": "K5 Activities: Activity Time - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC083D/K5AC083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 2,
+      "title": "K5 Activities: Language Enrichment",
+      "description": "K5 Activities: Language Enrichment - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5LE083D/K5LE083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 3,
+      "title": "K5 Activities: Seatwork (Cursive)",
+      "description": "K5 Activities: Seatwork (Cursive) - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SE083D/K5SE083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 4,
+      "title": "K5 Activities: Seatwork (Manuscript)",
+      "description": "K5 Activities: Seatwork (Manuscript) - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SM083D/K5SM083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 5,
+      "title": "K5 Activities: Skills Development",
+      "description": "K5 Activities: Skills Development - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD083D/K5SD083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 6,
+      "title": "K5 Bible",
+      "description": "K5 Bible - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI083D/K5BI083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 7,
+      "title": "K5 Numbers",
+      "description": "K5 Numbers - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU083D/K5NU083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 8,
+      "title": "K5 Phonics",
+      "description": "K5 Phonics - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH083D/K5PH083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 9,
+      "title": "K5 Reading: Reading Baseballs",
+      "description": "K5 Reading: Reading Baseballs - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BB083D/K5BB083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 10,
+      "title": "K5 Reading: Reading Basketballs",
+      "description": "K5 Reading: Reading Basketballs - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BK083D/K5BK083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 11,
+      "title": "K5 Reading: Reading Footballs",
+      "description": "K5 Reading: Reading Footballs - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5FB083D/K5FB083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 12,
+      "title": "K5 Writing: Cursive Writing",
+      "description": "K5 Writing: Cursive Writing - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5CW083D/K5CW083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-083",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 83,
+      "page_key": "k5/083",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 13,
+      "title": "K5 Writing: Manuscript Writing",
+      "description": "K5 Writing: Manuscript Writing - Lesson: 83 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5MW083D/K5MW083D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

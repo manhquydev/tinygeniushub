@@ -60,6 +60,7 @@ export function LessonCompletionCard({
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [watchSessionLoading, setWatchSessionLoading] = useState(false);
+  const [openVideoLoading, setOpenVideoLoading] = useState(false);
   const [watchLoading, setWatchLoading] = useState(false);
   const [watchReady, setWatchReady] = useState(false);
   const [watchInfo, setWatchInfo] = useState<string | null>(null);
@@ -96,6 +97,33 @@ export function LessonCompletionCard({
     },
     [requiredWatchSeconds, watchedSeconds],
   );
+
+  async function openLessonVideo() {
+    if (!watchRequired || openVideoLoading) {
+      return;
+    }
+
+    setOpenVideoLoading(true);
+    setStatus(null);
+
+    try {
+      const response = await fetch(`/api/lessons/${lessonId}/video-token`);
+      const body = await response.json();
+      if (!response.ok || !body.ok || typeof body.data?.embedUrl !== "string") {
+        setStatus(body.error?.message ?? "Unable to open lesson video.");
+        return;
+      }
+
+      const popup = window.open(body.data.embedUrl, "_blank", "noopener,noreferrer");
+      if (!popup) {
+        setStatus("Popup was blocked by the browser. Please allow popups for this site.");
+      }
+    } catch (openError) {
+      setStatus(openError instanceof Error ? openError.message : "Unable to reach the server.");
+    } finally {
+      setOpenVideoLoading(false);
+    }
+  }
 
   async function startWatchSession() {
     if (!watchRequired) {
@@ -347,9 +375,17 @@ export function LessonCompletionCard({
       {watchRequired ? (
         <div className="page-stack" style={{ width: "100%", background: "color-mix(in srgb, var(--surface-100) 50%, white)", padding: "1rem", borderRadius: "16px" }}>
           {videoSource ? (
-            <a href={videoSource} target="_blank" rel="noopener noreferrer" className="ghost-button" style={{ justifyContent: "center", gap: "0.5rem", background: "white", border: "2px solid var(--surface-200)" }}>
-              <Play size={18} className="text-brand-500" /> Má»Ÿ video bÃ i há»c
-            </a>
+            <m.button
+              type="button"
+              className="ghost-button"
+              onClick={openLessonVideo}
+              disabled={openVideoLoading}
+              whileHover={prefersReducedMotion ? undefined : { y: -1 }}
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+              style={{ justifyContent: "center", gap: "0.5rem", background: "white", border: "2px solid var(--surface-200)" }}
+            >
+              <Play size={18} className="text-brand-500" /> {openVideoLoading ? "Opening video..." : "Open lesson video"}
+            </m.button>
           ) : null}
           <m.button
             type="button"

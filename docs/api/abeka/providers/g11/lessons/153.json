@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g11",
+    "provider_slug": "g11",
+    "course": "lesson-153",
+    "course_slug": "153",
+    "grade_id": "11",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "page_key": "g11/153",
+      "path_segments": [
+        "g11",
+        "153"
+      ],
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Additional Practice 153a",
+          "description": "Additional Practice 153a - Lesson: 153 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA153D-AP153a/11SA153D-AP153a.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Additional Practice 153b",
+          "description": "Additional Practice 153b - Lesson: 153 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA153D-AP153b/11SA153D-AP153b.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Business Mathematics",
+          "description": "Business Mathematics - Lesson: 153 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM153A/11BM153A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Chemistry",
+          "description": "Chemistry - Lesson: 153 - Teacher: Mr. Sisson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH153E/11CH153E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "English 11",
+          "description": "English 11 - Lesson: 153 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN153D/11EN153D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Keyboarding",
+          "description": "Keyboarding - Lesson: 153 - Teacher: Dr. Marion",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB153A/11KB153A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Plane Geometry",
+          "description": "Plane Geometry - Lesson: 153 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG153D/11PG153D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Spanish 1",
+          "description": "Spanish 1 - Lesson: 153 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA153D/11SA153D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "U. S. History 11",
+          "description": "U. S. History 11 - Lesson: 153 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US153D/11US153D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "page_key": "g11/153",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 1,
+      "title": "Additional Practice 153a",
+      "description": "Additional Practice 153a - Lesson: 153 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA153D-AP153a/11SA153D-AP153a.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "page_key": "g11/153",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 2,
+      "title": "Additional Practice 153b",
+      "description": "Additional Practice 153b - Lesson: 153 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA153D-AP153b/11SA153D-AP153b.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "page_key": "g11/153",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 3,
+      "title": "Business Mathematics",
+      "description": "Business Mathematics - Lesson: 153 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM153A/11BM153A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "page_key": "g11/153",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 4,
+      "title": "Chemistry",
+      "description": "Chemistry - Lesson: 153 - Teacher: Mr. Sisson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH153E/11CH153E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "page_key": "g11/153",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 5,
+      "title": "English 11",
+      "description": "English 11 - Lesson: 153 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN153D/11EN153D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "page_key": "g11/153",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 6,
+      "title": "Keyboarding",
+      "description": "Keyboarding - Lesson: 153 - Teacher: Dr. Marion",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB153A/11KB153A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "page_key": "g11/153",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 7,
+      "title": "Plane Geometry",
+      "description": "Plane Geometry - Lesson: 153 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG153D/11PG153D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "page_key": "g11/153",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 8,
+      "title": "Spanish 1",
+      "description": "Spanish 1 - Lesson: 153 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA153D/11SA153D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-153",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 153,
+      "page_key": "g11/153",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 9,
+      "title": "U. S. History 11",
+      "description": "U. S. History 11 - Lesson: 153 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US153D/11US153D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

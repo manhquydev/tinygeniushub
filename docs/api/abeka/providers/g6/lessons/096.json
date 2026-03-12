@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g6",
+    "provider_slug": "g6",
+    "course": "lesson-096",
+    "course_slug": "096",
+    "grade_id": "6",
+    "page_count": 1,
+    "video_count": 8
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "page_key": "g6/096",
+      "path_segments": [
+        "g6",
+        "096"
+      ],
+      "provider": "g6",
+      "course": "lesson-096",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 96,
+      "video_count": 8,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Arithmetic 6",
+          "description": "Arithmetic 6 - Lesson: 96 - Teacher: Mr. Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AT096F/06AT096F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible 6",
+          "description": "Bible 6 - Lesson: 96 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06BI096F/06BI096F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 6",
+          "description": "History 6 - Lesson: 96 - Teacher: Miss Lewis",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06HI096F/06HI096F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Language 6",
+          "description": "Language 6 - Lesson: 96 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06LA096F/06LA096F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Penmanship 6",
+          "description": "Penmanship 6 - Lesson: 96 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06PN096F/06PN096F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Reading 6",
+          "description": "Reading 6 - Lesson: 96 - Teacher: Miss Moses",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06RE096F/06RE096F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Science 6",
+          "description": "Science 6 - Lesson: 96 - Teacher: Miss Lewis",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SC096F/06SC096F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Spelling 6",
+          "description": "Spelling 6 - Lesson: 96 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SP096F/06SP096F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g6",
+      "course": "lesson-096",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 96,
+      "page_key": "g6/096",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 1,
+      "title": "Arithmetic 6",
+      "description": "Arithmetic 6 - Lesson: 96 - Teacher: Mr. Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AT096F/06AT096F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-096",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 96,
+      "page_key": "g6/096",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 2,
+      "title": "Bible 6",
+      "description": "Bible 6 - Lesson: 96 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06BI096F/06BI096F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-096",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 96,
+      "page_key": "g6/096",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 3,
+      "title": "History 6",
+      "description": "History 6 - Lesson: 96 - Teacher: Miss Lewis",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06HI096F/06HI096F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-096",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 96,
+      "page_key": "g6/096",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 4,
+      "title": "Language 6",
+      "description": "Language 6 - Lesson: 96 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06LA096F/06LA096F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-096",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 96,
+      "page_key": "g6/096",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 5,
+      "title": "Penmanship 6",
+      "description": "Penmanship 6 - Lesson: 96 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06PN096F/06PN096F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-096",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 96,
+      "page_key": "g6/096",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 6,
+      "title": "Reading 6",
+      "description": "Reading 6 - Lesson: 96 - Teacher: Miss Moses",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06RE096F/06RE096F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-096",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 96,
+      "page_key": "g6/096",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 7,
+      "title": "Science 6",
+      "description": "Science 6 - Lesson: 96 - Teacher: Miss Lewis",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SC096F/06SC096F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-096",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 96,
+      "page_key": "g6/096",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 8,
+      "title": "Spelling 6",
+      "description": "Spelling 6 - Lesson: 96 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SP096F/06SP096F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

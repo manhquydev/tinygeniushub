@@ -1,0 +1,296 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "Muzzy",
+    "provider_slug": "muzzy",
+    "course": "U8",
+    "course_slug": "u8",
+    "page_count": 1,
+    "video_count": 14
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "page_key": "Muzzy/U8",
+      "path_segments": [
+        "Muzzy",
+        "U8"
+      ],
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "video_count": 14,
+      "videos": [
+        {
+          "order": 1,
+          "title": "14. We re ready for the party",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/14.%20We_re%20ready%20for%20the%20party.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "15. What s your surprise",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/15.%20What_s%20your%20surprise.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "16. Help! Help",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/16.%20Help%21%20Help.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "17. Take this box",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/17.%20Take%20this%20box.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "18. Say Good evening",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/18.%20Say%20Good%20evening.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "19. We re ready for the party",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/19.%20We_re%20ready%20for%20the%20party.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 7,
+          "title": "20. Would you like some cheese",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/20.%20Would%20you%20like%20some%20cheese.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 8,
+          "title": "21. Some - a little - a lot",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/21.%20Some%20-%20a%20little%20-%20a%20lot.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 9,
+          "title": "22. Here s Amanda",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/22.%20Here_s%20Amanda.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 10,
+          "title": "23. What s happening",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/23.%20What_s%20happening.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 11,
+          "title": "24. What s the matter",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/24.%20What_s%20the%20matter.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 12,
+          "title": "25. The King s boat",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/25.%20The%20King_s%20boat.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 13,
+          "title": "26. We looked everywhere",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/26.%20We%20looked%20everywhere.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 14,
+          "title": "27. Where s Corvax",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U8/27.%20Where_s%20Corvax.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 1,
+      "title": "14. We re ready for the party",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/14.%20We_re%20ready%20for%20the%20party.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 2,
+      "title": "15. What s your surprise",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/15.%20What_s%20your%20surprise.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 3,
+      "title": "16. Help! Help",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/16.%20Help%21%20Help.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 4,
+      "title": "17. Take this box",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/17.%20Take%20this%20box.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 5,
+      "title": "18. Say Good evening",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/18.%20Say%20Good%20evening.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 6,
+      "title": "19. We re ready for the party",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/19.%20We_re%20ready%20for%20the%20party.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 7,
+      "title": "20. Would you like some cheese",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/20.%20Would%20you%20like%20some%20cheese.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 8,
+      "title": "21. Some - a little - a lot",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/21.%20Some%20-%20a%20little%20-%20a%20lot.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 9,
+      "title": "22. Here s Amanda",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/22.%20Here_s%20Amanda.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 10,
+      "title": "23. What s happening",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/23.%20What_s%20happening.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 11,
+      "title": "24. What s the matter",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/24.%20What_s%20the%20matter.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 12,
+      "title": "25. The King s boat",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/25.%20The%20King_s%20boat.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 13,
+      "title": "26. We looked everywhere",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/26.%20We%20looked%20everywhere.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U8",
+      "topic": "",
+      "page_key": "Muzzy/U8",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U8",
+      "order": 14,
+      "title": "27. Where s Corvax",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U8/27.%20Where_s%20Corvax.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

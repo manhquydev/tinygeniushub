@@ -110,7 +110,16 @@ function getSessionCookie(setCookieHeader) {
     return null;
   }
 
-  const match = setCookieHeader.match(/ccth_session=[^;]+/);
+  const match = setCookieHeader.match(/(?:__Secure-|__Host-)?ccth_session=[^;]+/);
+  return match ? match[0] : null;
+}
+
+function getAdminSessionCookie(setCookieHeader) {
+  if (!setCookieHeader) {
+    return null;
+  }
+
+  const match = setCookieHeader.match(/(?:__Secure-|__Host-)?ccth_admin_session=[^;]+/);
   return match ? match[0] : null;
 }
 
@@ -170,6 +179,22 @@ async function loginParent(baseUrl, payload) {
 
   const cookie = getSessionCookie(setCookieHeader);
   assert(cookie, `Missing session cookie for ${payload.email}`);
+  return cookie;
+}
+
+async function loginAdmin(baseUrl, payload) {
+  const login = await requestJson(baseUrl, "/api/admin/auth/login", {
+    method: "POST",
+    body: payload,
+  });
+
+  assert(login.response.status === 200, `Admin login failed for ${payload.email}: status=${login.response.status}`);
+  assert(login.json?.ok === true, `Admin login did not return ok=true for ${payload.email}`);
+
+  const setCookieHeader = login.response.headers.get("set-cookie");
+  assert(setCookieHeader, `Missing admin set-cookie header for ${payload.email}`);
+  const cookie = getAdminSessionCookie(setCookieHeader);
+  assert(cookie, `Missing admin session cookie for ${payload.email}`);
   return cookie;
 }
 
@@ -324,7 +349,7 @@ async function main() {
       `Security e2e requires live dependencies. /api/health/ready returned ${readiness.status}.`,
     );
 
-    const adminCookie = await loginParent(baseUrl, {
+    const adminCookie = await loginAdmin(baseUrl, {
       email: adminEmail,
       password: adminPassword,
     });

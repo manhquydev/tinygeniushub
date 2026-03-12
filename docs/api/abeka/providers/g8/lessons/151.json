@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g8",
+    "provider_slug": "g8",
+    "course": "lesson-151",
+    "course_slug": "151",
+    "grade_id": "8",
+    "page_count": 1,
+    "video_count": 6
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "page_key": "g8/151",
+      "path_segments": [
+        "g8",
+        "151"
+      ],
+      "provider": "g8",
+      "course": "lesson-151",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 151,
+      "video_count": 6,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Bible 8",
+          "description": "Bible 8 - Lesson: 151 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08BI151D/08BI151D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 8",
+          "description": "English 8 - Lesson: 151 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08EN151E/08EN151E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 8",
+          "description": "History 8 - Lesson: 151 - Teacher: Miss Burns",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08HI151E/08HI151E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Level Up 11.4",
+          "description": "Level Up 11.4 - Lesson: 151 - Teacher: Mrs. Odom",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08PA151E-LU11.4/08PA151E-LU11.4.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Pre-Algebra",
+          "description": "Pre-Algebra - Lesson: 151 - Teacher: Mrs. Odom",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08PA151E/08PA151E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Science 8",
+          "description": "Science 8 - Lesson: 151 - Teacher: Miss de Lima",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08SC151D/08SC151D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g8",
+      "course": "lesson-151",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 151,
+      "page_key": "g8/151",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 1,
+      "title": "Bible 8",
+      "description": "Bible 8 - Lesson: 151 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08BI151D/08BI151D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-151",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 151,
+      "page_key": "g8/151",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 2,
+      "title": "English 8",
+      "description": "English 8 - Lesson: 151 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08EN151E/08EN151E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-151",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 151,
+      "page_key": "g8/151",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 3,
+      "title": "History 8",
+      "description": "History 8 - Lesson: 151 - Teacher: Miss Burns",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08HI151E/08HI151E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-151",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 151,
+      "page_key": "g8/151",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 4,
+      "title": "Level Up 11.4",
+      "description": "Level Up 11.4 - Lesson: 151 - Teacher: Mrs. Odom",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08PA151E-LU11.4/08PA151E-LU11.4.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-151",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 151,
+      "page_key": "g8/151",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 5,
+      "title": "Pre-Algebra",
+      "description": "Pre-Algebra - Lesson: 151 - Teacher: Mrs. Odom",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08PA151E/08PA151E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-151",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 151,
+      "page_key": "g8/151",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 6,
+      "title": "Science 8",
+      "description": "Science 8 - Lesson: 151 - Teacher: Miss de Lima",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08SC151D/08SC151D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

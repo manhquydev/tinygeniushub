@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(self), microphone=(self), geolocation=(), payment=()
+Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob: https:; worker-src 'self' blob:; connect-src 'self' https: ws: wss:; object-src 'none'
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+link: </_next/static/media/07454f8ad8aaac57-s.p.fc65572f.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/3c285486269019b7-s.p.f6eddd95.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/3eca85881bcfa204-s.p.70aaf131.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/53e45098eac42afb-s.p.cedabf29.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/625a092f804baad3-s.p.75ecebf5.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/6f42e0a3b0519c4d-s.p.7183773d.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/8f46d218c8f79e34-s.p.12435988.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/8ffc259da9d23054-s.p.8ab0ac6e.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/a3bcb02a0e9e5d11-s.p.5d07ebb5.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/a4f4f75ad654963f-s.p.bab09490.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/e6d00ff86ef9e699-s.p.51ae28b9.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </_next/static/media/fcf129058e6e31f2-s.p.97839e11.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2"
+Cache-Control: no-store, must-revalidate
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Thu, 12 Mar 2026 17:06:23 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+

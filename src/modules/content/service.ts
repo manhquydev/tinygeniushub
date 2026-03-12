@@ -155,3 +155,106 @@ export async function listLessonActivitiesForPlayer(lessonId: string) {
     };
   });
 }
+
+export async function getRealKidGardenMission(input: {
+  parentId: string;
+  childId: string;
+}) {
+  const enrollments = await prisma.courseEnrollment.findMany({
+    where: { parentId: input.parentId, course: { isPublished: true } },
+    orderBy: { enrolledAt: "asc" },
+    include: {
+      course: {
+        select: {
+          id: true,
+          slug: true,
+          title: true,
+        },
+      },
+    },
+  });
+
+  const coursesToLessons = await Promise.all(
+    enrollments.map(async (enrollment) => {
+      const firstUncompleted = await prisma.courseLesson.findFirst({
+        where: {
+          courseId: enrollment.courseId,
+          lesson: {
+            completions: {
+              none: { childId: input.childId },
+            },
+          },
+        },
+        orderBy: { orderNo: "asc" },
+      });
+
+      const currentOrderNo = firstUncompleted?.orderNo || 1;
+      const startOrderNo = Math.max(1, currentOrderNo - 10);
+      const endOrderNo = currentOrderNo + 40;
+
+      const courseLessons = await prisma.courseLesson.findMany({
+        where: {
+          courseId: enrollment.courseId,
+          orderNo: {
+            gte: startOrderNo,
+            lte: endOrderNo,
+          },
+        },
+        orderBy: { orderNo: "asc" },
+        select: {
+          orderNo: true,
+          lesson: {
+            select: {
+              id: true,
+              slug: true,
+              title: true,
+              objective: true,
+              estimatedMinutes: true,
+              videoSource: true,
+              bunnyVideoId: true,
+              videoStatus: true,
+              trialEnabled: true,
+              unit: {
+                select: {
+                  title: true,
+                  level: {
+                    select: {
+                      title: true,
+                    },
+                  },
+                },
+              },
+              completions: {
+                where: { childId: input.childId },
+                select: { id: true },
+                take: 1,
+              },
+            },
+          },
+        },
+      });
+
+      return courseLessons.map((courseLesson) => {
+        const lesson = courseLesson.lesson;
+        return {
+          id: lesson.id,
+          slug: lesson.slug,
+          title: lesson.title,
+          objective: lesson.objective,
+          estimatedMinutes: lesson.estimatedMinutes,
+          videoSource: lesson.videoSource,
+          bunnyVideoId: lesson.bunnyVideoId,
+          videoStatus: lesson.videoStatus,
+          trialEnabled: lesson.trialEnabled,
+          isCompleted: lesson.completions.length > 0,
+          trackCode: enrollment.course.slug,
+          unitTitle: lesson.unit.title,
+          journeyTitle: enrollment.course.title,
+          tierIndex: courseLesson.orderNo,
+        };
+      });
+    }),
+  );
+
+  return coursesToLessons.flat();
+}

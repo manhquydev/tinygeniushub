@@ -264,7 +264,7 @@ export default async function ParentDashboardPage() {
             href={firstChildId ? `/kid/today?childId=${encodeURIComponent(firstChildId)}` : "/kid/today"}
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
           >
-            Vào bài học hôm nay
+            Vào khu học của bé
           </Link>
           <Link
             href="/parent/courses"
@@ -338,10 +338,10 @@ export default async function ParentDashboardPage() {
                     </Link>
                   ) : null}
                   <Link
-                    href={`/kid/today?childId=${encodeURIComponent(child.id)}`}
+                    href={`/kid/courses?childId=${encodeURIComponent(child.id)}`}
                     className="inline-flex min-h-11 items-center justify-center gap-1 rounded-full bg-white px-4 text-sm font-bold text-slate-700 ring-1 ring-slate-300 transition hover:-translate-y-0.5"
                   >
-                    Vào bài học
+                    Vào khu học
                     <ChevronRight size={16} />
                   </Link>
                 </div>

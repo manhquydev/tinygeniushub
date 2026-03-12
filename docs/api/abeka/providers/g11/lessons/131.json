@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g11",
+    "provider_slug": "g11",
+    "course": "lesson-131",
+    "course_slug": "131",
+    "grade_id": "11",
+    "page_count": 1,
+    "video_count": 7
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "page_key": "g11/131",
+      "path_segments": [
+        "g11",
+        "131"
+      ],
+      "provider": "g11",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 131,
+      "video_count": 7,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Business Mathematics",
+          "description": "Business Mathematics - Lesson: 131 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM131A/11BM131A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Chemistry",
+          "description": "Chemistry - Lesson: 131 - Teacher: Mr. Sisson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH131E/11CH131E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "English 11",
+          "description": "English 11 - Lesson: 131 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN131D/11EN131D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Keyboarding",
+          "description": "Keyboarding - Lesson: 131 - Teacher: Dr. Marion",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB131A/11KB131A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Plane Geometry",
+          "description": "Plane Geometry - Lesson: 131 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG131D/11PG131D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Spanish 1",
+          "description": "Spanish 1 - Lesson: 131 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA131D/11SA131D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "U. S. History 11",
+          "description": "U. S. History 11 - Lesson: 131 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US131D/11US131D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g11",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 131,
+      "page_key": "g11/131",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 1,
+      "title": "Business Mathematics",
+      "description": "Business Mathematics - Lesson: 131 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM131A/11BM131A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 131,
+      "page_key": "g11/131",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 2,
+      "title": "Chemistry",
+      "description": "Chemistry - Lesson: 131 - Teacher: Mr. Sisson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH131E/11CH131E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 131,
+      "page_key": "g11/131",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 3,
+      "title": "English 11",
+      "description": "English 11 - Lesson: 131 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN131D/11EN131D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 131,
+      "page_key": "g11/131",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 4,
+      "title": "Keyboarding",
+      "description": "Keyboarding - Lesson: 131 - Teacher: Dr. Marion",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB131A/11KB131A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 131,
+      "page_key": "g11/131",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 5,
+      "title": "Plane Geometry",
+      "description": "Plane Geometry - Lesson: 131 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG131D/11PG131D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 131,
+      "page_key": "g11/131",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 6,
+      "title": "Spanish 1",
+      "description": "Spanish 1 - Lesson: 131 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA131D/11SA131D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 131,
+      "page_key": "g11/131",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 7,
+      "title": "U. S. History 11",
+      "description": "U. S. History 11 - Lesson: 131 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US131D/11US131D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

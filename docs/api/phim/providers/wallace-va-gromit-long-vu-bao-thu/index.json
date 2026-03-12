@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "resource_root": "/phim",
+    "provider": "wallace-va-gromit-long-vu-bao-thu",
+    "provider_slug": "wallace-va-gromit-long-vu-bao-thu",
+    "course_count": 1,
+    "page_count": 1,
+    "video_count": 1
+  },
+  "courses": [
+    {
+      "course": "default",
+      "course_slug": "default",
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/wallace-va-gromit-long-vu-bao-thu/courses/default.json"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+
+> cungcontuhoc@0.2.0 worker:dev D:\project\cungcontuhoc
+> tsx src/worker/index.ts
+
+{"timestamp":"2026-03-12T12:39:07.113Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.bootstrap_started"}
+{"timestamp":"2026-03-12T12:39:07.213Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.bootstrap_completed"}
+[lifecycle-email] mock send to=e2e.learning.1773318648543@example.com subject="Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉"
+[lifecycle-email] mock send to=e2e.learning.1773319124741@example.com subject="Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉"
+{"timestamp":"2026-03-12T12:39:07.296Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.retention_cleanup.completed","metadata":{"jobId":"2"}}
+{"timestamp":"2026-03-12T12:39:07.303Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.weekly_report_email.completed","metadata":{"jobId":"3"}}
+{"timestamp":"2026-03-12T12:39:07.308Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.lifecycle_email.completed","metadata":{"jobId":"lifecycle:trial_welcome:cmmng4zx60000mm6gzuw2q5pm"}}
+{"timestamp":"2026-03-12T12:39:07.308Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.lifecycle_email.completed","metadata":{"jobId":"lifecycle:trial_welcome:cmmngf6mn0000mm4seqfa5zys"}}
+{"timestamp":"2026-03-12T12:39:07.321Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.lifecycle_email.completed","metadata":{"jobId":"13"}}
+{"timestamp":"2026-03-12T12:39:07.326Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.weekly_reports.completed","metadata":{"jobId":"2"}}
+[email] weekly report sent (mock): report=cmmngfn610006mmigl9non7ah child=manhquy@vk.com to=manhquy@vk.com
+[email] weekly report sent (mock): report=cmmngfn620009mmigwitfwa1j child=Be Sao to=e2e.learning.1773319124741@example.com
+[email] weekly report sent (mock): report=cmmngfn610007mmig8pqdv9mp child=Be Sao to=e2e.learning.1773318648543@example.com
+{"timestamp":"2026-03-12T12:39:07.351Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.weekly_report_email.completed","metadata":{"jobId":"4"}}
+{"timestamp":"2026-03-12T12:40:11.883Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.weekly_reports.completed","metadata":{"jobId":"3"}}
+{"timestamp":"2026-03-12T12:40:11.890Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.weekly_report_email.completed","metadata":{"jobId":"5"}}
+{"timestamp":"2026-03-12T12:40:11.898Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.lifecycle_email.completed","metadata":{"jobId":"14"}}
+{"timestamp":"2026-03-12T12:40:11.898Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.weekly_report_email.completed","metadata":{"jobId":"6"}}
+[lifecycle-email] mock send to=e2e.learning.1773319705829@example.com subject="Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉"
+{"timestamp":"2026-03-12T12:48:27.047Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.lifecycle_email.completed","metadata":{"jobId":"lifecycle:trial_welcome:cmmngrmrs0000mmbcmbpjj4i5"}}
+[lifecycle-email] mock send to=e2e.learning.1773319929079@example.com subject="Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉"
+{"timestamp":"2026-03-12T12:52:10.265Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.lifecycle_email.completed","metadata":{"jobId":"lifecycle:trial_welcome:cmmngwf2b0000mmm0q1smmr4q"}}
+[lifecycle-email] mock send to=e2e.learning.1773320186721@example.com subject="Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉"
+{"timestamp":"2026-03-12T12:56:28.016Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.lifecycle_email.completed","metadata":{"jobId":"lifecycle:trial_welcome:cmmnh1xw40009mmm02arhbyyp"}}
+[lifecycle-email] mock send to=e2e.learning.1773320306335@example.com subject="Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉"
+{"timestamp":"2026-03-12T12:58:27.534Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.lifecycle_email.completed","metadata":{"jobId":"lifecycle:trial_welcome:cmmnh4i50000immm0fi4ecfce"}}
+[lifecycle-email] mock send to=e2e.learning.1773320342343@example.com subject="Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉"
+{"timestamp":"2026-03-12T12:59:03.468Z","level":"info","service":"cungcontuhoc-web","environment":"development","message":"worker.lifecycle_email.completed","metadata":{"jobId":"lifecycle:trial_welcome:cmmnh59w0000rmmm0i5kc0mxe"}}

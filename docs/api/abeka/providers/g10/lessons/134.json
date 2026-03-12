@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g10",
+    "provider_slug": "g10",
+    "course": "lesson-134",
+    "course_slug": "134",
+    "grade_id": "10",
+    "page_count": 1,
+    "video_count": 6
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "page_key": "g10/134",
+      "path_segments": [
+        "g10",
+        "134"
+      ],
+      "provider": "g10",
+      "course": "lesson-134",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 134,
+      "video_count": 6,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Algebra 2",
+          "description": "Algebra 2 - Lesson: 134 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2134E/10A2134E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible Doctrines",
+          "description": "Bible Doctrines - Lesson: 134 - Teacher: Mr. Birx",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI134C/10BI134C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Biology",
+          "description": "Biology - Lesson: 134 - Teacher: Miss Stancel",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY134E/10BY134E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Consumer Mathematics",
+          "description": "Consumer Mathematics - Lesson: 134 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM134B/10CM134B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "English 10",
+          "description": "English 10 - Lesson: 134 - Teacher: Mrs. Antich",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN134E/10EN134E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "World History 10",
+          "description": "World History 10 - Lesson: 134 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH134D/10WH134D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g10",
+      "course": "lesson-134",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 134,
+      "page_key": "g10/134",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 1,
+      "title": "Algebra 2",
+      "description": "Algebra 2 - Lesson: 134 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2134E/10A2134E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-134",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 134,
+      "page_key": "g10/134",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 2,
+      "title": "Bible Doctrines",
+      "description": "Bible Doctrines - Lesson: 134 - Teacher: Mr. Birx",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI134C/10BI134C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-134",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 134,
+      "page_key": "g10/134",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 3,
+      "title": "Biology",
+      "description": "Biology - Lesson: 134 - Teacher: Miss Stancel",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY134E/10BY134E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-134",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 134,
+      "page_key": "g10/134",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 4,
+      "title": "Consumer Mathematics",
+      "description": "Consumer Mathematics - Lesson: 134 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM134B/10CM134B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-134",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 134,
+      "page_key": "g10/134",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 5,
+      "title": "English 10",
+      "description": "English 10 - Lesson: 134 - Teacher: Mrs. Antich",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN134E/10EN134E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-134",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 134,
+      "page_key": "g10/134",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 6,
+      "title": "World History 10",
+      "description": "World History 10 - Lesson: 134 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH134D/10WH134D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

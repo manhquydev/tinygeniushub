@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "Heinemann GK 120",
+    "provider_slug": "heinemann-gk-120",
+    "course_count": 1,
+    "page_count": 1,
+    "video_count": 120
+  },
+  "courses": [
+    {
+      "course": "default",
+      "course_slug": "default",
+      "page_count": 1,
+      "video_count": 120,
+      "path": "providers/heinemann-gk-120/courses/default.json"
+    }
+  ]
+}

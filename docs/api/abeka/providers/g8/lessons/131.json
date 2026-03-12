@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g8",
+    "provider_slug": "g8",
+    "course": "lesson-131",
+    "course_slug": "131",
+    "grade_id": "8",
+    "page_count": 1,
+    "video_count": 5
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "page_key": "g8/131",
+      "path_segments": [
+        "g8",
+        "131"
+      ],
+      "provider": "g8",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 131,
+      "video_count": 5,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Bible 8",
+          "description": "Bible 8 - Lesson: 131 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08BI131D/08BI131D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 8",
+          "description": "English 8 - Lesson: 131 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08EN131E/08EN131E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 8",
+          "description": "History 8 - Lesson: 131 - Teacher: Miss Burns",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08HI131E/08HI131E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Pre-Algebra",
+          "description": "Pre-Algebra - Lesson: 131 - Teacher: Mrs. Odom",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08PA131E/08PA131E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Science 8",
+          "description": "Science 8 - Lesson: 131 - Teacher: Miss de Lima",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08SC131D/08SC131D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g8",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 131,
+      "page_key": "g8/131",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 1,
+      "title": "Bible 8",
+      "description": "Bible 8 - Lesson: 131 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08BI131D/08BI131D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 131,
+      "page_key": "g8/131",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 2,
+      "title": "English 8",
+      "description": "English 8 - Lesson: 131 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08EN131E/08EN131E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 131,
+      "page_key": "g8/131",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 3,
+      "title": "History 8",
+      "description": "History 8 - Lesson: 131 - Teacher: Miss Burns",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08HI131E/08HI131E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 131,
+      "page_key": "g8/131",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 4,
+      "title": "Pre-Algebra",
+      "description": "Pre-Algebra - Lesson: 131 - Teacher: Mrs. Odom",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08PA131E/08PA131E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-131",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 131,
+      "page_key": "g8/131",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 5,
+      "title": "Science 8",
+      "description": "Science 8 - Lesson: 131 - Teacher: Miss de Lima",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08SC131D/08SC131D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import { RetentionPolicy, SubscriptionStatus } from "@prisma/client";
 import { subDays } from "date-fns";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { prismaMock, assertLessonVideoWatchCompletedMock, isPrismaUniqueConstraintErrorMock } = vi.hoisted(
+const { prismaMock, assertLessonVideoWatchCompletedMock, isPrismaUniqueConstraintErrorMock, syncJourneyProgressMock } = vi.hoisted(
   () => ({
     prismaMock: {
       childProfile: {
@@ -17,10 +17,14 @@ const { prismaMock, assertLessonVideoWatchCompletedMock, isPrismaUniqueConstrain
       lessonCompletion: {
         findUnique: vi.fn(),
       },
+      childCourseJourney: {
+        findMany: vi.fn(),
+      },
       $transaction: vi.fn(),
     },
     assertLessonVideoWatchCompletedMock: vi.fn(),
     isPrismaUniqueConstraintErrorMock: vi.fn(),
+    syncJourneyProgressMock: vi.fn(),
   }),
 );
 
@@ -30,6 +34,10 @@ vi.mock("@/lib/db", () => ({
 
 vi.mock("@/lib/prisma-error", () => ({
   isPrismaUniqueConstraintError: isPrismaUniqueConstraintErrorMock,
+}));
+
+vi.mock("@/modules/garden/journey-service", () => ({
+  syncJourneyProgress: syncJourneyProgressMock,
 }));
 
 vi.mock("@/modules/learning/video-watch-service", async () => {
@@ -152,8 +160,16 @@ describe("completeLesson", () => {
       status: SubscriptionStatus.ACTIVE_STANDARD,
       portfolioRetentionMaxDays: 365,
     });
+    prismaMock.childCourseJourney.findMany.mockResolvedValue([]);
     assertLessonVideoWatchCompletedMock.mockResolvedValue(undefined);
     isPrismaUniqueConstraintErrorMock.mockReturnValue(false);
+    syncJourneyProgressMock.mockResolvedValue({
+      metrics: {
+        completedLessonDelta: 0,
+        unlockedTierNos: [],
+        becameCompleted: false,
+      },
+    });
   });
 
   it("returns CHILD_NOT_FOUND when child does not belong to parent", async () => {
@@ -332,5 +348,81 @@ describe("completeLesson", () => {
       },
     });
     expect(isPrismaUniqueConstraintErrorMock).toHaveBeenCalledWith(uniqueError, ["childid", "lessonid"]);
+  });
+
+  it("syncs related course journeys after a new completion", async () => {
+    const tx = createTxContext();
+    tx.lessonCompletion.findUnique.mockResolvedValueOnce(null);
+    tx.lessonCompletion.create.mockResolvedValueOnce({
+      id: "completion-1",
+      completedAt: new Date("2026-02-20T10:00:00.000Z"),
+    });
+    tx.evidence.create.mockResolvedValueOnce({
+      id: "evidence-1",
+    });
+    tx.rewardGrant.create.mockResolvedValueOnce({
+      id: "reward-1",
+    });
+    tx.lessonCompletion.findFirst.mockResolvedValueOnce(null);
+    tx.progressState.findUnique.mockResolvedValueOnce({
+      streakCount: 1,
+    });
+    tx.progressState.upsert.mockResolvedValueOnce({
+      id: "progress-1",
+    });
+    prismaMock.$transaction.mockImplementationOnce(
+      async (callback: (input: TxContext) => Promise<unknown>) => callback(tx),
+    );
+
+    prismaMock.childCourseJourney.findMany.mockResolvedValueOnce([
+      { id: "journey-1" },
+      { id: "journey-2" },
+    ]);
+    syncJourneyProgressMock.mockResolvedValueOnce({
+      metrics: {
+        completedLessonDelta: 1,
+        unlockedTierNos: [2],
+        becameCompleted: false,
+      },
+    });
+    syncJourneyProgressMock.mockRejectedValueOnce(new Error("sync failed"));
+
+    const result = await completeLesson({
+      parentId: "parent-1",
+      lessonId: "lesson-1",
+      payload: {
+        childId: "child-1",
+        quizScore: 90,
+        minutesLearned: 15,
+        checklist: ["task-1"],
+      },
+    });
+
+    expect(result).toMatchObject({
+      idempotent: false,
+      journeySync: {
+        attempted: 2,
+        synced: 1,
+        failed: 1,
+        impacts: [
+          {
+            journeyId: "journey-1",
+            completedLessonDelta: 1,
+            unlockedTierNos: [2],
+            becameCompleted: false,
+          },
+        ],
+      },
+    });
+    expect(syncJourneyProgressMock).toHaveBeenCalledWith({
+      parentId: "parent-1",
+      childId: "child-1",
+      journeyId: "journey-1",
+    });
+    expect(syncJourneyProgressMock).toHaveBeenCalledWith({
+      parentId: "parent-1",
+      childId: "child-1",
+      journeyId: "journey-2",
+    });
   });
 });

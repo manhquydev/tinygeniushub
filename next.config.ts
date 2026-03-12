@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "X-Frame-Options",
-            value: "DENY",
+            value: "SAMEORIGIN",
           },
           {
             key: "X-Content-Type-Options",
@@ -39,12 +39,14 @@ const nextConfig: NextConfig = {
             value: [
               "default-src 'self'",
               "base-uri 'self'",
-              "frame-ancestors 'none'",
+              "frame-ancestors 'self'",
               "form-action 'self'",
               `script-src ${scriptSrc.join(" ")}`,
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
+              "media-src 'self' blob: https:",
+              "worker-src 'self' blob:",
               "connect-src 'self' https: ws: wss:",
               "object-src 'none'",
             ].join("; "),

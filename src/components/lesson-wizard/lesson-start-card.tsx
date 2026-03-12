@@ -35,6 +35,15 @@ const SPARKLES = [
   { id: "s5", top: "8%", left: "50%", dx: 0, dy: -28, rotate: 0, color: "#eab308" },
 ];
 
+function isDirectVideoSource(value: string | null | undefined) {
+  return typeof value === "string" && (/^https?:\/\//i.test(value) || value.startsWith("/"));
+}
+
+function detectStreamTypeFromSource(value: string | null | undefined): "hls" | "file" | null {
+  if (!value) return null;
+  return /\.m3u8($|[?#])/i.test(value) ? "hls" : "file";
+}
+
 function LessonLaunchButton({ isLaunching, prefersReducedMotion, onLaunch }: LessonLaunchButtonProps) {
   return (
     <div className="relative w-full mt-2">
@@ -111,6 +120,7 @@ export function LessonStartCard(props: LessonStartCardProps) {
     prefersReducedMotion,
   });
   const [resolvedVideoSource, setResolvedVideoSource] = useState<string | null | undefined>(undefined);
+  const [resolvedVideoStreamType, setResolvedVideoStreamType] = useState<"hls" | "file" | null>(null);
 
   async function handleLaunch() {
     if (props.beforeStart) {
@@ -120,21 +130,25 @@ export function LessonStartCard(props: LessonStartCardProps) {
       }
     }
 
-    // Resolve video source: prefer Bunny signed URL, fall back to videoSource
-    if (props.bunnyVideoId && props.videoStatus === "ready") {
+    // Always request server-issued playback URL first.
+    if (props.bunnyVideoId || props.videoSource) {
       try {
         const res = await fetch(`/api/lessons/${props.lessonId}/video-token`);
         if (res.ok) {
-          const json = (await res.json()) as { data: { embedUrl: string } };
+          const json = (await res.json()) as { data: { embedUrl: string; streamType?: "hls" | "file" | "embed" } };
           setResolvedVideoSource(json.data.embedUrl);
+          setResolvedVideoStreamType(json.data.streamType === "hls" ? "hls" : "file");
         } else {
-          setResolvedVideoSource(props.videoSource ?? null);
+          setResolvedVideoSource(isDirectVideoSource(props.videoSource) ? props.videoSource : null);
+          setResolvedVideoStreamType(detectStreamTypeFromSource(props.videoSource));
         }
       } catch {
-        setResolvedVideoSource(props.videoSource ?? null);
+        setResolvedVideoSource(isDirectVideoSource(props.videoSource) ? props.videoSource : null);
+        setResolvedVideoStreamType(detectStreamTypeFromSource(props.videoSource));
       }
     } else {
       setResolvedVideoSource(props.videoSource ?? null);
+      setResolvedVideoStreamType(detectStreamTypeFromSource(props.videoSource));
     }
 
     handleStartLesson();
@@ -211,7 +225,8 @@ export function LessonStartCard(props: LessonStartCardProps) {
           title={props.title}
           objective={props.objective}
           estimatedMinutes={props.estimatedMinutes}
-          videoSource={resolvedVideoSource ?? props.videoSource}
+          videoSource={resolvedVideoSource === undefined ? props.videoSource : resolvedVideoSource}
+          videoStreamType={resolvedVideoSource === undefined ? detectStreamTypeFromSource(props.videoSource) : resolvedVideoStreamType}
           onClose={handleCloseLesson}
           onCompleted={props.onLessonComplete}
         />

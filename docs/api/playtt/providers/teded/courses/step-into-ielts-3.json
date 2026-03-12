@@ -1,0 +1,733 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "TEDed",
+    "provider_slug": "teded",
+    "course": "Step into IELTS 3",
+    "course_slug": "step-into-ielts-3",
+    "page_count": 1,
+    "video_count": 37
+  },
+  "pages": [
+    {
+      "resource_root": "/playtt",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "page_key": "TEDed/Step into IELTS 3",
+      "path_segments": [
+        "TEDed",
+        "Step into IELTS 3"
+      ],
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "video_count": 37,
+      "videos": [
+        {
+          "order": 1,
+          "title": "001 A brief history of chess",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/001_A%20brief%20history%20of%20chess.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "002 A brief history of dumplings",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/002_A%20brief%20history%20of%20dumplings.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "003 A brief history of plural word",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/003_A%20brief%20history%20of%20plural%20word.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "004 A brief history of the devil",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/004_A%20brief%20history%20of%20the%20devil.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "005 Are all of your memories real",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/005_Are%20all%20of%20your%20memories%20real.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "006 Can you freeze your body and come back to life",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/006_Can%20you%20freeze%20your%20body%20and%20come%20back%20to%20life.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "007 Can you solve the fantasy election riddle",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/007_Can%20you%20solve%20the%20fantasy%20election%20riddle.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "008 This thought experiment will help you understand quantum mechanics",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/008_This%20thought%20experiment%20will%20help%20you%20understand%20quantum%20mechanics.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "009 Could we steal the power of a black hole",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/009_Could%20we%20steal%20the%20power%20of%20a%20black%20hole.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "010 Do tax cuts stimulate the economy",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/010_Do%20tax%20cuts%20stimulate%20the%20economy.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "011 Ethical dilemma- Would you lie",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/011_Ethical%20dilemma-%20Would%20you%20lie.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 12,
+          "title": "012 Evolution’s great mystery",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/012_Evolution%E2%80%99s%20great%20mystery.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 13,
+          "title": "013 How do you know if you have a virus",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/013_How%20do%20you%20know%20if%20you%20have%20a%20virus.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 14,
+          "title": "014 How do you know you’re not dreaming",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/014_How%20do%20you%20know%20you%E2%80%99re%20not%20dreaming.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 15,
+          "title": "015 How does alcohol cause hangovers",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/015_How%20does%20alcohol%20cause%20hangovers.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 16,
+          "title": "016 How does alcohol make you drunk",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/016_How%20does%20alcohol%20make%20you%20drunk.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 17,
+          "title": "017 How does artificial intelligence learn",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/017_How%20does%20artificial%20intelligence%20learn.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 18,
+          "title": "018 How does chemotherapy work",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/018_How%20does%20chemotherapy%20work.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 19,
+          "title": "019 How does heart transplant surgery work",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/019_How%20does%20heart%20transplant%20surgery%20work.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 20,
+          "title": "020 How friendship affects your brain",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/020_How%20friendship%20affects%20your%20brain.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 21,
+          "title": "021 How much electricity does it take to power the world-",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/021_How%20much%20electricity%20does%20it%20take%20to%20power%20the%20world-.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 22,
+          "title": "022 How one scientist took on the chemical industry",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/022_How%20one%20scientist%20took%20on%20the%20chemical%20industry.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 23,
+          "title": "023 How the world s longest underwater tunnel was built",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/023_How%20the%20world_s%20longest%20underwater%20tunnel%20was%20built.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 24,
+          "title": "024 How to get better at video games, according to babies",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/024_How%20to%20get%20better%20at%20video%20games,%20according%20to%20babies.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 25,
+          "title": "025 How we can detect pretty much anything",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/025_How%20we%20can%20detect%20pretty%20much%20anything.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 26,
+          "title": "026 Is inequality inevitable",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/026_Is%20inequality%20inevitable.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 27,
+          "title": "027 Is this the most successful animal ever",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/027_Is%20this%20the%20most%20successful%20animal%20ever.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 28,
+          "title": "028 One of the most banned books of all time",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/028_One%20of%20the%20most%20banned%20books%20of%20all%20time.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 29,
+          "title": "029 The Chinese legend of the butterfly lovers",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/029_The%20Chinese%20legend%20of%20the%20butterfly%20lovers.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 30,
+          "title": "030 The dark history of zombies",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/030_The%20dark%20history%20of%20zombies.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 31,
+          "title": "031 The genes you don t get from your parents",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/031_The%20genes%20you%20don_t%20get%20from%20your%20parents.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 32,
+          "title": "032 The ingredient in almost everything you eat",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/032_The%20ingredient%20in%20almost%20everything%20you%20eat.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 33,
+          "title": "033 Why do your jeans wear out so quickly",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/033_Why%20do%20your%20jeans%20wear%20out%20so%20quickly.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 34,
+          "title": "034 The most colorful gemstones on Earth",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/034_The%20most%20colorful%20gemstones%20on%20Earth.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 35,
+          "title": "035 The myth of the original star-crossed lovers",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/035_The%20myth%20of%20the%20original%20star-crossed%20lovers.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 36,
+          "title": "036 The rise and fall of history’s first empire",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/036_The%20rise%20and%20fall%20of%20history%E2%80%99s%20first%20empire.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 37,
+          "title": "037 The surprising effects of pregnancy",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/037_The%20surprising%20effects%20of%20pregnancy.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 1,
+      "title": "001 A brief history of chess",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/001_A%20brief%20history%20of%20chess.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 2,
+      "title": "002 A brief history of dumplings",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/002_A%20brief%20history%20of%20dumplings.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 3,
+      "title": "003 A brief history of plural word",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/003_A%20brief%20history%20of%20plural%20word.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 4,
+      "title": "004 A brief history of the devil",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/004_A%20brief%20history%20of%20the%20devil.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 5,
+      "title": "005 Are all of your memories real",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/005_Are%20all%20of%20your%20memories%20real.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 6,
+      "title": "006 Can you freeze your body and come back to life",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/006_Can%20you%20freeze%20your%20body%20and%20come%20back%20to%20life.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 7,
+      "title": "007 Can you solve the fantasy election riddle",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/007_Can%20you%20solve%20the%20fantasy%20election%20riddle.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 8,
+      "title": "008 This thought experiment will help you understand quantum mechanics",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/008_This%20thought%20experiment%20will%20help%20you%20understand%20quantum%20mechanics.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 9,
+      "title": "009 Could we steal the power of a black hole",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/009_Could%20we%20steal%20the%20power%20of%20a%20black%20hole.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 10,
+      "title": "010 Do tax cuts stimulate the economy",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/010_Do%20tax%20cuts%20stimulate%20the%20economy.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 11,
+      "title": "011 Ethical dilemma- Would you lie",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/011_Ethical%20dilemma-%20Would%20you%20lie.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 12,
+      "title": "012 Evolution’s great mystery",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/012_Evolution%E2%80%99s%20great%20mystery.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 13,
+      "title": "013 How do you know if you have a virus",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/013_How%20do%20you%20know%20if%20you%20have%20a%20virus.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 14,
+      "title": "014 How do you know you’re not dreaming",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/014_How%20do%20you%20know%20you%E2%80%99re%20not%20dreaming.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 15,
+      "title": "015 How does alcohol cause hangovers",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/015_How%20does%20alcohol%20cause%20hangovers.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 16,
+      "title": "016 How does alcohol make you drunk",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/016_How%20does%20alcohol%20make%20you%20drunk.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 17,
+      "title": "017 How does artificial intelligence learn",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/017_How%20does%20artificial%20intelligence%20learn.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 18,
+      "title": "018 How does chemotherapy work",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/018_How%20does%20chemotherapy%20work.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 19,
+      "title": "019 How does heart transplant surgery work",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/019_How%20does%20heart%20transplant%20surgery%20work.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 20,
+      "title": "020 How friendship affects your brain",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/020_How%20friendship%20affects%20your%20brain.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 21,
+      "title": "021 How much electricity does it take to power the world-",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/021_How%20much%20electricity%20does%20it%20take%20to%20power%20the%20world-.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 22,
+      "title": "022 How one scientist took on the chemical industry",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/022_How%20one%20scientist%20took%20on%20the%20chemical%20industry.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 23,
+      "title": "023 How the world s longest underwater tunnel was built",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/023_How%20the%20world_s%20longest%20underwater%20tunnel%20was%20built.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 24,
+      "title": "024 How to get better at video games, according to babies",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/024_How%20to%20get%20better%20at%20video%20games,%20according%20to%20babies.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 25,
+      "title": "025 How we can detect pretty much anything",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/025_How%20we%20can%20detect%20pretty%20much%20anything.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 26,
+      "title": "026 Is inequality inevitable",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/026_Is%20inequality%20inevitable.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 27,
+      "title": "027 Is this the most successful animal ever",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/027_Is%20this%20the%20most%20successful%20animal%20ever.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 28,
+      "title": "028 One of the most banned books of all time",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/028_One%20of%20the%20most%20banned%20books%20of%20all%20time.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 29,
+      "title": "029 The Chinese legend of the butterfly lovers",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/029_The%20Chinese%20legend%20of%20the%20butterfly%20lovers.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 30,
+      "title": "030 The dark history of zombies",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/030_The%20dark%20history%20of%20zombies.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 31,
+      "title": "031 The genes you don t get from your parents",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/031_The%20genes%20you%20don_t%20get%20from%20your%20parents.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 32,
+      "title": "032 The ingredient in almost everything you eat",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/032_The%20ingredient%20in%20almost%20everything%20you%20eat.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 33,
+      "title": "033 Why do your jeans wear out so quickly",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/033_Why%20do%20your%20jeans%20wear%20out%20so%20quickly.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 34,
+      "title": "034 The most colorful gemstones on Earth",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/034_The%20most%20colorful%20gemstones%20on%20Earth.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 35,
+      "title": "035 The myth of the original star-crossed lovers",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/035_The%20myth%20of%20the%20original%20star-crossed%20lovers.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 36,
+      "title": "036 The rise and fall of history’s first empire",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/036_The%20rise%20and%20fall%20of%20history%E2%80%99s%20first%20empire.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "Step into IELTS 3",
+      "topic": "",
+      "page_key": "TEDed/Step into IELTS 3",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/Step%20into%20IELTS%203",
+      "order": 37,
+      "title": "037 The surprising effects of pregnancy",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/Step%20into%20IELTS%203/037_The%20surprising%20effects%20of%20pregnancy.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

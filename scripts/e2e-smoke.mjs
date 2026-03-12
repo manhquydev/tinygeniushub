@@ -122,7 +122,7 @@ function getSessionCookie(setCookieHeader) {
     return null;
   }
 
-  const match = setCookieHeader.match(/ccth_session=[^;]+/);
+  const match = setCookieHeader.match(/(?:__Secure-|__Host-)?ccth_session=[^;]+/);
   return match ? match[0] : null;
 }
 
@@ -154,9 +154,43 @@ async function requestJson(baseUrl, path, options = {}) {
   };
 }
 
+async function signupParent(baseUrl, email, password) {
+  const signup = await requestJson(baseUrl, "/api/auth/signup", {
+    method: "POST",
+    body: {
+      email,
+      password,
+      displayName: "E2E Parent",
+    },
+  });
+
+  assert(signup.response.status === 200, `Parent signup failed: status=${signup.response.status}`);
+  assert(signup.json?.ok === true, "Parent signup response must include ok=true");
+
+  const login = await requestJson(baseUrl, "/api/auth/login", {
+    method: "POST",
+    body: {
+      email,
+      password,
+    },
+  });
+  assert(login.response.status === 200, `Parent login after signup failed: status=${login.response.status}`);
+  assert(login.json?.ok === true, "Parent login after signup response must include ok=true");
+
+  const sessionCookie = getSessionCookie(login.response.headers.get("set-cookie"));
+  assert(sessionCookie, "Parent login after signup missing ccth_session cookie");
+
+  return sessionCookie;
+}
+
 async function loginParent(baseUrl) {
-  const email = process.env.E2E_PARENT_EMAIL ?? "demo.parent@cungcontuhoc.io.vn";
-  const password = process.env.E2E_PARENT_PASSWORD ?? "DemoPass123!";
+  const seededEmail = "demo.parent@cungcontuhoc.io.vn";
+  const configuredEmail = process.env.E2E_PARENT_EMAIL;
+  const configuredPassword = process.env.E2E_PARENT_PASSWORD;
+  const email = configuredEmail ?? seededEmail;
+  const password = configuredPassword ?? "DemoPass123!";
+  const credentialsAreConfigured = Boolean(configuredEmail || configuredPassword);
+
   const login = await requestJson(baseUrl, "/api/auth/login", {
     method: "POST",
     body: {
@@ -165,13 +199,19 @@ async function loginParent(baseUrl) {
     },
   });
 
-  assert(login.response.status === 200, `Parent login failed: status=${login.response.status}`);
-  assert(login.json?.ok === true, "Parent login response must include ok=true");
+  if (login.response.status === 200 && login.json?.ok === true) {
+    const sessionCookie = getSessionCookie(login.response.headers.get("set-cookie"));
+    assert(sessionCookie, "Parent login response missing ccth_session cookie");
+    return sessionCookie;
+  }
 
-  const sessionCookie = getSessionCookie(login.response.headers.get("set-cookie"));
-  assert(sessionCookie, "Parent login response missing ccth_session cookie");
+  if (credentialsAreConfigured) {
+    assert(login.response.status === 200, `Parent login failed: status=${login.response.status}`);
+    assert(login.json?.ok === true, "Parent login response must include ok=true");
+  }
 
-  return sessionCookie;
+  const fallbackEmail = `e2e.parent+${Date.now()}@example.com`;
+  return signupParent(baseUrl, fallbackEmail, password);
 }
 
 async function runCaregiverInviteSmoke(baseUrl) {

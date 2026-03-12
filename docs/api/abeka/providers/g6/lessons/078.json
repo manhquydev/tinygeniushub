@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g6",
+    "provider_slug": "g6",
+    "course": "lesson-078",
+    "course_slug": "078",
+    "grade_id": "6",
+    "page_count": 1,
+    "video_count": 8
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "page_key": "g6/078",
+      "path_segments": [
+        "g6",
+        "078"
+      ],
+      "provider": "g6",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 78,
+      "video_count": 8,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Arithmetic 6",
+          "description": "Arithmetic 6 - Lesson: 78 - Teacher: Mr. Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AT078F/06AT078F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible 6",
+          "description": "Bible 6 - Lesson: 78 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06BI078F/06BI078F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 6",
+          "description": "History 6 - Lesson: 78 - Teacher: Miss Lewis",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06HI078F/06HI078F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Language 6",
+          "description": "Language 6 - Lesson: 78 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06LA078F/06LA078F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Penmanship 6",
+          "description": "Penmanship 6 - Lesson: 78 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06PN078F/06PN078F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Reading 6",
+          "description": "Reading 6 - Lesson: 78 - Teacher: Miss Moses",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06RE078F/06RE078F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Science 6",
+          "description": "Science 6 - Lesson: 78 - Teacher: Miss Lewis",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SC078F/06SC078F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Spelling 6",
+          "description": "Spelling 6 - Lesson: 78 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SP078F/06SP078F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g6",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 78,
+      "page_key": "g6/078",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 1,
+      "title": "Arithmetic 6",
+      "description": "Arithmetic 6 - Lesson: 78 - Teacher: Mr. Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AT078F/06AT078F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 78,
+      "page_key": "g6/078",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 2,
+      "title": "Bible 6",
+      "description": "Bible 6 - Lesson: 78 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06BI078F/06BI078F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 78,
+      "page_key": "g6/078",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 3,
+      "title": "History 6",
+      "description": "History 6 - Lesson: 78 - Teacher: Miss Lewis",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06HI078F/06HI078F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 78,
+      "page_key": "g6/078",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 4,
+      "title": "Language 6",
+      "description": "Language 6 - Lesson: 78 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06LA078F/06LA078F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 78,
+      "page_key": "g6/078",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 5,
+      "title": "Penmanship 6",
+      "description": "Penmanship 6 - Lesson: 78 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06PN078F/06PN078F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 78,
+      "page_key": "g6/078",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 6,
+      "title": "Reading 6",
+      "description": "Reading 6 - Lesson: 78 - Teacher: Miss Moses",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06RE078F/06RE078F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 78,
+      "page_key": "g6/078",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 7,
+      "title": "Science 6",
+      "description": "Science 6 - Lesson: 78 - Teacher: Miss Lewis",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SC078F/06SC078F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 78,
+      "page_key": "g6/078",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 8,
+      "title": "Spelling 6",
+      "description": "Spelling 6 - Lesson: 78 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SP078F/06SP078F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

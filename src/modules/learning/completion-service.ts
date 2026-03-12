@@ -5,6 +5,7 @@ import { isPrismaUniqueConstraintError } from "@/lib/prisma-error";
 import { assertLessonVideoWatchCompleted } from "@/modules/learning/video-watch-service";
 import { DomainError } from "@/modules/platform/errors";
 import { recordSkillAttempt } from "@/modules/adaptive/skill-attempt-service";
+import { syncJourneyProgress } from "@/modules/garden/journey-service";
 import { z } from "zod";
 
 export const completeLessonSchema = z.object({
@@ -37,6 +38,81 @@ export function computeStreakCount(params: {
   }
 
   return 1;
+}
+
+type JourneySyncImpact = {
+  journeyId: string;
+  completedLessonDelta: number;
+  unlockedTierNos: number[];
+  becameCompleted: boolean;
+};
+
+type JourneySyncSummary = {
+  attempted: number;
+  synced: number;
+  failed: number;
+  impacts: JourneySyncImpact[];
+};
+
+async function syncJourneysForCompletedLesson(params: {
+  parentId: string;
+  childId: string;
+  lessonId: string;
+}): Promise<JourneySyncSummary | null> {
+  const journeys = await prisma.childCourseJourney.findMany({
+    where: {
+      childId: params.childId,
+      course: {
+        lessons: {
+          some: {
+            lessonId: params.lessonId,
+          },
+        },
+      },
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  if (journeys.length === 0) {
+    return null;
+  }
+
+  const settled = await Promise.allSettled(
+    journeys.map((journey) =>
+      syncJourneyProgress({
+        parentId: params.parentId,
+        childId: params.childId,
+        journeyId: journey.id,
+      }),
+    ),
+  );
+
+  const impacts: JourneySyncImpact[] = [];
+  let failed = 0;
+
+  for (let index = 0; index < settled.length; index += 1) {
+    const item = settled[index];
+    if (!item) continue;
+    if (item.status === "fulfilled") {
+      impacts.push({
+        journeyId: journeys[index]!.id,
+        completedLessonDelta: item.value.metrics.completedLessonDelta,
+        unlockedTierNos: item.value.metrics.unlockedTierNos,
+        becameCompleted: item.value.metrics.becameCompleted,
+      });
+      continue;
+    }
+    failed += 1;
+  }
+
+  return {
+    attempted: journeys.length,
+    synced: impacts.length,
+    failed,
+    impacts,
+  };
 }
 
 export async function completeLesson(params: {
@@ -246,6 +322,19 @@ export async function completeLesson(params: {
           }),
         ),
       ).catch(() => {});
+    }
+
+    if (!result.idempotent) {
+      const journeySync = await syncJourneysForCompletedLesson({
+        parentId: params.parentId,
+        childId: payload.childId,
+        lessonId: params.lessonId,
+      });
+
+      return {
+        ...result,
+        journeySync,
+      };
     }
 
     return result;

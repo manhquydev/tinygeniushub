@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "Heinemann",
+    "provider_slug": "heinemann",
+    "course_count": 2,
+    "page_count": 2,
+    "video_count": 180
+  },
+  "courses": [
+    {
+      "course": "G1",
+      "course_slug": "g1",
+      "page_count": 1,
+      "video_count": 110,
+      "path": "providers/heinemann/courses/g1.json"
+    },
+    {
+      "course": "GK",
+      "course_slug": "gk",
+      "page_count": 1,
+      "video_count": 70,
+      "path": "providers/heinemann/courses/gk.json"
+    }
+  ]
+}

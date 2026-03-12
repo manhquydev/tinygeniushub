@@ -108,7 +108,16 @@ function extractSessionCookie(setCookieHeader) {
     return null;
   }
 
-  const match = setCookieHeader.match(/ccth_session=[^;]+/);
+  const match = setCookieHeader.match(/(?:__Secure-|__Host-)?ccth_session=[^;]+/);
+  return match ? match[0] : null;
+}
+
+function extractAdminSessionCookie(setCookieHeader) {
+  if (!setCookieHeader) {
+    return null;
+  }
+
+  const match = setCookieHeader.match(/(?:__Secure-|__Host-)?ccth_admin_session=[^;]+/);
   return match ? match[0] : null;
 }
 
@@ -169,6 +178,20 @@ async function loginParent(baseUrl, payload) {
 
   const cookie = extractSessionCookie(login.response.headers.get("set-cookie"));
   assert(cookie, "Login response missing session cookie");
+  return cookie;
+}
+
+async function loginAdmin(baseUrl, payload) {
+  const login = await requestJson(baseUrl, "/api/admin/auth/login", {
+    method: "POST",
+    body: payload,
+  });
+
+  assert(login.response.status === 200, `Admin login failed: status=${login.response.status}`);
+  assert(login.json?.ok === true, "Admin login did not return ok=true");
+
+  const cookie = extractAdminSessionCookie(login.response.headers.get("set-cookie"));
+  assert(cookie, "Admin login response missing session cookie");
   return cookie;
 }
 
@@ -570,7 +593,7 @@ async function main() {
       "Duplicate refund webhook should be reported as duplicate=true",
     );
 
-    const adminCookie = await loginParent(baseUrl, {
+    const adminCookie = await loginAdmin(baseUrl, {
       email: adminEmail,
       password: adminPassword,
     });

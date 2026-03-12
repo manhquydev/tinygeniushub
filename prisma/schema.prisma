@@ -293,6 +293,7 @@ model ChildProfile {
   skillAttempts      SkillAttempt[]
   placementAttempts  PlacementTestAttempt[]
   reviewQueues       ReviewQueue[]
+  courseJourneys     ChildCourseJourney[]
 
   @@index([parentId])
 }
@@ -875,6 +876,21 @@ model LifecycleEmailLog {
 
 // ========== COURSE SYSTEM ==========
 
+enum ChildCourseJourneyStatus {
+  SEEDED
+  ACTIVE
+  PAUSED
+  COMPLETED
+}
+
+enum ChildCourseJourneyEventType {
+  PLANTED
+  WATERED
+  LESSON_COMPLETED
+  TIER_UNLOCKED
+  JOURNEY_COMPLETED
+}
+
 model Course {
   id            String             @id @default(cuid())
   slug          String             @unique
@@ -888,6 +904,7 @@ model Course {
   updatedAt     DateTime           @updatedAt
   lessons       CourseLesson[]
   enrollments   CourseEnrollment[]
+  childJourneys ChildCourseJourney[]
 }
 
 model CourseLesson {
@@ -912,9 +929,68 @@ model CourseEnrollment {
   enrolledAt     DateTime      @default(now())
   course         Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
   parent         ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  sourceJourneys ChildCourseJourney[] @relation("JourneySourceEnrollment")
 
   @@unique([courseId, parentId])
   @@index([parentId])
+}
+
+model ChildCourseJourney {
+  id                 String                    @id @default(cuid())
+  childId            String
+  courseId           String
+  sourceEnrollmentId String?
+  status             ChildCourseJourneyStatus  @default(SEEDED)
+  seedName           String
+  currentTierNo      Int                       @default(1)
+  currentTierProgress Float                    @default(0)
+  plantedAt          DateTime                  @default(now())
+  activatedAt        DateTime?
+  completedAt        DateTime?
+  createdAt          DateTime                  @default(now())
+  updatedAt          DateTime                  @updatedAt
+  child              ChildProfile              @relation(fields: [childId], references: [id], onDelete: Cascade)
+  course             Course                    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  sourceEnrollment   CourseEnrollment?         @relation("JourneySourceEnrollment", fields: [sourceEnrollmentId], references: [id], onDelete: SetNull)
+  tiers              ChildCourseJourneyTier[]
+  events             ChildCourseJourneyEvent[]
+
+  @@unique([childId, courseId])
+  @@index([childId, status])
+  @@index([courseId])
+  @@index([sourceEnrollmentId])
+}
+
+model ChildCourseJourneyTier {
+  id              String             @id @default(cuid())
+  journeyId       String
+  tierNo          Int
+  tierKey         String
+  title           String
+  lessonTotal     Int
+  lessonCompleted Int                @default(0)
+  isUnlocked      Boolean            @default(false)
+  unlockedAt      DateTime?
+  isCompleted     Boolean            @default(false)
+  completedAt     DateTime?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+  journey         ChildCourseJourney @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+
+  @@unique([journeyId, tierNo])
+  @@index([journeyId, isUnlocked, tierNo])
+}
+
+model ChildCourseJourneyEvent {
+  id        String                     @id @default(cuid())
+  journeyId String
+  eventType ChildCourseJourneyEventType
+  payload   Json?
+  createdAt DateTime                   @default(now())
+  journey   ChildCourseJourney         @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+
+  @@index([journeyId, createdAt])
+  @@index([journeyId, eventType, createdAt])
 }
 
 model GiftCode {

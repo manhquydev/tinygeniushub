@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g6",
+    "provider_slug": "g6",
+    "course": "lesson-050",
+    "course_slug": "050",
+    "grade_id": "6",
+    "page_count": 1,
+    "video_count": 8
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "page_key": "g6/050",
+      "path_segments": [
+        "g6",
+        "050"
+      ],
+      "provider": "g6",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 50,
+      "video_count": 8,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Arithmetic 6",
+          "description": "Arithmetic 6 - Lesson: 50 - Teacher: Mr. Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AT050F/06AT050F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible 6",
+          "description": "Bible 6 - Lesson: 50 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06BI050F/06BI050F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 6",
+          "description": "History 6 - Lesson: 50 - Teacher: Miss Lewis",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06HI050F/06HI050F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Language 6",
+          "description": "Language 6 - Lesson: 50 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06LA050F/06LA050F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Penmanship 6",
+          "description": "Penmanship 6 - Lesson: 50 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06PN050F/06PN050F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Reading 6",
+          "description": "Reading 6 - Lesson: 50 - Teacher: Miss Moses",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06RE050F/06RE050F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Science 6",
+          "description": "Science 6 - Lesson: 50 - Teacher: Miss Lewis",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SC050F/06SC050F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Spelling 6",
+          "description": "Spelling 6 - Lesson: 50 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SP050F/06SP050F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g6",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 50,
+      "page_key": "g6/050",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 1,
+      "title": "Arithmetic 6",
+      "description": "Arithmetic 6 - Lesson: 50 - Teacher: Mr. Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AT050F/06AT050F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 50,
+      "page_key": "g6/050",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 2,
+      "title": "Bible 6",
+      "description": "Bible 6 - Lesson: 50 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06BI050F/06BI050F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 50,
+      "page_key": "g6/050",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 3,
+      "title": "History 6",
+      "description": "History 6 - Lesson: 50 - Teacher: Miss Lewis",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06HI050F/06HI050F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 50,
+      "page_key": "g6/050",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 4,
+      "title": "Language 6",
+      "description": "Language 6 - Lesson: 50 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06LA050F/06LA050F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 50,
+      "page_key": "g6/050",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 5,
+      "title": "Penmanship 6",
+      "description": "Penmanship 6 - Lesson: 50 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06PN050F/06PN050F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 50,
+      "page_key": "g6/050",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 6,
+      "title": "Reading 6",
+      "description": "Reading 6 - Lesson: 50 - Teacher: Miss Moses",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06RE050F/06RE050F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 50,
+      "page_key": "g6/050",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 7,
+      "title": "Science 6",
+      "description": "Science 6 - Lesson: 50 - Teacher: Miss Lewis",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SC050F/06SC050F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 50,
+      "page_key": "g6/050",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 8,
+      "title": "Spelling 6",
+      "description": "Spelling 6 - Lesson: 50 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SP050F/06SP050F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

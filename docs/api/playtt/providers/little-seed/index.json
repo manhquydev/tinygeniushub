@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "Little Seed",
+    "provider_slug": "little-seed",
+    "course_count": 1,
+    "page_count": 1,
+    "video_count": 18
+  },
+  "courses": [
+    {
+      "course": "01",
+      "course_slug": "01",
+      "page_count": 1,
+      "video_count": 18,
+      "path": "providers/little-seed/courses/01.json"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "Numberblocks",
+    "provider_slug": "numberblocks",
+    "course": "S05",
+    "course_slug": "s05",
+    "page_count": 1,
+    "video_count": 5
+  },
+  "pages": [
+    {
+      "resource_root": "/playtt",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S05",
+      "page_key": "Numberblocks/S05",
+      "path_segments": [
+        "Numberblocks",
+        "S05"
+      ],
+      "provider": "Numberblocks",
+      "course": "S05",
+      "topic": "",
+      "video_count": 5,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Numberblocks S05E01 Sixty",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E01_Sixty",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "xyz/numberblocks/s05/numberblocks_s05e01_sixty"
+        },
+        {
+          "order": 2,
+          "title": "Numberblocks S05E02 The Big One",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E02_The%20Big%20One.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Numberblocks S05E03 One Hundred",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E03_One%20Hundred.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Numberblocks S05E04 One Thousand and One",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E04_One%20Thousand%20and%20One.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Numberblocks S05E05 More to Explore",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E05_More%20to%20Explore.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "Numberblocks",
+      "course": "S05",
+      "topic": "",
+      "page_key": "Numberblocks/S05",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S05",
+      "order": 1,
+      "title": "Numberblocks S05E01 Sixty",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E01_Sixty",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "xyz/numberblocks/s05/numberblocks_s05e01_sixty"
+    },
+    {
+      "provider": "Numberblocks",
+      "course": "S05",
+      "topic": "",
+      "page_key": "Numberblocks/S05",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S05",
+      "order": 2,
+      "title": "Numberblocks S05E02 The Big One",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E02_The%20Big%20One.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Numberblocks",
+      "course": "S05",
+      "topic": "",
+      "page_key": "Numberblocks/S05",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S05",
+      "order": 3,
+      "title": "Numberblocks S05E03 One Hundred",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E03_One%20Hundred.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Numberblocks",
+      "course": "S05",
+      "topic": "",
+      "page_key": "Numberblocks/S05",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S05",
+      "order": 4,
+      "title": "Numberblocks S05E04 One Thousand and One",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E04_One%20Thousand%20and%20One.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Numberblocks",
+      "course": "S05",
+      "topic": "",
+      "page_key": "Numberblocks/S05",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S05",
+      "order": 5,
+      "title": "Numberblocks S05E05 More to Explore",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S05/Numberblocks_S05E05_More%20to%20Explore.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

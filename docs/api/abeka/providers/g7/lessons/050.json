@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g7",
+    "provider_slug": "g7",
+    "course": "lesson-050",
+    "course_slug": "050",
+    "grade_id": "7",
+    "page_count": 1,
+    "video_count": 5
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "page_key": "g7/050",
+      "path_segments": [
+        "g7",
+        "050"
+      ],
+      "provider": "g7",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 50,
+      "video_count": 5,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Bible 7",
+          "description": "Bible 7 - Lesson: 50 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI050E/07BI050E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 7",
+          "description": "English 7 - Lesson: 50 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN050E/07EN050E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Intermediate Mathematics",
+          "description": "Intermediate Mathematics - Lesson: 50 - Teacher: Miss Barnhart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM050E/07IM050E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Science 7",
+          "description": "Science 7 - Lesson: 50 - Teacher: Miss de Lima",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC050D/07SC050D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "World History 7",
+          "description": "World History 7 - Lesson: 50 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH050E/07WH050E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g7",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 50,
+      "page_key": "g7/050",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 1,
+      "title": "Bible 7",
+      "description": "Bible 7 - Lesson: 50 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI050E/07BI050E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 50,
+      "page_key": "g7/050",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 2,
+      "title": "English 7",
+      "description": "English 7 - Lesson: 50 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN050E/07EN050E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 50,
+      "page_key": "g7/050",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 3,
+      "title": "Intermediate Mathematics",
+      "description": "Intermediate Mathematics - Lesson: 50 - Teacher: Miss Barnhart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM050E/07IM050E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 50,
+      "page_key": "g7/050",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 4,
+      "title": "Science 7",
+      "description": "Science 7 - Lesson: 50 - Teacher: Miss de Lima",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC050D/07SC050D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-050",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 50,
+      "page_key": "g7/050",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 5,
+      "title": "World History 7",
+      "description": "World History 7 - Lesson: 50 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH050E/07WH050E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

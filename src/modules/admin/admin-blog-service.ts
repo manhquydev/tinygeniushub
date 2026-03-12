@@ -45,6 +45,10 @@ const defaultFeatureFlags = [
     key: "AI_LESSON_SUGGESTIONS",
     description: "Gá»£i Ã½ bÃ i há»c báº±ng AI (sáº¯p ra máº¯t)",
   },
+  {
+    key: "KID_SKY_GARDEN_MVP",
+    description: "Giao diện khu vườn trên mây cho trang học của bé",
+  },
 ] as const;
 
 // Module-level cache: only seed default flags once per process lifetime

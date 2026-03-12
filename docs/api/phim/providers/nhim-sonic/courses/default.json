@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "resource_root": "/phim",
+    "provider": "nhim-sonic",
+    "provider_slug": "nhim-sonic",
+    "course": "default",
+    "course_slug": "default",
+    "page_count": 1,
+    "video_count": 1
+  },
+  "pages": [
+    {
+      "resource_root": "/phim",
+      "page_url": "https://hoctienganh.xyz/phim/nhim-sonic",
+      "page_key": "nhim-sonic",
+      "path_segments": [
+        "nhim-sonic"
+      ],
+      "provider": "nhim-sonic",
+      "course": "",
+      "topic": "",
+      "video_count": 1,
+      "videos": [
+        {
+          "order": 1,
+          "title": "index",
+          "video_url": "https://vip.opstream12.com/20220218/402_6e7b854f/index.m3u8",
+          "host": "vip.opstream12.com",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "nhim-sonic",
+      "course": "default",
+      "topic": "",
+      "page_key": "nhim-sonic",
+      "page_url": "https://hoctienganh.xyz/phim/nhim-sonic",
+      "order": 1,
+      "title": "index",
+      "video_url": "https://vip.opstream12.com/20220218/402_6e7b854f/index.m3u8",
+      "host": "vip.opstream12.com",
+      "ext": "m3u8"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "base": "http://localhost:3000",
+  "childId": "cmmnr2sta000ymmlcgeq9ymfu",
+  "viewports": [
+    {
+      "viewport": {
+        "name": "mobile-390x844",
+        "width": 390,
+        "height": 844
+      },
+      "checks": [
+        {
+          "scrollTop": 0,
+          "pairs": [],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\mobile-390x844-scroll-0.png"
+        },
+        {
+          "scrollTop": 520,
+          "pairs": [],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\mobile-390x844-scroll-520.png"
+        },
+        {
+          "scrollTop": 980,
+          "pairs": [
+            {
+              "type": "overlap",
+              "a": "node",
+              "b": "hud",
+              "target": ".ksg-node-wrap#1",
+              "area": 55388.197803497314
+            }
+          ],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\mobile-390x844-scroll-980.png"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "name": "mobile-430x932",
+        "width": 430,
+        "height": 932
+      },
+      "checks": [
+        {
+          "scrollTop": 0,
+          "pairs": [],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\mobile-430x932-scroll-0.png"
+        },
+        {
+          "scrollTop": 520,
+          "pairs": [],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\mobile-430x932-scroll-520.png"
+        },
+        {
+          "scrollTop": 980,
+          "pairs": [
+            {
+              "type": "overlap",
+              "a": "node",
+              "b": "hud",
+              "target": ".ksg-node-wrap#1",
+              "area": 28405.916431427002
+            }
+          ],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\mobile-430x932-scroll-980.png"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "name": "tablet-768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "checks": [
+        {
+          "scrollTop": 0,
+          "pairs": [],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\tablet-768x1024-scroll-0.png"
+        },
+        {
+          "scrollTop": 520,
+          "pairs": [],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\tablet-768x1024-scroll-520.png"
+        },
+        {
+          "scrollTop": 980,
+          "pairs": [],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\tablet-768x1024-scroll-980.png"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "name": "desktop-1366x900",
+        "width": 1366,
+        "height": 900
+      },
+      "checks": [
+        {
+          "scrollTop": 0,
+          "pairs": [],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\desktop-1366x900-scroll-0.png"
+        },
+        {
+          "scrollTop": 520,
+          "pairs": [],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\desktop-1366x900-scroll-520.png"
+        },
+        {
+          "scrollTop": 980,
+          "pairs": [
+            {
+              "type": "overlap",
+              "a": "node",
+              "b": "hud",
+              "target": ".ksg-node-wrap#1",
+              "area": 40820.06814956665
+            }
+          ],
+          "shot": "D:\\project\\cungcontuhoc\\.runtime\\qa-layout\\desktop-1366x900-scroll-980.png"
+        }
+      ]
+    }
+  ]
+}

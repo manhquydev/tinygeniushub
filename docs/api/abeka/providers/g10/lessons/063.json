@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g10",
+    "provider_slug": "g10",
+    "course": "lesson-063",
+    "course_slug": "063",
+    "grade_id": "10",
+    "page_count": 1,
+    "video_count": 8
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "page_key": "g10/063",
+      "path_segments": [
+        "g10",
+        "063"
+      ],
+      "provider": "g10",
+      "course": "lesson-063",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 63,
+      "video_count": 8,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Additional Review 5.3",
+          "description": "Additional Review 5.3 - Lesson: 63 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2063E-AR5.3/10A2063E-AR5.3.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Algebra 2",
+          "description": "Algebra 2 - Lesson: 63 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2063E/10A2063E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Bible Doctrines",
+          "description": "Bible Doctrines - Lesson: 63 - Teacher: Mr. Birx",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI063C/10BI063C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Biology",
+          "description": "Biology - Lesson: 63 - Teacher: Miss Stancel",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY063E/10BY063E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Consumer Mathematics",
+          "description": "Consumer Mathematics - Lesson: 63 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM063B/10CM063B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "English 10",
+          "description": "English 10 - Lesson: 63 - Teacher: Mrs. Antich",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN063E/10EN063E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Optional Section 5.4",
+          "description": "Optional Section 5.4 - Lesson: 63 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2063E-OS5.4/10A2063E-OS5.4.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "World History 10",
+          "description": "World History 10 - Lesson: 63 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH063D/10WH063D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g10",
+      "course": "lesson-063",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 63,
+      "page_key": "g10/063",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 1,
+      "title": "Additional Review 5.3",
+      "description": "Additional Review 5.3 - Lesson: 63 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2063E-AR5.3/10A2063E-AR5.3.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-063",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 63,
+      "page_key": "g10/063",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 2,
+      "title": "Algebra 2",
+      "description": "Algebra 2 - Lesson: 63 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2063E/10A2063E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-063",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 63,
+      "page_key": "g10/063",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 3,
+      "title": "Bible Doctrines",
+      "description": "Bible Doctrines - Lesson: 63 - Teacher: Mr. Birx",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI063C/10BI063C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-063",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 63,
+      "page_key": "g10/063",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 4,
+      "title": "Biology",
+      "description": "Biology - Lesson: 63 - Teacher: Miss Stancel",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY063E/10BY063E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-063",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 63,
+      "page_key": "g10/063",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 5,
+      "title": "Consumer Mathematics",
+      "description": "Consumer Mathematics - Lesson: 63 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM063B/10CM063B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-063",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 63,
+      "page_key": "g10/063",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 6,
+      "title": "English 10",
+      "description": "English 10 - Lesson: 63 - Teacher: Mrs. Antich",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN063E/10EN063E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-063",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 63,
+      "page_key": "g10/063",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 7,
+      "title": "Optional Section 5.4",
+      "description": "Optional Section 5.4 - Lesson: 63 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2063E-OS5.4/10A2063E-OS5.4.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-063",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 63,
+      "page_key": "g10/063",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 8,
+      "title": "World History 10",
+      "description": "World History 10 - Lesson: 63 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH063D/10WH063D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

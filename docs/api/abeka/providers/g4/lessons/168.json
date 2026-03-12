@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g4",
+    "provider_slug": "g4",
+    "course": "lesson-168",
+    "course_slug": "168",
+    "grade_id": "4",
+    "page_count": 1,
+    "video_count": 8
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "page_key": "g4/168",
+      "path_segments": [
+        "g4",
+        "168"
+      ],
+      "provider": "g4",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 168,
+      "video_count": 8,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Arithmetic 4",
+          "description": "Arithmetic 4 - Lesson: 168 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AT168G/04AT168G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible 4",
+          "description": "Bible 4 - Lesson: 168 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04BI168G/04BI168G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 4",
+          "description": "History 4 - Lesson: 168 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04HI168G/04HI168G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Language 4",
+          "description": "Language 4 - Lesson: 168 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04LA168G/04LA168G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Reading 4",
+          "description": "Reading 4 - Lesson: 168 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04RE168G/04RE168G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Science/Health",
+          "description": "Science/Health - Lesson: 168 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04HE168G/04HE168G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Spelling 4",
+          "description": "Spelling 4 - Lesson: 168 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SP168G/04SP168G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Writing 4",
+          "description": "Writing 4 - Lesson: 168 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04WR168G/04WR168G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g4",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 168,
+      "page_key": "g4/168",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 1,
+      "title": "Arithmetic 4",
+      "description": "Arithmetic 4 - Lesson: 168 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AT168G/04AT168G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 168,
+      "page_key": "g4/168",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 2,
+      "title": "Bible 4",
+      "description": "Bible 4 - Lesson: 168 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04BI168G/04BI168G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 168,
+      "page_key": "g4/168",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 3,
+      "title": "History 4",
+      "description": "History 4 - Lesson: 168 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04HI168G/04HI168G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 168,
+      "page_key": "g4/168",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 4,
+      "title": "Language 4",
+      "description": "Language 4 - Lesson: 168 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04LA168G/04LA168G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 168,
+      "page_key": "g4/168",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 5,
+      "title": "Reading 4",
+      "description": "Reading 4 - Lesson: 168 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04RE168G/04RE168G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 168,
+      "page_key": "g4/168",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 6,
+      "title": "Science/Health",
+      "description": "Science/Health - Lesson: 168 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04HE168G/04HE168G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 168,
+      "page_key": "g4/168",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 7,
+      "title": "Spelling 4",
+      "description": "Spelling 4 - Lesson: 168 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SP168G/04SP168G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 168,
+      "page_key": "g4/168",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 8,
+      "title": "Writing 4",
+      "description": "Writing 4 - Lesson: 168 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04WR168G/04WR168G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

@@ -140,7 +140,7 @@ function getSessionCookie(setCookieHeader) {
     return null;
   }
 
-  const match = setCookieHeader.match(/ccth_session=[^;]+/);
+  const match = setCookieHeader.match(/(?:__Secure-|__Host-)?ccth_session=[^;]+/);
   return match ? match[0] : null;
 }
 

@@ -85,7 +85,6 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
   const isKidUI = pathname.startsWith("/kid");
 
   const parentLinks: NavItemConfig[] = [
-    { href: "/pricing", label: "Bảng giá", hideOnMobile: true, matchMode: "prefix" },
     { href: "/about", label: "Giới thiệu", hideOnMobile: true, matchMode: "prefix" },
     { href: "/blog", label: "Blog", hideOnMobile: true, matchMode: "prefix" },
     { href: "/parent/dashboard", label: "Dashboard", matchMode: "prefix" },
@@ -97,7 +96,6 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
   ];
 
   const guestLinks: NavItemConfig[] = [
-    { href: "/pricing", label: "Bảng giá", hideOnMobile: true, matchMode: "prefix" },
     { href: "/for-schools", label: "Cho trường học", hideOnMobile: true, matchMode: "prefix" },
     { href: "/about", label: "Giới thiệu", hideOnMobile: true, matchMode: "prefix" },
     { href: "/blog", label: "Blog", hideOnMobile: true, matchMode: "prefix" },

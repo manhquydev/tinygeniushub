@@ -7,6 +7,7 @@ import { prisma } from "@/lib/db";
 
 export const FEATURE_FLAGS = {
   ADAPTIVE_ENGINE_ENABLED: "ADAPTIVE_ENGINE_ENABLED",
+  KID_SKY_GARDEN_MVP: "KID_SKY_GARDEN_MVP",
 } as const;
 
 /**
@@ -26,6 +27,13 @@ export async function isFeatureFlagEnabled(key: string): Promise<boolean> {
  */
 export async function isAdaptiveEngineEnabled(): Promise<boolean> {
   return isFeatureFlagEnabled(FEATURE_FLAGS.ADAPTIVE_ENGINE_ENABLED);
+}
+
+/**
+ * Check if kid today page should use the new Sky Garden MVP scene.
+ */
+export async function isKidSkyGardenMvpEnabled(): Promise<boolean> {
+  return isFeatureFlagEnabled(FEATURE_FLAGS.KID_SKY_GARDEN_MVP);
 }
 
 /**

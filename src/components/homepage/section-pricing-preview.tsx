@@ -53,6 +53,27 @@ export function SectionPricingPreview() {
             <ul className="hp-feature-list">
               {FAMILY_FEATURES.map((f) => <li key={f}>{f}</li>)}
             </ul>
+            
+            <div className="pricing-trust-signals" style={{
+              marginTop: "1rem",
+              marginBottom: "1rem",
+              padding: "0.8rem",
+              backgroundColor: "#f0fdf4",
+              borderRadius: "0.5rem",
+              fontSize: "0.85rem",
+              lineHeight: "1.6",
+            }}>
+              <div style={{ marginBottom: "0.5rem" }}>
+                ✅ 5,200+ bài học hoàn thành · 92% phụ huynh quay lại tuần 2
+              </div>
+              <div style={{ marginBottom: "0.5rem" }}>
+                🎁 Dùng thử 7 ngày miễn phí · Không cần thẻ
+              </div>
+              <div>
+                ⭐ 4.8/5 từ families đang dùng · Tiết kiệm 389,000đ/năm
+              </div>
+            </div>
+            
             <Link href="/auth/signup" className="solid-button full-width hp-price-cta-main">
               Bắt đầu miễn phí 7 ngày
               <ArrowRight size={14} aria-hidden />
@@ -62,7 +83,7 @@ export function SectionPricingPreview() {
         </div>
 
         <Link href="/pricing" className="hp-more-link">
-          Xem chi tiết bảng giá →
+          Xem chi tiết gói học →
         </Link>
       </div>
     </section>

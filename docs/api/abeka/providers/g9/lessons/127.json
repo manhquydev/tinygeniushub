@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g9",
+    "provider_slug": "g9",
+    "course": "lesson-127",
+    "course_slug": "127",
+    "grade_id": "9",
+    "page_count": 1,
+    "video_count": 4
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "page_key": "g9/127",
+      "path_segments": [
+        "g9",
+        "127"
+      ],
+      "provider": "g9",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 127,
+      "video_count": 4,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Algebra 1",
+          "description": "Algebra 1 - Lesson: 127 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1127G/09A1127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 9",
+          "description": "English 9 - Lesson: 127 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09EN127E/09EN127E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Hebrew History",
+          "description": "Hebrew History - Lesson: 127 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HH127E/09HH127E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Physical Science",
+          "description": "Physical Science - Lesson: 127 - Teacher: Dr. Ridgley",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09PS127D/09PS127D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g9",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 127,
+      "page_key": "g9/127",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 1,
+      "title": "Algebra 1",
+      "description": "Algebra 1 - Lesson: 127 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1127G/09A1127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 127,
+      "page_key": "g9/127",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 2,
+      "title": "English 9",
+      "description": "English 9 - Lesson: 127 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09EN127E/09EN127E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 127,
+      "page_key": "g9/127",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 3,
+      "title": "Hebrew History",
+      "description": "Hebrew History - Lesson: 127 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HH127E/09HH127E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 127,
+      "page_key": "g9/127",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 4,
+      "title": "Physical Science",
+      "description": "Physical Science - Lesson: 127 - Teacher: Dr. Ridgley",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09PS127D/09PS127D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

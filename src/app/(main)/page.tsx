@@ -1,24 +1,14 @@
 import type { Metadata } from "next";
-import "@/components/homepage/homepage.css";
-import { SectionFaq } from "@/components/homepage/section-faq";
-import { SectionFeatures } from "@/components/homepage/section-features";
-import { SectionFinalCta } from "@/components/homepage/section-final-cta";
-import { SectionHero } from "@/components/homepage/section-hero";
-import { SectionHowItWorks } from "@/components/homepage/section-how-it-works";
-import { SectionNav } from "@/components/homepage/section-nav";
-import { SectionFunnelAwareness } from "@/components/homepage/section-funnel-awareness";
-import { SectionPricingPreview } from "@/components/homepage/section-pricing-preview";
-import { SectionProblem } from "@/components/homepage/section-problem";
-import { SectionProductDemo } from "@/components/homepage/section-product-demo";
-import { SectionTestimonials } from "@/components/homepage/section-testimonials";
-import { SectionTrustSignals } from "@/components/homepage/section-trust-signals";
+import "@/components/homepage/cloud-garden-home.css";
+import { CloudGardenHome } from "@/components/homepage/cloud-garden-home";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Cùng Con Tự Học — Toán & Tiếng Anh cho trẻ 2-6 tuổi",
+    absolute: "Cùng Con Tự Học | Khu Vườn Trên Mây",
   },
   description:
-    "Ứng dụng đầu tiên dạy Toán tư duy + Tiếng Anh Phonics cho bé 2–6 tuổi. 15 phút/ngày, báo cáo tuần tự động. Dùng thử 7 ngày miễn phí.",
+    "Trang chủ mới theo concept Khu Vườn Trên Mây: gieo cây theo khóa học, mở tầng theo tiến độ, vào học ngay từ hành trình của bé.",
   robots: {
     index: true,
     follow: true,
@@ -28,8 +18,9 @@ export const metadata: Metadata = {
     canonical: "https://cungcontuhoc.io.vn",
   },
   openGraph: {
-    title: "Cùng Con Tự Học — Toán & Tiếng Anh cho trẻ 2-6 tuổi",
-    description: "Toán tư duy + Tiếng Anh Phonics trong 1 nền tảng. 15 phút/ngày, phụ huynh thấy kết quả sau 30 ngày.",
+    title: "Cùng Con Tự Học | Khu Vườn Trên Mây",
+    description:
+      "Một trải nghiệm marketing và học tập trực quan cho phụ huynh và trẻ nhỏ: gieo cây, mở tầng mây, vào học ngay.",
     url: "https://cungcontuhoc.io.vn",
     type: "website",
     locale: "vi_VN",
@@ -38,14 +29,32 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Cùng Con Tự Học — Toán & Tiếng Anh cho trẻ 2-6 tuổi",
+        alt: "Cùng Con Tự Học - Khu Vườn Trên Mây",
       },
     ],
   },
   twitter: {
-    title: "Cùng Con Tự Học — Toán & Tiếng Anh cho trẻ 2-6 tuổi",
-    description: "Dùng thử 7 ngày miễn phí, không cần thẻ tín dụng. Hoàn tiền 30 ngày.",
+    title: "Cùng Con Tự Học | Khu Vườn Trên Mây",
+    description: "Trang chủ phá cách theo hành trình cây đậu trên mây, tập trung trải nghiệm thay vì tường chữ.",
     images: ["/opengraph-image"],
+  },
+};
+
+const jsonLdWebsite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Cùng Con Tự Học",
+  url: "https://cungcontuhoc.io.vn",
+  inLanguage: "vi",
+  description:
+    "Nền tảng học tập cho trẻ nhỏ với trải nghiệm Khu Vườn Trên Mây: lộ trình trực quan, tiến độ rõ ràng, phụ huynh theo dõi dễ dàng.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://cungcontuhoc.io.vn/courses?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
   },
 };
 
@@ -58,24 +67,73 @@ const jsonLdApp = {
   inLanguage: "vi",
   url: "https://cungcontuhoc.io.vn",
   offers: {
-    "@type": "AggregateOffer",
-    lowPrice: "799000",
-    highPrice: "1199000",
+    "@type": "Offer",
+    price: "0",
     priceCurrency: "VND",
-    offerCount: "2",
+    description: "Dùng thử miễn phí 7 ngày",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "1250",
+  },
+  author: {
+    "@type": "Organization",
+    name: "Cùng Con Tự Học",
   },
 };
 
-const jsonLdWebsite = {
+const jsonLdOrganization = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
+  "@type": "EducationalOrganization",
   name: "Cùng Con Tự Học",
   url: "https://cungcontuhoc.io.vn",
-  inLanguage: "vi",
-  description: "Lộ trình học tập cho trẻ 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ.",
+  logo: "https://cungcontuhoc.io.vn/logo.png",
+  description:
+    "Nền tảng giáo dục sớm cho trẻ 2-6 tuổi. Học Toán & Tiếng Anh qua trò chơi tương tác trong Khu Vườn Trên Mây.",
+  sameAs: [
+    "https://www.facebook.com/cungcontuhoc",
+    "https://zalo.me/cungcontuhoc",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "VN",
+    addressLocality: "Hà Nội",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "Customer Support",
+    email: "support@cungcontuhoc.io.vn",
+  },
 };
 
-const jsonLdFaq = {
+const jsonLdCourse = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: "Khu Vườn Trên Mây - Học Toán & Tiếng Anh",
+  description:
+    "Chương trình học tập tương tác cho trẻ 2-6 tuổi. Bao gồm 5 khu vườn: Toán học, Tiếng Anh Phonics, Nghệ thuật, Âm nhạc, và Truyện kể.",
+  provider: {
+    "@type": "Organization",
+    name: "Cùng Con Tự Học",
+    sameAs: "https://cungcontuhoc.io.vn",
+  },
+  educationalLevel: "Preschool & Kindergarten",
+  audience: {
+    "@type": "EducationalAudience",
+    educationalRole: "student",
+    audienceType: "Children aged 2-6",
+  },
+  availableLanguage: "vi",
+  isAccessibleForFree: true,
+  hasCourseInstance: {
+    "@type": "CourseInstance",
+    courseMode: "online",
+    courseWorkload: "PT15M",
+  },
+};
+
+const jsonLdFAQ = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
@@ -97,56 +155,58 @@ const jsonLdFaq = {
     },
     {
       "@type": "Question",
-      name: "Con tôi chỉ cần học 15 phút mỗi ngày thôi sao?",
+      name: "Học toán tư duy cho trẻ 2 tuổi có hiệu quả không?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Đúng vậy. Mỗi bài học gồm video ngắn + hoạt động offline + mini quiz. 15 phút đủ để duy trì thói quen học đều đặn.",
+        text: "Có. Trẻ 2 tuổi học toán qua hình ảnh, màu sắc, và trò chơi tương tác. Khu vườn Toán học sử dụng phương pháp Montessori kết hợp gamification để bé tự nhiên tiếp thu khái niệm số, hình khối, và so sánh.",
       },
     },
     {
       "@type": "Question",
-      name: "Tôi có thể xem con học được gì không?",
+      name: "Học tiếng Anh cho trẻ mầm non bắt đầu từ đâu?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Có. Dashboard phụ huynh hiển thị bài đã hoàn thành, điểm quiz, chuỗi ngày học. Báo cáo tuần tự động gửi qua email.",
+        text: "Bắt đầu từ Phonics (âm thanh chữ cái) và từ vựng đơn giản. Khu vườn Tiếng Anh sử dụng phương pháp TPR (Total Physical Response) - trẻ học qua hành động, âm nhạc, và lặp lại tự nhiên.",
       },
     },
     {
       "@type": "Question",
-      name: "Thanh toán như thế nào?",
+      name: "Khu Vườn Trên Mây là gì?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Thanh toán trực tuyến qua chuyển khoản ngân hàng hoặc ví điện tử. Gói Standard chỉ 799,000đ/năm — Toán tư duy + Tiếng Anh Phonics cho bé cả năm.",
+        text: "Khu Vườn Trên Mây là giao diện học tập dạng bản đồ tương tác. Mỗi khu vườn (Toán, Tiếng Anh, Nghệ thuật, Âm nhạc, Truyện) là một hành trình riêng. Trẻ chọn khu vườn → chọn bài học → hoàn thành để mở khóa bài tiếp theo.",
       },
     },
     {
       "@type": "Question",
-      name: "Nếu không hài lòng, có được hoàn tiền không?",
+      name: "Giá 799,000đ/năm bao gồm những gì?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Có. Hoàn tiền 100% trong 30 ngày đầu sau khi thanh toán, không hỏi lý do.",
+        text: "Gói Standard (799k/năm) bao gồm: Truy cập tất cả 5 khu vườn, lộ trình cá nhân hóa, báo cáo hàng tuần, PDF hoạt động offline, 3 hồ sơ con, và cập nhật bài học mới mỗi tháng. Không giới hạn số lần học.",
       },
     },
   ],
 };
 
 export default function HomePage() {
-  const jsonLd = { "@context": "https://schema.org", "@graph": [jsonLdApp, jsonLdWebsite, jsonLdFaq] };
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [jsonLdWebsite, jsonLdApp, jsonLdOrganization, jsonLdCourse, jsonLdFAQ],
+  };
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-      <SectionHero />
-      <SectionNav />
-      <SectionProblem />
-      <SectionFunnelAwareness />
-      <SectionHowItWorks />
-      <SectionFeatures />
-      <SectionTestimonials />
-      <SectionProductDemo />
-      <SectionPricingPreview />
-      <SectionTrustSignals />
-      <SectionFaq />
-      <SectionFinalCta />
+      {/* Prefetch key routes for faster navigation */}
+      <Link href="/try-garden" prefetch={true} style={{ display: "none" }} aria-hidden="true" />
+      <Link href="/auth/signup" prefetch={true} style={{ display: "none" }} aria-hidden="true" />
+      <Link href="/pricing" prefetch={true} style={{ display: "none" }} aria-hidden="true" />
+      <Link href="/courses" prefetch={true} style={{ display: "none" }} aria-hidden="true" />
+      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
+      <CloudGardenHome />
     </>
   );
 }

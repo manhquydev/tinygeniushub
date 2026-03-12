@@ -1,7 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { addMinutes } from "date-fns";
 import { prisma } from "@/lib/db";
-import { env } from "@/lib/env";
 import { DomainError } from "@/modules/platform/errors";
 import { getEnrollment } from "@/modules/courses/course-service";
 
@@ -39,15 +38,17 @@ export async function createCourseCheckoutSession(params: {
   const finalPriceVnd = hasActiveSub ? Math.round(course.priceVnd * 0.8) : course.priceVnd;
 
   const sessionId = `mock_course_${randomUUID()}`;
-  // Redirect to mock-success handler which creates the enrollment, then goes to lessons
-  const mockSuccessUrl = new URL("/api/courses/checkout/mock-success", env.BETTER_AUTH_URL);
-  mockSuccessUrl.searchParams.set("courseId", course.id);
-  mockSuccessUrl.searchParams.set("parentId", parentId);
-  mockSuccessUrl.searchParams.set("amountVnd", String(finalPriceVnd));
-  mockSuccessUrl.searchParams.set("sessionId", sessionId);
+  // Keep checkout redirect same-origin to avoid environment-specific host mismatches.
+  const mockSuccessParams = new URLSearchParams({
+    courseId: course.id,
+    parentId,
+    amountVnd: String(finalPriceVnd),
+    sessionId,
+  });
+  const checkoutUrl = `/api/courses/checkout/mock-success?${mockSuccessParams.toString()}`;
 
   return {
-    checkoutUrl: mockSuccessUrl.toString(),
+    checkoutUrl,
     discountApplied,
     finalPriceVnd,
     expiresAt: addMinutes(new Date(), 30),

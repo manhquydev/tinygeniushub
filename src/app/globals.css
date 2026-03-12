@@ -19,6 +19,31 @@
   --accent-coral: #f97316;
   --accent-coral-light: #fff7ed;
   --accent-coral-dark: #c2410c;
+
+  /* === CLOUD GARDEN DESIGN TOKENS === */
+  --garden-sky-zenith:    #1E1B4B;
+  --garden-sky-mid:       #4C1D95;
+  --garden-sky-dawn:      #7C3AED;
+  --garden-sky-horizon:   #C084FC;
+  --garden-sky-peach:     #FDE68A;
+  --garden-sky-blush:     #FCA5A5;
+  --garden-cloud-white:   #F9FAFB;
+  --garden-cloud-shadow:  rgba(196, 213, 235, 0.55);
+  --garden-cloud-glow:    rgba(255, 255, 255, 0.88);
+  --garden-math-gold:     #F59E0B;
+  --garden-math-gold-bg:  #FFFBEB;
+  --garden-phonics-teal:  #0EA5E9;
+  --garden-phonics-bg:    #EFF6FF;
+  --garden-art-coral:     #F97316;
+  --garden-art-bg:        #FFF7ED;
+  --garden-music-rose:    #EC4899;
+  --garden-music-bg:      #FDF2F8;
+  --garden-story-green:   #10B981;
+  --garden-story-bg:      #F0FDF4;
+  --garden-star-glow:     rgba(253, 224, 71, 0.5);
+  --garden-star-gold:     #FDE047;
+  --garden-correct-green: #4ADE80;
+  --garden-wrong-red:     #FCA5A5;
 }
 
 * {
@@ -970,6 +995,14 @@ ul {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.lesson-wizard-video-element {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #020617;
 }
 
 .lesson-wizard-video-fallback {
@@ -2939,4 +2972,67 @@ ul {
   50% { transform: scale(0.97); }
 }
 
+/* === CLOUD GARDEN KEYFRAMES === */
+@keyframes gardenCloudDrift {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  33%       { transform: translateX(10px) translateY(-4px); }
+  66%       { transform: translateX(-7px) translateY(3px); }
+}
+
+@keyframes gardenBeaconPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--garden-star-glow); }
+  50%       { box-shadow: 0 0 0 16px transparent; }
+}
+
+@keyframes gardenShootingStar {
+  0%   { opacity: 0; transform: translate(-5vw, 0) scaleX(0.2); }
+  10%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(115vw, 38vh) scaleX(1); }
+}
+
+@keyframes gardenStarTwinkle {
+  0%, 100% { opacity: var(--gst-min, 0.12); transform: scale(var(--gst-scale, 1)); }
+  50%       { opacity: var(--gst-max, 0.75); transform: scale(calc(var(--gst-scale, 1) * 1.3)); }
+}
+
+@keyframes gardenFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes gardenGroundFloat {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(8px); }
+}
+
+@keyframes gardenBounceIn {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.18); }
+  60%  { transform: scale(0.96); }
+  80%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+@keyframes gardenShake {
+  0%, 100% { transform: translateX(0); }
+  15%  { transform: translateX(-10px); }
+  35%  { transform: translateX(9px); }
+  55%  { transform: translateX(-7px); }
+  75%  { transform: translateX(5px); }
+  90%  { transform: translateX(-3px); }
+}
+
+@keyframes gardenStarFly {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--star-dx, -40px), var(--star-dy, -60px)) scale(0.4); opacity: 0; }
+}
+
+@keyframes gardenZonePop {
+  0%   { transform: scale(0.85); opacity: 0; }
+  60%  { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 } /* end @layer components */
+

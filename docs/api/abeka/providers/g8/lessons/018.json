@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g8",
+    "provider_slug": "g8",
+    "course": "lesson-018",
+    "course_slug": "018",
+    "grade_id": "8",
+    "page_count": 1,
+    "video_count": 5
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "page_key": "g8/018",
+      "path_segments": [
+        "g8",
+        "018"
+      ],
+      "provider": "g8",
+      "course": "lesson-018",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 18,
+      "video_count": 5,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Bible 8",
+          "description": "Bible 8 - Lesson: 18 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08BI018D/08BI018D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 8",
+          "description": "English 8 - Lesson: 18 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08EN018E/08EN018E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 8",
+          "description": "History 8 - Lesson: 18 - Teacher: Miss Burns",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08HI018E/08HI018E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Pre-Algebra",
+          "description": "Pre-Algebra - Lesson: 18 - Teacher: Mrs. Odom",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08PA018E/08PA018E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Science 8",
+          "description": "Science 8 - Lesson: 18 - Teacher: Miss de Lima",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08SC018D/08SC018D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g8",
+      "course": "lesson-018",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 18,
+      "page_key": "g8/018",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 1,
+      "title": "Bible 8",
+      "description": "Bible 8 - Lesson: 18 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08BI018D/08BI018D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-018",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 18,
+      "page_key": "g8/018",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 2,
+      "title": "English 8",
+      "description": "English 8 - Lesson: 18 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08EN018E/08EN018E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-018",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 18,
+      "page_key": "g8/018",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 3,
+      "title": "History 8",
+      "description": "History 8 - Lesson: 18 - Teacher: Miss Burns",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08HI018E/08HI018E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-018",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 18,
+      "page_key": "g8/018",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 4,
+      "title": "Pre-Algebra",
+      "description": "Pre-Algebra - Lesson: 18 - Teacher: Mrs. Odom",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08PA018E/08PA018E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g8",
+      "course": "lesson-018",
+      "topic": "",
+      "grade": "g8",
+      "lesson": 18,
+      "page_key": "g8/018",
+      "page_url": "https://hoctienganh.xyz/abeka/8",
+      "order": 5,
+      "title": "Science 8",
+      "description": "Science 8 - Lesson: 18 - Teacher: Miss de Lima",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/08/08SC018D/08SC018D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

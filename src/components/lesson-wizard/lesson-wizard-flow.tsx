@@ -11,6 +11,7 @@ import { KidMascot, type KidMascotGazeDirection, type KidMascotState } from "@/c
 import { bounceIn, swipeLeft, wobble } from "@/components/animation/kid-motion-variants";
 import { ParentGateDialog } from "@/components/parent-gate-dialog";
 import { ActivityRenderer } from "@/components/lesson-wizard/activity-renderer";
+import { SecureVideoPlayer } from "@/components/media/secure-video-player";
 import { synth } from "@/lib/audio-utils";
 import type { ActivitySpec, ActivityType } from "@/modules/content/activity-types";
 
@@ -26,6 +27,7 @@ interface LessonWizardFlowProps {
   objective: string;
   estimatedMinutes: number;
   videoSource?: string | null;
+  videoStreamType?: "hls" | "file" | null;
   onClose: () => void;
   onCompleted?: (lessonId: string) => void;
 }
@@ -64,6 +66,10 @@ const LESSON_QUIZ_CHOICES = [
   { id: "wrong", label: "Chá»§ Ä‘á» khÃ¡c", description: "ÄÃ¡p Ã¡n nÃ y chÆ°a Ä‘Ãºng rá»“i", isCorrect: false },
 ] as const;
 
+function shouldUseIframePlayer(url: string) {
+  return /^https?:\/\/iframe\.mediadelivery\.net\/embed\//i.test(url);
+}
+
 function shuffleActivities<T>(input: T[]) {
   const next = [...input];
   for (let index = next.length - 1; index > 0; index -= 1) {
@@ -80,6 +86,7 @@ export function LessonWizardFlow({
   objective,
   estimatedMinutes,
   videoSource,
+  videoStreamType,
   onClose,
   onCompleted,
 }: LessonWizardFlowProps) {
@@ -722,7 +729,15 @@ export function LessonWizardFlow({
 
                 <div className="lesson-wizard-video-frame">
                   {videoSource ? (
-                    <iframe src={videoSource} className="lesson-wizard-video-iframe" allowFullScreen />
+                    shouldUseIframePlayer(videoSource) ? (
+                      <iframe src={videoSource} className="lesson-wizard-video-iframe" allowFullScreen />
+                    ) : (
+                      <SecureVideoPlayer
+                        className="lesson-wizard-video-element"
+                        src={videoSource}
+                        streamTypeHint={videoStreamType}
+                      />
+                    )
                   ) : (
                     <div className="lesson-wizard-video-fallback">
                       <Video size={30} />
@@ -917,4 +932,5 @@ export function LessonWizardFlow({
 
   return createPortal(content, document.body);
 }
+
 

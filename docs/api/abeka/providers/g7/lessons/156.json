@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g7",
+    "provider_slug": "g7",
+    "course": "lesson-156",
+    "course_slug": "156",
+    "grade_id": "7",
+    "page_count": 1,
+    "video_count": 5
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "page_key": "g7/156",
+      "path_segments": [
+        "g7",
+        "156"
+      ],
+      "provider": "g7",
+      "course": "lesson-156",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 156,
+      "video_count": 5,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Bible 7",
+          "description": "Bible 7 - Lesson: 156 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI156E/07BI156E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 7",
+          "description": "English 7 - Lesson: 156 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN156E/07EN156E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Intermediate Mathematics",
+          "description": "Intermediate Mathematics - Lesson: 156 - Teacher: Miss Barnhart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM156E/07IM156E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Science 7",
+          "description": "Science 7 - Lesson: 156 - Teacher: Miss de Lima",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC156D/07SC156D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "World History 7",
+          "description": "World History 7 - Lesson: 156 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH156E/07WH156E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g7",
+      "course": "lesson-156",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 156,
+      "page_key": "g7/156",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 1,
+      "title": "Bible 7",
+      "description": "Bible 7 - Lesson: 156 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI156E/07BI156E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-156",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 156,
+      "page_key": "g7/156",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 2,
+      "title": "English 7",
+      "description": "English 7 - Lesson: 156 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN156E/07EN156E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-156",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 156,
+      "page_key": "g7/156",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 3,
+      "title": "Intermediate Mathematics",
+      "description": "Intermediate Mathematics - Lesson: 156 - Teacher: Miss Barnhart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM156E/07IM156E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-156",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 156,
+      "page_key": "g7/156",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 4,
+      "title": "Science 7",
+      "description": "Science 7 - Lesson: 156 - Teacher: Miss de Lima",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC156D/07SC156D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-156",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 156,
+      "page_key": "g7/156",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 5,
+      "title": "World History 7",
+      "description": "World History 7 - Lesson: 156 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH156E/07WH156E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

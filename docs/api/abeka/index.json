@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "generated_at_utc": "2026-03-10T15:02:23.953460+00:00",
+    "resource_root": "/abeka",
+    "provider_count": 14,
+    "page_count": 2380,
+    "video_count": 20195,
+    "error_count": 0
+  },
+  "providers": [
+    {
+      "provider": "g1",
+      "provider_slug": "g1",
+      "grade_id": "1",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 2699,
+      "path": "providers/g1/index.json"
+    },
+    {
+      "provider": "g10",
+      "provider_slug": "g10",
+      "grade_id": "10",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 1061,
+      "path": "providers/g10/index.json"
+    },
+    {
+      "provider": "g11",
+      "provider_slug": "g11",
+      "grade_id": "11",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 1404,
+      "path": "providers/g11/index.json"
+    },
+    {
+      "provider": "g12",
+      "provider_slug": "g12",
+      "grade_id": "12",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 1275,
+      "path": "providers/g12/index.json"
+    },
+    {
+      "provider": "g2",
+      "provider_slug": "g2",
+      "grade_id": "2",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 2063,
+      "path": "providers/g2/index.json"
+    },
+    {
+      "provider": "g3",
+      "provider_slug": "g3",
+      "grade_id": "3",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 1564,
+      "path": "providers/g3/index.json"
+    },
+    {
+      "provider": "g4",
+      "provider_slug": "g4",
+      "grade_id": "4",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 1394,
+      "path": "providers/g4/index.json"
+    },
+    {
+      "provider": "g5",
+      "provider_slug": "g5",
+      "grade_id": "5",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 1391,
+      "path": "providers/g5/index.json"
+    },
+    {
+      "provider": "g6",
+      "provider_slug": "g6",
+      "grade_id": "6",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 1394,
+      "path": "providers/g6/index.json"
+    },
+    {
+      "provider": "g7",
+      "provider_slug": "g7",
+      "grade_id": "7",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 872,
+      "path": "providers/g7/index.json"
+    },
+    {
+      "provider": "g8",
+      "provider_slug": "g8",
+      "grade_id": "8",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 882,
+      "path": "providers/g8/index.json"
+    },
+    {
+      "provider": "g9",
+      "provider_slug": "g9",
+      "grade_id": "9",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 891,
+      "path": "providers/g9/index.json"
+    },
+    {
+      "provider": "k4",
+      "provider_slug": "k4",
+      "grade_id": "13",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 1595,
+      "path": "providers/k4/index.json"
+    },
+    {
+      "provider": "k5",
+      "provider_slug": "k5",
+      "grade_id": "14",
+      "course_count": 170,
+      "page_count": 170,
+      "video_count": 1710,
+      "path": "providers/k5/index.json"
+    }
+  ]
+}

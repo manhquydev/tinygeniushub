@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g10",
+    "provider_slug": "g10",
+    "course": "lesson-142",
+    "course_slug": "142",
+    "grade_id": "10",
+    "page_count": 1,
+    "video_count": 7
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "page_key": "g10/142",
+      "path_segments": [
+        "g10",
+        "142"
+      ],
+      "provider": "g10",
+      "course": "lesson-142",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 142,
+      "video_count": 7,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Additional Review 10.7",
+          "description": "Additional Review 10.7 - Lesson: 142 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2142E-AR10.7/10A2142E-AR10.7.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Algebra 2",
+          "description": "Algebra 2 - Lesson: 142 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2142E/10A2142E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Bible Doctrines",
+          "description": "Bible Doctrines - Lesson: 142 - Teacher: Mr. Birx",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI142C/10BI142C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Biology",
+          "description": "Biology - Lesson: 142 - Teacher: Miss Stancel",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY142E/10BY142E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Consumer Mathematics",
+          "description": "Consumer Mathematics - Lesson: 142 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM142B/10CM142B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "English 10",
+          "description": "English 10 - Lesson: 142 - Teacher: Mrs. Antich",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN142E/10EN142E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "World History 10",
+          "description": "World History 10 - Lesson: 142 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH142D/10WH142D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g10",
+      "course": "lesson-142",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 142,
+      "page_key": "g10/142",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 1,
+      "title": "Additional Review 10.7",
+      "description": "Additional Review 10.7 - Lesson: 142 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2142E-AR10.7/10A2142E-AR10.7.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-142",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 142,
+      "page_key": "g10/142",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 2,
+      "title": "Algebra 2",
+      "description": "Algebra 2 - Lesson: 142 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2142E/10A2142E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-142",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 142,
+      "page_key": "g10/142",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 3,
+      "title": "Bible Doctrines",
+      "description": "Bible Doctrines - Lesson: 142 - Teacher: Mr. Birx",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI142C/10BI142C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-142",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 142,
+      "page_key": "g10/142",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 4,
+      "title": "Biology",
+      "description": "Biology - Lesson: 142 - Teacher: Miss Stancel",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY142E/10BY142E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-142",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 142,
+      "page_key": "g10/142",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 5,
+      "title": "Consumer Mathematics",
+      "description": "Consumer Mathematics - Lesson: 142 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM142B/10CM142B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-142",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 142,
+      "page_key": "g10/142",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 6,
+      "title": "English 10",
+      "description": "English 10 - Lesson: 142 - Teacher: Mrs. Antich",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN142E/10EN142E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-142",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 142,
+      "page_key": "g10/142",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 7,
+      "title": "World History 10",
+      "description": "World History 10 - Lesson: 142 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH142D/10WH142D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

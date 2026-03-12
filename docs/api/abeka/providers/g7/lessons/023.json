@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g7",
+    "provider_slug": "g7",
+    "course": "lesson-023",
+    "course_slug": "023",
+    "grade_id": "7",
+    "page_count": 1,
+    "video_count": 5
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "page_key": "g7/023",
+      "path_segments": [
+        "g7",
+        "023"
+      ],
+      "provider": "g7",
+      "course": "lesson-023",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 23,
+      "video_count": 5,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Bible 7",
+          "description": "Bible 7 - Lesson: 23 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI023E/07BI023E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 7",
+          "description": "English 7 - Lesson: 23 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN023E/07EN023E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Intermediate Mathematics",
+          "description": "Intermediate Mathematics - Lesson: 23 - Teacher: Miss Barnhart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM023E/07IM023E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Science 7",
+          "description": "Science 7 - Lesson: 23 - Teacher: Miss de Lima",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC023D/07SC023D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "World History 7",
+          "description": "World History 7 - Lesson: 23 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH023E/07WH023E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g7",
+      "course": "lesson-023",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 23,
+      "page_key": "g7/023",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 1,
+      "title": "Bible 7",
+      "description": "Bible 7 - Lesson: 23 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI023E/07BI023E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-023",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 23,
+      "page_key": "g7/023",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 2,
+      "title": "English 7",
+      "description": "English 7 - Lesson: 23 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN023E/07EN023E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-023",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 23,
+      "page_key": "g7/023",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 3,
+      "title": "Intermediate Mathematics",
+      "description": "Intermediate Mathematics - Lesson: 23 - Teacher: Miss Barnhart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM023E/07IM023E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-023",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 23,
+      "page_key": "g7/023",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 4,
+      "title": "Science 7",
+      "description": "Science 7 - Lesson: 23 - Teacher: Miss de Lima",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC023D/07SC023D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-023",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 23,
+      "page_key": "g7/023",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 5,
+      "title": "World History 7",
+      "description": "World History 7 - Lesson: 23 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH023E/07WH023E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

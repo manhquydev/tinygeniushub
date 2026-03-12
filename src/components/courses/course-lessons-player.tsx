@@ -1,6 +1,7 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useTransition } from "react";
+import { SecureVideoPlayer } from "@/components/media/secure-video-player";
 
 type CourseLesson = {
   orderNo: number;
@@ -14,7 +15,16 @@ type Props = {
   enrollmentId: string;
 };
 
-type VideoState = { status: "loading" | "ready" | "unavailable"; embedUrl?: string };
+type VideoState = {
+  status: "loading" | "ready" | "unavailable";
+  embedUrl?: string;
+  renderMode?: "iframe" | "native";
+  streamType?: "hls" | "file" | "embed";
+};
+
+function shouldUseIframePlayer(url: string) {
+  return /^https?:\/\/iframe\.mediadelivery\.net\/embed\//i.test(url);
+}
 
 const STORAGE_KEY = (slug: string) => `ccth_course_progress_${slug}`;
 
@@ -59,11 +69,19 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
     fetch(`/api/lessons/${selected.lesson.id}/video-token`)
       .then((res) => {
         if (!res.ok) throw new Error("unavailable");
-        return res.json() as Promise<{ ok: boolean; data: { embedUrl: string } }>;
+        return res.json() as Promise<{
+          ok: boolean;
+          data: { embedUrl: string; streamType?: "hls" | "file" | "embed" };
+        }>;
       })
       .then((json) => {
         if (json.ok && json.data?.embedUrl) {
-          setVideo({ status: "ready", embedUrl: json.data.embedUrl });
+          setVideo({
+            status: "ready",
+            embedUrl: json.data.embedUrl,
+            renderMode: shouldUseIframePlayer(json.data.embedUrl) ? "iframe" : "native",
+            streamType: json.data.streamType,
+          });
         } else {
           setVideo({ status: "unavailable" });
         }
@@ -112,7 +130,7 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
           {courseTitle}
         </h2>
         <p style={{ fontSize: "0.78rem", marginBottom: "0.75rem" }} className="muted-text">
-          {completedSet.size}/{lessons.length} bài hoàn thành
+          {completedSet.size}/{lessons.length} bÃ i hoÃ n thÃ nh
         </p>
         <nav style={{ display: "grid", gap: "0.25rem" }}>
           {lessons.map(({ orderNo, lesson }, idx) => {
@@ -140,7 +158,7 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
               >
                 <span style={{ opacity: 0.5, minWidth: 18 }}>{orderNo}.</span>
                 <span style={{ flex: 1 }}>{lesson.title}</span>
-                {done && <span style={{ color: "#10b981" }}>✓</span>}
+                {done && <span style={{ color: "#10b981" }}>âœ“</span>}
               </button>
             );
           })}
@@ -156,10 +174,10 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
         >
           {video.status === "loading" && (
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(248,250,252,0.9)" }}>
-              <p className="muted-text">Đang tải video...</p>
+              <p className="muted-text">Äang táº£i video...</p>
             </div>
           )}
-          {video.status === "ready" && video.embedUrl && (
+          {video.status === "ready" && video.embedUrl && video.renderMode === "iframe" && (
             <iframe
               src={video.embedUrl}
               allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
@@ -168,10 +186,18 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
               title={selected?.lesson.title}
             />
           )}
+          {video.status === "ready" && video.embedUrl && video.renderMode !== "iframe" && (
+            <SecureVideoPlayer
+              src={video.embedUrl}
+              streamTypeHint={video.streamType === "hls" ? "hls" : "file"}
+              title={selected?.lesson.title}
+              style={{ width: "100%", height: "100%", display: "block", background: "#020617" }}
+            />
+          )}
           {video.status === "unavailable" && (
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "0.5rem", background: "rgba(248,250,252,0.9)" }}>
               <p style={{ fontWeight: 700, fontSize: "1.1rem" }}>{selected?.lesson.title}</p>
-              <p className="muted-text">Video sắp ra mắt</p>
+              <p className="muted-text">Video sáº¯p ra máº¯t</p>
             </div>
           )}
         </div>
@@ -183,7 +209,7 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
               <span className="muted-text" style={{ marginRight: "0.5rem" }}>{selected.orderNo}.</span>
               {selected.lesson.title}
             </h1>
-            <p className="muted-text" style={{ fontSize: "0.85rem" }}>{selected.lesson.estimatedMinutes} phút</p>
+            <p className="muted-text" style={{ fontSize: "0.85rem" }}>{selected.lesson.estimatedMinutes} phÃºt</p>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
               {!isCompleted ? (
                 <button
@@ -193,11 +219,11 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
                   disabled={marking}
                   style={{ width: "fit-content" }}
                 >
-                  {marking ? "Đang lưu..." : "✓ Đánh dấu đã học"}
+                  {marking ? "Äang lÆ°u..." : "âœ“ ÄÃ¡nh dáº¥u Ä‘Ã£ há»c"}
                 </button>
               ) : (
                 <span style={{ color: "#10b981", fontWeight: 700, display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                  ✓ Đã hoàn thành
+                  âœ“ ÄÃ£ hoÃ n thÃ nh
                 </span>
               )}
               {!isLast && (
@@ -207,12 +233,12 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
                   onClick={goNext}
                   style={{ width: "fit-content" }}
                 >
-                  Bài tiếp theo →
+                  BÃ i tiáº¿p theo â†’
                 </button>
               )}
               {isLast && completedSet.size === lessons.length && (
                 <a href={`/parent/courses`} className="ghost-button" style={{ width: "fit-content" }}>
-                  🎉 Xem chứng chỉ
+                  ðŸŽ‰ Xem chá»©ng chá»‰
                 </a>
               )}
             </div>
@@ -222,3 +248,4 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
     </div>
   );
 }
+

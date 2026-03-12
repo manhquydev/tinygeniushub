@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "k5",
+    "provider_slug": "k5",
+    "course": "lesson-078",
+    "course_slug": "078",
+    "grade_id": "14",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "page_key": "k5/078",
+      "path_segments": [
+        "k5",
+        "078"
+      ],
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "K5 Activities: Activity Time",
+          "description": "K5 Activities: Activity Time - Lesson: 78 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC078D/K5AC078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "K5 Activities: Language Enrichment",
+          "description": "K5 Activities: Language Enrichment - Lesson: 78 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5LE078D/K5LE078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "K5 Activities: Skills Development",
+          "description": "K5 Activities: Skills Development - Lesson: 78 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD078D/K5SD078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "K5 Bible",
+          "description": "K5 Bible - Lesson: 78 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI078D/K5BI078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "K5 Numbers",
+          "description": "K5 Numbers - Lesson: 78 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU078D/K5NU078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "K5 Phonics: Phonics",
+          "description": "K5 Phonics: Phonics - Lesson: 78 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH078D/K5PH078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "K5 Phonics: Phonics Review",
+          "description": "K5 Phonics: Phonics Review - Lesson: 78 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PR078D/K5PR078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "K5 Writing: Cursive Writing",
+          "description": "K5 Writing: Cursive Writing - Lesson: 78 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5CW078D/K5CW078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "K5 Writing: Manuscript Writing",
+          "description": "K5 Writing: Manuscript Writing - Lesson: 78 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5MW078D/K5MW078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "page_key": "k5/078",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 1,
+      "title": "K5 Activities: Activity Time",
+      "description": "K5 Activities: Activity Time - Lesson: 78 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC078D/K5AC078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "page_key": "k5/078",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 2,
+      "title": "K5 Activities: Language Enrichment",
+      "description": "K5 Activities: Language Enrichment - Lesson: 78 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5LE078D/K5LE078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "page_key": "k5/078",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 3,
+      "title": "K5 Activities: Skills Development",
+      "description": "K5 Activities: Skills Development - Lesson: 78 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD078D/K5SD078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "page_key": "k5/078",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 4,
+      "title": "K5 Bible",
+      "description": "K5 Bible - Lesson: 78 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI078D/K5BI078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "page_key": "k5/078",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 5,
+      "title": "K5 Numbers",
+      "description": "K5 Numbers - Lesson: 78 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU078D/K5NU078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "page_key": "k5/078",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 6,
+      "title": "K5 Phonics: Phonics",
+      "description": "K5 Phonics: Phonics - Lesson: 78 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH078D/K5PH078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "page_key": "k5/078",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 7,
+      "title": "K5 Phonics: Phonics Review",
+      "description": "K5 Phonics: Phonics Review - Lesson: 78 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PR078D/K5PR078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "page_key": "k5/078",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 8,
+      "title": "K5 Writing: Cursive Writing",
+      "description": "K5 Writing: Cursive Writing - Lesson: 78 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5CW078D/K5CW078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 78,
+      "page_key": "k5/078",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 9,
+      "title": "K5 Writing: Manuscript Writing",
+      "description": "K5 Writing: Manuscript Writing - Lesson: 78 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5MW078D/K5MW078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

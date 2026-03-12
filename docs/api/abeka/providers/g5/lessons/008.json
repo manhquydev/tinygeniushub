@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g5",
+    "provider_slug": "g5",
+    "course": "lesson-008",
+    "course_slug": "008",
+    "grade_id": "5",
+    "page_count": 1,
+    "video_count": 8
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "page_key": "g5/008",
+      "path_segments": [
+        "g5",
+        "008"
+      ],
+      "provider": "g5",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 8,
+      "video_count": 8,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Arithmetic 5",
+          "description": "Arithmetic 5 - Lesson: 8 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05AT008G/05AT008G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible 5",
+          "description": "Bible 5 - Lesson: 8 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05BI008G/05BI008G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 5",
+          "description": "History 5 - Lesson: 8 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05HI008G/05HI008G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Language 5",
+          "description": "Language 5 - Lesson: 8 - Teacher: Miss Green",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05LA008G/05LA008G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Reading 5",
+          "description": "Reading 5 - Lesson: 8 - Teacher: Miss Green",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05RE008G/05RE008G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Science/Health 5",
+          "description": "Science/Health 5 - Lesson: 8 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05SC008G/05SC008G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Spelling 5",
+          "description": "Spelling 5 - Lesson: 8 - Teacher: Miss Green",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05SP008G/05SP008G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Writing 5",
+          "description": "Writing 5 - Lesson: 8 - Teacher: Miss Green",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05WR008G/05WR008G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g5",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 8,
+      "page_key": "g5/008",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 1,
+      "title": "Arithmetic 5",
+      "description": "Arithmetic 5 - Lesson: 8 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05AT008G/05AT008G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 8,
+      "page_key": "g5/008",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 2,
+      "title": "Bible 5",
+      "description": "Bible 5 - Lesson: 8 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05BI008G/05BI008G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 8,
+      "page_key": "g5/008",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 3,
+      "title": "History 5",
+      "description": "History 5 - Lesson: 8 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05HI008G/05HI008G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 8,
+      "page_key": "g5/008",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 4,
+      "title": "Language 5",
+      "description": "Language 5 - Lesson: 8 - Teacher: Miss Green",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05LA008G/05LA008G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 8,
+      "page_key": "g5/008",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 5,
+      "title": "Reading 5",
+      "description": "Reading 5 - Lesson: 8 - Teacher: Miss Green",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05RE008G/05RE008G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 8,
+      "page_key": "g5/008",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 6,
+      "title": "Science/Health 5",
+      "description": "Science/Health 5 - Lesson: 8 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05SC008G/05SC008G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 8,
+      "page_key": "g5/008",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 7,
+      "title": "Spelling 5",
+      "description": "Spelling 5 - Lesson: 8 - Teacher: Miss Green",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05SP008G/05SP008G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 8,
+      "page_key": "g5/008",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 8,
+      "title": "Writing 5",
+      "description": "Writing 5 - Lesson: 8 - Teacher: Miss Green",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05WR008G/05WR008G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

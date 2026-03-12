@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g7",
+    "provider_slug": "g7",
+    "course": "lesson-001",
+    "course_slug": "001",
+    "grade_id": "7",
+    "page_count": 1,
+    "video_count": 6
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "page_key": "g7/001",
+      "path_segments": [
+        "g7",
+        "001"
+      ],
+      "provider": "g7",
+      "course": "lesson-001",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 1,
+      "video_count": 6,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Bible 7",
+          "description": "Bible 7 - Lesson: 1 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI001E/07BI001E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 7",
+          "description": "English 7 - Lesson: 1 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN001E/07EN001E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Fast Facts 1.1 - Estimation",
+          "description": "Fast Facts 1.1 - Estimation - Lesson: 1 - Teacher: Miss Barnhart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM001E-FF1.1/07IM001E-FF1.1.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Intermediate Mathematics",
+          "description": "Intermediate Mathematics - Lesson: 1 - Teacher: Miss Barnhart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM001E/07IM001E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Science 7",
+          "description": "Science 7 - Lesson: 1 - Teacher: Miss de Lima",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC001D/07SC001D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "World History 7",
+          "description": "World History 7 - Lesson: 1 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH001E/07WH001E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g7",
+      "course": "lesson-001",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 1,
+      "page_key": "g7/001",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 1,
+      "title": "Bible 7",
+      "description": "Bible 7 - Lesson: 1 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI001E/07BI001E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-001",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 1,
+      "page_key": "g7/001",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 2,
+      "title": "English 7",
+      "description": "English 7 - Lesson: 1 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN001E/07EN001E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-001",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 1,
+      "page_key": "g7/001",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 3,
+      "title": "Fast Facts 1.1 - Estimation",
+      "description": "Fast Facts 1.1 - Estimation - Lesson: 1 - Teacher: Miss Barnhart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM001E-FF1.1/07IM001E-FF1.1.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-001",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 1,
+      "page_key": "g7/001",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 4,
+      "title": "Intermediate Mathematics",
+      "description": "Intermediate Mathematics - Lesson: 1 - Teacher: Miss Barnhart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM001E/07IM001E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-001",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 1,
+      "page_key": "g7/001",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 5,
+      "title": "Science 7",
+      "description": "Science 7 - Lesson: 1 - Teacher: Miss de Lima",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC001D/07SC001D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g7",
+      "course": "lesson-001",
+      "topic": "",
+      "grade": "g7",
+      "lesson": 1,
+      "page_key": "g7/001",
+      "page_url": "https://hoctienganh.xyz/abeka/7",
+      "order": 6,
+      "title": "World History 7",
+      "description": "World History 7 - Lesson: 1 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH001E/07WH001E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

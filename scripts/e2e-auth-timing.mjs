@@ -104,7 +104,15 @@ function getSessionCookie(setCookieHeader) {
   if (!setCookieHeader) {
     return null;
   }
-  const match = setCookieHeader.match(/ccth_session=[^;]+/);
+  const match = setCookieHeader.match(/(?:__Secure-|__Host-)?ccth_session=[^;]+/);
+  return match ? match[0] : null;
+}
+
+function getAdminSessionCookie(setCookieHeader) {
+  if (!setCookieHeader) {
+    return null;
+  }
+  const match = setCookieHeader.match(/(?:__Secure-|__Host-)?ccth_admin_session=[^;]+/);
   return match ? match[0] : null;
 }
 
@@ -174,6 +182,18 @@ async function loginParent(baseUrl, payload) {
   assert(login.response.status === 200, `Login failed for ${payload.email}: status=${login.response.status}`);
   const cookie = getSessionCookie(login.response.headers.get("set-cookie"));
   assert(cookie, `Missing session cookie for ${payload.email}`);
+  return cookie;
+}
+
+async function loginAdmin(baseUrl, payload) {
+  const login = await requestJson(baseUrl, "/api/admin/auth/login", {
+    method: "POST",
+    body: payload,
+  });
+  assert(login.response.status === 200, `Admin login failed for ${payload.email}: status=${login.response.status}`);
+  assert(login.json?.ok === true, `Admin login did not return ok=true for ${payload.email}`);
+  const cookie = getAdminSessionCookie(login.response.headers.get("set-cookie"));
+  assert(cookie, `Missing admin session cookie for ${payload.email}`);
   return cookie;
 }
 
@@ -271,7 +291,7 @@ async function main() {
       displayName: "Timing Parent",
     });
 
-    const adminCookie = await loginParent(baseUrl, {
+    const adminCookie = await loginAdmin(baseUrl, {
       email: adminEmail,
       password: adminPassword,
     });

@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g12",
+    "provider_slug": "g12",
+    "course": "lesson-109",
+    "course_slug": "109",
+    "grade_id": "12",
+    "page_count": 1,
+    "video_count": 4
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "page_key": "g12/109",
+      "path_segments": [
+        "g12",
+        "109"
+      ],
+      "provider": "g12",
+      "course": "lesson-109",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 109,
+      "video_count": 4,
+      "videos": [
+        {
+          "order": 1,
+          "title": "English 12",
+          "description": "English 12 - Lesson: 109 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12EN109E/12EN109E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Physics",
+          "description": "Physics - Lesson: 109 - Teacher: Dr. Ridgley",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PH109C/12PH109C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Precalculus",
+          "description": "Precalculus - Lesson: 109 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PC109C/12PC109C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Spanish 2",
+          "description": "Spanish 2 - Lesson: 109 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12SA109D/12SA109D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g12",
+      "course": "lesson-109",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 109,
+      "page_key": "g12/109",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 1,
+      "title": "English 12",
+      "description": "English 12 - Lesson: 109 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12EN109E/12EN109E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-109",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 109,
+      "page_key": "g12/109",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 2,
+      "title": "Physics",
+      "description": "Physics - Lesson: 109 - Teacher: Dr. Ridgley",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PH109C/12PH109C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-109",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 109,
+      "page_key": "g12/109",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 3,
+      "title": "Precalculus",
+      "description": "Precalculus - Lesson: 109 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PC109C/12PC109C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-109",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 109,
+      "page_key": "g12/109",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 4,
+      "title": "Spanish 2",
+      "description": "Spanish 2 - Lesson: 109 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12SA109D/12SA109D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g10",
+    "provider_slug": "g10",
+    "course": "lesson-154",
+    "course_slug": "154",
+    "grade_id": "10",
+    "page_count": 1,
+    "video_count": 6
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "page_key": "g10/154",
+      "path_segments": [
+        "g10",
+        "154"
+      ],
+      "provider": "g10",
+      "course": "lesson-154",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 154,
+      "video_count": 6,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Algebra 2",
+          "description": "Algebra 2 - Lesson: 154 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2154E/10A2154E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible Doctrines",
+          "description": "Bible Doctrines - Lesson: 154 - Teacher: Mr. Birx",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI154C/10BI154C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Biology",
+          "description": "Biology - Lesson: 154 - Teacher: Miss Stancel",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY154E/10BY154E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Consumer Mathematics",
+          "description": "Consumer Mathematics - Lesson: 154 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM154B/10CM154B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "English 10",
+          "description": "English 10 - Lesson: 154 - Teacher: Mrs. Antich",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN154E/10EN154E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "World History 10",
+          "description": "World History 10 - Lesson: 154 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH154D/10WH154D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g10",
+      "course": "lesson-154",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 154,
+      "page_key": "g10/154",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 1,
+      "title": "Algebra 2",
+      "description": "Algebra 2 - Lesson: 154 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2154E/10A2154E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-154",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 154,
+      "page_key": "g10/154",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 2,
+      "title": "Bible Doctrines",
+      "description": "Bible Doctrines - Lesson: 154 - Teacher: Mr. Birx",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI154C/10BI154C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-154",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 154,
+      "page_key": "g10/154",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 3,
+      "title": "Biology",
+      "description": "Biology - Lesson: 154 - Teacher: Miss Stancel",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY154E/10BY154E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-154",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 154,
+      "page_key": "g10/154",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 4,
+      "title": "Consumer Mathematics",
+      "description": "Consumer Mathematics - Lesson: 154 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM154B/10CM154B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-154",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 154,
+      "page_key": "g10/154",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 5,
+      "title": "English 10",
+      "description": "English 10 - Lesson: 154 - Teacher: Mrs. Antich",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN154E/10EN154E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-154",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 154,
+      "page_key": "g10/154",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 6,
+      "title": "World History 10",
+      "description": "World History 10 - Lesson: 154 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH154D/10WH154D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

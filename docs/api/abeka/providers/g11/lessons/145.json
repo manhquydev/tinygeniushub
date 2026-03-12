@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g11",
+    "provider_slug": "g11",
+    "course": "lesson-145",
+    "course_slug": "145",
+    "grade_id": "11",
+    "page_count": 1,
+    "video_count": 8
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "page_key": "g11/145",
+      "path_segments": [
+        "g11",
+        "145"
+      ],
+      "provider": "g11",
+      "course": "lesson-145",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 145,
+      "video_count": 8,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Additional Review D",
+          "description": "Additional Review D - Lesson: 145 - Teacher: Mr. Sisson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH145E-ARD/11CH145E-ARD.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Business Mathematics",
+          "description": "Business Mathematics - Lesson: 145 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM145A/11BM145A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Chemistry",
+          "description": "Chemistry - Lesson: 145 - Teacher: Mr. Sisson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH145E/11CH145E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "English 11",
+          "description": "English 11 - Lesson: 145 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN145D/11EN145D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Keyboarding",
+          "description": "Keyboarding - Lesson: 145 - Teacher: Dr. Marion",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB145A/11KB145A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Plane Geometry",
+          "description": "Plane Geometry - Lesson: 145 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG145D/11PG145D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Spanish 1",
+          "description": "Spanish 1 - Lesson: 145 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA145D/11SA145D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "U. S. History 11",
+          "description": "U. S. History 11 - Lesson: 145 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US145D/11US145D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g11",
+      "course": "lesson-145",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 145,
+      "page_key": "g11/145",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 1,
+      "title": "Additional Review D",
+      "description": "Additional Review D - Lesson: 145 - Teacher: Mr. Sisson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH145E-ARD/11CH145E-ARD.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-145",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 145,
+      "page_key": "g11/145",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 2,
+      "title": "Business Mathematics",
+      "description": "Business Mathematics - Lesson: 145 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM145A/11BM145A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-145",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 145,
+      "page_key": "g11/145",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 3,
+      "title": "Chemistry",
+      "description": "Chemistry - Lesson: 145 - Teacher: Mr. Sisson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH145E/11CH145E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-145",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 145,
+      "page_key": "g11/145",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 4,
+      "title": "English 11",
+      "description": "English 11 - Lesson: 145 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN145D/11EN145D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-145",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 145,
+      "page_key": "g11/145",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 5,
+      "title": "Keyboarding",
+      "description": "Keyboarding - Lesson: 145 - Teacher: Dr. Marion",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB145A/11KB145A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-145",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 145,
+      "page_key": "g11/145",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 6,
+      "title": "Plane Geometry",
+      "description": "Plane Geometry - Lesson: 145 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG145D/11PG145D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-145",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 145,
+      "page_key": "g11/145",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 7,
+      "title": "Spanish 1",
+      "description": "Spanish 1 - Lesson: 145 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA145D/11SA145D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-145",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 145,
+      "page_key": "g11/145",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 8,
+      "title": "U. S. History 11",
+      "description": "U. S. History 11 - Lesson: 145 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US145D/11US145D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

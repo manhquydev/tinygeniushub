@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g12",
+    "provider_slug": "g12",
+    "course": "lesson-091",
+    "course_slug": "091",
+    "grade_id": "12",
+    "page_count": 1,
+    "video_count": 4
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "page_key": "g12/091",
+      "path_segments": [
+        "g12",
+        "091"
+      ],
+      "provider": "g12",
+      "course": "lesson-091",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 91,
+      "video_count": 4,
+      "videos": [
+        {
+          "order": 1,
+          "title": "English 12",
+          "description": "English 12 - Lesson: 91 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12EN091E/12EN091E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Physics",
+          "description": "Physics - Lesson: 91 - Teacher: Dr. Ridgley",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PH091C/12PH091C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Precalculus",
+          "description": "Precalculus - Lesson: 91 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PC091C/12PC091C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Spanish 2",
+          "description": "Spanish 2 - Lesson: 91 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12SA091D/12SA091D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g12",
+      "course": "lesson-091",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 91,
+      "page_key": "g12/091",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 1,
+      "title": "English 12",
+      "description": "English 12 - Lesson: 91 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12EN091E/12EN091E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-091",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 91,
+      "page_key": "g12/091",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 2,
+      "title": "Physics",
+      "description": "Physics - Lesson: 91 - Teacher: Dr. Ridgley",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PH091C/12PH091C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-091",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 91,
+      "page_key": "g12/091",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 3,
+      "title": "Precalculus",
+      "description": "Precalculus - Lesson: 91 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PC091C/12PC091C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-091",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 91,
+      "page_key": "g12/091",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 4,
+      "title": "Spanish 2",
+      "description": "Spanish 2 - Lesson: 91 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12SA091D/12SA091D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

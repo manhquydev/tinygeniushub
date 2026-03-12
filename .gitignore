@@ -60,3 +60,5 @@ codex_*.txt
 
 # stray plan output files
 parent_onboarding_plan.md
+
+.vercel
