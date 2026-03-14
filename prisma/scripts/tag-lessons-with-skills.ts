@@ -90,24 +90,50 @@ async function main() {
   const skills = await prisma.skill.findMany({ select: { code: true, id: true } });
   const skillCodeToId = new Map(skills.map((s) => [s.code, s.id]));
 
-  // Load all lessons
-  const lessons = await prisma.lesson.findMany({
-    select: { id: true, title: true, objective: true },
-  });
+  const limit = 1000;
+  let cursorId: string | undefined = undefined;
+  let hasMore = true;
+  let totalProcessed = 0;
 
   const suggestions: Suggestion[] = [];
   const unmatched: string[] = [];
 
-  for (const lesson of lessons) {
-    const suggestion = await matchLesson(lesson.id, lesson.title, lesson.objective, skillCodeToId);
-    if (suggestion) {
-      suggestions.push(suggestion);
-    } else {
-      unmatched.push(lesson.id);
+  console.log("Processing lessons in batches...");
+
+  while (hasMore) {
+    type LessonSummary = { id: string; title: string; objective: string };
+    let lessons: LessonSummary[] = [];
+    
+    lessons = await prisma.lesson.findMany({
+      select: { id: true, title: true, objective: true },
+      take: limit,
+      skip: cursorId ? 1 : 0,
+      cursor: cursorId ? { id: cursorId } : undefined,
+      orderBy: { id: 'asc' },
+    });
+
+    if (lessons.length === 0) {
+      hasMore = false;
+      break;
     }
+
+    for (const lesson of lessons) {
+      const suggestion = await matchLesson(lesson.id, lesson.title, lesson.objective, skillCodeToId);
+      if (suggestion) {
+        suggestions.push(suggestion);
+      } else {
+        unmatched.push(lesson.id);
+      }
+    }
+
+    totalProcessed += lessons.length;
+    cursorId = lessons[lessons.length - 1].id;
+    console.log(`Processed ${totalProcessed} lessons...`);
   }
 
   if (!isDryRun) {
+    console.log(`Applying ${suggestions.length} lesson skill tags...`);
+    let appliedCount = 0;
     for (const s of suggestions) {
       const isPrimary = s.suggestedSkills.length === 1;
       for (let i = 0; i < s.suggestedSkills.length; i++) {
@@ -118,15 +144,17 @@ async function main() {
           create: { lessonId: s.lessonId, skillId, isPrimary: isPrimary || i === 0 },
         });
       }
+      appliedCount++;
+      if (appliedCount % 50 === 0) {
+        console.log(`Applied tags for ${appliedCount} lessons...`);
+      }
     }
-    console.log(`Applied ${suggestions.length} lesson skill tags.`);
+    console.log(`Successfully applied ${suggestions.length} lesson skill tags.`);
   }
 
   const output = {
-    suggestions,
-    unmatched,
     summary: {
-      total: lessons.length,
+      total: totalProcessed,
       matched: suggestions.length,
       unmatched: unmatched.length,
     },
