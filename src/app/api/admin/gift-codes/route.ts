@@ -7,6 +7,7 @@ import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 import { generateGiftCodes } from "@/modules/courses/gift-code-service";
+import { createAdminActionLog } from "@/modules/admin/service";
 
 const createGiftCodesSchema = z.object({
   count: z.number().int().min(1).max(100).optional().default(1),
@@ -40,6 +41,16 @@ export async function POST(request: NextRequest) {
       durationDays: body.durationDays,
       expiresAt: body.expiresAt ? new Date(body.expiresAt) : new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
       createdBy: admin.email,
+    });
+    await createAdminActionLog({
+      adminEmail: admin.email,
+      action: "CREATE_GIFT_CODES",
+      target: `gift_codes:${codes.length}`,
+      detail: {
+        count: body.count,
+        planCode: body.planCode,
+        durationDays: body.durationDays,
+      },
     });
 
     return ok({ codes });

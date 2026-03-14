@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 
@@ -38,6 +38,7 @@ interface AdminOperationsPanelProps {
   initialPayments: PaymentRow[];
   initialWebhooks: WebhookRow[];
   lessonTrialRows: LessonTrialRow[];
+  defaultView?: "payments" | "webhooks" | "trials";
 }
 
 const paymentStatuses = ["ALL", "PENDING", "SUCCEEDED", "FAILED", "REFUNDED"] as const;
@@ -89,6 +90,7 @@ export function AdminOperationsPanel({
   initialPayments,
   initialWebhooks,
   lessonTrialRows,
+  defaultView = "payments",
 }: AdminOperationsPanelProps) {
   const [payments, setPayments] = useState(initialPayments);
   const [webhooks, setWebhooks] = useState(initialWebhooks);

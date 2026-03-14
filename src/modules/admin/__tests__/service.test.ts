@@ -80,7 +80,6 @@ import {
   getAdminRetentionAnalytics,
   listPaymentRecordsAdmin,
   listWebhookEventsAdmin,
-  searchAdminUsersByEmail,
   updateLessonTrialFlagAdmin,
 } from "@/modules/admin/service";
 
@@ -701,53 +700,3 @@ describe("executeBulkAdminAction", () => {
   });
 });
 
-describe("searchAdminUsers", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it("tìm với contains email case-insensitive mode: insensitive", async () => {
-    prismaMock.parentAccount.findMany.mockResolvedValue([]);
-
-    await searchAdminUsersByEmail({
-      q: "gmail.com",
-      limit: 5,
-    });
-
-    expect(prismaMock.parentAccount.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({
-        where: {
-          email: {
-            contains: "gmail.com",
-            mode: "insensitive",
-          },
-        },
-        take: 5,
-      }),
-    );
-  });
-
-  it("giới hạn kết quả theo limit (default 20)", async () => {
-    prismaMock.parentAccount.findMany.mockResolvedValue([]);
-
-    await searchAdminUsersByEmail({
-      q: "example.com",
-    });
-
-    expect(prismaMock.parentAccount.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({
-        take: 20,
-      }),
-    );
-  });
-
-  it("trả về mảng rỗng khi không có kết quả", async () => {
-    prismaMock.parentAccount.findMany.mockResolvedValue([]);
-
-    const result = await searchAdminUsersByEmail({
-      q: "notfound@example.com",
-    });
-
-    expect(result).toEqual([]);
-  });
-});

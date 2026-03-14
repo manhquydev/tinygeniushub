@@ -5,11 +5,6 @@ import { createNotificationForParent, resolveUserIdForParent } from "@/modules/p
 import { DomainError } from "@/modules/platform/errors";
 import { z } from "zod";
 
-export const adminUserSearchQuerySchema = z.object({
-  q: z.string().trim().min(1).max(320),
-  limit: z.coerce.number().int().min(1).max(20).default(20),
-});
-
 export const adminActionLogCreateSchema = z.object({
   action: z.string().trim().min(1).max(100),
   target: z.string().trim().min(1).max(320).optional(),
@@ -208,68 +203,6 @@ export async function executeAdminBulkUsersAction(input: unknown) {
   failed = results.filter((r) => !r).length;
 
   return { succeeded, failed };
-}
-
-export async function searchAdminUsersByEmail(input: unknown) {
-  const query = adminUserSearchQuerySchema.parse(input);
-
-  const parents = await prisma.parentAccount.findMany({
-    where: {
-      email: {
-        contains: query.q,
-        mode: "insensitive",
-      },
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: query.limit,
-    select: {
-      id: true,
-      email: true,
-      displayName: true,
-      suspended: true,
-      createdAt: true,
-      subscription: {
-        select: {
-          status: true,
-        },
-      },
-      childProfiles: {
-        orderBy: {
-          createdAt: "asc",
-        },
-        select: {
-          nickname: true,
-        },
-      },
-      _count: {
-        select: {
-          payments: {
-            where: {
-              status: PaymentStatus.SUCCEEDED,
-            },
-          },
-        },
-      },
-    },
-  });
-
-  return parents.map((parent) => ({
-    id: parent.id,
-    email: parent.email,
-    displayName: parent.displayName,
-    suspended: parent.suspended,
-    createdAt: parent.createdAt,
-    subscription: {
-      status: parent.subscription?.status ?? null,
-    },
-    childProfiles: {
-      count: parent.childProfiles.length,
-      nicknames: parent.childProfiles.map((childProfile) => childProfile.nickname),
-    },
-    successfulPaymentsCount: parent._count.payments,
-  }));
 }
 
 export async function getAdminNotes(parentId: string) {

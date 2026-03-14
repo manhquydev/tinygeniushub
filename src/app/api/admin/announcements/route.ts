@@ -4,7 +4,11 @@ import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
-import { createAnnouncement, listSystemAnnouncements } from "@/modules/admin/service";
+import {
+  createAdminActionLog,
+  createAnnouncement,
+  listSystemAnnouncements,
+} from "@/modules/admin/service";
 import { z } from "zod";
 
 const createAnnouncementSchema = z.object({
@@ -38,6 +42,15 @@ export async function POST(request: NextRequest) {
       scheduledAt: body.scheduledAt ? new Date(body.scheduledAt) : null,
       endsAt: body.endsAt ? new Date(body.endsAt) : null,
       adminEmail: admin.email,
+    });
+    await createAdminActionLog({
+      adminEmail: admin.email,
+      action: "CREATE_ANNOUNCEMENT",
+      target: announcement.id,
+      detail: {
+        type: announcement.type,
+        active: announcement.active,
+      },
     });
 
     return ok({ announcement });

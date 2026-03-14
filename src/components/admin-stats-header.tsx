@@ -1,4 +1,4 @@
-﻿import { BookOpen, CheckCircle, TrendingDown, TrendingUp, Users } from "lucide-react";
+import { BookOpen, CircleDot, TrendingDown, TrendingUp, Users } from "lucide-react";
 
 type AdminStatsHeaderProps = {
   overview: {
@@ -41,7 +41,7 @@ export function AdminStatsHeader({ overview, retention }: AdminStatsHeaderProps)
     },
     {
       key: "active-subs",
-      icon: CheckCircle,
+      icon: CircleDot,
       text: `Gói đang hoạt động: ${activeSubscriptionCount}`,
     },
     {

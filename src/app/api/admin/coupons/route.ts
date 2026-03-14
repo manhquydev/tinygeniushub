@@ -4,7 +4,7 @@ import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
-import { createCoupon, listCoupons } from "@/modules/admin/service";
+import { createAdminActionLog, createCoupon, listCoupons } from "@/modules/admin/service";
 import { z } from "zod";
 
 const createCouponSchema = z.object({
@@ -42,6 +42,15 @@ export async function POST(request: NextRequest) {
       },
       admin.email,
     );
+    await createAdminActionLog({
+      adminEmail: admin.email,
+      action: "CREATE_COUPON",
+      target: coupon.code,
+      detail: {
+        discountPercent: coupon.discountPercent,
+        maxUses: coupon.maxUses,
+      },
+    });
 
     return ok({ coupon });
   } catch (error) {

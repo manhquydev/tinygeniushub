@@ -4,7 +4,7 @@ import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
-import { updateAnnouncementActive } from "@/modules/admin/service";
+import { createAdminActionLog, updateAnnouncementActive } from "@/modules/admin/service";
 import { z } from "zod";
 
 type RouteParams = {
@@ -20,12 +20,20 @@ export async function PATCH(request: NextRequest, context: RouteParams) {
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    await requireAdminFromRequest(request);
+    const admin = await requireAdminFromRequest(request);
     const { id } = await context.params;
     const body = updateAnnouncementSchema.parse(await request.json());
     const announcement = await updateAnnouncementActive({
       id,
       active: body.active,
+    });
+    await createAdminActionLog({
+      adminEmail: admin.email,
+      action: "UPDATE_ANNOUNCEMENT_ACTIVE",
+      target: announcement.id,
+      detail: {
+        active: announcement.active,
+      },
     });
     return ok({ announcement });
   } catch (error) {

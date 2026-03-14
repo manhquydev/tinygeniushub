@@ -14,21 +14,43 @@ type ApiResponse<TData> = {
 
 type BulkAction = "SUSPEND" | "ACTIVATE" | "SEND_NOTIFICATION";
 
-type AdminUserSearchRow = {
+type AdminUsersListRow = {
   id: string;
   email: string;
   displayName: string | null;
   suspended: boolean;
   createdAt: string;
-  subscription: {
-    status: string | null;
-  };
-  childProfiles: {
-    count: number;
-    nicknames: string[];
-  };
+  lastActiveAt: string | null;
+  childrenCount: number;
   successfulPaymentsCount: number;
+  subscription: {
+    id: string;
+    planCode: string;
+    status: string;
+    currentPeriodEnd: string;
+    autoRenew: boolean;
+  } | null;
 };
+
+type AdminUsersListResponse = {
+  users?: AdminUsersListRow[];
+  total?: number;
+  page?: number;
+};
+
+type UsersSort = "createdAt_desc" | "createdAt_asc" | "plan_desc" | "plan_asc";
+type UsersStatusFilter =
+  | "ALL"
+  | "TRIALING"
+  | "ACTIVE_STANDARD"
+  | "ACTIVE_FAMILYPLUS"
+  | "GRACE"
+  | "EXPIRED"
+  | "CANCELED"
+  | "REFUNDED"
+  | "NONE";
+
+const PAGE_SIZE = 20;
 
 type AdminUserDetail = {
   parent: {
@@ -134,22 +156,35 @@ function toCurrency(amountVnd: number) {
   return amountVnd.toLocaleString("vi-VN");
 }
 
-export function AdminUserSearch() {
+export function AdminUsersManagement() {
   const router = useRouter();
   const [query, setQuery] = useState("");
-  const [users, setUsers] = useState<AdminUserSearchRow[]>([]);
+  const [statusFilter, setStatusFilter] = useState<UsersStatusFilter>("ALL");
+  const [sortBy, setSortBy] = useState<UsersSort>("createdAt_desc");
+  const [page, setPage] = useState(1);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [users, setUsers] = useState<AdminUsersListRow[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
+  const [usersReloadToken, setUsersReloadToken] = useState(0);
   const [selectedParentId, setSelectedParentId] = useState<string | null>(null);
   const [detail, setDetail] = useState<AdminUserDetail | null>(null);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState<string | null>(null);
+  const [detailReloadToken, setDetailReloadToken] = useState(0);
   const [selectedParentIds, setSelectedParentIds] = useState<string[]>([]);
   const [bulkAction, setBulkAction] = useState<BulkAction>("SUSPEND");
   const [bulkMessage, setBulkMessage] = useState("");
   const [bulkLoading, setBulkLoading] = useState(false);
   const [bulkResultMessage, setBulkResultMessage] = useState<string | null>(null);
   const [impersonateLoading, setImpersonateLoading] = useState(false);
+  const [subscriptionActionLoading, setSubscriptionActionLoading] = useState(false);
+  const [subscriptionActionFeedback, setSubscriptionActionFeedback] = useState<string | null>(null);
+  const [extendDays, setExtendDays] = useState("30");
+  const [manualEmailSubject, setManualEmailSubject] = useState("");
+  const [manualEmailBody, setManualEmailBody] = useState("");
+  const [manualEmailLoading, setManualEmailLoading] = useState(false);
+  const [manualEmailFeedback, setManualEmailFeedback] = useState<string | null>(null);
   const [notes, setNotes] = useState<AdminNote[]>([]);
   const [notesLoading, setNotesLoading] = useState(false);
   const [notesError, setNotesError] = useState<string | null>(null);
@@ -169,18 +204,6 @@ export function AdminUserSearch() {
   }, [users]);
 
   useEffect(() => {
-    const trimmedQuery = query.trim();
-    if (trimmedQuery.length === 0) {
-      setUsers([]);
-      setSearchError(null);
-      setSelectedParentId(null);
-      setDetail(null);
-      setDetailError(null);
-      setSelectedParentIds([]);
-      setBulkResultMessage(null);
-      return;
-    }
-
     const controller = new AbortController();
     const timeoutId = window.setTimeout(() => {
       void (async () => {
@@ -189,25 +212,35 @@ export function AdminUserSearch() {
 
         try {
           const params = new URLSearchParams();
-          params.set("q", trimmedQuery);
-          params.set("limit", "20");
+          const trimmedQuery = query.trim();
+          if (trimmedQuery.length > 0) {
+            params.set("q", trimmedQuery);
+          }
+          if (statusFilter !== "ALL") {
+            params.set("status", statusFilter);
+          }
+          params.set("sort", sortBy);
+          params.set("page", String(page));
+          params.set("limit", String(PAGE_SIZE));
 
-          const response = await fetch(`/api/admin/users/search?${params.toString()}`, {
+          const response = await fetch(`/api/admin/users?${params.toString()}`, {
             method: "GET",
             signal: controller.signal,
             cache: "no-store",
           });
-          const body = (await response.json()) as ApiResponse<{ users?: AdminUserSearchRow[] }>;
+          const body = (await response.json()) as ApiResponse<AdminUsersListResponse>;
 
           if (!response.ok || !body.ok) {
             setSearchError(body.error?.message ?? "Không tải được danh sách người dùng.");
             setUsers([]);
+            setTotalUsers(0);
             setSelectedParentId(null);
             setDetail(null);
             return;
           }
 
           const rows = body.data?.users ?? [];
+          setTotalUsers(body.data?.total ?? 0);
           setUsers(rows);
 
           if (rows.length === 0) {
@@ -226,6 +259,7 @@ export function AdminUserSearch() {
 
           setSearchError(fetchError instanceof Error ? fetchError.message : "Lỗi không xác định.");
           setUsers([]);
+          setTotalUsers(0);
           setSelectedParentId(null);
           setDetail(null);
         } finally {
@@ -238,14 +272,23 @@ export function AdminUserSearch() {
       controller.abort();
       window.clearTimeout(timeoutId);
     };
-  }, [query]);
+  }, [page, query, sortBy, statusFilter, usersReloadToken]);
 
   useEffect(() => {
     if (!selectedParentId) {
       setDetail(null);
       setDetailError(null);
+      setSubscriptionActionFeedback(null);
+      setManualEmailFeedback(null);
+      setManualEmailSubject("");
+      setManualEmailBody("");
       return;
     }
+
+    setSubscriptionActionFeedback(null);
+    setManualEmailFeedback(null);
+    setManualEmailSubject("");
+    setManualEmailBody("");
 
     const controller = new AbortController();
     void (async () => {
@@ -282,7 +325,7 @@ export function AdminUserSearch() {
     return () => {
       controller.abort();
     };
-  }, [selectedParentId]);
+  }, [detailReloadToken, selectedParentId]);
 
   useEffect(() => {
     if (!selectedParentId) {
@@ -479,21 +522,156 @@ export function AdminUserSearch() {
     }
   }
 
+  async function handleSubscriptionAction(action: "extend" | "cancel" | "activate") {
+    if (!selectedParentId) {
+      return;
+    }
+    if (!detail?.currentSubscription) {
+      setSubscriptionActionFeedback("Người dùng chưa có gói đăng ký để thao tác.");
+      return;
+    }
+
+    const parsedDays = Number.parseInt(extendDays, 10);
+    const days = Number.isFinite(parsedDays) ? parsedDays : 30;
+
+    setSubscriptionActionLoading(true);
+    setSubscriptionActionFeedback(null);
+
+    try {
+      const response = await fetch(`/api/admin/users/${encodeURIComponent(selectedParentId)}/subscription`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          action,
+          ...(action === "extend" ? { days } : {}),
+        }),
+      });
+      const body = (await response.json()) as ApiResponse<{ subscription?: unknown }>;
+
+      if (!response.ok || !body.ok) {
+        setSubscriptionActionFeedback(body.error?.message ?? "Không cập nhật được gói đăng ký.");
+        return;
+      }
+
+      const successMessage =
+        action === "extend"
+          ? `Đã gia hạn thêm ${days} ngày.`
+          : action === "cancel"
+            ? "Đã chuyển gói sang trạng thái hủy cuối kỳ."
+            : "Đã kích hoạt lại gói đăng ký.";
+
+      setSubscriptionActionFeedback(successMessage);
+      setDetailReloadToken((current) => current + 1);
+      setUsersReloadToken((current) => current + 1);
+    } catch (subscriptionError) {
+      setSubscriptionActionFeedback(
+        subscriptionError instanceof Error ? subscriptionError.message : "Lỗi không xác định.",
+      );
+    } finally {
+      setSubscriptionActionLoading(false);
+    }
+  }
+
+  async function handleSendManualEmail() {
+    if (!selectedParentId) {
+      return;
+    }
+
+    const subject = manualEmailSubject.trim();
+    const body = manualEmailBody.trim();
+
+    if (subject.length === 0 || body.length === 0) {
+      setManualEmailFeedback("Vui lòng nhập đầy đủ tiêu đề và nội dung email.");
+      return;
+    }
+
+    setManualEmailLoading(true);
+    setManualEmailFeedback(null);
+
+    try {
+      const response = await fetch(`/api/admin/users/${encodeURIComponent(selectedParentId)}/email`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ subject, body }),
+      });
+      const payload = (await response.json()) as ApiResponse<{ sent?: boolean; provider?: string }>;
+
+      if (!response.ok || !payload.ok) {
+        setManualEmailFeedback(payload.error?.message ?? "Không gửi được email.");
+        return;
+      }
+
+      const provider = payload.data?.provider ?? "unknown";
+      setManualEmailFeedback(`Đã gửi email thành công qua ${provider}.`);
+      setDetailReloadToken((current) => current + 1);
+    } catch (emailError) {
+      setManualEmailFeedback(emailError instanceof Error ? emailError.message : "Lỗi không xác định.");
+    } finally {
+      setManualEmailLoading(false);
+    }
+  }
+
+  const totalPages = Math.max(1, Math.ceil(totalUsers / PAGE_SIZE));
+  const canGoPrev = page > 1;
+  const canGoNext = page < totalPages;
+
   return (
     <section className="card page-stack">
-      <h2>Tìm kiếm người dùng</h2>
-      <p className="muted-text">Nhập email phụ huynh để tìm nhanh thông tin gói đăng ký, hồ sơ bé và thanh toán.</p>
+      <h2>Quản lý người dùng</h2>
+      <p className="muted-text">Lọc theo trạng thái gói, sắp xếp và thao tác trực tiếp trên từng tài khoản phụ huynh.</p>
 
       <div className="rounded-2xl border border-slate-200 bg-white p-3">
-        <div className="relative">
-          <Search size={14} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="search"
-            placeholder="Tìm theo email phụ huynh..."
-            className="w-full rounded-xl border border-slate-300 bg-slate-50 py-2 pl-9 pr-3 text-sm text-slate-700 outline-none transition focus:border-teal-400 focus:bg-white"
-          />
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-[1fr_auto_auto]">
+          <div className="relative">
+            <Search size={14} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              value={query}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setPage(1);
+              }}
+              type="search"
+              placeholder="Tìm theo email hoặc tên phụ huynh..."
+              className="w-full rounded-xl border border-slate-300 bg-slate-50 py-2 pl-9 pr-3 text-sm text-slate-700 outline-none transition focus:border-teal-400 focus:bg-white"
+            />
+          </div>
+
+          <select
+            value={statusFilter}
+            onChange={(event) => {
+              setStatusFilter(event.target.value as UsersStatusFilter);
+              setPage(1);
+            }}
+            className="min-h-10 rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-700 outline-none transition focus:border-teal-400"
+          >
+            <option value="ALL">Tất cả trạng thái</option>
+            <option value="ACTIVE_STANDARD">ACTIVE_STANDARD</option>
+            <option value="ACTIVE_FAMILYPLUS">ACTIVE_FAMILYPLUS</option>
+            <option value="TRIALING">TRIALING</option>
+            <option value="GRACE">GRACE</option>
+            <option value="CANCELED">CANCELED</option>
+            <option value="EXPIRED">EXPIRED</option>
+            <option value="REFUNDED">REFUNDED</option>
+            <option value="NONE">NONE</option>
+          </select>
+
+          <select
+            value={sortBy}
+            onChange={(event) => {
+              setSortBy(event.target.value as UsersSort);
+              setPage(1);
+            }}
+            className="min-h-10 rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-700 outline-none transition focus:border-teal-400"
+          >
+            <option value="createdAt_desc">Mới nhất</option>
+            <option value="createdAt_asc">Cũ nhất</option>
+            <option value="plan_desc">Gói (Z-A)</option>
+            <option value="plan_asc">Gói (A-Z)</option>
+          </select>
         </div>
       </div>
 
@@ -514,6 +692,7 @@ export function AdminUserSearch() {
                   <th className="px-3 py-2">Email</th>
                   <th className="px-3 py-2">Gói</th>
                   <th className="px-3 py-2">Số bé</th>
+                  <th className="px-3 py-2">Hoạt động gần nhất</th>
                   <th className="px-3 py-2">Ngày tham gia</th>
                 </tr>
               </thead>
@@ -532,6 +711,9 @@ export function AdminUserSearch() {
                         </td>
                         <td className="px-3 py-3">
                           <div className="h-4 w-16 animate-pulse rounded bg-slate-200" />
+                        </td>
+                        <td className="px-3 py-3">
+                          <div className="h-4 w-24 animate-pulse rounded bg-slate-200" />
                         </td>
                         <td className="px-3 py-3">
                           <div className="h-4 w-24 animate-pulse rounded bg-slate-200" />
@@ -573,13 +755,16 @@ export function AdminUserSearch() {
                           <td className="px-3 py-3">
                             <span
                               className={`inline-flex rounded-full border px-2 py-1 text-xs font-semibold ${getSubscriptionBadgeClass(
-                                user.subscription.status,
+                                user.subscription?.status,
                               )}`}
                             >
-                              {normalizeStatusLabel(user.subscription.status)}
+                              {normalizeStatusLabel(user.subscription?.status)}
                             </span>
                           </td>
-                          <td className="px-3 py-3 text-slate-700">{user.childProfiles.count}</td>
+                          <td className="px-3 py-3 text-slate-700">{user.childrenCount}</td>
+                          <td className="px-3 py-3 text-slate-700">
+                            {user.lastActiveAt ? new Date(user.lastActiveAt).toLocaleDateString("vi-VN") : "-"}
+                          </td>
                           <td className="px-3 py-3 text-slate-700">{new Date(user.createdAt).toLocaleDateString("vi-VN")}</td>
                         </tr>
                       );
@@ -630,10 +815,34 @@ export function AdminUserSearch() {
             </div>
           ) : null}
 
-          {!searchLoading && query.trim().length > 0 && users.length === 0 && !searchError ? (
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600">
+            <p>
+              Tổng {totalUsers} người dùng - Trang {page}/{totalPages}
+            </p>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setPage((current) => Math.max(1, current - 1))}
+                disabled={!canGoPrev || searchLoading}
+                className="rounded-full border border-slate-300 bg-white px-3 py-1 font-semibold text-slate-700 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                Trang trước
+              </button>
+              <button
+                type="button"
+                onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+                disabled={!canGoNext || searchLoading}
+                className="rounded-full border border-slate-300 bg-white px-3 py-1 font-semibold text-slate-700 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                Trang sau
+              </button>
+            </div>
+          </div>
+
+          {!searchLoading && users.length === 0 && !searchError ? (
             <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm text-slate-500">
               <SearchX size={32} className="mx-auto mb-2 text-slate-300" />
-              <p>Không tìm thấy phụ huynh nào phù hợp.</p>
+              <p>Không có người dùng phù hợp với bộ lọc hiện tại.</p>
             </div>
           ) : null}
 
@@ -720,6 +929,89 @@ export function AdminUserSearch() {
                 ) : (
                   <p className="mt-2 text-sm text-slate-600">Chưa có gói đăng ký.</p>
                 )}
+
+                <div className="mt-3 space-y-2 border-t border-slate-200 pt-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <input
+                      type="number"
+                      min={1}
+                      max={3650}
+                      value={extendDays}
+                      onChange={(event) => setExtendDays(event.target.value)}
+                      className="w-28 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm text-slate-700 outline-none transition focus:border-teal-400"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        void handleSubscriptionAction("extend");
+                      }}
+                      disabled={subscriptionActionLoading || !detail.currentSubscription}
+                      className="rounded-full bg-teal-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      Gia hạn
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        void handleSubscriptionAction("cancel");
+                      }}
+                      disabled={subscriptionActionLoading || !detail.currentSubscription}
+                      className="rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      Hủy cuối kỳ
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        void handleSubscriptionAction("activate");
+                      }}
+                      disabled={subscriptionActionLoading || !detail.currentSubscription}
+                      className="rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      Kích hoạt
+                    </button>
+                  </div>
+                  {subscriptionActionFeedback ? (
+                    <p className="text-xs font-medium text-slate-700">{subscriptionActionFeedback}</p>
+                  ) : null}
+                  {!detail.currentSubscription ? (
+                    <p className="text-xs text-slate-500">Tài khoản chưa có subscription, chưa thể dùng thao tác gói.</p>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.06em] text-slate-500">Gửi email thủ công</p>
+                <div className="mt-2 space-y-2">
+                  <input
+                    type="text"
+                    value={manualEmailSubject}
+                    onChange={(event) => setManualEmailSubject(event.target.value.slice(0, 200))}
+                    placeholder="Tiêu đề email"
+                    className="w-full rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-sm text-slate-700 outline-none transition focus:border-teal-400"
+                  />
+                  <textarea
+                    value={manualEmailBody}
+                    onChange={(event) => setManualEmailBody(event.target.value.slice(0, 5000))}
+                    rows={4}
+                    placeholder="Nội dung email..."
+                    className="w-full rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-sm text-slate-700 outline-none transition focus:border-teal-400"
+                  />
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-xs text-slate-500">{5000 - manualEmailBody.length} ký tự còn lại</p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        void handleSendManualEmail();
+                      }}
+                      disabled={manualEmailLoading}
+                      className="rounded-full bg-teal-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {manualEmailLoading ? "Đang gửi..." : "Gửi email"}
+                    </button>
+                  </div>
+                  {manualEmailFeedback ? <p className="text-xs font-medium text-slate-700">{manualEmailFeedback}</p> : null}
+                </div>
               </div>
 
               <div>

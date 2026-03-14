@@ -1,5 +1,5 @@
-import { AdminUserSearch } from "@/components/admin-user-search";
+import { AdminUsersManagement } from "@/components/admin-users-management";
 
 export default function AdminUsersPage() {
-  return <AdminUserSearch />;
+  return <AdminUsersManagement />;
 }

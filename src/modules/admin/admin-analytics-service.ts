@@ -38,6 +38,53 @@ export type AdminRetentionAnalytics = {
   avgLessonsPerChildPerWeek: number;
 };
 
+export const ADMIN_ANALYTICS_PERIODS = ["7d", "30d", "90d"] as const;
+export type AdminAnalyticsPeriod = (typeof ADMIN_ANALYTICS_PERIODS)[number];
+
+export type AdminAnalyticsTopLesson = {
+  id: string;
+  slug: string;
+  title: string;
+  completionCount: number;
+  avgMinutes: number;
+};
+
+export type AdminAnalyticsSnapshot = {
+  period: AdminAnalyticsPeriod;
+  learningStats: {
+    activeChildren: number;
+    totalLessonsCompleted: number;
+    avgMinutesPerChildPerDay: number;
+  };
+  streakBuckets: {
+    zero: number;
+    low: number;
+    medium: number;
+    high: number;
+  };
+  topLessons: AdminAnalyticsTopLesson[];
+  retentionMetrics: AdminRetentionAnalytics;
+};
+
+function periodToDays(period: AdminAnalyticsPeriod) {
+  switch (period) {
+    case "7d":
+      return 7;
+    case "90d":
+      return 90;
+    case "30d":
+    default:
+      return 30;
+  }
+}
+
+export function parseAdminAnalyticsPeriod(value: string | null | undefined): AdminAnalyticsPeriod {
+  if (value === "7d" || value === "30d" || value === "90d") {
+    return value;
+  }
+  return "30d";
+}
+
 export async function getAdminOverview() {
   const since30d = subDays(new Date(), 30);
 
@@ -371,5 +418,140 @@ export async function getAdminRetentionAnalytics(): Promise<AdminRetentionAnalyt
     avgDaysToFirstLesson,
     avgLessonsPerChildPerWeek,
   };
+}
+
+export async function getAdminAnalyticsSnapshot(
+  period: AdminAnalyticsPeriod = "30d",
+): Promise<AdminAnalyticsSnapshot> {
+  const days = periodToDays(period);
+  const since = subDays(new Date(), days);
+
+  const [
+    totalChildren,
+    activeChildrenRows,
+    completedAggregate,
+    topLessonCompletionRows,
+    progressStates,
+    retentionMetrics,
+  ] = await Promise.all([
+    prisma.childProfile.count(),
+    prisma.lessonCompletion.groupBy({
+      by: ["childId"],
+      where: {
+        completedAt: { gte: since },
+      },
+    }),
+    prisma.lessonCompletion.aggregate({
+      where: {
+        completedAt: { gte: since },
+      },
+      _count: { _all: true },
+      _sum: { minutesLearned: true },
+    }),
+    prisma.lessonCompletion.groupBy({
+      by: ["lessonId"],
+      where: {
+        completedAt: { gte: since },
+      },
+      _count: { lessonId: true },
+      _sum: { minutesLearned: true },
+      orderBy: [{ _count: { lessonId: "desc" } }, { lessonId: "asc" }],
+      take: 10,
+    }),
+    prisma.progressState.findMany({
+      select: {
+        childId: true,
+        streakCount: true,
+      },
+    }),
+    getAdminRetentionAnalytics(),
+  ]);
+
+  const topLessonIds = topLessonCompletionRows.map((row) => row.lessonId);
+  const topLessonRows =
+    topLessonIds.length === 0
+      ? []
+      : await prisma.lesson.findMany({
+          where: {
+            id: { in: topLessonIds },
+          },
+          select: {
+            id: true,
+            slug: true,
+            title: true,
+          },
+        });
+
+  const lessonById = new Map(topLessonRows.map((row) => [row.id, row]));
+  const topLessons: AdminAnalyticsTopLesson[] = topLessonCompletionRows.map((row) => {
+    const lesson = lessonById.get(row.lessonId);
+    const completionCount = row._count.lessonId;
+    const totalMinutes = row._sum.minutesLearned ?? 0;
+
+    return {
+      id: row.lessonId,
+      slug: lesson?.slug ?? "",
+      title: lesson?.title ?? "Unknown lesson",
+      completionCount,
+      avgMinutes: completionCount > 0 ? Number((totalMinutes / completionCount).toFixed(2)) : 0,
+    };
+  });
+
+  const maxStreakByChild = new Map<string, number>();
+  for (const progressState of progressStates) {
+    const existingMax = maxStreakByChild.get(progressState.childId) ?? 0;
+    if (progressState.streakCount > existingMax) {
+      maxStreakByChild.set(progressState.childId, progressState.streakCount);
+    }
+  }
+
+  let zero = Math.max(totalChildren - maxStreakByChild.size, 0);
+  let low = 0;
+  let medium = 0;
+  let high = 0;
+
+  for (const streakCount of maxStreakByChild.values()) {
+    if (streakCount <= 0) {
+      zero += 1;
+      continue;
+    }
+    if (streakCount <= 3) {
+      low += 1;
+      continue;
+    }
+    if (streakCount <= 7) {
+      medium += 1;
+      continue;
+    }
+    high += 1;
+  }
+
+  const totalMinutes = completedAggregate._sum.minutesLearned ?? 0;
+  const avgMinutesPerChildPerDay =
+    totalChildren > 0 ? Number((totalMinutes / totalChildren / days).toFixed(2)) : 0;
+
+  return {
+    period,
+    learningStats: {
+      activeChildren: activeChildrenRows.length,
+      totalLessonsCompleted: completedAggregate._count._all,
+      avgMinutesPerChildPerDay,
+    },
+    streakBuckets: {
+      zero,
+      low,
+      medium,
+      high,
+    },
+    topLessons,
+    retentionMetrics,
+  };
+}
+
+export async function getAdminTopLessonsAnalytics(
+  period: AdminAnalyticsPeriod = "30d",
+): Promise<AdminAnalyticsTopLesson[]> {
+  const snapshot = await getAdminAnalyticsSnapshot(period);
+  return snapshot.topLessons;
 }
 
