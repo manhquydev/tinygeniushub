@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type CSSProperties, type ReactNode } from "react";
+import { type CSSProperties, type ReactNode, useEffect } from "react";
 import {
   ArrowRight,
   BarChart3,
@@ -258,6 +258,48 @@ const STARS = [
 ] as const;
 
 export function UnifiedScrollJourney() {
+  useEffect(() => {
+    const root = document.documentElement;
+    root.dataset.homeTheme = "1";
+
+    const computeTone = () => {
+      const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      const progress = Math.min(window.scrollY / maxScroll, 1);
+
+      let tone = "dark";
+      if (progress >= 0.72) {
+        tone = "light";
+      } else if (progress >= 0.38) {
+        tone = "mid";
+      }
+
+      root.dataset.homeNavTone = tone;
+    };
+
+    let rafId = 0;
+    const scheduleToneUpdate = () => {
+      if (rafId !== 0) return;
+      rafId = window.requestAnimationFrame(() => {
+        rafId = 0;
+        computeTone();
+      });
+    };
+
+    computeTone();
+    window.addEventListener("scroll", scheduleToneUpdate, { passive: true });
+    window.addEventListener("resize", scheduleToneUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", scheduleToneUpdate);
+      window.removeEventListener("resize", scheduleToneUpdate);
+      if (rafId !== 0) {
+        window.cancelAnimationFrame(rafId);
+      }
+      delete root.dataset.homeTheme;
+      delete root.dataset.homeNavTone;
+    };
+  }, []);
+
   return (
     <main className="usj-page">
       <div className="usj-starfield" aria-hidden>
