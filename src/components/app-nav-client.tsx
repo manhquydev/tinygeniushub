@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import { Menu, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { useNavScrollTone } from "./use-nav-scroll-tone";
 
 const ParentNotificationCenter = dynamic(
   () => import("./parent-notification-center").then((module) => module.ParentNotificationCenter),
@@ -84,8 +83,6 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
   const pendingHrefRef = useRef<string | null>(null);
 
   const isKidUI = pathname.startsWith("/kid");
-  const isAdminUI = pathname.startsWith("/admin");
-  useNavScrollTone({ enabled: !isKidUI && !isAdminUI });
 
   const parentLinks: NavItemConfig[] = [
     { href: "/about", label: "Giới thiệu", hideOnMobile: true, matchMode: "prefix" },
