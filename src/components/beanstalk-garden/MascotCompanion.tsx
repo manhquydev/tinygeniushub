@@ -36,7 +36,7 @@ export function MascotCompanion() {
         }}
         className="w-20 h-20 bg-indigo-100 rounded-full border-4 border-indigo-400 shadow-xl flex items-center justify-center text-5xl pointer-events-auto cursor-pointer"
         whileHover={{ scale: 1.1, rotate: [0, -10, 10, 0] }}
-        onClick={() => setMessage("Cúuuuu! Bạn gọi mình à?")}
+        onClick={() => setMessage("Cáooo! Bạn gọi mình à?")}
       >
         🦉
       </motion.div>

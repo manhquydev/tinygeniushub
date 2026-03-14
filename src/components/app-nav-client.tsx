@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -162,8 +162,20 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
     <>
       <header className="app-nav">
         <div className="container nav-inner">
-          <Link href="/" className="brand" aria-label="Trang chủ Cùng Con Tự Học" onClick={(event) => handleInterceptNavigation(event, "/")}>
-            <Image src="/logo-cungcontuhoc-horizontal.svg" alt="Cùng Con Tự Học Logo" width={180} height={50} priority />
+          <Link
+            href="/"
+            className="brand brand-feature-logo"
+            aria-label="TinyGeniusHub Home"
+            onClick={(event) => handleInterceptNavigation(event, "/")}
+          >
+            <Image
+              src="/logos/tinygeniushub_logo_horizon.png"
+              alt="TinyGeniusHub Logo"
+              width={1584}
+              height={672}
+              priority
+              className="brand-feature-image"
+            />
           </Link>
 
           <button
@@ -267,3 +279,4 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
     </>
   );
 }
+

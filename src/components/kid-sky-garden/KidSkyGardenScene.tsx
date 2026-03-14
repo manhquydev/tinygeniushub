@@ -1,20 +1,27 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useReducedMotion } from "motion/react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, BookOpenText, Calculator, Leaf } from "lucide-react";
 import { SeedPlantingCinematic } from "@/components/kid-sky-garden/components/SeedPlantingCinematic";
+import { SkyGardenFxCanvas } from "@/components/kid-sky-garden/three/SkyGardenFxCanvas";
+import {
+  buildSkyGardenNodes,
+  mapLessonLikeToSkyGardenLesson,
+} from "@/components/kid-sky-garden/mappers";
 import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
 import { Mascot } from "@/components/mascot";
-import { BeanTipGrowthFx } from "@/components/kid-sky-garden/components/BeanTipGrowthFx";
-import { buildSkyGardenNodes, mapLessonLikeToSkyGardenLesson } from "@/components/kid-sky-garden/mappers";
-import { SkyGardenFxCanvas } from "@/components/kid-sky-garden/three/SkyGardenFxCanvas";
 import type {
   SkyGardenChildProfile,
-  SkyGardenGrowthState,
-  SkyGardenLaneState,
   SkyGardenLesson,
   SkyGardenProgressSnapshot,
   SkyGardenSeedCourse,
@@ -28,21 +35,13 @@ interface KidSkyGardenSceneProps {
   initialLessons: SkyGardenLesson[];
   initialProgress: SkyGardenProgressSnapshot;
   initialSeedCourse?: SkyGardenSeedCourse | null;
-  /** When mode="course", the back button navigates to /kid/courses instead of /parent/dashboard */
   mode?: "today" | "course";
   courseSlug?: string;
   courseTitle?: string;
+  courseDescription?: string | null;
+  courseCoverImageUrl?: string | null;
+  initialFocusTierNo?: number | null;
 }
-
-type SkyGardenJourneyOverview = {
-  trackCode: SkyGardenLesson["trackCode"];
-  journeyTitle: string;
-  unitTitle: string;
-  journeyAccent: string;
-  totalLessons: number;
-  completedLessons: number;
-  nextLessonTitle: string | null;
-};
 
 type LessonsTodayResponse = {
   ok: boolean;
@@ -63,65 +62,28 @@ type ActivityTodayResponse = {
   };
 };
 
-type AtmosphereParticle = {
-  xPercent: number;
-  yPercent: number;
-  size: number;
-  durationSeconds: number;
-  delaySeconds: number;
-  opacity: number;
+type SyncOptions = {
+  silent?: boolean;
 };
 
-const DEFAULT_MASCOT_MESSAGES = [
-  "Mình cùng leo lên tầng mây mới nhé!",
-  "Cây đậu sẽ lớn dần theo từng bài học đó!",
-  "Hoàn thành tầng này là mở được tầng tiếp theo.",
-];
+type Rgb = {
+  r: number;
+  g: number;
+  b: number;
+};
 
-const TIER_BASE_BOTTOM = 180;
-const TIER_GAP = 320;
-const FOCUS_SAFE_TOP = 252;
-const FOCUS_SAFE_BOTTOM = 210;
-const DEFAULT_SCROLL_TOP_SAFE = 236;
-const DEFAULT_SCROLL_BOTTOM_SAFE = 176;
 const SEED_CINEMATIC_STORAGE_PREFIX = "kid-sky-garden-seed";
+const VISIBLE_NODE_COUNT = 3;
+
+const SKY_STOPS: Array<{ top: string; mid: string; bottom: string }> = [
+  { top: "#c7f1ff", mid: "#7dd3fc", bottom: "#d9f99d" },
+  { top: "#7dd3fc", mid: "#38bdf8", bottom: "#fcd34d" },
+  { top: "#60a5fa", mid: "#6366f1", bottom: "#fb923c" },
+  { top: "#1e3a8a", mid: "#4c1d95", bottom: "#0f172a" },
+];
 
 function buildSeedCinematicStorageKey(childId: string, courseId: string) {
   return `${SEED_CINEMATIC_STORAGE_PREFIX}:${childId}:${courseId}`;
-}
-
-function buildAtmosphereParticles(count: number): AtmosphereParticle[] {
-  return Array.from({ length: count }, (_, index) => {
-    const xSeed = (index * 17) % 100;
-    const ySeed = (index * 23 + 11) % 84;
-
-    return {
-      xPercent: 8 + xSeed * 0.84,
-      yPercent: 10 + ySeed,
-      size: 3 + (index % 4),
-      durationSeconds: 3.4 + (index % 5) * 0.7,
-      delaySeconds: -((index % 6) * 0.5),
-      opacity: 0.2 + (index % 4) * 0.12,
-    };
-  });
-}
-
-function resolveTierBottom(tierIndex: number) {
-  return TIER_BASE_BOTTOM + Math.max(0, tierIndex - 1) * TIER_GAP;
-}
-
-function resolveLaneStateLabel(state: SkyGardenLaneState) {
-  switch (state) {
-    case "seeded":
-      return "Mới gieo hạt";
-    case "tier_unlocking":
-      return "Đang mở tầng";
-    case "plateau":
-      return "Đã tới đỉnh hiện tại";
-    case "growing":
-    default:
-      return "Đang vươn mầm";
-  }
 }
 
 function resolveTrackLabel(trackCode: SkyGardenLesson["trackCode"]) {
@@ -136,22 +98,76 @@ function resolveTrackLabel(trackCode: SkyGardenLesson["trackCode"]) {
   }
 }
 
-function resolveTrackGlyph(trackCode: SkyGardenLesson["trackCode"]) {
+function resolveTrackIcon(trackCode: SkyGardenLesson["trackCode"]) {
   switch (trackCode) {
+    case "MATH":
+      return <Calculator size={18} strokeWidth={2.5} />;
     case "HABIT":
-      return "🌱";
+      return <Leaf size={18} strokeWidth={2.5} />;
     case "ENGLISH":
+      return <BookOpenText size={18} strokeWidth={2.5} />;
     default:
-      return "🦊"; // Default emoji for unknown courses
+      return <BookOpenText size={18} strokeWidth={2.5} />;
   }
 }
 
-function resolveTierDepthClass(tierIndex: number, activeTierIndex: number) {
-  const depthDistance = Math.abs(tierIndex - activeTierIndex);
-  if (depthDistance === 0) return "ksg-tier-depth-focus";
-  if (depthDistance === 1) return "ksg-tier-depth-near";
-  if (depthDistance === 2) return "ksg-tier-depth-mid";
-  return "ksg-tier-depth-far";
+function clamp01(value: number) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function hexToRgb(hex: string): Rgb {
+  const normalized = hex.replace("#", "");
+  const full =
+    normalized.length === 3
+      ? normalized
+          .split("")
+          .map((char) => `${char}${char}`)
+          .join("")
+      : normalized;
+
+  const int = Number.parseInt(full, 16);
+  return {
+    r: (int >> 16) & 255,
+    g: (int >> 8) & 255,
+    b: int & 255,
+  };
+}
+
+function rgbToHex(rgb: Rgb) {
+  const toHex = (value: number) => Math.round(value).toString(16).padStart(2, "0");
+  return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`;
+}
+
+function mixHexColor(fromHex: string, toHex: string, ratio: number) {
+  const from = hexToRgb(fromHex);
+  const to = hexToRgb(toHex);
+  const mix = clamp01(ratio);
+  return rgbToHex({
+    r: from.r + (to.r - from.r) * mix,
+    g: from.g + (to.g - from.g) * mix,
+    b: from.b + (to.b - from.b) * mix,
+  });
+}
+
+function sampleSkyColors(progress: number) {
+  const safe = clamp01(progress);
+  const segments = SKY_STOPS.length - 1;
+  if (segments <= 0) {
+    return SKY_STOPS[0]!;
+  }
+
+  const scaled = safe * segments;
+  const index = Math.min(segments - 1, Math.floor(scaled));
+  const blend = scaled - index;
+
+  const from = SKY_STOPS[index]!;
+  const to = SKY_STOPS[index + 1]!;
+
+  return {
+    top: mixHexColor(from.top, to.top, blend),
+    mid: mixHexColor(from.mid, to.mid, blend),
+    bottom: mixHexColor(from.bottom, to.bottom, blend),
+  };
 }
 
 export function KidSkyGardenScene({
@@ -163,77 +179,67 @@ export function KidSkyGardenScene({
   mode = "today",
   courseSlug,
   courseTitle,
+  courseDescription = null,
+  courseCoverImageUrl = null,
+  initialFocusTierNo = null,
 }: KidSkyGardenSceneProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion() ?? false;
-  const hudRef = useRef<HTMLElement | null>(null);
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const hasCenteredInitialTierRef = useRef(false);
+  const routeLocationKey = `${pathname}?${searchParams.toString()}`;
+  const routeFocusTierNo = useMemo(() => {
+    const raw = searchParams.get("focusTierNo");
+    const parsed = Number.parseInt(raw ?? "", 10);
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+  }, [searchParams]);
+
   const hasHandledInitialSeedRef = useRef(false);
+  const mapWrapRef = useRef<HTMLElement | null>(null);
+  const mapWindowAnchorRef = useRef<string | null>(null);
+  const routeSyncRef = useRef<string | null>(null);
+
   const [activeChildId, setActiveChildId] = useState(initialChildId);
   const [lessons, setLessons] = useState(initialLessons);
   const [progress, setProgress] = useState<SkyGardenProgressSnapshot>(initialProgress);
   const [loading, setLoading] = useState(false);
-  const [parallaxOffset, setParallaxOffset] = useState(0);
-  const [lowPerformanceMode, setLowPerformanceMode] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
-  const [seedCinematicCourse, setSeedCinematicCourse] = useState<SkyGardenSeedCourse | null>(null);
-  const [stemPulseCount, setStemPulseCount] = useState(0);
-  const [newlyUnlockedLessonId, setNewlyUnlockedLessonId] = useState<string | null>(null);
-  const [unlockingTierIndex, setUnlockingTierIndex] = useState<number | null>(null);
-  const [isCompactMascotMode, setIsCompactMascotMode] = useState(false);
-  const [selectedTrack, setSelectedTrack] = useState<SkyGardenLesson["trackCode"] | null>(null);
-  const [scrollTopSafe, setScrollTopSafe] = useState(DEFAULT_SCROLL_TOP_SAFE);
-  const [scrollBottomSafe, setScrollBottomSafe] = useState(DEFAULT_SCROLL_BOTTOM_SAFE);
-  const [growthState, setGrowthState] = useState<SkyGardenGrowthState>({
-    phase: "idle",
-    fromTier: 1,
-    toTier: 1,
-    pulse: 0,
-  });
-
-  const scopedLessons = useMemo(
-    () => (selectedTrack ? lessons.filter((lesson) => lesson.trackCode === selectedTrack) : lessons),
-    [lessons, selectedTrack],
+  const [seedCinematicCourse, setSeedCinematicCourse] =
+    useState<SkyGardenSeedCourse | null>(null);
+  const [isCompact, setIsCompact] = useState(false);
+  const [climbProgress, setClimbProgress] = useState(0);
+  const [levelUpFxTier, setLevelUpFxTier] = useState<number | null>(null);
+  const [focusTierNo, setFocusTierNo] = useState<number | null>(
+    routeFocusTierNo ?? initialFocusTierNo,
   );
-  const nodes = useMemo(() => buildSkyGardenNodes(scopedLessons), [scopedLessons]);
-  const maxTierIndex = nodes.length > 0 ? Math.max(...nodes.map((n) => n.tierIndex)) : 1;
-  const sceneHeight = Math.max(1200, 350 + maxTierIndex * TIER_GAP);
-  const activeNode = nodes.find((node) => node.state === "active") ?? null;
-  const activeJourney = selectedTrack ? activeNode ?? nodes[0] ?? null : null;
-  const completedCount = nodes.filter((node) => node.state === "completed").length;
-  const activeTierIndex =
-    activeNode?.tierIndex ?? (nodes.length > 0 ? nodes[nodes.length - 1]!.tierIndex : 1);
-  const atmosphereParticles = useMemo(
-    () => buildAtmosphereParticles(lowPerformanceMode ? 8 : 16),
-    [lowPerformanceMode],
+  const [selectedTrack, setSelectedTrack] = useState<SkyGardenLesson["trackCode"] | null>(
+    mode === "course" ? initialLessons[0]?.trackCode ?? null : null,
   );
 
-  const laneState: SkyGardenLaneState = useMemo(() => {
-    if (nodes.length === 0) return "seeded";
-    if (growthState.phase === "growing") return "tier_unlocking";
-    if (completedCount === 0) return "seeded";
-    if (completedCount >= nodes.length) return "plateau";
-    return "growing";
-  }, [completedCount, growthState.phase, nodes.length]);
-  const laneStateLabel = resolveLaneStateLabel(laneState);
+  const activeChild =
+    childrenProfiles.find((child) => child.id === activeChildId) ?? childrenProfiles[0];
+  const avatarLabel = activeChild
+    ? Array.from(activeChild.nickname.trim())[0]?.toUpperCase() ?? "B"
+    : "B";
 
-  const journeyOverviews = useMemo<SkyGardenJourneyOverview[]>(() => {
-    const groups = new Map<SkyGardenLesson["trackCode"], SkyGardenLesson[]>();
+  const journeys = useMemo(() => {
+    const grouped = new Map<string, SkyGardenLesson[]>();
     for (const lesson of lessons) {
-      const current = groups.get(lesson.trackCode) ?? [];
+      const current = grouped.get(lesson.trackCode) ?? [];
       current.push(lesson);
-      groups.set(lesson.trackCode, current);
+      grouped.set(lesson.trackCode, current);
     }
 
-    return Array.from(groups.entries()).map(([trackCode, trackLessons]) => {
+    return Array.from(grouped.entries()).map(([trackCode, trackLessons]) => {
       const completedLessons = trackLessons.filter((lesson) => lesson.isCompleted).length;
-      const nextLesson = trackLessons.find((lesson) => !lesson.isCompleted) ?? trackLessons[0] ?? null;
+      const nextLesson =
+        trackLessons.find((lesson) => !lesson.isCompleted) ?? trackLessons[0] ?? null;
+
       return {
-        trackCode,
-        journeyTitle: trackLessons[0]?.journeyTitle ?? resolveTrackLabel(trackCode),
-        unitTitle: trackLessons[0]?.unitTitle ?? "Khởi đầu",
-        journeyAccent: trackLessons[0]?.journeyAccent ?? "#2563eb",
+        trackCode: trackCode as SkyGardenLesson["trackCode"],
+        title: trackLessons[0]?.journeyTitle ?? resolveTrackLabel(trackCode),
+        unitTitle: trackLessons[0]?.unitTitle ?? "Mở đầu",
+        accent: trackLessons[0]?.journeyAccent ?? "#2563eb",
         totalLessons: trackLessons.length,
         completedLessons,
         nextLessonTitle: nextLesson?.title ?? null,
@@ -241,56 +247,120 @@ export function KidSkyGardenScene({
     });
   }, [lessons]);
 
-  const activeChild = childrenProfiles.find((child) => child.id === activeChildId) ?? childrenProfiles[0];
-  const activeChildAvatarLabel = useMemo(() => {
-    const trimmed = activeChild?.nickname.trim() ?? "";
-    if (trimmed.length === 0) return "B";
-    return Array.from(trimmed)[0]?.toUpperCase() ?? "B";
-  }, [activeChild?.nickname]);
-  const mascotMessage =
-    statusMessage ??
-    DEFAULT_MASCOT_MESSAGES[(completedCount + growthState.pulse) % DEFAULT_MASCOT_MESSAGES.length]!;
-
-  const clearSeedQueryParams = useCallback(() => {
-    const url = new URL(window.location.href);
-    const hasSeedParams = url.searchParams.has("seedCourseId") || url.searchParams.has("seedCourseTitle");
-    if (!hasSeedParams) {
-      return;
-    }
-    url.searchParams.delete("seedCourseId");
-    url.searchParams.delete("seedCourseTitle");
-    window.history.replaceState(null, "", url.toString());
-  }, []);
-
-  const focusTier = useCallback(
-    (tierIndex: number) => {
-      const container = scrollContainerRef.current;
-      if (!container) {
-        return;
-      }
-
-      const viewportHeight = container.clientHeight;
-      const targetFromBottom = resolveTierBottom(tierIndex);
-      const safeTop = Math.min(FOCUS_SAFE_TOP, Math.max(128, scrollTopSafe));
-      const safeBottom = Math.min(FOCUS_SAFE_BOTTOM, Math.max(116, scrollBottomSafe));
-      const safeBand = Math.max(160, viewportHeight - safeTop - safeBottom);
-      const targetScreenY = safeTop + safeBand * 0.52;
-      const rawTop = sceneHeight - targetFromBottom - targetScreenY;
-      const maxTop = Math.max(0, container.scrollHeight - viewportHeight);
-      const nextTop = Math.min(Math.max(rawTop, 0), maxTop);
-
-      container.scrollTo({
-        top: nextTop,
-        behavior: prefersReducedMotion ? "auto" : "smooth",
-      });
-    },
-    [prefersReducedMotion, sceneHeight, scrollBottomSafe, scrollTopSafe],
+  const showCloudClimbMap = mode === "course" || Boolean(selectedTrack);
+  const scopedLessons = useMemo(
+    () =>
+      selectedTrack
+        ? lessons.filter((lesson) => lesson.trackCode === selectedTrack)
+        : lessons,
+    [lessons, selectedTrack],
   );
 
+  const nodes = useMemo(
+    () => (showCloudClimbMap ? buildSkyGardenNodes(scopedLessons) : []),
+    [scopedLessons, showCloudClimbMap],
+  );
+
+  const activeNodeIndex = useMemo(
+    () => nodes.findIndex((node) => node.state === "active"),
+    [nodes],
+  );
+  const preferredFocusNodeIndex = useMemo(() => {
+    if (focusTierNo == null) {
+      return -1;
+    }
+    return nodes.findIndex((node) => node.tierIndex === focusTierNo);
+  }, [focusTierNo, nodes]);
+  const effectiveFocusNodeIndex = useMemo(() => {
+    if (preferredFocusNodeIndex < 0) {
+      return -1;
+    }
+    if (activeNodeIndex < 0) {
+      return preferredFocusNodeIndex;
+    }
+    // Ignore stale/incorrect hint from previous screen when too far from real active node.
+    return Math.abs(preferredFocusNodeIndex - activeNodeIndex) <= 1
+      ? preferredFocusNodeIndex
+      : -1;
+  }, [activeNodeIndex, preferredFocusNodeIndex]);
+  const baseNodeIndex = useMemo(() => {
+    if (effectiveFocusNodeIndex >= 0) {
+      return Math.max(0, effectiveFocusNodeIndex - 1);
+    }
+    if (nodes.length === 0) {
+      return 0;
+    }
+    if (activeNodeIndex <= 0) {
+      return 0;
+    }
+    return activeNodeIndex - 1;
+  }, [activeNodeIndex, effectiveFocusNodeIndex, nodes.length]);
+  const visibleWindowStart = useMemo(() => {
+    const maxStart = Math.max(0, nodes.length - VISIBLE_NODE_COUNT);
+    return Math.min(Math.max(0, baseNodeIndex), maxStart);
+  }, [baseNodeIndex, nodes.length]);
+  const visibleNodes = useMemo(
+    () => nodes.slice(visibleWindowStart, visibleWindowStart + VISIBLE_NODE_COUNT),
+    [nodes, visibleWindowStart],
+  );
+  const hasHiddenAbove = visibleWindowStart + visibleNodes.length < nodes.length;
+  const hasHiddenBelow = visibleWindowStart > 0;
+  const nodeWindowProgress = useMemo(() => {
+    if (nodes.length <= 1) {
+      return 0;
+    }
+    return clamp01(visibleWindowStart / (nodes.length - 1));
+  }, [nodes.length, visibleWindowStart]);
+
+  const completedCount = lessons.filter((lesson) => lesson.isCompleted).length;
+  const completedPercent = lessons.length > 0 ? Math.round((completedCount / lessons.length) * 100) : 0;
+  const totalLessonMinutes = lessons.reduce(
+    (sum, lesson) => sum + lesson.estimatedMinutes,
+    0,
+  );
+  const activeNode = nodes.find((node) => node.state === "active") ?? null;
+  const nextLessonTitle = activeNode?.title ?? null;
+  const tierSpacing = isCompact ? 330 : 390;
+  const baseTierBottom = isCompact ? 150 : 180;
+  const mapHeight = Math.max(
+    isCompact ? 1500 : 1700,
+    visibleNodes.length * tierSpacing + (isCompact ? 430 : 520),
+  );
+
+  const skyColors = useMemo(() => sampleSkyColors(climbProgress), [climbProgress]);
+
+  const sceneStyle = useMemo(
+    () =>
+      ({
+        background: [
+          "radial-gradient(circle at 10% 8%, rgba(196, 247, 255, 0.35) 0%, transparent 36%)",
+          "radial-gradient(circle at 90% 20%, rgba(125, 211, 252, 0.28) 0%, transparent 34%)",
+          `linear-gradient(180deg, ${skyColors.top} 0%, ${skyColors.mid} 48%, ${skyColors.bottom} 100%)`,
+        ].join(", "),
+        "--ksg2-climb-progress": `${climbProgress}`,
+      }) as CSSProperties,
+    [climbProgress, skyColors.bottom, skyColors.mid, skyColors.top],
+  );
+
+  const cloudBackOffset = useMemo(() => -climbProgress * 34, [climbProgress]);
+  const cloudFrontOffset = useMemo(() => -climbProgress * 56, [climbProgress]);
+  const starsOpacity = useMemo(
+    () => clamp01((climbProgress - 0.44) / 0.56) * 0.92,
+    [climbProgress],
+  );
+
+  const goToLearningHub = useCallback(() => {
+    router.push(`/kid/courses?childId=${encodeURIComponent(activeChildId)}`);
+  }, [activeChildId, router]);
+
+  const goToSharedGarden = useCallback(() => {
+    router.push(`/kid/garden?childId=${encodeURIComponent(activeChildId)}`);
+  }, [activeChildId, router]);
+
   const syncChildData = useCallback(
-    async (childId: string, options?: { silent?: boolean; preserveGrowth?: boolean }) => {
-      const activeChildProfile = childrenProfiles.find((child) => child.id === childId);
-      if (!activeChildProfile) {
+    async (childId: string, options?: SyncOptions) => {
+      const childProfile = childrenProfiles.find((child) => child.id === childId);
+      if (!childProfile) {
         return;
       }
 
@@ -306,10 +376,7 @@ export function KidSkyGardenScene({
             : `/api/lessons/today?childId=${encodeURIComponent(childId)}`;
 
         const [lessonsResponse, activityResponse] = await Promise.all([
-          fetch(lessonsUrl, {
-            method: "GET",
-            cache: "no-store",
-          }),
+          fetch(lessonsUrl, { method: "GET", cache: "no-store" }),
           fetch(`/api/children/${encodeURIComponent(childId)}/activity-today`, {
             method: "GET",
             cache: "no-store",
@@ -320,44 +387,53 @@ export function KidSkyGardenScene({
         const activityBody = (await activityResponse.json()) as ActivityTodayResponse;
 
         if (!lessonsResponse.ok || !lessonsBody.ok) {
-          setStatusMessage(lessonsBody.error?.message ?? "Kh\u00f4ng t\u1ea3i \u0111\u01b0\u1ee3c b\u00e0i h\u1ecdc.");
+          setStatusMessage(
+            lessonsBody.error?.message ?? "Không tải được dữ liệu hành trình.",
+          );
           return;
         }
 
-        const nextLessonsRaw = Array.isArray(lessonsBody.data?.lessons) ? lessonsBody.data.lessons : [];
-        const nextLessons = nextLessonsRaw.map((lesson, index) => mapLessonLikeToSkyGardenLesson(lesson, index));
+        const nextLessonsRaw = Array.isArray(lessonsBody.data?.lessons)
+          ? lessonsBody.data.lessons
+          : [];
+        const nextLessons = nextLessonsRaw.map((lesson, index) =>
+          mapLessonLikeToSkyGardenLesson(lesson, index),
+        );
+
         setLessons(nextLessons);
-
-        if (!options?.preserveGrowth) {
-          const nextNodes = buildSkyGardenNodes(nextLessons);
-          const nextActiveTier = nextNodes.find((node) => node.state === "active")?.tierIndex ?? Math.max(nextNodes.length, 1);
-          setGrowthState((current) => ({
-            ...current,
-            phase: "idle",
-            fromTier: nextActiveTier,
-            toTier: nextActiveTier,
-          }));
-          setUnlockingTierIndex(null);
+        if (mode === "course") {
+          setSelectedTrack(nextLessons[0]?.trackCode ?? null);
+        } else {
+          setSelectedTrack(null);
         }
-
-        const url = new URL(window.location.href);
-        url.searchParams.set("childId", childId);
-        window.history.replaceState(null, "", url.toString());
 
         const dailyGoalMinutesRaw = activityBody.data?.dailyGoalMinutes;
         const totalMinutesTodayRaw = activityBody.data?.totalMinutesToday;
         const dailyGoalMinutes =
-          typeof dailyGoalMinutesRaw === "number" ? dailyGoalMinutesRaw : activeChildProfile.dailyGoalMinutes;
-        const totalMinutesToday = typeof totalMinutesTodayRaw === "number" ? totalMinutesTodayRaw : 0;
+          typeof dailyGoalMinutesRaw === "number"
+            ? dailyGoalMinutesRaw
+            : childProfile.dailyGoalMinutes;
+        const totalMinutesToday =
+          typeof totalMinutesTodayRaw === "number" ? totalMinutesTodayRaw : 0;
 
         setProgress((current) => ({
           ...current,
           dailyGoalMinutes,
           totalMinutesToday,
           reached: dailyGoalMinutes > 0 && totalMinutesToday >= dailyGoalMinutes,
+          completedLessons: nextLessons.filter((lesson) => lesson.isCompleted).length,
+          totalLessons: nextLessons.length,
         }));
+
+        const url = new URL(window.location.href);
+        url.searchParams.set("childId", childId);
+        window.history.replaceState(null, "", url.toString());
       } catch (error) {
-        setStatusMessage(error instanceof Error ? error.message : "Đã xảy ra lỗi khi tải khu vườn.");
+        setStatusMessage(
+          error instanceof Error
+            ? error.message
+            : "Không thể đồng bộ dữ liệu hành trình.",
+        );
       } finally {
         if (!options?.silent) {
           setLoading(false);
@@ -372,185 +448,103 @@ export function KidSkyGardenScene({
       if (!childId || childId === activeChildId) {
         return;
       }
-
       setActiveChildId(childId);
-      setSelectedTrack(null);
-      hasCenteredInitialTierRef.current = false;
-      setStemPulseCount(0);
-      setNewlyUnlockedLessonId(null);
-      setUnlockingTierIndex(null);
       await syncChildData(childId);
     },
     [activeChildId, syncChildData],
   );
 
   const guardBeforeStart = useCallback(() => {
-    if (!progress.reached) {
-      return true;
+    if (progress.reached) {
+      setStatusMessage("Hôm nay đã đạt mục tiêu phút học, bé nghỉ một chút nhé.");
+      return false;
     }
-    setStatusMessage("Hôm nay đã đạt mục tiêu rồi. Mình nghỉ một chút nhé!");
-    return false;
+    return true;
   }, [progress.reached]);
 
   const handleLessonComplete = useCallback(
     (lessonId: string) => {
-      const beforeNodes = buildSkyGardenNodes(lessons);
-      const beforeActiveTier = beforeNodes.find((node) => node.state === "active")?.tierIndex ?? activeTierIndex;
+      const updatedLessons = lessons.map((lesson) =>
+        lesson.id === lessonId ? { ...lesson, isCompleted: true } : lesson,
+      );
 
-      const updatedLessons = lessons.map((lesson) => (lesson.id === lessonId ? { ...lesson, isCompleted: true } : lesson));
-      const afterNodes = buildSkyGardenNodes(updatedLessons);
-      const nextActiveNode = afterNodes.find((node) => node.state === "active") ?? null;
-      const nextActiveTier = nextActiveNode?.tierIndex ?? beforeActiveTier;
-      const hasUnlockedNewTier = nextActiveTier > beforeActiveTier;
+      const beforeScoped = selectedTrack
+        ? lessons.filter((lesson) => lesson.trackCode === selectedTrack)
+        : lessons;
+      const afterScoped = selectedTrack
+        ? updatedLessons.filter((lesson) => lesson.trackCode === selectedTrack)
+        : updatedLessons;
+
+      const beforeNodes = buildSkyGardenNodes(beforeScoped);
+      const afterNodes = buildSkyGardenNodes(afterScoped);
+
+      const beforeActiveTier =
+        beforeNodes.find((node) => node.state === "active")?.tierIndex ?? 1;
+      const afterActiveTier =
+        afterNodes.find((node) => node.state === "active")?.tierIndex ?? beforeActiveTier;
+
+      if (afterActiveTier > beforeActiveTier) {
+        setLevelUpFxTier(afterActiveTier);
+      }
 
       setLessons(updatedLessons);
-      setStemPulseCount((count) => count + 1);
-      setNewlyUnlockedLessonId(nextActiveNode?.id ?? null);
-      setUnlockingTierIndex(hasUnlockedNewTier ? nextActiveTier : null);
-
-      setGrowthState((current) => ({
-        pulse: current.pulse + 1,
-        phase: hasUnlockedNewTier && !prefersReducedMotion ? "growing" : "idle",
-        fromTier: hasUnlockedNewTier ? beforeActiveTier : nextActiveTier,
-        toTier: nextActiveTier,
-      }));
-
-      setStatusMessage(
-        hasUnlockedNewTier
-          ? "Tuyệt vời! Cây đậu vừa mọc lên tầng mây mới."
-          : "Giỏi lắm! Con vừa hoàn thành thêm một thử thách.",
-      );
-      void syncChildData(activeChildId, { silent: true, preserveGrowth: true });
+      setStatusMessage("Tuyệt vời! Bé vừa mở thêm một tầng mây mới.");
+      void syncChildData(activeChildId, { silent: true });
     },
-    [activeChildId, activeTierIndex, lessons, prefersReducedMotion, syncChildData],
+    [activeChildId, lessons, selectedTrack, syncChildData],
   );
 
   useEffect(() => {
-    if (growthState.phase !== "growing") {
-      return;
+    if (mode === "course" && !selectedTrack && lessons.length > 0) {
+      setSelectedTrack(lessons[0]?.trackCode ?? null);
     }
-
-    const timer = window.setTimeout(() => {
-      setGrowthState((current) => ({
-        ...current,
-        phase: "idle",
-        fromTier: current.toTier,
-      }));
-      setUnlockingTierIndex(null);
-    }, prefersReducedMotion ? 0 : 1200);
-
-    return () => {
-      window.clearTimeout(timer);
-    };
-  }, [growthState.phase, growthState.pulse, prefersReducedMotion]);
+  }, [lessons, mode, selectedTrack]);
 
   useEffect(() => {
-    const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
-    setLowPerformanceMode(typeof memory === "number" && memory <= 4);
-  }, []);
-
-  useEffect(() => {
-    const query = window.matchMedia("(max-width: 820px)");
-    const sync = () => {
-      setIsCompactMascotMode(query.matches);
+    const media = window.matchMedia("(max-width: 820px)");
+    const syncCompact = () => {
+      setIsCompact(media.matches);
     };
-    sync();
-    query.addEventListener("change", sync);
+
+    syncCompact();
+    media.addEventListener("change", syncCompact);
     return () => {
-      query.removeEventListener("change", sync);
+      media.removeEventListener("change", syncCompact);
     };
   }, []);
 
   useEffect(() => {
-    if (!selectedTrack) {
-      return;
-    }
-    const hasTrackLessons = lessons.some((lesson) => lesson.trackCode === selectedTrack);
-    if (!hasTrackLessons) {
-      setSelectedTrack(null);
-    }
-  }, [lessons, selectedTrack]);
+    setActiveChildId(initialChildId);
+  }, [initialChildId]);
 
   useEffect(() => {
-    const computeBottomSafe = () => {
-      const viewportHeight = window.innerHeight;
-      const minBottom = isCompactMascotMode ? 124 : 168;
-      const suggested = Math.round(viewportHeight * (isCompactMascotMode ? 0.2 : 0.24));
-      setScrollBottomSafe(Math.max(minBottom, Math.min(FOCUS_SAFE_BOTTOM, suggested)));
-    };
-
-    computeBottomSafe();
-    window.addEventListener("resize", computeBottomSafe, { passive: true });
-    return () => {
-      window.removeEventListener("resize", computeBottomSafe);
-    };
-  }, [isCompactMascotMode]);
+    setLessons(initialLessons);
+  }, [initialLessons]);
 
   useEffect(() => {
-    const hud = hudRef.current;
-    if (!hud) {
-      return;
-    }
-
-    const updateTopSafe = () => {
-      const hudHeight = Math.round(hud.getBoundingClientRect().height);
-      const dynamicTop = Math.max(170, Math.min(FOCUS_SAFE_TOP, hudHeight + 18));
-      setScrollTopSafe(dynamicTop);
-    };
-
-    updateTopSafe();
-    const observer = new ResizeObserver(updateTopSafe);
-    observer.observe(hud);
-    window.addEventListener("resize", updateTopSafe, { passive: true });
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", updateTopSafe);
-    };
-  }, [activeChildId, completedCount, isCompactMascotMode, nodes.length, progress.totalMinutesToday, statusMessage]);
+    setProgress(initialProgress);
+  }, [initialProgress]);
 
   useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container || prefersReducedMotion) {
-      setParallaxOffset(0);
-      return;
-    }
-
-    let rafId: number | null = null;
-    const updateParallax = () => {
-      if (rafId !== null) {
-        window.cancelAnimationFrame(rafId);
-      }
-      rafId = window.requestAnimationFrame(() => {
-        setParallaxOffset(Math.min(56, container.scrollTop * 0.1));
-      });
-    };
-
-    updateParallax();
-    container.addEventListener("scroll", updateParallax, { passive: true });
-
-    return () => {
-      if (rafId !== null) {
-        window.cancelAnimationFrame(rafId);
-      }
-      container.removeEventListener("scroll", updateParallax);
-    };
-  }, [prefersReducedMotion, activeChildId]);
+    const nextTrack = mode === "course" ? initialLessons[0]?.trackCode ?? null : null;
+    setSelectedTrack(nextTrack);
+  }, [initialLessons, mode]);
 
   useEffect(() => {
-    if (!selectedTrack || loading || seedCinematicCourse || hasCenteredInitialTierRef.current) {
-      return;
-    }
-    hasCenteredInitialTierRef.current = true;
-    focusTier(activeTierIndex);
-  }, [activeTierIndex, focusTier, loading, seedCinematicCourse, selectedTrack]);
+    setFocusTierNo(routeFocusTierNo ?? initialFocusTierNo ?? null);
+  }, [initialFocusTierNo, routeFocusTierNo]);
 
   useEffect(() => {
-    if (!selectedTrack || growthState.phase !== "growing") {
+    if (mode !== "course" || !courseSlug || !activeChildId) {
       return;
     }
-    focusTier(growthState.toTier);
-  }, [focusTier, growthState.phase, growthState.toTier, selectedTrack]);
+    const syncKey = `${courseSlug}:${activeChildId}:${routeLocationKey}`;
+    if (routeSyncRef.current === syncKey) {
+      return;
+    }
+    routeSyncRef.current = syncKey;
+    void syncChildData(activeChildId, { silent: true });
+  }, [activeChildId, courseSlug, mode, routeLocationKey, syncChildData]);
 
   useEffect(() => {
     if (hasHandledInitialSeedRef.current) {
@@ -562,123 +556,257 @@ export function KidSkyGardenScene({
       return;
     }
 
-    const seedStorageKey = buildSeedCinematicStorageKey(activeChildId, initialSeedCourse.id);
-    let hasSeenCinematic = false;
+    const storageKey = buildSeedCinematicStorageKey(activeChildId, initialSeedCourse.id);
+    let hasSeen = false;
     try {
-      hasSeenCinematic = window.localStorage.getItem(seedStorageKey) === "1";
+      hasSeen = window.localStorage.getItem(storageKey) === "1";
     } catch {
-      hasSeenCinematic = false;
+      hasSeen = false;
     }
 
-    if (hasSeenCinematic) {
-      clearSeedQueryParams();
+    if (!hasSeen) {
+      setSeedCinematicCourse(initialSeedCourse);
+      setStatusMessage(`Hạt giống mới cho khóa "${initialSeedCourse.title}" đã sẵn sàng.`);
+    }
+  }, [activeChildId, initialSeedCourse]);
+
+  useEffect(() => {
+    if (!levelUpFxTier) {
+      return;
+    }
+    const timer = window.setTimeout(() => setLevelUpFxTier(null), 1300);
+    return () => window.clearTimeout(timer);
+  }, [levelUpFxTier]);
+
+  useEffect(() => {
+    setClimbProgress(nodeWindowProgress);
+  }, [nodeWindowProgress]);
+
+  useEffect(() => {
+    if (!showCloudClimbMap) {
+      mapWindowAnchorRef.current = null;
       return;
     }
 
-    setSeedCinematicCourse(initialSeedCourse);
-    setStatusMessage(`Hạt đậu mới cho khóa "${initialSeedCourse.title}" đã sẵn sàng.`);
-  }, [activeChildId, clearSeedQueryParams, initialSeedCourse]);
+    const mapWrap = mapWrapRef.current;
+    if (!mapWrap) {
+      return;
+    }
+
+    const preferredFocusNode =
+      effectiveFocusNodeIndex >= 0 ? nodes[effectiveFocusNodeIndex] ?? null : null;
+    const focusNodeId =
+      preferredFocusNode?.id ??
+      activeNode?.id ??
+      visibleNodes[visibleNodes.length - 1]?.id ??
+      null;
+    const anchorKey = `${activeChildId}:${selectedTrack ?? "all"}:${visibleWindowStart}:${
+      focusNodeId ?? "none"
+    }:${nodes.length}:${routeLocationKey}`;
+    if (mapWindowAnchorRef.current === anchorKey && mapWrap.scrollTop > 8) {
+      return;
+    }
+    mapWindowAnchorRef.current = anchorKey;
+    const previousInlineScrollBehavior = mapWrap.style.scrollBehavior;
+    mapWrap.style.scrollBehavior = "auto";
+
+    const scrollToProgressNode = () => {
+      if (!focusNodeId) {
+        mapWrap.scrollTop = Math.max(0, mapWrap.scrollHeight - mapWrap.clientHeight);
+        return;
+      }
+
+      const targetTier = mapWrap.querySelector<HTMLElement>(
+        `[data-node-id="${focusNodeId}"]`,
+      );
+
+      if (!targetTier) {
+        mapWrap.scrollTop = Math.max(0, mapWrap.scrollHeight - mapWrap.clientHeight);
+        return;
+      }
+      const targetNode =
+        targetTier.querySelector<HTMLElement>(".ksg2-node-card") ?? targetTier;
+
+      const wrapRect = mapWrap.getBoundingClientRect();
+      const targetRect = targetNode.getBoundingClientRect();
+      const targetTopInScroll = targetRect.top - wrapRect.top + mapWrap.scrollTop;
+      const targetCenterInScroll = targetTopInScroll + targetRect.height * 0.5;
+      const focusOffsetRatio = (() => {
+        if (!hasHiddenBelow) return isCompact ? 0.56 : 0.54;
+        if (hasHiddenAbove) return isCompact ? 0.5 : 0.48;
+        return isCompact ? 0.52 : 0.5;
+      })();
+      const desiredTop =
+        targetCenterInScroll - mapWrap.clientHeight * focusOffsetRatio;
+      const maxScrollTop = Math.max(0, mapWrap.scrollHeight - mapWrap.clientHeight);
+      mapWrap.scrollTop = Math.min(maxScrollTop, Math.max(0, desiredTop));
+    };
+
+    let alignRaf = 0;
+    let disposed = false;
+    let alignQueued = false;
+    const retryTimers: number[] = [];
+    const startAt = performance.now();
+    const alignWindowMs = 4200;
+    let clearFocusTimer = 0;
+    const queueAlign = () => {
+      if (disposed || alignQueued) {
+        return;
+      }
+      alignQueued = true;
+      alignRaf = window.requestAnimationFrame(() => {
+        alignQueued = false;
+        scrollToProgressNode();
+      });
+    };
+
+    queueAlign();
+    for (const delayMs of [60, 140, 240, 360, 520, 760, 1040, 1360, 1760, 2200, 2800, 3400, 4000]) {
+      retryTimers.push(
+        window.setTimeout(() => {
+          if (disposed) {
+            return;
+          }
+          queueAlign();
+        }, delayMs),
+      );
+    }
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (disposed || performance.now() - startAt > alignWindowMs) {
+        return;
+      }
+      queueAlign();
+    });
+    resizeObserver.observe(mapWrap);
+
+    const mutationObserver = new MutationObserver(() => {
+      if (disposed || performance.now() - startAt > alignWindowMs) {
+        return;
+      }
+      queueAlign();
+    });
+    mutationObserver.observe(mapWrap, { childList: true, subtree: true });
+
+    const handlePageShow = () => {
+      if (disposed) {
+        return;
+      }
+      queueAlign();
+    };
+    const handleVisibilityChange = () => {
+      if (disposed || document.visibilityState !== "visible") {
+        return;
+      }
+      queueAlign();
+    };
+    window.addEventListener("pageshow", handlePageShow);
+    window.addEventListener("focus", handlePageShow);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    if (focusTierNo != null) {
+      clearFocusTimer = window.setTimeout(() => setFocusTierNo(null), alignWindowMs);
+    }
+
+    return () => {
+      disposed = true;
+      if (alignRaf > 0) {
+        window.cancelAnimationFrame(alignRaf);
+      }
+      for (const timer of retryTimers) {
+        window.clearTimeout(timer);
+      }
+      if (clearFocusTimer > 0) {
+        window.clearTimeout(clearFocusTimer);
+      }
+      resizeObserver.disconnect();
+      mutationObserver.disconnect();
+      window.removeEventListener("pageshow", handlePageShow);
+      window.removeEventListener("focus", handlePageShow);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      mapWrap.style.scrollBehavior = previousInlineScrollBehavior;
+    };
+  }, [
+    activeChildId,
+    activeNode?.id,
+    focusTierNo,
+    hasHiddenAbove,
+    hasHiddenBelow,
+    isCompact,
+    nodes,
+    nodes.length,
+    effectiveFocusNodeIndex,
+    routeLocationKey,
+    selectedTrack,
+    showCloudClimbMap,
+    visibleNodes.length,
+    visibleWindowStart,
+  ]);
 
   const handleSeedCinematicFinish = useCallback(() => {
     if (!seedCinematicCourse) {
       return;
     }
 
-    const seedStorageKey = buildSeedCinematicStorageKey(activeChildId, seedCinematicCourse.id);
+    const storageKey = buildSeedCinematicStorageKey(activeChildId, seedCinematicCourse.id);
     try {
-      window.localStorage.setItem(seedStorageKey, "1");
+      window.localStorage.setItem(storageKey, "1");
     } catch {
-      // ignore localStorage write failures in restricted environments.
+      // Ignore localStorage write failures.
     }
 
     setSeedCinematicCourse(null);
-    setStemPulseCount((count) => count + 1);
-    setGrowthState((current) => ({
-      ...current,
-      pulse: current.pulse + 1,
-    }));
-    setStatusMessage(`Đã gieo cây đậu cho khóa "${seedCinematicCourse.title}". Mình bắt đầu thôi!`);
-    focusTier(activeTierIndex);
-    clearSeedQueryParams();
-  }, [activeChildId, activeTierIndex, clearSeedQueryParams, focusTier, seedCinematicCourse]);
+    setStatusMessage(`Đã gieo mầm cho khóa "${seedCinematicCourse.title}". Bắt đầu leo mây thôi!`);
+  }, [activeChildId, seedCinematicCourse]);
 
-  const tipFromBottom = resolveTierBottom(growthState.fromTier) + 48;
-  const tipToBottom = resolveTierBottom(growthState.toTier) + 48;
-  const isCameraFocusActive = growthState.phase === "growing" && !prefersReducedMotion;
+  const mascotMessage =
+    statusMessage ??
+    (showCloudClimbMap
+      ? !hasHiddenBelow
+        ? "Bắt đầu từ khu vườn nhé. Hoàn thành bài để leo lên tầng mây."
+        : activeNode
+          ? "Chinh phục cụm bài hiện tại để mở khóa vùng mây phía trên."
+          : "Tiếp tục hành trình trên mây nào."
+      : "Chọn hành trình yêu thích để khởi động khu vườn học tập.");
 
   return (
-    <section
-      className={`ksg-scene ${isCameraFocusActive ? "ksg-scene-camera-focus" : ""}`}
-      aria-label="Khu vườn trên mây"
-    >
-      <SkyGardenFxCanvas className="ksg-three-layer" />
+    <section className="ksg2-scene" style={sceneStyle} aria-label="Khu vườn mây học tập">
+      <SkyGardenFxCanvas className="ksg2-three-layer" />
 
-      <span
-        className="ksg-sky-cloud ksg-sky-cloud-a"
-        style={{ transform: `translate3d(0, ${parallaxOffset * 0.18}px, 0)` }}
-        aria-hidden="true"
-      />
-      <span
-        className="ksg-sky-cloud ksg-sky-cloud-b"
-        style={{ transform: `translate3d(0, ${parallaxOffset * 0.25}px, 0)` }}
-        aria-hidden="true"
-      />
-      <span
-        className="ksg-sky-cloud ksg-sky-cloud-c"
-        style={{ transform: `translate3d(0, ${parallaxOffset * 0.34}px, 0)` }}
-        aria-hidden="true"
-      />
-      <span
-        className="ksg-depth-fog ksg-depth-fog-back"
-        style={{ transform: `translate3d(0, ${parallaxOffset * 0.12}px, 0)` }}
-        aria-hidden="true"
-      />
-      <span
-        className="ksg-depth-fog ksg-depth-fog-front"
-        style={{ transform: `translate3d(0, ${parallaxOffset * 0.26}px, 0)` }}
-        aria-hidden="true"
-      />
-      <div className="ksg-particle-field" aria-hidden="true">
-        {atmosphereParticles.map((particle, index) => (
-          <span
-            key={`ksg-particle-${index + 1}`}
-            className="ksg-particle"
-            style={{
-              left: `${particle.xPercent}%`,
-              bottom: `${particle.yPercent}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              opacity: particle.opacity,
-              animationDuration: `${particle.durationSeconds}s`,
-              animationDelay: `${particle.delaySeconds}s`,
-            }}
-          />
-        ))}
+      <div className="ksg2-atmosphere" aria-hidden="true">
+        <span
+          className="ksg2-cloud-layer is-back"
+          style={{ transform: `translate3d(0, ${cloudBackOffset}px, 0)` }}
+        />
+        <span
+          className="ksg2-cloud-layer is-front"
+          style={{ transform: `translate3d(0, ${cloudFrontOffset}px, 0)` }}
+        />
+        <span className="ksg2-star-field" style={{ opacity: starsOpacity }} />
       </div>
-      <span className="ksg-camera-vignette" aria-hidden="true" />
 
-      <header ref={hudRef} className="ksg-hud">
-        <div className="ksg-hud-row">
+      <header className="ksg2-hud">
+        <div className="ksg2-top-row">
           <button
             type="button"
-            className="ksg-pill ksg-pill-icon"
+            className="ksg2-back-btn"
             onClick={() => {
               if (mode === "course") {
-                router.push(`/kid/courses?childId=${encodeURIComponent(activeChildId)}`);
+                goToLearningHub();
               } else {
                 router.push("/parent/dashboard");
               }
             }}
-            aria-label={mode === "course" ? "Quay lại danh sách khu v\u01b0\u1eddn" : "Quay l\u1ea1i khu v\u1ef1c ph\u1ee5 huynh"}
+            aria-label={mode === "course" ? "Quay lại trang học tập" : "Quay lại phụ huynh"}
           >
-            <ArrowLeft size={20} />
+            <ArrowLeft size={18} />
           </button>
 
-          <label className="ksg-pill ksg-child-select">
-            <span className="ksg-child-avatar" aria-hidden="true">
-              {activeChildAvatarLabel}
+          <label className="ksg2-child-picker">
+            <span className="ksg2-child-avatar" aria-hidden="true">
+              {avatarLabel}
             </span>
-            <span className="ksg-child-label">Bé học</span>
+            <span className="ksg2-child-prefix">Bé:</span>
             <select
               value={activeChildId}
               onChange={(event) => {
@@ -695,151 +823,199 @@ export function KidSkyGardenScene({
           </label>
         </div>
 
-        <div className="ksg-hud-row">
-          <div className="ksg-pill ksg-progress-pill">
-            <div className="ksg-progress-summary">
-              <strong>{`${activeChild.nickname}: ${completedCount}/${nodes.length || 0} tầng`}</strong>
-              <span>{laneStateLabel}</span>
-            </div>
-            <strong className="ksg-progress-minute">{`${progress.totalMinutesToday}/${progress.dailyGoalMinutes} phút`}</strong>
-          </div>
+        <div className="ksg2-flow-nav" role="navigation" aria-label="Điều hướng hành trình">
+          <button type="button" className="ksg2-flow-chip" onClick={goToLearningHub}>
+            Học tập
+          </button>
+          <button type="button" className="ksg2-flow-chip" onClick={goToSharedGarden}>
+            Vườn chung
+          </button>
+          <span className="ksg2-flow-chip is-active">Khóa này</span>
         </div>
 
-        {activeJourney ? (
-          <div className="ksg-hud-row">
-            <div
-              className="ksg-pill ksg-journey-pill"
-              style={{ "--ksg-journey-accent": activeJourney.journeyAccent } as CSSProperties}
-            >
-              <span className="ksg-journey-track">{resolveTrackLabel(activeJourney.trackCode)}</span>
-              <strong className="ksg-journey-title">{activeJourney.journeyTitle}</strong>
-              <span className="ksg-journey-unit">{activeJourney.unitTitle}</span>
+        {mode === "course" ? (
+          <section className="ksg2-course-hero">
+            <div className="ksg2-course-cover">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={courseCoverImageUrl ?? "/images/courses/course_cover_littlefox.png"}
+                alt={courseTitle ?? "Khóa học"}
+              />
             </div>
-            {selectedTrack ? (
-              <button
-                type="button"
-                className="ksg-pill ksg-journey-switch"
-                onClick={() => {
-                  setSelectedTrack(null);
-                  hasCenteredInitialTierRef.current = false;
-                }}
-              >
-                Đổi khóa
-              </button>
-            ) : null}
-          </div>
+
+            <div className="ksg2-course-content">
+              <p className="ksg2-course-tag">Cloud Garden • Leo tầng mây</p>
+              <h1>{courseTitle ?? "Khóa học của bé"}</h1>
+              {isCompact ? null : (
+                <p>
+                  {courseDescription ??
+                    "Hoàn thành từng bài học để cây đậu vươn qua các tầng mây."}
+                </p>
+              )}
+              <div className="ksg2-course-stats">
+                <span>{`${completedCount}/${lessons.length} bài`}</span>
+                <span>{`${completedPercent}% tiến độ`}</span>
+                {isCompact ? null : <span>{`${totalLessonMinutes} phút`}</span>}
+                {isCompact || !nextLessonTitle ? null : <span>{`Tiếp theo: ${nextLessonTitle}`}</span>}
+              </div>
+            </div>
+
+            <Image
+              src="/kisu-assets/stickers/sticker_hint.png"
+              alt=""
+              width={56}
+              height={56}
+              className="ksg2-course-kisu"
+            />
+          </section>
         ) : null}
+
+        <div className="ksg2-progress-bar">
+          <span>{`${progress.totalMinutesToday}/${progress.dailyGoalMinutes} phút`}</span>
+          <strong>{`${completedCount}/${lessons.length} bài`}</strong>
+        </div>
       </header>
 
-      {loading ? (
-        <div className="ksg-status" style={{ top: `${Math.max(104, scrollTopSafe - 2)}px` }} role="status" aria-live="polite">
-          <span className="ksg-loading">
-            <span className="ksg-loader-dot" />
-            Đang cập nhật khu vườn...
-          </span>
-        </div>
-      ) : statusMessage ? (
-        <p className="ksg-status" style={{ top: `${Math.max(104, scrollTopSafe - 2)}px` }} role="status" aria-live="polite">
-          {statusMessage}
-        </p>
-      ) : null}
+      {loading ? <p className="ksg2-status">Đang đồng bộ dữ liệu khu vườn...</p> : null}
+      {!loading && statusMessage ? <p className="ksg2-status">{statusMessage}</p> : null}
 
-      {loading ? (
-        <div className="ksg-student-loading" role="status" aria-live="polite">
-          <span className="ksg-student-loading-orb" aria-hidden="true" />
-          <div>
-            <strong>Đang chuẩn bị khu vườn của bé...</strong>
-            <p>Hệ thống đang cập nhật lộ trình học và bài học phù hợp.</p>
-          </div>
-        </div>
-      ) : null}
-
-      <div
-        ref={scrollContainerRef}
-        className="ksg-scroll"
-        style={{
-          paddingTop: `${scrollTopSafe}px`,
-          paddingBottom: `${scrollBottomSafe}px`,
-        }}
-      >
-        {selectedTrack ? (
-          <div className="ksg-map" style={{ minHeight: `${sceneHeight}px` }}>
-          <div className="ksg-ground-asset" aria-hidden="true">
-            <Image src="/assets/garden/ground.png" alt="" width={1200} height={420} className="ksg-ground-asset-image" />
-          </div>
-
-          <div
-            className={`ksg-beanstalk ${stemPulseCount > 0 ? "ksg-beanstalk-grow" : ""}`}
-            key={`stem-${stemPulseCount}`}
-            aria-hidden="true"
-          />
-          {nodes.map((node, index) => (
-            <span
-              key={`stem-leaf-${node.id}`}
-              className={`ksg-stem-leaf ${index % 2 === 0 ? "ksg-stem-leaf-left" : "ksg-stem-leaf-right"}`}
-              style={{ bottom: `${resolveTierBottom(index + 1) - 94}px` }}
-              aria-hidden="true"
-            />
-          ))}
-
-          <BeanTipGrowthFx
-            fromBottom={tipFromBottom}
-            toBottom={tipToBottom}
-            active={growthState.phase === "growing"}
-            pulse={growthState.pulse}
-            prefersReducedMotion={prefersReducedMotion}
-          />
-
-          {nodes.map((node, index) => {
-            const bottom = resolveTierBottom(index + 1);
-            const nodeCardClassName =
-              node.state === "active"
-                ? "ksg-node-card ksg-node-card-active"
-                : node.state === "completed"
-                  ? "ksg-node-card ksg-node-card-completed"
-                  : "ksg-node-card ksg-node-card-locked";
-            const isTierActive = node.tierIndex === activeTierIndex;
-            const isTierUnlocking = unlockingTierIndex === node.tierIndex;
-            const tierDepthClass = resolveTierDepthClass(node.tierIndex, activeTierIndex);
-
-            return (
-              <article
-                key={node.id}
-                className={`ksg-tier ${tierDepthClass}`}
-                style={{ bottom: `${bottom}px`, "--ksg-journey-accent": node.journeyAccent } as CSSProperties}
+      <main className="ksg2-main">
+        {!showCloudClimbMap ? (
+          <section className="ksg2-journey-list">
+            {journeys.map((journey) => (
+              <button
+                key={journey.trackCode}
+                type="button"
+                className="ksg2-journey-card"
+                onClick={() => {
+                  setSelectedTrack(journey.trackCode);
+                  setStatusMessage(`Mình vào ${journey.title} nhé!`);
+                }}
+                style={{ "--ksg2-accent": journey.accent } as CSSProperties}
               >
-                <div
-                  className={[
-                    "ksg-tier-cloud",
-                    isTierActive ? "ksg-tier-cloud-active" : "",
-                    isTierUnlocking ? "ksg-tier-cloud-unlocking" : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
-                  aria-hidden="true"
-                >
-                  <Image
-                    src="/assets/garden/cloud_platform.png"
-                    alt=""
-                    fill
-                    sizes="(max-width: 768px) 86vw, 440px"
-                    className="ksg-tier-cloud-asset"
-                  />
-                  <span className="ksg-tier-cloud-shadow" />
-                  <span className="ksg-tier-cloud-highlight" />
+                <span className="ksg2-journey-glyph">{resolveTrackIcon(journey.trackCode)}</span>
+                <div className="ksg2-journey-content">
+                  <strong>{journey.title}</strong>
+                  <span>{journey.unitTitle}</span>
+                  <span>{`${journey.completedLessons}/${journey.totalLessons} bài`}</span>
+                  <span>
+                    {journey.nextLessonTitle
+                      ? `Tiếp theo: ${journey.nextLessonTitle}`
+                      : "Sẵn sàng bắt đầu"}
+                  </span>
                 </div>
-                <span className="ksg-tier-label">{`Tầng mây ${node.tierIndex}`}</span>
+              </button>
+            ))}
+          </section>
+        ) : (
+          <section className="ksg2-map-wrap" aria-label="Bản đồ leo tầng mây" ref={mapWrapRef}>
+            <div className="ksg2-map" style={{ minHeight: `${mapHeight}px` }}>
+              {hasHiddenAbove ? (
+                <div className="ksg2-fog-cap" aria-hidden="true">
+                  <span>Mây phủ phía trên, tiếp tục học để khám phá</span>
+                </div>
+              ) : null}
 
-                <div className={`ksg-node-wrap ${node.side === "left" ? "ksg-node-wrap-left" : "ksg-node-wrap-right"}`}>
-                  <div className="ksg-node-tower">
-                    <span className="ksg-node-tower-vine ksg-node-tower-vine-left" aria-hidden="true" />
-                    <span className="ksg-node-tower-vine ksg-node-tower-vine-right" aria-hidden="true" />
-                    <div className={`${nodeCardClassName} ${newlyUnlockedLessonId === node.id ? "ksg-node-unlock-pop" : ""}`}>
-                      <div className="ksg-node-journey-bar">
-                        <span className="ksg-node-track">{resolveTrackLabel(node.trackCode)}</span>
+              <Image
+                src="/images/cloud-garden/ground/bg_ground_garden.png"
+                alt=""
+                width={1280}
+                height={420}
+                className="ksg2-ground-image"
+              />
+
+              <div className="ksg2-ground-entry" aria-hidden="true">
+                {hasHiddenBelow ? (
+                  <span className="ksg2-ground-anchor">{`Đã vượt ${visibleWindowStart} tầng`}</span>
+                ) : (
+                  <>
+                    <Image
+                      src="/images/cloud-garden/ground/course_planter_base.png"
+                      alt=""
+                      width={172}
+                      height={94}
+                      className="ksg2-planter"
+                    />
+                    <Image
+                      src="/images/cloud-garden/ground/course_sapling_level0.png"
+                      alt=""
+                      width={108}
+                      height={128}
+                      className="ksg2-sapling"
+                    />
+                    <span className="ksg2-firefly is-a" />
+                    <span className="ksg2-firefly is-b" />
+                    <span className="ksg2-firefly is-c" />
+                  </>
+                )}
+              </div>
+
+              <span className="ksg2-stem" aria-hidden="true" />
+
+              {visibleNodes.map((node, index) => {
+                const tierNo = node.tierIndex;
+                const nodeStateAsset =
+                  node.state === "active"
+                    ? "/images/nodes/node_giant_leaf_platform.png"
+                    : node.state === "completed"
+                      ? "/images/nodes/node_flower_bloomed_done.png"
+                      : "/images/nodes/node_flower_bud_locked.png";
+
+                const isUnlocking = levelUpFxTier === tierNo;
+
+                return (
+                  <article
+                    key={node.id}
+                    className={`ksg2-tier ${node.side === "left" ? "is-left" : "is-right"} ${
+                      isUnlocking ? "is-unlocking" : ""
+                    }`}
+                    data-node-id={node.id}
+                    data-node-state={node.state}
+                    style={{ bottom: `${baseTierBottom + index * tierSpacing}px` }}
+                  >
+                    <div className="ksg2-tier-cloud" aria-hidden="true">
+                      <Image
+                        src="/images/cloud-garden/vfx/platform_cloud_fluffy.png"
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 92vw, 460px"
+                        className="ksg2-tier-cloud-image"
+                      />
+                      {isUnlocking ? (
+                        <>
+                          <Image
+                            src="/images/cloud-garden/vfx/vfx_cloud_burst_levelup.png"
+                            alt=""
+                            width={170}
+                            height={170}
+                            className="ksg2-tier-burst"
+                          />
+                          <Image
+                            src="/images/cloud-garden/vfx/vfx_tier_unlocked_badge.png"
+                            alt=""
+                            width={72}
+                            height={72}
+                            className="ksg2-tier-badge"
+                          />
+                        </>
+                      ) : null}
+                      <span className="ksg2-tier-label">{`Tầng mây ${tierNo}`}</span>
+                    </div>
+
+                    <div className={`ksg2-node-card state-${node.state}`}>
+                      <Image
+                        src={nodeStateAsset}
+                        alt=""
+                        width={116}
+                        height={68}
+                        className="ksg2-node-asset"
+                      />
+
+                      <div className="ksg2-node-head">
+                        <span>{resolveTrackLabel(node.trackCode)}</span>
                         <strong>{node.journeyTitle}</strong>
                       </div>
-                      <p className="ksg-node-unit">{node.unitTitle}</p>
+                      <p className="ksg2-node-unit">{node.unitTitle}</p>
 
                       {node.state === "active" ? (
                         <LessonStartCard
@@ -855,94 +1031,49 @@ export function KidSkyGardenScene({
                           beforeStart={guardBeforeStart}
                         />
                       ) : (
-                        <>
-                          <span
-                            className={`ksg-node-chip ${
-                              node.state === "completed" ? "ksg-node-chip-completed" : "ksg-node-chip-locked"
-                            }`}
-                          >
-                            {node.state === "completed" ? "Đã hoàn thành" : "Đang khóa"}
-                          </span>
-                          <h3 className="ksg-node-title">{node.title}</h3>
-                          <p className="ksg-node-meta">{`${node.estimatedMinutes} phút • ${node.objective}`}</p>
-
-                          {node.state === "locked" ? (
+                        <div className="ksg2-node-meta">
+                          <h3>{node.title}</h3>
+                          <p>{`${node.estimatedMinutes} phút • ${node.objective}`}</p>
+                          {node.state === "completed" ? (
+                            <span className="ksg2-node-chip">Đã hoàn thành</span>
+                          ) : (
                             <button
                               type="button"
-                              className="ksg-node-lock-btn"
-                              onClick={() => {
-                                setStatusMessage("Hoàn thành tầng đang mở để cây đậu leo tiếp nhé!");
-                              }}
+                              className="ksg2-node-lock"
+                              onClick={() =>
+                                setStatusMessage(
+                                  "Hoàn thành tầng hiện tại để mở khóa tầng mới nhé!",
+                                )
+                              }
                             >
                               Chưa mở tầng này
                             </button>
-                          ) : null}
-                        </>
+                          )}
+                        </div>
                       )}
                     </div>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-          </div>
-        ) : (
-          <div className="ksg-entry">
-            <section className="ksg-entry-overview">
-              <h2>{`Xin chào ${activeChild.nickname}!`}</h2>
-              <p>Chọn một khóa học để vào khu vườn và bắt đầu hành trình hôm nay.</p>
-              <div className="ksg-entry-stats">
-                <article className="ksg-entry-stat">
-                  <span>Thời gian hôm nay</span>
-                  <strong>{`${progress.totalMinutesToday}/${progress.dailyGoalMinutes} phút`}</strong>
-                </article>
-                <article className="ksg-entry-stat">
-                  <span>Tổng bài theo kế hoạch</span>
-                  <strong>{`${lessons.length} bài`}</strong>
-                </article>
-              </div>
-            </section>
-
-            <section className="ksg-entry-courses">
-              <h3>Khóa học của bé</h3>
-              <div className="ksg-entry-course-grid">
-                {journeyOverviews.map((journey) => (
-                  <button
-                    key={journey.trackCode}
-                    type="button"
-                    className="ksg-entry-course-card"
-                    style={{ "--ksg-journey-accent": journey.journeyAccent } as CSSProperties}
-                    onClick={() => {
-                      setSelectedTrack(journey.trackCode);
-                      hasCenteredInitialTierRef.current = false;
-                      setStatusMessage(`Mình vào ${journey.journeyTitle} nhé!`);
-                    }}
-                  >
-                    <span className="ksg-entry-course-glyph">{resolveTrackGlyph(journey.trackCode)}</span>
-                    <div className="ksg-entry-course-content">
-                      <strong>{journey.journeyTitle}</strong>
-                      <span>{journey.unitTitle}</span>
-                      <span>{`${journey.completedLessons}/${journey.totalLessons} bài`}</span>
-                      <span>{journey.nextLessonTitle ? `Tiếp theo: ${journey.nextLessonTitle}` : "Sẵn sàng bắt đầu"}</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </section>
-          </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
         )}
+      </main>
+
+      <div className="ksg2-companion" aria-hidden="true">
+        <Image src="/images/nodes/kisu_companion_balloon.png" alt="" width={96} height={126} />
       </div>
 
-      <div className="ksg-mascot" aria-live="polite">
+      <div className="ksg2-mascot" aria-live="polite">
         <Mascot
           variant="small"
           state={progress.reached ? "sleepy" : activeNode ? "happy" : "celebrating"}
-          size={isCompactMascotMode ? 84 : 120}
+          size={isCompact ? 86 : 116}
           motionLevel="soft"
           pauseWhenOffscreen
           showBaseGlow={false}
         />
-        {isCompactMascotMode ? null : <p className="ksg-mascot-bubble">{mascotMessage}</p>}
+        {isCompact ? null : <p className="ksg2-mascot-bubble">{mascotMessage}</p>}
       </div>
 
       {seedCinematicCourse ? (

@@ -4,12 +4,13 @@ import { prisma } from "@/lib/db";
 import { KidSkyGardenScene } from "@/components/kid-sky-garden/KidSkyGardenScene";
 import { mapLessonLikeToSkyGardenLesson } from "@/components/kid-sky-garden/mappers";
 import type { SkyGardenProgressSnapshot } from "@/components/kid-sky-garden/types";
+import { resolveCourseCoverImage } from "@/modules/courses/course-media";
 
 interface KidCourseGardenPageProps {
   params: Promise<{ slug: string }>;
   searchParams?:
-    | Promise<{ childId?: string | string[] }>
-    | { childId?: string | string[] };
+    | Promise<{ childId?: string | string[]; focusTierNo?: string | string[] }>
+    | { childId?: string | string[]; focusTierNo?: string | string[] };
 }
 
 function readSingleParam(value?: string | string[]) {
@@ -35,6 +36,12 @@ export default async function KidCourseGardenPage({
 
   const resolvedParams = searchParams ? await searchParams : undefined;
   const queryChildId = readSingleParam(resolvedParams?.childId);
+  const queryFocusTierNo = readSingleParam(resolvedParams?.focusTierNo);
+  const parsedFocusTierNoRaw = Number.parseInt(queryFocusTierNo ?? "", 10);
+  const initialFocusTierNo =
+    Number.isFinite(parsedFocusTierNoRaw) && parsedFocusTierNoRaw > 0
+      ? parsedFocusTierNoRaw
+      : null;
   const activeChild = children.find((child) => child.id === queryChildId) ?? children[0]!;
 
   // Verify enrollment
@@ -57,6 +64,8 @@ export default async function KidCourseGardenPage({
       id: true,
       slug: true,
       title: true,
+      description: true,
+      coverImageUrl: true,
       lessons: {
         orderBy: { orderNo: "asc" },
         select: {
@@ -145,20 +154,21 @@ export default async function KidCourseGardenPage({
 
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
-      <KidSkyGardenScene
-        childrenProfiles={children.map((child) => ({
-          id: child.id,
-          nickname: child.nickname,
-          dailyGoalMinutes: child.dailyGoalMinutes,
-        }))}
-        initialChildId={activeChild.id}
-        initialLessons={lessons}
-        initialProgress={initialProgress}
-        mode="course"
-        courseSlug={slug}
-        courseTitle={course.title}
-      />
-    </div>
+    <KidSkyGardenScene
+      childrenProfiles={children.map((child) => ({
+        id: child.id,
+        nickname: child.nickname,
+        dailyGoalMinutes: child.dailyGoalMinutes,
+      }))}
+      initialChildId={activeChild.id}
+      initialLessons={lessons}
+      initialProgress={initialProgress}
+      mode="course"
+      courseSlug={slug}
+      courseTitle={course.title}
+      courseDescription={course.description}
+      courseCoverImageUrl={resolveCourseCoverImage(course.slug, course.coverImageUrl)}
+      initialFocusTierNo={initialFocusTierNo}
+    />
   );
 }

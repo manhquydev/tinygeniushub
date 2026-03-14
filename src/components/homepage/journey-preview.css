@@ -1,11 +1,10 @@
 /**
- * Homepage-specific overrides for BeanstalkJourney
+ * journey-preview.css
+ * Scoped overrides for BeanstalkJourney when embedded in homepage
  * 
- * Problem: BeanstalkJourney uses position:fixed for HUD/tabs/footer
- * which escapes containment and overlays other homepage sections.
- * 
- * Solution: Wrap in .cgh-journey-preview container and change
- * fixed → absolute positioning to scope within section.
+ * CRITICAL FIXES:
+ * 1. Position fixed → absolute (prevents overlay on other sections)
+ * 2. Transparent background (lets homepage gradient show through)
  */
 
 /* Section container - creates positioning context */
@@ -14,6 +13,11 @@
   isolation: isolate; /* Create stacking context */
   min-height: 100vh;
   overflow: hidden; /* Prevent content escape */
+}
+
+/* Override BeanstalkJourney background to show homepage gradient */
+.cgh-journey-preview .bs-content-height {
+  background: transparent !important;
 }
 
 /* Override fixed positioning to absolute (contained) */

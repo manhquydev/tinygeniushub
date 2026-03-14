@@ -33,36 +33,33 @@ MVP foundation rebuilt from handover docs (`docs/handover/handover-master-agent-
 
 ## Setup
 
-1. Install dependencies:
+1. Start full local stack with Docker (web + worker + postgres + redis):
+```bash
+docker compose up -d --build
+```
+
+2. Open app:
+```bash
+# http://localhost:3000
+```
+
+3. Stop stack:
+```bash
+docker compose down
+```
+
+4. Follow logs when needed:
+```bash
+docker compose logs -f web worker
+```
+
+`web` service will auto-run `prisma migrate deploy` and seed demo data on startup (`RUN_DB_SEED=true`).
+
+5. Optional: run without Docker (manual local dev):
 ```bash
 pnpm install
-```
-
-2. Start PostgreSQL + Redis:
-```bash
-docker compose up -d
-```
-
-3. Create `.env` from `.env.example`.
-
-4. Generate Prisma client and run migration:
-```bash
-pnpm db:generate
-pnpm db:migrate --name init
-```
-
-5. Seed sample data:
-```bash
-pnpm db:seed
-```
-
-6. Run app:
-```bash
+docker compose up -d postgres redis
 pnpm dev
-```
-
-7. Optional: run worker process:
-```bash
 pnpm worker:dev
 ```
 

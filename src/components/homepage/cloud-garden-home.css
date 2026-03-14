@@ -1,4 +1,15 @@
+/**
+ * CloudGardenHome - Container styles for homepage
+ * 
+ * Import hierarchy:
+ * 1. homepage.css (base styles for marketing sections)
+ * 2. Cloud garden specific styles
+ */
+
+@import "./homepage.css";
+
 .cgh-page {
+  /* Legacy color tokens (keep for now) */
   --cgh-ink: #173447;
   --cgh-sky-1: #d6f2ff;
   --cgh-sky-2: #c7e7ff;
@@ -7,11 +18,31 @@
   --cgh-teal: #0f9f86;
   --cgh-coral: #ff8f70;
   --cgh-gold: #ffbf47;
-  color: var(--cgh-ink);
-  background:
-    radial-gradient(circle at 12% 0%, #f4fdff 0%, transparent 42%),
-    radial-gradient(circle at 86% 12%, #eefcff 0%, transparent 35%),
-    linear-gradient(180deg, #e8f8ff 0%, #f9fffb 52%, #ffffff 100%);
+  
+  /* Original BeanstalkJourney gradient colors */
+  --gradient-yellow: #FDE68A;
+  --gradient-light-purple: #C084FC;
+  --gradient-deep-purple: #4C1D95;
+  --gradient-dark-navy: #1E1B4B;
+  
+  /* Text colors - adaptive based on background */
+  --text-on-yellow: #1E1B4B;  /* Dark text on yellow */
+  --text-on-purple: #F8FAFC;  /* Light text on purple/navy */
+  
+  /* Glass morphism design tokens */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-bg-strong: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-blur: blur(12px);
+  
+  /* Apply original BeanstalkJourney gradient: Yellow (top) → Purple → Navy (bottom) */
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-yellow) 0%,
+    var(--gradient-light-purple) 20%,
+    var(--gradient-deep-purple) 60%,
+    var(--gradient-dark-navy) 100%
+  );
 }
 
 .cgh-shell {
@@ -23,6 +54,8 @@
   position: relative;
   padding: clamp(4.4rem, 8vw, 6.2rem) 0 3rem;
   overflow: clip;
+  /* Hero section on yellow background - use dark text */
+  color: var(--text-on-yellow);
 }
 
 .cgh-hero-grid {
@@ -79,11 +112,12 @@
   width: fit-content;
   padding: 0.36rem 0.8rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(15, 159, 134, 0.3);
+  background: rgba(76, 29, 149, 0.9); /* Deep purple - visible on yellow */
+  border: 1px solid rgba(76, 29, 149, 0.6);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.03em;
+  color: #F8FAFC; /* Light text on dark badge */
 }
 
 .cgh-copy h1 {
@@ -93,10 +127,11 @@
   line-height: 0.98;
   letter-spacing: -0.02em;
   max-width: 15.5ch;
+  color: var(--text-on-yellow); /* Dark text on yellow */
 }
 
 .cgh-copy h1 span {
-  color: #0b8d77;
+  color: #7C3AED; /* Deep purple accent - visible on yellow */
 }
 
 .cgh-sub {
@@ -104,7 +139,7 @@
   font-size: 1rem;
   line-height: 1.62;
   max-width: 56ch;
-  color: color-mix(in srgb, var(--cgh-ink) 80%, white);
+  color: rgba(30, 27, 75, 0.85); /* Dark text with opacity on yellow */
 }
 
 .cgh-actions {
@@ -131,14 +166,14 @@
 
 .cgh-btn-solid {
   color: #fff;
-  background: linear-gradient(135deg, #0f9f86 0%, #1990bc 100%);
-  box-shadow: 0 12px 28px rgba(15, 159, 134, 0.34);
+  background: linear-gradient(135deg, #7C3AED 0%, #4C1D95 100%);
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.5); /* Purple glow */
 }
 
 .cgh-btn-ghost {
-  color: var(--cgh-ink);
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(23, 52, 71, 0.16);
+  color: var(--text-on-yellow);
+  background: rgba(30, 27, 75, 0.08);
+  border: 1px solid rgba(30, 27, 75, 0.2);
 }
 
 .cgh-highlight-grid {
@@ -149,9 +184,10 @@
 .cgh-highlight {
   padding: 0.82rem 0.9rem;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(23, 52, 71, 0.09);
-  box-shadow: 0 10px 24px rgba(23, 52, 71, 0.07);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  backdrop-filter: var(--glass-blur);
 }
 
 .cgh-highlight p {
@@ -159,20 +195,21 @@
   font-size: 0.73rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #537486;
+  color: rgba(253, 230, 138, 0.9); /* Yellow tint for purple bg */
   font-weight: 700;
 }
 
 .cgh-highlight h3 {
   margin: 0.24rem 0 0;
   font-size: 1rem;
+  color: var(--text-on-purple); /* Light text */
 }
 
 .cgh-highlight span {
   display: block;
   margin-top: 0.22rem;
   font-size: 0.82rem;
-  color: #4d6a7b;
+  color: rgba(248, 250, 252, 0.7); /* Light text with opacity */
 }
 
 .cgh-stage {
@@ -282,13 +319,8 @@
 
 .cgh-section {
   padding: 3.1rem 0;
-}
-
-.cgh-section-alt {
-  background:
-    radial-gradient(circle at 14% 0%, rgba(229, 252, 255, 0.88) 0%, transparent 35%),
-    radial-gradient(circle at 84% 20%, rgba(231, 255, 236, 0.8) 0%, transparent 36%),
-    #f9fffc;
+  /* Sections on purple/navy background - use light text */
+  color: var(--text-on-purple);
 }
 
 .cgh-section-head {
@@ -303,7 +335,7 @@
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #0b8d77;
+  color: rgba(253, 230, 138, 0.9); /* Yellow accent on purple */
 }
 
 .cgh-section-head h2 {
@@ -312,6 +344,7 @@
   font-size: clamp(1.52rem, 4vw, 2.2rem);
   line-height: 1.08;
   max-width: 22ch;
+  color: var(--text-on-purple); /* Light text */
 }
 
 .cgh-card-grid {
@@ -321,22 +354,24 @@
 
 .cgh-card {
   border-radius: 18px;
-  border: 1px solid rgba(23, 52, 71, 0.09);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 12px 24px rgba(23, 52, 71, 0.08);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  backdrop-filter: var(--glass-blur);
   padding: 0.98rem;
 }
 
 .cgh-card h3 {
   margin: 0;
   font-size: 1rem;
+  color: var(--text-on-purple); /* Light text */
 }
 
 .cgh-card p {
   margin: 0.36rem 0 0;
   font-size: 0.9rem;
   line-height: 1.58;
-  color: #486676;
+  color: rgba(248, 250, 252, 0.75); /* Light text with opacity */
 }
 
 .cgh-steps {
@@ -349,13 +384,15 @@
 
 .cgh-step {
   border-radius: 16px;
-  border: 1px solid rgba(23, 52, 71, 0.1);
-  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.66rem;
   align-items: start;
   padding: 0.92rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
 .cgh-step > span {
@@ -375,13 +412,14 @@
 .cgh-step h3 {
   margin: 0;
   font-size: 1rem;
+  color: var(--text-on-purple); /* Light text */
 }
 
 .cgh-step p {
   margin: 0.3rem 0 0;
   font-size: 0.9rem;
   line-height: 1.56;
-  color: #4a6878;
+  color: rgba(248, 250, 252, 0.75); /* Light text with opacity */
 }
 
 .cgh-final {
@@ -394,10 +432,12 @@
   display: grid;
   gap: 0.75rem;
   justify-items: start;
-  background:
-    linear-gradient(145deg, #0f9f86 0%, #1b84af 54%, #2860a5 100%);
-  box-shadow: 0 22px 38px rgba(23, 52, 71, 0.24);
-  color: #f2fdff;
+  /* FAQ on navy bg - use light text */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 22px 38px rgba(0, 0, 0, 0.35);
+  color: var(--text-on-purple); /* Light text */
 }
 
 .cgh-final-inner h2 {
@@ -406,6 +446,7 @@
   font-size: clamp(1.4rem, 4vw, 2rem);
   line-height: 1.08;
   max-width: 18ch;
+  color: var(--text-on-purple); /* Light text */
 }
 
 .cgh-final-inner p {
@@ -413,7 +454,7 @@
   font-size: 0.94rem;
   line-height: 1.58;
   max-width: 60ch;
-  color: rgba(239, 252, 255, 0.92);
+  color: rgba(248, 250, 252, 0.85); /* Light text with opacity */
 }
 
 @keyframes cgh-tier-bob {

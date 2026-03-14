@@ -119,6 +119,10 @@ export function AuthForm({ mode }: AuthFormProps) {
       };
 
       if (!response.ok || !body.ok) {
+        if (response.status >= 500) {
+          router.push("/auth-fail");
+          return;
+        }
         setError(formatAuthError(response, body));
         return;
       }

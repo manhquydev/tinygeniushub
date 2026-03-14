@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import type { BlogPostFullDTO } from "@/modules/blog/blog-types";
 
 function normalizeSiteUrl(siteUrl: string) {
@@ -28,6 +28,7 @@ export function generateBlogPostMetadata(post: BlogPostFullDTO, siteUrl: string)
     },
     twitter: {
       card: "summary_large_image",
+
       title,
       description,
       images: [imageUrl],
@@ -54,10 +55,10 @@ export function generateBlogPostJsonLd(post: BlogPostFullDTO, siteUrl: string): 
     },
     publisher: {
       "@type": "Organization",
-      name: "Cùng Con Tự Học",
+      name: "TinyGeniusHub",
       logo: {
         "@type": "ImageObject",
-        url: `${baseUrl}/logo-cungcontuhoc-horizontal.svg`,
+        url: `${baseUrl}/logos/tinygeniushub_logo_horizon.png`,
       },
     },
     mainEntityOfPage: canonicalUrl,
@@ -68,13 +69,13 @@ export function generateBlogPostJsonLd(post: BlogPostFullDTO, siteUrl: string): 
 
 export function generateBlogListMetadata(): Metadata {
   return {
-    title: "Blog Cùng Con Tự Học",
+    title: "Blog TinyGeniusHub",
     description: "Kiến thức, phương pháp và tài nguyên giúp phụ huynh đồng hành cùng bé học tại nhà.",
     alternates: {
       canonical: "/blog",
     },
     openGraph: {
-      title: "Blog Cùng Con Tự Học",
+      title: "Blog TinyGeniusHub",
       description: "Kiến thức, phương pháp và tài nguyên giúp phụ huynh đồng hành cùng bé học tại nhà.",
       type: "website",
       url: "/blog",

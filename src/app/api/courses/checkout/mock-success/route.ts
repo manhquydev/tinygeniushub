@@ -4,6 +4,15 @@ import { logInfo, logWarn } from "@/lib/observability/logger";
 import { getPublishedCoursesByBundleSlug } from "@/modules/courses/course-bundle-service";
 import { enrollParent } from "@/modules/courses/course-service";
 
+function redirectTo(pathnameWithQuery: string) {
+  return new NextResponse(null, {
+    status: 307,
+    headers: {
+      Location: pathnameWithQuery,
+    },
+  });
+}
+
 /**
  * GET /api/courses/checkout/mock-success?courseId=...&parentId=...&amountVnd=...&sessionId=...
  *
@@ -20,7 +29,7 @@ export async function GET(request: NextRequest) {
 
   if ((!courseId && !bundleSlug) || !parentId || !sessionId) {
     logWarn("courses.mock_checkout.missing_params", { courseId, bundleSlug, parentId, sessionId });
-    return NextResponse.redirect(new URL("/courses?error=invalid_checkout", request.nextUrl.origin));
+    return redirectTo("/courses?error=invalid_checkout");
   }
 
   try {
@@ -28,7 +37,7 @@ export async function GET(request: NextRequest) {
       const bundleResult = await getPublishedCoursesByBundleSlug(bundleSlug);
       if (!bundleResult.bundle || bundleResult.courses.length === 0) {
         logWarn("courses.mock_checkout.bundle_not_found", { bundleSlug, parentId });
-        return NextResponse.redirect(new URL("/courses?error=bundle_not_found", request.nextUrl.origin));
+        return redirectTo("/courses?error=bundle_not_found");
       }
 
       await prisma.$transaction(async (tx) => {
@@ -70,12 +79,12 @@ export async function GET(request: NextRequest) {
         ? `/kid/courses/${encodeURIComponent(bundleResult.bundle.entryCourseSlug)}?childId=${encodeURIComponent(firstChild.id)}`
         : `/kid/courses/${encodeURIComponent(bundleResult.bundle.entryCourseSlug)}`;
 
-      return NextResponse.redirect(new URL(destinationWithChild, request.nextUrl.origin));
+      return redirectTo(destinationWithChild);
     }
 
     if (!courseId) {
       logWarn("courses.mock_checkout.missing_course_id", { parentId, sessionId });
-      return NextResponse.redirect(new URL("/courses?error=invalid_checkout", request.nextUrl.origin));
+      return redirectTo("/courses?error=invalid_checkout");
     }
 
     // Idempotency: if already enrolled, just redirect to success
@@ -104,14 +113,14 @@ export async function GET(request: NextRequest) {
 
       if (firstChild) {
         const kidCourseUrl = `/kid/courses/${encodeURIComponent(course.slug)}?childId=${encodeURIComponent(firstChild.id)}`;
-        return NextResponse.redirect(new URL(kidCourseUrl, request.nextUrl.origin));
+        return redirectTo(kidCourseUrl);
       }
     }
 
     const destination = course ? `/kid/courses/${encodeURIComponent(course.slug)}` : "/kid/courses";
-    return NextResponse.redirect(new URL(destination, request.nextUrl.origin));
+    return redirectTo(destination);
   } catch (err) {
     logWarn("courses.mock_checkout.error", { courseId, bundleSlug, parentId, err: String(err) });
-    return NextResponse.redirect(new URL("/courses?error=checkout_failed", request.nextUrl.origin));
+    return redirectTo("/courses?error=checkout_failed");
   }
 }

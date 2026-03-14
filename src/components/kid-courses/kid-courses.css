@@ -12,10 +12,22 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.kcd-scene::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.38)),
+    url("/images/bg/bg_hero_cloud_learning.png") center top / cover no-repeat;
+  opacity: 0.68;
+}
+
 .kcd-three-layer {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
   opacity: 0.86;
 }
@@ -25,7 +37,7 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.66);
   pointer-events: none;
-  z-index: 4;
+  z-index: 5;
   animation: kcd-drift linear infinite;
 }
 
@@ -80,7 +92,7 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 5;
+  z-index: 6;
 }
 
 .kcd-particle {
@@ -118,7 +130,7 @@
 .kcd-hud {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 22;
   padding: 12px 14px 14px;
   background: linear-gradient(180deg, rgba(137, 211, 255, 0.9), rgba(200, 242, 255, 0.68));
   backdrop-filter: blur(16px);
@@ -222,6 +234,49 @@
   color: rgba(16, 57, 79, 0.9);
 }
 
+.kcd-flow-note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(16, 57, 79, 0.86);
+}
+
+.kcd-flow-nav {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.kcd-flow-chip {
+  min-height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  color: #18556d;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 800;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.kcd-flow-chip:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(15, 75, 104, 0.14);
+}
+
+.kcd-flow-chip:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.kcd-flow-chip.is-active {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(135deg, #0d9f7b, #0d7990);
+  box-shadow: 0 9px 16px rgba(13, 121, 144, 0.24);
+}
+
 .kcd-stage-strip {
   margin-top: 10px;
   display: flex;
@@ -251,7 +306,7 @@
   margin: 0 auto;
   padding: 14px 14px 76px;
   position: relative;
-  z-index: 10;
+  z-index: 14;
 }
 
 .kcd-grid {

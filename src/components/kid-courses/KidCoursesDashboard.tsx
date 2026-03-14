@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, BookOpen, CheckCircle2, Lock, Sparkles, Sprout, Trees } from "lucide-react";
 import { GroundGardenCanvas } from "@/components/kid-courses/three/GroundGardenCanvas";
@@ -74,6 +74,7 @@ export function KidCoursesDashboard({
 }: KidCourseDashboardProps) {
   const router = useRouter();
   const [childId, setChildId] = useState(activeChildId);
+  const firstCourseSlug = useMemo(() => enrolledCourses[0]?.course.slug ?? null, [enrolledCourses]);
 
   const activeChild = childrenProfiles.find((child) => child.id === childId) ?? childrenProfiles[0];
   const avatarLabel = activeChild
@@ -89,11 +90,27 @@ export function KidCoursesDashboard({
   );
 
   const handleCourseClick = useCallback(
-    (courseSlug: string) => {
-      router.push(`/kid/courses/${encodeURIComponent(courseSlug)}?childId=${encodeURIComponent(childId)}`);
+    (courseSlug: string, focusTierNo?: number) => {
+      const params = new URLSearchParams();
+      params.set("childId", childId);
+      if (typeof focusTierNo === "number" && Number.isFinite(focusTierNo) && focusTierNo > 0) {
+        params.set("focusTierNo", String(Math.floor(focusTierNo)));
+      }
+      router.push(`/kid/courses/${encodeURIComponent(courseSlug)}?${params.toString()}`);
     },
     [childId, router],
   );
+
+  const handleGoSharedGarden = useCallback(() => {
+    router.push(`/kid/garden?childId=${encodeURIComponent(childId)}`);
+  }, [childId, router]);
+
+  const handleGoCourseGarden = useCallback(() => {
+    if (!firstCourseSlug) {
+      return;
+    }
+    router.push(`/kid/courses/${encodeURIComponent(firstCourseSlug)}?childId=${encodeURIComponent(childId)}`);
+  }, [childId, firstCourseSlug, router]);
 
   return (
     <div className="kcd-scene" aria-label="Trang học tập của bé">
@@ -145,7 +162,7 @@ export function KidCoursesDashboard({
           <button
             type="button"
             className="kcd-garden-link"
-            onClick={() => router.push(`/kid/garden?childId=${encodeURIComponent(childId)}`)}
+            onClick={handleGoSharedGarden}
             aria-label="Mở khu vườn chung"
           >
             <Trees size={16} />
@@ -161,6 +178,27 @@ export function KidCoursesDashboard({
           <p className="kcd-subtitle">
             Bé học theo lộ trình khóa đã mua: chọn một mầm cây để bắt đầu khám phá.
           </p>
+          <p className="kcd-flow-note">
+            Luồng chuẩn: <strong>1) Trang học tập</strong> → <strong>2) Khu vườn chung</strong> →{" "}
+            <strong>3) Vườn khóa học chi tiết</strong>.
+          </p>
+        </div>
+
+        <div className="kcd-flow-nav" role="navigation" aria-label="Điều hướng chức năng bé">
+          <button type="button" className="kcd-flow-chip is-active" aria-current="page">
+            Trang học tập
+          </button>
+          <button type="button" className="kcd-flow-chip" onClick={handleGoSharedGarden}>
+            Khu vườn chung
+          </button>
+          <button
+            type="button"
+            className="kcd-flow-chip"
+            onClick={handleGoCourseGarden}
+            disabled={!firstCourseSlug}
+          >
+            Vườn khóa học
+          </button>
         </div>
 
         <div className="kcd-stage-strip" aria-label="Các giai đoạn học tập">
@@ -192,19 +230,24 @@ export function KidCoursesDashboard({
               const statusLabel = getStatusLabel(journey?.status);
               const phaseLabel = getPhaseLabel(journey?.status);
               const isCompleted = journey?.status === "COMPLETED";
+              const completedLessons = Math.max(0, journey?.completedLessons ?? 0);
+              const focusTierNo = Math.max(
+                1,
+                Math.min(course.totalLessons, completedLessons + 1),
+              );
 
               return (
                 <article
                   key={course.id}
                   className={`kcd-card ${isCompleted ? "kcd-card-completed" : ""}`}
-                  onClick={() => handleCourseClick(course.slug)}
+                  onClick={() => handleCourseClick(course.slug, focusTierNo)}
                   role="button"
                   tabIndex={0}
                   aria-label={`Vào khóa ${course.title}`}
                   onKeyDown={(event) => {
                     if (event.key === "Enter" || event.key === " ") {
                       event.preventDefault();
-                      handleCourseClick(course.slug);
+                      handleCourseClick(course.slug, focusTierNo);
                     }
                   }}
                 >
@@ -280,7 +323,7 @@ export function KidCoursesDashboard({
                       className={`kcd-cta ${isCompleted ? "kcd-cta-done" : "kcd-cta-primary"}`}
                       onClick={(event) => {
                         event.stopPropagation();
-                        handleCourseClick(course.slug);
+                        handleCourseClick(course.slug, focusTierNo);
                       }}
                       aria-label={`${statusLabel} khóa ${course.title}`}
                     >

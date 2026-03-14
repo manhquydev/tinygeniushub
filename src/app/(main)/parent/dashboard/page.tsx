@@ -261,7 +261,7 @@ export default async function ParentDashboardPage() {
             Quản lý hồ sơ bé
           </Link>
           <Link
-            href={firstChildId ? `/kid/today?childId=${encodeURIComponent(firstChildId)}` : "/kid/today"}
+            href={firstChildId ? `/kid/courses?childId=${encodeURIComponent(firstChildId)}` : "/kid/courses"}
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
           >
             Vào khu học của bé

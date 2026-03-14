@@ -253,6 +253,60 @@ async function ensureChild(baseUrl, authHeaders) {
   });
 }
 
+async function ensureEnrolledCourse(baseUrl, authHeaders, childId) {
+  const enrolled = await requestJson(baseUrl, `/api/courses/enrolled?childId=${encodeURIComponent(childId)}`, {
+    method: "GET",
+    headers: authHeaders,
+  });
+  assert(enrolled.response.status === 200, `List enrolled courses failed: status=${enrolled.response.status}`);
+  assert(enrolled.json?.ok === true, "List enrolled courses did not return ok=true");
+  const existingCourses = Array.isArray(enrolled.json?.data?.courses) ? enrolled.json.data.courses : [];
+  if (existingCourses.length > 0) {
+    return;
+  }
+
+  const courses = await requestJson(baseUrl, "/api/courses", {
+    method: "GET",
+    headers: authHeaders,
+  });
+  assert(courses.response.status === 200, `List courses failed: status=${courses.response.status}`);
+  assert(courses.json?.ok === true, "List courses did not return ok=true");
+
+  const availableCourses = Array.isArray(courses.json?.data?.courses) ? courses.json.data.courses : [];
+  assert(availableCourses.length > 0, "No published courses available for enrollment");
+  const preferredCourseSlugs = [
+    "abeka-k4",
+    "abeka-k5",
+    "abeka-g1",
+    "little-fox-en-level-1",
+    "little-fox-cn-level-1",
+  ];
+  const selectedCourse =
+    availableCourses.find((course) => preferredCourseSlugs.includes(String(course.slug))) ?? availableCourses[0];
+  const selectedSlug = selectedCourse?.slug;
+  assert(typeof selectedSlug === "string" && selectedSlug.length > 0, "Selected course missing slug");
+
+  const checkout = await requestJson(baseUrl, `/api/courses/${encodeURIComponent(selectedSlug)}/checkout`, {
+    method: "POST",
+    headers: authHeaders,
+    body: {},
+  });
+  assert(checkout.response.status === 200, `Checkout failed: status=${checkout.response.status}`);
+  assert(checkout.json?.ok === true, "Checkout did not return ok=true");
+  const checkoutUrl = checkout.json?.data?.checkoutUrl;
+  assert(typeof checkoutUrl === "string" && checkoutUrl.startsWith("/"), "Checkout response missing checkoutUrl");
+
+  const mockSuccess = await fetch(`${baseUrl}${checkoutUrl}`, {
+    method: "GET",
+    headers: authHeaders,
+    redirect: "manual",
+  });
+  assert(
+    [302, 303, 307, 308].includes(mockSuccess.status),
+    `Mock checkout callback failed: status=${mockSuccess.status}`,
+  );
+}
+
 async function getTodayLessons(baseUrl, authHeaders, childId) {
   const todayMission = await requestJson(baseUrl, `/api/lessons/today?childId=${encodeURIComponent(childId)}`, {
     method: "GET",
@@ -282,17 +336,43 @@ async function completeLessonJourney(baseUrl, authHeaders, childId, lessonId) {
       typeof session.sessionToken === "string" && session.sessionToken.length > 0,
       "Watch-required lesson must return session token",
     );
-    const heartbeat = await requestJson(baseUrl, `/api/lessons/${lessonId}/watch/heartbeat`, {
-      method: "POST",
-      headers: authHeaders,
-      body: {
-        childId,
-        sessionToken: session.sessionToken,
-        sequence: 1,
-      },
-    });
-    assert(heartbeat.response.status === 200, `Watch heartbeat failed: status=${heartbeat.response.status}`);
-    assert(heartbeat.json?.ok === true, "Watch heartbeat did not return ok=true");
+
+    const requiredWatchSeconds = Math.max(1, Number(session.requiredWatchSeconds ?? 0));
+    const heartbeatIntervalSeconds = Math.max(1, Number(session.heartbeatIntervalSeconds ?? 5));
+    const heartbeatGapMs = heartbeatIntervalSeconds * 1000 + 300;
+    const minimumHeartbeatCount = Math.ceil(requiredWatchSeconds / heartbeatIntervalSeconds);
+    const heartbeatDeadlineMs = Date.now() + minimumHeartbeatCount * heartbeatGapMs + 120_000;
+    let sequence = 0;
+    let readyForCompletion = false;
+
+    while (Date.now() < heartbeatDeadlineMs && !readyForCompletion) {
+      await sleep(heartbeatGapMs);
+      const nextSequence = sequence + 1;
+      const heartbeat = await requestJson(baseUrl, `/api/lessons/${lessonId}/watch/heartbeat`, {
+        method: "POST",
+        headers: authHeaders,
+        body: {
+          childId,
+          sessionToken: session.sessionToken,
+          sequence: nextSequence,
+        },
+      });
+
+      if (heartbeat.response.status === 429) {
+        await sleep(1_200);
+        continue;
+      }
+
+      assert(heartbeat.response.status === 200, `Watch heartbeat failed: status=${heartbeat.response.status}`);
+      assert(heartbeat.json?.ok === true, "Watch heartbeat did not return ok=true");
+      sequence = nextSequence;
+      readyForCompletion = heartbeat.json?.data?.watch?.readyForCompletion === true;
+    }
+
+    assert(
+      readyForCompletion,
+      `Watch heartbeat timed out before readiness. requiredWatchSeconds=${requiredWatchSeconds}, sequence=${sequence}`,
+    );
     markWatchBody.sessionToken = session.sessionToken;
   }
 
@@ -303,6 +383,9 @@ async function completeLessonJourney(baseUrl, authHeaders, childId, lessonId) {
   });
   assert(markWatch.response.status === 200, `Mark watch failed: status=${markWatch.response.status}`);
   assert(markWatch.json?.ok === true, "Mark watch did not return ok=true");
+  if (session?.watchRequired) {
+    assert(markWatch.json?.data?.watch?.readyForCompletion === true, "Mark watch did not reach completion readiness");
+  }
 
   const completionPayload = {
     childId,
@@ -424,6 +507,7 @@ async function main() {
     const parentHeaders = { cookie: parentCookie };
 
     const parentChildId = await ensureChild(baseUrl, parentHeaders);
+    await ensureEnrolledCourse(baseUrl, parentHeaders, parentChildId);
 
     const parentDashboard = await requestText(baseUrl, "/parent/dashboard", {
       headers: parentHeaders,
@@ -436,17 +520,22 @@ async function main() {
     });
     assert(parentChildren.response.status === 200, `Parent children page failed: status=${parentChildren.response.status}`);
 
-    const kidToday = await requestText(baseUrl, `/kid/today?childId=${encodeURIComponent(parentChildId)}`, {
+    const kidCourses = await requestText(baseUrl, `/kid/courses?childId=${encodeURIComponent(parentChildId)}`, {
       headers: parentHeaders,
     });
-    assert(kidToday.response.status === 200, `Kid today page failed: status=${kidToday.response.status}`);
-    assert(
-      kidToday.text.includes("Mission") || kidToday.text.includes("Bai hoc hom nay"),
-      "Kid today marker not found",
-    );
+    assert(kidCourses.response.status === 200, `Kid courses page failed: status=${kidCourses.response.status}`);
+    assert(kidCourses.text.includes("kcd-scene"), "Kid courses marker not found");
+
+    const kidGarden = await requestText(baseUrl, `/kid/garden?childId=${encodeURIComponent(parentChildId)}`, {
+      headers: parentHeaders,
+    });
+    assert(kidGarden.response.status === 200, `Kid garden page failed: status=${kidGarden.response.status}`);
+    assert(kidGarden.text.includes("ksg-scene"), "Kid garden marker not found");
 
     const lessons = await getTodayLessons(baseUrl, parentHeaders, parentChildId);
-    const lessonId = lessons[0]?.id;
+    const selectedLesson = lessons.find((lesson) => lesson?.trialEnabled === true);
+    assert(selectedLesson, "No trial-enabled lesson available for full local journey");
+    const lessonId = selectedLesson.id;
     assert(typeof lessonId === "string" && lessonId.length > 0, "Lesson id missing from today mission");
 
     await completeLessonJourney(baseUrl, parentHeaders, parentChildId, lessonId);
