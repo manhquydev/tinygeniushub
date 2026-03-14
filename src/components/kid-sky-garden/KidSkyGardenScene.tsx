@@ -10,6 +10,7 @@ import { LessonStartCard } from "@/components/lesson-wizard/lesson-start-card";
 import { Mascot } from "@/components/mascot";
 import { BeanTipGrowthFx } from "@/components/kid-sky-garden/components/BeanTipGrowthFx";
 import { buildSkyGardenNodes, mapLessonLikeToSkyGardenLesson } from "@/components/kid-sky-garden/mappers";
+import { SkyGardenFxCanvas } from "@/components/kid-sky-garden/three/SkyGardenFxCanvas";
 import type {
   SkyGardenChildProfile,
   SkyGardenGrowthState,
@@ -610,6 +611,8 @@ export function KidSkyGardenScene({
       className={`ksg-scene ${isCameraFocusActive ? "ksg-scene-camera-focus" : ""}`}
       aria-label="Khu vườn trên mây"
     >
+      <SkyGardenFxCanvas className="ksg-three-layer" />
+
       <span
         className="ksg-sky-cloud ksg-sky-cloud-a"
         style={{ transform: `translate3d(0, ${parallaxOffset * 0.18}px, 0)` }}

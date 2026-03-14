@@ -10,6 +10,14 @@
     linear-gradient(180deg, #3b1f73 0%, #6d4cc5 36%, #a987ec 62%, #f3d7a5 100%);
 }
 
+.ksg-three-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.78;
+}
+
 .ksg-sky-cloud {
   position: absolute;
   z-index: 2;

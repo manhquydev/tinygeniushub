@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { isKidSkyGardenMvpEnabled } from "@/lib/feature-flags";
 import { logInfo, logWarn } from "@/lib/observability/logger";
+import { getPublishedCoursesByBundleSlug } from "@/modules/courses/course-bundle-service";
 import { enrollParent } from "@/modules/courses/course-service";
 
 /**
@@ -13,16 +13,71 @@ import { enrollParent } from "@/modules/courses/course-service";
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const courseId = searchParams.get("courseId");
+  const bundleSlug = searchParams.get("bundleSlug");
   const parentId = searchParams.get("parentId");
   const amountVnd = searchParams.get("amountVnd");
   const sessionId = searchParams.get("sessionId");
 
-  if (!courseId || !parentId || !sessionId) {
-    logWarn("courses.mock_checkout.missing_params", { courseId, parentId, sessionId });
+  if ((!courseId && !bundleSlug) || !parentId || !sessionId) {
+    logWarn("courses.mock_checkout.missing_params", { courseId, bundleSlug, parentId, sessionId });
     return NextResponse.redirect(new URL("/courses?error=invalid_checkout", request.nextUrl.origin));
   }
 
   try {
+    if (bundleSlug) {
+      const bundleResult = await getPublishedCoursesByBundleSlug(bundleSlug);
+      if (!bundleResult.bundle || bundleResult.courses.length === 0) {
+        logWarn("courses.mock_checkout.bundle_not_found", { bundleSlug, parentId });
+        return NextResponse.redirect(new URL("/courses?error=bundle_not_found", request.nextUrl.origin));
+      }
+
+      await prisma.$transaction(async (tx) => {
+        for (const course of bundleResult.courses) {
+          await tx.courseEnrollment.upsert({
+            where: {
+              courseId_parentId: {
+                courseId: course.id,
+                parentId,
+              },
+            },
+            update: {
+              paymentId: sessionId,
+            },
+            create: {
+              courseId: course.id,
+              parentId,
+              paymentId: sessionId,
+            },
+          });
+        }
+      });
+
+      logInfo("courses.mock_checkout.bundle_enrolled", {
+        bundleSlug,
+        parentId,
+        amountVnd,
+        sessionId,
+        courseCount: bundleResult.courses.length,
+      });
+
+      const firstChild = await prisma.childProfile.findFirst({
+        where: { parentId },
+        orderBy: { createdAt: "asc" },
+        select: { id: true },
+      });
+
+      const destinationWithChild = firstChild
+        ? `/kid/courses/${encodeURIComponent(bundleResult.bundle.entryCourseSlug)}?childId=${encodeURIComponent(firstChild.id)}`
+        : `/kid/courses/${encodeURIComponent(bundleResult.bundle.entryCourseSlug)}`;
+
+      return NextResponse.redirect(new URL(destinationWithChild, request.nextUrl.origin));
+    }
+
+    if (!courseId) {
+      logWarn("courses.mock_checkout.missing_course_id", { parentId, sessionId });
+      return NextResponse.redirect(new URL("/courses?error=invalid_checkout", request.nextUrl.origin));
+    }
+
     // Idempotency: if already enrolled, just redirect to success
     const existing = await prisma.courseEnrollment.findUnique({
       where: { courseId_parentId: { courseId, parentId } },
@@ -35,15 +90,12 @@ export async function GET(request: NextRequest) {
       logInfo("courses.mock_checkout.already_enrolled", { courseId, parentId });
     }
 
-    const [course, useSkyGardenMvp] = await Promise.all([
-      prisma.course.findUnique({
-        where: { id: courseId },
-        select: { id: true, slug: true, title: true },
-      }),
-      isKidSkyGardenMvpEnabled(),
-    ]);
+    const course = await prisma.course.findUnique({
+      where: { id: courseId },
+      select: { slug: true },
+    });
 
-    if (useSkyGardenMvp && course) {
+    if (course) {
       const firstChild = await prisma.childProfile.findFirst({
         where: { parentId },
         orderBy: { createdAt: "asc" },
@@ -51,19 +103,15 @@ export async function GET(request: NextRequest) {
       });
 
       if (firstChild) {
-        const seedParams = new URLSearchParams({
-          childId: firstChild.id,
-          seedCourseId: course.id,
-          seedCourseTitle: course.title,
-        });
-        return NextResponse.redirect(new URL(`/kid/today?${seedParams.toString()}`, request.nextUrl.origin));
+        const kidCourseUrl = `/kid/courses/${encodeURIComponent(course.slug)}?childId=${encodeURIComponent(firstChild.id)}`;
+        return NextResponse.redirect(new URL(kidCourseUrl, request.nextUrl.origin));
       }
     }
 
-    const destination = course ? `/courses/${course.slug}/lessons` : "/parent/courses";
+    const destination = course ? `/kid/courses/${encodeURIComponent(course.slug)}` : "/kid/courses";
     return NextResponse.redirect(new URL(destination, request.nextUrl.origin));
   } catch (err) {
-    logWarn("courses.mock_checkout.error", { courseId, parentId, err: String(err) });
+    logWarn("courses.mock_checkout.error", { courseId, bundleSlug, parentId, err: String(err) });
     return NextResponse.redirect(new URL("/courses?error=checkout_failed", request.nextUrl.origin));
   }
 }

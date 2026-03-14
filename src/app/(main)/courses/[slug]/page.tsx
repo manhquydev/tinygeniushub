@@ -1,63 +1,127 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { getParentFromServerCookie } from "@/lib/auth/session";
+import {
+  getPublishedCourseBundleDetailBySlug,
+  type CourseBundleDetail,
+} from "@/modules/courses/course-bundle-service";
+import { getCourseBundleByCourseSlug } from "@/modules/courses/course-bundles";
 import { CourseCheckoutButton } from "@/components/courses/course-checkout-button";
 
 type Props = { params: Promise<{ slug: string }> };
 
-async function loadCourse(slug: string) {
-  return prisma.course.findUnique({
-    where: { slug, isPublished: true },
-    include: {
-      lessons: {
-        orderBy: { orderNo: "asc" },
-        include: {
-          lesson: {
-            select: { id: true, title: true, estimatedMinutes: true },
-          },
-        },
-      },
-    },
-  });
+async function loadBundleDetailFromAnySlug(slug: string): Promise<{
+  detail: CourseBundleDetail;
+  canonicalSlug: string;
+} | null> {
+  const detailByBundleSlug = await getPublishedCourseBundleDetailBySlug(slug);
+  if (detailByBundleSlug) {
+    return {
+      detail: detailByBundleSlug,
+      canonicalSlug: slug,
+    };
+  }
+
+  const bundleByCourseSlug = getCourseBundleByCourseSlug(slug);
+  if (!bundleByCourseSlug) {
+    return null;
+  }
+
+  const detailByMappedBundleSlug = await getPublishedCourseBundleDetailBySlug(bundleByCourseSlug.slug);
+  if (!detailByMappedBundleSlug) {
+    return null;
+  }
+
+  return {
+    detail: detailByMappedBundleSlug,
+    canonicalSlug: bundleByCourseSlug.slug,
+  };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const course = await loadCourse(slug);
-  if (!course) return { title: "Khóa học không tồn tại" };
+  const resolved = await loadBundleDetailFromAnySlug(slug);
+
+  if (!resolved) {
+    return { title: "Khóa học không tồn tại" };
+  }
+
   return {
-    title: `${course.title} — Cùng Con Tự Học`,
-    description: course.description,
+    title: `${resolved.detail.bundle.title} — Cùng Con Tự Học`,
+    description: resolved.detail.bundle.description,
+    alternates: {
+      canonical: `https://cungcontuhoc.io.vn/courses/${resolved.canonicalSlug}`,
+    },
   };
 }
 
 export default async function CourseDetailPage({ params }: Props) {
   const { slug } = await params;
-  const [course, parent] = await Promise.all([loadCourse(slug), getParentFromServerCookie()]);
-  if (!course) notFound();
+  const resolved = await loadBundleDetailFromAnySlug(slug);
 
-  let enrollment = null;
-  let hasActiveSub = false;
-
-  if (parent) {
-    const [enr, sub] = await Promise.all([
-      prisma.courseEnrollment.findUnique({ where: { courseId_parentId: { courseId: course.id, parentId: parent.id } } }),
-      prisma.subscription.findUnique({ where: { parentId: parent.id }, select: { status: true } }),
-    ]);
-    enrollment = enr;
-    hasActiveSub = sub?.status === "ACTIVE_STANDARD" || sub?.status === "ACTIVE_FAMILYPLUS";
+  if (!resolved) {
+    notFound();
   }
 
-  const discountedPrice = hasActiveSub ? Math.round(course.priceVnd * 0.8) : null;
+  if (slug !== resolved.canonicalSlug) {
+    redirect(`/courses/${resolved.canonicalSlug}`);
+  }
+
+  const { detail } = resolved;
+  const parent = await getParentFromServerCookie();
+
+  let isBundleOwned = false;
+  let hasActiveSub = false;
+  let childEntryHref = `/kid/courses/${encodeURIComponent(detail.bundle.entryCourseSlug)}`;
+
+  if (parent) {
+    const [enrollments, subscription, firstChild] = await Promise.all([
+      prisma.courseEnrollment.findMany({
+        where: {
+          parentId: parent.id,
+          courseId: {
+            in: detail.courses.map((course) => course.id),
+          },
+        },
+        select: {
+          id: true,
+          courseId: true,
+        },
+      }),
+      prisma.subscription.findUnique({ where: { parentId: parent.id }, select: { status: true } }),
+      prisma.childProfile.findFirst({
+        where: { parentId: parent.id },
+        orderBy: { createdAt: "asc" },
+        select: { id: true },
+      }),
+    ]);
+
+    isBundleOwned = enrollments.length === detail.courses.length;
+    hasActiveSub =
+      subscription?.status === "ACTIVE_STANDARD" || subscription?.status === "ACTIVE_FAMILYPLUS";
+
+    if (firstChild) {
+      childEntryHref = `${childEntryHref}?childId=${encodeURIComponent(firstChild.id)}`;
+    }
+  }
+
+  const discountedPrice = hasActiveSub ? Math.round(detail.stats.priceVnd * 0.8) : null;
 
   return (
     <div className="page-stack">
-      {/* Header */}
-      <section className="card">
-        <h1 style={{ fontSize: "1.75rem", fontWeight: 800, lineHeight: 1.2 }}>{course.title}</h1>
-        <p style={{ lineHeight: 1.6 }}>{course.description}</p>
+      <section className="card" style={{ display: "grid", gap: "1rem" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={detail.bundle.coverImageUrl}
+          alt={detail.bundle.title}
+          style={{ width: "100%", aspectRatio: "16/9", borderRadius: 14, objectFit: "cover" }}
+        />
+
+        <h1 style={{ fontSize: "1.75rem", fontWeight: 800, lineHeight: 1.2 }}>{detail.bundle.title}</h1>
+        <p style={{ lineHeight: 1.6 }}>{detail.bundle.description}</p>
+
         <div style={{ display: "flex", gap: "1.2rem", flexWrap: "wrap", alignItems: "center" }}>
           {discountedPrice ? (
             <>
@@ -65,7 +129,7 @@ export default async function CourseDetailPage({ params }: Props) {
                 {discountedPrice.toLocaleString("vi-VN")}đ
               </span>
               <span style={{ textDecoration: "line-through", color: "var(--muted)" }}>
-                {course.priceVnd.toLocaleString("vi-VN")}đ
+                {detail.stats.priceVnd.toLocaleString("vi-VN")}đ
               </span>
               <span
                 style={{
@@ -82,67 +146,63 @@ export default async function CourseDetailPage({ params }: Props) {
             </>
           ) : (
             <span style={{ fontWeight: 700, fontSize: "1.2rem", color: "var(--brand-700)" }}>
-              {course.priceVnd.toLocaleString("vi-VN")}đ
+              {detail.stats.priceVnd.toLocaleString("vi-VN")}đ
             </span>
           )}
-          <span className="muted-text">{course.durationDays} ngày học</span>
-          <span className="muted-text">{course.lessons.length} bài học</span>
+          <span className="muted-text">{detail.stats.durationDays} ngày</span>
+          <span className="muted-text">{detail.stats.totalCourses} cấp độ</span>
+          <span className="muted-text">{detail.stats.totalLessons} bài học</span>
         </div>
 
-        {enrollment ? (
+        {isBundleOwned ? (
           <div style={{ display: "grid", gap: "0.5rem" }}>
-            <p style={{ color: "var(--brand-700)", fontWeight: 700 }}>Đã đăng ký ✓</p>
+            <p style={{ color: "var(--brand-700)", fontWeight: 700 }}>Bạn đã sở hữu trọn bộ ✓</p>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-              <Link href={`/courses/${course.slug}/lessons`} className="solid-button">
+              <Link href={childEntryHref} className="solid-button">
                 Vào học ngay
               </Link>
-              {enrollment.certificateUrl && (
-                <a href={enrollment.certificateUrl} className="ghost-button" download>
-                  Tải chứng chỉ
-                </a>
-              )}
+              <Link href="/parent/courses" className="ghost-button">
+                Xem khóa đã mua
+              </Link>
             </div>
           </div>
         ) : (
           <CourseCheckoutButton
-            courseSlug={course.slug}
-            label="Mua khóa học"
-            priceVnd={discountedPrice ?? course.priceVnd}
+            courseSlug={detail.bundle.slug}
+            label="Mua trọn bộ"
+            priceVnd={discountedPrice ?? detail.stats.priceVnd}
           />
         )}
       </section>
 
-      {/* Curriculum */}
-      {course.lessons.length > 0 && (
-        <section className="card">
-          <h2 style={{ fontSize: "1.2rem", fontWeight: 700 }}>Nội dung khóa học</h2>
-          <div style={{ display: "grid", gap: "0.5rem" }}>
-            {course.lessons.map(({ orderNo, lesson }) => (
-              <div
-                key={lesson.id}
-                style={{
-                  border: "1px solid rgba(15,23,42,0.1)",
-                  borderRadius: 12,
-                  padding: "0.75rem 1rem",
-                  background: "rgba(255,255,255,0.6)",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <span>
-                  <span className="muted-text" style={{ marginRight: "0.5rem" }}>{orderNo}.</span>
-                  <span style={{ fontWeight: 600 }}>{lesson.title}</span>
-                </span>
-                <span className="muted-text" style={{ fontSize: "0.82rem", whiteSpace: "nowrap" }}>
-                  {lesson.estimatedMinutes} phút
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      <section className="card" style={{ display: "grid", gap: "0.8rem" }}>
+        <h2 style={{ fontSize: "1.2rem", fontWeight: 700 }}>Nội dung bên trong bộ khóa học</h2>
+        <div style={{ display: "grid", gap: "0.55rem" }}>
+          {detail.courses.map((course, index) => (
+            <div
+              key={course.id}
+              style={{
+                border: "1px solid rgba(15,23,42,0.1)",
+                borderRadius: 12,
+                padding: "0.75rem 1rem",
+                background: "rgba(255,255,255,0.6)",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: "0.75rem",
+              }}
+            >
+              <span>
+                <span className="muted-text" style={{ marginRight: "0.5rem" }}>{index + 1}.</span>
+                <span style={{ fontWeight: 600 }}>{course.title}</span>
+              </span>
+              <span className="muted-text" style={{ fontSize: "0.82rem", whiteSpace: "nowrap" }}>
+                {course.lessonCount} bài
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
