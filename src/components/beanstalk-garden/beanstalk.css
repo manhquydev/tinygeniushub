@@ -1,30 +1,27 @@
+/* 
+ * REMOVED: Viewport containment for unified scroll journey
+ * Old behavior: height: 100vh, overflow-y: auto (nested scroll)
+ * New behavior: Use page scroll, no viewport constraint
+ */
 .bs-viewport {
   position: relative;
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  overflow-y: auto;
+  /* height: 100vh removed - now uses parent height */
+  /* overflow-y: auto removed - now uses page scroll */
   overflow-x: hidden;
-  scroll-behavior: smooth;
-  /* Hide scrollbar for cleaner look */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.bs-viewport::-webkit-scrollbar {
-  display: none;
+  /* scroll-behavior handled by page */
 }
 
 /* 
- * The main container that determines the total journey height.
- * The background gradient stretches to fill this entire 5000px div,
- * so it naturally transitions colors as the user scrolls up.
+ * UPDATED: Main container height (background gradient removed)
+ * Gradient now handled by parent GradientBackground component
+ * Height will be dynamically calculated by UnifiedScrollJourney
  */
 .bs-content-height {
   position: relative;
   width: 100%;
-  height: 5000px;
-  background: linear-gradient(to top, #FDE68A 0%, #C084FC 15%, #4C1D95 60%, #1E1B4B 100%);
+  /* height removed - now set dynamically by parent */
+  /* background gradient removed - handled by GradientBackground */
   overflow: hidden; /* Prevent horizontal overflow from clouds/assets */
 }
 

@@ -35,7 +35,7 @@ function daysRemaining(date: Date): number {
 
 export default async function ParentBillingPage() {
   const parent = await getParentFromServerCookie();
-  if (!parent) redirect("/auth/login?next=/parent/billing");
+  if (!parent) redirect("/session-expired?next=/parent/billing");
 
   const [subscription, payments] = await Promise.all([
     prisma.subscription.findUnique({

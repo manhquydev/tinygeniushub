@@ -75,6 +75,7 @@
     "remark-html": "^16.0.1",
     "remotion": "^4.0.429",
     "slugify": "^1.6.6",
+    "three": "^0.183.2",
     "tus-js-client": "^4.3.1",
     "zod": "^4.3.6"
   },
@@ -89,6 +90,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.183.1",
     "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",

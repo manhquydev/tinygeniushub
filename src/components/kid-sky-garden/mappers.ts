@@ -1,4 +1,4 @@
-import type { SkyGardenLesson, SkyGardenNode } from "@/components/kid-sky-garden/types";
+﻿import type { SkyGardenLesson, SkyGardenNode } from "@/components/kid-sky-garden/types";
 
 type LessonLike = {
   id?: string;
@@ -37,27 +37,37 @@ const JOURNEY_META: Record<
   },
 };
 
-const DEFAULT_COURSE_ACCENT = "#2563eb"; // Fallback for dynamic courses
+const DEFAULT_COURSE_ACCENT = "#2563eb";
+
+function normalizeTrackCode(trackCode?: string): "ENGLISH" | "MATH" | "HABIT" {
+  if (trackCode === "MATH" || trackCode === "HABIT" || trackCode === "ENGLISH") {
+    return trackCode;
+  }
+  return "ENGLISH";
+}
 
 export function mapLessonLikeToSkyGardenLesson(lesson: LessonLike, index: number): SkyGardenLesson {
-  const rawTrackCode = lesson.trackCode ?? "ENGLISH";
-  const trackCode = (rawTrackCode === "ENGLISH" || rawTrackCode === "MATH" || rawTrackCode === "HABIT") 
-    ? rawTrackCode 
-    : "ENGLISH";
+  const trackCode = normalizeTrackCode(lesson.trackCode);
   const journey = JOURNEY_META[trackCode];
 
   return {
-    id: typeof lesson.id === "string" ? lesson.id : `lesson-${index + 1}`,
-    title: typeof lesson.title === "string" && lesson.title.length > 0 ? lesson.title : `Bài học ${index + 1}`,
+    id: typeof lesson.id === "string" && lesson.id.length > 0 ? lesson.id : `lesson-${index + 1}`,
+    title:
+      typeof lesson.title === "string" && lesson.title.length > 0
+        ? lesson.title
+        : `Bài học ${index + 1}`,
     objective:
       typeof lesson.objective === "string" && lesson.objective.length > 0
         ? lesson.objective
         : "Cùng hoàn thành thử thách ở tầng mây này nhé!",
     estimatedMinutes: typeof lesson.estimatedMinutes === "number" ? lesson.estimatedMinutes : 15,
     trackCode,
-    unitTitle: typeof lesson.unitTitle === "string" && lesson.unitTitle.length > 0 ? lesson.unitTitle : "Mở đầu",
-    journeyTitle: lesson.journeyTitle ?? journey?.title ?? "Khóa học",
-    journeyAccent: lesson.journeyAccent ?? journey?.accent ?? DEFAULT_COURSE_ACCENT,
+    unitTitle:
+      typeof lesson.unitTitle === "string" && lesson.unitTitle.length > 0
+        ? lesson.unitTitle
+        : "Mở đầu",
+    journeyTitle: lesson.journeyTitle ?? journey.title,
+    journeyAccent: lesson.journeyAccent ?? journey.accent ?? DEFAULT_COURSE_ACCENT,
     videoSource: lesson.videoSource ?? null,
     bunnyVideoId: lesson.bunnyVideoId ?? null,
     videoStatus: lesson.videoStatus,
@@ -76,13 +86,10 @@ export function buildSkyGardenNodes(lessons: SkyGardenLesson[]): SkyGardenNode[]
 
   return lessons.map((lesson, index) => {
     let state: SkyGardenNode["state"] = "locked";
-
-    if (lesson.isCompleted) {
+    if (lesson.isCompleted || index < activeIndex) {
       state = "completed";
     } else if (index === activeIndex) {
       state = "active";
-    } else if (index < activeIndex) {
-      state = "completed";
     }
 
     return {

@@ -12,7 +12,7 @@
   --warning-500: #f59e0b;
   --motion-standard: 420ms;
   --motion-quick: 220ms;
-  --app-nav-height: 56px;
+  --app-nav-height: 92px;
   --accent-amber: #f59e0b;
   --accent-amber-light: #fef3c7;
   --accent-amber-dark: #b45309;
@@ -105,17 +105,36 @@ p {
   overflow-x: clip;
 }
 
+.main-shell-home {
+  padding-top: var(--app-nav-height);
+}
+
 .app-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 80;
+  z-index: 110;
   overflow: visible;
   backdrop-filter: blur(8px);
   background: color-mix(in srgb, #f9fbf6 82%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--ink-700) 12%, transparent);
+}
+
+.app-nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -16px;
+  height: 16px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, #f9fbf6 72%, transparent) 0%,
+    transparent 100%
+  );
 }
 
 .nav-inner {
@@ -125,8 +144,8 @@ p {
   overflow: visible;
   gap: 0.5rem;
   min-width: 0;
-  min-height: 56px;
-  padding: 0.4rem 0;
+  min-height: var(--app-nav-height);
+  padding: 0.38rem 0;
 }
 
 .brand {
@@ -136,7 +155,7 @@ p {
   white-space: nowrap;
   flex-shrink: 0;
   min-width: 0;
-  min-height: 44px;
+  min-height: 56px;
   display: flex;
   align-items: center;
 }
@@ -144,8 +163,42 @@ p {
 .brand img {
   width: min(42vw, 180px);
   max-width: 100%;
-  height: 30px;
+  height: auto;
   object-fit: contain;
+}
+
+.brand-feature-logo {
+  position: relative;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.22rem 0.5rem;
+  margin-inline-start: clamp(0.9rem, 2.8vw, 2rem);
+  margin-inline-end: clamp(0.58rem, 1.8vw, 1.2rem);
+  overflow: visible;
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, white 95%, transparent) 0%,
+    color-mix(in srgb, #eff6ff 72%, transparent) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--ink-700) 12%, transparent);
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.brand-feature-logo::after {
+  content: none;
+}
+
+.brand-feature-logo .brand-feature-image {
+  display: block;
+  width: clamp(136px, 34vw, 198px);
+  height: auto;
+  transform: none;
+  pointer-events: none;
+  flex-shrink: 0;
 }
 
 .nav-links {
@@ -261,14 +314,214 @@ p {
   width: 100%;
 }
 
+/* Homepage nav tone sync: dark(top) -> mid(scroll) -> light(bottom) */
+:root[data-home-theme="1"] .app-nav {
+  transition:
+    background-color 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    color 240ms ease;
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav {
+  background: color-mix(in srgb, #030712 82%, transparent);
+  border-bottom-color: color-mix(in srgb, #cbd5e1 22%, transparent);
+  box-shadow: 0 8px 18px rgba(2, 6, 23, 0.34);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav::after {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, #030712 74%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .nav-link-item,
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .brand,
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .ghost-button {
+  color: rgba(241, 245, 249, 0.96);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .ghost-button {
+  border-color: color-mix(in srgb, #cbd5e1 30%, transparent);
+  background: color-mix(in srgb, #0f172a 68%, transparent);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .brand-feature-logo {
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, #0f172a 86%, transparent) 0%,
+    color-mix(in srgb, #1e293b 74%, transparent) 100%
+  );
+  border-color: color-mix(in srgb, #cbd5e1 24%, transparent);
+  box-shadow:
+    0 12px 26px rgba(2, 6, 23, 0.46),
+    inset 0 1px 0 rgba(241, 245, 249, 0.16);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .solid-button {
+  color: #111827;
+  background: linear-gradient(135deg, #fde68a 0%, #f59e0b 100%);
+  box-shadow: 0 8px 16px rgba(245, 158, 11, 0.28);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .nav-link-item:hover {
+  color: #ffffff;
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .nav-link-item-active {
+  color: #fef9c3;
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .nav-mobile-toggle {
+  color: #f8fafc;
+  border-color: color-mix(in srgb, #cbd5e1 30%, transparent);
+  background: color-mix(in srgb, #0f172a 74%, transparent);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .nav-mobile-panel {
+  border-color: color-mix(in srgb, #cbd5e1 24%, transparent);
+  background: color-mix(in srgb, #0f172a 90%, transparent);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="dark"] .app-nav .nav-active-indicator {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.88) 0%, rgba(51, 65, 85, 0.82) 100%);
+  border-color: color-mix(in srgb, #cbd5e1 22%, transparent);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav {
+  background: color-mix(in srgb, #312e81 74%, transparent);
+  border-bottom-color: color-mix(in srgb, #ddd6fe 24%, transparent);
+  box-shadow: 0 10px 22px rgba(76, 29, 149, 0.28);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav::after {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, #312e81 66%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .nav-link-item,
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .brand,
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .ghost-button {
+  color: rgba(243, 232, 255, 0.97);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .ghost-button {
+  border-color: color-mix(in srgb, #ddd6fe 34%, transparent);
+  background: color-mix(in srgb, #4338ca 32%, transparent);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .brand-feature-logo {
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, #312e81 78%, transparent) 0%,
+    color-mix(in srgb, #6d28d9 68%, transparent) 100%
+  );
+  border-color: color-mix(in srgb, #ddd6fe 28%, transparent);
+  box-shadow:
+    0 12px 26px rgba(76, 29, 149, 0.4),
+    inset 0 1px 0 rgba(233, 213, 255, 0.2);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .solid-button {
+  color: #111827;
+  background: linear-gradient(135deg, #fde68a 0%, #fbbf24 100%);
+  box-shadow: 0 8px 16px rgba(217, 119, 6, 0.28);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .nav-link-item-active {
+  color: #fde68a;
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .nav-mobile-toggle {
+  color: #f8fafc;
+  border-color: color-mix(in srgb, #e9d5ff 32%, transparent);
+  background: color-mix(in srgb, #4338ca 58%, transparent);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .nav-mobile-panel {
+  border-color: color-mix(in srgb, #ddd6fe 28%, transparent);
+  background: color-mix(in srgb, #312e81 86%, transparent);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="mid"] .app-nav .nav-active-indicator {
+  background: linear-gradient(145deg, rgba(99, 102, 241, 0.52) 0%, rgba(76, 29, 149, 0.48) 100%);
+  border-color: color-mix(in srgb, #e9d5ff 25%, transparent);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav {
+  background: color-mix(in srgb, #fefce8 88%, transparent);
+  border-bottom-color: color-mix(in srgb, #7c2d12 16%, transparent);
+  box-shadow: 0 10px 20px rgba(120, 53, 15, 0.1);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav::after {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, #fefce8 70%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .nav-link-item,
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .brand,
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .ghost-button {
+  color: #422006;
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .ghost-button {
+  border-color: color-mix(in srgb, #b45309 30%, transparent);
+  background: color-mix(in srgb, #ffffff 84%, #fef3c7);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .brand-feature-logo {
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, #ffffff 94%, transparent) 0%,
+    color-mix(in srgb, #fef3c7 72%, transparent) 100%
+  );
+  border-color: color-mix(in srgb, #d97706 22%, transparent);
+  box-shadow:
+    0 10px 24px rgba(180, 83, 9, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .nav-link-item:hover {
+  color: #1f2937;
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .nav-link-item-active {
+  color: #14532d;
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .nav-mobile-toggle {
+  color: #422006;
+  border-color: color-mix(in srgb, #b45309 26%, transparent);
+  background: color-mix(in srgb, #ffffff 88%, #fef3c7);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .nav-mobile-panel {
+  border-color: color-mix(in srgb, #c2410c 18%, transparent);
+  background: color-mix(in srgb, #fffbeb 95%, white);
+}
+
+:root[data-home-theme="1"][data-home-nav-tone="light"] .app-nav .nav-active-indicator {
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.88) 0%, rgba(254, 243, 199, 0.8) 100%);
+  border-color: color-mix(in srgb, #f59e0b 20%, transparent);
+}
+
 @media (min-width: 640px) {
   :root {
-    --app-nav-height: 64px;
+    --app-nav-height: 100px;
   }
 
   .nav-inner {
     gap: 1rem;
-    min-height: 64px;
+    min-height: var(--app-nav-height);
   }
 
   .brand {
@@ -278,6 +531,11 @@ p {
   .brand img {
     width: auto;
     height: 36px;
+  }
+
+  .brand-feature-logo .brand-feature-image {
+    width: clamp(170px, 19vw, 258px);
+    height: auto;
   }
 
   .nav-hide-mobile {
@@ -333,6 +591,17 @@ p {
     height: 22px;
   }
 
+  .brand-feature-logo {
+    margin-inline-start: 0.52rem;
+    margin-inline-end: 0.34rem;
+    padding: 0.14rem 0.3rem;
+  }
+
+  .brand-feature-logo .brand-feature-image {
+    width: clamp(122px, 32vw, 164px);
+    height: auto;
+  }
+
   .nav-links .solid-button {
     min-height: 44px;
     padding: 0 0.35rem;
@@ -347,11 +616,11 @@ p {
 
 @media (min-width: 1024px) {
   :root {
-    --app-nav-height: 72px;
+    --app-nav-height: 106px;
   }
 
   .nav-inner {
-    min-height: 72px;
+    min-height: var(--app-nav-height);
   }
 
   .nav-links {
@@ -368,6 +637,11 @@ p {
     font-size: 0.93rem;
     min-height: 44px;
     padding: 0 1.2rem;
+  }
+
+  .brand-feature-logo .brand-feature-image {
+    width: clamp(190px, 15vw, 300px);
+    height: auto;
   }
 }
 
@@ -1334,90 +1608,6 @@ ul {
   gap: 0.65rem;
 }
 
-/* ── Footer ── */
-
-.site-footer {
-  margin-top: 2rem;
-  padding: 2rem 0 1.5rem;
-  border-top: 1px solid color-mix(in srgb, var(--ink-700) 10%, transparent);
-  background: color-mix(in srgb, var(--surface-200) 40%, white);
-}
-
-.footer-inner {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.footer-brand .brand {
-  display: inline-flex;
-  margin-bottom: 0.35rem;
-}
-
-.footer-brand .brand img {
-  width: auto;
-  height: 48px;
-  object-fit: contain;
-}
-
-.footer-tagline {
-  font-size: 0.88rem;
-  color: color-mix(in srgb, var(--ink-900) 74%, white);
-  line-height: 1.5;
-}
-
-.footer-links-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  min-width: 140px;
-}
-
-.footer-col-title {
-  font-family: var(--font-body), sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: color-mix(in srgb, var(--ink-900) 78%, white);
-  margin-bottom: 0.2rem;
-}
-
-.footer-col a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  font-size: 0.9rem;
-  color: color-mix(in srgb, var(--ink-900) 88%, white);
-  transition: color 160ms ease-out;
-}
-
-.footer-col a:hover {
-  color: var(--brand-500);
-}
-
-.footer-bottom {
-  padding-top: 1rem;
-  border-top: 1px solid color-mix(in srgb, var(--ink-700) 8%, transparent);
-  font-size: 0.82rem;
-  color: var(--ink-900);
-}
-
-@media (min-width: 640px) {
-  .footer-inner {
-    grid-template-columns: 1fr auto;
-    align-items: start;
-  }
-
-  .footer-bottom {
-    grid-column: 1 / -1;
-  }
-}
 
 /* ── Kid Gamified Progression Map & Mascot ── */
 
@@ -3032,6 +3222,290 @@ ul {
   0%   { transform: scale(0.85); opacity: 0; }
   60%  { transform: scale(1.06); opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
+}
+
+/* =====================================================
+   SITE FOOTER — Natural Light Theme (kế thừa nền body)
+   ===================================================== */
+
+.site-footer {
+  --footer-border:       rgba(15, 23, 42, 0.08);
+  --footer-text:         color-mix(in srgb, var(--ink-700) 78%, white);
+  --footer-text-muted:   color-mix(in srgb, var(--ink-700) 52%, white);
+  --footer-heading:      var(--ink-900);
+  --footer-accent:       var(--brand-700);
+
+  position: relative;
+  background: transparent;
+  color: var(--footer-text);
+  font-size: 0.875rem;
+  overflow: hidden;
+}
+
+/* Subtle top separator line */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--ink-700) 12%, transparent) 20%,
+    color-mix(in srgb, var(--brand-500) 24%, transparent) 50%,
+    color-mix(in srgb, var(--ink-700) 12%, transparent) 80%,
+    transparent 100%
+  );
+}
+
+.site-footer::after {
+  content: none;
+}
+
+/* ---- Main section ---- */
+.footer-main {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 0 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .footer-main {
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-main {
+    grid-template-columns: 320px 1fr;
+    gap: 4rem;
+  }
+}
+
+/* ---- Brand column ---- */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-brand-logo {
+  display: inline-block;
+  transition: opacity 200ms ease;
+}
+
+.footer-brand-logo:hover {
+  opacity: 0.85;
+}
+
+.footer-logo-image {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .footer-logo-image {
+    width: 180px;
+  }
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--footer-text);
+  max-width: 28ch;
+}
+
+/* ---- Social icons ---- */
+.footer-social {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--ink-700) 14%, transparent);
+  background: color-mix(in srgb, white 70%, transparent);
+  color: var(--footer-text);
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+  flex-shrink: 0;
+}
+
+.footer-social-btn:hover {
+  background: white;
+  border-color: color-mix(in srgb, var(--brand-500) 40%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--brand-500) 18%, transparent);
+}
+
+.footer-social-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ---- Trust badges ---- */
+.footer-trust {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.25rem;
+}
+
+.footer-trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--footer-text-muted);
+  letter-spacing: 0.005em;
+}
+
+.footer-trust-badge-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ---- Nav columns ---- */
+.footer-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .footer-nav-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 2rem;
+  }
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-col-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--footer-heading);
+  margin-bottom: 0.25rem;
+}
+
+.footer-col a {
+  color: var(--footer-text);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+  position: relative;
+}
+
+.footer-col a::before {
+  content: "";
+  position: absolute;
+  left: -0.5rem;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--footer-accent);
+  transform: translateY(-50%) scale(0);
+  transition: transform 180ms ease;
+  opacity: 0.8;
+}
+
+.footer-col a:hover {
+  color: var(--brand-700);
+  transform: translateX(4px);
+}
+
+.footer-col a:hover::before {
+  transform: translateY(-50%) scale(1);
+}
+
+/* ---- Divider ---- */
+.footer-divider {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+  background: var(--footer-border);
+}
+
+/* ---- Bottom bar ---- */
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  padding: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    gap: 1rem;
+  }
+}
+
+.footer-bottom-copy {
+  font-size: 0.8rem;
+  color: var(--footer-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-bottom-flag {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-bottom-links a {
+  font-size: 0.8rem;
+  color: var(--footer-text-muted);
+  transition: color 180ms ease;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--ink-900);
 }
 
 } /* end @layer components */

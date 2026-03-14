@@ -1,10 +1,8 @@
-"use client";
+﻿"use client";
 
+import Image from "next/image";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { LazyMotion, domAnimation } from "motion/react";
-import * as m from "motion/react-m";
-import { Mascot } from "@/components/mascot";
 
 export default function MainError({
   error,
@@ -17,60 +15,61 @@ export default function MainError({
   const isDevelopment = process.env.NODE_ENV === "development";
 
   useEffect(() => {
-    console.error(error);
+    console.error("[MainError]", error.digest, error);
   }, [error]);
 
   return (
-    <LazyMotion features={domAnimation}>
-      <section className="relative mx-auto flex min-h-[70vh] w-full max-w-3xl flex-col items-center justify-center gap-5 rounded-3xl border border-slate-200/70 bg-slate-50 px-6 py-12 text-center shadow-[0_24px_60px_rgba(15,23,42,0.13)]">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_12%_8%,rgba(34,211,238,0.12)_0%,transparent_34%),radial-gradient(circle_at_82%_12%,rgba(16,185,129,0.11)_0%,transparent_35%),radial-gradient(circle_at_50%_100%,rgba(59,130,246,0.14)_0%,transparent_42%)]"
+    <section className="relative isolate mx-auto flex min-h-[72vh] w-full max-w-5xl flex-col gap-5 overflow-hidden rounded-[2rem] border border-slate-200/70 bg-slate-50 p-4 text-slate-900 shadow-[0_24px_60px_rgba(15,23,42,0.13)] sm:gap-6 sm:p-8">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_8%,rgba(56,189,248,0.2)_0%,transparent_35%),radial-gradient(circle_at_88%_10%,rgba(251,146,60,0.15)_0%,transparent_34%),radial-gradient(circle_at_50%_100%,rgba(59,130,246,0.18)_0%,transparent_44%)]"
+      />
+
+      <p className="relative z-10 inline-flex w-fit items-center rounded-full border border-amber-300/65 bg-amber-100/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-amber-900">
+        Lỗi hệ thống 500
+      </p>
+
+      <div className="relative z-10 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/75">
+        <Image
+          src="/images/system/cloud-garden/system_500_error.png"
+          alt="Linh vật Cáo đang sửa lỗi hệ thống trong xưởng máy"
+          width={1368}
+          height={768}
+          priority
+          className="h-auto w-full object-cover"
         />
-        <m.div
-          className="relative z-10"
-          initial={{ opacity: 0, scale: 0.92, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 320, damping: 28, mass: 0.8 }}
-        >
-          <Mascot
-            variant="small"
-            state="sad"
-            gazeDirection="center"
-            size={200}
-            motionLevel="full"
-            className="drop-shadow-[0_16px_30px_rgba(15,23,42,0.2)]"
-          />
-        </m.div>
+      </div>
 
-        <h1 className="relative z-10 max-w-[22ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-slate-900 sm:text-4xl">
-          Trang này gặp sự cố rồi...
+      <div className="relative z-10 grid gap-3 text-left">
+        <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] sm:text-4xl">
+          Trang này đang gặp lỗi tạm thời
         </h1>
-        <p className="relative z-10 max-w-[44ch] text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
-          Thử lại hoặc quay về trang trước nhé!
+        <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-700 sm:text-base">
+          Hệ thống đã ghi nhận sự cố. Bạn có thể thử tải lại hoặc quay về trang trước để tiếp tục phiên làm việc.
         </p>
+      </div>
 
-        <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => reset()}
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-500 px-6 text-sm font-bold text-white shadow-[0_14px_28px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5 hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
-          >
-            Thử lại
-          </button>
-          <button
-            type="button"
-            onClick={() => router.back()}
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-6 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
-          >
-            Quay lại
-          </button>
-        </div>
+      <div className="relative z-10 flex flex-wrap items-center gap-3 pt-1">
+        <button
+          type="button"
+          onClick={() => reset()}
+          className="inline-flex min-h-12 items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-500 px-6 text-sm font-bold text-white shadow-[0_14px_28px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5 hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+        >
+          Thử lại
+        </button>
+        <button
+          type="button"
+          onClick={() => router.back()}
+          className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-300 bg-white px-6 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+        >
+          Quay lại
+        </button>
+      </div>
 
-        {isDevelopment && error.digest ? (
-          <p className="relative z-10 text-xs italic text-slate-500">digest: {error.digest}</p>
-        ) : null}
-      </section>
-    </LazyMotion>
+      {isDevelopment && error.digest ? (
+        <p className="relative z-10 text-xs italic text-slate-500">digest: {error.digest}</p>
+      ) : null}
+    </section>
   );
 }
+

@@ -257,6 +257,60 @@ async function ensureChild(baseUrl, authHeaders) {
   return childId;
 }
 
+async function ensureEnrolledCourse(baseUrl, authHeaders, childId) {
+  const enrolled = await requestJson(baseUrl, `/api/courses/enrolled?childId=${encodeURIComponent(childId)}`, {
+    method: "GET",
+    headers: authHeaders,
+  });
+  assert(enrolled.response.status === 200, `List enrolled courses failed: status=${enrolled.response.status}`);
+  assert(enrolled.json?.ok === true, "List enrolled courses did not return ok=true");
+  const existingCourses = Array.isArray(enrolled.json?.data?.courses) ? enrolled.json.data.courses : [];
+  if (existingCourses.length > 0) {
+    return;
+  }
+
+  const courses = await requestJson(baseUrl, "/api/courses", {
+    method: "GET",
+    headers: authHeaders,
+  });
+  assert(courses.response.status === 200, `List courses failed: status=${courses.response.status}`);
+  assert(courses.json?.ok === true, "List courses did not return ok=true");
+  const availableCourses = Array.isArray(courses.json?.data?.courses) ? courses.json.data.courses : [];
+  assert(availableCourses.length > 0, "No published courses available for enrollment");
+
+  const preferredCourseSlugs = [
+    "abeka-k4",
+    "abeka-k5",
+    "abeka-g1",
+    "little-fox-en-level-1",
+    "little-fox-cn-level-1",
+  ];
+  const selectedCourse =
+    availableCourses.find((course) => preferredCourseSlugs.includes(String(course.slug))) ?? availableCourses[0];
+  const selectedSlug = selectedCourse?.slug;
+  assert(typeof selectedSlug === "string" && selectedSlug.length > 0, "Selected course missing slug");
+
+  const checkout = await requestJson(baseUrl, `/api/courses/${encodeURIComponent(selectedSlug)}/checkout`, {
+    method: "POST",
+    headers: authHeaders,
+    body: {},
+  });
+  assert(checkout.response.status === 200, `Checkout failed: status=${checkout.response.status}`);
+  assert(checkout.json?.ok === true, "Checkout did not return ok=true");
+  const checkoutUrl = checkout.json?.data?.checkoutUrl;
+  assert(typeof checkoutUrl === "string" && checkoutUrl.startsWith("/"), "Checkout response missing checkoutUrl");
+
+  const mockSuccess = await fetch(`${baseUrl}${checkoutUrl}`, {
+    method: "GET",
+    headers: authHeaders,
+    redirect: "manual",
+  });
+  assert(
+    [302, 303, 307, 308].includes(mockSuccess.status),
+    `Mock checkout callback failed: status=${mockSuccess.status}`,
+  );
+}
+
 async function getLessonIdForChild(baseUrl, authHeaders, childId) {
   const today = await requestJson(baseUrl, `/api/lessons/today?childId=${encodeURIComponent(childId)}`, {
     method: "GET",
@@ -266,7 +320,9 @@ async function getLessonIdForChild(baseUrl, authHeaders, childId) {
   assert(today.json?.ok === true, "Get today lessons did not return ok=true");
   const lessons = Array.isArray(today.json?.data?.lessons) ? today.json.data.lessons : [];
   assert(lessons.length > 0, "No lessons available for child in security e2e");
-  const lessonId = lessons[0]?.id;
+  const trialLesson = lessons.find((lesson) => lesson?.trialEnabled === true);
+  assert(trialLesson, "No trial-enabled lessons available for child in security e2e");
+  const lessonId = trialLesson.id;
   assert(typeof lessonId === "string" && lessonId.length > 0, "Lesson id is missing");
   return lessonId;
 }
@@ -587,6 +643,7 @@ async function main() {
     });
 
     const childId = await ensureChild(baseUrl, parentHeaders);
+    await ensureEnrolledCourse(baseUrl, parentHeaders, childId);
     const lessonId = await getLessonIdForChild(baseUrl, parentHeaders, childId);
 
     const watchBurstResponses = await Promise.all(

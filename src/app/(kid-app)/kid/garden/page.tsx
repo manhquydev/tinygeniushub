@@ -1,18 +1,16 @@
 import { redirect } from "next/navigation";
-import { BeanstalkJourney } from "@/components/beanstalk-garden/BeanstalkJourney";
+import { KidSharedGardenDashboard } from "@/components/kid-shared-garden/KidSharedGardenDashboard";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
-import { getJourneySnapshot, listJourneysForChild } from "@/modules/garden/journey-service";
+import { getEnrolledCoursesForKidDashboard } from "@/modules/courses/course-service";
 
 interface KidGardenPageProps {
   searchParams?:
     | Promise<{
         childId?: string | string[];
-        journeyId?: string | string[];
       }>
     | {
         childId?: string | string[];
-        journeyId?: string | string[];
       };
 }
 
@@ -41,65 +39,21 @@ export default async function KidGardenPage({ searchParams }: KidGardenPageProps
 
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const queryChildId = readSingleQueryParam(resolvedSearchParams?.childId);
-  const queryJourneyId = readSingleQueryParam(resolvedSearchParams?.journeyId);
-
   const activeChild = children.find((child) => child.id === queryChildId) ?? children[0]!;
 
-  const journeys = await listJourneysForChild({
+  const enrolledCourses = await getEnrolledCoursesForKidDashboard({
     parentId: parent.id,
     childId: activeChild.id,
   });
 
-  const selectedJourney =
-    (queryJourneyId ? journeys.find((journey) => journey.id === queryJourneyId) : null)
-    ?? journeys[0]
-    ?? null;
-
-  const activeJourneyId = selectedJourney?.id ?? null;
-
-  const activeSnapshot = activeJourneyId
-    ? await getJourneySnapshot({
-        parentId: parent.id,
-        childId: activeChild.id,
-        journeyId: activeJourneyId,
-      })
-    : null;
-
-  const tiers = activeSnapshot?.tiers.map((tier) => ({
-    tierNo: tier.tierNo,
-    title: tier.title,
-    lessonTotal: tier.lessonTotal,
-    lessonCompleted: tier.lessonCompleted,
-    isUnlocked: tier.isUnlocked,
-    isCompleted: tier.isCompleted,
-  })) ?? [];
-
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
-      <BeanstalkJourney
-        childrenProfiles={children.map((child) => ({
-          id: child.id,
-          nickname: child.nickname,
-        }))}
-        activeChildId={activeChild.id}
-        journeys={journeys.map((journey) => ({
-          id: journey.id,
-          courseSlug: journey.courseSlug,
-          courseTitle: journey.courseTitle,
-          status: journey.status,
-          seedName: journey.seedName,
-          currentTierNo: journey.currentTierNo,
-          currentTierProgress: journey.currentTierProgress,
-          totalTiers: journey.totalTiers,
-          completedTiers: journey.completedTiers,
-          totalLessons: journey.totalLessons,
-          completedLessons: journey.completedLessons,
-        }))}
-        activeJourneyId={activeJourneyId}
-        activeJourneyCourseSlug={activeSnapshot?.course.slug ?? selectedJourney?.courseSlug ?? null}
-        activeJourneyCourseTitle={activeSnapshot?.course.title ?? selectedJourney?.courseTitle ?? null}
-        tiers={tiers}
-      />
-    </div>
+    <KidSharedGardenDashboard
+      childrenProfiles={children.map((child) => ({
+        id: child.id,
+        nickname: child.nickname,
+      }))}
+      activeChildId={activeChild.id}
+      enrolledCourses={enrolledCourses}
+    />
   );
 }

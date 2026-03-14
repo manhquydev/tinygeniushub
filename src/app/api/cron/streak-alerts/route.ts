@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
         continue;
       }
 
-      const href = `/kid/today?childId=${encodeURIComponent(child.id)}`;
+      const href = `/kid/courses?childId=${encodeURIComponent(child.id)}`;
       const existingAlert = await prisma.notification.findFirst({
         where: {
           userId,

@@ -571,7 +571,7 @@ export function LessonWizardFlow({
     if (isCorrect) {
       synth.playTing();
       setQuizResult("correct");
-      setStatus("ChÃ­nh xÃ¡c! CÃº Con Ä‘ang má»Ÿ cháº·ng tiáº¿p theo...");
+      setStatus("ChÃ­nh xÃ¡c! Linh vật Cáo Ä‘ang má»Ÿ cháº·ng tiáº¿p theo...");
       setMascotStateForDuration("happy", 1200);
 
       quizCelebrateTimerRef.current = window.setTimeout(() => {
@@ -932,5 +932,6 @@ export function LessonWizardFlow({
 
   return createPortal(content, document.body);
 }
+
 
 

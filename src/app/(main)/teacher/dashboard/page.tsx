@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function TeacherDashboardPage() {
   const parent = await getParentFromServerCookie();
-  if (!parent) redirect("/auth/login?next=/teacher/dashboard");
+  if (!parent) redirect("/session-expired?next=/teacher/dashboard");
 
   // Find the organization where this parent is a TEACHER_ADMIN
   const membership = await prisma.organizationMember.findFirst({

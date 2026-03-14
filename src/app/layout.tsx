@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Nunito } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -17,8 +17,8 @@ const headingFont = Nunito({
 
 export const metadata: Metadata = {
   title: {
-    default: "Cùng Con Tự Học",
-    template: "%s | Cùng Con Tự Học",
+    default: "TinyGeniusHub",
+    template: "%s | TinyGeniusHub",
   },
   description:
     "Learning Journey OS cho phụ huynh có con 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ.",
@@ -29,17 +29,23 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   openGraph: {
-    siteName: "Cùng Con Tự Học",
+    siteName: "TinyGeniusHub",
     locale: "vi_VN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
   },
+  icons: {
+    icon: "/logos/tinygeniushub_app_icon.png",
+    shortcut: "/logos/tinygeniushub_app_icon.png",
+    apple: "/logos/tinygeniushub_app_icon.png",
+  },
 };
 
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+const SW_VERSION = "20260314-cloud-garden-v3";
 // CSP note: if a Content-Security-Policy header is enforced, add to script-src:
 //   https://www.googletagmanager.com https://www.google-analytics.com
 //   https://connect.facebook.net https://www.facebook.com
@@ -59,7 +65,7 @@ export default async function RootLayout({
         {/* Service Worker */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(e){console.warn('[SW]',e)})})}`,
+            __html: `if('serviceWorker'in navigator){window.addEventListener('load',function(){var params=new URLSearchParams(window.location.search);var hasRefreshParam=params.get('refresh')==='true';if(hasRefreshParam){Promise.all([navigator.serviceWorker.getRegistrations().then(function(regs){return Promise.all(regs.map(function(reg){return reg.unregister();}));}),('caches'in window?caches.keys().then(function(keys){return Promise.all(keys.filter(function(key){return key.indexOf('offline-cache-')===0||key.indexOf('cloud-garden-')===0;}).map(function(key){return caches.delete(key);}));}):Promise.resolve())]).finally(function(){params.delete('refresh');var nextQuery=params.toString();var nextUrl=window.location.pathname+(nextQuery?('?'+nextQuery):'')+window.location.hash;window.history.replaceState(null,'',nextUrl);window.location.reload();});return;}navigator.serviceWorker.register('/sw.js?v=${SW_VERSION}').catch(function(e){console.warn('[SW]',e)})})}`,
           }}
         />
 
@@ -107,4 +113,3 @@ export default async function RootLayout({
     </html>
   );
 }
-

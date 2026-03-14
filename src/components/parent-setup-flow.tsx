@@ -7,8 +7,7 @@ import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { Mascot } from "@/components/mascot";
 import { KID_AVATAR_OPTIONS, type KidAvatarId } from "@/components/mascot/kid-avatar-options";
-import { SmallOwl } from "@/components/mascot/characters/SmallOwl";
-import { STATE_EXPRESSIONS } from "@/components/mascot/expressions";
+import type { MascotVariant } from "@/components/mascot/types";
 
 type SetupStep = 1 | 2 | 3;
 
@@ -31,9 +30,17 @@ interface ParentSetupFlowProps {
   parentDisplayName: string;
 }
 
-const AVATAR_CHARACTER_SCALE = 2.15;
-const AVATAR_CHARACTER_CENTER_X = 200;
-const AVATAR_CHARACTER_CENTER_Y = 160;
+const AVATAR_MASCOT_BY_ID: Record<KidAvatarId, MascotVariant> = {
+  basic: "small",
+  "girl-bow": "sister",
+  "nerdy-glasses": "big",
+  "sporty-cap": "dad",
+  "astro-helmet": "baby",
+};
+
+function resolveMascotVariant(avatarId: KidAvatarId): MascotVariant {
+  return AVATAR_MASCOT_BY_ID[avatarId] ?? "small";
+}
 
 async function triggerConfettiBurst() {
   const confettiModule = await import("canvas-confetti");
@@ -242,7 +249,8 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {KID_AVATAR_OPTIONS.map((avatar) => {
                   const selected = avatar.id === avatarId;
-                  const owlState = selected ? "playful" : "happy";
+                  const mascotVariant = resolveMascotVariant(avatar.id);
+                  const mascotState = selected ? "playful" : "happy";
 
                   return (
                     <button
@@ -271,27 +279,14 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
                         }
                         className="mx-auto flex w-full items-center justify-center rounded-xl bg-gradient-to-br from-sky-50 via-cyan-50 to-emerald-50 p-1"
                       >
-                        <svg
-                          viewBox="0 0 400 280"
-                          role="img"
-                          aria-label={avatar.label}
-                          className="h-[94px] w-[94px]"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            transform={`translate(${AVATAR_CHARACTER_CENTER_X * (1 - AVATAR_CHARACTER_SCALE)} ${AVATAR_CHARACTER_CENTER_Y * (1 - AVATAR_CHARACTER_SCALE)}) scale(${AVATAR_CHARACTER_SCALE})`}
-                          >
-                            <SmallOwl
-                              state={owlState}
-                              expression={STATE_EXPRESSIONS[owlState]}
-                              gazeDirection="center"
-                              reducedMotion={prefersReducedMotion}
-                              motionLevel={prefersReducedMotion ? "minimal" : "full"}
-                              accessory={avatar.accessory}
-                            />
-                          </g>
-                        </svg>
+                        <Mascot
+                          variant={mascotVariant}
+                          state={mascotState}
+                          size={94}
+                          motionLevel={prefersReducedMotion ? "minimal" : "full"}
+                          showBaseGlow={false}
+                          title={avatar.label}
+                        />
                       </m.div>
                       <p className="mt-2 text-sm font-semibold text-slate-800">{avatar.label}</p>
                       <p className="text-xs text-slate-500">{avatar.description}</p>

@@ -14,12 +14,12 @@ export interface KidAvatarOption {
 export const KID_AVATAR_OPTIONS: KidAvatarOption[] = [
   {
     id: "basic",
-    label: "Cú Con Cơ Bản",
+    label: "Cáo Con Cơ Bản",
     description: "Phiên bản tiêu chuẩn",
   },
   {
     id: "girl-bow",
-    label: "Cú Con Nơ Hồng",
+    label: "Cáo Con Nơ Hồng",
     description: "Nữ tính, dịu dàng",
     accessory: (
       <g>
@@ -36,7 +36,7 @@ export const KID_AVATAR_OPTIONS: KidAvatarOption[] = [
   },
   {
     id: "nerdy-glasses",
-    label: "Cú Con Kính Cận",
+    label: "Cáo Con Kính Cận",
     description: "Thông minh, ham học",
     accessory: (
       <g>
@@ -50,7 +50,7 @@ export const KID_AVATAR_OPTIONS: KidAvatarOption[] = [
   },
   {
     id: "sporty-cap",
-    label: "Cú Con Năng Động",
+    label: "Cáo Con Năng Động",
     description: "Mũ lưỡi trai cá tính",
     accessory: (
       <g>
@@ -63,7 +63,7 @@ export const KID_AVATAR_OPTIONS: KidAvatarOption[] = [
   },
   {
     id: "astro-helmet",
-    label: "Cú Con Phi Hành Gia",
+    label: "Cáo Con Phi Hành Gia",
     description: "Mơ mộng, khám phá",
     accessory: (
       <g>

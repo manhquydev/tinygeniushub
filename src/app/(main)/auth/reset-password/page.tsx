@@ -8,6 +8,8 @@ export default function ResetPasswordPage() {
       title="Cập nhật mật khẩu mới để quay lại dashboard"
       description="Sau khi hoàn tất, bạn có thể đăng nhập lại và tiếp tục theo dõi lộ trình học tập của bé."
       actionProp="magic"
+      backgroundImageSrc="/images/bg/bg_course_space_exploration.png"
+      stickerSrc="/kisu-assets/stickers/sticker_book.png"
     >
       <ResetPasswordForm />
     </AuthSplitShell>

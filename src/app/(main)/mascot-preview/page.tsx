@@ -19,11 +19,11 @@ const ACTION_PROPS: MascotActionProp[] = [
 ];
 
 const CHARACTERS: { variant: MascotVariant; name: string; color: string }[] = [
-  { variant: "dad", name: "Cú Bố", color: "#065f46" },
-  { variant: "big", name: "Cú Mẹ", color: "#1e3a8a" },
-  { variant: "sister", name: "Cú Chị", color: "#7c3aed" },
-  { variant: "small", name: "Cú Con", color: "#0ea5e9" },
-  { variant: "baby", name: "Cú Em", color: "#ea580c" },
+  { variant: "dad", name: "Cáo Bố", color: "#065f46" },
+  { variant: "big", name: "Cáo Mẹ", color: "#1e3a8a" },
+  { variant: "sister", name: "Cáo Chị", color: "#7c3aed" },
+  { variant: "small", name: "Cáo Con", color: "#0ea5e9" },
+  { variant: "baby", name: "Cáo Em", color: "#ea580c" },
 ];
 
 const NEW_STATES: MascotState[] = ["surprised", "angry", "nervous", "bored"];
@@ -36,7 +36,7 @@ export default function MascotPreviewPage() {
   return (
     <div style={{ padding: "2rem", fontFamily: "system-ui", background: "#f8fafc", minHeight: "100vh" }}>
       <h1 style={{ fontSize: "1.75rem", fontWeight: 800, color: "#0f172a", marginBottom: "0.25rem" }}>
-        Gia Đình Cú Mèo — Full Preview
+        Gia Đình Linh Vật Cáo — Full Preview
       </h1>
       <p style={{ color: "#64748b", marginBottom: "1.5rem" }}>
         5 nhân vật · 14 trạng thái · 7 cử chỉ · 11 đạo cụ · Tương tác thử

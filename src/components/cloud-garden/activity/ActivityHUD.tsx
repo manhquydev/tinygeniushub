@@ -4,7 +4,7 @@
  * ActivityHUD — Top status bar for the lesson activity screen.
  *
  * Displays:
- *  - Child's owl avatar (SVG illustration, no image asset)
+ *  - Child's mascot avatar
  *  - Level badge
  *  - Star count
  *  - Cloud puff progress bar (steps in current lesson)
@@ -12,6 +12,7 @@
  * Design: compact, readable, semi-transparent dark bar.
  */
 
+import Image from "next/image";
 import { CloudProgressBar } from "../shared/CloudProgressBar";
 import "../cloud-garden.css";
 
@@ -23,28 +24,18 @@ interface ActivityHUDProps {
   stepTotal: number;
 }
 
-/** Mini SVG owl head avatar — no image asset */
-function OwlAvatarSVG() {
+/** Mini mascot avatar */
+function MascotAvatar() {
   return (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-      {/* Body circle */}
-      <circle cx="14" cy="15" r="11" fill="#fde68a" />
-      {/* Face */}
-      <circle cx="14" cy="14" r="8" fill="#fef3c7" />
-      {/* Eyes */}
-      <circle cx="10.5" cy="13" r="3.5" fill="#fff" />
-      <circle cx="17.5" cy="13" r="3.5" fill="#fff" />
-      <circle cx="11"   cy="13" r="2" fill="#1e1b4b" />
-      <circle cx="18"   cy="13" r="2" fill="#1e1b4b" />
-      {/* Eye shine */}
-      <circle cx="11.6" cy="12.4" r="0.7" fill="#fff" />
-      <circle cx="18.6" cy="12.4" r="0.7" fill="#fff" />
-      {/* Beak */}
-      <path d="M 12.5,17 L 14,19 L 15.5,17 Z" fill="#f59e0b" />
-      {/* Ear tufts */}
-      <path d="M 8,8 L 10,5 L 12,8" fill="#f59e0b" />
-      <path d="M 16,8 L 18,5 L 20,8" fill="#f59e0b" />
-    </svg>
+    <Image
+      src="/logos/tinygeniushub_app_icon.png"
+      alt=""
+      width={28}
+      height={28}
+      sizes="28px"
+      className="h-7 w-7 object-contain"
+      aria-hidden
+    />
   );
 }
 
@@ -59,7 +50,7 @@ export function ActivityHUD({
     <header className="cg-hud" role="banner">
       {/* Avatar */}
       <div className="cg-hud__avatar" aria-hidden="true">
-        <OwlAvatarSVG />
+        <MascotAvatar />
       </div>
 
       {/* Level badge */}

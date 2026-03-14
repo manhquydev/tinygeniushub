@@ -1,13 +1,13 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Check, ChevronUp, Pencil, PlayCircle, PlusCircle, Trash2, TriangleAlert, X } from "lucide-react";
 import { useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
-import { SmallOwl } from "@/components/mascot/characters/SmallOwl";
-import { STATE_EXPRESSIONS } from "@/components/mascot/expressions";
+import { Mascot } from "@/components/mascot";
 import { KID_AVATAR_OPTIONS, type KidAvatarId } from "@/components/mascot/kid-avatar-options";
+import type { MascotVariant } from "@/components/mascot/types";
 import type { ApiSuccess, ChildProfileDTO } from "@/lib/api-types";
 
 type AgeBand = "2-3" | "3-4" | "4-5" | "5-6";
@@ -28,18 +28,24 @@ interface ChildrenManagerProps {
 
 const ageBandOptions: AgeBand[] = ["2-3", "3-4", "4-5", "5-6"];
 const defaultAvatarId = KID_AVATAR_OPTIONS[0].id;
-const AVATAR_CHARACTER_SCALE = 2.15;
-const AVATAR_CHARACTER_CENTER_X = 200;
-const AVATAR_CHARACTER_CENTER_Y = 160;
-const CARD_AVATAR_CHARACTER_SCALE = 1.66;
-const CARD_AVATAR_CHARACTER_CENTER_X = 200;
-const CARD_AVATAR_CHARACTER_CENTER_Y = 164;
 const inputBaseClass =
   "min-h-12 rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-800 outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100";
+
+const AVATAR_MASCOT_BY_ID: Record<KidAvatarId, MascotVariant> = {
+  basic: "small",
+  "girl-bow": "sister",
+  "nerdy-glasses": "big",
+  "sporty-cap": "dad",
+  "astro-helmet": "baby",
+};
 
 function resolveAvatarId(avatarId: string | null | undefined): KidAvatarId {
   const matched = KID_AVATAR_OPTIONS.find((avatar) => avatar.id === avatarId);
   return matched?.id ?? defaultAvatarId;
+}
+
+function resolveMascotVariant(avatarId: KidAvatarId): MascotVariant {
+  return AVATAR_MASCOT_BY_ID[avatarId] ?? "small";
 }
 
 interface AvatarPickerProps {
@@ -65,7 +71,8 @@ function AvatarPicker({
       <div className={`grid gap-2 ${compact ? "grid-cols-3 sm:grid-cols-5" : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"}`}>
         {KID_AVATAR_OPTIONS.map((avatar) => {
           const selected = avatar.id === selectedAvatarId;
-          const owlState = selected ? "playful" : "happy";
+          const mascotVariant = resolveMascotVariant(avatar.id);
+          const mascotState = selected ? "playful" : "happy";
 
           return (
             <button
@@ -95,27 +102,14 @@ function AvatarPicker({
                 }
                 className="mx-auto flex items-center justify-center rounded-xl bg-gradient-to-br from-sky-50 via-cyan-50 to-emerald-50 p-1"
               >
-                <svg
-                  viewBox="0 0 400 280"
-                  role="img"
-                  aria-label={avatar.label}
-                  className="h-[86px] w-[86px]"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    transform={`translate(${AVATAR_CHARACTER_CENTER_X * (1 - AVATAR_CHARACTER_SCALE)} ${AVATAR_CHARACTER_CENTER_Y * (1 - AVATAR_CHARACTER_SCALE)}) scale(${AVATAR_CHARACTER_SCALE})`}
-                  >
-                    <SmallOwl
-                      state={owlState}
-                      expression={STATE_EXPRESSIONS[owlState]}
-                      gazeDirection="center"
-                      reducedMotion={prefersReducedMotion}
-                      motionLevel={prefersReducedMotion ? "minimal" : "full"}
-                      accessory={avatar.accessory}
-                    />
-                  </g>
-                </svg>
+                <Mascot
+                  variant={mascotVariant}
+                  state={mascotState}
+                  size={86}
+                  motionLevel={prefersReducedMotion ? "minimal" : "full"}
+                  showBaseGlow={false}
+                  title={avatar.label}
+                />
               </m.div>
 
               {!compact ? (
@@ -141,31 +135,18 @@ function ChildAvatar({
   nickname: string;
   prefersReducedMotion: boolean;
 }) {
-  const avatar = KID_AVATAR_OPTIONS.find((option) => option.id === avatarId) ?? KID_AVATAR_OPTIONS[0];
+  const resolvedAvatarId = resolveAvatarId(avatarId);
+  const mascotVariant = resolveMascotVariant(resolvedAvatarId);
 
   return (
-    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-100 via-cyan-100 to-emerald-100 shadow-inner">
-      <svg
-        viewBox="0 0 400 280"
-        role="img"
-        aria-label={`Nhân vật đại diện của ${nickname}`}
-        className="h-[62px] w-[62px]"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g
-          transform={`translate(${CARD_AVATAR_CHARACTER_CENTER_X * (1 - CARD_AVATAR_CHARACTER_SCALE)} ${CARD_AVATAR_CHARACTER_CENTER_Y * (1 - CARD_AVATAR_CHARACTER_SCALE)}) scale(${CARD_AVATAR_CHARACTER_SCALE})`}
-        >
-          <SmallOwl
-            state="happy"
-            expression={STATE_EXPRESSIONS.happy}
-            gazeDirection="center"
-            reducedMotion={prefersReducedMotion}
-            motionLevel={prefersReducedMotion ? "minimal" : "soft"}
-            accessory={avatar.accessory}
-          />
-        </g>
-      </svg>
+    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-100 via-cyan-100 to-emerald-100 shadow-inner">      <Mascot
+        variant={mascotVariant}
+        state="happy"
+        size={60}
+        motionLevel={prefersReducedMotion ? "minimal" : "soft"}
+        showBaseGlow={false}
+        title={`Nhân vật đại diện của ${nickname}`}
+      />
     </div>
   );
 }
@@ -716,7 +697,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                       </div>
 
                       <Link
-                        href={`/kid/today?childId=${encodeURIComponent(child.id)}`}
+                        href={`/kid/courses?childId=${encodeURIComponent(child.id)}`}
                         className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
                       >
                         <PlayCircle size={16} />
@@ -781,3 +762,4 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
     </section>
   );
 }
+

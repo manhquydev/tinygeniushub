@@ -17,14 +17,6 @@ import { ArrowRight } from "lucide-react";
 export function HeroGarden() {
   return (
     <section className="cgh-hero">
-      <div className="cgh-hero-bg">
-        {/* Floating light orbs/sparkles */}
-        <div className="cgh-spark cgh-spark-a" aria-hidden />
-        <div className="cgh-spark cgh-spark-b" aria-hidden />
-        <div className="cgh-spark cgh-spark-c" aria-hidden />
-        <div className="cgh-spark cgh-spark-d" aria-hidden />
-      </div>
-
       <div className="cgh-shell">
         <div className="cgh-hero-grid">
           <div className="cgh-copy">

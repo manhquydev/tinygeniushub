@@ -9,7 +9,7 @@ import { getParentFromServerCookie } from "@/lib/auth/session";
  */
 export default async function TeacherLayout({ children }: { children: ReactNode }) {
   const parent = await getParentFromServerCookie();
-  if (!parent) redirect("/auth/login?next=/teacher/dashboard");
+  if (!parent) redirect("/session-expired?next=/teacher/dashboard");
 
   const membership = await prisma.organizationMember.findFirst({
     where: { parentId: parent.id, role: "TEACHER_ADMIN" },

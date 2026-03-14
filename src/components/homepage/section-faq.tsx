@@ -46,7 +46,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Có giáo viên trực tiếp hướng dẫn không?",
-    a: "Không. Đây là nền tảng tự học với nội dung chuẩn bị sẵn. Nhưng có nhân vật mascot dẫn dắt (chim cú mèo Oli) và hướng dẫn từng bước bằng giọng nói thân thiện. Phụ huynh đóng vai trò đồng hành cùng con.",
+    a: "Không. Đây là nền tảng tự học với nội dung chuẩn bị sẵn. Nhưng có linh vật cáo TinyGeniusHub dẫn dắt và hướng dẫn từng bước bằng giọng nói thân thiện. Phụ huynh đóng vai trò đồng hành cùng con.",
   },
   {
     q: "Lộ trình học có được cá nhân hóa không?",
