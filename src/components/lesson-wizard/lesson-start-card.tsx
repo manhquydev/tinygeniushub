@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { AnimatePresence, useReducedMotion } from "motion/react";
@@ -44,6 +44,38 @@ function isDirectVideoSource(value: string | null | undefined) {
 function detectStreamTypeFromSource(value: string | null | undefined): "hls" | "file" | null {
   if (!value) return null;
   return /\.m3u8($|[?#])/i.test(value) ? "hls" : "file";
+}
+
+async function fetchVideoTokenWithTimeout(
+  lessonId: string,
+  timeoutMs = 8000,
+): Promise<{ embedUrl: string; streamType?: "hls" | "file" | "embed" } | null> {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => {
+    controller.abort();
+  }, timeoutMs);
+
+  try {
+    const res = await fetch(`/api/lessons/${lessonId}/video-token`, {
+      method: "GET",
+      signal: controller.signal,
+    });
+    if (!res.ok) return null;
+
+    const json = (await res.json()) as {
+      data?: { embedUrl?: string; streamType?: "hls" | "file" | "embed" };
+    };
+    if (!json.data?.embedUrl) return null;
+
+    return {
+      embedUrl: json.data.embedUrl,
+      streamType: json.data.streamType,
+    };
+  } catch {
+    return null;
+  } finally {
+    window.clearTimeout(timer);
+  }
 }
 
 function LessonLaunchButton({ isLaunching, prefersReducedMotion, onLaunch }: LessonLaunchButtonProps) {
@@ -134,17 +166,11 @@ export function LessonStartCard(props: LessonStartCardProps) {
 
     // Always request server-issued playback URL first.
     if (props.bunnyVideoId || props.videoSource) {
-      try {
-        const res = await fetch(`/api/lessons/${props.lessonId}/video-token`);
-        if (res.ok) {
-          const json = (await res.json()) as { data: { embedUrl: string; streamType?: "hls" | "file" | "embed" } };
-          setResolvedVideoSource(json.data.embedUrl);
-          setResolvedVideoStreamType(json.data.streamType === "hls" ? "hls" : "file");
-        } else {
-          setResolvedVideoSource(isDirectVideoSource(props.videoSource) ? props.videoSource : null);
-          setResolvedVideoStreamType(detectStreamTypeFromSource(props.videoSource));
-        }
-      } catch {
+      const tokenData = await fetchVideoTokenWithTimeout(props.lessonId);
+      if (tokenData?.embedUrl) {
+        setResolvedVideoSource(tokenData.embedUrl);
+        setResolvedVideoStreamType(tokenData.streamType === "hls" ? "hls" : "file");
+      } else {
         setResolvedVideoSource(isDirectVideoSource(props.videoSource) ? props.videoSource : null);
         setResolvedVideoStreamType(detectStreamTypeFromSource(props.videoSource));
       }

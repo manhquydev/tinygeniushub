@@ -44,7 +44,11 @@ export function useLessonLaunchTransition({
     }
 
     onSelect?.(lessonId);
-    synth.playPop();
+    try {
+      synth.playPop();
+    } catch {
+      // Audio playback failure must never block opening lesson flow.
+    }
 
     if (prefersReducedMotion || openDelayMs <= 0) {
       setIsOpen(true);
