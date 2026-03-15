@@ -624,13 +624,7 @@ export function LessonWizardFlow({
   if (!mounted) return null;
 
   const content = (
-    <m.div
-      className="lesson-wizard-overlay"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.28 }}
-    >
+    <div className="lesson-wizard-overlay">
       <div className="lesson-wizard-sky" aria-hidden="true">
         <span className="lesson-wizard-nebula lesson-wizard-nebula-a" />
         <span className="lesson-wizard-nebula lesson-wizard-nebula-b" />
@@ -927,7 +921,7 @@ export function LessonWizardFlow({
       </div>
 
       <ParentGateDialog open={isExitGateOpen} onClose={() => setIsExitGateOpen(false)} onVerified={handleVerifiedExit} />
-    </m.div>
+    </div>
   );
 
   return createPortal(content, document.body);
