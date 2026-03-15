@@ -159,6 +159,16 @@
   box-shadow: 0 8px 16px rgba(15, 88, 126, 0.12);
 }
 
+.ksg-icon-button:disabled,
+.ksg-learning-button:disabled,
+.ksg-empty button:disabled,
+.ksg-card-button:disabled {
+  opacity: 0.7;
+  cursor: progress;
+  box-shadow: none;
+  transform: none;
+}
+
 .ksg-child-switch {
   position: relative;
   min-height: 42px;
@@ -378,6 +388,11 @@
   box-shadow:
     0 24px 38px rgba(25, 85, 110, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.ksg-card[aria-disabled="true"] {
+  opacity: 0.72;
+  pointer-events: none;
 }
 
 .ksg-card-head {

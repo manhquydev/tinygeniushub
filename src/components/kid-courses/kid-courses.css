@@ -157,6 +157,16 @@
   box-shadow: 0 8px 14px rgba(15, 75, 104, 0.12);
 }
 
+.kcd-btn-back:disabled,
+.kcd-garden-link:disabled,
+.kcd-empty-button:disabled,
+.kcd-cta:disabled {
+  opacity: 0.7;
+  cursor: progress;
+  transform: none;
+  box-shadow: none;
+}
+
 .kcd-child-select-label {
   position: relative;
   flex: 1;
@@ -332,6 +342,11 @@
   box-shadow:
     0 24px 38px rgba(19, 89, 120, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.86);
+}
+
+.kcd-card[aria-disabled="true"] {
+  opacity: 0.72;
+  pointer-events: none;
 }
 
 .kcd-card-completed {

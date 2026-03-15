@@ -9,11 +9,12 @@ import {
   type CSSProperties,
 } from "react";
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useReducedMotion } from "motion/react";
 import { ArrowLeft, BookOpenText, Calculator, Leaf } from "lucide-react";
 import { SeedPlantingCinematic } from "@/components/kid-sky-garden/components/SeedPlantingCinematic";
 import { SkyGardenFxCanvas } from "@/components/kid-sky-garden/three/SkyGardenFxCanvas";
+import { useKidNavigationFeedback } from "@/components/kid-navigation-feedback";
 import {
   buildSkyGardenNodes,
   mapLessonLikeToSkyGardenLesson,
@@ -183,7 +184,7 @@ export function KidSkyGardenScene({
   courseCoverImageUrl = null,
   initialFocusTierNo = null,
 }: KidSkyGardenSceneProps) {
-  const router = useRouter();
+  const { navigate, isNavigating } = useKidNavigationFeedback();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion() ?? false;
@@ -204,6 +205,7 @@ export function KidSkyGardenScene({
   const [progress, setProgress] = useState<SkyGardenProgressSnapshot>(initialProgress);
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [pendingNavigationAction, setPendingNavigationAction] = useState<string | null>(null);
   const [seedCinematicCourse, setSeedCinematicCourse] =
     useState<SkyGardenSeedCourse | null>(null);
   const [isCompact, setIsCompact] = useState(false);
@@ -221,6 +223,12 @@ export function KidSkyGardenScene({
   const avatarLabel = activeChild
     ? Array.from(activeChild.nickname.trim())[0]?.toUpperCase() ?? "B"
     : "B";
+
+  useEffect(() => {
+    if (!isNavigating) {
+      setPendingNavigationAction(null);
+    }
+  }, [isNavigating]);
 
   const journeys = useMemo(() => {
     const grouped = new Map<string, SkyGardenLesson[]>();
@@ -349,13 +357,24 @@ export function KidSkyGardenScene({
     [climbProgress],
   );
 
+  const startNavigation = useCallback(
+    (action: string, href: string) => {
+      if (isNavigating) {
+        return;
+      }
+      setPendingNavigationAction(action);
+      navigate(href);
+    },
+    [isNavigating, navigate],
+  );
+
   const goToLearningHub = useCallback(() => {
-    router.push(`/kid/courses?childId=${encodeURIComponent(activeChildId)}`);
-  }, [activeChildId, router]);
+    startNavigation("go-learning-hub", `/kid/courses?childId=${encodeURIComponent(activeChildId)}`);
+  }, [activeChildId, startNavigation]);
 
   const goToSharedGarden = useCallback(() => {
-    router.push(`/kid/garden?childId=${encodeURIComponent(activeChildId)}`);
-  }, [activeChildId, router]);
+    startNavigation("go-shared-garden", `/kid/garden?childId=${encodeURIComponent(activeChildId)}`);
+  }, [activeChildId, startNavigation]);
 
   const syncChildData = useCallback(
     async (childId: string, options?: SyncOptions) => {
@@ -456,8 +475,8 @@ export function KidSkyGardenScene({
 
   const guardBeforeStart = useCallback(() => {
     if (progress.reached) {
-      setStatusMessage("Hôm nay đã đạt mục tiêu phút học, bé nghỉ một chút nhé.");
-      return false;
+      setStatusMessage("Hôm nay đã đạt mục tiêu phút học, nhưng bé vẫn có thể tiếp tục nhé!");
+      // Allow them to continue anyway, don't block logic
     }
     return true;
   }, [progress.reached]);
@@ -770,7 +789,12 @@ export function KidSkyGardenScene({
       : "Chọn hành trình yêu thích để khởi động khu vườn học tập.");
 
   return (
-    <section className="ksg2-scene" style={sceneStyle} aria-label="Khu vườn mây học tập">
+    <section
+      className="ksg2-scene"
+      style={sceneStyle}
+      aria-label="Khu vườn mây học tập"
+      aria-busy={isNavigating || loading}
+    >
       <SkyGardenFxCanvas className="ksg2-three-layer" />
 
       <div className="ksg2-atmosphere" aria-hidden="true">
@@ -794,9 +818,10 @@ export function KidSkyGardenScene({
               if (mode === "course") {
                 goToLearningHub();
               } else {
-                router.push("/parent/dashboard");
+                startNavigation("go-parent-dashboard", "/parent/dashboard");
               }
             }}
+            disabled={isNavigating}
             aria-label={mode === "course" ? "Quay lại trang học tập" : "Quay lại phụ huynh"}
           >
             <ArrowLeft size={18} />
@@ -813,6 +838,7 @@ export function KidSkyGardenScene({
                 void handleChildChange(event.target.value);
               }}
               aria-label="Chọn hồ sơ bé"
+              disabled={isNavigating}
             >
               {childrenProfiles.map((child) => (
                 <option key={child.id} value={child.id}>
@@ -824,11 +850,11 @@ export function KidSkyGardenScene({
         </div>
 
         <div className="ksg2-flow-nav" role="navigation" aria-label="Điều hướng hành trình">
-          <button type="button" className="ksg2-flow-chip" onClick={goToLearningHub}>
-            Học tập
+          <button type="button" className="ksg2-flow-chip" onClick={goToLearningHub} disabled={isNavigating}>
+            {pendingNavigationAction === "go-learning-hub" ? "Đang mở..." : "Học tập"}
           </button>
-          <button type="button" className="ksg2-flow-chip" onClick={goToSharedGarden}>
-            Vườn chung
+          <button type="button" className="ksg2-flow-chip" onClick={goToSharedGarden} disabled={isNavigating}>
+            {pendingNavigationAction === "go-shared-garden" ? "Đang mở..." : "Vườn chung"}
           </button>
           <span className="ksg2-flow-chip is-active">Khóa này</span>
         </div>
@@ -1024,6 +1050,8 @@ export function KidSkyGardenScene({
                           title={node.title}
                           objective={node.objective}
                           estimatedMinutes={node.estimatedMinutes}
+                          trackCode={(node.trackCode === "MATH" || node.trackCode === "HABIT" || node.trackCode === "ENGLISH") ? node.trackCode : "ENGLISH"}
+                          tierLabel={node.tierIndex != null ? `Tầng ${node.tierIndex}` : null}
                           videoSource={node.videoSource}
                           bunnyVideoId={node.bunnyVideoId}
                           videoStatus={node.videoStatus}

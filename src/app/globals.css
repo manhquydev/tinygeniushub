@@ -3022,6 +3022,61 @@ ul {
   padding: 1rem 1rem 1.2rem;
 }
 
+.kid-nav-feedback-topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 260;
+  height: 3px;
+  pointer-events: none;
+  overflow: hidden;
+  background: color-mix(in srgb, #e2e8f0 48%, transparent);
+}
+
+.kid-nav-feedback-topbar-track {
+  height: 100%;
+  width: 44%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #38bdf8 0%, #22d3ee 52%, #34d399 100%);
+  animation: loadingBar 1.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.kid-nav-feedback-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: color-mix(in srgb, #0f172a 40%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.kid-nav-feedback-card {
+  width: min(320px, 100%);
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, #7dd3fc 35%, transparent);
+  background:
+    radial-gradient(circle at 20% 15%, color-mix(in srgb, #22d3ee 22%, transparent) 0%, transparent 44%),
+    linear-gradient(155deg, color-mix(in srgb, #020617 88%, transparent), color-mix(in srgb, #0f172a 92%, transparent));
+  box-shadow: 0 20px 32px rgba(2, 6, 23, 0.45);
+  text-align: center;
+  color: #e2e8f0;
+  padding: 0.9rem 1rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.kid-nav-feedback-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.kid-nav-feedback-subtitle {
+  font-size: 0.8rem;
+  color: color-mix(in srgb, #e2e8f0 82%, transparent);
+}
+
 @media (max-width: 900px) {
   .parent-dashboard-hero {
     grid-template-columns: 1fr;

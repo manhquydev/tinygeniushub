@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import type { ReactNode } from "react";
+import { KidNavigationFeedbackProvider } from "@/components/kid-navigation-feedback";
 
 /**
  * Kid App Layout
@@ -30,7 +31,7 @@ export default async function KidAppLayout({ children }: { children: ReactNode }
           : undefined
       }
     >
-      {children}
+      <KidNavigationFeedbackProvider>{children}</KidNavigationFeedbackProvider>
     </main>
   );
 }

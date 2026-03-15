@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { ArrowLeft, BookOpen, CheckCircle2, CloudSun, Flower2, Sparkles, Sprout } from "lucide-react";
+import { useKidNavigationFeedback } from "@/components/kid-navigation-feedback";
 import type { EnrolledCourseForKidDashboard } from "@/modules/courses/course-service";
 import "./kid-shared-garden.css";
 
@@ -63,12 +63,30 @@ export function KidSharedGardenDashboard({
   activeChildId,
   enrolledCourses,
 }: KidSharedGardenDashboardProps) {
-  const router = useRouter();
+  const { navigate, isNavigating } = useKidNavigationFeedback();
   const [childId, setChildId] = useState(activeChildId);
+  const [pendingAction, setPendingAction] = useState<string | null>(null);
   const firstCourseSlug = useMemo(() => enrolledCourses[0]?.course.slug ?? null, [enrolledCourses]);
 
   const activeChild = childrenProfiles.find((child) => child.id === childId) ?? childrenProfiles[0];
   const avatarLetter = activeChild?.nickname.trim().charAt(0).toUpperCase() || "B";
+
+  useEffect(() => {
+    if (!isNavigating) {
+      setPendingAction(null);
+    }
+  }, [isNavigating]);
+
+  const startNavigation = useCallback(
+    (action: string, href: string) => {
+      if (isNavigating) {
+        return;
+      }
+      setPendingAction(action);
+      navigate(href);
+    },
+    [isNavigating, navigate],
+  );
 
   const summary = useMemo(() => {
     const completedCourses = enrolledCourses.filter((course) => course.journey?.status === "COMPLETED").length;
@@ -83,30 +101,33 @@ export function KidSharedGardenDashboard({
 
   const handleChildChange = useCallback(
     (nextChildId: string) => {
+      if (isNavigating) {
+        return;
+      }
       setChildId(nextChildId);
-      router.push(`/kid/garden?childId=${encodeURIComponent(nextChildId)}`);
+      startNavigation("child-switch", `/kid/garden?childId=${encodeURIComponent(nextChildId)}`);
     },
-    [router],
+    [isNavigating, startNavigation],
   );
 
   const handleOpenCourse = useCallback(
     (courseSlug: string) => {
-      router.push(`/kid/courses/${encodeURIComponent(courseSlug)}?childId=${encodeURIComponent(childId)}`);
+      startNavigation("open-course", `/kid/courses/${encodeURIComponent(courseSlug)}?childId=${encodeURIComponent(childId)}`);
     },
-    [childId, router],
+    [childId, startNavigation],
   );
 
   const handleGoLearningHub = useCallback(() => {
-    router.push(`/kid/courses?childId=${encodeURIComponent(childId)}`);
-  }, [childId, router]);
+    startNavigation("go-learning-hub", `/kid/courses?childId=${encodeURIComponent(childId)}`);
+  }, [childId, startNavigation]);
 
   const handleGoCourseGarden = useCallback(() => {
-    if (!firstCourseSlug) return;
-    router.push(`/kid/courses/${encodeURIComponent(firstCourseSlug)}?childId=${encodeURIComponent(childId)}`);
-  }, [childId, firstCourseSlug, router]);
+    if (!firstCourseSlug || isNavigating) return;
+    startNavigation("go-course-garden", `/kid/courses/${encodeURIComponent(firstCourseSlug)}?childId=${encodeURIComponent(childId)}`);
+  }, [childId, firstCourseSlug, isNavigating, startNavigation]);
 
   return (
-    <div className="ksg-scene" aria-label="Khu vườn chung cho bé">
+    <div className="ksg-scene" aria-label="Khu vườn chung cho bé" aria-busy={isNavigating}>
       <span className="ksg-cloud ksg-cloud-a" aria-hidden="true" />
       <span className="ksg-cloud ksg-cloud-b" aria-hidden="true" />
       <span className="ksg-cloud ksg-cloud-c" aria-hidden="true" />
@@ -123,6 +144,7 @@ export function KidSharedGardenDashboard({
             type="button"
             className="ksg-icon-button"
             onClick={handleGoLearningHub}
+            disabled={isNavigating}
             aria-label="Quay về trang học tập"
           >
             <ArrowLeft size={18} />
@@ -139,6 +161,7 @@ export function KidSharedGardenDashboard({
                 value={childId}
                 onChange={(event) => handleChildChange(event.target.value)}
                 aria-label="Chọn bé"
+                disabled={isNavigating}
               >
                 {childrenProfiles.map((child) => (
                   <option key={child.id} value={child.id}>
@@ -149,9 +172,9 @@ export function KidSharedGardenDashboard({
             ) : null}
           </label>
 
-          <button type="button" className="ksg-learning-button" onClick={handleGoLearningHub}>
+          <button type="button" className="ksg-learning-button" onClick={handleGoLearningHub} disabled={isNavigating}>
             <BookOpen size={16} />
-            Trang học tập
+            {pendingAction === "go-learning-hub" ? "Đang mở..." : "Trang học tập"}
           </button>
         </div>
 
@@ -170,8 +193,8 @@ export function KidSharedGardenDashboard({
         </div>
 
         <div className="ksg-flow-nav" role="navigation" aria-label="Điều hướng chức năng bé">
-          <button type="button" className="ksg-flow-chip" onClick={handleGoLearningHub}>
-            Trang học tập
+          <button type="button" className="ksg-flow-chip" onClick={handleGoLearningHub} disabled={isNavigating}>
+            {pendingAction === "go-learning-hub" ? "Đang mở..." : "Trang học tập"}
           </button>
           <button type="button" className="ksg-flow-chip is-active" aria-current="page">
             Khu vườn chung
@@ -180,9 +203,9 @@ export function KidSharedGardenDashboard({
             type="button"
             className="ksg-flow-chip"
             onClick={handleGoCourseGarden}
-            disabled={!firstCourseSlug}
+            disabled={!firstCourseSlug || isNavigating}
           >
-            Vườn khóa học
+            {pendingAction === "go-course-garden" ? "Đang mở..." : "Vườn khóa học"}
           </button>
         </div>
 
@@ -224,8 +247,12 @@ export function KidSharedGardenDashboard({
               height={180}
               className="ksg-empty-kisu"
             />
-            <button type="button" onClick={() => router.push("/parent/courses")}>
-              Mở danh sách khóa học
+            <button
+              type="button"
+              onClick={() => startNavigation("go-parent-courses", "/parent/courses")}
+              disabled={isNavigating}
+            >
+              {pendingAction === "go-parent-courses" ? "Đang mở..." : "Mở danh sách khóa học"}
             </button>
           </section>
         ) : (
@@ -243,7 +270,11 @@ export function KidSharedGardenDashboard({
                   role="button"
                   tabIndex={0}
                   onClick={() => handleOpenCourse(course.slug)}
+                  aria-disabled={isNavigating}
                   onKeyDown={(event) => {
+                    if (isNavigating) {
+                      return;
+                    }
                     if (event.key === "Enter" || event.key === " ") {
                       event.preventDefault();
                       handleOpenCourse(course.slug);
@@ -290,9 +321,10 @@ export function KidSharedGardenDashboard({
                       event.stopPropagation();
                       handleOpenCourse(course.slug);
                     }}
+                    disabled={isNavigating}
                   >
                     <Sparkles size={14} />
-                    {isCompleted ? "Xem lại khóa học" : "Tiếp tục học"}
+                    {pendingAction === "open-course" ? "Đang mở..." : isCompleted ? "Xem lại khóa học" : "Tiếp tục học"}
                   </button>
                 </article>
               );

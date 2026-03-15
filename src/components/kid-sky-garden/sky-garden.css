@@ -142,6 +142,12 @@
   outline-offset: 2px;
 }
 
+.ksg2-back-btn:disabled,
+.ksg2-flow-chip:disabled {
+  opacity: 0.68;
+  cursor: progress;
+}
+
 .ksg2-child-picker {
   min-height: 38px;
   border-radius: 999px;
