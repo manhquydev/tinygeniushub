@@ -71,6 +71,9 @@ jobs:
           pnpm prisma migrate deploy
           pnpm db:seed
 
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
       - name: Run release gates
         run: pnpm release:check
 
@@ -78,6 +81,9 @@ jobs:
         env:
           E2E_SKIP_BUILD: "1"
         run: pnpm test:e2e:p0
+
+      - name: Run lesson player video layout guard
+        run: pnpm test:e2e:video-layout
 
       - name: Publish evidence summary
         if: always()
@@ -111,3 +117,5 @@ jobs:
             reports/security/latest-summary.md
             reports/security/security-baseline-*.json
             reports/perf/latest.json
+            test-results/playwright-report
+            test-results/playwright-artifacts

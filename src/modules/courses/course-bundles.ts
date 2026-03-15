@@ -60,12 +60,20 @@ export function getCourseBundleByBundleSlug(slug: string): CourseBundleDefinitio
   return COURSE_BUNDLES.find((bundle) => bundle.slug === slug) ?? null;
 }
 
+export function getCourseBundleByEntryCourseSlug(slug: string): CourseBundleDefinition | null {
+  return COURSE_BUNDLES.find((bundle) => bundle.entryCourseSlug === slug) ?? null;
+}
+
 export function getCourseBundleByCourseSlug(courseSlug: string): CourseBundleDefinition | null {
   return COURSE_BUNDLES.find((bundle) => isCourseInBundle(courseSlug, bundle)) ?? null;
 }
 
 export function getCourseBundleByAnySlug(slug: string): CourseBundleDefinition | null {
   return getCourseBundleByBundleSlug(slug) ?? getCourseBundleByCourseSlug(slug);
+}
+
+export function getCourseBundleByRootSlug(slug: string): CourseBundleDefinition | null {
+  return getCourseBundleByBundleSlug(slug) ?? getCourseBundleByEntryCourseSlug(slug);
 }
 
 export function getBundleCourseSlugFilters(bundle: CourseBundleDefinition) {

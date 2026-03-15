@@ -55,16 +55,16 @@ export async function GET(
 
     if (isVideoSourceProtected(lesson.videoSource)) {
       const resolvedSource = resolveProtectedVideoUrl(lesson.videoSource);
+      if (!resolvedSource) {
+        return fail("Video not available", 404);
+      }
       const token = buildVideoPlaybackToken({
         parentId: parent.id,
         lessonId: lesson.id,
       });
-      const securePlaybackUrl = new URL(
-        `/api/lessons/${lesson.id}/secure-playback?token=${encodeURIComponent(token)}`,
-        request.url,
-      );
+      const securePlaybackPath = `/api/lessons/${lesson.id}/secure-playback?token=${encodeURIComponent(token)}`;
       return ok({
-        embedUrl: securePlaybackUrl.toString(),
+        embedUrl: securePlaybackPath,
         streamType: detectStreamType(resolvedSource),
       });
     }

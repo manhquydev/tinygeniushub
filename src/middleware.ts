@@ -29,10 +29,11 @@ export function middleware(request: NextRequest) {
 
   const response = NextResponse.next({
     request: {
-      headers: new Headers({
-        ...Object.fromEntries(request.headers),
-        "x-next-pathname": pathname,
-      }),
+      headers: (() => {
+        const requestHeaders = new Headers(request.headers);
+        requestHeaders.set("x-next-pathname", pathname);
+        return requestHeaders;
+      })(),
     },
   });
 

@@ -43,8 +43,8 @@ services:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/cungcontuhoc?schema=public
       REDIS_URL: redis://redis:6379
       BETTER_AUTH_URL: http://localhost:3000
-      SESSION_SECRET: dev-session-secret-change-this-in-production-32
-      BETTER_AUTH_SECRET: dev-better-auth-secret-change-this-in-production-32
+      SESSION_SECRET: ${SESSION_SECRET:-dev-session-secret-change-this-in-production-32}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-dev-better-auth-secret-change-this-in-production-32}
       MOCK_UPLOAD_SIGNING_SECRET: dev-mock-upload-signing-secret-change-this-32
       BILLING_WEBHOOK_SECRET: dev-webhook-secret
       CRON_SECRET: dev-cron-secret-change-this-123456
@@ -83,8 +83,8 @@ services:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/cungcontuhoc?schema=public
       REDIS_URL: redis://redis:6379
       BETTER_AUTH_URL: http://localhost:3000
-      SESSION_SECRET: dev-session-secret-change-this-in-production-32
-      BETTER_AUTH_SECRET: dev-better-auth-secret-change-this-in-production-32
+      SESSION_SECRET: ${SESSION_SECRET:-dev-session-secret-change-this-in-production-32}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-dev-better-auth-secret-change-this-in-production-32}
       MOCK_UPLOAD_SIGNING_SECRET: dev-mock-upload-signing-secret-change-this-32
       BILLING_WEBHOOK_SECRET: dev-webhook-secret
       CRON_SECRET: dev-cron-secret-change-this-123456

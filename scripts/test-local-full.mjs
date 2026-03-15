@@ -59,6 +59,7 @@ async function main() {
 
   await runCommand("pnpm test:e2e", { env: e2eEnv });
   await runCommand("pnpm test:e2e:p0", { env: e2eEnv });
+  await runCommand("pnpm test:e2e:video-layout", { env: e2eEnv });
   await runCommand("pnpm test:e2e:auth-timing", { env: e2eEnv });
   await runCommand("pnpm test:e2e:auth-session", { env: e2eEnv });
   if (process.env.E2E_RUN_AUTH_SESSION_HTTPS === "1") {

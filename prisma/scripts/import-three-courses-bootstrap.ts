@@ -188,6 +188,24 @@ function sortByEpisodeSequence<T extends { episode_index?: number; episode_no?: 
   });
 }
 
+function parseDurationSeconds(value: unknown): number | null {
+  if (typeof value === "number" && Number.isFinite(value) && value > 0) {
+    return value;
+  }
+  if (typeof value === "string") {
+    const parsed = Number.parseFloat(value);
+    if (Number.isFinite(parsed) && parsed > 0) {
+      return parsed;
+    }
+  }
+  return null;
+}
+
+function toEstimatedMinutesFromSeconds(seconds: number | null, fallbackMinutes: number) {
+  if (!seconds || seconds <= 0) return fallbackMinutes;
+  return Math.max(1, Math.ceil(seconds / 60));
+}
+
 function buildAbekaRows(input: {
   apiRoot: string;
   bootstrap: Extract<BootstrapCourse, { courseCode: "abeka" }>;
@@ -315,8 +333,13 @@ function buildLittleFoxRows(input: {
             episode_index?: number;
             episode_no?: number;
             episode_title?: string;
+            cont_title?: string;
+            play_time_sec?: string | number;
             hls_url?: string;
             video_url?: string;
+            raw?: {
+              play_time?: string | number;
+            };
           }>
         >(seriesPath),
       );
@@ -329,6 +352,14 @@ function buildLittleFoxRows(input: {
           (episode.episode_title && episode.episode_title.trim().length > 0
             ? episode.episode_title.trim()
             : `${series.title} Episode ${episodeOrderNo}`);
+        const objectiveTitle =
+          (episode.cont_title && episode.cont_title.trim().length > 0
+            ? episode.cont_title.trim()
+            : title);
+        const playTimeSeconds =
+          parseDurationSeconds(episode.play_time_sec) ??
+          parseDurationSeconds(episode.raw?.play_time);
+        const episodeEstimatedMinutes = toEstimatedMinutesFromSeconds(playTimeSeconds, estimatedMinutes);
         const rawVideoUrl =
           (episode.hls_url && episode.hls_url.trim().length > 0
             ? episode.hls_url.trim()
@@ -357,8 +388,8 @@ function buildLittleFoxRows(input: {
           lessonOrderNo: episodeOrderNo,
           slug: `${input.courseCode}-${sanitizeSlugPart(series.lfid)}-ep-${episodeCode}`,
           title,
-          objective: toObjective(input.courseCode, title),
-          estimatedMinutes,
+          objective: toObjective(input.courseCode, objectiveTitle),
+          estimatedMinutes: episodeEstimatedMinutes,
           trialEnabled: Number(level.level) <= 2 && episodeOrderNo <= 3,
           videoSourceEncrypted,
           sourceKey: `${input.courseCode}:${series.lfid}:${episodeCode}`,

@@ -3,6 +3,7 @@ import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { getParentFromRequest } from "@/lib/auth/session";
 import { prisma } from "@/lib/db";
+import { resolveKidCourseAccess } from "@/modules/courses/kid-course-access";
 
 /**
  * GET /api/courses/[slug]/lessons?childId=xxx
@@ -39,20 +40,21 @@ export async function GET(
     }
 
     const { slug } = await params;
-
-    // Verify enrollment
-    const enrollment = await prisma.courseEnrollment.findFirst({
-      where: { parentId: parent.id, course: { slug } },
-      select: { id: true },
+    const access = await resolveKidCourseAccess({
+      parentId: parent.id,
+      requestedSlug: slug,
     });
 
-    if (!enrollment) {
+    if (!access.course) {
+      return fail("Course not found", 404);
+    }
+    if (!access.hasAccess) {
       return fail("Not enrolled in this course", 403);
     }
 
     // Load course lessons with completion status for child
     const course = await prisma.course.findUnique({
-      where: { slug },
+      where: { id: access.course.id },
       select: {
         id: true,
         slug: true,

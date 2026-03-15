@@ -28,28 +28,32 @@ class AudioSynthesizer {
 
     // A soft, low-frequency "pop" for tapping buttons or mascots
     playPop() {
-        this.init();
-        const masterGain = this.masterGain;
-        if (!this.ctx || !masterGain) return;
+        try {
+            this.init();
+            const masterGain = this.masterGain;
+            if (!this.ctx || !masterGain) return;
 
-        const t = this.ctx.currentTime;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
+            const t = this.ctx.currentTime;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
 
-        // Quick frequency drop to simulate a "boop" or "pop"
-        osc.frequency.setValueAtTime(400, t);
-        osc.frequency.exponentialRampToValueAtTime(100, t + 0.1);
+            // Quick frequency drop to simulate a "boop" or "pop"
+            osc.frequency.setValueAtTime(400, t);
+            osc.frequency.exponentialRampToValueAtTime(100, t + 0.1);
 
-        // Quick volume envelope
-        gain.gain.setValueAtTime(0, t);
-        gain.gain.linearRampToValueAtTime(0.8, t + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+            // Quick volume envelope
+            gain.gain.setValueAtTime(0, t);
+            gain.gain.linearRampToValueAtTime(0.8, t + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
 
-        osc.connect(gain);
-        gain.connect(masterGain);
+            osc.connect(gain);
+            gain.connect(masterGain);
 
-        osc.start(t);
-        osc.stop(t + 0.1);
+            osc.start(t);
+            osc.stop(t + 0.1);
+        } catch (e) {
+            // Safe to ignore audio context restrictions
+        }
     }
 
     // A bright, high-frequency "ting" for correct quiz answers

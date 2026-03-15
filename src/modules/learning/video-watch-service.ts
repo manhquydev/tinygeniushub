@@ -45,6 +45,7 @@ export const markLessonVideoWatchHeartbeatSchema = z.object({
   childId: z.string().min(1),
   sessionToken: z.string().min(16),
   sequence: z.number().int().min(1).max(4000),
+  isPlaying: z.boolean().optional(),
 });
 
 export function buildLessonWatchResourceId(childId: string, lessonId: string) {
@@ -441,13 +442,17 @@ export async function markLessonVideoWatchHeartbeat(params: {
     throw new DomainError("Heartbeat sent too fast", 429, "WATCH_HEARTBEAT_TOO_FAST");
   }
 
-  const watchedSeconds = resolveCreditedWatchSecondsFromHeartbeat({
-    heartbeatCount: payload.sequence,
-    heartbeatIntervalSeconds: state.heartbeatIntervalSeconds,
-    sessionIssuedAtMs: state.issuedAtMs,
-    nowMs,
-    requiredWatchSeconds: state.requiredWatchSeconds,
-  });
+  // Backward-compatible default:
+  // if older clients do not send playback state, treat as playing.
+  const isPlaying = payload.isPlaying ?? true;
+  const heartbeatCreditSeconds = isPlaying ? state.heartbeatIntervalSeconds : 0;
+  const rawWatchSeconds = state.creditedWatchSeconds + heartbeatCreditSeconds;
+  const elapsedSeconds = Math.max(0, Math.floor((nowMs - state.issuedAtMs) / 1000));
+  const maxCreditableByElapsed = elapsedSeconds + WATCH_SESSION_REALTIME_GRACE_SECONDS;
+  const watchedSeconds = Math.max(
+    0,
+    Math.min(rawWatchSeconds, maxCreditableByElapsed, state.requiredWatchSeconds),
+  );
   const readyForCompletion = isWatchReadyForCompletion({
     watchedSeconds,
     requiredWatchSeconds: state.requiredWatchSeconds,
@@ -470,6 +475,7 @@ export async function markLessonVideoWatchHeartbeat(params: {
     requiredWatchSeconds: state.requiredWatchSeconds,
     heartbeatIntervalSeconds: state.heartbeatIntervalSeconds,
     sequence: payload.sequence,
+    isPlaying,
   };
 }
 

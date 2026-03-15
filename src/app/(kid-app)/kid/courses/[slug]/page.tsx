@@ -5,6 +5,7 @@ import { KidSkyGardenScene } from "@/components/kid-sky-garden/KidSkyGardenScene
 import { mapLessonLikeToSkyGardenLesson } from "@/components/kid-sky-garden/mappers";
 import type { SkyGardenProgressSnapshot } from "@/components/kid-sky-garden/types";
 import { resolveCourseCoverImage } from "@/modules/courses/course-media";
+import { resolveKidCourseAccess } from "@/modules/courses/kid-course-access";
 
 interface KidCourseGardenPageProps {
   params: Promise<{ slug: string }>;
@@ -44,22 +45,18 @@ export default async function KidCourseGardenPage({
       : null;
   const activeChild = children.find((child) => child.id === queryChildId) ?? children[0]!;
 
-  // Verify enrollment
-  const enrollment = await prisma.courseEnrollment.findFirst({
-    where: {
-      parentId: parent.id,
-      course: { slug },
-    },
-    select: { id: true },
+  const access = await resolveKidCourseAccess({
+    parentId: parent.id,
+    requestedSlug: slug,
   });
 
-  if (!enrollment) {
+  if (!access.course || !access.hasAccess) {
     redirect(`/kid/courses?childId=${encodeURIComponent(activeChild.id)}`);
   }
 
   // Load course + lessons
   const course = await prisma.course.findUnique({
-    where: { slug },
+    where: { id: access.course.id },
     select: {
       id: true,
       slug: true,
@@ -164,7 +161,7 @@ export default async function KidCourseGardenPage({
       initialLessons={lessons}
       initialProgress={initialProgress}
       mode="course"
-      courseSlug={slug}
+      courseSlug={access.course.slug}
       courseTitle={course.title}
       courseDescription={course.description}
       courseCoverImageUrl={resolveCourseCoverImage(course.slug, course.coverImageUrl)}

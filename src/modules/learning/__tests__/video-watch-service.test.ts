@@ -207,6 +207,7 @@ describe("video watch service integration paths", () => {
         childId: "child-1",
         sessionToken: session.sessionToken!,
         sequence: 1,
+        isPlaying: true,
       },
     });
 
@@ -217,6 +218,41 @@ describe("video watch service integration paths", () => {
       readyForCompletion: false,
       watchedSeconds: 5,
       sequence: 1,
+      isPlaying: true,
+    });
+  });
+
+  it("does not credit watch progress when heartbeat reports paused state", async () => {
+    const nowSpy = vi
+      .spyOn(Date, "now")
+      .mockReturnValueOnce(1_000_000)
+      .mockReturnValueOnce(1_006_000);
+
+    const session = await createLessonVideoWatchSession({
+      parentId: "parent-1",
+      lessonId: "lesson-1",
+      payload: { childId: "child-1" },
+    });
+
+    const result = await markLessonVideoWatchHeartbeat({
+      parentId: "parent-1",
+      lessonId: "lesson-1",
+      payload: {
+        childId: "child-1",
+        sessionToken: session.sessionToken!,
+        sequence: 1,
+        isPlaying: false,
+      },
+    });
+
+    nowSpy.mockRestore();
+
+    expect(result).toMatchObject({
+      watchRequired: true,
+      readyForCompletion: false,
+      watchedSeconds: 0,
+      sequence: 1,
+      isPlaying: false,
     });
   });
 
@@ -469,8 +505,10 @@ describe("markLessonVideoWatchHeartbeatSchema", () => {
       childId: "child-1",
       sessionToken: "token-value-123456",
       sequence: 1,
+      isPlaying: true,
     });
     expect(parsed.sequence).toBe(1);
+    expect(parsed.isPlaying).toBe(true);
   });
 
   it("rejects invalid sequence", () => {

@@ -16,6 +16,7 @@
     "test:e2e:auth-session": "node scripts/e2e-auth-session-lifecycle.mjs",
     "test:e2e:auth-session:https": "node scripts/e2e-auth-session-https.mjs",
     "test:e2e:integrity": "node scripts/e2e-data-integrity.mjs",
+    "test:e2e:video-layout": "pnpm exec playwright test tests/e2e/lesson-player-video-layout-visual.spec.ts",
     "test:e2e:full": "node scripts/e2e-full-local.mjs",
     "test:e2e:security": "node scripts/e2e-security-abuse.mjs",
     "test:e2e:staging-providers": "node scripts/e2e-staging-providers.mjs",
