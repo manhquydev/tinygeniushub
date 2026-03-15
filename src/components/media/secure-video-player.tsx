@@ -11,6 +11,7 @@ type SecureVideoPlayerProps = {
   controls?: boolean;
   playsInline?: boolean;
   preload?: "none" | "metadata" | "auto";
+  onPlaybackStateChange?: (isPlaying: boolean) => void;
 };
 
 function isHlsSource(url: string) {
@@ -26,6 +27,7 @@ export function SecureVideoPlayer({
   controls = true,
   playsInline = true,
   preload = "metadata",
+  onPlaybackStateChange,
 }: SecureVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -38,6 +40,7 @@ export function SecureVideoPlayer({
     let hls: { destroy: () => void; startLoad: () => void; recoverMediaError: () => void } | null = null;
     let usingNative = false;
     setError(null);
+    onPlaybackStateChange?.(false);
 
     const teardownNativeSource = () => {
       video.removeAttribute("src");
@@ -137,7 +140,31 @@ export function SecureVideoPlayer({
       }
     })();
 
+    const emitPlaybackState = () => {
+      const isPlaying = !video.paused && !video.ended && video.readyState >= 2;
+      onPlaybackStateChange?.(isPlaying);
+    };
+
+    const events: Array<keyof HTMLMediaElementEventMap> = [
+      "play",
+      "pause",
+      "ended",
+      "waiting",
+      "seeking",
+      "seeked",
+      "timeupdate",
+      "ratechange",
+    ];
+    for (const eventName of events) {
+      video.addEventListener(eventName, emitPlaybackState);
+    }
+    emitPlaybackState();
+
     return () => {
+      for (const eventName of events) {
+        video.removeEventListener(eventName, emitPlaybackState);
+      }
+      onPlaybackStateChange?.(false);
       isCancelled = true;
       if (hls) {
         hls.destroy();
@@ -145,7 +172,7 @@ export function SecureVideoPlayer({
         teardownNativeSource();
       }
     };
-  }, [src, streamTypeHint]);
+  }, [onPlaybackStateChange, src, streamTypeHint]);
 
   return (
     <>

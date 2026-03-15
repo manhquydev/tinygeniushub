@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { Play } from "lucide-react";
-import { LessonWizardFlow } from "./lesson-wizard-flow";
+import { LessonPlayerScene } from "@/components/lesson-player/LessonPlayerScene";
 import { useLessonLaunchTransition } from "./use-lesson-launch-transition";
 
 interface LessonStartCardProps {
@@ -25,6 +25,7 @@ interface LessonStartCardProps {
 
 interface LessonLaunchButtonProps {
   isLaunching: boolean;
+  isReady: boolean;
   prefersReducedMotion: boolean;
   onLaunch: () => void;
 }
@@ -61,12 +62,10 @@ async function fetchVideoTokenWithTimeout(
       signal: controller.signal,
     });
     if (!res.ok) return null;
-
     const json = (await res.json()) as {
       data?: { embedUrl?: string; streamType?: "hls" | "file" | "embed" };
     };
     if (!json.data?.embedUrl) return null;
-
     return {
       embedUrl: json.data.embedUrl,
       streamType: json.data.streamType,
@@ -78,7 +77,12 @@ async function fetchVideoTokenWithTimeout(
   }
 }
 
-function LessonLaunchButton({ isLaunching, prefersReducedMotion, onLaunch }: LessonLaunchButtonProps) {
+function LessonLaunchButton({
+  isLaunching,
+  isReady,
+  prefersReducedMotion,
+  onLaunch,
+}: LessonLaunchButtonProps) {
   return (
     <div className="relative w-full mt-2">
       <AnimatePresence>
@@ -113,7 +117,7 @@ function LessonLaunchButton({ isLaunching, prefersReducedMotion, onLaunch }: Les
       <m.button
         type="button"
         onClick={onLaunch}
-        disabled={isLaunching}
+        disabled={isLaunching || !isReady}
         className="solid-button w-full flex items-center justify-center gap-2"
         animate={
           prefersReducedMotion
@@ -140,7 +144,8 @@ function LessonLaunchButton({ isLaunching, prefersReducedMotion, onLaunch }: Les
           boxShadow: "0 14px 30px rgba(249, 115, 22, 0.28)",
         }}
       >
-        <Play size={22} fill="currentColor" /> {isLaunching ? "Khởi động..." : "Bắt đầu bài học"}
+        <Play size={22} fill="currentColor" />{" "}
+        {!isReady ? "Đang tải..." : isLaunching ? "Khởi động..." : "Bắt đầu bài học"}
       </m.button>
     </div>
   );
@@ -152,11 +157,22 @@ export function LessonStartCard(props: LessonStartCardProps) {
     lessonId: props.lessonId,
     onSelect: props.onLessonSelect,
     prefersReducedMotion,
+    openDelayMs: 0,
   });
   const [resolvedVideoSource, setResolvedVideoSource] = useState<string | null | undefined>(undefined);
   const [resolvedVideoStreamType, setResolvedVideoStreamType] = useState<"hls" | "file" | null>(null);
+  const [isFetchingToken, setIsFetchingToken] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(false);
+
+  useEffect(() => {
+    setIsInteractive(true);
+  }, []);
 
   async function handleLaunch() {
+    if (!isInteractive) {
+      return;
+    }
+
     if (props.beforeStart) {
       const shouldStart = await props.beforeStart();
       if (!shouldStart) {
@@ -164,7 +180,10 @@ export function LessonStartCard(props: LessonStartCardProps) {
       }
     }
 
-    // Always request server-issued playback URL first.
+    setIsFetchingToken(true);
+
+    // Always request server-issued playback URL first with a timeout guard
+    // to prevent users waiting indefinitely if token service is slow.
     if (props.bunnyVideoId || props.videoSource) {
       const tokenData = await fetchVideoTokenWithTimeout(props.lessonId);
       if (tokenData?.embedUrl) {
@@ -179,6 +198,7 @@ export function LessonStartCard(props: LessonStartCardProps) {
       setResolvedVideoStreamType(detectStreamTypeFromSource(props.videoSource));
     }
 
+    setIsFetchingToken(false);
     handleStartLesson();
   }
 
@@ -238,21 +258,45 @@ export function LessonStartCard(props: LessonStartCardProps) {
         </p>
 
         <LessonLaunchButton
-          isLaunching={isLaunching}
+          isLaunching={isLaunching || isFetchingToken}
+          isReady={isInteractive}
           prefersReducedMotion={prefersReducedMotion}
           onLaunch={() => {
             void handleLaunch();
           }}
         />
+
+        {isFetchingToken ? (
+          <div
+            className="pointer-events-none absolute inset-0 flex items-end justify-center rounded-[30px] p-4"
+            style={{
+              background: "linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.92) 100%)",
+            }}
+          >
+            <span
+              className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold"
+              style={{
+                background: "color-mix(in srgb, #0ea5e9 14%, white)",
+                border: "1px solid color-mix(in srgb, #0ea5e9 28%, transparent)",
+                color: "#0c4a6e",
+              }}
+            >
+              Đang chuẩn bị bài học...
+            </span>
+          </div>
+        ) : null}
       </m.article>
 
       {isOpen ? (
-        <LessonWizardFlow
+        <LessonPlayerScene
           childId={props.childId}
           lessonId={props.lessonId}
           title={props.title}
           objective={props.objective}
           estimatedMinutes={props.estimatedMinutes}
+          trackCode={props.trackCode ?? "ENGLISH"}
+          skipIntro
+          tierLabel={props.tierLabel}
           videoSource={resolvedVideoSource === undefined ? props.videoSource : resolvedVideoSource}
           videoStreamType={resolvedVideoSource === undefined ? detectStreamTypeFromSource(props.videoSource) : resolvedVideoStreamType}
           onClose={handleCloseLesson}
