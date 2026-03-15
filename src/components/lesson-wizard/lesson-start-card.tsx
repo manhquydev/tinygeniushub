@@ -13,6 +13,8 @@ interface LessonStartCardProps {
   title: string;
   objective: string;
   estimatedMinutes: number;
+  trackCode?: "ENGLISH" | "MATH" | "HABIT";
+  tierLabel?: string | null;
   videoSource?: string | null;
   bunnyVideoId?: string | null;
   videoStatus?: string;
