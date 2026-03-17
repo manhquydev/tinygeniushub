@@ -73,12 +73,9 @@ function GenerateFormPanel({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (!res.ok) {
-        const json = (await res.json()) as { error?: { message?: string } };
-        throw new Error(json.error?.message ?? "Lỗi tạo mã");
-      }
-      const json = (await res.json()) as { data: { codes: GiftCode[] } };
-      onGenerated(json.data.codes);
+      const json = (await res.json()) as { data?: { codes: GiftCode[] }; error?: { message?: string } };
+      if (!res.ok) throw new Error(json.error?.message ?? "Lỗi tạo mã");
+      onGenerated(json.data!.codes);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Lỗi không xác định");
     } finally {

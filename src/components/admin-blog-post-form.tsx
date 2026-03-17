@@ -7,6 +7,10 @@ import slugify from "slugify";
 import { BlogEditorSplit } from "@/components/blog/blog-editor-split";
 import { BlogImageUploadButton } from "@/components/blog/blog-image-upload-button";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 type BlogCategoryOption = {
   id: string;
@@ -280,129 +284,77 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
       <section className="space-y-3">
         <h2 className="text-lg font-bold text-slate-900">Thông tin cơ bản</h2>
         <div className="grid gap-3 md:grid-cols-2">
-          <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Tiêu đề
-            <input
-              type="text"
-              value={titleVi}
-              onChange={(event) => setTitleVi(event.target.value)}
-              onBlur={handleTitleBlur}
-              required
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-            />
-          </label>
-          <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Slug
-            <input
-              type="text"
-              value={slug}
-              onChange={(event) => setSlug(event.target.value)}
-              required
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-            />
-            <p className="text-xs font-normal text-slate-500">Tự tạo từ tiêu đề</p>
-          </label>
-          <label className="space-y-1 text-sm font-semibold text-slate-700 md:col-span-2">
-            Mô tả ngắn
-            <textarea
-              value={excerptVi}
-              onChange={(event) => setExcerptVi(event.target.value)}
-              maxLength={160}
-              required
-              className="min-h-24 w-full rounded-xl border border-slate-300 p-3 text-sm"
-            />
-            <p className="text-xs font-normal text-slate-500">Còn lại: {excerptRemaining} ký tự</p>
-          </label>
-          <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Loại bài viết
-            <select
-              value={type}
-              onChange={(event) => setType(event.target.value as BlogPostFormValues["type"])}
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-            >
-              <option value="ARTICLE">{getPostTypeLabel("ARTICLE")}</option>
-              <option value="TIP">{getPostTypeLabel("TIP")}</option>
-              <option value="NEWS">{getPostTypeLabel("NEWS")}</option>
-              <option value="GUIDE">{getPostTypeLabel("GUIDE")}</option>
-              <option value="RESEARCH">{getPostTypeLabel("RESEARCH")}</option>
-              <option value="STORY">{getPostTypeLabel("STORY")}</option>
-            </select>
-          </label>
-          <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Độ tuổi
-            <select
-              value={ageGroup}
-              onChange={(event) => setAgeGroup(event.target.value as BlogPostFormValues["ageGroup"])}
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-            >
-              <option value="UNDER_3">{getAgeGroupLabel("UNDER_3")}</option>
-              <option value="AGE_3_5">{getAgeGroupLabel("AGE_3_5")}</option>
-              <option value="AGE_6_8">{getAgeGroupLabel("AGE_6_8")}</option>
-              <option value="AGE_9_12">{getAgeGroupLabel("AGE_9_12")}</option>
-              <option value="ALL_AGES">{getAgeGroupLabel("ALL_AGES")}</option>
-            </select>
-          </label>
+          <div className="grid gap-1.5">
+            <Label htmlFor="post-title">Tiêu đề</Label>
+            <Input id="post-title" value={titleVi} onChange={(e) => setTitleVi(e.target.value)} onBlur={handleTitleBlur} required />
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="post-slug">Slug</Label>
+            <Input id="post-slug" value={slug} onChange={(e) => setSlug(e.target.value)} required />
+            <p className="text-xs text-slate-500">Tự tạo từ tiêu đề</p>
+          </div>
+          <div className="grid gap-1.5 md:col-span-2">
+            <Label htmlFor="post-excerpt">Mô tả ngắn</Label>
+            <Textarea id="post-excerpt" value={excerptVi} onChange={(e) => setExcerptVi(e.target.value)} maxLength={160} required className="min-h-24" />
+            <p className="text-xs text-slate-500">Còn lại: {excerptRemaining} ký tự</p>
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="post-type">Loại bài viết</Label>
+            <Select value={type} onValueChange={(v) => setType(v as BlogPostFormValues["type"])}>
+              <SelectTrigger id="post-type"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                {(["ARTICLE", "TIP", "NEWS", "GUIDE", "RESEARCH", "STORY"] as const).map((t) => (
+                  <SelectItem key={t} value={t}>{getPostTypeLabel(t)}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="post-age">Độ tuổi</Label>
+            <Select value={ageGroup} onValueChange={(v) => setAgeGroup(v as BlogPostFormValues["ageGroup"])}>
+              <SelectTrigger id="post-age"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                {(["UNDER_3", "AGE_3_5", "AGE_6_8", "AGE_9_12", "ALL_AGES"] as const).map((a) => (
+                  <SelectItem key={a} value={a}>{getAgeGroupLabel(a)}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-bold text-slate-900">Phân loại</h2>
         <div className="grid gap-3 md:grid-cols-2">
-          <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Danh mục
-            <select
-              value={categoryId}
-              onChange={(event) => setCategoryId(event.target.value)}
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-              required
-              disabled={loadingOptions}
-            >
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.nameVi}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Tác giả
-            <select
-              value={authorId}
-              onChange={(event) => setAuthorId(event.target.value)}
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-              required
-              disabled={loadingOptions}
-            >
-              {authors.map((author) => (
-                <option key={author.id} value={author.id}>
-                  {author.displayName}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="space-y-1 text-sm font-semibold text-slate-700 md:col-span-2">
-            URL ảnh bìa
+          <div className="grid gap-1.5">
+            <Label htmlFor="post-category">Danh mục</Label>
+            <Select value={categoryId} onValueChange={setCategoryId} disabled={loadingOptions}>
+              <SelectTrigger id="post-category"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                {categories.map((c) => <SelectItem key={c.id} value={c.id}>{c.nameVi}</SelectItem>)}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="post-author">Tác giả</Label>
+            <Select value={authorId} onValueChange={setAuthorId} disabled={loadingOptions}>
+              <SelectTrigger id="post-author"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                {authors.map((a) => <SelectItem key={a.id} value={a.id}>{a.displayName}</SelectItem>)}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="grid gap-1.5 md:col-span-2">
+            <Label htmlFor="post-cover">URL ảnh bìa</Label>
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-              <input
-                type="url"
-                value={coverImageUrl}
-                onChange={(event) => setCoverImageUrl(event.target.value)}
-                placeholder="URL ảnh bìa (tự nhập hoặc upload)"
-                className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-              />
-              <div className="flex items-center gap-2">
-                <BlogImageUploadButton onUpload={(publicUrl) => setCoverImageUrl(publicUrl)} />
-              </div>
+              <Input id="post-cover" type="url" value={coverImageUrl} onChange={(e) => setCoverImageUrl(e.target.value)} placeholder="URL ảnh bìa (tự nhập hoặc upload)" />
+              <BlogImageUploadButton onUpload={(publicUrl) => setCoverImageUrl(publicUrl)} />
             </div>
-          </label>
-          <label className="space-y-1 text-sm font-semibold text-slate-700 md:col-span-2">
-            Thẻ (phân tách bằng dấu phẩy)
-            <textarea
-              value={tagsInput}
-              onChange={(event) => setTagsInput(event.target.value)}
-              className="min-h-20 w-full rounded-xl border border-slate-300 p-3 text-sm"
-            />
-          </label>
+          </div>
+          <div className="grid gap-1.5 md:col-span-2">
+            <Label htmlFor="post-tags">Thẻ (phân tách bằng dấu phẩy)</Label>
+            <Textarea id="post-tags" value={tagsInput} onChange={(e) => setTagsInput(e.target.value)} className="min-h-20" />
+          </div>
         </div>
       </section>
 
@@ -417,55 +369,40 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
       <section className="space-y-3">
         <h2 className="text-lg font-bold text-slate-900">SEO</h2>
         <div className="grid gap-3 md:grid-cols-2">
-          <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Tiêu đề SEO
-            <input
-              type="text"
-              value={metaTitleVi}
-              onChange={(event) => setMetaTitleVi(event.target.value)}
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-            />
-            <p className="text-xs font-normal text-slate-500">60 ký tự</p>
-          </label>
-          <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Mô tả SEO
-            <textarea
-              value={metaDescVi}
-              onChange={(event) => setMetaDescVi(event.target.value)}
-              className="min-h-20 w-full rounded-xl border border-slate-300 p-3 text-sm"
-            />
-            <p className="text-xs font-normal text-slate-500">160 ký tự</p>
-          </label>
+          <div className="grid gap-1.5">
+            <Label htmlFor="post-meta-title">Tiêu đề SEO</Label>
+            <Input id="post-meta-title" value={metaTitleVi} onChange={(e) => setMetaTitleVi(e.target.value)} />
+            <p className="text-xs text-slate-500">60 ký tự</p>
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="post-meta-desc">Mô tả SEO</Label>
+            <Textarea id="post-meta-desc" value={metaDescVi} onChange={(e) => setMetaDescVi(e.target.value)} className="min-h-20" />
+            <p className="text-xs text-slate-500">160 ký tự</p>
+          </div>
         </div>
       </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-bold text-slate-900">Xuất bản</h2>
         <div className="grid gap-3 md:grid-cols-2">
-          <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Trạng thái
-            <select
-              value={status}
-              onChange={(event) => setStatus(event.target.value as BlogPostFormValues["status"])}
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-            >
-              <option value="DRAFT">{getPostStatusLabel("DRAFT")}</option>
-              <option value="REVIEW">{getPostStatusLabel("REVIEW")}</option>
-              <option value="PUBLISHED">{getPostStatusLabel("PUBLISHED")}</option>
-              <option value="SCHEDULED">{getPostStatusLabel("SCHEDULED")}</option>
-              {status === "ARCHIVED" ? <option value="ARCHIVED">{getPostStatusLabel("ARCHIVED")}</option> : null}
-            </select>
-          </label>
+          <div className="grid gap-1.5">
+            <Label htmlFor="post-status">Trạng thái</Label>
+            <Select value={status} onValueChange={(v) => setStatus(v as BlogPostFormValues["status"])}>
+              <SelectTrigger id="post-status"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="DRAFT">{getPostStatusLabel("DRAFT")}</SelectItem>
+                <SelectItem value="REVIEW">{getPostStatusLabel("REVIEW")}</SelectItem>
+                <SelectItem value="PUBLISHED">{getPostStatusLabel("PUBLISHED")}</SelectItem>
+                <SelectItem value="SCHEDULED">{getPostStatusLabel("SCHEDULED")}</SelectItem>
+                {status === "ARCHIVED" ? <SelectItem value="ARCHIVED">{getPostStatusLabel("ARCHIVED")}</SelectItem> : null}
+              </SelectContent>
+            </Select>
+          </div>
           {status === "SCHEDULED" ? (
-            <label className="space-y-1 text-sm font-semibold text-slate-700">
-              Thời gian đăng
-              <input
-                type="datetime-local"
-                value={scheduledAt}
-                onChange={(event) => setScheduledAt(event.target.value)}
-                className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
-              />
-            </label>
+            <div className="grid gap-1.5">
+              <Label htmlFor="post-scheduled">Thời gian đăng</Label>
+              <Input id="post-scheduled" type="datetime-local" value={scheduledAt} onChange={(e) => setScheduledAt(e.target.value)} />
+            </div>
           ) : null}
         </div>
       </section>

@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useMemo, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -100,35 +101,39 @@ export function AdminExportData() {
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <a
-          href={paymentsHref}
-          download
-          aria-disabled={!validation.valid}
-          onClick={(event) => {
-            if (!validation.valid) { event.preventDefault(); return; }
-            void logAction("EXPORT_CSV", { type: "payments", from, to });
-          }}
-          className={`inline-flex min-h-10 items-center justify-center rounded-full px-4 text-sm font-semibold transition ${
-            validation.valid ? "bg-teal-600 text-white hover:-translate-y-0.5" : "cursor-not-allowed bg-slate-200 text-slate-500"
-          }`}
+        <Button
+          asChild
+          disabled={!validation.valid}
+          className="bg-teal-600 hover:bg-teal-700"
         >
-          Xuất CSV thanh toán
-        </a>
+          <a
+            href={paymentsHref}
+            download
+            onClick={(event) => {
+              if (!validation.valid) { event.preventDefault(); return; }
+              void logAction("EXPORT_CSV", { type: "payments", from, to });
+            }}
+          >
+            Xuất CSV thanh toán
+          </a>
+        </Button>
 
-        <a
-          href="/api/admin/export/users"
-          download
-          aria-disabled={!validation.valid}
-          onClick={(event) => {
-            if (!validation.valid) { event.preventDefault(); return; }
-            void logAction("EXPORT_CSV", { type: "users" });
-          }}
-          className={`inline-flex min-h-10 items-center justify-center rounded-full border px-4 text-sm font-semibold transition ${
-            validation.valid ? "border-slate-300 bg-white text-slate-700 hover:-translate-y-0.5" : "cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400"
-          }`}
+        <Button
+          asChild
+          variant="outline"
+          disabled={!validation.valid}
         >
-          Xuất CSV người dùng
-        </a>
+          <a
+            href="/api/admin/export/users"
+            download
+            onClick={(event) => {
+              if (!validation.valid) { event.preventDefault(); return; }
+              void logAction("EXPORT_CSV", { type: "users" });
+            }}
+          >
+            Xuất CSV người dùng
+          </a>
+        </Button>
       </div>
     </div>
   );

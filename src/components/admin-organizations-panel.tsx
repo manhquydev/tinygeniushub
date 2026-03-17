@@ -103,11 +103,11 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ isActive: !org.isActive }),
       });
-      if (!res.ok) return;
-      const json = await res.json() as { data: { org: Organization } };
-      setOrgs((prev) => prev.map((o) => (o.id === org.id ? json.data.org : o)));
-    } catch {
-      // ignore
+      const json = await res.json() as { data?: { org: Organization }; error?: { message?: string } };
+      if (!res.ok || !json.data?.org) throw new Error(json.error?.message ?? "Cập nhật thất bại");
+      setOrgs((prev) => prev.map((o) => (o.id === org.id ? json.data!.org : o)));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Lỗi không xác định");
     }
   }
 
