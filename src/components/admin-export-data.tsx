@@ -1,6 +1,8 @@
 ﻿"use client";
 
 import { useMemo, useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 function toDateInputValue(date: Date) {
   const year = date.getFullYear();
@@ -81,27 +83,17 @@ export function AdminExportData() {
   }
 
   return (
-    <section className="card page-stack">
-      <h2>Xuất dữ liệu</h2>
+    <div className="space-y-4">
+      <h2 className="text-sm font-bold uppercase tracking-wide text-slate-600">Xuất dữ liệu</h2>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-        <label className="grid gap-1 text-sm text-slate-700">
-          <span className="font-semibold">Từ ngày</span>
-          <input
-            type="date"
-            value={from}
-            onChange={(event) => setFrom(event.target.value)}
-            className="rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none transition focus:border-teal-400"
-          />
-        </label>
-        <label className="grid gap-1 text-sm text-slate-700">
-          <span className="font-semibold">Đến ngày</span>
-          <input
-            type="date"
-            value={to}
-            onChange={(event) => setTo(event.target.value)}
-            className="rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none transition focus:border-teal-400"
-          />
-        </label>
+        <div className="grid gap-1.5">
+          <Label htmlFor="export-from">Từ ngày</Label>
+          <Input id="export-from" type="date" value={from} onChange={(event) => setFrom(event.target.value)} />
+        </div>
+        <div className="grid gap-1.5">
+          <Label htmlFor="export-to">Đến ngày</Label>
+          <Input id="export-to" type="date" value={to} onChange={(event) => setTo(event.target.value)} />
+        </div>
         <div className="flex items-end">
           <p className={`text-sm ${validation.valid ? "text-emerald-600" : "text-rose-600"}`}>{validation.message}</p>
         </div>
@@ -113,21 +105,11 @@ export function AdminExportData() {
           download
           aria-disabled={!validation.valid}
           onClick={(event) => {
-            if (!validation.valid) {
-              event.preventDefault();
-              return;
-            }
-
-            void logAction("EXPORT_CSV", {
-              type: "payments",
-              from,
-              to,
-            });
+            if (!validation.valid) { event.preventDefault(); return; }
+            void logAction("EXPORT_CSV", { type: "payments", from, to });
           }}
           className={`inline-flex min-h-10 items-center justify-center rounded-full px-4 text-sm font-semibold transition ${
-            validation.valid
-              ? "bg-teal-600 text-white hover:-translate-y-0.5"
-              : "cursor-not-allowed bg-slate-200 text-slate-500"
+            validation.valid ? "bg-teal-600 text-white hover:-translate-y-0.5" : "cursor-not-allowed bg-slate-200 text-slate-500"
           }`}
         >
           Xuất CSV thanh toán
@@ -138,24 +120,16 @@ export function AdminExportData() {
           download
           aria-disabled={!validation.valid}
           onClick={(event) => {
-            if (!validation.valid) {
-              event.preventDefault();
-              return;
-            }
-
-            void logAction("EXPORT_CSV", {
-              type: "users",
-            });
+            if (!validation.valid) { event.preventDefault(); return; }
+            void logAction("EXPORT_CSV", { type: "users" });
           }}
           className={`inline-flex min-h-10 items-center justify-center rounded-full border px-4 text-sm font-semibold transition ${
-            validation.valid
-              ? "border-slate-300 bg-white text-slate-700 hover:-translate-y-0.5"
-              : "cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400"
+            validation.valid ? "border-slate-300 bg-white text-slate-700 hover:-translate-y-0.5" : "cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400"
           }`}
         >
           Xuất CSV người dùng
         </a>
       </div>
-    </section>
+    </div>
   );
 }

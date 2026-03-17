@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 type PendingComment = {
   id: string;
@@ -53,15 +54,9 @@ export function AdminBlogCommentsModeration({ comments }: { comments: PendingCom
           </div>
 
           <div className="mt-3 flex flex-wrap gap-2">
-            <button type="button" onClick={() => void moderate(comment.id, "APPROVED")} disabled={loadingId === comment.id} className="solid-button">
-              Duyet
-            </button>
-            <button type="button" onClick={() => void moderate(comment.id, "SPAM")} disabled={loadingId === comment.id} className="ghost-button">
-              Spam
-            </button>
-            <button type="button" onClick={() => void moderate(comment.id, "DELETED")} disabled={loadingId === comment.id} className="ghost-button">
-              Xoa
-            </button>
+            <Button type="button" size="sm" className="bg-teal-600 hover:bg-teal-700" onClick={() => void moderate(comment.id, "APPROVED")} disabled={loadingId === comment.id}>Duyệt</Button>
+            <Button type="button" size="sm" variant="outline" onClick={() => void moderate(comment.id, "SPAM")} disabled={loadingId === comment.id}>Spam</Button>
+            <Button type="button" size="sm" variant="destructive" onClick={() => void moderate(comment.id, "DELETED")} disabled={loadingId === comment.id}>Xóa</Button>
           </div>
         </article>
       ))}

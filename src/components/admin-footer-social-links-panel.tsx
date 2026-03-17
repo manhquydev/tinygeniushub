@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { DEFAULT_FOOTER_SOCIAL_LINKS, type FooterSocialLinks } from "@/modules/platform/footer-social-links";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const FOOTER_SOCIAL_FIELDS: Array<{ key: keyof FooterSocialLinks; label: string }> = [
   { key: "facebook", label: "Facebook" },
@@ -78,39 +81,38 @@ export function AdminFooterSocialLinksPanel() {
   }
 
   return (
-    <section className="card page-stack">
-      <h3>Footer social links</h3>
-      <p className="muted-text">Đổi URL đích cho các nền tảng mạng xã hội ở chân trang.</p>
+    <div className="space-y-3">
+      <div>
+        <h3 className="text-sm font-bold uppercase tracking-wide text-slate-600">Footer social links</h3>
+        <p className="text-xs text-slate-500">Đổi URL đích cho các nền tảng mạng xã hội ở chân trang.</p>
+      </div>
 
       {loading ? (
-        <p className="muted-text">Đang tải...</p>
+        <p className="text-xs text-slate-500">Đang tải...</p>
       ) : (
-        <div className="admin-controls">
+        <div className="grid gap-3 sm:grid-cols-2">
           {FOOTER_SOCIAL_FIELDS.map((field) => (
-            <label key={field.key}>
-              {field.label}
-              <input
+            <div key={field.key} className="grid gap-1.5">
+              <Label htmlFor={`social-${field.key}`}>{field.label}</Label>
+              <Input
+                id={`social-${field.key}`}
                 type="url"
                 placeholder="https://..."
                 value={links[field.key]}
-                onChange={(event) =>
-                  setLinks((prev) => ({
-                    ...prev,
-                    [field.key]: event.target.value,
-                  }))
-                }
+                onChange={(event) => setLinks((prev) => ({ ...prev, [field.key]: event.target.value }))}
               />
-            </label>
+            </div>
           ))}
-
-          <button type="button" className="solid-button" onClick={() => void handleSave()} disabled={saving}>
-            {saving ? "Đang lưu..." : "Lưu social links"}
-          </button>
+          <div className="sm:col-span-2">
+            <Button type="button" className="bg-teal-600 hover:bg-teal-700" onClick={() => void handleSave()} disabled={saving}>
+              {saving ? "Đang lưu..." : "Lưu social links"}
+            </Button>
+          </div>
         </div>
       )}
 
-      {error ? <p className="error-text">{error}</p> : null}
-      {info ? <p className="muted-text">{info}</p> : null}
-    </section>
+      {error ? <p className="text-xs text-rose-600">{error}</p> : null}
+      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+    </div>
   );
 }

@@ -1,5 +1,7 @@
 ﻿"use client";
 
+import { Button } from "@/components/ui/button";
+
 type SubscriberRow = {
   email: string;
   nameVi: string | null;
@@ -30,8 +32,8 @@ export function AdminBlogNewsletterExportButton() {
   }
 
   return (
-    <button type="button" onClick={handleExport} className="solid-button">
+    <Button type="button" onClick={handleExport} className="bg-teal-600 hover:bg-teal-700">
       Xuất CSV
-    </button>
+    </Button>
   );
 }

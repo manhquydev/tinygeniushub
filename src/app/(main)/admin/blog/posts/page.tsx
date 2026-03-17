@@ -1,8 +1,12 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import { type BlogPostStatus, Prisma } from "@prisma/client";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { requireAdminParent } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
+import { cn } from "@/lib/utils";
 
 type SearchParams = {
   page?: string | string[];
@@ -110,20 +114,20 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
   const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
-    <div className="page-stack">
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="section-header">
+    <div className="space-y-4">
+      <div className="rounded-xl border border-slate-200 bg-white p-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Quản lý bài viết</h1>
-            <p className="mt-2 text-sm text-slate-600">Lọc theo trạng thái hoặc tiêu đề.</p>
+            <h1 className="text-xl font-bold text-slate-900">Quản lý bài viết</h1>
+            <p className="mt-1 text-sm text-slate-500">Lọc theo trạng thái hoặc tiêu đề.</p>
           </div>
-          <Link href="/admin/blog/posts/new" className="solid-button">
-            Viết bài mới
-          </Link>
+          <Button asChild className="bg-teal-600 hover:bg-teal-700">
+            <Link href="/admin/blog/posts/new">Viết bài mới</Link>
+          </Button>
         </div>
 
         <form method="GET" className="mt-4 grid gap-3 md:grid-cols-[220px_1fr_auto]">
-          <select name="status" defaultValue={status ?? ""} className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm">
+          <select name="status" defaultValue={status ?? ""} className="h-10 rounded-lg border border-slate-200 px-3 text-sm">
             <option value="">Tất cả trạng thái</option>
             <option value="DRAFT">{getStatusLabel("DRAFT")}</option>
             <option value="REVIEW">{getStatusLabel("REVIEW")}</option>
@@ -131,109 +135,86 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
             <option value="SCHEDULED">{getStatusLabel("SCHEDULED")}</option>
             <option value="ARCHIVED">{getStatusLabel("ARCHIVED")}</option>
           </select>
-          <input
-            type="search"
-            name="q"
-            defaultValue={q}
-            placeholder="Tìm tiêu đề"
-            className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-          />
-          <button type="submit" className="ghost-button">
-            Lọc
-          </button>
+          <input type="search" name="q" defaultValue={q} placeholder="Tìm tiêu đề" className="h-10 rounded-lg border border-slate-200 px-3 text-sm" />
+          <Button type="submit" variant="outline">Lọc</Button>
         </form>
-      </section>
+      </div>
 
-      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-left text-sm">
-            <thead className="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
-              <tr>
-                <th className="px-4 py-3">Ảnh bìa</th>
-                <th className="px-4 py-3">Tiêu đề</th>
-                <th className="px-4 py-3">Trạng thái</th>
-                <th className="px-4 py-3">Danh mục</th>
-                <th className="px-4 py-3">Tác giả</th>
-                <th className="px-4 py-3">Lượt xem</th>
-                <th className="px-4 py-3">Ngày tạo</th>
-                <th className="px-4 py-3">Thao tác</th>
-              </tr>
-            </thead>
-            <tbody>
-              {posts.map((post) => (
-                <tr key={post.id} className="border-t border-slate-100">
-                  <td className="px-4 py-3">
-                    <div className="relative h-[40px] w-[60px] overflow-hidden rounded-md bg-slate-100">
-                      {post.coverImageUrl ? <Image src={post.coverImageUrl} alt={post.titleVi} fill className="object-cover" sizes="60px" /> : null}
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <Link href={`/admin/blog/posts/${post.id}/edit`} className="font-semibold text-slate-900 hover:text-teal-700">
-                      {post.titleVi}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`inline-flex rounded-full border px-2 py-0.5 text-xs font-semibold ${getStatusPillClass(post.status)}`}>
-                      {getStatusLabel(post.status)}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 text-slate-700">{post.category.nameVi}</td>
-                  <td className="px-4 py-3 text-slate-700">{post.author.displayName}</td>
-                  <td className="px-4 py-3 text-slate-700">{post.viewCount}</td>
-                  <td className="px-4 py-3 text-slate-700">
-                    {new Intl.DateTimeFormat("vi-VN", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    }).format(post.createdAt)}
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-3">
-                      <Link href={`/admin/blog/posts/${post.id}/edit`} className="text-sm font-semibold text-teal-700 hover:text-teal-800">
-                        Sửa
-                      </Link>
-                      <Link href={`/blog/${post.slug}`} className="text-sm font-semibold text-slate-700 hover:text-slate-900" target="_blank" rel="noreferrer">
-                        Xem
-                      </Link>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-              {posts.length === 0 ? (
-                <tr>
-                  <td colSpan={8} className="px-4 py-6 text-center text-sm text-slate-500">
-                    Không có bài viết phù hợp.
-                  </td>
-                </tr>
-              ) : null}
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="text-xs">Ảnh bìa</TableHead>
+              <TableHead className="text-xs">Tiêu đề</TableHead>
+              <TableHead className="text-xs">Trạng thái</TableHead>
+              <TableHead className="text-xs">Danh mục</TableHead>
+              <TableHead className="text-xs">Tác giả</TableHead>
+              <TableHead className="text-xs">Lượt xem</TableHead>
+              <TableHead className="text-xs">Ngày tạo</TableHead>
+              <TableHead className="text-xs">Thao tác</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {posts.map((post) => (
+              <TableRow key={post.id}>
+                <TableCell>
+                  <div className="relative h-[40px] w-[60px] overflow-hidden rounded-md bg-slate-100">
+                    {post.coverImageUrl ? <Image src={post.coverImageUrl} alt={post.titleVi} fill className="object-cover" sizes="60px" /> : null}
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <Link href={`/admin/blog/posts/${post.id}/edit`} className="text-sm font-semibold text-slate-900 hover:text-teal-700">
+                    {post.titleVi}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Badge variant="outline" className={cn("text-xs border", getStatusPillClass(post.status))}>
+                    {getStatusLabel(post.status)}
+                  </Badge>
+                </TableCell>
+                <TableCell className="text-xs text-slate-600">{post.category.nameVi}</TableCell>
+                <TableCell className="text-xs text-slate-600">{post.author.displayName}</TableCell>
+                <TableCell className="text-xs">{post.viewCount}</TableCell>
+                <TableCell className="text-xs">{new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }).format(post.createdAt)}</TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-2">
+                    <Link href={`/admin/blog/posts/${post.id}/edit`} className="text-xs font-semibold text-teal-700 hover:text-teal-800">Sửa</Link>
+                    <Link href={`/blog/${post.slug}`} className="text-xs font-semibold text-slate-600 hover:text-slate-900" target="_blank" rel="noreferrer">Xem</Link>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+            {posts.length === 0 ? (
+              <TableRow><TableCell colSpan={8} className="text-center text-sm text-slate-500 py-8">Không có bài viết phù hợp.</TableCell></TableRow>
+            ) : null}
+          </TableBody>
+        </Table>
+      </div>
 
-      <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-3">
         <div className="flex gap-2">
-          <Link href={buildHref(Math.max(1, currentPage - 1), status, q || undefined)} className={`ghost-button ${currentPage === 1 ? "pointer-events-none opacity-50" : ""}`}>
-            Trước
-          </Link>
-          <Link href={buildHref(Math.min(totalPages, currentPage + 1), status, q || undefined)} className={`ghost-button ${currentPage === totalPages ? "pointer-events-none opacity-50" : ""}`}>
-            Sau
-          </Link>
+          <Button asChild variant="outline" size="sm" className={cn(currentPage === 1 && "pointer-events-none opacity-50")}>
+            <Link href={buildHref(Math.max(1, currentPage - 1), status, q || undefined)}>Trước</Link>
+          </Button>
+          <Button asChild variant="outline" size="sm" className={cn(currentPage === totalPages && "pointer-events-none opacity-50")}>
+            <Link href={buildHref(Math.min(totalPages, currentPage + 1), status, q || undefined)}>Sau</Link>
+          </Button>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {pageNumbers.map((page) => (
             <Link
               key={page}
               href={buildHref(page, status, q || undefined)}
-              className={`inline-flex min-h-9 min-w-9 items-center justify-center rounded-lg border px-3 text-sm font-semibold ${
-                page === currentPage ? "border-teal-300 bg-teal-50 text-teal-700" : "border-slate-200 text-slate-600 hover:bg-slate-50"
-              }`}
+              className={cn(
+                "inline-flex min-h-8 min-w-8 items-center justify-center rounded-lg border px-2.5 text-xs font-semibold",
+                page === currentPage ? "border-teal-300 bg-teal-50 text-teal-700" : "border-slate-200 text-slate-600 hover:bg-slate-50",
+              )}
             >
               {page}
             </Link>
           ))}
         </div>
-      </section>
+      </div>
     </div>
   );
 }

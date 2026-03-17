@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function AdminBlogCategoryCreateForm() {
   const router = useRouter();
@@ -54,51 +56,17 @@ export function AdminBlogCategoryCreateForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-2 sm:p-6">
-      <input
-        value={slug}
-        onChange={(event) => setSlug(event.target.value)}
-        placeholder="slug"
-        required
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-      />
-      <input
-        value={nameVi}
-        onChange={(event) => setNameVi(event.target.value)}
-        placeholder="Tên danh mục"
-        required
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-      />
-      <input
-        value={emoji}
-        onChange={(event) => setEmoji(event.target.value)}
-        placeholder="Emoji"
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-      />
-      <input
-        value={color}
-        onChange={(event) => setColor(event.target.value)}
-        placeholder="#10b981"
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-      />
-      <input
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-        placeholder="Mô tả"
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm sm:col-span-2"
-      />
-      <input
-        type="number"
-        value={orderNo}
-        onChange={(event) => setOrderNo(event.target.value)}
-        placeholder="Thứ tự"
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-      />
-      <button type="submit" disabled={submitting} className="solid-button sm:col-span-1">
+    <form onSubmit={handleSubmit} className="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-2">
+      <Input value={slug} onChange={(event) => setSlug(event.target.value)} placeholder="slug" required />
+      <Input value={nameVi} onChange={(event) => setNameVi(event.target.value)} placeholder="Tên danh mục" required />
+      <Input value={emoji} onChange={(event) => setEmoji(event.target.value)} placeholder="Emoji" />
+      <Input value={color} onChange={(event) => setColor(event.target.value)} placeholder="#10b981" />
+      <Input value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Mô tả" className="sm:col-span-2" />
+      <Input type="number" value={orderNo} onChange={(event) => setOrderNo(event.target.value)} placeholder="Thứ tự" />
+      <Button type="submit" disabled={submitting} className="bg-teal-600 hover:bg-teal-700">
         {submitting ? "Đang tạo..." : "Tạo danh mục"}
-      </button>
-
-      {error ? <p className="text-sm font-semibold text-rose-700 sm:col-span-2">{error}</p> : null}
+      </Button>
+      {error ? <p className="text-sm text-rose-700 sm:col-span-2">{error}</p> : null}
     </form>
   );
 }

@@ -2,6 +2,12 @@
 
 import { useState } from "react";
 import { Gift, Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 
 export type GiftCode = {
   id: string;
@@ -40,10 +46,10 @@ function formatDate(dateStr: string | null) {
   return new Date(dateStr).toLocaleDateString("vi-VN");
 }
 
-function getStatus(code: GiftCode): { label: string; cls: string } {
-  if (code.usedAt) return { label: "Đã dùng", cls: "" };
-  if (new Date(code.expiresAt) < new Date()) return { label: "Hết hạn", cls: "badge-red" };
-  return { label: "Còn hạn", cls: "badge-green" };
+function getStatus(code: GiftCode): { label: string; variant: "default" | "destructive" | "secondary" | "outline" } {
+  if (code.usedAt) return { label: "Đã dùng", variant: "secondary" };
+  if (new Date(code.expiresAt) < new Date()) return { label: "Hết hạn", variant: "destructive" };
+  return { label: "Còn hạn", variant: "default" };
 }
 
 function GenerateFormPanel({
@@ -81,61 +87,41 @@ function GenerateFormPanel({
   }
 
   return (
-    <div className="admin-card">
-      <h2 className="admin-card-title">Tạo mã quà tặng</h2>
-      {error && <p className="form-error">{error}</p>}
-      <form onSubmit={(e) => void handleSubmit(e)} className="form-stack">
-        <div className="form-row-2">
-          <label className="form-field">
-            <span>Số lượng (1–100)</span>
-            <input
-              type="number"
-              min={1}
-              max={100}
-              required
-              value={form.count}
-              onChange={(e) => setForm((p) => ({ ...p, count: Number(e.target.value) }))}
-            />
-          </label>
-          <label className="form-field">
-            <span>Gói</span>
-            <select
-              value={form.planCode}
-              onChange={(e) => setForm((p) => ({ ...p, planCode: e.target.value }))}
-            >
-              <option value="YEARLY_STANDARD">YEARLY_STANDARD</option>
-              <option value="MONTHLY_STANDARD">MONTHLY_STANDARD</option>
-            </select>
-          </label>
+    <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 space-y-3">
+      <h2 className="text-sm font-semibold text-slate-700">Tạo mã quà tặng</h2>
+      {error && <p className="text-xs text-rose-600">{error}</p>}
+      <form onSubmit={(e) => void handleSubmit(e)} className="space-y-3">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-1.5">
+            <Label htmlFor="gc-count">Số lượng (1–100)</Label>
+            <Input id="gc-count" type="number" min={1} max={100} required value={form.count} onChange={(e) => setForm((p) => ({ ...p, count: Number(e.target.value) }))} />
+          </div>
+          <div className="grid gap-1.5">
+            <Label>Gói</Label>
+            <Select value={form.planCode} onValueChange={(value) => setForm((p) => ({ ...p, planCode: value }))}>
+              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="YEARLY_STANDARD">YEARLY_STANDARD</SelectItem>
+                <SelectItem value="MONTHLY_STANDARD">MONTHLY_STANDARD</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-        <div className="form-row-2">
-          <label className="form-field">
-            <span>Thời hạn (ngày)</span>
-            <input
-              type="number"
-              min={1}
-              required
-              value={form.durationDays}
-              onChange={(e) => setForm((p) => ({ ...p, durationDays: Number(e.target.value) }))}
-            />
-          </label>
-          <label className="form-field">
-            <span>Hết hạn lúc</span>
-            <input
-              type="date"
-              required
-              value={form.expiresAt}
-              onChange={(e) => setForm((p) => ({ ...p, expiresAt: e.target.value }))}
-            />
-          </label>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-1.5">
+            <Label htmlFor="gc-duration">Thời hạn (ngày)</Label>
+            <Input id="gc-duration" type="number" min={1} required value={form.durationDays} onChange={(e) => setForm((p) => ({ ...p, durationDays: Number(e.target.value) }))} />
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="gc-expires">Hết hạn lúc</Label>
+            <Input id="gc-expires" type="date" required value={form.expiresAt} onChange={(e) => setForm((p) => ({ ...p, expiresAt: e.target.value }))} />
+          </div>
         </div>
-        <div className="form-actions">
-          <button type="submit" className="btn-primary btn-sm" disabled={loading}>
+        <div className="flex gap-2">
+          <Button type="submit" disabled={loading} className="bg-teal-600 hover:bg-teal-700">
             {loading ? "Đang tạo..." : "Tạo mã"}
-          </button>
-          <button type="button" className="btn-ghost btn-sm" onClick={onCancel}>
-            Hủy
-          </button>
+          </Button>
+          <Button type="button" variant="outline" onClick={onCancel}>Hủy</Button>
         </div>
       </form>
     </div>
@@ -152,62 +138,54 @@ export function AdminGiftCodePanel({ initialCodes }: { initialCodes: GiftCode[] 
   }
 
   return (
-    <div className="admin-panel-stack">
-      <div className="admin-panel-header">
-        <div className="admin-panel-header-left">
-          <Gift size={20} />
-          <h1>Gift Codes</h1>
-          <span className="admin-badge">{codes.length}</span>
+    <div className="space-y-4">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <Gift size={18} className="text-slate-600" />
+          <h1 className="text-sm font-bold uppercase tracking-wide text-slate-600">Gift Codes</h1>
+          <Badge variant="secondary">{codes.length}</Badge>
         </div>
-        <button className="btn-primary btn-sm" onClick={() => setShowForm(true)}>
-          <Plus size={14} />
+        <Button size="sm" className="h-8 text-xs gap-1 bg-teal-600 hover:bg-teal-700" onClick={() => setShowForm(true)}>
+          <Plus size={13} />
           Tạo mã
-        </button>
+        </Button>
       </div>
 
-      {showForm && (
-        <GenerateFormPanel onGenerated={handleGenerated} onCancel={() => setShowForm(false)} />
-      )}
+      {showForm && <GenerateFormPanel onGenerated={handleGenerated} onCancel={() => setShowForm(false)} />}
 
-      <div className="admin-table-wrapper">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Code</th>
-              <th>Plan</th>
-              <th>Duration</th>
-              <th>Expires</th>
-              <th>Trạng thái</th>
-              <th>Created by</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className="rounded-lg border border-slate-200 overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="text-xs">Code</TableHead>
+              <TableHead className="text-xs">Plan</TableHead>
+              <TableHead className="text-xs">Duration</TableHead>
+              <TableHead className="text-xs">Expires</TableHead>
+              <TableHead className="text-xs">Trạng thái</TableHead>
+              <TableHead className="text-xs">Created by</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {codes.length === 0 && (
-              <tr>
-                <td colSpan={6} style={{ textAlign: "center", color: "#94a3b8", padding: "2rem" }}>
-                  Chưa có mã nào.
-                </td>
-              </tr>
+              <TableRow>
+                <TableCell colSpan={6} className="text-xs text-center text-slate-500 py-8">Chưa có mã nào.</TableCell>
+              </TableRow>
             )}
             {codes.map((c) => {
               const status = getStatus(c);
               return (
-                <tr key={c.id}>
-                  <td>
-                    <code style={{ fontSize: 13 }}>{c.code}</code>
-                  </td>
-                  <td style={{ fontSize: 13 }}>{c.planCode}</td>
-                  <td style={{ fontSize: 13 }}>{c.durationDays}d</td>
-                  <td style={{ fontSize: 13 }}>{formatDate(c.expiresAt)}</td>
-                  <td>
-                    <span className={`admin-badge ${status.cls}`}>{status.label}</span>
-                  </td>
-                  <td style={{ fontSize: 13, color: "#64748b" }}>{c.createdBy}</td>
-                </tr>
+                <TableRow key={c.id}>
+                  <TableCell><code className="text-xs">{c.code}</code></TableCell>
+                  <TableCell className="text-xs">{c.planCode}</TableCell>
+                  <TableCell className="text-xs">{c.durationDays}d</TableCell>
+                  <TableCell className="text-xs">{formatDate(c.expiresAt)}</TableCell>
+                  <TableCell><Badge variant={status.variant} className="text-xs">{status.label}</Badge></TableCell>
+                  <TableCell className="text-xs text-slate-500">{c.createdBy}</TableCell>
+                </TableRow>
               );
             })}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

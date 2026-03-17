@@ -7,7 +7,7 @@ export default async function AdminBlogCommentsPage() {
   const comments = await commentService.getPendingComments();
 
   return (
-    <div className="page-stack">
+    <div className="space-y-6">
       <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Quản lý bình luận</h1>
         <p className="mt-2 text-sm text-slate-600">Duyệt hoặc đánh dấu spam cho bình luận đang chờ.</p>

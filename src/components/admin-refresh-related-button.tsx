@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export function AdminRefreshRelatedButton({ postId }: { postId: string }) {
   const [loading, setLoading] = useState(false);
@@ -31,9 +32,9 @@ export function AdminRefreshRelatedButton({ postId }: { postId: string }) {
 
   return (
     <div className="flex flex-col gap-2">
-      <button type="button" onClick={handleRefresh} disabled={loading} className="ghost-button w-fit">
+      <Button type="button" variant="outline" onClick={handleRefresh} disabled={loading} className="w-fit">
         {loading ? "Đang cập nhật..." : "Cập nhật bài liên quan"}
-      </button>
+      </Button>
       {message ? <p className="text-sm font-semibold text-emerald-700">{message}</p> : null}
       {error ? <p className="text-sm font-semibold text-rose-700">{error}</p> : null}
     </div>

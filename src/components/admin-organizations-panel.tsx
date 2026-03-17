@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Building2, Plus, Users, Calendar, Globe, Palette } from "lucide-react";
+import { Building2, Plus, Users, Globe, Palette, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 
 type Organization = {
   id: string;
@@ -37,12 +43,7 @@ const EMPTY_FORM: CreateOrgForm = {
 };
 
 function slugify(name: string) {
-  return name
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")
-    .replace(/-+/g, "-")
-    .slice(0, 60);
+  return name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "").replace(/-+/g, "-").slice(0, 60);
 }
 
 function formatDate(dateStr: string | null) {
@@ -113,261 +114,157 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
   const selectedOrg = orgs.find((o) => o.id === selectedOrgId);
 
   return (
-    <div className="admin-panel-stack">
-      <div className="admin-panel-header">
-        <div className="admin-panel-header-left">
-          <Building2 size={20} />
-          <h1>Tổ chức (B2B)</h1>
-          <span className="admin-badge">{orgs.length}</span>
+    <div className="space-y-4">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <Building2 size={18} className="text-slate-600" />
+          <h1 className="text-sm font-bold uppercase tracking-wide text-slate-600">Tổ chức (B2B)</h1>
+          <Badge variant="secondary">{orgs.length}</Badge>
         </div>
-        <button
-          className="btn-primary btn-sm"
-          onClick={() => {
-            setShowCreateForm(true);
-            setSelectedOrgId(null);
-          }}
-        >
-          <Plus size={14} />
+        <Button size="sm" className="h-8 text-xs gap-1 bg-teal-600 hover:bg-teal-700" onClick={() => { setShowCreateForm(true); setSelectedOrgId(null); }}>
+          <Plus size={13} />
           Thêm tổ chức
-        </button>
+        </Button>
       </div>
 
       {showCreateForm && (
-        <div className="admin-card">
-          <h2 className="admin-card-title">Tạo tổ chức mới</h2>
-          {error && <p className="form-error">{error}</p>}
-          <form onSubmit={(e) => void handleCreate(e)} className="form-stack">
-            <div className="form-row-2">
-              <label className="form-field">
-                <span>Tên tổ chức *</span>
-                <input
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={(e) => handleNameChange(e.target.value)}
-                  placeholder="Trường Mầm Non Ánh Sao"
-                />
-              </label>
-              <label className="form-field">
-                <span>Slug *</span>
-                <input
-                  type="text"
-                  required
-                  value={form.slug}
-                  onChange={(e) => setForm((p) => ({ ...p, slug: e.target.value }))}
-                  placeholder="truong-mam-non-anh-sao"
-                />
-              </label>
+        <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 space-y-3">
+          <h2 className="text-sm font-semibold text-slate-700">Tạo tổ chức mới</h2>
+          {error && <p className="text-xs text-rose-600">{error}</p>}
+          <form onSubmit={(e) => void handleCreate(e)} className="space-y-3">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-1.5">
+                <Label htmlFor="org-name">Tên tổ chức *</Label>
+                <Input id="org-name" type="text" required value={form.name} onChange={(e) => handleNameChange(e.target.value)} placeholder="Trường Mầm Non Ánh Sao" />
+              </div>
+              <div className="grid gap-1.5">
+                <Label htmlFor="org-slug">Slug *</Label>
+                <Input id="org-slug" type="text" required value={form.slug} onChange={(e) => setForm((p) => ({ ...p, slug: e.target.value }))} placeholder="truong-mam-non-anh-sao" />
+              </div>
             </div>
-            <div className="form-row-2">
-              <label className="form-field">
-                <span>Domain</span>
-                <input
-                  type="text"
-                  value={form.domain}
-                  onChange={(e) => setForm((p) => ({ ...p, domain: e.target.value }))}
-                  placeholder="anhsao.edu.vn"
-                />
-              </label>
-              <label className="form-field">
-                <span>Màu thương hiệu</span>
-                <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                  <input
-                    type="color"
-                    value={form.primaryColor}
-                    onChange={(e) => setForm((p) => ({ ...p, primaryColor: e.target.value }))}
-                    style={{ width: 40, height: 36, padding: 2, borderRadius: 6, cursor: "pointer" }}
-                  />
-                  <input
-                    type="text"
-                    value={form.primaryColor}
-                    onChange={(e) => setForm((p) => ({ ...p, primaryColor: e.target.value }))}
-                    style={{ flex: 1 }}
-                  />
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-1.5">
+                <Label htmlFor="org-domain">Domain</Label>
+                <Input id="org-domain" type="text" value={form.domain} onChange={(e) => setForm((p) => ({ ...p, domain: e.target.value }))} placeholder="anhsao.edu.vn" />
+              </div>
+              <div className="grid gap-1.5">
+                <Label htmlFor="org-color">Màu thương hiệu</Label>
+                <div className="flex gap-2 items-center">
+                  <input type="color" value={form.primaryColor} onChange={(e) => setForm((p) => ({ ...p, primaryColor: e.target.value }))} className="h-9 w-10 rounded border border-slate-200 p-0.5 cursor-pointer" />
+                  <Input id="org-color" type="text" value={form.primaryColor} onChange={(e) => setForm((p) => ({ ...p, primaryColor: e.target.value }))} className="flex-1" />
                 </div>
-              </label>
+              </div>
             </div>
-            <div className="form-row-2">
-              <label className="form-field">
-                <span>Billing bắt đầu</span>
-                <input
-                  type="date"
-                  value={form.billingStart}
-                  onChange={(e) => setForm((p) => ({ ...p, billingStart: e.target.value }))}
-                />
-              </label>
-              <label className="form-field">
-                <span>Billing kết thúc</span>
-                <input
-                  type="date"
-                  value={form.billingEnd}
-                  onChange={(e) => setForm((p) => ({ ...p, billingEnd: e.target.value }))}
-                />
-              </label>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-1.5">
+                <Label htmlFor="org-billing-start">Billing bắt đầu</Label>
+                <Input id="org-billing-start" type="date" value={form.billingStart} onChange={(e) => setForm((p) => ({ ...p, billingStart: e.target.value }))} />
+              </div>
+              <div className="grid gap-1.5">
+                <Label htmlFor="org-billing-end">Billing kết thúc</Label>
+                <Input id="org-billing-end" type="date" value={form.billingEnd} onChange={(e) => setForm((p) => ({ ...p, billingEnd: e.target.value }))} />
+              </div>
             </div>
-            <label className="form-field">
-              <span>Logo URL</span>
-              <input
-                type="url"
-                value={form.logoUrl}
-                onChange={(e) => setForm((p) => ({ ...p, logoUrl: e.target.value }))}
-                placeholder="https://..."
-              />
-            </label>
-            <div className="form-actions">
-              <button type="submit" className="btn-primary btn-sm" disabled={creating}>
+            <div className="grid gap-1.5">
+              <Label htmlFor="org-logo">Logo URL</Label>
+              <Input id="org-logo" type="url" value={form.logoUrl} onChange={(e) => setForm((p) => ({ ...p, logoUrl: e.target.value }))} placeholder="https://..." />
+            </div>
+            <div className="flex gap-2">
+              <Button type="submit" disabled={creating} className="bg-teal-600 hover:bg-teal-700">
                 {creating ? "Đang tạo..." : "Tạo tổ chức"}
-              </button>
-              <button
-                type="button"
-                className="btn-ghost btn-sm"
-                onClick={() => {
-                  setShowCreateForm(false);
-                  setError(null);
-                }}
-              >
-                Hủy
-              </button>
+              </Button>
+              <Button type="button" variant="outline" onClick={() => { setShowCreateForm(false); setError(null); }}>Hủy</Button>
             </div>
           </form>
         </div>
       )}
 
-      <div className="admin-table-wrapper">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Tổ chức</th>
-              <th>Domain</th>
-              <th>Billing</th>
-              <th>Trạng thái</th>
-              <th>Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className="rounded-lg border border-slate-200 overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="text-xs">Tổ chức</TableHead>
+              <TableHead className="text-xs">Domain</TableHead>
+              <TableHead className="text-xs">Billing</TableHead>
+              <TableHead className="text-xs">Trạng thái</TableHead>
+              <TableHead className="text-xs">Thao tác</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {orgs.length === 0 && (
-              <tr>
-                <td colSpan={5} style={{ textAlign: "center", color: "#94a3b8", padding: "2rem" }}>
-                  Chưa có tổ chức nào.
-                </td>
-              </tr>
+              <TableRow>
+                <TableCell colSpan={5} className="text-center text-xs text-slate-500 py-8">Chưa có tổ chức nào.</TableCell>
+              </TableRow>
             )}
             {orgs.map((org) => (
-              <tr key={org.id} className={selectedOrgId === org.id ? "row-selected" : ""}>
-                <td>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    {org.primaryColor && (
-                      <span
-                        style={{
-                          display: "inline-block",
-                          width: 12,
-                          height: 12,
-                          borderRadius: "50%",
-                          background: org.primaryColor,
-                          flexShrink: 0,
-                        }}
-                      />
-                    )}
+              <TableRow key={org.id} className={cn(selectedOrgId === org.id && "bg-teal-50/40 hover:bg-teal-50/40")}>
+                <TableCell>
+                  <div className="flex items-center gap-2">
+                    {org.primaryColor && <span className="inline-block h-3 w-3 shrink-0 rounded-full" style={{ background: org.primaryColor }} />}
                     <div>
-                      <div style={{ fontWeight: 600 }}>{org.name}</div>
-                      <div style={{ fontSize: 12, color: "#64748b" }}>{org.slug}</div>
+                      <p className="text-sm font-semibold text-slate-800">{org.name}</p>
+                      <p className="text-xs text-slate-500">{org.slug}</p>
                     </div>
                   </div>
-                </td>
-                <td style={{ fontSize: 13, color: "#64748b" }}>{org.domain ?? "—"}</td>
-                <td style={{ fontSize: 13 }}>
-                  {org.billingStart ? (
-                    <span>
-                      {formatDate(org.billingStart)} → {formatDate(org.billingEnd)}
-                    </span>
-                  ) : (
-                    <span style={{ color: "#94a3b8" }}>Chưa thiết lập</span>
-                  )}
-                </td>
-                <td>
-                  <span
-                    className={`admin-badge ${org.isActive ? "badge-green" : "badge-red"}`}
-                  >
+                </TableCell>
+                <TableCell className="text-xs text-slate-500">{org.domain ?? "—"}</TableCell>
+                <TableCell className="text-xs">
+                  {org.billingStart ? <span>{formatDate(org.billingStart)} → {formatDate(org.billingEnd)}</span> : <span className="text-slate-400">Chưa thiết lập</span>}
+                </TableCell>
+                <TableCell>
+                  <Badge variant="outline" className={cn("text-xs border", org.isActive ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-rose-50 text-rose-700 border-rose-200")}>
                     {org.isActive ? "Đang hoạt động" : "Đã vô hiệu"}
-                  </span>
-                </td>
-                <td>
-                  <div style={{ display: "flex", gap: 6 }}>
-                    <button
-                      className="btn-ghost btn-xs"
-                      onClick={() => setSelectedOrgId(selectedOrgId === org.id ? null : org.id)}
-                    >
-                      <Users size={12} />
-                      Chi tiết
-                    </button>
-                    <button
-                      className="btn-ghost btn-xs"
-                      onClick={() => void handleToggleActive(org)}
-                    >
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <div className="flex gap-1">
+                    <Button size="sm" variant="outline" className="h-7 text-xs gap-1" onClick={() => setSelectedOrgId(selectedOrgId === org.id ? null : org.id)}>
+                      <Users size={11} /> Chi tiết
+                    </Button>
+                    <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => void handleToggleActive(org)}>
                       {org.isActive ? "Vô hiệu" : "Kích hoạt"}
-                    </button>
+                    </Button>
                   </div>
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
 
       {selectedOrg && (
-        <div className="admin-card" style={{ marginTop: 16 }}>
-          <h2 className="admin-card-title">
-            <Building2 size={16} />
-            {selectedOrg.name}
-          </h2>
-          <div className="admin-detail-grid">
-            <div className="admin-detail-item">
-              <span className="admin-detail-label">
-                <Globe size={13} /> Domain
-              </span>
+        <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 space-y-3">
+          <div className="flex items-center gap-2">
+            <Building2 size={15} className="text-slate-600" />
+            <h2 className="text-sm font-semibold text-slate-700">{selectedOrg.name}</h2>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            <div className="flex items-center gap-2 text-xs text-slate-600">
+              <Globe size={13} />
+              <span className="font-medium">Domain:</span>
               <span>{selectedOrg.domain ?? "—"}</span>
             </div>
-            <div className="admin-detail-item">
-              <span className="admin-detail-label">
-                <Palette size={13} /> Màu thương hiệu
-              </span>
-              <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                {selectedOrg.primaryColor && (
-                  <span
-                    style={{
-                      display: "inline-block",
-                      width: 14,
-                      height: 14,
-                      borderRadius: 3,
-                      background: selectedOrg.primaryColor,
-                    }}
-                  />
-                )}
-                {selectedOrg.primaryColor ?? "—"}
-              </span>
+            <div className="flex items-center gap-2 text-xs text-slate-600">
+              <Palette size={13} />
+              <span className="font-medium">Màu:</span>
+              {selectedOrg.primaryColor && <span className="inline-block h-3 w-3 rounded" style={{ background: selectedOrg.primaryColor }} />}
+              <span>{selectedOrg.primaryColor ?? "—"}</span>
             </div>
-            <div className="admin-detail-item">
-              <span className="admin-detail-label">
-                <Calendar size={13} /> Billing
-              </span>
-              <span>
-                {selectedOrg.billingStart
-                  ? `${formatDate(selectedOrg.billingStart)} → ${formatDate(selectedOrg.billingEnd)}`
-                  : "Chưa thiết lập"}
-              </span>
+            <div className="flex items-center gap-2 text-xs text-slate-600">
+              <Calendar size={13} />
+              <span className="font-medium">Billing:</span>
+              <span>{selectedOrg.billingStart ? `${formatDate(selectedOrg.billingStart)} → ${formatDate(selectedOrg.billingEnd)}` : "Chưa thiết lập"}</span>
             </div>
-            <div className="admin-detail-item">
-              <span className="admin-detail-label">Ngày tạo</span>
+            <div className="flex items-center gap-2 text-xs text-slate-600">
+              <span className="font-medium">Ngày tạo:</span>
               <span>{formatDate(selectedOrg.createdAt)}</span>
             </div>
           </div>
           {selectedOrg.logoUrl && (
-            <div style={{ marginTop: 12 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={selectedOrg.logoUrl} alt="Logo" style={{ height: 48, borderRadius: 6 }} />
-            </div>
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={selectedOrg.logoUrl} alt="Logo" className="h-12 rounded" />
           )}
-          <p style={{ marginTop: 16, fontSize: 13, color: "#64748b" }}>
+          <p className="text-xs text-slate-500">
             Để quản lý thành viên, dùng API: <code>POST /api/admin/organizations/{selectedOrg.id}/members</code>
           </p>
         </div>

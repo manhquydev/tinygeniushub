@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import slugify from "slugify";
 import { BlogEditorSplit } from "@/components/blog/blog-editor-split";
 import { BlogImageUploadButton } from "@/components/blog/blog-image-upload-button";
+import { Button } from "@/components/ui/button";
 
 type BlogCategoryOption = {
   id: string;
@@ -473,18 +474,14 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
       {publishMessage ? <p className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-semibold text-emerald-700">{publishMessage}</p> : null}
 
       <div className="flex flex-wrap items-center gap-3">
-        <button type="submit" disabled={submitting || loadingOptions} className="solid-button">
+        <Button type="submit" disabled={submitting || loadingOptions} className="bg-teal-600 hover:bg-teal-700">
           {submitting ? "Đang lưu..." : mode === "create" ? "Tạo bài viết" : "Lưu thay đổi"}
-        </button>
+        </Button>
         {mode === "edit" && postId ? (
-          <button type="button" onClick={publishNow} disabled={submitting} className="ghost-button">
-            Xuất bản ngay
-          </button>
+          <Button type="button" variant="outline" onClick={publishNow} disabled={submitting}>Xuất bản ngay</Button>
         ) : null}
         {mode === "edit" && viewSlug ? (
-          <Link href={`/blog/${viewSlug}`} target="_blank" rel="noreferrer" className="ghost-button">
-            Xem bài viết
-          </Link>
+          <Button asChild variant="outline"><Link href={`/blog/${viewSlug}`} target="_blank" rel="noreferrer">Xem bài viết</Link></Button>
         ) : null}
       </div>
     </form>

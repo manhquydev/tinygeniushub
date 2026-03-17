@@ -1,6 +1,11 @@
 ﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 type AnnouncementType = "INFO" | "WARNING" | "SUCCESS";
 
@@ -155,108 +160,100 @@ export function AdminAnnouncementPanel() {
   }
 
   return (
-    <section className="card page-stack">
-      <h3>Thông báo hệ thống</h3>
+    <div className="space-y-4">
+      <h3 className="text-sm font-bold uppercase tracking-wide text-slate-600">Thông báo hệ thống</h3>
 
-      <div className="admin-controls">
-        <label className="stack-field">
-          Nội dung thông báo (tối đa 200 ký tự)
-          <input
+      <div className="grid gap-3">
+        <div className="grid gap-1.5">
+          <Label htmlFor="ann-message">Nội dung thông báo (tối đa 200 ký tự)</Label>
+          <Input
+            id="ann-message"
             value={message}
             onChange={(event) => setMessage(event.target.value.slice(0, 200))}
             type="text"
             maxLength={200}
             placeholder="Ví dụ: Hệ thống bảo trì vào 22:00 tối nay."
           />
-          <span className="muted-text">Còn lại {remainingChars} ký tự</span>
-        </label>
-      </div>
+          <span className="text-xs text-slate-500">Còn lại {remainingChars} ký tự</span>
+        </div>
 
-      <div className="admin-controls">
-        <label>
-          Loại
-          <select value={type} onChange={(event) => setType(event.target.value as AnnouncementType)}>
-            <option value="INFO">INFO</option>
-            <option value="WARNING">WARNING</option>
-            <option value="SUCCESS">SUCCESS</option>
-          </select>
-        </label>
-        <label>
-          Lập lịch (tùy chọn, để trống = đăng ngay)
-          <input
-            type="datetime-local"
-            value={scheduledAt}
-            onChange={(event) => setScheduledAt(event.target.value)}
-          />
-        </label>
-        <label>
-          Kết thúc (tùy chọn)
-          <input
-            type="date"
-            min={toDateInputValue(new Date())}
-            value={endsAt}
-            onChange={(event) => setEndsAt(event.target.value)}
-          />
-        </label>
-        <button type="button" className="solid-button" onClick={() => void handleCreate()} disabled={submitting}>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-1.5">
+            <Label>Loại</Label>
+            <Select value={type} onValueChange={(value) => setType(value as AnnouncementType)}>
+              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="INFO">INFO</SelectItem>
+                <SelectItem value="WARNING">WARNING</SelectItem>
+                <SelectItem value="SUCCESS">SUCCESS</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="ann-scheduled">Lập lịch (tùy chọn, để trống = đăng ngay)</Label>
+            <Input id="ann-scheduled" type="datetime-local" value={scheduledAt} onChange={(event) => setScheduledAt(event.target.value)} />
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="ann-ends">Kết thúc (tùy chọn)</Label>
+            <Input id="ann-ends" type="date" min={toDateInputValue(new Date())} value={endsAt} onChange={(event) => setEndsAt(event.target.value)} />
+          </div>
+        </div>
+
+        <Button type="button" className="w-fit bg-teal-600 hover:bg-teal-700" onClick={() => void handleCreate()} disabled={submitting}>
           {submitting ? "Đang đăng..." : "Đăng thông báo"}
-        </button>
+        </Button>
       </div>
 
-      <div className="admin-table-wrap">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Nội dung</th>
-              <th>Loại</th>
-              <th>Lập lịch</th>
-              <th>Hết hạn</th>
-              <th>Trạng thái</th>
-              <th>Tạo bởi</th>
-              <th>Hành động</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading
-              ? Array.from({ length: 3 }).map((_, index) => (
-                  <tr key={`announcement-skeleton-${index}`}>
-                    <td colSpan={7}>Đang tải...</td>
-                  </tr>
-                ))
-              : null}
-            {!loading
-              ? announcements.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.message}</td>
-                    <td>{item.type}</td>
-                    <td>{formatSchedule(item.scheduledAt)}</td>
-                    <td>{item.endsAt ? new Date(item.endsAt).toLocaleDateString("vi-VN") : "Không giới hạn"}</td>
-                    <td>{item.active ? "Đang bật" : "Đang tắt"}</td>
-                    <td>{item.createdBy}</td>
-                    <td>
-                      <button
-                        type="button"
-                        className={item.active ? "danger-button" : "ghost-button"}
-                        onClick={() => void toggleAnnouncementActive(item)}
-                        disabled={updatingId === item.id}
-                      >
-                        {updatingId === item.id ? "Đang cập nhật..." : item.active ? "Tắt" : "Bật"}
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              : null}
+      <div className="rounded-lg border border-slate-200 overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="text-xs">Nội dung</TableHead>
+              <TableHead className="text-xs">Loại</TableHead>
+              <TableHead className="text-xs">Lập lịch</TableHead>
+              <TableHead className="text-xs">Hết hạn</TableHead>
+              <TableHead className="text-xs">Trạng thái</TableHead>
+              <TableHead className="text-xs">Tạo bởi</TableHead>
+              <TableHead className="text-xs">Hành động</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {loading ? Array.from({ length: 3 }).map((_, index) => (
+              <TableRow key={`announcement-skeleton-${index}`}>
+                <TableCell colSpan={7} className="text-xs text-slate-500">Đang tải...</TableCell>
+              </TableRow>
+            )) : null}
+            {!loading ? announcements.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell className="text-xs max-w-xs">{item.message}</TableCell>
+                <TableCell className="text-xs">{item.type}</TableCell>
+                <TableCell className="text-xs">{formatSchedule(item.scheduledAt)}</TableCell>
+                <TableCell className="text-xs">{item.endsAt ? new Date(item.endsAt).toLocaleDateString("vi-VN") : "Không giới hạn"}</TableCell>
+                <TableCell className="text-xs">{item.active ? "Đang bật" : "Đang tắt"}</TableCell>
+                <TableCell className="text-xs">{item.createdBy}</TableCell>
+                <TableCell>
+                  <Button
+                    type="button"
+                    size="sm"
+                    className="h-7 text-xs"
+                    variant={item.active ? "destructive" : "outline"}
+                    onClick={() => void toggleAnnouncementActive(item)}
+                    disabled={updatingId === item.id}
+                  >
+                    {updatingId === item.id ? "Đang cập nhật..." : item.active ? "Tắt" : "Bật"}
+                  </Button>
+                </TableCell>
+              </TableRow>
+            )) : null}
             {!loading && announcements.length === 0 ? (
-              <tr>
-                <td colSpan={7}>Chưa có thông báo hệ thống.</td>
-              </tr>
+              <TableRow><TableCell colSpan={7} className="text-xs text-slate-500">Chưa có thông báo hệ thống.</TableCell></TableRow>
             ) : null}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
 
-      {error ? <p className="error-text">{error}</p> : null}
-      {info ? <p className="muted-text">{info}</p> : null}
-    </section>
+      {error ? <p className="text-xs text-rose-600">{error}</p> : null}
+      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+    </div>
   );
 }

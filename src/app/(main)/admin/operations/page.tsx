@@ -1,11 +1,9 @@
-import { AdminAnnouncementPanel } from "@/components/admin-announcement-panel";
-import { AdminCouponPanel } from "@/components/admin-coupon-panel";
 import { AdminExportData } from "@/components/admin-export-data";
-import { AdminOperationsPanel } from "@/components/admin-operations-panel";
 import { AdminOperationsTabs } from "@/components/admin-operations-tabs";
-import { prisma } from "@/lib/db";
+import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { getAdminOverview } from "@/modules/admin/service";
-import { Settings } from "lucide-react";
+import { prisma } from "@/lib/db";
+import { Settings2 } from "lucide-react";
 
 export default async function AdminOperationsPage() {
   const overview = await getAdminOverview();
@@ -73,23 +71,14 @@ export default async function AdminOperationsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Page header */}
-      <div className="flex items-center gap-3 border-b border-slate-200 pb-5">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-50">
-          <Settings size={18} className="text-teal-600" />
-        </div>
-        <div>
-          <h1 className="text-xl font-bold text-slate-900">Vận hành hệ thống</h1>
-          <p className="text-sm text-slate-500">
-            Thanh toán, webhook, bài học dùng thử, thông báo và mã giảm giá.
-          </p>
-        </div>
-        <div className="ml-auto">
-          <AdminExportData />
-        </div>
-      </div>
+      <AdminPageHeader
+        title="Vận hành hệ thống"
+        description="Thanh toán, webhook, trial-flag, thông báo và dữ liệu xuất."
+        icon={<Settings2 size={18} />}
+        actions={<AdminExportData />}
+        eyebrow="Commerce & Ops"
+      />
 
-      {/* Tabbed panels */}
       <AdminOperationsTabs
         payments={payments}
         webhooks={webhooks}

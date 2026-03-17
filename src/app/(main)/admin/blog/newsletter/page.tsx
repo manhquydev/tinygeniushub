@@ -1,5 +1,9 @@
 ﻿import Link from "next/link";
 import { AdminBlogNewsletterExportButton } from "@/components/admin-blog-newsletter-export-button";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import { requireAdminParent } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 
@@ -68,81 +72,67 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
   const totalPages = Math.max(1, Math.ceil(totalSubscribers / 50));
 
   return (
-    <div className="page-stack">
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="section-header">
+    <div className="space-y-4">
+      <div className="rounded-xl border border-slate-200 bg-white p-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Người đăng ký bản tin</h1>
-            <p className="mt-2 text-sm text-slate-600">Quản lý danh sách đã xác thực nhận bản tin.</p>
+            <h1 className="text-xl font-bold text-slate-900">Người đăng ký bản tin</h1>
+            <p className="mt-1 text-sm text-slate-500">Quản lý danh sách đã xác thực nhận bản tin.</p>
           </div>
           <AdminBlogNewsletterExportButton />
         </div>
-      </section>
+      </div>
 
-      <section className="grid gap-4 sm:grid-cols-2">
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Đang nhận bản tin</p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="rounded-xl border border-slate-200 bg-white p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Đang nhận bản tin</p>
           <p className="mt-2 text-3xl font-black text-slate-900">{activeSubscribers}</p>
-        </article>
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Đã hủy đăng ký</p>
-          <p className="mt-2 text-3xl font-black text-slate-900">{unsubscribedCount}</p>
-        </article>
-      </section>
-
-      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-left text-sm">
-            <thead className="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
-              <tr>
-                <th className="px-4 py-3">Email</th>
-                <th className="px-4 py-3">Tên</th>
-                <th className="px-4 py-3">Thời điểm đăng ký</th>
-                <th className="px-4 py-3">Xác thực</th>
-              </tr>
-            </thead>
-            <tbody>
-              {subscribers.map((subscriber) => (
-                <tr key={subscriber.id} className="border-t border-slate-100">
-                  <td className="px-4 py-3 font-semibold text-slate-900">{subscriber.email}</td>
-                  <td className="px-4 py-3 text-slate-700">{subscriber.nameVi ?? "-"}</td>
-                  <td className="px-4 py-3 text-slate-700">
-                    {new Intl.DateTimeFormat("vi-VN", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    }).format(subscriber.subscribedAt)}
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">Đã xác thực</span>
-                  </td>
-                </tr>
-              ))}
-              {subscribers.length === 0 ? (
-                <tr>
-                  <td colSpan={4} className="px-4 py-6 text-center text-sm text-slate-500">
-                    Không có người đăng ký.
-                  </td>
-                </tr>
-              ) : null}
-            </tbody>
-          </table>
         </div>
-      </section>
+        <div className="rounded-xl border border-slate-200 bg-white p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Đã hủy đăng ký</p>
+          <p className="mt-2 text-3xl font-black text-slate-900">{unsubscribedCount}</p>
+        </div>
+      </div>
 
-      <section className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <Link href={buildHref(Math.max(1, currentPage - 1))} className={`ghost-button ${currentPage <= 1 ? "pointer-events-none opacity-50" : ""}`}>
-          Trước
-        </Link>
-        <p className="text-sm text-slate-600">
-          Trang {currentPage}/{totalPages}
-        </p>
-        <Link href={buildHref(Math.min(totalPages, currentPage + 1))} className={`ghost-button ${currentPage >= totalPages ? "pointer-events-none opacity-50" : ""}`}>
-          Sau
-        </Link>
-      </section>
+      <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="text-xs">Email</TableHead>
+              <TableHead className="text-xs">Tên</TableHead>
+              <TableHead className="text-xs">Thời điểm đăng ký</TableHead>
+              <TableHead className="text-xs">Xác thực</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {subscribers.map((subscriber) => (
+              <TableRow key={subscriber.id}>
+                <TableCell className="text-xs font-semibold text-slate-900">{subscriber.email}</TableCell>
+                <TableCell className="text-xs text-slate-600">{subscriber.nameVi ?? "-"}</TableCell>
+                <TableCell className="text-xs text-slate-600">
+                  {new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(subscriber.subscribedAt)}
+                </TableCell>
+                <TableCell>
+                  <Badge variant="outline" className="text-xs border-emerald-200 bg-emerald-50 text-emerald-700">Đã xác thực</Badge>
+                </TableCell>
+              </TableRow>
+            ))}
+            {subscribers.length === 0 ? (
+              <TableRow><TableCell colSpan={4} className="text-center text-sm text-slate-500 py-8">Không có người đăng ký.</TableCell></TableRow>
+            ) : null}
+          </TableBody>
+        </Table>
+      </div>
+
+      <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-3">
+        <Button asChild variant="outline" size="sm" className={cn(currentPage <= 1 && "pointer-events-none opacity-50")}>
+          <Link href={buildHref(Math.max(1, currentPage - 1))}>Trước</Link>
+        </Button>
+        <p className="text-sm text-slate-600">Trang {currentPage}/{totalPages}</p>
+        <Button asChild variant="outline" size="sm" className={cn(currentPage >= totalPages && "pointer-events-none opacity-50")}>
+          <Link href={buildHref(Math.min(totalPages, currentPage + 1))}>Sau</Link>
+        </Button>
+      </div>
     </div>
   );
 }

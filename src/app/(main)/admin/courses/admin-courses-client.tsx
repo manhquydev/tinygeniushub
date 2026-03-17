@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 type CourseRow = {
   id: string;
@@ -201,14 +202,14 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
   }
 
   return (
-    <div className="page-stack">
+    <div className="space-y-6">
       <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="section-header">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Khóa học Premium</h1>
             <p className="mt-2 text-sm text-slate-600">Tạo và quản lý khóa học bán lẻ.</p>
           </div>
-          <button type="button" className="solid-button" onClick={openCreate}>
+          <button type="button" className="inline-flex items-center justify-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 disabled:opacity-50" onClick={openCreate}>
             Tạo khóa học
           </button>
         </div>
@@ -297,10 +298,10 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
           </div>
           {error ? <p className="mt-3 text-sm font-semibold text-red-600">{error}</p> : null}
           <div className="mt-4 flex gap-3">
-            <button type="button" className="solid-button" onClick={handleSave} disabled={saving}>
+            <button type="button" className="inline-flex items-center justify-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 disabled:opacity-50" onClick={handleSave} disabled={saving}>
               {saving ? "Đang lưu..." : "Lưu"}
             </button>
-            <button type="button" className="ghost-button" onClick={cancelForm}>
+            <button type="button" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50" onClick={cancelForm}>
               Hủy
             </button>
           </div>

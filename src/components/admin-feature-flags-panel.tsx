@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 type FeatureFlagRow = {
   key: string;
@@ -82,61 +84,57 @@ export function AdminFeatureFlagsPanel() {
   }
 
   return (
-    <section className="card page-stack">
-      <h3>Tính năng thử nghiệm</h3>
+    <div className="space-y-3">
+      <h3 className="text-sm font-bold uppercase tracking-wide text-slate-600">Tính năng thử nghiệm</h3>
 
-      <div className="admin-table-wrap">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Key</th>
-              <th>Mô tả</th>
-              <th>Trạng thái</th>
-              <th>Cập nhật lúc</th>
-              <th>Người cập nhật</th>
-              <th>Hành động</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading
-              ? Array.from({ length: 4 }).map((_, index) => (
-                  <tr key={`feature-flag-skeleton-${index}`}>
-                    <td colSpan={6}>Đang tải...</td>
-                  </tr>
-                ))
-              : null}
-            {!loading
-              ? flags.map((flag) => (
-                  <tr key={flag.key}>
-                    <td className="font-semibold">{flag.key}</td>
-                    <td>{flag.description ?? "-"}</td>
-                    <td>{flag.enabled ? "Đang bật" : "Đang tắt"}</td>
-                    <td>{new Date(flag.updatedAt).toLocaleString("vi-VN")}</td>
-                    <td>{flag.updatedBy ?? "-"}</td>
-                    <td>
-                      <button
-                        type="button"
-                        className={flag.enabled ? "danger-button" : "solid-button"}
-                        onClick={() => void toggleFlag(flag)}
-                        disabled={updatingKey === flag.key}
-                      >
-                        {updatingKey === flag.key ? "Đang cập nhật..." : flag.enabled ? "Tắt" : "Bật"}
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              : null}
+      <div className="rounded-lg border border-slate-200 overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="text-xs">Key</TableHead>
+              <TableHead className="text-xs">Mô tả</TableHead>
+              <TableHead className="text-xs">Trạng thái</TableHead>
+              <TableHead className="text-xs">Cập nhật lúc</TableHead>
+              <TableHead className="text-xs">Người cập nhật</TableHead>
+              <TableHead className="text-xs">Hành động</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {loading ? Array.from({ length: 4 }).map((_, index) => (
+              <TableRow key={`feature-flag-skeleton-${index}`}>
+                <TableCell colSpan={6} className="text-xs text-slate-500">Đang tải...</TableCell>
+              </TableRow>
+            )) : null}
+            {!loading ? flags.map((flag) => (
+              <TableRow key={flag.key}>
+                <TableCell className="text-xs font-semibold text-slate-800">{flag.key}</TableCell>
+                <TableCell className="text-xs text-slate-600">{flag.description ?? "-"}</TableCell>
+                <TableCell className="text-xs">{flag.enabled ? "Đang bật" : "Đang tắt"}</TableCell>
+                <TableCell className="text-xs">{new Date(flag.updatedAt).toLocaleString("vi-VN")}</TableCell>
+                <TableCell className="text-xs">{flag.updatedBy ?? "-"}</TableCell>
+                <TableCell>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant={flag.enabled ? "destructive" : "default"}
+                    className={flag.enabled ? undefined : "bg-teal-600 hover:bg-teal-700 h-7 text-xs"}
+                    onClick={() => void toggleFlag(flag)}
+                    disabled={updatingKey === flag.key}
+                  >
+                    {updatingKey === flag.key ? "Đang cập nhật..." : flag.enabled ? "Tắt" : "Bật"}
+                  </Button>
+                </TableCell>
+              </TableRow>
+            )) : null}
             {!loading && flags.length === 0 ? (
-              <tr>
-                <td colSpan={6}>Chưa có feature flag.</td>
-              </tr>
+              <TableRow><TableCell colSpan={6} className="text-xs text-slate-500">Chưa có feature flag.</TableCell></TableRow>
             ) : null}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
 
-      {error ? <p className="error-text">{error}</p> : null}
-      {info ? <p className="muted-text">{info}</p> : null}
-    </section>
+      {error ? <p className="text-xs text-rose-600">{error}</p> : null}
+      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+    </div>
   );
 }

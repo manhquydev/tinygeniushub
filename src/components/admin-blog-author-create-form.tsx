@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import slugify from "slugify";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function AdminBlogAuthorCreateForm() {
   const router = useRouter();
@@ -54,38 +56,15 @@ export function AdminBlogAuthorCreateForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-2 sm:p-6">
-      <input
-        value={displayName}
-        onChange={(event) => setDisplayName(event.target.value)}
-        placeholder="Tên hiển thị"
-        required
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-      />
-      <input
-        value={role}
-        onChange={(event) => setRole(event.target.value)}
-        placeholder="Vai trò"
-        required
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-      />
-      <input
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-        placeholder="Email"
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-      />
-      <input
-        value={bio}
-        onChange={(event) => setBio(event.target.value)}
-        placeholder="Giới thiệu"
-        className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"
-      />
-      <button type="submit" disabled={submitting} className="solid-button sm:col-span-2">
+    <form onSubmit={handleSubmit} className="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-2">
+      <Input value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="Tên hiển thị" required />
+      <Input value={role} onChange={(event) => setRole(event.target.value)} placeholder="Vai trò" required />
+      <Input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" />
+      <Input value={bio} onChange={(event) => setBio(event.target.value)} placeholder="Giới thiệu" />
+      <Button type="submit" disabled={submitting} className="bg-teal-600 hover:bg-teal-700 sm:col-span-2">
         {submitting ? "Đang tạo..." : "Tạo tác giả"}
-      </button>
-
-      {error ? <p className="text-sm font-semibold text-rose-700 sm:col-span-2">{error}</p> : null}
+      </Button>
+      {error ? <p className="text-sm text-rose-700 sm:col-span-2">{error}</p> : null}
     </form>
   );
 }

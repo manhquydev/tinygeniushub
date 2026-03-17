@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 type ApiResponse<TData> = {
   ok: boolean;
@@ -57,62 +58,44 @@ export function AdminActionLogPanel() {
   }, [fetchLogs]);
 
   return (
-    <section className="card page-stack">
-      <h2>Nhật ký quản trị</h2>
+    <div className="space-y-3">
+      <h2 className="text-sm font-bold uppercase tracking-wide text-slate-600">Nhật ký quản trị</h2>
 
-      {error ? <p className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">{error}</p> : null}
+      {error ? <p className="rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">{error}</p> : null}
 
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[560px] text-left text-sm">
-          <thead>
-            <tr className="text-xs uppercase tracking-[0.08em] text-slate-500">
-              <th className="px-2 py-2">Thời gian</th>
-              <th className="px-2 py-2">Người thực hiện</th>
-              <th className="px-2 py-2">Thao tác</th>
-              <th className="px-2 py-2">Đối tượng</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading
-              ? Array.from({ length: 4 }).map((_, index) => (
-                  <tr key={`admin-log-skeleton-${index}`} className="border-t border-slate-100">
-                    <td className="px-2 py-2">
-                      <div className="h-4 w-28 animate-pulse rounded bg-slate-200" />
-                    </td>
-                    <td className="px-2 py-2">
-                      <div className="h-4 w-40 animate-pulse rounded bg-slate-200" />
-                    </td>
-                    <td className="px-2 py-2">
-                      <div className="h-4 w-24 animate-pulse rounded bg-slate-200" />
-                    </td>
-                    <td className="px-2 py-2">
-                      <div className="h-4 w-28 animate-pulse rounded bg-slate-200" />
-                    </td>
-                  </tr>
-                ))
-              : null}
-
-            {!loading
-              ? logs.map((entry) => (
-                  <tr key={entry.id} className="border-t border-slate-100">
-                    <td className="px-2 py-2 text-slate-700">{new Date(entry.createdAt).toLocaleString("vi-VN")}</td>
-                    <td className="px-2 py-2 text-slate-700">{entry.adminEmail}</td>
-                    <td className="px-2 py-2 font-semibold text-slate-800">{entry.action}</td>
-                    <td className="px-2 py-2 text-slate-600">{entry.target ?? "-"}</td>
-                  </tr>
-                ))
-              : null}
-
+      <div className="rounded-lg border border-slate-200 overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="text-xs">Thời gian</TableHead>
+              <TableHead className="text-xs">Người thực hiện</TableHead>
+              <TableHead className="text-xs">Thao tác</TableHead>
+              <TableHead className="text-xs">Đối tượng</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {loading ? Array.from({ length: 4 }).map((_, index) => (
+              <TableRow key={`admin-log-skeleton-${index}`}>
+                <TableCell><div className="h-4 w-28 animate-pulse rounded bg-slate-200" /></TableCell>
+                <TableCell><div className="h-4 w-40 animate-pulse rounded bg-slate-200" /></TableCell>
+                <TableCell><div className="h-4 w-24 animate-pulse rounded bg-slate-200" /></TableCell>
+                <TableCell><div className="h-4 w-28 animate-pulse rounded bg-slate-200" /></TableCell>
+              </TableRow>
+            )) : null}
+            {!loading ? logs.map((entry) => (
+              <TableRow key={entry.id}>
+                <TableCell className="text-xs text-slate-600">{new Date(entry.createdAt).toLocaleString("vi-VN")}</TableCell>
+                <TableCell className="text-xs text-slate-600">{entry.adminEmail}</TableCell>
+                <TableCell className="text-xs font-semibold text-slate-800">{entry.action}</TableCell>
+                <TableCell className="text-xs text-slate-500">{entry.target ?? "-"}</TableCell>
+              </TableRow>
+            )) : null}
             {!loading && logs.length === 0 ? (
-              <tr>
-                <td colSpan={4} className="px-2 py-3 text-slate-500">
-                  Chưa có nhật ký nào.
-                </td>
-              </tr>
+              <TableRow><TableCell colSpan={4} className="text-xs text-slate-500">Chưa có nhật ký nào.</TableCell></TableRow>
             ) : null}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
-    </section>
+    </div>
   );
 }

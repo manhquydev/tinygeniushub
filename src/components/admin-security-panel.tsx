@@ -1,6 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Textarea } from "@/components/ui/textarea";
 
 type SecurityRateLimitPolicyRow = {
   key: string;
@@ -213,157 +219,122 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
   }
 
   return (
-    <section className="card page-stack">
-      <h2>Bảo mật hệ thống</h2>
-      <p className="muted-text">
-        Điều chỉnh giới hạn truy cập theo endpoint, đồng thời quản lý danh sách chặn và danh sách cho phép.
-      </p>
+    <div className="space-y-4">
+      <div>
+        <h2 className="text-sm font-bold uppercase tracking-wide text-slate-600">Bảo mật hệ thống</h2>
+        <p className="text-xs text-slate-500">Điều chỉnh giới hạn truy cập theo endpoint, đồng thời quản lý danh sách chặn và danh sách cho phép.</p>
+      </div>
 
-      <div className="admin-controls">
-        <label>
-          Chế độ DDoS
-          <select
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-1.5">
+          <Label>Chế độ DDoS</Label>
+          <Select
             value={securityControls.ddosMode}
-            onChange={(event) =>
-              setSecurityControls((current) => ({
-                ...current,
-                ddosMode: event.target.value as SecurityControls["ddosMode"],
-              }))
-            }
+            onValueChange={(value) => setSecurityControls((current) => ({ ...current, ddosMode: value as SecurityControls["ddosMode"] }))}
           >
-            <option value="normal">normal</option>
-            <option value="elevated">elevated</option>
-            <option value="emergency">emergency</option>
-          </select>
-        </label>
-        <label>
-          Hệ số giới hạn toàn cục
-          <input
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="normal">normal</SelectItem>
+              <SelectItem value="elevated">elevated</SelectItem>
+              <SelectItem value="emergency">emergency</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="grid gap-1.5">
+          <Label htmlFor="limit-multiplier">Hệ số giới hạn toàn cục</Label>
+          <Input
+            id="limit-multiplier"
             type="number"
             step="0.05"
             min={0.2}
             max={1}
             value={securityControls.globalLimitMultiplier}
-            onChange={(event) =>
-              setSecurityControls((current) => ({
-                ...current,
-                globalLimitMultiplier: Math.min(Math.max(Number(event.target.value) || 0.2, 0.2), 1),
-              }))
-            }
+            onChange={(event) => setSecurityControls((current) => ({ ...current, globalLimitMultiplier: Math.min(Math.max(Number(event.target.value) || 0.2, 0.2), 1) }))}
           />
-        </label>
+        </div>
       </div>
 
-      <div className="admin-controls">
-        <label className="stack-field">
-          Danh sách chặn IP/CIDR (mỗi dòng hoặc phân tách bởi dấu phẩy)
-          <textarea
-            value={blockedIpCidrsRaw}
-            onChange={(event) => setBlockedIpCidrsRaw(event.target.value)}
-            rows={4}
-            placeholder={"198.51.100.10\n203.0.113.0/24"}
-          />
-        </label>
-        <label className="stack-field">
-          Danh sách cho phép readiness IP/CIDR
-          <textarea
-            value={readinessAllowlistRaw}
-            onChange={(event) => setReadinessAllowlistRaw(event.target.value)}
-            rows={4}
-            placeholder={"10.0.0.0/8\n192.168.0.0/16"}
-          />
-        </label>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-1.5">
+          <Label htmlFor="blocked-cidrs">Danh sách chặn IP/CIDR (mỗi dòng hoặc phân tách bởi dấu phẩy)</Label>
+          <Textarea id="blocked-cidrs" value={blockedIpCidrsRaw} onChange={(event) => setBlockedIpCidrsRaw(event.target.value)} rows={4} placeholder={"198.51.100.10\n203.0.113.0/24"} />
+        </div>
+        <div className="grid gap-1.5">
+          <Label htmlFor="allowlist-cidrs">Danh sách cho phép readiness IP/CIDR</Label>
+          <Textarea id="allowlist-cidrs" value={readinessAllowlistRaw} onChange={(event) => setReadinessAllowlistRaw(event.target.value)} rows={4} placeholder={"10.0.0.0/8\n192.168.0.0/16"} />
+        </div>
       </div>
 
-      <div className="admin-controls">
-        <button type="button" className="ghost-button" onClick={refreshSecurityPolicies} disabled={loadingSecurityPolicies}>
+      <div className="flex flex-wrap gap-2">
+        <Button type="button" variant="outline" onClick={refreshSecurityPolicies} disabled={loadingSecurityPolicies}>
           {loadingSecurityPolicies ? "Đang tải cấu hình..." : "Làm mới cấu hình"}
-        </button>
-        <button type="button" className="solid-button" onClick={saveSecurityPolicies} disabled={savingSecurityPolicies}>
+        </Button>
+        <Button type="button" className="bg-teal-600 hover:bg-teal-700" onClick={saveSecurityPolicies} disabled={savingSecurityPolicies}>
           {savingSecurityPolicies ? "Đang lưu..." : "Lưu cấu hình"}
-        </button>
-        <button type="button" className="ghost-button" onClick={exportEdgePolicy} disabled={exportingEdgePolicy}>
+        </Button>
+        <Button type="button" variant="outline" onClick={exportEdgePolicy} disabled={exportingEdgePolicy}>
           {exportingEdgePolicy ? "Đang xuất..." : "Xuất edge policy JSON"}
-        </button>
+        </Button>
       </div>
 
-      <div className="admin-table-wrap">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Chính sách</th>
-              <th>Chiến lược khóa</th>
-              <th>Giới hạn</th>
-              <th>Cửa sổ (ms)</th>
-              <th>Mặc định</th>
-              <th>Đang áp dụng</th>
-              <th>Khoảng hợp lệ</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className="rounded-lg border border-slate-200 overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="text-xs">Chính sách</TableHead>
+              <TableHead className="text-xs">Chiến lược khóa</TableHead>
+              <TableHead className="text-xs">Giới hạn</TableHead>
+              <TableHead className="text-xs">Cửa sổ (ms)</TableHead>
+              <TableHead className="text-xs">Mặc định</TableHead>
+              <TableHead className="text-xs">Đang áp dụng</TableHead>
+              <TableHead className="text-xs">Khoảng hợp lệ</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {securityPolicies.map((policy) => (
-              <tr key={policy.key}>
-                <td>
-                  <strong>{policy.label}</strong>
-                  <p className="muted-text">
-                    {policy.key} - {policy.description}
-                  </p>
-                </td>
-                <td>{policy.keyStrategy}</td>
-                <td>
-                  <input
+              <TableRow key={policy.key}>
+                <TableCell>
+                  <p className="text-sm font-semibold text-slate-800">{policy.label}</p>
+                  <p className="text-xs text-slate-500">{policy.key} - {policy.description}</p>
+                </TableCell>
+                <TableCell className="text-xs">{policy.keyStrategy}</TableCell>
+                <TableCell>
+                  <Input
                     type="number"
                     value={policy.currentLimit}
                     min={policy.minLimit}
                     max={policy.maxLimit}
-                    onChange={(event) =>
-                      updateSecurityPolicyValue({
-                        key: policy.key,
-                        field: "currentLimit",
-                        value: event.target.value,
-                      })
-                    }
+                    className="h-7 w-20 text-xs"
+                    onChange={(event) => updateSecurityPolicyValue({ key: policy.key, field: "currentLimit", value: event.target.value })}
                   />
-                </td>
-                <td>
-                  <input
+                </TableCell>
+                <TableCell>
+                  <Input
                     type="number"
                     value={policy.currentWindowMs}
                     min={policy.minWindowMs}
                     max={policy.maxWindowMs}
-                    onChange={(event) =>
-                      updateSecurityPolicyValue({
-                        key: policy.key,
-                        field: "currentWindowMs",
-                        value: event.target.value,
-                      })
-                    }
+                    className="h-7 w-24 text-xs"
+                    onChange={(event) => updateSecurityPolicyValue({ key: policy.key, field: "currentWindowMs", value: event.target.value })}
                   />
-                </td>
-                <td>
-                  {policy.defaultLimit} / {formatWindowMs(policy.defaultWindowMs)}
-                </td>
-                <td>
-                  {policy.effectiveLimit} / {formatWindowMs(policy.effectiveWindowMs)}
-                </td>
-                <td>
-                  limit {policy.minLimit}-{policy.maxLimit}
-                  <br />
+                </TableCell>
+                <TableCell className="text-xs">{policy.defaultLimit} / {formatWindowMs(policy.defaultWindowMs)}</TableCell>
+                <TableCell className="text-xs">{policy.effectiveLimit} / {formatWindowMs(policy.effectiveWindowMs)}</TableCell>
+                <TableCell className="text-xs">
+                  limit {policy.minLimit}-{policy.maxLimit}<br />
                   window {formatWindowMs(policy.minWindowMs)}-{formatWindowMs(policy.maxWindowMs)}
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
             {securityPolicies.length === 0 ? (
-              <tr>
-                <td colSpan={7}>Chưa có cấu hình giới hạn truy cập.</td>
-              </tr>
+              <TableRow><TableCell colSpan={7} className="text-xs text-slate-500">Chưa có cấu hình giới hạn truy cập.</TableCell></TableRow>
             ) : null}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
 
-      {error ? <p className="error-text">{error}</p> : null}
-      {info ? <p className="muted-text">{info}</p> : null}
-    </section>
+      {error ? <p className="text-xs text-rose-600">{error}</p> : null}
+      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+    </div>
   );
 }

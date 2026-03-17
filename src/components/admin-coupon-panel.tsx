@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 type CouponRow = {
   id: string;
@@ -133,104 +137,82 @@ export function AdminCouponPanel() {
   }
 
   return (
-    <section className="card page-stack">
-      <h3>Mã giảm giá</h3>
+    <div className="space-y-4">
+      <h3 className="text-sm font-bold uppercase tracking-wide text-slate-600">Mã giảm giá</h3>
 
-      <div className="admin-controls">
-        <label>
-          Mã
-          <input
-            value={code}
-            onChange={(event) => setCode(event.target.value.toUpperCase())}
-            type="text"
-            placeholder="WELCOME20"
-          />
-        </label>
-        <label>
-          Giảm (%)
-          <input
-            value={discountPercent}
-            onChange={(event) => setDiscountPercent(event.target.value)}
-            type="number"
-            min={5}
-            max={100}
-          />
-        </label>
-        <label>
-          Số lượt tối đa (tùy chọn)
-          <input value={maxUses} onChange={(event) => setMaxUses(event.target.value)} type="number" min={1} />
-        </label>
-        <label>
-          Hết hạn (tùy chọn)
-          <input
-            type="date"
-            min={toDateInputValue(new Date())}
-            value={expiresAt}
-            onChange={(event) => setExpiresAt(event.target.value)}
-          />
-        </label>
-        <button type="button" className="solid-button" onClick={() => void handleCreateCoupon()} disabled={submitting}>
-          {submitting ? "Đang tạo..." : "Tạo mã"}
-        </button>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-1.5">
+          <Label htmlFor="coupon-code">Mã</Label>
+          <Input id="coupon-code" value={code} onChange={(event) => setCode(event.target.value.toUpperCase())} type="text" placeholder="WELCOME20" />
+        </div>
+        <div className="grid gap-1.5">
+          <Label htmlFor="coupon-discount">Giảm (%)</Label>
+          <Input id="coupon-discount" value={discountPercent} onChange={(event) => setDiscountPercent(event.target.value)} type="number" min={5} max={100} />
+        </div>
+        <div className="grid gap-1.5">
+          <Label htmlFor="coupon-max">Số lượt tối đa (tùy chọn)</Label>
+          <Input id="coupon-max" value={maxUses} onChange={(event) => setMaxUses(event.target.value)} type="number" min={1} />
+        </div>
+        <div className="grid gap-1.5">
+          <Label htmlFor="coupon-expires">Hết hạn (tùy chọn)</Label>
+          <Input id="coupon-expires" type="date" min={toDateInputValue(new Date())} value={expiresAt} onChange={(event) => setExpiresAt(event.target.value)} />
+        </div>
       </div>
+      <Button type="button" className="bg-teal-600 hover:bg-teal-700" onClick={() => void handleCreateCoupon()} disabled={submitting}>
+        {submitting ? "Đang tạo..." : "Tạo mã"}
+      </Button>
 
-      <div className="admin-table-wrap">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Mã</th>
-              <th>Giảm</th>
-              <th>Dùng / tối đa</th>
-              <th>Hết hạn</th>
-              <th>Trạng thái</th>
-              <th>Hành động</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading
-              ? Array.from({ length: 3 }).map((_, index) => (
-                  <tr key={`coupon-skeleton-${index}`}>
-                    <td colSpan={6}>Đang tải...</td>
-                  </tr>
-                ))
-              : null}
-            {!loading
-              ? coupons.map((coupon) => (
-                  <tr key={coupon.id}>
-                    <td className="font-semibold">{coupon.code}</td>
-                    <td>{coupon.discountPercent}%</td>
-                    <td>
-                      {coupon.usedCount} / {coupon.maxUses ?? "Không giới hạn"}
-                    </td>
-                    <td>{coupon.expiresAt ? new Date(coupon.expiresAt).toLocaleDateString("vi-VN") : "Không giới hạn"}</td>
-                    <td>{coupon.active ? "Đang bật" : "Đang tắt"}</td>
-                    <td className="space-x-2">
-                      <button type="button" className="ghost-button" onClick={() => void handleCopyCode(coupon.code)}>
-                        Copy
-                      </button>
-                      <button
-                        type="button"
-                        className={coupon.active ? "danger-button" : "solid-button"}
-                        onClick={() => void handleToggleCoupon(coupon.id)}
-                        disabled={updatingId === coupon.id}
-                      >
-                        {updatingId === coupon.id ? "Đang cập nhật..." : coupon.active ? "Tắt" : "Bật"}
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              : null}
+      <div className="rounded-lg border border-slate-200 overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="text-xs">Mã</TableHead>
+              <TableHead className="text-xs">Giảm</TableHead>
+              <TableHead className="text-xs">Dùng / tối đa</TableHead>
+              <TableHead className="text-xs">Hết hạn</TableHead>
+              <TableHead className="text-xs">Trạng thái</TableHead>
+              <TableHead className="text-xs">Hành động</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {loading ? Array.from({ length: 3 }).map((_, index) => (
+              <TableRow key={`coupon-skeleton-${index}`}>
+                <TableCell colSpan={6} className="text-xs text-slate-500">Đang tải...</TableCell>
+              </TableRow>
+            )) : null}
+            {!loading ? coupons.map((coupon) => (
+              <TableRow key={coupon.id}>
+                <TableCell className="text-xs font-semibold">{coupon.code}</TableCell>
+                <TableCell className="text-xs">{coupon.discountPercent}%</TableCell>
+                <TableCell className="text-xs">{coupon.usedCount} / {coupon.maxUses ?? "Không giới hạn"}</TableCell>
+                <TableCell className="text-xs">{coupon.expiresAt ? new Date(coupon.expiresAt).toLocaleDateString("vi-VN") : "Không giới hạn"}</TableCell>
+                <TableCell className="text-xs">{coupon.active ? "Đang bật" : "Đang tắt"}</TableCell>
+                <TableCell>
+                  <div className="flex gap-1">
+                    <Button type="button" variant="outline" size="sm" className="h-7 text-xs" onClick={() => void handleCopyCode(coupon.code)}>Copy</Button>
+                    <Button
+                      type="button"
+                      size="sm"
+                      className="h-7 text-xs"
+                      variant={coupon.active ? "destructive" : "default"}
+                      onClick={() => void handleToggleCoupon(coupon.id)}
+                      disabled={updatingId === coupon.id}
+                    >
+                      {updatingId === coupon.id ? "Đang cập nhật..." : coupon.active ? "Tắt" : "Bật"}
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            )) : null}
             {!loading && coupons.length === 0 ? (
-              <tr>
-                <td colSpan={6}>Chưa có mã giảm giá.</td>
-              </tr>
+              <TableRow><TableCell colSpan={6} className="text-xs text-slate-500">Chưa có mã giảm giá.</TableCell></TableRow>
             ) : null}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
 
-      {error ? <p className="error-text">{error}</p> : null}
-      {info ? <p className="muted-text">{info}</p> : null}
-    </section>
+      {error ? <p className="text-xs text-rose-600">{error}</p> : null}
+      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+    </div>
   );
 }

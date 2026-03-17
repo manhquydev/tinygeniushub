@@ -30,7 +30,7 @@ export default async function AdminEditPostPage({ params }: AdminEditPostPagePro
   }
 
   return (
-    <div className="page-stack">
+    <div className="space-y-6">
       <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Chỉnh sửa bài viết</h1>
       </section>
