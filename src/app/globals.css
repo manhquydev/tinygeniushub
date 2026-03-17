@@ -87,7 +87,8 @@
 }
 
 /* Override shadcn sidebar vars for admin dark sidebar */
-[data-slot="sidebar"] {
+/* shadcn sidebar uses data-sidebar="sidebar", not data-slot */
+[data-sidebar="sidebar"] {
   --sidebar: var(--admin-sidebar-bg);
   --sidebar-foreground: var(--admin-sidebar-fg);
   --sidebar-accent: var(--admin-sidebar-accent);

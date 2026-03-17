@@ -11,6 +11,11 @@ export function MainShell({ children }: MainShellProps) {
   const pathname = usePathname();
   const isHomepage = pathname === "/";
   const isAuthRoute = pathname.startsWith("/auth");
+  const isAdminRoute = pathname.startsWith("/admin");
+
+  if (isAdminRoute) {
+    return <>{children}</>;
+  }
 
   if (isHomepage) {
     return <main className="main-shell main-shell-home">{children}</main>;

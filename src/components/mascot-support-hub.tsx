@@ -51,6 +51,7 @@ export function MascotSupportHub() {
   const pressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isKidRoute = pathname?.startsWith("/kid");
+  const isAdminRoute = pathname?.startsWith("/admin");
   const isHomepage = pathname === "/";
   const open = isPinnedOpen || isHoverOpen;
   const activePersona = SUPPORT_PERSONAS[personaIndex % SUPPORT_PERSONAS.length] ?? SUPPORT_PERSONAS[0];

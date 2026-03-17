@@ -28,36 +28,30 @@ export default async function AdminLayout({ children }: { children: ReactNode })
       <AdminShellNav role={role} />
 
       <SidebarInset style={{ backgroundColor: "var(--admin-content-bg)" }}>
-        <header className="flex h-14 items-center gap-3 px-4 border-b border-slate-200 bg-white sticky top-0 z-10">
-          <SidebarTrigger className="text-slate-500 hover:text-slate-900 hover:bg-slate-100 -ml-1" />
-          <Separator orientation="vertical" className="h-5" />
-          <div className="flex items-center gap-2 text-slate-600">
-            <ShieldCheck size={15} className="text-teal-600" />
-            <div>
-              <p className="text-sm font-medium text-slate-800 leading-tight">
-                Bảng điều khiển quản trị
-              </p>
-              <p className="text-xs text-slate-400 leading-tight hidden sm:block">
-                Giám sát vận hành, nội dung và bảo mật hệ thống
-              </p>
-            </div>
+        <header className="flex h-12 items-center gap-2 px-3 border-b border-slate-200 bg-white sticky top-0 z-10 md:h-14 md:gap-3 md:px-4">
+          <SidebarTrigger className="shrink-0 text-slate-500 hover:text-slate-900 hover:bg-slate-100 -ml-1" />
+          <Separator orientation="vertical" className="h-5 shrink-0" />
+          <div className="flex min-w-0 items-center gap-2 text-slate-600">
+            <ShieldCheck size={14} className="shrink-0 text-teal-600" />
+            <p className="truncate text-sm font-medium text-slate-800">
+              Quản trị
+            </p>
           </div>
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex shrink-0 items-center gap-2">
             <span className="hidden sm:inline-flex items-center rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700 border border-teal-200">
               {roleLabel}
             </span>
-            <span className="hidden md:inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600">
+            <span className="hidden lg:inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600">
               {todayLabel}
             </span>
-            <div className="flex flex-col items-end">
-              <span className="text-xs font-medium text-slate-700">{role}</span>
-              <span className="text-xs text-slate-400">{session.user.email}</span>
+            <div className="hidden md:flex flex-col items-end">
+              <span className="text-xs font-medium text-slate-700 leading-tight">{session.user.email}</span>
             </div>
           </div>
         </header>
 
-        <main className="flex-1 p-4 md:p-6">{children}</main>
+        <main className="flex-1 p-3 md:p-6">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

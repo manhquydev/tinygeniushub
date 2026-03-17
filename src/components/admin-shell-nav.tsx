@@ -184,7 +184,7 @@ export function AdminShellNav({ role }: { role: string }) {
       className={cn("border-r-0")}
       style={
         {
-          "--sidebar-background": "var(--admin-sidebar-bg)",
+          "--sidebar": "var(--admin-sidebar-bg)",
           "--sidebar-foreground": "var(--admin-sidebar-fg)",
           "--sidebar-accent": "var(--admin-sidebar-accent)",
           "--sidebar-accent-foreground": "var(--admin-sidebar-accent-fg)",
@@ -210,7 +210,7 @@ export function AdminShellNav({ role }: { role: string }) {
       <SidebarContent className="px-2 py-2">
         {visibleGroups.map((group) => (
           <SidebarGroup key={group.label}>
-            <SidebarGroupLabel className="text-xs uppercase tracking-wider text-[#64748b] px-2 mb-1">
+            <SidebarGroupLabel className="text-xs uppercase tracking-wider text-[#94a3b8] px-2 mb-1">
               {group.label}
             </SidebarGroupLabel>
             <SidebarMenu>
