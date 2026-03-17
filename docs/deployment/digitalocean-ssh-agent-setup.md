@@ -68,10 +68,11 @@ In GitHub repo settings, add:
 - `DO_SSH_PRIVATE_KEY`: full private key content (`-----BEGIN OPENSSH PRIVATE KEY----- ...`)
 - `DO_SSH_KNOWN_HOSTS`: output from `ssh-keyscan -H ...`
 - `DO_APP_DIR`: app path on server (for example `/srv/cungcontuhoc`)
-- `DO_POST_DEPLOY_COMMAND`: restart command after build, for example:
-  - `pm2 reload cungcontuhoc`
-  - `systemctl restart cungcontuhoc`
-  - `docker compose up -d --build`
+
+Post-deploy restart command is now fixed in workflow as:
+- `pm2 restart cungcontuhoc || pm2 start cungcontuhoc`
+
+If your runtime differs (systemd/docker), update `.github/workflows/deploy-digitalocean-ssh.yml` accordingly.
 
 ## Step 5: Server prerequisites
 

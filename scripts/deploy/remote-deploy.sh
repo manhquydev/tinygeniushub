@@ -21,28 +21,41 @@ echo "[deploy] Generating Prisma client"
 pnpm db:generate
 
 echo "[deploy] Applying database migrations"
-# Prefer runtime-provided DATABASE_URL. If missing, point Prisma dotenv to
-# production env files before falling back to .env.
-if [[ -n "${DATABASE_URL:-}" ]]; then
-  echo "[deploy] DATABASE_URL detected from process environment"
-  pnpm prisma migrate deploy
-else
-  prisma_dotenv_path=""
-  for candidate in "${DEPLOY_ENV_FILE:-}" ".env.production.local" ".env.production" ".env"; do
-    if [[ -n "$candidate" && -f "$candidate" ]]; then
-      prisma_dotenv_path="$candidate"
-      break
-    fi
-  done
-
-  if [[ -n "$prisma_dotenv_path" ]]; then
-    echo "[deploy] Loading Prisma env from ${prisma_dotenv_path}"
-    DOTENV_CONFIG_PATH="$prisma_dotenv_path" pnpm prisma migrate deploy
-  else
-    echo "[deploy] No env file found; running migrate with current shell env only"
+run_migrate_deploy() {
+  # Prefer runtime-provided DATABASE_URL. If missing, point Prisma dotenv to
+  # production env files before falling back to .env.
+  if [[ -n "${DATABASE_URL:-}" ]]; then
+    echo "[deploy] DATABASE_URL detected from process environment"
     pnpm prisma migrate deploy
+  else
+    prisma_dotenv_path=""
+    for candidate in "${DEPLOY_ENV_FILE:-}" ".env.production.local" ".env.production" ".env"; do
+      if [[ -n "$candidate" && -f "$candidate" ]]; then
+        prisma_dotenv_path="$candidate"
+        break
+      fi
+    done
+
+    if [[ -n "$prisma_dotenv_path" ]]; then
+      echo "[deploy] Loading Prisma env from ${prisma_dotenv_path}"
+      DOTENV_CONFIG_PATH="$prisma_dotenv_path" pnpm prisma migrate deploy
+    else
+      echo "[deploy] No env file found; running migrate with current shell env only"
+      pnpm prisma migrate deploy
+    fi
   fi
-fi
+}
+
+migrate_attempt=1
+until run_migrate_deploy; do
+  if [[ "$migrate_attempt" -ge 5 ]]; then
+    echo "[deploy] Migration failed after ${migrate_attempt} attempts."
+    exit 1
+  fi
+  echo "[deploy] Migration attempt ${migrate_attempt} failed, retrying in 5s..."
+  migrate_attempt=$((migrate_attempt + 1))
+  sleep 5
+done
 
 echo "[deploy] Building production bundle"
 pnpm build

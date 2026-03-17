@@ -51,11 +51,10 @@ jobs:
           DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
           DO_SSH_PRIVATE_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
           DO_SSH_KNOWN_HOSTS: ${{ secrets.DO_SSH_KNOWN_HOSTS }}
-          DO_POST_DEPLOY_COMMAND: ${{ secrets.DO_POST_DEPLOY_COMMAND }}
         run: |
           set -euo pipefail
           missing=0
-          for name in DO_SSH_HOST DO_SSH_USER DO_SSH_PRIVATE_KEY DO_SSH_KNOWN_HOSTS DO_POST_DEPLOY_COMMAND; do
+          for name in DO_SSH_HOST DO_SSH_USER DO_SSH_PRIVATE_KEY DO_SSH_KNOWN_HOSTS; do
             if [ -z "${!name:-}" ]; then
               echo "::error::Missing required secret: $name"
               missing=1
@@ -96,11 +95,10 @@ jobs:
         env:
           DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
           DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
-          DO_POST_DEPLOY_COMMAND: ${{ secrets.DO_POST_DEPLOY_COMMAND }}
           DEPLOY_REF: ${{ env.DEPLOY_REF }}
         run: |
           set -euo pipefail
-          POST_CMD_B64="$(printf '%s' "$DO_POST_DEPLOY_COMMAND" | base64 -w0)"
+          POST_CMD_B64="$(printf '%s' 'pm2 restart cungcontuhoc || pm2 start cungcontuhoc' | base64 -w0)"
 
           ssh \
             -i ~/.ssh/do_deploy_key \
