@@ -6,11 +6,13 @@ import { MainShell } from "@/components/main-shell";
 import { SiteFooter } from "@/components/site-footer";
 import { SystemAnnouncementBanner } from "@/components/system-announcement-banner";
 import { getAuthenticatedParentFromServerCookie, getParentFromServerCookie } from "@/lib/auth/session";
+import { getFooterSocialLinks } from "@/modules/platform/site-content-settings-service";
 
 export default async function MainRouteLayout({ children }: { children: ReactNode }) {
-  const [displayParent, authenticatedParent] = await Promise.all([
+  const [displayParent, authenticatedParent, footerSocialLinks] = await Promise.all([
     getParentFromServerCookie(),
     getAuthenticatedParentFromServerCookie(),
+    getFooterSocialLinks(),
   ]);
   const isImpersonating =
     !!displayParent &&
@@ -25,7 +27,7 @@ export default async function MainRouteLayout({ children }: { children: ReactNod
       <AppNav />
       <MainShell>{children}</MainShell>
       <MascotSupportHub />
-      <SiteFooter hasParent={!!displayParent} />
+      <SiteFooter hasParent={!!displayParent} socialLinks={footerSocialLinks} />
     </>
   );
 }

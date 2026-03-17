@@ -3,14 +3,9 @@
 import { useState } from "react";
 import { AdminAnnouncementPanel } from "@/components/admin-announcement-panel";
 import { AdminCouponPanel } from "@/components/admin-coupon-panel";
+import { AdminFooterSocialLinksPanel } from "@/components/admin-footer-social-links-panel";
 import { AdminOperationsPanel } from "@/components/admin-operations-panel";
-import {
-  Bell,
-  CreditCard,
-  Tag,
-  Webhook,
-  BookOpen,
-} from "lucide-react";
+import { Bell, BookOpen, CreditCard, Share2, Tag, Webhook } from "lucide-react";
 
 type PaymentRow = {
   id: string;
@@ -54,6 +49,7 @@ const TABS = [
   { id: "trials", label: "Bài học dùng thử", icon: BookOpen },
   { id: "announcements", label: "Thông báo", icon: Bell },
   { id: "coupons", label: "Mã giảm giá", icon: Tag },
+  { id: "footer-social", label: "Footer social", icon: Share2 },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -67,7 +63,6 @@ export function AdminOperationsTabs({
 
   return (
     <div className="space-y-0">
-      {/* Tab bar */}
       <div className="flex gap-1 overflow-x-auto rounded-t-2xl border border-slate-200 bg-white px-4 py-3">
         {TABS.map((tab) => {
           const Icon = tab.icon;
@@ -90,7 +85,6 @@ export function AdminOperationsTabs({
         })}
       </div>
 
-      {/* Tab content */}
       <div className="rounded-b-2xl border border-t-0 border-slate-200 bg-white p-4">
         {activeTab === "payments" || activeTab === "webhooks" || activeTab === "trials" ? (
           <AdminOperationsPanel
@@ -103,6 +97,7 @@ export function AdminOperationsTabs({
 
         {activeTab === "announcements" ? <AdminAnnouncementPanel /> : null}
         {activeTab === "coupons" ? <AdminCouponPanel /> : null}
+        {activeTab === "footer-social" ? <AdminFooterSocialLinksPanel /> : null}
       </div>
     </div>
   );

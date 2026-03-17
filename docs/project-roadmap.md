@@ -1,7 +1,18 @@
 # Project Roadmap
 
-**Last updated:** 2026-02-25
+**Last updated:** 2026-03-17
 **Status:** All phases complete — deployed to production.
+
+---
+
+## Patch Stream - 2026-03-17 [COMPLETE]
+
+- Added `SiteContentSettings` data model for admin-managed footer social links.
+- Added admin endpoint: `GET/PATCH /api/admin/site-settings/footer-social-links`.
+- Added Admin Operations tab: **Footer social** for updating social URL targets without code edits.
+- Footer social links now resolve from server settings with fallback defaults when no settings row exists.
+- Removed process-level cache for footer social links to avoid stale values after admin updates.
+- Added regression coverage: service tests, route tests, and Playwright E2E for admin update -> homepage reflection.
 
 ---
 
@@ -66,6 +77,7 @@
 
 ## Next Priorities (backlog)
 
+- Admin-configurable content settings expansion (footer links done; next: contact info, legal links, app badges)
 - Stripe live mode switch (replace mock_gateway)
 - Comment system on blog posts
 - Advanced course features (progress resume, bookmarks)

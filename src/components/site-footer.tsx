@@ -6,15 +6,21 @@ import Link from "next/link";
 import type { MouseEvent } from "react";
 import { usePathname } from "next/navigation";
 import { trackEvent } from "@/lib/analytics/track-event";
+import {
+  DEFAULT_FOOTER_SOCIAL_LINKS,
+  type FooterSocialLinks,
+} from "@/modules/platform/footer-social-links";
 
 interface SiteFooterProps {
   hasParent?: boolean;
+  socialLinks?: FooterSocialLinks;
 }
 
-export function SiteFooter({ hasParent = false }: SiteFooterProps) {
+export function SiteFooter({ hasParent = false, socialLinks }: SiteFooterProps) {
   const pathname = usePathname() ?? "";
   const isAdminRoute = pathname.startsWith("/admin");
   const currentYear = new Date().getFullYear();
+  const resolvedSocialLinks = socialLinks ?? DEFAULT_FOOTER_SOCIAL_LINKS;
 
   if (isAdminRoute) {
     return null;
@@ -63,7 +69,7 @@ export function SiteFooter({ hasParent = false }: SiteFooterProps) {
             {/* Social links */}
             <div className="footer-social">
               <a
-                href="https://facebook.com/cungcontuhoc"
+                href={resolvedSocialLinks.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-btn"
@@ -77,7 +83,7 @@ export function SiteFooter({ hasParent = false }: SiteFooterProps) {
               </a>
 
               <a
-                href="https://youtube.com/@cungcontuhoc"
+                href={resolvedSocialLinks.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-btn"
@@ -91,7 +97,7 @@ export function SiteFooter({ hasParent = false }: SiteFooterProps) {
               </a>
 
               <a
-                href="https://tiktok.com/@cungcontuhoc"
+                href={resolvedSocialLinks.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-btn"
@@ -112,7 +118,7 @@ export function SiteFooter({ hasParent = false }: SiteFooterProps) {
               </a>
 
               <a
-                href="https://zalo.me/cungcontuhoc"
+                href={resolvedSocialLinks.zalo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-btn"

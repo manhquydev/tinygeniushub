@@ -1,5 +1,27 @@
 # Project Changelog
 
+## [0.3.1] - 2026-03-17
+
+### Added
+- **Admin-configurable footer social links** â€” New settings storage for Facebook/YouTube/TikTok/Zalo destinations in site footer.
+- **Admin API for footer social links** â€” `GET/PATCH /api/admin/site-settings/footer-social-links`.
+- **Admin Operations tab: Footer social** â€” UI panel to update footer social URLs from admin without code change.
+- **Site content settings service** â€” safe read fallback to defaults when DB row is missing/unavailable.
+
+### Changed
+- Main layout now loads footer social links from server-side settings service.
+- Footer component now reads dynamic social URLs via props instead of hardcoded values.
+- Removed in-memory cache for footer social links to ensure admin updates reflect immediately across requests.
+
+### Database
+- New Prisma model: `SiteContentSettings`.
+- New migration: `20260317194500_add_site_content_settings`.
+
+### Tests
+- Added `site-content-settings-service` unit tests.
+- Extended `site-footer` test coverage for dynamic social link rendering.
+- Added Playwright E2E flow: admin updates footer social links and homepage reflects updated targets.
+
 ## [0.3.0] - 2026-02-27
 
 ### Added
