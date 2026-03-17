@@ -49,9 +49,12 @@ ssh do-server "pm2 start cungcontuhoc"
 ## 3. Database operations
  Prisma is used for the database. To run Prisma migrations or seed the database on production:
 ```bash
-ssh do-server "cd /var/www/cungcontuhoc && pnpm db:migrate"
+ssh do-server "cd /var/www/cungcontuhoc && pnpm prisma migrate deploy"
 ssh do-server "cd /var/www/cungcontuhoc && pnpm db:seed"
 ```
+
+Important:
+- Do not use `pnpm db:migrate` in production because it maps to `prisma migrate dev`.
 
 ## 4. Administrative Logins
 Admin configurations are set in the `.env` file via `ADMIN_EMAILS`.
