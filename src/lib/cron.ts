@@ -1,12 +1,8 @@
-﻿import { env } from "@/lib/env";
+import { timingSafeEqual } from "node:crypto";
 import type { NextRequest } from "next/server";
+import { env } from "@/lib/env";
 
 function readSecretFromHeaders(request: NextRequest) {
-  const querySecret = request.nextUrl.searchParams.get("secret");
-  if (querySecret) {
-    return querySecret;
-  }
-
   const directHeader =
     request.headers.get("x-cron-secret") ??
     request.headers.get("cron-secret") ??
@@ -14,7 +10,7 @@ function readSecretFromHeaders(request: NextRequest) {
     request.headers.get("CRON_SECRET");
 
   if (directHeader) {
-    return directHeader;
+    return directHeader.trim();
   }
 
   const authorization = request.headers.get("authorization");
@@ -27,11 +23,23 @@ function readSecretFromHeaders(request: NextRequest) {
     return null;
   }
 
-  return token;
+  return token.trim();
+}
+
+function constantTimeEquals(a: string, b: string) {
+  const aBuffer = Buffer.from(a);
+  const bBuffer = Buffer.from(b);
+  if (aBuffer.length !== bBuffer.length) {
+    return false;
+  }
+
+  return timingSafeEqual(aBuffer, bBuffer);
 }
 
 export function isCronRequestAuthorized(request: NextRequest) {
   const headerSecret = readSecretFromHeaders(request);
-  return Boolean(headerSecret && headerSecret === env.CRON_SECRET);
+  if (!headerSecret) {
+    return false;
+  }
+  return constantTimeEquals(headerSecret, env.CRON_SECRET);
 }
-

@@ -1,14 +1,20 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { headersMock, getSessionMock, parentFindUniqueMock, parentFindFirstMock, userUpdateManyMock } = vi.hoisted(
-  () => ({
-    headersMock: vi.fn(),
-    getSessionMock: vi.fn(),
-    parentFindUniqueMock: vi.fn(),
-    parentFindFirstMock: vi.fn(),
-    userUpdateManyMock: vi.fn(),
-  }),
-);
+const {
+  headersMock,
+  getSessionMock,
+  parentFindUniqueMock,
+  parentFindFirstMock,
+  userUpdateManyMock,
+  getImpersonatedParentIdFromCookieHeaderMock,
+} = vi.hoisted(() => ({
+  headersMock: vi.fn(),
+  getSessionMock: vi.fn(),
+  parentFindUniqueMock: vi.fn(),
+  parentFindFirstMock: vi.fn(),
+  userUpdateManyMock: vi.fn(),
+  getImpersonatedParentIdFromCookieHeaderMock: vi.fn(),
+}));
 
 vi.mock("next/headers", () => ({
   headers: headersMock,
@@ -32,6 +38,16 @@ vi.mock("@/lib/db", () => ({
       updateMany: userUpdateManyMock,
     },
   },
+}));
+
+vi.mock("@/lib/env", () => ({
+  env: {
+    ADMIN_EMAILS: ["admin@example.com"],
+  },
+}));
+
+vi.mock("@/lib/auth/impersonation", () => ({
+  getImpersonatedParentIdFromCookieHeader: getImpersonatedParentIdFromCookieHeaderMock,
 }));
 
 import { getParentFromRequest, getParentFromServerCookie, SESSION_COOKIE_NAME } from "@/lib/auth/session";
@@ -167,6 +183,39 @@ describe("getParentFromRequest", () => {
 
     expect(result).toBeNull();
     expect(userUpdateManyMock).not.toHaveBeenCalled();
+  });
+
+  it("binds impersonation cookie to the current admin email", async () => {
+    getSessionMock.mockResolvedValueOnce({
+      user: {
+        id: "auth-admin-1",
+        email: "admin@example.com",
+        parentId: "admin-parent",
+      },
+    });
+    parentFindUniqueMock
+      .mockResolvedValueOnce({
+        id: "admin-parent",
+        email: "admin@example.com",
+      })
+      .mockResolvedValueOnce({
+        id: "impersonated-parent",
+        email: "parent@example.com",
+      });
+    getImpersonatedParentIdFromCookieHeaderMock.mockReturnValueOnce("impersonated-parent");
+
+    const result = await getParentFromRequest({
+      headers: new Headers({ cookie: "ccth_session=session-admin" }),
+    } as never);
+
+    expect(getImpersonatedParentIdFromCookieHeaderMock).toHaveBeenCalledWith(
+      "ccth_session=session-admin",
+      "admin@example.com",
+    );
+    expect(result).toEqual({
+      id: "impersonated-parent",
+      email: "parent@example.com",
+    });
   });
 });
 

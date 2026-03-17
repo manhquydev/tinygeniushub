@@ -82,7 +82,10 @@ async function resolveParentFromHeaders(
     return authenticatedParent;
   }
 
-  const impersonatedParentId = getImpersonatedParentIdFromCookieHeader(requestHeaders.get("cookie"));
+  const impersonatedParentId = getImpersonatedParentIdFromCookieHeader(
+    requestHeaders.get("cookie"),
+    authenticatedParent.email,
+  );
   if (!impersonatedParentId || impersonatedParentId === authenticatedParent.id) {
     return authenticatedParent;
   }

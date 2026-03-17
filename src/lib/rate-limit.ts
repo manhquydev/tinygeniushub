@@ -222,14 +222,19 @@ export function getRequestIp(
   const trustedProxyHops = options?.trustedProxyHops ?? env.RATE_LIMIT_TRUSTED_HOPS;
 
   if (trustProxy) {
-    const forwardedChain = extractForwardedChain(request.headers.get("x-forwarded-for"));
-    if (forwardedChain.length > 0) {
-      const index = Math.max(forwardedChain.length - trustedProxyHops - 1, 0);
-      return forwardedChain[index];
-    }
+    // In production we require a proxy-overwritten x-real-ip to reduce XFF spoof risk.
     const realIp = extractIpFromHeader(request.headers.get("x-real-ip"));
     if (realIp) {
       return realIp;
+    }
+
+    const forwardedChain = extractForwardedChain(request.headers.get("x-forwarded-for"));
+    if (forwardedChain.length > 0) {
+      if (env.NODE_ENV === "production") {
+        return forwardedChain[forwardedChain.length - 1];
+      }
+      const index = Math.max(forwardedChain.length - trustedProxyHops - 1, 0);
+      return forwardedChain[index];
     }
   }
 

@@ -16,7 +16,29 @@ const WAITLIST_LIMIT = 3;
 export async function POST(req: Request) {
   try {
     const ip = getRequestIp(req);
-    await enforceRateLimit({ key: `waitlist:${ip}`, limit: WAITLIST_LIMIT, windowMs: WAITLIST_WINDOW_MS });
+    const rateLimit = await enforceRateLimit({
+      key: `waitlist:${ip}`,
+      limit: WAITLIST_LIMIT,
+      windowMs: WAITLIST_WINDOW_MS,
+      storeFailureMode: "deny",
+    });
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        {
+          error: "Too many submissions. Please try again later.",
+          retryAfterMs: rateLimit.retryAfterMs ?? WAITLIST_WINDOW_MS,
+        },
+        {
+          status: 429,
+          headers:
+            typeof rateLimit.retryAfterMs === "number" && rateLimit.retryAfterMs > 0
+              ? {
+                  "Retry-After": String(Math.ceil(rateLimit.retryAfterMs / 1000)),
+                }
+              : undefined,
+        },
+      );
+    }
 
     let body: unknown;
     try {

@@ -3,10 +3,15 @@ import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { getParentFromRequest } from "@/lib/auth/session";
 import { enforceRateLimit, getRequestIp, buildRateLimitIdentity } from "@/lib/rate-limit";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { redeemGiftCode } from "@/modules/courses/gift-code-service";
+import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
+    await assertRequestAllowedBySecurityControls(request);
+
     const parent = await getParentFromRequest(request);
     if (!parent) {
       return fail("Unauthorized", 401);

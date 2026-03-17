@@ -3,6 +3,8 @@ import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { getParentFromRequest } from "@/lib/auth/session";
 import { prisma } from "@/lib/db";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 import { parseCsvRows, processBulkEnrollRows } from "@/modules/organizations/bulk-enroll-service";
 
 // POST /api/teacher/bulk-enroll
@@ -10,6 +12,9 @@ import { parseCsvRows, processBulkEnrollRows } from "@/modules/organizations/bul
 // Automatically scoped to the requesting teacher's organization.
 export async function POST(request: NextRequest) {
   try {
+    assertTrustedOrigin(request);
+    await assertRequestAllowedBySecurityControls(request);
+
     const parent = await getParentFromRequest(request);
     if (!parent) return fail("Unauthorized", 401);
 

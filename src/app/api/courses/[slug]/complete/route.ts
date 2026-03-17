@@ -4,13 +4,18 @@ import { handleRouteError } from "@/lib/route-error";
 import { getParentFromRequest } from "@/lib/auth/session";
 import { isParentAdmin } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { completeCourse } from "@/modules/courses/course-service";
+import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
+    await assertRequestAllowedBySecurityControls(request);
+
     const parent = await getParentFromRequest(request);
     if (!parent) {
       return fail("Unauthorized", 401);

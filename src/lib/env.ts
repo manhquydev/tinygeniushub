@@ -87,6 +87,10 @@ const envSchema = z.object({
     .default("true")
     .transform((value) => value === "true"),
   RATE_LIMIT_TRUSTED_HOPS: z.coerce.number().int().min(0).max(5).default(1),
+  ALLOW_PROD_MOCK_CHECKOUT_CALLBACK: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((value) => value === "true"),
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
   OBSERVABILITY_SERVICE_NAME: z.string().min(1).default("cungcontuhoc-web"),
@@ -156,6 +160,7 @@ const parsedEnv = envSchema.parse({
   REDIS_URL: process.env.REDIS_URL ?? (isProduction ? undefined : "redis://localhost:6379"),
   RATE_LIMIT_TRUST_PROXY: process.env.RATE_LIMIT_TRUST_PROXY,
   RATE_LIMIT_TRUSTED_HOPS: process.env.RATE_LIMIT_TRUSTED_HOPS,
+  ALLOW_PROD_MOCK_CHECKOUT_CALLBACK: process.env.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK,
   NODE_ENV: process.env.NODE_ENV,
   LOG_LEVEL: process.env.LOG_LEVEL,
   OBSERVABILITY_SERVICE_NAME: process.env.OBSERVABILITY_SERVICE_NAME,

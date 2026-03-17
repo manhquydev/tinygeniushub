@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { PaymentStatus, Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { env } from "@/lib/env";
 import { logInfo, logWarn } from "@/lib/observability/logger";
 import { parsePilotAttributionSnapshot } from "@/modules/courses/pilot-attribution";
 import { getPublishedCoursesByBundleSlug } from "@/modules/courses/course-bundle-service";
@@ -17,24 +18,30 @@ function redirectTo(pathnameWithQuery: string) {
   });
 }
 
+function asRecord(value: unknown) {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+  return value as Record<string, unknown>;
+}
+
 async function markMockPaymentSucceeded(input: {
-  sessionId: string;
-  amountVnd: string | null;
+  paymentRecordId: string;
+  amountVnd: number;
+  existingRawPayload: Record<string, unknown> | null;
   metadata: Record<string, unknown>;
 }) {
-  await prisma.paymentRecord.updateMany({
+  await prisma.paymentRecord.update({
     where: {
-      provider: "mock_gateway",
-      providerTransactionId: input.sessionId,
+      id: input.paymentRecordId,
     },
     data: {
       status: PaymentStatus.SUCCEEDED,
-      ...(Number.isFinite(Number.parseInt(input.amountVnd ?? "", 10))
-        ? { amountVnd: Number.parseInt(input.amountVnd ?? "", 10) }
-        : {}),
+      amountVnd: input.amountVnd,
       processedAt: new Date(),
       rawPayload: {
-        ...(input.metadata ?? {}),
+        ...(input.existingRawPayload ?? {}),
+        ...input.metadata,
       } as Prisma.InputJsonValue,
     },
   });
@@ -85,48 +92,141 @@ async function createMockPurchaseAuditIfMissing(input: {
 }
 
 /**
- * GET /api/courses/checkout/mock-success?courseId=...&parentId=...&amountVnd=...&sessionId=...
+ * GET /api/courses/checkout/mock-success?courseId=...&bundleSlug=...&amountVnd=...&sessionId=...
  *
- * Mock payment gateway callback. Creates enrollment then redirects to parent courses page.
- * Only active in development / when real payment gateway is not configured.
+ * Mock payment gateway callback.
+ * Hard-disabled in production and when COURSE_PAYMENT_PROVIDER != mock_gateway.
  */
 export async function GET(request: NextRequest) {
-  const { searchParams } = request.nextUrl;
-  const courseId = searchParams.get("courseId");
-  const bundleSlug = searchParams.get("bundleSlug");
-  const parentId = searchParams.get("parentId");
-  const amountVnd = searchParams.get("amountVnd");
-  const sessionId = searchParams.get("sessionId");
-  const parsedAmountVnd = Number.parseInt(amountVnd ?? "", 10);
-  const safeAmountVnd = Number.isFinite(parsedAmountVnd) ? parsedAmountVnd : 0;
+  if (
+    env.COURSE_PAYMENT_PROVIDER !== "mock_gateway" ||
+    (env.NODE_ENV === "production" && !env.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK)
+  ) {
+    logWarn("courses.mock_checkout.disabled", {
+      env: env.NODE_ENV,
+      provider: env.COURSE_PAYMENT_PROVIDER,
+      allowProdMockCallback: env.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK,
+    });
+    return redirectTo("/courses?error=invalid_checkout");
+  }
 
-  if ((!courseId && !bundleSlug) || !parentId || !sessionId) {
-    logWarn("courses.mock_checkout.missing_params", { courseId, bundleSlug, parentId, sessionId });
+  const { searchParams } = request.nextUrl;
+  const requestedCourseId = searchParams.get("courseId");
+  const requestedBundleSlug = searchParams.get("bundleSlug");
+  const sessionId = searchParams.get("sessionId");
+
+  if ((!requestedCourseId && !requestedBundleSlug) || !sessionId) {
+    logWarn("courses.mock_checkout.missing_params", {
+      requestedCourseId,
+      requestedBundleSlug,
+      sessionId,
+    });
     return redirectTo("/courses?error=invalid_checkout");
   }
 
   try {
-    const paymentRecord = await prisma.paymentRecord.findFirst({
+    const paymentRecord = await prisma.paymentRecord.findUnique({
       where: {
-        provider: "mock_gateway",
-        providerTransactionId: sessionId,
-        parentId,
+        provider_providerTransactionId: {
+          provider: "mock_gateway",
+          providerTransactionId: sessionId,
+        },
       },
-      select: { id: true, rawPayload: true },
+      select: {
+        id: true,
+        parentId: true,
+        amountVnd: true,
+        status: true,
+        rawPayload: true,
+      },
     });
-    const paymentRecordId = paymentRecord?.id ?? `mock:${sessionId}`;
-    const existingRawPayload =
-      paymentRecord?.rawPayload && typeof paymentRecord.rawPayload === "object"
-        ? (paymentRecord.rawPayload as Record<string, unknown>)
-        : null;
-    const attribution = parsePilotAttributionSnapshot(existingRawPayload?.attribution);
 
-    if (bundleSlug) {
-      const bundleResult = await getPublishedCoursesByBundleSlug(bundleSlug);
+    if (!paymentRecord) {
+      logWarn("courses.mock_checkout.payment_not_found", {
+        sessionId,
+      });
+      return redirectTo("/courses?error=invalid_checkout");
+    }
+
+    if (
+      paymentRecord.status !== PaymentStatus.PENDING &&
+      paymentRecord.status !== PaymentStatus.SUCCEEDED
+    ) {
+      logWarn("courses.mock_checkout.payment_status_invalid", {
+        sessionId,
+        paymentRecordId: paymentRecord.id,
+        status: paymentRecord.status,
+      });
+      return redirectTo("/courses?error=checkout_failed");
+    }
+
+    const existingRawPayload = asRecord(paymentRecord.rawPayload);
+    const rawTarget = asRecord(existingRawPayload?.target);
+    const attribution = parsePilotAttributionSnapshot(existingRawPayload?.attribution);
+    const parentId = paymentRecord.parentId;
+    const safeAmountVnd = paymentRecord.amountVnd;
+
+    const effectiveBundleSlug =
+      typeof rawTarget?.bundleSlug === "string" ? rawTarget.bundleSlug : requestedBundleSlug;
+    const effectiveCourseId =
+      typeof rawTarget?.courseId === "string" ? rawTarget.courseId : requestedCourseId;
+
+    if (!effectiveBundleSlug && !effectiveCourseId) {
+      logWarn("courses.mock_checkout.target_missing", {
+        sessionId,
+        paymentRecordId: paymentRecord.id,
+      });
+      return redirectTo("/courses?error=invalid_checkout");
+    }
+
+    if (
+      (requestedBundleSlug && rawTarget?.kind === "course") ||
+      (requestedCourseId && rawTarget?.kind === "bundle")
+    ) {
+      logWarn("courses.mock_checkout.target_kind_mismatch", {
+        sessionId,
+        paymentRecordId: paymentRecord.id,
+        requestedBundleSlug,
+        requestedCourseId,
+        rawTarget,
+      });
+      return redirectTo("/courses?error=invalid_checkout");
+    }
+
+    if (
+      requestedBundleSlug &&
+      rawTarget?.kind === "bundle" &&
+      rawTarget.bundleSlug !== requestedBundleSlug
+    ) {
+      logWarn("courses.mock_checkout.bundle_mismatch", {
+        sessionId,
+        paymentRecordId: paymentRecord.id,
+        requestedBundleSlug,
+        rawTargetBundleSlug: rawTarget.bundleSlug,
+      });
+      return redirectTo("/courses?error=invalid_checkout");
+    }
+
+    if (
+      requestedCourseId &&
+      rawTarget?.kind === "course" &&
+      rawTarget.courseId !== requestedCourseId
+    ) {
+      logWarn("courses.mock_checkout.course_mismatch", {
+        sessionId,
+        paymentRecordId: paymentRecord.id,
+        requestedCourseId,
+        rawTargetCourseId: rawTarget.courseId,
+      });
+      return redirectTo("/courses?error=invalid_checkout");
+    }
+
+    if (effectiveBundleSlug) {
+      const bundleResult = await getPublishedCoursesByBundleSlug(effectiveBundleSlug);
       const checkoutCourses =
         bundleResult.courses.length > 0 ? bundleResult.courses : bundleResult.legacyCourses;
       if (!bundleResult.bundle || checkoutCourses.length === 0) {
-        logWarn("courses.mock_checkout.bundle_not_found", { bundleSlug, parentId });
+        logWarn("courses.mock_checkout.bundle_not_found", { effectiveBundleSlug, parentId });
         return redirectTo("/courses?error=bundle_not_found");
       }
 
@@ -140,43 +240,45 @@ export async function GET(request: NextRequest) {
               },
             },
             update: {
-              paymentId: sessionId,
+              paymentId: paymentRecord.id,
             },
             create: {
               courseId: course.id,
               parentId,
-              paymentId: sessionId,
+              paymentId: paymentRecord.id,
             },
           });
         }
       });
 
       logInfo("courses.mock_checkout.bundle_enrolled", {
-        bundleSlug,
+        effectiveBundleSlug,
         parentId,
-        amountVnd,
         sessionId,
         courseCount: checkoutCourses.length,
       });
+
       await markMockPaymentSucceeded({
-        sessionId,
-        amountVnd,
+        paymentRecordId: paymentRecord.id,
+        amountVnd: safeAmountVnd,
+        existingRawPayload,
         metadata: {
           kind: "course_checkout",
           target: {
             kind: "bundle",
-            bundleSlug,
+            bundleSlug: effectiveBundleSlug,
           },
           attribution,
         },
       });
+
       await createMockPurchaseAuditIfMissing({
         parentId,
-        paymentRecordId,
+        paymentRecordId: paymentRecord.id,
         sessionId,
         amountVnd: safeAmountVnd,
         targetKind: "bundle",
-        targetSlug: bundleSlug,
+        targetSlug: effectiveBundleSlug,
         attributionChannel: attribution?.channel ?? "unknown",
         attributionExperimentCoursesVariant: attribution?.experimentCoursesVariant ?? null,
         attributionExperimentPricingVariant: attribution?.experimentPricingVariant ?? null,
@@ -185,7 +287,7 @@ export async function GET(request: NextRequest) {
       for (const course of checkoutCourses) {
         await trackPilotPurchaseSucceeded({
           parentId,
-          paymentRecordId,
+          paymentRecordId: paymentRecord.id,
           courseId: course.id,
           courseSlug: course.slug,
           provider: "mock_gateway",
@@ -208,42 +310,44 @@ export async function GET(request: NextRequest) {
       return redirectTo(destinationWithChild);
     }
 
+    const courseId = effectiveCourseId;
     if (!courseId) {
       logWarn("courses.mock_checkout.missing_course_id", { parentId, sessionId });
       return redirectTo("/courses?error=invalid_checkout");
     }
 
-    // Idempotency: if already enrolled, just redirect to success
     const existing = await prisma.courseEnrollment.findUnique({
       where: { courseId_parentId: { courseId, parentId } },
     });
 
     if (!existing) {
-      await enrollParent(courseId, parentId, sessionId);
-      logInfo("courses.mock_checkout.enrolled", { courseId, parentId, amountVnd, sessionId });
+      await enrollParent(courseId, parentId, paymentRecord.id);
+      logInfo("courses.mock_checkout.enrolled", { courseId, parentId, sessionId });
     } else {
       logInfo("courses.mock_checkout.already_enrolled", { courseId, parentId });
     }
 
     await markMockPaymentSucceeded({
-      sessionId,
-      amountVnd,
-        metadata: {
-          kind: "course_checkout",
-          target: {
-            kind: "course",
-            courseId,
-          },
-          attribution,
+      paymentRecordId: paymentRecord.id,
+      amountVnd: safeAmountVnd,
+      existingRawPayload,
+      metadata: {
+        kind: "course_checkout",
+        target: {
+          kind: "course",
+          courseId,
         },
-      });
+        attribution,
+      },
+    });
+
     const course = await prisma.course.findUnique({
       where: { id: courseId },
       select: { slug: true },
     });
     await createMockPurchaseAuditIfMissing({
       parentId,
-      paymentRecordId,
+      paymentRecordId: paymentRecord.id,
       sessionId,
       amountVnd: safeAmountVnd,
       targetKind: "course",
@@ -256,7 +360,7 @@ export async function GET(request: NextRequest) {
     if (course) {
       await trackPilotPurchaseSucceeded({
         parentId,
-        paymentRecordId,
+        paymentRecordId: paymentRecord.id,
         courseId,
         courseSlug: course.slug,
         provider: "mock_gateway",
@@ -282,7 +386,12 @@ export async function GET(request: NextRequest) {
     const destination = course ? `/kid/courses/${encodeURIComponent(course.slug)}` : "/kid/courses";
     return redirectTo(destination);
   } catch (err) {
-    logWarn("courses.mock_checkout.error", { courseId, bundleSlug, parentId, err: String(err) });
+    logWarn("courses.mock_checkout.error", {
+      requestedCourseId,
+      requestedBundleSlug,
+      sessionId,
+      err: String(err),
+    });
     return redirectTo("/courses?error=checkout_failed");
   }
 }

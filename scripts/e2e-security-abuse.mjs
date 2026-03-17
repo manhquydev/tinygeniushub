@@ -370,6 +370,9 @@ async function patchAdminSecuritySettings(baseUrl, adminHeaders, payload) {
 
 async function main() {
   process.env.RATE_LIMIT_TRUST_PROXY = process.env.RATE_LIMIT_TRUST_PROXY ?? "true";
+  process.env.COURSE_PAYMENT_PROVIDER = process.env.COURSE_PAYMENT_PROVIDER ?? "mock_gateway";
+  process.env.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK =
+    process.env.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK ?? "true";
   process.env.E2E_CLIENT_IP =
     process.env.E2E_CLIENT_IP ?? `198.51.100.${20 + Math.floor(Math.random() * 180)}`;
   const runId = `${Date.now()}-${randomUUID().slice(0, 8)}`;

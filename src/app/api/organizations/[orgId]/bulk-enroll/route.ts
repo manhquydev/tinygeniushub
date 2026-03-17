@@ -2,10 +2,12 @@ import type { NextRequest } from "next/server";
 import { getParentFromRequest } from "@/lib/auth/session";
 import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { isTeacherAdmin } from "@/modules/organizations/organization-service";
 import { enqueueBulkEnroll } from "@/worker/queue";
 import type { BulkEnrollRow } from "@/modules/organizations/bulk-enroll-service";
 import { DomainError } from "@/modules/platform/errors";
+import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
 const MAX_ROWS = 500;
 
@@ -14,6 +16,9 @@ export async function POST(
   { params }: { params: Promise<{ orgId: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
+    await assertRequestAllowedBySecurityControls(request);
+
     const parent = await getParentFromRequest(request);
     if (!parent) return fail("Unauthorized", 401);
 

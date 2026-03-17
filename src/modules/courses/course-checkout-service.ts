@@ -74,13 +74,11 @@ function isSameCheckoutTarget(target: CheckoutTarget, rawTarget: Record<string, 
 }
 
 function buildMockSuccessUrl(input: {
-  parentId: string;
   amountVnd: number;
   sessionId: string;
   target: CheckoutTarget;
 }) {
   const params = new URLSearchParams({
-    parentId: input.parentId,
     amountVnd: String(input.amountVnd),
     sessionId: input.sessionId,
   });
@@ -159,7 +157,6 @@ async function findReusablePendingCheckoutSession(input: {
 
     return {
       checkoutUrl: buildMockSuccessUrl({
-        parentId: input.parentId,
         amountVnd: input.amountVnd,
         sessionId: candidate.providerTransactionId,
         target: input.target,
@@ -274,7 +271,6 @@ async function createMockCheckoutSession(input: {
 }): Promise<CheckoutSession> {
   const sessionId = `mock_course_${randomUUID()}`;
   const mockSuccessParams = new URLSearchParams({
-    parentId: input.parentId,
     amountVnd: String(input.amountVnd),
     sessionId,
   });

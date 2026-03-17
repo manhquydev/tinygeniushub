@@ -110,6 +110,21 @@ describe("getRequestIp", () => {
     });
     expect(ip).toBe("198.51.100.42");
   });
+
+  it("prefers x-real-ip over forwarded chain when proxy is trusted", () => {
+    const request = new Request("http://localhost", {
+      headers: {
+        "x-forwarded-for": "198.51.100.66, 203.0.113.8",
+        "x-real-ip": "203.0.113.8",
+      },
+    });
+
+    const ip = getRequestIp(request, {
+      trustProxy: true,
+      trustedProxyHops: 1,
+    });
+    expect(ip).toBe("203.0.113.8");
+  });
 });
 
 describe("blocked cidr integration", () => {

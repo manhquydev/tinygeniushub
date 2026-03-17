@@ -88,6 +88,50 @@ function uniqueStringList(values: unknown[]) {
   return [...set];
 }
 
+function normalizeStringOrNumber(value: unknown) {
+  if (typeof value === "string") {
+    const normalized = value.trim();
+    return normalized.length > 0 ? normalized : null;
+  }
+
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return String(value);
+  }
+
+  return null;
+}
+
+function collectWebhookTransactionHints(input: {
+  eventId: string;
+  payload: unknown;
+  auditTrail: unknown;
+}) {
+  const hints = new Set<string>();
+  const addHint = (value: unknown) => {
+    const normalized = normalizeStringOrNumber(value);
+    if (normalized) {
+      hints.add(normalized);
+    }
+  };
+
+  const payload = asRecord(input.payload);
+  const payloadData = asRecord(payload?.data);
+  const auditTrail = asRecord(input.auditTrail);
+
+  addHint(payload?.transactionId);
+  addHint(payload?.orderCode);
+  addHint(payloadData?.transactionId);
+  addHint(payloadData?.orderCode);
+  addHint(auditTrail?.transactionId);
+  addHint(auditTrail?.orderCode);
+
+  if (input.eventId.includes(":")) {
+    addHint(input.eventId.split(":", 1)[0]);
+  }
+
+  return hints;
+}
+
 async function resolveCourseIdsFromCheckoutTarget(tx: Prisma.TransactionClient, rawPayload: unknown) {
   const raw = asRecord(rawPayload);
   const target = asRecord(raw?.target);
@@ -226,6 +270,8 @@ async function resolveWebhookUpdate(input: {
       id: true,
       provider: true,
       eventId: true,
+      payload: true,
+      auditTrail: true,
     },
   });
 
@@ -237,8 +283,30 @@ async function resolveWebhookUpdate(input: {
     throw new DomainError("Webhook provider không khớp payment.", 400, "WEBHOOK_PROVIDER_MISMATCH");
   }
 
-  const expectedEventPrefix = `${input.paymentRecord.providerTransactionId}:`;
-  if (input.paymentRecord.provider === "payos" && !webhook.eventId.startsWith(expectedEventPrefix)) {
+  const auditTrail = asRecord(webhook.auditTrail);
+  const linkedPaymentRecordId = normalizeStringOrNumber(auditTrail?.paymentRecordId);
+  if (linkedPaymentRecordId && linkedPaymentRecordId !== input.paymentRecord.id) {
+    throw new DomainError(
+      "Webhook event đang được gắn với payment khác.",
+      400,
+      "WEBHOOK_EVENT_PAYMENT_MISMATCH",
+    );
+  }
+
+  const transactionHints = collectWebhookTransactionHints({
+    eventId: webhook.eventId,
+    payload: webhook.payload,
+    auditTrail: webhook.auditTrail,
+  });
+  if (transactionHints.size === 0) {
+    throw new DomainError(
+      "Webhook event không có dấu vết transaction để xác minh.",
+      409,
+      "WEBHOOK_EVENT_TRANSACTION_UNVERIFIABLE",
+    );
+  }
+
+  if (!transactionHints.has(input.paymentRecord.providerTransactionId)) {
     throw new DomainError(
       "Webhook event không thuộc transaction payment này.",
       400,

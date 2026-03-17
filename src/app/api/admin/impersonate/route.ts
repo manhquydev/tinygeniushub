@@ -35,7 +35,10 @@ export async function POST(request: NextRequest) {
     }
 
     const response = ok({ redirectTo: "/parent/dashboard" });
-    setImpersonationCookie(response, payload.parentId);
+    setImpersonationCookie(response, {
+      parentId: payload.parentId,
+      actorEmail: admin.email,
+    });
 
     await createAdminActionLog({
       adminEmail: admin.email,
