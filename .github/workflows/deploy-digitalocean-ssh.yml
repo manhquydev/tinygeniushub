@@ -37,7 +37,7 @@ jobs:
       contents: read
     env:
       DEPLOY_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.event.workflow_run.head_sha }}
-      APP_DIR: ${{ secrets.DO_APP_DIR != '' && secrets.DO_APP_DIR || '/var/www/cungcontuhoc' }}
+      APP_DIR: /var/www/cungcontuhoc
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -109,17 +109,9 @@ jobs:
             -o StrictHostKeyChecking=yes \
             "$DO_SSH_USER@$DO_SSH_HOST" "bash -s" <<REMOTE_SCRIPT
           set -euo pipefail
-          APP_DIR=${{ toJson(env.APP_DIR) }}
-          case "$APP_DIR" in
-            /*) ;;
-            *)
-              echo "Invalid APP_DIR: must be an absolute path"
-              exit 1
-              ;;
-          esac
-          cd "$APP_DIR"
+          cd "${{ env.APP_DIR }}"
           test -f scripts/deploy/remote-deploy.sh || {
-            echo "Missing scripts/deploy/remote-deploy.sh in APP_DIR=$APP_DIR"
+            echo "Missing scripts/deploy/remote-deploy.sh in APP_DIR=${{ env.APP_DIR }}"
             exit 1
           }
           export POST_DEPLOY_CMD="\$(printf '%s' '$POST_CMD_B64' | base64 -d)"
