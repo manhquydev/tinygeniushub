@@ -20,6 +20,9 @@ const { prismaMock, assertLessonVideoWatchCompletedMock, isPrismaUniqueConstrain
       childCourseJourney: {
         findMany: vi.fn(),
       },
+      course: {
+        findMany: vi.fn().mockResolvedValue([]),
+      },
       $transaction: vi.fn(),
     },
     assertLessonVideoWatchCompletedMock: vi.fn(),
