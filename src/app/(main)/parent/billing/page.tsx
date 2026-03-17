@@ -1,36 +1,72 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { AlertCircle, CircleCheckBig, Clock3, ReceiptText, Wallet } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { getParentFromServerCookie } from "@/lib/auth/session";
-import { CheckoutPlanButton } from "@/components/checkout-plan-button";
 
 export const metadata: Metadata = {
-  title: "Gói dịch vụ — Cùng Con Tự Học",
+  title: "Thanh toán và hóa đơn - Cùng Con Tự Học",
 };
 
-const STATUS_LABEL: Record<string, string> = {
-  TRIALING: "Đang dùng thử",
-  ACTIVE_STANDARD: "Standard (Năm)",
-  ACTIVE_FAMILYPLUS: "Family+ (Năm)",
-  CANCELED_AT_PERIOD_END: "Đã hủy — còn hiệu lực đến hết kỳ",
+const SUBSCRIPTION_STATUS_LABEL: Record<string, string> = {
+  TRIALING: "Tài khoản cơ bản",
+  ACTIVE_STANDARD: "Standard (năm)",
+  ACTIVE_FAMILYPLUS: "Family+ (năm)",
+  CANCELED_AT_PERIOD_END: "Đã hủy gia hạn",
   EXPIRED: "Đã hết hạn",
-  GRACE: "Gia hạn (cần thanh toán)",
+  GRACE: "Đang gia hạn",
   REFUNDED: "Đã hoàn tiền",
 };
 
-const STATUS_COLOR: Record<string, string> = {
-  TRIALING: "#f59e0b",
-  ACTIVE_STANDARD: "#10b981",
-  ACTIVE_FAMILYPLUS: "#6366f1",
-  CANCELED_AT_PERIOD_END: "#ef4444",
-  EXPIRED: "#6b7280",
-  GRACE: "#f97316",
-  REFUNDED: "#6b7280",
+const PAYMENT_STATUS_LABEL: Record<string, string> = {
+  SUCCEEDED: "Thành công",
+  PENDING: "Đang xử lý",
+  FAILED: "Thất bại",
+  REFUNDED: "Đã hoàn tiền",
 };
 
-function daysRemaining(date: Date): number {
-  return Math.max(0, Math.ceil((date.getTime() - Date.now()) / 86400000));
+const PAYMENT_STATUS_CLASS: Record<string, string> = {
+  SUCCEEDED: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+  PENDING: "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
+  FAILED: "bg-rose-50 text-rose-700 ring-1 ring-rose-200",
+  REFUNDED: "bg-slate-100 text-slate-700 ring-1 ring-slate-200",
+};
+
+function formatCurrency(amount: number) {
+  return `${amount.toLocaleString("vi-VN")}đ`;
+}
+
+function formatDate(date: Date) {
+  return new Date(date).toLocaleDateString("vi-VN");
+}
+
+function getProviderLabel(provider: string) {
+  if (provider === "payos") return "PayOS";
+  if (provider === "mock_gateway") return "Mô phỏng";
+  return provider.toUpperCase();
+}
+
+function getPaymentTitle(rawPayload: unknown) {
+  if (!rawPayload || typeof rawPayload !== "object") {
+    return "Thanh toán dịch vụ";
+  }
+
+  const payload = rawPayload as Record<string, unknown>;
+  const target = payload.target && typeof payload.target === "object" ? (payload.target as Record<string, unknown>) : null;
+  if (!target) {
+    return "Thanh toán dịch vụ";
+  }
+
+  const title = typeof target.title === "string" ? target.title : null;
+  if (title) {
+    return title;
+  }
+
+  const kind = typeof target.kind === "string" ? target.kind : null;
+  if (kind === "bundle") return "Mua bộ khóa học";
+  if (kind === "course") return "Mua khóa học";
+  return "Thanh toán dịch vụ";
 }
 
 export default async function ParentBillingPage() {
@@ -52,142 +88,172 @@ export default async function ParentBillingPage() {
     prisma.paymentRecord.findMany({
       where: { parentId: parent.id },
       orderBy: { processedAt: "desc" },
-      take: 10,
-      select: { id: true, amountVnd: true, status: true, processedAt: true, provider: true },
+      take: 20,
+      select: {
+        id: true,
+        provider: true,
+        amountVnd: true,
+        status: true,
+        processedAt: true,
+        rawPayload: true,
+      },
     }),
   ]);
 
-  const status = subscription?.status ?? "TRIALING";
-  const statusLabel = STATUS_LABEL[status] ?? status;
-  const statusColor = STATUS_COLOR[status] ?? "#6b7280";
-  const periodEnd = subscription?.currentPeriodEnd;
-  const days = periodEnd ? daysRemaining(periodEnd) : 0;
-  const isActive = status === "ACTIVE_STANDARD" || status === "ACTIVE_FAMILYPLUS";
+  const succeededPayments = payments.filter((payment) => payment.status === "SUCCEEDED");
+  const pendingPayments = payments.filter((payment) => payment.status === "PENDING");
+  const failedPayments = payments.filter((payment) => payment.status === "FAILED");
+
+  const totalSpent = succeededPayments.reduce((sum, payment) => sum + payment.amountVnd, 0);
+  const subscriptionStatus = subscription?.status ?? "TRIALING";
+  const subscriptionLabel = SUBSCRIPTION_STATUS_LABEL[subscriptionStatus] ?? subscriptionStatus;
 
   return (
     <div className="page-stack">
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Gói dịch vụ của bạn</h1>
-        <p className="mt-1 text-sm text-slate-500">Quản lý đăng ký, xem lịch sử thanh toán và nâng cấp gói.</p>
-      </section>
-
-      {/* Current plan */}
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-base font-bold text-slate-900">Gói hiện tại</h2>
-        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "flex-start" }}>
-          <div
-            style={{
-              display: "inline-flex",
-              borderRadius: 9999,
-              padding: "4px 14px",
-              fontWeight: 700,
-              fontSize: "0.85rem",
-              background: `${statusColor}18`,
-              color: statusColor,
-              border: `1px solid ${statusColor}44`,
-            }}
-          >
-            {statusLabel}
+      <section className="overflow-hidden rounded-[28px] border border-slate-200 bg-[linear-gradient(145deg,#f8fafc_0%,#ffffff_55%,#ecfeff_100%)] p-5 shadow-sm sm:p-8">
+        <div className="grid gap-4">
+          <h1 className="flex items-center gap-2 text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-3xl">
+            <Wallet className="h-6 w-6 text-sky-600" />
+            Thanh toán và hóa đơn
+          </h1>
+          <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+            Trang này tập trung vào giao dịch mua khóa học. Thanh toán hiện tại sử dụng PayOS theo hình thức chuyển
+            khoản ngân hàng.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-2xl border border-slate-200 bg-white p-3">
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tổng đã thanh toán</p>
+              <p className="mt-1 text-2xl font-black text-slate-900">{formatCurrency(totalSpent)}</p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-3">
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Giao dịch thành công</p>
+              <p className="mt-1 text-2xl font-black text-emerald-600">{succeededPayments.length}</p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-3">
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Đang xử lý</p>
+              <p className="mt-1 text-2xl font-black text-amber-600">{pendingPayments.length}</p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-3">
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Thất bại</p>
+              <p className="mt-1 text-2xl font-black text-rose-600">{failedPayments.length}</p>
+            </div>
           </div>
-          {periodEnd && (
-            <span className="text-sm text-slate-500">
-              {isActive ? `Hết hạn sau ${days} ngày` : `Hết hạn: ${periodEnd.toLocaleDateString("vi-VN")}`}
-            </span>
-          )}
         </div>
-
-        {subscription && (
-          <div className="mt-4 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
-            <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-              <p className="text-xs text-slate-500">Hồ sơ bé</p>
-              <p className="mt-0.5 font-bold text-slate-900">Tối đa {subscription.childProfileLimit}</p>
-            </div>
-            <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-              <p className="text-xs text-slate-500">Caregiver</p>
-              <p className="mt-0.5 font-bold text-slate-900">Tối đa {subscription.caregiverLimit}</p>
-            </div>
-            <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-              <p className="text-xs text-slate-500">Tự gia hạn</p>
-              <p className="mt-0.5 font-bold text-slate-900">{subscription.autoRenew ? "Bật" : "Tắt"}</p>
-            </div>
-          </div>
-        )}
-
-        {/* Upgrade CTAs */}
-        {!isActive && (
-          <div className="mt-5 flex flex-wrap gap-3">
-            <CheckoutPlanButton planCode="YEARLY_STANDARD" label="Nâng cấp Standard — 799,000đ/năm" />
-            <CheckoutPlanButton
-              planCode="YEARLY_FAMILY_PLUS"
-              label="Nâng cấp Family+ — 1,199,000đ/năm"
-              className="ghost-button"
-            />
-          </div>
-        )}
-
-        {status === "ACTIVE_STANDARD" && (
-          <div className="mt-4">
-            <CheckoutPlanButton
-              planCode="YEARLY_FAMILY_PLUS"
-              label="Nâng cấp lên Family+ — 1,199,000đ/năm"
-              className="ghost-button"
-            />
-          </div>
-        )}
-
-        <p className="mt-4 text-xs text-slate-400">
-          Để hủy gói hoặc yêu cầu hoàn tiền, hãy{" "}
-          <Link href="/contact" className="underline">
-            liên hệ hỗ trợ
-          </Link>
-          . Hoàn tiền 100% trong 30 ngày đầu, không cần giải thích lý do.
-        </p>
       </section>
 
-      {/* Payment history */}
-      {payments.length > 0 && (
-        <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-100 px-6 py-4">
-            <h2 className="text-base font-bold text-slate-900">Lịch sử thanh toán</h2>
+      <section className="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
+        <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Lịch sử giao dịch gần đây</h2>
+          <p className="mt-1 text-sm text-slate-600">Theo dõi chi tiết từng giao dịch và trạng thái xử lý.</p>
+
+          {payments.length === 0 ? (
+            <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-600">
+              Chưa có giao dịch nào. Bạn có thể bắt đầu từ trang khóa học.
+            </div>
+          ) : (
+            <div className="mt-4 grid gap-3">
+              {payments.map((payment) => (
+                <article key={payment.id} className="rounded-2xl border border-slate-200 bg-slate-50 p-3 sm:p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    <div>
+                      <p className="text-sm font-bold text-slate-900">{getPaymentTitle(payment.rawPayload)}</p>
+                      <p className="mt-1 text-xs text-slate-500">
+                        {formatDate(payment.processedAt)} • {getProviderLabel(payment.provider)}
+                      </p>
+                    </div>
+                    <span
+                      className={`rounded-full px-3 py-1 text-xs font-semibold ${PAYMENT_STATUS_CLASS[payment.status] ?? PAYMENT_STATUS_CLASS.PENDING}`}
+                    >
+                      {PAYMENT_STATUS_LABEL[payment.status] ?? payment.status}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-lg font-black text-slate-900">{formatCurrency(payment.amountVnd)}</p>
+                </article>
+              ))}
+            </div>
+          )}
+        </article>
+
+        <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Thông tin tài khoản</h2>
+          <div className="mt-4 grid gap-3">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Trạng thái gói</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">{subscriptionLabel}</p>
+            </div>
+            {subscription ? (
+              <>
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                  <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Mức tài khoản</p>
+                  <p className="mt-1 text-sm font-bold text-slate-900">{subscription.planCode}</p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                  <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Giới hạn hồ sơ bé</p>
+                  <p className="mt-1 text-sm font-bold text-slate-900">{subscription.childProfileLimit} hồ sơ</p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                  <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Giới hạn caregiver</p>
+                  <p className="mt-1 text-sm font-bold text-slate-900">{subscription.caregiverLimit} tài khoản</p>
+                </div>
+                {subscription.currentPeriodEnd ? (
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                    <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Chu kỳ hiện tại</p>
+                    <p className="mt-1 text-sm font-bold text-slate-900">Đến {formatDate(subscription.currentPeriodEnd)}</p>
+                  </div>
+                ) : null}
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                  <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tự động gia hạn</p>
+                  <p className="mt-1 text-sm font-bold text-slate-900">{subscription.autoRenew ? "Đang bật" : "Đang tắt"}</p>
+                </div>
+              </>
+            ) : (
+              <p className="text-sm text-slate-600">Bạn đang dùng mô hình mua khóa học theo từng giao dịch.</p>
+            )}
           </div>
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-left text-sm">
-              <thead className="bg-slate-50 text-xs uppercase tracking-[0.1em] text-slate-500">
-                <tr>
-                  <th className="px-4 py-3">Ngày</th>
-                  <th className="px-4 py-3">Nhà cung cấp</th>
-                  <th className="px-4 py-3">Số tiền</th>
-                  <th className="px-4 py-3">Trạng thái</th>
-                </tr>
-              </thead>
-              <tbody>
-                {payments.map((p) => (
-                  <tr key={p.id} className="border-t border-slate-100">
-                    <td className="px-4 py-3 text-slate-700">
-                      {new Date(p.processedAt).toLocaleDateString("vi-VN")}
-                    </td>
-                    <td className="px-4 py-3 text-slate-700">{p.provider}</td>
-                    <td className="px-4 py-3 font-semibold text-slate-900">
-                      {p.amountVnd.toLocaleString("vi-VN")}đ
-                    </td>
-                    <td className="px-4 py-3">
-                      <span
-                        style={{
-                          fontSize: "0.78rem",
-                          fontWeight: 700,
-                          color: p.status === "SUCCEEDED" ? "#10b981" : "#ef4444",
-                        }}
-                      >
-                        {p.status === "SUCCEEDED" ? "Thành công" : p.status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      )}
+        </article>
+      </section>
+
+      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Lưu ý khi thanh toán qua chuyển khoản</h2>
+        <div className="mt-3 grid gap-2 text-sm text-slate-600">
+          <p className="inline-flex items-start gap-2">
+            <CircleCheckBig className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+            Sau khi chuyển khoản thành công, hệ thống tự động ghi nhận và mở khóa học.
+          </p>
+          <p className="inline-flex items-start gap-2">
+            <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+            Nếu trạng thái còn "Đang xử lý", vui lòng chờ thêm vài phút để webhook đồng bộ.
+          </p>
+          <p className="inline-flex items-start gap-2">
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-600" />
+            Cần hỗ trợ giao dịch? Gửi mã đơn hàng qua trang liên hệ để đội ngũ xử lý nhanh.
+          </p>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link href="/courses" className="solid-button">
+            Mua thêm khóa học
+          </Link>
+          <Link href="/contact" className="ghost-button">
+            Liên hệ hỗ trợ
+          </Link>
+          <Link href="/parent/courses" className="ghost-button">
+            Đi tới khóa đã mua
+          </Link>
+        </div>
+      </section>
+
+      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <h2 className="flex items-center gap-2 text-base font-extrabold text-slate-900 sm:text-lg">
+          <ReceiptText className="h-5 w-5 text-slate-700" />
+          Cần xuất hóa đơn hoặc đối soát giao dịch?
+        </h2>
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          Vui lòng gửi thời gian giao dịch, số tiền và nhà cung cấp thanh toán để chúng tôi hỗ trợ đối soát nhanh.
+        </p>
+        <Link href="/contact" className="ghost-button" style={{ marginTop: "0.75rem", width: "fit-content" }}>
+          Gửi yêu cầu đối soát
+        </Link>
+      </section>
     </div>
   );
 }

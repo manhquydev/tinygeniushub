@@ -1,18 +1,11 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
 
-const STANDARD_FEATURES = [
-  "3 hồ sơ bé",
-  "English + Math",
-  "Weekly report",
-  "Lưu trữ bằng chứng 90 ngày",
-];
-
-const FAMILY_FEATURES = [
-  "5 hồ sơ bé",
-  "Toàn bộ tính năng Standard",
-  "Lưu trữ bằng chứng 365 ngày",
-  "Báo cáo gộp cho nhiều bé",
+const COURSE_OFFER_POINTS = [
+  "PayOS checkout (bank transfer/QR)",
+  "Automatic activation after confirmation",
+  "Preview sample lessons before purchase",
+  "100% refund within 30 days",
 ];
 
 export function SectionPricingPreview() {
@@ -20,70 +13,50 @@ export function SectionPricingPreview() {
     <section className="hp-section" id="pricing">
       <div className="hp-section-inner">
         <div className="hp-section-heading">
-          <h2>Đầu tư cho con chỉ từ 2,189đ/ngày</h2>
-          <p className="muted-text">Hai gói rõ ràng để phụ huynh chọn theo nhu cầu gia đình.</p>
+          <h2>Direct course purchase model</h2>
+          <p className="muted-text">Clear pricing and low-friction checkout for parents.</p>
         </div>
 
         <div className="hp-grid-2">
-          {/* Standard */}
           <article className="hp-price-card">
-            <h3>Standard</h3>
-            <p className="hp-price-main">799,000đ/năm</p>
-            <p className="muted-text">~2,189đ/ngày</p>
+            <h3>New conversion path</h3>
+            <p className="hp-price-main">Preview → Purchase → Learn</p>
+            <p className="muted-text">Fewer steps and faster time to value.</p>
             <ul className="hp-feature-list">
-              {STANDARD_FEATURES.map((f) => <li key={f}>{f}</li>)}
+              <li>Preview real lesson quality</li>
+              <li>Buy only the needed course</li>
+              <li>Automatic activation after payment</li>
+              <li>Track progress in parent dashboard</li>
             </ul>
-            <Link href="/auth/signup" className="solid-button full-width">
-              Chọn Standard
+            <Link href="/courses" className="solid-button full-width">
+              Browse courses
             </Link>
           </article>
 
-          {/* Family+ — recommended */}
           <article className="hp-price-card hp-price-highlight">
             <div className="hp-price-popular-badge">
               <Star size={12} aria-hidden />
-              Phổ biến nhất
+              Conversion optimized
             </div>
-            <h3>Family+</h3>
-            <p className="hp-price-main">1,199,000đ/năm</p>
-            <p className="muted-text">~3,285đ/ngày · Rẻ hơn 1 ly cà phê</p>
-            <div className="hp-price-urgency">
-              Còn <strong>7 ngày</strong> dùng thử miễn phí
-            </div>
+            <h3>Parent safety guarantees</h3>
+            <p className="hp-price-main">Transparent payment, lower risk</p>
+            <p className="muted-text">Sample-first plus refund policy.</p>
             <ul className="hp-feature-list">
-              {FAMILY_FEATURES.map((f) => <li key={f}>{f}</li>)}
+              {COURSE_OFFER_POINTS.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
             </ul>
-            
-            <div className="pricing-trust-signals" style={{
-              marginTop: "1rem",
-              marginBottom: "1rem",
-              padding: "0.8rem",
-              backgroundColor: "#f0fdf4",
-              borderRadius: "0.5rem",
-              fontSize: "0.85rem",
-              lineHeight: "1.6",
-            }}>
-              <div style={{ marginBottom: "0.5rem" }}>
-                ✅ 5,200+ bài học hoàn thành · 92% phụ huynh quay lại tuần 2
-              </div>
-              <div style={{ marginBottom: "0.5rem" }}>
-                🎁 Dùng thử 7 ngày miễn phí · Không cần thẻ
-              </div>
-              <div>
-                ⭐ 4.8/5 từ families đang dùng · Tiết kiệm 389,000đ/năm
-              </div>
-            </div>
-            
-            <Link href="/auth/signup" className="solid-button full-width hp-price-cta-main">
-              Bắt đầu miễn phí 7 ngày
+
+            <Link href="/pricing" className="solid-button full-width hp-price-cta-main">
+              View pricing details
               <ArrowRight size={14} aria-hidden />
             </Link>
-            <p className="hp-price-cta-note">Không cần thẻ · Huỷ bất cứ lúc nào</p>
+            <p className="hp-price-cta-note">No card-on-file required</p>
           </article>
         </div>
 
         <Link href="/pricing" className="hp-more-link">
-          Xem chi tiết gói học →
+          Full payment policy →
         </Link>
       </div>
     </section>

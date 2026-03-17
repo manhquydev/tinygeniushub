@@ -1,6 +1,6 @@
 ﻿/**
- * POST /api/admin/skills/[id]/prerequisites â€” add a prerequisite to a skill
- * DELETE /api/admin/skills/[id]/prerequisites â€” remove a prerequisite
+ * POST /api/admin/skills/[id]/prerequisites — add a prerequisite to a skill
+ * DELETE /api/admin/skills/[id]/prerequisites — remove a prerequisite
  */
 
 import type { NextRequest } from "next/server";

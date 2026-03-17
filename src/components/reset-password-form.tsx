@@ -92,7 +92,7 @@ export function ResetPasswordForm() {
           value={token}
           onChange={(event) => setToken(event.target.value)}
           required
-          placeholder="Dán mã token từ email"
+          placeholder="Dán mã xác thực từ email"
         />
       </label>
 

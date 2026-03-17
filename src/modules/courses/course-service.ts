@@ -1,6 +1,10 @@
 import { prisma } from "@/lib/db";
+import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import {
   getCourseBundleByCourseSlug,
+  isCanonicalSplitCourseSlug,
+  isLegacyMonolithCourseSlug,
+  listCourseBundles,
   type CourseBundleDefinition,
 } from "@/modules/courses/course-bundles";
 import { resolveCourseCoverImage } from "@/modules/courses/course-media";
@@ -13,6 +17,98 @@ export async function getCourses() {
     where: { isPublished: true },
     orderBy: { createdAt: "desc" },
   });
+}
+
+export type StorefrontCourse = {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  durationDays: number;
+  coverImageUrl: string | null;
+  lessonCount: number;
+  pricing: {
+    salePriceVnd: number;
+    listPriceVnd: number;
+    hasDiscount: boolean;
+  };
+};
+
+function buildStorefrontVisibilitySet(courseSlugs: string[]) {
+  const bundles = listCourseBundles();
+  const hasCanonicalSplitByBundleSlug = new Map(
+    bundles.map((bundle) => [
+      bundle.slug,
+      courseSlugs.some((slug) => isCanonicalSplitCourseSlug(bundle, slug)),
+    ]),
+  );
+
+  return (slug: string) => {
+    const bundle = getCourseBundleByCourseSlug(slug);
+    if (!bundle) {
+      return true;
+    }
+
+    if (
+      isLegacyMonolithCourseSlug(bundle, slug) &&
+      hasCanonicalSplitByBundleSlug.get(bundle.slug)
+    ) {
+      return false;
+    }
+
+    return true;
+  };
+}
+
+function storefrontSortScore(slug: string) {
+  const bundle = getCourseBundleByCourseSlug(slug);
+  const bundleIndex = bundle ? listCourseBundles().findIndex((item) => item.slug === bundle.slug) : 99;
+  return bundleIndex < 0 ? 99 : bundleIndex;
+}
+
+/** Return published storefront courses in single-course mode (no bundle-card aggregation). */
+export async function getStorefrontCourses(): Promise<StorefrontCourse[]> {
+  const rows = await prisma.course.findMany({
+    where: {
+      isPublished: true,
+    },
+    select: {
+      id: true,
+      slug: true,
+      title: true,
+      description: true,
+      priceVnd: true,
+      listPriceVnd: true,
+      salePriceVnd: true,
+      durationDays: true,
+      coverImageUrl: true,
+      createdAt: true,
+      _count: {
+        select: { lessons: true },
+      },
+    },
+  });
+
+  const isVisible = buildStorefrontVisibilitySet(rows.map((row) => row.slug));
+
+  return rows
+    .filter((row) => isVisible(row.slug))
+    .sort((a, b) => {
+      const scoreA = storefrontSortScore(a.slug);
+      const scoreB = storefrontSortScore(b.slug);
+      if (scoreA !== scoreB) return scoreA - scoreB;
+      return a.slug.localeCompare(b.slug, "en", { numeric: true, sensitivity: "base" });
+    })
+    .map((row) => ({
+      id: row.id,
+      slug: row.slug,
+      title: row.title,
+      description: row.description,
+      durationDays: row.durationDays,
+      coverImageUrl: resolveCourseCoverImage(row.slug, row.coverImageUrl),
+      lessonCount: row._count.lessons,
+      pricing: resolveCourseDisplayPricing(row),
+    }));
 }
 
 /** Return a course with its ordered lessons */

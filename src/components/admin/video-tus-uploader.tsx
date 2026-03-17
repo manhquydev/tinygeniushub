@@ -24,7 +24,7 @@ type UploadState =
 async function fetchTusToken(videoId: string): Promise<BunnyTusToken> {
   const res = await fetch(`/api/admin/videos/${videoId}/tus-token`);
   const json = (await res.json()) as { ok: boolean; data?: BunnyTusToken; error?: { message: string } };
-  if (!json.ok || !json.data) throw new Error(json.error?.message ?? "Failed to get upload token");
+  if (!json.ok || !json.data) throw new Error(json.error?.message ?? "Không lấy được mã tải lên video.");
   return json.data;
 }
 
@@ -46,7 +46,7 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
 
   function startPolling(count = 0) {
     if (count >= MAX_POLLS) {
-      setState({ phase: "error", message: "Video processing timed out. Check Bunny dashboard." });
+      setState({ phase: "error", message: "Xử lý video quá thời gian chờ. Vui lòng kiểm tra Bunny Stream." });
       return;
     }
     pollRef.current = setTimeout(async () => {
@@ -55,7 +55,7 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
         setState({ phase: "ready" });
         onComplete();
       } else if (status === "failed") {
-        setState({ phase: "error", message: "Video processing failed on Bunny CDN." });
+        setState({ phase: "error", message: "Xử lý video thất bại trên Bunny Stream." });
       } else {
         startPolling(count + 1);
       }
@@ -110,7 +110,7 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
       uploadRef.current = upload;
       upload.start();
     } catch (err) {
-      setState({ phase: "error", message: err instanceof Error ? err.message : "Upload failed" });
+      setState({ phase: "error", message: err instanceof Error ? err.message : "Tải video lên thất bại." });
     }
   }
 

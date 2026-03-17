@@ -119,6 +119,21 @@ function shortText(value: string, max = 50) {
   return `${value.slice(0, max - 1)}…`;
 }
 
+function getActivityTypeLabel(type: ActivityType) {
+  switch (type) {
+    case "MCQ":
+      return "Trắc nghiệm";
+    case "TRUE_FALSE":
+      return "Đúng/Sai";
+    case "WORD_MATCH":
+      return "Nối từ";
+    case "FILL_BLANK":
+      return "Điền chỗ trống";
+    default:
+      return type;
+  }
+}
+
 function toTrackLabel(code: string) {
   if (code === "ENGLISH") {
     return "Tiếng Anh";
@@ -493,7 +508,7 @@ export function AdminContentPanel() {
 
   function openCreateLessonModal() {
     if (!selectedUnitId) {
-      setError("Vui lòng chọn unit trước khi tạo bài học.");
+      setError("Vui lòng chọn đơn vị trước khi tạo bài học.");
       return;
     }
 
@@ -530,7 +545,7 @@ export function AdminContentPanel() {
   async function submitLessonForm(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!selectedUnitId && lessonModalMode === "create") {
-      setError("Vui lòng chọn unit trước khi tạo bài học.");
+      setError("Vui lòng chọn đơn vị trước khi tạo bài học.");
       return;
     }
 
@@ -762,7 +777,7 @@ export function AdminContentPanel() {
                   <p className="text-xs font-semibold uppercase tracking-[0.06em] text-slate-500">{track.code}</p>
                   <p className="mt-1 text-sm font-bold text-slate-800">{toTrackLabel(track.code)}</p>
                   <p className="mt-2 text-xs text-slate-600">
-                    {track._count.levels} level · {track._count.units} unit · {track._count.lessons} bài
+                    {track._count.levels} cấp độ · {track._count.units} đơn vị · {track._count.lessons} bài
                   </p>
                 </button>
               );
@@ -774,7 +789,7 @@ export function AdminContentPanel() {
         <article className="rounded-2xl border border-slate-200 bg-white p-3">
           <h2 className="text-sm font-bold uppercase tracking-[0.08em] text-slate-600">Panel 2 · Levels</h2>
           <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
-            <span>{selectedTrack ? toTrackLabel(selectedTrack.code) : "Chưa chọn track"}</span>
+            <span>{selectedTrack ? toTrackLabel(selectedTrack.code) : "Chưa chọn lộ trình"}</span>
             <ChevronRight size={12} className="shrink-0" />
             <span>Levels</span>
           </p>
@@ -783,7 +798,7 @@ export function AdminContentPanel() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Tên level</th>
+                  <th>Tên cấp độ</th>
                   <th>Units</th>
                 </tr>
               </thead>
@@ -806,7 +821,7 @@ export function AdminContentPanel() {
                 ) : null}
                 {!loadingLevels && levels.length === 0 ? (
                   <tr>
-                    <td colSpan={3}>{selectedTrack ? "Chưa có level." : "Chọn track để xem levels."}</td>
+                    <td colSpan={3}>{selectedTrack ? "Chưa có cấp độ." : "Chọn lộ trình để xem cấp độ."}</td>
                   </tr>
                 ) : null}
               </tbody>
@@ -830,7 +845,7 @@ export function AdminContentPanel() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Tên unit</th>
+                  <th>Tên đơn vị</th>
                   <th>Lessons</th>
                 </tr>
               </thead>
@@ -853,7 +868,7 @@ export function AdminContentPanel() {
                 ) : null}
                 {!loadingUnits && units.length === 0 ? (
                   <tr>
-                    <td colSpan={3}>{selectedLevel ? "Chưa có unit." : "Chọn level để xem units."}</td>
+                    <td colSpan={3}>{selectedLevel ? "Chưa có đơn vị." : "Chọn cấp độ để xem đơn vị."}</td>
                   </tr>
                 ) : null}
               </tbody>
@@ -886,7 +901,7 @@ export function AdminContentPanel() {
                   <th>#</th>
                   <th>Tên</th>
                   <th>Phút</th>
-                  <th>Trial</th>
+                  <th>Dùng thử</th>
                   <th>Activities</th>
                   <th>Hành động</th>
                 </tr>
@@ -936,7 +951,7 @@ export function AdminContentPanel() {
                                 void handleToggleTrial(lesson);
                               }}
                             >
-                              Trial
+                              Dùng thử
                             </button>
                             <button
                               type="button"
@@ -981,7 +996,7 @@ export function AdminContentPanel() {
                                     <div className="min-w-0 flex-1">
                                       <div className="flex flex-wrap items-center gap-2">
                                         <span className="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-700">
-                                          {activity.type}
+                                          {getActivityTypeLabel(activity.type)}
                                         </span>
                                         <span className="text-xs font-semibold text-slate-500">
                                           {activity.passCriteria}%
@@ -1012,7 +1027,7 @@ export function AdminContentPanel() {
                               </ul>
 
                               {activities.length === 0 && loadingActivitiesLessonId !== lesson.id ? (
-                                <p className="text-xs text-slate-500">Chưa có activity.</p>
+                                <p className="text-xs text-slate-500">Chưa có hoạt động.</p>
                               ) : null}
                             </div>
                           </td>
@@ -1023,12 +1038,12 @@ export function AdminContentPanel() {
                 })}
                 {loadingLessons ? (
                   <tr>
-                    <td colSpan={6}>Đang tải lessons...</td>
+                    <td colSpan={6}>Đang tải bài học...</td>
                   </tr>
                 ) : null}
                 {!loadingLessons && lessons.length === 0 ? (
                   <tr>
-                    <td colSpan={6}>{selectedUnit ? "Chưa có bài học." : "Chọn unit để xem lessons."}</td>
+                    <td colSpan={6}>{selectedUnit ? "Chưa có bài học." : "Chọn đơn vị để xem bài học."}</td>
                   </tr>
                 ) : null}
               </tbody>
@@ -1068,7 +1083,7 @@ export function AdminContentPanel() {
           ) : (
             <div className="grid gap-2 rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600">
               <p>
-                <span className="font-semibold">Order:</span> {editingLesson?.orderNo ?? "-"}
+                <span className="font-semibold">Thứ tự:</span> {editingLesson?.orderNo ?? "-"}
               </p>
               <p>
                 <span className="font-semibold">Slug:</span> {editingLesson?.slug ?? "-"}
@@ -1115,12 +1130,12 @@ export function AdminContentPanel() {
                 onChange={(event) => setLessonForm((current) => ({ ...current, trialEnabled: event.target.checked }))}
                 type="checkbox"
               />
-              Trial enabled
+              Bật bài học dùng thử
             </label>
           </div>
 
           <label className="stack-field">
-            Video source
+            Nguồn video
             <input
               value={lessonForm.videoSource}
               onChange={(event) => setLessonForm((current) => ({ ...current, videoSource: event.target.value }))}
@@ -1131,7 +1146,7 @@ export function AdminContentPanel() {
 
           {lessonModalMode === "edit" && editingLessonId && (
             <div className="stack-field">
-              <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--ink-500)" }}>Bunny Stream video</span>
+              <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--ink-500)" }}>Video Bunny Stream</span>
               {editingLessonBunny?.bunnyVideoId ? (
                 <p style={{ fontSize: "0.82rem", color: "var(--ink-600)" }}>
                   ID: <code>{editingLessonBunny.bunnyVideoId}</code> &nbsp;·&nbsp;
@@ -1176,7 +1191,7 @@ export function AdminContentPanel() {
           )}
 
           <label className="stack-field">
-            Offline card markdown
+            Nội dung thẻ offline (Markdown)
             <textarea
               value={lessonForm.offlineCardMarkdown}
               onChange={(event) => setLessonForm((current) => ({ ...current, offlineCardMarkdown: event.target.value }))}
@@ -1185,7 +1200,7 @@ export function AdminContentPanel() {
           </label>
 
           <label className="stack-field">
-            Parent script markdown
+            Kịch bản phụ huynh (Markdown)
             <textarea
               value={lessonForm.parentScriptMarkdown}
               onChange={(event) => setLessonForm((current) => ({ ...current, parentScriptMarkdown: event.target.value }))}
@@ -1218,15 +1233,15 @@ export function AdminContentPanel() {
                   }))
                 }
               >
-                <option value="MCQ">MCQ</option>
-                <option value="TRUE_FALSE">TRUE_FALSE</option>
-                <option value="WORD_MATCH">WORD_MATCH</option>
-                <option value="FILL_BLANK">FILL_BLANK</option>
+                <option value="MCQ">Trắc nghiệm 4 lựa chọn (MCQ)</option>
+                <option value="TRUE_FALSE">Đúng / Sai</option>
+                <option value="WORD_MATCH">Nối từ</option>
+                <option value="FILL_BLANK">Điền chỗ trống</option>
               </select>
             </label>
 
             <label className="stack-field">
-              Pass criteria (%)
+              Ngưỡng đạt (%)
               <input
                 value={activityForm.passCriteria}
                 onChange={(event) => setActivityForm((current) => ({ ...current, passCriteria: event.target.value }))}
@@ -1239,7 +1254,7 @@ export function AdminContentPanel() {
           </div>
 
           <label className="stack-field">
-            Prompt / chủ đề
+            Câu hỏi / chủ đề
             <textarea
               value={activityForm.prompt}
               onChange={(event) => setActivityForm((current) => ({ ...current, prompt: event.target.value }))}

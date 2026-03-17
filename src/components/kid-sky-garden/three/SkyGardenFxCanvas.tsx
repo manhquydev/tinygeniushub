@@ -5,6 +5,7 @@ import * as THREE from "three";
 
 type SkyGardenFxCanvasProps = {
   className?: string;
+  quality?: "full" | "low";
 };
 
 type MistSprite = {
@@ -28,7 +29,7 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
-export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
+export function SkyGardenFxCanvas({ className, quality = "full" }: SkyGardenFxCanvasProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -41,17 +42,20 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
     const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 80);
     camera.position.set(0, 0, 6.2);
 
+    const isLowQuality = quality === "low";
+
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: !isLowQuality,
       alpha: true,
       powerPreference: "high-performance",
     });
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isLowQuality ? 1 : 1.5));
     renderer.setClearColor(0x000000, 0);
     host.appendChild(renderer.domElement);
 
-    const starCount = prefersReducedMotion() ? 44 : 120;
+    const reducedMotion = prefersReducedMotion();
+    const starCount = reducedMotion ? 28 : isLowQuality ? 52 : 120;
     const positions = new Float32Array(starCount * 3);
     const velocities = new Float32Array(starCount);
 
@@ -91,20 +95,22 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
 
     const textureLoader = new THREE.TextureLoader();
     const cloudTextureA = textureLoader.load("/images/cloud-garden/vfx/platform_cloud_fluffy.png");
-    const cloudTextureB = textureLoader.load("/cloud_platform.png");
     cloudTextureA.colorSpace = THREE.SRGBColorSpace;
-    cloudTextureB.colorSpace = THREE.SRGBColorSpace;
     cloudTextureA.magFilter = THREE.LinearFilter;
-    cloudTextureB.magFilter = THREE.LinearFilter;
     cloudTextureA.minFilter = THREE.LinearMipmapLinearFilter;
-    cloudTextureB.minFilter = THREE.LinearMipmapLinearFilter;
+    const cloudTextureB = isLowQuality ? null : textureLoader.load("/cloud_platform.png");
+    if (cloudTextureB) {
+      cloudTextureB.colorSpace = THREE.SRGBColorSpace;
+      cloudTextureB.magFilter = THREE.LinearFilter;
+      cloudTextureB.minFilter = THREE.LinearMipmapLinearFilter;
+    }
 
     const mistGeometry = new THREE.PlaneGeometry(1, 1);
     const mistGroup = new THREE.Group();
     mistGroup.position.set(0, 0, 0);
     scene.add(mistGroup);
 
-    const mistConfigs: Array<{
+    const mistConfigsBase: Array<{
       x: number;
       y: number;
       z: number;
@@ -162,7 +168,7 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
         spin: 0.01,
         pulse: 0.016,
         color: "#f8f4ff",
-        texture: cloudTextureB,
+        texture: cloudTextureB ?? cloudTextureA,
       },
       {
         x: -1.2,
@@ -177,7 +183,7 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
         spin: 0.008,
         pulse: 0.014,
         color: "#ffe9f4",
-        texture: cloudTextureB,
+        texture: cloudTextureB ?? cloudTextureA,
       },
       {
         x: 1.5,
@@ -195,6 +201,7 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
         texture: cloudTextureA,
       },
     ];
+    const mistConfigs = isLowQuality ? mistConfigsBase.slice(0, 2) : mistConfigsBase;
 
     const mistSprites: MistSprite[] = [];
     const mistMaterials: THREE.MeshBasicMaterial[] = [];
@@ -241,11 +248,28 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
     resize();
     window.addEventListener("resize", resize, { passive: true });
 
-    const reducedMotion = prefersReducedMotion();
     const startAt = performance.now();
+    const targetFrameMs = isLowQuality ? 1000 / 30 : 1000 / 60;
     let rafId = 0;
+    let lastFrameAt = startAt;
+    let pageHidden = document.visibilityState === "hidden";
+
+    const handleVisibilityChange = () => {
+      pageHidden = document.visibilityState === "hidden";
+      if (!pageHidden) {
+        lastFrameAt = performance.now();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     const animate = (now: number) => {
+      if (pageHidden || now - lastFrameAt < targetFrameMs) {
+        rafId = window.requestAnimationFrame(animate);
+        return;
+      }
+      lastFrameAt = now;
+
       const elapsed = (now - startAt) * 0.001;
       const points = starsGeometry.getAttribute("position") as THREE.BufferAttribute;
 
@@ -257,7 +281,7 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
         }
         points.array[i3 + 1] = y;
 
-        if (!reducedMotion) {
+        if (!reducedMotion && !isLowQuality) {
           points.array[i3] = (points.array[i3] as number) + Math.sin(elapsed + index * 0.3) * 0.0007;
         }
       }
@@ -265,9 +289,10 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
       points.needsUpdate = true;
 
       if (!reducedMotion) {
-        stars.rotation.z = Math.sin(elapsed * 0.08) * 0.08;
-        hazePlaneMaterial.opacity = 0.05 + Math.sin(elapsed * 0.18) * 0.012;
-        hazePlane.position.y = 2.82 + Math.sin(elapsed * 0.12) * 0.04;
+        stars.rotation.z = Math.sin(elapsed * 0.08) * (isLowQuality ? 0.04 : 0.08);
+        hazePlaneMaterial.opacity =
+          (isLowQuality ? 0.045 : 0.05) + Math.sin(elapsed * 0.18) * (isLowQuality ? 0.008 : 0.012);
+        hazePlane.position.y = 2.82 + Math.sin(elapsed * 0.12) * (isLowQuality ? 0.02 : 0.04);
 
         for (const sprite of mistSprites) {
           const { mesh } = sprite;
@@ -291,6 +316,7 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
 
     return () => {
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.cancelAnimationFrame(rafId);
       starsGeometry.dispose();
       starsMaterial.dispose();
@@ -298,7 +324,7 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
       hazePlaneMaterial.dispose();
       mistGeometry.dispose();
       cloudTextureA.dispose();
-      cloudTextureB.dispose();
+      cloudTextureB?.dispose();
       for (const material of mistMaterials) {
         material.dispose();
       }
@@ -307,7 +333,7 @@ export function SkyGardenFxCanvas({ className }: SkyGardenFxCanvasProps) {
         host.removeChild(renderer.domElement);
       }
     };
-  }, []);
+  }, [quality]);
 
   return <div ref={hostRef} className={className} aria-hidden="true" />;
 }

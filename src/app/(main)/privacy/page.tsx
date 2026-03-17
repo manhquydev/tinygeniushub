@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
       <ul>
         <li>Chúng tôi không bán dữ liệu cá nhân cho bên thứ ba.</li>
         <li>Chỉ chia sẻ với nhà cung cấp dịch vụ cần thiết theo thỏa thuận bảo mật.</li>
-        <li>Nhà cung cấp chính: Cloudflare (hạ tầng), Resend (email), Stripe (thanh toán).</li>
+        <li>Nhà cung cấp chính: Cloudflare (hạ tầng), Resend (email), PayOS (xử lý thanh toán).</li>
       </ul>
 
       <h2>4. Bảo vệ dữ liệu trẻ em</h2>
@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
         <li>Đơn vị vận hành: Cùng Con Tự Học</li>
       </ul>
 
-      <p className="last-updated">Ngày cập nhật gần nhất: 23/02/2026</p>
+      <p className="last-updated">Ngày cập nhật gần nhất: 17/03/2026</p>
     </article>
   );
 }

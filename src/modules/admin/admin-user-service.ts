@@ -179,7 +179,7 @@ export async function executeAdminBulkUsersAction(input: unknown) {
 
   const message =
     payload.payload?.message ??
-    "Phá»¥ huynh vui lÃ²ng kiá»ƒm tra cáº­p nháº­t má»›i trong báº£ng Ä‘iá»u khiá»ƒn.";
+    "Phụ huynh vui lòng kiểm tra cập nhật mới trong bảng điều khiển.";
 
   const results = await Promise.all(
     uniqueParentIds.map(async (parentId) => {
@@ -190,7 +190,7 @@ export async function executeAdminBulkUsersAction(input: unknown) {
         parentEmail: parent.email,
         notification: {
           type: "TIP",
-          title: "ThÃ´ng bÃ¡o tá»« quáº£n trá»‹ viÃªn",
+          title: "Thông báo từ quản trị viên",
           message,
           href: "/parent/dashboard",
         },

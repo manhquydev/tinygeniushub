@@ -41,7 +41,7 @@ function normalizeCouponCode(code: string) {
 function assertCouponCodeFormat(code: string) {
   if (!/^[A-Z0-9_-]{3,64}$/.test(code)) {
     throw new DomainError(
-      "MÃ£ giáº£m giÃ¡ chá»‰ gá»“m chá»¯ in hoa, sá»‘, dáº¥u gáº¡ch ngang hoáº·c gáº¡ch dÆ°á»›i.",
+      "Mã giảm giá chỉ gồm chữ in hoa, số, dấu gạch ngang hoặc gạch dưới.",
       400,
       "INVALID_COUPON_CODE",
     );
@@ -83,7 +83,7 @@ export async function createCoupon(
   assertCouponCodeFormat(normalizedCode);
 
   if (payload.expiresAt && payload.expiresAt <= new Date()) {
-    throw new DomainError("Thá»i gian háº¿t háº¡n pháº£i á»Ÿ tÆ°Æ¡ng lai.", 400, "INVALID_COUPON_EXPIRES_AT");
+    throw new DomainError("Thời gian hết hạn phải ở tương lai.", 400, "INVALID_COUPON_EXPIRES_AT");
   }
 
   return prisma.couponCode.create({
@@ -121,7 +121,7 @@ export async function toggleCoupon(id: string) {
   });
 
   if (!existing) {
-    throw new DomainError("KhÃ´ng tÃ¬m tháº¥y mÃ£ giáº£m giÃ¡.", 404, "COUPON_NOT_FOUND");
+    throw new DomainError("Không tìm thấy mã giảm giá.", 404, "COUPON_NOT_FOUND");
   }
 
   return prisma.couponCode.update({
@@ -169,19 +169,19 @@ export async function validateCoupon(codeInput: string) {
     });
 
     if (!coupon) {
-      return { valid: false, message: "MÃ£ giáº£m giÃ¡ khÃ´ng tá»“n táº¡i." };
+      return { valid: false, message: "Mã giảm giá không tồn tại." };
     }
 
     if (!coupon.active) {
-      return { valid: false, message: "MÃ£ giáº£m giÃ¡ Ä‘Ã£ táº¡m ngÆ°ng." };
+      return { valid: false, message: "Mã giảm giá đã tạm ngưng." };
     }
 
     if (coupon.expiresAt && coupon.expiresAt <= now) {
-      return { valid: false, message: "MÃ£ giáº£m giÃ¡ Ä‘Ã£ háº¿t háº¡n." };
+      return { valid: false, message: "Mã giảm giá đã hết hạn." };
     }
 
     if (coupon.maxUses !== null && coupon.usedCount >= coupon.maxUses) {
-      return { valid: false, message: "MÃ£ giáº£m giÃ¡ Ä‘Ã£ háº¿t lÆ°á»£t sá»­ dá»¥ng." };
+      return { valid: false, message: "Mã giảm giá đã hết lượt sử dụng." };
     }
 
     if (coupon.maxUses !== null) {
@@ -200,7 +200,7 @@ export async function validateCoupon(codeInput: string) {
       });
 
       if (updateResult.count === 0) {
-        return { valid: false, message: "MÃ£ giáº£m giÃ¡ Ä‘Ã£ háº¿t lÆ°á»£t sá»­ dá»¥ng." };
+        return { valid: false, message: "Mã giảm giá đã hết lượt sử dụng." };
       }
     } else {
       await tx.couponCode.update({

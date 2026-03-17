@@ -1,6 +1,6 @@
 ﻿/**
- * GET /api/admin/skills â€” list all skills as tree
- * POST /api/admin/skills â€” create a new skill
+ * GET /api/admin/skills — list all skills as tree
+ * POST /api/admin/skills — create a new skill
  */
 
 import type { NextRequest } from "next/server";

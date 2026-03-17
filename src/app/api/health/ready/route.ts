@@ -6,6 +6,7 @@ import { enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
 import { handleRouteError } from "@/lib/route-error";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
+import { createRedisConnectionOptions } from "@/lib/redis-connection";
 import Redis from "ioredis";
 
 type DependencyCheck = {
@@ -44,7 +45,8 @@ async function checkDatabase(): Promise<DependencyCheck> {
 
 async function checkRedis(): Promise<DependencyCheck> {
   const startedAt = performance.now();
-  const client = new Redis(env.REDIS_URL, {
+  const client = new Redis({
+    ...createRedisConnectionOptions(env.REDIS_URL),
     lazyConnect: true,
     maxRetriesPerRequest: 1,
     enableOfflineQueue: false,

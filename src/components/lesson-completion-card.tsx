@@ -26,7 +26,7 @@ const playSound = (base64Sound: string) => {
 const EvidenceUploadPanel = dynamic(
   () => import("@/components/evidence-upload-panel").then((module) => module.EvidenceUploadPanel),
   {
-    loading: () => <p className="muted-text">Äang táº£i...</p>,
+    loading: () => <p className="muted-text">Đang tải...</p>,
   },
 );
 
@@ -89,10 +89,10 @@ export function LessonCompletionCard({
 
       if (watchResult.readyForCompletion) {
         setWatchReady(true);
-        setWatchInfo(`ÄÃ£ ghi nháº­n video: ${watched}s / má»¥c tiÃªu ${required}s.`);
+        setWatchInfo(`Đã ghi nhận video: ${watched}s / mục tiêu ${required}s.`);
       } else {
         setWatchReady(false);
-        setWatchInfo(`Cáº§n xem thÃªm video: ${watched}s / má»¥c tiÃªu ${required}s.`);
+        setWatchInfo(`Cần xem thêm video: ${watched}s / mục tiêu ${required}s.`);
       }
     },
     [requiredWatchSeconds, watchedSeconds],
@@ -143,13 +143,13 @@ export function LessonCompletionCard({
       });
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setStatus(body.error?.message ?? "KhÃ´ng thá»ƒ báº¯t Ä‘áº§u phiÃªn xem video");
+        setStatus(body.error?.message ?? "Không thể bắt đầu phiên xem video");
         return;
       }
 
       const session = body.data?.session as WatchSessionPayload | undefined;
       if (!session?.watchRequired || !session.sessionToken || !session.issuedAt || !session.expiresAt) {
-        setStatus("BÃ i há»c nÃ y khÃ´ng yÃªu cáº§u xem video.");
+        setStatus("Bài học này không yêu cầu xem video.");
         return;
       }
 
@@ -159,13 +159,13 @@ export function LessonCompletionCard({
       setWatchedSeconds(0);
       setWatchReady(false);
       setWatchInfo(
-        `ÄÃ£ báº¯t Ä‘áº§u phiÃªn xem video. Má»¥c tiÃªu ${session.requiredWatchSeconds}s, Ä‘á»“ng bá»™ má»—i ${session.heartbeatIntervalSeconds}s.`,
+        `Đã bắt đầu phiên xem video. Mục tiêu ${session.requiredWatchSeconds}s, đồng bộ mỗi ${session.heartbeatIntervalSeconds}s.`,
       );
       setWatchSessionStartedAtMs(new Date(session.issuedAt).getTime());
       setWatchSessionExpiresAtMs(new Date(session.expiresAt).getTime());
       setWatchHeartbeatSequence(0);
     } catch (watchSessionError) {
-      setStatus(watchSessionError instanceof Error ? watchSessionError.message : "KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n há»‡ thá»‘ng.");
+      setStatus(watchSessionError instanceof Error ? watchSessionError.message : "Không thể kết nối đến hệ thống.");
     } finally {
       setWatchSessionLoading(false);
     }
@@ -178,7 +178,7 @@ export function LessonCompletionCard({
       }
 
       if (watchSessionExpiresAtMs && Date.now() > watchSessionExpiresAtMs) {
-        setStatus("PhiÃªn xem video Ä‘Ã£ háº¿t háº¡n. HÃ£y báº¯t Ä‘áº§u phiÃªn má»›i.");
+        setStatus("Phiên xem video đã hết hạn. Hãy bắt đầu phiên mới.");
         setWatchSessionToken(null);
         setWatchSessionStartedAtMs(null);
         setWatchSessionExpiresAtMs(null);
@@ -202,7 +202,7 @@ export function LessonCompletionCard({
         });
         const body = await response.json();
         if (!response.ok || !body.ok) {
-          setStatus(body.error?.message ?? "KhÃ´ng Ä‘á»“ng bá»™ Ä‘Æ°á»£c tiáº¿n Ä‘á»™ xem video.");
+          setStatus(body.error?.message ?? "Không đồng bộ được tiến độ xem video.");
           return;
         }
 
@@ -260,12 +260,12 @@ export function LessonCompletionCard({
     }
 
     if (!watchSessionToken || !watchSessionStartedAtMs) {
-      setStatus("HÃ£y báº¯t Ä‘áº§u phiÃªn xem video trÆ°á»›c khi ghi nháº­n tiáº¿n Ä‘á»™.");
+      setStatus("Hãy bắt đầu phiên xem video trước khi ghi nhận tiến độ.");
       return;
     }
 
     if (watchSessionExpiresAtMs && Date.now() > watchSessionExpiresAtMs) {
-      setStatus("PhiÃªn xem video Ä‘Ã£ háº¿t háº¡n. HÃ£y báº¯t Ä‘áº§u phiÃªn má»›i.");
+      setStatus("Phiên xem video đã hết hạn. Hãy bắt đầu phiên mới.");
       setWatchSessionToken(null);
       setWatchSessionStartedAtMs(null);
       setWatchSessionExpiresAtMs(null);
@@ -287,7 +287,7 @@ export function LessonCompletionCard({
 
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setStatus(body.error?.message ?? "KhÃ´ng thá»ƒ ghi nháº­n tiáº¿n Ä‘á»™ xem video");
+        setStatus(body.error?.message ?? "Không thể ghi nhận tiến độ xem video");
         return;
       }
 
@@ -298,7 +298,7 @@ export function LessonCompletionCard({
         applyWatchResult(watchResult);
       }
     } catch (watchError) {
-      setStatus(watchError instanceof Error ? watchError.message : "KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n há»‡ thá»‘ng.");
+      setStatus(watchError instanceof Error ? watchError.message : "Không thể kết nối đến hệ thống.");
     } finally {
       setWatchLoading(false);
     }
@@ -323,14 +323,14 @@ export function LessonCompletionCard({
 
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setStatus(body.error?.message ?? "KhÃ´ng thá»ƒ lÆ°u tiáº¿n Ä‘á»™");
+        setStatus(body.error?.message ?? "Không thể lưu tiến độ");
         return;
       }
 
       if (body.data.idempotent) {
-        setStatus("BÃ i nÃ y Ä‘Ã£ hoÃ n thÃ nh trÆ°á»›c Ä‘Ã³.");
+        setStatus("Bài này đã hoàn thành trước đó.");
       } else {
-        setStatus("ÄÃ£ hoÃ n thÃ nh bÃ i há»c vÃ  nháº­n thÆ°á»Ÿng.");
+        setStatus("Đã hoàn thành bài học và nhận thưởng.");
         playSound(YAY_SOUND);
         // Trigger enhanced confetti celebration
         const duration = 2500;
@@ -361,7 +361,7 @@ export function LessonCompletionCard({
 
       setCompletionDone(true);
     } catch (completeError) {
-      setStatus(completeError instanceof Error ? completeError.message : "KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n há»‡ thá»‘ng.");
+      setStatus(completeError instanceof Error ? completeError.message : "Không thể kết nối đến hệ thống.");
     } finally {
       setLoading(false);
     }
@@ -371,7 +371,7 @@ export function LessonCompletionCard({
     <m.article className="list-item stack-item lesson-flow-card" layout style={{ border: "2px solid var(--surface-200)", padding: "1.5rem" }}>
       <strong style={{ fontSize: "1.25rem", color: "var(--brand-700)" }}>{title}</strong>
       <p className="muted-text" style={{ fontSize: "1rem" }}>{objective}</p>
-      <p className="muted-text">Thá»i lÆ°á»£ng dá»± kiáº¿n: <strong>{estimatedMinutes} phÃºt</strong></p>
+      <p className="muted-text">Thời lượng dự kiến: <strong>{estimatedMinutes} phút</strong></p>
       {watchRequired ? (
         <div className="page-stack" style={{ width: "100%", background: "color-mix(in srgb, var(--surface-100) 50%, white)", padding: "1rem", borderRadius: "16px" }}>
           {videoSource ? (
@@ -396,7 +396,7 @@ export function LessonCompletionCard({
             whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
             style={{ justifyContent: "center", gap: "0.5rem" }}
           >
-            {watchSessionLoading ? "Äang táº¡o phiÃªn xem..." : <><Video size={18} /> Báº¯t Ä‘áº§u theo dÃµi xem video</>}
+            {watchSessionLoading ? "Đang tạo phiên xem..." : <><Video size={18} /> Bắt đầu theo dõi xem video</>}
           </m.button>
           <div
             className="watch-progress-track super-thick-progress"
@@ -405,7 +405,7 @@ export function LessonCompletionCard({
             aria-valuemax={100}
             aria-valuenow={watchProgressPercentage}
             aria-valuetext={`${watchProgressPercentage}%`}
-            aria-label="Tiáº¿n Ä‘á»™ xem video"
+            aria-label="Tiến độ xem video"
           >
             <m.div
               className={`watch-progress-fill ${watchReady ? "watch-progress-fill-ready" : ""}`}
@@ -415,7 +415,7 @@ export function LessonCompletionCard({
             />
           </div>
           <p className="muted-text" style={{ textAlign: "center", fontSize: "0.9rem" }}>
-            Tiáº¿n Ä‘á»™: <strong style={{ color: "var(--brand-600)" }}>{watchProgressPercentage}%</strong>
+            Tiến độ: <strong style={{ color: "var(--brand-600)" }}>{watchProgressPercentage}%</strong>
           </p>
           <m.button
             type="button"
@@ -426,7 +426,7 @@ export function LessonCompletionCard({
             whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
             style={{ justifyContent: "center", gap: "0.5rem", background: "white" }}
           >
-            {watchLoading ? "Äang ghi nháº­n..." : <><CheckCircle size={18} className="text-brand-500" /> ÄÃ£ xem video, tiáº¿p tá»¥c</>}
+            {watchLoading ? "Đang ghi nhận..." : <><CheckCircle size={18} className="text-brand-500" /> Đã xem video, tiếp tục</>}
           </m.button>
           <AnimatePresence mode="wait" initial={false}>
             {watchInfo ? (
@@ -445,7 +445,7 @@ export function LessonCompletionCard({
           </AnimatePresence>
         </div>
       ) : (
-        <p className="muted-text">BÃ i há»c nÃ y chÆ°a cÃ³ video, bá» qua bÆ°á»›c xem video.</p>
+        <p className="muted-text">Bài học này chưa có video, bỏ qua bước xem video.</p>
       )}
       <label className="inline-checkbox" style={{ opacity: 0.6, transform: "scale(0.9)", transformOrigin: "left center" }}>
         <input
@@ -454,7 +454,7 @@ export function LessonCompletionCard({
           onChange={(event) => setUseExtendedRetention(event.target.checked)}
           disabled={loading}
         />
-        <span>Æ¯u tiÃªn lÆ°u trá»¯ 365 ngÃ y náº¿u gÃ³i há»— trá»£</span>
+        <span>Ưu tiên lưu trữ 365 ngày nếu gói hỗ trợ</span>
       </label>
       <m.button
         type="button"
@@ -465,7 +465,7 @@ export function LessonCompletionCard({
         whileTap={prefersReducedMotion || completionDone ? undefined : { scale: 0.96 }}
         style={{ width: "100%", padding: "1.2rem", fontSize: "1.1rem", borderRadius: "20px", marginTop: "1rem", background: completionDone ? "var(--brand-600)" : (loading || (watchRequired && !watchReady)) ? "var(--surface-200)" : undefined, color: completionDone ? "white" : (loading || (watchRequired && !watchReady)) ? "var(--ink-700)" : undefined, boxShadow: (loading || (watchRequired && !watchReady) || completionDone) ? "none" : undefined, display: "flex", justifyContent: "center", alignItems: "center", gap: "0.5rem" }}
       >
-        {loading ? "Äang ghi nháº­n..." : completionDone ? <><Check size={20} /> ðŸŽ‰ ÄÃ£ xong!</> : "HoÃ n thÃ nh bÃ i"}
+        {loading ? "Đang ghi nhận..." : completionDone ? <><Check size={20} /> 🎉 Đã xong!</> : "Hoàn thành bài"}
       </m.button>
       <AnimatePresence mode="wait" initial={false}>
         {status ? (

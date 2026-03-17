@@ -4,6 +4,27 @@ const runtimeNodeEnv = process.env.NODE_ENV ?? "development";
 const isProduction = runtimeNodeEnv === "production";
 const allowCiFallbacks = process.env.CI === "true";
 
+const optionalString = z.preprocess(
+  (value) => (typeof value === "string" && value.trim().length === 0 ? undefined : value),
+  z.string().optional(),
+);
+
+const optionalNonEmptyString = z.preprocess(
+  (value) => (typeof value === "string" && value.trim().length === 0 ? undefined : value),
+  z.string().min(1).optional(),
+);
+
+const optionalSecret = (minLength: number) =>
+  z.preprocess(
+    (value) => (typeof value === "string" && value.trim().length === 0 ? undefined : value),
+    z.string().min(minLength).optional(),
+  );
+
+const optionalEmail = z.preprocess(
+  (value) => (typeof value === "string" && value.trim().length === 0 ? undefined : value),
+  z.string().email().optional(),
+);
+
 const envSchema = z.object({
   DATABASE_URL: z.string().min(1),
   SESSION_SECRET: z.string().min(32),
@@ -23,7 +44,12 @@ const envSchema = z.object({
   BILLING_WEBHOOK_SECRET: z.string().min(8),
   BILLING_WEBHOOK_MAX_BYTES: z.coerce.number().int().min(1024).max(1024 * 1024).default(256 * 1024),
   BILLING_PROVIDER: z.string().min(1).default("mock_gateway"),
-  STRIPE_SECRET_KEY: z.string().min(1).optional(),
+  COURSE_PAYMENT_PROVIDER: z.string().min(1).default("mock_gateway"),
+  PAYOS_CLIENT_ID: optionalNonEmptyString,
+  PAYOS_API_KEY: optionalNonEmptyString,
+  PAYOS_CHECKSUM_KEY: optionalNonEmptyString,
+  PAYOS_API_BASE_URL: z.string().url().default("https://api-merchant.payos.vn"),
+  STRIPE_SECRET_KEY: optionalNonEmptyString,
   STRIPE_API_BASE_URL: z.string().url().default("https://api.stripe.com"),
   STRIPE_WEBHOOK_SECRETS: z
     .string()
@@ -37,24 +63,24 @@ const envSchema = z.object({
     ),
   STRIPE_WEBHOOK_TOLERANCE_SECONDS: z.coerce.number().int().min(30).max(3600).default(300),
   REPORT_EMAIL_PROVIDER: z.string().min(1).default("mock_email"),
-  REPORT_EMAIL_RESEND_API_KEY: z.string().min(1).optional(),
+  REPORT_EMAIL_RESEND_API_KEY: optionalNonEmptyString,
   REPORT_EMAIL_RESEND_API_BASE_URL: z.string().url().default("https://api.resend.com"),
-  REPORT_EMAIL_FROM: z.string().email().optional(),
-  REPORT_EMAIL_REPLY_TO: z.string().email().optional(),
-  REPORT_EMAIL_TO_OVERRIDE: z.string().email().optional(),
+  REPORT_EMAIL_FROM: optionalEmail,
+  REPORT_EMAIL_REPLY_TO: optionalEmail,
+  REPORT_EMAIL_TO_OVERRIDE: optionalEmail,
   CRON_SECRET: z.string().min(16),
   STORAGE_PROVIDER: z.string().min(1).default("mock_r2"),
   MEDIA_UPLOAD_URL_TTL_SECONDS: z.coerce.number().int().min(60).max(3600).default(900),
   WATCH_SESSION_TTL_SECONDS: z.coerce.number().int().min(300).max(21600).default(7200),
-  R2_ACCOUNT_ID: z.string().optional(),
-  R2_BUCKET_NAME: z.string().optional(),
-  R2_ACCESS_KEY_ID: z.string().optional(),
-  R2_SECRET_ACCESS_KEY: z.string().optional(),
+  R2_ACCOUNT_ID: optionalString,
+  R2_BUCKET_NAME: optionalString,
+  R2_ACCESS_KEY_ID: optionalString,
+  R2_SECRET_ACCESS_KEY: optionalString,
   MOCK_UPLOAD_SIGNING_SECRET: z.string().min(32),
-  BUNNY_STREAM_API_KEY: z.string().min(1).optional(),
+  BUNNY_STREAM_API_KEY: optionalNonEmptyString,
   BUNNY_STREAM_LIBRARY_ID: z.coerce.number().int().positive().optional(),
-  BUNNY_STREAM_CDN_HOSTNAME: z.string().min(1).optional(),
-  BUNNY_WEBHOOK_SECRET: z.string().min(8).optional(),
+  BUNNY_STREAM_CDN_HOSTNAME: optionalNonEmptyString,
+  BUNNY_WEBHOOK_SECRET: optionalSecret(8),
   REDIS_URL: z.string().url(),
   RATE_LIMIT_TRUST_PROXY: z
     .enum(["true", "false"])
@@ -96,6 +122,11 @@ const parsedEnv = envSchema.parse({
   BILLING_WEBHOOK_SECRET: process.env.BILLING_WEBHOOK_SECRET ?? (isProduction ? undefined : "dev-webhook-secret"),
   BILLING_WEBHOOK_MAX_BYTES: process.env.BILLING_WEBHOOK_MAX_BYTES,
   BILLING_PROVIDER: process.env.BILLING_PROVIDER,
+  COURSE_PAYMENT_PROVIDER: process.env.COURSE_PAYMENT_PROVIDER,
+  PAYOS_CLIENT_ID: process.env.PAYOS_CLIENT_ID,
+  PAYOS_API_KEY: process.env.PAYOS_API_KEY,
+  PAYOS_CHECKSUM_KEY: process.env.PAYOS_CHECKSUM_KEY,
+  PAYOS_API_BASE_URL: process.env.PAYOS_API_BASE_URL,
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   STRIPE_API_BASE_URL: process.env.STRIPE_API_BASE_URL,
   STRIPE_WEBHOOK_SECRETS: process.env.STRIPE_WEBHOOK_SECRETS,
@@ -148,6 +179,14 @@ if (parsedEnv.BILLING_PROVIDER === "stripe" && !parsedEnv.STRIPE_SECRET_KEY) {
 
 if (parsedEnv.BILLING_PROVIDER === "stripe" && parsedEnv.STRIPE_WEBHOOK_SECRETS.length === 0) {
   throw new Error("STRIPE_WEBHOOK_SECRETS is required when BILLING_PROVIDER=stripe");
+}
+
+if (parsedEnv.COURSE_PAYMENT_PROVIDER === "payos") {
+  if (!parsedEnv.PAYOS_CLIENT_ID || !parsedEnv.PAYOS_API_KEY || !parsedEnv.PAYOS_CHECKSUM_KEY) {
+    throw new Error(
+      "PAYOS_CLIENT_ID, PAYOS_API_KEY, and PAYOS_CHECKSUM_KEY are required when COURSE_PAYMENT_PROVIDER=payos",
+    );
+  }
 }
 
 if (parsedEnv.REPORT_EMAIL_PROVIDER === "resend") {

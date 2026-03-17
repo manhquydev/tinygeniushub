@@ -1,31 +1,20 @@
 // @vitest-environment jsdom
 
 import React from "react";
-import { act, render, waitFor } from "@testing-library/react";
-import { describe, expect, it, vi, beforeEach } from "vitest";
+import { act, render } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Mascot } from "@/components/mascot";
 
 vi.mock("motion/react", () => ({
-  AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
   useReducedMotion: () => false,
+  AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 
 vi.mock("motion/react-m", () => {
-  const motionOnlyProps = new Set([
-    "variants",
-    "initial",
-    "animate",
-    "exit",
-    "transition",
-    "whileHover",
-    "whileTap",
-    "layout",
-  ]);
-
-  type MotionMockProps = Record<string, unknown> & {
-    children?: React.ReactNode;
+  type MotionMockProps = React.HTMLAttributes<HTMLDivElement> & {
     animate?: unknown;
     transition?: unknown;
+    children?: React.ReactNode;
   };
 
   const toDataValue = (value: unknown) => {
@@ -37,142 +26,114 @@ vi.mock("motion/react-m", () => {
     }
   };
 
-  const createMotionTag = (tagName: keyof React.JSX.IntrinsicElements) => {
-    const MotionTag = React.forwardRef<Element, MotionMockProps>(({ children, ...props }, ref) => {
-      const domProps = Object.fromEntries(
-        Object.entries(props).filter(([key]) => !motionOnlyProps.has(key)),
-      ) as Record<string, unknown>;
+  const Div = React.forwardRef<HTMLDivElement, MotionMockProps>(({ children, animate, transition, ...rest }, ref) => {
+    const animateValue = toDataValue(animate);
+    const transitionValue = toDataValue(transition);
 
-      const animateValue = toDataValue(props.animate);
-      const transitionValue = toDataValue(props.transition);
-      if (animateValue) domProps["data-motion-animate"] = animateValue;
-      if (transitionValue) domProps["data-motion-transition"] = transitionValue;
-
-      return React.createElement(tagName, { ...domProps, ref }, children as React.ReactNode);
-    });
-
-    MotionTag.displayName = `MotionTag(${tagName})`;
-    return MotionTag;
-  };
-
-  const tags = [
-    "svg",
-    "g",
-    "path",
-    "circle",
-    "text",
-    "polygon",
-    "defs",
-    "radialGradient",
-    "stop",
-    "title",
-    "rect",
-    "line",
-  ] as const;
-
-  return Object.fromEntries(tags.map((tag) => [tag, createMotionTag(tag)]));
-});
-
-describe("Mascot", () => {
-  let observerCallback: IntersectionObserverCallback | null = null;
-
-  beforeEach(() => {
-    observerCallback = null;
-
-    class MockIntersectionObserver {
-      constructor(callback: IntersectionObserverCallback) {
-        observerCallback = callback;
-      }
-      observe() {}
-      unobserve() {}
-      disconnect() {}
-    }
-
-    vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
+    return (
+      <div
+        {...rest}
+        ref={ref}
+        data-motion-animate={animateValue}
+        data-motion-transition={transitionValue}
+      >
+        {children}
+      </div>
+    );
   });
 
-  it("supports independent parent/child state and action for duo mascot", () => {
-    const { container } = render(
+  Div.displayName = "MotionDivMock";
+
+  return {
+    div: Div,
+  };
+});
+
+function getMascotRoot(container: HTMLElement) {
+  const root = container.querySelector('[role="img"][data-motion-animate]');
+  if (!root) {
+    throw new Error("Mascot root not found");
+  }
+  return root as HTMLElement;
+}
+
+describe("Mascot", () => {
+  beforeEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("renders mascot container and image alt correctly", () => {
+    const { container, getByAltText } = render(<Mascot variant="small" state="playful" motionLevel="minimal" />);
+
+    const mascotRoot = getMascotRoot(container);
+    const image = getByAltText("Linh vật cáo TinyGeniusHub");
+
+    expect(mascotRoot.tagName.toLowerCase()).toBe("div");
+    expect(mascotRoot.getAttribute("data-motion-animate")).toContain('"y":0');
+    expect(image.tagName.toLowerCase()).toBe("img");
+  });
+
+  it("applies active loop animation for celebrating state", () => {
+    const { container } = render(<Mascot variant="big" state="celebrating" motionLevel="full" />);
+
+    const mascotRoot = getMascotRoot(container);
+    const animatePayload = mascotRoot.getAttribute("data-motion-animate") ?? "";
+
+    expect(animatePayload).toContain("[0,-10,0]");
+    expect(animatePayload).toContain('"scale":[1,1.04,1]');
+  });
+
+  it("keeps minimal motion payload when motionLevel is minimal", () => {
+    const { container } = render(<Mascot variant="big" state="celebrating" motionLevel="minimal" />);
+
+    const mascotRoot = getMascotRoot(container);
+    const animatePayload = mascotRoot.getAttribute("data-motion-animate") ?? "";
+
+    expect(animatePayload).toContain('"y":0');
+    expect(animatePayload).toContain('"scale":1');
+  });
+
+  it("calls onSequenceComplete when running sequence mode", () => {
+    vi.useFakeTimers();
+
+    const onSequenceComplete = vi.fn();
+
+    render(
       <Mascot
-        variant="duo"
-        state="idle"
-        actionProp="none"
-        parentState="celebrating"
-        childState="playful"
-        parentActionProp="heart"
-        childActionProp="music"
-        motionLevel="minimal"
+        variant="small"
+        state="happy"
+        animationMode="sequence"
+        sequence={[
+          { state: "happy", duration: 300 },
+          { state: "celebrating", duration: 500 },
+        ]}
+        onSequenceComplete={onSequenceComplete}
       />,
     );
 
-    const hasParentStar = Array.from(container.querySelectorAll("polygon")).some((node) =>
-      (node.getAttribute("points") ?? "").startsWith("165,98"),
-    );
-    const hasChildWink = Array.from(container.querySelectorAll("path")).some(
-      (node) => node.getAttribute("d") === "M 178 160 C 182 165 190 165 194 160",
-    );
-    const hasHeartProp = Array.from(container.querySelectorAll("path")).some((node) =>
-      (node.getAttribute("d") ?? "").startsWith("M 132 88 C 132 80"),
-    );
-    const hasMusicProp = Array.from(container.querySelectorAll("path")).some((node) =>
-      (node.getAttribute("d") ?? "").startsWith("M 174 140 L 174 156"),
-    );
-
-    expect(hasParentStar).toBe(true);
-    expect(hasChildWink).toBe(true);
-    expect(hasHeartProp).toBe(true);
-    expect(hasMusicProp).toBe(true);
-  });
-
-  it("drops to minimal motion when mascot moves offscreen", async () => {
-    const { container } = render(
-      <Mascot variant="big" state="celebrating" actionProp="magic" motionLevel="full" pauseWhenOffscreen />,
-    );
-
-    const readAnimatedPayload = () =>
-      Array.from(container.querySelectorAll("g[data-motion-animate]"))
-        .map((node) => node.getAttribute("data-motion-animate") ?? "")
-        .join("\n");
-
-    expect(readAnimatedPayload()).toContain("[0,-14,0]");
-
-    const rootSvg = container.querySelector("svg");
-    if (!rootSvg || !observerCallback) {
-      throw new Error("Expected svg root and IntersectionObserver callback");
-    }
+    expect(onSequenceComplete).not.toHaveBeenCalled();
 
     act(() => {
-      const offscreenEntry: IntersectionObserverEntry = {
-        time: Date.now(),
-        rootBounds: null,
-        boundingClientRect: rootSvg.getBoundingClientRect(),
-        intersectionRect: rootSvg.getBoundingClientRect(),
-        isIntersecting: false,
-        intersectionRatio: 0,
-        target: rootSvg,
-      };
-
-      observerCallback?.(
-        [offscreenEntry],
-        {} as IntersectionObserver,
-      );
+      vi.advanceTimersByTime(799);
     });
 
-    await waitFor(() => {
-      expect(readAnimatedPayload()).toContain("\"y\":0");
-      expect(readAnimatedPayload()).toContain("\"scale\":1");
+    expect(onSequenceComplete).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(201);
     });
+
+    expect(onSequenceComplete).toHaveBeenCalledTimes(1);
   });
 
-  it.each([
-    ["playful-music", "playful", "music"],
-    ["proud-magic", "proud", "magic"],
-    ["love-heart", "love", "heart"],
-  ] as const)("matches snapshot for %s", (_name, state, actionProp) => {
+  it("calculates family mascot size based on layout", () => {
     const { container } = render(
-      <Mascot variant="small" state={state} actionProp={actionProp} motionLevel="minimal" />,
+      <Mascot variant="family" state="idle" size={160} layout="horizontal" motionLevel="minimal" />,
     );
 
-    expect(container.firstChild).toMatchSnapshot();
+    const mascotRoot = getMascotRoot(container);
+
+    expect(mascotRoot.getAttribute("style")).toContain("width: 264px");
+    expect(mascotRoot.getAttribute("style")).toContain("height: 160px");
   });
 });

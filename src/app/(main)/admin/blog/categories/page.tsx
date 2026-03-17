@@ -36,8 +36,8 @@ export default async function AdminBlogCategoriesPage() {
                 <th className="px-4 py-3">Slug</th>
                 <th className="px-4 py-3">Màu</th>
                 <th className="px-4 py-3">Thứ tự</th>
-                <th className="px-4 py-3">Active</th>
-                <th className="px-4 py-3">Post count</th>
+                <th className="px-4 py-3">Kích hoạt</th>
+                <th className="px-4 py-3">Số bài viết</th>
               </tr>
             </thead>
             <tbody>

@@ -1,5 +1,5 @@
 ﻿/**
- * PATCH /api/admin/skills/[id] â€” update a skill
+ * PATCH /api/admin/skills/[id] — update a skill
  */
 
 import type { NextRequest } from "next/server";

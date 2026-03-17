@@ -897,6 +897,8 @@ model Course {
   title         String
   description   String
   priceVnd      Int
+  listPriceVnd  Int?
+  salePriceVnd  Int?
   durationDays  Int
   isPublished   Boolean            @default(false)
   coverImageUrl String?

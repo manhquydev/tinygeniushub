@@ -79,7 +79,7 @@ export async function POST(
       verifyToken,
     });
 
-    return NextResponse.json({ message: "Vui long kiem tra email de duyet binh luan" }, { status: 201 });
+    return NextResponse.json({ message: "Vui lòng kiểm tra email để duyệt bình luận" }, { status: 201 });
   } catch (error) {
     return handleRouteError(error, {
       routeId: "blog.comments.create",

@@ -23,12 +23,12 @@ const FAQ_ITEMS = [
     a: "Nội dung được thiết kế cho bé 2-6 tuổi, chia theo mức độ phát triển để bé học đúng nhịp.",
   },
   {
-    q: "Có cần thẻ tín dụng khi dùng thử không?",
-    a: "Không. Bạn có thể bắt đầu 7 ngày miễn phí mà không cần nhập thông tin thẻ.",
+    q: "Thanh toán như thế nào?",
+    a: "Thanh toán bằng chuyển khoản hoặc QR theo hướng dẫn trên trang thanh toán. Không cần liên kết thẻ.",
   },
   {
     q: "Phụ huynh theo dõi tiến độ bằng cách nào?",
-    a: "Dashboard hiển thị bài đã học, mức hoàn thành, và báo cáo tuần gửi tự động qua email.",
+    a: "Bảng theo dõi hiển thị bài đã học, mức hoàn thành và báo cáo tuần gửi tự động qua email.",
   },
 ] as const;
 
@@ -70,8 +70,8 @@ const STAGES: Stage[] = [
           cây luôn rõ ràng ở trung tâm.
         </p>
         <div className="usj-actions">
-          <Link href="/auth/signup" className="usj-btn usj-btn-solid">
-            Bắt đầu miễn phí 7 ngày
+          <Link href="/courses" className="usj-btn usj-btn-solid">
+            Xem khóa học
           </Link>
           <Link href="/pricing" className="usj-btn usj-btn-ghost">
             Xem bảng giá
@@ -162,7 +162,7 @@ const STAGES: Stage[] = [
         <ul className="usj-list">
           <li>
             <BarChart3 size={18} aria-hidden />
-            Dashboard theo từng bé
+            Bảng theo dõi theo từng bé
           </li>
           <li>
             <CheckCircle2 size={18} aria-hidden />
@@ -181,21 +181,21 @@ const STAGES: Stage[] = [
     label: "Tầng 3",
     left: (
       <article className="usj-card usj-price">
-        <span className="usj-chip usj-chip-soft">Standard</span>
-        <h2>799,000đ / năm</h2>
-        <p>Phù hợp gia đình một bé: lộ trình đầy đủ, báo cáo tuần, theo dõi tiến độ tại nhà.</p>
-        <Link href="/auth/signup" className="usj-btn usj-btn-ghost">
-          Chọn Standard
+        <span className="usj-chip usj-chip-soft">Mua lẻ theo khóa</span>
+        <h2>Giá hiển thị theo từng khóa học</h2>
+        <p>Phụ huynh chọn đúng khóa cần học thay vì phải đăng ký gói thử.</p>
+        <Link href="/courses" className="usj-btn usj-btn-ghost">
+          Chọn khóa học
         </Link>
       </article>
     ),
     right: (
       <article className="usj-card usj-price usj-price-highlight">
-        <span className="usj-chip">Family+</span>
-        <h2>1,199,000đ / năm</h2>
-        <p>Cho gia đình nhiều bé với báo cáo gộp và vùng theo dõi mở rộng.</p>
-        <Link href="/auth/signup" className="usj-btn usj-btn-solid">
-          Bắt đầu dùng thử
+        <span className="usj-chip">Ưu đãi khóa học</span>
+        <h2>Có giá niêm yết và giá bán</h2>
+        <p>Giá được hiển thị minh bạch để phụ huynh so sánh nhanh và chọn đúng khóa học.</p>
+        <Link href="/courses" className="usj-btn usj-btn-solid">
+          Mua khóa học
           <ArrowRight size={16} aria-hidden />
         </Link>
       </article>
@@ -221,8 +221,8 @@ const STAGES: Stage[] = [
       <article className="usj-card usj-card-cta">
         <h2>Sẵn sàng bắt đầu hành trình?</h2>
         <p>Cho bé học đúng nhịp mỗi ngày, phụ huynh theo dõi được tiến bộ thật.</p>
-        <Link href="/kid/courses" className="usj-btn usj-btn-solid">
-          Vào khu vườn học
+        <Link href="/courses" className="usj-btn usj-btn-solid">
+          Khám phá khóa học
           <ArrowRight size={16} aria-hidden />
         </Link>
       </article>
@@ -365,9 +365,9 @@ export function UnifiedScrollJourney() {
 
         <div className="usj-marketing-cta">
           <h3>Sẵn sàng cho bé bắt đầu hành trình?</h3>
-          <p>Nhận lộ trình cá nhân hóa và dùng thử 7 ngày để xem tiến bộ ngay từ tuần đầu.</p>
-          <Link href="/auth/signup" className="usj-btn usj-btn-solid">
-            Nhận lộ trình miễn phí
+          <p>Xem bài học mẫu, chọn khóa phù hợp và hoàn tất thanh toán chỉ trong vài bước.</p>
+          <Link href="/courses" className="usj-btn usj-btn-solid">
+            Xem khóa học ngay
             <ArrowRight size={16} aria-hidden />
           </Link>
         </div>

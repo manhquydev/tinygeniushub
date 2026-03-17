@@ -367,7 +367,7 @@ export default async function ParentDashboardPage() {
               <div>
                 <h2 className="text-lg font-black tracking-[-0.01em] text-slate-900">Giới thiệu bạn bè — cùng nhận thưởng</h2>
                 <p className="mt-0.5 text-sm text-slate-600">
-                  Mỗi gia đình bạn giới thiệu nhận <strong>7 ngày miễn phí</strong>. Bạn cũng nhận thêm <strong>7 ngày Premium</strong>.
+                  Mỗi gia đình bạn giới thiệu nhận <strong>ưu đãi chào mừng</strong>. Bạn nhận <strong>voucher thưởng</strong> sau khi họ thanh toán thành công.
                 </p>
                 <p className="mt-2 rounded-xl border border-amber-200 bg-white px-3 py-1.5 font-mono text-sm font-bold tracking-widest text-amber-700 inline-block">
                   {referral.code}

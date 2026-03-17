@@ -39,7 +39,7 @@ export default async function KidCourseGardenPage({
   const queryChildId = readSingleParam(resolvedParams?.childId);
   const queryFocusTierNo = readSingleParam(resolvedParams?.focusTierNo);
   const parsedFocusTierNoRaw = Number.parseInt(queryFocusTierNo ?? "", 10);
-  const initialFocusTierNo =
+  const initialFocusTierNoFromQuery =
     Number.isFinite(parsedFocusTierNoRaw) && parsedFocusTierNoRaw > 0
       ? parsedFocusTierNoRaw
       : null;
@@ -106,6 +106,21 @@ export default async function KidCourseGardenPage({
     redirect(`/kid/courses?childId=${encodeURIComponent(activeChild.id)}`);
   }
 
+  const courseJourney = await prisma.childCourseJourney.findUnique({
+    where: {
+      childId_courseId: {
+        childId: activeChild.id,
+        courseId: course.id,
+      },
+    },
+    select: {
+      status: true,
+      currentTierNo: true,
+    },
+  });
+
+  const initialFocusTierNo = initialFocusTierNoFromQuery ?? courseJourney?.currentTierNo ?? null;
+
   const lessons = course.lessons.map((courseLesson, index) => {
     const lesson = courseLesson.lesson;
     return mapLessonLikeToSkyGardenLesson(
@@ -166,6 +181,7 @@ export default async function KidCourseGardenPage({
       courseDescription={course.description}
       courseCoverImageUrl={resolveCourseCoverImage(course.slug, course.coverImageUrl)}
       initialFocusTierNo={initialFocusTierNo}
+      initialJourneyStatus={courseJourney?.status ?? null}
     />
   );
 }

@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-test("user can login to parent dashboard and logout successfully", async ({ page }) => {
+test("user can login to parent dashboard and logout successfully", async ({ page, baseURL }) => {
+  const origin = baseURL ?? "http://127.0.0.1:3200";
   let loginRequestCount = 0;
   let dashboardNavigationCount = 0;
   await page.route("**/api/auth/login", async (route) => {
@@ -65,8 +66,8 @@ test("user can login to parent dashboard and logout successfully", async ({ page
 
   const logoutApiResponse = await page.request.post("/api/auth/logout", {
     headers: {
-      Origin: "http://localhost:3000",
-      Referer: "http://localhost:3000/parent/dashboard",
+      Origin: origin,
+      Referer: `${origin}/parent/dashboard`,
     },
   });
   expect(logoutApiResponse.ok()).toBeTruthy();

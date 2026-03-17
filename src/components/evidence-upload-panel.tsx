@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { ChangeEvent, FormEvent, useMemo, useRef, useState } from "react";
 
@@ -60,7 +60,7 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
     event.preventDefault();
 
     if (!file) {
-      setError("Vui long chon tep truoc khi upload.");
+      setError("Vui lòng chọn tệp trước khi upload.");
       return;
     }
 
@@ -103,7 +103,7 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
 
       if (!uploadResponse.ok) {
         const uploadText = await uploadResponse.text();
-        setError(uploadText || "Upload tep that bai.");
+        setError(uploadText || "Upload tệp thất bại.");
         return;
       }
 
@@ -117,7 +117,7 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
       }
 
       setInfo(
-        `Upload thanh cong (${sessionCandidate.upload.provider}) - mediaId=${sessionCandidate.media.id} - path=${sessionCandidate.media.objectPath}`,
+        `Upload thành công (${sessionCandidate.upload.provider}) - mediaId=${sessionCandidate.media.id} - path=${sessionCandidate.media.objectPath}`,
       );
       setFile(null);
       if (fileInputRef.current) {
@@ -133,8 +133,8 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
   return (
     <form className="evidence-upload-panel" onSubmit={handleSubmit}>
       <div className="evidence-upload-head">
-        <strong>Them bang chung (anh/audio)</strong>
-        <span className="muted-text">Signed upload URL, policy 90-365 ngay theo plan.</span>
+        <strong>Thêm bằng chứng (ảnh/audio)</strong>
+        <span className="muted-text">Signed upload URL, policy 90-365 ngày theo plan.</span>
       </div>
 
       <div className="inline-form">
@@ -142,16 +142,16 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
           value={mediaType}
           onChange={(event) => setMediaType(event.target.value as MediaType)}
           disabled={loading}
-          aria-label="Loai media"
+          aria-label="Loại media"
         >
-          <option value="PHOTO">Anh (PHOTO)</option>
+          <option value="PHOTO">Ảnh (PHOTO)</option>
           <option value="AUDIO">Audio (AUDIO)</option>
         </select>
 
         <input ref={fileInputRef} type="file" accept={accept} onChange={handleFileChange} disabled={loading} />
 
         <button type="submit" className="ghost-button" disabled={loading || !file}>
-          {loading ? "Dang upload..." : "Upload evidence"}
+          {loading ? "Đang upload..." : "Upload evidence"}
         </button>
       </div>
 

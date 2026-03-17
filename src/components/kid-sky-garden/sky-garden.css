@@ -212,21 +212,31 @@
 }
 
 .ksg2-flow-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   flex: 0 0 auto;
-  min-height: 30px;
+  min-height: 34px;
   border-radius: 999px;
   border: 1px solid var(--ksg2-border-soft);
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.2);
   color: #f9fdff;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  padding: 0.22rem 0.62rem;
+  padding: 0.24rem 0.68rem;
   backdrop-filter: blur(10px);
 }
 
 .ksg2-flow-chip.is-active {
   border-color: rgba(255, 255, 255, 0.72);
   background: linear-gradient(145deg, rgba(14, 116, 144, 0.82), rgba(13, 148, 136, 0.78));
+}
+
+.ksg2-flow-chip-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 3px 6px rgba(8, 47, 73, 0.25));
 }
 
 .ksg2-course-hero {
@@ -284,7 +294,7 @@
   text-overflow: ellipsis;
 }
 
-.ksg2-course-content > p {
+.ksg2-course-story {
   margin: 0;
   color: rgba(248, 250, 252, 0.96);
   font-size: 0.68rem;
@@ -304,15 +314,52 @@
 .ksg2-course-stats span {
   display: inline-flex;
   align-items: center;
-  min-height: 20px;
+  min-height: 22px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.34);
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.2);
   color: #f8fafc;
-  font-size: 0.61rem;
+  font-size: 0.64rem;
   font-weight: 700;
   line-height: 1;
-  padding: 0.2rem 0.42rem;
+  padding: 0.22rem 0.5rem;
+}
+
+.ksg2-journey-state {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 24px;
+  margin-top: 0.18rem;
+  border-radius: 999px;
+  font-size: 0.64rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.22rem 0.56rem;
+}
+
+.ksg2-journey-state.is-seeded {
+  border: 1px solid rgba(251, 191, 36, 0.48);
+  background: rgba(254, 243, 199, 0.66);
+  color: #92400e;
+}
+
+.ksg2-journey-state.is-active {
+  border: 1px solid rgba(59, 130, 246, 0.48);
+  background: rgba(219, 234, 254, 0.72);
+  color: #1d4ed8;
+}
+
+.ksg2-journey-state.is-paused {
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(241, 245, 249, 0.72);
+  color: #334155;
+}
+
+.ksg2-journey-state.is-completed {
+  border: 1px solid rgba(34, 197, 94, 0.48);
+  background: rgba(220, 252, 231, 0.72);
+  color: #166534;
 }
 
 .ksg2-course-kisu {
@@ -322,6 +369,31 @@
   width: 40px;
   height: auto;
   filter: drop-shadow(0 8px 12px rgba(8, 47, 73, 0.26));
+}
+
+.ksg2-course-state-fx {
+  position: absolute;
+  right: -10px;
+  top: -12px;
+  width: 56px;
+  height: auto;
+  pointer-events: none;
+}
+
+.ksg2-course-state-fx.is-seeded,
+.ksg2-course-state-fx.is-paused {
+  opacity: 0.72;
+  animation: ksg2-state-fx-seeded 2.6s ease-in-out infinite;
+}
+
+.ksg2-course-state-fx.is-active {
+  opacity: 0.82;
+  animation: ksg2-state-fx-active 2.2s ease-in-out infinite;
+}
+
+.ksg2-course-state-fx.is-completed {
+  opacity: 0.9;
+  animation: ksg2-state-fx-completed 2s ease-in-out infinite;
 }
 
 .ksg2-progress-bar {
@@ -1061,6 +1133,56 @@
   transform: translateX(-50%) scaleY(1);
 }
 
+.ksg2-scene[data-performance-profile="low"] .ksg2-three-layer {
+  opacity: 0.44;
+}
+
+.ksg2-scene[data-performance-profile="low"] .ksg2-cloud-layer {
+  filter: none;
+}
+
+.ksg2-scene[data-performance-profile="low"] .ksg2-tier-cloud-image {
+  filter: none;
+}
+
+.ksg2-scene[data-performance-profile="low"] .ksg2-tier::before {
+  box-shadow: none;
+  opacity: 0.76;
+}
+
+.ksg2-scene[data-performance-profile="low"] .ksg2-back-btn,
+.ksg2-scene[data-performance-profile="low"] .ksg2-child-picker,
+.ksg2-scene[data-performance-profile="low"] .ksg2-flow-chip,
+.ksg2-scene[data-performance-profile="low"] .ksg2-course-hero,
+.ksg2-scene[data-performance-profile="low"] .ksg2-progress-bar,
+.ksg2-scene[data-performance-profile="low"] .ksg2-status,
+.ksg2-scene[data-performance-profile="low"] .ksg2-fog-cap span,
+.ksg2-scene[data-performance-profile="low"] .ksg2-seed-overlay {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.ksg2-scene[data-performance-profile="low"] .ksg2-node-card,
+.ksg2-scene[data-performance-profile="low"] .ksg2-course-hero,
+.ksg2-scene[data-performance-profile="low"] .ksg2-progress-bar {
+  box-shadow: 0 8px 16px rgba(8, 47, 73, 0.16);
+}
+
+.ksg2-scene[data-performance-profile="reduced"] .ksg2-atmosphere,
+.ksg2-scene[data-performance-profile="reduced"] .ksg2-companion {
+  display: none;
+}
+
+.ksg2-scene[data-performance-profile="reduced"] .ksg2-tier::before,
+.ksg2-scene[data-performance-profile="reduced"] .ksg2-course-state-fx {
+  display: none;
+}
+
+.ksg2-scene[data-performance-profile="reduced"] .ksg2-node-card,
+.ksg2-scene[data-performance-profile="reduced"] .ksg2-course-hero {
+  box-shadow: 0 8px 14px rgba(8, 47, 73, 0.14);
+}
+
 @keyframes ksg2-companion-float {
   0%,
   100% {
@@ -1104,6 +1226,45 @@
 
   50% {
     transform: translateY(-3px);
+  }
+}
+
+@keyframes ksg2-state-fx-seeded {
+  0%,
+  100% {
+    transform: translateY(0) scale(0.94);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translateY(-4px) scale(1.04);
+    opacity: 0.84;
+  }
+}
+
+@keyframes ksg2-state-fx-active {
+  0%,
+  100% {
+    transform: translateY(0) scale(0.9);
+    opacity: 0.64;
+  }
+
+  50% {
+    transform: translateY(-6px) scale(1.06);
+    opacity: 0.94;
+  }
+}
+
+@keyframes ksg2-state-fx-completed {
+  0%,
+  100% {
+    transform: translateY(0) scale(0.92) rotate(-3deg);
+    opacity: 0.78;
+  }
+
+  50% {
+    transform: translateY(-6px) scale(1.08) rotate(3deg);
+    opacity: 1;
   }
 }
 
@@ -1218,12 +1379,16 @@
     font-size: 0.94rem;
   }
 
-  .ksg2-course-content > p {
+  .ksg2-course-story {
     font-size: 0.72rem;
   }
 
   .ksg2-course-stats span {
     font-size: 0.64rem;
+  }
+
+  .ksg2-course-state-fx {
+    width: 64px;
   }
 
   .ksg2-progress-bar {
@@ -1290,7 +1455,7 @@
 }
 
 @media (max-width: 520px) {
-  .ksg2-course-content > p,
+  .ksg2-course-story,
   .ksg2-mascot-bubble {
     font-size: 0.7rem;
   }
@@ -1302,6 +1467,16 @@
   .ksg2-course-stats span {
     font-size: 0.64rem;
     padding-inline: 0.44rem;
+  }
+
+  .ksg2-journey-state {
+    font-size: 0.6rem;
+  }
+
+  .ksg2-course-state-fx {
+    width: 50px;
+    right: -6px;
+    top: -8px;
   }
 
   .ksg2-node-card {
@@ -1340,6 +1515,7 @@
   .ksg2-seed-spark,
   .ksg2-firefly,
   .ksg2-sapling,
+  .ksg2-course-state-fx,
   .ksg2-tier-burst,
   .ksg2-tier-badge {
     animation: none !important;

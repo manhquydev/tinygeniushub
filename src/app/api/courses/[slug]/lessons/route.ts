@@ -102,6 +102,20 @@ export async function GET(
       return fail("Course not found", 404);
     }
 
+    const journey = await prisma.childCourseJourney.findUnique({
+      where: {
+        childId_courseId: {
+          childId,
+          courseId: course.id,
+        },
+      },
+      select: {
+        status: true,
+        currentTierNo: true,
+        currentTierProgress: true,
+      },
+    });
+
     // Map to the same shape as /api/lessons/today lessons array
     const lessons = course.lessons.map((courseLesson) => {
       const lesson = courseLesson.lesson;
@@ -119,7 +133,16 @@ export async function GET(
       };
     });
 
-    return ok({ lessons });
+    return ok({
+      lessons,
+      journey: journey
+        ? {
+            status: journey.status,
+            currentTierNo: journey.currentTierNo,
+            currentTierProgress: journey.currentTierProgress,
+          }
+        : null,
+    });
   } catch (error) {
     return handleRouteError(error);
   }

@@ -42,11 +42,20 @@ interface KidSkyGardenSceneProps {
   courseDescription?: string | null;
   courseCoverImageUrl?: string | null;
   initialFocusTierNo?: number | null;
+  initialJourneyStatus?: "SEEDED" | "ACTIVE" | "PAUSED" | "COMPLETED" | null;
 }
 
 type LessonsTodayResponse = {
   ok: boolean;
-  data?: ApiSuccess<Pick<TodayMissionDTO, "lessons">>["data"];
+  data?: ApiSuccess<
+    Pick<TodayMissionDTO, "lessons"> & {
+      journey?: {
+        status?: "SEEDED" | "ACTIVE" | "PAUSED" | "COMPLETED" | null;
+        currentTierNo?: number | null;
+        currentTierProgress?: number | null;
+      } | null;
+    }
+  >["data"];
   error?: {
     message?: string;
   };
@@ -66,6 +75,8 @@ type ActivityTodayResponse = {
 type SyncOptions = {
   silent?: boolean;
 };
+
+type SkyPerformanceProfile = "full" | "low" | "reduced";
 
 type Rgb = {
   r: number;
@@ -110,6 +121,96 @@ function resolveTrackIcon(trackCode: SkyGardenLesson["trackCode"]) {
     default:
       return <BookOpenText size={18} strokeWidth={2.5} />;
   }
+}
+
+function formatKidDisplayName(nickname: string) {
+  const cleaned = nickname.trim();
+  if (!cleaned) {
+    return "Bé yêu";
+  }
+
+  if (cleaned.includes("@")) {
+    const localPart = cleaned.split("@")[0]?.trim() ?? "";
+    const readable = localPart.replace(/[._-]+/g, " ").trim();
+    if (!readable) {
+      return "Bé yêu";
+    }
+    return readable.slice(0, 24);
+  }
+
+  return cleaned.slice(0, 24);
+}
+
+function readJourneyVisual(params: {
+  status: "SEEDED" | "ACTIVE" | "PAUSED" | "COMPLETED" | null;
+  completedLessons: number;
+  totalLessons: number;
+}) {
+  const fallbackStatus =
+    params.status ??
+    (params.totalLessons > 0 && params.completedLessons >= params.totalLessons
+      ? "COMPLETED"
+      : params.completedLessons > 0
+        ? "ACTIVE"
+        : "SEEDED");
+
+  switch (fallbackStatus) {
+    case "COMPLETED":
+      return {
+        label: "Đã nở hoa",
+        tone: "completed" as const,
+        fxSrc: "/images/cloud-garden/vfx/vfx_tier_unlocked_badge.png",
+      };
+    case "PAUSED":
+      return {
+        label: "Tạm nghỉ",
+        tone: "paused" as const,
+        fxSrc: "/images/cloud-garden/vfx/vfx_seed_sprout.png",
+      };
+    case "ACTIVE":
+      return {
+        label: "Đang lớn lên",
+        tone: "active" as const,
+        fxSrc: "/images/cloud-garden/vfx/vfx_tap_star_pop.png",
+      };
+    case "SEEDED":
+    default:
+      return {
+        label: "Mầm mới",
+        tone: "seeded" as const,
+        fxSrc: "/images/cloud-garden/vfx/vfx_seed_sprout.png",
+      };
+  }
+}
+
+function detectSkyPerformanceProfile(prefersReducedMotion: boolean): SkyPerformanceProfile {
+  if (prefersReducedMotion) {
+    return "reduced";
+  }
+  if (typeof navigator === "undefined") {
+    return "full";
+  }
+
+  const connection = (navigator as Navigator & {
+    connection?: { saveData?: boolean; effectiveType?: string };
+  }).connection;
+  const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8;
+  const cores = navigator.hardwareConcurrency ?? 8;
+  const slowNetwork = Boolean(connection?.saveData) || /(^2g$|slow-2g|3g)/i.test(connection?.effectiveType ?? "");
+  const isUltraLowEnd =
+    memory <= 2 ||
+    cores <= 2 ||
+    (Boolean(connection?.saveData) && /(^2g$|slow-2g|3g)/i.test(connection?.effectiveType ?? ""));
+
+  if (isUltraLowEnd) {
+    return "reduced";
+  }
+
+  if (slowNetwork || memory <= 4 || cores <= 4) {
+    return "low";
+  }
+
+  return "full";
 }
 
 function clamp01(value: number) {
@@ -183,6 +284,7 @@ export function KidSkyGardenScene({
   courseDescription = null,
   courseCoverImageUrl = null,
   initialFocusTierNo = null,
+  initialJourneyStatus = null,
 }: KidSkyGardenSceneProps) {
   const { navigate, isNavigating } = useKidNavigationFeedback();
   const pathname = usePathname();
@@ -205,6 +307,12 @@ export function KidSkyGardenScene({
   const [progress, setProgress] = useState<SkyGardenProgressSnapshot>(initialProgress);
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [performanceProfile, setPerformanceProfile] = useState<SkyPerformanceProfile>(() =>
+    detectSkyPerformanceProfile(prefersReducedMotion),
+  );
+  const [journeyStatus, setJourneyStatus] = useState<
+    "SEEDED" | "ACTIVE" | "PAUSED" | "COMPLETED" | null
+  >(initialJourneyStatus);
   const [pendingNavigationAction, setPendingNavigationAction] = useState<string | null>(null);
   const [seedCinematicCourse, setSeedCinematicCourse] =
     useState<SkyGardenSeedCourse | null>(null);
@@ -220,15 +328,37 @@ export function KidSkyGardenScene({
 
   const activeChild =
     childrenProfiles.find((child) => child.id === activeChildId) ?? childrenProfiles[0];
-  const avatarLabel = activeChild
-    ? Array.from(activeChild.nickname.trim())[0]?.toUpperCase() ?? "B"
-    : "B";
+  const activeChildName = formatKidDisplayName(activeChild?.nickname ?? "");
+  const avatarLabel = Array.from(activeChildName)[0]?.toUpperCase() ?? "B";
 
   useEffect(() => {
     if (!isNavigating) {
       setPendingNavigationAction(null);
     }
   }, [isNavigating]);
+
+  useEffect(() => {
+    const syncProfile = () => {
+      setPerformanceProfile(detectSkyPerformanceProfile(prefersReducedMotion));
+    };
+
+    syncProfile();
+
+    const connection = (navigator as Navigator & {
+      connection?: {
+        addEventListener?: (type: "change", listener: () => void) => void;
+        removeEventListener?: (type: "change", listener: () => void) => void;
+      };
+    }).connection;
+
+    window.addEventListener("resize", syncProfile, { passive: true });
+    connection?.addEventListener?.("change", syncProfile);
+
+    return () => {
+      window.removeEventListener("resize", syncProfile);
+      connection?.removeEventListener?.("change", syncProfile);
+    };
+  }, [prefersReducedMotion]);
 
   const journeys = useMemo(() => {
     const grouped = new Map<string, SkyGardenLesson[]>();
@@ -322,12 +452,27 @@ export function KidSkyGardenScene({
 
   const completedCount = lessons.filter((lesson) => lesson.isCompleted).length;
   const completedPercent = lessons.length > 0 ? Math.round((completedCount / lessons.length) * 100) : 0;
-  const totalLessonMinutes = lessons.reduce(
-    (sum, lesson) => sum + lesson.estimatedMinutes,
-    0,
+  const journeyVisual = useMemo(
+    () =>
+      readJourneyVisual({
+        status: journeyStatus,
+        completedLessons: completedCount,
+        totalLessons: lessons.length,
+      }),
+    [completedCount, journeyStatus, lessons.length],
   );
   const activeNode = nodes.find((node) => node.state === "active") ?? null;
   const nextLessonTitle = activeNode?.title ?? null;
+  const remainingGoalMinutes = Math.max(progress.dailyGoalMinutes - progress.totalMinutesToday, 0);
+  const heroTierLabel =
+    activeNode?.tierIndex != null ? `Tầng mây ${activeNode.tierIndex}` : "Mây đầu tiên";
+  const heroProgressLabel =
+    completedCount > 0 ? `${completedPercent}% khu vườn đã nở` : "Chạm mây để bắt đầu";
+  const heroJourneyHint = nextLessonTitle
+    ? `Nhiệm vụ tiếp theo: ${nextLessonTitle}`
+    : courseDescription?.trim()
+      ? courseDescription.trim()
+      : "Chạm vào đám mây đầu tiên để bắt đầu hành trình.";
   const tierSpacing = isCompact ? 330 : 390;
   const baseTierBottom = isCompact ? 150 : 180;
   const mapHeight = Math.max(
@@ -353,9 +498,15 @@ export function KidSkyGardenScene({
   const cloudBackOffset = useMemo(() => -climbProgress * 34, [climbProgress]);
   const cloudFrontOffset = useMemo(() => -climbProgress * 56, [climbProgress]);
   const starsOpacity = useMemo(
-    () => clamp01((climbProgress - 0.44) / 0.56) * 0.92,
-    [climbProgress],
+    () =>
+      performanceProfile === "reduced"
+        ? 0
+        : clamp01((climbProgress - 0.44) / 0.56) * (performanceProfile === "low" ? 0.5 : 0.92),
+    [climbProgress, performanceProfile],
   );
+  const fxQuality = performanceProfile === "full" ? "full" : "low";
+  const shouldRenderWebGlFx = performanceProfile !== "reduced";
+  const shouldAnimateAtmosphere = performanceProfile === "full";
 
   const startNavigation = useCallback(
     (action: string, href: string) => {
@@ -422,8 +573,10 @@ export function KidSkyGardenScene({
         setLessons(nextLessons);
         if (mode === "course") {
           setSelectedTrack(nextLessons[0]?.trackCode ?? null);
+          setJourneyStatus(lessonsBody.data?.journey?.status ?? null);
         } else {
           setSelectedTrack(null);
+          setJourneyStatus(null);
         }
 
         const dailyGoalMinutesRaw = activityBody.data?.dailyGoalMinutes;
@@ -506,6 +659,13 @@ export function KidSkyGardenScene({
         setLevelUpFxTier(afterActiveTier);
       }
 
+      const completedAfter = updatedLessons.filter((lesson) => lesson.isCompleted).length;
+      if (completedAfter >= updatedLessons.length && updatedLessons.length > 0) {
+        setJourneyStatus("COMPLETED");
+      } else if (completedAfter > 0) {
+        setJourneyStatus("ACTIVE");
+      }
+
       setLessons(updatedLessons);
       setStatusMessage("Tuyệt vời! Bé vừa mở thêm một tầng mây mới.");
       void syncChildData(activeChildId, { silent: true });
@@ -545,8 +705,15 @@ export function KidSkyGardenScene({
   }, [initialProgress]);
 
   useEffect(() => {
+    setJourneyStatus(initialJourneyStatus ?? null);
+  }, [initialJourneyStatus]);
+
+  useEffect(() => {
     const nextTrack = mode === "course" ? initialLessons[0]?.trackCode ?? null : null;
     setSelectedTrack(nextTrack);
+    if (mode !== "course") {
+      setJourneyStatus(null);
+    }
   }, [initialLessons, mode]);
 
   useEffect(() => {
@@ -792,19 +959,29 @@ export function KidSkyGardenScene({
     <section
       className="ksg2-scene"
       style={sceneStyle}
+      data-testid={mode === "course" ? "kid-course-scene" : "kid-today-scene"}
+      data-performance-profile={performanceProfile}
       aria-label="Khu vườn mây học tập"
       aria-busy={isNavigating || loading}
     >
-      <SkyGardenFxCanvas className="ksg2-three-layer" />
+      {shouldRenderWebGlFx ? <SkyGardenFxCanvas className="ksg2-three-layer" quality={fxQuality} /> : null}
 
       <div className="ksg2-atmosphere" aria-hidden="true">
         <span
           className="ksg2-cloud-layer is-back"
-          style={{ transform: `translate3d(0, ${cloudBackOffset}px, 0)` }}
+          style={{
+            transform: shouldAnimateAtmosphere
+              ? `translate3d(0, ${cloudBackOffset}px, 0)`
+              : "translate3d(0, 0, 0)",
+          }}
         />
         <span
           className="ksg2-cloud-layer is-front"
-          style={{ transform: `translate3d(0, ${cloudFrontOffset}px, 0)` }}
+          style={{
+            transform: shouldAnimateAtmosphere
+              ? `translate3d(0, ${cloudFrontOffset}px, 0)`
+              : "translate3d(0, 0, 0)",
+          }}
         />
         <span className="ksg2-star-field" style={{ opacity: starsOpacity }} />
       </div>
@@ -842,7 +1019,7 @@ export function KidSkyGardenScene({
             >
               {childrenProfiles.map((child) => (
                 <option key={child.id} value={child.id}>
-                  {child.nickname}
+                  {formatKidDisplayName(child.nickname)}
                 </option>
               ))}
             </select>
@@ -851,16 +1028,39 @@ export function KidSkyGardenScene({
 
         <div className="ksg2-flow-nav" role="navigation" aria-label="Điều hướng hành trình">
           <button type="button" className="ksg2-flow-chip" onClick={goToLearningHub} disabled={isNavigating}>
-            {pendingNavigationAction === "go-learning-hub" ? "Đang mở..." : "Học tập"}
+            <Image
+              src="/kisu-assets/stickers/sticker_tap_here_smile.png"
+              alt=""
+              width={22}
+              height={22}
+              className="ksg2-flow-chip-icon"
+            />
+            {pendingNavigationAction === "go-learning-hub" ? "Đang mở..." : "Sân học"}
           </button>
           <button type="button" className="ksg2-flow-chip" onClick={goToSharedGarden} disabled={isNavigating}>
+            <Image
+              src="/kisu-assets/stickers/sticker_point_course_plot.png"
+              alt=""
+              width={22}
+              height={22}
+              className="ksg2-flow-chip-icon"
+            />
             {pendingNavigationAction === "go-shared-garden" ? "Đang mở..." : "Vườn chung"}
           </button>
-          <span className="ksg2-flow-chip is-active">Khóa này</span>
+          <span className="ksg2-flow-chip is-active">
+            <Image
+              src="/kisu-assets/stickers/sticker_hint.png"
+              alt=""
+              width={22}
+              height={22}
+              className="ksg2-flow-chip-icon"
+            />
+            Vườn mây
+          </span>
         </div>
 
         {mode === "course" ? (
-          <section className="ksg2-course-hero">
+          <section className="ksg2-course-hero" data-testid="kid-course-hero">
             <div className="ksg2-course-cover">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -870,20 +1070,20 @@ export function KidSkyGardenScene({
             </div>
 
             <div className="ksg2-course-content">
-              <p className="ksg2-course-tag">Cloud Garden • Leo tầng mây</p>
-              <h1>{courseTitle ?? "Khóa học của bé"}</h1>
-              {isCompact ? null : (
-                <p>
-                  {courseDescription ??
-                    "Hoàn thành từng bài học để cây đậu vươn qua các tầng mây."}
-                </p>
-              )}
+              <p className="ksg2-course-tag">{`Vườn mây của ${activeChildName}`}</p>
+              <h1>{courseTitle ?? "Hành trình học của bé"}</h1>
+              <p className="ksg2-course-story">{heroJourneyHint}</p>
               <div className="ksg2-course-stats">
-                <span>{`${completedCount}/${lessons.length} bài`}</span>
-                <span>{`${completedPercent}% tiến độ`}</span>
-                {isCompact ? null : <span>{`${totalLessonMinutes} phút`}</span>}
-                {isCompact || !nextLessonTitle ? null : <span>{`Tiếp theo: ${nextLessonTitle}`}</span>}
+                <span>{heroTierLabel}</span>
+                <span>{heroProgressLabel}</span>
+                {isCompact ? null : <span>{`Mục tiêu ${progress.dailyGoalMinutes} phút/ngày`}</span>}
               </div>
+              <span
+                className={`ksg2-journey-state is-${journeyVisual.tone}`}
+                data-testid="kid-course-journey-state"
+              >
+                {journeyVisual.label}
+              </span>
             </div>
 
             <Image
@@ -893,12 +1093,23 @@ export function KidSkyGardenScene({
               height={56}
               className="ksg2-course-kisu"
             />
+            <Image
+              src={journeyVisual.fxSrc}
+              alt=""
+              width={88}
+              height={88}
+              className={`ksg2-course-state-fx is-${journeyVisual.tone}`}
+            />
           </section>
         ) : null}
 
         <div className="ksg2-progress-bar">
-          <span>{`${progress.totalMinutesToday}/${progress.dailyGoalMinutes} phút`}</span>
-          <strong>{`${completedCount}/${lessons.length} bài`}</strong>
+          <span>{`Hôm nay bé học ${progress.totalMinutesToday} phút`}</span>
+          <strong>
+            {remainingGoalMinutes > 0
+              ? `Còn ${remainingGoalMinutes} phút nữa`
+              : "Bé đạt mục tiêu rồi!"}
+          </strong>
         </div>
       </header>
 
@@ -934,7 +1145,12 @@ export function KidSkyGardenScene({
             ))}
           </section>
         ) : (
-          <section className="ksg2-map-wrap" aria-label="Bản đồ leo tầng mây" ref={mapWrapRef}>
+          <section
+            className="ksg2-map-wrap"
+            aria-label="Bản đồ leo tầng mây"
+            ref={mapWrapRef}
+            data-testid={mode === "course" ? "kid-course-map" : "kid-today-map"}
+          >
             <div className="ksg2-map" style={{ minHeight: `${mapHeight}px` }}>
               {hasHiddenAbove ? (
                 <div className="ksg2-fog-cap" aria-hidden="true">
@@ -969,9 +1185,13 @@ export function KidSkyGardenScene({
                       height={128}
                       className="ksg2-sapling"
                     />
-                    <span className="ksg2-firefly is-a" />
-                    <span className="ksg2-firefly is-b" />
-                    <span className="ksg2-firefly is-c" />
+                    {performanceProfile === "full" ? (
+                      <>
+                        <span className="ksg2-firefly is-a" />
+                        <span className="ksg2-firefly is-b" />
+                        <span className="ksg2-firefly is-c" />
+                      </>
+                    ) : null}
                   </>
                 )}
               </div>
@@ -997,6 +1217,7 @@ export function KidSkyGardenScene({
                     }`}
                     data-node-id={node.id}
                     data-node-state={node.state}
+                    data-testid={`kid-course-tier-${tierNo}-${node.state}`}
                     style={{ bottom: `${baseTierBottom + index * tierSpacing}px` }}
                   >
                     <div className="ksg2-tier-cloud" aria-hidden="true">
@@ -1068,6 +1289,7 @@ export function KidSkyGardenScene({
                             <button
                               type="button"
                               className="ksg2-node-lock"
+                              data-testid={`kid-course-tier-lock-${tierNo}`}
                               onClick={() =>
                                 setStatusMessage(
                                   "Hoàn thành tầng hiện tại để mở khóa tầng mới nhé!",

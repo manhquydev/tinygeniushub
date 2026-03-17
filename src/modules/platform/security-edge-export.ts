@@ -70,6 +70,15 @@ const edgeRouteTemplates: EdgeRouteTemplate[] = [
       '(starts_with(http.request.uri.path, "/api/admin/lessons/") and ends_with(http.request.uri.path, "/trial-flag") and http.request.method eq "PATCH")',
   },
   {
+    routeId: "admin_payment_reconcile_mutation",
+    pathPattern: "/api/admin/payments/*/reconcile",
+    method: "POST",
+    policyKey: "admin.mutation.ip",
+    riskTier: "critical",
+    cloudflareExpression:
+      '(starts_with(http.request.uri.path, "/api/admin/payments/") and ends_with(http.request.uri.path, "/reconcile") and http.request.method eq "POST")',
+  },
+  {
     routeId: "children_mutation",
     pathPattern: "/api/children*",
     method: "POST|PATCH|DELETE",
@@ -137,6 +146,14 @@ const edgeRouteTemplates: EdgeRouteTemplate[] = [
     policyKey: "billing.webhook.stripe.ip",
     riskTier: "critical",
     cloudflareExpression: '(http.request.uri.path eq "/api/billing/webhooks/stripe" and http.request.method eq "POST")',
+  },
+  {
+    routeId: "billing_webhook_payos",
+    pathPattern: "/api/billing/webhooks/payos",
+    method: "POST",
+    policyKey: "billing.webhook.payos.ip",
+    riskTier: "critical",
+    cloudflareExpression: '(http.request.uri.path eq "/api/billing/webhooks/payos" and http.request.method eq "POST")',
   },
   {
     routeId: "billing_checkout",

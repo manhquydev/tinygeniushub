@@ -49,6 +49,8 @@ type CourseDetail = {
   title: string;
   description: string;
   priceVnd: number;
+  listPriceVnd?: number | null;
+  salePriceVnd?: number | null;
   durationDays: number;
   isPublished: boolean;
   coverImageUrl: string | null;
@@ -66,24 +68,35 @@ function trackLabel(code: string) {
   return code;
 }
 
+function getVideoStatusLabel(status: string) {
+  if (status === "ready") return "Sẵn sàng";
+  if (status === "processing") return "Đang xử lý";
+  if (status === "none") return "Chưa có video";
+  return status;
+}
+
+function getPublishStatusLabel(isPublished: boolean) {
+  return isPublished ? "Đã xuất bản" : "Bản nháp";
+}
+
 function VideoStatusBadge({ status }: { status: string }) {
   if (status === "ready") {
     return (
       <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">
-        Ready
+        {getVideoStatusLabel(status)}
       </span>
     );
   }
   if (status === "processing") {
     return (
       <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-700">
-        Processing
+        {getVideoStatusLabel(status)}
       </span>
     );
   }
   return (
     <span className="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-500">
-      {status === "none" ? "No video" : status}
+      {getVideoStatusLabel(status)}
     </span>
   );
 }
@@ -181,7 +194,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
   }
 
   async function handleRemoveLesson(item: CourseLessonItem) {
-    if (!confirm(`Xoá "${item.lesson.title}" khỏi khoá học?`)) return;
+    if (!confirm(`Xóa "${item.lesson.title}" khỏi khóa học?`)) return;
     setRemoving(item.lessonId);
     try {
       const res = await fetch(`/api/admin/courses/${course.id}/lessons`, {
@@ -239,6 +252,9 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
   }
 
   const totalMinutes = lessons.reduce((sum, l) => sum + l.lesson.estimatedMinutes, 0);
+  const salePrice = course.salePriceVnd ?? course.priceVnd;
+  const listPrice = course.listPriceVnd ?? course.priceVnd;
+  const hasDiscount = listPrice > salePrice;
 
   return (
     <div className="page-stack">
@@ -250,7 +266,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-slate-800"
           >
             <ArrowLeft size={14} />
-            Khoá học
+            Khóa học
           </Link>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-4">
@@ -262,7 +278,12 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
           <div className="flex flex-wrap items-center gap-3">
             <div className="text-right text-sm text-slate-600">
               <div>
-                <span className="font-semibold">{new Intl.NumberFormat("vi-VN").format(course.priceVnd)}đ</span>
+                <span className="font-semibold">{new Intl.NumberFormat("vi-VN").format(salePrice)}đ</span>
+                {hasDiscount ? (
+                  <span className="ml-2 text-xs text-slate-500 line-through">
+                    {new Intl.NumberFormat("vi-VN").format(listPrice)}đ
+                  </span>
+                ) : null}
               </div>
               <div>{course.durationDays} ngày</div>
             </div>
@@ -275,7 +296,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                   : "border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
               }`}
             >
-              {course.isPublished ? "Ẩn khoá học" : "Xuất bản"}
+              {course.isPublished ? "Ẩn khóa học" : "Xuất bản"}
             </button>
           </div>
         </div>
@@ -303,7 +324,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                 : "border-slate-200 bg-slate-100 text-slate-600"
             }`}
           >
-            {course.isPublished ? "Published" : "Draft"}
+            {getPublishStatusLabel(course.isPublished)}
           </span>
         </div>
       </section>
@@ -429,7 +450,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                     <VideoStatusBadge status={item.lesson.videoStatus} />
                     {item.lesson.trialEnabled ? (
                       <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700">
-                        Trial
+                        Dùng thử
                       </span>
                     ) : null}
                   </div>
@@ -457,7 +478,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                       disabled={removing === item.lessonId}
                       onClick={() => handleRemoveLesson(item)}
                       className="rounded-lg p-1.5 text-slate-400 hover:bg-red-100 hover:text-red-600 disabled:opacity-50"
-                      title="Xoá khỏi khoá học"
+                      title="Xóa khỏi khóa học"
                     >
                       <Trash2 size={14} />
                     </button>
@@ -496,7 +517,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                           {new Date(e.completedAt).toLocaleDateString("vi-VN")}
                         </span>
                       ) : (
-                        <span className="text-slate-400">Chưa</span>
+                        <span className="text-slate-400">Chưa hoàn thành</span>
                       )}
                     </td>
                   </tr>
@@ -504,7 +525,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                 {enrollments.length === 0 ? (
                   <tr>
                     <td colSpan={4} className="px-4 py-8 text-center text-sm text-slate-500">
-                      Chưa có học viên nào đăng ký khoá học này.
+                      Chưa có học viên nào đăng ký khóa học này.
                     </td>
                   </tr>
                 ) : null}

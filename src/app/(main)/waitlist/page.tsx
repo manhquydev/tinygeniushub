@@ -1,25 +1,25 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { WaitlistForm } from "./waitlist-form";
-import { IconStar, IconCalendar } from "@/components/icons";
+import { IconCalendar, IconStar } from "@/components/icons";
 import "./waitlist.css";
 
 export const metadata: Metadata = {
-  title: "Đăng ký trước — Cùng Con Tự Học",
+  title: "Danh sách ưu tiên — Cùng Con Tự Học",
   description:
-    "Đăng ký trước để nhận thông báo khi Cùng Con Tự Học ra mắt và ưu đãi dành riêng cho 50 gia đình đầu tiên.",
+    "Đăng ký danh sách ưu tiên để nhận thông báo mở đợt mới và ưu đãi sớm dành cho gia đình đăng ký trước.",
   alternates: { canonical: "https://cungcontuhoc.io.vn/waitlist" },
-  robots: { index: false, follow: false }, // noindex until launch
+  robots: { index: false, follow: false },
 };
 
 export default function WaitlistPage() {
   return (
     <div className="page-stack">
       <section className="hero">
-        <h1>Tham gia danh sách chờ</h1>
+        <h1>Nhận thông báo mở đợt mới</h1>
         <p>
-          Chúng tôi đang tìm <strong>50 gia đình đầu tiên</strong> để thử nghiệm miễn phí và định hình
-          sản phẩm. Đăng ký để nhận ưu đãi ra mắt sớm nhất.
+          Chúng tôi ưu tiên <strong>50 gia đình đăng ký sớm</strong> trong mỗi đợt mở mới để tối ưu trải nghiệm và hỗ
+          trợ sát sao hơn.
         </p>
       </section>
 
@@ -31,13 +31,13 @@ export default function WaitlistPage() {
       <section className="card-grid">
         <article className="card waitlist-info-card">
           <IconStar size={28} className="waitlist-card-icon" />
-          <h2>Ưu đãi beta</h2>
-          <p className="muted-text">50 gia đình đầu tiên nhận 1 tháng Premium miễn phí và không giới hạn feedback trực tiếp với team.</p>
+          <h2>Quyền lợi đăng ký sớm</h2>
+          <p className="muted-text">Ưu tiên nhận ưu đãi theo từng đợt mở khóa và hỗ trợ nhanh từ đội ngũ vận hành.</p>
         </article>
         <article className="card waitlist-info-card">
           <IconCalendar size={28} className="waitlist-card-icon" />
-          <h2>Ra mắt khi nào?</h2>
-          <p className="muted-text">Dự kiến tháng 3/2026. Beta families được dùng ngay từ tuần tới.</p>
+          <h2>Thời điểm nhận thông tin</h2>
+          <p className="muted-text">Bạn sẽ nhận email ngay khi có đợt mở mới, lịch khởi tạo và ưu đãi đi kèm.</p>
         </article>
       </section>
 

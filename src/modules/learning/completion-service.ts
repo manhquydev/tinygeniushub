@@ -3,6 +3,7 @@ import { addDays, differenceInCalendarDays, startOfDay } from "date-fns";
 import { prisma } from "@/lib/db";
 import { isPrismaUniqueConstraintError } from "@/lib/prisma-error";
 import { assertLessonVideoWatchCompleted } from "@/modules/learning/video-watch-service";
+import { trackPilotLessonCompletedForParent } from "@/modules/courses/pilot-funnel-tracking-service";
 import { DomainError } from "@/modules/platform/errors";
 import { recordSkillAttempt } from "@/modules/adaptive/skill-attempt-service";
 import { syncJourneyProgress } from "@/modules/garden/journey-service";
@@ -329,6 +330,13 @@ export async function completeLesson(params: {
         parentId: params.parentId,
         childId: payload.childId,
         lessonId: params.lessonId,
+      });
+
+      await trackPilotLessonCompletedForParent({
+        parentId: params.parentId,
+        childId: payload.childId,
+        lessonId: params.lessonId,
+        completionId: result.completion.id,
       });
 
       return {

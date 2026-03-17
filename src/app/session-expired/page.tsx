@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { sanitizeNextPath } from "@/lib/auth/safe-next-path";
 
 export const metadata: Metadata = {
   title: "Phiên đăng nhập đã hết hạn",
@@ -22,7 +23,7 @@ function resolveNextPath(searchParams: { next?: string | string[] } | undefined)
 
 export default async function SessionExpiredPage({ searchParams }: SessionExpiredPageProps) {
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const nextPath = resolveNextPath(resolvedSearchParams);
+  const nextPath = sanitizeNextPath(resolveNextPath(resolvedSearchParams));
   const loginHref = nextPath ? `/auth/login?next=${encodeURIComponent(nextPath)}` : "/auth/login";
 
   return (

@@ -1,11 +1,10 @@
 ﻿import { Queue } from "bullmq";
 import { LifecycleEmailType } from "@prisma/client";
 import { env } from "@/lib/env";
+import { createRedisConnectionOptions } from "@/lib/redis-connection";
 import type { BulkEnrollRow } from "@/modules/organizations/bulk-enroll-service";
 
-export const redisConnection = {
-  url: env.REDIS_URL,
-};
+export const redisConnection = createRedisConnectionOptions(env.REDIS_URL);
 
 export const reportsQueue = new Queue("weekly-reports", {
   connection: redisConnection,
@@ -165,3 +164,5 @@ export async function enqueueDispatchPendingLifecycleEmails() {
     },
   );
 }
+
+

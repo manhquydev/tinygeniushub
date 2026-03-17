@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   useCallback,
@@ -1191,7 +1191,7 @@ export function KidMissionPanel({
                   motionLevel={prefersReducedMotion ? "minimal" : guideMascotProfile.motionLevel}
                   pauseWhenOffscreen
                   className="pointer-events-none"
-                  title="Mascot huong dan"
+                  title="Mascot hướng dẫn"
                 />
               </m.div>
             </m.div>

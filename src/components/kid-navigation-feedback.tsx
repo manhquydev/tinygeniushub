@@ -174,6 +174,9 @@ export function KidNavigationFeedbackProvider({ children }: { children: ReactNod
       }
 
       const normalizedTarget = normalizeNavigationTarget(href);
+      if (normalizedTarget === routeKey) {
+        return;
+      }
       const startedAt = performance.now();
 
       pendingNavigationRef.current = {
@@ -197,20 +200,47 @@ export function KidNavigationFeedbackProvider({ children }: { children: ReactNod
 
       router.push(href);
     },
-    [router],
+    [routeKey, router],
   );
 
   useEffect(() => {
-    if (!pendingNavigationRef.current) {
+    const pendingNavigation = pendingNavigationRef.current;
+    if (!pendingNavigation) {
       currentRouteKeyRef.current = routeKey;
       return;
     }
 
-    if (currentRouteKeyRef.current !== routeKey) {
+    if (routeKey === pendingNavigation.target || currentRouteKeyRef.current !== routeKey) {
       currentRouteKeyRef.current = routeKey;
       finishNavigation("nav_feedback_completed", "route_change");
     }
   }, [finishNavigation, routeKey]);
+
+  useEffect(() => {
+    if (!pendingNavigationRef.current) {
+      return;
+    }
+
+    const syncByLocation = () => {
+      const pendingNavigation = pendingNavigationRef.current;
+      if (!pendingNavigation) {
+        return;
+      }
+
+      const currentLocation = normalizeNavigationTarget(window.location.href);
+      if (currentLocation === pendingNavigation.target) {
+        currentRouteKeyRef.current = currentLocation;
+        finishNavigation("nav_feedback_completed", "location_match");
+      }
+    };
+
+    syncByLocation();
+    const locationSyncTimer = window.setInterval(syncByLocation, 150);
+
+    return () => {
+      window.clearInterval(locationSyncTimer);
+    };
+  }, [finishNavigation, pendingTarget]);
 
   useEffect(() => {
     if (!pendingNavigationRef.current) {
@@ -276,4 +306,3 @@ export function useKidNavigationFeedback() {
 
   return context;
 }
-

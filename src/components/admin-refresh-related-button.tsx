@@ -32,7 +32,7 @@ export function AdminRefreshRelatedButton({ postId }: { postId: string }) {
   return (
     <div className="flex flex-col gap-2">
       <button type="button" onClick={handleRefresh} disabled={loading} className="ghost-button w-fit">
-        {loading ? "Đang cập nhật..." : "Cap nhat bai lien quan"}
+        {loading ? "Đang cập nhật..." : "Cập nhật bài liên quan"}
       </button>
       {message ? <p className="text-sm font-semibold text-emerald-700">{message}</p> : null}
       {error ? <p className="text-sm font-semibold text-rose-700">{error}</p> : null}

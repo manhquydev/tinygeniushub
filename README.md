@@ -89,7 +89,9 @@ pnpm worker:dev
 - `GET /api/cron/streak-alerts`
 - `POST /api/billing/webhooks/mock`
 - `POST /api/billing/webhooks/stripe`
+- `POST /api/billing/webhooks/payos`
 - `POST /api/billing/checkout`
+- `GET /api/courses/checkout/return?orderCode=...`
 - `GET /api/admin/overview`
 - `GET /api/admin/payments?limit=&status=`
 - `GET /api/admin/webhooks?limit=&status=`
@@ -160,10 +162,17 @@ Implementation plan and phases:
 - Configure watch-session TTL with `WATCH_SESSION_TTL_SECONDS` for video watch flows.
 - Storage upload pipeline supports `STORAGE_PROVIDER=mock_r2|cloudflare_r2` (`mock_r2` default).
 - Billing provider supports `mock_gateway|stripe` via `BILLING_PROVIDER`.
+- Course checkout provider supports `mock_gateway|payos` via `COURSE_PAYMENT_PROVIDER`.
 - Report email provider supports `mock_email|resend` via `REPORT_EMAIL_PROVIDER`.
 - Required env when using real providers:
   - `BILLING_PROVIDER=stripe` -> `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRETS` (optional override `STRIPE_API_BASE_URL`, `STRIPE_WEBHOOK_TOLERANCE_SECONDS`).
+  - `COURSE_PAYMENT_PROVIDER=payos` -> `PAYOS_CLIENT_ID`, `PAYOS_API_KEY`, `PAYOS_CHECKSUM_KEY` (optional override `PAYOS_API_BASE_URL`).
   - `REPORT_EMAIL_PROVIDER=resend` -> `REPORT_EMAIL_RESEND_API_KEY`, `REPORT_EMAIL_FROM` (optional: `REPORT_EMAIL_REPLY_TO`, `REPORT_EMAIL_TO_OVERRIDE`).
+- PayOS webhook configuration:
+  - Method: `POST`
+  - Endpoint: `https://<your-domain>/api/billing/webhooks/payos`
+  - Ensure `BETTER_AUTH_URL` is your production HTTPS domain so checkout return/cancel URLs are valid.
+- Detailed runbook: `docs/payos-course-checkout-setup.md`
 - `pnpm test:e2e:full` expects two local accounts:
   - parent: `demo.parent@cungcontuhoc.vn` / `DemoPass123!`
   - admin: `demo.admin@cungcontuhoc.vn` / `DemoAdmin123!`

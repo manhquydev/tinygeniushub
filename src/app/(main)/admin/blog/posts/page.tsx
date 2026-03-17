@@ -40,6 +40,23 @@ function getStatusPillClass(status: BlogPostStatus) {
   }
 }
 
+function getStatusLabel(status: BlogPostStatus) {
+  switch (status) {
+    case "DRAFT":
+      return "Nháp";
+    case "REVIEW":
+      return "Chờ duyệt";
+    case "PUBLISHED":
+      return "Đã xuất bản";
+    case "SCHEDULED":
+      return "Lên lịch";
+    case "ARCHIVED":
+      return "Lưu trữ";
+    default:
+      return status;
+  }
+}
+
 function buildHref(page: number, status?: BlogPostStatus, q?: string) {
   const params = new URLSearchParams();
   params.set("page", String(page));
@@ -101,18 +118,18 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
             <p className="mt-2 text-sm text-slate-600">Lọc theo trạng thái hoặc tiêu đề.</p>
           </div>
           <Link href="/admin/blog/posts/new" className="solid-button">
-            Viet bai moi
+            Viết bài mới
           </Link>
         </div>
 
         <form method="GET" className="mt-4 grid gap-3 md:grid-cols-[220px_1fr_auto]">
           <select name="status" defaultValue={status ?? ""} className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm">
-            <option value="">All</option>
-            <option value="DRAFT">DRAFT</option>
-            <option value="REVIEW">REVIEW</option>
-            <option value="PUBLISHED">PUBLISHED</option>
-            <option value="SCHEDULED">SCHEDULED</option>
-            <option value="ARCHIVED">ARCHIVED</option>
+            <option value="">Tất cả trạng thái</option>
+            <option value="DRAFT">{getStatusLabel("DRAFT")}</option>
+            <option value="REVIEW">{getStatusLabel("REVIEW")}</option>
+            <option value="PUBLISHED">{getStatusLabel("PUBLISHED")}</option>
+            <option value="SCHEDULED">{getStatusLabel("SCHEDULED")}</option>
+            <option value="ARCHIVED">{getStatusLabel("ARCHIVED")}</option>
           </select>
           <input
             type="search"
@@ -132,14 +149,14 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
           <table className="min-w-full text-left text-sm">
             <thead className="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
               <tr>
-                <th className="px-4 py-3">Cover</th>
-                <th className="px-4 py-3">Title</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Category</th>
-                <th className="px-4 py-3">Author</th>
-                <th className="px-4 py-3">Views</th>
-                <th className="px-4 py-3">Date</th>
-                <th className="px-4 py-3">Actions</th>
+                <th className="px-4 py-3">Ảnh bìa</th>
+                <th className="px-4 py-3">Tiêu đề</th>
+                <th className="px-4 py-3">Trạng thái</th>
+                <th className="px-4 py-3">Danh mục</th>
+                <th className="px-4 py-3">Tác giả</th>
+                <th className="px-4 py-3">Lượt xem</th>
+                <th className="px-4 py-3">Ngày tạo</th>
+                <th className="px-4 py-3">Thao tác</th>
               </tr>
             </thead>
             <tbody>
@@ -157,7 +174,7 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
                   </td>
                   <td className="px-4 py-3">
                     <span className={`inline-flex rounded-full border px-2 py-0.5 text-xs font-semibold ${getStatusPillClass(post.status)}`}>
-                      {post.status}
+                      {getStatusLabel(post.status)}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-slate-700">{post.category.nameVi}</td>
@@ -173,7 +190,7 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <Link href={`/admin/blog/posts/${post.id}/edit`} className="text-sm font-semibold text-teal-700 hover:text-teal-800">
-                        Sua
+                        Sửa
                       </Link>
                       <Link href={`/blog/${post.slug}`} className="text-sm font-semibold text-slate-700 hover:text-slate-900" target="_blank" rel="noreferrer">
                         Xem
@@ -197,10 +214,10 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
       <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="flex gap-2">
           <Link href={buildHref(Math.max(1, currentPage - 1), status, q || undefined)} className={`ghost-button ${currentPage === 1 ? "pointer-events-none opacity-50" : ""}`}>
-            Prev
+            Trước
           </Link>
           <Link href={buildHref(Math.min(totalPages, currentPage + 1), status, q || undefined)} className={`ghost-button ${currentPage === totalPages ? "pointer-events-none opacity-50" : ""}`}>
-            Next
+            Sau
           </Link>
         </div>
         <div className="flex flex-wrap items-center gap-2">

@@ -17,7 +17,7 @@ import type { ActivitySpec, ActivityType } from "@/modules/content/activity-type
 
 const EvidenceUploadPanel = dynamic(
   () => import("@/components/evidence-upload-panel").then((module) => module.EvidenceUploadPanel),
-  { loading: () => <p className="lesson-wizard-helper-text">Äang táº£i khu vá»±c gá»­i káº¿t quáº£...</p> },
+  { loading: () => <p className="lesson-wizard-helper-text">Đang tải khu vực gửi kết quả...</p> },
 );
 
 interface LessonWizardFlowProps {
@@ -62,8 +62,8 @@ const LESSON_SPACE_STARS = Array.from({ length: 28 }, (_, index) => {
 });
 
 const LESSON_QUIZ_CHOICES = [
-  { id: "correct", label: "Ná»™i dung vá»«a há»c", description: "ÄÃ¢y lÃ  kiáº¿n thá»©c trong video", isCorrect: true },
-  { id: "wrong", label: "Chá»§ Ä‘á» khÃ¡c", description: "ÄÃ¡p Ã¡n nÃ y chÆ°a Ä‘Ãºng rá»“i", isCorrect: false },
+  { id: "correct", label: "Nội dung vừa học", description: "Đây là kiến thức trong video", isCorrect: true },
+  { id: "wrong", label: "Chủ đề khác", description: "Đáp án này chưa đúng rồi", isCorrect: false },
 ] as const;
 
 function shouldUseIframePlayer(url: string) {
@@ -194,7 +194,7 @@ export function LessonWizardFlow({
         setWatchHeartbeatSequence(nextSequence);
         applyWatchResult(watchResult);
       } catch {
-        setStatus("KhÃ´ng thá»ƒ cáº­p nháº­t tiáº¿n Ä‘á»™ xem video. Vui lÃ²ng thá»­ láº¡i.");
+        setStatus("Không thể cập nhật tiến độ xem video. Vui lòng thử lại.");
       } finally {
         heartbeatInFlightRef.current = false;
       }
@@ -336,9 +336,9 @@ export function LessonWizardFlow({
       setWatchReady(false);
       setWatchSessionExpiresAtMs(new Date(session.expiresAt).getTime());
       setWatchHeartbeatSequence(0);
-      setStatus("Video Ä‘Ã£ sáºµn sÃ ng, cÃ¹ng theo dÃµi nhÃ©!");
+      setStatus("Video đã sẵn sàng, cùng theo dõi nhé!");
     } catch {
-      setStatus("KhÃ´ng thá»ƒ khá»Ÿi táº¡o phiÃªn xem video.");
+      setStatus("Không thể khởi tạo phiên xem video.");
     } finally {
       setWatchSessionLoading(false);
     }
@@ -363,7 +363,7 @@ export function LessonWizardFlow({
         success = true;
       }
     } catch {
-      setStatus("KhÃ´ng thá»ƒ xÃ¡c nháº­n Ä‘Ã£ xem video.");
+      setStatus("Không thể xác nhận đã xem video.");
     } finally {
       setWatchLoading(false);
     }
@@ -389,7 +389,7 @@ export function LessonWizardFlow({
       });
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setStatus("KhÃ´ng thá»ƒ hoÃ n thÃ nh bÃ i há»c. Vui lÃ²ng thá»­ láº¡i.");
+        setStatus("Không thể hoàn thành bài học. Vui lòng thử lại.");
         return;
       }
 
@@ -479,7 +479,7 @@ export function LessonWizardFlow({
 
       if (isCorrect) {
         synth.playTing();
-        setStatus("ChÃ­nh xÃ¡c!");
+        setStatus("Chính xác!");
         setActivityAnswerLocked(true);
 
         consecutiveCorrectRef.current += 1;
@@ -537,7 +537,7 @@ export function LessonWizardFlow({
       }
 
       synth.playBzz();
-      setStatus("ChÆ°a Ä‘Ãºng rá»“i, con thá»­ láº¡i nhÃ©!");
+      setStatus("Chưa đúng rồi, con thử lại nhé!");
       setActivityAnswerLocked(true);
       consecutiveCorrectRef.current = 0;
       totalWrongRef.current += 1;
@@ -571,7 +571,7 @@ export function LessonWizardFlow({
     if (isCorrect) {
       synth.playTing();
       setQuizResult("correct");
-      setStatus("ChÃ­nh xÃ¡c! Linh vật Cáo Ä‘ang má»Ÿ cháº·ng tiáº¿p theo...");
+      setStatus("Chính xác! Linh vật Cáo đang mở chặng tiếp theo...");
       setMascotStateForDuration("happy", 1200);
 
       quizCelebrateTimerRef.current = window.setTimeout(() => {
@@ -600,7 +600,7 @@ export function LessonWizardFlow({
     synth.playBzz();
     setQuizResult("wrong");
     setWrongAnswerPulse((value) => value + 1);
-    setStatus("ChÆ°a Ä‘Ãºng rá»“i, con thá»­ láº¡i nhÃ©!");
+    setStatus("Chưa đúng rồi, con thử lại nhé!");
     setMascotStateForDuration("confused", 1100);
   };
 
@@ -655,15 +655,15 @@ export function LessonWizardFlow({
             whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
           >
             <ArrowLeft size={20} />
-            <span>ThoÃ¡t</span>
+            <span>Thoát</span>
           </m.button>
 
           <div className="lesson-wizard-header-copy">
-            <p>Cháº·ng há»c táº­p</p>
+            <p>Chặng học tập</p>
             <h2>{title}</h2>
           </div>
 
-          <div className="lesson-wizard-time-pill">{estimatedMinutes} phÃºt</div>
+          <div className="lesson-wizard-time-pill">{estimatedMinutes} phút</div>
         </header>
 
         <main className="lesson-wizard-main">
@@ -687,10 +687,10 @@ export function LessonWizardFlow({
 
                 <div className="lesson-wizard-step-badge">
                   <Play size={16} />
-                  <span>Sáºµn sÃ ng khá»Ÿi hÃ nh</span>
+                  <span>Sẵn sàng khởi hành</span>
                 </div>
 
-                <h1 className="lesson-wizard-heading">Sáºµn sÃ ng há»c chÆ°a nÃ o?</h1>
+                <h1 className="lesson-wizard-heading">Sẵn sàng học chưa nào?</h1>
                 <p className="lesson-wizard-objective">{objective}</p>
 
                 <m.button
@@ -702,7 +702,7 @@ export function LessonWizardFlow({
                   transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 18 }}
                 >
                   <Sparkles size={18} />
-                  <span>Báº¯t Ä‘áº§u ngay!</span>
+                  <span>Bắt đầu ngay!</span>
                 </m.button>
               </m.section>
             ) : null}
@@ -717,8 +717,8 @@ export function LessonWizardFlow({
                 className="lesson-wizard-panel lesson-wizard-panel-video"
               >
                 <div className="lesson-wizard-video-head">
-                  <h3>Xem video nhiá»‡m vá»¥</h3>
-                  <p>Con xem gáº§n háº¿t video Ä‘á»ƒ má»Ÿ khÃ³a pháº§n thá»­ thÃ¡ch nhÃ©.</p>
+                  <h3>Xem video nhiệm vụ</h3>
+                  <p>Con xem gần hết video để mở khóa phần thử thách nhé.</p>
                 </div>
 
                 <div className="lesson-wizard-video-frame">
@@ -735,14 +735,14 @@ export function LessonWizardFlow({
                   ) : (
                     <div className="lesson-wizard-video-fallback">
                       <Video size={30} />
-                      <span>BÃ i há»c nÃ y chÆ°a cÃ³ video.</span>
+                      <span>Bài học này chưa có video.</span>
                     </div>
                   )}
                 </div>
 
                 <div className="lesson-wizard-progress-panel">
                   <div className="lesson-wizard-progress-meta">
-                    <span>Tiáº¿n Ä‘á»™ xem</span>
+                    <span>Tiến độ xem</span>
                     <strong>{watchProgressPercentage}%</strong>
                   </div>
                   <div className="watch-progress-track lesson-wizard-progress-track">
@@ -761,7 +761,7 @@ export function LessonWizardFlow({
                     whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
                     transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 20 }}
                   >
-                    <span>{watchLoading ? "Äang xÃ¡c nháº­n..." : "Tiáº¿p tá»¥c thá»­ thÃ¡ch"}</span>
+                    <span>{watchLoading ? "Đang xác nhận..." : "Tiếp tục thử thách"}</span>
                     <ArrowRight size={18} />
                   </m.button>
                 </div>
@@ -860,8 +860,8 @@ export function LessonWizardFlow({
                 exit="exit"
                 className="lesson-wizard-panel lesson-wizard-panel-upload"
               >
-                <h3>Gá»­i káº¿t quáº£ cho tháº§y cÃ´ nhÃ©!</h3>
-                <p>Nhá» ba máº¹ chá»¥p láº¡i bÃ i lÃ m rá»“i gá»­i lÃªn Ä‘á»ƒ nháº­n sao thÆ°á»Ÿng.</p>
+                <h3>Gửi kết quả cho thầy cô nhé!</h3>
+                <p>Nhờ ba mẹ chụp lại bài làm rồi gửi lên để nhận sao thưởng.</p>
 
                 <div className="lesson-wizard-upload-shell">
                   <EvidenceUploadPanel childId={childId} lessonId={lessonId} />
@@ -876,7 +876,7 @@ export function LessonWizardFlow({
                   whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
                   transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 20 }}
                 >
-                  <span>{loading ? "Äang gá»­i..." : "HoÃ n thÃ nh nhiá»‡m vá»¥!"}</span>
+                  <span>{loading ? "Đang gửi..." : "Hoàn thành nhiệm vụ!"}</span>
                 </m.button>
               </m.section>
             ) : null}
@@ -898,8 +898,8 @@ export function LessonWizardFlow({
                   <KidMascot size={124} state="celebrating" actionProp="exploring" />
                 </m.div>
 
-                <h1 className="lesson-wizard-heading lesson-wizard-heading-success">Tuyá»‡t vá»i!</h1>
-                <p className="lesson-wizard-objective">Con vá»«a hoÃ n thÃ nh xuáº¥t sáº¯c cháº·ng há»c hÃ´m nay rá»“i.</p>
+                <h1 className="lesson-wizard-heading lesson-wizard-heading-success">Tuyệt vời!</h1>
+                <p className="lesson-wizard-objective">Con vừa hoàn thành xuất sắc chặng học hôm nay rồi.</p>
 
                 <m.button
                   type="button"
@@ -910,7 +910,7 @@ export function LessonWizardFlow({
                   transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 18 }}
                 >
                   <Check size={18} />
-                  <span>Quay láº¡i báº£n Ä‘á»“</span>
+                  <span>Quay lại bản đồ</span>
                 </m.button>
               </m.section>
             ) : null}

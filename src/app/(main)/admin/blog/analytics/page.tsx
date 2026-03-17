@@ -98,7 +98,7 @@ export default function AdminBlogAnalyticsPage() {
         <div className="section-header">
           <div>
             <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Phân tích blog</h1>
-            <p className="mt-2 text-sm text-slate-600">Theo dõi tăng trưởng lượt xem, tương tác và subscriber.</p>
+            <p className="mt-2 text-sm text-slate-600">Theo dõi tăng trưởng lượt xem, tương tác và người đăng ký.</p>
           </div>
           <div className="flex gap-2">
             {(["7d", "30d", "90d"] as const).map((value) => (
@@ -131,19 +131,19 @@ export default function AdminBlogAnalyticsPage() {
         <>
           <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Total Views</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Tổng lượt xem</p>
               <p className="mt-2 text-3xl font-black text-slate-900">{data.totalViews.toLocaleString("vi-VN")}</p>
             </article>
             <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Total Likes</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Tổng lượt thích</p>
               <p className="mt-2 text-3xl font-black text-slate-900">{data.totalLikes.toLocaleString("vi-VN")}</p>
             </article>
             <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Active Subscribers</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Người đăng ký đang hoạt động</p>
               <p className="mt-2 text-3xl font-black text-slate-900">{data.totalSubscribers.toLocaleString("vi-VN")}</p>
             </article>
             <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Total Published Posts</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Bài đã xuất bản</p>
               <p className="mt-2 text-3xl font-black text-slate-900">{data.totalPublishedPosts.toLocaleString("vi-VN")}</p>
             </article>
           </section>
@@ -155,9 +155,9 @@ export default function AdminBlogAnalyticsPage() {
                   <tr>
                     <th className="px-4 py-3">#</th>
                     <th className="px-4 py-3">Bài viết</th>
-                    <th className="px-4 py-3">Views</th>
-                    <th className="px-4 py-3">Likes</th>
-                    <th className="px-4 py-3">Read time</th>
+                    <th className="px-4 py-3">Lượt xem</th>
+                    <th className="px-4 py-3">Lượt thích</th>
+                    <th className="px-4 py-3">Thời gian đọc</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -181,14 +181,14 @@ export default function AdminBlogAnalyticsPage() {
 
           <section className="grid gap-4 lg:grid-cols-2">
             <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-black text-slate-900">Views by day</h2>
+              <h2 className="text-xl font-black text-slate-900">Lượt xem theo ngày</h2>
               <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 120, marginTop: 16 }}>
                 {data.viewsByDay.map((day) => {
                   const height = maxDailyViews > 0 ? (day._count.id / maxDailyViews) * 100 : 0;
                   return (
                     <div
                       key={day.readAt}
-                      title={`${formatDate(day.readAt)}: ${day._count.id} luot xem`}
+                      title={`${formatDate(day.readAt)}: ${day._count.id} lượt xem`}
                       style={{
                         flex: 1,
                         height: `${height}%`,
@@ -203,7 +203,7 @@ export default function AdminBlogAnalyticsPage() {
             </article>
 
             <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-black text-slate-900">Category breakdown</h2>
+              <h2 className="text-xl font-black text-slate-900">Phân bổ theo danh mục</h2>
               <div className="mt-4 grid gap-3">
                 {data.categoryBreakdown.map((category) => {
                   const width = maxCategoryViews > 0 ? (category.views / maxCategoryViews) * 100 : 0;
@@ -211,7 +211,7 @@ export default function AdminBlogAnalyticsPage() {
                     <div key={category.categoryId} className="space-y-1">
                       <div className="flex items-center justify-between text-sm">
                         <span className="font-semibold text-slate-700">{category.categoryName}</span>
-                        <span className="text-slate-500">{category.views.toLocaleString("vi-VN")} views</span>
+                        <span className="text-slate-500">{category.views.toLocaleString("vi-VN")} lượt xem</span>
                       </div>
                       <div className="h-2 rounded bg-slate-100">
                         <div

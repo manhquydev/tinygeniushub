@@ -57,6 +57,59 @@ function toDatetimeLocal(dateValue?: Date | string | null) {
   return `${parsed.getFullYear()}-${pad(parsed.getMonth() + 1)}-${pad(parsed.getDate())}T${pad(parsed.getHours())}:${pad(parsed.getMinutes())}`;
 }
 
+function getPostTypeLabel(type: BlogPostFormValues["type"]) {
+  switch (type) {
+    case "ARTICLE":
+      return "Bài viết";
+    case "TIP":
+      return "Mẹo ngắn";
+    case "NEWS":
+      return "Tin tức";
+    case "GUIDE":
+      return "Hướng dẫn";
+    case "RESEARCH":
+      return "Nghiên cứu";
+    case "STORY":
+      return "Câu chuyện";
+    default:
+      return type;
+  }
+}
+
+function getAgeGroupLabel(ageGroup: BlogPostFormValues["ageGroup"]) {
+  switch (ageGroup) {
+    case "UNDER_3":
+      return "Dưới 3 tuổi";
+    case "AGE_3_5":
+      return "3 - 5 tuổi";
+    case "AGE_6_8":
+      return "6 - 8 tuổi";
+    case "AGE_9_12":
+      return "9 - 12 tuổi";
+    case "ALL_AGES":
+      return "Mọi độ tuổi";
+    default:
+      return ageGroup;
+  }
+}
+
+function getPostStatusLabel(status: BlogPostFormValues["status"]) {
+  switch (status) {
+    case "DRAFT":
+      return "Nháp";
+    case "REVIEW":
+      return "Chờ duyệt";
+    case "PUBLISHED":
+      return "Đã xuất bản";
+    case "SCHEDULED":
+      return "Lên lịch";
+    case "ARCHIVED":
+      return "Lưu trữ";
+    default:
+      return status;
+  }
+}
+
 export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultValues }: AdminBlogPostFormProps) {
   const router = useRouter();
   const [categories, setCategories] = useState<BlogCategoryOption[]>([]);
@@ -246,7 +299,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
               required
               className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
             />
-            <p className="text-xs font-normal text-slate-500">Auto-tạo từ tiêu đề</p>
+            <p className="text-xs font-normal text-slate-500">Tự tạo từ tiêu đề</p>
           </label>
           <label className="space-y-1 text-sm font-semibold text-slate-700 md:col-span-2">
             Mô tả ngắn
@@ -266,12 +319,12 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
               onChange={(event) => setType(event.target.value as BlogPostFormValues["type"])}
               className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
             >
-              <option value="ARTICLE">ARTICLE</option>
-              <option value="TIP">TIP</option>
-              <option value="NEWS">NEWS</option>
-              <option value="GUIDE">GUIDE</option>
-              <option value="RESEARCH">RESEARCH</option>
-              <option value="STORY">STORY</option>
+              <option value="ARTICLE">{getPostTypeLabel("ARTICLE")}</option>
+              <option value="TIP">{getPostTypeLabel("TIP")}</option>
+              <option value="NEWS">{getPostTypeLabel("NEWS")}</option>
+              <option value="GUIDE">{getPostTypeLabel("GUIDE")}</option>
+              <option value="RESEARCH">{getPostTypeLabel("RESEARCH")}</option>
+              <option value="STORY">{getPostTypeLabel("STORY")}</option>
             </select>
           </label>
           <label className="space-y-1 text-sm font-semibold text-slate-700">
@@ -281,11 +334,11 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
               onChange={(event) => setAgeGroup(event.target.value as BlogPostFormValues["ageGroup"])}
               className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
             >
-              <option value="UNDER_3">UNDER_3</option>
-              <option value="AGE_3_5">AGE_3_5</option>
-              <option value="AGE_6_8">AGE_6_8</option>
-              <option value="AGE_9_12">AGE_9_12</option>
-              <option value="ALL_AGES">ALL_AGES</option>
+              <option value="UNDER_3">{getAgeGroupLabel("UNDER_3")}</option>
+              <option value="AGE_3_5">{getAgeGroupLabel("AGE_3_5")}</option>
+              <option value="AGE_6_8">{getAgeGroupLabel("AGE_6_8")}</option>
+              <option value="AGE_9_12">{getAgeGroupLabel("AGE_9_12")}</option>
+              <option value="ALL_AGES">{getAgeGroupLabel("ALL_AGES")}</option>
             </select>
           </label>
         </div>
@@ -327,7 +380,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
             </select>
           </label>
           <label className="space-y-1 text-sm font-semibold text-slate-700 md:col-span-2">
-            Cover Image URL
+            URL ảnh bìa
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <input
                 type="url"
@@ -342,7 +395,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
             </div>
           </label>
           <label className="space-y-1 text-sm font-semibold text-slate-700 md:col-span-2">
-            Tags (phân tách bằng dấu phẩy)
+            Thẻ (phân tách bằng dấu phẩy)
             <textarea
               value={tagsInput}
               onChange={(event) => setTagsInput(event.target.value)}
@@ -364,7 +417,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
         <h2 className="text-lg font-bold text-slate-900">SEO</h2>
         <div className="grid gap-3 md:grid-cols-2">
           <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Meta title
+            Tiêu đề SEO
             <input
               type="text"
               value={metaTitleVi}
@@ -374,7 +427,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
             <p className="text-xs font-normal text-slate-500">60 ký tự</p>
           </label>
           <label className="space-y-1 text-sm font-semibold text-slate-700">
-            Meta description
+            Mô tả SEO
             <textarea
               value={metaDescVi}
               onChange={(event) => setMetaDescVi(event.target.value)}
@@ -395,11 +448,11 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
               onChange={(event) => setStatus(event.target.value as BlogPostFormValues["status"])}
               className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
             >
-              <option value="DRAFT">DRAFT</option>
-              <option value="REVIEW">REVIEW</option>
-              <option value="PUBLISHED">PUBLISHED</option>
-              <option value="SCHEDULED">SCHEDULED</option>
-              {status === "ARCHIVED" ? <option value="ARCHIVED">ARCHIVED</option> : null}
+              <option value="DRAFT">{getPostStatusLabel("DRAFT")}</option>
+              <option value="REVIEW">{getPostStatusLabel("REVIEW")}</option>
+              <option value="PUBLISHED">{getPostStatusLabel("PUBLISHED")}</option>
+              <option value="SCHEDULED">{getPostStatusLabel("SCHEDULED")}</option>
+              {status === "ARCHIVED" ? <option value="ARCHIVED">{getPostStatusLabel("ARCHIVED")}</option> : null}
             </select>
           </label>
           {status === "SCHEDULED" ? (

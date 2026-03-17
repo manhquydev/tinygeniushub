@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { Menu, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics/track-event";
 
 const ParentNotificationCenter = dynamic(
   () => import("./parent-notification-center").then((module) => module.ParentNotificationCenter),
@@ -20,6 +21,7 @@ const ParentalGateModal = dynamic(
 interface AppNavClientProps {
   hasParent: boolean;
   isAdmin: boolean;
+  guestCtaVariant: "A" | "B";
 }
 
 type NavMatchMode = "exact" | "prefix";
@@ -31,8 +33,14 @@ type NavItemConfig = {
   matchMode?: NavMatchMode;
 };
 
+type NavTrackingLocation = "desktop_top" | "mobile_panel";
+
 function isPathActive(pathname: string, href: string, mode: NavMatchMode = "prefix") {
   if (href === "/") {
+    return pathname === "/";
+  }
+
+  if (href.startsWith("/#")) {
     return pathname === "/";
   }
 
@@ -47,11 +55,12 @@ interface NavTextLinkProps {
   item: NavItemConfig;
   pathname: string;
   onIntercept: (event: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+  onTrack?: (item: NavItemConfig) => void;
   onNavigate?: () => void;
   className?: string;
 }
 
-function NavTextLink({ item, pathname, onIntercept, onNavigate, className }: NavTextLinkProps) {
+function NavTextLink({ item, pathname, onIntercept, onTrack, onNavigate, className }: NavTextLinkProps) {
   const active = isPathActive(pathname, item.href, item.matchMode ?? "prefix");
   const resolvedClassName = ["nav-link-item", active ? "nav-link-item-active" : "nav-link-item-inactive", item.hideOnMobile ? "nav-hide-mobile" : "", className]
     .filter(Boolean)
@@ -62,6 +71,7 @@ function NavTextLink({ item, pathname, onIntercept, onNavigate, className }: Nav
       href={item.href}
       className={resolvedClassName}
       onClick={(event) => {
+        onTrack?.(item);
         onIntercept(event, item.href);
         onNavigate?.();
       }}
@@ -74,38 +84,57 @@ function NavTextLink({ item, pathname, onIntercept, onNavigate, className }: Nav
   );
 }
 
-export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
+export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClientProps) {
   const pathname = usePathname() ?? "";
   const router = useRouter();
+  const isAdminRoute = pathname.startsWith("/admin");
 
   const [gateOpen, setGateOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [supportMenuOpen, setSupportMenuOpen] = useState(false);
   const pendingHrefRef = useRef<string | null>(null);
 
   const isKidUI = pathname.startsWith("/kid");
 
   const parentLinks: NavItemConfig[] = [
-    { href: "/about", label: "Giới thiệu", hideOnMobile: true, matchMode: "prefix" },
-    { href: "/blog", label: "Blog", hideOnMobile: true, matchMode: "prefix" },
-    { href: "/parent/dashboard", label: "Dashboard", matchMode: "prefix" },
+    { href: "/parent/dashboard", label: "Tổng quan", matchMode: "prefix" },
     { href: "/parent/children", label: "Hồ sơ bé", matchMode: "prefix" },
     { href: "/parent/courses", label: "Khóa học", matchMode: "prefix" },
     { href: "/parent/reports", label: "Báo cáo", matchMode: "prefix" },
-    { href: "/parent/billing", label: "Gói dịch vụ", matchMode: "prefix", hideOnMobile: true },
+    { href: "/parent/billing", label: "Gói dịch vụ", matchMode: "prefix" },
     ...(isAdmin ? [{ href: "/admin", label: "Admin", matchMode: "prefix" as const }] : []),
   ];
 
   const guestLinks: NavItemConfig[] = [
+    { href: "/courses", label: "Khóa học", matchMode: "prefix" },
+    { href: "/pricing", label: "Bảng giá", matchMode: "prefix" },
+    { href: "/#features", label: "Cách hoạt động", matchMode: "exact" },
     { href: "/for-schools", label: "Cho trường học", hideOnMobile: true, matchMode: "prefix" },
-    { href: "/about", label: "Giới thiệu", hideOnMobile: true, matchMode: "prefix" },
-    { href: "/blog", label: "Blog", hideOnMobile: true, matchMode: "prefix" },
+  ];
+  const parentSupportLinks: NavItemConfig[] = [
+    { href: "/blog", label: "Blog", matchMode: "prefix" },
+    { href: "/about", label: "Giới thiệu", matchMode: "prefix" },
+    { href: "/contact", label: "Trợ giúp", matchMode: "prefix" },
   ];
   const currentLinks = hasParent ? parentLinks : guestLinks;
   const mobileLinks = currentLinks.map((item) => ({ ...item, hideOnMobile: false }));
+  const guestCtaLabelFull = guestCtaVariant === "B" ? "Xem gói học" : "Bắt đầu miễn phí";
+  const guestCtaLabelShort = guestCtaVariant === "B" ? "Xem gói" : "Bắt đầu";
+
+  const trackNavClick = (item: NavItemConfig, location: NavTrackingLocation) => {
+    trackEvent("nav_click", {
+      state: hasParent ? "parent" : "guest",
+      location,
+      label: item.label,
+      href: item.href,
+    });
+  };
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileMenuOpen(false);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSupportMenuOpen(false);
   }, [pathname]);
 
   const handleInterceptNavigation = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -158,6 +187,10 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
     pendingHrefRef.current = null;
   };
 
+  if (isAdminRoute) {
+    return null;
+  }
+
   return (
     <>
       <header className="app-nav">
@@ -165,12 +198,12 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
           <Link
             href="/"
             className="brand brand-feature-logo"
-            aria-label="TinyGeniusHub Home"
+            aria-label="Trang chủ Cùng Con Tự Học"
             onClick={(event) => handleInterceptNavigation(event, "/")}
           >
             <Image
               src="/logos/tinygeniushub_logo_horizon.png"
-              alt="TinyGeniusHub Logo"
+              alt="Logo Cùng Con Tự Học"
               width={1584}
               height={672}
               priority
@@ -192,7 +225,13 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
 
           <nav className="nav-links nav-links-desktop">
             {currentLinks.map((item) => (
-              <NavTextLink key={item.href} item={item} pathname={pathname} onIntercept={handleInterceptNavigation} />
+              <NavTextLink
+                key={item.href}
+                item={item}
+                pathname={pathname}
+                onIntercept={handleInterceptNavigation}
+                onTrack={(targetItem) => trackNavClick(targetItem, "desktop_top")}
+              />
             ))}
 
             {hasParent ? (
@@ -200,7 +239,51 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
                 <div className="relative z-[90] shrink-0">
                   <ParentNotificationCenter />
                 </div>
-                <button type="button" className="ghost-button" onClick={handleInterceptLogout} disabled={loggingOut}>
+                <div className="relative nav-hide-mobile">
+                  <button
+                    type="button"
+                    className="ghost-button"
+                    aria-haspopup="menu"
+                    aria-expanded={supportMenuOpen}
+                    aria-controls="parent-support-menu"
+                    onClick={() => setSupportMenuOpen((current) => !current)}
+                  >
+                    Trợ giúp
+                  </button>
+                  {supportMenuOpen ? (
+                    <div
+                      id="parent-support-menu"
+                      role="menu"
+                      aria-label="Menu trợ giúp"
+                      className="absolute right-0 top-[calc(100%+0.55rem)] z-[120] grid min-w-[11rem] gap-1 rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_14px_32px_rgba(15,23,42,0.16)]"
+                    >
+                      {parentSupportLinks.map((item) => (
+                        <Link
+                          key={`desktop-support-${item.href}`}
+                          href={item.href}
+                          role="menuitem"
+                          className="rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-900"
+                          onClick={(event) => {
+                            trackNavClick(item, "desktop_top");
+                            handleInterceptNavigation(event, item.href);
+                            setSupportMenuOpen(false);
+                          }}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+                <button
+                  type="button"
+                  className="ghost-button"
+                  onClick={(event) => {
+                    trackNavClick({ href: "/auth/logout", label: "Đăng xuất" }, "desktop_top");
+                    handleInterceptLogout(event);
+                  }}
+                  disabled={loggingOut}
+                >
                     {loggingOut ? "Đang xuất..." : "Đăng xuất"}
                   </button>
               </>
@@ -210,10 +293,23 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
                   item={{ href: "/auth/login", label: "Đăng nhập", hideOnMobile: true, matchMode: "prefix" }}
                   pathname={pathname}
                   onIntercept={handleInterceptNavigation}
+                  onTrack={(item) => trackNavClick(item, "desktop_top")}
                 />
-                <Link href="/auth/signup" className="solid-button" onClick={(event) => handleInterceptNavigation(event, "/auth/signup")}>
-                  <span className="nav-cta-short">Dùng thử</span>
-                  <span className="nav-cta-full">Bắt đầu trial 7 ngày</span>
+                <Link
+                  href="/auth/signup"
+                  className="solid-button"
+                  onClick={(event) => {
+                    trackEvent("nav_click", {
+                      state: "guest",
+                      location: "desktop_top",
+                      label: guestCtaLabelFull,
+                      href: "/auth/signup",
+                    });
+                    handleInterceptNavigation(event, "/auth/signup");
+                  }}
+                >
+                  <span className="nav-cta-short">{guestCtaLabelShort}</span>
+                  <span className="nav-cta-full">{guestCtaLabelFull}</span>
                 </Link>
               </>
             )}
@@ -228,6 +324,7 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
                 item={item}
                 pathname={pathname}
                 onIntercept={handleInterceptNavigation}
+                onTrack={(targetItem) => trackNavClick(targetItem, "mobile_panel")}
                 onNavigate={() => setMobileMenuOpen(false)}
                 className="nav-mobile-link"
               />
@@ -235,6 +332,17 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
 
             {hasParent ? (
               <div className="nav-mobile-actions">
+                {parentSupportLinks.map((item) => (
+                  <NavTextLink
+                    key={`mobile-support-${item.href}`}
+                    item={item}
+                    pathname={pathname}
+                    onIntercept={handleInterceptNavigation}
+                    onTrack={(targetItem) => trackNavClick(targetItem, "mobile_panel")}
+                    onNavigate={() => setMobileMenuOpen(false)}
+                    className="nav-mobile-link"
+                  />
+                ))}
                 <div className="relative z-[90] shrink-0">
                   <ParentNotificationCenter />
                 </div>
@@ -242,6 +350,7 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
                     type="button"
                     className="ghost-button nav-mobile-button"
                     onClick={(event) => {
+                      trackNavClick({ href: "/auth/logout", label: "Đăng xuất" }, "mobile_panel");
                       handleInterceptLogout(event);
                       setMobileMenuOpen(false);
                     }}
@@ -256,6 +365,7 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
                   item={{ href: "/auth/login", label: "Đăng nhập", matchMode: "prefix" }}
                   pathname={pathname}
                   onIntercept={handleInterceptNavigation}
+                  onTrack={(item) => trackNavClick(item, "mobile_panel")}
                   onNavigate={() => setMobileMenuOpen(false)}
                   className="nav-mobile-link"
                 />
@@ -263,11 +373,17 @@ export function AppNavClient({ hasParent, isAdmin }: AppNavClientProps) {
                   href="/auth/signup"
                   className="solid-button nav-mobile-button"
                   onClick={(event) => {
+                    trackEvent("nav_click", {
+                      state: "guest",
+                      location: "mobile_panel",
+                      label: guestCtaLabelFull,
+                      href: "/auth/signup",
+                    });
                     handleInterceptNavigation(event, "/auth/signup");
                     setMobileMenuOpen(false);
                   }}
                 >
-                  Bắt đầu trial 7 ngày
+                  {guestCtaLabelFull}
                 </Link>
               </div>
             )}

@@ -130,7 +130,7 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
           {courseTitle}
         </h2>
         <p style={{ fontSize: "0.78rem", marginBottom: "0.75rem" }} className="muted-text">
-          {completedSet.size}/{lessons.length} bÃ i hoÃ n thÃ nh
+          {completedSet.size}/{lessons.length} bài hoàn thành
         </p>
         <nav style={{ display: "grid", gap: "0.25rem" }}>
           {lessons.map(({ orderNo, lesson }, idx) => {
@@ -174,7 +174,7 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
         >
           {video.status === "loading" && (
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(248,250,252,0.9)" }}>
-              <p className="muted-text">Äang táº£i video...</p>
+              <p className="muted-text">Đang tải video...</p>
             </div>
           )}
           {video.status === "ready" && video.embedUrl && video.renderMode === "iframe" && (
@@ -197,7 +197,7 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
           {video.status === "unavailable" && (
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "0.5rem", background: "rgba(248,250,252,0.9)" }}>
               <p style={{ fontWeight: 700, fontSize: "1.1rem" }}>{selected?.lesson.title}</p>
-              <p className="muted-text">Video sáº¯p ra máº¯t</p>
+              <p className="muted-text">Video sắp ra mắt</p>
             </div>
           )}
         </div>
@@ -209,7 +209,7 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
               <span className="muted-text" style={{ marginRight: "0.5rem" }}>{selected.orderNo}.</span>
               {selected.lesson.title}
             </h1>
-            <p className="muted-text" style={{ fontSize: "0.85rem" }}>{selected.lesson.estimatedMinutes} phÃºt</p>
+            <p className="muted-text" style={{ fontSize: "0.85rem" }}>{selected.lesson.estimatedMinutes} phút</p>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
               {!isCompleted ? (
                 <button
@@ -219,11 +219,11 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
                   disabled={marking}
                   style={{ width: "fit-content" }}
                 >
-                  {marking ? "Äang lÆ°u..." : "âœ“ ÄÃ¡nh dáº¥u Ä‘Ã£ há»c"}
+                  {marking ? "Đang lưu..." : "âœ“ Đánh dấu đã học"}
                 </button>
               ) : (
                 <span style={{ color: "#10b981", fontWeight: 700, display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                  âœ“ ÄÃ£ hoÃ n thÃ nh
+                  âœ“ Đã hoàn thành
                 </span>
               )}
               {!isLast && (
@@ -233,12 +233,12 @@ export function CourseLessonsPlayer({ courseSlug, courseTitle, lessons, enrollme
                   onClick={goNext}
                   style={{ width: "fit-content" }}
                 >
-                  BÃ i tiáº¿p theo â†’
+                  Bài tiếp theo â†’
                 </button>
               )}
               {isLast && completedSet.size === lessons.length && (
                 <a href={`/parent/courses`} className="ghost-button" style={{ width: "fit-content" }}>
-                  ðŸŽ‰ Xem chá»©ng chá»‰
+                  🎉 Xem chứng chỉ
                 </a>
               )}
             </div>

@@ -3,12 +3,42 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import type { MouseEvent } from "react";
+import { usePathname } from "next/navigation";
+import { trackEvent } from "@/lib/analytics/track-event";
 
-export function SiteFooter() {
+interface SiteFooterProps {
+  hasParent?: boolean;
+}
+
+export function SiteFooter({ hasParent = false }: SiteFooterProps) {
+  const pathname = usePathname() ?? "";
+  const isAdminRoute = pathname.startsWith("/admin");
   const currentYear = new Date().getFullYear();
 
+  if (isAdminRoute) {
+    return null;
+  }
+
+  const trackFooterNavigation = (event: MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement | null;
+    const anchor = target?.closest("a");
+    if (!anchor) return;
+
+    const href = anchor.getAttribute("href");
+    if (!href || !href.startsWith("/")) return;
+
+    const label = anchor.textContent?.trim() || href;
+    trackEvent("nav_click", {
+      state: hasParent ? "parent" : "guest",
+      location: "footer",
+      label,
+      href,
+    });
+  };
+
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" onClickCapture={trackFooterNavigation}>
       <div className="max-w-[1040px] w-full mx-auto px-4 sm:px-6 lg:px-4">
         {/* Main grid: Brand + Nav */}
         <div className="footer-main">
@@ -100,7 +130,7 @@ export function SiteFooter() {
           </div>
 
           {/* ── Nav Columns ── */}
-          <nav className="footer-nav-grid" aria-label="Footer navigation">
+          <nav className="footer-nav-grid" aria-label="Điều hướng chân trang">
             <div className="footer-col">
               <p className="footer-col-title">Sản phẩm</p>
               <Link href="/#features">Tính năng</Link>
@@ -139,7 +169,7 @@ export function SiteFooter() {
         <div className="footer-bottom">
           <p className="footer-bottom-copy">
             <span className="footer-bottom-flag">🇻🇳</span>
-            <span>© {currentYear} Cùng Con Tự Học. All rights reserved.</span>
+            <span>© {currentYear} Cùng Con Tự Học. Bảo lưu mọi quyền.</span>
           </p>
           <div className="footer-bottom-links">
             <Link href="/privacy">Bảo mật</Link>

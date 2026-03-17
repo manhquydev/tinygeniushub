@@ -77,7 +77,7 @@ const NAV_GROUPS: NavGroup[] = [
           { href: "/admin/blog/authors", label: "Tác giả", icon: Users },
           {
             href: "/admin/blog/newsletter",
-            label: "Newsletter",
+            label: "Bản tin",
             icon: Newspaper,
           },
           {

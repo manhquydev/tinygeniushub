@@ -24,12 +24,53 @@ type ReportParams = {
   week?: string;
 };
 
+type NavClickParams = {
+  state: "guest" | "parent";
+  location: "desktop_top" | "mobile_panel" | "footer";
+  label: string;
+  href: string;
+};
+
+type CoursesCatalogViewParams = {
+  variant: "A" | "B";
+  bundles: number;
+  tracks: number;
+  lessons: number;
+};
+
+type CoursesBundleDetailClickParams = {
+  variant: "A" | "B";
+  bundle_slug: string;
+  cta_label: string;
+  position: number;
+};
+
+type CoursesBundleDetailViewParams = {
+  variant: "A" | "B";
+  bundle_slug: string;
+  tracks: number;
+  lessons: number;
+};
+
+type CoursesCheckoutStartParams = {
+  variant: "A" | "B";
+  source_page: "course_detail";
+  bundle_slug: string;
+  course_slug: string;
+  price_vnd: number;
+};
+
 type EventMap = {
   trial_start: TrialStartParams;
   purchase: PurchaseParams;
   lesson_complete: LessonCompleteParams;
   report_viewed: ReportParams;
   report_shared: ReportParams;
+  nav_click: NavClickParams;
+  courses_catalog_view: CoursesCatalogViewParams;
+  courses_bundle_detail_click: CoursesBundleDetailClickParams;
+  courses_bundle_detail_view: CoursesBundleDetailViewParams;
+  courses_checkout_start: CoursesCheckoutStartParams;
   referral_sent: Record<string, never>;
   complete_registration: Record<string, never>;
 };

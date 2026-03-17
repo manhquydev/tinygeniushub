@@ -1,6 +1,6 @@
 ﻿/**
- * POST /api/admin/lessons/[id]/skills â€” tag a lesson with skills
- * GET /api/admin/lessons/[id]/skills â€” get skills tagged to a lesson
+ * POST /api/admin/lessons/[id]/skills — tag a lesson with skills
+ * GET /api/admin/lessons/[id]/skills — get skills tagged to a lesson
  */
 
 import type { NextRequest } from "next/server";

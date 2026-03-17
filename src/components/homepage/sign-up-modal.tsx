@@ -1,18 +1,4 @@
-"use client";
-
-/**
- * SignUpModal - Modal for locked zone clicks
- * 
- * Triggered when user clicks a locked zone in preview mode.
- * Shows value prop and sign-up CTA to convert visitors.
- * 
- * Conversion messaging:
- * - "Mở khóa tất cả khu vườn"
- * - Show which zone they tried to access
- * - Benefits of signing up
- * - Primary CTA: Sign up
- * - Secondary: Close and continue exploring
- */
+﻿"use client";
 
 import { X } from "lucide-react";
 import Link from "next/link";
@@ -25,31 +11,24 @@ interface SignUpModalProps {
 }
 
 const zoneDisplayNames: Record<string, string> = {
-  math: "Toán học",
+  math: "Toán",
   phonics: "Tiếng Anh Phonics",
-  art: "Nghệ thuật",
+  art: "Mỹ thuật",
   music: "Âm nhạc",
   today: "Hôm nay",
 };
 
 export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
-  // Lock body scroll when modal open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
 
-  // Close on Escape key
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
         onClose();
       }
     };
@@ -60,7 +39,7 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
 
   if (!isOpen) return null;
 
-  const displayZone = zoneName ? zoneDisplayNames[zoneName] || zoneName : "khu vườn";
+  const displayZone = zoneName ? zoneDisplayNames[zoneName] || zoneName : "một khu học tập";
 
   return (
     <div
@@ -91,9 +70,8 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
           position: "relative",
           boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)",
         }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
       >
-        {/* Close button */}
         <button
           onClick={onClose}
           style={{
@@ -115,9 +93,7 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
           <X size={24} color="var(--cgh-ink)" />
         </button>
 
-        {/* Content */}
         <div style={{ textAlign: "center" }}>
-          {/* Icon */}
           <div
             style={{
               width: "72px",
@@ -134,7 +110,6 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
             🔒
           </div>
 
-          {/* Title */}
           <h2
             id="modal-title"
             style={{
@@ -144,10 +119,9 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
               color: "var(--cgh-ink)",
             }}
           >
-            Mở khóa tất cả khu vườn
+            Mở khóa toàn bộ khu học tập
           </h2>
 
-          {/* Description */}
           <p
             style={{
               margin: "0 0 1.5rem 0",
@@ -157,11 +131,10 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
               opacity: 0.8,
             }}
           >
-            Bạn đang muốn khám phá <strong>{displayZone}</strong>. 
-            Đăng ký ngay để mở khóa toàn bộ khu vườn và cho con bắt đầu học!
+            Bạn vừa chọn <strong>{displayZone}</strong>. Tạo tài khoản để mở toàn bộ khu học tập và chọn khóa phù hợp
+            cho bé.
           </p>
 
-          {/* Benefits list */}
           <ul
             style={{
               textAlign: "left",
@@ -172,13 +145,12 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
               color: "var(--cgh-ink)",
             }}
           >
-            <li>✓ Truy cập tất cả 5 khu vườn học tập</li>
-            <li>✓ Lộ trình cá nhân hóa cho từng bé</li>
-            <li>✓ Báo cáo tiến độ hàng tuần</li>
-            <li>✓ Dùng thử miễn phí 7 ngày</li>
+            <li>Mở toàn bộ khu học tập</li>
+            <li>Lộ trình học cá nhân hóa</li>
+            <li>Báo cáo tiến độ hàng tuần cho phụ huynh</li>
+            <li>Thanh toán nhanh bằng chuyển khoản hoặc QR</li>
           </ul>
 
-          {/* CTAs */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
             <Link
               href="/auth/signup"
@@ -197,7 +169,7 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
                 transition: "all 0.2s",
               }}
             >
-              Đăng ký miễn phí ngay
+              Tạo tài khoản
             </Link>
 
             <button
@@ -215,7 +187,7 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
                 transition: "all 0.2s",
               }}
             >
-              Tiếp tục khám phá
+              Tiếp tục xem thử
             </button>
           </div>
         </div>

@@ -159,7 +159,7 @@ export default async function AdminBlogDashboardPage() {
           {[
             { href: "/admin/blog/categories", label: "Danh mục" },
             { href: "/admin/blog/authors", label: "Tác giả" },
-            { href: "/admin/blog/newsletter", label: "Newsletter" },
+            { href: "/admin/blog/newsletter", label: "Bản tin" },
             { href: "/admin/blog/analytics", label: "Phân tích Blog" },
             { href: "/admin/blog/comments", label: "Bình luận" },
           ].map((item) => (

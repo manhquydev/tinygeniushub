@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     const { videoId, uploadUrl } = await bunnyCreateVideo(body.title);
 
-    // Link to lesson â€” cleanup orphaned Bunny video if DB update fails
+    // Link to lesson — cleanup orphaned Bunny video if DB update fails
     try {
       await prisma.lesson.update({
         where: { id: body.lessonId },

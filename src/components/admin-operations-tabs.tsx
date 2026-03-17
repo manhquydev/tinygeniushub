@@ -50,7 +50,7 @@ interface Props {
 
 const TABS = [
   { id: "payments", label: "Thanh toán", icon: CreditCard },
-  { id: "webhooks", label: "Webhook", icon: Webhook },
+  { id: "webhooks", label: "Sự kiện webhook", icon: Webhook },
   { id: "trials", label: "Bài học dùng thử", icon: BookOpen },
   { id: "announcements", label: "Thông báo", icon: Bell },
   { id: "coupons", label: "Mã giảm giá", icon: Tag },

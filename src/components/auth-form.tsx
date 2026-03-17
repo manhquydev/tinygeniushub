@@ -1,31 +1,42 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { trackEvent } from "@/lib/analytics/track-event";
+import { sanitizeNextPath } from "@/lib/auth/safe-next-path";
 
 interface AuthFormProps {
   mode: "signup" | "login";
+  nextPath?: string | null;
 }
 
-export function AuthForm({ mode }: AuthFormProps) {
+export function AuthForm({ mode, nextPath }: AuthFormProps) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
   const isSignup = mode === "signup";
+  const safeNextPath = sanitizeNextPath(nextPath);
+  const nextQuery = safeNextPath ? `?next=${encodeURIComponent(safeNextPath)}` : "";
+  const postAuthPath = safeNextPath ?? "/parent/dashboard";
   const formTitle = isSignup ? "Tạo tài khoản phụ huynh" : "Đăng nhập phụ huynh";
   const formSubtitle = isSignup
-    ? "Kích hoạt trial 7 ngày và khởi tạo hành trình học được cá nhân hóa cho bé."
-    : "Tiếp tục theo dõi tiến độ học tập, báo cáo và các mốc phát triển mới của bé.";
+    ? "Tạo tài khoản để quản lý hồ sơ của bé, xem bài học mẫu và mua khóa học phù hợp."
+    : "Tiếp tục theo dõi tiến độ học tập, báo cáo và các cột mốc quan trọng của bé.";
+
   const inputClassName =
     "h-12 rounded-xl border border-slate-300/90 bg-white px-3 text-[0.96rem] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100";
 
   function getDefaultErrorMessage() {
     return mode === "signup" ? "Không thể tạo tài khoản" : "Không thể đăng nhập";
+  }
+
+  function isLikelyEnglishOnlyMessage(message: string) {
+    return /^[A-Za-z0-9\s,.'":;!?()/-]+$/.test(message);
   }
 
   function formatAuthError(
@@ -50,23 +61,23 @@ export function AuthForm({ mode }: AuthFormProps) {
     }
 
     if (response.status === 409 && code === "EMAIL_EXISTS") {
-      return "Email này đã được đăng ký. Vui lòng dùng email khác hoặc đăng nhập.";
+      return "Email này đã được đăng ký. Vui lòng đăng nhập hoặc dùng email khác.";
     }
 
     if (response.status === 400 && apiMessage === "Invalid request payload") {
       const issue = body?.error?.details?.issues?.[0];
       const issuePath = String(issue?.path?.[0] ?? "");
       if (issuePath === "email") {
-        return "Email không đúng định dạng.";
+        return "Định dạng email không hợp lệ.";
       }
       if (issuePath === "password") {
-        return "Mật khẩu phải từ 8 đến 120 ký tự.";
+        return "Mật khẩu cần từ 8-120 ký tự.";
       }
       if (issuePath === "displayName") {
         return "Tên hiển thị không hợp lệ.";
       }
 
-      return "Thông tin gửi lên chưa hợp lệ. Vui lòng kiểm tra lại.";
+      return "Dữ liệu gửi lên không hợp lệ.";
     }
 
     if (response.status === 429) {
@@ -82,10 +93,14 @@ export function AuthForm({ mode }: AuthFormProps) {
     }
 
     if (response.status >= 500) {
-      return "Hệ thống đang bận. Vui lòng thử lại sau ít phút.";
+      return "Hệ thống đang bận. Vui lòng thử lại sau.";
     }
 
-    return apiMessage ?? fallback;
+    if (apiMessage) {
+      return isLikelyEnglishOnlyMessage(apiMessage) ? fallback : apiMessage;
+    }
+
+    return fallback;
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -128,11 +143,10 @@ export function AuthForm({ mode }: AuthFormProps) {
       }
 
       if (isSignup) {
-        trackEvent("trial_start", { plan: "trial_7day" });
         trackEvent("complete_registration");
       }
 
-      router.push("/parent/dashboard");
+      router.push(postAuthPath);
       router.refresh();
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : getDefaultErrorMessage());
@@ -171,7 +185,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required
-          placeholder="me@domain.com"
+          placeholder="ban@email.com"
         />
       </label>
 
@@ -184,7 +198,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           onChange={(event) => setPassword(event.target.value)}
           required
           minLength={8}
-          placeholder="Ít nhất 8 ký tự"
+          placeholder="Tối thiểu 8 ký tự"
         />
       </label>
 
@@ -195,16 +209,16 @@ export function AuthForm({ mode }: AuthFormProps) {
         disabled={loading}
         className="solid-button full-width min-h-12 rounded-full text-sm font-bold shadow-[0_14px_28px_rgba(5,150,105,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {loading ? "Đang xử lý..." : isSignup ? "Bắt đầu dùng thử 7 ngày" : "Vào dashboard"}
+        {loading ? "Đang xử lý..." : isSignup ? "Tạo tài khoản" : "Vào bảng điều khiển"}
       </button>
 
       {isSignup ? (
-        <p className="text-center text-sm text-slate-600">
-          Đã có tài khoản?{" "}
-          <Link href="/auth/login" className="font-bold text-emerald-700 hover:text-emerald-800">
-            Đăng nhập ngay
-          </Link>
-        </p>
+          <p className="text-center text-sm text-slate-600">
+            Đã có tài khoản?{" "}
+            <Link href={`/auth/login${nextQuery}`} className="font-bold text-emerald-700 hover:text-emerald-800">
+              Đăng nhập
+            </Link>
+          </p>
       ) : (
         <div className="flex flex-col gap-3 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
           <Link href="/auth/forgot-password" className="font-semibold text-emerald-700 hover:text-emerald-800">
@@ -212,8 +226,8 @@ export function AuthForm({ mode }: AuthFormProps) {
           </Link>
           <p>
             Chưa có tài khoản?{" "}
-            <Link href="/auth/signup" className="font-bold text-emerald-700 hover:text-emerald-800">
-              Tạo tài khoản trial
+            <Link href={`/auth/signup${nextQuery}`} className="font-bold text-emerald-700 hover:text-emerald-800">
+              Tạo tài khoản
             </Link>
           </p>
         </div>

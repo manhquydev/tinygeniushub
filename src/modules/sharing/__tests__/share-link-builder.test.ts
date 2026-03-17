@@ -1,9 +1,5 @@
-import { describe, it, expect } from "vitest";
-import {
-  buildReferralUrl,
-  buildShareMessage,
-  buildPlatformShareUrl,
-} from "../share-link-builder";
+﻿import { describe, expect, it } from "vitest";
+import { buildPlatformShareUrl, buildReferralUrl, buildShareMessage } from "../share-link-builder";
 
 const BASE_INPUT = {
   referralCode: "ABC12345",

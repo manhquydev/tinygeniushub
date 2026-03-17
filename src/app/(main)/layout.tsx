@@ -25,7 +25,7 @@ export default async function MainRouteLayout({ children }: { children: ReactNod
       <AppNav />
       <MainShell>{children}</MainShell>
       <MascotSupportHub />
-      <SiteFooter />
+      <SiteFooter hasParent={!!displayParent} />
     </>
   );
 }

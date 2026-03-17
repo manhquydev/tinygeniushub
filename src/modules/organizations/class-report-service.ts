@@ -68,14 +68,14 @@ export async function generateClassReport(orgId: string, teacherParentId: string
     x += colWidths[i];
   });
 
-  // Table rows â€” flatten children
+  // Table rows — flatten children
   let currentY = tableTop - rowHeight * 2;
 
   for (const student of progressRows) {
     if (student.children.length === 0) {
       // Parent with no children
       if (currentY < margin + 30) break;
-      const cols = ["â€”", student.email, "0", "0", "â€”"];
+      const cols = ["—", student.email, "0", "0", "—"];
       let cx = margin;
       cols.forEach((val, i) => {
         page.drawText(val, { x: cx + 4, y: currentY + 4, size: 8, font: regularFont, color: textColor });
@@ -87,7 +87,7 @@ export async function generateClassReport(orgId: string, teacherParentId: string
 
     for (const child of student.children) {
       if (currentY < margin + 30) break;
-      const lastActive = child.lastActiveAt ? format(child.lastActiveAt, "dd/MM/yy") : "â€”";
+      const lastActive = child.lastActiveAt ? format(child.lastActiveAt, "dd/MM/yy") : "—";
       const cols = [
         child.nickname.slice(0, 18),
         student.email.slice(0, 20),

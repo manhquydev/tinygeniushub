@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { ArrowRight, BookOpenText, CheckCircle2, PlayCircle } from "lucide-react";
@@ -7,32 +7,32 @@ import { ScrollReveal } from "@/components/homepage/scroll-reveal";
 const FUNNEL_STAGES = [
   {
     stage: "TOFU",
-    title: "Nhận biết vấn đề và tìm hướng đi phù hợp",
+    title: "Awareness and trust building",
     description:
-      "Phụ huynh mới bắt đầu thường cần nội dung dễ áp dụng tại nhà. Ưu tiên blog SEO, TikTok ngắn và bài chia sẻ giá trị trong cộng đồng.",
-    channels: ["Blog SEO", "TikTok 15-30s", "Facebook Groups"],
+      "Parents discover practical guidance through SEO blog content, short videos, and community discussions.",
+    channels: ["SEO blog", "Short video", "Parent communities"],
     ctaHref: "/blog",
-    ctaLabel: "Đọc nội dung cho phụ huynh mới",
+    ctaLabel: "Read parent guides",
     icon: BookOpenText,
   },
   {
     stage: "MOFU",
-    title: "Cân nhắc bằng trải nghiệm thật của gia đình",
+    title: "Evaluation with real product proof",
     description:
-      "Khi đã quan tâm, phụ huynh cần xem demo rõ ràng, báo cáo tiến độ thật và lộ trình 15 phút/ngày để đánh giá mức độ phù hợp.",
-    channels: ["Demo sản phẩm", "Báo cáo tuần mẫu", "Email D0-D3"],
+      "Parents review sample lessons and weekly report format before making a purchase decision.",
+    channels: ["Sample lesson", "Report preview", "Nurture email"],
     ctaHref: "/parent/reports",
-    ctaLabel: "Xem mẫu báo cáo tuần",
+    ctaLabel: "View weekly report sample",
     icon: PlayCircle,
   },
   {
     stage: "BOFU",
-    title: "Ra quyết định với CTA rõ ràng, ít rủi ro",
+    title: "Purchase with low risk",
     description:
-      "Điểm chốt chuyển đổi là trial 7 ngày, giá gói năm minh bạch và cam kết hoàn tiền 30 ngày để phụ huynh an tâm bắt đầu ngay.",
-    channels: ["Trang Pricing", "Email D5-D7", "CTA dùng thử"],
+      "Clear pricing + PayOS transfer/QR + 30-day refund policy reduce friction and increase confidence.",
+    channels: ["Pricing page", "Courses page", "Purchase CTA"],
     ctaHref: "/pricing",
-    ctaLabel: "Xem bảng giá và ưu đãi gói năm",
+    ctaLabel: "View pricing and payment options",
     icon: CheckCircle2,
   },
 ] as const;
@@ -43,10 +43,8 @@ export function SectionFunnelAwareness() {
       <div className="hp-section-inner">
         <ScrollReveal>
           <div className="hp-section-heading">
-            <h2>Funnel nội dung rõ ràng: TOFU → MOFU → BOFU</h2>
-            <p className="muted-text">
-              Mỗi giai đoạn có mục tiêu, thông điệp và CTA riêng để dẫn phụ huynh từ nhận biết đến dùng thử và thanh toán.
-            </p>
+            <h2>Content funnel: TOFU → MOFU → BOFU</h2>
+            <p className="muted-text">Each stage has a dedicated message and CTA to drive course purchases.</p>
           </div>
         </ScrollReveal>
 

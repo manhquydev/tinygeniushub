@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
@@ -14,13 +14,17 @@ type ForgotPasswordResponse = {
 };
 
 const DEFAULT_SUCCESS_MESSAGE =
-  "Nếu email tồn tại trong hệ thống, chúng tôi sẽ gửi hướng dẫn đặt lại mật khẩu trong ít phút.";
+  "Nếu email tồn tại trong hệ thống, chúng tôi sẽ gửi hướng dẫn đặt lại mật khẩu trong vài phút.";
 
 export function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  function isLikelyEnglishOnlyMessage(message: string) {
+    return /^[A-Za-z0-9\s,.'":;!?()/-]+$/.test(message);
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -39,13 +43,23 @@ export function ForgotPasswordForm() {
 
       const body = (await response.json()) as ForgotPasswordResponse;
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể xử lý yêu cầu đặt lại mật khẩu.");
+        const fallback = "Không thể xử lý yêu cầu đặt lại mật khẩu.";
+        const apiMessage = body.error?.message;
+        setError(apiMessage && isLikelyEnglishOnlyMessage(apiMessage) ? fallback : apiMessage ?? fallback);
         return;
       }
 
       setSuccess(body.data?.message ?? DEFAULT_SUCCESS_MESSAGE);
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : "Không thể xử lý yêu cầu đặt lại mật khẩu.");
+      if (submitError instanceof Error) {
+        setError(
+          isLikelyEnglishOnlyMessage(submitError.message)
+            ? "Không thể xử lý yêu cầu đặt lại mật khẩu."
+            : submitError.message,
+        );
+      } else {
+        setError("Không thể xử lý yêu cầu đặt lại mật khẩu.");
+      }
     } finally {
       setLoading(false);
     }
@@ -57,9 +71,9 @@ export function ForgotPasswordForm() {
       onSubmit={handleSubmit}
     >
       <header className="grid gap-2">
-        <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-[2rem]">Khôi phục mật khẩu</h2>
+        <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-[2rem]">Quên mật khẩu</h2>
         <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-          Nhập email phụ huynh đã đăng ký. Hệ thống sẽ gửi liên kết đặt lại mật khẩu đến hộp thư của bạn.
+          Nhập email đã đăng ký của phụ huynh. Chúng tôi sẽ gửi liên kết đặt lại mật khẩu tới hộp thư của bạn.
         </p>
       </header>
 
@@ -71,7 +85,7 @@ export function ForgotPasswordForm() {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required
-          placeholder="me@domain.com"
+          placeholder="ban@email.com"
         />
       </label>
 
@@ -93,10 +107,11 @@ export function ForgotPasswordForm() {
         <p>
           Chưa có tài khoản?{" "}
           <Link href="/auth/signup" className="font-bold text-emerald-700 hover:text-emerald-800">
-            Tạo tài khoản trial
+            Tạo tài khoản
           </Link>
         </p>
       </div>
     </form>
   );
 }
+

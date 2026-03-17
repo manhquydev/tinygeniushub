@@ -72,7 +72,7 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
       <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="section-header">
           <div>
-            <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Newsletter subscribers</h1>
+            <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Người đăng ký bản tin</h1>
             <p className="mt-2 text-sm text-slate-600">Quản lý danh sách đã xác thực nhận bản tin.</p>
           </div>
           <AdminBlogNewsletterExportButton />
@@ -81,11 +81,11 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
 
       <section className="grid gap-4 sm:grid-cols-2">
         <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Active subscribers</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Đang nhận bản tin</p>
           <p className="mt-2 text-3xl font-black text-slate-900">{activeSubscribers}</p>
         </article>
         <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Unsubscribed</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Đã hủy đăng ký</p>
           <p className="mt-2 text-3xl font-black text-slate-900">{unsubscribedCount}</p>
         </article>
       </section>
@@ -97,8 +97,8 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
               <tr>
                 <th className="px-4 py-3">Email</th>
                 <th className="px-4 py-3">Tên</th>
-                <th className="px-4 py-3">Subscribed at</th>
-                <th className="px-4 py-3">Verified</th>
+                <th className="px-4 py-3">Thời điểm đăng ký</th>
+                <th className="px-4 py-3">Xác thực</th>
               </tr>
             </thead>
             <tbody>
@@ -116,14 +116,14 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
                     }).format(subscriber.subscribedAt)}
                   </td>
                   <td className="px-4 py-3">
-                    <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">Verified</span>
+                    <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">Đã xác thực</span>
                   </td>
                 </tr>
               ))}
               {subscribers.length === 0 ? (
                 <tr>
                   <td colSpan={4} className="px-4 py-6 text-center text-sm text-slate-500">
-                    Không có subscriber.
+                    Không có người đăng ký.
                   </td>
                 </tr>
               ) : null}
@@ -134,13 +134,13 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
 
       <section className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <Link href={buildHref(Math.max(1, currentPage - 1))} className={`ghost-button ${currentPage <= 1 ? "pointer-events-none opacity-50" : ""}`}>
-          Prev
+          Trước
         </Link>
         <p className="text-sm text-slate-600">
-          Page {currentPage}/{totalPages}
+          Trang {currentPage}/{totalPages}
         </p>
         <Link href={buildHref(Math.min(totalPages, currentPage + 1))} className={`ghost-button ${currentPage >= totalPages ? "pointer-events-none opacity-50" : ""}`}>
-          Next
+          Sau
         </Link>
       </section>
     </div>

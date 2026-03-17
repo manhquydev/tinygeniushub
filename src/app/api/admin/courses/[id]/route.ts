@@ -7,13 +7,20 @@ import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
 
+const courseCoverImageSchema = z.union([
+  z.string().url(),
+  z.string().regex(/^\/[^\s]*$/),
+]);
+
 const updateCourseSchema = z.object({
   slug: z.string().min(1).max(100).regex(/^[a-z0-9-]+$/).optional(),
   title: z.string().min(1).max(200).optional(),
   description: z.string().max(2000).optional(),
   priceVnd: z.number().int().min(0).optional(),
+  listPriceVnd: z.number().int().min(0).nullable().optional(),
+  salePriceVnd: z.number().int().min(0).nullable().optional(),
   durationDays: z.number().int().min(1).optional(),
-  coverImageUrl: z.string().url().nullish(),
+  coverImageUrl: courseCoverImageSchema.nullish(),
   isPublished: z.boolean().optional(),
 });
 
@@ -77,6 +84,8 @@ export async function PATCH(
         ...(body.title !== undefined && { title: body.title }),
         ...(body.description !== undefined && { description: body.description }),
         ...(body.priceVnd !== undefined && { priceVnd: body.priceVnd }),
+        ...(body.listPriceVnd !== undefined && { listPriceVnd: body.listPriceVnd }),
+        ...(body.salePriceVnd !== undefined && { salePriceVnd: body.salePriceVnd }),
         ...(body.durationDays !== undefined && { durationDays: body.durationDays }),
         ...(body.coverImageUrl !== undefined && { coverImageUrl: body.coverImageUrl }),
         ...(body.isPublished !== undefined && { isPublished: body.isPublished }),

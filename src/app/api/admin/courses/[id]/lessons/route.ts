@@ -85,7 +85,7 @@ export async function POST(
   }
 }
 
-// PATCH /api/admin/courses/[id]/lessons â€” bulk reorder { orders: [{lessonId, orderNo}] }
+// PATCH /api/admin/courses/[id]/lessons — bulk reorder { orders: [{lessonId, orderNo}] }
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> },

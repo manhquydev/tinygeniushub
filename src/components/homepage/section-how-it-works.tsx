@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Baby, BarChart3, Play, UserPlus, type LucideIcon } from "lucide-react";
 import { ScrollReveal } from "@/components/homepage/scroll-reveal";
@@ -8,27 +8,27 @@ const STEPS: ReadonlyArray<{
   title: string;
   description: string;
 }> = [
-    {
-      icon: UserPlus,
-      title: "Tạo tài khoản — miễn phí, không cần thẻ",
-      description: "Đăng ký trong 60 giây. Thêm hồ sơ bé với tên và ngày sinh để hệ thống xếp lộ trình phù hợp.",
-    },
-    {
-      icon: Baby,
-      title: "Bé bắt đầu bài học đầu tiên ngay hôm nay",
-      description: "Video ngắn 3–5 phút + hoạt động offline + mini quiz tương tác. Bé học, ba mẹ không cần ngồi kèm.",
-    },
-    {
-      icon: Play,
-      title: "Ba mẹ theo dõi tiến bộ trên Dashboard",
-      description: "Xem số bài hoàn thành, điểm quiz, chuỗi ngày học. Biết chính xác con đang ở đâu trên lộ trình.",
-    },
-    {
-      icon: BarChart3,
-      title: "Nhận báo cáo tuần tự động qua email",
-      description: "Mỗi thứ Hai sáng, tóm tắt tuần vừa rồi và gợi ý nội dung tuần tiếp theo — gửi thẳng vào hộp thư.",
-    },
-  ];
+  {
+    icon: UserPlus,
+    title: "Tạo tài khoản và hồ sơ của bé",
+    description: "Đăng ký nhanh và thiết lập hồ sơ học tập của con.",
+  },
+  {
+    icon: Baby,
+    title: "Bắt đầu bằng bài học mẫu",
+    description: "Xem trước phong cách và độ khó bài học trước khi mua.",
+  },
+  {
+    icon: Play,
+    title: "Chọn khóa học phù hợp",
+    description: "Chọn khóa đúng nhu cầu và hoàn tất thanh toán trong vài bước.",
+  },
+  {
+    icon: BarChart3,
+    title: "Theo dõi tiến độ hằng tuần",
+    description: "Xem bảng theo dõi phụ huynh và báo cáo tuần để nắm rõ kết quả học tập.",
+  },
+];
 
 export function SectionHowItWorks() {
   return (
@@ -36,10 +36,8 @@ export function SectionHowItWorks() {
       <div className="hp-section-inner">
         <ScrollReveal>
           <div className="hp-section-heading">
-            <h2>Bắt đầu trong 3 phút, thấy kết quả sau 30 ngày</h2>
-            <p className="muted-text">
-              Không cần cài app, không cần kinh nghiệm dạy học — chỉ cần 15 phút mỗi ngày.
-            </p>
+            <h2>Bắt đầu nhanh, học đều mỗi ngày</h2>
+            <p className="muted-text">Quy trình đơn giản: xem thử, chọn khóa và theo dõi tiến bộ rõ ràng.</p>
           </div>
         </ScrollReveal>
 

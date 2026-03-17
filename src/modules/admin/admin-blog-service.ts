@@ -27,23 +27,23 @@ export const updateFeatureFlagSchema = z.object({
 const defaultFeatureFlags = [
   {
     key: "PARENT_V2_DASHBOARD",
-    description: "Dashboard phá»¥ huynh phiÃªn báº£n má»›i",
+    description: "Dashboard phụ huynh phiên bản mới",
   },
   {
     key: "BETA_LESSON_EDITOR",
-    description: "TrÃ¬nh soáº¡n ná»™i dung beta",
+    description: "Trình soạn nội dung beta",
   },
   {
     key: "CAREGIVER_VIDEO_CALL",
-    description: "TÃ­nh nÄƒng video call ngÆ°á»i chÄƒm sÃ³c (sáº¯p ra máº¯t)",
+    description: "Tính năng video call người chăm sóc (sắp ra mắt)",
   },
   {
     key: "REFERRAL_V2",
-    description: "Há»‡ thá»‘ng giá»›i thiá»‡u v2",
+    description: "Hệ thống giới thiệu v2",
   },
   {
     key: "AI_LESSON_SUGGESTIONS",
-    description: "Gá»£i Ã½ bÃ i há»c báº±ng AI (sáº¯p ra máº¯t)",
+    description: "Gợi ý bài học bằng AI (sắp ra mắt)",
   },
   {
     key: "KID_SKY_GARDEN_MVP",
@@ -142,7 +142,7 @@ export async function createAnnouncement(params: {
   });
 
   if (payload.endsAt && payload.endsAt <= new Date()) {
-    throw new DomainError("Thá»i gian káº¿t thÃºc pháº£i á»Ÿ tÆ°Æ¡ng lai.", 400, "INVALID_ANNOUNCEMENT_ENDS_AT");
+    throw new DomainError("Thời gian kết thúc phải ở tương lai.", 400, "INVALID_ANNOUNCEMENT_ENDS_AT");
   }
 
   if (payload.scheduledAt && payload.endsAt && payload.scheduledAt >= payload.endsAt) {
@@ -205,7 +205,7 @@ export async function updateAnnouncementActive(params: {
   });
 
   if (!current) {
-    throw new DomainError("KhÃ´ng tÃ¬m tháº¥y thÃ´ng bÃ¡o há»‡ thá»‘ng.", 404, "ANNOUNCEMENT_NOT_FOUND");
+    throw new DomainError("Không tìm thấy thông báo hệ thống.", 404, "ANNOUNCEMENT_NOT_FOUND");
   }
 
   const nextActive = payload.active ?? !current.active;
@@ -288,7 +288,7 @@ export async function updateFeatureFlag(params: {
   });
 
   if (!existing) {
-    throw new DomainError("KhÃ´ng tÃ¬m tháº¥y feature flag.", 404, "FEATURE_FLAG_NOT_FOUND");
+    throw new DomainError("Không tìm thấy feature flag.", 404, "FEATURE_FLAG_NOT_FOUND");
   }
 
   return prisma.featureFlag.update({

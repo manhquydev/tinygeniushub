@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowLeft, BookOpen, CheckCircle2, CloudSun, Flower2, Sparkles, Sprout } from "lucide-react";
+import { ArrowLeft, Sparkles } from "lucide-react";
 import { useKidNavigationFeedback } from "@/components/kid-navigation-feedback";
 import type { EnrolledCourseForKidDashboard } from "@/modules/courses/course-service";
 import "./kid-shared-garden.css";
@@ -16,46 +16,71 @@ interface KidSharedGardenDashboardProps {
   enrolledCourses: EnrolledCourseForKidDashboard[];
 }
 
-function readJourneyLabel(journey: EnrolledCourseForKidDashboard["journey"]) {
-  if (!journey) return "Ươm mầm";
-  switch (journey.status) {
-    case "COMPLETED":
-      return "Hoa nở";
-    case "ACTIVE":
-      return "Leo thân cây";
-    case "PAUSED":
-      return "Tạm nghỉ";
-    case "SEEDED":
-    default:
-      return "Mầm non";
-  }
-}
-
-function readCourseStatusLabel(journey: EnrolledCourseForKidDashboard["journey"]) {
-  if (!journey) return "Chưa gieo hạt";
-  switch (journey.status) {
-    case "COMPLETED":
-      return "Hoàn thành";
-    case "ACTIVE":
-      return "Đang học";
-    case "PAUSED":
-      return "Tiếp tục";
-    case "SEEDED":
-    default:
-      return "Sẵn sàng";
-  }
-}
+type TapFxState = {
+  id: number;
+  x: number;
+  y: number;
+};
 
 function getProgressPercent(journey: EnrolledCourseForKidDashboard["journey"], totalLessons: number) {
   if (!journey || totalLessons <= 0) return 0;
   return Math.min(100, Math.round((journey.completedLessons / totalLessons) * 100));
 }
 
-function readCardEmoji(journey: EnrolledCourseForKidDashboard["journey"]) {
-  if (!journey) return "🌰";
-  if (journey.status === "COMPLETED") return "🌸";
-  if (journey.status === "ACTIVE") return "🌿";
-  return "🌱";
+function readPlotVisual(journey: EnrolledCourseForKidDashboard["journey"]) {
+  if (!journey) {
+    return {
+      statusLabel: "Chưa gieo hạt",
+      actionLabel: "Bắt đầu",
+      plotSrc: "/images/cloud-garden/ground/course_plot_locked.png",
+      tone: "locked" as const,
+    };
+  }
+
+  switch (journey.status) {
+    case "COMPLETED":
+      return {
+        statusLabel: "Đã nở hoa",
+        actionLabel: "Xem lại",
+        plotSrc: "/images/cloud-garden/ground/course_plot_completed.png",
+        tone: "completed" as const,
+      };
+    case "ACTIVE":
+      return {
+        statusLabel: "Đang lớn lên",
+        actionLabel: "Học tiếp",
+        plotSrc: "/images/cloud-garden/ground/course_plot_active.png",
+        tone: "active" as const,
+      };
+    case "PAUSED":
+      return {
+        statusLabel: "Đang tạm nghỉ",
+        actionLabel: "Tiếp tục",
+        plotSrc: "/images/cloud-garden/ground/course_plot_active.png",
+        tone: "active" as const,
+      };
+    case "SEEDED":
+    default:
+      return {
+        statusLabel: "Mầm mới",
+        actionLabel: "Khám phá",
+        plotSrc: "/images/cloud-garden/ground/course_plot_active.png",
+        tone: "seeded" as const,
+      };
+  }
+}
+
+function readContinueLabel(suggestedStatus?: string | null) {
+  switch (suggestedStatus) {
+    case "COMPLETED":
+      return "Xem lại";
+    case "ACTIVE":
+      return "Học tiếp";
+    case "PAUSED":
+      return "Tiếp tục";
+    default:
+      return "Khám phá";
+  }
 }
 
 export function KidSharedGardenDashboard({
@@ -66,16 +91,54 @@ export function KidSharedGardenDashboard({
   const { navigate, isNavigating } = useKidNavigationFeedback();
   const [childId, setChildId] = useState(activeChildId);
   const [pendingAction, setPendingAction] = useState<string | null>(null);
-  const firstCourseSlug = useMemo(() => enrolledCourses[0]?.course.slug ?? null, [enrolledCourses]);
+  const [tapFx, setTapFx] = useState<TapFxState | null>(null);
+  const [activePlotMotionId, setActivePlotMotionId] = useState<string | null>(null);
+  const tapFxTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const plotMotionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const activeChild = childrenProfiles.find((child) => child.id === childId) ?? childrenProfiles[0];
-  const avatarLetter = activeChild?.nickname.trim().charAt(0).toUpperCase() || "B";
+  const avatarLetter = Array.from(activeChild?.nickname.trim() ?? "")[0]?.toUpperCase() ?? "B";
+
+  const summary = useMemo(() => {
+    const completedCourses = enrolledCourses.filter((course) => course.journey?.status === "COMPLETED").length;
+    const activeCourses = enrolledCourses.filter((course) => course.journey?.status === "ACTIVE").length;
+
+    return {
+      totalCourses: enrolledCourses.length,
+      completedCourses,
+      activeCourses,
+    };
+  }, [enrolledCourses]);
+
+  const suggestedCourse = useMemo(() => {
+    const priority = ["ACTIVE", "PAUSED", "SEEDED", "COMPLETED"] as const;
+
+    for (const status of priority) {
+      const match = enrolledCourses.find((course) => course.journey?.status === status);
+      if (match) {
+        return match;
+      }
+    }
+
+    return enrolledCourses[0] ?? null;
+  }, [enrolledCourses]);
 
   useEffect(() => {
     if (!isNavigating) {
       setPendingAction(null);
     }
   }, [isNavigating]);
+
+  useEffect(() => {
+    return () => {
+      if (tapFxTimeoutRef.current) {
+        clearTimeout(tapFxTimeoutRef.current);
+      }
+      if (plotMotionTimeoutRef.current) {
+        clearTimeout(plotMotionTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const startNavigation = useCallback(
     (action: string, href: string) => {
@@ -88,16 +151,41 @@ export function KidSharedGardenDashboard({
     [isNavigating, navigate],
   );
 
-  const summary = useMemo(() => {
-    const completedCourses = enrolledCourses.filter((course) => course.journey?.status === "COMPLETED").length;
-    const activeCourses = enrolledCourses.filter((course) => course.journey?.status === "ACTIVE").length;
+  const emitTapFx = useCallback(
+    (x: number, y: number) => {
+      if (isNavigating) {
+        return;
+      }
 
-    return {
-      totalCourses: enrolledCourses.length,
-      completedCourses,
-      activeCourses,
-    };
-  }, [enrolledCourses]);
+      if (
+        typeof window !== "undefined" &&
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        return;
+      }
+
+      if (tapFxTimeoutRef.current) {
+        clearTimeout(tapFxTimeoutRef.current);
+      }
+
+      setTapFx({ id: Date.now(), x, y });
+      tapFxTimeoutRef.current = setTimeout(() => {
+        setTapFx(null);
+      }, 430);
+    },
+    [isNavigating],
+  );
+
+  const triggerPlotMotion = useCallback((courseId: string) => {
+    if (plotMotionTimeoutRef.current) {
+      clearTimeout(plotMotionTimeoutRef.current);
+    }
+    setActivePlotMotionId(courseId);
+    plotMotionTimeoutRef.current = setTimeout(() => {
+      setActivePlotMotionId((current) => (current === courseId ? null : current));
+    }, 320);
+  }, []);
 
   const handleChildChange = useCallback(
     (nextChildId: string) => {
@@ -117,117 +205,145 @@ export function KidSharedGardenDashboard({
     [childId, startNavigation],
   );
 
-  const handleGoLearningHub = useCallback(() => {
-    startNavigation("go-learning-hub", `/kid/courses?childId=${encodeURIComponent(childId)}`);
-  }, [childId, startNavigation]);
+  const handleContinueLearning = useCallback(() => {
+    if (!suggestedCourse) {
+      return;
+    }
+    startNavigation(
+      "continue-learning",
+      `/kid/courses/${encodeURIComponent(suggestedCourse.course.slug)}?childId=${encodeURIComponent(childId)}`,
+    );
+  }, [childId, startNavigation, suggestedCourse]);
 
-  const handleGoCourseGarden = useCallback(() => {
-    if (!firstCourseSlug || isNavigating) return;
-    startNavigation("go-course-garden", `/kid/courses/${encodeURIComponent(firstCourseSlug)}?childId=${encodeURIComponent(childId)}`);
-  }, [childId, firstCourseSlug, isNavigating, startNavigation]);
+  const handleGoParentDashboard = useCallback(() => {
+    startNavigation("go-parent-dashboard", "/parent/dashboard");
+  }, [startNavigation]);
+
+  const continueLabel = readContinueLabel(suggestedCourse?.journey?.status);
 
   return (
-    <div className="ksg-scene" aria-label="Khu vườn chung cho bé" aria-busy={isNavigating}>
-      <span className="ksg-cloud ksg-cloud-a" aria-hidden="true" />
-      <span className="ksg-cloud ksg-cloud-b" aria-hidden="true" />
-      <span className="ksg-cloud ksg-cloud-c" aria-hidden="true" />
-
-      <div className="ksg-fireflies" aria-hidden="true">
-        {Array.from({ length: 16 }, (_, index) => (
-          <span key={`firefly-${index + 1}`} className="ksg-firefly" />
-        ))}
+    <div
+      className="ksg-scene"
+      data-testid="kid-garden-scene"
+      aria-label="Khu vườn học tập của bé"
+      aria-busy={isNavigating}
+    >
+      <div className="ksg-ambient" data-testid="kid-garden-ambient" aria-hidden="true">
+        <Image
+          src="/images/cloud-garden/ambient/ambient_cloud_strip_far.png"
+          alt=""
+          width={1920}
+          height={1080}
+          className="ksg-ambient-cloud"
+          priority
+        />
+        <Image
+          src="/images/cloud-garden/ambient/ambient_butterfly_soft.png"
+          alt=""
+          width={280}
+          height={280}
+          className="ksg-ambient-butterfly ksg-ambient-butterfly-a"
+        />
+        <Image
+          src="/images/cloud-garden/ambient/ambient_butterfly_soft.png"
+          alt=""
+          width={220}
+          height={220}
+          className="ksg-ambient-butterfly ksg-ambient-butterfly-b"
+        />
+        <Image
+          src="/images/cloud-garden/ambient/ambient_leaf_float.png"
+          alt=""
+          width={260}
+          height={260}
+          className="ksg-ambient-leaf ksg-ambient-leaf-a"
+        />
+        <Image
+          src="/images/cloud-garden/ambient/ambient_leaf_float.png"
+          alt=""
+          width={220}
+          height={220}
+          className="ksg-ambient-leaf ksg-ambient-leaf-b"
+        />
       </div>
 
       <header className="ksg-header">
-        <div className="ksg-header-row">
-          <button
-            type="button"
-            className="ksg-icon-button"
-            onClick={handleGoLearningHub}
-            disabled={isNavigating}
-            aria-label="Quay về trang học tập"
-          >
-            <ArrowLeft size={18} />
-          </button>
+        <button
+          type="button"
+          className="ksg-parent-link"
+          onClick={(event) => {
+            emitTapFx(event.clientX, event.clientY);
+            handleGoParentDashboard();
+          }}
+          disabled={isNavigating}
+          aria-label="Quay về phụ huynh"
+        >
+          <ArrowLeft size={18} />
+          {pendingAction === "go-parent-dashboard" ? "Đang mở..." : "Phụ huynh"}
+        </button>
 
-          <label className="ksg-child-switch">
-            <span className="ksg-child-avatar" aria-hidden="true">
-              {avatarLetter}
-            </span>
-            <span className="ksg-child-name">{activeChild?.nickname ?? "Bé"}</span>
-            {childrenProfiles.length > 1 ? (
-              <select
-                className="ksg-child-select"
-                value={childId}
-                onChange={(event) => handleChildChange(event.target.value)}
-                aria-label="Chọn bé"
-                disabled={isNavigating}
-              >
-                {childrenProfiles.map((child) => (
-                  <option key={child.id} value={child.id}>
-                    {child.nickname}
-                  </option>
-                ))}
-              </select>
-            ) : null}
-          </label>
+        <label className="ksg-child-switch">
+          <span className="ksg-child-avatar" aria-hidden="true">
+            {avatarLetter}
+          </span>
+          <span className="ksg-child-name">{activeChild?.nickname ?? "Bé"}</span>
+          {childrenProfiles.length > 1 ? (
+            <select
+              className="ksg-child-select"
+              value={childId}
+              onChange={(event) => handleChildChange(event.target.value)}
+              aria-label="Chọn bé"
+              disabled={isNavigating}
+            >
+              {childrenProfiles.map((child) => (
+                <option key={child.id} value={child.id}>
+                  {child.nickname}
+                </option>
+              ))}
+            </select>
+          ) : null}
+        </label>
 
-          <button type="button" className="ksg-learning-button" onClick={handleGoLearningHub} disabled={isNavigating}>
-            <BookOpen size={16} />
-            {pendingAction === "go-learning-hub" ? "Đang mở..." : "Trang học tập"}
-          </button>
-        </div>
-
-        <div className="ksg-title-wrap">
-          <h1 className="ksg-title">
-            <CloudSun size={26} />
-            Khu Vườn Chung
-          </h1>
-          <p className="ksg-subtitle">
-            Trạm tổng quan tiến độ. Từ đây bé có thể vào từng khóa đã mua để học tiếp.
-          </p>
-          <p className="ksg-flow-note">
-            Luồng chuẩn: <strong>1) Trang học tập</strong> → <strong>2) Khu vườn chung</strong> →{" "}
-            <strong>3) Vườn khóa học chi tiết</strong>.
-          </p>
-        </div>
-
-        <div className="ksg-flow-nav" role="navigation" aria-label="Điều hướng chức năng bé">
-          <button type="button" className="ksg-flow-chip" onClick={handleGoLearningHub} disabled={isNavigating}>
-            {pendingAction === "go-learning-hub" ? "Đang mở..." : "Trang học tập"}
-          </button>
-          <button type="button" className="ksg-flow-chip is-active" aria-current="page">
-            Khu vườn chung
-          </button>
-          <button
-            type="button"
-            className="ksg-flow-chip"
-            onClick={handleGoCourseGarden}
-            disabled={!firstCourseSlug || isNavigating}
-          >
-            {pendingAction === "go-course-garden" ? "Đang mở..." : "Vườn khóa học"}
-          </button>
-        </div>
-
-        <div className="ksg-stage-strip" aria-label="Các giai đoạn hành trình">
-          <span>1. Ươm mầm</span>
-          <span>2. Bùng nổ hạt giống</span>
-          <span>3. Leo thân cây</span>
-          <span>4. Chạm tầng mây</span>
-        </div>
+        <button
+          type="button"
+          className="ksg-continue-button"
+          onClick={(event) => {
+            emitTapFx(event.clientX, event.clientY);
+            handleContinueLearning();
+          }}
+          disabled={!suggestedCourse || isNavigating}
+          aria-label="Vào khóa học gợi ý"
+        >
+          <Sparkles size={16} />
+          {pendingAction === "continue-learning" ? "Đang mở..." : continueLabel}
+        </button>
       </header>
 
       <main className="ksg-main">
-        <section className="ksg-summary" aria-label="Tổng quan khu vườn">
-          <article>
+        <section className="ksg-hero">
+          <Image
+            src="/kisu-assets/stickers/sticker_hint.png"
+            alt="Kisu gợi ý cho bé"
+            width={128}
+            height={128}
+            className="ksg-hero-kisu"
+          />
+          <div className="ksg-hero-content">
+            <h1>Khu vườn học tập</h1>
+            <p>Chạm vào chậu cây để bé học tiếp từng khóa nhé.</p>
+          </div>
+        </section>
+
+        <section className="ksg-kpi-strip" aria-label="Tổng quan tiến độ">
+          <article className="ksg-kpi-chip">
             <strong>{summary.totalCourses}</strong>
             <span>Khóa đã mua</span>
           </article>
-          <article>
+          <article className="ksg-kpi-chip">
             <strong>{summary.activeCourses}</strong>
             <span>Đang học</span>
           </article>
-          <article>
+          <article className="ksg-kpi-chip">
             <strong>{summary.completedCourses}</strong>
             <span>Đã hoàn thành</span>
           </article>
@@ -235,11 +351,6 @@ export function KidSharedGardenDashboard({
 
         {enrolledCourses.length === 0 ? (
           <section className="ksg-empty">
-            <span className="ksg-empty-icon" aria-hidden="true">
-              🌱
-            </span>
-            <h2>Chưa có hạt giống nào</h2>
-            <p>Hãy mở thêm khóa học đã mua để khu vườn chung của bé bắt đầu phát triển.</p>
             <Image
               src="/images/nodes/kisu_companion_balloon.png"
               alt="Kisu đồng hành"
@@ -247,30 +358,47 @@ export function KidSharedGardenDashboard({
               height={180}
               className="ksg-empty-kisu"
             />
+            <h2>Vườn của bé chưa có hạt giống</h2>
+            <p>Ba mẹ mở khóa học trước để bé bắt đầu gieo mầm nhé.</p>
             <button
               type="button"
-              onClick={() => startNavigation("go-parent-courses", "/parent/courses")}
+              onClick={(event) => {
+                emitTapFx(event.clientX, event.clientY);
+                startNavigation("go-parent-courses", "/parent/courses");
+              }}
               disabled={isNavigating}
             >
               {pendingAction === "go-parent-courses" ? "Đang mở..." : "Mở danh sách khóa học"}
             </button>
           </section>
         ) : (
-          <section className="ksg-grid">
+          <section className="ksg-garden-grid" data-testid="kid-garden-grid">
             {enrolledCourses.map(({ course, journey }) => {
               const progress = getProgressPercent(journey, course.totalLessons);
-              const phaseLabel = readJourneyLabel(journey);
-              const statusLabel = readCourseStatusLabel(journey);
-              const isCompleted = journey?.status === "COMPLETED";
+              const completedLessons = journey?.completedLessons ?? 0;
+              const plotVisual = readPlotVisual(journey);
+              const isCompleted = plotVisual.tone === "completed";
+              const hasActiveSparkle = journey?.status === "ACTIVE";
+              const hasCompletedSparkle = journey?.status === "COMPLETED";
 
               return (
                 <article
                   key={course.id}
-                  className={`ksg-card ${isCompleted ? "ksg-card-completed" : ""}`}
+                  data-testid={`kid-garden-plot-${course.slug}`}
+                  className={`ksg-plot-card ${isCompleted ? "is-completed" : ""} ${
+                    activePlotMotionId === course.id ? "is-tapping" : ""
+                  }`}
                   role="button"
                   tabIndex={0}
-                  onClick={() => handleOpenCourse(course.slug)}
+                  onPointerDown={() => {
+                    triggerPlotMotion(course.id);
+                  }}
+                  onClick={(event) => {
+                    emitTapFx(event.clientX, event.clientY);
+                    handleOpenCourse(course.slug);
+                  }}
                   aria-disabled={isNavigating}
+                  aria-label={`Mở khóa học ${course.title}`}
                   onKeyDown={(event) => {
                     if (isNavigating) {
                       return;
@@ -280,58 +408,97 @@ export function KidSharedGardenDashboard({
                       handleOpenCourse(course.slug);
                     }
                   }}
-                  aria-label={`Mở khóa học ${course.title}`}
                 >
-                  <div className="ksg-card-head">
-                    <span className="ksg-seed-mark" aria-hidden="true">
-                      {readCardEmoji(journey)}
-                    </span>
-                    <span className={`ksg-status-chip ${isCompleted ? "is-completed" : ""}`}>
-                      {statusLabel}
-                    </span>
+                  <div className="ksg-plot-stage">
+                    <Image
+                      src={plotVisual.plotSrc}
+                      alt=""
+                      width={320}
+                      height={240}
+                      className="ksg-plot-image"
+                    />
+
+                    {hasActiveSparkle ? (
+                      <Image
+                        src="/images/cloud-garden/vfx/vfx_tap_star_pop.png"
+                        alt=""
+                        width={128}
+                        height={128}
+                        className="ksg-state-sparkle ksg-state-sparkle-active"
+                      />
+                    ) : null}
+                    {hasCompletedSparkle ? (
+                      <Image
+                        src="/images/cloud-garden/vfx/vfx_tier_unlocked_badge.png"
+                        alt=""
+                        width={136}
+                        height={136}
+                        className="ksg-state-sparkle ksg-state-sparkle-completed"
+                      />
+                    ) : null}
+
+                    {course.coverImageUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={course.coverImageUrl} alt="" className="ksg-course-cover" />
+                    ) : null}
                   </div>
 
-                  <h2>{course.title}</h2>
-                  <p>{course.description || "Khóa học đã sẵn sàng trong khu vườn của bé."}</p>
+                  <div className="ksg-plot-meta">
+                    <h2>{course.title}</h2>
+                    <p className="ksg-plot-status">{plotVisual.statusLabel}</p>
 
-                  <div className="ksg-progress">
                     <div className="ksg-progress-row">
-                      <span>{phaseLabel}</span>
-                      <span>{progress}%</span>
+                      <span>{`${completedLessons}/${course.totalLessons} bài`}</span>
+                      <span>{`${progress}%`}</span>
                     </div>
                     <div className="ksg-progress-track">
                       <div className="ksg-progress-fill" style={{ width: `${progress}%` }} />
                     </div>
-                    <div className="ksg-progress-meta">
-                      <span>
-                        <Sprout size={12} />
-                        {journey?.completedLessons ?? 0}/{course.totalLessons} bài
-                      </span>
-                      <span>
-                        {isCompleted ? <CheckCircle2 size={12} /> : <Flower2 size={12} />}
-                        {isCompleted ? "Đã nở hoa" : "Đang lớn"}
-                      </span>
-                    </div>
-                  </div>
 
-                  <button
-                    type="button"
-                    className="ksg-card-button"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      handleOpenCourse(course.slug);
-                    }}
-                    disabled={isNavigating}
-                  >
-                    <Sparkles size={14} />
-                    {pendingAction === "open-course" ? "Đang mở..." : isCompleted ? "Xem lại khóa học" : "Tiếp tục học"}
-                  </button>
+                    <button
+                      type="button"
+                      data-testid={`kid-garden-plot-cta-${course.slug}`}
+                      className="ksg-open-course-button"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        emitTapFx(event.clientX, event.clientY);
+                        handleOpenCourse(course.slug);
+                      }}
+                      disabled={isNavigating}
+                    >
+                      {pendingAction === "open-course" ? "Đang mở..." : plotVisual.actionLabel}
+                    </button>
+                  </div>
                 </article>
               );
             })}
           </section>
         )}
       </main>
+
+      {tapFx ? (
+        <div
+          key={tapFx.id}
+          className="ksg-tap-fx"
+          style={{ left: `${tapFx.x}px`, top: `${tapFx.y}px` }}
+          aria-hidden="true"
+        >
+          <Image
+            src="/images/cloud-garden/vfx/vfx_tap_ring_soft.png"
+            alt=""
+            width={180}
+            height={180}
+            className="ksg-tap-fx-ring"
+          />
+          <Image
+            src="/images/cloud-garden/vfx/vfx_tap_star_pop.png"
+            alt=""
+            width={130}
+            height={130}
+            className="ksg-tap-fx-star"
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

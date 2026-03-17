@@ -1,36 +1,17 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { TryGardenClient } from "./try-garden-client";
 
 /**
- * /try-garden - Public Preview Route
- * 
- * Shareable public preview page for viral growth.
- * No authentication required.
- * Shows CloudWorldMap with limited unlocked zones.
- * Locked zone clicks trigger sign-up modal.
- * 
- * Features:
- * - Fullscreen CloudWorldMap (Today + Math zones unlocked)
- * - Social sharing buttons (Facebook, Zalo, copy link)
- * - Analytics tracking (zone clicks, modal opens, sign-ups)
- * - OpenGraph tags for social previews
+ * /try-garden - Trang xem thử công khai.
  */
-
 export const metadata: Metadata = {
-  title: "Khu Vườn Trên Mây - Dùng Thử Miễn Phí | Cùng Con Tự Học",
+  title: "Khu Vườn Trên Mây - Xem thử khóa học | Cùng Con Tự Học",
   description:
-    "Khám phá Khu Vườn Trên Mây - Học Toán & Tiếng Anh qua trò chơi tương tác dành cho bé 2-6 tuổi. Dùng thử miễn phí ngay hôm nay!",
-  keywords: [
-    "học toán cho trẻ",
-    "học tiếng anh cho trẻ",
-    "khu vườn trên mây",
-    "giáo dục sớm",
-    "dùng thử miễn phí",
-  ],
+    "Khám phá Khu Vườn Trên Mây với trải nghiệm xem thử bài học tương tác cho bé 2-6 tuổi trước khi mua khóa.",
+  keywords: ["xem thử khóa học", "học sớm cho bé", "toán tư duy cho bé", "tiếng Anh phonics", "Cùng Con Tự Học"],
   openGraph: {
-    title: "Khu Vườn Trên Mây - Dùng Thử Miễn Phí",
-    description:
-      "Khám phá Khu Vườn Trên Mây - Học Toán & Tiếng Anh qua trò chơi tương tác. Dành cho bé 2-6 tuổi.",
+    title: "Khu Vườn Trên Mây - Xem thử khóa học",
+    description: "Khám phá thế giới học tập và xem thử bài học trước khi mua.",
     url: "https://cungcontuhoc.io.vn/try-garden",
     siteName: "Cùng Con Tự Học",
     images: [
@@ -38,7 +19,7 @@ export const metadata: Metadata = {
         url: "/og-images/try-garden.png",
         width: 1200,
         height: 630,
-        alt: "Khu Vườn Trên Mây - Preview",
+        alt: "Khu Vườn Trên Mây - Xem thử",
       },
     ],
     locale: "vi_VN",
@@ -46,9 +27,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Khu Vườn Trên Mây - Dùng Thử Miễn Phí",
-    description:
-      "Khám phá Khu Vườn Trên Mây - Học Toán & Tiếng Anh qua trò chơi tương tác cho bé 2-6 tuổi.",
+    title: "Khu Vườn Trên Mây - Xem thử khóa học",
+    description: "Xem bài học mẫu và chọn khóa học phù hợp với bé.",
     images: ["/og-images/try-garden.png"],
   },
   robots: {

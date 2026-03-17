@@ -51,6 +51,38 @@ describe("trackEvent", () => {
     expect(window.fbq).not.toHaveBeenCalled();
   });
 
+  it("supports nav_click tracking without fbq mapping", () => {
+    trackEvent("nav_click", {
+      state: "parent",
+      location: "footer",
+      label: "Bảng giá",
+      href: "/pricing",
+    });
+    expect(window.gtag).toHaveBeenCalledWith("event", "nav_click", {
+      state: "parent",
+      location: "footer",
+      label: "Bảng giá",
+      href: "/pricing",
+    });
+    expect(window.fbq).not.toHaveBeenCalled();
+  });
+
+  it("supports courses funnel event tracking without fbq mapping", () => {
+    trackEvent("courses_catalog_view", {
+      variant: "B",
+      bundles: 3,
+      tracks: 28,
+      lessons: 13081,
+    });
+    expect(window.gtag).toHaveBeenCalledWith("event", "courses_catalog_view", {
+      variant: "B",
+      bundles: 3,
+      tracks: 28,
+      lessons: 13081,
+    });
+    expect(window.fbq).not.toHaveBeenCalled();
+  });
+
   it("is a no-op when window is undefined (SSR)", () => {
     vi.stubGlobal("window", undefined);
     expect(() => trackEvent("trial_start")).not.toThrow();

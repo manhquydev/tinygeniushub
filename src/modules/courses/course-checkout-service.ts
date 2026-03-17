@@ -1,73 +1,248 @@
-import { randomUUID } from "node:crypto";
+import { randomInt, randomUUID } from "node:crypto";
 import { addMinutes } from "date-fns";
+import { PaymentStatus } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { env } from "@/lib/env";
 import { getPublishedCoursesByBundleSlug } from "@/modules/courses/course-bundle-service";
-import { DomainError } from "@/modules/platform/errors";
+import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { getEnrollment } from "@/modules/courses/course-service";
+import { createPayosPaymentLink } from "@/modules/billing/payos-client";
+import type { PilotAttributionSnapshot } from "@/modules/courses/pilot-attribution";
+import { trackPilotCheckoutStarted } from "@/modules/courses/pilot-funnel-tracking-service";
+import { DomainError } from "@/modules/platform/errors";
+import { createAuditLog } from "@/modules/platform/audit-service";
 
-/** Create a course checkout session (mock provider).
- *  Returns checkoutUrl, discountApplied, finalPriceVnd */
-export async function createCourseCheckoutSession(params: {
+type CheckoutTarget =
+  | {
+      kind: "bundle";
+      bundleSlug: string;
+      entryCourseSlug: string;
+      title: string;
+      amountVnd: number;
+      courseIds: string[];
+    }
+  | {
+      kind: "course";
+      courseId: string;
+      courseSlug: string;
+      title: string;
+      amountVnd: number;
+    };
+
+type CheckoutSession = {
+  checkoutUrl: string;
+  externalSessionId: string;
+  expiresAt: Date;
+};
+
+const PENDING_CHECKOUT_DEDUPE_WINDOW_MINUTES = 20;
+
+function resolveCoursePaymentProvider() {
+  return env.COURSE_PAYMENT_PROVIDER;
+}
+
+function buildAbsoluteUrl(pathname: string) {
+  return new URL(pathname, env.BETTER_AUTH_URL).toString();
+}
+
+function buildPayosDescription(orderCode: number) {
+  // Some receiving-bank integrations cap description at 9 chars.
+  return `CCTH${String(orderCode).slice(-5)}`.slice(0, 9);
+}
+
+function generatePayosOrderCode() {
+  // Keep orderCode in safe integer range for JavaScript and PayOS numeric constraint.
+  return Number(`${Date.now().toString().slice(-10)}${randomInt(100, 999)}`);
+}
+
+function parseJsonObject(value: unknown) {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+
+  return value as Record<string, unknown>;
+}
+
+function isSameCheckoutTarget(target: CheckoutTarget, rawTarget: Record<string, unknown>) {
+  const kind = typeof rawTarget.kind === "string" ? rawTarget.kind : null;
+
+  if (target.kind === "bundle") {
+    return kind === "bundle" && rawTarget.bundleSlug === target.bundleSlug;
+  }
+
+  return kind === "course" && rawTarget.courseId === target.courseId;
+}
+
+function buildMockSuccessUrl(input: {
   parentId: string;
-  slug: string;
+  amountVnd: number;
+  sessionId: string;
+  target: CheckoutTarget;
 }) {
-  const { parentId, slug } = params;
-  const bundleResult = await getPublishedCoursesByBundleSlug(slug);
+  const params = new URLSearchParams({
+    parentId: input.parentId,
+    amountVnd: String(input.amountVnd),
+    sessionId: input.sessionId,
+  });
 
-  if (bundleResult.bundle) {
-    if (bundleResult.courses.length === 0) {
-      throw new DomainError("Course bundle is not available", 404, "COURSE_BUNDLE_NOT_PUBLISHED");
+  if (input.target.kind === "bundle") {
+    params.set("bundleSlug", input.target.bundleSlug);
+  } else {
+    params.set("courseId", input.target.courseId);
+  }
+
+  return `/api/courses/checkout/mock-success?${params.toString()}`;
+}
+
+async function findReusablePendingCheckoutSession(input: {
+  parentId: string;
+  provider: string;
+  target: CheckoutTarget;
+  amountVnd: number;
+}): Promise<CheckoutSession | null> {
+  const threshold = addMinutes(new Date(), -PENDING_CHECKOUT_DEDUPE_WINDOW_MINUTES);
+  const candidates = await prisma.paymentRecord.findMany({
+    where: {
+      parentId: input.parentId,
+      provider: input.provider,
+      status: PaymentStatus.PENDING,
+      processedAt: {
+        gte: threshold,
+      },
+    },
+    orderBy: {
+      processedAt: "desc",
+    },
+    take: 8,
+    select: {
+      providerTransactionId: true,
+      amountVnd: true,
+      processedAt: true,
+      rawPayload: true,
+    },
+  });
+
+  for (const candidate of candidates) {
+    if (candidate.amountVnd !== input.amountVnd) {
+      continue;
     }
 
-    const existingEnrollments = await prisma.courseEnrollment.findMany({
-      where: {
-        parentId,
-        courseId: {
-          in: bundleResult.courses.map((course) => course.id),
-        },
-      },
-      select: {
-        courseId: true,
-      },
-    });
-
-    if (existingEnrollments.length === bundleResult.courses.length) {
-      throw new DomainError("Already enrolled in this course bundle", 409, "ALREADY_ENROLLED");
+    const rawPayload = parseJsonObject(candidate.rawPayload);
+    if (!rawPayload || rawPayload.kind !== "course_checkout") {
+      continue;
     }
 
-    // Check if parent has active subscription -> 20% discount
-    const subscription = await prisma.subscription.findUnique({
-      where: { parentId },
-      select: { status: true },
-    });
+    const rawTarget = parseJsonObject(rawPayload.target);
+    if (!rawTarget || !isSameCheckoutTarget(input.target, rawTarget)) {
+      continue;
+    }
 
-    const hasActiveSub =
-      subscription?.status === "ACTIVE_STANDARD" || subscription?.status === "ACTIVE_FAMILYPLUS";
+    if (input.provider === "payos") {
+      const payos = parseJsonObject(rawPayload.payos);
+      const checkoutUrl =
+        payos && typeof payos.checkoutUrl === "string" ? payos.checkoutUrl : null;
+      if (!checkoutUrl) {
+        continue;
+      }
 
-    const discountApplied = hasActiveSub;
-    const finalPriceVnd = hasActiveSub
-      ? Math.round(bundleResult.bundle.priceVnd * 0.8)
-      : bundleResult.bundle.priceVnd;
+      const expiresAt =
+        payos && typeof payos.expiredAt === "number"
+          ? new Date(payos.expiredAt * 1000)
+          : addMinutes(candidate.processedAt, 30);
 
-    const sessionId = `mock_course_bundle_${randomUUID()}`;
-    const mockSuccessParams = new URLSearchParams({
-      bundleSlug: bundleResult.bundle.slug,
-      parentId,
-      amountVnd: String(finalPriceVnd),
-      sessionId,
-    });
-    const checkoutUrl = `/api/courses/checkout/mock-success?${mockSuccessParams.toString()}`;
+      return {
+        checkoutUrl,
+        externalSessionId: candidate.providerTransactionId,
+        expiresAt,
+      };
+    }
 
     return {
-      checkoutUrl,
-      discountApplied,
-      finalPriceVnd,
-      expiresAt: addMinutes(new Date(), 30),
-      sessionId,
+      checkoutUrl: buildMockSuccessUrl({
+        parentId: input.parentId,
+        amountVnd: input.amountVnd,
+        sessionId: candidate.providerTransactionId,
+        target: input.target,
+      }),
+      externalSessionId: candidate.providerTransactionId,
+      expiresAt: addMinutes(candidate.processedAt, 30),
     };
   }
 
-  const course = await prisma.course.findUnique({ where: { slug } });
+  return null;
+}
+
+async function resolveCheckoutTarget(params: { parentId: string; slug: string }): Promise<CheckoutTarget> {
+  const bundleResult = await getPublishedCoursesByBundleSlug(params.slug);
+
+  if (bundleResult.bundle) {
+    const checkoutCourses =
+      bundleResult.courses.length > 0 ? bundleResult.courses : bundleResult.legacyCourses;
+
+    if (checkoutCourses.length === 0) {
+      throw new DomainError("Course bundle is not available", 404, "COURSE_BUNDLE_NOT_PUBLISHED");
+    }
+
+    const [existingCanonicalEnrollments, existingLegacyEnrollment] = await Promise.all([
+      bundleResult.courses.length > 0
+        ? prisma.courseEnrollment.findMany({
+            where: {
+              parentId: params.parentId,
+              courseId: {
+                in: bundleResult.courses.map((course) => course.id),
+              },
+            },
+            select: {
+              courseId: true,
+            },
+          })
+        : Promise.resolve([]),
+      bundleResult.legacyCourses.length > 0
+        ? prisma.courseEnrollment.findFirst({
+            where: {
+              parentId: params.parentId,
+              courseId: {
+                in: bundleResult.legacyCourses.map((course) => course.id),
+              },
+            },
+            select: {
+              id: true,
+            },
+          })
+        : Promise.resolve(null),
+    ]);
+
+    const ownsAllCanonicalCourses =
+      bundleResult.courses.length > 0 &&
+      existingCanonicalEnrollments.length === bundleResult.courses.length;
+
+    if (ownsAllCanonicalCourses || Boolean(existingLegacyEnrollment)) {
+      throw new DomainError("Already enrolled in this course bundle", 409, "ALREADY_ENROLLED");
+    }
+
+    return {
+      kind: "bundle",
+      bundleSlug: bundleResult.bundle.slug,
+      entryCourseSlug: bundleResult.bundle.entryCourseSlug,
+      title: bundleResult.bundle.title,
+      amountVnd: bundleResult.bundle.priceVnd,
+      courseIds: checkoutCourses.map((course) => course.id),
+    };
+  }
+
+  const course = await prisma.course.findUnique({
+    where: { slug: params.slug },
+    select: {
+      id: true,
+      slug: true,
+      title: true,
+      isPublished: true,
+      priceVnd: true,
+      listPriceVnd: true,
+      salePriceVnd: true,
+    },
+  });
+
   if (!course) {
     throw new DomainError("Course not found", 404, "COURSE_NOT_FOUND");
   }
@@ -75,38 +250,241 @@ export async function createCourseCheckoutSession(params: {
     throw new DomainError("Course is not available", 404, "COURSE_NOT_PUBLISHED");
   }
 
-  const existing = await getEnrollment(course.id, parentId);
+  const existing = await getEnrollment(course.id, params.parentId);
   if (existing) {
     throw new DomainError("Already enrolled in this course", 409, "ALREADY_ENROLLED");
   }
 
-  // Check if parent has active subscription → 20% discount
-  const subscription = await prisma.subscription.findUnique({
-    where: { parentId },
-    select: { status: true },
-  });
-
-  const hasActiveSub =
-    subscription?.status === "ACTIVE_STANDARD" || subscription?.status === "ACTIVE_FAMILYPLUS";
-
-  const discountApplied = hasActiveSub;
-  const finalPriceVnd = hasActiveSub ? Math.round(course.priceVnd * 0.8) : course.priceVnd;
-
-  const sessionId = `mock_course_${randomUUID()}`;
-  // Keep checkout redirect same-origin to avoid environment-specific host mismatches.
-  const mockSuccessParams = new URLSearchParams({
-    courseId: course.id,
-    parentId,
-    amountVnd: String(finalPriceVnd),
-    sessionId,
-  });
-  const checkoutUrl = `/api/courses/checkout/mock-success?${mockSuccessParams.toString()}`;
+  const pricing = resolveCourseDisplayPricing(course);
 
   return {
-    checkoutUrl,
-    discountApplied,
-    finalPriceVnd,
-    expiresAt: addMinutes(new Date(), 30),
+    kind: "course",
+    courseId: course.id,
+    courseSlug: course.slug,
+    title: course.title,
+    amountVnd: pricing.salePriceVnd,
+  };
+}
+
+async function createMockCheckoutSession(input: {
+  parentId: string;
+  target: CheckoutTarget;
+  amountVnd: number;
+  attribution: PilotAttributionSnapshot | null;
+}): Promise<CheckoutSession> {
+  const sessionId = `mock_course_${randomUUID()}`;
+  const mockSuccessParams = new URLSearchParams({
+    parentId: input.parentId,
+    amountVnd: String(input.amountVnd),
     sessionId,
+  });
+
+  if (input.target.kind === "bundle") {
+    mockSuccessParams.set("bundleSlug", input.target.bundleSlug);
+  } else {
+    mockSuccessParams.set("courseId", input.target.courseId);
+  }
+
+  await prisma.paymentRecord.create({
+    data: {
+      parentId: input.parentId,
+      provider: "mock_gateway",
+      providerTransactionId: sessionId,
+      amountVnd: input.amountVnd,
+      status: PaymentStatus.PENDING,
+      rawPayload: {
+        kind: "course_checkout",
+        target: input.target,
+        attribution: input.attribution,
+      },
+    },
+  });
+
+  return {
+    checkoutUrl: `/api/courses/checkout/mock-success?${mockSuccessParams.toString()}`,
+    externalSessionId: sessionId,
+    expiresAt: addMinutes(new Date(), 30),
+  };
+}
+
+async function createPayosCheckoutSession(input: {
+  parentId: string;
+  parentEmail: string;
+  target: CheckoutTarget;
+  amountVnd: number;
+  attribution: PilotAttributionSnapshot | null;
+}): Promise<CheckoutSession> {
+  const orderCode = generatePayosOrderCode();
+  const orderCodeText = String(orderCode);
+
+  await prisma.paymentRecord.create({
+    data: {
+      parentId: input.parentId,
+      provider: "payos",
+      providerTransactionId: orderCodeText,
+      amountVnd: input.amountVnd,
+      status: PaymentStatus.PENDING,
+      rawPayload: {
+        kind: "course_checkout",
+        target: input.target,
+        attribution: input.attribution,
+      },
+    },
+  });
+
+  try {
+    const returnUrl = buildAbsoluteUrl(`/api/courses/checkout/return?orderCode=${encodeURIComponent(orderCodeText)}`);
+    const cancelUrl = buildAbsoluteUrl(`/courses?checkout=cancelled&orderCode=${encodeURIComponent(orderCodeText)}`);
+
+    const link = await createPayosPaymentLink({
+      orderCode,
+      amount: input.amountVnd,
+      description: buildPayosDescription(orderCode),
+      returnUrl,
+      cancelUrl,
+      buyerEmail: input.parentEmail,
+      items: [
+        {
+          name: input.target.title.slice(0, 24),
+          quantity: 1,
+          price: input.amountVnd,
+        },
+      ],
+    });
+
+    await prisma.paymentRecord.update({
+      where: {
+        provider_providerTransactionId: {
+          provider: "payos",
+          providerTransactionId: orderCodeText,
+        },
+      },
+      data: {
+        rawPayload: {
+          kind: "course_checkout",
+          target: input.target,
+          attribution: input.attribution,
+          payos: {
+            paymentLinkId: link.paymentLinkId,
+            checkoutUrl: link.checkoutUrl,
+            orderCode: link.orderCode,
+            expiredAt: link.expiredAt ?? null,
+          },
+        },
+      },
+    });
+
+    return {
+      checkoutUrl: link.checkoutUrl,
+      externalSessionId: orderCodeText,
+      expiresAt: link.expiredAt ? new Date(link.expiredAt * 1000) : addMinutes(new Date(), 30),
+    };
+  } catch (error) {
+    await prisma.paymentRecord.update({
+      where: {
+        provider_providerTransactionId: {
+          provider: "payos",
+          providerTransactionId: orderCodeText,
+        },
+      },
+      data: {
+        status: PaymentStatus.FAILED,
+      },
+    });
+
+    throw error;
+  }
+}
+
+/** Create a course checkout session. Returns checkoutUrl, discountApplied, finalPriceVnd. */
+export async function createCourseCheckoutSession(params: {
+  parentId: string;
+  parentEmail: string;
+  slug: string;
+  attribution: PilotAttributionSnapshot | null;
+}) {
+  const target = await resolveCheckoutTarget({
+    parentId: params.parentId,
+    slug: params.slug,
+  });
+
+  const provider = resolveCoursePaymentProvider();
+  const amountVnd = target.amountVnd;
+
+  const reusedPendingSession = await findReusablePendingCheckoutSession({
+    parentId: params.parentId,
+    provider,
+    target,
+    amountVnd,
+  });
+
+  const session =
+    reusedPendingSession ??
+    (provider === "payos"
+      ? await createPayosCheckoutSession({
+          parentId: params.parentId,
+          parentEmail: params.parentEmail,
+          target,
+          amountVnd,
+          attribution: params.attribution,
+        })
+      : await createMockCheckoutSession({
+          parentId: params.parentId,
+          target,
+          amountVnd,
+          attribution: params.attribution,
+        }));
+  const checkoutResourceId = `${params.parentId}:${session.externalSessionId}`;
+  const existingCheckoutAudit = await prisma.auditLog.findFirst({
+    where: {
+      actorType: "parent",
+      actorId: params.parentId,
+      action: "course_checkout_started",
+      resourceType: "course_checkout",
+      resourceId: checkoutResourceId,
+    },
+    select: { id: true },
+  });
+
+  if (!existingCheckoutAudit) {
+    await createAuditLog({
+      actorType: "parent",
+      actorId: params.parentId,
+      action: "course_checkout_started",
+      resourceType: "course_checkout",
+      resourceId: checkoutResourceId,
+      metadata: {
+        provider,
+        amountVnd,
+        sessionId: session.externalSessionId,
+        targetKind: target.kind,
+        targetSlug: target.kind === "bundle" ? target.bundleSlug : target.courseSlug,
+        attributionChannel: params.attribution?.channel ?? "unknown",
+        attributionExperimentCoursesVariant: params.attribution?.experimentCoursesVariant ?? null,
+        attributionExperimentPricingVariant: params.attribution?.experimentPricingVariant ?? null,
+      },
+    });
+  }
+
+  if (target.kind === "course") {
+    await trackPilotCheckoutStarted({
+      parentId: params.parentId,
+      courseId: target.courseId,
+      courseSlug: target.courseSlug,
+      sourceSlug: params.slug,
+      provider,
+      sessionId: session.externalSessionId,
+      amountVnd,
+      attribution: params.attribution,
+    });
+  }
+
+  return {
+    checkoutUrl: session.checkoutUrl,
+    discountApplied: false,
+    finalPriceVnd: amountVnd,
+    expiresAt: session.expiresAt,
+    sessionId: session.externalSessionId,
+    provider,
   };
 }

@@ -7,13 +7,20 @@ import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
 
+const courseCoverImageSchema = z.union([
+  z.string().url(),
+  z.string().regex(/^\/[^\s]*$/),
+]);
+
 const createCourseSchema = z.object({
   slug: z.string().min(1).max(100).regex(/^[a-z0-9-]+$/),
   title: z.string().min(1).max(200),
   description: z.string().max(2000).default(""),
   priceVnd: z.number().int().min(0).default(0),
+  listPriceVnd: z.number().int().min(0).optional(),
+  salePriceVnd: z.number().int().min(0).optional(),
   durationDays: z.number().int().min(1).default(30),
-  coverImageUrl: z.string().url().nullish(),
+  coverImageUrl: courseCoverImageSchema.nullish(),
 });
 
 export async function GET(request: NextRequest) {
@@ -40,6 +47,8 @@ export async function POST(request: NextRequest) {
         title: body.title,
         description: body.description,
         priceVnd: body.priceVnd,
+        listPriceVnd: body.listPriceVnd ?? body.priceVnd,
+        salePriceVnd: body.salePriceVnd ?? body.priceVnd,
         durationDays: body.durationDays,
         coverImageUrl: body.coverImageUrl,
       },
