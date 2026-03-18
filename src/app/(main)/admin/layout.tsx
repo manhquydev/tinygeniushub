@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { ShieldCheck } from "lucide-react";
 import { AdminShellNav } from "@/components/admin-shell-nav";
 import { getAdminSession } from "@/modules/admin/admin-auth-service";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SIDEBAR_COOKIE_NAME, SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 
 export const dynamic = "force-dynamic";
@@ -13,6 +14,9 @@ export default async function AdminLayout({ children }: { children: ReactNode })
   if (!session?.user) {
     redirect("/admin/login");
   }
+
+  const cookieStore = await cookies();
+  const sidebarOpen = cookieStore.get(SIDEBAR_COOKIE_NAME)?.value !== "false";
 
   const role = session.user.role;
   const todayLabel = new Intl.DateTimeFormat("vi-VN", {
@@ -24,7 +28,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
   const roleLabel = role === "SUPER_ADMIN" ? "Super admin" : "Staff admin";
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={sidebarOpen}>
       <AdminShellNav role={role} />
 
       <SidebarInset style={{ backgroundColor: "var(--admin-content-bg)" }}>

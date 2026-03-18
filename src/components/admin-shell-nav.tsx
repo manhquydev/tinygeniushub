@@ -13,6 +13,7 @@ import {
   Gift,
   GraduationCap,
   LayoutDashboard,
+  Link2,
   LogOut,
   MessageCircle,
   Newspaper,
@@ -36,7 +37,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  SidebarTrigger,
+  SidebarRail,
 } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
@@ -75,6 +76,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/admin/operations", label: "Vận hành", icon: Settings },
       { href: "/admin/gift-codes", label: "Mã quà tặng", icon: Gift },
       { href: "/admin/content", label: "Nội dung", icon: BookOpen },
+      { href: "/admin/site-settings", label: "Cài đặt trang", icon: Link2 },
       {
         href: "/admin/blog",
         label: "Blog",
@@ -132,7 +134,7 @@ function NavItemWithChildren({
     <Collapsible open={open} onOpenChange={setOpen} className="group/collapsible">
       <SidebarMenuItem>
         <CollapsibleTrigger asChild>
-          <SidebarMenuButton isActive={active} tooltip={item.label} className="text-sidebar-foreground">
+          <SidebarMenuButton isActive={active} tooltip={item.label} aria-label={item.label} className="text-sidebar-foreground">
             <Icon size={16} className="shrink-0" />
             <span>{item.label}</span>
             {open ? (
@@ -193,19 +195,18 @@ export function AdminShellNav({ role }: { role: string }) {
         } as React.CSSProperties
       }
     >
-      <SidebarHeader className="px-4 py-3 border-b border-[#1e293b]">
+      <SidebarHeader className="px-4 py-3 border-b border-[#1e293b] group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:py-2">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center shrink-0" aria-label="CCTH Admin">
             <ShieldAlert size={16} className="text-white" />
           </div>
-          <div>
+          <div className="group-data-[collapsible=icon]:hidden">
             <p className="text-sm font-semibold text-[#f8fafc]">CCTH Admin</p>
             <p className="text-xs text-[#94a3b8]">
               {isSuperAdmin ? "Super Admin" : "Staff Admin"}
             </p>
           </div>
         </div>
-        <SidebarTrigger className="ml-auto text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#1e293b]" />
       </SidebarHeader>
 
       <SidebarContent className="px-2 py-2">
@@ -230,7 +231,7 @@ export function AdminShellNav({ role }: { role: string }) {
                 const active = isPathActive(pathname, item.href);
                 return (
                   <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton asChild isActive={active} tooltip={item.label} className="text-sidebar-foreground">
+                    <SidebarMenuButton asChild isActive={active} tooltip={item.label} aria-label={item.label} className="text-sidebar-foreground">
                       <Link href={item.href}>
                         <Icon size={16} className="shrink-0" />
                         <span>{item.label}</span>
@@ -244,17 +245,20 @@ export function AdminShellNav({ role }: { role: string }) {
         ))}
       </SidebarContent>
 
-      <SidebarFooter className="px-4 py-3 border-t border-[#1e293b]">
+      <SidebarFooter className="px-4 py-3 border-t border-[#1e293b] group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:py-2">
         <form action="/api/admin/auth/logout" method="post">
           <button
             type="submit"
-            className="flex items-center gap-2 text-sm text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#1e293b] rounded-md px-2 py-1.5 w-full transition-colors"
+            className="flex items-center gap-2 text-sm text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#1e293b] rounded-md px-2 py-1.5 w-full transition-colors group-data-[collapsible=icon]:w-auto group-data-[collapsible=icon]:justify-center"
+            title="Đăng xuất"
+            aria-label="Đăng xuất"
           >
-            <LogOut size={14} />
-            <span>Đăng xuất</span>
+            <LogOut size={16} className="shrink-0" />
+            <span className="group-data-[collapsible=icon]:hidden">Đăng xuất</span>
           </button>
         </form>
       </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   );
 }
