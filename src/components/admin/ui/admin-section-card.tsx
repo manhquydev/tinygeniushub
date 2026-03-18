@@ -20,14 +20,14 @@ export function AdminSectionCard({
   headerActions,
 }: AdminSectionCardProps) {
   return (
-    <Card className={cn("bg-white border-slate-200 shadow-sm", className)}>
+    <Card className={cn("bg-[var(--admin-card-bg)] border-[var(--admin-card-border)] shadow-sm", className)}>
       {(title || icon) && (
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               {icon && <span className="text-teal-600 shrink-0">{icon}</span>}
               {title && (
-                <CardTitle className="text-sm font-semibold text-slate-800">{title}</CardTitle>
+                <CardTitle className="text-sm font-semibold text-[var(--admin-text-primary)]">{title}</CardTitle>
               )}
             </div>
             {headerActions && (
@@ -35,7 +35,7 @@ export function AdminSectionCard({
             )}
           </div>
           {description && (
-            <p className="text-xs text-slate-500 mt-0.5">{description}</p>
+            <p className="text-xs text-[var(--admin-text-secondary)] mt-0.5">{description}</p>
           )}
         </CardHeader>
       )}

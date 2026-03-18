@@ -40,14 +40,14 @@ export function AdminDataTable<T extends Record<string, unknown>>({
 }: AdminDataTableProps<T>) {
   return (
     <div className={cn("space-y-3", className)}>
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               {columns.map((col) => (
                 <TableHead
                   key={col.key}
-                  className="text-xs font-semibold text-slate-500 uppercase tracking-wide h-9"
+                  className="text-xs font-semibold text-[var(--admin-text-secondary)] uppercase tracking-wide h-9"
                 >
                   {col.label}
                 </TableHead>
@@ -63,9 +63,9 @@ export function AdminDataTable<T extends Record<string, unknown>>({
               </TableRow>
             ) : (
               data.map((row, rowIdx) => (
-                <TableRow key={rowIdx} className="hover:bg-slate-50/50">
+                <TableRow key={rowIdx} className="hover:bg-[var(--admin-sidebar-accent)]">
                   {columns.map((col) => (
-                    <TableCell key={col.key} className="text-sm text-slate-700 py-2.5">
+                    <TableCell key={col.key} className="text-sm text-[var(--admin-text-primary)] py-2.5">
                       {col.render ? col.render(row) : String(row[col.key] ?? "")}
                     </TableCell>
                   ))}
@@ -78,7 +78,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
 
       {pagination && pagination.totalPages > 1 && (
         <div className="flex items-center justify-between px-1">
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-[var(--admin-text-secondary)]">
             Trang {pagination.page} / {pagination.totalPages}
           </p>
           <div className="flex gap-2">

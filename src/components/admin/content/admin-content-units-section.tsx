@@ -17,19 +17,19 @@ type AdminContentUnitsSectionProps = {
 
 export function AdminContentUnitsSection(props: AdminContentUnitsSectionProps) {
   return (
-    <article className="rounded-2xl border border-slate-200 bg-white p-3">
-      <h2 className="text-sm font-bold uppercase tracking-[0.08em] text-slate-600">Panel 3 · Units</h2>
-      <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
+    <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-3">
+      <h2 className="text-sm font-bold uppercase tracking-[0.08em] text-[var(--admin-text-secondary)]">Panel 3 · Units</h2>
+      <p className="mt-1 flex items-center gap-1 text-xs text-[var(--admin-text-secondary)]">
         <span>{props.selectedTrack ? toTrackLabel(props.selectedTrack.code) : "Track"}</span>
         <ChevronRight size={12} className="shrink-0" />
         <span>{props.selectedLevel ? `Level ${props.selectedLevel.orderNo}` : "Level"}</span>
         <ChevronRight size={12} className="shrink-0" />
         <span>Units</span>
       </p>
-      <div className="mt-3 rounded-lg border border-slate-200 overflow-hidden">
+      <div className="mt-3 rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs w-10">#</TableHead>
               <TableHead className="text-xs">Tên đơn vị</TableHead>
               <TableHead className="text-xs">Lessons</TableHead>
@@ -48,10 +48,10 @@ export function AdminContentUnitsSection(props: AdminContentUnitsSectionProps) {
               </TableRow>
             ))}
             {props.loadingUnits && (
-              <TableRow><TableCell colSpan={3} className="text-xs text-slate-500">Đang tải units...</TableCell></TableRow>
+              <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">Đang tải units...</TableCell></TableRow>
             )}
             {!props.loadingUnits && props.units.length === 0 && (
-              <TableRow><TableCell colSpan={3} className="text-xs text-slate-500">{props.selectedLevel ? "Chưa có đơn vị." : "Chọn cấp độ để xem đơn vị."}</TableCell></TableRow>
+              <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">{props.selectedLevel ? "Chưa có đơn vị." : "Chọn cấp độ để xem đơn vị."}</TableCell></TableRow>
             )}
           </TableBody>
         </Table>

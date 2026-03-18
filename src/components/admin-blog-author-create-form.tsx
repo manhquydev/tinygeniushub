@@ -56,7 +56,7 @@ export function AdminBlogAuthorCreateForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="grid gap-3 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 sm:grid-cols-2">
       <Input value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="Tên hiển thị" required />
       <Input value={role} onChange={(event) => setRole(event.target.value)} placeholder="Vai trò" required />
       <Input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" />

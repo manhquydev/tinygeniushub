@@ -59,14 +59,14 @@ export function AdminActionLogPanel() {
 
   return (
     <div className="space-y-3">
-      <h2 className="text-sm font-bold uppercase tracking-wide text-slate-600">Nhật ký quản trị</h2>
+      <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Nhật ký quản trị</h2>
 
       {error ? <p className="rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">{error}</p> : null}
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Thời gian</TableHead>
               <TableHead className="text-xs">Người thực hiện</TableHead>
               <TableHead className="text-xs">Thao tác</TableHead>
@@ -76,22 +76,22 @@ export function AdminActionLogPanel() {
           <TableBody>
             {loading ? Array.from({ length: 4 }).map((_, index) => (
               <TableRow key={`admin-log-skeleton-${index}`}>
-                <TableCell><div className="h-4 w-28 animate-pulse rounded bg-slate-200" /></TableCell>
-                <TableCell><div className="h-4 w-40 animate-pulse rounded bg-slate-200" /></TableCell>
-                <TableCell><div className="h-4 w-24 animate-pulse rounded bg-slate-200" /></TableCell>
-                <TableCell><div className="h-4 w-28 animate-pulse rounded bg-slate-200" /></TableCell>
+                <TableCell><div className="h-4 w-28 animate-pulse rounded bg-[var(--admin-sidebar-accent)]" /></TableCell>
+                <TableCell><div className="h-4 w-40 animate-pulse rounded bg-[var(--admin-sidebar-accent)]" /></TableCell>
+                <TableCell><div className="h-4 w-24 animate-pulse rounded bg-[var(--admin-sidebar-accent)]" /></TableCell>
+                <TableCell><div className="h-4 w-28 animate-pulse rounded bg-[var(--admin-sidebar-accent)]" /></TableCell>
               </TableRow>
             )) : null}
             {!loading ? logs.map((entry) => (
               <TableRow key={entry.id}>
-                <TableCell className="text-xs text-slate-600">{new Date(entry.createdAt).toLocaleString("vi-VN")}</TableCell>
-                <TableCell className="text-xs text-slate-600">{entry.adminEmail}</TableCell>
-                <TableCell className="text-xs font-semibold text-slate-800">{entry.action}</TableCell>
-                <TableCell className="text-xs text-slate-500">{entry.target ?? "-"}</TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{new Date(entry.createdAt).toLocaleString("vi-VN")}</TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{entry.adminEmail}</TableCell>
+                <TableCell className="text-xs font-semibold text-[var(--admin-text-primary)]">{entry.action}</TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{entry.target ?? "-"}</TableCell>
               </TableRow>
             )) : null}
             {!loading && logs.length === 0 ? (
-              <TableRow><TableCell colSpan={4} className="text-xs text-slate-500">Chưa có nhật ký nào.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={4} className="text-xs text-[var(--admin-text-secondary)]">Chưa có nhật ký nào.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>

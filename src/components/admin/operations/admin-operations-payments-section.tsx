@@ -38,7 +38,7 @@ export function AdminOperationsPaymentsSection(props: AdminOperationsPaymentsSec
     <div className="space-y-3">
       <div className="flex flex-wrap items-end gap-3">
         <div className="w-48">
-          <p className="text-xs text-slate-500 mb-1">Trạng thái thanh toán</p>
+          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Trạng thái thanh toán</p>
           <Select value={props.paymentStatus} onValueChange={(v) => props.onPaymentStatusChange(v as (typeof paymentStatuses)[number])}>
             <SelectTrigger className="h-8 text-xs">
               <SelectValue />
@@ -55,10 +55,10 @@ export function AdminOperationsPaymentsSection(props: AdminOperationsPaymentsSec
         </Button>
       </div>
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Phụ huynh</TableHead>
               <TableHead className="text-xs">Cổng</TableHead>
               <TableHead className="text-xs">Mã giao dịch</TableHead>
@@ -94,11 +94,11 @@ export function AdminOperationsPaymentsSection(props: AdminOperationsPaymentsSec
                   </TableRow>
                   {isOpen && (
                     <TableRow>
-                      <TableCell colSpan={7} className="bg-slate-50">
+                      <TableCell colSpan={7} className="bg-[var(--admin-sidebar-accent)]">
                         <div className="p-3 space-y-3">
                           <div className="grid gap-3 md:grid-cols-2">
                             <div>
-                              <p className="text-xs text-slate-500 mb-1">Hành động</p>
+                              <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Hành động</p>
                               <Select value={props.reconcileAction} onValueChange={(v) => props.onReconcileActionChange(v as ReconcileAction)}>
                                 <SelectTrigger className="h-8 text-xs"><SelectValue /></SelectTrigger>
                                 <SelectContent>
@@ -107,7 +107,7 @@ export function AdminOperationsPaymentsSection(props: AdminOperationsPaymentsSec
                               </Select>
                             </div>
                             <div>
-                              <p className="text-xs text-slate-500 mb-1">Cập nhật webhook</p>
+                              <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Cập nhật webhook</p>
                               <Select value={props.reconcileWebhookResolution} onValueChange={(v) => props.onReconcileWebhookResolutionChange(v as ReconcileWebhookResolution)}>
                                 <SelectTrigger className="h-8 text-xs"><SelectValue /></SelectTrigger>
                                 <SelectContent>
@@ -119,7 +119,7 @@ export function AdminOperationsPaymentsSection(props: AdminOperationsPaymentsSec
                               </Select>
                             </div>
                             <div className="md:col-span-2">
-                              <p className="text-xs text-slate-500 mb-1">Chọn webhook liên quan</p>
+                              <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Chọn webhook liên quan</p>
                               <Select value={props.reconcileWebhookId} onValueChange={props.onReconcileWebhookIdChange} disabled={props.reconcileWebhookResolution === "NONE"}>
                                 <SelectTrigger className="h-8 text-xs"><SelectValue placeholder="-- Chọn sự kiện webhook --" /></SelectTrigger>
                                 <SelectContent>
@@ -128,7 +128,7 @@ export function AdminOperationsPaymentsSection(props: AdminOperationsPaymentsSec
                               </Select>
                             </div>
                             <div className="md:col-span-2">
-                              <p className="text-xs text-slate-500 mb-1">Ghi chú vận hành</p>
+                              <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Ghi chú vận hành</p>
                               <Textarea value={props.reconcileNote} onChange={(e) => props.onReconcileNoteChange(e.target.value)} placeholder="Ví dụ: webhook về trễ..." rows={2} className="text-xs" />
                             </div>
                           </div>
@@ -146,7 +146,7 @@ export function AdminOperationsPaymentsSection(props: AdminOperationsPaymentsSec
               );
             })}
             {props.payments.length === 0 && (
-              <TableRow><TableCell colSpan={7} className="text-center text-sm text-slate-500 py-6">Chưa có bản ghi thanh toán.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={7} className="text-center text-sm text-[var(--admin-text-secondary)] py-6">Chưa có bản ghi thanh toán.</TableCell></TableRow>
             )}
           </TableBody>
         </Table>

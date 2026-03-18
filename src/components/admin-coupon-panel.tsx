@@ -138,7 +138,7 @@ export function AdminCouponPanel() {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-bold uppercase tracking-wide text-slate-600">Mã giảm giá</h3>
+      <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Mã giảm giá</h3>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <div className="grid gap-1.5">
@@ -162,10 +162,10 @@ export function AdminCouponPanel() {
         {submitting ? "Đang tạo..." : "Tạo mã"}
       </Button>
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Mã</TableHead>
               <TableHead className="text-xs">Giảm</TableHead>
               <TableHead className="text-xs">Dùng / tối đa</TableHead>
@@ -177,7 +177,7 @@ export function AdminCouponPanel() {
           <TableBody>
             {loading ? Array.from({ length: 3 }).map((_, index) => (
               <TableRow key={`coupon-skeleton-${index}`}>
-                <TableCell colSpan={6} className="text-xs text-slate-500">Đang tải...</TableCell>
+                <TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Đang tải...</TableCell>
               </TableRow>
             )) : null}
             {!loading ? coupons.map((coupon) => (
@@ -205,14 +205,14 @@ export function AdminCouponPanel() {
               </TableRow>
             )) : null}
             {!loading && coupons.length === 0 ? (
-              <TableRow><TableCell colSpan={6} className="text-xs text-slate-500">Chưa có mã giảm giá.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Chưa có mã giảm giá.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>
       </div>
 
       {error ? <p className="text-xs text-rose-600">{error}</p> : null}
-      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+      {info ? <p className="text-xs text-[var(--admin-text-secondary)]">{info}</p> : null}
     </div>
   );
 }

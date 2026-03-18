@@ -42,15 +42,15 @@ export function AdminBlogCommentsModeration({ comments }: { comments: PendingCom
   return (
     <div className="space-y-3">
       {comments.map((comment) => (
-        <article key={comment.id} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <article key={comment.id} className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
           <div className="space-y-2">
             <Link href={`/blog/${comment.post.slug}`} target="_blank" rel="noreferrer" className="text-sm font-semibold text-teal-700 hover:text-teal-800">
               {comment.post.titleVi}
             </Link>
-            <p className="text-sm text-slate-700">
+            <p className="text-sm text-[var(--admin-text-secondary)]">
               <strong>{comment.authorName}</strong> · {new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(comment.createdAt))}
             </p>
-            <p className="text-sm text-slate-600">{comment.content.slice(0, 100)}{comment.content.length > 100 ? "..." : ""}</p>
+            <p className="text-sm text-[var(--admin-text-secondary)]">{comment.content.slice(0, 100)}{comment.content.length > 100 ? "..." : ""}</p>
           </div>
 
           <div className="mt-3 flex flex-wrap gap-2">

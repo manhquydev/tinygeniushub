@@ -31,8 +31,8 @@ export default async function AdminEditPostPage({ params }: AdminEditPostPagePro
 
   return (
     <div className="space-y-6">
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Chỉnh sửa bài viết</h1>
+      <section className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
+        <h1 className="text-3xl font-black tracking-[-0.02em] text-[var(--admin-text-primary)]">Chỉnh sửa bài viết</h1>
       </section>
 
       <AdminBlogPostForm
@@ -58,7 +58,7 @@ export default async function AdminEditPostPage({ params }: AdminEditPostPagePro
         }}
       />
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
         <AdminRefreshRelatedButton postId={post.id} />
       </section>
     </div>

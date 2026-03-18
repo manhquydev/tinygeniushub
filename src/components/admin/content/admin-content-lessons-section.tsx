@@ -31,11 +31,11 @@ type AdminContentLessonsSectionProps = {
 
 export function AdminContentLessonsSection(props: AdminContentLessonsSectionProps) {
   return (
-    <article className="rounded-xl border border-slate-200 bg-white p-3">
+    <article className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-3">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div>
-          <h2 className="text-sm font-bold uppercase tracking-wide text-slate-600">Panel 4 · Lessons</h2>
-          <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
+          <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Panel 4 · Lessons</h2>
+          <p className="mt-1 flex items-center gap-1 text-xs text-[var(--admin-text-secondary)]">
             <span>{props.selectedTrack ? toTrackLabel(props.selectedTrack.code) : "Track"}</span>
             <ChevronRight size={12} className="shrink-0" />
             <span>{props.selectedLevel ? `Level ${props.selectedLevel.orderNo}` : "Level"}</span>
@@ -49,10 +49,10 @@ export function AdminContentLessonsSection(props: AdminContentLessonsSectionProp
         </Button>
       </div>
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs w-8">#</TableHead>
               <TableHead className="text-xs">Tên</TableHead>
               <TableHead className="text-xs">Phút</TableHead>
@@ -69,16 +69,16 @@ export function AdminContentLessonsSection(props: AdminContentLessonsSectionProp
                 <Fragment key={lesson.id}>
                   <TableRow
                     onClick={() => props.onToggleLessonExpanded(lesson)}
-                    className={cn("cursor-pointer", isExpanded && "bg-slate-50 hover:bg-slate-50")}
+                    className={cn("cursor-pointer", isExpanded && "bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]")}
                   >
                     <TableCell className="text-xs">{lesson.orderNo}</TableCell>
                     <TableCell>
-                      <p className="text-sm font-medium text-slate-800">{lesson.title}</p>
-                      <p className="text-xs text-slate-500">{lesson.slug}</p>
+                      <p className="text-sm font-medium text-[var(--admin-text-primary)]">{lesson.title}</p>
+                      <p className="text-xs text-[var(--admin-text-secondary)]">{lesson.slug}</p>
                     </TableCell>
                     <TableCell className="text-xs">{lesson.estimatedMinutes}</TableCell>
                     <TableCell>
-                      <Badge variant="outline" className={cn("text-xs border", lesson.trialEnabled ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-slate-100 text-slate-600 border-slate-200")}>
+                      <Badge variant="outline" className={cn("text-xs border", lesson.trialEnabled ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-[var(--admin-sidebar-accent)] text-[var(--admin-text-secondary)] border-[var(--admin-card-border)]")}>
                         {lesson.trialEnabled ? "Bật" : "Tắt"}
                       </Badge>
                     </TableCell>
@@ -99,7 +99,7 @@ export function AdminContentLessonsSection(props: AdminContentLessonsSectionProp
                   </TableRow>
                   {isExpanded && (
                     <TableRow>
-                      <TableCell colSpan={6} className="bg-slate-50 p-2">
+                      <TableCell colSpan={6} className="bg-[var(--admin-sidebar-accent)] p-2">
                         <AdminContentLessonActivitiesList
                           lessonId={lesson.id}
                           activities={activities}
@@ -115,10 +115,10 @@ export function AdminContentLessonsSection(props: AdminContentLessonsSectionProp
               );
             })}
             {props.loadingLessons && (
-              <TableRow><TableCell colSpan={6} className="text-xs text-slate-500">Đang tải bài học...</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Đang tải bài học...</TableCell></TableRow>
             )}
             {!props.loadingLessons && props.lessons.length === 0 && (
-              <TableRow><TableCell colSpan={6} className="text-xs text-slate-500">{props.selectedUnit ? "Chưa có bài học." : "Chọn đơn vị để xem bài học."}</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">{props.selectedUnit ? "Chưa có bài học." : "Chọn đơn vị để xem bài học."}</TableCell></TableRow>
             )}
           </TableBody>
         </Table>

@@ -20,16 +20,16 @@ export default async function AdminBlogAuthorsPage() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Quản lý tác giả blog</h1>
+      <section className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
+        <h1 className="text-3xl font-black tracking-[-0.02em] text-[var(--admin-text-primary)]">Quản lý tác giả blog</h1>
       </section>
 
       <AdminBlogAuthorCreateForm />
 
-      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <section className="overflow-hidden rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] shadow-sm">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
-            <thead className="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+            <thead className="bg-[var(--admin-sidebar-accent)] text-xs uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
               <tr>
                 <th className="px-4 py-3">Tên</th>
                 <th className="px-4 py-3">Vai trò</th>
@@ -40,12 +40,12 @@ export default async function AdminBlogAuthorsPage() {
             </thead>
             <tbody>
               {authors.map((author) => (
-                <tr key={author.id} className="border-t border-slate-100">
-                  <td className="px-4 py-3 font-semibold text-slate-900">{author.displayName}</td>
-                  <td className="px-4 py-3 text-slate-700">{author.role}</td>
-                  <td className="px-4 py-3 text-slate-700">{author.email ?? "-"}</td>
-                  <td className="px-4 py-3 text-slate-700">{author.active ? "Bật" : "Tắt"}</td>
-                  <td className="px-4 py-3 text-slate-700">{author._count.posts}</td>
+                <tr key={author.id} className="border-t border-[var(--admin-card-border)]">
+                  <td className="px-4 py-3 font-semibold text-[var(--admin-text-primary)]">{author.displayName}</td>
+                  <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{author.role}</td>
+                  <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{author.email ?? "-"}</td>
+                  <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{author.active ? "Bật" : "Tắt"}</td>
+                  <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{author._count.posts}</td>
                 </tr>
               ))}
             </tbody>

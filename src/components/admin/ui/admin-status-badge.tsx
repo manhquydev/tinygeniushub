@@ -7,24 +7,24 @@ type AdminStatusBadgeProps = {
 };
 
 const SUBSCRIPTION_COLORS: Record<string, string> = {
-  ACTIVE: "bg-emerald-100 text-emerald-800 border-emerald-200",
-  TRIALING: "bg-sky-100 text-sky-800 border-sky-200",
-  PAST_DUE: "bg-amber-100 text-amber-800 border-amber-200",
-  CANCELLED: "bg-rose-100 text-rose-800 border-rose-200",
-  INACTIVE: "bg-slate-100 text-slate-600 border-slate-200",
+  ACTIVE: "bg-emerald-950 text-emerald-400 border-emerald-800",
+  TRIALING: "bg-sky-950 text-sky-400 border-sky-800",
+  PAST_DUE: "bg-amber-950 text-amber-400 border-amber-800",
+  CANCELLED: "bg-rose-950 text-rose-400 border-rose-800",
+  INACTIVE: "bg-slate-800 text-slate-400 border-slate-700",
 };
 
 const WEBHOOK_COLORS: Record<string, string> = {
-  active: "bg-emerald-100 text-emerald-800 border-emerald-200",
-  pending: "bg-amber-100 text-amber-800 border-amber-200",
-  failed: "bg-rose-100 text-rose-800 border-rose-200",
-  disabled: "bg-slate-100 text-slate-600 border-slate-200",
+  active: "bg-emerald-950 text-emerald-400 border-emerald-800",
+  pending: "bg-amber-950 text-amber-400 border-amber-800",
+  failed: "bg-rose-950 text-rose-400 border-rose-800",
+  disabled: "bg-slate-800 text-slate-400 border-slate-700",
 };
 
 const HEALTH_COLORS: Record<string, string> = {
-  complete: "bg-emerald-100 text-emerald-800 border-emerald-200",
-  partial: "bg-amber-100 text-amber-800 border-amber-200",
-  gap: "bg-rose-100 text-rose-800 border-rose-200",
+  complete: "bg-emerald-950 text-emerald-400 border-emerald-800",
+  partial: "bg-amber-950 text-amber-400 border-amber-800",
+  gap: "bg-rose-950 text-rose-400 border-rose-800",
 };
 
 function getColor(status: string, variant: AdminStatusBadgeProps["variant"]) {
@@ -38,7 +38,7 @@ function getColor(status: string, variant: AdminStatusBadgeProps["variant"]) {
     SUBSCRIPTION_COLORS[key] ??
     WEBHOOK_COLORS[lower] ??
     HEALTH_COLORS[lower] ??
-    "bg-slate-100 text-slate-600 border-slate-200"
+    "bg-slate-800 text-slate-400 border-slate-700"
   );
 }
 

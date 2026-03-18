@@ -47,13 +47,13 @@ const STATUS_OPTIONS: UsersStatusFilter[] = ["ALL", "TRIALING", "ACTIVE_STANDARD
 
 export function AdminUsersListPane(props: AdminUsersListPaneProps) {
   return (
-    <div className="space-y-3 rounded-xl border border-slate-200 bg-white p-4">
+    <div className="space-y-3 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
       {/* Filters */}
       <div className="flex flex-wrap items-end gap-3">
         <div className="flex-1 min-w-[180px]">
-          <p className="text-xs text-slate-500 mb-1">Tìm kiếm</p>
+          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Tìm kiếm</p>
           <div className="relative">
-            <Search size={14} className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search size={14} className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)]" />
             <Input
               value={props.query}
               onChange={(e) => props.onQueryChange(e.target.value)}
@@ -63,7 +63,7 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
           </div>
         </div>
         <div className="w-36">
-          <p className="text-xs text-slate-500 mb-1">Trạng thái</p>
+          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Trạng thái</p>
           <Select value={props.statusFilter} onValueChange={(v) => props.onStatusFilterChange(v as UsersStatusFilter)}>
             <SelectTrigger className="h-8 text-xs">
               <SelectValue />
@@ -74,7 +74,7 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
           </Select>
         </div>
         <div className="w-36">
-          <p className="text-xs text-slate-500 mb-1">Sắp xếp</p>
+          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Sắp xếp</p>
           <Select value={props.sortBy} onValueChange={(v) => props.onSortByChange(v as UsersSort)}>
             <SelectTrigger className="h-8 text-xs">
               <SelectValue />
@@ -90,10 +90,10 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
       </div>
 
       {/* Table */}
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="w-10">
                 <Checkbox
                   checked={props.allRowsSelected}
@@ -114,7 +114,7 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
               return (
                 <TableRow
                   key={user.id}
-                  className={cn("cursor-pointer", selected && "bg-teal-50 hover:bg-teal-50")}
+                  className={cn("cursor-pointer", selected && "bg-teal-900/30 hover:bg-teal-900/30")}
                   onClick={() => props.onSelectParent(user.id)}
                 >
                   <TableCell>
@@ -125,8 +125,8 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
                     />
                   </TableCell>
                   <TableCell>
-                    <p className="text-sm font-semibold text-slate-800">{user.displayName ?? user.email}</p>
-                    <p className="text-xs text-slate-500">{user.email}</p>
+                    <p className="text-sm font-semibold text-[var(--admin-text-primary)]">{user.displayName ?? user.email}</p>
+                    <p className="text-xs text-[var(--admin-text-secondary)]">{user.email}</p>
                   </TableCell>
                   <TableCell>
                     <Badge variant="outline" className={cn("text-xs border", getSubscriptionBadgeClass(user.subscription?.status))}>
@@ -135,7 +135,7 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
                   </TableCell>
                   <TableCell className="text-sm">{user.childrenCount}</TableCell>
                   <TableCell className="text-sm">{user.successfulPaymentsCount}</TableCell>
-                  <TableCell className="text-xs text-slate-500">{formatDate(user.createdAt)}</TableCell>
+                  <TableCell className="text-xs text-[var(--admin-text-secondary)]">{formatDate(user.createdAt)}</TableCell>
                 </TableRow>
               );
             })}
@@ -180,7 +180,7 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
       )}
 
       {/* Pagination */}
-      <div className="flex items-center justify-between text-xs text-slate-600">
+      <div className="flex items-center justify-between text-xs text-[var(--admin-text-secondary)]">
         <p>Tổng {props.totalUsers} người dùng — Trang {props.page}/{props.totalPages}</p>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={props.onPrevPage} disabled={!props.canGoPrev || props.searchLoading} className="h-7 text-xs">Trang trước</Button>
@@ -189,8 +189,8 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
       </div>
 
       {!props.searchLoading && props.users.length === 0 && !props.searchError && (
-        <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm text-slate-500">
-          <SearchX size={28} className="mx-auto mb-2 text-slate-300" />
+        <div className="rounded-xl border border-dashed border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-4 text-center text-sm text-[var(--admin-text-secondary)]">
+          <SearchX size={28} className="mx-auto mb-2 text-[var(--admin-text-muted)]" />
           <p>Không có người dùng phù hợp với bộ lọc hiện tại.</p>
         </div>
       )}

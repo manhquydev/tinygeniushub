@@ -11,7 +11,7 @@ type AdminContentActivityFieldsFillBlankProps = {
 
 export function AdminContentActivityFieldsFillBlank(props: AdminContentActivityFieldsFillBlankProps) {
   return (
-    <div className="grid gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3">
+    <div className="grid gap-2 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3">
       <div className="grid gap-1.5">
         <Label htmlFor="fill-sentence">Câu có chỗ trống (dùng ___)</Label>
         <Input

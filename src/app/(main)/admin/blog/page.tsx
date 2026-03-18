@@ -26,13 +26,13 @@ export default async function AdminBlogDashboardPage() {
   return (
     <div className="space-y-6">
       {/* Page header */}
-      <div className="flex items-center gap-3 border-b border-slate-200 pb-5">
+      <div className="flex items-center gap-3 border-b border-[var(--admin-card-border)] pb-5">
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-50">
           <PenSquare size={18} className="text-violet-600" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-slate-900">Quản lý Blog</h1>
-          <p className="text-sm text-slate-500">
+          <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Quản lý Blog</h1>
+          <p className="text-sm text-[var(--admin-text-muted)]">
             Nội dung, newsletter và phân tích blog.
           </p>
         </div>
@@ -40,7 +40,7 @@ export default async function AdminBlogDashboardPage() {
           <Link
             href="/blog"
             target="_blank"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-50"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-3 py-1.5 text-xs font-semibold text-[var(--admin-text-secondary)] shadow-sm hover:bg-[var(--admin-sidebar-accent)]"
           >
             <ExternalLink size={12} />
             Xem blog công khai
@@ -89,7 +89,7 @@ export default async function AdminBlogDashboardPage() {
           href="/admin/blog/posts/new"
           className="flex items-center gap-3 rounded-2xl bg-teal-600 p-5 text-white shadow-sm transition hover:bg-teal-700"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--admin-card-bg)]/20">
             <PenSquare size={18} />
           </div>
           <div>
@@ -100,29 +100,29 @@ export default async function AdminBlogDashboardPage() {
         </Link>
         <Link
           href="/admin/blog/posts"
-          className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-5 text-slate-700 shadow-sm transition hover:bg-slate-50"
+          className="flex items-center gap-3 rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-5 text-[var(--admin-text-secondary)] shadow-sm transition hover:bg-[var(--admin-sidebar-accent)]"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100">
-            <FileText size={18} className="text-slate-600" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--admin-sidebar-accent)]">
+            <FileText size={18} className="text-[var(--admin-text-secondary)]" />
           </div>
           <div>
-            <p className="font-bold text-slate-900">Quản lý bài viết</p>
-            <p className="text-sm text-slate-500">
+            <p className="font-bold text-[var(--admin-text-primary)]">Quản lý bài viết</p>
+            <p className="text-sm text-[var(--admin-text-muted)]">
               {publishedCount} đã xuất bản, {draftCount} nháp
             </p>
           </div>
-          <span className="ml-auto text-slate-400">→</span>
+          <span className="ml-auto text-[var(--admin-text-muted)]">→</span>
         </Link>
       </div>
 
       {/* Top performing post */}
       {topPost ? (
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+        <div className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
             Bài viết xem nhiều nhất
           </p>
-          <p className="text-lg font-bold text-slate-900">{topPost.titleVi}</p>
-          <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-500">
+          <p className="text-lg font-bold text-[var(--admin-text-primary)]">{topPost.titleVi}</p>
+          <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-[var(--admin-text-muted)]">
             {topPost.author ? (
               <span className="flex items-center gap-1">
                 <Users size={13} />
@@ -130,7 +130,7 @@ export default async function AdminBlogDashboardPage() {
               </span>
             ) : null}
             {topPost.category ? (
-              <span className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-700">
+              <span className="rounded-md bg-[var(--admin-sidebar-accent)] px-2 py-0.5 text-xs font-medium text-[var(--admin-text-secondary)]">
                 {topPost.category.nameVi}
               </span>
             ) : null}
@@ -152,7 +152,7 @@ export default async function AdminBlogDashboardPage() {
 
       {/* Sub-section nav cards */}
       <div>
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
           Quản lý nhanh
         </p>
         <div className="grid gap-2 sm:grid-cols-3">
@@ -166,7 +166,7 @@ export default async function AdminBlogDashboardPage() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-teal-200 hover:bg-teal-50 hover:text-teal-700"
+              className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-4 py-3 text-sm font-semibold text-[var(--admin-text-secondary)] shadow-sm transition hover:border-teal-200 hover:bg-teal-50 hover:text-teal-700"
             >
               {item.label} →
             </Link>
@@ -197,11 +197,11 @@ function StatCard({
   const cls = accentClasses[accent];
 
   return (
-    <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
       <div className={`mb-3 flex h-8 w-8 items-center justify-center rounded-lg ${cls.bg}`}>
         <Icon size={16} className={cls.icon} />
       </div>
-      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
         {label}
       </p>
       <p className={`mt-1 text-3xl font-black ${cls.text}`}>{value}</p>

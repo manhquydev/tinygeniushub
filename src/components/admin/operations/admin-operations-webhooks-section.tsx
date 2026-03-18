@@ -22,7 +22,7 @@ export function AdminOperationsWebhooksSection(props: AdminOperationsWebhooksSec
     <div className="space-y-3">
       <div className="flex flex-wrap items-end gap-3">
         <div className="w-48">
-          <p className="text-xs text-slate-500 mb-1">Trạng thái webhook</p>
+          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Trạng thái webhook</p>
           <Select value={props.webhookStatus} onValueChange={(v) => props.onWebhookStatusChange(v as (typeof webhookStatuses)[number])}>
             <SelectTrigger className="h-8 text-xs">
               <SelectValue />
@@ -39,10 +39,10 @@ export function AdminOperationsWebhooksSection(props: AdminOperationsWebhooksSec
         </Button>
       </div>
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Nhà cung cấp</TableHead>
               <TableHead className="text-xs">Sự kiện</TableHead>
               <TableHead className="text-xs">Trạng thái</TableHead>
@@ -62,12 +62,12 @@ export function AdminOperationsWebhooksSection(props: AdminOperationsWebhooksSec
                   </Badge>
                 </TableCell>
                 <TableCell className="text-xs">{event.signatureValid ? "Hợp lệ" : "Không hợp lệ"}</TableCell>
-                <TableCell className="text-xs text-slate-500">{event.errorMessage ?? "-"}</TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{event.errorMessage ?? "-"}</TableCell>
                 <TableCell className="text-xs">{new Date(event.createdAt).toLocaleString("vi-VN")}</TableCell>
               </TableRow>
             ))}
             {props.webhooks.length === 0 && (
-              <TableRow><TableCell colSpan={6} className="text-center text-sm text-slate-500 py-6">Chưa có bản ghi webhook.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} className="text-center text-sm text-[var(--admin-text-secondary)] py-6">Chưa có bản ghi webhook.</TableCell></TableRow>
             )}
           </TableBody>
         </Table>

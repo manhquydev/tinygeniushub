@@ -23,7 +23,7 @@ function TrendBadge({ trend }: { trend: Trend }) {
         "inline-flex items-center gap-1 text-xs font-medium",
         positive && "text-emerald-600",
         !positive && !neutral && "text-rose-500",
-        neutral && "text-slate-400"
+        neutral && "text-[var(--admin-text-muted)]"
       )}
     >
       {neutral ? (
@@ -40,13 +40,13 @@ function TrendBadge({ trend }: { trend: Trend }) {
 
 export function AdminStatCard({ label, value, icon, trend, className }: AdminStatCardProps) {
   return (
-    <Card className={cn("bg-white border-slate-200 shadow-sm", className)}>
+    <Card className={cn("bg-[var(--admin-card-bg)] border-[var(--admin-card-border)] shadow-sm", className)}>
       <CardHeader className="pb-2 flex-row items-center justify-between space-y-0">
-        <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">{label}</p>
-        {icon && <span className="text-slate-400">{icon}</span>}
+        <p className="text-xs font-medium text-[var(--admin-text-secondary)] uppercase tracking-wide">{label}</p>
+        {icon && <span className="text-[var(--admin-text-secondary)]">{icon}</span>}
       </CardHeader>
       <CardContent>
-        <p className="text-2xl font-bold text-slate-900">{value}</p>
+        <p className="text-2xl font-bold text-[var(--admin-text-primary)]">{value}</p>
         {trend && (
           <div className="mt-1">
             <TrendBadge trend={trend} />

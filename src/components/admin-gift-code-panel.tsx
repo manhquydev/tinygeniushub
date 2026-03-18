@@ -84,8 +84,8 @@ function GenerateFormPanel({
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 space-y-3">
-      <h2 className="text-sm font-semibold text-slate-700">Tạo mã quà tặng</h2>
+    <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-4 space-y-3">
+      <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Tạo mã quà tặng</h2>
       {error && <p className="text-xs text-rose-600">{error}</p>}
       <form onSubmit={(e) => void handleSubmit(e)} className="space-y-3">
         <div className="grid gap-3 sm:grid-cols-2">
@@ -138,8 +138,8 @@ export function AdminGiftCodePanel({ initialCodes }: { initialCodes: GiftCode[] 
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Gift size={18} className="text-slate-600" />
-          <h1 className="text-sm font-bold uppercase tracking-wide text-slate-600">Gift Codes</h1>
+          <Gift size={18} className="text-[var(--admin-text-secondary)]" />
+          <h1 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Gift Codes</h1>
           <Badge variant="secondary">{codes.length}</Badge>
         </div>
         <Button size="sm" className="h-8 text-xs gap-1 bg-teal-600 hover:bg-teal-700" onClick={() => setShowForm(true)}>
@@ -150,10 +150,10 @@ export function AdminGiftCodePanel({ initialCodes }: { initialCodes: GiftCode[] 
 
       {showForm && <GenerateFormPanel onGenerated={handleGenerated} onCancel={() => setShowForm(false)} />}
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Code</TableHead>
               <TableHead className="text-xs">Plan</TableHead>
               <TableHead className="text-xs">Duration</TableHead>
@@ -165,7 +165,7 @@ export function AdminGiftCodePanel({ initialCodes }: { initialCodes: GiftCode[] 
           <TableBody>
             {codes.length === 0 && (
               <TableRow>
-                <TableCell colSpan={6} className="text-xs text-center text-slate-500 py-8">Chưa có mã nào.</TableCell>
+                <TableCell colSpan={6} className="text-xs text-center text-[var(--admin-text-secondary)] py-8">Chưa có mã nào.</TableCell>
               </TableRow>
             )}
             {codes.map((c) => {
@@ -177,7 +177,7 @@ export function AdminGiftCodePanel({ initialCodes }: { initialCodes: GiftCode[] 
                   <TableCell className="text-xs">{c.durationDays}d</TableCell>
                   <TableCell className="text-xs">{formatDate(c.expiresAt)}</TableCell>
                   <TableCell><Badge variant={status.variant} className="text-xs">{status.label}</Badge></TableCell>
-                  <TableCell className="text-xs text-slate-500">{c.createdBy}</TableCell>
+                  <TableCell className="text-xs text-[var(--admin-text-secondary)]">{c.createdBy}</TableCell>
                 </TableRow>
               );
             })}

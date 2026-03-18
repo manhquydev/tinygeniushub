@@ -117,8 +117,8 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Building2 size={18} className="text-slate-600" />
-          <h1 className="text-sm font-bold uppercase tracking-wide text-slate-600">Tổ chức (B2B)</h1>
+          <Building2 size={18} className="text-[var(--admin-text-secondary)]" />
+          <h1 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Tổ chức (B2B)</h1>
           <Badge variant="secondary">{orgs.length}</Badge>
         </div>
         <Button size="sm" className="h-8 text-xs gap-1 bg-teal-600 hover:bg-teal-700" onClick={() => { setShowCreateForm(true); setSelectedOrgId(null); }}>
@@ -128,8 +128,8 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
       </div>
 
       {showCreateForm && (
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 space-y-3">
-          <h2 className="text-sm font-semibold text-slate-700">Tạo tổ chức mới</h2>
+        <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-4 space-y-3">
+          <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Tạo tổ chức mới</h2>
           {error && <p className="text-xs text-rose-600">{error}</p>}
           <form onSubmit={(e) => void handleCreate(e)} className="space-y-3">
             <div className="grid gap-3 sm:grid-cols-2">
@@ -150,7 +150,7 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
               <div className="grid gap-1.5">
                 <Label htmlFor="org-color">Màu thương hiệu</Label>
                 <div className="flex gap-2 items-center">
-                  <input type="color" value={form.primaryColor} onChange={(e) => setForm((p) => ({ ...p, primaryColor: e.target.value }))} className="h-9 w-10 rounded border border-slate-200 p-0.5 cursor-pointer" />
+                  <input type="color" value={form.primaryColor} onChange={(e) => setForm((p) => ({ ...p, primaryColor: e.target.value }))} className="h-9 w-10 rounded border border-[var(--admin-card-border)] p-0.5 cursor-pointer" />
                   <Input id="org-color" type="text" value={form.primaryColor} onChange={(e) => setForm((p) => ({ ...p, primaryColor: e.target.value }))} className="flex-1" />
                 </div>
               </div>
@@ -179,10 +179,10 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
         </div>
       )}
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Tổ chức</TableHead>
               <TableHead className="text-xs">Domain</TableHead>
               <TableHead className="text-xs">Billing</TableHead>
@@ -193,7 +193,7 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
           <TableBody>
             {orgs.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-xs text-slate-500 py-8">Chưa có tổ chức nào.</TableCell>
+                <TableCell colSpan={5} className="text-center text-xs text-[var(--admin-text-secondary)] py-8">Chưa có tổ chức nào.</TableCell>
               </TableRow>
             )}
             {orgs.map((org) => (
@@ -202,14 +202,14 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
                   <div className="flex items-center gap-2">
                     {org.primaryColor && <span className="inline-block h-3 w-3 shrink-0 rounded-full" style={{ background: org.primaryColor }} />}
                     <div>
-                      <p className="text-sm font-semibold text-slate-800">{org.name}</p>
-                      <p className="text-xs text-slate-500">{org.slug}</p>
+                      <p className="text-sm font-semibold text-[var(--admin-text-primary)]">{org.name}</p>
+                      <p className="text-xs text-[var(--admin-text-secondary)]">{org.slug}</p>
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="text-xs text-slate-500">{org.domain ?? "—"}</TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{org.domain ?? "—"}</TableCell>
                 <TableCell className="text-xs">
-                  {org.billingStart ? <span>{formatDate(org.billingStart)} → {formatDate(org.billingEnd)}</span> : <span className="text-slate-400">Chưa thiết lập</span>}
+                  {org.billingStart ? <span>{formatDate(org.billingStart)} → {formatDate(org.billingEnd)}</span> : <span className="text-[var(--admin-text-muted)]">Chưa thiết lập</span>}
                 </TableCell>
                 <TableCell>
                   <Badge variant="outline" className={cn("text-xs border", org.isActive ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-rose-50 text-rose-700 border-rose-200")}>
@@ -233,29 +233,29 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
       </div>
 
       {selectedOrg && (
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 space-y-3">
+        <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-4 space-y-3">
           <div className="flex items-center gap-2">
-            <Building2 size={15} className="text-slate-600" />
-            <h2 className="text-sm font-semibold text-slate-700">{selectedOrg.name}</h2>
+            <Building2 size={15} className="text-[var(--admin-text-secondary)]" />
+            <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">{selectedOrg.name}</h2>
           </div>
           <div className="grid gap-2 sm:grid-cols-2">
-            <div className="flex items-center gap-2 text-xs text-slate-600">
+            <div className="flex items-center gap-2 text-xs text-[var(--admin-text-secondary)]">
               <Globe size={13} />
               <span className="font-medium">Domain:</span>
               <span>{selectedOrg.domain ?? "—"}</span>
             </div>
-            <div className="flex items-center gap-2 text-xs text-slate-600">
+            <div className="flex items-center gap-2 text-xs text-[var(--admin-text-secondary)]">
               <Palette size={13} />
               <span className="font-medium">Màu:</span>
               {selectedOrg.primaryColor && <span className="inline-block h-3 w-3 rounded" style={{ background: selectedOrg.primaryColor }} />}
               <span>{selectedOrg.primaryColor ?? "—"}</span>
             </div>
-            <div className="flex items-center gap-2 text-xs text-slate-600">
+            <div className="flex items-center gap-2 text-xs text-[var(--admin-text-secondary)]">
               <Calendar size={13} />
               <span className="font-medium">Billing:</span>
               <span>{selectedOrg.billingStart ? `${formatDate(selectedOrg.billingStart)} → ${formatDate(selectedOrg.billingEnd)}` : "Chưa thiết lập"}</span>
             </div>
-            <div className="flex items-center gap-2 text-xs text-slate-600">
+            <div className="flex items-center gap-2 text-xs text-[var(--admin-text-secondary)]">
               <span className="font-medium">Ngày tạo:</span>
               <span>{formatDate(selectedOrg.createdAt)}</span>
             </div>
@@ -264,7 +264,7 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
             // eslint-disable-next-line @next/next/no-img-element
             <img src={selectedOrg.logoUrl} alt="Logo" className="h-12 rounded" />
           )}
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-[var(--admin-text-secondary)]">
             Để quản lý thành viên, dùng API: <code>POST /api/admin/organizations/{selectedOrg.id}/members</code>
           </p>
         </div>

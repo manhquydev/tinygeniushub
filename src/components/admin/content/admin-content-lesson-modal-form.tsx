@@ -60,7 +60,7 @@ export function AdminContentLessonModalForm(props: AdminContentLessonModalFormPr
             </div>
           </div>
         ) : (
-          <div className="grid gap-2 rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600">
+          <div className="grid gap-2 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-2 text-xs text-[var(--admin-text-secondary)]">
             <p><span className="font-semibold">Thứ tự:</span> {props.editingLesson?.orderNo ?? "-"}</p>
             <p><span className="font-semibold">Slug:</span> {props.editingLesson?.slug ?? "-"}</p>
           </div>
@@ -81,7 +81,7 @@ export function AdminContentLessonModalForm(props: AdminContentLessonModalFormPr
             <Label htmlFor="lesson-minutes">Số phút</Label>
             <Input id="lesson-minutes" value={props.form.estimatedMinutes} onChange={(event) => props.onFormChange((current) => ({ ...current, estimatedMinutes: event.target.value }))} type="number" min={1} max={180} required />
           </div>
-          <div className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
+          <div className="flex items-center gap-2 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] px-3 py-2">
             <Checkbox
               id="lesson-trial"
               checked={props.form.trialEnabled}
@@ -97,14 +97,14 @@ export function AdminContentLessonModalForm(props: AdminContentLessonModalFormPr
         </div>
 
         {props.mode === "edit" && props.editingLessonId ? (
-          <div className="grid gap-2 rounded-lg border border-slate-200 bg-slate-50 p-3">
-            <p className="text-xs font-semibold text-slate-600">Video Bunny Stream</p>
+          <div className="grid gap-2 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3">
+            <p className="text-xs font-semibold text-[var(--admin-text-secondary)]">Video Bunny Stream</p>
             {props.editingLessonBunny?.bunnyVideoId ? (
-              <p className="text-xs text-slate-600">
+              <p className="text-xs text-[var(--admin-text-secondary)]">
                 ID: <code>{props.editingLessonBunny.bunnyVideoId}</code> · Trạng thái: <strong>{props.editingLessonBunny.videoStatus}</strong>
               </p>
             ) : (
-              <p className="text-xs text-slate-500">Chưa có video Bunny</p>
+              <p className="text-xs text-[var(--admin-text-muted)]">Chưa có video Bunny</p>
             )}
 
             {props.editingLessonBunny?.bunnyVideoId ? (

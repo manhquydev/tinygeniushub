@@ -21,7 +21,7 @@ export function AdminPageHeader({
   return (
     <header
       className={cn(
-        "relative mb-6 rounded-xl border border-slate-200 bg-white overflow-hidden",
+        "relative mb-6 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] overflow-hidden",
         "shadow-sm",
         className
       )}
@@ -40,9 +40,9 @@ export function AdminPageHeader({
             {icon && (
               <span className="shrink-0 text-teal-600">{icon}</span>
             )}
-            <h1 className="text-xl font-semibold text-slate-900 leading-tight">{title}</h1>
+            <h1 className="text-xl font-semibold text-[var(--admin-text-primary)] leading-tight">{title}</h1>
           </div>
-          <p className="text-sm text-slate-500 mt-1">{description}</p>
+          <p className="text-sm text-[var(--admin-text-secondary)] mt-1">{description}</p>
         </div>
         {actions && (
           <div className="shrink-0 flex items-center gap-2">{actions}</div>

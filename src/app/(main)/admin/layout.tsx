@@ -28,25 +28,25 @@ export default async function AdminLayout({ children }: { children: ReactNode })
       <AdminShellNav role={role} />
 
       <SidebarInset style={{ backgroundColor: "var(--admin-content-bg)" }}>
-        <header className="flex h-12 items-center gap-2 px-3 border-b border-slate-200 bg-white sticky top-0 z-10 md:h-14 md:gap-3 md:px-4">
-          <SidebarTrigger className="shrink-0 text-slate-500 hover:text-slate-900 hover:bg-slate-100 -ml-1" />
+        <header className="flex h-12 items-center gap-2 px-3 border-b border-[var(--admin-card-border)] bg-[var(--admin-header-bg)] sticky top-0 z-10 md:h-14 md:gap-3 md:px-4">
+          <SidebarTrigger className="shrink-0 text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-sidebar-accent)] -ml-1" />
           <Separator orientation="vertical" className="h-5 shrink-0" />
-          <div className="flex min-w-0 items-center gap-2 text-slate-600">
+          <div className="flex min-w-0 items-center gap-2">
             <ShieldCheck size={14} className="shrink-0 text-teal-600" />
-            <p className="truncate text-sm font-medium text-slate-800">
+            <p className="truncate text-sm font-medium text-[var(--admin-text-primary)]">
               Quản trị
             </p>
           </div>
 
           <div className="ml-auto flex shrink-0 items-center gap-2">
-            <span className="hidden sm:inline-flex items-center rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700 border border-teal-200">
+            <span className="hidden sm:inline-flex items-center rounded-full bg-teal-900/30 px-2.5 py-0.5 text-xs font-medium text-teal-400 border border-teal-800">
               {roleLabel}
             </span>
-            <span className="hidden lg:inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600">
+            <span className="hidden lg:inline-flex items-center rounded-full bg-[var(--admin-sidebar-accent)] px-2.5 py-0.5 text-xs text-[var(--admin-text-secondary)]">
               {todayLabel}
             </span>
             <div className="hidden md:flex flex-col items-end">
-              <span className="text-xs font-medium text-slate-700 leading-tight">{session.user.email}</span>
+              <span className="text-xs font-medium text-[var(--admin-text-primary)] leading-tight">{session.user.email}</span>
             </div>
           </div>
         </header>

@@ -83,12 +83,12 @@ export function AdminFooterSocialLinksPanel() {
   return (
     <div className="space-y-3">
       <div>
-        <h3 className="text-sm font-bold uppercase tracking-wide text-slate-600">Footer social links</h3>
-        <p className="text-xs text-slate-500">Đổi URL đích cho các nền tảng mạng xã hội ở chân trang.</p>
+        <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Footer social links</h3>
+        <p className="text-xs text-[var(--admin-text-secondary)]">Đổi URL đích cho các nền tảng mạng xã hội ở chân trang.</p>
       </div>
 
       {loading ? (
-        <p className="text-xs text-slate-500">Đang tải...</p>
+        <p className="text-xs text-[var(--admin-text-secondary)]">Đang tải...</p>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2">
           {FOOTER_SOCIAL_FIELDS.map((field) => (
@@ -112,7 +112,7 @@ export function AdminFooterSocialLinksPanel() {
       )}
 
       {error ? <p className="text-xs text-rose-600">{error}</p> : null}
-      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+      {info ? <p className="text-xs text-[var(--admin-text-secondary)]">{info}</p> : null}
     </div>
   );
 }

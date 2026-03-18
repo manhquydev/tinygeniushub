@@ -12,8 +12,8 @@ type AdminContentActivityFieldsMcqProps = {
 
 export function AdminContentActivityFieldsMcq(props: AdminContentActivityFieldsMcqProps) {
   return (
-    <div className="grid gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3">
-      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">4 lựa chọn</p>
+    <div className="grid gap-2 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3">
+      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--admin-text-secondary)]">4 lựa chọn</p>
       <RadioGroup
         value={props.form.mcqCorrectChoiceId}
         onValueChange={(value) => props.onFormChange((current) => ({ ...current, mcqCorrectChoiceId: value }))}
@@ -36,7 +36,7 @@ export function AdminContentActivityFieldsMcq(props: AdminContentActivityFieldsM
             />
             <div className="flex items-center gap-2">
               <RadioGroupItem value={choice.id} id={`mcq-${choice.id}`} />
-              <Label htmlFor={`mcq-${choice.id}`} className="text-xs font-semibold text-slate-600 cursor-pointer">Đáp án đúng</Label>
+              <Label htmlFor={`mcq-${choice.id}`} className="text-xs font-semibold text-[var(--admin-text-secondary)] cursor-pointer">Đáp án đúng</Label>
             </div>
           </div>
         ))}

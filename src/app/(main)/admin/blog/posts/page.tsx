@@ -30,7 +30,7 @@ function getFirstValue(value: string | string[] | undefined) {
 function getStatusPillClass(status: BlogPostStatus) {
   switch (status) {
     case "DRAFT":
-      return "border-slate-200 bg-slate-100 text-slate-700";
+      return "border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] text-[var(--admin-text-secondary)]";
     case "REVIEW":
       return "border-amber-200 bg-amber-50 text-amber-700";
     case "PUBLISHED":
@@ -40,7 +40,7 @@ function getStatusPillClass(status: BlogPostStatus) {
     case "ARCHIVED":
       return "border-rose-200 bg-rose-50 text-rose-700";
     default:
-      return "border-slate-200 bg-slate-100 text-slate-700";
+      return "border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] text-[var(--admin-text-secondary)]";
   }
 }
 
@@ -115,11 +115,11 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-slate-200 bg-white p-4">
+      <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-xl font-bold text-slate-900">Quản lý bài viết</h1>
-            <p className="mt-1 text-sm text-slate-500">Lọc theo trạng thái hoặc tiêu đề.</p>
+            <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Quản lý bài viết</h1>
+            <p className="mt-1 text-sm text-[var(--admin-text-muted)]">Lọc theo trạng thái hoặc tiêu đề.</p>
           </div>
           <Button asChild className="bg-teal-600 hover:bg-teal-700">
             <Link href="/admin/blog/posts/new">Viết bài mới</Link>
@@ -127,7 +127,7 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
         </div>
 
         <form method="GET" className="mt-4 grid gap-3 md:grid-cols-[220px_1fr_auto]">
-          <select name="status" defaultValue={status ?? ""} className="h-10 rounded-lg border border-slate-200 px-3 text-sm">
+          <select name="status" defaultValue={status ?? ""} className="h-10 rounded-lg border border-[var(--admin-card-border)] px-3 text-sm">
             <option value="">Tất cả trạng thái</option>
             <option value="DRAFT">{getStatusLabel("DRAFT")}</option>
             <option value="REVIEW">{getStatusLabel("REVIEW")}</option>
@@ -135,15 +135,15 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
             <option value="SCHEDULED">{getStatusLabel("SCHEDULED")}</option>
             <option value="ARCHIVED">{getStatusLabel("ARCHIVED")}</option>
           </select>
-          <input type="search" name="q" defaultValue={q} placeholder="Tìm tiêu đề" className="h-10 rounded-lg border border-slate-200 px-3 text-sm" />
+          <input type="search" name="q" defaultValue={q} placeholder="Tìm tiêu đề" className="h-10 rounded-lg border border-[var(--admin-card-border)] px-3 text-sm" />
           <Button type="submit" variant="outline">Lọc</Button>
         </form>
       </div>
 
-      <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
+      <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Ảnh bìa</TableHead>
               <TableHead className="text-xs">Tiêu đề</TableHead>
               <TableHead className="text-xs">Trạng thái</TableHead>
@@ -158,12 +158,12 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
             {posts.map((post) => (
               <TableRow key={post.id}>
                 <TableCell>
-                  <div className="relative h-[40px] w-[60px] overflow-hidden rounded-md bg-slate-100">
+                  <div className="relative h-[40px] w-[60px] overflow-hidden rounded-md bg-[var(--admin-sidebar-accent)]">
                     {post.coverImageUrl ? <Image src={post.coverImageUrl} alt={post.titleVi} fill className="object-cover" sizes="60px" /> : null}
                   </div>
                 </TableCell>
                 <TableCell>
-                  <Link href={`/admin/blog/posts/${post.id}/edit`} className="text-sm font-semibold text-slate-900 hover:text-teal-700">
+                  <Link href={`/admin/blog/posts/${post.id}/edit`} className="text-sm font-semibold text-[var(--admin-text-primary)] hover:text-teal-700">
                     {post.titleVi}
                   </Link>
                 </TableCell>
@@ -172,26 +172,26 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
                     {getStatusLabel(post.status)}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-xs text-slate-600">{post.category.nameVi}</TableCell>
-                <TableCell className="text-xs text-slate-600">{post.author.displayName}</TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{post.category.nameVi}</TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{post.author.displayName}</TableCell>
                 <TableCell className="text-xs">{post.viewCount}</TableCell>
                 <TableCell className="text-xs">{new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }).format(post.createdAt)}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
                     <Link href={`/admin/blog/posts/${post.id}/edit`} className="text-xs font-semibold text-teal-700 hover:text-teal-800">Sửa</Link>
-                    <Link href={`/blog/${post.slug}`} className="text-xs font-semibold text-slate-600 hover:text-slate-900" target="_blank" rel="noreferrer">Xem</Link>
+                    <Link href={`/blog/${post.slug}`} className="text-xs font-semibold text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]" target="_blank" rel="noreferrer">Xem</Link>
                   </div>
                 </TableCell>
               </TableRow>
             ))}
             {posts.length === 0 ? (
-              <TableRow><TableCell colSpan={8} className="text-center text-sm text-slate-500 py-8">Không có bài viết phù hợp.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={8} className="text-center text-sm text-[var(--admin-text-muted)] py-8">Không có bài viết phù hợp.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-3">
         <div className="flex gap-2">
           <Button asChild variant="outline" size="sm" className={cn(currentPage === 1 && "pointer-events-none opacity-50")}>
             <Link href={buildHref(Math.max(1, currentPage - 1), status, q || undefined)}>Trước</Link>
@@ -207,7 +207,7 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
               href={buildHref(page, status, q || undefined)}
               className={cn(
                 "inline-flex min-h-8 min-w-8 items-center justify-center rounded-lg border px-2.5 text-xs font-semibold",
-                page === currentPage ? "border-teal-300 bg-teal-50 text-teal-700" : "border-slate-200 text-slate-600 hover:bg-slate-50",
+                page === currentPage ? "border-teal-300 bg-teal-50 text-teal-700" : "border-[var(--admin-card-border)] text-[var(--admin-text-secondary)] hover:bg-[var(--admin-sidebar-accent)]",
               )}
             >
               {page}

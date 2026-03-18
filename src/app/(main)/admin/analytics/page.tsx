@@ -93,8 +93,8 @@ export default async function AdminAnalyticsPage() {
             </AdminSectionCard>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white p-4">
-            <h3 className="text-sm font-semibold text-slate-700 mb-3">Phân bố chuỗi ngày học</h3>
+          <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
+            <h3 className="text-sm font-semibold text-[var(--admin-text-secondary)] mb-3">Phân bố chuỗi ngày học</h3>
             <div className="space-y-2">
               {(
                 [
@@ -107,11 +107,11 @@ export default async function AdminAnalyticsPage() {
                 const percent = asPercent(value, streakTotal);
                 return (
                   <div key={key} className="space-y-1">
-                    <div className="flex items-center justify-between text-xs text-slate-600">
+                    <div className="flex items-center justify-between text-xs text-[var(--admin-text-secondary)]">
                       <span>{label}</span>
                       <span>{value} ({percent}%)</span>
                     </div>
-                    <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+                    <div className="h-2 overflow-hidden rounded-full bg-[var(--admin-sidebar-accent)]">
                       <div
                         className={cn("h-full rounded-full transition-all", streakBarClass(key))}
                         style={{ width: `${percent}%` }}

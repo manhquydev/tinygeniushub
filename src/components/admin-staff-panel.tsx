@@ -49,7 +49,7 @@ export function AdminStaffPanel() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center p-12 text-slate-500">
+      <div className="flex items-center justify-center p-12 text-[var(--admin-text-secondary)]">
         <Loader2 size={20} className="mr-2 animate-spin text-teal-500" />
         Đang tải danh sách nhân sự...
       </div>
@@ -68,10 +68,10 @@ export function AdminStaffPanel() {
     <div className="space-y-6">
       <header className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-bold tracking-tight text-[var(--admin-text-primary)]">
             Quản lý Nhân sự
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-[var(--admin-text-secondary)]">
             Danh sách tài khoản Admin và quyền hạn trong hệ thống.
           </p>
         </div>
@@ -84,10 +84,10 @@ export function AdminStaffPanel() {
         </button>
       </header>
 
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div className="overflow-hidden rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] shadow-sm">
         <table className="w-full text-left text-sm">
-          <thead className="border-b border-slate-200 bg-slate-50">
-            <tr className="text-xs uppercase tracking-wider text-slate-500">
+          <thead className="border-b border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)]">
+            <tr className="text-xs uppercase tracking-wider text-[var(--admin-text-secondary)]">
               <th className="px-4 py-3 font-semibold">Tài khoản</th>
               <th className="px-4 py-3 font-semibold">Vai trò</th>
               <th className="px-4 py-3 font-semibold">Trạng thái</th>
@@ -95,12 +95,12 @@ export function AdminStaffPanel() {
               <th className="px-4 py-3 text-right font-semibold">Thao tác</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-[var(--admin-card-border)]">
             {users.map((u) => (
-              <tr key={u.id} className="hover:bg-slate-50/50">
+              <tr key={u.id} className="hover:bg-[var(--admin-sidebar-accent)]/50">
                 <td className="px-4 py-3">
-                  <p className="font-semibold text-slate-900">{u.displayName}</p>
-                  <p className="text-xs text-slate-500">{u.email}</p>
+                  <p className="font-semibold text-[var(--admin-text-primary)]">{u.displayName}</p>
+                  <p className="text-xs text-[var(--admin-text-secondary)]">{u.email}</p>
                 </td>
                 <td className="px-4 py-3">
                   <RoleBadge role={u.role} />
@@ -118,7 +118,7 @@ export function AdminStaffPanel() {
                     </span>
                   )}
                 </td>
-                <td className="px-4 py-3 text-xs text-slate-500">
+                <td className="px-4 py-3 text-xs text-[var(--admin-text-secondary)]">
                   {u.lastLoginAt
                     ? new Date(u.lastLoginAt).toLocaleString("vi-VN", {
                         dateStyle: "short",
@@ -141,7 +141,7 @@ export function AdminStaffPanel() {
               <tr>
                 <td
                   colSpan={5}
-                  className="p-8 text-center text-sm text-slate-500"
+                  className="p-8 text-center text-sm text-[var(--admin-text-secondary)]"
                 >
                   Chưa có tài khoản quản trị nào.
                 </td>
@@ -190,7 +190,7 @@ function RoleBadge({ role }: { role: AdminRole }) {
 
   return (
     <span
-      className={`inline-flex rounded-md px-2 py-1 text-xs font-semibold ${styles[role] ?? "bg-slate-100 text-slate-700"}`}
+      className={`inline-flex rounded-md px-2 py-1 text-xs font-semibold ${styles[role] ?? "bg-[var(--admin-sidebar-accent)] text-[var(--admin-text-secondary)]"}`}
     >
       {labels[role] ?? role}
     </span>
@@ -317,9 +317,9 @@ function EditStaffModal({
   return (
     <ModalShell title="Thiết lập tài khoản" onClose={onClose}>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="rounded-lg bg-slate-50 px-3 py-2 text-sm">
-          <span className="text-slate-500">Đang chỉnh sửa: </span>
-          <span className="font-semibold text-slate-900">{user.email}</span>
+        <div className="rounded-lg bg-[var(--admin-sidebar-accent)] px-3 py-2 text-sm">
+          <span className="text-[var(--admin-text-secondary)]">Đang chỉnh sửa: </span>
+          <span className="font-semibold text-[var(--admin-text-primary)]">{user.email}</span>
         </div>
         <FormField label="Tên hiển thị">
           <input
@@ -346,11 +346,11 @@ function EditStaffModal({
             id="isActiveCheckbox"
             checked={isActive}
             onChange={(e) => setIsActive(e.target.checked)}
-            className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-600"
+            className="h-4 w-4 rounded border-[var(--admin-card-border)] text-teal-600 focus:ring-teal-600"
           />
           <label
             htmlFor="isActiveCheckbox"
-            className="cursor-pointer text-sm font-medium text-slate-700"
+            className="cursor-pointer text-sm font-medium text-[var(--admin-text-secondary)]"
           >
             Tài khoản đang hoạt động
           </label>
@@ -385,12 +385,12 @@ function ModalShell({
 }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-xl">
-        <div className="flex items-center justify-between border-b border-slate-100 px-6 py-4">
-          <h2 className="text-base font-semibold text-slate-900">{title}</h2>
+      <div className="w-full max-w-md overflow-hidden rounded-2xl bg-[var(--admin-card-bg)] shadow-xl">
+        <div className="flex items-center justify-between border-b border-[var(--admin-card-border)] px-6 py-4">
+          <h2 className="text-base font-semibold text-[var(--admin-text-primary)]">{title}</h2>
           <button
             onClick={onClose}
-            className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+            className="rounded-lg p-1 text-[var(--admin-text-muted)] hover:bg-[var(--admin-sidebar-accent)] hover:text-[var(--admin-text-secondary)]"
           >
             <X size={18} />
           </button>
@@ -410,7 +410,7 @@ function FormField({
 }) {
   return (
     <div className="space-y-1">
-      <label className="text-sm font-medium text-slate-700">{label}</label>
+      <label className="text-sm font-medium text-[var(--admin-text-secondary)]">{label}</label>
       {children}
     </div>
   );

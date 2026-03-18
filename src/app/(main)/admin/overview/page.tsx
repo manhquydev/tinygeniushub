@@ -58,7 +58,7 @@ export default async function AdminOverviewPage() {
         title="Module completeness map"
         icon={<Layers3 size={16} />}
         headerActions={
-          <div className="flex items-center gap-3 text-xs text-slate-500">
+          <div className="flex items-center gap-3 text-xs text-[var(--admin-text-muted)]">
             <span className="text-emerald-600 font-medium">{moduleHealth.complete} complete</span>
             <span className="text-amber-600 font-medium">{moduleHealth.partial} partial</span>
             <span className="text-rose-600 font-medium">{moduleHealth.gap} gap</span>
@@ -74,9 +74,9 @@ export default async function AdminOverviewPage() {
         ) : (
           <div className="flex flex-wrap gap-2">
             {subscriptionsByStatus.map(([status, count]) => (
-              <div key={status} className="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2">
+              <div key={status} className="flex items-center gap-2 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] px-3 py-2">
                 <AdminStatusBadge status={status} variant="subscription" />
-                <span className="text-sm font-bold text-slate-700">{count}</span>
+                <span className="text-sm font-bold text-[var(--admin-text-secondary)]">{count}</span>
               </div>
             ))}
           </div>
@@ -89,9 +89,9 @@ export default async function AdminOverviewPage() {
         ) : (
           <div className="flex flex-wrap gap-2">
             {webhooksByStatus.map(([status, count]) => (
-              <div key={status} className="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2">
+              <div key={status} className="flex items-center gap-2 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] px-3 py-2">
                 <AdminStatusBadge status={status} variant="webhook" />
-                <span className="text-sm font-bold text-slate-700">{count}</span>
+                <span className="text-sm font-bold text-[var(--admin-text-secondary)]">{count}</span>
               </div>
             ))}
           </div>

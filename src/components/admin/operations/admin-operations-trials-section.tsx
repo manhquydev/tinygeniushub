@@ -14,16 +14,16 @@ type AdminOperationsTrialsSectionProps = {
 export function AdminOperationsTrialsSection(props: AdminOperationsTrialsSectionProps) {
   return (
     <div className="space-y-3">
-      <h3 className="text-sm font-semibold text-slate-700">Bài học dùng thử</h3>
+      <h3 className="text-sm font-semibold text-[var(--admin-text-primary)]">Bài học dùng thử</h3>
       <div className="space-y-2">
         {props.lessons.map((lesson) => (
-          <div key={lesson.id} className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2">
+          <div key={lesson.id} className="flex items-center justify-between gap-3 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-3 py-2">
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-medium text-slate-800 truncate">{lesson.title}</p>
-              <p className="text-xs text-slate-500">{lesson.slug} - {lesson.trackCode}</p>
+              <p className="text-sm font-medium text-[var(--admin-text-primary)] truncate">{lesson.title}</p>
+              <p className="text-xs text-[var(--admin-text-secondary)]">{lesson.slug} - {lesson.trackCode}</p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <Badge variant="outline" className={lesson.trialEnabled ? "bg-emerald-50 text-emerald-700 border-emerald-200 text-xs" : "bg-slate-100 text-slate-600 border-slate-200 text-xs"}>
+              <Badge variant="outline" className={lesson.trialEnabled ? "bg-emerald-50 text-emerald-700 border-emerald-200 text-xs" : "bg-slate-800 text-slate-400 border-slate-700 text-xs"}>
                 {lesson.trialEnabled ? "BẬT" : "TẮT"}
               </Badge>
               <Button

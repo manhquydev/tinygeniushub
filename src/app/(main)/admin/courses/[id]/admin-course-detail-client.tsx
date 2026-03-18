@@ -95,7 +95,7 @@ function VideoStatusBadge({ status }: { status: string }) {
     );
   }
   return (
-    <span className="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-500">
+    <span className="inline-flex rounded-full border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] px-2 py-0.5 text-xs font-semibold text-[var(--admin-text-muted)]">
       {getVideoStatusLabel(status)}
     </span>
   );
@@ -259,11 +259,11 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
   return (
     <div className="space-y-6">
       {/* Header */}
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <section className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
         <div className="mb-4">
           <Link
             href="/admin/courses"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-slate-800"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
           >
             <ArrowLeft size={14} />
             Khóa học
@@ -271,16 +271,16 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
         </div>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">{course.title}</h1>
-            <p className="mt-1 text-sm text-slate-500">{course.slug}</p>
-            <p className="mt-2 text-sm text-slate-600">{course.description}</p>
+            <h1 className="text-3xl font-black tracking-[-0.02em] text-[var(--admin-text-primary)]">{course.title}</h1>
+            <p className="mt-1 text-sm text-[var(--admin-text-muted)]">{course.slug}</p>
+            <p className="mt-2 text-sm text-[var(--admin-text-secondary)]">{course.description}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <div className="text-right text-sm text-slate-600">
+            <div className="text-right text-sm text-[var(--admin-text-secondary)]">
               <div>
                 <span className="font-semibold">{new Intl.NumberFormat("vi-VN").format(salePrice)}đ</span>
                 {hasDiscount ? (
-                  <span className="ml-2 text-xs text-slate-500 line-through">
+                  <span className="ml-2 text-xs text-[var(--admin-text-muted)] line-through">
                     {new Intl.NumberFormat("vi-VN").format(listPrice)}đ
                   </span>
                 ) : null}
@@ -303,25 +303,25 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
 
         {/* Stats */}
         <div className="mt-4 flex flex-wrap gap-4">
-          <div className="inline-flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-1.5 text-sm">
-            <BookOpen size={14} className="text-slate-500" />
-            <span className="font-semibold text-slate-700">{lessons.length}</span>
-            <span className="text-slate-500">bài học</span>
+          <div className="inline-flex items-center gap-2 rounded-xl bg-[var(--admin-sidebar-accent)] px-3 py-1.5 text-sm">
+            <BookOpen size={14} className="text-[var(--admin-text-muted)]" />
+            <span className="font-semibold text-[var(--admin-text-secondary)]">{lessons.length}</span>
+            <span className="text-[var(--admin-text-muted)]">bài học</span>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-1.5 text-sm">
-            <span className="font-semibold text-slate-700">{totalMinutes}</span>
-            <span className="text-slate-500">phút học</span>
+          <div className="inline-flex items-center gap-2 rounded-xl bg-[var(--admin-sidebar-accent)] px-3 py-1.5 text-sm">
+            <span className="font-semibold text-[var(--admin-text-secondary)]">{totalMinutes}</span>
+            <span className="text-[var(--admin-text-muted)]">phút học</span>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-1.5 text-sm">
-            <Users size={14} className="text-slate-500" />
-            <span className="font-semibold text-slate-700">{course._count.enrollments}</span>
-            <span className="text-slate-500">học viên</span>
+          <div className="inline-flex items-center gap-2 rounded-xl bg-[var(--admin-sidebar-accent)] px-3 py-1.5 text-sm">
+            <Users size={14} className="text-[var(--admin-text-muted)]" />
+            <span className="font-semibold text-[var(--admin-text-secondary)]">{course._count.enrollments}</span>
+            <span className="text-[var(--admin-text-muted)]">học viên</span>
           </div>
           <span
             className={`inline-flex items-center rounded-xl border px-3 py-1.5 text-sm font-semibold ${
               course.isPublished
                 ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                : "border-slate-200 bg-slate-100 text-slate-600"
+                : "border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] text-[var(--admin-text-secondary)]"
             }`}
           >
             {getPublishStatusLabel(course.isPublished)}
@@ -330,7 +330,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
       </section>
 
       {/* Tabs */}
-      <div className="flex gap-1 rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
+      <div className="flex gap-1 rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-1 shadow-sm">
         {(["lessons", "enrollments"] as Tab[]).map((t) => (
           <button
             key={t}
@@ -339,7 +339,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
             className={`flex-1 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
               tab === t
                 ? "bg-slate-900 text-white"
-                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                : "text-[var(--admin-text-secondary)] hover:bg-[var(--admin-sidebar-accent)] hover:text-[var(--admin-text-primary)]"
             }`}
           >
             {t === "lessons" ? `Bài học (${lessons.length})` : `Học viên (${course._count.enrollments})`}
@@ -349,9 +349,9 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
 
       {/* Lessons Tab */}
       {tab === "lessons" ? (
-        <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
           <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-            <h2 className="text-lg font-black text-slate-900">Danh sách bài học</h2>
+            <h2 className="text-lg font-black text-[var(--admin-text-primary)]">Danh sách bài học</h2>
             <button
               type="button"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 disabled:opacity-50"
@@ -374,37 +374,37 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                 <button
                   type="button"
                   onClick={() => setShowPicker(false)}
-                  className="text-sm font-semibold text-slate-500 hover:text-slate-800"
+                  className="text-sm font-semibold text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
                 >
                   Đóng
                 </button>
               </div>
               <div className="relative mb-3">
-                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)]" />
                 <input
                   autoFocus
                   value={pickerSearch}
                   onChange={(e) => setPickerSearch(e.target.value)}
                   placeholder="Tìm bài học theo tên hoặc slug…"
-                  className="w-full rounded-xl border border-slate-300 bg-white py-2 pl-8 pr-3 text-sm focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+                  className="w-full rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] py-2 pl-8 pr-3 text-sm focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100"
                 />
               </div>
               <div className="max-h-64 space-y-1 overflow-y-auto">
                 {pickerLoading ? (
-                  <p className="py-4 text-center text-xs text-slate-500">Đang tải…</p>
+                  <p className="py-4 text-center text-xs text-[var(--admin-text-muted)]">Đang tải…</p>
                 ) : pickerResults.length === 0 ? (
-                  <p className="py-4 text-center text-xs text-slate-500">
+                  <p className="py-4 text-center text-xs text-[var(--admin-text-muted)]">
                     {pickerSearch ? "Không tìm thấy bài học." : "Nhập để tìm bài học."}
                   </p>
                 ) : (
                   pickerResults.map((lesson) => (
                     <div
                       key={lesson.id}
-                      className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2"
+                      className="flex items-center justify-between rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-3 py-2"
                     >
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-semibold text-slate-900">{lesson.title}</p>
-                        <p className="text-xs text-slate-500">
+                        <p className="truncate text-sm font-semibold text-[var(--admin-text-primary)]">{lesson.title}</p>
+                        <p className="text-xs text-[var(--admin-text-muted)]">
                           {trackLabel(lesson.unit.level.track.code)} › {lesson.unit.level.title} › {lesson.unit.title}
                           {" · "}
                           {lesson.estimatedMinutes}p · {lesson._count.activities} câu hỏi
@@ -427,22 +427,22 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
 
           {/* Lessons List */}
           {lessons.length === 0 ? (
-            <div className="rounded-2xl border-2 border-dashed border-slate-200 py-12 text-center">
-              <BookOpen size={32} className="mx-auto mb-3 text-slate-300" />
-              <p className="text-sm font-semibold text-slate-500">Chưa có bài học nào.</p>
-              <p className="mt-1 text-xs text-slate-400">Nhấn &quot;Thêm bài học&quot; để gán bài từ thư viện.</p>
+            <div className="rounded-2xl border-2 border-dashed border-[var(--admin-card-border)] py-12 text-center">
+              <BookOpen size={32} className="mx-auto mb-3 text-[var(--admin-text-muted)]" />
+              <p className="text-sm font-semibold text-[var(--admin-text-muted)]">Chưa có bài học nào.</p>
+              <p className="mt-1 text-xs text-[var(--admin-text-muted)]">Nhấn &quot;Thêm bài học&quot; để gán bài từ thư viện.</p>
             </div>
           ) : (
             <div className="space-y-2">
               {lessons.map((item, index) => (
                 <div
                   key={item.id}
-                  className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
+                  className="flex items-center gap-3 rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] px-4 py-3"
                 >
-                  <span className="w-6 shrink-0 text-center text-xs font-black text-slate-400">{item.orderNo}</span>
+                  <span className="w-6 shrink-0 text-center text-xs font-black text-[var(--admin-text-muted)]">{item.orderNo}</span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-slate-900">{item.lesson.title}</p>
-                    <p className="text-xs text-slate-500">
+                    <p className="truncate text-sm font-semibold text-[var(--admin-text-primary)]">{item.lesson.title}</p>
+                    <p className="text-xs text-[var(--admin-text-muted)]">
                       {item.lesson.slug} · {item.lesson.estimatedMinutes}p · {item.lesson._count.activities} câu hỏi
                     </p>
                   </div>
@@ -459,7 +459,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                       type="button"
                       disabled={index === 0}
                       onClick={() => handleMoveLesson(index, "up")}
-                      className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-200 hover:text-slate-700 disabled:opacity-30"
+                      className="rounded-lg p-1.5 text-[var(--admin-text-muted)] hover:bg-slate-200 hover:text-[var(--admin-text-secondary)] disabled:opacity-30"
                       title="Lên"
                     >
                       <ArrowUp size={14} />
@@ -468,7 +468,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                       type="button"
                       disabled={index === lessons.length - 1}
                       onClick={() => handleMoveLesson(index, "down")}
-                      className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-200 hover:text-slate-700 disabled:opacity-30"
+                      className="rounded-lg p-1.5 text-[var(--admin-text-muted)] hover:bg-slate-200 hover:text-[var(--admin-text-secondary)] disabled:opacity-30"
                       title="Xuống"
                     >
                       <ArrowDown size={14} />
@@ -477,7 +477,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                       type="button"
                       disabled={removing === item.lessonId}
                       onClick={() => handleRemoveLesson(item)}
-                      className="rounded-lg p-1.5 text-slate-400 hover:bg-red-100 hover:text-red-600 disabled:opacity-50"
+                      className="rounded-lg p-1.5 text-[var(--admin-text-muted)] hover:bg-red-100 hover:text-red-600 disabled:opacity-50"
                       title="Xóa khỏi khóa học"
                     >
                       <Trash2 size={14} />
@@ -492,10 +492,10 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
 
       {/* Enrollments Tab */}
       {tab === "enrollments" ? (
-        <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <section className="overflow-hidden rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] shadow-sm">
           <div className="overflow-x-auto">
             <table className="min-w-full text-left text-sm">
-              <thead className="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+              <thead className="bg-[var(--admin-sidebar-accent)] text-xs uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
                 <tr>
                   <th className="px-4 py-3">Email phụ huynh</th>
                   <th className="px-4 py-3">Tên</th>
@@ -505,10 +505,10 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
               </thead>
               <tbody>
                 {enrollments.map((e) => (
-                  <tr key={e.id} className="border-t border-slate-100">
-                    <td className="px-4 py-3 font-medium text-slate-900">{e.parent.email}</td>
-                    <td className="px-4 py-3 text-slate-600">{e.parent.displayName ?? "—"}</td>
-                    <td className="px-4 py-3 text-slate-600">
+                  <tr key={e.id} className="border-t border-[var(--admin-card-border)]">
+                    <td className="px-4 py-3 font-medium text-[var(--admin-text-primary)]">{e.parent.email}</td>
+                    <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{e.parent.displayName ?? "—"}</td>
+                    <td className="px-4 py-3 text-[var(--admin-text-secondary)]">
                       {new Date(e.enrolledAt).toLocaleDateString("vi-VN")}
                     </td>
                     <td className="px-4 py-3">
@@ -517,14 +517,14 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
                           {new Date(e.completedAt).toLocaleDateString("vi-VN")}
                         </span>
                       ) : (
-                        <span className="text-slate-400">Chưa hoàn thành</span>
+                        <span className="text-[var(--admin-text-muted)]">Chưa hoàn thành</span>
                       )}
                     </td>
                   </tr>
                 ))}
                 {enrollments.length === 0 ? (
                   <tr>
-                    <td colSpan={4} className="px-4 py-8 text-center text-sm text-slate-500">
+                    <td colSpan={4} className="px-4 py-8 text-center text-sm text-[var(--admin-text-muted)]">
                       Chưa có học viên nào đăng ký khóa học này.
                     </td>
                   </tr>

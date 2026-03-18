@@ -68,7 +68,7 @@ export function AdminContentPanel() {
       </div>
 
       {browserVm.error ? <p className="text-sm text-rose-600">{browserVm.error}</p> : null}
-      {browserVm.info ? <p className="text-sm text-slate-500">{browserVm.info}</p> : null}
+      {browserVm.info ? <p className="text-sm text-[var(--admin-text-secondary)]">{browserVm.info}</p> : null}
 
       <AdminContentLessonModalForm
         open={editingVm.lessonModalOpen}

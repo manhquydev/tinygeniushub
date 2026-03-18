@@ -132,7 +132,7 @@ function NavItemWithChildren({
     <Collapsible open={open} onOpenChange={setOpen} className="group/collapsible">
       <SidebarMenuItem>
         <CollapsibleTrigger asChild>
-          <SidebarMenuButton isActive={active} className="text-sidebar-foreground">
+          <SidebarMenuButton isActive={active} tooltip={item.label} className="text-sidebar-foreground">
             <Icon size={16} className="shrink-0" />
             <span>{item.label}</span>
             {open ? (
@@ -181,6 +181,7 @@ export function AdminShellNav({ role }: { role: string }) {
 
   return (
     <Sidebar
+      collapsible="icon"
       className={cn("border-r-0")}
       style={
         {
@@ -229,7 +230,7 @@ export function AdminShellNav({ role }: { role: string }) {
                 const active = isPathActive(pathname, item.href);
                 return (
                   <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton asChild isActive={active} className="text-sidebar-foreground">
+                    <SidebarMenuButton asChild isActive={active} tooltip={item.label} className="text-sidebar-foreground">
                       <Link href={item.href}>
                         <Icon size={16} className="shrink-0" />
                         <span>{item.label}</span>

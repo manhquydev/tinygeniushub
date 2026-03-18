@@ -56,7 +56,7 @@ export function AdminBlogCategoryCreateForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="grid gap-3 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 sm:grid-cols-2">
       <Input value={slug} onChange={(event) => setSlug(event.target.value)} placeholder="slug" required />
       <Input value={nameVi} onChange={(event) => setNameVi(event.target.value)} placeholder="Tên danh mục" required />
       <Input value={emoji} onChange={(event) => setEmoji(event.target.value)} placeholder="Emoji" />

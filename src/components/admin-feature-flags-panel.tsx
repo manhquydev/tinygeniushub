@@ -85,12 +85,12 @@ export function AdminFeatureFlagsPanel() {
 
   return (
     <div className="space-y-3">
-      <h3 className="text-sm font-bold uppercase tracking-wide text-slate-600">Tính năng thử nghiệm</h3>
+      <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Tính năng thử nghiệm</h3>
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Key</TableHead>
               <TableHead className="text-xs">Mô tả</TableHead>
               <TableHead className="text-xs">Trạng thái</TableHead>
@@ -102,13 +102,13 @@ export function AdminFeatureFlagsPanel() {
           <TableBody>
             {loading ? Array.from({ length: 4 }).map((_, index) => (
               <TableRow key={`feature-flag-skeleton-${index}`}>
-                <TableCell colSpan={6} className="text-xs text-slate-500">Đang tải...</TableCell>
+                <TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Đang tải...</TableCell>
               </TableRow>
             )) : null}
             {!loading ? flags.map((flag) => (
               <TableRow key={flag.key}>
-                <TableCell className="text-xs font-semibold text-slate-800">{flag.key}</TableCell>
-                <TableCell className="text-xs text-slate-600">{flag.description ?? "-"}</TableCell>
+                <TableCell className="text-xs font-semibold text-[var(--admin-text-primary)]">{flag.key}</TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{flag.description ?? "-"}</TableCell>
                 <TableCell className="text-xs">{flag.enabled ? "Đang bật" : "Đang tắt"}</TableCell>
                 <TableCell className="text-xs">{new Date(flag.updatedAt).toLocaleString("vi-VN")}</TableCell>
                 <TableCell className="text-xs">{flag.updatedBy ?? "-"}</TableCell>
@@ -127,14 +127,14 @@ export function AdminFeatureFlagsPanel() {
               </TableRow>
             )) : null}
             {!loading && flags.length === 0 ? (
-              <TableRow><TableCell colSpan={6} className="text-xs text-slate-500">Chưa có feature flag.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Chưa có feature flag.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>
       </div>
 
       {error ? <p className="text-xs text-rose-600">{error}</p> : null}
-      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+      {info ? <p className="text-xs text-[var(--admin-text-secondary)]">{info}</p> : null}
     </div>
   );
 }

@@ -85,7 +85,7 @@ export function AdminExportData() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-sm font-bold uppercase tracking-wide text-slate-600">Xuất dữ liệu</h2>
+      <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Xuất dữ liệu</h2>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
         <div className="grid gap-1.5">
           <Label htmlFor="export-from">Từ ngày</Label>

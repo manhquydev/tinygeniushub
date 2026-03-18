@@ -94,11 +94,11 @@ export default function AdminBlogAnalyticsPage() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <section className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Phân tích blog</h1>
-            <p className="mt-2 text-sm text-slate-600">Theo dõi tăng trưởng lượt xem, tương tác và người đăng ký.</p>
+            <h1 className="text-3xl font-black tracking-[-0.02em] text-[var(--admin-text-primary)]">Phân tích blog</h1>
+            <p className="mt-2 text-sm text-[var(--admin-text-secondary)]">Theo dõi tăng trưởng lượt xem, tương tác và người đăng ký.</p>
           </div>
           <div className="flex gap-2">
             {(["7d", "30d", "90d"] as const).map((value) => (
@@ -107,7 +107,7 @@ export default function AdminBlogAnalyticsPage() {
                 type="button"
                 onClick={() => setRange(value)}
                 className={`rounded-full px-4 py-2 text-sm font-semibold ${
-                  range === value ? "bg-blue-500 text-white" : "bg-slate-100 text-slate-600"
+                  range === value ? "bg-blue-500 text-white" : "bg-[var(--admin-sidebar-accent)] text-[var(--admin-text-secondary)]"
                 }`}
               >
                 {value}
@@ -120,7 +120,7 @@ export default function AdminBlogAnalyticsPage() {
       {loading ? (
         <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {Array.from({ length: 4 }).map((_, index) => (
-            <div key={index} className="h-24 animate-pulse rounded-2xl border border-slate-200 bg-slate-100" />
+            <div key={index} className="h-24 animate-pulse rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)]" />
           ))}
         </section>
       ) : null}
@@ -130,28 +130,28 @@ export default function AdminBlogAnalyticsPage() {
       {!loading && data ? (
         <>
           <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Tổng lượt xem</p>
-              <p className="mt-2 text-3xl font-black text-slate-900">{data.totalViews.toLocaleString("vi-VN")}</p>
+            <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--admin-text-muted)]">Tổng lượt xem</p>
+              <p className="mt-2 text-3xl font-black text-[var(--admin-text-primary)]">{data.totalViews.toLocaleString("vi-VN")}</p>
             </article>
-            <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Tổng lượt thích</p>
-              <p className="mt-2 text-3xl font-black text-slate-900">{data.totalLikes.toLocaleString("vi-VN")}</p>
+            <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--admin-text-muted)]">Tổng lượt thích</p>
+              <p className="mt-2 text-3xl font-black text-[var(--admin-text-primary)]">{data.totalLikes.toLocaleString("vi-VN")}</p>
             </article>
-            <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Người đăng ký đang hoạt động</p>
-              <p className="mt-2 text-3xl font-black text-slate-900">{data.totalSubscribers.toLocaleString("vi-VN")}</p>
+            <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--admin-text-muted)]">Người đăng ký đang hoạt động</p>
+              <p className="mt-2 text-3xl font-black text-[var(--admin-text-primary)]">{data.totalSubscribers.toLocaleString("vi-VN")}</p>
             </article>
-            <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Bài đã xuất bản</p>
-              <p className="mt-2 text-3xl font-black text-slate-900">{data.totalPublishedPosts.toLocaleString("vi-VN")}</p>
+            <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--admin-text-muted)]">Bài đã xuất bản</p>
+              <p className="mt-2 text-3xl font-black text-[var(--admin-text-primary)]">{data.totalPublishedPosts.toLocaleString("vi-VN")}</p>
             </article>
           </section>
 
-          <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <section className="overflow-hidden rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] shadow-sm">
             <div className="overflow-x-auto">
               <table className="min-w-full text-left text-sm">
-                <thead className="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+                <thead className="bg-[var(--admin-sidebar-accent)] text-xs uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
                   <tr>
                     <th className="px-4 py-3">#</th>
                     <th className="px-4 py-3">Bài viết</th>
@@ -162,16 +162,16 @@ export default function AdminBlogAnalyticsPage() {
                 </thead>
                 <tbody>
                   {data.topPosts.map((post, index) => (
-                    <tr key={post.slug} className="border-t border-slate-100">
-                      <td className="px-4 py-3 font-semibold text-slate-700">{index + 1}</td>
+                    <tr key={post.slug} className="border-t border-[var(--admin-card-border)]">
+                      <td className="px-4 py-3 font-semibold text-[var(--admin-text-secondary)]">{index + 1}</td>
                       <td className="px-4 py-3">
-                        <Link href={`/blog/${post.slug}`} target="_blank" rel="noreferrer" className="font-semibold text-slate-900 hover:text-teal-700">
+                        <Link href={`/blog/${post.slug}`} target="_blank" rel="noreferrer" className="font-semibold text-[var(--admin-text-primary)] hover:text-teal-700">
                           {post.titleVi}
                         </Link>
                       </td>
-                      <td className="px-4 py-3 text-slate-700">{post.viewCount.toLocaleString("vi-VN")}</td>
-                      <td className="px-4 py-3 text-slate-700">{post.likeCount.toLocaleString("vi-VN")}</td>
-                      <td className="px-4 py-3 text-slate-700">{post.readingTimeMin} phút</td>
+                      <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{post.viewCount.toLocaleString("vi-VN")}</td>
+                      <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{post.likeCount.toLocaleString("vi-VN")}</td>
+                      <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{post.readingTimeMin} phút</td>
                     </tr>
                   ))}
                 </tbody>
@@ -180,8 +180,8 @@ export default function AdminBlogAnalyticsPage() {
           </section>
 
           <section className="grid gap-4 lg:grid-cols-2">
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-black text-slate-900">Lượt xem theo ngày</h2>
+            <article className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[var(--admin-text-primary)]">Lượt xem theo ngày</h2>
               <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 120, marginTop: 16 }}>
                 {data.viewsByDay.map((day) => {
                   const height = maxDailyViews > 0 ? (day._count.id / maxDailyViews) * 100 : 0;
@@ -202,18 +202,18 @@ export default function AdminBlogAnalyticsPage() {
               </div>
             </article>
 
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-black text-slate-900">Phân bổ theo danh mục</h2>
+            <article className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[var(--admin-text-primary)]">Phân bổ theo danh mục</h2>
               <div className="mt-4 grid gap-3">
                 {data.categoryBreakdown.map((category) => {
                   const width = maxCategoryViews > 0 ? (category.views / maxCategoryViews) * 100 : 0;
                   return (
                     <div key={category.categoryId} className="space-y-1">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="font-semibold text-slate-700">{category.categoryName}</span>
-                        <span className="text-slate-500">{category.views.toLocaleString("vi-VN")} lượt xem</span>
+                        <span className="font-semibold text-[var(--admin-text-secondary)]">{category.categoryName}</span>
+                        <span className="text-[var(--admin-text-muted)]">{category.views.toLocaleString("vi-VN")} lượt xem</span>
                       </div>
-                      <div className="h-2 rounded bg-slate-100">
+                      <div className="h-2 rounded bg-[var(--admin-sidebar-accent)]">
                         <div
                           style={{ width: `${width}%`, background: "#0ea5e9", height: "100%", borderRadius: 999 }}
                         />

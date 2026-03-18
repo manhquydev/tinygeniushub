@@ -13,11 +13,11 @@ export function AdminEmptyState({ icon, message, description, action, className 
   return (
     <div className={cn("flex flex-col items-center justify-center py-10 text-center", className)}>
       {icon && (
-        <div className="mb-3 text-slate-300">{icon}</div>
+        <div className="mb-3 text-[var(--admin-text-muted)]">{icon}</div>
       )}
-      <p className="text-sm font-medium text-slate-500">{message}</p>
+      <p className="text-sm font-medium text-[var(--admin-text-secondary)]">{message}</p>
       {description && (
-        <p className="text-xs text-slate-400 mt-1 max-w-xs">{description}</p>
+        <p className="text-xs text-[var(--admin-text-muted)] mt-1 max-w-xs">{description}</p>
       )}
       {action && <div className="mt-4">{action}</div>}
     </div>

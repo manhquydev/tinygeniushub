@@ -221,8 +221,8 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-sm font-bold uppercase tracking-wide text-slate-600">Bảo mật hệ thống</h2>
-        <p className="text-xs text-slate-500">Điều chỉnh giới hạn truy cập theo endpoint, đồng thời quản lý danh sách chặn và danh sách cho phép.</p>
+        <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Bảo mật hệ thống</h2>
+        <p className="text-xs text-[var(--admin-text-secondary)]">Điều chỉnh giới hạn truy cập theo endpoint, đồng thời quản lý danh sách chặn và danh sách cho phép.</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">
@@ -277,10 +277,10 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
         </Button>
       </div>
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Chính sách</TableHead>
               <TableHead className="text-xs">Chiến lược khóa</TableHead>
               <TableHead className="text-xs">Giới hạn</TableHead>
@@ -294,8 +294,8 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
             {securityPolicies.map((policy) => (
               <TableRow key={policy.key}>
                 <TableCell>
-                  <p className="text-sm font-semibold text-slate-800">{policy.label}</p>
-                  <p className="text-xs text-slate-500">{policy.key} - {policy.description}</p>
+                  <p className="text-sm font-semibold text-[var(--admin-text-primary)]">{policy.label}</p>
+                  <p className="text-xs text-[var(--admin-text-secondary)]">{policy.key} - {policy.description}</p>
                 </TableCell>
                 <TableCell className="text-xs">{policy.keyStrategy}</TableCell>
                 <TableCell>
@@ -327,14 +327,14 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
               </TableRow>
             ))}
             {securityPolicies.length === 0 ? (
-              <TableRow><TableCell colSpan={7} className="text-xs text-slate-500">Chưa có cấu hình giới hạn truy cập.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={7} className="text-xs text-[var(--admin-text-secondary)]">Chưa có cấu hình giới hạn truy cập.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>
       </div>
 
       {error ? <p className="text-xs text-rose-600">{error}</p> : null}
-      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+      {info ? <p className="text-xs text-[var(--admin-text-secondary)]">{info}</p> : null}
     </div>
   );
 }

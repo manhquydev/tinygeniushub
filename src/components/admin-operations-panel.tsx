@@ -23,7 +23,7 @@ export function AdminOperationsPanel({
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3">
-        <Label htmlFor="record-limit" className="text-sm text-slate-600 shrink-0">
+        <Label htmlFor="record-limit" className="text-sm text-[var(--admin-text-secondary)] shrink-0">
           Giới hạn bản ghi
         </Label>
         <Input
@@ -75,7 +75,7 @@ export function AdminOperationsPanel({
       />
 
       {vm.error ? <p className="text-sm text-rose-600">{vm.error}</p> : null}
-      {vm.info ? <p className="text-sm text-slate-500">{vm.info}</p> : null}
+      {vm.info ? <p className="text-sm text-[var(--admin-text-secondary)]">{vm.info}</p> : null}
     </div>
   );
 }

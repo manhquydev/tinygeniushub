@@ -203,11 +203,11 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
 
   return (
     <div className="space-y-6">
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <section className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Khóa học Premium</h1>
-            <p className="mt-2 text-sm text-slate-600">Tạo và quản lý khóa học bán lẻ.</p>
+            <h1 className="text-3xl font-black tracking-[-0.02em] text-[var(--admin-text-primary)]">Khóa học Premium</h1>
+            <p className="mt-2 text-sm text-[var(--admin-text-secondary)]">Tạo và quản lý khóa học bán lẻ.</p>
           </div>
           <button type="button" className="inline-flex items-center justify-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 disabled:opacity-50" onClick={openCreate}>
             Tạo khóa học
@@ -216,72 +216,72 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
       </section>
 
       {showForm ? (
-        <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-xl font-black text-slate-900">{form.id ? "Chỉnh sửa khóa học" : "Tạo khóa học mới"}</h2>
+        <section className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-black text-[var(--admin-text-primary)]">{form.id ? "Chỉnh sửa khóa học" : "Tạo khóa học mới"}</h2>
           <div className="grid gap-4 md:grid-cols-2">
-            <label className="grid gap-1.5 text-sm font-semibold text-slate-700">
+            <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">
               Slug *
               <input
-                className="min-h-10 rounded-xl border border-slate-300 px-3 text-sm font-normal"
+                className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal"
                 value={form.slug}
                 onChange={(event) => setForm((current) => ({ ...current, slug: event.target.value }))}
                 placeholder="toan-tu-duy-co-ban"
               />
             </label>
-            <label className="grid gap-1.5 text-sm font-semibold text-slate-700">
+            <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">
               Tiêu đề *
               <input
-                className="min-h-10 rounded-xl border border-slate-300 px-3 text-sm font-normal"
+                className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal"
                 value={form.title}
                 onChange={(event) => setForm((current) => ({ ...current, title: event.target.value }))}
                 placeholder="Toán Tư Duy Cơ Bản"
               />
             </label>
-            <label className="grid gap-1.5 text-sm font-semibold text-slate-700 md:col-span-2">
+            <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)] md:col-span-2">
               Mô tả
               <textarea
-                className="min-h-20 rounded-xl border border-slate-300 px-3 py-2 text-sm font-normal"
+                className="min-h-20 rounded-xl border border-[var(--admin-card-border)] px-3 py-2 text-sm font-normal"
                 value={form.description}
                 onChange={(event) => setForm((current) => ({ ...current, description: event.target.value }))}
                 placeholder="Mô tả khóa học..."
               />
             </label>
-            <label className="grid gap-1.5 text-sm font-semibold text-slate-700">
+            <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">
               Giá gốc (VNĐ)
               <input
                 type="number"
-                className="min-h-10 rounded-xl border border-slate-300 px-3 text-sm font-normal"
+                className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal"
                 value={form.listPriceVnd}
                 onChange={(event) => setForm((current) => ({ ...current, listPriceVnd: event.target.value }))}
               />
             </label>
-            <label className="grid gap-1.5 text-sm font-semibold text-slate-700">
+            <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">
               Giá bán (VNĐ)
               <input
                 type="number"
-                className="min-h-10 rounded-xl border border-slate-300 px-3 text-sm font-normal"
+                className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal"
                 value={form.salePriceVnd}
                 onChange={(event) => setForm((current) => ({ ...current, salePriceVnd: event.target.value }))}
               />
             </label>
-            <label className="grid gap-1.5 text-sm font-semibold text-slate-700">
+            <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">
               Thời lượng (ngày)
               <input
                 type="number"
-                className="min-h-10 rounded-xl border border-slate-300 px-3 text-sm font-normal"
+                className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal"
                 value={form.durationDays}
                 onChange={(event) => setForm((current) => ({ ...current, durationDays: event.target.value }))}
               />
             </label>
-            <label className="grid gap-1.5 text-sm font-semibold text-slate-700 md:col-span-2">
+            <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)] md:col-span-2">
               URL ảnh bìa
               <input
-                className="min-h-10 rounded-xl border border-slate-300 px-3 text-sm font-normal"
+                className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal"
                 value={form.coverImageUrl}
                 onChange={(event) => setForm((current) => ({ ...current, coverImageUrl: event.target.value }))}
                 placeholder="https://... hoặc /images/..."
               />
-              <span className="text-xs font-normal text-slate-500">
+              <span className="text-xs font-normal text-[var(--admin-text-muted)]">
                 Hỗ trợ URL đầy đủ hoặc đường dẫn nội bộ bắt đầu bằng `/`.
               </span>
             </label>
@@ -291,7 +291,7 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
                 <img
                   src={form.coverImageUrl.trim()}
                   alt="Xem trước ảnh bìa"
-                  className="h-32 w-full rounded-xl border border-slate-200 object-cover"
+                  className="h-32 w-full rounded-xl border border-[var(--admin-card-border)] object-cover"
                 />
               </div>
             ) : null}
@@ -301,17 +301,17 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
             <button type="button" className="inline-flex items-center justify-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 disabled:opacity-50" onClick={handleSave} disabled={saving}>
               {saving ? "Đang lưu..." : "Lưu"}
             </button>
-            <button type="button" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50" onClick={cancelForm}>
+            <button type="button" className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-4 py-2 text-sm font-semibold text-[var(--admin-text-secondary)] hover:bg-[var(--admin-sidebar-accent)] disabled:opacity-50" onClick={cancelForm}>
               Hủy
             </button>
           </div>
         </section>
       ) : null}
 
-      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <section className="overflow-hidden rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] shadow-sm">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
-            <thead className="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+            <thead className="bg-[var(--admin-sidebar-accent)] text-xs uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
               <tr>
                 <th className="px-4 py-3">Tiêu đề</th>
                 <th className="px-4 py-3">Giá</th>
@@ -328,25 +328,25 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
                 const hasDiscount = listPrice > salePrice;
 
                 return (
-                  <tr key={course.id} className="border-t border-slate-100">
+                  <tr key={course.id} className="border-t border-[var(--admin-card-border)]">
                     <td className="px-4 py-3">
-                      <div className="font-semibold text-slate-900">{course.title}</div>
-                      <div className="text-xs text-slate-500">{course.slug}</div>
+                      <div className="font-semibold text-[var(--admin-text-primary)]">{course.title}</div>
+                      <div className="text-xs text-[var(--admin-text-muted)]">{course.slug}</div>
                     </td>
-                    <td className="px-4 py-3 text-slate-700">
+                    <td className="px-4 py-3 text-[var(--admin-text-secondary)]">
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-slate-800">{formatVnd(salePrice)}</span>
-                        {hasDiscount ? <span className="text-xs text-slate-500 line-through">{formatVnd(listPrice)}</span> : null}
+                        <span className="font-semibold text-[var(--admin-text-primary)]">{formatVnd(salePrice)}</span>
+                        {hasDiscount ? <span className="text-xs text-[var(--admin-text-muted)] line-through">{formatVnd(listPrice)}</span> : null}
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-slate-700">{course._count.lessons}</td>
-                    <td className="px-4 py-3 text-slate-700">{course._count.enrollments}</td>
+                    <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{course._count.lessons}</td>
+                    <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{course._count.enrollments}</td>
                     <td className="px-4 py-3">
                       <span
                         className={`inline-flex rounded-full border px-2 py-0.5 text-xs font-semibold ${
                           course.isPublished
                             ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                            : "border-slate-200 bg-slate-100 text-slate-600"
+                            : "border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] text-[var(--admin-text-secondary)]"
                         }`}
                       >
                         {getPublishStatusLabel(course.isPublished)}
@@ -363,7 +363,7 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
                         </button>
                         <button
                           type="button"
-                          className="text-sm font-semibold text-slate-600 hover:text-slate-900"
+                          className="text-sm font-semibold text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]"
                           onClick={() => handleTogglePublish(course)}
                         >
                           {course.isPublished ? "Ẩn" : "Xuất bản"}
@@ -372,7 +372,7 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
                           href={`/courses/${course.slug}`}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-sm font-semibold text-slate-600 hover:text-slate-900"
+                          className="text-sm font-semibold text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]"
                         >
                           Xem
                         </a>
@@ -393,7 +393,7 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
               })}
               {courses.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-8 text-center text-sm text-slate-500">
+                  <td colSpan={6} className="px-4 py-8 text-center text-sm text-[var(--admin-text-muted)]">
                     Chưa có khóa học nào. Nhấn "Tạo khóa học" để bắt đầu.
                   </td>
                 </tr>

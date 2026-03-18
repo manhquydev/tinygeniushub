@@ -161,7 +161,7 @@ export function AdminAnnouncementPanel() {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-bold uppercase tracking-wide text-slate-600">Thông báo hệ thống</h3>
+      <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Thông báo hệ thống</h3>
 
       <div className="grid gap-3">
         <div className="grid gap-1.5">
@@ -174,7 +174,7 @@ export function AdminAnnouncementPanel() {
             maxLength={200}
             placeholder="Ví dụ: Hệ thống bảo trì vào 22:00 tối nay."
           />
-          <span className="text-xs text-slate-500">Còn lại {remainingChars} ký tự</span>
+          <span className="text-xs text-[var(--admin-text-secondary)]">Còn lại {remainingChars} ký tự</span>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
@@ -204,10 +204,10 @@ export function AdminAnnouncementPanel() {
         </Button>
       </div>
 
-      <div className="rounded-lg border border-slate-200 overflow-hidden">
+      <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50 hover:bg-slate-50">
+            <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Nội dung</TableHead>
               <TableHead className="text-xs">Loại</TableHead>
               <TableHead className="text-xs">Lập lịch</TableHead>
@@ -220,7 +220,7 @@ export function AdminAnnouncementPanel() {
           <TableBody>
             {loading ? Array.from({ length: 3 }).map((_, index) => (
               <TableRow key={`announcement-skeleton-${index}`}>
-                <TableCell colSpan={7} className="text-xs text-slate-500">Đang tải...</TableCell>
+                <TableCell colSpan={7} className="text-xs text-[var(--admin-text-secondary)]">Đang tải...</TableCell>
               </TableRow>
             )) : null}
             {!loading ? announcements.map((item) => (
@@ -246,14 +246,14 @@ export function AdminAnnouncementPanel() {
               </TableRow>
             )) : null}
             {!loading && announcements.length === 0 ? (
-              <TableRow><TableCell colSpan={7} className="text-xs text-slate-500">Chưa có thông báo hệ thống.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={7} className="text-xs text-[var(--admin-text-secondary)]">Chưa có thông báo hệ thống.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>
       </div>
 
       {error ? <p className="text-xs text-rose-600">{error}</p> : null}
-      {info ? <p className="text-xs text-slate-500">{info}</p> : null}
+      {info ? <p className="text-xs text-[var(--admin-text-secondary)]">{info}</p> : null}
     </div>
   );
 }

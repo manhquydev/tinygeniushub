@@ -280,9 +280,9 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+    <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-5 shadow-sm sm:p-6">
       <section className="space-y-3">
-        <h2 className="text-lg font-bold text-slate-900">Thông tin cơ bản</h2>
+        <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Thông tin cơ bản</h2>
         <div className="grid gap-3 md:grid-cols-2">
           <div className="grid gap-1.5">
             <Label htmlFor="post-title">Tiêu đề</Label>
@@ -291,12 +291,12 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
           <div className="grid gap-1.5">
             <Label htmlFor="post-slug">Slug</Label>
             <Input id="post-slug" value={slug} onChange={(e) => setSlug(e.target.value)} required />
-            <p className="text-xs text-slate-500">Tự tạo từ tiêu đề</p>
+            <p className="text-xs text-[var(--admin-text-secondary)]">Tự tạo từ tiêu đề</p>
           </div>
           <div className="grid gap-1.5 md:col-span-2">
             <Label htmlFor="post-excerpt">Mô tả ngắn</Label>
             <Textarea id="post-excerpt" value={excerptVi} onChange={(e) => setExcerptVi(e.target.value)} maxLength={160} required className="min-h-24" />
-            <p className="text-xs text-slate-500">Còn lại: {excerptRemaining} ký tự</p>
+            <p className="text-xs text-[var(--admin-text-secondary)]">Còn lại: {excerptRemaining} ký tự</p>
           </div>
           <div className="grid gap-1.5">
             <Label htmlFor="post-type">Loại bài viết</Label>
@@ -324,7 +324,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-bold text-slate-900">Phân loại</h2>
+        <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Phân loại</h2>
         <div className="grid gap-3 md:grid-cols-2">
           <div className="grid gap-1.5">
             <Label htmlFor="post-category">Danh mục</Label>
@@ -359,31 +359,31 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-bold text-slate-900">Nội dung</h2>
-        <div className="space-y-1 text-sm font-semibold text-slate-700">
+        <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Nội dung</h2>
+        <div className="space-y-1 text-sm font-semibold text-[var(--admin-text-secondary)]">
           <span>Markdown</span>
           <BlogEditorSplit value={contentMarkdown} onChange={setContentMarkdown} />
         </div>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-bold text-slate-900">SEO</h2>
+        <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">SEO</h2>
         <div className="grid gap-3 md:grid-cols-2">
           <div className="grid gap-1.5">
             <Label htmlFor="post-meta-title">Tiêu đề SEO</Label>
             <Input id="post-meta-title" value={metaTitleVi} onChange={(e) => setMetaTitleVi(e.target.value)} />
-            <p className="text-xs text-slate-500">60 ký tự</p>
+            <p className="text-xs text-[var(--admin-text-secondary)]">60 ký tự</p>
           </div>
           <div className="grid gap-1.5">
             <Label htmlFor="post-meta-desc">Mô tả SEO</Label>
             <Textarea id="post-meta-desc" value={metaDescVi} onChange={(e) => setMetaDescVi(e.target.value)} className="min-h-20" />
-            <p className="text-xs text-slate-500">160 ký tự</p>
+            <p className="text-xs text-[var(--admin-text-secondary)]">160 ký tự</p>
           </div>
         </div>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-bold text-slate-900">Xuất bản</h2>
+        <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Xuất bản</h2>
         <div className="grid gap-3 md:grid-cols-2">
           <div className="grid gap-1.5">
             <Label htmlFor="post-status">Trạng thái</Label>
