@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Exclude non-source directories from Tailwind v4 content scanning */
+@source not "../../plans/**";
+@source not "../../.tmp/**";
+@source not "../../output/**";
+
 @custom-variant dark (&:is(.dark *));
 
 /* === SHADCN/UI CSS Variables === */
