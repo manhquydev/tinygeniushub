@@ -29,7 +29,7 @@ type BlogPostFormValues = {
   titleVi: string;
   excerptVi: string;
   type: "ARTICLE" | "TIP" | "NEWS" | "GUIDE" | "RESEARCH" | "STORY";
-  ageGroup: "UNDER_3" | "AGE_3_5" | "AGE_6_8" | "AGE_9_12" | "ALL_AGES";
+  ageGroup: "UNDER_3" | "AGE_3_5" | "AGE_4_6" | "AGE_6_8" | "AGE_7_9" | "AGE_9_12" | "AGE_10_12" | "ALL_AGES";
   categoryId: string;
   authorId: string;
   coverImageUrl: string;
@@ -314,7 +314,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
             <Select value={ageGroup} onValueChange={(v) => setAgeGroup(v as BlogPostFormValues["ageGroup"])}>
               <SelectTrigger id="post-age"><SelectValue /></SelectTrigger>
               <SelectContent>
-                {(["UNDER_3", "AGE_3_5", "AGE_6_8", "AGE_9_12", "ALL_AGES"] as const).map((a) => (
+                {(["UNDER_3", "AGE_3_5", "AGE_4_6", "AGE_6_8", "AGE_7_9", "AGE_9_12", "AGE_10_12", "ALL_AGES"] as const).map((a) => (
                   <SelectItem key={a} value={a}>{getAgeGroupLabel(a)}</SelectItem>
                 ))}
               </SelectContent>

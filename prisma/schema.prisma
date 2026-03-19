@@ -114,6 +114,7 @@ model ParentAccount {
   adminNotes              AdminNote[]
   lifecycleEmails         LifecycleEmailLog[]
   courseEnrollments       CourseEnrollment[]
+  courseReviews           CourseReview[]
   organizationMemberships OrganizationMember[]
 }
 
@@ -702,9 +703,21 @@ enum BlogPostType {
 enum AgeGroup {
   UNDER_3
   AGE_3_5
+  AGE_4_6
   AGE_6_8
+  AGE_7_9
   AGE_9_12
+  AGE_10_12
   ALL_AGES
+}
+
+enum CourseSubject {
+  MATH
+  ENGLISH
+  SCIENCE
+  ART
+  MUSIC
+  OTHER
 }
 
 model BlogCategory {
@@ -900,21 +913,45 @@ enum ChildCourseJourneyEventType {
 }
 
 model Course {
-  id            String             @id @default(cuid())
-  slug          String             @unique
-  title         String
-  description   String
-  priceVnd      Int
-  listPriceVnd  Int?
-  salePriceVnd  Int?
-  durationDays  Int
-  isPublished   Boolean            @default(false)
-  coverImageUrl String?
-  createdAt     DateTime           @default(now())
-  updatedAt     DateTime           @updatedAt
-  lessons       CourseLesson[]
-  enrollments   CourseEnrollment[]
-  childJourneys ChildCourseJourney[]
+  id                  String               @id @default(cuid())
+  slug                String               @unique
+  title               String
+  description         String
+  priceVnd            Int
+  listPriceVnd        Int?
+  salePriceVnd        Int?
+  durationDays        Int
+  isPublished         Boolean              @default(false)
+  coverImageUrl       String?
+  subject             CourseSubject?
+  ageGroup            AgeGroup?
+  reviewAverageRating Float?
+  reviewCount         Int                  @default(0)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  lessons             CourseLesson[]
+  enrollments         CourseEnrollment[]
+  childJourneys       ChildCourseJourney[]
+  reviews             CourseReview[]
+
+  @@index([subject, isPublished])
+  @@index([ageGroup, isPublished])
+}
+
+model CourseReview {
+  id         String        @id @default(cuid())
+  courseId   String
+  parentId   String
+  rating     Int
+  comment    String?
+  isApproved Boolean       @default(false)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  course     Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  parent     ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, parentId])
+  @@index([courseId, isApproved, createdAt])
 }
 
 model CourseLesson {

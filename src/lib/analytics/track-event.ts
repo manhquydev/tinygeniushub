@@ -71,6 +71,9 @@ type EventMap = {
   courses_bundle_detail_click: CoursesBundleDetailClickParams;
   courses_bundle_detail_view: CoursesBundleDetailViewParams;
   courses_checkout_start: CoursesCheckoutStartParams;
+  courses_fit_check_click: Record<string, unknown>;
+  courses_outcome_timeline_view: Record<string, unknown>;
+  courses_difference_block_view: Record<string, unknown>;
   referral_sent: Record<string, never>;
   complete_registration: Record<string, never>;
 };

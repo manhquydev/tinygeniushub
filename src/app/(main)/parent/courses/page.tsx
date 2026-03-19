@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Award, BookOpen, CalendarDays, ChevronRight, Clock3 } from "lucide-react";
 import { requireParent } from "@/lib/auth/require-parent";
-import { getParentEnrollments } from "@/modules/courses/course-service";
+import { getParentEnrollments, getCourseProgressForParent } from "@/modules/courses/course-service";
 import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { isLegacyBundleRouteSlug } from "@/modules/courses/legacy-bundle-routes";
 import { CourseCheckoutStatusBanner } from "@/components/courses/course-checkout-status-banner";
+import { prisma } from "@/lib/db";
 
 function formatDate(date: Date) {
   return new Date(date).toLocaleDateString("vi-VN");
@@ -17,6 +18,16 @@ function formatCurrency(value: number) {
 export default async function ParentCoursesPage() {
   const parent = await requireParent();
   const enrollments = await getParentEnrollments(parent.id);
+
+  const courseIds = enrollments.map((e) => e.course.id);
+  const [progress, firstChild] = await Promise.all([
+    getCourseProgressForParent(parent.id, courseIds),
+    prisma.childProfile.findFirst({
+      where: { parentId: parent.id },
+      orderBy: { createdAt: "asc" },
+      select: { id: true },
+    }),
+  ]);
 
   const totalCourses = enrollments.length;
   const completedCourses = enrollments.filter((enrollment) => Boolean(enrollment.completedAt)).length;
@@ -69,6 +80,10 @@ export default async function ParentCoursesPage() {
             const detailHref = isLegacyBundleRouteSlug(enrollment.course.slug)
               ? "/courses"
               : `/courses/${enrollment.course.slug}`;
+            const prog = progress.get(enrollment.course.id);
+            const completed = prog?.completed ?? 0;
+            const total = enrollment.course._count?.lessons ?? 0;
+            const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
 
             return (
               <article
@@ -113,9 +128,39 @@ export default async function ParentCoursesPage() {
                     </span>
                   </div>
 
+                  {/* Progress bar */}
+                  <div>
+                    <div className="mb-1 flex items-center justify-between text-xs text-slate-500">
+                      <span>{completed}/{total} bài hoàn thành</span>
+                      <span>{pct}%</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-sky-500 to-emerald-500 transition-all"
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    {prog?.lastCompletedAt ? (
+                      <p className="mt-1 text-xs text-slate-400">
+                        Học gần nhất: {formatDate(prog.lastCompletedAt)}
+                      </p>
+                    ) : null}
+                  </div>
+
                   <div className="flex flex-wrap gap-2">
-                    <Link href={detailHref} className="solid-button" style={{ width: "fit-content" }}>
-                      Xem khóa <ChevronRight className="ml-1 h-4 w-4" />
+                    <Link
+                      href={
+                        firstChild
+                          ? `/kid/courses/${enrollment.course.slug}?childId=${firstChild.id}`
+                          : `/kid/courses/${enrollment.course.slug}`
+                      }
+                      className="solid-button"
+                      style={{ width: "fit-content" }}
+                    >
+                      Học tiếp <ChevronRight className="ml-1 h-4 w-4" />
+                    </Link>
+                    <Link href={detailHref} className="ghost-button" style={{ width: "fit-content" }}>
+                      Xem khóa
                     </Link>
                     {enrollment.certificateUrl ? (
                       <a

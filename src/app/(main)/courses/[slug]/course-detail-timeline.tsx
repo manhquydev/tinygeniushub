@@ -1,0 +1,43 @@
+import { BookOpen } from "lucide-react";
+import type { AbVariant } from "@/lib/ab-test-constants";
+import { OutcomeTimelineViewTracker } from "@/components/courses/course-storefront-tracking";
+import type { TimelineStage } from "./course-detail-data";
+
+type Props = {
+  outcomeTimeline: TimelineStage[];
+  courseSlug: string;
+  variant: AbVariant;
+};
+
+export function CourseDetailTimeline({ outcomeTimeline, courseSlug, variant }: Props) {
+  return (
+    <>
+      <OutcomeTimelineViewTracker variant={variant} bundleSlug={courseSlug} milestones={outcomeTimeline.length} />
+      <section id="outcome-timeline" className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <h2 className="inline-flex items-center gap-2 text-lg font-extrabold text-slate-900">
+          <BookOpen className="h-5 w-5 text-sky-600" />
+          Lộ trình kết quả sau khi mua
+        </h2>
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          Trình bày theo mốc thời gian để phụ huynh hình dung rõ giá trị nhận được, không còn cảm giác mơ hồ.
+        </p>
+
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {outcomeTimeline.map((stage) => (
+            <article key={stage.label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <p className="text-sm font-extrabold text-slate-900">{stage.label}</p>
+              <ul className="mt-3 space-y-2 text-sm text-slate-700">
+                {stage.points.map((point) => (
+                  <li key={point} className="inline-flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-sky-600" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}

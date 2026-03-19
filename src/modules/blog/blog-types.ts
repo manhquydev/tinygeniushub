@@ -1,6 +1,6 @@
 ﻿export type BlogPostStatus = "DRAFT" | "REVIEW" | "SCHEDULED" | "PUBLISHED" | "ARCHIVED";
 export type BlogPostType = "ARTICLE" | "TIP" | "NEWS" | "GUIDE" | "RESEARCH" | "STORY";
-export type AgeGroup = "UNDER_3" | "AGE_3_5" | "AGE_6_8" | "AGE_9_12" | "ALL_AGES";
+export type AgeGroup = "UNDER_3" | "AGE_3_5" | "AGE_4_6" | "AGE_6_8" | "AGE_7_9" | "AGE_9_12" | "AGE_10_12" | "ALL_AGES";
 
 export interface BlogAuthorSummary {
   displayName: string;

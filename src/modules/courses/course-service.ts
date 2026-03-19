@@ -27,6 +27,10 @@ export type StorefrontCourse = {
   durationDays: number;
   coverImageUrl: string | null;
   lessonCount: number;
+  ageGroup: string | null;
+  reviewCount: number;
+  reviewAverageRating: number | null;
+  enrollmentCount: number;
   pricing: {
     salePriceVnd: number;
     listPriceVnd: number;
@@ -83,8 +87,11 @@ export async function getStorefrontCourses(): Promise<StorefrontCourse[]> {
       durationDays: true,
       coverImageUrl: true,
       createdAt: true,
+      ageGroup: true,
+      reviewCount: true,
+      reviewAverageRating: true,
       _count: {
-        select: { lessons: true },
+        select: { lessons: true, enrollments: true },
       },
     },
   });
@@ -107,6 +114,10 @@ export async function getStorefrontCourses(): Promise<StorefrontCourse[]> {
       durationDays: row.durationDays,
       coverImageUrl: resolveCourseCoverImage(row.slug, row.coverImageUrl),
       lessonCount: row._count.lessons,
+      ageGroup: row.ageGroup ?? null,
+      reviewCount: row.reviewCount,
+      reviewAverageRating: row.reviewAverageRating,
+      enrollmentCount: row._count.enrollments,
       pricing: resolveCourseDisplayPricing(row),
     }));
 }
@@ -170,6 +181,7 @@ export async function getParentEnrollments(parentId: string) {
           priceVnd: true,
           durationDays: true,
           coverImageUrl: true,
+          _count: { select: { lessons: true } },
         },
       },
     },
@@ -185,6 +197,34 @@ export async function getParentEnrollments(parentId: string) {
       ),
     },
   }));
+}
+
+export async function getCourseProgressForParent(
+  parentId: string,
+  courseIds: string[],
+): Promise<Map<string, { completed: number; lastCompletedAt: Date | null }>> {
+  if (courseIds.length === 0) return new Map();
+
+  // Count completed lessons per course across all children of this parent
+  const rows = await prisma.$queryRaw<{ courseId: string; count: bigint; lastAt: Date | null }[]>`
+    SELECT cl."courseId", COUNT(DISTINCT lc."lessonId")::int AS count, MAX(lc."completedAt") AS "lastAt"
+    FROM "LessonCompletion" lc
+    JOIN "Lesson" l ON l.id = lc."lessonId"
+    JOIN "CourseLesson" cl ON cl."lessonId" = l.id
+    JOIN "ChildProfile" cp ON cp.id = lc."childId"
+    WHERE cl."courseId" = ANY(${courseIds}::text[])
+    AND cp."parentId" = ${parentId}
+    GROUP BY cl."courseId"
+  `;
+
+  const result = new Map<string, { completed: number; lastCompletedAt: Date | null }>();
+  for (const row of rows) {
+    result.set(row.courseId, {
+      completed: Number(row.count),
+      lastCompletedAt: row.lastAt ?? null,
+    });
+  }
+  return result;
 }
 
 /** Whether parent is enrolled in any course containing this lesson */
@@ -511,4 +551,58 @@ export async function getEnrolledCoursesForKidDashboard(params: {
   }
 
   return rows.sort((a, b) => a.enrolledAt.getTime() - b.enrolledAt.getTime());
+}
+
+export type RelatedCourse = {
+  id: string;
+  slug: string;
+  title: string;
+  coverImageUrl: string | null;
+  lessonCount: number;
+  durationDays: number;
+  pricing: { salePriceVnd: number; listPriceVnd: number; hasDiscount: boolean };
+};
+
+export async function getRelatedCourses({
+  courseId,
+  subject,
+  ageGroup,
+  limit = 4,
+}: {
+  courseId: string;
+  subject: string | null;
+  ageGroup: string | null;
+  limit?: number;
+}): Promise<RelatedCourse[]> {
+  const rows = await prisma.course.findMany({
+    where: {
+      isPublished: true,
+      id: { not: courseId },
+      ...(subject ? { subject: subject as never } : {}),
+      ...(ageGroup ? { ageGroup: ageGroup as never } : {}),
+    },
+    take: limit,
+    orderBy: { createdAt: "desc" },
+    select: {
+      id: true,
+      slug: true,
+      title: true,
+      coverImageUrl: true,
+      durationDays: true,
+      priceVnd: true,
+      listPriceVnd: true,
+      salePriceVnd: true,
+      _count: { select: { lessons: true } },
+    },
+  });
+
+  return rows.map((row) => ({
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    coverImageUrl: resolveCourseCoverImage(row.slug, row.coverImageUrl),
+    lessonCount: row._count.lessons,
+    durationDays: row.durationDays,
+    pricing: resolveCourseDisplayPricing(row),
+  }));
 }

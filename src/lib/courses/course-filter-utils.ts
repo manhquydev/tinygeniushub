@@ -1,0 +1,75 @@
+export const SUBJECT_LABELS: Record<string, string> = {
+  MATH: "Toán học",
+  ENGLISH: "Tiếng Anh",
+  SCIENCE: "Khoa học",
+  ART: "Mỹ thuật",
+  MUSIC: "Âm nhạc",
+  OTHER: "Khác",
+};
+
+export const AGE_GROUP_LABELS: Record<string, string> = {
+  ALL_AGES: "Mọi độ tuổi",
+  UNDER_3: "Dưới 3 tuổi",
+  AGE_3_5: "3-5 tuổi",
+  AGE_4_6: "4-6 tuổi",
+  AGE_6_8: "6-8 tuổi",
+  AGE_7_9: "7-9 tuổi",
+  AGE_9_12: "9-12 tuổi",
+  AGE_10_12: "10-12 tuổi",
+};
+
+export const DURATION_LABELS = {
+  short: "Ngắn (<30 ngày)",
+  medium: "Vừa (30-60 ngày)",
+  long: "Dài (>60 ngày)",
+};
+
+export const SORT_OPTIONS = [
+  { value: "newest", label: "Mới nhất" },
+  { value: "price_asc", label: "Giá tăng dần" },
+  { value: "price_desc", label: "Giá giảm dần" },
+  { value: "duration_asc", label: "Thời lượng ngắn trước" },
+];
+
+export type CourseFilterParams = {
+  subject?: string;
+  ageGroup?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  duration?: "short" | "medium" | "long";
+  sort?: string;
+  page?: number;
+};
+
+function firstString(value: string | string[] | undefined): string | undefined {
+  if (Array.isArray(value)) return value[0];
+  return value;
+}
+
+const VALID_SUBJECTS = new Set(Object.keys(SUBJECT_LABELS));
+const VALID_AGE_GROUPS = new Set(Object.keys(AGE_GROUP_LABELS));
+const VALID_DURATIONS = new Set(["short", "medium", "long"]);
+const VALID_SORTS = new Set(SORT_OPTIONS.map((o) => o.value));
+const MAX_PRICE = 10_000_000;
+
+export function parseFilterParams(
+  searchParams: Record<string, string | string[] | undefined>,
+): CourseFilterParams {
+  const subject = firstString(searchParams.subject);
+  const ageGroup = firstString(searchParams.ageGroup);
+  const duration = firstString(searchParams.duration);
+  const sort = firstString(searchParams.sort);
+  const page = parseInt(firstString(searchParams.page) ?? "1", 10);
+  const minPrice = parseInt(firstString(searchParams.minPrice) ?? "0", 10);
+  const maxPrice = parseInt(firstString(searchParams.maxPrice) ?? "0", 10);
+
+  return {
+    subject: subject && VALID_SUBJECTS.has(subject) ? subject : undefined,
+    ageGroup: ageGroup && VALID_AGE_GROUPS.has(ageGroup) ? ageGroup : undefined,
+    duration: duration && VALID_DURATIONS.has(duration) ? (duration as CourseFilterParams["duration"]) : undefined,
+    sort: sort && VALID_SORTS.has(sort) ? sort : undefined,
+    page: isNaN(page) || page < 1 ? 1 : page,
+    minPrice: isNaN(minPrice) || minPrice <= 0 ? undefined : Math.min(minPrice, MAX_PRICE),
+    maxPrice: isNaN(maxPrice) || maxPrice <= 0 ? undefined : Math.min(maxPrice, MAX_PRICE),
+  };
+}

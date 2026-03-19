@@ -1,6 +1,6 @@
 # Codebase Summary
 
-**Last updated:** 2026-02-25 — Phases 01–04 complete. Deployed to production at https://cungcontuhoc.io.vn.
+**Last updated:** 2026-03-19 — Phases 01–05 complete. Deployed to production at https://cungcontuhoc.io.vn.
 
 ---
 
@@ -12,6 +12,71 @@
 - **Services:** Docker Compose — PostgreSQL 16 + Redis 7
 - **CI/CD:** `.github/workflows/deploy-digitalocean-ssh.yml` (GitHub Actions SSH deploy key)
 - **Seed data:** 13 blog articles, categories, tags
+
+---
+
+## Phase 05 — Course Learning Pages Overhaul (complete)
+
+### Free Lesson Preview System
+- `video-token` API endpoint now bypasses authentication for lessons with `isPreview` flag
+- Enables "học thử" (free trial) video playback without login requirement
+- `StorefrontCourse` type extended with `ageGroup`, `reviewCount`, `reviewAverageRating`, `enrollmentCount`
+
+### Course Detail Pages Modularization
+- `/courses/[slug]` fully rewired with 9 new detail components:
+  - `course-detail-hero.tsx` — Course title, image, rating, CTA
+  - `course-detail-curriculum.tsx` — Client component with lesson timeline, progress dots (emerald for preview, slate for locked)
+  - `course-detail-difference.tsx` — Why choose this course section
+  - `course-detail-faq.tsx` — FAQ accordion
+  - `course-detail-fit-checklist.tsx` — Age/level checklist
+  - `course-detail-timeline.tsx` — Course timeline
+  - `course-detail-sticky-header.tsx` — Sticky navigation header
+- `CourseLessonPreviewModal` — Inline video preview modal for curriculum lessons
+- `getRelatedCourses()` function + `RelatedCourse` type in course-service
+- Related courses section at bottom of detail page
+
+### Parent Course Progress
+- `/parent/courses` page displays progress bar per course (completed lessons/total)
+- "Học gần nhất" date and "Học tiếp" CTA with childId parameter
+- Course card component shows enrollment status and progress
+
+### Lesson Player UX Enhancement
+- `course-lessons-player.tsx` refactored from 252 to 160 lines
+- 3 new sub-components:
+  - `lesson-player-sidebar.tsx` — CheckCircle2/Circle icons for lesson navigation
+  - `lesson-player-content.tsx` — Main video/content area
+  - `lesson-parent-script-panel.tsx` — Parent guidance script panel
+- "Just completed" congratulation prompt (5s display)
+- Improved sidebar responsiveness and visual hierarchy
+
+### Parent Dashboard Modularization
+- `/parent/dashboard` split from 449 to 84 lines across 7 components:
+  - `dashboard-header.tsx`, `dashboard-child-card.tsx`, `dashboard-recent-activity.tsx`
+  - `dashboard-quick-links.tsx`, `dashboard-referral-banner.tsx`, `dashboard-skills-section.tsx`, `dashboard-course-recommendation.tsx`
+- Child card enhanced with weekly progress bar and recent completions list
+- Improved mobile responsiveness and component reusability
+
+### Course Reviews System
+- New `CourseReview` Prisma model in schema
+- Related review components: `course-review-card.tsx`, `course-review-form.tsx`, `course-reviews-section.tsx`, `course-rating-distribution.tsx`
+- API routes: `GET/POST /api/courses/[slug]/reviews`, `GET/POST /api/admin/courses/[id]/reviews`
+
+### Data & Types
+- `course-detail-data.ts` — Consolidated data fetching for course detail pages
+- `CourseSubject` enum added to Prisma schema
+- `AgeGroup` enum expanded to 8 values (matching Prisma client)
+- `blog-types.ts` updated with extended AgeGroup values
+- `admin-blog-post-form.tsx` updated to handle all age groups
+
+### Analytics Tracking
+- 3 new tracker exports in `course-storefront-tracking.tsx`:
+  - `FitCheckTrackedLink`, `OutcomeTimelineViewTracker`, `DifferenceBlockViewTracker`
+- 3 new analytics events in `track-event.ts` EventMap
+
+### SEO Enhancements
+- `course-jsonld.ts` — JSON-LD schema generation for courses
+- Breadcrumb navigation component for course hierarchy
+- Active filter display component for course filtering
 
 ---
 
@@ -189,11 +254,12 @@ src/
 
 ### Prisma Models
 `ParentAccount`, `ChildProfile`, `Subscription`, `Lesson`, `LessonCompletion`, `WeeklyReport`,
-`Course`, `CourseLesson`, `CourseEnrollment`, `GiftCode`,
+`Course`, `CourseLesson`, `CourseEnrollment`, `CourseReview`, `GiftCode`,
 `Organization`, `OrganizationMember`,
 `LifecycleEmailLog`,
 `BlogPost`, `BlogCategory`, `BlogAuthor`, `BlogNewsletterSubscriber`,
-`ContactMessage`, `WaitlistEntry`, `ReferralCode`, `ReferralUse`
+`ContactMessage`, `WaitlistEntry`, `ReferralCode`, `ReferralUse`,
+`SiteContentSettings`
 
 ### Environment Variables (production required)
 ```

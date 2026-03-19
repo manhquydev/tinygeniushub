@@ -1,5 +1,40 @@
 # Project Changelog
 
+## [0.4.0] - 2026-03-19
+
+### Added
+- **Free Lesson Preview System** — Bypass authentication for lessons with `isPreview` flag, enabling "học thử" (free trial) video playback
+- **9 Course Detail Components** — Modularized course detail page: hero, curriculum, difference, FAQ, fit checklist, timeline, sticky header, breadcrumb, related courses
+- **Curriculum Progress Timeline** — Client-side timeline with progress dots (emerald for preview, slate for locked), lesson preview modal
+- **Parent Course Progress Page** — `/parent/courses` with per-course completion bars, "Học gần nhất" date, "Học tiếp" CTA
+- **Lesson Player UX Refactor** — 252→160 lines, new sidebar with CheckCircle2 icons, lesson navigation, parent script panel, congratulation prompt
+- **Parent Dashboard Modularization** — 449→84 lines split into 7 components: header, child card (with weekly progress), activity, quick links, referral banner, skills, course recommendation
+- **Course Reviews System** — New `CourseReview` model, review form, rating display, review card component
+- **Course Storefront Tracking** — 3 new analytics trackers: `FitCheckTrackedLink`, `OutcomeTimelineViewTracker`, `DifferenceBlockViewTracker`
+- **SEO Enhancements** — JSON-LD schema generation (`course-jsonld.ts`), breadcrumb navigation, active filter display
+- **StorefrontCourse Type Extension** — Added `ageGroup`, `reviewCount`, `reviewAverageRating`, `enrollmentCount`
+- **Course Service** — `getRelatedCourses()` function for course recommendations
+- **Database Schema** — `CourseSubject` enum, expanded `AgeGroup` enum (8 values), new `CourseReview` model
+
+### Changed
+- Course detail page fully refactored to use modular component architecture
+- Parent dashboard simplified for mobile responsiveness
+- Course card component rewritten with progress tracking
+- `course-storefront-content.ts` updated with related course recommendations
+
+### API Routes
+- New: `GET/POST /api/courses/[slug]/reviews` — course review endpoints
+- New: `GET/POST /api/admin/courses/[id]/reviews` — admin review management
+- Modified: `GET /api/lessons/[lessonId]/video-token` — now bypasses auth for `isPreview` lessons
+
+### Database
+- New Prisma model: `CourseReview` (course ID, rating, author, text, timestamp)
+- Schema updates: `Course.subject`, `Course.ageGroup`, `Course.reviewAverageRating`, `Course.reviewCount`
+- Schema expansion: `AgeGroup` enum now 8 values, `CourseSubject` enum added
+
+### Tests
+- Visual regression tests for course detail pages: `courses-visual-regression.spec.ts`
+
 ## [0.3.1] - 2026-03-17
 
 ### Added

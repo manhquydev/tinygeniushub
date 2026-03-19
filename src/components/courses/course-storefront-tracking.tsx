@@ -20,6 +20,28 @@ type BundleDetailViewTrackerProps = {
   lessons: number;
 };
 
+type FitCheckTrackedLinkProps = {
+  href: string;
+  className?: string;
+  variant: AbVariant;
+  bundleSlug: string;
+  sourcePage: string;
+  ctaLabel: string;
+  children: ReactNode;
+};
+
+type OutcomeTimelineViewTrackerProps = {
+  variant: AbVariant;
+  bundleSlug: string;
+  milestones: number;
+};
+
+type DifferenceBlockViewTrackerProps = {
+  variant: AbVariant;
+  bundleSlug: string;
+  comparedBundleSlug: string;
+};
+
 type BundleDetailTrackedLinkProps = {
   href: string;
   className?: string;
@@ -62,6 +84,65 @@ export function BundleDetailViewTracker({
       lessons,
     });
   }, [variant, bundleSlug, tracks, lessons]);
+
+  return null;
+}
+
+export function FitCheckTrackedLink({
+  href,
+  className,
+  variant,
+  bundleSlug,
+  sourcePage,
+  ctaLabel,
+  children,
+}: FitCheckTrackedLinkProps) {
+  return (
+    <Link
+      href={href}
+      className={className}
+      onClick={() => {
+        trackEvent("courses_fit_check_click", {
+          variant,
+          bundle_slug: bundleSlug,
+          source_page: sourcePage,
+          cta_label: ctaLabel,
+        });
+      }}
+    >
+      {children}
+    </Link>
+  );
+}
+
+export function OutcomeTimelineViewTracker({
+  variant,
+  bundleSlug,
+  milestones,
+}: OutcomeTimelineViewTrackerProps) {
+  useEffect(() => {
+    trackEvent("courses_outcome_timeline_view", {
+      variant,
+      bundle_slug: bundleSlug,
+      milestones,
+    });
+  }, [variant, bundleSlug, milestones]);
+
+  return null;
+}
+
+export function DifferenceBlockViewTracker({
+  variant,
+  bundleSlug,
+  comparedBundleSlug,
+}: DifferenceBlockViewTrackerProps) {
+  useEffect(() => {
+    trackEvent("courses_difference_block_view", {
+      variant,
+      bundle_slug: bundleSlug,
+      compared_bundle_slug: comparedBundleSlug,
+    });
+  }, [variant, bundleSlug, comparedBundleSlug]);
 
   return null;
 }

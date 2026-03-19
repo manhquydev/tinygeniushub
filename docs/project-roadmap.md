@@ -1,7 +1,24 @@
 # Project Roadmap
 
-**Last updated:** 2026-03-17
+**Last updated:** 2026-03-19
 **Status:** All phases complete — deployed to production.
+
+---
+
+## Phase 05 — Course Learning Pages Overhaul [COMPLETE]
+
+- Free lesson preview system with `isPreview` bypass authentication
+- Course detail pages modularized into 9 reusable components (hero, curriculum, difference, FAQ, fit checklist, timeline, sticky header)
+- Parent course progress page with completion bars and "Học tiếp" CTA
+- Lesson player UX refactored with sidebar and parent script panel (reduced 252→160 lines)
+- Parent dashboard split from 449 lines into 7 focused components
+- Course reviews system with ratings and review form
+- Breadcrumb navigation and course card components
+- JSON-LD schema generation for SEO
+- 3 new analytics trackers for course storefront events
+- Extended `StorefrontCourse` type with `ageGroup`, `reviewCount`, `reviewAverageRating`, `enrollmentCount`
+- `CourseSubject` enum and expanded `AgeGroup` enum (8 values) in Prisma schema
+- New `CourseReview` model in database
 
 ---
 
