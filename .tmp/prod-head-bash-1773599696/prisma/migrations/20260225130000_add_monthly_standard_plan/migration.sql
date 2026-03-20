@@ -1,2 +1,0 @@
--- AlterEnum
-ALTER TYPE "PlanCode" ADD VALUE 'MONTHLY_STANDARD';

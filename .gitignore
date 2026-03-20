@@ -42,6 +42,7 @@ yarn-error.log*
 next-env.d.ts
 
 # temp/log files from dev tools & CI
+/.tmp/
 .tmp-*
 .tmp-chrome-*/
 .tmp-visual/
