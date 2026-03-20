@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "resource_root": "/phim",
+    "provider": "phi-vu-dong-troi",
+    "provider_slug": "phi-vu-dong-troi",
+    "course": "default",
+    "course_slug": "default",
+    "page_count": 1,
+    "video_count": 1
+  },
+  "pages": [
+    {
+      "resource_root": "/phim",
+      "page_url": "https://hoctienganh.xyz/phim/phi-vu-dong-troi",
+      "page_key": "phi-vu-dong-troi",
+      "path_segments": [
+        "phi-vu-dong-troi"
+      ],
+      "provider": "phi-vu-dong-troi",
+      "course": "",
+      "topic": "",
+      "video_count": 1,
+      "videos": [
+        {
+          "order": 1,
+          "title": "index",
+          "video_url": "https://vip.opstream11.com/20220315/2051_055e64c4/index.m3u8",
+          "host": "vip.opstream11.com",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "phi-vu-dong-troi",
+      "course": "default",
+      "topic": "",
+      "page_key": "phi-vu-dong-troi",
+      "page_url": "https://hoctienganh.xyz/phim/phi-vu-dong-troi",
+      "order": 1,
+      "title": "index",
+      "video_url": "https://vip.opstream11.com/20220315/2051_055e64c4/index.m3u8",
+      "host": "vip.opstream11.com",
+      "ext": "m3u8"
+    }
+  ]
+}

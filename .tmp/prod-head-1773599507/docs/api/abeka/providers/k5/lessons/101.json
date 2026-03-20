@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "k5",
+    "provider_slug": "k5",
+    "course": "lesson-101",
+    "course_slug": "101",
+    "grade_id": "14",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "page_key": "k5/101",
+      "path_segments": [
+        "k5",
+        "101"
+      ],
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "K5 Activities: Activity Time",
+          "description": "K5 Activities: Activity Time - Lesson: 101 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC101D/K5AC101D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "K5 Activities: Language Enrichment",
+          "description": "K5 Activities: Language Enrichment - Lesson: 101 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5LE101D/K5LE101D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "K5 Activities: Skills Development",
+          "description": "K5 Activities: Skills Development - Lesson: 101 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD101D/K5SD101D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "K5 Bible",
+          "description": "K5 Bible - Lesson: 101 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI101D/K5BI101D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "K5 Numbers",
+          "description": "K5 Numbers - Lesson: 101 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU101D/K5NU101D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "K5 Phonics: Phonics",
+          "description": "K5 Phonics: Phonics - Lesson: 101 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH101D/K5PH101D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "K5 Phonics: Phonics Review",
+          "description": "K5 Phonics: Phonics Review - Lesson: 101 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PR101D/K5PR101D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "K5 Writing: Cursive Writing",
+          "description": "K5 Writing: Cursive Writing - Lesson: 101 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5CW101D/K5CW101D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "K5 Writing: Manuscript Writing",
+          "description": "K5 Writing: Manuscript Writing - Lesson: 101 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5MW101D/K5MW101D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "page_key": "k5/101",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 1,
+      "title": "K5 Activities: Activity Time",
+      "description": "K5 Activities: Activity Time - Lesson: 101 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC101D/K5AC101D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "page_key": "k5/101",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 2,
+      "title": "K5 Activities: Language Enrichment",
+      "description": "K5 Activities: Language Enrichment - Lesson: 101 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5LE101D/K5LE101D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "page_key": "k5/101",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 3,
+      "title": "K5 Activities: Skills Development",
+      "description": "K5 Activities: Skills Development - Lesson: 101 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD101D/K5SD101D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "page_key": "k5/101",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 4,
+      "title": "K5 Bible",
+      "description": "K5 Bible - Lesson: 101 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI101D/K5BI101D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "page_key": "k5/101",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 5,
+      "title": "K5 Numbers",
+      "description": "K5 Numbers - Lesson: 101 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU101D/K5NU101D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "page_key": "k5/101",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 6,
+      "title": "K5 Phonics: Phonics",
+      "description": "K5 Phonics: Phonics - Lesson: 101 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH101D/K5PH101D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "page_key": "k5/101",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 7,
+      "title": "K5 Phonics: Phonics Review",
+      "description": "K5 Phonics: Phonics Review - Lesson: 101 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PR101D/K5PR101D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "page_key": "k5/101",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 8,
+      "title": "K5 Writing: Cursive Writing",
+      "description": "K5 Writing: Cursive Writing - Lesson: 101 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5CW101D/K5CW101D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-101",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 101,
+      "page_key": "k5/101",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 9,
+      "title": "K5 Writing: Manuscript Writing",
+      "description": "K5 Writing: Manuscript Writing - Lesson: 101 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5MW101D/K5MW101D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

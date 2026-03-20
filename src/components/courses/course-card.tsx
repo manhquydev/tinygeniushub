@@ -2,14 +2,18 @@ import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
 import type { StorefrontCourse } from "@/modules/courses/course-service";
 import type { AbVariant } from "@/lib/ab-test-constants";
-import type { BundleStorefrontContent } from "@/modules/courses/course-storefront-content";
+import type {
+  BundleStorefrontContent,
+  CourseClaritySnapshot,
+} from "@/modules/courses/course-storefront-content";
 import { AGE_GROUP_LABELS } from "@/lib/courses/course-filter-utils";
 import { BundleDetailTrackedLink } from "@/components/courses/course-storefront-tracking";
 
 interface CourseCardProps {
   course: StorefrontCourse;
   bundleContent: BundleStorefrontContent | null;
-  outcomeStatement: string | null;
+  claritySnapshot: CourseClaritySnapshot | null;
+  showPilotBadge: boolean;
   variant: AbVariant;
   index: number;
   detailCtaLabel: string;
@@ -22,7 +26,8 @@ function formatCurrency(amount: number) {
 export function CourseCard({
   course,
   bundleContent,
-  outcomeStatement,
+  claritySnapshot,
+  showPilotBadge,
   variant,
   index,
   detailCtaLabel,
@@ -64,11 +69,18 @@ export function CourseCard({
       <div className="grid gap-3 p-4 sm:p-5">
         {/* Track label + title + description */}
         <div className="space-y-1.5">
-          {bundleContent ? (
-            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-sky-700">
-              {bundleContent.shortLabel}
-            </p>
-          ) : null}
+          <div className="flex flex-wrap items-center gap-2">
+            {bundleContent ? (
+              <p className="text-xs font-semibold uppercase tracking-[0.08em] text-sky-700">
+                {bundleContent.shortLabel}
+              </p>
+            ) : null}
+            {showPilotBadge ? (
+              <span className="inline-flex items-center rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-amber-700">
+                Pilot 4-8 tuần
+              </span>
+            ) : null}
+          </div>
           <h2 className="text-lg font-extrabold tracking-[-0.01em] text-slate-900 transition-colors duration-150 group-hover:text-emerald-700">
             {course.title}
           </h2>
@@ -91,23 +103,34 @@ export function CourseCard({
           </div>
         ) : null}
 
-        {/* Outcome statement */}
-        {outcomeStatement ? (
-          <p className="text-sm leading-relaxed text-emerald-800">
-            <span className="font-semibold">Kết quả:</span> {outcomeStatement}
-          </p>
+        {/* Outcome statement with concrete pacing milestones */}
+        {claritySnapshot ? (
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-3">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-emerald-700">Mốc rõ sau 4 tuần</p>
+            <p className="mt-1 text-sm font-semibold leading-relaxed text-emerald-900">{claritySnapshot.cardOutcomeLine}</p>
+            <p className="mt-1 text-xs text-emerald-800/90">
+              {claritySnapshot.scopeLabel} · Foundation khoảng{" "}
+              {claritySnapshot.phaseCounts.foundation.toLocaleString("vi-VN")} {claritySnapshot.unitLabel}
+            </p>
+          </div>
         ) : null}
 
         {/* Price */}
         <div className="flex items-end gap-2">
-          <p className="text-xl font-black tracking-[-0.02em] text-emerald-700">
-            {formatCurrency(course.pricing.salePriceVnd)}
-          </p>
-          {course.pricing.hasDiscount ? (
-            <p className="pb-0.5 text-xs text-slate-400 line-through">
-              {formatCurrency(course.pricing.listPriceVnd)}
-            </p>
-          ) : null}
+          {course.pricing.isPurchasable ? (
+            <>
+              <p className="text-xl font-black tracking-[-0.02em] text-emerald-700">
+                {formatCurrency(course.pricing.salePriceVnd)}
+              </p>
+              {course.pricing.hasDiscount ? (
+                <p className="pb-0.5 text-xs text-slate-400 line-through">
+                  {formatCurrency(course.pricing.listPriceVnd)}
+                </p>
+              ) : null}
+            </>
+          ) : (
+            <p className="text-sm font-bold text-amber-700">Giá đang cập nhật</p>
+          )}
         </div>
 
         {/* CTA — relative z-10 to sit above card overlay */}

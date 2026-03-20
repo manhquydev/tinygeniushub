@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g10",
+    "provider_slug": "g10",
+    "course": "lesson-165",
+    "course_slug": "165",
+    "grade_id": "10",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "page_key": "g10/165",
+      "path_segments": [
+        "g10",
+        "165"
+      ],
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Additional Review 12.4",
+          "description": "Additional Review 12.4 - Lesson: 165 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2165E-AR12.4/10A2165E-AR12.4.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Algebra 2",
+          "description": "Algebra 2 - Lesson: 165 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2165E/10A2165E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Bible Doctrines",
+          "description": "Bible Doctrines - Lesson: 165 - Teacher: Mr. Birx",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI165C/10BI165C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Biology",
+          "description": "Biology - Lesson: 165 - Teacher: Miss Stancel",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY165E/10BY165E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Consumer Mathematics",
+          "description": "Consumer Mathematics - Lesson: 165 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM165B/10CM165B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "English 10",
+          "description": "English 10 - Lesson: 165 - Teacher: Mrs. Antich",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN165E/10EN165E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Optional Section 12.5A",
+          "description": "Optional Section 12.5A - Lesson: 165 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2165E-OS12.5A/10A2165E-OS12.5A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Optional Section 12.5B",
+          "description": "Optional Section 12.5B - Lesson: 165 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2165E-OS12.5B/10A2165E-OS12.5B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "World History 10",
+          "description": "World History 10 - Lesson: 165 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH165D/10WH165D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "page_key": "g10/165",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 1,
+      "title": "Additional Review 12.4",
+      "description": "Additional Review 12.4 - Lesson: 165 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2165E-AR12.4/10A2165E-AR12.4.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "page_key": "g10/165",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 2,
+      "title": "Algebra 2",
+      "description": "Algebra 2 - Lesson: 165 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2165E/10A2165E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "page_key": "g10/165",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 3,
+      "title": "Bible Doctrines",
+      "description": "Bible Doctrines - Lesson: 165 - Teacher: Mr. Birx",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI165C/10BI165C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "page_key": "g10/165",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 4,
+      "title": "Biology",
+      "description": "Biology - Lesson: 165 - Teacher: Miss Stancel",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY165E/10BY165E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "page_key": "g10/165",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 5,
+      "title": "Consumer Mathematics",
+      "description": "Consumer Mathematics - Lesson: 165 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM165B/10CM165B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "page_key": "g10/165",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 6,
+      "title": "English 10",
+      "description": "English 10 - Lesson: 165 - Teacher: Mrs. Antich",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN165E/10EN165E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "page_key": "g10/165",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 7,
+      "title": "Optional Section 12.5A",
+      "description": "Optional Section 12.5A - Lesson: 165 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2165E-OS12.5A/10A2165E-OS12.5A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "page_key": "g10/165",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 8,
+      "title": "Optional Section 12.5B",
+      "description": "Optional Section 12.5B - Lesson: 165 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2165E-OS12.5B/10A2165E-OS12.5B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-165",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 165,
+      "page_key": "g10/165",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 9,
+      "title": "World History 10",
+      "description": "World History 10 - Lesson: 165 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH165D/10WH165D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

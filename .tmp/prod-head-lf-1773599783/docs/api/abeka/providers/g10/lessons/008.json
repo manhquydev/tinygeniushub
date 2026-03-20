@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g10",
+    "provider_slug": "g10",
+    "course": "lesson-008",
+    "course_slug": "008",
+    "grade_id": "10",
+    "page_count": 1,
+    "video_count": 7
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "page_key": "g10/008",
+      "path_segments": [
+        "g10",
+        "008"
+      ],
+      "provider": "g10",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 8,
+      "video_count": 7,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Algebra 2",
+          "description": "Algebra 2 - Lesson: 8 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2008E/10A2008E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible Doctrines",
+          "description": "Bible Doctrines - Lesson: 8 - Teacher: Mr. Birx",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI008C/10BI008C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Biology",
+          "description": "Biology - Lesson: 8 - Teacher: Miss Stancel",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY008E/10BY008E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Consumer Mathematics",
+          "description": "Consumer Mathematics - Lesson: 8 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM008B/10CM008B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "English 10",
+          "description": "English 10 - Lesson: 8 - Teacher: Mrs. Antich",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN008E/10EN008E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Optional Section 1.6",
+          "description": "Optional Section 1.6 - Lesson: 8 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2008-OS1.6E/10A2008-OS1.6E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "World History 10",
+          "description": "World History 10 - Lesson: 8 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH008D/10WH008D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g10",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 8,
+      "page_key": "g10/008",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 1,
+      "title": "Algebra 2",
+      "description": "Algebra 2 - Lesson: 8 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2008E/10A2008E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 8,
+      "page_key": "g10/008",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 2,
+      "title": "Bible Doctrines",
+      "description": "Bible Doctrines - Lesson: 8 - Teacher: Mr. Birx",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI008C/10BI008C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 8,
+      "page_key": "g10/008",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 3,
+      "title": "Biology",
+      "description": "Biology - Lesson: 8 - Teacher: Miss Stancel",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY008E/10BY008E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 8,
+      "page_key": "g10/008",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 4,
+      "title": "Consumer Mathematics",
+      "description": "Consumer Mathematics - Lesson: 8 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM008B/10CM008B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 8,
+      "page_key": "g10/008",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 5,
+      "title": "English 10",
+      "description": "English 10 - Lesson: 8 - Teacher: Mrs. Antich",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN008E/10EN008E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 8,
+      "page_key": "g10/008",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 6,
+      "title": "Optional Section 1.6",
+      "description": "Optional Section 1.6 - Lesson: 8 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2008-OS1.6E/10A2008-OS1.6E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-008",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 8,
+      "page_key": "g10/008",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 7,
+      "title": "World History 10",
+      "description": "World History 10 - Lesson: 8 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH008D/10WH008D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

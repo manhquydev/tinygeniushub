@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g11",
+    "provider_slug": "g11",
+    "course": "lesson-152",
+    "course_slug": "152",
+    "grade_id": "11",
+    "page_count": 1,
+    "video_count": 7
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "page_key": "g11/152",
+      "path_segments": [
+        "g11",
+        "152"
+      ],
+      "provider": "g11",
+      "course": "lesson-152",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 152,
+      "video_count": 7,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Business Mathematics",
+          "description": "Business Mathematics - Lesson: 152 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM152A/11BM152A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Chemistry",
+          "description": "Chemistry - Lesson: 152 - Teacher: Mr. Sisson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH152E/11CH152E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "English 11",
+          "description": "English 11 - Lesson: 152 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN152D/11EN152D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Keyboarding",
+          "description": "Keyboarding - Lesson: 152 - Teacher: Dr. Marion",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB152A/11KB152A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Plane Geometry",
+          "description": "Plane Geometry - Lesson: 152 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG152D/11PG152D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Spanish 1",
+          "description": "Spanish 1 - Lesson: 152 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA152D/11SA152D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "U. S. History 11",
+          "description": "U. S. History 11 - Lesson: 152 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US152D/11US152D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g11",
+      "course": "lesson-152",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 152,
+      "page_key": "g11/152",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 1,
+      "title": "Business Mathematics",
+      "description": "Business Mathematics - Lesson: 152 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM152A/11BM152A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-152",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 152,
+      "page_key": "g11/152",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 2,
+      "title": "Chemistry",
+      "description": "Chemistry - Lesson: 152 - Teacher: Mr. Sisson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH152E/11CH152E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-152",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 152,
+      "page_key": "g11/152",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 3,
+      "title": "English 11",
+      "description": "English 11 - Lesson: 152 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN152D/11EN152D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-152",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 152,
+      "page_key": "g11/152",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 4,
+      "title": "Keyboarding",
+      "description": "Keyboarding - Lesson: 152 - Teacher: Dr. Marion",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB152A/11KB152A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-152",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 152,
+      "page_key": "g11/152",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 5,
+      "title": "Plane Geometry",
+      "description": "Plane Geometry - Lesson: 152 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG152D/11PG152D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-152",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 152,
+      "page_key": "g11/152",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 6,
+      "title": "Spanish 1",
+      "description": "Spanish 1 - Lesson: 152 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA152D/11SA152D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-152",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 152,
+      "page_key": "g11/152",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 7,
+      "title": "U. S. History 11",
+      "description": "U. S. History 11 - Lesson: 152 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US152D/11US152D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

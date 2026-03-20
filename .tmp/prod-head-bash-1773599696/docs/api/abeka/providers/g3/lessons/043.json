@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g3",
+    "provider_slug": "g3",
+    "course": "lesson-043",
+    "course_slug": "043",
+    "grade_id": "3",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "page_key": "g3/043",
+      "path_segments": [
+        "g3",
+        "043"
+      ],
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Arithmetic 3",
+          "description": "Arithmetic 3 - Lesson: 43 - Teacher: Miss Boyd",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03AT043F/03AT043F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible 3",
+          "description": "Bible 3 - Lesson: 43 - Teacher: Mrs. Quito",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03BI043F/03BI043F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 3",
+          "description": "History 3 - Lesson: 43 - Teacher: Miss Boyd",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03HI043F/03HI043F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Language 3",
+          "description": "Language 3 - Lesson: 43 - Teacher: Mrs. Quito",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03LA043F/03LA043F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Reading 3",
+          "description": "Reading 3 - Lesson: 43 - Teacher: Mrs. Quito",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03RE043F/03RE043F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Science/Health 3",
+          "description": "Science/Health 3 - Lesson: 43 - Teacher: Miss Boyd",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03SC043F/03SC043F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Seatwork 3",
+          "description": "Seatwork 3 - Lesson: 43 - Teacher: Miss Boyd",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03SE043F/03SE043F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Spelling 3",
+          "description": "Spelling 3 - Lesson: 43 - Teacher: Mrs. Quito",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03SP043F/03SP043F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Writing 3",
+          "description": "Writing 3 - Lesson: 43 - Teacher: Mrs. Quito",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03WR043F/03WR043F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "page_key": "g3/043",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "order": 1,
+      "title": "Arithmetic 3",
+      "description": "Arithmetic 3 - Lesson: 43 - Teacher: Miss Boyd",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03AT043F/03AT043F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "page_key": "g3/043",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "order": 2,
+      "title": "Bible 3",
+      "description": "Bible 3 - Lesson: 43 - Teacher: Mrs. Quito",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03BI043F/03BI043F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "page_key": "g3/043",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "order": 3,
+      "title": "History 3",
+      "description": "History 3 - Lesson: 43 - Teacher: Miss Boyd",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03HI043F/03HI043F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "page_key": "g3/043",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "order": 4,
+      "title": "Language 3",
+      "description": "Language 3 - Lesson: 43 - Teacher: Mrs. Quito",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03LA043F/03LA043F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "page_key": "g3/043",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "order": 5,
+      "title": "Reading 3",
+      "description": "Reading 3 - Lesson: 43 - Teacher: Mrs. Quito",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03RE043F/03RE043F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "page_key": "g3/043",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "order": 6,
+      "title": "Science/Health 3",
+      "description": "Science/Health 3 - Lesson: 43 - Teacher: Miss Boyd",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03SC043F/03SC043F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "page_key": "g3/043",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "order": 7,
+      "title": "Seatwork 3",
+      "description": "Seatwork 3 - Lesson: 43 - Teacher: Miss Boyd",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03SE043F/03SE043F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "page_key": "g3/043",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "order": 8,
+      "title": "Spelling 3",
+      "description": "Spelling 3 - Lesson: 43 - Teacher: Mrs. Quito",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03SP043F/03SP043F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g3",
+      "course": "lesson-043",
+      "topic": "",
+      "grade": "g3",
+      "lesson": 43,
+      "page_key": "g3/043",
+      "page_url": "https://hoctienganh.xyz/abeka/3",
+      "order": 9,
+      "title": "Writing 3",
+      "description": "Writing 3 - Lesson: 43 - Teacher: Mrs. Quito",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/03/03WR043F/03WR043F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

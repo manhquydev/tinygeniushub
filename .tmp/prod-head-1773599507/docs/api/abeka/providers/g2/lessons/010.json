@@ -1,0 +1,355 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g2",
+    "provider_slug": "g2",
+    "course": "lesson-010",
+    "course_slug": "010",
+    "grade_id": "2",
+    "page_count": 1,
+    "video_count": 14
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "page_key": "g2/010",
+      "path_segments": [
+        "g2",
+        "010"
+      ],
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "video_count": 14,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Activities 2",
+          "description": "Activities 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AC010F/02AC010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Arithmetic 2: Arithmetic",
+          "description": "Arithmetic 2: Arithmetic - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AT010F/02AT010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Arithmetic 2: Arithmetic Combinations",
+          "description": "Arithmetic 2: Arithmetic Combinations - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AB010F/02AB010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Bible 2",
+          "description": "Bible 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02BI010F/02BI010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Phonics and Language 2",
+          "description": "Phonics and Language 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PH010F/02PH010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Reading 2: AM Beavers",
+          "description": "Reading 2: AM Beavers - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02RV010F/02RV010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Reading 2: AM Bees",
+          "description": "Reading 2: AM Bees - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02RB010F/02RB010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Reading 2: AM Birds",
+          "description": "Reading 2: AM Birds - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02RD010F/02RD010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Reading 2: PM Beavers",
+          "description": "Reading 2: PM Beavers - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PV010F/02PV010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "Reading 2: PM Bees",
+          "description": "Reading 2: PM Bees - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PB010F/02PB010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "Reading 2: PM Birds",
+          "description": "Reading 2: PM Birds - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PD010F/02PD010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 12,
+          "title": "Seatwork 2",
+          "description": "Seatwork 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02SE010F/02SE010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 13,
+          "title": "Spelling 2",
+          "description": "Spelling 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02SP010F/02SP010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 14,
+          "title": "Writing 2",
+          "description": "Writing 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02WR010F/02WR010F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 1,
+      "title": "Activities 2",
+      "description": "Activities 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AC010F/02AC010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 2,
+      "title": "Arithmetic 2: Arithmetic",
+      "description": "Arithmetic 2: Arithmetic - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AT010F/02AT010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 3,
+      "title": "Arithmetic 2: Arithmetic Combinations",
+      "description": "Arithmetic 2: Arithmetic Combinations - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AB010F/02AB010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 4,
+      "title": "Bible 2",
+      "description": "Bible 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02BI010F/02BI010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 5,
+      "title": "Phonics and Language 2",
+      "description": "Phonics and Language 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PH010F/02PH010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 6,
+      "title": "Reading 2: AM Beavers",
+      "description": "Reading 2: AM Beavers - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02RV010F/02RV010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 7,
+      "title": "Reading 2: AM Bees",
+      "description": "Reading 2: AM Bees - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02RB010F/02RB010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 8,
+      "title": "Reading 2: AM Birds",
+      "description": "Reading 2: AM Birds - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02RD010F/02RD010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 9,
+      "title": "Reading 2: PM Beavers",
+      "description": "Reading 2: PM Beavers - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PV010F/02PV010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 10,
+      "title": "Reading 2: PM Bees",
+      "description": "Reading 2: PM Bees - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PB010F/02PB010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 11,
+      "title": "Reading 2: PM Birds",
+      "description": "Reading 2: PM Birds - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PD010F/02PD010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 12,
+      "title": "Seatwork 2",
+      "description": "Seatwork 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02SE010F/02SE010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 13,
+      "title": "Spelling 2",
+      "description": "Spelling 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02SP010F/02SP010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-010",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 10,
+      "page_key": "g2/010",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 14,
+      "title": "Writing 2",
+      "description": "Writing 2 - Lesson: 10 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02WR010F/02WR010F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

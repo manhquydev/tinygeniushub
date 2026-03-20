@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g4",
+    "provider_slug": "g4",
+    "course": "lesson-127",
+    "course_slug": "127",
+    "grade_id": "4",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "page_key": "g4/127",
+      "path_segments": [
+        "g4",
+        "127"
+      ],
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Activities 4",
+          "description": "Activities 4 - Lesson: 127 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AR127G/04AR127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Arithmetic 4",
+          "description": "Arithmetic 4 - Lesson: 127 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AT127G/04AT127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Bible 4",
+          "description": "Bible 4 - Lesson: 127 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04BI127G/04BI127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "History 4",
+          "description": "History 4 - Lesson: 127 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04HI127G/04HI127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Language 4",
+          "description": "Language 4 - Lesson: 127 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04LA127G/04LA127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Reading 4",
+          "description": "Reading 4 - Lesson: 127 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04RE127G/04RE127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Science/Health",
+          "description": "Science/Health - Lesson: 127 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SC127G/04SC127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Spelling 4",
+          "description": "Spelling 4 - Lesson: 127 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SP127G/04SP127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Writing 4",
+          "description": "Writing 4 - Lesson: 127 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04WR127G/04WR127G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "page_key": "g4/127",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 1,
+      "title": "Activities 4",
+      "description": "Activities 4 - Lesson: 127 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AR127G/04AR127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "page_key": "g4/127",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 2,
+      "title": "Arithmetic 4",
+      "description": "Arithmetic 4 - Lesson: 127 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AT127G/04AT127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "page_key": "g4/127",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 3,
+      "title": "Bible 4",
+      "description": "Bible 4 - Lesson: 127 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04BI127G/04BI127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "page_key": "g4/127",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 4,
+      "title": "History 4",
+      "description": "History 4 - Lesson: 127 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04HI127G/04HI127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "page_key": "g4/127",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 5,
+      "title": "Language 4",
+      "description": "Language 4 - Lesson: 127 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04LA127G/04LA127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "page_key": "g4/127",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 6,
+      "title": "Reading 4",
+      "description": "Reading 4 - Lesson: 127 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04RE127G/04RE127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "page_key": "g4/127",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 7,
+      "title": "Science/Health",
+      "description": "Science/Health - Lesson: 127 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SC127G/04SC127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "page_key": "g4/127",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 8,
+      "title": "Spelling 4",
+      "description": "Spelling 4 - Lesson: 127 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SP127G/04SP127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-127",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 127,
+      "page_key": "g4/127",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 9,
+      "title": "Writing 4",
+      "description": "Writing 4 - Lesson: 127 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04WR127G/04WR127G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

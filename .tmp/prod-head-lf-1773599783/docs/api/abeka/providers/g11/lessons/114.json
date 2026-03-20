@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g11",
+    "provider_slug": "g11",
+    "course": "lesson-114",
+    "course_slug": "114",
+    "grade_id": "11",
+    "page_count": 1,
+    "video_count": 7
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "page_key": "g11/114",
+      "path_segments": [
+        "g11",
+        "114"
+      ],
+      "provider": "g11",
+      "course": "lesson-114",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 114,
+      "video_count": 7,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Business Mathematics",
+          "description": "Business Mathematics - Lesson: 114 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM114A/11BM114A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Chemistry",
+          "description": "Chemistry - Lesson: 114 - Teacher: Mr. Sisson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH114E/11CH114E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "English 11",
+          "description": "English 11 - Lesson: 114 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN114D/11EN114D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Keyboarding",
+          "description": "Keyboarding - Lesson: 114 - Teacher: Dr. Marion",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB114A/11KB114A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Plane Geometry",
+          "description": "Plane Geometry - Lesson: 114 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG114D/11PG114D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Spanish 1",
+          "description": "Spanish 1 - Lesson: 114 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA114D/11SA114D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "U. S. History 11",
+          "description": "U. S. History 11 - Lesson: 114 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US114D/11US114D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g11",
+      "course": "lesson-114",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 114,
+      "page_key": "g11/114",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 1,
+      "title": "Business Mathematics",
+      "description": "Business Mathematics - Lesson: 114 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM114A/11BM114A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-114",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 114,
+      "page_key": "g11/114",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 2,
+      "title": "Chemistry",
+      "description": "Chemistry - Lesson: 114 - Teacher: Mr. Sisson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH114E/11CH114E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-114",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 114,
+      "page_key": "g11/114",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 3,
+      "title": "English 11",
+      "description": "English 11 - Lesson: 114 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN114D/11EN114D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-114",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 114,
+      "page_key": "g11/114",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 4,
+      "title": "Keyboarding",
+      "description": "Keyboarding - Lesson: 114 - Teacher: Dr. Marion",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB114A/11KB114A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-114",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 114,
+      "page_key": "g11/114",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 5,
+      "title": "Plane Geometry",
+      "description": "Plane Geometry - Lesson: 114 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG114D/11PG114D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-114",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 114,
+      "page_key": "g11/114",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 6,
+      "title": "Spanish 1",
+      "description": "Spanish 1 - Lesson: 114 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA114D/11SA114D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-114",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 114,
+      "page_key": "g11/114",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 7,
+      "title": "U. S. History 11",
+      "description": "U. S. History 11 - Lesson: 114 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US114D/11US114D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

@@ -1,0 +1,695 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "TEDed",
+    "provider_slug": "teded",
+    "course": "INSIGHT IELTS 2",
+    "course_slug": "insight-ielts-2",
+    "page_count": 1,
+    "video_count": 35
+  },
+  "pages": [
+    {
+      "resource_root": "/playtt",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "path_segments": [
+        "TEDed",
+        "INSIGHT IELTS 2"
+      ],
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "video_count": 35,
+      "videos": [
+        {
+          "order": 1,
+          "title": "001 Debunking the myths of OCD - Natascha M. Santos",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/001%20Debunking%20the%20myths%20of%20OCD%20-%20Natascha%20M.%20Santos.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "002 The psychology of post-traumatic stress disorder - Joelle Rabow Maletis",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/002%20The%20psychology%20of%20post-traumatic%20stress%20disorder%20-%20Joelle%20Rabow%20Maletis.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "003 The truth about electroconvulsive therapy (ECT) - Helen M. Farrell",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/003%20The%20truth%20about%20electroconvulsive%20therapy%20(ECT)%20-%20Helen%20M.%20Farrell.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "004 What is bipolar disorder- - Helen M. Farrell",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/004%20What%20is%20bipolar%20disorder-%20-%20Helen%20M.%20Farrell.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "005 What is depression- - Helen M. Farrell",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/005%20What%20is%20depression-%20-%20Helen%20M.%20Farrell.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "006 What is imposter syndrome and how can you combat it- - Elizabeth Cox",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/006%20What%20is%20imposter%20syndrome%20and%20how%20can%20you%20combat%20it-%20-%20Elizabeth%20Cox.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "007 What is schizophrenia- - Anees Bahji",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/007%20What%20is%20schizophrenia-%20-%20Anees%20Bahji.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "008 How do we smell- - Rose Eveleth",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/008%20How%20do%20we%20smell-%20-%20Rose%20Eveleth.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "009 How does your brain respond to pain- - Karen D. Davis",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/009%20How%20does%20your%20brain%20respond%20to%20pain-%20-%20Karen%20D.%20Davis.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "0010 The science of hearing - Douglas L. Oliver",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0010%20The%20science%20of%20hearing%20-%20Douglas%20L.%20Oliver.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "0011 The science of spiciness - Rose Eveleth",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0011%20The%20science%20of%20spiciness%20-%20Rose%20Eveleth.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 12,
+          "title": "0012 Why do we itch- - Emma Bryce",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0012%20Why%20do%20we%20itch-%20-%20Emma%20Bryce.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 13,
+          "title": "0013 Did the Amazons really exist- - Adrienne Mayor",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0013%20Did%20the%20Amazons%20really%20exist-%20-%20Adrienne%20Mayor.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 14,
+          "title": "0014 History s -worst- nun - Theresa A. Yugar",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0014%20History_s%20-worst-%20nun%20-%20Theresa%20A.%20Yugar.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 15,
+          "title": "0015 The Egyptian myth of Isis and the seven scorpions - Alex Gendler",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0015%20The%20Egyptian%20myth%20of%20Isis%20and%20the%20seven%20scorpions%20-%20Alex%20Gendler.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 16,
+          "title": "0016 The woman who stared at the sun - Alex Gendler",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0016%20The%20woman%20who%20stared%20at%20the%20sun%20-%20Alex%20Gendler.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 17,
+          "title": "0017 A day in the life of an ancient Babylonian business mogul - Soraya Field Fiorio",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0017%20A%20day%20in%20the%20life%20of%20an%20ancient%20Babylonian%20business%20mogul%20-%20Soraya%20Field%20Fiorio.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 18,
+          "title": "0018 Why did Phillis Wheatley disappear  - Charita Gainey",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0018%20Why%20did%20Phillis%20Wheatley%20disappear_%20-%20Charita%20Gainey.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 19,
+          "title": "0019 Could human civilization spread across the whole galaxy- - Roey Tzezana",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0019%20Could%20human%20civilization%20spread%20across%20the%20whole%20galaxy-%20-%20Roey%20Tzezana.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 20,
+          "title": "0020 Could the Earth be swallowed by a black hole- - Fabio Pacucci",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0020%20Could%20the%20Earth%20be%20swallowed%20by%20a%20black%20hole-%20-%20Fabio%20Pacucci.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 21,
+          "title": "0021 Is there a center of the universe- - Marjee Chmiel and Trevor Owens",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0021%20Is%20there%20a%20center%20of%20the%20universe-%20-%20Marjee%20Chmiel%20and%20Trevor%20Owens.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 22,
+          "title": "0022 Why was India split into two countries- - Haimanti Roy",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0022%20Why%20was%20India%20split%20into%20two%20countries-%20-%20Haimanti%20Roy.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 23,
+          "title": "0023 The life cycle of a neutron star - David Lunney",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0023%20The%20life%20cycle%20of%20a%20neutron%20star%20-%20David%20Lunney.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 24,
+          "title": "0024 Why are sloths so slow- - Kenny Coogan",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0024%20Why%20are%20sloths%20so%20slow-%20-%20Kenny%20Coogan.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 25,
+          "title": "0025 How far would you have to go to escape gravity- - Rene Laufer",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0025%20How%20far%20would%20you%20have%20to%20go%20to%20escape%20gravity-%20-%20Rene%20Laufer.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 26,
+          "title": "0026 The Greek myth of Talos, the first robot - Adrienne Mayor",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0026%20The%20Greek%20myth%20of%20Talos,%20the%20first%20robot%20-%20Adrienne%20Mayor.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 27,
+          "title": "0027 How do self-driving cars see- - Sajan Saini",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0027%20How%20do%20self-driving%20cars%20see-%20-%20Sajan%20Saini.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 28,
+          "title": "0028 Can machines read your emotions- - Kostas Karpouzis",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0028%20Can%20machines%20read%20your%20emotions-%20-%20Kostas%20Karpouzis.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 29,
+          "title": "0029 The ethical dilemma of self-driving cars - Patrick Lin",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0029%20The%20ethical%20dilemma%20of%20self-driving%20cars%20-%20Patrick%20Lin.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 30,
+          "title": "0030 Is life meaningless- And other absurd questions - Nina Medvinskaya",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0030%20Is%20life%20meaningless-%20And%20other%20absurd%20questions%20-%20Nina%20Medvinskaya.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 31,
+          "title": "0031 The life, legacy & assassination of an African revolutionary - Lisa Janae Bacon",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0031%20The%20life,%20legacy%20&%20assassination%20of%20an%20African%20revolutionary%20-%20Lisa%20Janae%20Bacon.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 32,
+          "title": "0032 Why should you read Lord of the Flies by William Golding- - Jill Dash",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0032%20Why%20should%20you%20read%20Lord%20of%20the%20Flies%20by%20William%20Golding-%20-%20Jill%20Dash.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 33,
+          "title": "0033 Why should you read The God of Small Things by Arundhati Roy- - Laura Wright",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0033%20Why%20should%20you%20read%20The%20God%20of%20Small%20Things%20by%20Arundhati%20Roy-%20-%20Laura%20Wright.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 34,
+          "title": "0034Why should you read Crime and Punishment- - Alex Gendler",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0034Why%20should%20you%20read%20Crime%20and%20Punishment-%20-%20Alex%20Gendler.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 35,
+          "title": "0035 Why should you read Toni Morrisons Beloved- - Yen Pham",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0035%20Why%20should%20you%20read%20Toni%20Morrisons%20Beloved-%20-%20Yen%20Pham.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 1,
+      "title": "001 Debunking the myths of OCD - Natascha M. Santos",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/001%20Debunking%20the%20myths%20of%20OCD%20-%20Natascha%20M.%20Santos.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 2,
+      "title": "002 The psychology of post-traumatic stress disorder - Joelle Rabow Maletis",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/002%20The%20psychology%20of%20post-traumatic%20stress%20disorder%20-%20Joelle%20Rabow%20Maletis.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 3,
+      "title": "003 The truth about electroconvulsive therapy (ECT) - Helen M. Farrell",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/003%20The%20truth%20about%20electroconvulsive%20therapy%20(ECT)%20-%20Helen%20M.%20Farrell.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 4,
+      "title": "004 What is bipolar disorder- - Helen M. Farrell",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/004%20What%20is%20bipolar%20disorder-%20-%20Helen%20M.%20Farrell.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 5,
+      "title": "005 What is depression- - Helen M. Farrell",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/005%20What%20is%20depression-%20-%20Helen%20M.%20Farrell.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 6,
+      "title": "006 What is imposter syndrome and how can you combat it- - Elizabeth Cox",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/006%20What%20is%20imposter%20syndrome%20and%20how%20can%20you%20combat%20it-%20-%20Elizabeth%20Cox.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 7,
+      "title": "007 What is schizophrenia- - Anees Bahji",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/007%20What%20is%20schizophrenia-%20-%20Anees%20Bahji.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 8,
+      "title": "008 How do we smell- - Rose Eveleth",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/008%20How%20do%20we%20smell-%20-%20Rose%20Eveleth.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 9,
+      "title": "009 How does your brain respond to pain- - Karen D. Davis",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/009%20How%20does%20your%20brain%20respond%20to%20pain-%20-%20Karen%20D.%20Davis.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 10,
+      "title": "0010 The science of hearing - Douglas L. Oliver",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0010%20The%20science%20of%20hearing%20-%20Douglas%20L.%20Oliver.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 11,
+      "title": "0011 The science of spiciness - Rose Eveleth",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0011%20The%20science%20of%20spiciness%20-%20Rose%20Eveleth.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 12,
+      "title": "0012 Why do we itch- - Emma Bryce",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0012%20Why%20do%20we%20itch-%20-%20Emma%20Bryce.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 13,
+      "title": "0013 Did the Amazons really exist- - Adrienne Mayor",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0013%20Did%20the%20Amazons%20really%20exist-%20-%20Adrienne%20Mayor.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 14,
+      "title": "0014 History s -worst- nun - Theresa A. Yugar",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0014%20History_s%20-worst-%20nun%20-%20Theresa%20A.%20Yugar.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 15,
+      "title": "0015 The Egyptian myth of Isis and the seven scorpions - Alex Gendler",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0015%20The%20Egyptian%20myth%20of%20Isis%20and%20the%20seven%20scorpions%20-%20Alex%20Gendler.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 16,
+      "title": "0016 The woman who stared at the sun - Alex Gendler",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0016%20The%20woman%20who%20stared%20at%20the%20sun%20-%20Alex%20Gendler.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 17,
+      "title": "0017 A day in the life of an ancient Babylonian business mogul - Soraya Field Fiorio",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0017%20A%20day%20in%20the%20life%20of%20an%20ancient%20Babylonian%20business%20mogul%20-%20Soraya%20Field%20Fiorio.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 18,
+      "title": "0018 Why did Phillis Wheatley disappear  - Charita Gainey",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0018%20Why%20did%20Phillis%20Wheatley%20disappear_%20-%20Charita%20Gainey.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 19,
+      "title": "0019 Could human civilization spread across the whole galaxy- - Roey Tzezana",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0019%20Could%20human%20civilization%20spread%20across%20the%20whole%20galaxy-%20-%20Roey%20Tzezana.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 20,
+      "title": "0020 Could the Earth be swallowed by a black hole- - Fabio Pacucci",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0020%20Could%20the%20Earth%20be%20swallowed%20by%20a%20black%20hole-%20-%20Fabio%20Pacucci.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 21,
+      "title": "0021 Is there a center of the universe- - Marjee Chmiel and Trevor Owens",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0021%20Is%20there%20a%20center%20of%20the%20universe-%20-%20Marjee%20Chmiel%20and%20Trevor%20Owens.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 22,
+      "title": "0022 Why was India split into two countries- - Haimanti Roy",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0022%20Why%20was%20India%20split%20into%20two%20countries-%20-%20Haimanti%20Roy.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 23,
+      "title": "0023 The life cycle of a neutron star - David Lunney",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0023%20The%20life%20cycle%20of%20a%20neutron%20star%20-%20David%20Lunney.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 24,
+      "title": "0024 Why are sloths so slow- - Kenny Coogan",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0024%20Why%20are%20sloths%20so%20slow-%20-%20Kenny%20Coogan.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 25,
+      "title": "0025 How far would you have to go to escape gravity- - Rene Laufer",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0025%20How%20far%20would%20you%20have%20to%20go%20to%20escape%20gravity-%20-%20Rene%20Laufer.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 26,
+      "title": "0026 The Greek myth of Talos, the first robot - Adrienne Mayor",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0026%20The%20Greek%20myth%20of%20Talos,%20the%20first%20robot%20-%20Adrienne%20Mayor.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 27,
+      "title": "0027 How do self-driving cars see- - Sajan Saini",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0027%20How%20do%20self-driving%20cars%20see-%20-%20Sajan%20Saini.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 28,
+      "title": "0028 Can machines read your emotions- - Kostas Karpouzis",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0028%20Can%20machines%20read%20your%20emotions-%20-%20Kostas%20Karpouzis.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 29,
+      "title": "0029 The ethical dilemma of self-driving cars - Patrick Lin",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0029%20The%20ethical%20dilemma%20of%20self-driving%20cars%20-%20Patrick%20Lin.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 30,
+      "title": "0030 Is life meaningless- And other absurd questions - Nina Medvinskaya",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0030%20Is%20life%20meaningless-%20And%20other%20absurd%20questions%20-%20Nina%20Medvinskaya.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 31,
+      "title": "0031 The life, legacy & assassination of an African revolutionary - Lisa Janae Bacon",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0031%20The%20life,%20legacy%20&%20assassination%20of%20an%20African%20revolutionary%20-%20Lisa%20Janae%20Bacon.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 32,
+      "title": "0032 Why should you read Lord of the Flies by William Golding- - Jill Dash",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0032%20Why%20should%20you%20read%20Lord%20of%20the%20Flies%20by%20William%20Golding-%20-%20Jill%20Dash.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 33,
+      "title": "0033 Why should you read The God of Small Things by Arundhati Roy- - Laura Wright",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0033%20Why%20should%20you%20read%20The%20God%20of%20Small%20Things%20by%20Arundhati%20Roy-%20-%20Laura%20Wright.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 34,
+      "title": "0034Why should you read Crime and Punishment- - Alex Gendler",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0034Why%20should%20you%20read%20Crime%20and%20Punishment-%20-%20Alex%20Gendler.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 2",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 2",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%202",
+      "order": 35,
+      "title": "0035 Why should you read Toni Morrisons Beloved- - Yen Pham",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%202/0035%20Why%20should%20you%20read%20Toni%20Morrisons%20Beloved-%20-%20Yen%20Pham.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

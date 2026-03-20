@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g10",
+    "provider_slug": "g10",
+    "course": "lesson-098",
+    "course_slug": "098",
+    "grade_id": "10",
+    "page_count": 1,
+    "video_count": 6
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "page_key": "g10/098",
+      "path_segments": [
+        "g10",
+        "098"
+      ],
+      "provider": "g10",
+      "course": "lesson-098",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 98,
+      "video_count": 6,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Algebra 2",
+          "description": "Algebra 2 - Lesson: 98 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2098E/10A2098E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible Doctrines",
+          "description": "Bible Doctrines - Lesson: 98 - Teacher: Mr. Birx",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI098C/10BI098C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Biology",
+          "description": "Biology - Lesson: 98 - Teacher: Miss Stancel",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY098E/10BY098E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Consumer Mathematics",
+          "description": "Consumer Mathematics - Lesson: 98 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM098B/10CM098B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "English 10",
+          "description": "English 10 - Lesson: 98 - Teacher: Mrs. Antich",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN098E/10EN098E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "World History 10",
+          "description": "World History 10 - Lesson: 98 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH098D/10WH098D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g10",
+      "course": "lesson-098",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 98,
+      "page_key": "g10/098",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 1,
+      "title": "Algebra 2",
+      "description": "Algebra 2 - Lesson: 98 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2098E/10A2098E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-098",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 98,
+      "page_key": "g10/098",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 2,
+      "title": "Bible Doctrines",
+      "description": "Bible Doctrines - Lesson: 98 - Teacher: Mr. Birx",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI098C/10BI098C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-098",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 98,
+      "page_key": "g10/098",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 3,
+      "title": "Biology",
+      "description": "Biology - Lesson: 98 - Teacher: Miss Stancel",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY098E/10BY098E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-098",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 98,
+      "page_key": "g10/098",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 4,
+      "title": "Consumer Mathematics",
+      "description": "Consumer Mathematics - Lesson: 98 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM098B/10CM098B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-098",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 98,
+      "page_key": "g10/098",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 5,
+      "title": "English 10",
+      "description": "English 10 - Lesson: 98 - Teacher: Mrs. Antich",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN098E/10EN098E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-098",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 98,
+      "page_key": "g10/098",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 6,
+      "title": "World History 10",
+      "description": "World History 10 - Lesson: 98 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH098D/10WH098D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "generatedAt": "2026-03-17T00:00:00.000Z",
+  "source": "plans/2026-03-17-education-agent-team/reports/pilot-sku-manifest.json",
+  "rules": {
+    "doNotChange": [
+      "sku",
+      "scopeId",
+      "from",
+      "to",
+      "lessonOrEpisodeCount"
+    ],
+    "displayLayerOnly": [
+      "publicTitle",
+      "publicShortDescription",
+      "parentVisibleValue"
+    ]
+  },
+  "items": [
+    {
+      "sku": "ABEKA-K4-INTRO-4W",
+      "scopeId": "abeka:grade:k4",
+      "from": 1,
+      "to": 16,
+      "lessonOrEpisodeCount": 16,
+      "weeks": 4,
+      "pacePerWeek": 4,
+      "publicTitle": "Khởi động học thuật K4 - 4 tuần",
+      "publicShortDescription": "Giúp bé làm quen nhịp học K4 với 4 bài/tuần, phụ huynh theo dõi mốc hoàn thành rõ ràng.",
+      "parentVisibleValue": [
+        "Biết chính xác bé đang học đến bài nào.",
+        "Có mốc tuần 1-4 để theo dõi thói quen học.",
+        "Dễ quyết định chuyển sang giai đoạn nền tảng."
+      ]
+    },
+    {
+      "sku": "ABEKA-K4-FOUNDATION-8W",
+      "scopeId": "abeka:grade:k4",
+      "from": 17,
+      "to": 48,
+      "lessonOrEpisodeCount": 32,
+      "weeks": 8,
+      "pacePerWeek": 4,
+      "publicTitle": "Nền tảng học thuật K4 - 8 tuần",
+      "publicShortDescription": "Củng cố kỹ năng học K4 với lộ trình 8 tuần, nhịp học đều và dễ bám sát tại nhà.",
+      "parentVisibleValue": [
+        "Thấy tiến bộ theo từng cụm bài mỗi tuần.",
+        "Giảm áp lực kèm con nhờ lộ trình rõ.",
+        "Sẵn sàng cho giai đoạn tiếp theo của K4."
+      ]
+    },
+    {
+      "sku": "ABEKA-K5-INTRO-4W",
+      "scopeId": "abeka:grade:k5",
+      "from": 1,
+      "to": 16,
+      "lessonOrEpisodeCount": 16,
+      "weeks": 4,
+      "pacePerWeek": 4,
+      "publicTitle": "Khởi động học thuật K5 - 4 tuần",
+      "publicShortDescription": "Bé bắt đầu K5 nhẹ nhàng qua 4 tuần đầu, tập trung tạo đà học ổn định.",
+      "parentVisibleValue": [
+        "Nắm được nhịp học tuần đầu của bé.",
+        "Biết rõ số bài đã hoàn thành mỗi tuần.",
+        "Có cơ sở để chọn tiếp khóa nền tảng K5."
+      ]
+    },
+    {
+      "sku": "ABEKA-K5-FOUNDATION-8W",
+      "scopeId": "abeka:grade:k5",
+      "from": 17,
+      "to": 48,
+      "lessonOrEpisodeCount": 32,
+      "weeks": 8,
+      "pacePerWeek": 4,
+      "publicTitle": "Nền tảng học thuật K5 - 8 tuần",
+      "publicShortDescription": "Xây nền K5 bền vững với 32 bài trong 8 tuần, dễ theo dõi và đồng hành cùng con.",
+      "parentVisibleValue": [
+        "Theo dõi tiến độ tuần bằng số bài cụ thể.",
+        "Nhìn rõ mốc hoàn thành từng giai đoạn.",
+        "Chuẩn bị tốt cho bước chuyển tiếp cao hơn."
+      ]
+    },
+    {
+      "sku": "ABEKA-G1-INTRO-4W",
+      "scopeId": "abeka:grade:g1",
+      "from": 1,
+      "to": 20,
+      "lessonOrEpisodeCount": 20,
+      "weeks": 4,
+      "pacePerWeek": 5,
+      "publicTitle": "Khởi động học thuật G1 - 4 tuần",
+      "publicShortDescription": "Bé làm quen nhịp học lớp 1 với 5 bài/tuần, tập trung tạo nền tự học ban đầu.",
+      "parentVisibleValue": [
+        "Biết rõ bé theo kịp nhịp lớp 1 hay chưa.",
+        "Dễ đặt mục tiêu từng tuần.",
+        "Có căn cứ chuyển tiếp sang khóa nền tảng G1."
+      ]
+    },
+    {
+      "sku": "ABEKA-G1-FOUNDATION-8W",
+      "scopeId": "abeka:grade:g1",
+      "from": 21,
+      "to": 60,
+      "lessonOrEpisodeCount": 40,
+      "weeks": 8,
+      "pacePerWeek": 5,
+      "publicTitle": "Nền tảng học thuật G1 - 8 tuần",
+      "publicShortDescription": "Củng cố kỹ năng học lớp 1 với lộ trình 8 tuần, theo dõi tiến độ rõ theo từng chặng.",
+      "parentVisibleValue": [
+        "Theo dõi kết quả học theo tuần rõ ràng.",
+        "Biết bé còn bao nhiêu bài để hoàn thành chặng.",
+        "Giảm mơ hồ khi quyết định nâng cấp lộ trình."
+      ]
+    },
+    {
+      "sku": "LFEN-L1-STARTER-6W",
+      "scopeId": "littlefox:level:1",
+      "from": 1,
+      "to": 30,
+      "lessonOrEpisodeCount": 30,
+      "weeks": 6,
+      "pacePerWeek": 5,
+      "publicTitle": "Nghe hiểu tiếng Anh qua truyện L1 - Khởi động 6 tuần",
+      "publicShortDescription": "Bé làm quen tiếng Anh qua truyện với 5 tập/tuần, ưu tiên nghe hiểu và phản xạ cơ bản.",
+      "parentVisibleValue": [
+        "Thấy rõ level hiện tại của bé.",
+        "Theo dõi số tập hoàn thành mỗi tuần.",
+        "Dễ đánh giá sẵn sàng sang giai đoạn xây nền."
+      ]
+    },
+    {
+      "sku": "LFEN-L1-BUILDER-8W",
+      "scopeId": "littlefox:level:1",
+      "from": 31,
+      "to": 70,
+      "lessonOrEpisodeCount": 40,
+      "weeks": 8,
+      "pacePerWeek": 5,
+      "publicTitle": "Nghe hiểu tiếng Anh qua truyện L1 - Xây nền 8 tuần",
+      "publicShortDescription": "Tăng độ bền nghe hiểu tiếng Anh qua truyện với lộ trình đều 8 tuần.",
+      "parentVisibleValue": [
+        "Theo dõi tiến độ theo từng cụm tập.",
+        "Biết rõ tốc độ học thực tế của bé.",
+        "Có mốc hoàn thành để quyết định lên L2."
+      ]
+    },
+    {
+      "sku": "LFEN-L2-STARTER-6W",
+      "scopeId": "littlefox:level:2",
+      "from": 1,
+      "to": 30,
+      "lessonOrEpisodeCount": 30,
+      "weeks": 6,
+      "pacePerWeek": 5,
+      "publicTitle": "Nghe hiểu tiếng Anh qua truyện L2 - Khởi động 6 tuần",
+      "publicShortDescription": "Bé bắt đầu level 2 với nhịp học 5 tập/tuần, giữ hứng thú và tăng dần độ khó.",
+      "parentVisibleValue": [
+        "Thấy rõ bé đã vào level 2.",
+        "Theo dõi đủ số tập theo kế hoạch tuần.",
+        "Đánh giá sớm mức phù hợp của lộ trình."
+      ]
+    },
+    {
+      "sku": "LFEN-L2-BUILDER-8W",
+      "scopeId": "littlefox:level:2",
+      "from": 31,
+      "to": 70,
+      "lessonOrEpisodeCount": 40,
+      "weeks": 8,
+      "pacePerWeek": 5,
+      "publicTitle": "Nghe hiểu tiếng Anh qua truyện L2 - Xây nền 8 tuần",
+      "publicShortDescription": "Củng cố nghe hiểu level 2 với lộ trình dài hơi 8 tuần, phù hợp học đều tại nhà.",
+      "parentVisibleValue": [
+        "Theo dõi mốc hoàn thành rõ ràng.",
+        "Biết còn bao nhiêu tập trong chặng hiện tại.",
+        "Có căn cứ chắc chắn để nâng level."
+      ]
+    },
+    {
+      "sku": "LFCN-L1-STARTER-5W",
+      "scopeId": "littlefoxcn:level:1",
+      "from": 1,
+      "to": 25,
+      "lessonOrEpisodeCount": 25,
+      "weeks": 5,
+      "pacePerWeek": 5,
+      "publicTitle": "Làm quen tiếng Trung qua truyện L1 - Khởi động 5 tuần",
+      "publicShortDescription": "Bé bắt đầu tiếng Trung qua truyện với lộ trình ngắn 5 tuần, dễ duy trì thói quen học.",
+      "parentVisibleValue": [
+        "Thấy rõ tiến độ tuần đầu học tiếng Trung.",
+        "Theo dõi số tập hoàn thành mỗi tuần.",
+        "Dễ quyết định chuyển sang giai đoạn xây nền."
+      ]
+    },
+    {
+      "sku": "LFCN-L1-BUILDER-8W",
+      "scopeId": "littlefoxcn:level:1",
+      "from": 26,
+      "to": 65,
+      "lessonOrEpisodeCount": 40,
+      "weeks": 8,
+      "pacePerWeek": 5,
+      "publicTitle": "Làm quen tiếng Trung qua truyện L1 - Xây nền 8 tuần",
+      "publicShortDescription": "Xây nền nghe hiểu tiếng Trung level 1 trong 8 tuần, bám nhịp học đều và dễ theo dõi.",
+      "parentVisibleValue": [
+        "Biết rõ lộ trình level 1 còn bao nhiêu tập.",
+        "Theo dõi mốc hoàn thành theo tuần.",
+        "Tự tin chuyển sang level kế tiếp khi đạt mốc."
+      ]
+    }
+  ]
+}

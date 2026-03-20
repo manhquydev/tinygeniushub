@@ -1,0 +1,79 @@
+{
+  "generatedAt": "2026-03-18T11:18:23.463Z",
+  "summary": {
+    "checkedBundles": 3,
+    "passedBundles": 3,
+    "allPassed": true
+  },
+  "rows": [
+    {
+      "bundleSlug": "abeka",
+      "storefrontExists": true,
+      "titleSynced": true,
+      "descriptionSynced": true,
+      "priceSynced": true,
+      "totalCoursesSynced": true,
+      "totalLessonsSynced": true,
+      "expected": {
+        "title": "Abeka",
+        "description": "Abeka external library synchronized by grade and lesson.",
+        "priceVnd": 0,
+        "totalCourses": 14,
+        "totalLessons": 2380
+      },
+      "actual": {
+        "title": "Abeka",
+        "description": "Abeka external library synchronized by grade and lesson.",
+        "priceVnd": 0,
+        "totalCourses": 14,
+        "totalLessons": 2380
+      }
+    },
+    {
+      "bundleSlug": "little-fox-en",
+      "storefrontExists": true,
+      "titleSynced": true,
+      "descriptionSynced": true,
+      "priceSynced": true,
+      "totalCoursesSynced": true,
+      "totalLessonsSynced": true,
+      "expected": {
+        "title": "Little Fox EN",
+        "description": "Little Fox English library organized by level, series, and episode.",
+        "priceVnd": 0,
+        "totalCourses": 9,
+        "totalLessons": 8718
+      },
+      "actual": {
+        "title": "Little Fox EN",
+        "description": "Little Fox English library organized by level, series, and episode.",
+        "priceVnd": 0,
+        "totalCourses": 9,
+        "totalLessons": 8718
+      }
+    },
+    {
+      "bundleSlug": "little-fox-cn",
+      "storefrontExists": true,
+      "titleSynced": true,
+      "descriptionSynced": true,
+      "priceSynced": true,
+      "totalCoursesSynced": true,
+      "totalLessonsSynced": true,
+      "expected": {
+        "title": "Little Fox CN",
+        "description": "Little Fox Chinese library organized by level, series, and episode.",
+        "priceVnd": 0,
+        "totalCourses": 5,
+        "totalLessons": 1983
+      },
+      "actual": {
+        "title": "Little Fox CN",
+        "description": "Little Fox Chinese library organized by level, series, and episode.",
+        "priceVnd": 0,
+        "totalCourses": 5,
+        "totalLessons": 1983
+      }
+    }
+  ]
+}

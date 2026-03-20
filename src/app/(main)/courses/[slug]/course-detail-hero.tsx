@@ -1,7 +1,10 @@
 import { Star } from "lucide-react";
 import type { AbVariant } from "@/lib/ab-test-constants";
 import type { CourseBundleDefinition } from "@/modules/courses/course-bundles";
-import { getBundleStorefrontContent } from "@/modules/courses/course-storefront-content";
+import {
+  getBundleStorefrontContent,
+  type CourseClaritySnapshot,
+} from "@/modules/courses/course-storefront-content";
 import { CourseDetailSidebar } from "@/components/courses/course-detail-sidebar";
 
 type Props = {
@@ -12,7 +15,7 @@ type Props = {
   durationDays: number;
   normalizedCover: string | null;
   bundle: CourseBundleDefinition | null;
-  pricing: { salePriceVnd: number; listPriceVnd: number; hasDiscount: boolean };
+  pricing: { salePriceVnd: number; listPriceVnd: number; hasDiscount: boolean; isPurchasable: boolean };
   isOwned: boolean;
   isAuthenticated: boolean;
   childEntryHref: string;
@@ -24,6 +27,7 @@ type Props = {
   trackPosition: number | null;
   trackTotal: number | null;
   trackLabel: string | null;
+  claritySnapshot: CourseClaritySnapshot | null;
 };
 
 export function CourseDetailHero({
@@ -46,6 +50,7 @@ export function CourseDetailHero({
   trackPosition,
   trackTotal,
   trackLabel,
+  claritySnapshot,
 }: Props) {
   const bundleContent = bundle ? getBundleStorefrontContent(bundle.slug) : null;
   const showRating = reviewCount > 0 && reviewAverageRating !== null;
@@ -81,7 +86,9 @@ export function CourseDetailHero({
             </div>
             <div className="rounded-2xl border border-white bg-white/90 p-3">
               <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Nhịp gợi ý</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">4-5 bài/tuần</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">
+                {claritySnapshot ? `${claritySnapshot.pacePerWeek} ${claritySnapshot.unitLabel}/tuần` : "4-5 bài/tuần"}
+              </p>
             </div>
           </div>
           {/* Trust signals row */}
@@ -114,6 +121,21 @@ export function CourseDetailHero({
             <p className="rounded-2xl border border-sky-200 bg-sky-50 p-3 text-sm leading-relaxed text-sky-800">
               {bundleContent.promise}
             </p>
+          ) : null}
+          {claritySnapshot ? (
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3">
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-emerald-700">
+                Mốc học theo {claritySnapshot.scopeLabel}
+              </p>
+              <ul className="mt-2 space-y-1.5 text-sm text-emerald-900">
+                {claritySnapshot.detailOutcomeLines.slice(0, 2).map((line) => (
+                  <li key={line} className="inline-flex items-start gap-2">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600" />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ) : null}
           <CourseDetailSidebar
             courseSlug={slug}

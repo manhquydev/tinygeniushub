@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "k5",
+    "provider_slug": "k5",
+    "course": "lesson-002",
+    "course_slug": "002",
+    "grade_id": "14",
+    "page_count": 1,
+    "video_count": 6
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "page_key": "k5/002",
+      "path_segments": [
+        "k5",
+        "002"
+      ],
+      "provider": "k5",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 2,
+      "video_count": 6,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Elementary Spanish A: Spanish Lesson A",
+          "description": "Elementary Spanish A: Spanish Lesson A - Lesson: 2 - Teacher: Mrs. Walker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/90SA002A/90SA002A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Elementary Spanish A: Spanish Lesson B",
+          "description": "Elementary Spanish A: Spanish Lesson B - Lesson: 2 - Teacher: Mrs. Walker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/90SB002A/90SB002A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "K5 Activities",
+          "description": "K5 Activities - Lesson: 2 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD002D/K5SD002D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "K5 Bible",
+          "description": "K5 Bible - Lesson: 2 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI002D/K5BI002D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "K5 Numbers",
+          "description": "K5 Numbers - Lesson: 2 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU002D/K5NU002D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "K5 Phonics",
+          "description": "K5 Phonics - Lesson: 2 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH002D/K5PH002D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "k5",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 2,
+      "page_key": "k5/002",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 1,
+      "title": "Elementary Spanish A: Spanish Lesson A",
+      "description": "Elementary Spanish A: Spanish Lesson A - Lesson: 2 - Teacher: Mrs. Walker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/90SA002A/90SA002A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 2,
+      "page_key": "k5/002",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 2,
+      "title": "Elementary Spanish A: Spanish Lesson B",
+      "description": "Elementary Spanish A: Spanish Lesson B - Lesson: 2 - Teacher: Mrs. Walker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/90SB002A/90SB002A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 2,
+      "page_key": "k5/002",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 3,
+      "title": "K5 Activities",
+      "description": "K5 Activities - Lesson: 2 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD002D/K5SD002D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 2,
+      "page_key": "k5/002",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 4,
+      "title": "K5 Bible",
+      "description": "K5 Bible - Lesson: 2 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI002D/K5BI002D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 2,
+      "page_key": "k5/002",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 5,
+      "title": "K5 Numbers",
+      "description": "K5 Numbers - Lesson: 2 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU002D/K5NU002D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 2,
+      "page_key": "k5/002",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 6,
+      "title": "K5 Phonics",
+      "description": "K5 Phonics - Lesson: 2 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH002D/K5PH002D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

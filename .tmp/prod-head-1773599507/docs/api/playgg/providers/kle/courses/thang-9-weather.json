@@ -1,0 +1,296 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "KLE",
+    "provider_slug": "kle",
+    "course": "Thang_9_Weather",
+    "course_slug": "thang-9-weather",
+    "page_count": 1,
+    "video_count": 14
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "page_key": "KLE/Thang_9_Weather",
+      "path_segments": [
+        "KLE",
+        "Thang_9_Weather"
+      ],
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "video_count": 14,
+      "videos": [
+        {
+          "order": 1,
+          "title": "30 Funny Picnic for Kids - What´s the Weather like- - Story Time with Steve and Maggie",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/30%20Funny%20Picnic%20for%20Kids%20-%20What%C2%B4s%20the%20Weather%20like-%20-%20Story%20Time%20with%20Steve%20and%20Maggie.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "31 How s The Weather- - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/31%20How_s%20The%20Weather-%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "32 How s the Weather- - Weather Song - Nursery Rhymes - Educational Kids Songs - ESL-EFL Music",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/32%20How_s%20the%20Weather-%20-%20Weather%20Song%20-%20Nursery%20Rhymes%20-%20Educational%20Kids%20Songs%20-%20ESL-EFL%20Music.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "33 Little Snowflake - Kids Songs - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/33%20Little%20Snowflake%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "34 Mr. Sun, Sun, Mr. Golden Sun - Kids Songs - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/34%20Mr.%20Sun,%20Sun,%20Mr.%20Golden%20Sun%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "35 Over The Deep Blue Sea - Kids Songs - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/35%20Over%20The%20Deep%20Blue%20Sea%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 7,
+          "title": "36 Rain Rain Go Away - Super Simple Songs - Sesame Street Nursery Rhyme Week",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/36%20Rain%20Rain%20Go%20Away%20-%20Super%20Simple%20Songs%20-%20Sesame%20Street%20Nursery%20Rhyme%20Week.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 8,
+          "title": "37 Stormy Weather - Kids Song from Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/37%20Stormy%20Weather%20-%20Kids%20Song%20from%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 9,
+          "title": "38 The Weather Kids - Weather Season Songs for Kids - Preschool Songs - KizCastle",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/38%20The%20Weather%20Kids%20-%20Weather_Season%20Songs%20for%20Kids%20-%20Preschool%20Songs%20-%20KizCastle.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 10,
+          "title": "39 Weather - Word Power - Learn English - Pinkfong Songs for Children",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/39%20Weather%20-%20Word%20Power%20-%20Learn%20English%20-%20Pinkfong%20Songs%20for%20Children.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 11,
+          "title": "40 Weather Song for Kids - How´s the Weather- - Steve and Maggie",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/40%20Weather%20Song%20for%20Kids%20-%20How%C2%B4s%20the%20Weather-%20-%20Steve%20and%20Maggie.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 12,
+          "title": "41 Weather Song for kids - -Sun, Rain, Wind, and Snow- - The Singing Walrus",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/41%20Weather%20Song%20for%20kids%20-%20-Sun,%20Rain,%20Wind,%20and%20Snow-%20-%20The%20Singing%20Walrus.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 13,
+          "title": "42 Windy Weather - English For Children - English For Kids Steve and Maggie",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/42%20Windy%20Weather%20-%20English%20For%20Children%20-%20English%20For%20Kids%20Steve%20and%20Maggie.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 14,
+          "title": "43 You are my Sunshine - Babies and Kids Channel - Nursery Rhymes",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/43%20You%20are%20my%20Sunshine%20-%20Babies%20and%20Kids%20Channel%20-%20Nursery%20Rhymes.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 1,
+      "title": "30 Funny Picnic for Kids - What´s the Weather like- - Story Time with Steve and Maggie",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/30%20Funny%20Picnic%20for%20Kids%20-%20What%C2%B4s%20the%20Weather%20like-%20-%20Story%20Time%20with%20Steve%20and%20Maggie.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 2,
+      "title": "31 How s The Weather- - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/31%20How_s%20The%20Weather-%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 3,
+      "title": "32 How s the Weather- - Weather Song - Nursery Rhymes - Educational Kids Songs - ESL-EFL Music",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/32%20How_s%20the%20Weather-%20-%20Weather%20Song%20-%20Nursery%20Rhymes%20-%20Educational%20Kids%20Songs%20-%20ESL-EFL%20Music.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 4,
+      "title": "33 Little Snowflake - Kids Songs - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/33%20Little%20Snowflake%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 5,
+      "title": "34 Mr. Sun, Sun, Mr. Golden Sun - Kids Songs - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/34%20Mr.%20Sun,%20Sun,%20Mr.%20Golden%20Sun%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 6,
+      "title": "35 Over The Deep Blue Sea - Kids Songs - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/35%20Over%20The%20Deep%20Blue%20Sea%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 7,
+      "title": "36 Rain Rain Go Away - Super Simple Songs - Sesame Street Nursery Rhyme Week",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/36%20Rain%20Rain%20Go%20Away%20-%20Super%20Simple%20Songs%20-%20Sesame%20Street%20Nursery%20Rhyme%20Week.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 8,
+      "title": "37 Stormy Weather - Kids Song from Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/37%20Stormy%20Weather%20-%20Kids%20Song%20from%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 9,
+      "title": "38 The Weather Kids - Weather Season Songs for Kids - Preschool Songs - KizCastle",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/38%20The%20Weather%20Kids%20-%20Weather_Season%20Songs%20for%20Kids%20-%20Preschool%20Songs%20-%20KizCastle.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 10,
+      "title": "39 Weather - Word Power - Learn English - Pinkfong Songs for Children",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/39%20Weather%20-%20Word%20Power%20-%20Learn%20English%20-%20Pinkfong%20Songs%20for%20Children.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 11,
+      "title": "40 Weather Song for Kids - How´s the Weather- - Steve and Maggie",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/40%20Weather%20Song%20for%20Kids%20-%20How%C2%B4s%20the%20Weather-%20-%20Steve%20and%20Maggie.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 12,
+      "title": "41 Weather Song for kids - -Sun, Rain, Wind, and Snow- - The Singing Walrus",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/41%20Weather%20Song%20for%20kids%20-%20-Sun,%20Rain,%20Wind,%20and%20Snow-%20-%20The%20Singing%20Walrus.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 13,
+      "title": "42 Windy Weather - English For Children - English For Kids Steve and Maggie",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/42%20Windy%20Weather%20-%20English%20For%20Children%20-%20English%20For%20Kids%20Steve%20and%20Maggie.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_9_Weather",
+      "topic": "",
+      "page_key": "KLE/Thang_9_Weather",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_9_Weather",
+      "order": 14,
+      "title": "43 You are my Sunshine - Babies and Kids Channel - Nursery Rhymes",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_9_Weather/43%20You%20are%20my%20Sunshine%20-%20Babies%20and%20Kids%20Channel%20-%20Nursery%20Rhymes.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

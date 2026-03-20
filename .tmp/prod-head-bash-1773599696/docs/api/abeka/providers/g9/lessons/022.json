@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g9",
+    "provider_slug": "g9",
+    "course": "lesson-022",
+    "course_slug": "022",
+    "grade_id": "9",
+    "page_count": 1,
+    "video_count": 6
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "page_key": "g9/022",
+      "path_segments": [
+        "g9",
+        "022"
+      ],
+      "provider": "g9",
+      "course": "lesson-022",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 22,
+      "video_count": 6,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Algebra 1",
+          "description": "Algebra 1 - Lesson: 22 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1022G/09A1022G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 9",
+          "description": "English 9 - Lesson: 22 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09EN022E/09EN022E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Health",
+          "description": "Health - Lesson: 22 - Teacher: Miss Burns",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HE022C/09HE022C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Hebrew History",
+          "description": "Hebrew History - Lesson: 22 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HH022E/09HH022E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Physical Science",
+          "description": "Physical Science - Lesson: 22 - Teacher: Dr. Ridgley",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09PS022D/09PS022D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "World Geography",
+          "description": "World Geography - Lesson: 22 - Teacher: Miss Burns",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09WG022B/09WG022B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g9",
+      "course": "lesson-022",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 22,
+      "page_key": "g9/022",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 1,
+      "title": "Algebra 1",
+      "description": "Algebra 1 - Lesson: 22 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1022G/09A1022G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-022",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 22,
+      "page_key": "g9/022",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 2,
+      "title": "English 9",
+      "description": "English 9 - Lesson: 22 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09EN022E/09EN022E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-022",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 22,
+      "page_key": "g9/022",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 3,
+      "title": "Health",
+      "description": "Health - Lesson: 22 - Teacher: Miss Burns",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HE022C/09HE022C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-022",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 22,
+      "page_key": "g9/022",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 4,
+      "title": "Hebrew History",
+      "description": "Hebrew History - Lesson: 22 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HH022E/09HH022E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-022",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 22,
+      "page_key": "g9/022",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 5,
+      "title": "Physical Science",
+      "description": "Physical Science - Lesson: 22 - Teacher: Dr. Ridgley",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09PS022D/09PS022D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-022",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 22,
+      "page_key": "g9/022",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 6,
+      "title": "World Geography",
+      "description": "World Geography - Lesson: 22 - Teacher: Miss Burns",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09WG022B/09WG022B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

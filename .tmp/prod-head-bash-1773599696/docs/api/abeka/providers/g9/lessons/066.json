@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g9",
+    "provider_slug": "g9",
+    "course": "lesson-066",
+    "course_slug": "066",
+    "grade_id": "9",
+    "page_count": 1,
+    "video_count": 7
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "page_key": "g9/066",
+      "path_segments": [
+        "g9",
+        "066"
+      ],
+      "provider": "g9",
+      "course": "lesson-066",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 66,
+      "video_count": 7,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Algebra 1",
+          "description": "Algebra 1 - Lesson: 66 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1066G/09A1066G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "English 9",
+          "description": "English 9 - Lesson: 66 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09EN066E/09EN066E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Health",
+          "description": "Health - Lesson: 66 - Teacher: Miss Burns",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HE066C/09HE066C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Hebrew History",
+          "description": "Hebrew History - Lesson: 66 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HH066E/09HH066E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Physical Science",
+          "description": "Physical Science - Lesson: 66 - Teacher: Dr. Ridgley",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09PS066D/09PS066D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Tech Connect 5.6",
+          "description": "Tech Connect 5.6 - Lesson: 66 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1066G-TC5.6/09A1066G-TC5.6.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "World Geography",
+          "description": "World Geography - Lesson: 66 - Teacher: Miss Burns",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09WG066B/09WG066B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g9",
+      "course": "lesson-066",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 66,
+      "page_key": "g9/066",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 1,
+      "title": "Algebra 1",
+      "description": "Algebra 1 - Lesson: 66 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1066G/09A1066G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-066",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 66,
+      "page_key": "g9/066",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 2,
+      "title": "English 9",
+      "description": "English 9 - Lesson: 66 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09EN066E/09EN066E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-066",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 66,
+      "page_key": "g9/066",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 3,
+      "title": "Health",
+      "description": "Health - Lesson: 66 - Teacher: Miss Burns",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HE066C/09HE066C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-066",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 66,
+      "page_key": "g9/066",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 4,
+      "title": "Hebrew History",
+      "description": "Hebrew History - Lesson: 66 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HH066E/09HH066E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-066",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 66,
+      "page_key": "g9/066",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 5,
+      "title": "Physical Science",
+      "description": "Physical Science - Lesson: 66 - Teacher: Dr. Ridgley",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09PS066D/09PS066D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-066",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 66,
+      "page_key": "g9/066",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 6,
+      "title": "Tech Connect 5.6",
+      "description": "Tech Connect 5.6 - Lesson: 66 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1066G-TC5.6/09A1066G-TC5.6.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-066",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 66,
+      "page_key": "g9/066",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 7,
+      "title": "World Geography",
+      "description": "World Geography - Lesson: 66 - Teacher: Miss Burns",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09WG066B/09WG066B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

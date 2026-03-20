@@ -1,0 +1,277 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "Muzzy",
+    "provider_slug": "muzzy",
+    "course": "U5",
+    "course_slug": "u5",
+    "page_count": 1,
+    "video_count": 13
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "page_key": "Muzzy/U5",
+      "path_segments": [
+        "Muzzy",
+        "U5"
+      ],
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "video_count": 13,
+      "videos": [
+        {
+          "order": 1,
+          "title": "46. Is it still working",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/46.%20Is%20it%20still%20working.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "47. Is it still raining",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/47.%20Is%20it%20still%20raining.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "48. January, February…",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/48.%20January,%20February%E2%80%A6.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "49. We play tennis",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/49.%20We%20play%20tennis.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "50. When do you play basketball",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/50.%20When%20do%20you%20play%20basketball.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "51. Where s Sylvia s room",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/51.%20Where_s%20Sylvia_s%20room.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 7,
+          "title": "52. Stop it",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/52.%20Stop%20it.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 8,
+          "title": "53. Food - clocks - seven p.m",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/53.%20Food%20-%20clocks%20-%20seven%20p.m.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 9,
+          "title": "54. Lots of Sylvias",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/54.%20Lots%20of%20Sylvias.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 10,
+          "title": "55. Where are they all coming from",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/55.%20Where%20are%20they%20all%20coming%20from.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 11,
+          "title": "56. Help! Listen",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/56.%20Help%21%20Listen.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 12,
+          "title": "57. It s mine",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/57.%20It_s%20mine.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 13,
+          "title": "58. To the computer room",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U5/58.%20To%20the%20computer%20room.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 1,
+      "title": "46. Is it still working",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/46.%20Is%20it%20still%20working.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 2,
+      "title": "47. Is it still raining",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/47.%20Is%20it%20still%20raining.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 3,
+      "title": "48. January, February…",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/48.%20January,%20February%E2%80%A6.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 4,
+      "title": "49. We play tennis",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/49.%20We%20play%20tennis.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 5,
+      "title": "50. When do you play basketball",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/50.%20When%20do%20you%20play%20basketball.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 6,
+      "title": "51. Where s Sylvia s room",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/51.%20Where_s%20Sylvia_s%20room.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 7,
+      "title": "52. Stop it",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/52.%20Stop%20it.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 8,
+      "title": "53. Food - clocks - seven p.m",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/53.%20Food%20-%20clocks%20-%20seven%20p.m.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 9,
+      "title": "54. Lots of Sylvias",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/54.%20Lots%20of%20Sylvias.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 10,
+      "title": "55. Where are they all coming from",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/55.%20Where%20are%20they%20all%20coming%20from.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 11,
+      "title": "56. Help! Listen",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/56.%20Help%21%20Listen.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 12,
+      "title": "57. It s mine",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/57.%20It_s%20mine.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U5",
+      "topic": "",
+      "page_key": "Muzzy/U5",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U5",
+      "order": 13,
+      "title": "58. To the computer room",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U5/58.%20To%20the%20computer%20room.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

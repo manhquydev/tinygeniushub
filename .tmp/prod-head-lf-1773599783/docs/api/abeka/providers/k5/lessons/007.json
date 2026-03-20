@@ -1,0 +1,286 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "k5",
+    "provider_slug": "k5",
+    "course": "lesson-007",
+    "course_slug": "007",
+    "grade_id": "14",
+    "page_count": 1,
+    "video_count": 11
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "page_key": "k5/007",
+      "path_segments": [
+        "k5",
+        "007"
+      ],
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "video_count": 11,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Elementary Spanish A: Spanish Lesson A",
+          "description": "Elementary Spanish A: Spanish Lesson A - Lesson: 7 - Teacher: Mrs. Walker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/90SA007A/90SA007A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Elementary Spanish A: Spanish Lesson B",
+          "description": "Elementary Spanish A: Spanish Lesson B - Lesson: 7 - Teacher: Mrs. Walker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/90SB007A/90SB007A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "K5 Activities: Activity Time",
+          "description": "K5 Activities: Activity Time - Lesson: 7 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC007D/K5AC007D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "K5 Activities: Language Enrichment",
+          "description": "K5 Activities: Language Enrichment - Lesson: 7 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5LE007D/K5LE007D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "K5 Activities: Skills Development",
+          "description": "K5 Activities: Skills Development - Lesson: 7 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD007D/K5SD007D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "K5 Bible",
+          "description": "K5 Bible - Lesson: 7 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI007D/K5BI007D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "K5 Numbers",
+          "description": "K5 Numbers - Lesson: 7 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU007D/K5NU007D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "K5 Phonics: Phonics",
+          "description": "K5 Phonics: Phonics - Lesson: 7 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH007D/K5PH007D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "K5 Phonics: Phonics Review",
+          "description": "K5 Phonics: Phonics Review - Lesson: 7 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PR007D/K5PR007D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "K5 Writing: Cursive Writing",
+          "description": "K5 Writing: Cursive Writing - Lesson: 7 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5CW007D/K5CW007D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "K5 Writing: Manuscript Writing",
+          "description": "K5 Writing: Manuscript Writing - Lesson: 7 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5MW007D/K5MW007D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 1,
+      "title": "Elementary Spanish A: Spanish Lesson A",
+      "description": "Elementary Spanish A: Spanish Lesson A - Lesson: 7 - Teacher: Mrs. Walker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/90SA007A/90SA007A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 2,
+      "title": "Elementary Spanish A: Spanish Lesson B",
+      "description": "Elementary Spanish A: Spanish Lesson B - Lesson: 7 - Teacher: Mrs. Walker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/90SB007A/90SB007A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 3,
+      "title": "K5 Activities: Activity Time",
+      "description": "K5 Activities: Activity Time - Lesson: 7 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC007D/K5AC007D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 4,
+      "title": "K5 Activities: Language Enrichment",
+      "description": "K5 Activities: Language Enrichment - Lesson: 7 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5LE007D/K5LE007D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 5,
+      "title": "K5 Activities: Skills Development",
+      "description": "K5 Activities: Skills Development - Lesson: 7 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5SD007D/K5SD007D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 6,
+      "title": "K5 Bible",
+      "description": "K5 Bible - Lesson: 7 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI007D/K5BI007D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 7,
+      "title": "K5 Numbers",
+      "description": "K5 Numbers - Lesson: 7 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU007D/K5NU007D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 8,
+      "title": "K5 Phonics: Phonics",
+      "description": "K5 Phonics: Phonics - Lesson: 7 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH007D/K5PH007D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 9,
+      "title": "K5 Phonics: Phonics Review",
+      "description": "K5 Phonics: Phonics Review - Lesson: 7 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PR007D/K5PR007D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 10,
+      "title": "K5 Writing: Cursive Writing",
+      "description": "K5 Writing: Cursive Writing - Lesson: 7 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5CW007D/K5CW007D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-007",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 7,
+      "page_key": "k5/007",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 11,
+      "title": "K5 Writing: Manuscript Writing",
+      "description": "K5 Writing: Manuscript Writing - Lesson: 7 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5MW007D/K5MW007D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

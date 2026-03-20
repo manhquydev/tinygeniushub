@@ -1,0 +1,401 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g1",
+    "provider_slug": "g1",
+    "course": "lesson-150",
+    "course_slug": "150",
+    "grade_id": "1",
+    "page_count": 1,
+    "video_count": 16
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "page_key": "g1/150",
+      "path_segments": [
+        "g1",
+        "150"
+      ],
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "video_count": 16,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Activities 1",
+          "description": "Activities 1 - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AC150F/01AC150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Arithmetic 1: Arithmetic",
+          "description": "Arithmetic 1: Arithmetic - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AT150F/01AT150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Arithmetic 1: Combination Practice",
+          "description": "Arithmetic 1: Combination Practice - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AB150F/01AB150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Bible 1",
+          "description": "Bible 1 - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01BI150F/01BI150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Phonics 1",
+          "description": "Phonics 1 - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01PH150F/01PH150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Reading 1: AM Elephants",
+          "description": "Reading 1: AM Elephants - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01EA150F/01EA150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Reading 1: AM Giraffes",
+          "description": "Reading 1: AM Giraffes - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01GA150F/01GA150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Reading 1: AM Monkeys",
+          "description": "Reading 1: AM Monkeys - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MA150F/01MA150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Reading 1: PM Elephants",
+          "description": "Reading 1: PM Elephants - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01EP150F/01EP150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "Reading 1: PM Giraffes",
+          "description": "Reading 1: PM Giraffes - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01GP150F/01GP150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "Reading 1: PM Monkeys",
+          "description": "Reading 1: PM Monkeys - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MP150F/01MP150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 12,
+          "title": "Seatwork 1: Seatwork Explanation (Cursive)",
+          "description": "Seatwork 1: Seatwork Explanation (Cursive) - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SE150F/01SE150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 13,
+          "title": "Seatwork 1: Seatwork Explanation (Manuscript)",
+          "description": "Seatwork 1: Seatwork Explanation (Manuscript) - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SM150F/01SM150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 14,
+          "title": "Spelling 1",
+          "description": "Spelling 1 - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SP150F/01SP150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 15,
+          "title": "Writing 1: Cursive Writing",
+          "description": "Writing 1: Cursive Writing - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01CW150F/01CW150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 16,
+          "title": "Writing 1: Manuscript Writing",
+          "description": "Writing 1: Manuscript Writing - Lesson: 150 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MW150F/01MW150F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 1,
+      "title": "Activities 1",
+      "description": "Activities 1 - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AC150F/01AC150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 2,
+      "title": "Arithmetic 1: Arithmetic",
+      "description": "Arithmetic 1: Arithmetic - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AT150F/01AT150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 3,
+      "title": "Arithmetic 1: Combination Practice",
+      "description": "Arithmetic 1: Combination Practice - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AB150F/01AB150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 4,
+      "title": "Bible 1",
+      "description": "Bible 1 - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01BI150F/01BI150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 5,
+      "title": "Phonics 1",
+      "description": "Phonics 1 - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01PH150F/01PH150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 6,
+      "title": "Reading 1: AM Elephants",
+      "description": "Reading 1: AM Elephants - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01EA150F/01EA150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 7,
+      "title": "Reading 1: AM Giraffes",
+      "description": "Reading 1: AM Giraffes - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01GA150F/01GA150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 8,
+      "title": "Reading 1: AM Monkeys",
+      "description": "Reading 1: AM Monkeys - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MA150F/01MA150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 9,
+      "title": "Reading 1: PM Elephants",
+      "description": "Reading 1: PM Elephants - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01EP150F/01EP150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 10,
+      "title": "Reading 1: PM Giraffes",
+      "description": "Reading 1: PM Giraffes - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01GP150F/01GP150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 11,
+      "title": "Reading 1: PM Monkeys",
+      "description": "Reading 1: PM Monkeys - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MP150F/01MP150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 12,
+      "title": "Seatwork 1: Seatwork Explanation (Cursive)",
+      "description": "Seatwork 1: Seatwork Explanation (Cursive) - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SE150F/01SE150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 13,
+      "title": "Seatwork 1: Seatwork Explanation (Manuscript)",
+      "description": "Seatwork 1: Seatwork Explanation (Manuscript) - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SM150F/01SM150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 14,
+      "title": "Spelling 1",
+      "description": "Spelling 1 - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SP150F/01SP150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 15,
+      "title": "Writing 1: Cursive Writing",
+      "description": "Writing 1: Cursive Writing - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01CW150F/01CW150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-150",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 150,
+      "page_key": "g1/150",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 16,
+      "title": "Writing 1: Manuscript Writing",
+      "description": "Writing 1: Manuscript Writing - Lesson: 150 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MW150F/01MW150F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

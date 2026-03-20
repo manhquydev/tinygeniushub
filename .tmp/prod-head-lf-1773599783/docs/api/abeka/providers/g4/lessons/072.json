@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g4",
+    "provider_slug": "g4",
+    "course": "lesson-072",
+    "course_slug": "072",
+    "grade_id": "4",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "page_key": "g4/072",
+      "path_segments": [
+        "g4",
+        "072"
+      ],
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Activities 4",
+          "description": "Activities 4 - Lesson: 72 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AR072G/04AR072G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Arithmetic 4",
+          "description": "Arithmetic 4 - Lesson: 72 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AT072G/04AT072G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Bible 4",
+          "description": "Bible 4 - Lesson: 72 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04BI072G/04BI072G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "History 4",
+          "description": "History 4 - Lesson: 72 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04HI072G/04HI072G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Language 4",
+          "description": "Language 4 - Lesson: 72 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04LA072G/04LA072G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Reading 4",
+          "description": "Reading 4 - Lesson: 72 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04RE072G/04RE072G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Science/Health",
+          "description": "Science/Health - Lesson: 72 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SC072G/04SC072G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Spelling 4",
+          "description": "Spelling 4 - Lesson: 72 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SP072G/04SP072G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Writing 4",
+          "description": "Writing 4 - Lesson: 72 - Teacher: Mrs. Meester",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04WR072G/04WR072G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "page_key": "g4/072",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 1,
+      "title": "Activities 4",
+      "description": "Activities 4 - Lesson: 72 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AR072G/04AR072G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "page_key": "g4/072",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 2,
+      "title": "Arithmetic 4",
+      "description": "Arithmetic 4 - Lesson: 72 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04AT072G/04AT072G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "page_key": "g4/072",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 3,
+      "title": "Bible 4",
+      "description": "Bible 4 - Lesson: 72 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04BI072G/04BI072G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "page_key": "g4/072",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 4,
+      "title": "History 4",
+      "description": "History 4 - Lesson: 72 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04HI072G/04HI072G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "page_key": "g4/072",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 5,
+      "title": "Language 4",
+      "description": "Language 4 - Lesson: 72 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04LA072G/04LA072G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "page_key": "g4/072",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 6,
+      "title": "Reading 4",
+      "description": "Reading 4 - Lesson: 72 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04RE072G/04RE072G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "page_key": "g4/072",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 7,
+      "title": "Science/Health",
+      "description": "Science/Health - Lesson: 72 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SC072G/04SC072G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "page_key": "g4/072",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 8,
+      "title": "Spelling 4",
+      "description": "Spelling 4 - Lesson: 72 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04SP072G/04SP072G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g4",
+      "course": "lesson-072",
+      "topic": "",
+      "grade": "g4",
+      "lesson": 72,
+      "page_key": "g4/072",
+      "page_url": "https://hoctienganh.xyz/abeka/4",
+      "order": 9,
+      "title": "Writing 4",
+      "description": "Writing 4 - Lesson: 72 - Teacher: Mrs. Meester",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/04/04WR072G/04WR072G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

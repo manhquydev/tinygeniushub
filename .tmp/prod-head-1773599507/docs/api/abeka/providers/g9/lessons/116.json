@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g9",
+    "provider_slug": "g9",
+    "course": "lesson-116",
+    "course_slug": "116",
+    "grade_id": "9",
+    "page_count": 1,
+    "video_count": 5
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "page_key": "g9/116",
+      "path_segments": [
+        "g9",
+        "116"
+      ],
+      "provider": "g9",
+      "course": "lesson-116",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 116,
+      "video_count": 5,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Additional Review 9.1-9.2",
+          "description": "Additional Review 9.1-9.2 - Lesson: 116 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1116G-AR9.1-9.2/09A1116G-AR9.1-9.2.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Algebra 1",
+          "description": "Algebra 1 - Lesson: 116 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1116G/09A1116G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "English 9",
+          "description": "English 9 - Lesson: 116 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09EN116E/09EN116E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Hebrew History",
+          "description": "Hebrew History - Lesson: 116 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HH116E/09HH116E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Physical Science",
+          "description": "Physical Science - Lesson: 116 - Teacher: Dr. Ridgley",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09PS116D/09PS116D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g9",
+      "course": "lesson-116",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 116,
+      "page_key": "g9/116",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 1,
+      "title": "Additional Review 9.1-9.2",
+      "description": "Additional Review 9.1-9.2 - Lesson: 116 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1116G-AR9.1-9.2/09A1116G-AR9.1-9.2.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-116",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 116,
+      "page_key": "g9/116",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 2,
+      "title": "Algebra 1",
+      "description": "Algebra 1 - Lesson: 116 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09A1116G/09A1116G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-116",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 116,
+      "page_key": "g9/116",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 3,
+      "title": "English 9",
+      "description": "English 9 - Lesson: 116 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09EN116E/09EN116E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-116",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 116,
+      "page_key": "g9/116",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 4,
+      "title": "Hebrew History",
+      "description": "Hebrew History - Lesson: 116 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09HH116E/09HH116E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g9",
+      "course": "lesson-116",
+      "topic": "",
+      "grade": "g9",
+      "lesson": 116,
+      "page_key": "g9/116",
+      "page_url": "https://hoctienganh.xyz/abeka/9",
+      "order": 5,
+      "title": "Physical Science",
+      "description": "Physical Science - Lesson: 116 - Teacher: Dr. Ridgley",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/09/09PS116D/09PS116D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

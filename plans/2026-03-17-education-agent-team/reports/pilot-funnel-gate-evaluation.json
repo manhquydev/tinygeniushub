@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-03-17T02:35:39.238Z",
+  "source": {
+    "thresholds": "plans/2026-03-17-education-agent-team/reviews/pilot-kpi-thresholds.json",
+    "funnel": "plans/2026-03-17-education-agent-team/reports/pilot-funnel-report.json"
+  },
+  "status": "fail",
+  "globalEvaluation": {
+    "gateStatus": "fail",
+    "metrics": {
+      "checkoutToPurchase": {
+        "value": 0,
+        "status": "fail",
+        "threshold": {
+          "passGte": 18,
+          "warnGte": 12
+        }
+      },
+      "purchaseToActiveLearner": {
+        "value": 0,
+        "status": "fail",
+        "threshold": {
+          "passGte": 45,
+          "warnGte": 30
+        }
+      },
+      "minCheckouts": {
+        "value": 0,
+        "status": "fail",
+        "threshold": {
+          "passGte": 20,
+          "warnGte": 8
+        }
+      }
+    }
+  },
+  "channelEvaluations": [],
+  "skuChannelEvaluations": []
+}

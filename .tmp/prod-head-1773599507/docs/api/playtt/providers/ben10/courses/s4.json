@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "Ben10",
+    "provider_slug": "ben10",
+    "course": "S4",
+    "course_slug": "s4",
+    "page_count": 1,
+    "video_count": 10
+  },
+  "pages": [
+    {
+      "resource_root": "/playtt",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "page_key": "Ben10/S4",
+      "path_segments": [
+        "Ben10",
+        "S4"
+      ],
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "video_count": 10,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Ben.10.S04E0 (1)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(1).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Ben.10.S04E0 (2)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(2).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Ben.10.S04E0 (3)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(3).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Ben.10.S04E0 (4)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(4).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Ben.10.S04E0 (5)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(5).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Ben.10.S04E0 (6)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(6).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Ben.10.S04E0 (7)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(7).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Ben.10.S04E0 (8)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(8).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Ben.10.S04E0 (9)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(9).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "Ben.10.S04E0 (10)",
+          "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(10).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 1,
+      "title": "Ben.10.S04E0 (1)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(1).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 2,
+      "title": "Ben.10.S04E0 (2)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(2).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 3,
+      "title": "Ben.10.S04E0 (3)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(3).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 4,
+      "title": "Ben.10.S04E0 (4)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(4).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 5,
+      "title": "Ben.10.S04E0 (5)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(5).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 6,
+      "title": "Ben.10.S04E0 (6)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(6).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 7,
+      "title": "Ben.10.S04E0 (7)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(7).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 8,
+      "title": "Ben.10.S04E0 (8)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(8).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 9,
+      "title": "Ben.10.S04E0 (9)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(9).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Ben10",
+      "course": "S4",
+      "topic": "",
+      "page_key": "Ben10/S4",
+      "page_url": "https://hoctienganh.xyz/playtt/Ben10/S4",
+      "order": 10,
+      "title": "Ben.10.S04E0 (10)",
+      "video_url": "https://fileta.hoctienganh.xyz/Ben10/S4/Ben.10.S04E0%20(10).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

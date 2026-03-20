@@ -36,14 +36,18 @@ export function CourseRelatedSection({ courses }: Props) {
                   <span>{course.lessonCount} bài</span>
                   <span>{course.durationDays} ngày</span>
                 </div>
-                <p className="text-sm font-extrabold text-emerald-700">
-                  {formatCurrency(course.pricing.salePriceVnd)}
-                  {course.pricing.hasDiscount ? (
-                    <span className="ml-1.5 text-xs font-normal text-slate-400 line-through">
-                      {formatCurrency(course.pricing.listPriceVnd)}
-                    </span>
-                  ) : null}
-                </p>
+                {course.pricing.isPurchasable ? (
+                  <p className="text-sm font-extrabold text-emerald-700">
+                    {formatCurrency(course.pricing.salePriceVnd)}
+                    {course.pricing.hasDiscount ? (
+                      <span className="ml-1.5 text-xs font-normal text-slate-400 line-through">
+                        {formatCurrency(course.pricing.listPriceVnd)}
+                      </span>
+                    ) : null}
+                  </p>
+                ) : (
+                  <p className="text-sm font-bold text-amber-700">Giá đang cập nhật</p>
+                )}
               </div>
             </Link>
           </div>

@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "KLE",
+    "provider_slug": "kle",
+    "course": "Thang_8_Family",
+    "course_slug": "thang-8-family",
+    "page_count": 1,
+    "video_count": 6
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_8_Family",
+      "page_key": "KLE/Thang_8_Family",
+      "path_segments": [
+        "KLE",
+        "Thang_8_Family"
+      ],
+      "provider": "KLE",
+      "course": "Thang_8_Family",
+      "topic": "",
+      "video_count": 6,
+      "videos": [
+        {
+          "order": 1,
+          "title": "43 Family - Word Power - Learn English - Pinkfong Songs for Children",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/43%20Family%20-%20Word%20Power%20-%20Learn%20English%20-%20Pinkfong%20Songs%20for%20Children.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "44 Family Members Song",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/44%20Family%20Members%20Song.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "45 My Family Vocabulary",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/45%20My%20Family%20Vocabulary.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "46 Our Family - Nursery Rhymes for Children",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/46%20Our%20Family%20-%20Nursery%20Rhymes%20for%20Children.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "47 She s My Mother - Learn English for Kids Song by Little Fox",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/47%20She_s%20My%20Mother%20-%20Learn%20English%20for%20Kids%20Song%20by%20Little%20Fox.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "48 The Family Tree Song",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/48%20The%20Family%20Tree%20Song.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "KLE",
+      "course": "Thang_8_Family",
+      "topic": "",
+      "page_key": "KLE/Thang_8_Family",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_8_Family",
+      "order": 1,
+      "title": "43 Family - Word Power - Learn English - Pinkfong Songs for Children",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/43%20Family%20-%20Word%20Power%20-%20Learn%20English%20-%20Pinkfong%20Songs%20for%20Children.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_8_Family",
+      "topic": "",
+      "page_key": "KLE/Thang_8_Family",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_8_Family",
+      "order": 2,
+      "title": "44 Family Members Song",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/44%20Family%20Members%20Song.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_8_Family",
+      "topic": "",
+      "page_key": "KLE/Thang_8_Family",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_8_Family",
+      "order": 3,
+      "title": "45 My Family Vocabulary",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/45%20My%20Family%20Vocabulary.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_8_Family",
+      "topic": "",
+      "page_key": "KLE/Thang_8_Family",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_8_Family",
+      "order": 4,
+      "title": "46 Our Family - Nursery Rhymes for Children",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/46%20Our%20Family%20-%20Nursery%20Rhymes%20for%20Children.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_8_Family",
+      "topic": "",
+      "page_key": "KLE/Thang_8_Family",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_8_Family",
+      "order": 5,
+      "title": "47 She s My Mother - Learn English for Kids Song by Little Fox",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/47%20She_s%20My%20Mother%20-%20Learn%20English%20for%20Kids%20Song%20by%20Little%20Fox.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_8_Family",
+      "topic": "",
+      "page_key": "KLE/Thang_8_Family",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_8_Family",
+      "order": 6,
+      "title": "48 The Family Tree Song",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_8_Family/48%20The%20Family%20Tree%20Song.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

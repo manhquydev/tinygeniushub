@@ -1,0 +1,277 @@
+{
+  "generatedAt": "2026-03-17T06:29:32.249Z",
+  "dryRun": false,
+  "strictMode": true,
+  "status": "PASS",
+  "summary": {
+    "totalScopes": 6,
+    "totalCourses": 12,
+    "writtenCourses": 12,
+    "issueCount": 0
+  },
+  "scopePlans": [
+    {
+      "scopeId": "abeka:grade:k4",
+      "sourceSlug": "abeka-k4",
+      "strategy": "dedicated_scope_course",
+      "sourceLessonCount": 170,
+      "skuCount": 2
+    },
+    {
+      "scopeId": "abeka:grade:k5",
+      "sourceSlug": "abeka-k5",
+      "strategy": "dedicated_scope_course",
+      "sourceLessonCount": 170,
+      "skuCount": 2
+    },
+    {
+      "scopeId": "abeka:grade:g1",
+      "sourceSlug": "abeka-g1",
+      "strategy": "dedicated_scope_course",
+      "sourceLessonCount": 170,
+      "skuCount": 2
+    },
+    {
+      "scopeId": "littlefox:level:1",
+      "sourceSlug": "little-fox-en-level-1",
+      "strategy": "dedicated_scope_course",
+      "sourceLessonCount": 790,
+      "skuCount": 2
+    },
+    {
+      "scopeId": "littlefox:level:2",
+      "sourceSlug": "little-fox-en-level-2",
+      "strategy": "dedicated_scope_course",
+      "sourceLessonCount": 1238,
+      "skuCount": 2
+    },
+    {
+      "scopeId": "littlefoxcn:level:1",
+      "sourceSlug": "little-fox-cn-level-1",
+      "strategy": "dedicated_scope_course",
+      "sourceLessonCount": 459,
+      "skuCount": 2
+    }
+  ],
+  "plannedCourses": [
+    {
+      "scopeId": "abeka:grade:k4",
+      "sku": "ABEKA-K4-INTRO-4W",
+      "slug": "abeka-k4-intro-4w",
+      "sourceSlug": "abeka-k4",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 16
+    },
+    {
+      "scopeId": "abeka:grade:k4",
+      "sku": "ABEKA-K4-FOUNDATION-8W",
+      "slug": "abeka-k4-foundation-8w",
+      "sourceSlug": "abeka-k4",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 32
+    },
+    {
+      "scopeId": "abeka:grade:k5",
+      "sku": "ABEKA-K5-INTRO-4W",
+      "slug": "abeka-k5-intro-4w",
+      "sourceSlug": "abeka-k5",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 16
+    },
+    {
+      "scopeId": "abeka:grade:k5",
+      "sku": "ABEKA-K5-FOUNDATION-8W",
+      "slug": "abeka-k5-foundation-8w",
+      "sourceSlug": "abeka-k5",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 32
+    },
+    {
+      "scopeId": "abeka:grade:g1",
+      "sku": "ABEKA-G1-INTRO-4W",
+      "slug": "abeka-g1-intro-4w",
+      "sourceSlug": "abeka-g1",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 20
+    },
+    {
+      "scopeId": "abeka:grade:g1",
+      "sku": "ABEKA-G1-FOUNDATION-8W",
+      "slug": "abeka-g1-foundation-8w",
+      "sourceSlug": "abeka-g1",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 40
+    },
+    {
+      "scopeId": "littlefox:level:1",
+      "sku": "LFEN-L1-STARTER-6W",
+      "slug": "lfen-l1-starter-6w",
+      "sourceSlug": "little-fox-en-level-1",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 30
+    },
+    {
+      "scopeId": "littlefox:level:1",
+      "sku": "LFEN-L1-BUILDER-8W",
+      "slug": "lfen-l1-builder-8w",
+      "sourceSlug": "little-fox-en-level-1",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 40
+    },
+    {
+      "scopeId": "littlefox:level:2",
+      "sku": "LFEN-L2-STARTER-6W",
+      "slug": "lfen-l2-starter-6w",
+      "sourceSlug": "little-fox-en-level-2",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 30
+    },
+    {
+      "scopeId": "littlefox:level:2",
+      "sku": "LFEN-L2-BUILDER-8W",
+      "slug": "lfen-l2-builder-8w",
+      "sourceSlug": "little-fox-en-level-2",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 40
+    },
+    {
+      "scopeId": "littlefoxcn:level:1",
+      "sku": "LFCN-L1-STARTER-5W",
+      "slug": "lfcn-l1-starter-5w",
+      "sourceSlug": "little-fox-cn-level-1",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 25
+    },
+    {
+      "scopeId": "littlefoxcn:level:1",
+      "sku": "LFCN-L1-BUILDER-8W",
+      "slug": "lfcn-l1-builder-8w",
+      "sourceSlug": "little-fox-cn-level-1",
+      "strategy": "dedicated_scope_course",
+      "expectedCount": 40
+    }
+  ],
+  "writes": [
+    {
+      "slug": "abeka-k4-intro-4w",
+      "sku": "ABEKA-K4-INTRO-4W",
+      "expectedCount": 16,
+      "actualCount": 16,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "abeka-k4-foundation-8w",
+      "sku": "ABEKA-K4-FOUNDATION-8W",
+      "expectedCount": 32,
+      "actualCount": 32,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "abeka-k5-intro-4w",
+      "sku": "ABEKA-K5-INTRO-4W",
+      "expectedCount": 16,
+      "actualCount": 16,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "abeka-k5-foundation-8w",
+      "sku": "ABEKA-K5-FOUNDATION-8W",
+      "expectedCount": 32,
+      "actualCount": 32,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "abeka-g1-intro-4w",
+      "sku": "ABEKA-G1-INTRO-4W",
+      "expectedCount": 20,
+      "actualCount": 20,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "abeka-g1-foundation-8w",
+      "sku": "ABEKA-G1-FOUNDATION-8W",
+      "expectedCount": 40,
+      "actualCount": 40,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "lfen-l1-starter-6w",
+      "sku": "LFEN-L1-STARTER-6W",
+      "expectedCount": 30,
+      "actualCount": 30,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "lfen-l1-builder-8w",
+      "sku": "LFEN-L1-BUILDER-8W",
+      "expectedCount": 40,
+      "actualCount": 40,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "lfen-l2-starter-6w",
+      "sku": "LFEN-L2-STARTER-6W",
+      "expectedCount": 30,
+      "actualCount": 30,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "lfen-l2-builder-8w",
+      "sku": "LFEN-L2-BUILDER-8W",
+      "expectedCount": 40,
+      "actualCount": 40,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "lfcn-l1-starter-5w",
+      "sku": "LFCN-L1-STARTER-5W",
+      "expectedCount": 25,
+      "actualCount": 25,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    },
+    {
+      "slug": "lfcn-l1-builder-8w",
+      "sku": "LFCN-L1-BUILDER-8W",
+      "expectedCount": 40,
+      "actualCount": 40,
+      "exactMatch": true,
+      "firstOrderMismatchIndex": null,
+      "missingLessonCount": 0,
+      "extraLessonCount": 0
+    }
+  ],
+  "issues": []
+}

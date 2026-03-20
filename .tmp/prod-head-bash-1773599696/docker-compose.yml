@@ -1,0 +1,99 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cungcontuhoc
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d cungcontuhoc"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/cungcontuhoc?schema=public
+      REDIS_URL: redis://redis:6379
+      BETTER_AUTH_URL: http://localhost:3000
+      SESSION_SECRET: dev-session-secret-change-this-in-production-32
+      BETTER_AUTH_SECRET: dev-better-auth-secret-change-this-in-production-32
+      MOCK_UPLOAD_SIGNING_SECRET: dev-mock-upload-signing-secret-change-this-32
+      BILLING_WEBHOOK_SECRET: dev-webhook-secret
+      CRON_SECRET: dev-cron-secret-change-this-123456
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      RUN_DB_SEED: "true"
+      SEED_PARENT_EMAIL: demo.parent@cungcontuhoc.vn
+      SEED_PARENT_PASSWORD: DemoPass123!
+    command: ["/app/scripts/start-web.sh"]
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3000/api/health > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      web:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/cungcontuhoc?schema=public
+      REDIS_URL: redis://redis:6379
+      BETTER_AUTH_URL: http://localhost:3000
+      SESSION_SECRET: dev-session-secret-change-this-in-production-32
+      BETTER_AUTH_SECRET: dev-better-auth-secret-change-this-in-production-32
+      MOCK_UPLOAD_SIGNING_SECRET: dev-mock-upload-signing-secret-change-this-32
+      BILLING_WEBHOOK_SECRET: dev-webhook-secret
+      CRON_SECRET: dev-cron-secret-change-this-123456
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+    command: ["/app/scripts/start-worker.sh"]
+
+volumes:
+  postgres_data:

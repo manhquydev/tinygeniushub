@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "Single Stories",
+    "provider_slug": "single-stories",
+    "course_count": 1,
+    "page_count": 1,
+    "video_count": 68
+  },
+  "courses": [
+    {
+      "course": "default",
+      "course_slug": "default",
+      "page_count": 1,
+      "video_count": 68,
+      "path": "providers/single-stories/courses/default.json"
+    }
+  ]
+}

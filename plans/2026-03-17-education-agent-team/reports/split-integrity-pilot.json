@@ -1,0 +1,296 @@
+{
+  "generatedAt": "2026-03-16T19:11:54.003Z",
+  "source": "docs/api/program-bootstrap/three-courses-program.json",
+  "mode": "pilot",
+  "summary": {
+    "totalScopes": 6,
+    "passScopes": 6,
+    "failScopes": 0,
+    "allPassed": true,
+    "failedScopeIds": []
+  },
+  "checks": [
+    {
+      "scopeId": "abeka:grade:k4",
+      "courseCode": "abeka",
+      "unitType": "grade",
+      "unitValue": "k4",
+      "totalCount": 170,
+      "pacePerWeek": 4,
+      "segments": [
+        {
+          "id": "abeka:grade:k4:sku:ABEKA-K4-INTRO-4W",
+          "from": 1,
+          "to": 16,
+          "expectedCount": 16,
+          "sku": "ABEKA-K4-INTRO-4W",
+          "weeks": 4,
+          "plannedCount": 16,
+          "actualCount": 16,
+          "clipped": false
+        },
+        {
+          "id": "abeka:grade:k4:sku:ABEKA-K4-FOUNDATION-8W",
+          "from": 17,
+          "to": 48,
+          "expectedCount": 32,
+          "sku": "ABEKA-K4-FOUNDATION-8W",
+          "weeks": 8,
+          "plannedCount": 32,
+          "actualCount": 32,
+          "clipped": false
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "requireFullCoverage": false,
+        "totalCount": 170,
+        "segmentCount": 2,
+        "mappedCount": 48,
+        "gapCount": 122,
+        "coveragePct": 28.24,
+        "invalidRanges": [],
+        "expectedCountMismatches": [],
+        "outOfRangeHitCount": 0,
+        "overlapHitCount": 0,
+        "sampleOutOfRange": [],
+        "sampleOverlap": []
+      }
+    },
+    {
+      "scopeId": "abeka:grade:k5",
+      "courseCode": "abeka",
+      "unitType": "grade",
+      "unitValue": "k5",
+      "totalCount": 170,
+      "pacePerWeek": 4,
+      "segments": [
+        {
+          "id": "abeka:grade:k5:sku:ABEKA-K5-INTRO-4W",
+          "from": 1,
+          "to": 16,
+          "expectedCount": 16,
+          "sku": "ABEKA-K5-INTRO-4W",
+          "weeks": 4,
+          "plannedCount": 16,
+          "actualCount": 16,
+          "clipped": false
+        },
+        {
+          "id": "abeka:grade:k5:sku:ABEKA-K5-FOUNDATION-8W",
+          "from": 17,
+          "to": 48,
+          "expectedCount": 32,
+          "sku": "ABEKA-K5-FOUNDATION-8W",
+          "weeks": 8,
+          "plannedCount": 32,
+          "actualCount": 32,
+          "clipped": false
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "requireFullCoverage": false,
+        "totalCount": 170,
+        "segmentCount": 2,
+        "mappedCount": 48,
+        "gapCount": 122,
+        "coveragePct": 28.24,
+        "invalidRanges": [],
+        "expectedCountMismatches": [],
+        "outOfRangeHitCount": 0,
+        "overlapHitCount": 0,
+        "sampleOutOfRange": [],
+        "sampleOverlap": []
+      }
+    },
+    {
+      "scopeId": "abeka:grade:g1",
+      "courseCode": "abeka",
+      "unitType": "grade",
+      "unitValue": "g1",
+      "totalCount": 170,
+      "pacePerWeek": 5,
+      "segments": [
+        {
+          "id": "abeka:grade:g1:sku:ABEKA-G1-INTRO-4W",
+          "from": 1,
+          "to": 20,
+          "expectedCount": 20,
+          "sku": "ABEKA-G1-INTRO-4W",
+          "weeks": 4,
+          "plannedCount": 20,
+          "actualCount": 20,
+          "clipped": false
+        },
+        {
+          "id": "abeka:grade:g1:sku:ABEKA-G1-FOUNDATION-8W",
+          "from": 21,
+          "to": 60,
+          "expectedCount": 40,
+          "sku": "ABEKA-G1-FOUNDATION-8W",
+          "weeks": 8,
+          "plannedCount": 40,
+          "actualCount": 40,
+          "clipped": false
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "requireFullCoverage": false,
+        "totalCount": 170,
+        "segmentCount": 2,
+        "mappedCount": 60,
+        "gapCount": 110,
+        "coveragePct": 35.29,
+        "invalidRanges": [],
+        "expectedCountMismatches": [],
+        "outOfRangeHitCount": 0,
+        "overlapHitCount": 0,
+        "sampleOutOfRange": [],
+        "sampleOverlap": []
+      }
+    },
+    {
+      "scopeId": "littlefox:level:1",
+      "courseCode": "littlefox",
+      "unitType": "level",
+      "unitValue": 1,
+      "totalCount": 790,
+      "pacePerWeek": 5,
+      "segments": [
+        {
+          "id": "littlefox:level:1:sku:LFEN-L1-STARTER-6W",
+          "from": 1,
+          "to": 30,
+          "expectedCount": 30,
+          "sku": "LFEN-L1-STARTER-6W",
+          "weeks": 6,
+          "plannedCount": 30,
+          "actualCount": 30,
+          "clipped": false
+        },
+        {
+          "id": "littlefox:level:1:sku:LFEN-L1-BUILDER-8W",
+          "from": 31,
+          "to": 70,
+          "expectedCount": 40,
+          "sku": "LFEN-L1-BUILDER-8W",
+          "weeks": 8,
+          "plannedCount": 40,
+          "actualCount": 40,
+          "clipped": false
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "requireFullCoverage": false,
+        "totalCount": 790,
+        "segmentCount": 2,
+        "mappedCount": 70,
+        "gapCount": 720,
+        "coveragePct": 8.86,
+        "invalidRanges": [],
+        "expectedCountMismatches": [],
+        "outOfRangeHitCount": 0,
+        "overlapHitCount": 0,
+        "sampleOutOfRange": [],
+        "sampleOverlap": []
+      }
+    },
+    {
+      "scopeId": "littlefox:level:2",
+      "courseCode": "littlefox",
+      "unitType": "level",
+      "unitValue": 2,
+      "totalCount": 1238,
+      "pacePerWeek": 5,
+      "segments": [
+        {
+          "id": "littlefox:level:2:sku:LFEN-L2-STARTER-6W",
+          "from": 1,
+          "to": 30,
+          "expectedCount": 30,
+          "sku": "LFEN-L2-STARTER-6W",
+          "weeks": 6,
+          "plannedCount": 30,
+          "actualCount": 30,
+          "clipped": false
+        },
+        {
+          "id": "littlefox:level:2:sku:LFEN-L2-BUILDER-8W",
+          "from": 31,
+          "to": 70,
+          "expectedCount": 40,
+          "sku": "LFEN-L2-BUILDER-8W",
+          "weeks": 8,
+          "plannedCount": 40,
+          "actualCount": 40,
+          "clipped": false
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "requireFullCoverage": false,
+        "totalCount": 1238,
+        "segmentCount": 2,
+        "mappedCount": 70,
+        "gapCount": 1168,
+        "coveragePct": 5.65,
+        "invalidRanges": [],
+        "expectedCountMismatches": [],
+        "outOfRangeHitCount": 0,
+        "overlapHitCount": 0,
+        "sampleOutOfRange": [],
+        "sampleOverlap": []
+      }
+    },
+    {
+      "scopeId": "littlefoxcn:level:1",
+      "courseCode": "littlefoxcn",
+      "unitType": "level",
+      "unitValue": 1,
+      "totalCount": 459,
+      "pacePerWeek": 5,
+      "segments": [
+        {
+          "id": "littlefoxcn:level:1:sku:LFCN-L1-STARTER-5W",
+          "from": 1,
+          "to": 25,
+          "expectedCount": 25,
+          "sku": "LFCN-L1-STARTER-5W",
+          "weeks": 5,
+          "plannedCount": 25,
+          "actualCount": 25,
+          "clipped": false
+        },
+        {
+          "id": "littlefoxcn:level:1:sku:LFCN-L1-BUILDER-8W",
+          "from": 26,
+          "to": 65,
+          "expectedCount": 40,
+          "sku": "LFCN-L1-BUILDER-8W",
+          "weeks": 8,
+          "plannedCount": 40,
+          "actualCount": 40,
+          "clipped": false
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "requireFullCoverage": false,
+        "totalCount": 459,
+        "segmentCount": 2,
+        "mappedCount": 65,
+        "gapCount": 394,
+        "coveragePct": 14.16,
+        "invalidRanges": [],
+        "expectedCountMismatches": [],
+        "outOfRangeHitCount": 0,
+        "overlapHitCount": 0,
+        "sampleOutOfRange": [],
+        "sampleOverlap": []
+      }
+    }
+  ]
+}

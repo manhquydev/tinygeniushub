@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "k5",
+    "provider_slug": "k5",
+    "course": "lesson-168",
+    "course_slug": "168",
+    "grade_id": "14",
+    "page_count": 1,
+    "video_count": 4
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "page_key": "k5/168",
+      "path_segments": [
+        "k5",
+        "168"
+      ],
+      "provider": "k5",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 168,
+      "video_count": 4,
+      "videos": [
+        {
+          "order": 1,
+          "title": "K5 Activities",
+          "description": "K5 Activities - Lesson: 168 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC168D/K5AC168D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "K5 Bible",
+          "description": "K5 Bible - Lesson: 168 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI168D/K5BI168D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "K5 Numbers",
+          "description": "K5 Numbers - Lesson: 168 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU168D/K5NU168D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "K5 Phonics",
+          "description": "K5 Phonics - Lesson: 168 - Teacher: Mrs. Turner",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH168D/K5PH168D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "k5",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 168,
+      "page_key": "k5/168",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 1,
+      "title": "K5 Activities",
+      "description": "K5 Activities - Lesson: 168 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5AC168D/K5AC168D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 168,
+      "page_key": "k5/168",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 2,
+      "title": "K5 Bible",
+      "description": "K5 Bible - Lesson: 168 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5BI168D/K5BI168D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 168,
+      "page_key": "k5/168",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 3,
+      "title": "K5 Numbers",
+      "description": "K5 Numbers - Lesson: 168 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5NU168D/K5NU168D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k5",
+      "course": "lesson-168",
+      "topic": "",
+      "grade": "k5",
+      "lesson": 168,
+      "page_key": "k5/168",
+      "page_url": "https://hoctienganh.xyz/abeka/14",
+      "order": 4,
+      "title": "K5 Phonics",
+      "description": "K5 Phonics - Lesson: 168 - Teacher: Mrs. Turner",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k5/K5PH168D/K5PH168D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

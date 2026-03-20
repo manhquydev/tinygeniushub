@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db";
-import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
+import { resolveCourseDisplayPricing, type CourseDisplayPricing } from "@/modules/courses/course-pricing";
 import {
   getCourseBundleByCourseSlug,
   isCanonicalSplitCourseSlug,
@@ -24,18 +24,16 @@ export type StorefrontCourse = {
   slug: string;
   title: string;
   description: string;
+  subject: string | null;
   durationDays: number;
+  createdAt: Date;
   coverImageUrl: string | null;
   lessonCount: number;
   ageGroup: string | null;
   reviewCount: number;
   reviewAverageRating: number | null;
   enrollmentCount: number;
-  pricing: {
-    salePriceVnd: number;
-    listPriceVnd: number;
-    hasDiscount: boolean;
-  };
+  pricing: CourseDisplayPricing;
 };
 
 function buildStorefrontVisibilitySet(courseSlugs: string[]) {
@@ -81,6 +79,7 @@ export async function getStorefrontCourses(): Promise<StorefrontCourse[]> {
       slug: true,
       title: true,
       description: true,
+      subject: true,
       priceVnd: true,
       listPriceVnd: true,
       salePriceVnd: true,
@@ -111,7 +110,9 @@ export async function getStorefrontCourses(): Promise<StorefrontCourse[]> {
       slug: row.slug,
       title: row.title,
       description: row.description,
+      subject: row.subject ?? null,
       durationDays: row.durationDays,
+      createdAt: row.createdAt,
       coverImageUrl: resolveCourseCoverImage(row.slug, row.coverImageUrl),
       lessonCount: row._count.lessons,
       ageGroup: row.ageGroup ?? null,
@@ -560,7 +561,7 @@ export type RelatedCourse = {
   coverImageUrl: string | null;
   lessonCount: number;
   durationDays: number;
-  pricing: { salePriceVnd: number; listPriceVnd: number; hasDiscount: boolean };
+  pricing: CourseDisplayPricing;
 };
 
 export async function getRelatedCourses({

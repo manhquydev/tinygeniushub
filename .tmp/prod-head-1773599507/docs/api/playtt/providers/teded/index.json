@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "TEDed",
+    "provider_slug": "teded",
+    "course_count": 6,
+    "page_count": 6,
+    "video_count": 215
+  },
+  "courses": [
+    {
+      "course": "INSIGHT IELTS 1",
+      "course_slug": "insight-ielts-1",
+      "page_count": 1,
+      "video_count": 34,
+      "path": "providers/teded/courses/insight-ielts-1.json"
+    },
+    {
+      "course": "INSIGHT IELTS 2",
+      "course_slug": "insight-ielts-2",
+      "page_count": 1,
+      "video_count": 35,
+      "path": "providers/teded/courses/insight-ielts-2.json"
+    },
+    {
+      "course": "INSIGHT IELTS 3",
+      "course_slug": "insight-ielts-3",
+      "page_count": 1,
+      "video_count": 33,
+      "path": "providers/teded/courses/insight-ielts-3.json"
+    },
+    {
+      "course": "Step into IELTS 1",
+      "course_slug": "step-into-ielts-1",
+      "page_count": 1,
+      "video_count": 38,
+      "path": "providers/teded/courses/step-into-ielts-1.json"
+    },
+    {
+      "course": "Step into IELTS 2",
+      "course_slug": "step-into-ielts-2",
+      "page_count": 1,
+      "video_count": 38,
+      "path": "providers/teded/courses/step-into-ielts-2.json"
+    },
+    {
+      "course": "Step into IELTS 3",
+      "course_slug": "step-into-ielts-3",
+      "page_count": 1,
+      "video_count": 37,
+      "path": "providers/teded/courses/step-into-ielts-3.json"
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+/**
+ * Ambient Animations for Unified Scroll Journey
+ * 
+ * Phase 3: Subtle, performance-optimized animations
+ * - Cloud drift parallax (CSS + Framer Motion)
+ * - Star twinkle (CSS keyframes)
+ * - Tier floating bob (CSS keyframes)
+ * 
+ * All animations respect prefers-reduced-motion
+ */
+
+/* ========================================
+   Cloud Drift Parallax
+   ======================================== */
+
+.usj-cloud-drift {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+  animation: cloudDrift 120s linear infinite;
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(0) translateZ(0);
+  }
+  100% {
+    transform: translateX(-30px) translateZ(0);
+  }
+}
+
+/* Slower drift for background clouds */
+.usj-cloud-drift-slow {
+  animation-duration: 180s;
+}
+
+/* ========================================
+   Star Twinkle
+   ======================================== */
+
+.usj-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: opacity;
+  animation: starTwinkle 3s ease-in-out infinite;
+}
+
+/* Stagger animation delays for natural effect */
+.usj-star:nth-child(2n) {
+  animation-delay: 0.5s;
+}
+
+.usj-star:nth-child(3n) {
+  animation-delay: 1s;
+}
+
+.usj-star:nth-child(5n) {
+  animation-delay: 1.5s;
+}
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   Tier Floating Bob
+   ======================================== */
+
+.usj-tier-bob {
+  animation: tierBob 4s ease-in-out infinite;
+}
+
+/* Stagger bob timing for organic movement */
+.usj-tier-bob-1 {
+  animation-delay: 0s;
+}
+
+.usj-tier-bob-2 {
+  animation-delay: 0.8s;
+}
+
+.usj-tier-bob-3 {
+  animation-delay: 1.6s;
+}
+
+.usj-tier-bob-4 {
+  animation-delay: 2.4s;
+}
+
+.usj-tier-bob-5 {
+  animation-delay: 3.2s;
+}
+
+@keyframes tierBob {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ========================================
+   Reduced Motion Support
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .usj-cloud-drift,
+  .usj-star,
+  .usj-tier-bob {
+    animation: none !important;
+  }
+}
+
+/* ========================================
+   Performance Optimizations
+   ======================================== */
+
+/* Use GPU acceleration for animations */
+.usj-cloud-drift,
+.usj-tier-bob {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Disable animations when element not in viewport (via Intersection Observer) */
+.usj-paused {
+  animation-play-state: paused !important;
+}

@@ -1,0 +1,113 @@
+name: Release Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: release-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release-check:
+    name: release-check
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/cungcontuhoc?schema=public
+      REDIS_URL: redis://127.0.0.1:6379
+      SESSION_SECRET: ci-session-secret-with-at-least-thirty-two-characters
+      BILLING_WEBHOOK_SECRET: ci-webhook-secret
+      NODE_ENV: test
+      NEXT_TELEMETRY_DISABLED: "1"
+      CI: "true"
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: cungcontuhoc
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d cungcontuhoc"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Prepare database
+        run: |
+          pnpm prisma migrate deploy
+          pnpm db:seed
+
+      - name: Run release gates
+        run: pnpm release:check
+
+      - name: Run P0 e2e journey
+        env:
+          E2E_SKIP_BUILD: "1"
+        run: pnpm test:e2e:p0
+
+      - name: Publish evidence summary
+        if: always()
+        run: |
+          echo "## Release Evidence" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ -f reports/security/latest-summary.md ]; then
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "### Security Baseline" >> "$GITHUB_STEP_SUMMARY"
+            cat reports/security/latest-summary.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- Security summary was not generated." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          if [ -f reports/perf/latest.json ]; then
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "### Performance Report" >> "$GITHUB_STEP_SUMMARY"
+            node -e 'const fs=require("node:fs");const report=JSON.parse(fs.readFileSync("reports/perf/latest.json","utf8"));console.log(`- Threshold: ${report.thresholdMs}ms`);for (const result of report.results){console.log(`- ${result.path}: p95 ${result.p95.toFixed(2)}ms, avg ${result.average.toFixed(2)}ms`);}' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- Performance report was not generated." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload release evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            reports/security/latest-summary.md
+            reports/security/security-baseline-*.json
+            reports/perf/latest.json

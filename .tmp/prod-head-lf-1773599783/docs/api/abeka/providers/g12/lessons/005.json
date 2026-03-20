@@ -1,0 +1,286 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g12",
+    "provider_slug": "g12",
+    "course": "lesson-005",
+    "course_slug": "005",
+    "grade_id": "12",
+    "page_count": 1,
+    "video_count": 11
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "page_key": "g12/005",
+      "path_segments": [
+        "g12",
+        "005"
+      ],
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "video_count": 11,
+      "videos": [
+        {
+          "order": 1,
+          "title": "American Government",
+          "description": "American Government - Lesson: 5 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12AG005D/12AG005D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Culinary Life Skills",
+          "description": "Culinary Life Skills - Lesson: 5 - Teacher: Miss Armstrong",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12FS005B/12FS005B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Document Processing",
+          "description": "Document Processing - Lesson: 5 - Teacher: Dr. Marion",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12DP005A/12DP005A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Economics",
+          "description": "Economics - Lesson: 5 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12EC005D/12EC005D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "English 12",
+          "description": "English 12 - Lesson: 5 - Teacher: Mr. Bucy",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12EN005E/12EN005E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Old Testament",
+          "description": "Old Testament - Lesson: 5 - Teacher: Mr. Gourley",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/11OG005D/11OG005D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Physics",
+          "description": "Physics - Lesson: 5 - Teacher: Dr. Ridgley",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PH005C/12PH005C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Precalculus",
+          "description": "Precalculus - Lesson: 5 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PC005C/12PC005C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Revelation",
+          "description": "Revelation - Lesson: 5 - Teacher: Mr. McBride",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12RV005C/12RV005C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "Spanish 2",
+          "description": "Spanish 2 - Lesson: 5 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12SA005D/12SA005D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "Speech",
+          "description": "Speech - Lesson: 5 - Teacher: Mrs. DeBruler",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12SP005B/12SP005B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 1,
+      "title": "American Government",
+      "description": "American Government - Lesson: 5 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12AG005D/12AG005D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 2,
+      "title": "Culinary Life Skills",
+      "description": "Culinary Life Skills - Lesson: 5 - Teacher: Miss Armstrong",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12FS005B/12FS005B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 3,
+      "title": "Document Processing",
+      "description": "Document Processing - Lesson: 5 - Teacher: Dr. Marion",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12DP005A/12DP005A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 4,
+      "title": "Economics",
+      "description": "Economics - Lesson: 5 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12EC005D/12EC005D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 5,
+      "title": "English 12",
+      "description": "English 12 - Lesson: 5 - Teacher: Mr. Bucy",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12EN005E/12EN005E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 6,
+      "title": "Old Testament",
+      "description": "Old Testament - Lesson: 5 - Teacher: Mr. Gourley",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/11OG005D/11OG005D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 7,
+      "title": "Physics",
+      "description": "Physics - Lesson: 5 - Teacher: Dr. Ridgley",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PH005C/12PH005C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 8,
+      "title": "Precalculus",
+      "description": "Precalculus - Lesson: 5 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12PC005C/12PC005C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 9,
+      "title": "Revelation",
+      "description": "Revelation - Lesson: 5 - Teacher: Mr. McBride",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12RV005C/12RV005C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 10,
+      "title": "Spanish 2",
+      "description": "Spanish 2 - Lesson: 5 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12SA005D/12SA005D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g12",
+      "course": "lesson-005",
+      "topic": "",
+      "grade": "g12",
+      "lesson": 5,
+      "page_key": "g12/005",
+      "page_url": "https://hoctienganh.xyz/abeka/12",
+      "order": 11,
+      "title": "Speech",
+      "description": "Speech - Lesson: 5 - Teacher: Mrs. DeBruler",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/12/12SP005B/12SP005B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

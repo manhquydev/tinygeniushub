@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-03-18T11:19:04.309Z",
+  "source": "docs/api/program-bootstrap/three-courses-program.json",
+  "totals": {
+    "abekaLessons": 2380,
+    "abekaVideos": 20195,
+    "littlefoxEpisodes": 8718,
+    "littlefoxcnEpisodes": 1983
+  },
+  "pilot": {
+    "abeka": [
+      {
+        "gradeCode": "k4",
+        "lessonCount": 170,
+        "videoCount": 1595,
+        "estimatedWeeks": 43,
+        "phaseCounts": [
+          {
+            "name": "foundation",
+            "count": 51
+          },
+          {
+            "name": "core",
+            "count": 85
+          },
+          {
+            "name": "mastery",
+            "count": 34
+          }
+        ]
+      },
+      {
+        "gradeCode": "k5",
+        "lessonCount": 170,
+        "videoCount": 1710,
+        "estimatedWeeks": 43,
+        "phaseCounts": [
+          {
+            "name": "foundation",
+            "count": 51
+          },
+          {
+            "name": "core",
+            "count": 85
+          },
+          {
+            "name": "mastery",
+            "count": 34
+          }
+        ]
+      },
+      {
+        "gradeCode": "g1",
+        "lessonCount": 170,
+        "videoCount": 2699,
+        "estimatedWeeks": 34,
+        "phaseCounts": [
+          {
+            "name": "foundation",
+            "count": 51
+          },
+          {
+            "name": "core",
+            "count": 85
+          },
+          {
+            "name": "mastery",
+            "count": 34
+          }
+        ]
+      }
+    ],
+    "littlefox": [
+      {
+        "level": 1,
+        "seriesCount": 12,
+        "episodeCount": 790,
+        "recommendedEpisodesPerWeek": 5,
+        "phaseCounts": [
+          {
+            "name": "foundation",
+            "count": 237
+          },
+          {
+            "name": "core",
+            "count": 395
+          },
+          {
+            "name": "mastery",
+            "count": 158
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "seriesCount": 12,
+        "episodeCount": 1238,
+        "recommendedEpisodesPerWeek": 5,
+        "phaseCounts": [
+          {
+            "name": "foundation",
+            "count": 371
+          },
+          {
+            "name": "core",
+            "count": 619
+          },
+          {
+            "name": "mastery",
+            "count": 248
+          }
+        ]
+      }
+    ],
+    "littlefoxcn": [
+      {
+        "level": 1,
+        "seriesCount": 14,
+        "episodeCount": 459,
+        "recommendedEpisodesPerWeek": 5,
+        "phaseCounts": [
+          {
+            "name": "foundation",
+            "count": 138
+          },
+          {
+            "name": "core",
+            "count": 229
+          },
+          {
+            "name": "mastery",
+            "count": 92
+          }
+        ]
+      }
+    ]
+  },
+  "pilotTotals": {
+    "abekaLessons": 510,
+    "abekaVideos": 6004,
+    "littlefoxEpisodes": 2028,
+    "littlefoxcnEpisodes": 459
+  },
+  "pilotCoveragePct": {
+    "abekaLessons": 21.43,
+    "abekaVideos": 29.73,
+    "littlefoxEpisodes": 23.26,
+    "littlefoxcnEpisodes": 23.15
+  },
+  "assumptions": {
+    "pilotSkuCount": 12,
+    "abekaPilotSkuPerGrade": 2,
+    "littlefoxPilotSkuPerLevel": 2,
+    "littlefoxCnPilotSkuPerLevel": 2
+  }
+}

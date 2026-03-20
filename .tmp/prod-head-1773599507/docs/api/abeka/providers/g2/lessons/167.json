@@ -1,0 +1,263 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g2",
+    "provider_slug": "g2",
+    "course": "lesson-167",
+    "course_slug": "167",
+    "grade_id": "2",
+    "page_count": 1,
+    "video_count": 10
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "page_key": "g2/167",
+      "path_segments": [
+        "g2",
+        "167"
+      ],
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "video_count": 10,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Activities 2",
+          "description": "Activities 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AC167F/02AC167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Arithmetic 2: Arithmetic",
+          "description": "Arithmetic 2: Arithmetic - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AT167F/02AT167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Arithmetic 2: Arithmetic Combinations",
+          "description": "Arithmetic 2: Arithmetic Combinations - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AB167F/02AB167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Bible 2",
+          "description": "Bible 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02BI167F/02BI167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Phonics and Language 2",
+          "description": "Phonics and Language 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PH167F/02PH167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Reading 2: AM Class Reading",
+          "description": "Reading 2: AM Class Reading - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02RA167F/02RA167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Reading 2: PM Birds",
+          "description": "Reading 2: PM Birds - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PD167F/02PD167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Seatwork 2",
+          "description": "Seatwork 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02SE167F/02SE167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Spelling 2",
+          "description": "Spelling 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02SP167F/02SP167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "Writing 2",
+          "description": "Writing 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02WR167F/02WR167F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 1,
+      "title": "Activities 2",
+      "description": "Activities 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AC167F/02AC167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 2,
+      "title": "Arithmetic 2: Arithmetic",
+      "description": "Arithmetic 2: Arithmetic - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AT167F/02AT167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 3,
+      "title": "Arithmetic 2: Arithmetic Combinations",
+      "description": "Arithmetic 2: Arithmetic Combinations - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02AB167F/02AB167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 4,
+      "title": "Bible 2",
+      "description": "Bible 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02BI167F/02BI167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 5,
+      "title": "Phonics and Language 2",
+      "description": "Phonics and Language 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PH167F/02PH167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 6,
+      "title": "Reading 2: AM Class Reading",
+      "description": "Reading 2: AM Class Reading - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02RA167F/02RA167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 7,
+      "title": "Reading 2: PM Birds",
+      "description": "Reading 2: PM Birds - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02PD167F/02PD167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 8,
+      "title": "Seatwork 2",
+      "description": "Seatwork 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02SE167F/02SE167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 9,
+      "title": "Spelling 2",
+      "description": "Spelling 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02SP167F/02SP167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g2",
+      "course": "lesson-167",
+      "topic": "",
+      "grade": "g2",
+      "lesson": 167,
+      "page_key": "g2/167",
+      "page_url": "https://hoctienganh.xyz/abeka/2",
+      "order": 10,
+      "title": "Writing 2",
+      "description": "Writing 2 - Lesson: 167 - Teacher: Mrs. Chappell",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/02/02WR167F/02WR167F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

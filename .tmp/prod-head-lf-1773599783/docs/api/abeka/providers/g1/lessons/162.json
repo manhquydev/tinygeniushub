@@ -1,0 +1,401 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g1",
+    "provider_slug": "g1",
+    "course": "lesson-162",
+    "course_slug": "162",
+    "grade_id": "1",
+    "page_count": 1,
+    "video_count": 16
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "page_key": "g1/162",
+      "path_segments": [
+        "g1",
+        "162"
+      ],
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "video_count": 16,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Activities 1",
+          "description": "Activities 1 - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AC162F/01AC162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Arithmetic 1: Arithmetic",
+          "description": "Arithmetic 1: Arithmetic - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AT162F/01AT162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Arithmetic 1: Combination Practice",
+          "description": "Arithmetic 1: Combination Practice - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AB162F/01AB162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Bible 1",
+          "description": "Bible 1 - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01BI162F/01BI162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Phonics 1",
+          "description": "Phonics 1 - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01PH162F/01PH162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Reading 1: AM Elephants",
+          "description": "Reading 1: AM Elephants - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01EA162F/01EA162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Reading 1: AM Giraffes",
+          "description": "Reading 1: AM Giraffes - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01GA162F/01GA162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Reading 1: AM Monkeys",
+          "description": "Reading 1: AM Monkeys - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MA162F/01MA162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Reading 1: PM Elephants",
+          "description": "Reading 1: PM Elephants - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01EP162F/01EP162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "Reading 1: PM Giraffes",
+          "description": "Reading 1: PM Giraffes - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01GP162F/01GP162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "Reading 1: PM Monkeys",
+          "description": "Reading 1: PM Monkeys - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MP162F/01MP162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 12,
+          "title": "Seatwork 1: Seatwork Explanation (Cursive)",
+          "description": "Seatwork 1: Seatwork Explanation (Cursive) - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SE162F/01SE162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 13,
+          "title": "Seatwork 1: Seatwork Explanation (Manuscript)",
+          "description": "Seatwork 1: Seatwork Explanation (Manuscript) - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SM162F/01SM162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 14,
+          "title": "Spelling 1",
+          "description": "Spelling 1 - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SP162F/01SP162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 15,
+          "title": "Writing 1: Cursive Writing",
+          "description": "Writing 1: Cursive Writing - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01CW162F/01CW162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 16,
+          "title": "Writing 1: Manuscript Writing",
+          "description": "Writing 1: Manuscript Writing - Lesson: 162 - Teacher: Miss Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MW162F/01MW162F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 1,
+      "title": "Activities 1",
+      "description": "Activities 1 - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AC162F/01AC162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 2,
+      "title": "Arithmetic 1: Arithmetic",
+      "description": "Arithmetic 1: Arithmetic - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AT162F/01AT162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 3,
+      "title": "Arithmetic 1: Combination Practice",
+      "description": "Arithmetic 1: Combination Practice - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01AB162F/01AB162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 4,
+      "title": "Bible 1",
+      "description": "Bible 1 - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01BI162F/01BI162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 5,
+      "title": "Phonics 1",
+      "description": "Phonics 1 - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01PH162F/01PH162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 6,
+      "title": "Reading 1: AM Elephants",
+      "description": "Reading 1: AM Elephants - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01EA162F/01EA162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 7,
+      "title": "Reading 1: AM Giraffes",
+      "description": "Reading 1: AM Giraffes - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01GA162F/01GA162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 8,
+      "title": "Reading 1: AM Monkeys",
+      "description": "Reading 1: AM Monkeys - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MA162F/01MA162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 9,
+      "title": "Reading 1: PM Elephants",
+      "description": "Reading 1: PM Elephants - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01EP162F/01EP162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 10,
+      "title": "Reading 1: PM Giraffes",
+      "description": "Reading 1: PM Giraffes - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01GP162F/01GP162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 11,
+      "title": "Reading 1: PM Monkeys",
+      "description": "Reading 1: PM Monkeys - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MP162F/01MP162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 12,
+      "title": "Seatwork 1: Seatwork Explanation (Cursive)",
+      "description": "Seatwork 1: Seatwork Explanation (Cursive) - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SE162F/01SE162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 13,
+      "title": "Seatwork 1: Seatwork Explanation (Manuscript)",
+      "description": "Seatwork 1: Seatwork Explanation (Manuscript) - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SM162F/01SM162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 14,
+      "title": "Spelling 1",
+      "description": "Spelling 1 - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01SP162F/01SP162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 15,
+      "title": "Writing 1: Cursive Writing",
+      "description": "Writing 1: Cursive Writing - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01CW162F/01CW162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g1",
+      "course": "lesson-162",
+      "topic": "",
+      "grade": "g1",
+      "lesson": 162,
+      "page_key": "g1/162",
+      "page_url": "https://hoctienganh.xyz/abeka/1",
+      "order": 16,
+      "title": "Writing 1: Manuscript Writing",
+      "description": "Writing 1: Manuscript Writing - Lesson: 162 - Teacher: Miss Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/01/01MW162F/01MW162F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

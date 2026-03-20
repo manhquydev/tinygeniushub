@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g11",
+    "provider_slug": "g11",
+    "course": "lesson-002",
+    "course_slug": "002",
+    "grade_id": "11",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "page_key": "g11/002",
+      "path_segments": [
+        "g11",
+        "002"
+      ],
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Business Mathematics",
+          "description": "Business Mathematics - Lesson: 2 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM002A/11BM002A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Chemistry",
+          "description": "Chemistry - Lesson: 2 - Teacher: Mr. Sisson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH002E/11CH002E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "English 11",
+          "description": "English 11 - Lesson: 2 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN002D/11EN002D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Keyboarding",
+          "description": "Keyboarding - Lesson: 2 - Teacher: Dr. Marion",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB002A/11KB002A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Life Management",
+          "description": "Life Management - Lesson: 2 - Teacher: Mr. McBride",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/12LM002C/12LM002C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "New Testament",
+          "description": "New Testament - Lesson: 2 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11NJ002E/11NJ002E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Plane Geometry",
+          "description": "Plane Geometry - Lesson: 2 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG002D/11PG002D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Spanish 1",
+          "description": "Spanish 1 - Lesson: 2 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA002D/11SA002D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "U. S. History 11",
+          "description": "U. S. History 11 - Lesson: 2 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US002D/11US002D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "page_key": "g11/002",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 1,
+      "title": "Business Mathematics",
+      "description": "Business Mathematics - Lesson: 2 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM002A/11BM002A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "page_key": "g11/002",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 2,
+      "title": "Chemistry",
+      "description": "Chemistry - Lesson: 2 - Teacher: Mr. Sisson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH002E/11CH002E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "page_key": "g11/002",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 3,
+      "title": "English 11",
+      "description": "English 11 - Lesson: 2 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN002D/11EN002D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "page_key": "g11/002",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 4,
+      "title": "Keyboarding",
+      "description": "Keyboarding - Lesson: 2 - Teacher: Dr. Marion",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB002A/11KB002A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "page_key": "g11/002",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 5,
+      "title": "Life Management",
+      "description": "Life Management - Lesson: 2 - Teacher: Mr. McBride",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/12LM002C/12LM002C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "page_key": "g11/002",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 6,
+      "title": "New Testament",
+      "description": "New Testament - Lesson: 2 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11NJ002E/11NJ002E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "page_key": "g11/002",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 7,
+      "title": "Plane Geometry",
+      "description": "Plane Geometry - Lesson: 2 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG002D/11PG002D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "page_key": "g11/002",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 8,
+      "title": "Spanish 1",
+      "description": "Spanish 1 - Lesson: 2 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA002D/11SA002D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-002",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 2,
+      "page_key": "g11/002",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 9,
+      "title": "U. S. History 11",
+      "description": "U. S. History 11 - Lesson: 2 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US002D/11US002D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

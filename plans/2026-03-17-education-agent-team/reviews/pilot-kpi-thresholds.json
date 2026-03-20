@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "updatedAt": "2026-03-17T00:00:00.000Z",
+  "windowDays": 14,
+  "global": {
+    "checkoutToPurchaseRatePct": {
+      "passGte": 18,
+      "warnGte": 12
+    },
+    "purchaseToActiveLearnerRatePct": {
+      "passGte": 45,
+      "warnGte": 30
+    },
+    "minCheckouts": {
+      "passGte": 20,
+      "warnGte": 8
+    }
+  },
+  "perSkuChannelDefault": {
+    "checkoutToPurchaseRatePct": {
+      "passGte": 12,
+      "warnGte": 8
+    },
+    "minCheckouts": {
+      "passGte": 3,
+      "warnGte": 1
+    }
+  },
+  "perSkuChannelOverrides": {},
+  "channelOverrides": {
+    "paid_search": {
+      "checkoutToPurchaseRatePct": {
+        "passGte": 16,
+        "warnGte": 10
+      },
+      "minCheckouts": {
+        "passGte": 12,
+        "warnGte": 5
+      }
+    },
+    "paid_social": {
+      "checkoutToPurchaseRatePct": {
+        "passGte": 14,
+        "warnGte": 9
+      },
+      "minCheckouts": {
+        "passGte": 12,
+        "warnGte": 5
+      }
+    },
+    "organic_search": {
+      "checkoutToPurchaseRatePct": {
+        "passGte": 20,
+        "warnGte": 14
+      },
+      "minCheckouts": {
+        "passGte": 8,
+        "warnGte": 4
+      }
+    },
+    "organic_social": {
+      "checkoutToPurchaseRatePct": {
+        "passGte": 15,
+        "warnGte": 10
+      },
+      "minCheckouts": {
+        "passGte": 8,
+        "warnGte": 4
+      }
+    },
+    "email": {
+      "checkoutToPurchaseRatePct": {
+        "passGte": 25,
+        "warnGte": 18
+      },
+      "minCheckouts": {
+        "passGte": 6,
+        "warnGte": 3
+      }
+    },
+    "referral": {
+      "checkoutToPurchaseRatePct": {
+        "passGte": 22,
+        "warnGte": 15
+      },
+      "minCheckouts": {
+        "passGte": 6,
+        "warnGte": 3
+      }
+    },
+    "direct": {
+      "checkoutToPurchaseRatePct": {
+        "passGte": 18,
+        "warnGte": 12
+      },
+      "minCheckouts": {
+        "passGte": 6,
+        "warnGte": 3
+      }
+    },
+    "unknown": {
+      "checkoutToPurchaseRatePct": {
+        "passGte": 12,
+        "warnGte": 8
+      },
+      "minCheckouts": {
+        "passGte": 6,
+        "warnGte": 3
+      }
+    }
+  }
+}

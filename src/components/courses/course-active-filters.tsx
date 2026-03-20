@@ -18,6 +18,10 @@ type FilterChip = { key: string; label: string };
 function buildChips(filters: CourseFilterParams): FilterChip[] {
   const chips: FilterChip[] = [];
 
+  if (filters.q) {
+    chips.push({ key: "q", label: `Tìm: ${filters.q}` });
+  }
+
   if (filters.subject && SUBJECT_LABELS[filters.subject]) {
     chips.push({ key: "subject", label: SUBJECT_LABELS[filters.subject] });
   }
@@ -51,6 +55,8 @@ export function CourseActiveFilters({ filters }: CourseActiveFiltersProps) {
     if (key === "price") {
       params.delete("minPrice");
       params.delete("maxPrice");
+    } else if (key === "q") {
+      params.delete("q");
     } else {
       params.delete(key);
     }

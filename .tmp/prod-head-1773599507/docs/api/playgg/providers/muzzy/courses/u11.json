@@ -1,0 +1,296 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "Muzzy",
+    "provider_slug": "muzzy",
+    "course": "U11",
+    "course_slug": "u11",
+    "page_count": 1,
+    "video_count": 14
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "page_key": "Muzzy/U11",
+      "path_segments": [
+        "Muzzy",
+        "U11"
+      ],
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "video_count": 14,
+      "videos": [
+        {
+          "order": 1,
+          "title": "57. Now, I m going to find the little princess",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/57.%20Now,%20I_m%20going%20to%20find%20the%20little%20princess.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "58. How does this work",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/58.%20How%20does%20this%20work.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "59. How does this work, Corvax",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/59.%20How%20does%20this%20work,%20Corvax.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "60. The baby needs some food",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/60.%20The%20baby%20needs%20some%20food.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "61. Can you see anything",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/61.%20Can%20you%20see%20anything.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "62. I ve got something for you",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/62.%20I_ve%20got%20something%20for%20you.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 7,
+          "title": "63. What s it like",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/63.%20What_s%20it%20like.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 8,
+          "title": "64. I like my bike",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/64.%20I%20like%20my%20bike.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 9,
+          "title": "65. Which way do we go",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/65.%20Which%20way%20do%20we%20go.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 10,
+          "title": "66. You re going to learn some words",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/66.%20You_re%20going%20to%20learn%20some%20words.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 11,
+          "title": "67. What s it like",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/67.%20What_s%20it%20like.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 12,
+          "title": "68. We can get through there",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/68.%20We%20can%20get%20through%20there.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 13,
+          "title": "69. Wide, wider, widest",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/69.%20Wide,%20wider,%20widest.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 14,
+          "title": "70. What are we going to do",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U11/70.%20What%20are%20we%20going%20to%20do.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 1,
+      "title": "57. Now, I m going to find the little princess",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/57.%20Now,%20I_m%20going%20to%20find%20the%20little%20princess.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 2,
+      "title": "58. How does this work",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/58.%20How%20does%20this%20work.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 3,
+      "title": "59. How does this work, Corvax",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/59.%20How%20does%20this%20work,%20Corvax.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 4,
+      "title": "60. The baby needs some food",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/60.%20The%20baby%20needs%20some%20food.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 5,
+      "title": "61. Can you see anything",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/61.%20Can%20you%20see%20anything.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 6,
+      "title": "62. I ve got something for you",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/62.%20I_ve%20got%20something%20for%20you.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 7,
+      "title": "63. What s it like",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/63.%20What_s%20it%20like.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 8,
+      "title": "64. I like my bike",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/64.%20I%20like%20my%20bike.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 9,
+      "title": "65. Which way do we go",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/65.%20Which%20way%20do%20we%20go.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 10,
+      "title": "66. You re going to learn some words",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/66.%20You_re%20going%20to%20learn%20some%20words.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 11,
+      "title": "67. What s it like",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/67.%20What_s%20it%20like.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 12,
+      "title": "68. We can get through there",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/68.%20We%20can%20get%20through%20there.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 13,
+      "title": "69. Wide, wider, widest",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/69.%20Wide,%20wider,%20widest.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U11",
+      "topic": "",
+      "page_key": "Muzzy/U11",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U11",
+      "order": 14,
+      "title": "70. What are we going to do",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U11/70.%20What%20are%20we%20going%20to%20do.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

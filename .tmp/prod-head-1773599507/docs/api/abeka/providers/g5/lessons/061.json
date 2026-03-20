@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g5",
+    "provider_slug": "g5",
+    "course": "lesson-061",
+    "course_slug": "061",
+    "grade_id": "5",
+    "page_count": 1,
+    "video_count": 8
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "page_key": "g5/061",
+      "path_segments": [
+        "g5",
+        "061"
+      ],
+      "provider": "g5",
+      "course": "lesson-061",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 61,
+      "video_count": 8,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Arithmetic 5",
+          "description": "Arithmetic 5 - Lesson: 61 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05AT061G/05AT061G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Bible 5",
+          "description": "Bible 5 - Lesson: 61 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05BI061G/05BI061G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "History 5",
+          "description": "History 5 - Lesson: 61 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05HI061G/05HI061G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Language 5",
+          "description": "Language 5 - Lesson: 61 - Teacher: Miss Green",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05LA061G/05LA061G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Reading 5",
+          "description": "Reading 5 - Lesson: 61 - Teacher: Miss Green",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05RE061G/05RE061G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Science/Health 5",
+          "description": "Science/Health 5 - Lesson: 61 - Teacher: Miss Amsbaugh",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05SC061G/05SC061G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Spelling 5",
+          "description": "Spelling 5 - Lesson: 61 - Teacher: Miss Green",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05SP061G/05SP061G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Writing 5",
+          "description": "Writing 5 - Lesson: 61 - Teacher: Miss Green",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05WR061G/05WR061G.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g5",
+      "course": "lesson-061",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 61,
+      "page_key": "g5/061",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 1,
+      "title": "Arithmetic 5",
+      "description": "Arithmetic 5 - Lesson: 61 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05AT061G/05AT061G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-061",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 61,
+      "page_key": "g5/061",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 2,
+      "title": "Bible 5",
+      "description": "Bible 5 - Lesson: 61 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05BI061G/05BI061G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-061",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 61,
+      "page_key": "g5/061",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 3,
+      "title": "History 5",
+      "description": "History 5 - Lesson: 61 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05HI061G/05HI061G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-061",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 61,
+      "page_key": "g5/061",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 4,
+      "title": "Language 5",
+      "description": "Language 5 - Lesson: 61 - Teacher: Miss Green",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05LA061G/05LA061G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-061",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 61,
+      "page_key": "g5/061",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 5,
+      "title": "Reading 5",
+      "description": "Reading 5 - Lesson: 61 - Teacher: Miss Green",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05RE061G/05RE061G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-061",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 61,
+      "page_key": "g5/061",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 6,
+      "title": "Science/Health 5",
+      "description": "Science/Health 5 - Lesson: 61 - Teacher: Miss Amsbaugh",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05SC061G/05SC061G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-061",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 61,
+      "page_key": "g5/061",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 7,
+      "title": "Spelling 5",
+      "description": "Spelling 5 - Lesson: 61 - Teacher: Miss Green",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05SP061G/05SP061G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g5",
+      "course": "lesson-061",
+      "topic": "",
+      "grade": "g5",
+      "lesson": 61,
+      "page_key": "g5/061",
+      "page_url": "https://hoctienganh.xyz/abeka/5",
+      "order": 8,
+      "title": "Writing 5",
+      "description": "Writing 5 - Lesson: 61 - Teacher: Miss Green",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2025/05/05WR061G/05WR061G.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

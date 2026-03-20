@@ -10,6 +10,155 @@ export type BundleStorefrontContent = {
   courseUnitLabel: string;
 };
 
+type CourseScopeResolution = {
+  scopeLabel: string;
+  scopeIndex: number | null;
+  rawScopeCode: string | null;
+};
+
+export type CourseClaritySnapshot = {
+  scopeLabel: string;
+  unitLabel: "bài" | "tập";
+  pacePerWeek: number;
+  week4Target: number;
+  week5Target?: number;
+  week6Target?: number;
+  phaseCounts: {
+    foundation: number;
+    core: number;
+    mastery: number;
+  };
+  cardOutcomeLine: string;
+  detailOutcomeLines: string[];
+};
+
+function resolveAbekaScope(courseSlug: string, courseTitle: string): CourseScopeResolution {
+  const slugMatch = courseSlug.match(/(?:^|-)(k[45]|g\d{1,2})(?:-|$)/i);
+  const titleMatch = courseTitle.match(/\b(K[45]|G\d{1,2})\b/i);
+  const scopeCode = (slugMatch?.[1] ?? titleMatch?.[1] ?? "G1").toUpperCase();
+  const scopeIndex = Number.parseInt(scopeCode.slice(1), 10);
+
+  return {
+    scopeLabel: `Grade ${scopeCode}`,
+    scopeIndex: Number.isNaN(scopeIndex) ? null : scopeIndex,
+    rawScopeCode: scopeCode,
+  };
+}
+
+function resolveLittleFoxScope(courseSlug: string, courseTitle: string): CourseScopeResolution {
+  const levelFromSlug =
+    courseSlug.match(/(?:^|-)level-(\d{1,2})(?:-|$)/i)?.[1] ??
+    courseSlug.match(/(?:^|-)l(\d{1,2})(?:-|$)/i)?.[1];
+  const levelFromTitle = courseTitle.match(/\bLevel\s*(\d{1,2})\b/i)?.[1];
+  const level = Number.parseInt(levelFromSlug ?? levelFromTitle ?? "1", 10);
+  const normalizedLevel = Number.isNaN(level) ? 1 : level;
+
+  return {
+    scopeLabel: `Level ${normalizedLevel}`,
+    scopeIndex: normalizedLevel,
+    rawScopeCode: String(normalizedLevel),
+  };
+}
+
+function resolveScope(bundleSlug: CourseBundleSlug, courseSlug: string, courseTitle: string): CourseScopeResolution {
+  if (bundleSlug === "abeka") {
+    return resolveAbekaScope(courseSlug, courseTitle);
+  }
+  return resolveLittleFoxScope(courseSlug, courseTitle);
+}
+
+function resolvePacePerWeek(bundleSlug: CourseBundleSlug, scope: CourseScopeResolution) {
+  if (bundleSlug === "abeka") {
+    return scope.rawScopeCode === "K4" || scope.rawScopeCode === "K5" ? 4 : 5;
+  }
+
+  if (bundleSlug === "little-fox-en") {
+    if (scope.scopeIndex !== null && scope.scopeIndex <= 2) return 5;
+    if (scope.scopeIndex !== null && scope.scopeIndex <= 5) return 4;
+    return 3;
+  }
+
+  if (scope.scopeIndex !== null && scope.scopeIndex <= 2) return 5;
+  return 4;
+}
+
+function resolveUnitLabel(bundleSlug: CourseBundleSlug): "bài" | "tập" {
+  return bundleSlug === "abeka" ? "bài" : "tập";
+}
+
+function resolvePhaseCounts(lessonCount: number) {
+  const total = Math.max(1, lessonCount);
+  if (total === 1) {
+    return { foundation: 1, core: 0, mastery: 0 };
+  }
+  if (total === 2) {
+    return { foundation: 1, core: 1, mastery: 0 };
+  }
+
+  let foundation = Math.max(1, Math.round(total * 0.3));
+  let core = Math.max(1, Math.round(total * 0.5));
+  let mastery = total - foundation - core;
+
+  if (mastery < 1) {
+    const required = 1 - mastery;
+    const reducibleCore = Math.max(0, core - 1);
+    const reduceCoreBy = Math.min(required, reducibleCore);
+    core -= reduceCoreBy;
+
+    const remaining = required - reduceCoreBy;
+    if (remaining > 0) {
+      const reducibleFoundation = Math.max(0, foundation - 1);
+      const reduceFoundationBy = Math.min(remaining, reducibleFoundation);
+      foundation -= reduceFoundationBy;
+    }
+
+    mastery = total - foundation - core;
+  }
+
+  return { foundation, core, mastery: Math.max(1, mastery) };
+}
+
+export function buildCourseClaritySnapshot(input: {
+  bundleSlug: CourseBundleSlug;
+  courseSlug: string;
+  courseTitle: string;
+  lessonCount: number;
+}): CourseClaritySnapshot {
+  const scope = resolveScope(input.bundleSlug, input.courseSlug, input.courseTitle);
+  const unitLabel = resolveUnitLabel(input.bundleSlug);
+  const pacePerWeek = resolvePacePerWeek(input.bundleSlug, scope);
+  const week4Target = pacePerWeek * 4;
+  const week5Target = input.bundleSlug === "little-fox-cn" ? pacePerWeek * 5 : undefined;
+  const week6Target = input.bundleSlug === "little-fox-en" ? pacePerWeek * 6 : undefined;
+  const phaseCounts = resolvePhaseCounts(input.lessonCount);
+
+  const cadenceLine =
+    week5Target !== undefined
+      ? `Mốc 5 tuần khoảng ${week5Target} ${unitLabel}.`
+      : week6Target !== undefined
+        ? `Mốc 6 tuần khoảng ${week6Target} ${unitLabel}.`
+        : `Mốc 4 tuần khoảng ${week4Target} ${unitLabel}.`;
+
+  const cardOutcomeLine = `${scope.scopeLabel}: ${pacePerWeek} ${unitLabel}/tuần, mốc 4 tuần khoảng ${week4Target} ${unitLabel}.`;
+  const detailOutcomeLines = [
+    `Giữ nhịp ${pacePerWeek} ${unitLabel}/tuần để con không bị quá tải.`,
+    `Sau 4 tuần có thể đạt khoảng ${week4Target} ${unitLabel}. ${cadenceLine}`,
+    `Checkpoint theo pha: Foundation ${phaseCounts.foundation} ${unitLabel}, Core ${phaseCounts.core} ${unitLabel}, Mastery ${phaseCounts.mastery} ${unitLabel}.`,
+  ];
+
+  return {
+    scopeLabel: scope.scopeLabel,
+    unitLabel,
+    pacePerWeek,
+    week4Target,
+    week5Target,
+    week6Target,
+    phaseCounts,
+    cardOutcomeLine,
+    detailOutcomeLines,
+  };
+}
+
 const STORE_CONTENT: Record<CourseBundleSlug, BundleStorefrontContent> = {
   abeka: {
     shortLabel: "Nền tảng học thuật có lộ trình",

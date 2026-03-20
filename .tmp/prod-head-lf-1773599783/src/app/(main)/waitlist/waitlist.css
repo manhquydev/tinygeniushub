@@ -1,0 +1,13 @@
+/* Waitlist page styles — co-located with waitlist/page.tsx */
+
+.waitlist-info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.waitlist-card-icon {
+  color: var(--brand-500);
+  margin-bottom: 0.25rem;
+}

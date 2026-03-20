@@ -10,12 +10,26 @@ interface Props {
   activeFilterCount: number;
 }
 
+function buildFilterKey(filters: CourseFilterParams) {
+  return [
+    filters.q ?? "",
+    filters.subject ?? "",
+    filters.ageGroup ?? "",
+    filters.duration ?? "",
+    filters.minPrice ?? "",
+    filters.maxPrice ?? "",
+  ].join("|");
+}
+
 export function CourseMobileFilterTrigger({ currentFilters, activeFilterCount }: Props) {
   return (
     <div className="md:hidden">
       <Sheet>
         <SheetTrigger asChild>
-          <button type="button" className="flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400">
+          <button
+            type="button"
+            className="flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400"
+          >
             <Filter className="h-3.5 w-3.5" />
             Bộ lọc
             {activeFilterCount > 0 ? (
@@ -30,7 +44,7 @@ export function CourseMobileFilterTrigger({ currentFilters, activeFilterCount }:
             <SheetTitle>Bộ lọc khóa học</SheetTitle>
           </SheetHeader>
           <div className="mt-4">
-            <CourseFilterSidebar currentFilters={currentFilters} />
+            <CourseFilterSidebar key={`mobile-${buildFilterKey(currentFilters)}`} currentFilters={currentFilters} />
           </div>
         </SheetContent>
       </Sheet>

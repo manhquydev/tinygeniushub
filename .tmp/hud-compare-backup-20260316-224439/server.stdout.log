@@ -1,0 +1,6 @@
+
+> cungcontuhoc@0.2.0 dev D:\project\cungcontuhoc
+> next dev "--port" "3101"
+
+[?25h
+ ELIFECYCLE  Command failed with exit code 1.

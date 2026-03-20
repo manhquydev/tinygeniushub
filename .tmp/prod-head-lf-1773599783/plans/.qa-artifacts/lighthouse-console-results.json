@@ -1,0 +1,165 @@
+{
+  "generatedAt": "2026-02-24T11:08:27.323Z",
+  "results": [
+    {
+      "path": "/",
+      "url": "http://localhost:3000/",
+      "exitCode": 0,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "",
+      "parseError": null
+    },
+    {
+      "path": "/about",
+      "url": "http://localhost:3000/about",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/pricing",
+      "url": "http://localhost:3000/pricing",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/blog",
+      "url": "http://localhost:3000/blog",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/blog/5-meo-hoc-tieng-anh-tai-nha",
+      "url": "http://localhost:3000/blog/5-meo-hoc-tieng-anh-tai-nha",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/auth/login",
+      "url": "http://localhost:3000/auth/login",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/auth/register",
+      "url": "http://localhost:3000/auth/register",
+      "exitCode": 1,
+      "score": null,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/contact",
+      "url": "http://localhost:3000/contact",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/privacy",
+      "url": "http://localhost:3000/privacy",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/terms",
+      "url": "http://localhost:3000/terms",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/refund-policy",
+      "url": "http://localhost:3000/refund-policy",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/referral",
+      "url": "http://localhost:3000/referral",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/setup",
+      "url": "http://localhost:3000/setup",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/not-a-real-page-404-test",
+      "url": "http://localhost:3000/not-a-real-page-404-test",
+      "exitCode": 1,
+      "score": null,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/maintenance",
+      "url": "http://localhost:3000/maintenance",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    },
+    {
+      "path": "/offline",
+      "url": "http://localhost:3000/offline",
+      "exitCode": 1,
+      "score": 1,
+      "itemCount": 0,
+      "items": [],
+      "stderrTail": "    at Launcher.destroyTmp (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)\n    at Launcher.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)\n    at Object.kill (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)\n    at runLighthouse (file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)\n    at async file:///C:/Users/manhquy/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1\n",
+      "parseError": null
+    }
+  ]
+}

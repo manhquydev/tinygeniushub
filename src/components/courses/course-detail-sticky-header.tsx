@@ -11,7 +11,10 @@ function formatCurrency(amount: number) {
 
 type Props = {
   title: string;
-  salePriceVnd: number;
+  pricing: {
+    salePriceVnd: number;
+    isPurchasable: boolean;
+  };
   courseSlug: string;
   checkoutLabel: string;
   isOwned: boolean;
@@ -22,7 +25,7 @@ type Props = {
 
 export function CourseDetailStickyHeader({
   title,
-  salePriceVnd,
+  pricing,
   courseSlug,
   checkoutLabel,
   isOwned,
@@ -47,17 +50,23 @@ export function CourseDetailStickyHeader({
     >
       <div className="flex min-w-0 items-center gap-3">
         <h2 className="truncate text-sm font-bold text-slate-900">{title}</h2>
-        <p className="shrink-0 text-sm font-black text-emerald-700">{formatCurrency(salePriceVnd)}</p>
+        <p className="shrink-0 text-sm font-black text-emerald-700">
+          {pricing.isPurchasable ? formatCurrency(pricing.salePriceVnd) : "Giá đang cập nhật"}
+        </p>
       </div>
       {isOwned ? (
         <Link href={childEntryHref} className="solid-button text-sm">
           Vào học ngay
         </Link>
+      ) : !pricing.isPurchasable ? (
+        <Link href="/contact" className="solid-button text-sm">
+          Liên hệ tư vấn giá
+        </Link>
       ) : (
         <CourseCheckoutButton
           courseSlug={courseSlug}
           label={checkoutLabel}
-          priceVnd={salePriceVnd}
+          priceVnd={pricing.salePriceVnd}
           isAuthenticated={isAuthenticated}
           tracking={{ variant, bundleSlug: courseSlug }}
         />

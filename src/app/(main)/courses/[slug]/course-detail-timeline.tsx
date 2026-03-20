@@ -1,15 +1,17 @@
 import { BookOpen } from "lucide-react";
 import type { AbVariant } from "@/lib/ab-test-constants";
 import { OutcomeTimelineViewTracker } from "@/components/courses/course-storefront-tracking";
+import type { CourseClaritySnapshot } from "@/modules/courses/course-storefront-content";
 import type { TimelineStage } from "./course-detail-data";
 
 type Props = {
   outcomeTimeline: TimelineStage[];
   courseSlug: string;
   variant: AbVariant;
+  claritySnapshot: CourseClaritySnapshot | null;
 };
 
-export function CourseDetailTimeline({ outcomeTimeline, courseSlug, variant }: Props) {
+export function CourseDetailTimeline({ outcomeTimeline, courseSlug, variant, claritySnapshot }: Props) {
   return (
     <>
       <OutcomeTimelineViewTracker variant={variant} bundleSlug={courseSlug} milestones={outcomeTimeline.length} />
@@ -21,6 +23,21 @@ export function CourseDetailTimeline({ outcomeTimeline, courseSlug, variant }: P
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
           Trình bày theo mốc thời gian để phụ huynh hình dung rõ giá trị nhận được, không còn cảm giác mơ hồ.
         </p>
+        {claritySnapshot ? (
+          <div className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.08em] text-sky-700">
+              Checkpoint cụ thể cho {claritySnapshot.scopeLabel}
+            </p>
+            <ul className="mt-2 space-y-1.5 text-sm text-sky-900">
+              {claritySnapshot.detailOutcomeLines.map((line) => (
+                <li key={line} className="inline-flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-600" />
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
 
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {outcomeTimeline.map((stage) => (

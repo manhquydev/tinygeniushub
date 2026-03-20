@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g6",
+    "provider_slug": "g6",
+    "course": "lesson-122",
+    "course_slug": "122",
+    "grade_id": "6",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "page_key": "g6/122",
+      "path_segments": [
+        "g6",
+        "122"
+      ],
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Activities 6",
+          "description": "Activities 6 - Lesson: 122 - Teacher: Mrs. Pereira",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AR122F/06AR122F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Arithmetic 6",
+          "description": "Arithmetic 6 - Lesson: 122 - Teacher: Mr. Howe",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AT122F/06AT122F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Bible 6",
+          "description": "Bible 6 - Lesson: 122 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06BI122F/06BI122F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "History 6",
+          "description": "History 6 - Lesson: 122 - Teacher: Miss Lewis",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06HI122F/06HI122F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Language 6",
+          "description": "Language 6 - Lesson: 122 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06LA122F/06LA122F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Penmanship 6",
+          "description": "Penmanship 6 - Lesson: 122 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06PN122F/06PN122F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "Reading 6",
+          "description": "Reading 6 - Lesson: 122 - Teacher: Miss Moses",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06RE122F/06RE122F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Science 6",
+          "description": "Science 6 - Lesson: 122 - Teacher: Miss Lewis",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SC122F/06SC122F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Spelling 6",
+          "description": "Spelling 6 - Lesson: 122 - Teacher: Mrs. Tupua",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SP122F/06SP122F.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "page_key": "g6/122",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 1,
+      "title": "Activities 6",
+      "description": "Activities 6 - Lesson: 122 - Teacher: Mrs. Pereira",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AR122F/06AR122F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "page_key": "g6/122",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 2,
+      "title": "Arithmetic 6",
+      "description": "Arithmetic 6 - Lesson: 122 - Teacher: Mr. Howe",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06AT122F/06AT122F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "page_key": "g6/122",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 3,
+      "title": "Bible 6",
+      "description": "Bible 6 - Lesson: 122 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06BI122F/06BI122F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "page_key": "g6/122",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 4,
+      "title": "History 6",
+      "description": "History 6 - Lesson: 122 - Teacher: Miss Lewis",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06HI122F/06HI122F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "page_key": "g6/122",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 5,
+      "title": "Language 6",
+      "description": "Language 6 - Lesson: 122 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06LA122F/06LA122F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "page_key": "g6/122",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 6,
+      "title": "Penmanship 6",
+      "description": "Penmanship 6 - Lesson: 122 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06PN122F/06PN122F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "page_key": "g6/122",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 7,
+      "title": "Reading 6",
+      "description": "Reading 6 - Lesson: 122 - Teacher: Miss Moses",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06RE122F/06RE122F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "page_key": "g6/122",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 8,
+      "title": "Science 6",
+      "description": "Science 6 - Lesson: 122 - Teacher: Miss Lewis",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SC122F/06SC122F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g6",
+      "course": "lesson-122",
+      "topic": "",
+      "grade": "g6",
+      "lesson": 122,
+      "page_key": "g6/122",
+      "page_url": "https://hoctienganh.xyz/abeka/6",
+      "order": 9,
+      "title": "Spelling 6",
+      "description": "Spelling 6 - Lesson: 122 - Teacher: Mrs. Tupua",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/06/06SP122F/06SP122F.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

@@ -32,6 +32,7 @@ export const SORT_OPTIONS = [
 ];
 
 export type CourseFilterParams = {
+  q?: string;
   subject?: string;
   ageGroup?: string;
   minPrice?: number;
@@ -55,6 +56,7 @@ const MAX_PRICE = 10_000_000;
 export function parseFilterParams(
   searchParams: Record<string, string | string[] | undefined>,
 ): CourseFilterParams {
+  const q = firstString(searchParams.q)?.trim();
   const subject = firstString(searchParams.subject);
   const ageGroup = firstString(searchParams.ageGroup);
   const duration = firstString(searchParams.duration);
@@ -64,6 +66,7 @@ export function parseFilterParams(
   const maxPrice = parseInt(firstString(searchParams.maxPrice) ?? "0", 10);
 
   return {
+    q: q && q.length > 0 ? q.slice(0, 80) : undefined,
     subject: subject && VALID_SUBJECTS.has(subject) ? subject : undefined,
     ageGroup: ageGroup && VALID_AGE_GROUPS.has(ageGroup) ? ageGroup : undefined,
     duration: duration && VALID_DURATIONS.has(duration) ? (duration as CourseFilterParams["duration"]) : undefined,

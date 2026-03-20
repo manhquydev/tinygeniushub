@@ -1,4 +1,5 @@
 import type { CourseBundleSlug } from "@/modules/courses/course-bundles";
+import type { CourseClaritySnapshot } from "@/modules/courses/course-storefront-content";
 
 export type FitChecklistContent = {
   fitIf: string[];
@@ -169,9 +170,53 @@ const TIMELINE_BY_BUNDLE: Record<CourseBundleSlug, TimelineStage[]> = {
   ],
 };
 
-export function getOutcomeTimeline(bundleSlug: CourseBundleSlug | null): TimelineStage[] {
-  if (!bundleSlug) return DEFAULT_TIMELINE;
-  return TIMELINE_BY_BUNDLE[bundleSlug];
+export function getOutcomeTimeline(
+  bundleSlug: CourseBundleSlug | null,
+  claritySnapshot?: CourseClaritySnapshot | null,
+): TimelineStage[] {
+  if (!bundleSlug) {
+    return DEFAULT_TIMELINE;
+  }
+
+  if (!claritySnapshot) {
+    return TIMELINE_BY_BUNDLE[bundleSlug];
+  }
+
+  const scopeLabel = claritySnapshot.scopeLabel.toLowerCase();
+  const unitLabel = claritySnapshot.unitLabel;
+  const twoWeekTarget = claritySnapshot.pacePerWeek * 2;
+  const cadenceLine =
+    claritySnapshot.week5Target !== undefined
+      ? `Mốc 5 tuần: khoảng ${claritySnapshot.week5Target} ${unitLabel}.`
+      : claritySnapshot.week6Target !== undefined
+        ? `Mốc 6 tuần: khoảng ${claritySnapshot.week6Target} ${unitLabel}.`
+        : `Giữ nhịp ổn định để hoàn tất Foundation đúng tiến độ.`;
+
+  return [
+    {
+      label: "Tuần 1-2",
+      points: [
+        `Ổn định nhịp ${claritySnapshot.pacePerWeek} ${unitLabel}/tuần để không quá tải.`,
+        `Mục tiêu ngắn hạn: hoàn thành khoảng ${twoWeekTarget} ${unitLabel}.`,
+      ],
+    },
+    {
+      label: "Tuần 3-4",
+      points: [
+        `Mốc 4 tuần: khoảng ${claritySnapshot.week4Target} ${unitLabel}.`,
+        cadenceLine,
+      ],
+    },
+    {
+      label: "Checkpoint nâng cấp",
+      points: [
+        `Foundation ${claritySnapshot.phaseCounts.foundation}, Core ${claritySnapshot.phaseCounts.core}, Mastery ${claritySnapshot.phaseCounts.mastery} ${unitLabel}.`,
+        bundleSlug === "abeka"
+          ? `Hoàn tất Mastery để lên grade kế tiếp trong track ${scopeLabel}.`
+          : `Hoàn tất Mastery để lên level kế tiếp trong track ${scopeLabel}.`,
+      ],
+    },
+  ];
 }
 
 // ─── Track / Difference Helpers ───────────────────────────────────────────────

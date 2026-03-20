@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "KLE",
+    "provider_slug": "kle",
+    "course": "Thang_5 _Clothing",
+    "course_slug": "thang-5-clothing",
+    "page_count": 1,
+    "video_count": 10
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "path_segments": [
+        "KLE",
+        "Thang_5 _Clothing"
+      ],
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "video_count": 10,
+      "videos": [
+        {
+          "order": 1,
+          "title": "01 This Is The Way We Get Dressed - Kids Songs - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/01%20This%20Is%20The%20Way%20We%20Get%20Dressed%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "02 Let s Get Dressed Song - Clothes Song for Kids - Kindergarten, Preschool   ESL - Fun Kids English",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/02%20Let_s%20Get%20Dressed%20Song%20-%20Clothes%20Song%20for%20Kids%20-%20Kindergarten,%20Preschool%20_%20ESL%20-%20Fun%20Kids%20English.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "03 Fashion Show with Steve - Song for Children - English for Kids",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/03%20Fashion%20Show%20with%20Steve%20-%20Song%20for%20Children%20-%20English%20for%20Kids.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "05 Here We Go Looby Loo - Nursery Rhymes - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/05%20Here%20We%20Go%20Looby%20Loo%20-%20Nursery%20Rhymes%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "06 Song for Kids about T-shirts for Steve and Maggie - English for Children in Baby Song",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/06%20Song%20for%20Kids%20about%20T-shirts%20for%20Steve%20and%20Maggie%20-%20English%20for%20Children%20in%20Baby%20Song.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "07 Put On Your Shoes - Clothing Song for Kids",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/07%20Put%20On%20Your%20Shoes%20-%20Clothing%20Song%20for%20Kids.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 7,
+          "title": "08 Let s Get Dressed Song - Clothes Song for Kids - The Kiboomers",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/08%20Let_s%20Get%20Dressed%20Song%20-%20Clothes%20Song%20for%20Kids%20-%20The%20Kiboomers.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 8,
+          "title": "09 Winter Mittens Song - Song Lyrics Video for Kids - Winter Songs - The Kiboomers",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/09%20Winter%20Mittens%20Song%20-%20Song%20Lyrics%20Video%20for%20Kids%20-%20Winter%20Songs%20-%20The%20Kiboomers.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 9,
+          "title": "11 Pete the Cat - I love My White Shoes",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/11%20Pete%20the%20Cat%20-%20I%20love%20My%20White%20Shoes.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 10,
+          "title": "12 Here We Go Looby Loo - Kids Song with Caitie   Tim Kubart",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/12%20Here%20We%20Go%20Looby%20Loo%20-%20Kids%20Song%20with%20Caitie%20_%20Tim%20Kubart.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 1,
+      "title": "01 This Is The Way We Get Dressed - Kids Songs - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/01%20This%20Is%20The%20Way%20We%20Get%20Dressed%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 2,
+      "title": "02 Let s Get Dressed Song - Clothes Song for Kids - Kindergarten, Preschool   ESL - Fun Kids English",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/02%20Let_s%20Get%20Dressed%20Song%20-%20Clothes%20Song%20for%20Kids%20-%20Kindergarten,%20Preschool%20_%20ESL%20-%20Fun%20Kids%20English.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 3,
+      "title": "03 Fashion Show with Steve - Song for Children - English for Kids",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/03%20Fashion%20Show%20with%20Steve%20-%20Song%20for%20Children%20-%20English%20for%20Kids.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 4,
+      "title": "05 Here We Go Looby Loo - Nursery Rhymes - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/05%20Here%20We%20Go%20Looby%20Loo%20-%20Nursery%20Rhymes%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 5,
+      "title": "06 Song for Kids about T-shirts for Steve and Maggie - English for Children in Baby Song",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/06%20Song%20for%20Kids%20about%20T-shirts%20for%20Steve%20and%20Maggie%20-%20English%20for%20Children%20in%20Baby%20Song.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 6,
+      "title": "07 Put On Your Shoes - Clothing Song for Kids",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/07%20Put%20On%20Your%20Shoes%20-%20Clothing%20Song%20for%20Kids.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 7,
+      "title": "08 Let s Get Dressed Song - Clothes Song for Kids - The Kiboomers",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/08%20Let_s%20Get%20Dressed%20Song%20-%20Clothes%20Song%20for%20Kids%20-%20The%20Kiboomers.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 8,
+      "title": "09 Winter Mittens Song - Song Lyrics Video for Kids - Winter Songs - The Kiboomers",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/09%20Winter%20Mittens%20Song%20-%20Song%20Lyrics%20Video%20for%20Kids%20-%20Winter%20Songs%20-%20The%20Kiboomers.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 9,
+      "title": "11 Pete the Cat - I love My White Shoes",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/11%20Pete%20the%20Cat%20-%20I%20love%20My%20White%20Shoes.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_5 _Clothing",
+      "topic": "",
+      "page_key": "KLE/Thang_5 _Clothing",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_5%20_Clothing",
+      "order": 10,
+      "title": "12 Here We Go Looby Loo - Kids Song with Caitie   Tim Kubart",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_5%20_Clothing/12%20Here%20We%20Go%20Looby%20Loo%20-%20Kids%20Song%20with%20Caitie%20_%20Tim%20Kubart.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "English 12",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/12/12EN156E/12EN156E.m3u8",
+    "description": "English 12 - Lesson: 156 - Teacher: Mr. Bucy",
+    "image": "/images/banner.jpg"
+  },
+  {
+    "title": "Precalculus",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/12/12PC156C/12PC156C.m3u8",
+    "description": "Precalculus - Lesson: 156 - Teacher: Mr. Collins",
+    "image": "/images/banner.jpg"
+  },
+  {
+    "title": "Physics",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/12/12PH156C/12PH156C.m3u8",
+    "description": "Physics - Lesson: 156 - Teacher: Dr. Ridgley",
+    "image": "/images/banner.jpg"
+  },
+  {
+    "title": "Spanish 2",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/12/12SA156D/12SA156D.m3u8",
+    "description": "Spanish 2 - Lesson: 156 - Teacher: Miss Quinlan",
+    "image": "/images/banner.jpg"
+  }
+]

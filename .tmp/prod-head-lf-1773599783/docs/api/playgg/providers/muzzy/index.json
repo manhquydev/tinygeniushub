@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "Muzzy",
+    "provider_slug": "muzzy",
+    "course_count": 12,
+    "page_count": 12,
+    "video_count": 150
+  },
+  "courses": [
+    {
+      "course": "U1",
+      "course_slug": "u1",
+      "page_count": 1,
+      "video_count": 13,
+      "path": "providers/muzzy/courses/u1.json"
+    },
+    {
+      "course": "U10",
+      "course_slug": "u10",
+      "page_count": 1,
+      "video_count": 16,
+      "path": "providers/muzzy/courses/u10.json"
+    },
+    {
+      "course": "U11",
+      "course_slug": "u11",
+      "page_count": 1,
+      "video_count": 14,
+      "path": "providers/muzzy/courses/u11.json"
+    },
+    {
+      "course": "U12",
+      "course_slug": "u12",
+      "page_count": 1,
+      "video_count": 12,
+      "path": "providers/muzzy/courses/u12.json"
+    },
+    {
+      "course": "U2",
+      "course_slug": "u2",
+      "page_count": 1,
+      "video_count": 15,
+      "path": "providers/muzzy/courses/u2.json"
+    },
+    {
+      "course": "U3",
+      "course_slug": "u3",
+      "page_count": 1,
+      "video_count": 11,
+      "path": "providers/muzzy/courses/u3.json"
+    },
+    {
+      "course": "U4",
+      "course_slug": "u4",
+      "page_count": 1,
+      "video_count": 6,
+      "path": "providers/muzzy/courses/u4.json"
+    },
+    {
+      "course": "U5",
+      "course_slug": "u5",
+      "page_count": 1,
+      "video_count": 13,
+      "path": "providers/muzzy/courses/u5.json"
+    },
+    {
+      "course": "U6",
+      "course_slug": "u6",
+      "page_count": 1,
+      "video_count": 9,
+      "path": "providers/muzzy/courses/u6.json"
+    },
+    {
+      "course": "U7",
+      "course_slug": "u7",
+      "page_count": 1,
+      "video_count": 14,
+      "path": "providers/muzzy/courses/u7.json"
+    },
+    {
+      "course": "U8",
+      "course_slug": "u8",
+      "page_count": 1,
+      "video_count": 14,
+      "path": "providers/muzzy/courses/u8.json"
+    },
+    {
+      "course": "U9",
+      "course_slug": "u9",
+      "page_count": 1,
+      "video_count": 13,
+      "path": "providers/muzzy/courses/u9.json"
+    }
+  ]
+}

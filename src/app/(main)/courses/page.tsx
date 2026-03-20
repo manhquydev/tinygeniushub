@@ -1,52 +1,119 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { ArrowRight, BarChart3, BookOpen, ShieldCheck } from "lucide-react";
+import { BarChart3, BookOpen, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import { AB_COURSES_COOKIE, type AbVariant } from "@/lib/ab-test-constants";
-import { getStorefrontCourses } from "@/modules/courses/course-service";
+import { parseFilterParams, type CourseFilterParams } from "@/lib/courses/course-filter-utils";
+import { getStorefrontCourses, type StorefrontCourse } from "@/modules/courses/course-service";
 import { getCourseBundleByCourseSlug } from "@/modules/courses/course-bundles";
-import { getBundleStorefrontContent } from "@/modules/courses/course-storefront-content";
-import { CourseCheckoutStatusBanner } from "@/components/courses/course-checkout-status-banner";
+import { isPilotSkuSlug } from "@/modules/courses/pilot-sku-catalog";
 import {
-  BundleDetailTrackedLink,
+  buildCourseClaritySnapshot,
+  getBundleStorefrontContent,
+} from "@/modules/courses/course-storefront-content";
+import { CourseActiveFilters } from "@/components/courses/course-active-filters";
+import { CourseCard } from "@/components/courses/course-card";
+import { CourseCheckoutStatusBanner } from "@/components/courses/course-checkout-status-banner";
+import { CourseFilterSidebar } from "@/components/courses/course-filter-sidebar";
+import { CourseMobileFilterTrigger } from "@/components/courses/course-mobile-filter-trigger";
+import { CoursePagination } from "@/components/courses/course-pagination";
+import { CourseSortSelect } from "@/components/courses/course-sort-select";
+import {
   CourseCatalogViewTracker,
 } from "@/components/courses/course-storefront-tracking";
 
 export const metadata: Metadata = {
   title: "Khóa học cho bé - Cùng Con Tự Học",
   description:
-    "Khám phá khóa học theo mục tiêu rõ ràng, theo dõi tiến bộ từng tuần và bắt đầu học ngay.",
+    "Khám phá khóa học theo mục tiêu rõ ràng, có bộ lọc nhanh theo độ tuổi, giá và thời lượng để chọn đúng khóa cho bé.",
   alternates: { canonical: "https://cungcontuhoc.io.vn/courses" },
 };
 
-function formatCurrency(amount: number) {
-  return `${amount.toLocaleString("vi-VN")}đ`;
+type SearchParamsInput = Record<string, string | string[] | undefined>;
+
+interface CoursesPageProps {
+  searchParams?: Promise<SearchParamsInput> | SearchParamsInput;
 }
 
-export default async function CoursesPage() {
-  const [courses, cookieStore] = await Promise.all([getStorefrontCourses(), cookies()]);
+const PAGE_SIZE = 9;
+
+function getActiveFilterCount(filters: CourseFilterParams) {
+  let count = 0;
+  if (filters.q) count += 1;
+  if (filters.subject) count += 1;
+  if (filters.ageGroup) count += 1;
+  if (filters.duration) count += 1;
+  if (filters.minPrice !== undefined || filters.maxPrice !== undefined) count += 1;
+  return count;
+}
+
+function matchesDuration(durationDays: number, duration: CourseFilterParams["duration"]) {
+  if (!duration) return true;
+  if (duration === "short") return durationDays < 30;
+  if (duration === "medium") return durationDays >= 30 && durationDays <= 60;
+  return durationDays > 60;
+}
+
+function filterCourses(courses: StorefrontCourse[], filters: CourseFilterParams) {
+  const normalizedQuery = filters.q?.trim().toLowerCase() ?? "";
+
+  return courses.filter((course) => {
+    const searchable = `${course.title} ${course.description}`.toLowerCase();
+    if (normalizedQuery && !searchable.includes(normalizedQuery)) return false;
+    if (filters.subject && course.subject !== filters.subject) return false;
+    if (filters.ageGroup && course.ageGroup !== filters.ageGroup) return false;
+    if (filters.minPrice !== undefined && course.pricing.salePriceVnd < filters.minPrice) return false;
+    if (filters.maxPrice !== undefined && course.pricing.salePriceVnd > filters.maxPrice) return false;
+    if (!matchesDuration(course.durationDays, filters.duration)) return false;
+    return true;
+  });
+}
+
+function sortCourses(courses: StorefrontCourse[], sort: CourseFilterParams["sort"]) {
+  const items = [...courses];
+  switch (sort) {
+    case "newest":
+      return items.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    case "price_asc":
+      return items.sort((a, b) => a.pricing.salePriceVnd - b.pricing.salePriceVnd);
+    case "price_desc":
+      return items.sort((a, b) => b.pricing.salePriceVnd - a.pricing.salePriceVnd);
+    case "duration_asc":
+      return items.sort((a, b) => a.durationDays - b.durationDays);
+    default:
+      return items;
+  }
+}
+
+export default async function CoursesPage({ searchParams }: CoursesPageProps) {
+  const [courses, cookieStore, resolvedSearchParams] = await Promise.all([
+    getStorefrontCourses(),
+    cookies(),
+    searchParams ?? {},
+  ]);
+
   const coursesVariant: AbVariant = cookieStore.get(AB_COURSES_COOKIE)?.value === "B" ? "B" : "A";
+  const filters = parseFilterParams(resolvedSearchParams);
+  const activeFilterCount = getActiveFilterCount(filters);
+  const filteredCourses = filterCourses(courses, filters);
+  const sortedCourses = sortCourses(filteredCourses, filters.sort);
+
+  const totalPages = Math.max(1, Math.ceil(sortedCourses.length / PAGE_SIZE));
+  const currentPage = Math.min(filters.page ?? 1, totalPages);
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const visibleCourses = sortedCourses.slice(startIndex, startIndex + PAGE_SIZE);
+
   const totalLessons = courses.reduce((sum, course) => sum + course.lessonCount, 0);
   const totalDurationDays = courses.reduce((sum, course) => sum + course.durationDays, 0);
-
-  const heroTitle =
-    coursesVariant === "B"
-      ? "Chọn đúng khóa để con tiến bộ ngay từ những tuần đầu"
-      : "Mỗi khóa là một mục tiêu học rõ ràng, dễ theo dõi";
-  const heroDescription =
-    coursesVariant === "B"
-      ? "Không còn mô hình một khóa lớn chứa nhiều khóa nhỏ. Bạn chọn trực tiếp từng khóa phù hợp để bắt đầu nhanh, đo được tiến bộ sớm."
-      : "Danh sách hiển thị theo từng khóa độc lập: biết rõ học gì, học bao lâu, bao nhiêu bài và chi phí trước khi quyết định.";
-  const detailCtaLabel = coursesVariant === "B" ? "Xem khóa và bắt đầu" : "Xem chi tiết khóa";
 
   return (
     <div className="page-stack">
       <CourseCheckoutStatusBanner />
       <CourseCatalogViewTracker
         variant={coursesVariant}
-        bundles={courses.length}
-        tracks={courses.length}
-        lessons={totalLessons}
+        bundles={visibleCourses.length}
+        tracks={visibleCourses.length}
+        lessons={visibleCourses.reduce((sum, course) => sum + course.lessonCount, 0)}
       />
 
       <section className="overflow-hidden rounded-[28px] border border-emerald-100 bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_40%,#f0fdf4_100%)] p-5 shadow-sm sm:p-8">
@@ -55,12 +122,17 @@ export default async function CoursesPage() {
             Danh sách khóa học độc lập
           </p>
           <div className="grid gap-3">
-            <h1 className="text-3xl font-black tracking-[-0.03em] text-slate-900 sm:text-4xl">{heroTitle}</h1>
-            <p className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">{heroDescription}</p>
+            <h1 className="text-3xl font-black tracking-[-0.03em] text-slate-900 sm:text-4xl">
+              Chọn đúng khóa để con tiến bộ sớm, không học sai mức
+            </h1>
+            <p className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
+              Bộ lọc được giữ cố định khi cuộn, giúp phụ huynh so sánh nhanh theo mục tiêu, độ tuổi, ngân sách và thời
+              lượng trước khi quyết định mua.
+            </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/70 bg-white/85 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Số khóa</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Số khóa khả dụng</p>
               <p className="mt-1 text-2xl font-black text-slate-900">{courses.length}</p>
             </div>
             <div className="rounded-2xl border border-white/70 bg-white/85 p-3">
@@ -75,96 +147,93 @@ export default async function CoursesPage() {
         </div>
       </section>
 
-      {courses.length === 0 ? (
-        <section className="card items-center text-center" style={{ padding: "2.5rem 1.5rem" }}>
-          <p className="text-lg font-bold text-slate-900">Sắp ra mắt khóa học mới</p>
-          <p className="max-w-md text-sm leading-relaxed text-slate-600">
-            Chúng tôi đang cập nhật thêm nội dung mới. Đăng ký để nhận thông báo ngay khi khóa học được mở bán.
-          </p>
-          <Link href="/waitlist" className="solid-button" style={{ marginTop: "0.5rem", width: "fit-content" }}>
-            Nhận thông báo sớm
-          </Link>
-        </section>
-      ) : (
-        <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {courses.map((course, index) => {
-            const bundle = getCourseBundleByCourseSlug(course.slug);
-            const content = bundle ? getBundleStorefrontContent(bundle.slug) : null;
+      <section className="grid gap-5 lg:grid-cols-[280px_minmax(0,1fr)] xl:grid-cols-[300px_minmax(0,1fr)]">
+        <aside className="hidden lg:block">
+          <div className="sticky z-20" style={{ top: "calc(var(--app-nav-height) + 0.9rem)" }}>
+            <div className="max-h-[calc(100dvh-var(--app-nav-height)-1.2rem)] overflow-y-auto pr-1">
+              <CourseFilterSidebar
+                key={`desktop-${filters.q ?? ""}-${filters.minPrice ?? ""}-${filters.maxPrice ?? ""}-${filters.subject ?? ""}-${filters.ageGroup ?? ""}-${filters.duration ?? ""}`}
+                currentFilters={filters}
+              />
+            </div>
+          </div>
+        </aside>
 
-            return (
-              <article
-                key={course.slug}
-                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_28px_rgba(15,23,42,0.06)]"
-              >
-                <div className="relative">
-                  {course.coverImageUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={course.coverImageUrl} alt={course.title} className="h-44 w-full object-cover sm:h-48" />
-                  ) : (
-                    <div className="h-44 w-full bg-[linear-gradient(145deg,#e2e8f0_0%,#f8fafc_55%,#ecfeff_100%)] sm:h-48" />
-                  )}
-                  <div className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700 backdrop-blur">
-                    {course.lessonCount} bài học
-                  </div>
-                </div>
+        <div className="grid gap-4">
+          <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <CourseMobileFilterTrigger currentFilters={filters} activeFilterCount={activeFilterCount} />
+                <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
+                  <SlidersHorizontal className="h-3.5 w-3.5" />
+                  Bộ lọc thông minh
+                </span>
+              </div>
+              <CourseSortSelect currentSort={filters.sort} />
+            </div>
+            <p className="mt-3 text-sm text-slate-600">
+              Hiển thị <span className="font-bold text-slate-900">{visibleCourses.length}</span> trên{" "}
+              <span className="font-bold text-slate-900">{filteredCourses.length}</span> khóa phù hợp.
+            </p>
+            <div className="mt-3">
+              <CourseActiveFilters filters={filters} />
+            </div>
+          </div>
 
-                <div className="grid gap-4 p-4 sm:p-5">
-                  <div className="space-y-1.5">
-                    {content ? (
-                      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-sky-700">{content.shortLabel}</p>
-                    ) : null}
-                    <h2 className="text-lg font-extrabold tracking-[-0.01em] text-slate-900">{course.title}</h2>
-                    <p className="text-sm leading-relaxed text-slate-600">{course.description}</p>
-                  </div>
+          {courses.length === 0 ? (
+            <section className="card items-center text-center" style={{ padding: "2.5rem 1.5rem" }}>
+              <p className="text-lg font-bold text-slate-900">Sắp ra mắt khóa học mới</p>
+              <p className="max-w-md text-sm leading-relaxed text-slate-600">
+                Chúng tôi đang cập nhật thêm nội dung mới. Đăng ký để nhận thông báo ngay khi khóa học được mở bán.
+              </p>
+              <Link href="/waitlist" className="solid-button" style={{ marginTop: "0.5rem", width: "fit-content" }}>
+                Nhận thông báo sớm
+              </Link>
+            </section>
+          ) : visibleCourses.length === 0 ? (
+            <section className="card items-center text-center" style={{ padding: "2.2rem 1.25rem" }}>
+              <p className="text-lg font-bold text-slate-900">Không tìm thấy khóa phù hợp</p>
+              <p className="max-w-md text-sm leading-relaxed text-slate-600">
+                Thử nới rộng bộ lọc hoặc xóa toàn bộ để xem lại đầy đủ danh mục khóa học.
+              </p>
+              <Link href="/courses" className="ghost-button" style={{ width: "fit-content" }}>
+                Xóa bộ lọc
+              </Link>
+            </section>
+          ) : (
+            <>
+              <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {visibleCourses.map((course, index) => {
+                  const bundle = getCourseBundleByCourseSlug(course.slug);
+                  const bundleContent = bundle ? getBundleStorefrontContent(bundle.slug) : null;
+                  const claritySnapshot = bundle
+                    ? buildCourseClaritySnapshot({
+                        bundleSlug: bundle.slug,
+                        courseSlug: course.slug,
+                        courseTitle: course.title,
+                        lessonCount: course.lessonCount,
+                      })
+                    : null;
 
-                  {content ? (
-                    <div className="grid gap-1.5 rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Phù hợp với</p>
-                      <p className="text-sm leading-relaxed text-slate-700">{content.bestFor}</p>
-                    </div>
-                  ) : null}
-
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="rounded-xl bg-slate-50 p-2 text-center">
-                      <p className="text-[11px] uppercase tracking-[0.06em] text-slate-500">Thời hạn</p>
-                      <p className="mt-1 text-sm font-bold text-slate-900">{course.durationDays} ngày</p>
-                    </div>
-                    <div className="rounded-xl bg-slate-50 p-2 text-center">
-                      <p className="text-[11px] uppercase tracking-[0.06em] text-slate-500">Bài học</p>
-                      <p className="mt-1 text-sm font-bold text-slate-900">{course.lessonCount}</p>
-                    </div>
-                  </div>
-
-                  <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-3 py-2">
-                    <p className="text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700">Giá khóa học</p>
-                    <div className="mt-1 flex items-end gap-2">
-                      <p className="text-2xl font-black tracking-[-0.02em] text-emerald-700">
-                        {formatCurrency(course.pricing.salePriceVnd)}
-                      </p>
-                      {course.pricing.hasDiscount ? (
-                        <p className="pb-1 text-xs text-slate-500 line-through">
-                          {formatCurrency(course.pricing.listPriceVnd)}
-                        </p>
-                      ) : null}
-                    </div>
-                  </div>
-
-                  <BundleDetailTrackedLink
-                    href={`/courses/${course.slug}`}
-                    className="solid-button w-full"
-                    variant={coursesVariant}
-                    bundleSlug={course.slug}
-                    ctaLabel={detailCtaLabel}
-                    position={index + 1}
-                  >
-                    {detailCtaLabel} <ArrowRight className="ml-1 h-4 w-4" />
-                  </BundleDetailTrackedLink>
-                </div>
-              </article>
-            );
-          })}
-        </section>
-      )}
+                  return (
+                    <CourseCard
+                      key={course.slug}
+                      course={course}
+                      bundleContent={bundleContent}
+                      claritySnapshot={claritySnapshot}
+                      showPilotBadge={isPilotSkuSlug(course.slug)}
+                      variant={coursesVariant}
+                      index={startIndex + index}
+                      detailCtaLabel="Xem có hợp con không"
+                    />
+                  );
+                })}
+              </section>
+              <CoursePagination page={currentPage} totalPages={totalPages} />
+            </>
+          )}
+        </div>
+      </section>
 
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <h2 className="text-lg font-extrabold text-slate-900">Vì sao phụ huynh dễ quyết định hơn?</h2>
@@ -175,25 +244,25 @@ export default async function CoursesPage() {
               Mỗi card là một khóa
             </p>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              Không còn lớp khóa lớn chứa khóa nhỏ. Chọn trực tiếp khóa phù hợp và đi thẳng vào nội dung cụ thể.
+              Chọn trực tiếp khóa phù hợp, không cần đi qua lớp danh mục mơ hồ trước đó.
             </p>
           </article>
           <article className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
               <BarChart3 className="h-4 w-4 text-emerald-600" />
-              Thông tin rõ ràng
+              Lọc theo nhu cầu thật
             </p>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              Nhìn ngay số bài, thời lượng, giá và mô tả để so sánh nhanh trước khi mua.
+              Có thể lọc theo độ tuổi, giá, thời lượng và từ khóa để rút ngắn thời gian so sánh.
             </p>
           </article>
           <article className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
               <ShieldCheck className="h-4 w-4 text-amber-600" />
-              Mua và học liền mạch
+              Bộ lọc luôn trong tầm tay
             </p>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              Mua theo từng khóa độc lập, kích hoạt nhanh và theo dõi tiến độ rõ trên hệ thống.
+              Khi cuộn sâu xuống danh sách, bộ lọc desktop vẫn được cố định dưới nav để chỉnh nhanh mà không phải cuộn lên.
             </p>
           </article>
         </div>

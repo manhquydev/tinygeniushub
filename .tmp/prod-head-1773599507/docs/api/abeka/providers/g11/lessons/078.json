@@ -1,0 +1,263 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g11",
+    "provider_slug": "g11",
+    "course": "lesson-078",
+    "course_slug": "078",
+    "grade_id": "11",
+    "page_count": 1,
+    "video_count": 10
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "page_key": "g11/078",
+      "path_segments": [
+        "g11",
+        "078"
+      ],
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "video_count": 10,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Additional Practice 78",
+          "description": "Additional Practice 78 - Lesson: 78 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA078D-AP78/11SA078D-AP78.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Business Mathematics",
+          "description": "Business Mathematics - Lesson: 78 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM078A/11BM078A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Chemistry",
+          "description": "Chemistry - Lesson: 78 - Teacher: Mr. Sisson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH078E/11CH078E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "English 11",
+          "description": "English 11 - Lesson: 78 - Teacher: Mrs. Baker",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN078D/11EN078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Keyboarding",
+          "description": "Keyboarding - Lesson: 78 - Teacher: Dr. Marion",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB078A/11KB078A.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "Life Management",
+          "description": "Life Management - Lesson: 78 - Teacher: Mr. McBride",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/12LM078C/12LM078C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "New Testament",
+          "description": "New Testament - Lesson: 78 - Teacher: Mr. Crockett",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11NJ078E/11NJ078E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "Plane Geometry",
+          "description": "Plane Geometry - Lesson: 78 - Teacher: Mr. Collins",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG078D/11PG078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "Spanish 1",
+          "description": "Spanish 1 - Lesson: 78 - Teacher: Miss Quinlan",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA078D/11SA078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "U. S. History 11",
+          "description": "U. S. History 11 - Lesson: 78 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US078D/11US078D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 1,
+      "title": "Additional Practice 78",
+      "description": "Additional Practice 78 - Lesson: 78 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA078D-AP78/11SA078D-AP78.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 2,
+      "title": "Business Mathematics",
+      "description": "Business Mathematics - Lesson: 78 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11BM078A/11BM078A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 3,
+      "title": "Chemistry",
+      "description": "Chemistry - Lesson: 78 - Teacher: Mr. Sisson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11CH078E/11CH078E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 4,
+      "title": "English 11",
+      "description": "English 11 - Lesson: 78 - Teacher: Mrs. Baker",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11EN078D/11EN078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 5,
+      "title": "Keyboarding",
+      "description": "Keyboarding - Lesson: 78 - Teacher: Dr. Marion",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11KB078A/11KB078A.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 6,
+      "title": "Life Management",
+      "description": "Life Management - Lesson: 78 - Teacher: Mr. McBride",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/12LM078C/12LM078C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 7,
+      "title": "New Testament",
+      "description": "New Testament - Lesson: 78 - Teacher: Mr. Crockett",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11NJ078E/11NJ078E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 8,
+      "title": "Plane Geometry",
+      "description": "Plane Geometry - Lesson: 78 - Teacher: Mr. Collins",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11PG078D/11PG078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 9,
+      "title": "Spanish 1",
+      "description": "Spanish 1 - Lesson: 78 - Teacher: Miss Quinlan",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11SA078D/11SA078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g11",
+      "course": "lesson-078",
+      "topic": "",
+      "grade": "g11",
+      "lesson": 78,
+      "page_key": "g11/078",
+      "page_url": "https://hoctienganh.xyz/abeka/11",
+      "order": 10,
+      "title": "U. S. History 11",
+      "description": "U. S. History 11 - Lesson: 78 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/11/11US078D/11US078D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

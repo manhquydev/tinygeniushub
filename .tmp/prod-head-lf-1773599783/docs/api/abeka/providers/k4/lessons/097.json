@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "k4",
+    "provider_slug": "k4",
+    "course": "lesson-097",
+    "course_slug": "097",
+    "grade_id": "13",
+    "page_count": 1,
+    "video_count": 8
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "page_key": "k4/097",
+      "path_segments": [
+        "k4",
+        "097"
+      ],
+      "provider": "k4",
+      "course": "lesson-097",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 97,
+      "video_count": 8,
+      "videos": [
+        {
+          "order": 1,
+          "title": "K4 Activities: Language Development",
+          "description": "K4 Activities: Language Development - Lesson: 97 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4LD097D/K4LD097D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "K4 Activities: Skills Development",
+          "description": "K4 Activities: Skills Development - Lesson: 97 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4SD097D/K4SD097D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "K4 Arithmetic: Numbers",
+          "description": "K4 Arithmetic: Numbers - Lesson: 97 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4NU097D/K4NU097D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "K4 Arithmetic: Numbers Review",
+          "description": "K4 Arithmetic: Numbers Review - Lesson: 97 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4NR097D/K4NR097D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "K4 Bible",
+          "description": "K4 Bible - Lesson: 97 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4BI097D/K4BI097D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "K4 Phonics",
+          "description": "K4 Phonics - Lesson: 97 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4PH097D/K4PH097D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "K4 Writing: Cursive Writing",
+          "description": "K4 Writing: Cursive Writing - Lesson: 97 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4CW097D/K4CW097D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "K4 Writing: Manuscript Writing",
+          "description": "K4 Writing: Manuscript Writing - Lesson: 97 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4MW097D/K4MW097D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "k4",
+      "course": "lesson-097",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 97,
+      "page_key": "k4/097",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 1,
+      "title": "K4 Activities: Language Development",
+      "description": "K4 Activities: Language Development - Lesson: 97 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4LD097D/K4LD097D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-097",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 97,
+      "page_key": "k4/097",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 2,
+      "title": "K4 Activities: Skills Development",
+      "description": "K4 Activities: Skills Development - Lesson: 97 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4SD097D/K4SD097D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-097",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 97,
+      "page_key": "k4/097",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 3,
+      "title": "K4 Arithmetic: Numbers",
+      "description": "K4 Arithmetic: Numbers - Lesson: 97 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4NU097D/K4NU097D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-097",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 97,
+      "page_key": "k4/097",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 4,
+      "title": "K4 Arithmetic: Numbers Review",
+      "description": "K4 Arithmetic: Numbers Review - Lesson: 97 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4NR097D/K4NR097D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-097",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 97,
+      "page_key": "k4/097",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 5,
+      "title": "K4 Bible",
+      "description": "K4 Bible - Lesson: 97 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4BI097D/K4BI097D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-097",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 97,
+      "page_key": "k4/097",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 6,
+      "title": "K4 Phonics",
+      "description": "K4 Phonics - Lesson: 97 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4PH097D/K4PH097D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-097",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 97,
+      "page_key": "k4/097",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 7,
+      "title": "K4 Writing: Cursive Writing",
+      "description": "K4 Writing: Cursive Writing - Lesson: 97 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4CW097D/K4CW097D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-097",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 97,
+      "page_key": "k4/097",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 8,
+      "title": "K4 Writing: Manuscript Writing",
+      "description": "K4 Writing: Manuscript Writing - Lesson: 97 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4MW097D/K4MW097D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

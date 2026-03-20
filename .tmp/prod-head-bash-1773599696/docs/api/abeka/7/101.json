@@ -1,0 +1,38 @@
+[
+  {
+    "title": "English 7",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/07/07EN101E/07EN101E.m3u8",
+    "description": "English 7 - Lesson: 101 - Teacher: Mr. Bucy",
+    "image": "/images/banner.jpg"
+  },
+  {
+    "title": "Science 7",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/07/07SC101D/07SC101D.m3u8",
+    "description": "Science 7 - Lesson: 101 - Teacher: Miss de Lima",
+    "image": "/images/banner.jpg"
+  },
+  {
+    "title": "Intermediate Mathematics",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM101E/07IM101E.m3u8",
+    "description": "Intermediate Mathematics - Lesson: 101 - Teacher: Miss Barnhart",
+    "image": "/images/banner.jpg"
+  },
+  {
+    "title": "Fast Facts 8.1 - Constructing a Bar Graph",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/07/07IM101E-FF8.1/07IM101E-FF8.1.m3u8",
+    "description": "Fast Facts 8.1 - Constructing a Bar Graph - Lesson: 101 - Teacher: Miss Barnhart",
+    "image": "/images/banner.jpg"
+  },
+  {
+    "title": "World History 7",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/07/07WH101E/07WH101E.m3u8",
+    "description": "World History 7 - Lesson: 101 - Teacher: Mr. Smith",
+    "image": "/images/banner.jpg"
+  },
+  {
+    "title": "Bible 7",
+    "file": "https://fileta.hoctienganh.xyz/abk/2023/07/07BI101E/07BI101E.m3u8",
+    "description": "Bible 7 - Lesson: 101 - Teacher: Mr. Crockett",
+    "image": "/images/banner.jpg"
+  }
+]

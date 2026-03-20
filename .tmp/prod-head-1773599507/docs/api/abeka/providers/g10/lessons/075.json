@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "g10",
+    "provider_slug": "g10",
+    "course": "lesson-075",
+    "course_slug": "075",
+    "grade_id": "10",
+    "page_count": 1,
+    "video_count": 7
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "page_key": "g10/075",
+      "path_segments": [
+        "g10",
+        "075"
+      ],
+      "provider": "g10",
+      "course": "lesson-075",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 75,
+      "video_count": 7,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Additional Review 6.2",
+          "description": "Additional Review 6.2 - Lesson: 75 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2075E-AR6.2/10A2075E-AR6.2.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Algebra 2",
+          "description": "Algebra 2 - Lesson: 75 - Teacher: Miss Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2075E/10A2075E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "Bible Doctrines",
+          "description": "Bible Doctrines - Lesson: 75 - Teacher: Mr. Birx",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI075C/10BI075C.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "Biology",
+          "description": "Biology - Lesson: 75 - Teacher: Miss Stancel",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY075E/10BY075E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Consumer Mathematics",
+          "description": "Consumer Mathematics - Lesson: 75 - Teacher: Mr. Dickson",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM075B/10CM075B.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "English 10",
+          "description": "English 10 - Lesson: 75 - Teacher: Mrs. Antich",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN075E/10EN075E.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "World History 10",
+          "description": "World History 10 - Lesson: 75 - Teacher: Mr. Smith",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH075D/10WH075D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "g10",
+      "course": "lesson-075",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 75,
+      "page_key": "g10/075",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 1,
+      "title": "Additional Review 6.2",
+      "description": "Additional Review 6.2 - Lesson: 75 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2075E-AR6.2/10A2075E-AR6.2.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-075",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 75,
+      "page_key": "g10/075",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 2,
+      "title": "Algebra 2",
+      "description": "Algebra 2 - Lesson: 75 - Teacher: Miss Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10A2075E/10A2075E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-075",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 75,
+      "page_key": "g10/075",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 3,
+      "title": "Bible Doctrines",
+      "description": "Bible Doctrines - Lesson: 75 - Teacher: Mr. Birx",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BI075C/10BI075C.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-075",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 75,
+      "page_key": "g10/075",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 4,
+      "title": "Biology",
+      "description": "Biology - Lesson: 75 - Teacher: Miss Stancel",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10BY075E/10BY075E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-075",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 75,
+      "page_key": "g10/075",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 5,
+      "title": "Consumer Mathematics",
+      "description": "Consumer Mathematics - Lesson: 75 - Teacher: Mr. Dickson",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10CM075B/10CM075B.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-075",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 75,
+      "page_key": "g10/075",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 6,
+      "title": "English 10",
+      "description": "English 10 - Lesson: 75 - Teacher: Mrs. Antich",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10EN075E/10EN075E.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "g10",
+      "course": "lesson-075",
+      "topic": "",
+      "grade": "g10",
+      "lesson": 75,
+      "page_key": "g10/075",
+      "page_url": "https://hoctienganh.xyz/abeka/10",
+      "order": 7,
+      "title": "World History 10",
+      "description": "World History 10 - Lesson: 75 - Teacher: Mr. Smith",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/10/10WH075D/10WH075D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

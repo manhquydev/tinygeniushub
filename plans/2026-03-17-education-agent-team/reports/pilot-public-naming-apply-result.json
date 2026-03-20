@@ -1,0 +1,101 @@
+{
+  "generatedAt": "2026-03-17T06:29:39.630Z",
+  "dryRun": false,
+  "strictMode": true,
+  "status": "PASS",
+  "source": {
+    "namingMap": "plans/2026-03-17-education-agent-team/reports/pilot-public-naming-map.json",
+    "importResult": "plans/2026-03-17-education-agent-team/reports/pilot-import-result.json"
+  },
+  "summary": {
+    "totalItems": 12,
+    "updatedItems": 12,
+    "failedItems": 0
+  },
+  "rows": [
+    {
+      "sku": "ABEKA-K4-INTRO-4W",
+      "slug": "abeka-k4-intro-4w",
+      "status": "updated",
+      "beforeTitle": "Abeka GRADE k4 - ABEKA-K4-INTRO-4W",
+      "afterTitle": "Khởi động học thuật K4 - 4 tuần"
+    },
+    {
+      "sku": "ABEKA-K4-FOUNDATION-8W",
+      "slug": "abeka-k4-foundation-8w",
+      "status": "updated",
+      "beforeTitle": "Abeka GRADE k4 - ABEKA-K4-FOUNDATION-8W",
+      "afterTitle": "Nền tảng học thuật K4 - 8 tuần"
+    },
+    {
+      "sku": "ABEKA-K5-INTRO-4W",
+      "slug": "abeka-k5-intro-4w",
+      "status": "updated",
+      "beforeTitle": "Abeka GRADE k5 - ABEKA-K5-INTRO-4W",
+      "afterTitle": "Khởi động học thuật K5 - 4 tuần"
+    },
+    {
+      "sku": "ABEKA-K5-FOUNDATION-8W",
+      "slug": "abeka-k5-foundation-8w",
+      "status": "updated",
+      "beforeTitle": "Abeka GRADE k5 - ABEKA-K5-FOUNDATION-8W",
+      "afterTitle": "Nền tảng học thuật K5 - 8 tuần"
+    },
+    {
+      "sku": "ABEKA-G1-INTRO-4W",
+      "slug": "abeka-g1-intro-4w",
+      "status": "updated",
+      "beforeTitle": "Abeka GRADE g1 - ABEKA-G1-INTRO-4W",
+      "afterTitle": "Khởi động học thuật G1 - 4 tuần"
+    },
+    {
+      "sku": "ABEKA-G1-FOUNDATION-8W",
+      "slug": "abeka-g1-foundation-8w",
+      "status": "updated",
+      "beforeTitle": "Abeka GRADE g1 - ABEKA-G1-FOUNDATION-8W",
+      "afterTitle": "Nền tảng học thuật G1 - 8 tuần"
+    },
+    {
+      "sku": "LFEN-L1-STARTER-6W",
+      "slug": "lfen-l1-starter-6w",
+      "status": "updated",
+      "beforeTitle": "Little Fox English LEVEL 1 - LFEN-L1-STARTER-6W",
+      "afterTitle": "Nghe hiểu tiếng Anh qua truyện L1 - Khởi động 6 tuần"
+    },
+    {
+      "sku": "LFEN-L1-BUILDER-8W",
+      "slug": "lfen-l1-builder-8w",
+      "status": "updated",
+      "beforeTitle": "Little Fox English LEVEL 1 - LFEN-L1-BUILDER-8W",
+      "afterTitle": "Nghe hiểu tiếng Anh qua truyện L1 - Xây nền 8 tuần"
+    },
+    {
+      "sku": "LFEN-L2-STARTER-6W",
+      "slug": "lfen-l2-starter-6w",
+      "status": "updated",
+      "beforeTitle": "Little Fox English LEVEL 2 - LFEN-L2-STARTER-6W",
+      "afterTitle": "Nghe hiểu tiếng Anh qua truyện L2 - Khởi động 6 tuần"
+    },
+    {
+      "sku": "LFEN-L2-BUILDER-8W",
+      "slug": "lfen-l2-builder-8w",
+      "status": "updated",
+      "beforeTitle": "Little Fox English LEVEL 2 - LFEN-L2-BUILDER-8W",
+      "afterTitle": "Nghe hiểu tiếng Anh qua truyện L2 - Xây nền 8 tuần"
+    },
+    {
+      "sku": "LFCN-L1-STARTER-5W",
+      "slug": "lfcn-l1-starter-5w",
+      "status": "updated",
+      "beforeTitle": "Little Fox Chinese LEVEL 1 - LFCN-L1-STARTER-5W",
+      "afterTitle": "Làm quen tiếng Trung qua truyện L1 - Khởi động 5 tuần"
+    },
+    {
+      "sku": "LFCN-L1-BUILDER-8W",
+      "slug": "lfcn-l1-builder-8w",
+      "status": "updated",
+      "beforeTitle": "Little Fox Chinese LEVEL 1 - LFCN-L1-BUILDER-8W",
+      "afterTitle": "Làm quen tiếng Trung qua truyện L1 - Xây nền 8 tuần"
+    }
+  ]
+}

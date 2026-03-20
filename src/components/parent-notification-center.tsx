@@ -148,11 +148,18 @@ export function ParentNotificationCenter() {
   }, [open, fetchNotifications]);
 
   useEffect(() => {
-    function handlePointerDown(event: PointerEvent) {
-      if (!shellRef.current) return;
-      const path = event.composedPath();
-      if (path.includes(shellRef.current)) return;
-      setOpen(false);
+    if (!open) {
+      return;
+    }
+
+    function handleOutside(event: MouseEvent | TouchEvent) {
+      const target = event.target as Node | null;
+      if (!shellRef.current || !target) {
+        return;
+      }
+      if (!shellRef.current.contains(target)) {
+        setOpen(false);
+      }
     }
 
     function handleEscape(event: KeyboardEvent) {
@@ -161,14 +168,16 @@ export function ParentNotificationCenter() {
       }
     }
 
-    document.addEventListener("pointerdown", handlePointerDown, true);
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("touchstart", handleOutside, { passive: true });
     document.addEventListener("keydown", handleEscape);
 
     return () => {
-      document.removeEventListener("pointerdown", handlePointerDown, true);
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     setOpen(false);
@@ -224,13 +233,7 @@ export function ParentNotificationCenter() {
   }
 
   return (
-    <div
-      ref={shellRef}
-      className="relative z-[100] shrink-0"
-      onPointerDown={(event) => {
-        event.stopPropagation();
-      }}
-    >
+    <div ref={shellRef} className="relative z-[100] shrink-0">
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}

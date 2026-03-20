@@ -1,0 +1,60 @@
+COURSE SCHEMA & FILTERING SYSTEM - RESEARCH SUMMARY
+====================================================
+
+Completed: 2026-03-18
+Status: Ready for Implementation Planning
+
+KEY FINDINGS:
+
+1. ENUM STRATEGY
+   - Use Prisma enums (type-safe, DB-enforced)
+   - New enums: Subject (6 values), extend AgeGroup, CourseDifficultyLevel
+   - Note: Existing AgeGroup enum differs from proposed Course values (see Risk #1)
+
+2. COURSE MODEL CHANGES
+   - Add: subject, ageGroup, difficultyLevel (all nullable for backward compat)
+   - Add denormalization fields: reviewAverageRating, reviewCount, isPopular
+   - Zero breaking changes, safe migration
+
+3. COURSE REVIEW MODEL
+   - New model with parent+course relationship
+   - Unique constraint: (courseId, parentId) = one review per parent per course
+   - Admin moderation: isApproved flag with rejection reason
+   - 6 strategic indexes for storefront/admin/stats queries
+   - Soft delete support
+
+4. FILTERING API (Pattern Examples)
+   - GET /api/courses?subject=ENGLISH&ageGroup=AGE_7_9&minPrice=0&maxPrice=500000&sortBy=rating
+   - Efficient WHERE clause with AND conditions + indexes
+   - Rating aggregation via denormalized fields (1ms vs 100-300ms)
+
+5. MIGRATION STRATEGY
+   - Phase 1: Add new nullable columns to Course
+   - Phase 2: Create CourseReview table with indexes
+   - Phase 3: Seed existing courses with default metadata
+   - No downtime, auto-runs on deploy
+
+6. INDEXES RECOMMENDED
+   Course table: 4 indexes (subject+ageGroup, popularity, difficulty)
+   CourseReview table: 5 indexes (storefront, stats, admin queue, parent reviews, soft-delete)
+
+7. CRITICAL DECISIONS
+   a) AgeGroup enum overlap: Recommend extending existing enum (not separate)
+   b) Reviews require admin approval by default (prevent spam)
+   c) Denormalization: Update synchronously on review actions + optional nightly job
+   d) Soft delete required (audit trail)
+
+8. UNRESOLVED QUESTIONS (6 total)
+   - Should subject be required or nullable?
+   - Age band alignment between Blog and Course enums?
+   - Auto-publish vs manual approval for reviews?
+   - Difficulty level: Course or CourseLesson granularity?
+   - Re-approval workflow for edited reviews?
+   - Soft-delete index strategy?
+
+NEXT STEPS:
+- Confirm answers to unresolved questions with product team
+- Planner creates implementation plan with phases + tasks
+- Implementation: schema migration → services → API endpoints → tests
+
+Full report: D:/project/cungcontuhoc/plans/reports/researcher-260318-course-schema-filter-design.md

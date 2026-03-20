@@ -1,0 +1,676 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "TEDed",
+    "provider_slug": "teded",
+    "course": "INSIGHT IELTS 1",
+    "course_slug": "insight-ielts-1",
+    "page_count": 1,
+    "video_count": 34
+  },
+  "pages": [
+    {
+      "resource_root": "/playtt",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "path_segments": [
+        "TEDed",
+        "INSIGHT IELTS 1"
+      ],
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "video_count": 34,
+      "videos": [
+        {
+          "order": 1,
+          "title": "001 The myth of the boiling frog",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/001%20The%20myth%20of%20the%20boiling%20frog.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "002 The material that could change the world... for a third time",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/002%20The%20material%20that%20could%20change%20the%20world...%20for%20a%20third%20time.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "003 The world s biggest battery looks nothing like a battery",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/003%20The%20world_s%20biggest%20battery%20looks%20nothing%20like%20a%20battery.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "004 Whats the best fuel for your car-",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/004%20Whats%20the%20best%20fuel%20for%20your%20car-.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "005 Why good ideas get trapped in the valley of death and how to rescue them",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/005%20Why%20good%20ideas%20get%20trapped%20in%20the%20valley%20of%20death%20and%20how%20to%20rescue%20them.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "006 How does the stock market work- - Oliver Elfenbaum",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/006%20How%20does%20the%20stock%20market%20work-%20-%20Oliver%20Elfenbaum.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "007 What gives a dollar bill its value- - Doug Levinson",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/007%20What%20gives%20a%20dollar%20bill%20its%20value-%20-%20Doug%20Levinson.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "008 Why do competitors open their stores next to one another- - Jac de Haan",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/008%20Why%20do%20competitors%20open%20their%20stores%20next%20to%20one%20another-%20-%20Jac%20de%20Haan.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "009 How to spot a pyramid scheme - Stacie Bosley",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/009%20How%20to%20spot%20a%20pyramid%20scheme%20-%20Stacie%20Bosley.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "0010 What causes an economic recession- - Richard Coffin",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0010%20What%20causes%20an%20economic%20recession-%20-%20Richard%20Coffin.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "0011 Why is it so hard to escape poverty- - Ann-Helén Bay",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0011%20Why%20is%20it%20so%20hard%20to%20escape%20poverty-%20-%20Ann-Hel%C3%A9n%20Bay.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 12,
+          "title": "0012 These companies with no CEO are thriving",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0012%20These%20companies%20with%20no%20CEO%20are%20thriving.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 13,
+          "title": "0013 How does your immune system work- - Emma Bryce",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0013%20How%20does%20your%20immune%20system%20work-%20-%20Emma%20Bryce.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 14,
+          "title": "0014 What happens if an engineered virus escapes the lab-",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0014%20What%20happens%20if%20an%20engineered%20virus%20escapes%20the%20lab-.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 15,
+          "title": "0015 When is a pandemic over-",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0015%20When%20is%20a%20pandemic%20over-.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 16,
+          "title": "0016 Which is better- Soap or hand sanitizer- - Alex Rosenthal and Pall Thordarson",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0016%20Which%20is%20better-%20Soap%20or%20hand%20sanitizer-%20-%20Alex%20Rosenthal%20and%20Pall%20Thordarson.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 17,
+          "title": "0017 Why plague doctors wore beaked masks",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0017%20Why%20plague%20doctors%20wore%20beaked%20masks.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 18,
+          "title": "0018 Why is it so hard to cure the common cold-",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0018%20Why%20is%20it%20so%20hard%20to%20cure%20the%20common%20cold-.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 19,
+          "title": "0019 How do ventilators work- - Alex Gendler",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0019%20How%20do%20ventilators%20work-%20-%20Alex%20Gendler.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 20,
+          "title": "0020 Is fire a solid, a liquid, or a gas- - Elizabeth Cox",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0020%20Is%20fire%20a%20solid,%20a%20liquid,%20or%20a%20gas-%20-%20Elizabeth%20Cox.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 21,
+          "title": "0021 Whats the smallest thing in the universe- - Jonathan Butterworth",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0021%20Whats%20the%20smallest%20thing%20in%20the%20universe-%20-%20Jonathan%20Butterworth.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 22,
+          "title": "0022 Where does gold come from- - David Lunney (1)",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0022%20Where%20does%20gold%20come%20from-%20-%20David%20Lunney%20(1).tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 23,
+          "title": "0024 The dust bunnies that built our planet - Lorin Swint Matthews",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0024%20The%20dust%20bunnies%20that%20built%20our%20planet%20-%20Lorin%20Swint%20Matthews.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 24,
+          "title": "0025 The mysterious origins of life on Earth - Luka Seamus Wright",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0025%20The%20mysterious%20origins%20of%20life%20on%20Earth%20-%20Luka%20Seamus%20Wright.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 25,
+          "title": "0026 How to grow a glacier - M Jackson",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0026%20How%20to%20grow%20a%20glacier%20-%20M%20Jackson.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 26,
+          "title": "0027 How tsunamis work - Alex Gendler",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0027%20How%20tsunamis%20work%20-%20Alex%20Gendler.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 27,
+          "title": "0028 The continents are moving. When will they collide- - Jean-Baptiste P. Koehl",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0028%20The%20continents%20are%20moving.%20When%20will%20they%20collide-%20-%20Jean-Baptiste%20P.%20Koehl.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 28,
+          "title": "0029 Why are earthquakes so hard to predict- - Jean-Baptiste P. Koehl",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0029%20Why%20are%20earthquakes%20so%20hard%20to%20predict-%20-%20Jean-Baptiste%20P.%20Koehl.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 29,
+          "title": "0030 Nature s fortress- How cacti keep water in and predators out - Lucas C. Majure",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0030%20Nature_s%20fortress-%20How%20cacti%20keep%20water%20in%20and%20predators%20out%20-%20Lucas%20C.%20Majure.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 30,
+          "title": "0031 How this disease changes the shape of your cells - Amber M. Yates",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0031%20How%20this%20disease%20changes%20the%20shape%20of%20your%20cells%20-%20Amber%20M.%20Yates.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 31,
+          "title": "0032 How does this all-female species reproduce- - Susana Freitas and Darren Parker",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0032%20How%20does%20this%20all-female%20species%20reproduce-%20-%20Susana%20Freitas%20and%20Darren%20Parker.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 32,
+          "title": "0033 Is human evolution speeding up or slowing down- - Laurence Hurst",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0033%20Is%20human%20evolution%20speeding%20up%20or%20slowing%20down-%20-%20Laurence%20Hurst.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 33,
+          "title": "0034 The science of skin color - Angela Koine Flynn",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0034%20The%20science%20of%20skin%20color%20-%20Angela%20Koine%20Flynn.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 34,
+          "title": "0035 How does the thyroid manage your metabolism- - Emma Bryce",
+          "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0035%20How%20does%20the%20thyroid%20manage%20your%20metabolism-%20-%20Emma%20Bryce.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 1,
+      "title": "001 The myth of the boiling frog",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/001%20The%20myth%20of%20the%20boiling%20frog.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 2,
+      "title": "002 The material that could change the world... for a third time",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/002%20The%20material%20that%20could%20change%20the%20world...%20for%20a%20third%20time.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 3,
+      "title": "003 The world s biggest battery looks nothing like a battery",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/003%20The%20world_s%20biggest%20battery%20looks%20nothing%20like%20a%20battery.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 4,
+      "title": "004 Whats the best fuel for your car-",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/004%20Whats%20the%20best%20fuel%20for%20your%20car-.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 5,
+      "title": "005 Why good ideas get trapped in the valley of death and how to rescue them",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/005%20Why%20good%20ideas%20get%20trapped%20in%20the%20valley%20of%20death%20and%20how%20to%20rescue%20them.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 6,
+      "title": "006 How does the stock market work- - Oliver Elfenbaum",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/006%20How%20does%20the%20stock%20market%20work-%20-%20Oliver%20Elfenbaum.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 7,
+      "title": "007 What gives a dollar bill its value- - Doug Levinson",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/007%20What%20gives%20a%20dollar%20bill%20its%20value-%20-%20Doug%20Levinson.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 8,
+      "title": "008 Why do competitors open their stores next to one another- - Jac de Haan",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/008%20Why%20do%20competitors%20open%20their%20stores%20next%20to%20one%20another-%20-%20Jac%20de%20Haan.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 9,
+      "title": "009 How to spot a pyramid scheme - Stacie Bosley",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/009%20How%20to%20spot%20a%20pyramid%20scheme%20-%20Stacie%20Bosley.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 10,
+      "title": "0010 What causes an economic recession- - Richard Coffin",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0010%20What%20causes%20an%20economic%20recession-%20-%20Richard%20Coffin.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 11,
+      "title": "0011 Why is it so hard to escape poverty- - Ann-Helén Bay",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0011%20Why%20is%20it%20so%20hard%20to%20escape%20poverty-%20-%20Ann-Hel%C3%A9n%20Bay.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 12,
+      "title": "0012 These companies with no CEO are thriving",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0012%20These%20companies%20with%20no%20CEO%20are%20thriving.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 13,
+      "title": "0013 How does your immune system work- - Emma Bryce",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0013%20How%20does%20your%20immune%20system%20work-%20-%20Emma%20Bryce.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 14,
+      "title": "0014 What happens if an engineered virus escapes the lab-",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0014%20What%20happens%20if%20an%20engineered%20virus%20escapes%20the%20lab-.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 15,
+      "title": "0015 When is a pandemic over-",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0015%20When%20is%20a%20pandemic%20over-.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 16,
+      "title": "0016 Which is better- Soap or hand sanitizer- - Alex Rosenthal and Pall Thordarson",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0016%20Which%20is%20better-%20Soap%20or%20hand%20sanitizer-%20-%20Alex%20Rosenthal%20and%20Pall%20Thordarson.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 17,
+      "title": "0017 Why plague doctors wore beaked masks",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0017%20Why%20plague%20doctors%20wore%20beaked%20masks.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 18,
+      "title": "0018 Why is it so hard to cure the common cold-",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0018%20Why%20is%20it%20so%20hard%20to%20cure%20the%20common%20cold-.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 19,
+      "title": "0019 How do ventilators work- - Alex Gendler",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0019%20How%20do%20ventilators%20work-%20-%20Alex%20Gendler.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 20,
+      "title": "0020 Is fire a solid, a liquid, or a gas- - Elizabeth Cox",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0020%20Is%20fire%20a%20solid,%20a%20liquid,%20or%20a%20gas-%20-%20Elizabeth%20Cox.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 21,
+      "title": "0021 Whats the smallest thing in the universe- - Jonathan Butterworth",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0021%20Whats%20the%20smallest%20thing%20in%20the%20universe-%20-%20Jonathan%20Butterworth.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 22,
+      "title": "0022 Where does gold come from- - David Lunney (1)",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0022%20Where%20does%20gold%20come%20from-%20-%20David%20Lunney%20(1).tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 23,
+      "title": "0024 The dust bunnies that built our planet - Lorin Swint Matthews",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0024%20The%20dust%20bunnies%20that%20built%20our%20planet%20-%20Lorin%20Swint%20Matthews.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 24,
+      "title": "0025 The mysterious origins of life on Earth - Luka Seamus Wright",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0025%20The%20mysterious%20origins%20of%20life%20on%20Earth%20-%20Luka%20Seamus%20Wright.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 25,
+      "title": "0026 How to grow a glacier - M Jackson",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0026%20How%20to%20grow%20a%20glacier%20-%20M%20Jackson.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 26,
+      "title": "0027 How tsunamis work - Alex Gendler",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0027%20How%20tsunamis%20work%20-%20Alex%20Gendler.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 27,
+      "title": "0028 The continents are moving. When will they collide- - Jean-Baptiste P. Koehl",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0028%20The%20continents%20are%20moving.%20When%20will%20they%20collide-%20-%20Jean-Baptiste%20P.%20Koehl.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 28,
+      "title": "0029 Why are earthquakes so hard to predict- - Jean-Baptiste P. Koehl",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0029%20Why%20are%20earthquakes%20so%20hard%20to%20predict-%20-%20Jean-Baptiste%20P.%20Koehl.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 29,
+      "title": "0030 Nature s fortress- How cacti keep water in and predators out - Lucas C. Majure",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0030%20Nature_s%20fortress-%20How%20cacti%20keep%20water%20in%20and%20predators%20out%20-%20Lucas%20C.%20Majure.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 30,
+      "title": "0031 How this disease changes the shape of your cells - Amber M. Yates",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0031%20How%20this%20disease%20changes%20the%20shape%20of%20your%20cells%20-%20Amber%20M.%20Yates.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 31,
+      "title": "0032 How does this all-female species reproduce- - Susana Freitas and Darren Parker",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0032%20How%20does%20this%20all-female%20species%20reproduce-%20-%20Susana%20Freitas%20and%20Darren%20Parker.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 32,
+      "title": "0033 Is human evolution speeding up or slowing down- - Laurence Hurst",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0033%20Is%20human%20evolution%20speeding%20up%20or%20slowing%20down-%20-%20Laurence%20Hurst.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 33,
+      "title": "0034 The science of skin color - Angela Koine Flynn",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0034%20The%20science%20of%20skin%20color%20-%20Angela%20Koine%20Flynn.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "TEDed",
+      "course": "INSIGHT IELTS 1",
+      "topic": "",
+      "page_key": "TEDed/INSIGHT IELTS 1",
+      "page_url": "https://hoctienganh.xyz/playtt/TEDed/INSIGHT%20IELTS%201",
+      "order": 34,
+      "title": "0035 How does the thyroid manage your metabolism- - Emma Bryce",
+      "video_url": "https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0035%20How%20does%20the%20thyroid%20manage%20your%20metabolism-%20-%20Emma%20Bryce.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

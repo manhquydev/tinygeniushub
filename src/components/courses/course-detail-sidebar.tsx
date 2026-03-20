@@ -6,7 +6,7 @@ import type { AbVariant } from "@/lib/ab-test-constants";
 
 type Props = {
   courseSlug: string;
-  pricing: { salePriceVnd: number; listPriceVnd: number; hasDiscount: boolean };
+  pricing: { salePriceVnd: number; listPriceVnd: number; hasDiscount: boolean; isPurchasable: boolean };
   isOwned: boolean;
   isAuthenticated: boolean;
   childEntryHref: string;
@@ -31,15 +31,21 @@ export function CourseDetailSidebar({
     <div className="sticky top-6 space-y-4">
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
         <p className="text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700">Giá thanh toán</p>
-        <div className="mt-1 flex items-end gap-2">
-          <p className="text-3xl font-black tracking-[-0.02em] text-emerald-700">
-            {formatCurrency(pricing.salePriceVnd)}
-          </p>
-          {pricing.hasDiscount ? (
-            <p className="pb-1 text-sm text-slate-500 line-through">{formatCurrency(pricing.listPriceVnd)}</p>
-          ) : null}
-        </div>
-        <p className="text-xs text-emerald-700/80">Thanh toán một lần, kích hoạt ngay sau xác nhận</p>
+        {pricing.isPurchasable ? (
+          <>
+            <div className="mt-1 flex items-end gap-2">
+              <p className="text-3xl font-black tracking-[-0.02em] text-emerald-700">
+                {formatCurrency(pricing.salePriceVnd)}
+              </p>
+              {pricing.hasDiscount ? (
+                <p className="pb-1 text-sm text-slate-500 line-through">{formatCurrency(pricing.listPriceVnd)}</p>
+              ) : null}
+            </div>
+            <p className="text-xs text-emerald-700/80">Thanh toán một lần, kích hoạt ngay sau xác nhận</p>
+          </>
+        ) : (
+          <p className="mt-2 text-sm font-semibold text-amber-700">Giá đang cập nhật. Vui lòng liên hệ tư vấn trước khi mua.</p>
+        )}
       </div>
 
       {isOwned ? (
@@ -69,13 +75,19 @@ export function CourseDetailSidebar({
         </div>
       ) : (
         <div className="grid gap-2">
-          <CourseCheckoutButton
-            courseSlug={courseSlug}
-            label={checkoutLabel}
-            priceVnd={pricing.salePriceVnd}
-            isAuthenticated={isAuthenticated}
-            tracking={{ variant, bundleSlug: courseSlug }}
-          />
+          {pricing.isPurchasable ? (
+            <CourseCheckoutButton
+              courseSlug={courseSlug}
+              label={checkoutLabel}
+              priceVnd={pricing.salePriceVnd}
+              isAuthenticated={isAuthenticated}
+              tracking={{ variant, bundleSlug: courseSlug }}
+            />
+          ) : (
+            <Link href="/contact" className="solid-button">
+              Liên hệ tư vấn giá
+            </Link>
+          )}
           <FitCheckTrackedLink
             href="#fit-checklist"
             className="ghost-button"
@@ -86,10 +98,13 @@ export function CourseDetailSidebar({
           >
             Kiểm tra độ phù hợp trước khi mua
           </FitCheckTrackedLink>
-          {!isAuthenticated ? (
+          {!isAuthenticated && pricing.isPurchasable ? (
             <p className="text-xs text-slate-500">
               Hệ thống sẽ đưa bạn đến đăng nhập hoặc đăng ký, rồi quay lại đúng khóa học này để tiếp tục thanh toán.
             </p>
+          ) : null}
+          {!pricing.isPurchasable ? (
+            <p className="text-xs text-amber-700">Checkout tạm khóa cho khóa học chưa có giá hợp lệ.</p>
           ) : null}
         </div>
       )}
@@ -110,7 +125,7 @@ export function CourseDetailSidebar({
       </div>
 
       {/* Mobile sticky bottom CTA */}
-      {!isOwned ? (
+      {!isOwned && pricing.isPurchasable ? (
         <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between gap-3 border-t border-slate-200 bg-white/95 px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
           <div>
             <p className="text-[10px] uppercase tracking-[0.08em] text-slate-500">Giá</p>

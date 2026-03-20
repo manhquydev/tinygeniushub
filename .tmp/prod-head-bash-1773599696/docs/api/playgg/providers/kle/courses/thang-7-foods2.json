@@ -1,0 +1,201 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "KLE",
+    "provider_slug": "kle",
+    "course": "Thang_7_Foods2",
+    "course_slug": "thang-7-foods2",
+    "page_count": 1,
+    "video_count": 9
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "page_key": "KLE/Thang_7_Foods2",
+      "path_segments": [
+        "KLE",
+        "Thang_7_Foods2"
+      ],
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "video_count": 9,
+      "videos": [
+        {
+          "order": 1,
+          "title": "11 Cake Song for Kids - Learn English speaking with Steve and Maggie - Food Song esl",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/11%20Cake%20Song%20for%20Kids%20-%20Learn%20English%20speaking%20with%20Steve%20and%20Maggie%20-%20Food%20Song%20esl.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "12 Do You Like Lasagna Milkshakes- - Ice Cream and Lasagna!- - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/12%20Do%20You%20Like%20Lasagna%20Milkshakes-%20-%20Ice%20Cream%20and%20Lasagna%21-%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "13 Food Song - Chocolate Cake Song for Kids from Steve and Maggie - English for Children ESL",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/13%20Food%20Song%20-%20Chocolate%20Cake%20Song%20for%20Kids%20from%20Steve%20and%20Maggie%20-%20English%20for%20Children%20ESL.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "14 I m Thirsty! - Drinks Song for Kids - Kindergarten, Preschool   ESL - Fun Kids English",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/14%20I_m%20Thirsty%21%20-%20Drinks%20Song%20for%20Kids%20-%20Kindergarten,%20Preschool%20_%20ESL%20-%20Fun%20Kids%20English.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "16 Ice Cream, Chocolate and Cake for Steve - English for Children - Steve and Maggie",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/16%20Ice%20Cream,%20Chocolate%20and%20Cake%20for%20Steve%20-%20English%20for%20Children%20-%20Steve%20and%20Maggie.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "17 Learn Vegetables for Kids - What is it- Game for Kids - Maple Leaf Learning Playhouse",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/17%20Learn%20Vegetables%20for%20Kids%20-%20What%20is%20it-%20Game%20for%20Kids%20-%20Maple%20Leaf%20Learning%20Playhouse.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 7,
+          "title": "18 Do You Like Spaghetti Yogurt- - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/18%20Do%20You%20Like%20Spaghetti%20Yogurt-%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 8,
+          "title": "19 Johny Johny Yes Papa 👶 THE BEST Song for Children - LooLoo Kids",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/19%20Johny%20Johny%20Yes%20Papa%20%F0%9F%91%B6%20THE%20BEST%20Song%20for%20Children%20-%20LooLoo%20Kids.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 9,
+          "title": "20 Learn Vegetables for Kids #2 - What is it- Game for Kids - Maple Leaf Learning",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/20%20Learn%20Vegetables%20for%20Kids%20%232%20-%20What%20is%20it-%20Game%20for%20Kids%20-%20Maple%20Leaf%20Learning.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "page_key": "KLE/Thang_7_Foods2",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "order": 1,
+      "title": "11 Cake Song for Kids - Learn English speaking with Steve and Maggie - Food Song esl",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/11%20Cake%20Song%20for%20Kids%20-%20Learn%20English%20speaking%20with%20Steve%20and%20Maggie%20-%20Food%20Song%20esl.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "page_key": "KLE/Thang_7_Foods2",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "order": 2,
+      "title": "12 Do You Like Lasagna Milkshakes- - Ice Cream and Lasagna!- - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/12%20Do%20You%20Like%20Lasagna%20Milkshakes-%20-%20Ice%20Cream%20and%20Lasagna%21-%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "page_key": "KLE/Thang_7_Foods2",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "order": 3,
+      "title": "13 Food Song - Chocolate Cake Song for Kids from Steve and Maggie - English for Children ESL",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/13%20Food%20Song%20-%20Chocolate%20Cake%20Song%20for%20Kids%20from%20Steve%20and%20Maggie%20-%20English%20for%20Children%20ESL.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "page_key": "KLE/Thang_7_Foods2",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "order": 4,
+      "title": "14 I m Thirsty! - Drinks Song for Kids - Kindergarten, Preschool   ESL - Fun Kids English",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/14%20I_m%20Thirsty%21%20-%20Drinks%20Song%20for%20Kids%20-%20Kindergarten,%20Preschool%20_%20ESL%20-%20Fun%20Kids%20English.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "page_key": "KLE/Thang_7_Foods2",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "order": 5,
+      "title": "16 Ice Cream, Chocolate and Cake for Steve - English for Children - Steve and Maggie",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/16%20Ice%20Cream,%20Chocolate%20and%20Cake%20for%20Steve%20-%20English%20for%20Children%20-%20Steve%20and%20Maggie.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "page_key": "KLE/Thang_7_Foods2",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "order": 6,
+      "title": "17 Learn Vegetables for Kids - What is it- Game for Kids - Maple Leaf Learning Playhouse",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/17%20Learn%20Vegetables%20for%20Kids%20-%20What%20is%20it-%20Game%20for%20Kids%20-%20Maple%20Leaf%20Learning%20Playhouse.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "page_key": "KLE/Thang_7_Foods2",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "order": 7,
+      "title": "18 Do You Like Spaghetti Yogurt- - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/18%20Do%20You%20Like%20Spaghetti%20Yogurt-%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "page_key": "KLE/Thang_7_Foods2",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "order": 8,
+      "title": "19 Johny Johny Yes Papa 👶 THE BEST Song for Children - LooLoo Kids",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/19%20Johny%20Johny%20Yes%20Papa%20%F0%9F%91%B6%20THE%20BEST%20Song%20for%20Children%20-%20LooLoo%20Kids.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_7_Foods2",
+      "topic": "",
+      "page_key": "KLE/Thang_7_Foods2",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_7_Foods2",
+      "order": 9,
+      "title": "20 Learn Vegetables for Kids #2 - What is it- Game for Kids - Maple Leaf Learning",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_7_Foods2/20%20Learn%20Vegetables%20for%20Kids%20%232%20-%20What%20is%20it-%20Game%20for%20Kids%20-%20Maple%20Leaf%20Learning.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

@@ -1,0 +1,2120 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "Heinemann",
+    "provider_slug": "heinemann",
+    "course": "G1",
+    "course_slug": "g1",
+    "page_count": 1,
+    "video_count": 110
+  },
+  "pages": [
+    {
+      "resource_root": "/playtt",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "page_key": "Heinemann/G1",
+      "path_segments": [
+        "Heinemann",
+        "G1"
+      ],
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "video_count": 110,
+      "videos": [
+        {
+          "order": 1,
+          "title": "01-G1 Waking Up",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/01-G1%20Waking%20Up.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "02-G1 Frog Food",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/02-G1%20Frog%20Food.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "03-G1 The New Puppy",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/03-G1%20The%20New%20Puppy.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "04-G1 Friends",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/04-G1%20Friends.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "05-G1 Sam and Papa",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/05-G1%20Sam%20and%20Papa.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "06-G1 Too Much Stuff",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/06-G1%20Too%20Much%20Stuff.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "07-G1 Ant Can t",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/07-G1%20Ant%20Can_t.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "08-G1 Eggs",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/08-G1%20Eggs.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "09-G1 Where things grow",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/09-G1%20Where%20things%20grow.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "10-G1 The Very Busy Hen",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/10-G1%20The%20Very%20Busy%20Hen.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 11,
+          "title": "11-G1 Flying",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/11-G1%20Flying.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 12,
+          "title": "12-G1 Woof",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/12-G1%20Woof.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 13,
+          "title": "13-G1 The Painter",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/13-G1%20The%20Painter.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 14,
+          "title": "14-G1 Smells",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/14-G1%20Smells.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 15,
+          "title": "15-G1 Jesse",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/15-G1%20Jesse.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 16,
+          "title": "16-G1 Monkey",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/16-G1%20Monkey.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 17,
+          "title": "17-G1 Oh No!",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/17-G1%20Oh%20No!.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 18,
+          "title": "18-G1 Getting Dressed",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/18-G1%20Getting%20Dressed.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 19,
+          "title": "19-G1 Family Pictures",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/19-G1%20Family%20Pictures.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 20,
+          "title": "20-G1 My Bath",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/20-G1%20My%20Bath.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 21,
+          "title": "21-G1 Orson s Tummy Ache",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/21-G1%20Orson_s%20Tummy%20Ache.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 22,
+          "title": "22-G1 At the Park",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/22-G1%20At%20the%20Park.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 23,
+          "title": "23-G1 Bubbles",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/23-G1%20Bubbles.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 24,
+          "title": "24-G1 The Farmers",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/24-G1%20The%20Farmers.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 25,
+          "title": "25-G1 Mom And Kayla",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/25-G1%20Mom%20And%20Kayla.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 26,
+          "title": "26-G1 My Puppy",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/26-G1%20My%20Puppy.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 27,
+          "title": "27-G1 Our Garden",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/27-G1%20Our%20Garden.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 28,
+          "title": "28-G1 My New School",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/28-G1%20My%20New%20School.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 29,
+          "title": "29-G1 Boots and Shoes",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/29-G1%20Boots%20and%20Shoes.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 30,
+          "title": "30-G1 Traffic",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/30-G1%20Traffic.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 31,
+          "title": "31-G1 A Day At The Park",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/31-G1%20A%20Day%20At%20The%20Park.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 32,
+          "title": "32-G1 Jump",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/32-G1%20Jump.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 33,
+          "title": "33-G1 Looking For Taco",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/33-G1%20Looking%20For%20Taco.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 34,
+          "title": "34-G1 Swim",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/34-G1%20Swim.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 35,
+          "title": "35-G1 Meli On The Stairs",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/35-G1%20Meli%20On%20The%20Stairs.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 36,
+          "title": "36-G1 The Sky",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/36-G1%20The%20Sky.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 37,
+          "title": "37-G1 Homes",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/37-G1%20Homes.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 38,
+          "title": "38-G1 The Picnic",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/38-G1%20The%20Picnic.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 39,
+          "title": "39-G1 Clouds",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/39-G1%20Clouds.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 40,
+          "title": "40-G1 Look",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/40-G1%20Look.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 41,
+          "title": "41-G1 The Three Pigs",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/41-G1%20The%20Three%20Pigs.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 42,
+          "title": "42-G1 Snap",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/42-G1%20Snap.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 43,
+          "title": "43-G1 Up In A Tree",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/43-G1%20Up%20In%20A%20Tree.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 44,
+          "title": "44-G1 Apple Pie",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/44-G1%20Apple%20Pie.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 45,
+          "title": "45-G1 Time For Lunch",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/45-G1%20Time%20For%20Lunch.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 46,
+          "title": "46-G1 A Rainy Day",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/46-G1%20A%20Rainy%20Day.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 47,
+          "title": "47-G1 The Good Dog",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/47-G1%20The%20Good%20Dog.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 48,
+          "title": "48-G1 My Friend",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/48-G1%20My%20Friend.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 49,
+          "title": "49-G1 What Am I",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/49-G1%20What%20Am%20I.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 50,
+          "title": "50-G1 Trucks",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/50-G1%20Trucks.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 51,
+          "title": "51-G1 The Three Bears",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/51-G1%20The%20Three%20Bears.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 52,
+          "title": "52-G1 The Puppets",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/52-G1%20The%20Puppets.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 53,
+          "title": "53-G1 The Surprise",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/53-G1%20The%20Surprise.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 54,
+          "title": "54-G1 Play Ball.mp4",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/54-G1%20Play%20Ball.mp4.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 55,
+          "title": "55-G1 Talent Show",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/55-G1%20Talent%20Show.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 56,
+          "title": "56-G1 Kate s Truck",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/56-G1%20Kate_s%20Truck.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 57,
+          "title": "57-G1 Baby Pictures",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/57-G1%20Baby%20Pictures.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 58,
+          "title": "58-G1 A Visit To The City",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/58-G1%20A%20Visit%20To%20The%20City.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 59,
+          "title": "59-G1 A Walk With Meli",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/59-G1%20A%20Walk%20With%20Meli.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 60,
+          "title": "60 At the Pond",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/60%20At%20the%20Pond.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 61,
+          "title": "61-G1 The Three Little Pigs And The Big Bad Wolf",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/61-G1%20The%20Three%20Little%20Pigs%20And%20The%20Big%20Bad%20Wolf.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 62,
+          "title": "62-G1 A Box",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/62-G1%20A%20Box.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 63,
+          "title": "63-G1 The Soccer Game",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/63-G1%20The%20Soccer%20Game.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 64,
+          "title": "64-G1 Books",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/64-G1%20Books.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 65,
+          "title": "65-G1 Bunny And The Monster",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/65-G1%20Bunny%20And%20The%20Monster.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 66,
+          "title": "66-G1 The Pool",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/66-G1%20The%20Pool.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 67,
+          "title": "67-G1 Pictures Of Hugs",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/67-G1%20Pictures%20Of%20Hugs.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 68,
+          "title": "68-G1 Farmer Dans  Ducks",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/68-G1%20Farmer%20Dans%20%20Ducks.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 69,
+          "title": "69-G1 The Big Storm",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/69-G1%20The%20Big%20Storm.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 70,
+          "title": "70-G1 My Five Senses",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/70-G1%20My%20Five%20Senses.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 71,
+          "title": "71-G1 Goldie and the Three Bears",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/71-G1%20Goldie%20and%20the%20Three%20Bears.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 72,
+          "title": "72-G1 Helping Mom",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/72-G1%20Helping%20Mom.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 73,
+          "title": "73-G1 Papas  Birthday",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/73-G1%20Papas_%20Birthday.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 74,
+          "title": "74-G1 The Storm",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/74-G1%20The%20Storm.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 75,
+          "title": "75-G1 Baby Bird",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/75-G1%20Baby%20Bird.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 76,
+          "title": "76-G1 Lizzy",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/76-G1%20Lizzy.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 77,
+          "title": "77-G1 The Goat In The Garden",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/77-G1%20The%20Goat%20In%20The%20Garden.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 78,
+          "title": "78-G1 A Surprise For Mom",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/78-G1%20A%20Surprise%20For%20Mom.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 79,
+          "title": "79-G1 How Frogs Grow",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/79-G1%20How%20Frogs%20Grow.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 80,
+          "title": "80-G1 Brave Taco",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/80-G1%20Brave%20Taco.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 81,
+          "title": "81-G1 The Skunk With No Stripes",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/81-G1%20The%20Skunk%20With%20No%20Stripes.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 82,
+          "title": "82-G1 The Tree House",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/82-G1%20The%20Tree%20House.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 83,
+          "title": "83-G1 The Gingerbread Man",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/83-G1%20The%20Gingerbread%20Man.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 84,
+          "title": "84-G1 Out For Lunch",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/84-G1%20Out%20For%20Lunch.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 85,
+          "title": "85-G1 Dinner For Maisy",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/85-G1%20Dinner%20For%20Maisy.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 86,
+          "title": "86-G1 Just Wait And See",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/86-G1%20Just%20Wait%20And%20See.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 87,
+          "title": "87-G1 In Winter",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/87-G1%20In%20Winter.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 88,
+          "title": "88-G1 All About Animal Babies",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/88-G1%20All%20About%20Animal%20Babies.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 89,
+          "title": "89-G1 The Gecko That Came To Schoo",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/89-G1%20The%20Gecko%20That%20Came%20To%20Schoo.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 90,
+          "title": "90-G1 Grandma s Glasses",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/90-G1%20Grandma_s%20Glasses.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 91,
+          "title": "91-G1 Fun For Hugs",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/91-G1%20Fun%20For%20Hugs.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 92,
+          "title": "92-G1 Home Sweet Home",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/92-G1%20Home%20Sweet%20Home.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 93,
+          "title": "93-G1 Bear s Birthday",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/93-G1%20Bear_s%20Birthday.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 94,
+          "title": "94-G1 The Bossy Pig",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/94-G1%20The%20Bossy%20Pig.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 95,
+          "title": "95-G1 Stone Soup",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/95-G1%20Stone%20Soup.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 96,
+          "title": "96-G1 Best New Friends",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/96-G1%20Best%20New%20Friends.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 97,
+          "title": "97-G1 The Missing Cat",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/97-G1%20The%20Missing%20Cat.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 98,
+          "title": "98-G1 The Lucky Penny",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/98-G1%20The%20Lucky%20Penny.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 99,
+          "title": "99-G1 All About Honeybees",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/99-G1%20All%20About%20Honeybees.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 100,
+          "title": "100-G1 A Walk At Night",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/100-G1%20A%20Walk%20At%20Night.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 101,
+          "title": "101-G1 Too Tal",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/101-G1%20Too%20Tal.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 102,
+          "title": "102-G1 Two Teams",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/102-G1%20Two%20Teams.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 103,
+          "title": "103-G1 All About Dolphins",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/103-G1%20All%20About%20Dolphins.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 104,
+          "title": "104-G1 The Cherries",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/104-G1%20The%20Cherries.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 105,
+          "title": "105-G1 The Lion And The Mouse",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/105-G1%20The%20Lion%20And%20The%20Mouse.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 106,
+          "title": "106-G1 All About Boats",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/106-G1%20All%20About%20Boats.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 107,
+          "title": "107-G1 The Three Billy Goats",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/107-G1%20The%20Three%20Billy%20Goats.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 108,
+          "title": "108-G1 All About Chimps",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/108-G1%20All%20About%20Chimps.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 109,
+          "title": "109-G1 Bad-Luck Day",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/109-G1%20Bad-Luck%20Day.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 110,
+          "title": "110-G1 A Trip to the Laundramutt",
+          "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/110-G1%20A%20Trip%20to%20the%20Laundramutt.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 1,
+      "title": "01-G1 Waking Up",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/01-G1%20Waking%20Up.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 2,
+      "title": "02-G1 Frog Food",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/02-G1%20Frog%20Food.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 3,
+      "title": "03-G1 The New Puppy",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/03-G1%20The%20New%20Puppy.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 4,
+      "title": "04-G1 Friends",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/04-G1%20Friends.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 5,
+      "title": "05-G1 Sam and Papa",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/05-G1%20Sam%20and%20Papa.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 6,
+      "title": "06-G1 Too Much Stuff",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/06-G1%20Too%20Much%20Stuff.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 7,
+      "title": "07-G1 Ant Can t",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/07-G1%20Ant%20Can_t.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 8,
+      "title": "08-G1 Eggs",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/08-G1%20Eggs.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 9,
+      "title": "09-G1 Where things grow",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/09-G1%20Where%20things%20grow.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 10,
+      "title": "10-G1 The Very Busy Hen",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/10-G1%20The%20Very%20Busy%20Hen.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 11,
+      "title": "11-G1 Flying",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/11-G1%20Flying.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 12,
+      "title": "12-G1 Woof",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/12-G1%20Woof.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 13,
+      "title": "13-G1 The Painter",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/13-G1%20The%20Painter.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 14,
+      "title": "14-G1 Smells",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/14-G1%20Smells.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 15,
+      "title": "15-G1 Jesse",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/15-G1%20Jesse.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 16,
+      "title": "16-G1 Monkey",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/16-G1%20Monkey.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 17,
+      "title": "17-G1 Oh No!",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/17-G1%20Oh%20No!.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 18,
+      "title": "18-G1 Getting Dressed",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/18-G1%20Getting%20Dressed.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 19,
+      "title": "19-G1 Family Pictures",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/19-G1%20Family%20Pictures.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 20,
+      "title": "20-G1 My Bath",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/20-G1%20My%20Bath.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 21,
+      "title": "21-G1 Orson s Tummy Ache",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/21-G1%20Orson_s%20Tummy%20Ache.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 22,
+      "title": "22-G1 At the Park",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/22-G1%20At%20the%20Park.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 23,
+      "title": "23-G1 Bubbles",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/23-G1%20Bubbles.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 24,
+      "title": "24-G1 The Farmers",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/24-G1%20The%20Farmers.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 25,
+      "title": "25-G1 Mom And Kayla",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/25-G1%20Mom%20And%20Kayla.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 26,
+      "title": "26-G1 My Puppy",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/26-G1%20My%20Puppy.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 27,
+      "title": "27-G1 Our Garden",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/27-G1%20Our%20Garden.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 28,
+      "title": "28-G1 My New School",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/28-G1%20My%20New%20School.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 29,
+      "title": "29-G1 Boots and Shoes",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/29-G1%20Boots%20and%20Shoes.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 30,
+      "title": "30-G1 Traffic",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/30-G1%20Traffic.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 31,
+      "title": "31-G1 A Day At The Park",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/31-G1%20A%20Day%20At%20The%20Park.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 32,
+      "title": "32-G1 Jump",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/32-G1%20Jump.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 33,
+      "title": "33-G1 Looking For Taco",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/33-G1%20Looking%20For%20Taco.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 34,
+      "title": "34-G1 Swim",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/34-G1%20Swim.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 35,
+      "title": "35-G1 Meli On The Stairs",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/35-G1%20Meli%20On%20The%20Stairs.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 36,
+      "title": "36-G1 The Sky",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/36-G1%20The%20Sky.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 37,
+      "title": "37-G1 Homes",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/37-G1%20Homes.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 38,
+      "title": "38-G1 The Picnic",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/38-G1%20The%20Picnic.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 39,
+      "title": "39-G1 Clouds",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/39-G1%20Clouds.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 40,
+      "title": "40-G1 Look",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/40-G1%20Look.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 41,
+      "title": "41-G1 The Three Pigs",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/41-G1%20The%20Three%20Pigs.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 42,
+      "title": "42-G1 Snap",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/42-G1%20Snap.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 43,
+      "title": "43-G1 Up In A Tree",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/43-G1%20Up%20In%20A%20Tree.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 44,
+      "title": "44-G1 Apple Pie",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/44-G1%20Apple%20Pie.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 45,
+      "title": "45-G1 Time For Lunch",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/45-G1%20Time%20For%20Lunch.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 46,
+      "title": "46-G1 A Rainy Day",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/46-G1%20A%20Rainy%20Day.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 47,
+      "title": "47-G1 The Good Dog",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/47-G1%20The%20Good%20Dog.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 48,
+      "title": "48-G1 My Friend",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/48-G1%20My%20Friend.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 49,
+      "title": "49-G1 What Am I",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/49-G1%20What%20Am%20I.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 50,
+      "title": "50-G1 Trucks",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/50-G1%20Trucks.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 51,
+      "title": "51-G1 The Three Bears",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/51-G1%20The%20Three%20Bears.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 52,
+      "title": "52-G1 The Puppets",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/52-G1%20The%20Puppets.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 53,
+      "title": "53-G1 The Surprise",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/53-G1%20The%20Surprise.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 54,
+      "title": "54-G1 Play Ball.mp4",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/54-G1%20Play%20Ball.mp4.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 55,
+      "title": "55-G1 Talent Show",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/55-G1%20Talent%20Show.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 56,
+      "title": "56-G1 Kate s Truck",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/56-G1%20Kate_s%20Truck.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 57,
+      "title": "57-G1 Baby Pictures",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/57-G1%20Baby%20Pictures.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 58,
+      "title": "58-G1 A Visit To The City",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/58-G1%20A%20Visit%20To%20The%20City.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 59,
+      "title": "59-G1 A Walk With Meli",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/59-G1%20A%20Walk%20With%20Meli.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 60,
+      "title": "60 At the Pond",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/60%20At%20the%20Pond.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 61,
+      "title": "61-G1 The Three Little Pigs And The Big Bad Wolf",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/61-G1%20The%20Three%20Little%20Pigs%20And%20The%20Big%20Bad%20Wolf.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 62,
+      "title": "62-G1 A Box",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/62-G1%20A%20Box.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 63,
+      "title": "63-G1 The Soccer Game",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/63-G1%20The%20Soccer%20Game.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 64,
+      "title": "64-G1 Books",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/64-G1%20Books.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 65,
+      "title": "65-G1 Bunny And The Monster",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/65-G1%20Bunny%20And%20The%20Monster.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 66,
+      "title": "66-G1 The Pool",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/66-G1%20The%20Pool.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 67,
+      "title": "67-G1 Pictures Of Hugs",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/67-G1%20Pictures%20Of%20Hugs.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 68,
+      "title": "68-G1 Farmer Dans  Ducks",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/68-G1%20Farmer%20Dans%20%20Ducks.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 69,
+      "title": "69-G1 The Big Storm",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/69-G1%20The%20Big%20Storm.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 70,
+      "title": "70-G1 My Five Senses",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/70-G1%20My%20Five%20Senses.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 71,
+      "title": "71-G1 Goldie and the Three Bears",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/71-G1%20Goldie%20and%20the%20Three%20Bears.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 72,
+      "title": "72-G1 Helping Mom",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/72-G1%20Helping%20Mom.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 73,
+      "title": "73-G1 Papas  Birthday",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/73-G1%20Papas_%20Birthday.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 74,
+      "title": "74-G1 The Storm",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/74-G1%20The%20Storm.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 75,
+      "title": "75-G1 Baby Bird",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/75-G1%20Baby%20Bird.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 76,
+      "title": "76-G1 Lizzy",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/76-G1%20Lizzy.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 77,
+      "title": "77-G1 The Goat In The Garden",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/77-G1%20The%20Goat%20In%20The%20Garden.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 78,
+      "title": "78-G1 A Surprise For Mom",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/78-G1%20A%20Surprise%20For%20Mom.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 79,
+      "title": "79-G1 How Frogs Grow",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/79-G1%20How%20Frogs%20Grow.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 80,
+      "title": "80-G1 Brave Taco",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/80-G1%20Brave%20Taco.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 81,
+      "title": "81-G1 The Skunk With No Stripes",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/81-G1%20The%20Skunk%20With%20No%20Stripes.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 82,
+      "title": "82-G1 The Tree House",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/82-G1%20The%20Tree%20House.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 83,
+      "title": "83-G1 The Gingerbread Man",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/83-G1%20The%20Gingerbread%20Man.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 84,
+      "title": "84-G1 Out For Lunch",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/84-G1%20Out%20For%20Lunch.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 85,
+      "title": "85-G1 Dinner For Maisy",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/85-G1%20Dinner%20For%20Maisy.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 86,
+      "title": "86-G1 Just Wait And See",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/86-G1%20Just%20Wait%20And%20See.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 87,
+      "title": "87-G1 In Winter",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/87-G1%20In%20Winter.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 88,
+      "title": "88-G1 All About Animal Babies",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/88-G1%20All%20About%20Animal%20Babies.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 89,
+      "title": "89-G1 The Gecko That Came To Schoo",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/89-G1%20The%20Gecko%20That%20Came%20To%20Schoo.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 90,
+      "title": "90-G1 Grandma s Glasses",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/90-G1%20Grandma_s%20Glasses.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 91,
+      "title": "91-G1 Fun For Hugs",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/91-G1%20Fun%20For%20Hugs.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 92,
+      "title": "92-G1 Home Sweet Home",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/92-G1%20Home%20Sweet%20Home.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 93,
+      "title": "93-G1 Bear s Birthday",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/93-G1%20Bear_s%20Birthday.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 94,
+      "title": "94-G1 The Bossy Pig",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/94-G1%20The%20Bossy%20Pig.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 95,
+      "title": "95-G1 Stone Soup",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/95-G1%20Stone%20Soup.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 96,
+      "title": "96-G1 Best New Friends",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/96-G1%20Best%20New%20Friends.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 97,
+      "title": "97-G1 The Missing Cat",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/97-G1%20The%20Missing%20Cat.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 98,
+      "title": "98-G1 The Lucky Penny",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/98-G1%20The%20Lucky%20Penny.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 99,
+      "title": "99-G1 All About Honeybees",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/99-G1%20All%20About%20Honeybees.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 100,
+      "title": "100-G1 A Walk At Night",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/100-G1%20A%20Walk%20At%20Night.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 101,
+      "title": "101-G1 Too Tal",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/101-G1%20Too%20Tal.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 102,
+      "title": "102-G1 Two Teams",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/102-G1%20Two%20Teams.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 103,
+      "title": "103-G1 All About Dolphins",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/103-G1%20All%20About%20Dolphins.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 104,
+      "title": "104-G1 The Cherries",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/104-G1%20The%20Cherries.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 105,
+      "title": "105-G1 The Lion And The Mouse",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/105-G1%20The%20Lion%20And%20The%20Mouse.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 106,
+      "title": "106-G1 All About Boats",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/106-G1%20All%20About%20Boats.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 107,
+      "title": "107-G1 The Three Billy Goats",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/107-G1%20The%20Three%20Billy%20Goats.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 108,
+      "title": "108-G1 All About Chimps",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/108-G1%20All%20About%20Chimps.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 109,
+      "title": "109-G1 Bad-Luck Day",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/109-G1%20Bad-Luck%20Day.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Heinemann",
+      "course": "G1",
+      "topic": "",
+      "page_key": "Heinemann/G1",
+      "page_url": "https://hoctienganh.xyz/playtt/Heinemann/G1",
+      "order": 110,
+      "title": "110-G1 A Trip to the Laundramutt",
+      "video_url": "https://fileta.hoctienganh.xyz/Heinemann/G1/110-G1%20A%20Trip%20to%20the%20Laundramutt.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

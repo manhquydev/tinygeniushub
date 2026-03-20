@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-03-17T02:35:39.836Z",
+  "windowDays": 14,
+  "gates": {
+    "g0": {
+      "fullSplitPass": true,
+      "pilotSplitPass": true,
+      "pilotDbPass": true,
+      "overall": true
+    },
+    "funnel": {
+      "status": "fail",
+      "globalEvaluation": {
+        "gateStatus": "fail",
+        "metrics": {
+          "checkoutToPurchase": {
+            "value": 0,
+            "status": "fail",
+            "threshold": {
+              "passGte": 18,
+              "warnGte": 12
+            }
+          },
+          "purchaseToActiveLearner": {
+            "value": 0,
+            "status": "fail",
+            "threshold": {
+              "passGte": 45,
+              "warnGte": 30
+            }
+          },
+          "minCheckouts": {
+            "value": 0,
+            "status": "fail",
+            "threshold": {
+              "passGte": 20,
+              "warnGte": 8
+            }
+          }
+        }
+      },
+      "channelEvaluations": [],
+      "skuChannelEvaluations": []
+    }
+  },
+  "funnel": {
+    "totals": {
+      "checkoutStarted": 0,
+      "purchaseSucceeded": 0,
+      "enrollments": 0,
+      "lessonCompleted": 0,
+      "activeLearners": 0,
+      "checkoutToPurchaseRatePct": 0,
+      "purchaseToActiveLearnerRatePct": 0
+    },
+    "coursesFound": 12
+  },
+  "decision": {
+    "decision": "HOLD",
+    "reason": "No pilot traffic yet; funnel metrics are not statistically meaningful.",
+    "actions": [
+      "Start pilot acquisition traffic and ensure checkout events are recorded.",
+      "Run weekly pack after at least 1 week of live traffic."
+    ]
+  },
+  "abCourses": {
+    "summary": {
+      "checkoutStarted": 0,
+      "purchaseSucceeded": 0,
+      "checkoutToPurchaseRatePct": 0
+    },
+    "variantRows": []
+  },
+  "sources": {
+    "splitFull": "plans/2026-03-17-education-agent-team/reports/split-integrity-full.json",
+    "splitPilot": "plans/2026-03-17-education-agent-team/reports/split-integrity-pilot.json",
+    "dbIntegrity": "plans/2026-03-17-education-agent-team/reports/pilot-db-integrity.json",
+    "funnel": "plans/2026-03-17-education-agent-team/reports/pilot-funnel-report.json",
+    "funnelGate": "plans/2026-03-17-education-agent-team/reports/pilot-funnel-gate-evaluation.json",
+    "coursesAbCvr": "plans/2026-03-17-education-agent-team/reports/courses-ab-cvr-report.json"
+  }
+}

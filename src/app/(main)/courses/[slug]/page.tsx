@@ -10,7 +10,10 @@ import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { resolveCourseCoverImage } from "@/modules/courses/course-media";
 import { getCourseBundleByCourseSlug } from "@/modules/courses/course-bundles";
 import { getStorefrontCourses, getRelatedCourses } from "@/modules/courses/course-service";
-import { getBundleStorefrontContent } from "@/modules/courses/course-storefront-content";
+import {
+  buildCourseClaritySnapshot,
+  getBundleStorefrontContent,
+} from "@/modules/courses/course-storefront-content";
 import { isLegacyBundleRouteSlug } from "@/modules/courses/legacy-bundle-routes";
 import { buildCourseJsonLd, safeJsonLd } from "@/lib/seo/course-jsonld";
 import { CourseBreadcrumb } from "@/components/courses/course-breadcrumb";
@@ -138,7 +141,15 @@ export default async function CourseDetailPage({ params }: Props) {
   const bundleContent = bundle ? getBundleStorefrontContent(bundle.slug) : null;
   const normalizedCover = resolveCourseCoverImage(course.slug, course.coverImageUrl);
   const fitChecklist = getFitChecklist(bundle?.slug ?? null);
-  const outcomeTimeline = getOutcomeTimeline(bundle?.slug ?? null);
+  const claritySnapshot = bundle
+    ? buildCourseClaritySnapshot({
+        bundleSlug: bundle.slug,
+        courseSlug: course.slug,
+        courseTitle: course.title,
+        lessonCount: course._count.lessons,
+      })
+    : null;
+  const outcomeTimeline = getOutcomeTimeline(bundle?.slug ?? null, claritySnapshot);
   const courseUnitLabel = bundleContent?.courseUnitLabel ?? "giai đoạn";
 
   let trackPosition: number | null = null;
@@ -218,7 +229,7 @@ export default async function CourseDetailPage({ params }: Props) {
       <BundleDetailViewTracker variant={coursesVariant} bundleSlug={course.slug} tracks={1} lessons={course._count.lessons} />
       <CourseDetailStickyHeader
         title={course.title}
-        salePriceVnd={pricing.salePriceVnd}
+        pricing={pricing}
         courseSlug={course.slug}
         checkoutLabel={checkoutLabel}
         isOwned={isOwned}
@@ -247,6 +258,7 @@ export default async function CourseDetailPage({ params }: Props) {
         trackPosition={trackPosition}
         trackTotal={trackTotal}
         trackLabel={trackLabel}
+        claritySnapshot={claritySnapshot}
       />
       <CourseDetailFitChecklist
         fitChecklist={fitChecklist}
@@ -255,7 +267,12 @@ export default async function CourseDetailPage({ params }: Props) {
         variant={coursesVariant}
       />
       <CourseDetailDifference differenceCards={differenceCards} courseSlug={course.slug} variant={coursesVariant} />
-      <CourseDetailTimeline outcomeTimeline={outcomeTimeline} courseSlug={course.slug} variant={coursesVariant} />
+      <CourseDetailTimeline
+        outcomeTimeline={outcomeTimeline}
+        courseSlug={course.slug}
+        variant={coursesVariant}
+        claritySnapshot={claritySnapshot}
+      />
       <CourseDetailCurriculum
         lessons={course.lessons}
         totalLessonCount={course._count.lessons}

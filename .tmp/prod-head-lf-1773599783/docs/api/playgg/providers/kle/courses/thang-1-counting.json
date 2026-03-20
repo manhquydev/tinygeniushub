@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "KLE",
+    "provider_slug": "kle",
+    "course": "Thang_1_Counting",
+    "course_slug": "thang-1-counting",
+    "page_count": 1,
+    "video_count": 10
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "page_key": "KLE/Thang_1_Counting",
+      "path_segments": [
+        "KLE",
+        "Thang_1_Counting"
+      ],
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "video_count": 10,
+      "videos": [
+        {
+          "order": 1,
+          "title": "10 Little Airplanes - Kids Songs - Count To Ten - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/10%20Little%20Airplanes%20-%20Kids%20Songs%20-%20Count%20To%20Ten%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "10 Little Fishies - Featuring Baby Shark! - Kids Songs - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/10%20Little%20Fishies%20-%20Featuring%20Baby%20Shark%21%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "After A While, Crocodile - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/After%20A%20While,%20Crocodile%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "Baby Shark - Kids Songs - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Baby%20Shark%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "BINGO - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/BINGO%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "Bye Bye Goodbye - Goodbye Song for Kids - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Bye%20Bye%20Goodbye%20-%20Goodbye%20Song%20for%20Kids%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 7,
+          "title": "Clean Up Song - Kids Song for Tidying Up - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Clean%20Up%20Song%20-%20Kids%20Song%20for%20Tidying%20Up%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 8,
+          "title": "Count And Move (HD) - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Count%20And%20Move%20%28HD%29%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 9,
+          "title": "Count Down From 20 to 1 - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Count%20Down%20From%2020%20to%201%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 10,
+          "title": "Do You Like Broccoli Ice Cream- - Super Simple Songs",
+          "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Do%20You%20Like%20Broccoli%20Ice%20Cream-%20-%20Super%20Simple%20Songs.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 1,
+      "title": "10 Little Airplanes - Kids Songs - Count To Ten - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/10%20Little%20Airplanes%20-%20Kids%20Songs%20-%20Count%20To%20Ten%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 2,
+      "title": "10 Little Fishies - Featuring Baby Shark! - Kids Songs - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/10%20Little%20Fishies%20-%20Featuring%20Baby%20Shark%21%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 3,
+      "title": "After A While, Crocodile - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/After%20A%20While,%20Crocodile%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 4,
+      "title": "Baby Shark - Kids Songs - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Baby%20Shark%20-%20Kids%20Songs%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 5,
+      "title": "BINGO - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/BINGO%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 6,
+      "title": "Bye Bye Goodbye - Goodbye Song for Kids - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Bye%20Bye%20Goodbye%20-%20Goodbye%20Song%20for%20Kids%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 7,
+      "title": "Clean Up Song - Kids Song for Tidying Up - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Clean%20Up%20Song%20-%20Kids%20Song%20for%20Tidying%20Up%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 8,
+      "title": "Count And Move (HD) - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Count%20And%20Move%20%28HD%29%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 9,
+      "title": "Count Down From 20 to 1 - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Count%20Down%20From%2020%20to%201%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "KLE",
+      "course": "Thang_1_Counting",
+      "topic": "",
+      "page_key": "KLE/Thang_1_Counting",
+      "page_url": "https://hoctienganh.xyz/playgg/KLE/Thang_1_Counting",
+      "order": 10,
+      "title": "Do You Like Broccoli Ice Cream- - Super Simple Songs",
+      "video_url": "https://rclone2.2tech.vn/KLE/Thang_1_Counting/Do%20You%20Like%20Broccoli%20Ice%20Cream-%20-%20Super%20Simple%20Songs.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

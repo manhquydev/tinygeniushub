@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "Five Little Monkeys",
+    "provider_slug": "five-little-monkeys",
+    "course_count": 1,
+    "page_count": 1,
+    "video_count": 10
+  },
+  "courses": [
+    {
+      "course": "default",
+      "course_slug": "default",
+      "page_count": 1,
+      "video_count": 10,
+      "path": "providers/five-little-monkeys/courses/default.json"
+    }
+  ]
+}

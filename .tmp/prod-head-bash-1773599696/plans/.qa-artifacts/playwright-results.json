@@ -1,0 +1,435 @@
+{
+  "generatedAt": "2026-02-24T11:11:13.747Z",
+  "baseUrl": "http://localhost:3000",
+  "domain1": {
+    "routes": [
+      {
+        "path": "/",
+        "initialUrl": "http://localhost:3000/",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/",
+        "title": "Cùng Con Tự Học - Lộ trình học tập cho trẻ 2-6 tuổi",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/about",
+        "initialUrl": "http://localhost:3000/about",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/about",
+        "title": "Giới Thiệu | Cùng Con Tự Học | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/pricing",
+        "initialUrl": "http://localhost:3000/pricing",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/pricing",
+        "title": "Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/blog",
+        "initialUrl": "http://localhost:3000/blog",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/blog",
+        "title": "Blog Cùng Con T? H?c | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/blog/5-meo-hoc-tieng-anh-tai-nha",
+        "initialUrl": "http://localhost:3000/blog/5-meo-hoc-tieng-anh-tai-nha",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/blog/5-meo-hoc-tieng-anh-tai-nha",
+        "title": "5 mẹo học tiếng Anh tại nhà cho bé 3-5 tuổi | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/auth/login",
+        "initialUrl": "http://localhost:3000/auth/login",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/auth/login",
+        "title": "Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/auth/register",
+        "initialUrl": "http://localhost:3000/auth/register",
+        "status": 404,
+        "finalUrl": "http://localhost:3000/auth/register",
+        "title": "Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [
+          "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        ],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 0
+      },
+      {
+        "path": "/contact",
+        "initialUrl": "http://localhost:3000/contact",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/contact",
+        "title": "Liên Hệ | Cùng Con Tự Học | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/privacy",
+        "initialUrl": "http://localhost:3000/privacy",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/privacy",
+        "title": "Chính Sách Bảo Mật | Cùng Con Tự Học | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/terms",
+        "initialUrl": "http://localhost:3000/terms",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/terms",
+        "title": "Điều Khoản Sử Dụng | Cùng Con Tự Học | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/refund-policy",
+        "initialUrl": "http://localhost:3000/refund-policy",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/refund-policy",
+        "title": "Chính Sách Hoàn Tiền | Cùng Con Tự Học | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/referral",
+        "initialUrl": "http://localhost:3000/referral",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/referral",
+        "title": "Giới Thiệu Bạn Bè | Cùng Con Tự Học | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/setup",
+        "initialUrl": "http://localhost:3000/setup",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/auth/login",
+        "title": "Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 11
+      },
+      {
+        "path": "/not-a-real-page-404-test",
+        "initialUrl": "http://localhost:3000/not-a-real-page-404-test",
+        "status": 404,
+        "finalUrl": "http://localhost:3000/not-a-real-page-404-test",
+        "title": "Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [
+          "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        ],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 0
+      },
+      {
+        "path": "/maintenance",
+        "initialUrl": "http://localhost:3000/maintenance",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/maintenance",
+        "title": "Bảo trì | Cùng Con Tự Học | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 0
+      },
+      {
+        "path": "/offline",
+        "initialUrl": "http://localhost:3000/offline",
+        "status": 200,
+        "finalUrl": "http://localhost:3000/offline",
+        "title": "Mất kết nối | Cùng Con Tự Học | Cùng Con Tự Học",
+        "titleFormatPass": false,
+        "consoleErrors": [],
+        "navFooterBrokenLinks": [],
+        "navFooterLinksChecked": 0
+      }
+    ],
+    "contactForm": {
+      "emptySubmit": {
+        "behavior": "submit_button_disabled",
+        "pass": true,
+        "note": "Form ch?n submit khi tr?ng b?ng disabled button, kh?ng hi?n message l?i ri?ng."
+      },
+      "invalidEmail": {
+        "emailValidity": false,
+        "buttonEnabledInvalidEmail": true,
+        "pass": true,
+        "note": "Browser native validation ch?n email sai format."
+      },
+      "messageOver500": {
+        "feedback": "Chúng tôi luôn sẵn sàng hỗ trợ phụ huynh, nhà trường và đối tác.",
+        "pass": true,
+        "note": "Schema API cho ph?p t?i 2000 k? t?; testcase >500 ???c x? l? th?nh c?ng (kh?ng reject)."
+      },
+      "validSubmit": {
+        "feedback": "Chúng tôi luôn sẵn sàng hỗ trợ phụ huynh, nhà trường và đối tác.",
+        "pass": true
+      },
+      "xss": {
+        "reflectedScriptTag": false,
+        "pass": true,
+        "note": "Payload kh?ng b? render th?nh executable script trong UI ph?n h?i."
+      }
+    },
+    "authFlow": {
+      "parentDashboard": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/auth/login"
+      },
+      "adminHome": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/auth/login"
+      },
+      "adminUsers": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/auth/login"
+      },
+      "setup": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/auth/login"
+      },
+      "invalidLogin": {
+        "hasErrorMessage": false,
+        "errorText": "",
+        "finalUrl": "http://localhost:3000/auth/login"
+      },
+      "validLogin": {
+        "tested": false,
+        "note": "Kh?ng c? test account h?p l? trong scope QA n?y."
+      },
+      "nonAdminAdminAccess": {
+        "tested": false,
+        "note": "Thi?u account non-admin ?? x?c th?c ?? ki?m th? 403/redirect."
+      }
+    },
+    "blogSystem": {
+      "hasPosts": true,
+      "firstPost": "/blog/5-meo-hoc-tieng-anh-tai-nha",
+      "postLoad": {
+        "tested": true,
+        "path": "/blog/5-meo-hoc-tieng-anh-tai-nha",
+        "status": 200,
+        "title": "5 mẹo học tiếng Anh tại nhà cho bé 3-5 tuổi | Cùng Con Tự Học",
+        "hasArticle": true
+      },
+      "paginationDetected": false,
+      "socialShareDetected": false
+    },
+    "referralInvite": {
+      "referralPage": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/referral",
+        "hasReferralKeyword": true
+      },
+      "invalidToken": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/accept-invite?token=INVALID",
+        "hasErrorLikeText": true
+      },
+      "noToken": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/"
+      }
+    }
+  },
+  "domain2": {
+    "responsive": {
+      "mobile": {
+        "/": {
+          "hasHorizontalScroll": false,
+          "overflowElements": 2,
+          "distortedImages": 1,
+          "minTapTarget": 21.609375,
+          "navToggleExists": false
+        },
+        "/pricing": {
+          "hasHorizontalScroll": false,
+          "overflowElements": 0,
+          "distortedImages": 1,
+          "minTapTarget": 21.609375,
+          "navToggleExists": false
+        },
+        "/blog": {
+          "hasHorizontalScroll": false,
+          "overflowElements": 4,
+          "distortedImages": 1,
+          "minTapTarget": 20,
+          "navToggleExists": false
+        }
+      },
+      "tablet": {
+        "/": {
+          "hasHorizontalScroll": false,
+          "overflowElements": 2,
+          "distortedImages": 1,
+          "minTapTarget": 21.609375,
+          "navToggleExists": false
+        },
+        "/pricing": {
+          "hasHorizontalScroll": false,
+          "overflowElements": 0,
+          "distortedImages": 1,
+          "minTapTarget": 21.609375,
+          "navToggleExists": false
+        },
+        "/blog": {
+          "hasHorizontalScroll": false,
+          "overflowElements": 2,
+          "distortedImages": 1,
+          "minTapTarget": 20,
+          "navToggleExists": false
+        }
+      },
+      "desktop": {
+        "/": {
+          "hasHorizontalScroll": false,
+          "overflowElements": 8,
+          "distortedImages": 0,
+          "minTapTarget": 21.609375,
+          "navToggleExists": false
+        },
+        "/pricing": {
+          "hasHorizontalScroll": false,
+          "overflowElements": 0,
+          "distortedImages": 0,
+          "minTapTarget": 21.609375,
+          "navToggleExists": false
+        },
+        "/blog": {
+          "hasHorizontalScroll": false,
+          "overflowElements": 2,
+          "distortedImages": 0,
+          "minTapTarget": 20,
+          "navToggleExists": false
+        }
+      }
+    },
+    "visualConsistency": {
+      "fontFamily": "\"Be Vietnam Pro\", \"Be Vietnam Pro Fallback\", sans-serif",
+      "cssPrimaryVars": {},
+      "footerLinks": 12,
+      "foucDetected": false,
+      "mascotAnimatedVerified": false,
+      "mascotNote": "C?n visual/manual check animation state; automation ch?a x?c th?c semantic mascot state."
+    },
+    "errorStates": {
+      "notRealPage": {
+        "status": 404,
+        "finalUrl": "http://localhost:3000/not-a-real-page",
+        "hasErrorUI": true
+      },
+      "testError": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/test-error",
+        "hasErrorUI": true
+      },
+      "maintenance": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/maintenance",
+        "hasErrorUI": true
+      },
+      "offline": {
+        "status": 200,
+        "finalUrl": "http://localhost:3000/offline",
+        "hasErrorUI": true
+      },
+      "networkOfflineSimulation": {
+        "failed": false
+      }
+    }
+  },
+  "domain7": {
+    "keyboard": {
+      "/": {
+        "focusableCount": 46,
+        "focusVisibleRuleDetected": true
+      },
+      "/blog": {
+        "focusableCount": 52,
+        "focusVisibleRuleDetected": true
+      },
+      "/auth/login": {
+        "focusableCount": 38,
+        "focusVisibleRuleDetected": true
+      }
+    },
+    "semantic": {
+      "counts": {
+        "main": 1,
+        "nav": 3,
+        "header": 1,
+        "footer": 1,
+        "article": 19,
+        "section": 10,
+        "aside": 0
+      },
+      "missingAlt": 0,
+      "emptyAlt": 0,
+      "ariaLabelsCount": 8,
+      "ariaLabels": [
+        "Trang chủ Cùng Con Tự Học",
+        "Điều hướng trang chủ",
+        "5 trên 5 sao",
+        "5 trên 5 sao",
+        "4 trên 5 sao",
+        "Mở kênh liên lạc hỗ trợ",
+        "Cú liên lạc hỗ trợ",
+        "Trang chủ Cùng Con Tự Học"
+      ]
+    },
+    "aria": {
+      "count": 8,
+      "sample": [
+        "Trang chủ Cùng Con Tự Học",
+        "Điều hướng trang chủ",
+        "5 trên 5 sao",
+        "5 trên 5 sao",
+        "4 trên 5 sao",
+        "Mở kênh liên lạc hỗ trợ",
+        "Cú liên lạc hỗ trợ",
+        "Trang chủ Cùng Con Tự Học"
+      ]
+    }
+  },
+  "errors": []
+}

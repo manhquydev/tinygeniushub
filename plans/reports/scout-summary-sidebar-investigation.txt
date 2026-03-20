@@ -1,0 +1,113 @@
+SIDEBAR LAYOUT INVESTIGATION - EXECUTIVE SUMMARY
+================================================
+
+ISSUE: Admin sidebar still covering part of admin page content
+
+ROOT CAUSE IDENTIFIED:
+Chained peer-data attribute selectors in Tailwind v3 likely not compiling correctly.
+
+PROBLEMATIC CODE:
+File: src/components/ui/sidebar.tsx (line 341)
+"md:peer-data-[state=collapsed]:peer-data-[variant=sidebar]:pl-[--sidebar-width-icon]"
+
+THE PROBLEM:
+=============
+
+1. Sidebar (peer element) has these attributes:
+   - data-state="expanded" or "collapsed"
+   - data-variant="sidebar"
+   - When collapsed: fixed width = 3rem
+
+2. SidebarInset (sibling element) uses peer-data selectors:
+   Line 340: "md:peer-data-[variant=sidebar]:pl-[--sidebar-width]"     (16rem)
+   Line 341: "md:peer-data-[state=collapsed]:peer-data-[variant=sidebar]:pl-[--sidebar-width-icon]"  (3rem)
+
+3. Expected behavior:
+   - When expanded: padding-left = 16rem
+   - When collapsed: padding-left = 3rem
+
+4. Actual behavior (if chained selector doesn't work):
+   - Line 340's rule APPLIES and generates padding-left: 16rem
+   - Line 341's rule DOESN'T APPLY (not compiled to CSS)
+   - SidebarInset always has 16rem padding
+   - But sidebar shrinks to 3rem when collapsed
+   - Result: OVERLAP
+
+FILES INVOLVED:
+================
+
+1. src/components/ui/sidebar.tsx (369 lines)
+   - Sidebar component with peer class (line 228)
+   - SidebarInset with peer-data selectors (lines 329-348)
+   - SIDEBAR_WIDTH = "16rem"
+   - SIDEBAR_WIDTH_ICON = "3rem"
+
+2. src/app/(main)/admin/layout.tsx (63 lines)
+   - Uses SidebarProvider + AdminShellNav + SidebarInset
+   - AdminShellNav renders the Sidebar (peer)
+   - SidebarInset is sibling expecting to respond to peer data
+
+3. src/components/admin-shell-nav.tsx (265 lines)
+   - Renders <Sidebar collapsible="icon" variant="sidebar" />
+   - Sets data-variant="sidebar" via component prop
+
+4. src/app/globals.css
+   - No conflicting CSS rules breaking sibling selectors
+   - Body uses overflow-x: clip (doesn't affect peer combinators)
+
+5. tailwind.config.js
+   - Content path includes src/**/*.{js,ts,jsx,tsx}
+   - Should pick up all Tailwind classes
+
+KEY QUESTION TO ANSWER:
+======================
+
+Does Tailwind v3 compile chained peer-data attribute selectors?
+
+peer-data-[state=collapsed]:peer-data-[variant=sidebar]
+
+Should generate:
+  .peer[data-state="collapsed"][data-variant="sidebar"] ~ .target { ... }
+
+Or is this syntax not supported, causing no CSS to be generated?
+
+VERIFICATION STEPS:
+===================
+
+1. Check the build output:
+   .next/static/css/*.css
+   Search for: ".peer[data-state=" or "collapsed" or the problematic class string
+
+2. Browser DevTools:
+   - Toggle sidebar collapsed/expanded
+   - Check SidebarInset element's computed styles
+   - Verify padding-left value changes
+
+3. Check Tailwind version:
+   - See package.json for version
+   - Chained peer-data support may vary by version
+
+RECOMMENDATION:
+===============
+
+Replace chained peer-data selectors with one of these approaches:
+
+Option A: Use parent :has() selector (more reliable)
+Option B: Use CSS custom properties + inline styles
+Option C: Verify Tailwind version supports chained peer-data
+Option D: Split into separate, non-chained selector rules
+
+DETAILED ANALYSIS:
+==================
+
+See full report: scout-260318-sidebar-peer-data-analysis.md (367 lines)
+
+KEY FINDINGS:
+- Peer element: Present ✓
+- Data attributes: Present ✓  
+- Sibling relationship: Correct ✓
+- CSS variables: Defined ✓
+- Chained selector: SUSPECT ⚠️
+- Tailwind config: OK ✓
+- Blocking CSS: None ✓
+

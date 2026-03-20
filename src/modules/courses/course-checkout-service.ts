@@ -55,6 +55,16 @@ function generatePayosOrderCode() {
   return Number(`${Date.now().toString().slice(-10)}${randomInt(100, 999)}`);
 }
 
+function assertCheckoutAmountAvailable(amountVnd: number) {
+  if (amountVnd <= 0) {
+    throw new DomainError(
+      "Course price is being updated. Please contact support before checkout.",
+      422,
+      "COURSE_PRICE_NOT_AVAILABLE",
+    );
+  }
+}
+
 function parseJsonObject(value: unknown) {
   if (!value || typeof value !== "object") {
     return null;
@@ -217,12 +227,15 @@ async function resolveCheckoutTarget(params: { parentId: string; slug: string })
       throw new DomainError("Already enrolled in this course bundle", 409, "ALREADY_ENROLLED");
     }
 
+    const bundleAmountVnd = bundleResult.bundle.priceVnd;
+    assertCheckoutAmountAvailable(bundleAmountVnd);
+
     return {
       kind: "bundle",
       bundleSlug: bundleResult.bundle.slug,
       entryCourseSlug: bundleResult.bundle.entryCourseSlug,
       title: bundleResult.bundle.title,
-      amountVnd: bundleResult.bundle.priceVnd,
+      amountVnd: bundleAmountVnd,
       courseIds: checkoutCourses.map((course) => course.id),
     };
   }
@@ -253,6 +266,7 @@ async function resolveCheckoutTarget(params: { parentId: string; slug: string })
   }
 
   const pricing = resolveCourseDisplayPricing(course);
+  assertCheckoutAmountAvailable(pricing.salePriceVnd);
 
   return {
     kind: "course",

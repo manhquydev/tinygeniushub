@@ -1,0 +1,303 @@
+===============================================================================
+COURSE FILTERING SYSTEM - SCHEMA DESIGN DIAGRAM
+===============================================================================
+
+CURRENT STATE (Course Model - 14 fields):
+┌─────────────────────────────┐
+│  Course                     │
+├─────────────────────────────┤
+│ id: String (cuid)          │
+│ slug: String @unique       │
+│ title: String              │
+│ description: String        │
+│ priceVnd: Int              │
+│ listPriceVnd: Int?         │
+│ salePriceVnd: Int?         │
+│ durationDays: Int          │
+│ isPublished: Boolean       │
+│ coverImageUrl: String?     │
+│ createdAt: DateTime        │
+│ updatedAt: DateTime        │
+└─────────────────────────────┘
+        │  relations:
+        ├─ lessons → CourseLesson[]
+        ├─ enrollments → CourseEnrollment[]
+        └─ childJourneys → ChildCourseJourney[]
+
+
+PROPOSED ADDITIONS (NEW - 8 fields + 1 relation):
+┌─────────────────────────────────────┐
+│ ADDED TO Course                     │
+├─────────────────────────────────────┤
+│ subject: Subject? [NULLABLE]        │
+│   Values: MATH, ENGLISH, SCIENCE    │
+│            ART, MUSIC, OTHER        │
+│                                     │
+│ ageGroup: AgeGroup? [NULLABLE]      │
+│   Values: UNDER_3, AGE_3_5,         │
+│            AGE_6_8, AGE_9_12,       │
+│            AGE_4_6, AGE_7_9,        │
+│            AGE_10_12, ALL_AGES      │
+│            (extends existing enum)  │
+│                                     │
+│ difficultyLevel: CourseDifficultyLevel? │
+│   Values: BEGINNER, INTERMEDIATE,   │
+│            ADVANCED                 │
+│                                     │
+│ isPopular: Boolean @default(false)  │
+│ reviewAverageRating: Float?         │
+│ reviewCount: Int @default(0)        │
+│                                     │
+│ reviews → CourseReview[] [NEW]      │
+└─────────────────────────────────────┘
+
+
+NEW MODEL: CourseReview
+┌──────────────────────────────────┐
+│ CourseReview                     │
+├──────────────────────────────────┤
+│ id: String (cuid)               │
+│ courseId: String ────────────┐   │
+│ parentId: String ────────┐   │   │
+│ rating: Int (1-5 stars) │   │   │
+│ comment: String?        │   │   │
+│ isApproved: Boolean     │   │   │
+│ approvedBy: String?     │   │   │
+│ rejectionReason: String?│   │   │
+│ createdAt: DateTime     │   │   │
+│ updatedAt: DateTime     │   │   │
+│ deletedAt: DateTime? ───┼───┼───┼─ soft delete
+│                         │   │   │
+│ @unique([courseId,      │   │   │
+│          parentId])     │   │   │
+│ = ONE REVIEW PER       │   │   │
+│   PARENT PER COURSE    │   │   │
+├──────────────────────────────────┤
+│ INDEXES (6 total):               │
+│  1. [courseId, isApproved,       │
+│     createdAt DESC]              │
+│     → Storefront display         │
+│                                  │
+│  2. [courseId, isApproved, rating]
+│     → Rating stats aggregation   │
+│                                  │
+│  3. [parentId, createdAt]        │
+│     → Parent's own reviews       │
+│                                  │
+│  4. [isApproved DESC, createdAt] │
+│     → Admin moderation queue     │
+│                                  │
+│  5. [deletedAt]                  │
+│     → Soft delete queries        │
+└──────────────────────────────────┘
+        │
+        ├─ course → Course (CASCADE DELETE)
+        │
+        └─ parent → ParentAccount (CASCADE DELETE)
+
+
+RELATIONSHIPS
+═════════════
+
+ParentAccount 1──────<Many CourseReview
+    │
+    └─ courseReviews: CourseReview[]
+
+Course 1─────────<Many CourseReview
+    │
+    ├─ reviews: CourseReview[]
+    │
+    ├─ enrollments: CourseEnrollment[]
+    │
+    ├─ lessons: CourseLesson[]
+    │
+    └─ childJourneys: ChildCourseJourney[]
+
+
+FILTERING QUERY PATTERN
+═══════════════════════
+
+    User searches storefront:
+    /courses?subject=ENGLISH&ageGroup=AGE_7_9&maxPrice=500000
+
+                    ↓
+
+    Prisma Query:
+    ┌────────────────────────────────────┐
+    │ Course.findMany({                  │
+    │   where: {                         │
+    │     isPublished: true,    ◄─────┐  │
+    │     subject: 'ENGLISH',          │  │
+    │     ageGroup: 'AGE_7_9',         │  │
+    │     salePriceVnd: {              │  │
+    │       lte: 500000 ◄──────────┐   │  │
+    │     }                        │   │  │
+    │   },                         │   │  │
+    │   orderBy: {                 │   │  │
+    │     reviewAverageRating:     │   │  │
+    │       'desc'  ◄──────────┐   │   │  │
+    │   }                      │   │   │  │
+    │ })                       │   │   │  │
+    └────────────────────────────────────┘
+         ↑  Uses indexes:         │   │   │
+         │  [subject, ageGroup,   │   │   │
+         │   isPublished]         │   │   │
+         │                        │   │   │
+         │  [salePriceVnd] ───────┘   │   │
+         │                            │   │
+         │  [reviewAverageRating] ────┘
+         │
+         └─ Result: ~1-5ms (with indexes)
+            vs 50-100ms (full table scan)
+
+
+ADMIN MODERATION WORKFLOW
+═════════════════════════
+
+Parent submits review:
+     ↓
+POST /api/courses/[slug]/reviews
+{
+  rating: 4,
+  comment: "Great course!"
+}
+     ↓
+CourseReview created with:
+  isApproved: false  ◄─── Default requires moderation
+  approvedBy: null
+     ↓
+Appears in admin queue:
+GET /api/admin/reviews?status=pending
+     ↓
+Admin views at:
+  Index: [isApproved DESC, createdAt]
+     ↓
+Admin action:
+PATCH /api/admin/reviews/[id]
+{
+  isApproved: true,
+  approvedBy: "admin@site.com"
+}
+     ↓
+Course.reviewAverageRating
+Course.reviewCount
+  ↓ AUTO-UPDATE on approval
+     ↓
+Appears on storefront:
+  Index: [courseId, isApproved, createdAt DESC]
+     ↓
+Display to users (max 10, newest first)
+
+
+DENORMALIZATION STRATEGY
+════════════════════════
+
+Problem: Aggregating 1000+ reviews per query = 100-300ms
+
+Solution: Cache summary on Course model
+
+On EVERY review action (create/approve/reject):
+  1. Update Course.reviewAverageRating (computed from approved reviews)
+  2. Update Course.reviewCount (approved + not deleted)
+
+Trade-off:
+  GAIN: Storefront queries: <1ms vs 100-300ms
+  COST: Staleness (acceptable for reviews, eventual consistency)
+  SAFETY: Nightly batch job reconciles any divergence
+
+Sync update code:
+┌─────────────────────────────────┐
+│ async updateCourseRatingStats    │
+│ (courseId: string) {             │
+│   const stats = aggregate({      │
+│     courseId,                    │
+│     isApproved: true,            │
+│     deletedAt: null              │
+│   });                            │
+│                                  │
+│   await Course.update({          │
+│     where: { id: courseId },     │
+│     data: {                      │
+│       reviewAverageRating:       │
+│         stats._avg.rating,       │
+│       reviewCount: stats._count  │
+│     }                            │
+│   });                            │
+│ }                                │
+└─────────────────────────────────┘
+
+
+MIGRATION PHASES
+════════════════
+
+PHASE 1: Column Addition (30 seconds)
+  ┌─────────────────┐
+  │ ALTER TABLE     │
+  │ ADD COLUMN      │
+  │ subject ENUM    │
+  │ (nullable)      │
+  │                 │
+  │ ADD COLUMN      │
+  │ ageGroup ENUM   │
+  │ (nullable)      │
+  │                 │
+  │ ADD COLUMN      │
+  │ reviewAverage   │
+  │ (nullable)      │
+  └─────────────────┘
+
+  Impact: None (nullable defaults)
+
+PHASE 2: New Table (5 seconds)
+  ┌──────────────────────┐
+  │ CREATE TABLE         │
+  │ CourseReview         │
+  │ + UNIQUE constraint  │
+  │ + 5 INDEXES          │
+  └──────────────────────┘
+
+  Impact: None (new table)
+
+PHASE 3: Data Seeding (manual, offline)
+  ┌──────────────────────┐
+  │ UPDATE courses SET   │
+  │ subject = 'ENGLISH'  │
+  │ WHERE slug LIKE ...  │
+  └──────────────────────┘
+
+  Impact: None (backfill)
+
+
+QUERY PERFORMANCE COMPARISON
+═════════════════════════════
+
+Scenario: Get 10 approved reviews, sorted by date
+
+WITHOUT INDEX:
+  └─ Full table scan CourseReview
+  └─ Filter by courseId (500k rows → 10 rows)
+  └─ Filter by isApproved (scan ALL)
+  └─ Time: 50-100ms ❌
+
+WITH INDEX [courseId, isApproved, createdAt DESC]:
+  └─ Index seek to courseId + isApproved
+  └─ Already sorted by createdAt DESC
+  └─ Return top 10
+  └─ Time: 1-3ms ✅
+
+Improvement: 20-50x faster
+
+
+SAFE MIGRATION CHECKLIST
+════════════════════════
+
+✓ All new columns have sensible defaults (NULL, 0, false)
+✓ No existing tables dropped
+✓ No existing columns modified (backward compat)
+✓ Unique constraints on new table don't conflict
+✓ Indexes are additive (no perf degradation)
+✓ Schema change is forward/backward compatible
+✓ Zero downtime deployment possible
+✓ Rollback possible (remove columns/table)
+
+===============================================================================

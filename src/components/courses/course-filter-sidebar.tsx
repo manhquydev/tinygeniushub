@@ -20,9 +20,10 @@ const DURATION_KEYS = Object.keys(DURATION_LABELS) as Array<keyof typeof DURATIO
 export function CourseFilterSidebar({ currentFilters }: CourseFilterSidebarProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [keyword, setKeyword] = useState(currentFilters.q ?? "");
   const [minPrice, setMinPrice] = useState(currentFilters.minPrice?.toString() ?? "");
   const [maxPrice, setMaxPrice] = useState(currentFilters.maxPrice?.toString() ?? "");
-  const priceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const updateParam = useCallback(
     (key: string, value: string | null) => {
@@ -39,27 +40,71 @@ export function CourseFilterSidebar({ currentFilters }: CourseFilterSidebarProps
   );
 
   useEffect(() => {
-    if (priceTimerRef.current) clearTimeout(priceTimerRef.current);
-    priceTimerRef.current = setTimeout(() => {
+    if (typingTimerRef.current) {
+      clearTimeout(typingTimerRef.current);
+    }
+
+    typingTimerRef.current = setTimeout(() => {
       const params = new URLSearchParams(searchParams.toString());
-      if (minPrice) params.set("minPrice", minPrice); else params.delete("minPrice");
-      if (maxPrice) params.set("maxPrice", maxPrice); else params.delete("maxPrice");
+      const currentKeyword = searchParams.get("q") ?? "";
+      const currentMinPrice = searchParams.get("minPrice") ?? "";
+      const currentMaxPrice = searchParams.get("maxPrice") ?? "";
+      const nextKeyword = keyword.trim();
+      const nextMinPrice = minPrice.trim();
+      const nextMaxPrice = maxPrice.trim();
+
+      if (
+        currentKeyword === nextKeyword &&
+        currentMinPrice === nextMinPrice &&
+        currentMaxPrice === nextMaxPrice
+      ) {
+        return;
+      }
+
+      if (nextKeyword) {
+        params.set("q", nextKeyword);
+      } else {
+        params.delete("q");
+      }
+      if (nextMinPrice) {
+        params.set("minPrice", nextMinPrice);
+      } else {
+        params.delete("minPrice");
+      }
+      if (nextMaxPrice) {
+        params.set("maxPrice", nextMaxPrice);
+      } else {
+        params.delete("maxPrice");
+      }
       params.delete("page");
       router.replace(`/courses?${params.toString()}`, { scroll: false });
     }, 300);
-    return () => { if (priceTimerRef.current) clearTimeout(priceTimerRef.current); };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [minPrice, maxPrice]);
+
+    return () => {
+      if (typingTimerRef.current) {
+        clearTimeout(typingTimerRef.current);
+      }
+    };
+  }, [keyword, minPrice, maxPrice, router, searchParams]);
 
   const clearAll = () => {
     const params = new URLSearchParams(searchParams.toString());
-    ["subject", "ageGroup", "minPrice", "maxPrice", "duration", "page"].forEach((k) => params.delete(k));
+    ["q", "subject", "ageGroup", "minPrice", "maxPrice", "duration", "sort", "page"].forEach((k) =>
+      params.delete(k),
+    );
     router.replace(`/courses?${params.toString()}`, { scroll: false });
+    setKeyword("");
     setMinPrice("");
     setMaxPrice("");
   };
 
-  const hasFilters = currentFilters.subject || currentFilters.ageGroup || currentFilters.minPrice || currentFilters.maxPrice || currentFilters.duration;
+  const hasFilters =
+    currentFilters.q ||
+    currentFilters.subject ||
+    currentFilters.ageGroup ||
+    currentFilters.minPrice ||
+    currentFilters.maxPrice ||
+    currentFilters.duration;
 
   return (
     <div className="grid gap-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
@@ -70,6 +115,17 @@ export function CourseFilterSidebar({ currentFilters }: CourseFilterSidebarProps
             Xóa tất cả
           </button>
         ) : null}
+      </div>
+
+      <div className="grid gap-2">
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Tìm khóa nhanh</p>
+        <input
+          type="search"
+          value={keyword}
+          onChange={(event) => setKeyword(event.target.value)}
+          placeholder="Tên khóa hoặc mục tiêu..."
+          className="w-full rounded-lg border border-slate-300 px-2.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        />
       </div>
 
       <div className="grid gap-2">
@@ -102,7 +158,10 @@ export function CourseFilterSidebar({ currentFilters }: CourseFilterSidebarProps
           </label>
         ))}
         {currentFilters.ageGroup ? (
-          <button onClick={() => updateParam("ageGroup", null)} className="text-left text-xs text-slate-400 hover:text-slate-600">
+          <button
+            onClick={() => updateParam("ageGroup", null)}
+            className="text-left text-xs text-slate-400 hover:text-slate-600"
+          >
             Bỏ chọn
           </button>
         ) : null}
@@ -115,14 +174,14 @@ export function CourseFilterSidebar({ currentFilters }: CourseFilterSidebarProps
             type="number"
             placeholder="Tối thiểu"
             value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
+            onChange={(event) => setMinPrice(event.target.value)}
             className="w-full rounded-lg border border-slate-300 px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
           <input
             type="number"
             placeholder="Tối đa"
             value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
+            onChange={(event) => setMaxPrice(event.target.value)}
             className="w-full rounded-lg border border-slate-300 px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
         </div>

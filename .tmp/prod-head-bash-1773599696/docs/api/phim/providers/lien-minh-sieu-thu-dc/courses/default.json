@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "resource_root": "/phim",
+    "provider": "lien-minh-sieu-thu-dc",
+    "provider_slug": "lien-minh-sieu-thu-dc",
+    "course": "default",
+    "course_slug": "default",
+    "page_count": 1,
+    "video_count": 1
+  },
+  "pages": [
+    {
+      "resource_root": "/phim",
+      "page_url": "https://hoctienganh.xyz/phim/lien-minh-sieu-thu-dc",
+      "page_key": "lien-minh-sieu-thu-dc",
+      "path_segments": [
+        "lien-minh-sieu-thu-dc"
+      ],
+      "provider": "lien-minh-sieu-thu-dc",
+      "course": "",
+      "topic": "",
+      "video_count": 1,
+      "videos": [
+        {
+          "order": 1,
+          "title": "index",
+          "video_url": "https://vip.opstream16.com/20220824/21489_b04ad49a/index.m3u8",
+          "host": "vip.opstream16.com",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "lien-minh-sieu-thu-dc",
+      "course": "default",
+      "topic": "",
+      "page_key": "lien-minh-sieu-thu-dc",
+      "page_url": "https://hoctienganh.xyz/phim/lien-minh-sieu-thu-dc",
+      "order": 1,
+      "title": "index",
+      "video_url": "https://vip.opstream16.com/20220824/21489_b04ad49a/index.m3u8",
+      "host": "vip.opstream16.com",
+      "ext": "m3u8"
+    }
+  ]
+}

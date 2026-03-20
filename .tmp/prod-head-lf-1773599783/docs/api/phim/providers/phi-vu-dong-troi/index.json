@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "resource_root": "/phim",
+    "provider": "phi-vu-dong-troi",
+    "provider_slug": "phi-vu-dong-troi",
+    "course_count": 1,
+    "page_count": 1,
+    "video_count": 1
+  },
+  "courses": [
+    {
+      "course": "default",
+      "course_slug": "default",
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/phi-vu-dong-troi/courses/default.json"
+    }
+  ]
+}

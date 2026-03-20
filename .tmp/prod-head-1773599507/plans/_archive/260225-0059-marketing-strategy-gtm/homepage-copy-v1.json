@@ -1,0 +1,99 @@
+{
+  "hero": {
+    "badge": "Hơn 1.200 phụ huynh đang đồng hành",
+    "h1": "Dạy toán cho trẻ 2–6 tuổi tại nhà — con học đúng lộ trình, ba mẹ yên tâm",
+    "subheading": "Nhiều bé cùng tuổi đã bắt đầu học Toán tư duy và Tiếng Anh Phonics — đừng để con bị bỏ lại phía sau. Chỉ 15 phút mỗi ngày, phụ huynh nhận báo cáo tiến bộ hàng tuần để thấy con học được gì thật sự.",
+    "cta_primary": "Bắt đầu dùng thử miễn phí 7 ngày",
+    "cta_secondary": "Xem bảng giá",
+    "note": "Không cần thẻ tín dụng · Hoàn tiền 100% trong 30 ngày"
+  },
+  "problem": {
+    "heading": "Ba nỗi lo mà gần như mọi phụ huynh đều gặp",
+    "subheading": "Bạn không đơn độc — đây là lý do nhiều ba mẹ vẫn chưa tìm được giải pháp học tại nhà thật sự hiệu quả.",
+    "cards": [
+      {
+        "title": "Con chỉ xem cho vui, không học được gì",
+        "description": "Hầu hết app trẻ em chỉ là 'video giữ con ngồi yên' — không có lộ trình, không kiểm tra kiến thức. Sau 30 phút màn hình, con vẫn không nhớ gì."
+      },
+      {
+        "title": "Ba mẹ không biết con có tiến bộ hay không",
+        "description": "Bạn cho con học mỗi ngày nhưng không có cách nào đo được con đã học được gì, học tới đâu, và tuần tới cần học gì tiếp theo."
+      },
+      {
+        "title": "Muốn dạy con nhưng không có thời gian",
+        "description": "Công việc bận rộn, tối về mệt — ba mẹ cần một giải pháp gọn gàng, không đòi hỏi ngồi cạnh con suốt buổi. 15 phút có cấu trúc tốt hơn 1 giờ tự do."
+      }
+    ]
+  },
+  "features": {
+    "heading": "Một nền tảng duy nhất — đủ để con học toàn diện từ 2 đến 6 tuổi",
+    "subheading": "Toán tư duy và Tiếng Anh Phonics trong cùng một lộ trình liên tục — không app nào khác ở Việt Nam có đủ cả hai cho độ tuổi này.",
+    "items": [
+      {
+        "title": "Toán tư duy đúng lứa tuổi 2–6",
+        "description": "Chương trình Toán được thiết kế riêng cho từng giai đoạn phát triển: đếm số, nhận biết hình khối, so sánh, logic cơ bản. Không áp đặt — dạy đúng cách não bé đang hoạt động."
+      },
+      {
+        "title": "Lộ trình rõ ràng từ dễ đến khó",
+        "description": "Từng bài học được sắp xếp theo trình tự khoa học — Tiếng Anh Phonics kết hợp Toán tư duy. Con không bỏ sót kiến thức, ba mẹ không phải lo con học lộn xộn."
+      },
+      {
+        "title": "Bằng chứng tiến bộ thật, không phải điểm số ảo",
+        "description": "Checklist bài học, kết quả quiz, ảnh và audio do phụ huynh ghi lại — tất cả được lưu giữ để bạn thấy con tiến bộ từng tuần một cách cụ thể."
+      },
+      {
+        "title": "Báo cáo tuần tự động gửi về email",
+        "description": "Mỗi tuần một bản tóm tắt chi tiết — bài nào đã học, điểm mạnh của con, gợi ý tuần tiếp theo. Không cần mở app vẫn nắm rõ tình hình học tập của con."
+      },
+      {
+        "title": "Hoàn toàn an toàn, ba mẹ kiểm soát hoàn toàn",
+        "description": "Không quảng cáo, không link dẫn ra ngoài, không nội dung không phù hợp. Bạn quản lý thời gian học, chọn nội dung, và tắt bất kỳ lúc nào."
+      },
+      {
+        "title": "Chứng chỉ hoàn thành khóa học",
+        "description": "Khi con hoàn thành một giai đoạn học, hệ thống cấp chứng chỉ số có tên con và kết quả cụ thể — ba mẹ có thể in hoặc chia sẻ với ông bà, người thân như một cột mốc tự hào."
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "Phụ huynh nói gì sau khi dùng thật sự?",
+    "subheading": "Hơn 1.200 phụ huynh đang đồng hành cùng con mỗi ngày",
+    "items": [
+      {
+        "name": "Chị Thanh Lan",
+        "context": "Mẹ bé Minh, 4 tuổi · Đang dùng 3 tháng",
+        "quote": "Tôi từng nghĩ con 4 tuổi chưa cần học Toán có hệ thống. Nhưng sau 6 tuần dùng Cùng Con Tự Học, bé Minh đã biết cộng trừ trong phạm vi 20 — trong khi các bạn cùng lớp vẫn đang luyện đếm 1–10. Điều tôi thích nhất là báo cáo tuần: tôi thấy rõ tuần này con học bài nào, điểm quiz ra sao, và tuần tới nên tập trung gì. Lần đầu tiên tôi thật sự biết con đang học được gì.",
+        "initials": "TL",
+        "colorClass": "hp-avatar-pink"
+      },
+      {
+        "name": "Anh Hoàng Nam",
+        "context": "Ba bé An và bé Khánh, 3 và 5 tuổi · Gói Family+",
+        "quote": "Tôi mua gói Family+ vì có hai đứa, và đó là quyết định đúng nhất năm nay. Hai đứa nhà tôi giờ tranh nhau học mỗi tối — bé lớn 5 tuổi đã đếm được 1–50 và phát âm tiếng Anh rõ hơn hẳn sau đúng 4 tuần. Trước đây tôi dạy hoài mà không vào — chỉ vì không có lộ trình. Bây giờ bé tự học, tôi chỉ cần đọc báo cáo tuần là biết con đang ở đâu.",
+        "initials": "HN",
+        "colorClass": "hp-avatar-blue"
+      },
+      {
+        "name": "Chị Mai Trang",
+        "context": "Mẹ bé Sóc, 2.5 tuổi · Đang dùng 6 tuần",
+        "quote": "Ban đầu tôi nghi ngờ — bé 2.5 tuổi có học được không? Thật ra bé học được nhiều hơn tôi tưởng rất nhiều. Sau 6 tuần, bé Sóc nhận biết được 8 hình khối cơ bản và phát âm được 12 âm tiếng Anh đầu tiên. Tuần trước tôi chia sẻ báo cáo tiến bộ với ông bà — ông bà xúc động lắm, bảo đây mới là màn hình có ích. Tôi cũng thấy yên tâm vì hoàn toàn không có quảng cáo.",
+        "initials": "MT",
+        "colorClass": "hp-avatar-green"
+      }
+    ]
+  },
+  "trust": {
+    "badges": [
+      "Dùng thử 7 ngày — không cần thẻ tín dụng",
+      "Hoàn tiền 100% trong 30 ngày nếu không hài lòng",
+      "Dữ liệu con mã hóa, bảo mật toàn diện",
+      "Không quảng cáo, không link ngoài — an toàn tuyệt đối"
+    ]
+  },
+  "final_cta": {
+    "heading": "Con bạn có thể bắt đầu học ngay hôm nay",
+    "subheading": "Hơn 1.200 gia đình đã tin tưởng Cùng Con Tự Học. Thử 7 ngày miễn phí — nếu không thấy sự khác biệt trong 30 ngày, chúng tôi hoàn tiền toàn bộ, không hỏi lý do.",
+    "cta": "Bắt đầu dùng thử miễn phí ngay",
+    "note": "Không cần thẻ tín dụng · Hủy bất kỳ lúc nào · Hoàn tiền 30 ngày"
+  }
+}

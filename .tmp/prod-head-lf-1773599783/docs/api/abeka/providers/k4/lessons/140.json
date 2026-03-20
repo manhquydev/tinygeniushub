@@ -1,0 +1,263 @@
+{
+  "meta": {
+    "resource_root": "/abeka",
+    "provider": "k4",
+    "provider_slug": "k4",
+    "course": "lesson-140",
+    "course_slug": "140",
+    "grade_id": "13",
+    "page_count": 1,
+    "video_count": 10
+  },
+  "pages": [
+    {
+      "resource_root": "/abeka",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "page_key": "k4/140",
+      "path_segments": [
+        "k4",
+        "140"
+      ],
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "video_count": 10,
+      "videos": [
+        {
+          "order": 1,
+          "title": "K4 Activities: Cursive Seatwork Explanation",
+          "description": "K4 Activities: Cursive Seatwork Explanation - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4SE140D/K4SE140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "K4 Activities: Language Development",
+          "description": "K4 Activities: Language Development - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4LD140D/K4LD140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 3,
+          "title": "K4 Activities: Manuscript Seatwork Explanation",
+          "description": "K4 Activities: Manuscript Seatwork Explanation - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4SM140D/K4SM140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 4,
+          "title": "K4 Activities: Skills Development",
+          "description": "K4 Activities: Skills Development - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4SD140D/K4SD140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "K4 Arithmetic",
+          "description": "K4 Arithmetic - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4NU140D/K4NU140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 6,
+          "title": "K4 Bible",
+          "description": "K4 Bible - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4BI140D/K4BI140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 7,
+          "title": "K4 Phonics",
+          "description": "K4 Phonics - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4PR140D/K4PR140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 8,
+          "title": "K4 Reading: Reading Circles Elephants",
+          "description": "K4 Reading: Reading Circles Elephants - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4RL140D/K4RL140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 9,
+          "title": "K4 Reading: Reading Circles Tigers",
+          "description": "K4 Reading: Reading Circles Tigers - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4RT140D/K4RT140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 10,
+          "title": "K4 Reading: Reading Circles Zebras",
+          "description": "K4 Reading: Reading Circles Zebras - Lesson: 140 - Teacher: Mrs. Stewart",
+          "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4RZ140D/K4RZ140D.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 1,
+      "title": "K4 Activities: Cursive Seatwork Explanation",
+      "description": "K4 Activities: Cursive Seatwork Explanation - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4SE140D/K4SE140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 2,
+      "title": "K4 Activities: Language Development",
+      "description": "K4 Activities: Language Development - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4LD140D/K4LD140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 3,
+      "title": "K4 Activities: Manuscript Seatwork Explanation",
+      "description": "K4 Activities: Manuscript Seatwork Explanation - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4SM140D/K4SM140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 4,
+      "title": "K4 Activities: Skills Development",
+      "description": "K4 Activities: Skills Development - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4SD140D/K4SD140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 5,
+      "title": "K4 Arithmetic",
+      "description": "K4 Arithmetic - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4NU140D/K4NU140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 6,
+      "title": "K4 Bible",
+      "description": "K4 Bible - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4BI140D/K4BI140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 7,
+      "title": "K4 Phonics",
+      "description": "K4 Phonics - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4PR140D/K4PR140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 8,
+      "title": "K4 Reading: Reading Circles Elephants",
+      "description": "K4 Reading: Reading Circles Elephants - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4RL140D/K4RL140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 9,
+      "title": "K4 Reading: Reading Circles Tigers",
+      "description": "K4 Reading: Reading Circles Tigers - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4RT140D/K4RT140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "k4",
+      "course": "lesson-140",
+      "topic": "",
+      "grade": "k4",
+      "lesson": 140,
+      "page_key": "k4/140",
+      "page_url": "https://hoctienganh.xyz/abeka/13",
+      "order": 10,
+      "title": "K4 Reading: Reading Circles Zebras",
+      "description": "K4 Reading: Reading Circles Zebras - Lesson: 140 - Teacher: Mrs. Stewart",
+      "video_url": "https://fileta.hoctienganh.xyz/abk/2023/k4/K4RZ140D/K4RZ140D.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

@@ -1,0 +1,518 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowUp, ArrowDown, Trash2, Plus, Search, BookOpen, Users } from "lucide-react";
+import Link from "next/link";
+
+// ---- Types ----
+type CourseLessonItem = {
+  id: string;
+  courseId: string;
+  lessonId: string;
+  orderNo: number;
+  lesson: {
+    id: string;
+    slug: string;
+    title: string;
+    estimatedMinutes: number;
+    trialEnabled: boolean;
+    videoStatus: string;
+    _count: { activities: number };
+  };
+};
+
+type LessonSearchResult = {
+  id: string;
+  slug: string;
+  title: string;
+  estimatedMinutes: number;
+  trialEnabled: boolean;
+  videoStatus: string;
+  unit: {
+    title: string;
+    level: { title: string; track: { code: string } };
+  };
+  _count: { activities: number };
+};
+
+type EnrollmentRow = {
+  id: string;
+  parentId: string;
+  enrolledAt: string;
+  completedAt: string | null;
+  parent: { email: string; displayName: string | null };
+};
+
+type CourseDetail = {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  priceVnd: number;
+  durationDays: number;
+  isPublished: boolean;
+  coverImageUrl: string | null;
+  _count: { enrollments: number };
+  lessons: CourseLessonItem[];
+};
+
+type Tab = "lessons" | "enrollments";
+
+// ---- Helpers ----
+function trackLabel(code: string) {
+  if (code === "ENGLISH") return "Tiếng Anh";
+  if (code === "MATH") return "Toán";
+  if (code === "HABIT") return "Thói quen";
+  return code;
+}
+
+function VideoStatusBadge({ status }: { status: string }) {
+  if (status === "ready") {
+    return (
+      <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">
+        Ready
+      </span>
+    );
+  }
+  if (status === "processing") {
+    return (
+      <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-700">
+        Processing
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-500">
+      {status === "none" ? "No video" : status}
+    </span>
+  );
+}
+
+// ---- Main Component ----
+export function AdminCourseDetailClient({ course: initialCourse }: { course: CourseDetail }) {
+  const [course, setCourse] = useState<CourseDetail>(initialCourse);
+  const [tab, setTab] = useState<Tab>("lessons");
+  const [lessons, setLessons] = useState<CourseLessonItem[]>(initialCourse.lessons);
+  const [enrollments, setEnrollments] = useState<EnrollmentRow[]>([]);
+  const [enrollmentsLoaded, setEnrollmentsLoaded] = useState(false);
+
+  // Lesson picker
+  const [showPicker, setShowPicker] = useState(false);
+  const [pickerSearch, setPickerSearch] = useState("");
+  const [pickerResults, setPickerResults] = useState<LessonSearchResult[]>([]);
+  const [pickerLoading, setPickerLoading] = useState(false);
+  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Saving state
+  const [removing, setRemoving] = useState<string | null>(null);
+  const [adding, setAdding] = useState<string | null>(null);
+
+  // Load enrollments
+  const loadEnrollments = useCallback(async () => {
+    if (enrollmentsLoaded) return;
+    try {
+      const res = await fetch(`/api/admin/courses/${course.id}/enrollments`);
+      const json = (await res.json()) as { ok?: boolean; data?: { enrollments: EnrollmentRow[] } };
+      if (json.ok && json.data) {
+        setEnrollments(json.data.enrollments);
+        setEnrollmentsLoaded(true);
+      }
+    } catch {
+      // silent
+    }
+  }, [course.id, enrollmentsLoaded]);
+
+  useEffect(() => {
+    if (tab === "enrollments") loadEnrollments();
+  }, [tab, loadEnrollments]);
+
+  // Lesson search
+  useEffect(() => {
+    if (!showPicker) return;
+    if (searchTimerRef.current) clearTimeout(searchTimerRef.current);
+    searchTimerRef.current = setTimeout(async () => {
+      setPickerLoading(true);
+      try {
+        const url = `/api/admin/lessons?search=${encodeURIComponent(pickerSearch)}&excludeCourseId=${course.id}&limit=30`;
+        const res = await fetch(url);
+        const json = (await res.json()) as { ok?: boolean; data?: { lessons: LessonSearchResult[] } };
+        if (json.ok && json.data) setPickerResults(json.data.lessons);
+      } finally {
+        setPickerLoading(false);
+      }
+    }, 300);
+    return () => {
+      if (searchTimerRef.current) clearTimeout(searchTimerRef.current);
+    };
+  }, [pickerSearch, showPicker, course.id]);
+
+  async function handleAddLesson(lesson: LessonSearchResult) {
+    setAdding(lesson.id);
+    try {
+      const nextOrderNo = lessons.length + 1;
+      const res = await fetch(`/api/admin/courses/${course.id}/lessons`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lessonId: lesson.id, orderNo: nextOrderNo }),
+      });
+      const json = (await res.json()) as { ok?: boolean; data?: { courseLesson: CourseLessonItem } };
+      if (!json.ok) return;
+      const newItem: CourseLessonItem = {
+        id: json.data!.courseLesson.id,
+        courseId: course.id,
+        lessonId: lesson.id,
+        orderNo: nextOrderNo,
+        lesson: {
+          id: lesson.id,
+          slug: lesson.slug,
+          title: lesson.title,
+          estimatedMinutes: lesson.estimatedMinutes,
+          trialEnabled: lesson.trialEnabled,
+          videoStatus: lesson.videoStatus,
+          _count: lesson._count,
+        },
+      };
+      setLessons((prev) => [...prev, newItem]);
+      // Remove from picker results
+      setPickerResults((prev) => prev.filter((l) => l.id !== lesson.id));
+    } finally {
+      setAdding(null);
+    }
+  }
+
+  async function handleRemoveLesson(item: CourseLessonItem) {
+    if (!confirm(`Xoá "${item.lesson.title}" khỏi khoá học?`)) return;
+    setRemoving(item.lessonId);
+    try {
+      const res = await fetch(`/api/admin/courses/${course.id}/lessons`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lessonId: item.lessonId }),
+      });
+      const json = (await res.json()) as { ok?: boolean };
+      if (!json.ok) return;
+      const updated = lessons
+        .filter((l) => l.lessonId !== item.lessonId)
+        .map((l, idx) => ({ ...l, orderNo: idx + 1 }));
+      setLessons(updated);
+      // Re-sync orderNos in DB
+      if (updated.length > 0) {
+        void fetch(`/api/admin/courses/${course.id}/lessons`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            orders: updated.map((l) => ({ lessonId: l.lessonId, orderNo: l.orderNo })),
+          }),
+        });
+      }
+    } finally {
+      setRemoving(null);
+    }
+  }
+
+  async function handleMoveLesson(index: number, direction: "up" | "down") {
+    const newLessons = [...lessons];
+    const swapIndex = direction === "up" ? index - 1 : index + 1;
+    if (swapIndex < 0 || swapIndex >= newLessons.length) return;
+    [newLessons[index], newLessons[swapIndex]] = [newLessons[swapIndex], newLessons[index]];
+    const reordered = newLessons.map((l, idx) => ({ ...l, orderNo: idx + 1 }));
+    setLessons(reordered);
+    await fetch(`/api/admin/courses/${course.id}/lessons`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        orders: reordered.map((l) => ({ lessonId: l.lessonId, orderNo: l.orderNo })),
+      }),
+    });
+  }
+
+  async function handleTogglePublish() {
+    const res = await fetch(`/api/admin/courses/${course.id}/publish`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ isPublished: !course.isPublished }),
+    });
+    const json = (await res.json()) as { ok?: boolean; data?: { course: { isPublished: boolean } } };
+    if (json.ok && json.data) {
+      setCourse((prev) => ({ ...prev, isPublished: json.data!.course.isPublished }));
+    }
+  }
+
+  const totalMinutes = lessons.reduce((sum, l) => sum + l.lesson.estimatedMinutes, 0);
+
+  return (
+    <div className="page-stack">
+      {/* Header */}
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="mb-4">
+          <Link
+            href="/admin/courses"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-slate-800"
+          >
+            <ArrowLeft size={14} />
+            Khoá học
+          </Link>
+        </div>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">{course.title}</h1>
+            <p className="mt-1 text-sm text-slate-500">{course.slug}</p>
+            <p className="mt-2 text-sm text-slate-600">{course.description}</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="text-right text-sm text-slate-600">
+              <div>
+                <span className="font-semibold">{new Intl.NumberFormat("vi-VN").format(course.priceVnd)}đ</span>
+              </div>
+              <div>{course.durationDays} ngày</div>
+            </div>
+            <button
+              type="button"
+              onClick={handleTogglePublish}
+              className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition-colors ${
+                course.isPublished
+                  ? "border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100"
+                  : "border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+              }`}
+            >
+              {course.isPublished ? "Ẩn khoá học" : "Xuất bản"}
+            </button>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="mt-4 flex flex-wrap gap-4">
+          <div className="inline-flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-1.5 text-sm">
+            <BookOpen size={14} className="text-slate-500" />
+            <span className="font-semibold text-slate-700">{lessons.length}</span>
+            <span className="text-slate-500">bài học</span>
+          </div>
+          <div className="inline-flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-1.5 text-sm">
+            <span className="font-semibold text-slate-700">{totalMinutes}</span>
+            <span className="text-slate-500">phút học</span>
+          </div>
+          <div className="inline-flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-1.5 text-sm">
+            <Users size={14} className="text-slate-500" />
+            <span className="font-semibold text-slate-700">{course._count.enrollments}</span>
+            <span className="text-slate-500">học viên</span>
+          </div>
+          <span
+            className={`inline-flex items-center rounded-xl border px-3 py-1.5 text-sm font-semibold ${
+              course.isPublished
+                ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                : "border-slate-200 bg-slate-100 text-slate-600"
+            }`}
+          >
+            {course.isPublished ? "Published" : "Draft"}
+          </span>
+        </div>
+      </section>
+
+      {/* Tabs */}
+      <div className="flex gap-1 rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
+        {(["lessons", "enrollments"] as Tab[]).map((t) => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => setTab(t)}
+            className={`flex-1 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
+              tab === t
+                ? "bg-slate-900 text-white"
+                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+            }`}
+          >
+            {t === "lessons" ? `Bài học (${lessons.length})` : `Học viên (${course._count.enrollments})`}
+          </button>
+        ))}
+      </div>
+
+      {/* Lessons Tab */}
+      {tab === "lessons" ? (
+        <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="section-header mb-4">
+            <h2 className="text-lg font-black text-slate-900">Danh sách bài học</h2>
+            <button
+              type="button"
+              className="solid-button"
+              onClick={() => {
+                setPickerSearch("");
+                setPickerResults([]);
+                setShowPicker(true);
+              }}
+            >
+              <Plus size={15} />
+              Thêm bài học
+            </button>
+          </div>
+
+          {/* Lesson Picker */}
+          {showPicker ? (
+            <div className="mb-5 rounded-2xl border border-indigo-200 bg-indigo-50 p-4">
+              <div className="mb-3 flex items-center justify-between">
+                <p className="text-sm font-semibold text-indigo-800">Tìm và thêm bài học từ thư viện</p>
+                <button
+                  type="button"
+                  onClick={() => setShowPicker(false)}
+                  className="text-sm font-semibold text-slate-500 hover:text-slate-800"
+                >
+                  Đóng
+                </button>
+              </div>
+              <div className="relative mb-3">
+                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  autoFocus
+                  value={pickerSearch}
+                  onChange={(e) => setPickerSearch(e.target.value)}
+                  placeholder="Tìm bài học theo tên hoặc slug…"
+                  className="w-full rounded-xl border border-slate-300 bg-white py-2 pl-8 pr-3 text-sm focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+                />
+              </div>
+              <div className="max-h-64 space-y-1 overflow-y-auto">
+                {pickerLoading ? (
+                  <p className="py-4 text-center text-xs text-slate-500">Đang tải…</p>
+                ) : pickerResults.length === 0 ? (
+                  <p className="py-4 text-center text-xs text-slate-500">
+                    {pickerSearch ? "Không tìm thấy bài học." : "Nhập để tìm bài học."}
+                  </p>
+                ) : (
+                  pickerResults.map((lesson) => (
+                    <div
+                      key={lesson.id}
+                      className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-semibold text-slate-900">{lesson.title}</p>
+                        <p className="text-xs text-slate-500">
+                          {trackLabel(lesson.unit.level.track.code)} › {lesson.unit.level.title} › {lesson.unit.title}
+                          {" · "}
+                          {lesson.estimatedMinutes}p · {lesson._count.activities} câu hỏi
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        disabled={adding === lesson.id}
+                        onClick={() => handleAddLesson(lesson)}
+                        className="ml-3 shrink-0 rounded-lg border border-indigo-300 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 disabled:opacity-50"
+                      >
+                        {adding === lesson.id ? "Đang thêm…" : "Thêm"}
+                      </button>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          ) : null}
+
+          {/* Lessons List */}
+          {lessons.length === 0 ? (
+            <div className="rounded-2xl border-2 border-dashed border-slate-200 py-12 text-center">
+              <BookOpen size={32} className="mx-auto mb-3 text-slate-300" />
+              <p className="text-sm font-semibold text-slate-500">Chưa có bài học nào.</p>
+              <p className="mt-1 text-xs text-slate-400">Nhấn &quot;Thêm bài học&quot; để gán bài từ thư viện.</p>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {lessons.map((item, index) => (
+                <div
+                  key={item.id}
+                  className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
+                >
+                  <span className="w-6 shrink-0 text-center text-xs font-black text-slate-400">{item.orderNo}</span>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-semibold text-slate-900">{item.lesson.title}</p>
+                    <p className="text-xs text-slate-500">
+                      {item.lesson.slug} · {item.lesson.estimatedMinutes}p · {item.lesson._count.activities} câu hỏi
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-1">
+                    <VideoStatusBadge status={item.lesson.videoStatus} />
+                    {item.lesson.trialEnabled ? (
+                      <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700">
+                        Trial
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="flex shrink-0 items-center gap-1">
+                    <button
+                      type="button"
+                      disabled={index === 0}
+                      onClick={() => handleMoveLesson(index, "up")}
+                      className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-200 hover:text-slate-700 disabled:opacity-30"
+                      title="Lên"
+                    >
+                      <ArrowUp size={14} />
+                    </button>
+                    <button
+                      type="button"
+                      disabled={index === lessons.length - 1}
+                      onClick={() => handleMoveLesson(index, "down")}
+                      className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-200 hover:text-slate-700 disabled:opacity-30"
+                      title="Xuống"
+                    >
+                      <ArrowDown size={14} />
+                    </button>
+                    <button
+                      type="button"
+                      disabled={removing === item.lessonId}
+                      onClick={() => handleRemoveLesson(item)}
+                      className="rounded-lg p-1.5 text-slate-400 hover:bg-red-100 hover:text-red-600 disabled:opacity-50"
+                      title="Xoá khỏi khoá học"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+      ) : null}
+
+      {/* Enrollments Tab */}
+      {tab === "enrollments" ? (
+        <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-left text-sm">
+              <thead className="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+                <tr>
+                  <th className="px-4 py-3">Email phụ huynh</th>
+                  <th className="px-4 py-3">Tên</th>
+                  <th className="px-4 py-3">Ngày đăng ký</th>
+                  <th className="px-4 py-3">Hoàn thành</th>
+                </tr>
+              </thead>
+              <tbody>
+                {enrollments.map((e) => (
+                  <tr key={e.id} className="border-t border-slate-100">
+                    <td className="px-4 py-3 font-medium text-slate-900">{e.parent.email}</td>
+                    <td className="px-4 py-3 text-slate-600">{e.parent.displayName ?? "—"}</td>
+                    <td className="px-4 py-3 text-slate-600">
+                      {new Date(e.enrolledAt).toLocaleDateString("vi-VN")}
+                    </td>
+                    <td className="px-4 py-3">
+                      {e.completedAt ? (
+                        <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">
+                          {new Date(e.completedAt).toLocaleDateString("vi-VN")}
+                        </span>
+                      ) : (
+                        <span className="text-slate-400">Chưa</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+                {enrollments.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="px-4 py-8 text-center text-sm text-slate-500">
+                      Chưa có học viên nào đăng ký khoá học này.
+                    </td>
+                  </tr>
+                ) : null}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ) : null}
+    </div>
+  );
+}

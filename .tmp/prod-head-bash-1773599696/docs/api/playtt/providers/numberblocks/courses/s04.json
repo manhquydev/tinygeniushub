@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "resource_root": "/playtt",
+    "provider": "Numberblocks",
+    "provider_slug": "numberblocks",
+    "course": "S04",
+    "course_slug": "s04",
+    "page_count": 1,
+    "video_count": 5
+  },
+  "pages": [
+    {
+      "resource_root": "/playtt",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S04",
+      "page_key": "Numberblocks/S04",
+      "path_segments": [
+        "Numberblocks",
+        "S04"
+      ],
+      "provider": "Numberblocks",
+      "course": "S04",
+      "topic": "",
+      "video_count": 5,
+      "videos": [
+        {
+          "order": 1,
+          "title": "Numberblocks S04E01 Twenty-one and On",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E01_Twenty-one%20and%20On.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 2,
+          "title": "Numberblocks S04E02 We",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E02_We",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "xyz/numberblocks/s04/numberblocks_s04e02_we"
+        },
+        {
+          "order": 3,
+          "title": "Numberblocks S04E03 Thirty",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E03_Thirty",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "xyz/numberblocks/s04/numberblocks_s04e03_thirty"
+        },
+        {
+          "order": 4,
+          "title": "Numberblocks S04E04 Land of the Giants",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E04_Land%20of%20the%20Giants.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        },
+        {
+          "order": 5,
+          "title": "Numberblocks S04E05 Fifty",
+          "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E05_Fifty.tiktok.m3u8",
+          "host": "fileta.hoctienganh.xyz",
+          "ext": "m3u8"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "Numberblocks",
+      "course": "S04",
+      "topic": "",
+      "page_key": "Numberblocks/S04",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S04",
+      "order": 1,
+      "title": "Numberblocks S04E01 Twenty-one and On",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E01_Twenty-one%20and%20On.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Numberblocks",
+      "course": "S04",
+      "topic": "",
+      "page_key": "Numberblocks/S04",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S04",
+      "order": 2,
+      "title": "Numberblocks S04E02 We",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E02_We",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "xyz/numberblocks/s04/numberblocks_s04e02_we"
+    },
+    {
+      "provider": "Numberblocks",
+      "course": "S04",
+      "topic": "",
+      "page_key": "Numberblocks/S04",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S04",
+      "order": 3,
+      "title": "Numberblocks S04E03 Thirty",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E03_Thirty",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "xyz/numberblocks/s04/numberblocks_s04e03_thirty"
+    },
+    {
+      "provider": "Numberblocks",
+      "course": "S04",
+      "topic": "",
+      "page_key": "Numberblocks/S04",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S04",
+      "order": 4,
+      "title": "Numberblocks S04E04 Land of the Giants",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E04_Land%20of%20the%20Giants.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    },
+    {
+      "provider": "Numberblocks",
+      "course": "S04",
+      "topic": "",
+      "page_key": "Numberblocks/S04",
+      "page_url": "https://hoctienganh.xyz/playtt/Numberblocks/S04",
+      "order": 5,
+      "title": "Numberblocks S04E05 Fifty",
+      "video_url": "https://fileta.hoctienganh.xyz/Numberblocks/S04/Numberblocks_S04E05_Fifty.tiktok.m3u8",
+      "host": "fileta.hoctienganh.xyz",
+      "ext": "m3u8"
+    }
+  ]
+}

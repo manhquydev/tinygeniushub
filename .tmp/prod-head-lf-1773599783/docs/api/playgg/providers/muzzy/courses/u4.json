@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "resource_root": "/playgg",
+    "provider": "Muzzy",
+    "provider_slug": "muzzy",
+    "course": "U4",
+    "course_slug": "u4",
+    "page_count": 1,
+    "video_count": 6
+  },
+  "pages": [
+    {
+      "resource_root": "/playgg",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U4",
+      "page_key": "Muzzy/U4",
+      "path_segments": [
+        "Muzzy",
+        "U4"
+      ],
+      "provider": "Muzzy",
+      "course": "U4",
+      "topic": "",
+      "video_count": 6,
+      "videos": [
+        {
+          "order": 1,
+          "title": "40. In the palace garden",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U4/40.%20In%20the%20palace%20garden.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 2,
+          "title": "41. What are you doing",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U4/41.%20What%20are%20you%20doing.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 3,
+          "title": "42. It s lunchtime",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U4/42.%20It_s%20lunchtime.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 4,
+          "title": "43. What s the matter",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U4/43.%20What_s%20the%20matter.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 5,
+          "title": "44. Headache",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U4/44.%20Headache.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        },
+        {
+          "order": 6,
+          "title": "45. Where are you going",
+          "video_url": "https://rclone2.2tech.vn/Muzzy/U4/45.%20Where%20are%20you%20going.mp4",
+          "host": "rclone2.2tech.vn",
+          "ext": "mp4"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "provider": "Muzzy",
+      "course": "U4",
+      "topic": "",
+      "page_key": "Muzzy/U4",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U4",
+      "order": 1,
+      "title": "40. In the palace garden",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U4/40.%20In%20the%20palace%20garden.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U4",
+      "topic": "",
+      "page_key": "Muzzy/U4",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U4",
+      "order": 2,
+      "title": "41. What are you doing",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U4/41.%20What%20are%20you%20doing.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U4",
+      "topic": "",
+      "page_key": "Muzzy/U4",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U4",
+      "order": 3,
+      "title": "42. It s lunchtime",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U4/42.%20It_s%20lunchtime.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U4",
+      "topic": "",
+      "page_key": "Muzzy/U4",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U4",
+      "order": 4,
+      "title": "43. What s the matter",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U4/43.%20What_s%20the%20matter.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U4",
+      "topic": "",
+      "page_key": "Muzzy/U4",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U4",
+      "order": 5,
+      "title": "44. Headache",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U4/44.%20Headache.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    },
+    {
+      "provider": "Muzzy",
+      "course": "U4",
+      "topic": "",
+      "page_key": "Muzzy/U4",
+      "page_url": "https://hoctienganh.xyz/playgg/Muzzy/U4",
+      "order": 6,
+      "title": "45. Where are you going",
+      "video_url": "https://rclone2.2tech.vn/Muzzy/U4/45.%20Where%20are%20you%20going.mp4",
+      "host": "rclone2.2tech.vn",
+      "ext": "mp4"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "resource_root": "/phim",
+    "provider_count": 12,
+    "page_count": 12,
+    "video_count": 12,
+    "error_count": 0
+  },
+  "providers": [
+    {
+      "provider": "cuoc-phieu-luu-trong-giac-mong",
+      "provider_slug": "cuoc-phieu-luu-trong-giac-mong",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/cuoc-phieu-luu-trong-giac-mong/index.json"
+    },
+    {
+      "provider": "dac-vu-ali-phim-dien-anh-2",
+      "provider_slug": "dac-vu-ali-phim-dien-anh-2",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/dac-vu-ali-phim-dien-anh-2/index.json"
+    },
+    {
+      "provider": "doraemon-nobita-va-ban-giao-huong-dia-cau",
+      "provider_slug": "doraemon-nobita-va-ban-giao-huong-dia-cau",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/doraemon-nobita-va-ban-giao-huong-dia-cau/index.json"
+    },
+    {
+      "provider": "lien-minh-sieu-thu-dc",
+      "provider_slug": "lien-minh-sieu-thu-dc",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/lien-minh-sieu-thu-dc/index.json"
+    },
+    {
+      "provider": "nhim-sonic",
+      "provider_slug": "nhim-sonic",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/nhim-sonic/index.json"
+    },
+    {
+      "provider": "nhim-sonic-2",
+      "provider_slug": "nhim-sonic-2",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/nhim-sonic-2/index.json"
+    },
+    {
+      "provider": "nhim-sonic-3",
+      "provider_slug": "nhim-sonic-3",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/nhim-sonic-3/index.json"
+    },
+    {
+      "provider": "phi-vu-dong-troi",
+      "provider_slug": "phi-vu-dong-troi",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/phi-vu-dong-troi/index.json"
+    },
+    {
+      "provider": "phi-vu-dong-troi-2",
+      "provider_slug": "phi-vu-dong-troi-2",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/phi-vu-dong-troi-2/index.json"
+    },
+    {
+      "provider": "spongebob-loi-nguyen-hai-tac",
+      "provider_slug": "spongebob-loi-nguyen-hai-tac",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/spongebob-loi-nguyen-hai-tac/index.json"
+    },
+    {
+      "provider": "transformers-mot",
+      "provider_slug": "transformers-mot",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/transformers-mot/index.json"
+    },
+    {
+      "provider": "wallace-va-gromit-long-vu-bao-thu",
+      "provider_slug": "wallace-va-gromit-long-vu-bao-thu",
+      "course_count": 1,
+      "page_count": 1,
+      "video_count": 1,
+      "path": "providers/wallace-va-gromit-long-vu-bao-thu/index.json"
+    }
+  ]
+}
