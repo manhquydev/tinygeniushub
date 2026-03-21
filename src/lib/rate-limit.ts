@@ -222,10 +222,13 @@ export function getRequestIp(
   const trustedProxyHops = options?.trustedProxyHops ?? env.RATE_LIMIT_TRUSTED_HOPS;
 
   if (trustProxy) {
-    // In production we require a proxy-overwritten x-real-ip to reduce XFF spoof risk.
-    const realIp = extractIpFromHeader(request.headers.get("x-real-ip"));
-    if (realIp) {
-      return realIp;
+    // Only trust x-real-ip when at least one proxy hop is configured; otherwise it is
+    // client-controlled and must not be used for rate-limit key extraction.
+    if (trustedProxyHops >= 1) {
+      const realIp = extractIpFromHeader(request.headers.get("x-real-ip"));
+      if (realIp) {
+        return realIp;
+      }
     }
 
     const forwardedChain = extractForwardedChain(request.headers.get("x-forwarded-for"));

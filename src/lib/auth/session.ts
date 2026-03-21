@@ -2,7 +2,6 @@ import { headers } from "next/headers";
 import type { NextRequest } from "next/server";
 import { auth } from "@/lib/auth/better-auth";
 import { prisma } from "@/lib/db";
-import { env } from "@/lib/env";
 import { getImpersonatedParentIdFromCookieHeader } from "@/lib/auth/impersonation";
 
 export const SESSION_COOKIE_NAME = "ccth_session";
@@ -12,11 +11,6 @@ type SessionUser = {
   email: string;
   parentId?: string | null;
 };
-
-function isAdminSessionEmail(email: string) {
-  const normalizedEmail = email.trim().toLowerCase();
-  return env.ADMIN_EMAILS.includes(normalizedEmail);
-}
 
 async function resolveAuthenticatedParentFromHeaders(requestHeaders: Headers) {
   const session = await auth.api.getSession({
@@ -78,7 +72,14 @@ async function resolveParentFromHeaders(
     return authenticatedParent;
   }
 
-  if (!isAdminSessionEmail(authenticatedParent.email)) {
+  const adminAccount = await prisma.adminAccount.findFirst({
+    where: {
+      email: { equals: authenticatedParent.email, mode: "insensitive" },
+      isActive: true,
+    },
+    select: { id: true },
+  });
+  if (!adminAccount) {
     return authenticatedParent;
   }
 

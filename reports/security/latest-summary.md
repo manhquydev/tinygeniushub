@@ -1,6 +1,6 @@
 # Security Baseline
 
-- Generated: 2026-02-23T17:56:40.433Z
+- Generated: 2026-03-21T02:19:25.547Z
 - Fail on severity: high
 - Fail scope: prod
 
@@ -20,6 +20,6 @@
 - Low: 0
 - Info: 0
 
-- Combined raw report: D:\project\cungcontuhoc\reports\security\security-baseline-2026-02-23T17-56-37-225Z.json
-- All-deps raw report: D:\project\cungcontuhoc\reports\security\security-baseline-2026-02-23T17-56-37-225Z-all.json
-- Prod-deps raw report: D:\project\cungcontuhoc\reports\security\security-baseline-2026-02-23T17-56-37-225Z-prod.json
+- Combined raw report: D:\project\cungcontuhoc\reports\security\security-baseline-2026-03-21T02-19-22-504Z.json
+- All-deps raw report: D:\project\cungcontuhoc\reports\security\security-baseline-2026-03-21T02-19-22-504Z-all.json
+- Prod-deps raw report: D:\project\cungcontuhoc\reports\security\security-baseline-2026-03-21T02-19-22-504Z-prod.json

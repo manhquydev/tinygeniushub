@@ -153,73 +153,39 @@ export async function validateCoupon(codeInput: string) {
   const code = normalizeCouponCode(payload.code);
   const now = new Date();
 
-  return prisma.$transaction(async (tx) => {
-    const coupon = await tx.couponCode.findUnique({
-      where: {
-        code,
-      },
-      select: {
-        id: true,
-        discountPercent: true,
-        maxUses: true,
-        usedCount: true,
-        active: true,
-        expiresAt: true,
-      },
-    });
-
-    if (!coupon) {
-      return { valid: false, message: "Mã giảm giá không tồn tại." };
-    }
-
-    if (!coupon.active) {
-      return { valid: false, message: "Mã giảm giá đã tạm ngưng." };
-    }
-
-    if (coupon.expiresAt && coupon.expiresAt <= now) {
-      return { valid: false, message: "Mã giảm giá đã hết hạn." };
-    }
-
-    if (coupon.maxUses !== null && coupon.usedCount >= coupon.maxUses) {
-      return { valid: false, message: "Mã giảm giá đã hết lượt sử dụng." };
-    }
-
-    if (coupon.maxUses !== null) {
-      const updateResult = await tx.couponCode.updateMany({
-        where: {
-          id: coupon.id,
-          usedCount: {
-            lt: coupon.maxUses,
-          },
-        },
-        data: {
-          usedCount: {
-            increment: 1,
-          },
-        },
-      });
-
-      if (updateResult.count === 0) {
-        return { valid: false, message: "Mã giảm giá đã hết lượt sử dụng." };
-      }
-    } else {
-      await tx.couponCode.update({
-        where: {
-          id: coupon.id,
-        },
-        data: {
-          usedCount: {
-            increment: 1,
-          },
-        },
-      });
-    }
-
-    return {
-      valid: true,
-      discountPercent: coupon.discountPercent,
-    };
+  const coupon = await prisma.couponCode.findUnique({
+    where: {
+      code,
+    },
+    select: {
+      discountPercent: true,
+      maxUses: true,
+      usedCount: true,
+      active: true,
+      expiresAt: true,
+    },
   });
+
+  if (!coupon) {
+    return { valid: false, message: "Mã giảm giá không tồn tại." };
+  }
+
+  if (!coupon.active) {
+    return { valid: false, message: "Mã giảm giá đã tạm ngưng." };
+  }
+
+  if (coupon.expiresAt && coupon.expiresAt <= now) {
+    return { valid: false, message: "Mã giảm giá đã hết hạn." };
+  }
+
+  if (coupon.maxUses !== null && coupon.usedCount >= coupon.maxUses) {
+    return { valid: false, message: "Mã giảm giá đã hết lượt sử dụng." };
+  }
+
+  return {
+    valid: true,
+    discountPercent: coupon.discountPercent,
+  };
 }
 
 export async function listAdminPaymentsForExport(input: unknown) {

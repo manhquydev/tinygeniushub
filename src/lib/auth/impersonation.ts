@@ -1,11 +1,12 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 import { env } from "@/lib/env";
+import { logWarn } from "@/lib/observability/logger";
 
 export const IMPERSONATED_PARENT_ID_COOKIE_NAME = "ccth_impersonated_parent_id";
 export const IMPERSONATING_COOKIE_NAME = "ccth_impersonating";
-const IMPERSONATION_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 12;
-const IMPERSONATION_SIGNING_SECRET = `${env.BETTER_AUTH_SECRET}:impersonation`;
+const IMPERSONATION_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 1; // 1 hour
+const IMPERSONATION_SIGNING_SECRET = `${env.ADMIN_AUTH_SECRET}:impersonation`;
 
 type ImpersonationCookiePayload = {
   parentId: string;
@@ -115,6 +116,10 @@ export function getImpersonatedParentIdFromCookieHeader(
 
   const payload = decodeAndVerifyImpersonationToken(token);
   if (!payload) {
+    logWarn("impersonation.token_tamper_or_expired", {
+      actorEmail: actorEmail ?? "unknown",
+      hasToken: true,
+    });
     return null;
   }
 
@@ -146,7 +151,7 @@ export function setImpersonationCookie(
     path: "/",
     httpOnly: true,
     secure: env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "strict",
     maxAge: IMPERSONATION_COOKIE_MAX_AGE_SECONDS,
   });
   response.cookies.set({
@@ -155,7 +160,7 @@ export function setImpersonationCookie(
     path: "/",
     httpOnly: true,
     secure: env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "strict",
     maxAge: IMPERSONATION_COOKIE_MAX_AGE_SECONDS,
   });
 }
@@ -167,7 +172,7 @@ export function clearImpersonationCookie(response: NextResponse) {
     path: "/",
     httpOnly: true,
     secure: env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "strict",
     maxAge: 0,
   });
   response.cookies.set({
@@ -176,7 +181,7 @@ export function clearImpersonationCookie(response: NextResponse) {
     path: "/",
     httpOnly: true,
     secure: env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "strict",
     maxAge: 0,
   });
 }

@@ -20,7 +20,7 @@ const loginSchema = z.object({
 
 const SESSION_DURATION_S = 60 * 60 * 8;
 const COOKIE_NAME = "ccth_admin_session";
-const LOGIN_FAILURE_MIN_DURATION_MS = 300;
+const LOGIN_FAILURE_MIN_DURATION_MS = 1500;
 
 async function waitMinimumLoginFailureDuration(startedAtMs: number) {
   const elapsed = Date.now() - startedAtMs;
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
       data: { lastLoginAt: new Date() },
     });
 
-    const secret = new TextEncoder().encode(`${env.BETTER_AUTH_SECRET}_admin`);
+    const secret = new TextEncoder().encode(env.ADMIN_AUTH_SECRET);
     const token = await new SignJWT({
       sub: admin.id,
       email: admin.email,

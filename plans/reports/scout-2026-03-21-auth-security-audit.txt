@@ -1,0 +1,134 @@
+AUTHENTICATION & SECURITY CODEBASE SCOUT REPORT
+Date: March 21, 2026
+Scope: Auth, Authorization, Middleware, RBAC, Security Implementation
+
+SUMMARY
+=======
+Dual-session architecture (parent: ccth_session 30d, admin: ccth_admin_session 8h)
+Admin access: ADMIN_EMAILS env var (comma-separated)
+RBAC: AdminRole enum (SUPER_ADMIN, CONTENT_EDITOR, SUPPORT_AGENT)
+Rate-limiting: 17 policies with IP/email/parent-level bucketing
+IP controls: blocked CIDRs + readiness allowlist
+All admin routes require requireAdminFromRequest() with optional role validation
+
+AUTHENTICATION FILES (7 total)
+==============================
+1. /src/lib/auth/better-auth.ts - Parent auth, bcryptjs (12 rounds), 30d TTL, cookie: ccth_session
+2. /src/lib/auth/admin-auth.ts - Admin auth isolated, signup disabled, 8h TTL, cookie: ccth_admin_session
+3. /src/lib/auth/better-auth-utils.ts - Cookie parsing, error normalization
+4. /src/lib/auth/session.ts - Parent session resolution, impersonation support
+5. /src/lib/auth/require-parent.ts - requireParent() server guard
+6. /src/lib/auth/admin-auth-client.ts - Client-side admin utilities
+7. /src/modules/admin/admin-auth-service.ts - Admin JWT validation, role check, isActive flag
+
+AUTHORIZATION & RBAC (3 files)
+==============================
+8. /src/lib/auth/admin.ts - isAdminEmail(), requireAdminFromRequest(request, allowedRoles?)
+9. /prisma/schema.prisma - AdminRole enum, AdminAccount model with role/isActive
+10. /src/modules/admin/admin-auth-service.ts - Enforces role via allowedRoles parameter
+
+SECURITY ACCESS & IP CONTROLS (3 files)
+========================================
+11. /src/modules/platform/security-access-guard.ts - assertRequestAllowedBySecurityControls()
+12. /src/modules/platform/security-policy-service.ts - Load/cache/update rate-limit policies
+13. /src/modules/platform/security-policy.ts - 17 policy definitions with min/max clamping
+
+RATE LIMITING (2 files)
+=======================
+14. /src/lib/rate-limit.ts - Redis + in-memory fallback, failure modes (deny/allow/fallback)
+15. /src/lib/security/admin-rate-limit.ts - Admin mutation rate limit (fail-closed)
+
+CSRF & AUDIT (2 files)
+======================
+16. /src/lib/security/csrf.ts - Origin/Referer validation, Sec-Fetch-Site checking
+17. /src/modules/platform/audit-service.ts - Audit log creation for all admin actions
+
+IMPERSONATION (1 file)
+======================
+18. /src/lib/auth/impersonation.ts - HMAC-SHA256 signed tokens, 12h max age, timing-safe comparison
+
+DATA MODELS (1 file)
+====================
+19. /prisma/schema.prisma - ParentAccount, User, AdminAccount, AuthSession, AdminSecuritySettings, AuditLog
+
+ADMIN API ROUTES (60+ files)
+============================
+/src/app/api/admin/overview/ - Any admin
+/src/app/api/admin/security/rate-limits/ - SUPER_ADMIN only, CSRF, rate-limited
+/src/app/api/admin/impersonate/ - SUPER_ADMIN, rate-limited, creates signed cookie
+/src/app/api/admin/users/ - User management
+/src/app/api/admin/payments/ - Payment records
+/src/app/api/admin/webhooks/ - Webhook logs
+/src/app/api/admin/lessons/ - Lesson management
+/src/app/api/admin/courses/ - Course management
+... 50+ more admin endpoints
+
+PARENT/USER API ROUTES (25+ files)
+==================================
+/src/app/api/auth/signup - Public
+/src/app/api/auth/login - Public
+/src/app/api/auth/logout - Requires session
+/src/app/api/children/ - Parent-protected
+/src/app/api/lessons/ - Parent-protected
+/src/app/api/reports/ - Parent-protected
+/src/app/api/notifications/ - Parent-protected
+/src/app/api/referrals/ - Parent-protected
+
+SECURITY STRENGTHS
+==================
+✓ Dual-session isolation with distinct cookie names
+✓ Role-based access control with enum validation
+✓ 17 rate-limit policies with IP/email/parent bucketing
+✓ IP-based access controls (blocked CIDRs + allowlist)
+✓ CSRF protection (Origin/Referer + Sec-Fetch-Site)
+✓ Audit logging for all admin actions
+✓ Fail-closed rate limiting for admin (Redis unavailable → deny)
+✓ HMAC-signed impersonation with timing-safe comparison
+✓ Bcryptjs 12-round password hashing
+✓ Admin status check on every session validation
+✓ Shorter admin session TTL (8h vs 30d)
+
+POTENTIAL CONCERNS
+==================
+⚠ Admin access via env var (requires re-deploy to revoke)
+⚠ No 2FA/MFA for admin accounts
+⚠ Long parent session TTL (30 days)
+⚠ No concurrent session limits per admin
+⚠ IP resolution relies on RATE_LIMIT_TRUST_PROXY flag
+⚠ Admin can disable rate-limit protections via API
+⚠ No visible password reset token expiry enforcement
+⚠ Session revocation only at next request (not immediate)
+
+UNRESOLVED QUESTIONS
+====================
+1. Password reset token storage/expiry/one-time-use enforcement?
+2. How long until admin revocation takes effect?
+3. Can non-SUPER_ADMIN escalate privileges?
+4. Admin concurrent session limits?
+5. Session revocation endpoint for forced logout?
+6. IP header spoofing risks in production?
+7. API key authentication for service-to-service?
+
+RECOMMENDATIONS
+===============
+1. Migrate admin access from env var to DB-based for zero-downtime revocation
+2. Implement 2FA for admin accounts (TOTP)
+3. Add session revocation endpoint
+4. Enforce concurrent session limits (1-3 per admin)
+5. Reduce parent TTL or add refresh tokens
+6. Document rate-limit policy enforcement
+7. Create admin audit dashboard
+8. Test password reset token expiry
+9. Validate IP header configuration in production
+10. Plan API key auth for service-to-service
+
+ALL FILES IDENTIFIED: 104 total
+- 7 auth files
+- 3 authz/RBAC files
+- 3 security policy files
+- 2 rate-limit files
+- 2 CSRF/audit files
+- 1 impersonation file
+- 1 schema file
+- 60+ admin API routes
+- 25+ parent/user API routes

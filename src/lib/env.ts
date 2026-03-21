@@ -29,6 +29,7 @@ const envSchema = z.object({
   DATABASE_URL: z.string().min(1),
   SESSION_SECRET: z.string().min(32),
   BETTER_AUTH_SECRET: z.string().min(32),
+  ADMIN_AUTH_SECRET: z.string().min(32),
   BETTER_AUTH_URL: z.string().url(),
   AUTH_TRUSTED_ORIGINS: z
     .string()
@@ -61,14 +62,14 @@ const envSchema = z.object({
         .map((item) => item.trim())
         .filter((item) => item.length > 0),
     ),
-  STRIPE_WEBHOOK_TOLERANCE_SECONDS: z.coerce.number().int().min(30).max(3600).default(300),
+  STRIPE_WEBHOOK_TOLERANCE_SECONDS: z.coerce.number().int().min(30).max(300).default(300),
   REPORT_EMAIL_PROVIDER: z.string().min(1).default("mock_email"),
   REPORT_EMAIL_RESEND_API_KEY: optionalNonEmptyString,
   REPORT_EMAIL_RESEND_API_BASE_URL: z.string().url().default("https://api.resend.com"),
   REPORT_EMAIL_FROM: optionalEmail,
   REPORT_EMAIL_REPLY_TO: optionalEmail,
   REPORT_EMAIL_TO_OVERRIDE: optionalEmail,
-  CRON_SECRET: z.string().min(16),
+  CRON_SECRET: z.string().min(32),
   STORAGE_PROVIDER: z.string().min(1).default("mock_r2"),
   MEDIA_UPLOAD_URL_TTL_SECONDS: z.coerce.number().int().min(60).max(3600).default(900),
   WATCH_SESSION_TTL_SECONDS: z.coerce.number().int().min(300).max(21600).default(7200),
@@ -120,6 +121,9 @@ const parsedEnv = envSchema.parse({
   BETTER_AUTH_SECRET:
     process.env.BETTER_AUTH_SECRET ??
     (isProduction && !allowCiFallbacks ? undefined : "dev-better-auth-secret-change-this-in-production-32"),
+  ADMIN_AUTH_SECRET:
+    process.env.ADMIN_AUTH_SECRET ??
+    (isProduction && !allowCiFallbacks ? undefined : "dev-admin-auth-secret-change-this-in-production-32"),
   BETTER_AUTH_URL:
     process.env.BETTER_AUTH_URL ?? (isProduction && !allowCiFallbacks ? undefined : "http://localhost:3000"),
   AUTH_TRUSTED_ORIGINS: process.env.AUTH_TRUSTED_ORIGINS,
@@ -141,7 +145,7 @@ const parsedEnv = envSchema.parse({
   REPORT_EMAIL_FROM: process.env.REPORT_EMAIL_FROM,
   REPORT_EMAIL_REPLY_TO: process.env.REPORT_EMAIL_REPLY_TO,
   REPORT_EMAIL_TO_OVERRIDE: process.env.REPORT_EMAIL_TO_OVERRIDE,
-  CRON_SECRET: process.env.CRON_SECRET ?? (isProduction && !allowCiFallbacks ? undefined : "dev-cron-secret-change-this"),
+  CRON_SECRET: process.env.CRON_SECRET ?? (isProduction && !allowCiFallbacks ? undefined : "dev-cron-secret-change-this-must-be-32-chars!!"),
   STORAGE_PROVIDER: process.env.STORAGE_PROVIDER,
   MEDIA_UPLOAD_URL_TTL_SECONDS: process.env.MEDIA_UPLOAD_URL_TTL_SECONDS,
   WATCH_SESSION_TTL_SECONDS: process.env.WATCH_SESSION_TTL_SECONDS,

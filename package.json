@@ -97,7 +97,7 @@
     "konva": "^10.2.0",
     "lucide-react": "^0.575.0",
     "motion": "^12.34.3",
-    "next": "16.1.6",
+    "next": "16.1.7",
     "pdf-lib": "^1.17.1",
     "prisma": "^6.16.0",
     "react": "19.2.3",
@@ -131,7 +131,7 @@
     "@types/three": "^0.183.1",
     "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "16.1.7",
     "jsdom": "^26.1.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
@@ -144,8 +144,12 @@
       "lodash": "4.17.23",
       "minimatch": "10.2.3",
       "serialize-javascript": "7.0.3",
-      "flatted": "3.4.0",
-      "rollup": ">=4.59.0"
+      "flatted": "3.4.2",
+      "rollup": ">=4.59.0",
+      "effect": "3.20.0",
+      "kysely": "0.28.14",
+      "fast-xml-parser": "5.5.7",
+      "dompurify": "3.3.2"
     }
   }
 }

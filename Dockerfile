@@ -15,11 +15,15 @@ FROM base AS runner
 WORKDIR /app
 
 RUN apk add --no-cache postgresql-client curl
+RUN addgroup -S app -g 10001 && adduser -S -D -H -u 10001 -G app app
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 RUN chmod +x ./scripts/start-web.sh ./scripts/start-worker.sh
+RUN chown -R app:app /app
+
+USER app
 
 EXPOSE 3000
 

@@ -28,6 +28,7 @@ vi.mock("@/lib/prisma-error", () => ({
 import { processBillingWebhook } from "@/modules/billing/webhook-service";
 
 type TxContext = {
+  $queryRawUnsafe: ReturnType<typeof vi.fn>;
   webhookEvent: {
     findUnique: ReturnType<typeof vi.fn>;
     create: ReturnType<typeof vi.fn>;
@@ -47,6 +48,7 @@ type TxContext = {
 
 function createTxContext(): TxContext {
   return {
+    $queryRawUnsafe: vi.fn().mockResolvedValue([]),
     webhookEvent: {
       findUnique: vi.fn(),
       create: vi.fn(),

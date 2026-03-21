@@ -1,9 +1,28 @@
 import { fail } from "@/lib/http";
+import { env } from "@/lib/env";
 import { logError, logWarn } from "@/lib/observability/logger";
 import { DomainError } from "@/modules/platform/errors";
 import { ZodError } from "zod";
 
+function isInvalidJsonSyntaxError(error: unknown) {
+  if (!(error instanceof SyntaxError)) {
+    return false;
+  }
+
+  const message = error.message.toLowerCase();
+  return message.includes("json") || message.includes("unexpected token");
+}
+
 export function handleRouteError(error: unknown, context?: Record<string, unknown>) {
+  if (isInvalidJsonSyntaxError(error)) {
+    logWarn("route.invalid_json", {
+      message: (error as SyntaxError).message,
+      context,
+    });
+
+    return fail("Invalid JSON payload", 400);
+  }
+
   if (error instanceof ZodError) {
     logWarn("route.validation_failed", {
       issues: error.issues,
@@ -32,7 +51,7 @@ export function handleRouteError(error: unknown, context?: Record<string, unknow
     logError("route.unhandled_error", {
       name: error.name,
       message: error.message,
-      stack: error.stack,
+      ...(env.NODE_ENV !== "production" && { stack: error.stack }),
       context,
     });
 

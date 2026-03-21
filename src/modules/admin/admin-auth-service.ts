@@ -32,15 +32,15 @@ export async function getAdminSession(): Promise<AdminSession | null> {
         const token = cookieStore.get(COOKIE_NAME)?.value;
         if (!token) return null;
 
-        const secret = new TextEncoder().encode(env.BETTER_AUTH_SECRET + "_admin");
-        const { payload } = await jwtVerify(token, secret) as { payload: AdminSessionPayload };
+        const secret = new TextEncoder().encode(env.ADMIN_AUTH_SECRET);
+        const { payload } = await jwtVerify(token, secret, { algorithms: ["HS256"] }) as { payload: AdminSessionPayload };
 
         if (!payload.sub || !payload.isActive) return null;
 
-        // Verify admin still exists and is active
+        // Verify admin still exists and is active; use DB role (not JWT) to prevent stale role access
         const admin = await prisma.adminAccount.findUnique({
             where: { id: payload.sub },
-            select: { id: true, isActive: true },
+            select: { id: true, isActive: true, role: true },
         });
         if (!admin || !admin.isActive) return null;
 
@@ -48,9 +48,9 @@ export async function getAdminSession(): Promise<AdminSession | null> {
             user: {
                 id: payload.sub,
                 email: payload.email,
-                role: payload.role,
+                role: admin.role,
                 displayName: payload.displayName,
-                isActive: payload.isActive,
+                isActive: admin.isActive,
             },
         };
     } catch {
@@ -58,10 +58,16 @@ export async function getAdminSession(): Promise<AdminSession | null> {
     }
 }
 
+const VALID_ADMIN_ROLES = ["SUPER_ADMIN", "ADMIN", "VIEWER"] as const;
+
 export async function requireAdminSession(allowedRoles?: string[]) {
     const session = await getAdminSession();
     if (!session?.user) {
         throw new DomainError("Unauthorized", 401, "UNAUTHORIZED");
+    }
+
+    if (!(VALID_ADMIN_ROLES as readonly string[]).includes(session.user.role)) {
+        throw new DomainError("Forbidden: Invalid role", 403, "FORBIDDEN");
     }
 
     if (allowedRoles && allowedRoles.length > 0) {

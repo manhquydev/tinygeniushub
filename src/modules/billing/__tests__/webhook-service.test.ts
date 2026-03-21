@@ -5,6 +5,7 @@ import { env } from "@/lib/env";
 
 const { prismaMock, txMock, createAuditLogMock } = vi.hoisted(() => {
   const txMock = {
+    $queryRawUnsafe: vi.fn().mockResolvedValue([]),
     webhookEvent: {
       findUnique: vi.fn(),
       create: vi.fn(),

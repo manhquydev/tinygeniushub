@@ -53,6 +53,21 @@ export async function POST(
     const { lessonId } = await params;
     const payload = await request.json();
 
+    const childId = typeof payload?.childId === "string" ? payload.childId : null;
+    if (childId) {
+      const childLimit = await enforceRateLimit({
+        key: `learning:lesson-complete:child:${buildRateLimitIdentity(childId)}`,
+        limit: parentPolicy.limit,
+        windowMs: parentPolicy.windowMs,
+        storeFailureMode: "deny",
+      });
+      if (!childLimit.allowed) {
+        return fail("Too many lesson completion requests for this child. Please retry later.", 429, {
+          retryAfterMs: childLimit.retryAfterMs,
+        });
+      }
+    }
+
     const result = await completeLesson({
       parentId: parent.id,
       lessonId,

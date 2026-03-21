@@ -10,7 +10,7 @@ const trustedOrigins = Array.from(new Set([env.BETTER_AUTH_URL, ...env.AUTH_TRUS
 export const adminAuth = betterAuth({
     basePath: "/api/admin/auth",
     baseURL: env.BETTER_AUTH_URL,
-    secret: env.BETTER_AUTH_SECRET + "_admin", // Salt secret to isolate sessions
+    secret: env.ADMIN_AUTH_SECRET,
     database: prismaAdapter(prisma, {
         provider: "postgresql",
     }),

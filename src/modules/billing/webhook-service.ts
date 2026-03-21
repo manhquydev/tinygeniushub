@@ -1,4 +1,4 @@
-﻿import { createHmac, timingSafeEqual } from "node:crypto";
+﻿import { createHmac, createHash, timingSafeEqual } from "node:crypto";
 import {
   PaymentStatus,
   SubscriptionStatus,
@@ -65,12 +65,21 @@ function resolvePaymentStatus(eventType: z.infer<typeof billingWebhookSchema>["e
   return PaymentStatus.REFUNDED;
 }
 
+function hashWebhookLockKey(provider: string, eventId: string): bigint {
+  const hash = createHash("sha256").update(`${provider}:${eventId}`).digest();
+  return hash.readBigInt64BE(0);
+}
+
 export async function processBillingWebhook(params: {
   payload: z.infer<typeof billingWebhookSchema>;
 }) {
   const payload = billingWebhookSchema.parse(params.payload);
 
   return prisma.$transaction(async (tx) => {
+    // Serialize concurrent replay attempts for the same event via advisory lock
+    const lockKey = hashWebhookLockKey(payload.provider, payload.eventId);
+    await tx.$queryRawUnsafe(`SELECT pg_advisory_xact_lock($1)`, lockKey);
+
     const existingEvent = await tx.webhookEvent.findUnique({
       where: {
         provider_eventId: {

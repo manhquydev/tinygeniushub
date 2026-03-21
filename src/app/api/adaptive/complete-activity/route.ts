@@ -10,6 +10,7 @@ import { handleRouteError } from "@/lib/route-error";
 import { getParentFromRequest } from "@/lib/auth/session";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { handleActivityCompletion } from "@/modules/adaptive/activity-completion-handler";
+import { prisma } from "@/lib/db";
 import { z } from "zod";
 import type { NextRequest } from "next/server";
 
@@ -33,6 +34,15 @@ export async function POST(request: NextRequest) {
     const parsed = schema.safeParse(body);
     if (!parsed.success) {
       return fail("Invalid request body", 400);
+    }
+
+    // Verify childId belongs to the authenticated parent
+    const child = await prisma.childProfile.findFirst({
+      where: { id: parsed.data.childId, parentId: parent.id },
+      select: { id: true },
+    });
+    if (!child) {
+      return fail("Child not found", 404);
     }
 
     const result = await handleActivityCompletion({

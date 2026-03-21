@@ -7,6 +7,7 @@ const {
   parentFindFirstMock,
   userUpdateManyMock,
   getImpersonatedParentIdFromCookieHeaderMock,
+  adminFindFirstMock,
 } = vi.hoisted(() => ({
   headersMock: vi.fn(),
   getSessionMock: vi.fn(),
@@ -14,6 +15,7 @@ const {
   parentFindFirstMock: vi.fn(),
   userUpdateManyMock: vi.fn(),
   getImpersonatedParentIdFromCookieHeaderMock: vi.fn(),
+  adminFindFirstMock: vi.fn(),
 }));
 
 vi.mock("next/headers", () => ({
@@ -36,6 +38,9 @@ vi.mock("@/lib/db", () => ({
     },
     user: {
       updateMany: userUpdateManyMock,
+    },
+    adminAccount: {
+      findFirst: adminFindFirstMock,
     },
   },
 }));
@@ -62,6 +67,7 @@ describe("getParentFromRequest", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     userUpdateManyMock.mockResolvedValue({ count: 1 });
+    adminFindFirstMock.mockResolvedValue(null);
   });
 
   it("returns null when no auth session exists", async () => {
@@ -186,6 +192,7 @@ describe("getParentFromRequest", () => {
   });
 
   it("binds impersonation cookie to the current admin email", async () => {
+    adminFindFirstMock.mockResolvedValueOnce({ id: "admin-db-1" });
     getSessionMock.mockResolvedValueOnce({
       user: {
         id: "auth-admin-1",
@@ -222,6 +229,7 @@ describe("getParentFromRequest", () => {
 describe("getParentFromServerCookie", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    adminFindFirstMock.mockResolvedValue(null);
   });
 
   it("resolves parent using server cookie headers", async () => {

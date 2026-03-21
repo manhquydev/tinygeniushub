@@ -110,6 +110,13 @@ export async function GET(request: NextRequest) {
     return redirectTo("/courses?error=invalid_checkout");
   }
 
+  if (env.NODE_ENV === "production" && env.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK) {
+    logWarn("courses.mock_checkout.prod_access", {
+      ip: request.headers.get("x-forwarded-for") ?? "unknown",
+      url: request.nextUrl.toString(),
+    });
+  }
+
   const { searchParams } = request.nextUrl;
   const requestedCourseId = searchParams.get("courseId");
   const requestedBundleSlug = searchParams.get("bundleSlug");

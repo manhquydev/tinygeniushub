@@ -18,7 +18,7 @@ function sanitizeValue(value: unknown): unknown {
     return {
       name: value.name,
       message: value.message,
-      stack: value.stack,
+      ...(env.NODE_ENV !== "production" && { stack: value.stack }),
     };
   }
 

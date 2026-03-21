@@ -71,15 +71,7 @@ describe("course checkout mock-success route", () => {
     expect(findUniqueMock).not.toHaveBeenCalled();
   });
 
-  it("blocks non-zero checkout in production when mock callback is disabled", async () => {
-    findUniqueMock.mockResolvedValueOnce({
-      id: "payment-1",
-      parentId: "parent-1",
-      amountVnd: 120000,
-      status: "PENDING",
-      rawPayload: {},
-    });
-
+  it("blocks all checkouts in production when mock callback is disabled", async () => {
     const response = await GET(
       new NextRequest("http://localhost/api/courses/checkout/mock-success?courseId=course-1&sessionId=s1"),
     );
@@ -88,24 +80,18 @@ describe("course checkout mock-success route", () => {
     expect(response.headers.get("location")).toBe("/courses?error=invalid_checkout");
     expect(logWarnMock).toHaveBeenCalledWith(
       "courses.mock_checkout.disabled",
-      expect.objectContaining({ reason: "production_non_zero_blocked" }),
+      expect.objectContaining({ allowProdMockCallback: false }),
     );
+    expect(findUniqueMock).not.toHaveBeenCalled();
   });
 
-  it("allows zero-amount checkout to continue past disabled production guard", async () => {
-    findUniqueMock.mockResolvedValueOnce({
-      id: "payment-1",
-      parentId: "parent-1",
-      amountVnd: 0,
-      status: "FAILED",
-      rawPayload: {},
-    });
-
+  it("redirects to invalid_checkout when prod guard fires regardless of amount", async () => {
     const response = await GET(
       new NextRequest("http://localhost/api/courses/checkout/mock-success?courseId=course-1&sessionId=s1"),
     );
 
     expect(response.status).toBe(307);
-    expect(response.headers.get("location")).toBe("/courses?error=checkout_failed");
+    expect(response.headers.get("location")).toBe("/courses?error=invalid_checkout");
+    expect(findUniqueMock).not.toHaveBeenCalled();
   });
 });

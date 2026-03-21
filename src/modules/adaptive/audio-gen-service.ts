@@ -21,6 +21,10 @@ function ensureAudioDir(): void {
  * Returns the public URL path.
  */
 export async function generatePlacementAudio(text: string, itemId: string): Promise<string> {
+  if (!/^[a-zA-Z0-9_-]+$/.test(itemId)) {
+    throw new Error("Invalid itemId: must be alphanumeric with hyphens or underscores only");
+  }
+
   const apiKey = process.env.GOOGLE_API_KEY;
   if (!apiKey) {
     throw new Error("GOOGLE_API_KEY environment variable not set");
@@ -29,6 +33,10 @@ export async function generatePlacementAudio(text: string, itemId: string): Prom
   ensureAudioDir();
 
   const filePath = path.join(AUDIO_DIR, `${itemId}.mp3`);
+  const resolvedPath = path.resolve(filePath);
+  if (!resolvedPath.startsWith(path.resolve(AUDIO_DIR))) {
+    throw new Error("Invalid audio file path");
+  }
 
   // Skip if already generated
   if (fs.existsSync(filePath)) {
