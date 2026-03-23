@@ -2,7 +2,10 @@
 import { isCronRequestAuthorized } from "@/lib/cron";
 import { prisma } from "@/lib/db";
 import { newsletterService } from "@/modules/blog/newsletter-service";
-import { enqueueSendBlogNewsletter } from "@/worker/queue";
+import {
+  enqueueSendBlogNewsletter,
+  getNewsletterWeekStart,
+} from "@/worker/queue";
 
 export async function GET(request: NextRequest) {
   if (!isCronRequestAuthorized(request)) {
@@ -32,7 +35,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ dispatched: 0, reason: "No posts this week" });
   }
 
-  const subscribers = await newsletterService.getActiveSubscribers();
+  const newsletterWeekStartAt = getNewsletterWeekStart();
+  const subscribers = await newsletterService.getActiveSubscribers({
+    lastEmailAtBefore: newsletterWeekStartAt,
+  });
   if (subscribers.length === 0) {
     return NextResponse.json({ dispatched: 0, reason: "No active subscribers" });
   }
@@ -45,7 +51,9 @@ export async function GET(request: NextRequest) {
       await enqueueSendBlogNewsletter({
         subscriberId: subscriber.id,
         subscriberEmail: subscriber.email,
+        nameVi: subscriber.nameVi,
         postIds,
+        newsletterWeekStartAt: newsletterWeekStartAt.toISOString(),
       });
       dispatched += 1;
     } catch (error) {

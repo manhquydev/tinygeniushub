@@ -150,7 +150,12 @@ export async function deleteExpiredReaderSessions() {
 
 export async function countReaderBookmarks(readerId: string) {
   return prisma.blogBookmark.count({
-    where: { readerId },
+    where: {
+      readerId,
+      post: {
+        status: BlogPostStatus.PUBLISHED,
+      },
+    },
   });
 }
 
@@ -201,10 +206,16 @@ export async function isReaderBookmarkedPost(readerId: string, postId: string) {
 export async function findReaderBookmarks(readerId: string, limit = 20, page = 1) {
   const take = Math.min(Math.max(limit, 1), 100);
   const skip = (Math.max(page, 1) - 1) * take;
+  const where = {
+    readerId,
+    post: {
+      status: BlogPostStatus.PUBLISHED,
+    },
+  } satisfies Prisma.BlogBookmarkWhereInput;
 
   const [items, total] = await prisma.$transaction([
     prisma.blogBookmark.findMany({
-      where: { readerId },
+      where,
       orderBy: { createdAt: "desc" },
       skip,
       take,
@@ -236,20 +247,12 @@ export async function findReaderBookmarks(readerId: string, limit = 20, page = 1
         },
       },
     }),
-    prisma.blogBookmark.count({ where: { readerId } }),
+    prisma.blogBookmark.count({ where }),
   ]);
 
   return {
     total,
-    items: items
-      .filter(
-        (item: {
-          id: string;
-          createdAt: Date;
-          post: { status: BlogPostStatus };
-        }) => item.post.status === BlogPostStatus.PUBLISHED,
-      )
-      .map((item: {
+    items: items.map((item: {
         id: string;
         createdAt: Date;
         post: {

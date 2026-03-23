@@ -97,13 +97,16 @@ export function NotificationBell() {
   }
 
   async function markNotificationRead(notificationId: string) {
-    await fetch(`/api/reader/notifications/${notificationId}/read`, {
+    const response = await fetch(`/api/reader/notifications/${notificationId}/read`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify({}),
     });
+    if (!response.ok) {
+      return;
+    }
     setNotifications((current) =>
       current.map((item) =>
         item.id === notificationId ? { ...item, isRead: true } : item,
@@ -182,8 +185,8 @@ export function NotificationBell() {
                   <p className="text-xs font-semibold text-slate-900">
                     {notification.title}
                   </p>
-                  <p className="mt-1 text-xs text-slate-600">{notification.message}</p>
-                  <p className="mt-1 text-[11px] text-slate-400">
+                  <p className="mt-1 text-sm text-slate-600">{notification.message}</p>
+                  <p className="mt-1 text-xs text-slate-400">
                     {formatNotificationTime(notification.createdAt)}
                   </p>
                 </article>

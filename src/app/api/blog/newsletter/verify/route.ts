@@ -9,7 +9,11 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Missing token" }, { status: 400 });
     }
 
-    await newsletterService.verifySubscription(token);
+    const verified = await newsletterService.verifySubscription(token);
+    if (!verified) {
+      return NextResponse.redirect(new URL("/blog?subscribed=false", request.url));
+    }
+
     return NextResponse.redirect(new URL("/blog?subscribed=true", request.url));
   } catch (error) {
     return handleRouteError(error, {

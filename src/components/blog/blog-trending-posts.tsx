@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Eye } from "lucide-react";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 type BlogTrendingPostsProps = {
@@ -28,10 +27,7 @@ export function BlogTrendingPosts({ posts }: BlogTrendingPostsProps) {
                 <div className="flex items-center gap-2 text-xs text-slate-500">
                   <span>{post.category.nameVi}</span>
                   <span>·</span>
-                  <span className="inline-flex items-center gap-1">
-                    <Eye size={14} />
-                    {post.viewCount}
-                  </span>
+                  <span>{post.viewCount} lượt xem</span>
                 </div>
               </div>
             </li>

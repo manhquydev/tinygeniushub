@@ -10,6 +10,10 @@ const providers: Record<string, BillingProviderAdapter> = {
 };
 
 export function resolveBillingProvider(providerCode = env.BILLING_PROVIDER) {
+  if (env.NODE_ENV === "production" && providerCode === "mock_gateway") {
+    throw new DomainError("Mock billing provider is disabled in production", 500, "MOCK_BILLING_DISABLED");
+  }
+
   const provider = providers[providerCode];
   if (!provider) {
     throw new DomainError(`Unsupported billing provider: ${providerCode}`, 500, "UNSUPPORTED_BILLING_PROVIDER");

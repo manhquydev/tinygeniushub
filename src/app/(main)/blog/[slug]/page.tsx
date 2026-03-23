@@ -1,10 +1,12 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import { BlogAuthorCard } from "@/components/blog/blog-author-card";
 import { BlogBookmarkButton } from "@/components/blog/blog-bookmark-button";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogCommentsSection } from "@/components/blog/blog-comments-section";
+import { BlogLikeButton } from "@/components/blog/blog-like-button";
 import { BlogNewsletterWidget } from "@/components/blog/blog-newsletter-widget";
 import { BlogReadingProgress } from "@/components/blog/blog-reading-progress";
 import { BlogShare } from "@/components/blog/blog-share";
@@ -13,6 +15,11 @@ import { getReaderFromServerCookie } from "@/lib/auth/reader";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/db";
 import { extractToc } from "@/modules/blog/blog-markdown";
+import {
+  BLOG_LIKE_SESSION_COOKIE_NAME,
+  getBlogLikeIdentityHash,
+  hasPostLike,
+} from "@/modules/blog/blog-repository";
 import { generateBlogPostJsonLd, generateBlogPostMetadata } from "@/modules/blog/blog-seo";
 import { blogService } from "@/modules/blog/blog-service";
 import { getBookmarkStatus } from "@/modules/reader/reader-service";
@@ -70,6 +77,43 @@ function formatDate(value: Date | null) {
   }).format(value);
 }
 
+function normalizeCategoryColor(value: string | null | undefined) {
+  const fallback = "#0f766e";
+  if (!value) {
+    return fallback;
+  }
+
+  const trimmed = value.trim();
+  if (/^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  return fallback;
+}
+
+function toHex6(color: string) {
+  if (color.length === 4) {
+    const [hash, r, g, b] = color;
+    return `${hash}${r}${r}${g}${g}${b}${b}`.toLowerCase();
+  }
+
+  return color.toLowerCase();
+}
+
+function getCategoryBadgeStyle(color: string | null | undefined) {
+  const backgroundColor = normalizeCategoryColor(color);
+  const hex = toHex6(backgroundColor).slice(1);
+  const r = Number.parseInt(hex.slice(0, 2), 16);
+  const g = Number.parseInt(hex.slice(2, 4), 16);
+  const b = Number.parseInt(hex.slice(4, 6), 16);
+  const luminance = (r * 299 + g * 587 + b * 114) / 1000;
+
+  return {
+    backgroundColor,
+    color: luminance >= 140 ? "#0f172a" : "#ffffff",
+  };
+}
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const [post, reader] = await Promise.all([
@@ -84,6 +128,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const bookmarkStatus = reader
     ? await getBookmarkStatus(reader.id, post.id)
     : { bookmarked: false };
+  const cookieStore = await cookies();
+  const likeSessionToken = cookieStore.get(BLOG_LIKE_SESSION_COOKIE_NAME)?.value ?? null;
+  const likeIdentityHash = getBlogLikeIdentityHash({
+    readerId: reader?.id,
+    sessionToken: likeSessionToken,
+  });
+  const liked = likeIdentityHash ? await hasPostLike(post.id, likeIdentityHash) : false;
 
   const siteUrl = env.BETTER_AUTH_URL.replace(/\/$/, "");
   const articleUrl = `${siteUrl}/blog/${post.slug}`;
@@ -119,10 +170,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
             <span
-              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold text-white"
-              style={{ backgroundColor: post.category.color ?? "#0f766e" }}
+              className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold"
+              style={getCategoryBadgeStyle(post.category.color)}
             >
-              {post.category.emoji ?? "??"} {post.category.nameVi}
+              {post.category.nameVi}
             </span>
 
             <h1 className="text-3xl font-black leading-tight tracking-[-0.02em] text-slate-900 sm:text-4xl">{post.titleVi}</h1>
@@ -140,6 +191,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             <div className="flex flex-wrap items-center gap-3">
               <BlogShare url={articleUrl} title={post.titleVi} />
+              <BlogLikeButton
+                slug={post.slug}
+                initialLikeCount={post.likeCount}
+                initialLiked={liked}
+              />
               <BlogBookmarkButton
                 postId={post.id}
                 initialBookmarked={bookmarkStatus.bookmarked}
@@ -180,4 +236,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     </div>
   );
 }
+
+
 

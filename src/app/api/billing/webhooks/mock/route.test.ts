@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { env } from "@/lib/env";
 
 const {
   enforceRateLimitMock,
@@ -44,6 +45,26 @@ describe("billing webhook route", () => {
     getRequestIpMock.mockReturnValue("203.0.113.10");
     isValidBillingSignatureMock.mockReset();
     processBillingWebhookMock.mockReset();
+    env.NODE_ENV = "test";
+    env.BILLING_PROVIDER = "mock_gateway";
+  });
+
+  it("returns 404 when route is disabled outside mock mode", async () => {
+    env.NODE_ENV = "production";
+
+    const response = await POST(
+      new Request("http://localhost/api/billing/webhooks/mock", {
+        method: "POST",
+        headers: {
+          "x-provider-signature": "fake",
+          "content-type": "application/json",
+        },
+        body: "{}",
+      }),
+    );
+
+    expect(response.status).toBe(404);
+    expect(isValidBillingSignatureMock).not.toHaveBeenCalled();
   });
 
   it("rejects oversized payload before signature verification", async () => {

@@ -1,6 +1,5 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import { Clock, Eye, Heart } from "lucide-react";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 function formatDate(value: Date | null) {
@@ -21,6 +20,43 @@ function initials(name: string) {
     .map((part) => part.charAt(0).toUpperCase())
     .join("")
     .slice(0, 2);
+}
+
+function normalizeCategoryColor(value: string | null | undefined) {
+  const fallback = "#0f766e";
+  if (!value) {
+    return fallback;
+  }
+
+  const trimmed = value.trim();
+  if (/^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  return fallback;
+}
+
+function toHex6(color: string) {
+  if (color.length === 4) {
+    const [hash, r, g, b] = color;
+    return `${hash}${r}${r}${g}${g}${b}${b}`.toLowerCase();
+  }
+
+  return color.toLowerCase();
+}
+
+function getCategoryBadgeStyle(color: string | null | undefined) {
+  const backgroundColor = normalizeCategoryColor(color);
+  const hex = toHex6(backgroundColor).slice(1);
+  const r = Number.parseInt(hex.slice(0, 2), 16);
+  const g = Number.parseInt(hex.slice(2, 4), 16);
+  const b = Number.parseInt(hex.slice(4, 6), 16);
+  const luminance = (r * 299 + g * 587 + b * 114) / 1000;
+
+  return {
+    backgroundColor,
+    color: luminance >= 140 ? "#0f172a" : "#ffffff",
+  };
 }
 
 export function BlogCard({ post }: { post: BlogPostCardDTO }) {
@@ -47,10 +83,10 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
         <div className="space-y-3 p-4">
           <div className="space-y-2">
             <span
-              className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold text-white"
-              style={{ backgroundColor: post.category.color ?? "#0f766e" }}
+              className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold"
+              style={getCategoryBadgeStyle(post.category.color)}
             >
-              {post.category.emoji ?? "??"} {post.category.nameVi}
+              {post.category.nameVi}
             </span>
             {post.tags.length > 0 ? (
               <div className="flex flex-wrap gap-1.5">
@@ -83,23 +119,15 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
             )}
             <span>{post.author.displayName}</span>
             <span>·</span>
-            <span className="inline-flex items-center gap-1">
-              <Clock size={14} />
-              {post.readingTimeMin} phút đọc
-            </span>
+            <span>{post.readingTimeMin} phút đọc</span>
             <span>·</span>
             <span>{formatDate(post.publishedAt)}</span>
           </div>
 
           <div className="flex items-center gap-3 text-xs text-slate-500">
-            <span className="inline-flex items-center gap-1">
-              <Eye size={14} />
-              {post.viewCount}
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <Heart size={14} />
-              {post.likeCount}
-            </span>
+            <span>{post.viewCount} lượt xem</span>
+            <span>·</span>
+            <span>{post.likeCount} lượt thích</span>
           </div>
         </div>
       </Link>

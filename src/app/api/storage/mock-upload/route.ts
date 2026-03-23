@@ -23,6 +23,10 @@ function isValidSignature(payload: string, signature: string) {
 }
 
 export async function PUT(request: Request) {
+  if (env.NODE_ENV === "production" || env.STORAGE_PROVIDER !== "mock_r2") {
+    return fail("Not found", 404);
+  }
+
   try {
     await assertRequestAllowedBySecurityControls(request);
 

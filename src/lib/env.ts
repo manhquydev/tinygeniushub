@@ -182,6 +182,26 @@ if (parsedEnv.NODE_ENV === "production" && !parsedEnv.RATE_LIMIT_TRUST_PROXY) {
   throw new Error("RATE_LIMIT_TRUST_PROXY must be true in production");
 }
 
+if (parsedEnv.NODE_ENV === "production" && parsedEnv.BILLING_PROVIDER === "mock_gateway") {
+  throw new Error("BILLING_PROVIDER=mock_gateway is not allowed in production");
+}
+
+if (parsedEnv.NODE_ENV === "production" && parsedEnv.COURSE_PAYMENT_PROVIDER === "mock_gateway") {
+  throw new Error("COURSE_PAYMENT_PROVIDER=mock_gateway is not allowed in production");
+}
+
+if (parsedEnv.NODE_ENV === "production" && parsedEnv.REPORT_EMAIL_PROVIDER === "mock_email") {
+  throw new Error("REPORT_EMAIL_PROVIDER=mock_email is not allowed in production");
+}
+
+if (parsedEnv.NODE_ENV === "production" && parsedEnv.STORAGE_PROVIDER === "mock_r2") {
+  throw new Error("STORAGE_PROVIDER=mock_r2 is not allowed in production");
+}
+
+if (parsedEnv.NODE_ENV === "production" && parsedEnv.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK) {
+  throw new Error("ALLOW_PROD_MOCK_CHECKOUT_CALLBACK must be false in production");
+}
+
 if (parsedEnv.BILLING_PROVIDER === "stripe" && !parsedEnv.STRIPE_SECRET_KEY) {
   throw new Error("STRIPE_SECRET_KEY is required when BILLING_PROVIDER=stripe");
 }

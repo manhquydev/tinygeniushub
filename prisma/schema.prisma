@@ -806,6 +806,7 @@ model BlogPost {
   comments         BlogComment[]
   versions         BlogPostVersion[]
   bookmarks        BlogBookmark[]
+  likes            BlogPostLike[]
 
   @@index([status, publishedAt(sort: Desc)])
   @@index([categoryId, status, publishedAt])
@@ -871,6 +872,17 @@ model BlogBookmark {
 
   @@unique([readerId, postId])
   @@index([readerId, createdAt(sort: Desc)])
+  @@index([postId, createdAt(sort: Desc)])
+}
+
+model BlogPostLike {
+  id           String   @id @default(cuid())
+  postId       String
+  identityHash String
+  createdAt    DateTime @default(now())
+  post         BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, identityHash])
   @@index([postId, createdAt(sort: Desc)])
 }
 

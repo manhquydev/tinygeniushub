@@ -32,6 +32,43 @@ function buildCategoryPageHref(slug: string, page: number, sort: "latest" | "pop
   return `/blog/category/${slug}?${params.toString()}`;
 }
 
+function normalizeCategoryColor(value: string | null | undefined) {
+  const fallback = "#0f766e";
+  if (!value) {
+    return fallback;
+  }
+
+  const trimmed = value.trim();
+  if (/^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  return fallback;
+}
+
+function toHex6(color: string) {
+  if (color.length === 4) {
+    const [hash, r, g, b] = color;
+    return `${hash}${r}${r}${g}${g}${b}${b}`.toLowerCase();
+  }
+
+  return color.toLowerCase();
+}
+
+function getCategoryBadgeStyle(color: string | null | undefined) {
+  const backgroundColor = normalizeCategoryColor(color);
+  const hex = toHex6(backgroundColor).slice(1);
+  const r = Number.parseInt(hex.slice(0, 2), 16);
+  const g = Number.parseInt(hex.slice(2, 4), 16);
+  const b = Number.parseInt(hex.slice(4, 6), 16);
+  const luminance = (r * 299 + g * 587 + b * 114) / 1000;
+
+  return {
+    backgroundColor,
+    color: luminance >= 140 ? "#0f172a" : "#ffffff",
+  };
+}
+
 export default async function BlogCategoryPage({ params, searchParams }: BlogCategoryPageProps) {
   const [{ slug }, resolvedSearchParams] = await Promise.all([params, searchParams]);
   const page = resolvePage(resolvedSearchParams?.page);
@@ -67,7 +104,12 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
     <div className="page-stack">
       <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="space-y-3">
-          <p className="text-4xl">{category.emoji ?? "??"}</p>
+          <span
+            className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold"
+            style={getCategoryBadgeStyle(category.color)}
+          >
+            {category.nameVi}
+          </span>
           <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">{category.nameVi}</h1>
           {category.description ? <p className="max-w-[70ch] text-slate-600">{category.description}</p> : null}
         </div>

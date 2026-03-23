@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Clock } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
@@ -36,7 +35,7 @@ function highlightQuery(text: string, query: string): string {
   const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return escapedText.replace(
     new RegExp(`(${escaped})`, "gi"),
-    '<mark style="background:#fef08a;padding:0 2px;border-radius:2px;">$1</mark>',
+    '<mark class="rounded bg-amber-200 px-0.5">$1</mark>',
   );
 }
 
@@ -166,10 +165,7 @@ export default function BlogSearchPage() {
                     className="line-clamp-2 text-sm text-slate-600"
                     dangerouslySetInnerHTML={{ __html: highlightQuery(post.excerptVi, normalizedQuery) }}
                   />
-                  <p className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500">
-                    <Clock size={12} />
-                    {post.readingTimeMin} phút đọc
-                  </p>
+                  <p className="text-xs font-semibold text-slate-500">{post.readingTimeMin} phút đọc</p>
                 </div>
               </Link>
             </article>

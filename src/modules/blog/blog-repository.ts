@@ -1,5 +1,7 @@
-﻿import { BlogPostStatus, Prisma } from "@prisma/client";
+﻿import { createHash } from "node:crypto";
+import { BlogPostStatus, Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { DomainError } from "@/modules/platform/errors";
 import { calculateReadingTime } from "@/modules/blog/blog-markdown";
 import type {
   BlogAuthor,
@@ -83,6 +85,8 @@ const postFullSelect = {
 
 type PostCardRow = Prisma.BlogPostGetPayload<{ select: typeof postCardSelect }>;
 type PostFullRow = Prisma.BlogPostGetPayload<{ select: typeof postFullSelect }>;
+
+export const BLOG_LIKE_SESSION_COOKIE_NAME = "ccth_blog_like_session";
 
 function mapPostCard(row: PostCardRow): BlogPostCardDTO {
   return {
@@ -200,6 +204,30 @@ async function findPostByIdWithRelations(
   }
 
   return mapPostFull(post);
+}
+
+function isUniqueLikeError(error: unknown) {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    (error as { code?: string }).code === "P2002"
+  );
+}
+
+export function getBlogLikeIdentityHash(input: {
+  readerId?: string | null;
+  sessionToken?: string | null;
+}) {
+  if (input.readerId && input.readerId.trim().length > 0) {
+    return `reader:${createHash("sha256").update(`reader:${input.readerId}`).digest("hex")}`;
+  }
+
+  if (input.sessionToken && input.sessionToken.trim().length > 0) {
+    return `session:${createHash("sha256").update(input.sessionToken).digest("hex")}`;
+  }
+
+  return null;
 }
 
 export async function findPostBySlug(slug: string): Promise<BlogPostFullDTO | null> {
@@ -345,6 +373,72 @@ export async function incrementLikeCount(postId: string): Promise<number> {
   });
 
   return updated.likeCount;
+}
+
+export async function hasPostLike(postId: string, identityHash: string) {
+  const like = await prisma.blogPostLike.findUnique({
+    where: {
+      postId_identityHash: {
+        postId,
+        identityHash,
+      },
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  return Boolean(like);
+}
+
+export async function registerPostLike(
+  postId: string,
+  identityHash: string,
+): Promise<{ likeCount: number; created: boolean }> {
+  try {
+    const likeCount = await prisma.$transaction(async (tx) => {
+      await tx.blogPostLike.create({
+        data: {
+          postId,
+          identityHash,
+        },
+        select: {
+          id: true,
+        },
+      });
+
+      const updated = await tx.blogPost.update({
+        where: { id: postId },
+        data: {
+          likeCount: { increment: 1 },
+        },
+        select: {
+          likeCount: true,
+        },
+      });
+
+      return updated.likeCount;
+    });
+
+    return { likeCount, created: true };
+  } catch (error) {
+    if (!isUniqueLikeError(error)) {
+      throw error;
+    }
+
+    const post = await prisma.blogPost.findUnique({
+      where: { id: postId },
+      select: {
+        likeCount: true,
+      },
+    });
+
+    if (!post) {
+      throw new DomainError("Blog post not found", 404, "BLOG_POST_NOT_FOUND");
+    }
+
+    return { likeCount: post.likeCount, created: false };
+  }
 }
 
 export async function searchPosts(query: string, limit: number): Promise<BlogPostCardDTO[]> {

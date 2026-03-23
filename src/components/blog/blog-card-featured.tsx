@@ -1,6 +1,5 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import { Eye, Heart } from "lucide-react";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 function formatDate(value: Date | null) {
@@ -13,6 +12,43 @@ function formatDate(value: Date | null) {
     month: "2-digit",
     year: "numeric",
   }).format(value);
+}
+
+function normalizeCategoryColor(value: string | null | undefined) {
+  const fallback = "#0f766e";
+  if (!value) {
+    return fallback;
+  }
+
+  const trimmed = value.trim();
+  if (/^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  return fallback;
+}
+
+function toHex6(color: string) {
+  if (color.length === 4) {
+    const [hash, r, g, b] = color;
+    return `${hash}${r}${r}${g}${g}${b}${b}`.toLowerCase();
+  }
+
+  return color.toLowerCase();
+}
+
+function getCategoryBadgeStyle(color: string | null | undefined) {
+  const backgroundColor = normalizeCategoryColor(color);
+  const hex = toHex6(backgroundColor).slice(1);
+  const r = Number.parseInt(hex.slice(0, 2), 16);
+  const g = Number.parseInt(hex.slice(2, 4), 16);
+  const b = Number.parseInt(hex.slice(4, 6), 16);
+  const luminance = (r * 299 + g * 587 + b * 114) / 1000;
+
+  return {
+    backgroundColor,
+    color: luminance >= 140 ? "#0f172a" : "#ffffff",
+  };
 }
 
 export function BlogCardFeatured({ post }: { post: BlogPostCardDTO }) {
@@ -34,10 +70,10 @@ export function BlogCardFeatured({ post }: { post: BlogPostCardDTO }) {
 
           <div className="absolute inset-x-0 bottom-0 space-y-3 p-5 text-white sm:p-7">
             <span
-              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
-              style={{ backgroundColor: post.category.color ?? "#0f766e" }}
+              className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold"
+              style={getCategoryBadgeStyle(post.category.color)}
             >
-              {post.category.emoji ?? "??"} {post.category.nameVi}
+              {post.category.nameVi}
             </span>
 
             <h2 className="break-words text-2xl font-black leading-tight tracking-[-0.02em] sm:text-3xl">{post.titleVi}</h2>
@@ -51,12 +87,9 @@ export function BlogCardFeatured({ post }: { post: BlogPostCardDTO }) {
             </div>
 
             <div className="flex items-center gap-4 text-sm text-slate-100">
-              <span className="inline-flex items-center gap-1">
-                <Eye size={16} /> {post.viewCount}
-              </span>
-              <span className="inline-flex items-center gap-1">
-                <Heart size={16} /> {post.likeCount}
-              </span>
+              <span>{post.viewCount} lượt xem</span>
+              <span>·</span>
+              <span>{post.likeCount} lượt thích</span>
             </div>
           </div>
         </div>

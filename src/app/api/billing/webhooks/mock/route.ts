@@ -11,6 +11,10 @@ import { assertRequestAllowedBySecurityControls } from "@/modules/platform/secur
 import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
 
 export async function POST(request: Request) {
+  if (env.NODE_ENV === "production" || env.BILLING_PROVIDER !== "mock_gateway") {
+    return fail("Not found", 404);
+  }
+
   let clientIp = "unknown";
 
   try {

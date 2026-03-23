@@ -5,6 +5,7 @@ import {
   calculateSpamScore,
   countUrls,
 } from "@/modules/blog/comment-spam-detector";
+import { DomainError } from "@/modules/platform/errors";
 import { notifyCommentReply } from "@/modules/reader/reader-service";
 import { enqueueNotifyBlogCommentReply } from "@/worker/queue";
 
@@ -32,6 +33,24 @@ export const commentService = {
   }) {
     if (data.content.length < 10 || data.content.length > 2000) {
       throw new Error("Comment must be 10-2000 characters.");
+    }
+
+    if (data.parentId) {
+      const parentComment = await prisma.blogComment.findUnique({
+        where: { id: data.parentId },
+        select: {
+          id: true,
+          postId: true,
+        },
+      });
+
+      if (!parentComment) {
+        throw new DomainError("Parent comment not found.", 404, "PARENT_COMMENT_NOT_FOUND");
+      }
+
+      if (parentComment.postId !== data.postId) {
+        throw new DomainError("Parent comment does not belong to this post.", 400, "PARENT_COMMENT_POST_MISMATCH");
+      }
     }
 
     const urlCount = countUrls(data.content);

@@ -63,16 +63,16 @@ async function sendReplyNotificationEmail(payload: NotifyCommentReplyJobPayload)
   });
   const unsubscribeUrl = `${baseUrl}/api/blog/comments/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
 
-  const subject = "Co phan hoi moi cho binh luan cua ban";
+  const subject = "Có phản hồi mới cho bình luận của bạn";
   const text = [
-    `Xin chao ${parentComment.authorName},`,
+    `Xin chào ${parentComment.authorName},`,
     "",
-    `Co nguoi vua tra loi binh luan cua ban trong bai: ${post.titleVi}`,
-    `Nguoi tra loi: ${replyComment.authorName}`,
+    `Có người vừa trả lời bình luận của bạn trong bài: ${post.titleVi}`,
+    `Người trả lời: ${replyComment.authorName}`,
     "",
-    `Xem chi tiet: ${postUrl}`,
+    `Xem chi tiết: ${postUrl}`,
     "",
-    "Neu ban khong muon nhan email thong bao tra loi nua, bam link:",
+    "Nếu bạn không muốn nhận email thông báo trả lời nữa, bấm link:",
     unsubscribeUrl,
   ].join("\n");
 
