@@ -1,4 +1,4 @@
-﻿-- CreateTable
+-- CreateTable
 CREATE TABLE "public"."BlogPostVersion" (
     "id" TEXT NOT NULL,
     "postId" TEXT NOT NULL,
