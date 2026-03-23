@@ -1,5 +1,12 @@
 import { randomUUID } from "node:crypto";
 import { prisma } from "@/lib/db";
+import {
+  SPAM_THRESHOLD,
+  calculateSpamScore,
+  countUrls,
+} from "@/modules/blog/comment-spam-detector";
+import { notifyCommentReply } from "@/modules/reader/reader-service";
+import { enqueueNotifyBlogCommentReply } from "@/worker/queue";
 
 export const commentService = {
   async getApprovedComments(postId: string) {
@@ -26,19 +33,45 @@ export const commentService = {
     if (data.content.length < 10 || data.content.length > 2000) {
       throw new Error("Comment must be 10-2000 characters.");
     }
-    if (/https?:\/\//i.test(data.content) && (data.content.match(/https?:\/\//gi)?.length ?? 0) > 2) {
-      throw new Error("Too many URLs detected.");
-    }
 
-    const verifyToken = randomUUID();
+    const urlCount = countUrls(data.content);
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+    const recentCommentsByIp =
+      data.ipHash && data.ipHash.length > 0
+        ? await prisma.blogComment.count({
+            where: {
+              ipHash: data.ipHash,
+              createdAt: {
+                gte: oneHourAgo,
+              },
+            },
+          })
+        : 0;
+
+    const spamScore = calculateSpamScore({
+      content: data.content,
+      authorName: data.authorName,
+      urlCount,
+      recentCommentsByIp,
+    });
+    const status = spamScore >= SPAM_THRESHOLD ? "SPAM" : "PENDING";
+    const verifyToken = status === "PENDING" ? randomUUID() : null;
+
     const comment = await prisma.blogComment.create({
       data: {
         ...data,
-        status: "PENDING",
+        status,
         verifyToken,
       },
     });
-    return { comment, verifyToken };
+
+    return {
+      comment,
+      verifyToken,
+      shouldSendVerification: status === "PENDING" && verifyToken !== null,
+      spamScore,
+      urlCount,
+    };
   },
 
   async verifyComment(token: string) {
@@ -54,7 +87,47 @@ export const commentService = {
   },
 
   async moderateComment(id: string, status: "APPROVED" | "SPAM" | "DELETED") {
-    return prisma.blogComment.update({ where: { id }, data: { status } });
+    const updatedComment = await prisma.blogComment.update({
+      where: { id },
+      data: { status },
+      include: {
+        post: {
+          select: {
+            slug: true,
+            titleVi: true,
+          },
+        },
+        parent: {
+          select: {
+            id: true,
+            status: true,
+            notifyOnReply: true,
+            authorEmail: true,
+          },
+        },
+      },
+    });
+
+    if (
+      status === "APPROVED" &&
+      updatedComment.parentId &&
+      updatedComment.parent &&
+      updatedComment.parent.status === "APPROVED" &&
+      updatedComment.parent.notifyOnReply
+    ) {
+      await enqueueNotifyBlogCommentReply({
+        parentCommentId: updatedComment.parent.id,
+        replyCommentId: updatedComment.id,
+        postSlug: updatedComment.post.slug,
+      });
+      await notifyCommentReply({
+        recipientEmail: updatedComment.parent.authorEmail,
+        postTitle: updatedComment.post.titleVi,
+        postSlug: updatedComment.post.slug,
+      });
+    }
+
+    return updatedComment;
   },
 
   async getPendingComments() {

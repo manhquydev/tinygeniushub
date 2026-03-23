@@ -26,6 +26,10 @@ export const blogCommentEmailQueue = new Queue("blog-comment-emails", {
   connection: redisConnection,
 });
 
+export const blogCommentReplyEmailQueue = new Queue("blog-comment-reply-emails", {
+  connection: redisConnection,
+});
+
 export const lifecycleEmailQueue = new Queue("lifecycle-emails", {
   connection: redisConnection,
 });
@@ -136,6 +140,17 @@ export async function enqueueVerifyBlogComment(payload: {
   verifyToken: string;
 }) {
   return blogCommentEmailQueue.add("verify-blog-comment", payload, {
+    removeOnComplete: true,
+    removeOnFail: 50,
+  });
+}
+
+export async function enqueueNotifyBlogCommentReply(payload: {
+  parentCommentId: string;
+  replyCommentId: string;
+  postSlug: string;
+}) {
+  return blogCommentReplyEmailQueue.add("notify-comment-reply", payload, {
     removeOnComplete: true,
     removeOnFail: 50,
   });

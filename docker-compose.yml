@@ -2,10 +2,6 @@ services:
   postgres:
     image: postgres:16-alpine
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    cap_drop:
-      - ALL
     environment:
       POSTGRES_DB: cungcontuhoc
       POSTGRES_USER: postgres
@@ -25,10 +21,6 @@ services:
   redis:
     image: redis:7-alpine
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    cap_drop:
-      - ALL
     ports:
       - "127.0.0.1:6379:6379"
     healthcheck:
@@ -76,10 +68,14 @@ services:
       POSTGRES_USER: postgres
       REDIS_HOST: redis
       REDIS_PORT: "6379"
+      HOME: /tmp
+      XDG_CACHE_HOME: /tmp/.cache
+      COREPACK_DEFAULT_TO_LATEST: "0"
       RUN_DB_SEED: "true"
       SEED_PARENT_EMAIL: demo.parent@cungcontuhoc.vn
       SEED_PARENT_PASSWORD: DemoPass123!
-    command: ["/app/scripts/start-web.sh"]
+    command:
+      ["/app/scripts/start-web.sh"]
     ports:
       - "3000:3000"
     healthcheck:
@@ -130,7 +126,11 @@ services:
       POSTGRES_USER: postgres
       REDIS_HOST: redis
       REDIS_PORT: "6379"
-    command: ["/app/scripts/start-worker.sh"]
+      HOME: /tmp
+      XDG_CACHE_HOME: /tmp/.cache
+      COREPACK_DEFAULT_TO_LATEST: "0"
+    command:
+      ["/app/scripts/start-worker.sh"]
     networks:
       - app_internal
 

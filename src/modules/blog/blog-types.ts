@@ -7,6 +7,8 @@ export interface BlogAuthorSummary {
   avatarUrl: string | null;
   slug: string;
   role: string;
+  bio?: string | null;
+  linkedinUrl?: string | null;
 }
 
 export interface BlogCategorySummary {
@@ -25,6 +27,7 @@ export interface BlogPostCardDTO {
   id: string;
   slug: string;
   type: BlogPostType;
+  status: BlogPostStatus;
   titleVi: string;
   excerptVi: string;
   coverImageUrl: string | null;

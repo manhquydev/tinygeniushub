@@ -1,7 +1,7 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogCardFeatured } from "@/components/blog/blog-card-featured";
-import { BlogNewsletterWidget } from "@/components/blog/blog-newsletter-widget";
+import { BlogSidebar } from "@/components/blog/blog-sidebar";
 import * as blogRepository from "@/modules/blog/blog-repository";
 import { generateBlogListMetadata } from "@/modules/blog/blog-seo";
 import { blogService } from "@/modules/blog/blog-service";
@@ -10,7 +10,10 @@ export const revalidate = 600;
 export const metadata = generateBlogListMetadata();
 
 type BlogPageProps = {
-  searchParams?: Promise<{ subscribed?: string | string[]; unsubscribed?: string | string[] }>;
+  searchParams?: Promise<{
+    subscribed?: string | string[];
+    unsubscribed?: string | string[];
+  }>;
 };
 
 function firstParamValue(value: string | string[] | undefined) {
@@ -23,14 +26,14 @@ function firstParamValue(value: string | string[] | undefined) {
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
 
-  const [featuredPosts, latestPostsResult, categories] = await Promise.all([
+  const [featuredPosts, latestPostsResult, categories, trendingPosts] = await Promise.all([
     blogService.getFeaturedPosts(),
     blogService.listPosts({ page: 1, limit: 8 }),
     blogRepository.findCategories(),
+    blogRepository.findTrendingPosts(5),
   ]);
 
   const heroPost = featuredPosts[0] ?? latestPostsResult.posts[0] ?? null;
-
   const subscribed = firstParamValue(resolvedSearchParams?.subscribed) === "true";
   const unsubscribed = firstParamValue(resolvedSearchParams?.unsubscribed) === "true";
 
@@ -67,21 +70,27 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
       <section className="space-y-4">
         <div className="section-header">
-          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Bài viết mới nhất</h1>
-          <Link href="/blog/search" className="text-sm font-semibold text-teal-700 hover:text-teal-800">
+          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">
+            Bài viết mới nhất
+          </h1>
+          <Link
+            href="/blog/search"
+            className="text-sm font-semibold text-teal-700 hover:text-teal-800"
+          >
             Tìm kiếm bài viết
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {latestPostsResult.posts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr]">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {latestPostsResult.posts.map((post) => (
+              <BlogCard key={post.id} post={post} />
+            ))}
+          </div>
+
+          <BlogSidebar categories={categories} trendingPosts={trendingPosts} />
         </div>
       </section>
-
-      <BlogNewsletterWidget />
     </div>
   );
 }
-

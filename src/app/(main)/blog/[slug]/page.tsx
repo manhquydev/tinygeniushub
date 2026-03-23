@@ -1,17 +1,21 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BlogAuthorCard } from "@/components/blog/blog-author-card";
+import { BlogBookmarkButton } from "@/components/blog/blog-bookmark-button";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogCommentsSection } from "@/components/blog/blog-comments-section";
 import { BlogNewsletterWidget } from "@/components/blog/blog-newsletter-widget";
 import { BlogReadingProgress } from "@/components/blog/blog-reading-progress";
 import { BlogShare } from "@/components/blog/blog-share";
 import { BlogToc } from "@/components/blog/blog-toc";
+import { getReaderFromServerCookie } from "@/lib/auth/reader";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/db";
 import { extractToc } from "@/modules/blog/blog-markdown";
 import { generateBlogPostJsonLd, generateBlogPostMetadata } from "@/modules/blog/blog-seo";
 import { blogService } from "@/modules/blog/blog-service";
+import { getBookmarkStatus } from "@/modules/reader/reader-service";
 
 export const revalidate = 3600;
 
@@ -68,11 +72,18 @@ function formatDate(value: Date | null) {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = await blogService.getPostBySlug(slug);
+  const [post, reader] = await Promise.all([
+    blogService.getPostBySlug(slug),
+    getReaderFromServerCookie(),
+  ]);
 
   if (!post) {
     notFound();
   }
+
+  const bookmarkStatus = reader
+    ? await getBookmarkStatus(reader.id, post.id)
+    : { bookmarked: false };
 
   const siteUrl = env.BETTER_AUTH_URL.replace(/\/$/, "");
   const articleUrl = `${siteUrl}/blog/${post.slug}`;
@@ -125,8 +136,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
 
             <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+            <BlogAuthorCard author={post.author} />
 
-            <BlogShare url={articleUrl} title={post.titleVi} />
+            <div className="flex flex-wrap items-center gap-3">
+              <BlogShare url={articleUrl} title={post.titleVi} />
+              <BlogBookmarkButton
+                postId={post.id}
+                initialBookmarked={bookmarkStatus.bookmarked}
+              />
+            </div>
           </div>
         </article>
 
@@ -140,7 +158,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <section className="space-y-4">
           <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Bài viết liên quan</h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {post.relatedPosts.map((relatedPost) => (
+            {post.relatedPosts.map((relatedPost: typeof post.relatedPosts[number]) => (
               <BlogCard key={relatedPost.id} post={relatedPost} />
             ))}
           </div>
@@ -150,6 +168,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <section id="comments">
         <BlogCommentsSection slug={slug} />
       </section>
+
+      <div>
+        <Link
+          href="/blog"
+          className="inline-flex items-center text-sm font-semibold text-teal-700 transition hover:text-teal-800"
+        >
+          ← Quay lại Blog
+        </Link>
+      </div>
     </div>
   );
 }

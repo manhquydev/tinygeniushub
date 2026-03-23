@@ -4,6 +4,7 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
 RUN corepack enable
+RUN corepack prepare pnpm@10.24.0 --activate
 
 FROM base AS deps
 WORKDIR /app
@@ -16,12 +17,16 @@ WORKDIR /app
 
 RUN apk add --no-cache postgresql-client curl
 RUN addgroup -S app -g 10001 && adduser -S -D -H -u 10001 -G app app
+RUN mkdir -p /home/app/.cache/node/corepack && chown -R app:app /home/app
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 RUN chmod +x ./scripts/start-web.sh ./scripts/start-worker.sh
 RUN chown -R app:app /app
+
+ENV HOME="/home/app"
+ENV XDG_CACHE_HOME="/home/app/.cache"
 
 USER app
 

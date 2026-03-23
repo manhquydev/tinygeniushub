@@ -1,0 +1,120 @@
+BLOG SYSTEM FILE INVENTORY
+===========================
+
+PUBLIC PAGES (src/app/(main)/blog/):
+  - page.tsx                          Blog index with featured posts
+  - [slug]/page.tsx                   Individual blog post
+  - [slug]/opengraph-image.tsx        Dynamic OG images
+  - category/[slug]/page.tsx          Category filtered view
+  - search/page.tsx                   Search results page
+
+ADMIN PAGES (src/app/(main)/admin/blog/):
+  - page.tsx                          Admin dashboard
+  - posts/page.tsx                    Posts list
+  - posts/new/page.tsx                Create new post
+  - posts/[id]/edit/page.tsx          Edit post
+  - authors/page.tsx                  Author management
+  - categories/page.tsx               Category management
+  - comments/page.tsx                 Comment moderation
+  - newsletter/page.tsx               Newsletter management
+  - analytics/page.tsx                Analytics dashboard
+
+PUBLIC API ROUTES (src/app/api/blog/):
+  - posts/route.ts                    List posts
+  - posts/[slug]/route.ts             Get single post
+  - posts/[slug]/like/route.ts        Like endpoint
+  - posts/[slug]/view/route.ts        View tracking
+  - posts/[slug]/comments/route.ts    Add comment
+  - featured/route.ts                 Featured posts
+  - categories/route.ts               List categories
+  - tags/route.ts                     List tags
+  - search/route.ts                   Search posts
+  - comments/verify/route.ts          Verify comment email
+  - newsletter/subscribe/route.ts     Subscribe
+  - newsletter/verify/route.ts        Verify subscription
+  - newsletter/unsubscribe/route.ts   Unsubscribe
+  - images/upload-url/route.ts        Image upload
+  - preview-markdown/route.ts         Markdown preview
+
+ADMIN API ROUTES (src/app/api/admin/blog/):
+  - posts/route.ts                    CRUD posts
+  - posts/[id]/route.ts               Get/update/delete post
+  - posts/[id]/publish/route.ts       Publish/schedule
+  - posts/[id]/refresh-related/route.ts  Regenerate related
+  - authors/route.ts                  CRUD authors
+  - categories/route.ts               CRUD categories
+  - comments/route.ts                 Moderate comments
+  - newsletter/subscribers/route.ts   Subscriber management
+  - analytics/route.ts                Analytics data
+
+COMPONENTS (src/components/blog/):
+  - blog-card.tsx                     Post card
+  - blog-card-featured.tsx            Featured post card
+  - blog-comment-card.tsx             Comment display
+  - blog-comment-form.tsx             Comment form
+  - blog-comments-section.tsx         Comments thread
+  - blog-editor-split.tsx             Split editor
+  - blog-markdown-editor.tsx          Markdown editor
+  - blog-markdown-preview.tsx         Preview pane
+  - blog-newsletter-widget.tsx        Newsletter signup
+  - blog-share.tsx                    Social sharing
+  - blog-toc.tsx                      Table of contents
+  - blog-reading-progress.tsx         Reading progress
+
+ADMIN COMPONENTS (src/components/):
+  - admin-blog-post-form.tsx          Post editor form
+  - admin-blog-author-create-form.tsx Author form
+  - admin-blog-category-create-form.tsx Category form
+  - admin-blog-comments-moderation.tsx Comment moderation
+  - admin-blog-newsletter-export-button.tsx Export subscribers
+
+MODULES (src/modules/blog/):
+  - blog-repository.ts (452 lines)    Database layer
+  - blog-service.ts (140 lines)       Business logic
+  - blog-types.ts (128 lines)         TypeScript types
+  - comment-service.ts (68 lines)     Comment ops
+  - newsletter-service.ts (109 lines) Email subscriptions
+  - related-posts-service.ts (53 lines) Related posts
+  - blog-seo.ts (85 lines)            SEO metadata
+  - blog-markdown.ts (36 lines)       Content rendering
+
+ADMIN MODULES (src/modules/admin/):
+  - admin-blog-service.ts             Admin operations with audit
+
+DATABASE (prisma/):
+  - schema.prisma (models):
+    * BlogPost                        Main content
+    * BlogAuthor                      Post authors
+    * BlogCategory                    Post categories
+    * BlogTag                         Tags
+    * BlogComment                     Comments
+    * BlogPostTag                     Post-tag junction
+    * BlogPostRelation                Related posts
+    * BlogNewsletterSubscriber        Email subscriptions
+    * BlogReadHistory                 Reading analytics
+
+BACKGROUND JOBS (src/worker/jobs/):
+  - dispatch-blog-newsletter-emails.ts Newsletter delivery
+  - verify-blog-comment-email.ts      Email verification
+
+CRON JOBS (src/api/cron/):
+  - publish-scheduled-posts           Auto-publish
+  - newsletter-weekly                 Weekly send
+
+SEEDS & CONFIG:
+  - prisma/seeds/blog-seed.ts         Sample blog data
+
+AUTH:
+  - src/lib/auth/admin-auth.ts        Admin authentication
+
+TOTAL COUNT:
+  Pages:        18 (9 public + 9 admin)
+  Components:   19
+  API Routes:   24 (15 public + 9 admin)
+  Modules:      8 (7 blog + 1 admin)
+  DB Models:    9
+  Jobs:         4 (2 workers + 2 crons)
+  ============
+  Files:        ~82 blog-related files
+  LOC:          ~1,100+ lines of business logic
+

@@ -3,6 +3,7 @@ import { createWeeklyReportsWorker } from "@/worker/jobs/generate-weekly-reports
 import { createWeeklyReportEmailsWorker } from "@/worker/jobs/dispatch-weekly-report-emails";
 import { createBlogNewsletterWorker } from "@/worker/jobs/dispatch-blog-newsletter-emails";
 import { createVerifyBlogCommentEmailWorker } from "@/worker/jobs/verify-blog-comment-email";
+import { createNotifyBlogCommentReplyWorker } from "@/worker/jobs/notify-blog-comment-reply";
 import { createLifecycleEmailsWorker } from "@/worker/jobs/dispatch-lifecycle-emails";
 import { createCertificateWorker } from "@/worker/jobs/generate-certificate";
 import { createBulkEnrollWorker } from "@/worker/jobs/bulk-enroll-processor";
@@ -14,6 +15,7 @@ const retentionWorker = createPortfolioRetentionWorker();
 const weeklyEmailWorker = createWeeklyReportEmailsWorker();
 const blogNewsletterWorker = createBlogNewsletterWorker();
 const verifyBlogCommentEmailWorker = createVerifyBlogCommentEmailWorker();
+const notifyBlogCommentReplyWorker = createNotifyBlogCommentReplyWorker();
 const lifecycleEmailWorker = createLifecycleEmailsWorker();
 const certificateWorker = createCertificateWorker();
 const bulkEnrollWorker = createBulkEnrollWorker();
@@ -44,6 +46,12 @@ blogNewsletterWorker.on("completed", (job) => {
 
 verifyBlogCommentEmailWorker.on("completed", (job) => {
   logInfo("worker.blog_comment_verify_email.completed", {
+    jobId: job.id,
+  });
+});
+
+notifyBlogCommentReplyWorker.on("completed", (job) => {
+  logInfo("worker.blog_comment_reply_email.completed", {
     jobId: job.id,
   });
 });
@@ -98,6 +106,13 @@ blogNewsletterWorker.on("failed", (job, error) => {
 
 verifyBlogCommentEmailWorker.on("failed", (job, error) => {
   logError("worker.blog_comment_verify_email.failed", {
+    jobId: job?.id,
+    error,
+  });
+});
+
+notifyBlogCommentReplyWorker.on("failed", (job, error) => {
+  logError("worker.blog_comment_reply_email.failed", {
     jobId: job?.id,
     error,
   });
@@ -174,6 +189,7 @@ process.on("SIGINT", async () => {
     weeklyEmailWorker.close(),
     blogNewsletterWorker.close(),
     verifyBlogCommentEmailWorker.close(),
+    notifyBlogCommentReplyWorker.close(),
     lifecycleEmailWorker.close(),
     certificateWorker.close(),
     bulkEnrollWorker.close(),

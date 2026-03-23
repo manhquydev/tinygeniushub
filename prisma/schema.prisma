@@ -804,12 +804,91 @@ model BlogPost {
   relatedPosts     BlogPostRelation[] @relation("SourcePost")
   relatedFrom      BlogPostRelation[] @relation("RelatedPost")
   comments         BlogComment[]
+  versions         BlogPostVersion[]
+  bookmarks        BlogBookmark[]
 
   @@index([status, publishedAt(sort: Desc)])
   @@index([categoryId, status, publishedAt])
   @@index([isFeatured, featuredUntil])
   @@index([ageGroup, status])
   @@index([slug])
+}
+
+model BlogPostVersion {
+  id              String         @id @default(cuid())
+  postId          String
+  titleVi         String
+  contentMarkdown String         @db.Text
+  excerptVi       String
+  metaTitleVi     String?
+  metaDescVi      String?
+  coverImageUrl   String?
+  status          BlogPostStatus
+  savedBy         String?
+  createdAt       DateTime       @default(now())
+  post            BlogPost       @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId, createdAt(sort: Desc)])
+}
+
+model ReaderAccount {
+  id            String                   @id @default(cuid())
+  email         String                   @unique
+  passwordHash  String
+  displayName   String
+  image         String?
+  emailVerified Boolean                  @default(false)
+  isActive      Boolean                  @default(true)
+  lastLoginAt   DateTime?
+  createdAt     DateTime                 @default(now())
+  updatedAt     DateTime                 @updatedAt
+  sessions      ReaderSession[]
+  bookmarks     BlogBookmark[]
+  notifications BlogReaderNotification[]
+}
+
+model ReaderSession {
+  id        String        @id @default(cuid())
+  tokenHash String        @unique
+  readerId  String
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime      @default(now())
+  reader    ReaderAccount @relation(fields: [readerId], references: [id], onDelete: Cascade)
+
+  @@index([readerId])
+  @@index([expiresAt])
+}
+
+model BlogBookmark {
+  id        String        @id @default(cuid())
+  readerId  String
+  postId    String
+  createdAt DateTime      @default(now())
+  reader    ReaderAccount @relation(fields: [readerId], references: [id], onDelete: Cascade)
+  post      BlogPost      @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([readerId, postId])
+  @@index([readerId, createdAt(sort: Desc)])
+  @@index([postId, createdAt(sort: Desc)])
+}
+
+model BlogReaderNotification {
+  id        String        @id @default(cuid())
+  readerId  String
+  type      String
+  title     String
+  message   String
+  link      String?
+  payload   Json?
+  isRead    Boolean       @default(false)
+  createdAt DateTime      @default(now())
+  readAt    DateTime?
+  reader    ReaderAccount @relation(fields: [readerId], references: [id], onDelete: Cascade)
+
+  @@index([readerId, isRead, createdAt(sort: Desc)])
+  @@index([readerId, createdAt(sort: Desc)])
 }
 
 model BlogComment {
@@ -821,6 +900,7 @@ model BlogComment {
   content     String            @db.Text
   status      BlogCommentStatus @default(PENDING)
   verifyToken String?           @unique
+  notifyOnReply Boolean         @default(true)
   likeCount   Int               @default(0)
   ipHash      String?
   createdAt   DateTime          @default(now())

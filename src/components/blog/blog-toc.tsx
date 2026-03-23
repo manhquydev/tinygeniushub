@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useState } from "react";
 
@@ -10,8 +10,10 @@ type Heading = {
 
 export function BlogToc({ headings }: { headings: Heading[] }) {
   const [activeId, setActiveId] = useState<string | null>(null);
-
-  const safeHeadings = useMemo(() => headings.filter((heading) => heading.id.length > 0), [headings]);
+  const safeHeadings = useMemo(
+    () => headings.filter((heading) => heading.id.length > 0),
+    [headings],
+  );
 
   useEffect(() => {
     if (safeHeadings.length === 0) {
@@ -49,22 +51,34 @@ export function BlogToc({ headings }: { headings: Heading[] }) {
   }
 
   return (
-    <nav aria-label="Mục lục bài viết" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <h4 className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-500">Mục lục</h4>
+    <nav
+      aria-label="Mục lục bài viết"
+      className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+    >
+      <h4 className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-500">
+        Mục lục
+      </h4>
       <ul className="space-y-2">
         {safeHeadings.map((heading) => {
           const active = activeId === heading.id;
+
           return (
             <li key={heading.id}>
               <button
                 type="button"
-                onClick={() => document.getElementById(heading.id)?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() =>
+                  document
+                    .getElementById(heading.id)
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className={`w-full border-l-2 px-3 py-1 text-left text-sm transition ${
                   active
                     ? "border-teal-500 text-teal-700"
                     : "border-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900"
                 }`}
-                style={{ paddingLeft: `${Math.max(0, (heading.level - 2) * 10 + 12)}px` }}
+                style={{
+                  paddingLeft: `${Math.max(0, (heading.level - 2) * 10 + 12)}px`,
+                }}
               >
                 {heading.text}
               </button>
@@ -75,4 +89,3 @@ export function BlogToc({ headings }: { headings: Heading[] }) {
     </nav>
   );
 }
-

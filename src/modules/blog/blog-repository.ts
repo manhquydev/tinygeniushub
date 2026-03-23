@@ -16,6 +16,7 @@ const postCardSelect = {
   id: true,
   slug: true,
   type: true,
+  status: true,
   titleVi: true,
   excerptVi: true,
   coverImageUrl: true,
@@ -30,6 +31,8 @@ const postCardSelect = {
       avatarUrl: true,
       slug: true,
       role: true,
+      bio: true,
+      linkedinUrl: true,
     },
   },
   category: {
@@ -86,6 +89,7 @@ function mapPostCard(row: PostCardRow): BlogPostCardDTO {
     id: row.id,
     slug: row.slug,
     type: row.type,
+    status: row.status,
     titleVi: row.titleVi,
     excerptVi: row.excerptVi,
     coverImageUrl: row.coverImageUrl,
@@ -99,6 +103,8 @@ function mapPostCard(row: PostCardRow): BlogPostCardDTO {
       avatarUrl: row.author.avatarUrl,
       slug: row.author.slug,
       role: row.author.role,
+      bio: row.author.bio,
+      linkedinUrl: row.author.linkedinUrl,
     },
     category: {
       nameVi: row.category.nameVi,
@@ -242,6 +248,25 @@ export async function findFeaturedPosts(limit: number): Promise<BlogPostCardDTO[
     },
     orderBy: [{ publishedAt: "desc" }],
     take: limit,
+    select: postCardSelect,
+  });
+
+  return posts.map(mapPostCard);
+}
+
+export async function findTrendingPosts(limit: number): Promise<BlogPostCardDTO[]> {
+  const clampedLimit = Math.min(Math.max(limit, 1), 10);
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+  const posts = await prisma.blogPost.findMany({
+    where: {
+      status: BlogPostStatus.PUBLISHED,
+      publishedAt: {
+        gte: thirtyDaysAgo,
+      },
+    },
+    orderBy: [{ viewCount: "desc" }, { publishedAt: "desc" }],
+    take: clampedLimit,
     select: postCardSelect,
   });
 

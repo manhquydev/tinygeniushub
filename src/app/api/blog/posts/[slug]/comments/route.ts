@@ -1,9 +1,15 @@
-import { createHash } from "node:crypto";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
+import { logInfo } from "@/lib/observability/logger";
+import {
+  buildRateLimitIdentity,
+  enforceRateLimit,
+  getRequestIp,
+} from "@/lib/rate-limit";
 import { handleRouteError } from "@/lib/route-error";
+import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { commentService } from "@/modules/blog/comment-service";
 import { enqueueVerifyBlogComment } from "@/worker/queue";
 
@@ -14,11 +20,17 @@ const commentSchema = z.object({
   parentId: z.string().optional(),
 });
 
+function buildRetryAfterHeader(retryAfterMs: number | undefined) {
+  if (typeof retryAfterMs !== "number" || retryAfterMs <= 0) {
+    return undefined;
+  }
+
+  return { "Retry-After": String(Math.ceil(retryAfterMs / 1000)) };
+}
+
 export async function GET(
   _request: NextRequest,
-  context: {
-    params: Promise<{ slug: string }>;
-  },
+  context: { params: Promise<{ slug: string }> },
 ) {
   try {
     const { slug } = await context.params;
@@ -29,11 +41,17 @@ export async function GET(
     });
 
     if (!post) {
-      return NextResponse.json({ comments: [] }, { headers: { "Cache-Control": "no-store" } });
+      return NextResponse.json(
+        { comments: [] },
+        { headers: { "Cache-Control": "no-store" } },
+      );
     }
 
     const comments = await commentService.getApprovedComments(post.id);
-    return NextResponse.json({ comments }, { headers: { "Cache-Control": "no-store" } });
+    return NextResponse.json(
+      { comments },
+      { headers: { "Cache-Control": "no-store" } },
+    );
   } catch (error) {
     return handleRouteError(error, {
       routeId: "blog.comments.list",
@@ -43,11 +61,30 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  context: {
-    params: Promise<{ slug: string }>;
-  },
+  context: { params: Promise<{ slug: string }> },
 ) {
   try {
+    assertTrustedOrigin(request);
+
+    const ip = getRequestIp(request);
+    const ipIdentity = buildRateLimitIdentity(ip);
+    const rateLimit = await enforceRateLimit({
+      key: `blog:comment:ip:${ipIdentity}`,
+      limit: 5,
+      windowMs: 60 * 60 * 1000,
+      storeFailureMode: "deny",
+    });
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: "Too many comments. Please try again later." },
+        {
+          status: 429,
+          headers: buildRetryAfterHeader(rateLimit.retryAfterMs),
+        },
+      );
+    }
+
     const { slug } = await context.params;
     const body = commentSchema.parse(await request.json());
 
@@ -60,26 +97,37 @@ export async function POST(
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
 
-    const ipRaw = request.headers.get("x-forwarded-for") ?? "";
-    const ipHash = createHash("sha256").update(ipRaw).digest("hex").slice(0, 16);
-    const { comment, verifyToken } = await commentService.submitComment({
-      postId: post.id,
-      parentId: body.parentId,
-      authorName: body.authorName,
-      authorEmail: body.authorEmail.toLowerCase(),
-      content: body.content,
-      ipHash,
-    });
+    const { comment, verifyToken, shouldSendVerification, spamScore, urlCount } =
+      await commentService.submitComment({
+        postId: post.id,
+        parentId: body.parentId,
+        authorName: body.authorName,
+        authorEmail: body.authorEmail.toLowerCase(),
+        content: body.content,
+        ipHash: ipIdentity,
+      });
 
-    await enqueueVerifyBlogComment({
-      commentId: comment.id,
-      authorName: body.authorName,
-      authorEmail: body.authorEmail.toLowerCase(),
-      postSlug: post.slug,
-      verifyToken,
-    });
+    if (shouldSendVerification && verifyToken) {
+      await enqueueVerifyBlogComment({
+        commentId: comment.id,
+        authorName: body.authorName,
+        authorEmail: body.authorEmail.toLowerCase(),
+        postSlug: post.slug,
+        verifyToken,
+      });
+    } else {
+      logInfo("blog.comment.auto_flagged_spam", {
+        commentId: comment.id,
+        postId: post.id,
+        spamScore,
+        urlCount,
+      });
+    }
 
-    return NextResponse.json({ message: "Vui lòng kiểm tra email để duyệt bình luận" }, { status: 201 });
+    return NextResponse.json(
+      { message: "Vui lòng kiểm tra email để duyệt bình luận" },
+      { status: 201 },
+    );
   } catch (error) {
     return handleRouteError(error, {
       routeId: "blog.comments.create",
