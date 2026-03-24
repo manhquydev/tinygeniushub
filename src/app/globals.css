@@ -173,7 +173,8 @@ body {
 }
 
 /* Admin pages: neutral background instead of decorative gradient */
-body:has([data-sidebar="sidebar"]) {
+body:has([data-sidebar="sidebar"]),
+.admin-shell {
   background: var(--admin-content-bg);
   color: var(--admin-text-primary);
 
@@ -197,12 +198,17 @@ body:has([data-sidebar="sidebar"]) {
 /* Force readable form controls inside admin dark UI */
 body:has([data-sidebar="sidebar"]) input,
 body:has([data-sidebar="sidebar"]) select,
-body:has([data-sidebar="sidebar"]) textarea {
+body:has([data-sidebar="sidebar"]) textarea,
+.admin-shell input,
+.admin-shell select,
+.admin-shell textarea {
   color: var(--admin-text-primary);
 }
 
 body:has([data-sidebar="sidebar"]) input::placeholder,
-body:has([data-sidebar="sidebar"]) textarea::placeholder {
+body:has([data-sidebar="sidebar"]) textarea::placeholder,
+.admin-shell input::placeholder,
+.admin-shell textarea::placeholder {
   color: var(--admin-text-muted);
 }
 
@@ -210,25 +216,32 @@ body:has([data-sidebar="sidebar"]) textarea::placeholder {
   Some admin status badges still use slate-100/700 utility pairs from legacy light styles.
   Remap them under admin scope to keep dark visual style and readable contrast.
 */
-body:has([data-sidebar="sidebar"]) .bg-slate-100 {
+body:has([data-sidebar="sidebar"]) .bg-slate-100,
+.admin-shell .bg-slate-100 {
   background-color: color-mix(in srgb, var(--admin-sidebar-accent) 72%, black);
 }
 
-body:has([data-sidebar="sidebar"]) .border-slate-200 {
+body:has([data-sidebar="sidebar"]) .border-slate-200,
+.admin-shell .border-slate-200 {
   border-color: var(--admin-card-border);
 }
 
 body:has([data-sidebar="sidebar"]) .text-slate-700,
-body:has([data-sidebar="sidebar"]) .text-slate-800 {
+body:has([data-sidebar="sidebar"]) .text-slate-800,
+.admin-shell .text-slate-700,
+.admin-shell .text-slate-800 {
   color: var(--admin-text-secondary);
 }
 
-body:has([data-sidebar="sidebar"]) .text-slate-900 {
+body:has([data-sidebar="sidebar"]) .text-slate-900,
+.admin-shell .text-slate-900 {
   color: var(--admin-text-primary);
 }
 
 body:has([data-sidebar="sidebar"]) .text-slate-500,
-body:has([data-sidebar="sidebar"]) .text-slate-600 {
+body:has([data-sidebar="sidebar"]) .text-slate-600,
+.admin-shell .text-slate-500,
+.admin-shell .text-slate-600 {
   color: var(--admin-text-muted);
 }
 

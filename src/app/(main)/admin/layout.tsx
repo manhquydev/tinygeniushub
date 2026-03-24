@@ -28,7 +28,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
   const roleLabel = role === "SUPER_ADMIN" ? "Super admin" : "Staff admin";
 
   return (
-    <SidebarProvider defaultOpen={sidebarOpen}>
+    <SidebarProvider defaultOpen={sidebarOpen} className="admin-shell">
       <AdminShellNav role={role} />
 
       <SidebarInset className="min-w-0" style={{ backgroundColor: "var(--admin-content-bg)" }}>
