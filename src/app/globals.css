@@ -175,6 +175,61 @@ body {
 /* Admin pages: neutral background instead of decorative gradient */
 body:has([data-sidebar="sidebar"]) {
   background: var(--admin-content-bg);
+  color: var(--admin-text-primary);
+
+  /* Make generic shadcn tokens inherit admin dark contrast */
+  --background: var(--admin-content-bg);
+  --foreground: var(--admin-text-primary);
+  --card: var(--admin-card-bg);
+  --card-foreground: var(--admin-text-primary);
+  --popover: var(--admin-card-bg);
+  --popover-foreground: var(--admin-text-primary);
+  --secondary: color-mix(in srgb, var(--admin-sidebar-accent) 88%, black);
+  --secondary-foreground: var(--admin-text-primary);
+  --muted: color-mix(in srgb, var(--admin-sidebar-accent) 72%, black);
+  --muted-foreground: var(--admin-text-secondary);
+  --accent: color-mix(in srgb, var(--admin-sidebar-accent) 85%, black);
+  --accent-foreground: var(--admin-text-primary);
+  --border: var(--admin-card-border);
+  --input: color-mix(in srgb, var(--admin-sidebar-accent) 70%, black);
+}
+
+/* Force readable form controls inside admin dark UI */
+body:has([data-sidebar="sidebar"]) input,
+body:has([data-sidebar="sidebar"]) select,
+body:has([data-sidebar="sidebar"]) textarea {
+  color: var(--admin-text-primary);
+}
+
+body:has([data-sidebar="sidebar"]) input::placeholder,
+body:has([data-sidebar="sidebar"]) textarea::placeholder {
+  color: var(--admin-text-muted);
+}
+
+/*
+  Some admin status badges still use slate-100/700 utility pairs from legacy light styles.
+  Remap them under admin scope to keep dark visual style and readable contrast.
+*/
+body:has([data-sidebar="sidebar"]) .bg-slate-100 {
+  background-color: color-mix(in srgb, var(--admin-sidebar-accent) 72%, black);
+}
+
+body:has([data-sidebar="sidebar"]) .border-slate-200 {
+  border-color: var(--admin-card-border);
+}
+
+body:has([data-sidebar="sidebar"]) .text-slate-700,
+body:has([data-sidebar="sidebar"]) .text-slate-800 {
+  color: var(--admin-text-secondary);
+}
+
+body:has([data-sidebar="sidebar"]) .text-slate-900 {
+  color: var(--admin-text-primary);
+}
+
+body:has([data-sidebar="sidebar"]) .text-slate-500,
+body:has([data-sidebar="sidebar"]) .text-slate-600 {
+  color: var(--admin-text-muted);
 }
 
 a {

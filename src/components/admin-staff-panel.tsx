@@ -1,19 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { listAdminStaff, createAdminStaff, updateAdminStaff } from "@/modules/admin/admin-staff-service";
-import { AdminRole } from "@prisma/client";
+import {
+  listAdminStaff,
+  createAdminStaff,
+  updateAdminStaff,
+  type AdminRole,
+  type AdminUserRow,
+} from "@/modules/admin/admin-staff-service";
 import { ShieldAlert, ShieldCheck, Plus, X, Pencil, Loader2 } from "lucide-react";
-
-type AdminUserRow = {
-  id: string;
-  email: string;
-  displayName: string;
-  role: AdminRole;
-  isActive: boolean;
-  lastLoginAt: Date | null;
-  createdAt: Date;
-};
 
 function getErrorMessage(error: unknown, fallback: string) {
   if (error instanceof Error && error.message.trim().length > 0) {

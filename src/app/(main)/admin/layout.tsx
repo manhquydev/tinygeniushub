@@ -31,7 +31,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
     <SidebarProvider defaultOpen={sidebarOpen}>
       <AdminShellNav role={role} />
 
-      <SidebarInset style={{ backgroundColor: "var(--admin-content-bg)" }}>
+      <SidebarInset className="min-w-0" style={{ backgroundColor: "var(--admin-content-bg)" }}>
         <header className="flex h-12 items-center gap-2 px-3 border-b border-[var(--admin-card-border)] bg-[var(--admin-header-bg)] sticky top-0 z-10 md:h-14 md:gap-3 md:px-4">
           <SidebarTrigger className="shrink-0 text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-sidebar-accent)] -ml-1" />
           <Separator orientation="vertical" className="h-5 shrink-0" />
@@ -55,7 +55,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
           </div>
         </header>
 
-        <main className="flex-1 p-3 md:p-6">{children}</main>
+        <main className="min-w-0 flex-1 p-3 md:p-6">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
