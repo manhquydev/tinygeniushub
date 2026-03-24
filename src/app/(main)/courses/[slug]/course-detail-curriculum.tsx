@@ -1,7 +1,9 @@
 "use client";
 
-import { Fragment, useState } from "react";
-import { Lock, PlayCircle } from "lucide-react";
+import { useState } from "react";
+import { PlayCircle } from "lucide-react";
+import type { AbVariant } from "@/lib/ab-test-constants";
+import { COURSE_TRIAL_PREVIEW_LESSON_LIMIT } from "@/modules/courses/course-trial-constants";
 import { CourseLessonPreviewModal } from "@/components/courses/course-lesson-preview-modal";
 
 type Lesson = {
@@ -21,68 +23,42 @@ type Props = {
   totalLessonCount: number;
   courseSlug: string;
   isOwned: boolean;
+  variant: AbVariant;
 };
 
 type ModalState = { lessonId: string; title: string; objective: string } | null;
 
-export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, isOwned }: Props) {
+export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, isOwned, variant }: Props) {
   const [modal, setModal] = useState<ModalState>(null);
 
-  const previewCount = lessons.filter((l) => l.lesson.isPreview).length;
-  const lockedCount = totalLessonCount - previewCount;
-  const showIndicators = !isOwned && previewCount > 0;
+  const previewLessonCount = Math.min(COURSE_TRIAL_PREVIEW_LESSON_LIMIT, totalLessonCount, lessons.length);
+  const lockedCount = Math.max(totalLessonCount - previewLessonCount, 0);
+  const showTrialBlock = !isOwned;
 
   return (
     <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       <h2 className="text-lg font-extrabold text-slate-900">
-        {isOwned ? `${totalLessonCount} bài học trong khóa` : `Xem trước ${lessons.length} bài học đầu tiên`}
+        {isOwned ? `${totalLessonCount} bài học trong khóa` : `Học thử ${previewLessonCount} bài đầu`}
       </h2>
 
-      {!isOwned && (
-        <p className="mt-1 text-sm leading-relaxed text-slate-500">
-          Tổng {totalLessonCount} bài học — {totalLessonCount - lessons.length} bài còn lại mở ngay sau khi mua.
-        </p>
-      )}
-
-      {/* Progress dots timeline */}
-      {showIndicators && (
-        <div className="mt-3 space-y-1.5">
-          <div
-            className="flex items-center gap-1 overflow-x-auto py-1"
-            role="progressbar"
-            aria-label={`${previewCount} bài miễn phí, ${lockedCount} bài sau khi mua`}
-          >
-            {lessons.map((item, i) => (
-              <Fragment key={item.id}>
-                {i > 0 && <span className="h-px w-3 shrink-0 bg-slate-300" />}
-                <span
-                  className={`h-2.5 w-2.5 shrink-0 rounded-full ${
-                    item.lesson.isPreview ? "bg-emerald-500" : "bg-slate-300"
-                  }`}
-                />
-              </Fragment>
-            ))}
-            {totalLessonCount > lessons.length && (
-              <>
-                <span className="h-px w-3 shrink-0 bg-slate-300" />
-                <span className="whitespace-nowrap text-xs text-slate-400">
-                  +{totalLessonCount - lessons.length}
-                </span>
-              </>
-            )}
-          </div>
-          <p className="text-xs text-slate-500">
-            <span className="font-semibold text-emerald-600">{previewCount} bài đầu miễn phí</span>
-            {" · "}
-            <span>{lockedCount} bài còn lại sau khi mua</span>
+      {showTrialBlock ? (
+        <div className="mt-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4">
+          <p className="text-xs font-bold uppercase tracking-[0.08em] text-emerald-700">Trial cố định</p>
+          <p className="mt-1 text-sm font-semibold leading-relaxed text-emerald-900">
+            Bạn xem trước {previewLessonCount} bài đầu để kiểm tra nhịp học, độ khó và mức phù hợp trước khi mua.
+          </p>
+          <p className="mt-2 text-xs leading-relaxed text-emerald-800/90">
+            {lockedCount > 0
+              ? `Sau bài thứ ${previewLessonCount}, ${lockedCount} bài còn lại sẽ mở khi mua.`
+              : "Khóa này hiện mở trọn vẹn trong phạm vi học thử."}{" "}
+            Nếu thấy chưa khớp level sau khi mua, đội ngũ có thể hỗ trợ đổi level/chuyển khóa theo chính sách.
           </p>
         </div>
-      )}
+      ) : null}
 
       <div className="mt-4 grid gap-3">
         {lessons.map((item) => {
-          const canPreview = !isOwned && item.lesson.isPreview;
-          const isLocked = !isOwned && !item.lesson.isPreview;
+          const canPreview = !isOwned;
 
           return (
             <article
@@ -90,9 +66,7 @@ export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, 
               className={`rounded-2xl border p-4 transition-colors ${
                 canPreview
                   ? "cursor-pointer border-emerald-200 bg-emerald-50/60 hover:bg-emerald-50"
-                  : isLocked
-                    ? "border-slate-200 bg-slate-50/60 opacity-70"
-                    : "border-slate-200 bg-slate-50"
+                  : "border-slate-200 bg-slate-50"
               }`}
               onClick={
                 canPreview
@@ -106,51 +80,48 @@ export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, 
               }
             >
               <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">
-                      Bài {item.orderNo}
-                    </p>
-                    {canPreview && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
-                        <PlayCircle className="h-3 w-3" />
-                        Học thử
-                      </span>
-                    )}
-                    {isLocked && <Lock className="h-3.5 w-3.5 text-slate-400" />}
+                <div className="flex min-w-0 flex-1 items-start gap-3">
+                  <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white ring-1 ring-slate-200">
+                    <PlayCircle className={`h-4.5 w-4.5 ${canPreview ? "text-emerald-600" : "text-slate-400"}`} />
                   </div>
-                  <h3 className="mt-1 text-base font-bold text-slate-900">{item.lesson.title}</h3>
-                  {!isLocked && (
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Bài {item.orderNo}</p>
+                      {canPreview ? (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
+                          <PlayCircle className="h-3 w-3" />
+                          Học thử
+                        </span>
+                      ) : null}
+                    </div>
+                    <h3 className="mt-1 text-base font-bold text-slate-900">{item.lesson.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-slate-600">{item.lesson.objective}</p>
-                  )}
-                </div>
-                {!isLocked && (
-                  <div className="shrink-0 rounded-xl bg-white px-3 py-2 text-right ring-1 ring-slate-200">
-                    <p className="text-xs text-slate-500">Thời lượng</p>
-                    <p className="text-sm font-bold text-slate-900">{item.lesson.estimatedMinutes} phút</p>
                   </div>
-                )}
+                </div>
+                <div className="shrink-0 rounded-xl bg-white px-3 py-2 text-right ring-1 ring-slate-200">
+                  <p className="text-xs text-slate-500">Thời lượng</p>
+                  <p className="text-sm font-bold text-slate-900">{item.lesson.estimatedMinutes} phút</p>
+                </div>
               </div>
             </article>
           );
         })}
 
-        {totalLessonCount > lessons.length ? (
-          <p className="text-xs font-semibold text-slate-500">
-            +{totalLessonCount - lessons.length} bài tiếp theo sẽ mở sau khi mua khóa.
-          </p>
+        {!isOwned && lockedCount > 0 ? (
+          <p className="text-xs font-semibold text-slate-500">+{lockedCount} bài tiếp theo sẽ mở sau khi mua khóa.</p>
         ) : null}
       </div>
 
-      {modal && (
+      {modal ? (
         <CourseLessonPreviewModal
           lessonId={modal.lessonId}
           lessonTitle={modal.title}
           lessonObjective={modal.objective}
           courseSlug={courseSlug}
+          variant={variant}
           onClose={() => setModal(null)}
         />
-      )}
+      ) : null}
     </section>
   );
 }

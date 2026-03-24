@@ -60,6 +60,54 @@ type CoursesCheckoutStartParams = {
   price_vnd: number;
 };
 
+type CoursesPreviewModalOpenParams = {
+  variant: "A" | "B";
+  bundle_slug: string;
+  lesson_id: string;
+  lesson_title: string;
+  source_page: "course_detail";
+};
+
+type CoursesPreviewPlaySuccessParams = CoursesPreviewModalOpenParams & {
+  stream_type: "embed" | "secure";
+};
+
+type CoursesPreviewWatchQualifiedParams = CoursesPreviewModalOpenParams & {
+  stream_type: "embed" | "secure";
+  confidence_level: "high" | "medium";
+  qualified_seconds: number;
+};
+
+type CoursesPreviewModalCloseParams = CoursesPreviewModalOpenParams & {
+  stream_type: "embed" | "secure" | "unknown";
+  watched_seconds: number;
+  qualified: boolean;
+  close_reason: "button" | "backdrop" | "escape" | "cta" | "unmount";
+};
+
+type CoursesPreviewPlayFailParams = CoursesPreviewModalOpenParams & {
+  reason: "auth_required" | "unavailable" | "network_error";
+  status?: number;
+};
+
+type CoursesPreviewAuthRequiredParams = CoursesPreviewModalOpenParams;
+
+type LevelChangeRequestCreatedParams = {
+  request_id: string;
+  course_slug: string;
+  reason_code: "too_easy" | "too_hard" | "pace_mismatch" | "wrong_track" | "other";
+  reason_family: "wrong_level" | "other";
+  request_channel: "ui" | "support" | "api";
+};
+
+type LevelChangeRequestDecidedParams = {
+  request_id: string;
+  decision: "approved" | "rejected" | "cancelled";
+  decision_reason_code: string;
+  reviewer_role: "admin" | "agent" | "system";
+  time_to_decision_sec: number;
+};
+
 type EventMap = {
   trial_start: TrialStartParams;
   purchase: PurchaseParams;
@@ -71,6 +119,14 @@ type EventMap = {
   courses_bundle_detail_click: CoursesBundleDetailClickParams;
   courses_bundle_detail_view: CoursesBundleDetailViewParams;
   courses_checkout_start: CoursesCheckoutStartParams;
+  courses_preview_modal_open: CoursesPreviewModalOpenParams;
+  courses_preview_play_success: CoursesPreviewPlaySuccessParams;
+  courses_preview_watch_qualified: CoursesPreviewWatchQualifiedParams;
+  courses_preview_modal_close: CoursesPreviewModalCloseParams;
+  courses_preview_play_fail: CoursesPreviewPlayFailParams;
+  courses_preview_auth_required: CoursesPreviewAuthRequiredParams;
+  level_change_request_created: LevelChangeRequestCreatedParams;
+  level_change_request_decided: LevelChangeRequestDecidedParams;
   courses_fit_check_click: Record<string, unknown>;
   courses_outcome_timeline_view: Record<string, unknown>;
   courses_difference_block_view: Record<string, unknown>;

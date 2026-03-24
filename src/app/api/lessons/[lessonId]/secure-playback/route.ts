@@ -3,8 +3,17 @@ import { getParentFromRequest } from "@/lib/auth/session";
 import { fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
-import { isAllowedVideoUrl, resolveProtectedVideoUrl, verifyVideoPlaybackToken } from "@/lib/secure-video-source";
+import {
+  isAllowedVideoUrl,
+  resolveProtectedVideoUrl,
+  verifyVideoPlaybackToken,
+} from "@/lib/secure-video-source";
 import { prisma } from "@/lib/db";
+import {
+  isParentEnrolledForLesson,
+  isPublicPreviewEligibleLesson,
+  verifyGuestPreviewPlaybackToken,
+} from "@/modules/courses/course-trial-policy";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
 // GET /api/lessons/[lessonId]/secure-playback?token=...
@@ -18,19 +27,42 @@ export async function GET(
     await assertRequestAllowedBySecurityControls(request);
 
     const parent = await getParentFromRequest(request);
-    if (!parent) {
-      return fail("Unauthorized", 401);
-    }
-
     const { lessonId } = await params;
     const token = request.nextUrl.searchParams.get("token")?.trim() ?? "";
     if (token.length === 0) {
       return fail("Missing playback token", 400);
     }
 
-    const claims = verifyVideoPlaybackToken(token);
-    if (!claims || claims.parentId !== parent.id || claims.lessonId !== lessonId) {
-      return fail("Invalid playback token", 403);
+    if (parent) {
+      const claims = verifyVideoPlaybackToken(token);
+      if (!claims || claims.parentId !== parent.id || claims.lessonId !== lessonId) {
+        return fail("Invalid playback token", 403);
+      }
+
+      const hasEnrollment = await isParentEnrolledForLesson(prisma, {
+        parentId: parent.id,
+        lessonId,
+      });
+      if (!hasEnrollment) {
+        const eligible = await isPublicPreviewEligibleLesson(prisma, lessonId);
+        if (!eligible) {
+          return fail("Preview not available for this lesson", 403, {
+            code: "PREVIEW_NOT_ELIGIBLE",
+          });
+        }
+      }
+    } else {
+      const claims = verifyGuestPreviewPlaybackToken(token);
+      if (!claims || claims.lessonId !== lessonId) {
+        return fail("Invalid preview playback token", 403);
+      }
+
+      const eligible = await isPublicPreviewEligibleLesson(prisma, lessonId);
+      if (!eligible) {
+        return fail("Preview not available for this lesson", 403, {
+          code: "PREVIEW_NOT_ELIGIBLE",
+        });
+      }
     }
 
     const lesson = await prisma.lesson.findUnique({

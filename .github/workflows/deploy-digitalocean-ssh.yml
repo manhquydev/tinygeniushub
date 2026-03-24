@@ -96,9 +96,17 @@ jobs:
           DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
           DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
           DEPLOY_REF: ${{ env.DEPLOY_REF }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GA4_SERVICE_ACCOUNT_CLIENT_EMAIL: ${{ secrets.GA4_SERVICE_ACCOUNT_CLIENT_EMAIL }}
+          GA4_SERVICE_ACCOUNT_PRIVATE_KEY: ${{ secrets.GA4_SERVICE_ACCOUNT_PRIVATE_KEY }}
+          GA4_SOT_REQUIRED: ${{ secrets.GA4_SOT_REQUIRED }}
         run: |
           set -euo pipefail
-          POST_CMD_B64="$(printf '%s' 'pm2 restart cungcontuhoc || pm2 start cungcontuhoc' | base64 -w0)"
+          POST_CMD_B64="$(printf '%s' 'pm2 restart cungcontuhoc --update-env || pm2 start cungcontuhoc' | base64 -w0)"
+          GA4_PROPERTY_ID_B64="$(printf '%s' "${GA4_PROPERTY_ID:-}" | base64 -w0)"
+          GA4_SERVICE_ACCOUNT_CLIENT_EMAIL_B64="$(printf '%s' "${GA4_SERVICE_ACCOUNT_CLIENT_EMAIL:-}" | base64 -w0)"
+          GA4_SERVICE_ACCOUNT_PRIVATE_KEY_B64="$(printf '%s' "${GA4_SERVICE_ACCOUNT_PRIVATE_KEY:-}" | base64 -w0)"
+          GA4_SOT_REQUIRED_B64="$(printf '%s' "${GA4_SOT_REQUIRED:-}" | base64 -w0)"
 
           ssh \
             -i ~/.ssh/do_deploy_key \
@@ -112,6 +120,18 @@ jobs:
             echo "Missing scripts/deploy/remote-deploy.sh in APP_DIR=${{ env.APP_DIR }}"
             exit 1
           }
+          if [[ -n '$GA4_PROPERTY_ID_B64' ]]; then
+            export GA4_PROPERTY_ID="\$(printf '%s' '$GA4_PROPERTY_ID_B64' | base64 -d)"
+          fi
+          if [[ -n '$GA4_SERVICE_ACCOUNT_CLIENT_EMAIL_B64' ]]; then
+            export GA4_SERVICE_ACCOUNT_CLIENT_EMAIL="\$(printf '%s' '$GA4_SERVICE_ACCOUNT_CLIENT_EMAIL_B64' | base64 -d)"
+          fi
+          if [[ -n '$GA4_SERVICE_ACCOUNT_PRIVATE_KEY_B64' ]]; then
+            export GA4_SERVICE_ACCOUNT_PRIVATE_KEY="\$(printf '%s' '$GA4_SERVICE_ACCOUNT_PRIVATE_KEY_B64' | base64 -d)"
+          fi
+          if [[ -n '$GA4_SOT_REQUIRED_B64' ]]; then
+            export GA4_SOT_REQUIRED="\$(printf '%s' '$GA4_SOT_REQUIRED_B64' | base64 -d)"
+          fi
           export POST_DEPLOY_CMD="\$(printf '%s' '$POST_CMD_B64' | base64 -d)"
           bash scripts/deploy/remote-deploy.sh "$DEPLOY_REF"
           REMOTE_SCRIPT

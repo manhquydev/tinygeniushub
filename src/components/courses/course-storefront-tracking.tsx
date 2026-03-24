@@ -52,6 +52,16 @@ type BundleDetailTrackedLinkProps = {
   children: ReactNode;
 };
 
+type PreviewEventBase = {
+  variant: AbVariant;
+  bundleSlug: string;
+  lessonId: string;
+  lessonTitle: string;
+  sourcePage: "course_detail";
+};
+
+type PreviewStreamType = "embed" | "secure";
+
 export function CourseCatalogViewTracker({
   variant,
   bundles,
@@ -172,4 +182,91 @@ export function BundleDetailTrackedLink({
       {children}
     </Link>
   );
+}
+
+export function trackCoursePreviewModalOpen(input: PreviewEventBase) {
+  trackEvent("courses_preview_modal_open", {
+    variant: input.variant,
+    bundle_slug: input.bundleSlug,
+    lesson_id: input.lessonId,
+    lesson_title: input.lessonTitle,
+    source_page: input.sourcePage,
+  });
+}
+
+export function trackCoursePreviewPlaySuccess(
+  input: PreviewEventBase & { streamType: PreviewStreamType },
+) {
+  trackEvent("courses_preview_play_success", {
+    variant: input.variant,
+    bundle_slug: input.bundleSlug,
+    lesson_id: input.lessonId,
+    lesson_title: input.lessonTitle,
+    source_page: input.sourcePage,
+    stream_type: input.streamType,
+  });
+}
+
+export function trackCoursePreviewWatchQualified(
+  input: PreviewEventBase & {
+    streamType: PreviewStreamType;
+    confidenceLevel: "high" | "medium";
+    qualifiedSeconds: number;
+  },
+) {
+  trackEvent("courses_preview_watch_qualified", {
+    variant: input.variant,
+    bundle_slug: input.bundleSlug,
+    lesson_id: input.lessonId,
+    lesson_title: input.lessonTitle,
+    source_page: input.sourcePage,
+    stream_type: input.streamType,
+    confidence_level: input.confidenceLevel,
+    qualified_seconds: input.qualifiedSeconds,
+  });
+}
+
+export function trackCoursePreviewModalClose(
+  input: PreviewEventBase & {
+    streamType: PreviewStreamType | "unknown";
+    watchedSeconds: number;
+    qualified: boolean;
+    closeReason: "button" | "backdrop" | "escape" | "cta" | "unmount";
+  },
+) {
+  trackEvent("courses_preview_modal_close", {
+    variant: input.variant,
+    bundle_slug: input.bundleSlug,
+    lesson_id: input.lessonId,
+    lesson_title: input.lessonTitle,
+    source_page: input.sourcePage,
+    stream_type: input.streamType,
+    watched_seconds: input.watchedSeconds,
+    qualified: input.qualified,
+    close_reason: input.closeReason,
+  });
+}
+
+export function trackCoursePreviewPlayFail(
+  input: PreviewEventBase & { reason: "auth_required" | "unavailable" | "network_error"; status?: number },
+) {
+  trackEvent("courses_preview_play_fail", {
+    variant: input.variant,
+    bundle_slug: input.bundleSlug,
+    lesson_id: input.lessonId,
+    lesson_title: input.lessonTitle,
+    source_page: input.sourcePage,
+    reason: input.reason,
+    ...(typeof input.status === "number" ? { status: input.status } : {}),
+  });
+}
+
+export function trackCoursePreviewAuthRequired(input: PreviewEventBase) {
+  trackEvent("courses_preview_auth_required", {
+    variant: input.variant,
+    bundle_slug: input.bundleSlug,
+    lesson_id: input.lessonId,
+    lesson_title: input.lessonTitle,
+    source_page: input.sourcePage,
+  });
 }

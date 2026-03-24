@@ -68,9 +68,13 @@ In GitHub repo settings, add:
 - `DO_SSH_PRIVATE_KEY`: full private key content (`-----BEGIN OPENSSH PRIVATE KEY----- ...`)
 - `DO_SSH_KNOWN_HOSTS`: output from `ssh-keyscan -H ...`
 - `DO_APP_DIR`: app path on server (for example `/srv/cungcontuhoc`)
+- `GA4_PROPERTY_ID`: production GA4 property ID used as SoT (must match production web stream for `cungcontuhoc.io.vn`)
+- `GA4_SERVICE_ACCOUNT_CLIENT_EMAIL`: service account email for GA4 Data API readonly access
+- `GA4_SERVICE_ACCOUNT_PRIVATE_KEY`: service account private key (full key with line breaks)
+- `GA4_SOT_REQUIRED`: set `true` in production once SoT rollout is mandatory
 
 Post-deploy restart command is now fixed in workflow as:
-- `pm2 restart cungcontuhoc || pm2 start cungcontuhoc`
+- `pm2 restart cungcontuhoc --update-env || pm2 start cungcontuhoc`
 
 If your runtime differs (systemd/docker), update `.github/workflows/deploy-digitalocean-ssh.yml` accordingly.
 

@@ -10,6 +10,11 @@ import {
 } from "@/lib/secure-video-source";
 import { bunnySignedEmbedUrl } from "@/lib/bunny-stream-client";
 import { prisma } from "@/lib/db";
+import {
+  buildGuestPreviewPlaybackToken,
+  isParentEnrolledForLesson,
+  isPublicPreviewEligibleLesson,
+} from "@/modules/courses/course-trial-policy";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
 // GET /api/lessons/[lessonId]/video-token
@@ -18,17 +23,9 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ lessonId: string }> },
 ) {
-  const detectStreamType = (url: string | null | undefined): "hls" | "file" =>
-    typeof url === "string" && /\.m3u8($|[?#])/i.test(url) ? "hls" : "file";
-
   try {
     assertTrustedOrigin(request);
     await assertRequestAllowedBySecurityControls(request);
-
-    const parent = await getParentFromRequest(request);
-    if (!parent) {
-      return fail("Unauthorized", 401);
-    }
 
     const { lessonId } = await params;
 
@@ -48,6 +45,25 @@ export async function GET(
       return fail("Video not available", 404);
     }
 
+    const parent = await getParentFromRequest(request);
+    const previewEligible = await isPublicPreviewEligibleLesson(prisma, lesson.id);
+    if (!parent && !previewEligible) {
+      return fail("Authentication required for this lesson", 401, {
+        code: "PREVIEW_LOGIN_REQUIRED",
+      });
+    }
+    if (parent) {
+      const hasEnrollment = await isParentEnrolledForLesson(prisma, {
+        parentId: parent.id,
+        lessonId: lesson.id,
+      });
+      if (!hasEnrollment && !previewEligible) {
+        return fail("Preview not available for this lesson", 403, {
+          code: "PREVIEW_NOT_ELIGIBLE",
+        });
+      }
+    }
+
     if (lesson.bunnyVideoId && lesson.videoStatus === "ready") {
       const embedUrl = bunnySignedEmbedUrl(lesson.bunnyVideoId);
       return ok({ embedUrl, streamType: "embed" });
@@ -58,14 +74,18 @@ export async function GET(
       if (!resolvedSource) {
         return fail("Video not available", 404);
       }
-      const token = buildVideoPlaybackToken({
-        parentId: parent.id,
-        lessonId: lesson.id,
-      });
+      const token = parent
+        ? buildVideoPlaybackToken({
+            parentId: parent.id,
+            lessonId: lesson.id,
+          })
+        : buildGuestPreviewPlaybackToken({
+            lessonId: lesson.id,
+          });
       const securePlaybackPath = `/api/lessons/${lesson.id}/secure-playback?token=${encodeURIComponent(token)}`;
       return ok({
         embedUrl: securePlaybackPath,
-        streamType: detectStreamType(resolvedSource),
+        streamType: "secure",
       });
     }
 

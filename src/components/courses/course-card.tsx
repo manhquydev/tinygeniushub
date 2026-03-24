@@ -2,17 +2,13 @@ import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
 import type { StorefrontCourse } from "@/modules/courses/course-service";
 import type { AbVariant } from "@/lib/ab-test-constants";
-import type {
-  BundleStorefrontContent,
-  CourseClaritySnapshot,
-} from "@/modules/courses/course-storefront-content";
+import type { BundleStorefrontContent } from "@/modules/courses/course-storefront-content";
 import { AGE_GROUP_LABELS } from "@/lib/courses/course-filter-utils";
 import { BundleDetailTrackedLink } from "@/components/courses/course-storefront-tracking";
 
 interface CourseCardProps {
   course: StorefrontCourse;
   bundleContent: BundleStorefrontContent | null;
-  claritySnapshot: CourseClaritySnapshot | null;
   showPilotBadge: boolean;
   variant: AbVariant;
   index: number;
@@ -26,7 +22,6 @@ function formatCurrency(amount: number) {
 export function CourseCard({
   course,
   bundleContent,
-  claritySnapshot,
   showPilotBadge,
   variant,
   index,
@@ -54,10 +49,6 @@ export function CourseCard({
         ) : (
           <div className="h-44 w-full bg-[linear-gradient(145deg,#e2e8f0_0%,#f8fafc_55%,#ecfeff_100%)] transition-transform duration-200 group-hover:scale-[1.02] sm:h-48" />
         )}
-        {/* Lesson count badge (top-left) */}
-        <div className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700 backdrop-blur">
-          {course.lessonCount} bài học
-        </div>
         {/* Age badge (top-right) */}
         {ageLabel ? (
           <div className="absolute right-3 top-3 rounded-full bg-emerald-600/90 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
@@ -100,18 +91,6 @@ export function CourseCard({
             {showEnrollment ? (
               <span className="text-slate-500">{course.enrollmentCount.toLocaleString("vi-VN")} gia đình đã mua</span>
             ) : null}
-          </div>
-        ) : null}
-
-        {/* Outcome statement with concrete pacing milestones */}
-        {claritySnapshot ? (
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-3">
-            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-emerald-700">Mốc rõ sau 4 tuần</p>
-            <p className="mt-1 text-sm font-semibold leading-relaxed text-emerald-900">{claritySnapshot.cardOutcomeLine}</p>
-            <p className="mt-1 text-xs text-emerald-800/90">
-              {claritySnapshot.scopeLabel} · Foundation khoảng{" "}
-              {claritySnapshot.phaseCounts.foundation.toLocaleString("vi-VN")} {claritySnapshot.unitLabel}
-            </p>
           </div>
         ) : null}
 

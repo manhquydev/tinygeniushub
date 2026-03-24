@@ -96,6 +96,13 @@ const envSchema = z.object({
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
   OBSERVABILITY_SERVICE_NAME: z.string().min(1).default("cungcontuhoc-web"),
   APP_VERSION: z.string().min(1).default("0.1.0"),
+  GA4_PROPERTY_ID: optionalNonEmptyString,
+  GA4_SERVICE_ACCOUNT_CLIENT_EMAIL: optionalEmail,
+  GA4_SERVICE_ACCOUNT_PRIVATE_KEY: optionalNonEmptyString,
+  GA4_SOT_REQUIRED: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((value) => value === "true"),
   ADMIN_EMAILS: z
     .string()
     .optional()
@@ -169,6 +176,10 @@ const parsedEnv = envSchema.parse({
   LOG_LEVEL: process.env.LOG_LEVEL,
   OBSERVABILITY_SERVICE_NAME: process.env.OBSERVABILITY_SERVICE_NAME,
   APP_VERSION: process.env.APP_VERSION,
+  GA4_PROPERTY_ID: process.env.GA4_PROPERTY_ID,
+  GA4_SERVICE_ACCOUNT_CLIENT_EMAIL: process.env.GA4_SERVICE_ACCOUNT_CLIENT_EMAIL,
+  GA4_SERVICE_ACCOUNT_PRIVATE_KEY: process.env.GA4_SERVICE_ACCOUNT_PRIVATE_KEY,
+  GA4_SOT_REQUIRED: process.env.GA4_SOT_REQUIRED,
   ADMIN_EMAILS: process.env.ADMIN_EMAILS,
   HEALTH_EXPOSE_DETAILS: process.env.HEALTH_EXPOSE_DETAILS,
   HEALTH_READY_CACHE_MS: process.env.HEALTH_READY_CACHE_MS,
@@ -188,6 +199,18 @@ if (parsedEnv.NODE_ENV === "production" && parsedEnv.COURSE_PAYMENT_PROVIDER ===
 
 if (parsedEnv.NODE_ENV === "production" && parsedEnv.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK) {
   throw new Error("ALLOW_PROD_MOCK_CHECKOUT_CALLBACK must be false in production");
+}
+
+if (parsedEnv.NODE_ENV === "production" && parsedEnv.GA4_SOT_REQUIRED) {
+  if (
+    !parsedEnv.GA4_PROPERTY_ID ||
+    !parsedEnv.GA4_SERVICE_ACCOUNT_CLIENT_EMAIL ||
+    !parsedEnv.GA4_SERVICE_ACCOUNT_PRIVATE_KEY
+  ) {
+    throw new Error(
+      "GA4_PROPERTY_ID, GA4_SERVICE_ACCOUNT_CLIENT_EMAIL, GA4_SERVICE_ACCOUNT_PRIVATE_KEY are required when GA4_SOT_REQUIRED=true in production",
+    );
+  }
 }
 
 if (parsedEnv.BILLING_PROVIDER === "stripe" && !parsedEnv.STRIPE_SECRET_KEY) {

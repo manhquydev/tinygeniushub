@@ -6,11 +6,9 @@ import { AB_COURSES_COOKIE, type AbVariant } from "@/lib/ab-test-constants";
 import { parseFilterParams, type CourseFilterParams } from "@/lib/courses/course-filter-utils";
 import { getStorefrontCourses, type StorefrontCourse } from "@/modules/courses/course-service";
 import { getCourseBundleByCourseSlug } from "@/modules/courses/course-bundles";
+import { COURSE_TRIAL_PREVIEW_LESSON_LIMIT } from "@/modules/courses/course-trial-constants";
 import { isPilotSkuSlug } from "@/modules/courses/pilot-sku-catalog";
-import {
-  buildCourseClaritySnapshot,
-  getBundleStorefrontContent,
-} from "@/modules/courses/course-storefront-content";
+import { getBundleStorefrontContent } from "@/modules/courses/course-storefront-content";
 import { CourseActiveFilters } from "@/components/courses/course-active-filters";
 import { CourseCard } from "@/components/courses/course-card";
 import { CourseCheckoutStatusBanner } from "@/components/courses/course-checkout-status-banner";
@@ -103,9 +101,6 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const visibleCourses = sortedCourses.slice(startIndex, startIndex + PAGE_SIZE);
 
-  const totalLessons = courses.reduce((sum, course) => sum + course.lessonCount, 0);
-  const totalDurationDays = courses.reduce((sum, course) => sum + course.durationDays, 0);
-
   return (
     <div className="page-stack">
       <CourseCheckoutStatusBanner />
@@ -132,16 +127,21 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/70 bg-white/85 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Số khóa khả dụng</p>
-              <p className="mt-1 text-2xl font-black text-slate-900">{courses.length}</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Trial cố định</p>
+              <p className="mt-1 text-sm font-black text-slate-900">
+                Xem trước {COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">Đủ để kiểm tra mức phù hợp trước khi mua.</p>
             </div>
             <div className="rounded-2xl border border-white/70 bg-white/85 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tổng bài học</p>
-              <p className="mt-1 text-2xl font-black text-slate-900">{totalLessons.toLocaleString("vi-VN")}</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Chọn nhanh</p>
+              <p className="mt-1 text-sm font-black text-slate-900">Lọc theo tuổi, giá, thời lượng</p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">Giảm số khóa phải mở detail để so sánh.</p>
             </div>
             <div className="rounded-2xl border border-white/70 bg-white/85 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tổng thời lượng</p>
-              <p className="mt-1 text-2xl font-black text-slate-900">{totalDurationDays} ngày</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Mua tự tin</p>
+              <p className="mt-1 text-sm font-black text-slate-900">Đổi level/chuyển khóa khi chưa khớp</p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">Hỗ trợ sau mua để giảm rủi ro chọn nhầm.</p>
             </div>
           </div>
         </div>
@@ -206,21 +206,12 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                 {visibleCourses.map((course, index) => {
                   const bundle = getCourseBundleByCourseSlug(course.slug);
                   const bundleContent = bundle ? getBundleStorefrontContent(bundle.slug) : null;
-                  const claritySnapshot = bundle
-                    ? buildCourseClaritySnapshot({
-                        bundleSlug: bundle.slug,
-                        courseSlug: course.slug,
-                        courseTitle: course.title,
-                        lessonCount: course.lessonCount,
-                      })
-                    : null;
 
                   return (
                     <CourseCard
                       key={course.slug}
                       course={course}
                       bundleContent={bundleContent}
-                      claritySnapshot={claritySnapshot}
                       showPilotBadge={isPilotSkuSlug(course.slug)}
                       variant={coursesVariant}
                       index={startIndex + index}

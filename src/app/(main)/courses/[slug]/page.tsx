@@ -10,6 +10,7 @@ import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { resolveCourseCoverImage } from "@/modules/courses/course-media";
 import { getCourseBundleByCourseSlug } from "@/modules/courses/course-bundles";
 import { getStorefrontCourses, getRelatedCourses } from "@/modules/courses/course-service";
+import { COURSE_TRIAL_PREVIEW_LESSON_LIMIT } from "@/modules/courses/course-trial-constants";
 import {
   buildCourseClaritySnapshot,
   getBundleStorefrontContent,
@@ -21,6 +22,7 @@ import { CourseRelatedSection } from "@/components/courses/course-related-sectio
 import { CourseReviewsSection } from "@/components/courses/course-reviews-section";
 import { BundleDetailViewTracker } from "@/components/courses/course-storefront-tracking";
 import { CourseDetailStickyHeader } from "@/components/courses/course-detail-sticky-header";
+import { CourseLevelChangeRequestCard } from "@/components/courses/course-level-change-request-card";
 import { CourseDetailHero } from "./course-detail-hero";
 import { CourseDetailFitChecklist } from "./course-detail-fit-checklist";
 import { CourseDetailDifference } from "./course-detail-difference";
@@ -56,21 +58,25 @@ const loadPublishedCourse = cache(async function loadPublishedCourse(slug: strin
       reviewAverageRating: true,
       reviewCount: true,
       _count: { select: { lessons: true, enrollments: true } },
-      lessons: {
-        orderBy: { orderNo: "asc" },
-        take: 12,
+    },
+  });
+});
+
+const loadCourseCurriculumLessons = cache(async function loadCourseCurriculumLessons(courseId: string, isOwned: boolean) {
+  return prisma.courseLesson.findMany({
+    where: { courseId },
+    orderBy: { orderNo: "asc" },
+    ...(isOwned ? {} : { take: COURSE_TRIAL_PREVIEW_LESSON_LIMIT }),
+    select: {
+      id: true,
+      orderNo: true,
+      lesson: {
         select: {
           id: true,
-          orderNo: true,
-          lesson: {
-            select: {
-              id: true,
-              title: true,
-              estimatedMinutes: true,
-              objective: true,
-              isPreview: true,
-            },
-          },
+          title: true,
+          estimatedMinutes: true,
+          objective: true,
+          isPreview: true,
         },
       },
     },
@@ -213,6 +219,8 @@ export default async function CourseDetailPage({ params }: Props) {
     if (firstChild) childEntryHref = `${childEntryHref}?childId=${encodeURIComponent(firstChild.id)}`;
   }
 
+  const curriculumLessons = await loadCourseCurriculumLessons(course.id, isOwned);
+
   const courseJsonLd = buildCourseJsonLd({
     slug: course.slug,
     title: course.title,
@@ -274,11 +282,20 @@ export default async function CourseDetailPage({ params }: Props) {
         claritySnapshot={claritySnapshot}
       />
       <CourseDetailCurriculum
-        lessons={course.lessons}
+        lessons={curriculumLessons}
         totalLessonCount={course._count.lessons}
         courseSlug={course.slug}
         isOwned={isOwned}
+        variant={coursesVariant}
       />
+      <section className="rounded-3xl border border-emerald-200 bg-emerald-50/70 p-5 shadow-sm sm:p-6">
+        <h2 className="text-base font-extrabold text-emerald-900 sm:text-lg">Mua tự tin hơn</h2>
+        <p className="mt-2 text-sm leading-relaxed text-emerald-900/80">
+          Xem thử {COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu để kiểm tra mức phù hợp. Nếu sau khi mua thấy chưa đúng
+          level, đội ngũ có thể hỗ trợ đổi level/chuyển khóa theo chính sách.
+        </p>
+      </section>
+      {isOwned ? <CourseLevelChangeRequestCard courseSlug={course.slug} /> : null}
       <CourseReviewsSection courseId={course.id} courseSlug={course.slug} parentId={parent?.id ?? null} isOwned={isOwned} />
       <CourseDetailFaq />
       <CourseRelatedSection courses={relatedCourses} />

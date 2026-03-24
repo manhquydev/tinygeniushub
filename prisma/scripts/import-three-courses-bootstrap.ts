@@ -16,6 +16,7 @@ import { createCipheriv, createHash, randomBytes } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { PrismaClient, TrackCode } from "@prisma/client";
+import { isPublicPreviewCourseOrder } from "@/modules/courses/course-trial-policy";
 
 const prisma = new PrismaClient();
 
@@ -274,7 +275,7 @@ function buildAbekaRows(input: {
         title,
         objective: toObjective("abeka", title),
         estimatedMinutes: 15,
-        trialEnabled: ["k4", "k5", "g1"].includes(gradeCode) && lessonNo <= 5,
+        trialEnabled: isPublicPreviewCourseOrder(courseOrderNo),
         videoSourceEncrypted,
         sourceKey: `abeka:${gradeCode}:${lessonKey}`,
       });
@@ -390,7 +391,7 @@ function buildLittleFoxRows(input: {
           title,
           objective: toObjective(input.courseCode, objectiveTitle),
           estimatedMinutes: episodeEstimatedMinutes,
-          trialEnabled: Number(level.level) <= 2 && episodeOrderNo <= 3,
+          trialEnabled: isPublicPreviewCourseOrder(courseOrderNo),
           videoSourceEncrypted,
           sourceKey: `${input.courseCode}:${series.lfid}:${episodeCode}`,
         });

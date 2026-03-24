@@ -1,5 +1,19 @@
 # Project Changelog
 
+## [0.4.1] - 2026-03-24
+
+### Added
+- **Unified SoT analytics backend** — new admin service to aggregate SQL audit-log funnel metrics and GA4 7-day snapshot in one payload.
+- **GA4 server reporting integration** — service-account based GA4 Data API pull for sessions, active users, and top events.
+- **Admin analytics SoT section** — `/admin/analytics` now includes a dedicated "SoT: GA4 + SQL Audit" panel with conversion reconciliation.
+- **SoT API route** — `GET /api/admin/analytics/sot` for admin-authenticated dashboard data fetch.
+- **Tooling decision report** — `reports/analytics/analytics-analyst-260324-dashboard-tool-decision.md` documenting why internal admin is the primary dashboard tool.
+
+### Changed
+- Environment schema now supports optional GA4 reporting credentials: `GA4_PROPERTY_ID`, `GA4_SERVICE_ACCOUNT_CLIENT_EMAIL`, `GA4_SERVICE_ACCOUNT_PRIVATE_KEY`.
+- Courses preview qualification now uses dual confidence thresholds for Phase 2: `secure >= 20s (high)` and `embed >= 30s (medium)` with visibility/focus gating.
+- Added production guard `GA4_SOT_REQUIRED` and deploy-time runtime env injection for GA4 SoT secrets via GitHub Actions.
+
 ## [0.4.0] - 2026-03-19
 
 ### Added

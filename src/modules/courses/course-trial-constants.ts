@@ -1,0 +1,1 @@
+export const COURSE_TRIAL_PREVIEW_LESSON_LIMIT = 7;

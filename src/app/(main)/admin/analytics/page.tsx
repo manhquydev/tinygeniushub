@@ -1,10 +1,16 @@
 import { BarChart2, BookOpen, TrendingUp, Users } from "lucide-react";
+import { AdminSoTAnalyticsSection } from "@/components/admin/admin-sot-analytics-section";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { AdminSectionCard } from "@/components/admin/ui/admin-section-card";
 import { AdminStatCard } from "@/components/admin/ui/admin-stat-card";
 import { AdminDataTable } from "@/components/admin/ui/admin-data-table";
 import { cn } from "@/lib/utils";
-import { getAdminLearningAnalytics, getAdminOverview, getAdminRetentionAnalytics } from "@/modules/admin/service";
+import {
+  getAdminLearningAnalytics,
+  getAdminOverview,
+  getAdminRetentionAnalytics,
+  getAdminSoTDashboardSnapshot,
+} from "@/modules/admin/service";
 
 function asPercent(value: number, total: number) {
   if (total <= 0) return 0;
@@ -28,10 +34,11 @@ function getRetentionTone(retentionRate: number) {
 }
 
 export default async function AdminAnalyticsPage() {
-  const [overview, learningAnalytics, retention] = await Promise.all([
+  const [overview, learningAnalytics, retention, sotSnapshot] = await Promise.all([
     getAdminOverview(),
     getAdminLearningAnalytics(),
     getAdminRetentionAnalytics(),
+    getAdminSoTDashboardSnapshot(),
   ]);
 
   const streakTotal =
@@ -54,6 +61,7 @@ export default async function AdminAnalyticsPage() {
         icon={<BarChart2 size={18} />}
         eyebrow="Learning Intelligence"
       />
+      <AdminSoTAnalyticsSection snapshot={sotSnapshot} />
 
       <AdminSectionCard title="Phân tích học tập" icon={<BarChart2 size={16} />}>
         <div className="space-y-4">
