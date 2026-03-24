@@ -788,6 +788,12 @@ p {
   gap: 1.2rem;
 }
 
+.blog-page-shell {
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: clamp(0.6rem, 2.2vw, 1.2rem);
+}
+
 .kid-app-shell {
   position: relative;
   width: 100vw;

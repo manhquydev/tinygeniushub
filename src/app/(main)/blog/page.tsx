@@ -75,6 +75,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const subscribed = subscribedParam === "true";
   const subscribeFailed = subscribedParam === "false";
   const unsubscribed = firstParamValue(resolvedSearchParams?.unsubscribed) === "true";
+  const hasLatestPosts = latestPostsResult.posts.length > 0;
 
   return (
     <div className="page-stack">
@@ -115,9 +116,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
       <section className="space-y-4">
         <div className="section-header">
-          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">
-            Bài viết mới nhất
-          </h1>
+          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Bài viết mới nhất</h1>
           <Link
             href="/blog/search"
             className="text-sm font-semibold text-teal-700 hover:text-teal-800"
@@ -126,17 +125,22 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr]">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {latestPostsResult.posts.map((post) => (
-              <BlogCard key={post.id} post={post} />
-            ))}
-          </div>
+        {hasLatestPosts ? (
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr]">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {latestPostsResult.posts.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
 
-          <BlogSidebar categories={categories} trendingPosts={trendingPosts} />
-        </div>
+            <BlogSidebar categories={categories} trendingPosts={trendingPosts} />
+          </div>
+        ) : (
+          <section className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm">
+            Chưa có bài viết chính thức. Nội dung sẽ hiển thị ngay khi đội ngũ xuất bản bài viết mới.
+          </section>
+        )}
       </section>
     </div>
   );
 }
-

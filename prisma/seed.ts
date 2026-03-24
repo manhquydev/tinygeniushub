@@ -14,6 +14,7 @@ import { hashSync } from "bcryptjs";
 import type { ActivitySpec } from "../src/modules/content/activity-types";
 
 const prisma = new PrismaClient();
+const shouldSeedBlogDemoContent = process.env.SEED_BLOG_DEMO_CONTENT === "true";
 
 function toActivitySpecJson(spec: ActivitySpec): Prisma.InputJsonValue {
   return spec as unknown as Prisma.InputJsonValue;
@@ -579,6 +580,11 @@ async function seedBlog() {
     });
   }
 
+  if (!shouldSeedBlogDemoContent) {
+    console.log("Blog taxonomy seeded. Demo blog posts disabled (set SEED_BLOG_DEMO_CONTENT=true to enable).");
+    return;
+  }
+
   const tiengAnh = await prisma.blogCategory.findUnique({ where: { slug: "tieng-anh-som" } });
   const toanTuDuy = await prisma.blogCategory.findUnique({ where: { slug: "toan-tu-duy" } });
   const phuongPhap = await prisma.blogCategory.findUnique({ where: { slug: "phuong-phap-hoc" } });
@@ -733,6 +739,11 @@ main()
 
 
 async function seedBlogArticles() {
+  if (!shouldSeedBlogDemoContent) {
+    console.log("seedBlogArticles skipped (SEED_BLOG_DEMO_CONTENT=false).");
+    return;
+  }
+
   console.log("Seeding 10 SEO blog articles...");
 
   // Resolve categories and author

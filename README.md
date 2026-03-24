@@ -54,6 +54,7 @@ docker compose logs -f web worker
 ```
 
 `web` service will auto-run `prisma migrate deploy` and seed demo data on startup (`RUN_DB_SEED=true`).
+Blog demo posts are disabled by default; set `SEED_BLOG_DEMO_CONTENT=true` only when you explicitly need sample blog content.
 
 5. Optional: run without Docker (manual local dev):
 ```bash
