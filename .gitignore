@@ -58,6 +58,7 @@ codex_*.txt
 # test results & reports (generated, not committed)
 /test-results/
 /reports/security/
+/backups/
 
 # stray plan output files
 parent_onboarding_plan.md

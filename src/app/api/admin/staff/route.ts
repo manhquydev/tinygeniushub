@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
-import { ok } from "@/lib/http";
+import { fail, ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
@@ -44,6 +44,21 @@ export async function POST(request: NextRequest) {
     if (rateLimit) return rateLimit;
     const admin = await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
     const body = createAdminStaffSchema.parse(await request.json());
+
+    if (body.role === "SUPER_ADMIN") {
+      const existingSuperAdmin = await prisma.adminAccount.findFirst({
+        where: { role: "SUPER_ADMIN" },
+        select: { id: true, email: true },
+      });
+
+      if (existingSuperAdmin) {
+        return fail(
+          "Only one SUPER_ADMIN is allowed. Demote current SUPER_ADMIN before assigning another.",
+          409,
+        );
+      }
+    }
+
     const passwordHash = await hash(body.password, 12);
 
     const user = await prisma.adminAccount.create({

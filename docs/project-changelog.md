@@ -1,5 +1,70 @@
 # Project Changelog
 
+## [0.4.5] - 2026-03-26
+
+### Added
+- Google Drive backup scripts (via `rclone`):
+  - `pnpm backup:gdrive:upload`
+  - `pnpm backup:gdrive:list`
+  - `pnpm backup:gdrive:download`
+- New env keys for Drive archive routing:
+  - `BACKUP_GDRIVE_ENABLED`
+  - `BACKUP_GDRIVE_REMOTE`
+  - `BACKUP_GDRIVE_PREFIX`
+
+### Changed
+- `pnpm backup:create` now supports `--gdrive` to auto-upload fresh dumps to Google Drive.
+- Backup runbook now includes cross-VPS migration flow from Google Drive archive (`list -> download -> verify -> restore`).
+
+## [0.4.4] - 2026-03-25
+
+### Added
+- **Offsite backup upload command**: `pnpm backup:offsite:upload`.
+- **R2 offsite upload script**: `scripts/ops/upload-postgres-backup-offsite.mjs` (uploads `.dump`, `.sha256`, `.json`).
+- **Offsite env template keys** for backup-only credentials and prefix routing.
+
+### Changed
+- `pnpm backup:create` now supports `--offsite` to run local artifact creation and offsite upload in one flow.
+- Backup runbook now resolves ops decisions:
+  - offsite target is `R2-first`
+  - restore cadence is monthly full drill + weekly lightweight verification
+  - immutable retention enabled now via R2 Bucket Lock (backup prefix scope)
+- README backup command list now includes offsite upload flow.
+
+## [0.4.3] - 2026-03-25
+
+### Added
+- **Backup/restore foundation scripts**:
+  - `pnpm backup:create`
+  - `pnpm backup:verify`
+  - `pnpm backup:restore`
+- **SUPER_ADMIN bootstrap command**: `pnpm admin:seed-super`.
+- **Deployment runbook**: `docs/deployment/backup-restore-runbook.md`.
+- **DB migration safeguard**: partial unique index to enforce single `SUPER_ADMIN` record.
+
+### Changed
+- Admin staff APIs now block creating/promoting another `SUPER_ADMIN` when one exists.
+- Admin staff APIs now block removing/deactivating the last active `SUPER_ADMIN`.
+- `prisma/scripts/seed-admin.ts` now auto-enforces single `SUPER_ADMIN` (demotes extras to `SUPPORT_AGENT`).
+
+### Tests
+- Added regression tests:
+  - `src/app/api/admin/staff/route.test.ts`
+  - `src/app/api/admin/staff/[id]/route.test.ts`
+
+## [0.4.2] - 2026-03-25
+
+### Changed
+- **Admin auth role validation aligned with current role model** — `requireAdminSession()` now validates against `SUPER_ADMIN | CONTENT_EDITOR | SUPPORT_AGENT`.
+- **Admin log access stabilized** — `/api/admin/log` now enforces `SUPER_ADMIN` access consistently for read/write.
+- **Admin navigation/catalog updated** — `/admin/log` visibility aligned to `SUPER_ADMIN` scope.
+
+### Tests
+- Added route regression suite: `src/app/api/admin/log/route.test.ts` (GET limit clamp/default, auth error mapping, POST rate-limit, validation, success path).
+
+### Reports
+- Added admin gap assessment and phase plan: `plans/reports/admin-module-gap-review-2026-03-25.md`.
+
 ## [0.4.1] - 2026-03-24
 
 ### Added

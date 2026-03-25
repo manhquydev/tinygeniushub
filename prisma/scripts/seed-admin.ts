@@ -13,8 +13,60 @@ const ADMIN_DISPLAY_NAME = "Admin";
 const ADMIN_ROLE = "SUPER_ADMIN";
 
 async function main() {
+  const existingSuperAdmins = await prisma.adminAccount.findMany({
+    where: { role: "SUPER_ADMIN" },
+    orderBy: { createdAt: "asc" },
+    select: { id: true, email: true, role: true, isActive: true },
+  });
+
+  if (existingSuperAdmins.length > 1) {
+    const keeper = existingSuperAdmins[0];
+    const demoteIds = existingSuperAdmins.slice(1).map((admin) => admin.id);
+    await prisma.adminAccount.updateMany({
+      where: {
+        id: {
+          in: demoteIds,
+        },
+      },
+      data: {
+        role: "SUPPORT_AGENT",
+      },
+    });
+
+    console.log(
+      `Enforced single SUPER_ADMIN. Kept: ${keeper.email}. Demoted ${demoteIds.length} account(s) to SUPPORT_AGENT.`,
+    );
+  }
+
+  const existingSuperAdmin = await prisma.adminAccount.findFirst({
+    where: { role: "SUPER_ADMIN" },
+    select: { id: true, email: true, role: true },
+  });
   const existing = await prisma.adminAccount.findUnique({ where: { email: ADMIN_EMAIL } });
+
+  if (existingSuperAdmin && existingSuperAdmin.email !== ADMIN_EMAIL) {
+    console.log(
+      `SUPER_ADMIN already configured: ${existingSuperAdmin.email}. Skip creating another SUPER_ADMIN for ${ADMIN_EMAIL}.`,
+    );
+    if (existing) {
+      console.log(`Existing account at target email remains role: ${existing.role}`);
+    }
+    return;
+  }
+
   if (existing) {
+    if (existing.role !== "SUPER_ADMIN") {
+      const promoted = await prisma.adminAccount.update({
+        where: { id: existing.id },
+        data: {
+          role: "SUPER_ADMIN",
+          isActive: true,
+        },
+      });
+      console.log(`Promoted existing account to SUPER_ADMIN: ${promoted.email}`);
+      return;
+    }
+
     console.log(`Admin account already exists: ${ADMIN_EMAIL} (role: ${existing.role})`);
     return;
   }

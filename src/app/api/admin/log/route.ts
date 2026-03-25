@@ -7,6 +7,9 @@ import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { createAdminActionLog, getAdminActionLogs } from "@/modules/admin/service";
 import { z } from "zod";
 
+const ADMIN_LOG_VIEW_ROLES = ["SUPER_ADMIN"];
+const ADMIN_LOG_WRITE_ROLES = ["SUPER_ADMIN"];
+
 const createLogSchema = z.object({
   action: z.string().trim().min(1),
   target: z.string().trim().min(1).optional(),
@@ -15,7 +18,7 @@ const createLogSchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
-    await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
+    await requireAdminFromRequest(request, ADMIN_LOG_VIEW_ROLES);
 
     const limitRaw = request.nextUrl.searchParams.get("limit");
     const limit = limitRaw ? Number.parseInt(limitRaw, 10) : 50;
@@ -32,7 +35,7 @@ export async function POST(request: NextRequest) {
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    const admin = await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
+    const admin = await requireAdminFromRequest(request, ADMIN_LOG_WRITE_ROLES);
     const body = createLogSchema.parse(await request.json());
 
     const entry = await createAdminActionLog({

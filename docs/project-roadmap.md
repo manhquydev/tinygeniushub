@@ -1,6 +1,6 @@
 # Project Roadmap
 
-**Last updated:** 2026-03-19
+**Last updated:** 2026-03-25
 **Status:** All phases complete — deployed to production.
 
 ---
@@ -95,6 +95,9 @@
 ## Next Priorities (backlog)
 
 - Admin-configurable content settings expansion (footer links done; next: contact info, legal links, app badges)
+- Admin ops hardening P0: Backup/Restore admin module UI + artifact registry + Queue/Job Operations dashboard (CLI + offsite upload + Google Drive migration mirror done)
+- Admin governance hardening P1: `/admin/log` v2 (filter/search/export + unified incident timeline)
+- Data lifecycle ops P1: retention/delete/export operational controls
 - Stripe live mode switch (replace mock_gateway)
 - Comment system on blog posts
 - Advanced course features (progress resume, bookmarks)

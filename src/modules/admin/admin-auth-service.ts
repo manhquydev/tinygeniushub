@@ -58,7 +58,11 @@ export async function getAdminSession(): Promise<AdminSession | null> {
     }
 }
 
-const VALID_ADMIN_ROLES = ["SUPER_ADMIN", "ADMIN", "VIEWER"] as const;
+const VALID_ADMIN_ROLES = ["SUPER_ADMIN", "CONTENT_EDITOR", "SUPPORT_AGENT"] as const;
+
+function isValidAdminRole(role: string) {
+    return (VALID_ADMIN_ROLES as readonly string[]).includes(role);
+}
 
 export async function requireAdminSession(allowedRoles?: string[]) {
     const session = await getAdminSession();
@@ -66,7 +70,7 @@ export async function requireAdminSession(allowedRoles?: string[]) {
         throw new DomainError("Unauthorized", 401, "UNAUTHORIZED");
     }
 
-    if (!(VALID_ADMIN_ROLES as readonly string[]).includes(session.user.role)) {
+    if (!isValidAdminRole(session.user.role)) {
         throw new DomainError("Forbidden: Invalid role", 403, "FORBIDDEN");
     }
 

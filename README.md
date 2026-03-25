@@ -126,6 +126,24 @@ pnpm perf:sanity
 pnpm release:check
 ```
 
+## Backup & Recovery Commands
+
+```bash
+pnpm backup:create
+pnpm backup:create -- --offsite
+pnpm backup:create -- --gdrive
+pnpm backup:verify -- --file=backups/postgres/<backup-file>.dump
+pnpm backup:restore -- --file=backups/postgres/<backup-file>.dump
+pnpm backup:offsite:upload -- --file=backups/postgres/<backup-file>.dump
+pnpm backup:gdrive:upload -- --file=backups/postgres/<backup-file>.dump
+pnpm backup:gdrive:list
+pnpm backup:gdrive:download -- --remote-key=postgres/prod/<backup-file>.dump
+pnpm admin:seed-super
+```
+
+Runbook:
+- `docs/deployment/backup-restore-runbook.md`
+
 `security:baseline` supports:
 - threshold tuning via `SECURITY_FAIL_ON` (`info|low|moderate|high|critical`, default `high`)
 - scope tuning via `SECURITY_FAIL_SCOPE` (`prod|all`, default `prod`)
