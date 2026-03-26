@@ -1,0 +1,1402 @@
+
+
+===PAGE 1===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 3 
+ 
+VĂN BẢN QUY PHẠM PHÁP LUẬT 
+ 
+CHÍNH PHỦ 
+ 
+ CHÍNH PHỦ 
+ 
+ 
+Số: 13/2023/NĐ-CP 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+Hà Nội, ngày 17 tháng 4 năm 2023  
+ 
+NGHỊ ĐỊNH 
+Bảo vệ dữ liệu cá nhân 
+ 
+ 
+Căn cứ Luật Tổ chức Chính ph ủ ngày 19 tháng 6 n ăm 2015; Lu ật sửa đổi, bổ 
+sung m ột số điều của Luật Tổ chức Chính ph ủ và Lu ật Tổ chức chính quy ền địa 
+phương ngày 22 tháng 11 năm 2019; 
+Căn cứ Bộ luật Dân sự ngày 24 tháng 11 năm 2015; 
+Căn cứ Luật An ninh quốc gia ngày 03 tháng 12 năm 2004; 
+Căn cứ Luật An ninh mạng ngày 12 tháng 6 năm 2018; 
+Theo đề nghị của Bộ trưởng Bộ Công an; 
+Chính phủ ban hành Nghị định bảo vệ dữ liệu cá nhân. 
+  
+Chương I 
+NHỮNG QUY ĐỊNH CHUNG 
+ 
+Điều 1. Phạm vi điều chỉnh và đối tượng áp dụng 
+1. Nghị định này quy định về bảo vệ dữ liệu cá nhân và trách nhi ệm bảo vệ dữ 
+liệu cá nhân của cơ quan, tổ chức, cá nhân có liên quan. 
+2. Nghị định này áp dụng đối với: 
+a) Cơ quan, tổ chức, cá nhân Việ
+t Nam; 
+b) Cơ quan, tổ chức, cá nhân nước ngoài tại Việt Nam; 
+c) Cơ quan, tổ chức, cá nhân Việt Nam hoạt động tại nước ngoài; 
+
+
+===PAGE 2===
+ 
+4 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+d) Cơ quan, t ổ chức, cá nhân n ước ngoài tr ực tiếp tham gia ho ặc có liên quan 
+đến hoạt động xử lý dữ liệu cá nhân tại Việt Nam. 
+Điều 2. Giải thích từ ngữ 
+Trong Nghị định này, các từ ngữ dưới đây được hiểu như sau: 
+1. Dữ liệu cá nhân là thông tin d ưới dạng ký hi ệu, chữ viết, chữ số, hình ảnh, 
+âm thanh ho ặc dạng tương tự trên môi tr ường điện tử gắn liền với một con ng ười 
+cụ thể hoặc giúp xác định một con người cụ thể. Dữ liệu cá nhân bao g ồm dữ liệu 
+cá nhân cơ bản và dữ liệu cá nhân nhạy cảm.  
+2. Thông tin giúp xác định một con người cụ thể là thông tin hình thành từ hoạt 
+động của cá nhân mà khi k ết hợp với các dữ liệu, thông tin lưu trữ khác có thể xác 
+định một con người cụ thể. 
+3. Dữ liệu cá nhân cơ bản bao gồm:  
+a) Họ, chữ đệm và tên khai sinh, tên gọi khác (nếu có); 
+b) Ngày, tháng, năm sinh; ngày, tháng, năm chết hoặc mất tích; 
+c) Giới tính; 
+d) Nơi sinh, n ơi đăng ký khai sinh, n ơi thường trú, n ơi tạm trú, n ơi ở hiện tại, 
+quê quán, địa chỉ liên hệ; 
+đ) Quốc tịch; 
+e) Hình ảnh của cá nhân; 
+g) Số điện thoại, số chứng minh nhân dân, s ố định danh cá nhân, s ố hộ chiếu, 
+số giấy phép lái xe, s ố biển số xe, s ố mã s ố thuế cá nhân, s ố bảo hiểm xã h ội, số 
+thẻ bảo hiểm y tế; 
+h) Tình trạng hôn nhân; 
+i) Thông tin về mối quan hệ gia đình (cha mẹ, con cái); 
+k) Thông tin về tài khoản số của cá nhân; dữ liệu cá nhân ph ản ánh hoạt động, 
+lịch sử hoạt động trên không gian mạng; 
+l) Các thông tin khác g ắn li ền v ới m ột con ng ười c ụ th ể ho ặc giúp xác định 
+một con người cụ thể không thuộc quy định tại khoản 4 Điều này. 
+
+
+===PAGE 3===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 5 
+ 
+4. Dữ liệu cá nhân nhạy cảm là dữ liệu cá nhân gắn liền với quyền riêng tư của 
+cá nhân mà khi b ị xâm ph ạm sẽ gây ảnh hưởng trực tiếp tới quyền và l ợi ích h ợp 
+pháp của cá nhân gồm:  
+a) Quan điểm chính trị, quan điểm tôn giáo;  
+b) Tình trạng sức khỏe và đời tư được ghi trong hồ sơ bệnh án, không bao gồm 
+thông tin về nhóm máu; 
+c) Thông tin liên quan đến nguồn gốc chủng tộc, nguồn gốc dân tộc;  
+d) Thông tin về đặc điểm di truyền được thừa hưởng hoặc có được của cá nhân; 
+đ) Thông tin về thuộc tính vật lý, đặc điểm sinh học riêng của cá nhân;  
+e) Thông tin về đời sống tình dục, xu hướng tình dục của cá nhân;  
+g) D ữ li ệu v ề t ội ph ạm, hành vi ph ạm t ội được thu th ập, l ưu tr ữ b ởi các c ơ 
+quan thực thi pháp luật; 
+h) Thông tin khách hàng c ủa t ổ ch ức tín d ụng, chi nhánh ngân hàng n ước 
+ngoài, t ổ ch ức cung ứng d ịch v ụ trung gian thanh toán, các t ổ ch ức được phép 
+khác, gồm: thông tin định danh khách hàng theo quy định của pháp luật, thông tin 
+về tài khoản, thông tin v ề tiền gửi, thông tin v ề tài sản gửi, thông tin v ề giao dịch, 
+thông tin v ề tổ chức, cá nhân là bên b ảo đảm tại tổ chức tín dụng, chi nhánh ngân 
+hàng, tổ chức cung ứng dịch vụ trung gian thanh toán; 
+i) Dữ liệu về vị trí của cá nhân được xác định qua dịch vụ định vị; 
+k) D ữ li ệu cá nhân khác được pháp lu ật quy định là đặc thù và c ần có bi ện 
+pháp bảo mật cần thiết. 
+5. Bảo vệ dữ liệu cá nhân là ho ạt động phòng ng ừa, phát hi ện, ngăn chặn, xử 
+lý hành vi vi ph ạm liên quan đến dữ liệu cá nhân theo quy định của pháp lu ật. 
+6. Chủ thể dữ liệu là cá nhân được dữ liệu cá nhân phản ánh. 
+7. Xử lý d ữ liệu cá nhân là m ột hoặc nhiều hoạt động tác động tới dữ liệu cá 
+nhân, nh ư: thu th ập, ghi, phân tích, xác nh ận, l ưu tr ữ, ch ỉnh s ửa, công khai, k ết 
+hợp, truy c ập, truy xu ất, thu h ồi, mã hóa, gi ải mã, sao chép, chia s ẻ, truy ền đưa, 
+cung c ấp, chuy ển giao, xóa, h ủy d ữ li ệu cá nhân ho ặc các hành động khác có 
+liên quan. 
+
+
+===PAGE 4===
+ 
+6 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+8. Sự đồng ý của chủ thể dữ liệu là việc thể hiện rõ ràng, tự nguyện, khẳng định 
+việc cho phép xử lý dữ liệu cá nhân của chủ thể dữ liệu. 
+9. Bên Ki ểm soát d ữ liệu cá nhân là t ổ chức, cá nhân quy ết định mục đích và 
+phương tiện xử lý dữ liệu cá nhân.  
+10. Bên Xử lý dữ liệu cá nhân là t ổ chức, cá nhân th ực hiện việc xử lý dữ liệu 
+thay mặt cho Bên Ki ểm soát dữ liệu, thông qua m ột hợp đồng hoặc thỏa thuận với 
+Bên Kiểm soát dữ liệu. 
+11. Bên Kiểm soát và xử lý dữ liệu cá nhân là tổ chức, cá nhân đồng thời quyết 
+định mục đích, phương tiện và trực tiếp xử lý dữ liệu cá nhân. 
+12. Bên thứ ba là tổ chức, cá nhân ngoài Chủ thể dữ liệu, Bên Kiểm soát dữ liệu 
+cá nhân, Bên Xử lý d ữ liệu cá nhân, Bên Ki ểm soát và x ử lý d ữ liệu cá nhân được 
+phép xử lý dữ liệu cá nhân. 
+13. Xử lý dữ liệu cá nhân tự động là hình thức xử lý dữ liệu cá nhân được thực 
+hiện bằng ph ương tiện điện tử nhằm đánh giá, phân tích, d ự đoán hoạt động của 
+một con người cụ thể, như: thói quen, s ở thích, mức độ tin cậy, hành vi, địa điểm, 
+xu hướng, năng lực và các trường hợp khác. 
+14. Chuy ển d ữ li ệu cá nhân ra n ước ngoài là ho ạt động s ử d ụng không gian 
+mạng, thiết bị, phương tiện điện tử hoặc các hình thức khác chuyển dữ liệu cá nhân 
+của công dân Vi ệt Nam t ới một địa điểm nằm ngoài lãnh th ổ của nước Cộng hòa 
+xã h ội ch ủ ngh ĩa Vi ệt Nam ho ặc s ử d ụng m ột địa điểm n ằm ngoài lãnh th ổ c ủa 
+nước Cộng hòa xã h ội chủ nghĩa Việt Nam để xử lý dữ liệu cá nhân c ủa công dân 
+Việt Nam, bao gồm: 
+a) Tổ chức, doanh nghi ệp, cá nhân chuy ển dữ liệu cá nhân c ủa công dân Vi ệt 
+Nam cho t ổ chức, doanh nghi ệp, bộ phận quản lý ở nước ngoài để xử lý phù h ợp 
+với mục đích đã được chủ thể dữ liệu đồng ý; 
+b) Xử lý d ữ liệu cá nhân c ủa công dân Vi ệt Nam b ằng các h ệ thống tự động 
+nằm ngoài lãnh th ổ của nước Cộng hòa xã h ội chủ nghĩa Việt Nam của Bên Kiểm 
+soát dữ liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân, Bên Xử lý dữ liệu cá 
+nhân phù hợp với mục đích đã được chủ thể dữ liệu đồng ý. 
+
+
+===PAGE 5===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 7 
+ 
+Điều 3. Nguyên tắc bảo vệ dữ liệu cá nhân 
+1. Dữ liệu cá nhân được xử lý theo quy định của pháp luật. 
+2. Chủ thể dữ liệu được biết về hoạt động liên quan t ới xử lý d ữ liệu cá nhân 
+của mình, trừ trường hợp luật có quy định khác. 
+3. Dữ liệu cá nhân ch ỉ được xử lý đúng với mục đích đã được Bên Ki ểm soát 
+dữ li ệu cá nhân, Bên X ử lý d ữ li ệu cá nhân, Bên Ki ểm soát và x ử lý d ữ li ệu cá 
+nhân, Bên thứ ba đăng ký, tuyên bố về xử lý dữ liệu cá nhân. 
+4. Dữ liệu cá nhân thu th ập phải phù hợp và giới hạn trong phạm vi, mục đích 
+cần xử lý. D ữ liệu cá nhân không được mua, bán d ưới mọi hình th ức, trừ trường 
+hợp luật có quy định khác. 
+5. Dữ liệu cá nhân được cập nhật, bổ sung phù hợp với mục đích xử lý. 
+6. Dữ liệu cá nhân được áp dụng các biện pháp bảo vệ, bảo mật trong quá trình 
+xử lý, bao g ồm cả việc bảo vệ trước các hành vi vi ph ạm quy định về bảo vệ dữ 
+liệu cá nhân và phòng, ch ống sự mất mát, phá hủy hoặc thiệt hại do sự cố, sử dụng 
+các biện pháp kỹ thuật. 
+7. Dữ liệu cá nhân ch ỉ được lưu trữ trong kho ảng thời gian phù h ợp với mục 
+đích xử lý dữ liệu, trừ trường hợp pháp luật có quy định khác. 
+8. Bên Ki ểm soát d ữ liệu, Bên Ki ểm soát và x ử lý d ữ liệu cá nhân ph ải chịu 
+trách nhi ệm tuân th ủ các nguyên t ắc xử lý d ữ liệu được quy định từ khoản 1 t ới 
+khoản 7 Điều này và ch ứng minh s ự tuân th ủ của mình v ới các nguyên t ắc xử lý 
+dữ liệu đó. 
+Điều 4. Xử lý vi phạm quy định bảo vệ dữ liệu cá nhân  
+Cơ quan, t ổ chức, cá nhân vi ph ạm quy định bảo vệ dữ liệu cá nhân tùy theo 
+mức độ có th ể bị xử lý k ỷ luật, x ử phạt vi ph ạm hành chính, x ử lý hình s ự theo 
+quy định. 
+Điều 5. Quản lý nhà nước về bảo vệ dữ liệu cá nhân  
+Chính phủ thống nhất quản lý nhà nước về bảo vệ dữ liệu cá nhân.  
+Nội dung quản lý nhà nước về bảo vệ dữ liệu cá nhân gồm: 
+1. Trình c ơ quan nhà n ước có th ẩm quyền ban hành ho ặc ban hành theo th ẩm 
+quyền v ăn b ản quy ph ạm pháp lu ật và ch ỉ đạo, t ổ ch ức th ực hi ện v ăn b ản quy 
+phạm pháp luật về bảo vệ dữ liệu cá nhân. 
+
+
+===PAGE 6===
+ 
+8 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+2. Xây dựng và tổ chức thực hiện chiến lược, chính sách, đề án, dự án, chương 
+trình, kế hoạch về bảo vệ dữ liệu cá nhân. 
+3. H ướng d ẫn c ơ quan, t ổ ch ức, cá nhân v ề bi ện pháp, quy trình, tiêu chu ẩn 
+bảo vệ dữ liệu cá nhân theo quy định của pháp luật. 
+4. Tuyên truy ền, giáo d ục pháp lu ật về bảo vệ dữ liệu cá nhân; truy ền thông, 
+phổ biến kiến thức, kỹ năng bảo vệ dữ liệu cá nhân. 
+5. Xây d ựng, đào tạo, bồi dưỡng cán b ộ, công ch ức, viên ch ức và ng ười được 
+giao làm công tác bảo vệ dữ liệu cá nhân. 
+6. Thanh tra, ki ểm tra việc thực hiện quy định của pháp luật về bảo vệ dữ liệu 
+cá nhân; giải quyết khiếu nại, tố cáo và x ử lý vi ph ạm pháp luật về bảo vệ dữ liệu 
+cá nhân theo quy định của pháp luật. 
+7. Th ống kê, thông tin, báo cáo v ề tình hình b ảo vệ dữ liệu cá nhân và vi ệc 
+thực hi ện pháp lu ật v ề b ảo v ệ d ữ li ệu cá nhân cho c ơ quan nhà n ước có th ẩm 
+quyền. 
+8. Hợp tác quốc tế về bảo vệ dữ liệu cá nhân. 
+Điều 6. Áp d ụng Nghị định bảo vệ dữ liệu cá nhân, các lu ật liên quan và 
+Điều ước quốc tế 
+Việc bảo vệ dữ liệu cá nhân được thực hiện theo quy định các điều ước quốc tế 
+mà nước Cộng hòa xã h ội chủ ngh ĩa Việt Nam là thành viên, các quy định khác 
+của Luật có liên quan và Nghị định này. 
+Điều 7. Hợp tác quốc tế về bảo vệ dữ liệu cá nhân 
+1. Xây d ựng cơ chế hợp tác qu ốc tế để tạo điều kiện cho vi ệc thực thi có hi ệu 
+quả pháp luật về bảo vệ dữ liệu cá nhân.  
+2. Tham gia t ương tr ợ t ư pháp v ề b ảo v ệ d ữ li ệu cá nhân c ủa các qu ốc gia 
+khác, bao gồm thông báo, đề nghị khiếu nại, trợ giúp điều tra và trao đổi thông tin, 
+với các biện pháp bảo vệ thích hợp để bảo vệ dữ liệu cá nhân. 
+3. Tổ ch ức các h ội nghị, hội thảo, nghiên c ứu khoa h ọc và thúc đẩy các ho ạt 
+động hợp tác quốc tế trong việc thực thi pháp luật để bảo vệ dữ liệu cá nhân.  
+
+
+===PAGE 7===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 9 
+ 
+4. Tổ chức các cu ộc gặp song ph ương, đa phương, trao đổi kinh nghi ệm xây 
+dựng pháp luật và thực tiễn bảo vệ dữ liệu cá nhân. 
+5. Chuyển giao công nghệ phục vụ bảo vệ dữ liệu cá nhân. 
+Điều 8. Hành vi bị nghiêm cấm 
+1. Xử lý dữ liệu cá nhân trái với quy định của pháp luật về bảo vệ dữ liệu cá nhân. 
+2. Xử lý dữ liệu cá nhân để tạo ra thông tin, d ữ liệu nhằm chống lại Nhà nước 
+Cộng hòa xã hội chủ nghĩa Việt Nam. 
+3. Xử lý dữ liệu cá nhân để tạo ra thông tin, d ữ liệu gây ảnh hưởng tới an ninh 
+quốc gia, trật tự an toàn xã hội, quyền và lợi ích hợp pháp của tổ chức, cá nhân khác. 
+4. Cản trở hoạt động bảo vệ dữ liệu cá nhân của cơ quan có thẩm quyền. 
+5. Lợi dụng hoạt động bảo vệ dữ liệu cá nhân để vi phạm pháp luật.  
+ 
+Chương II 
+HOẠT ĐỘNG BẢO VỆ DỮ LIỆU CÁ NHÂN 
+ 
+Mục 1 
+QUYỀN VÀ NGHĨA VỤ CỦA CHỦ THỂ DỮ LIỆU 
+ 
+Điều 9. Quyền của chủ thể dữ liệu  
+1. Quyền được biết  
+Chủ th ể d ữ li ệu được bi ết v ề ho ạt động x ử lý d ữ li ệu cá nhân c ủa mình, tr ừ 
+trường hợp luật có quy định khác. 
+2. Quyền đồng ý  
+Chủ th ể d ữ li ệu được đồng ý ho ặc không đồng ý cho phép x ử lý d ữ li ệu cá 
+nhân của mình, trừ trường hợp quy định tại Điều 17 Nghị định này. 
+3. Quyền truy cập  
+Chủ thể dữ liệu được truy c ập để xem, ch ỉnh sửa hoặc yêu c ầu chỉnh sửa dữ 
+liệu cá nhân của mình, trừ trường hợp luật có quy định khác. 
+
+
+===PAGE 8===
+ 
+10 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+4. Quyền rút lại sự đồng ý 
+Chủ thể dữ liệu được quyền rút lại sự đồng ý của mình, trừ trường hợp luật có 
+quy định khác. 
+5. Quyền xóa dữ liệu 
+Chủ th ể d ữ li ệu được xóa ho ặc yêu c ầu xóa d ữ li ệu cá nhân c ủa mình, tr ừ 
+trường hợp luật có quy định khác. 
+6. Quyền hạn chế xử lý dữ liệu 
+a) Chủ thể dữ liệu được yêu c ầu hạn chế xử lý d ữ liệu cá nhân c ủa mình, tr ừ 
+trường hợp luật có quy định khác; 
+b) Việc hạn chế xử lý dữ liệu được thực hiện trong 72 giờ sau khi có yêu cầu của 
+chủ thể dữ liệu, với toàn bộ dữ liệu cá nhân mà chủ thể dữ liệu yêu cầu hạn chế, trừ 
+trường hợp luật có quy định khác. 
+7. Quyền cung cấp dữ liệu 
+Chủ thể dữ liệu được yêu c ầu Bên Ki ểm soát d ữ liệu cá nhân, Bên Ki ểm soát 
+và x ử lý d ữ li ệu cá nhân cung c ấp cho b ản thân d ữ li ệu cá nhân c ủa mình, tr ừ 
+trường hợp luật có quy định khác. 
+8. Quyền phản đối xử lý dữ liệu 
+a) Chủ thể dữ liệu được phản đối Bên Ki ểm soát d ữ liệu cá nhân, Bên Ki ểm 
+soát và xử lý dữ liệu cá nhân xử lý dữ liệu cá nhân của mình nhằm ngăn chặn hoặc 
+hạn chế tiết lộ dữ liệu cá nhân ho ặc sử dụng cho m ục đích quảng cáo, ti ếp thị, trừ 
+trường hợp luật có quy định khác; 
+b) Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân thực 
+hiện yêu cầu của chủ thể dữ liệu trong 72 giờ sau khi nhận được yêu cầu, trừ trường 
+hợp luật có quy định khác. 
+9. Quyền khiếu nại, tố cáo, khởi kiện 
+Chủ thể dữ liệu có quy ền khiếu nại, tố cáo ho ặc khởi kiện theo quy định của 
+pháp luật. 
+10. Quyền yêu cầu bồi thường thiệt hại  
+Chủ thể dữ liệu có quyền yêu cầu bồi thường thiệt hại theo quy định của pháp 
+luật khi x ảy ra vi ph ạm quy định về bảo vệ dữ liệu cá nhân c ủa mình, tr ừ trường 
+hợp các bên có thỏa thuận khác hoặc luật có quy định khác. 
+
+
+===PAGE 9===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 11 
+ 
+11. Quyền tự bảo vệ  
+Chủ th ể d ữ li ệu có quy ền t ự b ảo v ệ theo quy định c ủa B ộ lu ật Dân s ự, lu ật 
+khác có liên quan và Ngh ị định này, ho ặc yêu c ầu c ơ quan, t ổ ch ức có th ẩm 
+quyền thực hiện các ph ương thức bảo vệ quyền dân s ự theo quy định tại Điều 11 
+Bộ luật Dân sự. 
+Điều 10. Nghĩa vụ của chủ thể dữ liệu  
+1. Tự bảo vệ dữ liệu cá nhân c ủa mình; yêu c ầu các t ổ chức, cá nhân khác có 
+liên quan bảo vệ dữ liệu cá nhân của mình. 
+2. Tôn trọng, bảo vệ dữ liệu cá nhân của người khác. 
+3. Cung cấp đầy đủ, chính xác dữ liệu cá nhân khi đồng ý cho phép xử lý dữ liệu 
+cá nhân. 
+4. Tham gia tuyên truyền, phổ biến kỹ năng bảo vệ dữ liệu cá nhân. 
+5. Th ực hi ện quy định c ủa pháp lu ật v ề b ảo v ệ d ữ li ệu cá nhân và tham gia 
+phòng, chống các hành vi vi phạm quy định về bảo vệ dữ liệu cá nhân. 
+ 
+Mục 2 
+BẢO VỆ DỮ LIỆU CÁ NHÂN 
+TRONG QUÁ TRÌNH XỬ LÝ DỮ LIỆU CÁ NHÂN 
+ 
+Điều 11. Sự đồng ý của chủ thể dữ liệu  
+1. Sự đồng ý của chủ thể dữ liệu được áp dụng đối với tất cả các hoạt động trong 
+quy trình xử lý dữ liệu cá nhân, trừ trường hợp luật có quy định khác. 
+2. Sự đồng ý của chủ thể dữ liệu chỉ có hiệu lực khi chủ thể dữ liệu tự nguyện 
+và biết rõ các nội dung sau: 
+a) Loại dữ liệu cá nhân được xử lý; 
+b) Mục đích xử lý dữ liệu cá nhân; 
+c) Tổ chức, cá nhân được xử lý dữ liệu cá nhân; 
+d) Các quyền, nghĩa vụ của chủ thể dữ liệu. 
+3. Sự đồng ý c ủa chủ thể dữ liệu phải được thể hiện rõ ràng, c ụ thể bằng văn 
+bản, giọng nói, đánh dấu vào ô đồng ý, cú pháp đồng ý qua tin nhắn, chọn các thiết 
+lập kỹ thuật đồng ý hoặc qua một hành động khác thể hiện được điều này. 
+
+
+===PAGE 10===
+ 
+12 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+4. Sự đồng ý ph ải được tiến hành cho cùng m ột mục đích. Khi có nhi ều mục 
+đích, Bên Ki ểm soát d ữ liệu cá nhân, Bên Ki ểm soát và x ử lý d ữ liệu cá nhân li ệt 
+kê các mục đích để chủ thể dữ liệu đồng ý với một hoặc nhiều mục đích nêu ra. 
+5. Sự đồng ý c ủa chủ thể dữ liệu phải được thể hi ện ở một định dạng có th ể 
+được in, sao chép b ằng v ăn b ản, bao g ồm c ả d ưới d ạng điện t ử ho ặc định d ạng 
+kiểm chứng được. 
+6. Sự im l ặng hoặc không ph ản hồi của chủ thể dữ liệu không được coi là s ự 
+đồng ý.  
+7. Chủ thể dữ liệu có thể đồng ý một phần hoặc với điều kiện kèm theo.  
+8. Đối v ới x ử lý d ữ li ệu cá nhân nh ạy c ảm, chủ th ể dữ liệu ph ải được thông 
+báo rằng dữ liệu cần xử lý là dữ liệu cá nhân nhạy cảm. 
+9. Sự đồng ý của chủ thể dữ liệu có hiệu lực cho tới khi chủ thể dữ liệu có quyết 
+định khác hoặc khi cơ quan nhà nước có thẩm quyền yêu cầu bằng văn bản. 
+10. Trong tr ường hợp có tranh ch ấp, trách nhi ệm chứng minh s ự đồng ý c ủa 
+chủ thể dữ liệu thuộc về Bên Ki ểm soát d ữ liệu cá nhân, Bên Ki ểm soát và x ử lý 
+dữ liệu cá nhân.  
+11. Thông qua việc ủy quyền theo quy định của Bộ luật Dân sự, tổ chức, cá nhân 
+có thể thay mặt chủ thể dữ liệu thực hiện các thủ tục liên quan t ới xử lý d ữ liệu cá 
+nhân của chủ thể dữ liệu với Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý 
+dữ liệu cá nhân trong trường hợp chủ thể dữ liệu đã biết rõ và đồng ý theo quy định 
+tại khoản 3 Điều này, trừ trường hợp luật có quy định khác. 
+Điều 12. Rút lại sự đồng ý 
+1. Việc rút lại sự đồng ý không ảnh hưởng đến tính hợp pháp của việc xử lý dữ 
+liệu đã được đồng ý trước khi rút lại sự đồng ý. 
+2. Việc rút l ại sự đồng ý ph ải được thể hiện ở một định dạng có th ể được in, 
+sao chép b ằng v ăn b ản, bao g ồm c ả d ưới d ạng điện t ử ho ặc định d ạng ki ểm 
+chứng được. 
+3. Khi nhận yêu cầu rút lại sự đồng ý của chủ thể dữ liệu, Bên Kiểm soát dữ liệu 
+cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân thông báo cho chủ thể dữ liệu về hậu 
+quả, thiệt hại có thể xảy ra khi rút lại sự đồng ý. 
+
+
+===PAGE 11===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 13 
+ 
+4. Sau khi th ực hi ện quy định t ại kho ản 2 Điều này, Bên Ki ểm soát d ữ li ệu, 
+Bên Xử lý dữ liệu, Bên Kiểm soát và x ử lý dữ liệu, Bên thứ ba phải ngừng và yêu 
+cầu các t ổ chức, cá nhân có liên quan ng ừng xử lý d ữ liệu của chủ thể dữ liệu đã 
+rút lại sự đồng ý. 
+Điều 13. Thông báo xử lý dữ liệu cá nhân 
+1. Vi ệc thông báo được th ực hi ện m ột l ần tr ước khi ti ến hành đối v ới ho ạt 
+động xử lý dữ liệu cá nhân.  
+2. Nội dung thông báo cho chủ thể dữ liệu về xử lý dữ liệu cá nhân: 
+a) Mục đích xử lý; 
+b) Loại dữ liệu cá nhân được sử dụng có liên quan tới mục đích xử lý quy định 
+tại điểm a khoản 2 Điều này; 
+c) Cách thức xử lý; 
+d) Thông tin v ề các tổ chức, cá nhân khác có liên quan t ới mục đích xử lý quy 
+định tại điểm a khoản 2 Điều này; 
+đ) Hậu quả, thiệt hại không mong muốn có khả năng xảy ra; 
+e) Thời gian bắt đầu, thời gian kết thúc xử lý dữ liệu. 
+3. Việc thông báo cho ch ủ thể dữ liệu phải được thể hiện ở một định dạng có 
+thể được in, sao chép b ằng văn bản, bao gồm cả dưới dạng điện tử hoặc định dạng 
+kiểm chứng được. 
+4. Bên Ki ểm soát d ữ li ệu cá nhân, Bên Ki ểm soát và x ử lý d ữ li ệu cá nhân 
+không cần thực hiện quy định tại khoản 1 Điều này trong các trường hợp sau: 
+a) Chủ thể dữ liệu đã biết rõ và đồng ý toàn bộ với nội dung quy định tại khoản 1 
+và kho ản 2 Điều này tr ước khi đồng ý cho Bên Ki ểm soát d ữ li ệu cá nhân, Bên 
+Kiểm soát và xử lý dữ liệu cá nhân tiến hành thu thập dữ liệu cá nhân, phù hợp với 
+các quy định tại Điều 9 Nghị định này; 
+b) Dữ liệu cá nhân được xử lý b ởi cơ quan nhà n ước có th ẩm quyền với mục 
+đích phục vụ hoạt động của cơ quan nhà nước theo quy định của pháp luật. 
+Điều 14. Cung cấp dữ liệu cá nhân 
+1. Chủ thể dữ liệu được yêu cầu Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát 
+và xử lý dữ liệu cá nhân cung cấp cho bản thân dữ liệu cá nhân của mình. 
+
+
+===PAGE 12===
+ 
+14 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+2. Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân: 
+a) Được cung cấp dữ liệu cá nhân của chủ thể dữ liệu cho tổ chức, cá nhân khác khi 
+có sự đồng ý của chủ thể dữ liệu, trừ trường hợp pháp luật có quy định khác; 
+b) Thay m ặt chủ thể dữ liệu cung c ấp dữ liệu cá nhân c ủa chủ thể dữ liệu cho 
+tổ ch ức ho ặc cá nhân khác khi ch ủ th ể d ữ li ệu đồng ý cho phép đại di ện và ủy 
+quyền, trừ trường hợp pháp luật có quy định khác. 
+3. Việc cung cấp dữ liệu cá nhân của chủ thể dữ liệu được Bên Kiểm soát dữ liệu 
+cá nhân, Bên Kiểm soát và x ử lý d ữ liệu cá nhân th ực hiện trong 72 giờ sau khi có 
+yêu cầu của chủ thể dữ liệu, trừ trường hợp luật có quy định khác. 
+4. Bên Ki ểm soát d ữ li ệu cá nhân, Bên Ki ểm soát và x ử lý d ữ li ệu cá nhân 
+không cung cấp dữ liệu cá nhân trong trường hợp: 
+a) Gây tổn hại tới quốc phòng, an ninh quốc gia, trật tự an toàn xã hội; 
+b) Việc cung c ấp dữ liệu cá nhân c ủa chủ thể dữ liệu có th ể ảnh hưởng tới sự 
+an toàn, sức khỏe thể chất hoặc tinh thần của người khác; 
+c) Chủ thể dữ liệu không đồng ý cung c ấp, cho phép đại diện hoặc ủy quyền 
+nhận dữ liệu cá nhân. 
+5. Hình thức yêu cầu cung cấp dữ liệu cá nhân: 
+a) Ch ủ th ể d ữ li ệu tr ực ti ếp ho ặc ủy quy ền cho ng ười khác đến tr ụ s ở Bên 
+Kiểm soát d ữ liệu cá nhân, Bên Ki ểm soát và x ử lý d ữ liệu cá nhân yêu c ầu cung 
+cấp dữ liệu cá nhân.  
+Người tiếp nhận yêu c ầu có trách nhi ệm hướng dẫn tổ chức, cá nhân yêu c ầu 
+điền các nội dung vào Phiếu yêu cầu cung cấp dữ liệu cá nhân. 
+Trường hợp tổ chức, cá nhân yêu c ầu cung c ấp thông tin không bi ết chữ hoặc 
+bị khuyết tật không thể viết yêu cầu thì người tiếp nhận yêu cầu cung cấp thông tin 
+có trách nhiệm giúp điền các nội dung vào Phiếu yêu cầu cung cấp dữ liệu cá nhân; 
+b) Gửi Phiếu yêu cầu cung cấp dữ liệu cá nhân theo M ẫu số 01, 02 t ại Phụ lục 
+của Nghị định này qua mạng điện tử, dịch vụ bưu chính, fax đến Bên Kiểm soát dữ 
+liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân. 
+6. Phiếu yêu c ầu cung c ấp dữ liệu cá nhân ph ải được thể hiện bằng tiếng Việt 
+gồm các nội dung chính sau đây: 
+
+
+===PAGE 13===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 15 
+ 
+a) Họ, tên; nơi cư trú, địa chỉ; số chứng minh nhân dân, thẻ căn cước công dân 
+hoặc số hộ chiếu của người yêu cầu; số fax, điện thoại, địa chỉ thư điện tử (nếu có); 
+b) Dữ liệu cá nhân được yêu cầu cung cấp, trong đó chỉ rõ tên v ăn bản, hồ sơ, 
+tài liệu; 
+c) Hình thức cung cấp dữ liệu cá nhân; 
+d) Lý do, mục đích yêu cầu cung cấp dữ liệu cá nhân. 
+7. Trường hợp yêu cầu cung cấp dữ liệu cá nhân quy định tại khoản 2 Điều này 
+thì phải kèm theo văn bản đồng ý của cá nhân, tổ chức liên quan. 
+8. Tiếp nhận yêu cầu cung cấp dữ liệu cá nhân 
+a) Bên Ki ểm soát d ữ liệu cá nhân, Bên Ki ểm soát và x ử lý d ữ liệu cá nhân có 
+trách nhiệm tiếp nhận yêu cầu cung cấp dữ liệu cá nhân và theo dõi quá trình, danh 
+sách cung cấp dữ liệu cá nhân theo yêu cầu; 
+b) Trường hợp dữ liệu cá nhân được yêu c ầu không thuộc thẩm quyền thì Bên 
+Kiểm soát dữ liệu cá nhân, Bên Ki ểm soát và xử lý dữ liệu cá nhân nhận được yêu 
+cầu phải thông báo và h ướng dẫn tổ chức, cá nhân yêu c ầu đến cơ quan có th ẩm 
+quyền hoặc thông báo rõ ràng việc không thể cung cấp dữ liệu cá nhân. 
+9. Giải quyết yêu cầu cung cấp dữ liệu cá nhân 
+Khi nhận được yêu cầu cung cấp dữ liệu cá nhân hợp lệ, Bên Kiểm soát dữ liệu 
+cá nhân, Bên Ki ểm soát và x ử lý d ữ liệu cá nhân có trách nhi ệm cung c ấp dữ liệu 
+cá nhân thông báo v ề thời hạn, địa điểm, hình th ức cung c ấp dữ liệu cá nhân; chi 
+phí thực tế để in, sao, ch ụp, gửi thông tin qua d ịch vụ bưu chính, fax (n ếu có) và 
+phương th ức, th ời h ạn thanh toán; th ực hi ện vi ệc cung c ấp d ữ li ệu cá nhân theo 
+trình tự, thủ tục quy định tại Điều này. 
+Điều 15. Chỉnh sửa dữ liệu cá nhân 
+1. Chủ thể dữ liệu: 
+a) Được truy cập để xem, chỉnh sửa dữ liệu cá nhân c ủa mình sau khi đã được 
+Bên Kiểm soát d ữ liệu cá nhân, Bên Ki ểm soát và x ử lý d ữ liệu cá nhân thu th ập 
+theo sự đồng ý, trừ trường hợp luật có quy định khác;  
+b) Tr ường h ợp không th ể ch ỉnh s ửa tr ực ti ếp vì lý do k ỹ thuật ho ặc vì lý do 
+khác, chủ thể dữ liệu yêu cầu Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử 
+lý dữ liệu cá nhân chỉnh sửa dữ liệu cá nhân của mình. 
+
+
+===PAGE 14===
+ 
+16 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+2. Bên Ki ểm soát d ữ li ệu cá nhân, Bên Ki ểm soát và x ử lý d ữ li ệu cá nhân 
+chỉnh sửa dữ liệu cá nhân của chủ thể dữ liệu sau khi được chủ thể dữ liệu cá nhân 
+đồng ý ngay khi có th ể hoặc theo quy định của pháp lu ật chuyên ngành. Tr ường 
+hợp không th ể thực hiện thì thông báo t ới chủ thể dữ liệu sau 72 gi ờ kể khi nh ận 
+được yêu cầu chỉnh sửa dữ liệu cá nhân của chủ thể dữ liệu. 
+3. Bên X ử lý d ữ liệu cá nhân, Bên th ứ ba được chỉnh sửa dữ liệu cá nhân c ủa 
+chủ thể dữ liệu sau khi được Bên Kiểm soát dữ liệu cá nhân, Bên Ki ểm soát và xử 
+lý dữ liệu cá nhân đồng ý bằng văn bản và biết rõ rằng đã có sự đồng ý của chủ thể 
+dữ liệu. 
+Điều 16. Lưu trữ, xóa, hủy dữ liệu cá nhân 
+1. Chủ thể dữ liệu được yêu cầu Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát 
+và xử lý dữ liệu cá nhân xóa dữ liệu cá nhân của mình trong các trường hợp sau: 
+a) Nh ận th ấy không còn c ần thi ết cho m ục đích thu th ập đã đồng ý và ch ấp 
+nhận các thiệt hại có thể xảy ra khi yêu cầu xóa dữ liệu;  
+b) Rút lại sự đồng ý; 
+c) Phản đối việc xử lý dữ liệu và Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát 
+và xử lý dữ liệu cá nhân không có lý do chính đáng để tiếp tục xử lý;  
+d) Dữ liệu cá nhân được xử lý không đúng với mục đích đã đồng ý ho ặc việc 
+xử lý dữ liệu cá nhân là vi phạm quy định của pháp luật;  
+đ) Dữ liệu cá nhân phải xóa theo quy định của pháp luật. 
+2. Việc xóa dữ liệu sẽ không áp d ụng khi có đề nghị của chủ thể dữ liệu trong 
+các trường hợp: 
+a) Pháp luật quy định không cho phép xóa dữ liệu;  
+b) Dữ liệu cá nhân được xử lý b ởi cơ quan nhà n ước có th ẩm quyền với mục 
+đích phục vụ hoạt động của cơ quan nhà nước theo quy định của pháp luật;  
+c) Dữ liệu cá nhân đã được công khai theo quy định của pháp luật;  
+d) Dữ liệu cá nhân được xử lý nhằm phục vụ yêu cầu pháp lý, nghiên cứu khoa 
+học, thống kê theo quy định của pháp luật; 
+đ) Trong trường hợp tình trạng khẩn cấp về quốc phòng, an ninh qu ốc gia, trật 
+tự an toàn xã h ội, thảm họa lớn, dịch bệnh nguy hi ểm; khi có nguy c ơ đe dọa an 
+
+
+===PAGE 15===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 17 
+ 
+ninh, quốc phòng nh ưng chưa đến mức ban b ố tình tr ạng khẩn cấp; phòng, ch ống 
+bạo loạn, khủng bố, phòng, chống tội phạm và vi phạm pháp luật; 
+e) Ứng phó v ới tình hu ống khẩn cấp đe dọa đến tính m ạng, sức khỏe hoặc sự 
+an toàn của chủ thể dữ liệu hoặc cá nhân khác. 
+3. Trường hợp doanh nghiệp chia, tách, sáp nh ập, hợp nhất, giải thể thì dữ liệu 
+cá nhân được chuyển giao theo quy định của pháp luật. 
+4. Trường hợp chia, tách, sáp nh ập cơ quan, t ổ chức, đơn vị hành chính và t ổ 
+chức lại, chuyển đổi hình th ức sở hữu doanh nghi ệp nhà n ước thì d ữ liệu cá nhân 
+được chuyển giao theo quy định của pháp luật. 
+5. Việc xóa d ữ liệu được th ực hi ện trong 72 gi ờ sau khi có yêu c ầu của chủ 
+thể dữ liệu với toàn b ộ dữ liệu cá nhân mà Bên Ki ểm soát d ữ liệu cá nhân, Bên 
+Kiểm soát và x ử lý d ữ li ệu cá nhân thu th ập được, tr ừ tr ường h ợp pháp lu ật có 
+quy định khác. 
+6. Bên Ki ểm soát d ữ li ệu cá nhân, Bên Ki ểm soát và x ử lý d ữ li ệu cá nhân, 
+Bên Xử lý dữ liệu cá nhân, Bên th ứ ba lưu trữ dữ liệu cá nhân theo hình th ức phù 
+hợp với hoạt động của mình và có bi ện pháp bảo vệ dữ liệu cá nhân theo quy định 
+của pháp luật. 
+7. Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân, Bên 
+Xử lý dữ liệu cá nhân, Bên thứ ba xóa không thể khôi phục trong trường hợp:  
+a) Xử lý d ữ liệu không đúng mục đích hoặc đã hoàn thành m ục đích xử lý d ữ 
+liệu cá nhân được chủ thể dữ liệu đồng ý; 
+b) Vi ệc l ưu tr ữ d ữ li ệu cá nhân không còn c ần thi ết v ới ho ạt động c ủa Bên 
+Kiểm soát dữ liệu cá nhân, Bên Ki ểm soát và x ử lý dữ liệu cá nhân, Bên X ử lý dữ 
+liệu cá nhân, Bên thứ ba; 
+c) Bên Ki ểm soát d ữ liệu cá nhân, Bên Ki ểm soát và x ử lý d ữ liệu cá nhân, 
+Bên X ử lý d ữ li ệu cá nhân, Bên th ứ ba b ị gi ải th ể ho ặc không còn ho ạt động 
+hoặc tuyên b ố phá s ản ho ặc b ị ch ấm d ứt ho ạt động kinh doanh theo quy định 
+của pháp lu ật. 
+Điều 17. Xử lý dữ liệu cá nhân trong trường hợp không cần sự đồng ý của 
+chủ thể dữ liệu 
+1. Trong trường hợp khẩn cấp, cần xử lý ngay d ữ liệu cá nhân có liên quan để 
+bảo vệ tính m ạng, sức khỏe của chủ thể dữ liệu hoặc người khác. Bên Ki ểm soát 
+
+
+===PAGE 16===
+ 
+18 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+dữ li ệu cá nhân, Bên X ử lý d ữ li ệu cá nhân, Bên Ki ểm soát và x ử lý d ữ li ệu cá 
+nhân, Bên thứ ba có trách nhiệm chứng minh trường hợp này. 
+2. Việc công khai dữ liệu cá nhân theo quy định của luật. 
+3. Việc xử lý d ữ liệu của cơ quan nhà n ước có th ẩm quyền trong tr ường hợp 
+tình trạng khẩn cấp về quốc phòng, an ninh qu ốc gia, tr ật tự an toàn xã h ội, thảm 
+họa lớn, dịch bệnh nguy hi ểm; khi có nguy c ơ đe dọa an ninh, qu ốc phòng nh ưng 
+chưa đến m ức ban b ố tình tr ạng kh ẩn c ấp; phòng, ch ống b ạo lo ạn, kh ủng b ố, 
+phòng, chống tội phạm và vi phạm pháp luật theo quy định của luật. 
+4. Để th ực hi ện ngh ĩa v ụ theo h ợp đồng c ủa ch ủ th ể d ữ li ệu v ới c ơ quan, t ổ 
+chức, cá nhân có liên quan theo quy định của luật. 
+5. Ph ục v ụ ho ạt động c ủa c ơ quan nhà n ước đã được quy định theo lu ật 
+chuyên ngành. 
+Điều 18. Xử lý dữ liệu cá nhân thu được từ hoạt động ghi âm, ghi hình t ại 
+nơi công cộng 
+Cơ quan, t ổ ch ức có th ẩm quy ền được ghi âm, ghi hình và x ử lý d ữ li ệu cá 
+nhân thu được từ hoạt động ghi âm, ghi hình t ại nơi công c ộng với mục đích bảo 
+vệ an ninh qu ốc gia, trật tự an toàn xã h ội, quyền và lợi ích hợp pháp của tổ chức, 
+cá nhân theo quy định của pháp lu ật mà không c ần có s ự đồng ý c ủa chủ thể. Khi 
+thực hiện việc ghi âm, ghi hình, c ơ quan, t ổ chức có th ẩm quyền có trách nhi ệm 
+thông báo để ch ủ th ể hi ểu được mình đang b ị ghi âm, ghi hình, tr ừ tr ường h ợp 
+pháp luật có quy định khác. 
+Điều 19. Xử lý dữ liệu cá nhân của người bị tuyên bố mất tích, đã chết 
+1. Việc xử lý dữ liệu cá nhân liên quan đến dữ liệu cá nhân của người bị tuyên 
+bố mất tích, người đã chết phải được sự đồng ý của vợ, chồng hoặc con thành niên 
+của người đó, trường hợp không có nh ững người này thì ph ải được sự đồng ý c ủa 
+cha, mẹ của người bị tuyên bố mất tích, người đã chết, trừ trường hợp quy định tại 
+Điều 17 và Điều 18 Nghị định này. 
+2. Trường hợp không có tất cả những người được nêu tại khoản 1 Điều này thì 
+được coi là không có sự đồng ý. 
+Điều 20. Xử lý dữ liệu cá nhân của trẻ em 
+1. Xử lý d ữ liệu cá nhân c ủa trẻ em luôn được thực hiện theo nguyên t ắc bảo 
+vệ các quyền và vì lợi ích tốt nhất của trẻ em. 
+
+
+===PAGE 17===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 19 
+ 
+2. Việc xử lý d ữ liệu cá nhân c ủa trẻ em ph ải có s ự đồng ý c ủa trẻ em trong 
+trường h ợp tr ẻ em t ừ đủ 7 tu ổi tr ở lên và có s ự đồng ý c ủa cha, m ẹ ho ặc ng ười 
+giám hộ theo quy định, trừ trường hợp quy định tại Điều 17 Ngh ị định này. Bên 
+Kiểm soát dữ liệu cá nhân, Bên X ử lý dữ liệu cá nhân, Bên Ki ểm soát và x ử lý dữ 
+liệu cá nhân, Bên th ứ ba ph ải xác minh tu ổi của trẻ em tr ước khi x ử lý d ữ liệu cá 
+nhân của trẻ em. 
+3. Ngừng xử lý dữ liệu cá nhân c ủa trẻ em, xóa không th ể khôi phục hoặc hủy 
+dữ liệu cá nhân của trẻ em trong trường hợp: 
+a) Xử lý d ữ li ệu không đúng m ục đích ho ặc đã hoàn thành m ục đích x ử lý 
+dữ li ệu cá nhân được ch ủ th ể d ữ li ệu đồng ý, tr ừ tr ường h ợp pháp lu ật có quy 
+định khác; 
+b) Cha, mẹ hoặc người giám hộ của trẻ em rút lại sự đồng ý cho phép xử lý dữ 
+liệu cá nhân của trẻ em, trừ trường hợp pháp luật có quy định khác; 
+c) Theo yêu cầu của cơ quan chức năng có thẩm quyền khi có đủ căn cứ chứng 
+minh việc xử lý d ữ liệu cá nhân gây ảnh hưởng tới quyền và l ợi ích h ợp pháp của 
+trẻ em, trừ trường hợp pháp luật có quy định khác. 
+Điều 21. B ảo v ệ d ữ li ệu cá nhân trong kinh doanh d ịch v ụ ti ếp th ị, gi ới 
+thiệu sản phẩm quảng cáo 
+1. Tổ chức, cá nhân kinh doanh dịch vụ tiếp thị, giới thiệu sản phẩm quảng cáo 
+chỉ được s ử d ụng d ữ li ệu cá nhân c ủa khách hàng được thu th ập qua ho ạt động 
+kinh doanh của mình để kinh doanh dịch vụ tiếp thị, giới thiệu sản phẩm quảng cáo 
+khi có sự đồng ý của chủ thể dữ liệu.  
+2. Việc xử lý dữ liệu cá nhân của khách hàng để kinh doanh dịch vụ tiếp thị, giới 
+thiệu sản phẩm quảng cáo ph ải được sự đồng ý c ủa khách hàng, trên c ơ s ở khách 
+hàng biết rõ nội dung, phương thức, hình thức, tần suất giới thiệu sản phẩm. 
+3. Tổ chức, cá nhân kinh doanh dịch vụ tiếp thị, giới thiệu sản phẩm quảng cáo 
+có trách nhiệm chứng minh việc sử dụng dữ liệu cá nhân của khách hàng được giới 
+thiệu sản phẩm đúng với quy định tại khoản 1 và khoản 2 Điều này. 
+Điều 22. Thu thập, chuyển giao, mua, bán trái phép dữ liệu cá nhân 
+1. Tổ chức, cá nhân có liên quan t ới x ử lý d ữ liệu cá nhân ph ải áp d ụng các 
+biện pháp bảo vệ dữ liệu cá nhân để ngăn chặn tình trạng thu thập dữ liệu cá nhân 
+trái phép từ hệ thống, trang thiết bị dịch vụ của mình. 
+
+
+===PAGE 18===
+ 
+20 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+2. Việc thiết lập các h ệ thống phần mềm, biện pháp k ỹ thuật hoặc tổ chức các 
+hoạt động thu thập, chuyển giao, mua, bán dữ liệu cá nhân không có sự đồng ý của 
+chủ thể dữ liệu là vi phạm pháp luật. 
+Điều 23. Thông báo vi phạm quy định về bảo vệ dữ liệu cá nhân 
+1. Tr ường h ợp phát hi ện x ảy ra vi ph ạm quy định b ảo v ệ d ữ li ệu cá nhân, 
+Bên Ki ểm soát d ữ li ệu cá nhân, Bên Ki ểm soát và x ử lý d ữ li ệu cá nhân thông 
+báo cho B ộ Công an (C ục An ninh m ạng và phòng, ch ống t ội ph ạm s ử d ụng 
+công nghệ cao) ch ậm nhất 72 gi ờ sau khi x ảy ra hành vi vi ph ạm theo M ẫu số 03 
+tại Ph ụ l ục c ủa Ngh ị định này. Tr ường h ợp thông báo sau 72 gi ờ thì ph ải kèm 
+theo lý do thông báo ch ậm, muộn. 
+2. Bên X ử lý d ữ li ệu cá nhân ph ải thông báo cho Bên Ki ểm soát d ữ li ệu cá 
+nhân một cách nhanh nhất có thể sau khi nhận thấy có sự vi phạm quy định về bảo 
+vệ dữ liệu cá nhân. 
+3. Nội dung thông báo vi phạm quy định về bảo vệ dữ liệu cá nhân:  
+a) Mô tả tính chất của việc vi phạm quy định bảo vệ dữ liệu cá nhân, bao gồm: 
+thời gian, địa điểm, hành vi, tổ chức, cá nhân, các lo ại dữ liệu cá nhân và s ố lượng 
+dữ liệu liên quan; 
+b) Chi ti ết liên l ạc của nhân viên được giao nhi ệm vụ bảo vệ dữ liệu hoặc tổ 
+chức, cá nhân chịu trách nhiệm bảo vệ dữ liệu cá nhân;  
+c) Mô tả các hậu quả, thiệt hại có thể xảy ra của việc vi phạm quy định bảo vệ 
+dữ liệu cá nhân;  
+d) Mô tả các biện pháp được đưa ra để giải quyết, giảm thiểu tác hại của hành 
+vi vi phạm quy định bảo vệ dữ liệu cá nhân. 
+4. Trường hợp không thể thông báo đầy đủ các n ội dung quy định tại khoản 3 
+Điều này, việc thông báo có thể được thực hiện theo từng đợt, từng giai đoạn. 
+5. Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân phải 
+lập Biên b ản xác nh ận về việc xảy ra hành vi vi ph ạm quy định bảo vệ dữ liệu cá 
+nhân, phối hợp với Bộ Công an (C ục An ninh m ạng và phòng, ch ống tội phạm sử 
+dụng công nghệ cao) xử lý hành vi vi phạm. 
+6. Tổ chức, cá nhân thông báo cho B ộ Công an (C ục An ninh m ạng và phòng, 
+chống tội phạm sử dụng công nghệ cao) khi phát hiện các trường hợp sau: 
+
+
+===PAGE 19===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 21 
+ 
+a) Phát hiện hành vi vi phạm pháp luật đối với dữ liệu cá nhân;  
+b) Dữ liệu cá nhân b ị xử lý sai m ục đích, không đúng thỏa thuận ban đầu giữa 
+chủ thể dữ liệu và Bên Ki ểm soát dữ liệu cá nhân, Bên Ki ểm soát và x ử lý dữ liệu 
+cá nhân hoặc vi phạm quy định của pháp luật;  
+c) Không bảo đảm quyền của chủ thể dữ liệu hoặc không được thực hiện đúng;  
+d) Trường hợp khác theo quy định của pháp luật. 
+ 
+Mục 3 
+ĐÁNH GIÁ TÁC ĐỘNG 
+VÀ CHUYỂN DỮ LIỆU CÁ NHÂN RA NƯỚC NGOÀI 
+ 
+Điều 24. Đánh giá tác động xử lý dữ liệu cá nhân  
+1. Bên Kiểm soát dữ liệu cá nhân, Bên Ki ểm soát và x ử lý dữ liệu cá nhân l ập 
+và lưu giữ Hồ sơ đánh giá tác động xử lý dữ liệu cá nhân của mình kể từ thời điểm 
+bắt đầu xử lý dữ liệu cá nhân.  
+Hồ sơ đánh giá tác động xử lý dữ liệu cá nhân của Bên Kiểm soát dữ liệu cá nhân, 
+Bên Kiểm soát và xử lý dữ liệu cá nhân, bao gồm: 
+a) Thông tin và chi ti ết liên lạc của Bên Kiểm soát dữ liệu cá nhân, Bên Ki ểm 
+soát và xử lý dữ liệu cá nhân; 
+b) Họ tên, chi tiết liên lạc của tổ chức được phân công thực hiện nhiệm vụ bảo 
+vệ dữ liệu cá nhân và nhân viên b ảo vệ dữ liệu cá nhân của Bên Kiểm soát dữ liệu 
+cá nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân; 
+c) Mục đích xử lý dữ liệu cá nhân;  
+d) Các loại dữ liệu cá nhân được xử lý; 
+đ) Tổ chức, cá nhân nhận dữ liệu cá nhân, bao gồm tổ chức, cá nhân ngoài lãnh 
+thổ Việt Nam; 
+e) Trường hợp chuyển dữ liệu cá nhân ra nước ngoài;  
+g) Thời gian x ử lý d ữ liệu cá nhân; th ời gian d ự kiến để xóa, h ủy dữ liệu cá 
+nhân (nếu có); 
+h) Mô tả về các biện pháp bảo vệ dữ liệu cá nhân được áp dụng; 
+
+
+===PAGE 20===
+ 
+22 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+i) Đánh giá m ức độ ảnh hưởng của việc xử lý d ữ liệu cá nhân; h ậu quả, thiệt 
+hại không mong mu ốn có kh ả năng xảy ra, các bi ện pháp gi ảm thiểu hoặc loại bỏ 
+nguy cơ, tác hại đó. 
+2. Bên Xử lý dữ liệu cá nhân tiến hành lập và lưu giữ Hồ sơ đánh giá tác động 
+xử lý dữ liệu cá nhân trong tr ường hợp thực hiện hợp đồng với Bên Kiểm soát dữ 
+liệu cá nhân. Hồ sơ đánh giá tác động xử lý dữ liệu cá nhân của Bên Xử lý dữ liệu 
+cá nhân, bao gồm: 
+a) Thông tin và chi tiết liên lạc của Bên Xử lý dữ liệu cá nhân; 
+b) Họ tên, chi tiết liên lạc của tổ chức được phân công thực hiện xử lý dữ liệu cá 
+nhân và nhân viên thực hiện xử lý dữ liệu cá nhân của Bên Xử lý dữ liệu cá nhân; 
+c) Mô t ả các ho ạt động xử lý và các lo ại dữ liệu cá nhân được xử lý theo h ợp 
+đồng với Bên Kiểm soát dữ liệu cá nhân;  
+d) Thời gian x ử lý d ữ liệu cá nhân; th ời gian d ự kiến để xóa, h ủy dữ liệu cá 
+nhân (nếu có); 
+đ) Trường hợp chuyển dữ liệu cá nhân ra nước ngoài;  
+e) Mô tả chung về các biện pháp bảo vệ dữ liệu cá nhân được áp dụng; 
+g) H ậu qu ả, thi ệt h ại không mong mu ốn có kh ả n ăng x ảy ra, các bi ện pháp 
+giảm thiểu hoặc loại bỏ nguy cơ, tác hại đó. 
+3. H ồ s ơ đánh giá tác động x ử lý d ữ li ệu cá nhân quy định t ại kho ản 1 và 
+khoản 2 Điều này được xác l ập b ằng v ăn b ản có giá tr ị pháp lý c ủa Bên Ki ểm 
+soát dữ li ệu cá nhân, Bên Ki ểm soát và x ử lý d ữ li ệu cá nhân ho ặc Bên X ử lý 
+dữ liệu cá nhân. 
+4. Hồ sơ đánh giá tác động xử lý dữ liệu cá nhân phải luôn có sẵn để phục vụ hoạt 
+động kiểm tra, đánh giá của Bộ Công an và gửi Bộ Công an (Cục An ninh mạng và 
+phòng, chống tội phạm sử dụng công ngh ệ cao) 01 b ản chính theo M ẫu số 04 t ại 
+Phụ lục của Nghị định này trong thời gian 60 ngày kể từ ngày tiến hành xử lý dữ liệu 
+cá nhân. 
+5. B ộ Công an (C ục An ninh m ạng và phòng, ch ống t ội ph ạm s ử d ụng công 
+nghệ cao) đánh giá, yêu cầu Bên Kiểm soát dữ liệu cá nhân, Bên Kiểm soát và xử lý 
+dữ liệu cá nhân, Bên Xử lý dữ liệu cá nhân hoàn thiện Hồ sơ đánh giá tác động xử lý 
+dữ liệu cá nhân trong trường hợp hồ sơ chưa đầy đủ và đúng quy định. 
+
+
+===PAGE 21===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 23 
+ 
+6. Bên Ki ểm soát d ữ li ệu cá nhân, Bên Ki ểm soát và x ử lý d ữ li ệu cá nhân, 
+Bên Xử lý d ữ liệu cá nhân c ập nh ật, b ổ sung H ồ sơ đánh giá tác động x ử lý d ữ 
+liệu cá nhân khi có s ự thay đổi về nội dung hồ sơ đã gửi cho Bộ Công an (Cục An 
+ninh m ạng và phòng, ch ống t ội ph ạm s ử d ụng công ngh ệ cao) theo M ẫu s ố 05 
+tại Phụ lục của Nghị định này.  
+Điều 25. Chuyển dữ liệu cá nhân ra nước ngoài 
+1. Dữ liệu cá nhân c ủa công dân Vi ệt Nam được chuyển ra n ước ngoài trong 
+trường hợp Bên chuyển dữ liệu ra nước ngoài lập Hồ sơ đánh giá tác động chuyển 
+dữ liệu cá nhân ra nước ngoài và thực hiện các thủ tục theo quy định tại khoản 3, 4 
+và 5 Điều này. Bên chuyển dữ liệu ra nước ngoài bao gồm Bên Kiểm soát dữ liệu cá 
+nhân, Bên Kiểm soát và xử lý dữ liệu cá nhân, Bên Xử lý dữ liệu cá nhân, Bên thứ ba. 
+2. Hồ sơ đánh giá tác động chuyển dữ liệu cá nhân ra nước ngoài, gồm: 
+a) Thông tin và chi ti ết liên l ạc của Bên chuy ển dữ liệu và Bên ti ếp nhận dữ 
+liệu cá nhân của công dân Việt Nam; 
+b) H ọ tên, chi ti ết liên l ạc c ủa t ổ ch ức, cá nhân ph ụ trách c ủa Bên chuy ển 
+dữ liệu có liên quan t ới vi ệc chuy ển và ti ếp nh ận dữ liệu cá nhân c ủa công dân 
+Việt Nam; 
+c) Mô t ả và lu ận gi ải m ục tiêu c ủa các ho ạt động x ử lý d ữ li ệu cá nhân c ủa 
+Công dân Việt Nam sau khi được chuyển ra nước ngoài; 
+d) Mô tả và làm rõ loại dữ liệu cá nhân chuyển ra nước ngoài;  
+đ) Mô t ả và nêu rõ s ự tuân th ủ quy định bảo vệ dữ liệu cá nhân t ại Nghị định 
+này, chi tiết các biện pháp bảo vệ dữ liệu cá nhân được áp dụng; 
+e) Đánh giá m ức độ ảnh hưởng của việc xử lý d ữ liệu cá nhân; h ậu quả, thiệt 
+hại không mong mu ốn có kh ả năng xảy ra, các bi ện pháp gi ảm thiểu hoặc loại bỏ 
+nguy cơ, tác hại đó; 
+g) S ự đồng ý c ủa ch ủ th ể d ữ li ệu theo quy định t ại Điều 11 Ngh ị định này 
+trên cơ sở biết rõ cơ chế phản hồi, khiếu nại khi có sự cố hoặc yêu cầu phát sinh; 
+h) Có v ăn b ản th ể hi ện s ự ràng bu ộc, trách nhi ệm gi ữa các t ổ ch ức, cá nhân 
+chuyển và nhận dữ liệu cá nhân của Công dân Việt Nam về việc xử lý dữ liệu cá nhân. 
+
+
+===PAGE 22===
+ 
+24 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+3. Hồ sơ đánh giá tác động chuyển dữ liệu cá nhân ra n ước ngoài phải luôn có 
+sẵn để phục vụ hoạt động kiểm tra, đánh giá của Bộ Công an. 
+Bên chuy ển d ữ li ệu ra n ước ngoài g ửi 01 b ản chính h ồ s ơ t ới B ộ Công an 
+(Cục An ninh m ạng và phòng, ch ống t ội ph ạm s ử d ụng công ngh ệ cao) theo 
+Mẫu s ố 06 t ại Phụ lục của Nghị định này trong th ời gian 60 ngày k ể từ ngày ti ến 
+hành xử lý dữ liệu cá nhân.  
+4. Bên chuyển dữ liệu thông báo gửi Bộ Công an (Cục An ninh mạng và phòng, 
+chống tội phạm sử dụng công nghệ cao) thông tin về việc chuyển dữ liệu và chi tiết 
+liên lạc của tổ chức, cá nhân ph ụ trách b ằng văn bản sau khi vi ệc chuyển dữ liệu 
+diễn ra thành công. 
+5. B ộ Công an (C ục An ninh m ạng và phòng, ch ống t ội ph ạm s ử d ụng công 
+nghệ cao) đánh giá, yêu c ầu Bên chuy ển dữ liệu ra n ước ngoài hoàn thi ện Hồ sơ 
+đánh giá tác động chuy ển d ữ liệu cá nhân ra n ước ngoài trong tr ường h ợp hồ sơ 
+chưa đầy đủ và đúng quy định.  
+6. Bên chuy ển d ữ li ệu ra n ước ngoài c ập nh ật, b ổ sung H ồ s ơ đánh giá tác 
+động chuyển dữ liệu cá nhân ra nước ngoài khi có sự thay đổi về nội dung hồ sơ đã 
+gửi cho B ộ Công an (C ục An ninh m ạng và phòng, ch ống tội phạm sử dụng công 
+nghệ cao) theo M ẫu số 05 tại Phụ lục của Nghị định này. Thời gian hoàn thi ện hồ 
+sơ dành cho Bên chuyển dữ liệu ra nước ngoài là 10 ngày kể từ ngày yêu cầu. 
+7. Căn cứ tình hình cụ thể, Bộ Công an quyết định việc kiểm tra chuyển dữ liệu 
+cá nhân ra n ước ngoài 01 l ần/năm, trừ trường hợp phát hi ện hành vi vi ph ạm quy 
+định của pháp lu ật về bảo vệ dữ liệu cá nhân t ại Nghị định này ho ặc để xảy ra s ự 
+cố lộ, mất dữ liệu cá nhân của công dân Việt Nam. 
+8. B ộ Công an quy ết định yêu c ầu Bên chuy ển d ữ li ệu ra n ước ngoài ng ừng 
+chuyển dữ liệu cá nhân ra nước ngoài trong trường hợp: 
+a) Khi phát hi ện dữ liệu cá nhân được chuyển được sử dụng vào ho ạt động vi 
+phạm lợi ích, an ninh quốc gia của nước Cộng hòa xã hội chủ nghĩa Việt Nam;  
+b) Bên chuy ển d ữ li ệu ra n ước ngoài không ch ấp hành quy định t ại khoản 5, 
+khoản 6 Điều này;  
+c) Để xảy ra sự cố lộ, mất dữ liệu cá nhân của công dân Việt Nam. 
+
+
+===PAGE 23===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 25 
+ 
+Mục 4 
+BIỆN PHÁP, ĐIỀU KIỆN BẢO ĐẢM BẢO VỆ DỮ LIỆU CÁ NHÂN 
+ 
+Điều 26. Biện pháp bảo vệ dữ liệu cá nhân  
+1. Biện pháp bảo vệ dữ liệu cá nhân được áp dụng ngay từ khi bắt đầu và trong 
+suốt quá trình xử lý dữ liệu cá nhân.  
+2. Các biện pháp bảo vệ dữ liệu cá nhân, bao gồm: 
+a) Biện pháp quản lý do tổ chức, cá nhân có liên quan tới xử lý dữ liệu cá nhân 
+thực hiện; 
+b) Bi ện pháp k ỹ thu ật do t ổ ch ức, cá nhân có liên quan t ới x ử lý d ữ li ệu cá 
+nhân thực hiện; 
+c) Biện pháp do c ơ quan qu ản lý nhà n ước có th ẩm quyền thực hiện theo quy 
+định của Nghị định này và pháp luật có liên quan; 
+d) Biện pháp điều tra, tố tụng do cơ quan nhà nước có thẩm quyền thực hiện; 
+đ) Các biện pháp khác theo quy định của pháp luật. 
+Điều 27. Bảo vệ dữ liệu cá nhân cơ bản  
+1. Áp dụng các biện pháp được quy định tại khoản 2 Điều 26 Nghị định này. 
+2. Xây d ựng, ban hành các quy định về bảo vệ dữ liệu cá nhân, nêu rõ nh ững 
+việc cần thực hiện theo quy định của Nghị định này. 
+3. Khuyến khích áp d ụng các tiêu chu ẩn bảo vệ dữ liệu cá nhân phù h ợp với 
+lĩnh vực, ngành nghề, hoạt động có liên quan tới xử lý dữ liệu cá nhân. 
+4. Kiểm tra an ninh m ạng đối với hệ thống và phương tiện, thiết bị phục vụ xử 
+lý d ữ li ệu cá nhân tr ước khi x ử lý, xóa không th ể khôi ph ục được ho ặc h ủy các 
+thiết bị chứa dữ liệu cá nhân. 
+Điều 28. Bảo vệ dữ liệu cá nhân nhạy cảm  
+1. Áp dụng các biện pháp được quy định tại khoản 2 Điều 26 và Điều 27 Nghị 
+định này. 
+2. Chỉ định bộ phận có chức năng bảo vệ dữ liệu cá nhân, chỉ định nhân sự phụ 
+trách bảo vệ dữ liệu cá nhân và trao đổi thông tin về bộ phận và cá nhân ph ụ trách 
+
+
+===PAGE 24===
+ 
+26 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+bảo vệ dữ liệu cá nhân v ới Cơ quan chuyên trách b ảo vệ dữ liệu cá nhân. Tr ường 
+hợp Bên Kiểm soát dữ liệu cá nhân, Bên Ki ểm soát và x ử lý d ữ liệu cá nhân, Bên 
+Xử lý dữ liệu, Bên thứ ba là cá nhân thì trao đổi thông tin của cá nhân thực hiện. 
+3. Thông báo cho ch ủ thể dữ liệu biết việc dữ liệu cá nhân nh ạy cảm của chủ 
+thể dữ liệu được xử lý, tr ừ trường hợp quy định tại khoản 4 Điều 13, Điều 17 và 
+Điều 18 Nghị định này. 
+Điều 29. C ơ quan chuyên trách b ảo vệ dữ liệu cá nhân và C ổng thông tin 
+quốc gia về bảo vệ dữ liệu cá nhân 
+1. Cơ quan chuyên trách bảo vệ dữ liệu cá nhân là Cục An ninh mạng và phòng, 
+chống tội phạm sử dụng công nghệ cao - Bộ Công an, có trách nhiệm giúp Bộ Công 
+an thực hiện quản lý nhà nước về bảo vệ dữ liệu cá nhân. 
+2. Cổng thông tin quốc gia về bảo vệ dữ liệu cá nhân:  
+a) Cung c ấp thông tin v ề ch ủ tr ương, đường l ối, chính sách c ủa Đảng, pháp 
+luật của Nhà nước về bảo vệ dữ liệu cá nhân;  
+b) Tuyên truyền, phổ biến chính sách, pháp luật về bảo vệ dữ liệu cá nhân;  
+c) Cập nhật thông tin, tình hình bảo vệ dữ liệu cá nhân;  
+d) Tiếp nhận thông tin, hồ sơ, dữ liệu về hoạt động bảo vệ dữ liệu cá nhân qua 
+không gian mạng;  
+đ) Cung cấp thông tin về kết quả đánh giá công tác b ảo vệ dữ liệu cá nhân của 
+cơ quan, tổ chức, cá nhân có liên quan;  
+e) Tiếp nhận thông báo vi phạm quy định về bảo vệ dữ liệu cá nhân;  
+g) Cảnh báo, phối hợp cảnh báo về nguy cơ, hành vi xâm phạm dữ liệu cá nhân 
+theo quy định của pháp luật;  
+h) Xử lý vi phạm về bảo vệ dữ liệu cá nhân theo quy định của pháp luật;  
+i) Thực hiện hoạt động khác theo quy định của pháp luật về bảo vệ dữ liệu cá nhân. 
+Điều 30. Điều kiện bảo đảm hoạt động bảo vệ dữ liệu cá nhân 
+1. Lực lượng bảo vệ dữ liệu cá nhân: 
+a) L ực l ượng chuyên trách b ảo v ệ d ữ li ệu cá nhân được b ố trí t ại C ơ quan 
+chuyên trách bảo vệ dữ liệu cá nhân; 
+
+
+===PAGE 25===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 27 
+ 
+b) Bộ phận, nhân sự có chức năng bảo vệ dữ liệu cá nhân được chỉ định trong 
+cơ quan, t ổ chức, doanh nghi ệp nh ằm bảo đảm thực hiện quy định v ề bảo v ệ d ữ 
+liệu cá nhân; 
+c) Tổ chức, cá nhân được huy động tham gia bảo vệ dữ liệu cá nhân; 
+d) Bộ Công an xây d ựng chương trình, kế hoạch cụ thể nhằm phát triển nguồn 
+nhân lực bảo vệ dữ liệu cá nhân. 
+2. Cơ quan, tổ chức, cá nhân có trách nhi ệm tuyên truyền, phổ biến kiến thức, 
+kỹ năng, nâng cao nhận thức bảo vệ dữ liệu cá nhân cho cơ quan, tổ chức, cá nhân. 
+3. Bảo đảm cơ sở vật chất, điều kiện hoạt động cho Cơ quan chuyên trách b ảo 
+vệ dữ liệu cá nhân. 
+Điều 31. Kinh phí bảo đảm hoạt động bảo vệ dữ liệu cá nhân 
+1. Nguồn tài chính th ực hiện bảo vệ dữ liệu cá nhân bao g ồm ngân sách nhà 
+nước; ủng hộ của cơ quan, tổ chức, cá nhân trong và ngoài nước; nguồn thu từ hoạt 
+động cung c ấp dịch vụ bảo vệ dữ liệu cá nhân; vi ện trợ quốc tế và các ngu ồn thu 
+hợp pháp khác.  
+2. Kinh phí b ảo v ệ d ữ li ệu cá nhân c ủa c ơ quan nhà n ước do ngân sách nhà 
+nước bảo đảm, được bố trí trong dự toán ngân sách nhà nước hằng năm. Việc quản 
+lý, sử dụng kinh phí từ ngân sách nhà nước được thực hiện theo quy định của pháp 
+luật về ngân sách nhà nước. 
+3. Kinh phí b ảo vệ dữ liệu cá nhân c ủa tổ chức, doanh nghi ệp do các t ổ chức, 
+doanh nghiệp tự bố trí và thực hiện theo quy định. 
+ 
+Chương III 
+TRÁCH NHIỆM CỦA CƠ QUAN, TỔ CHỨC, CÁ NHÂN 
+ 
+Điều 32. Trách nhiệm của Bộ Công an 
+1. Giúp Chính ph ủ thống nh ất thực hiện quản lý nhà n ước về bảo vệ dữ liệu 
+cá nhân. 
+2. Hướng dẫn, triển khai ho ạt động bảo vệ dữ liệu cá nhân, b ảo vệ quyền của 
+chủ thể dữ liệu trước các hành vi vi phạm quy định của pháp luật về bảo vệ dữ liệu 
+
+
+===PAGE 26===
+ 
+28 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+cá nhân, đề xuất ban hành Tiêu chu ẩn bảo vệ dữ liệu cá nhân và các khuy ến nghị 
+áp dụng. 
+3. Xây d ựng, qu ản lý, v ận hành C ổng thông tin qu ốc gia v ề b ảo v ệ d ữ li ệu 
+cá nhân.  
+4. Đánh giá k ết quả công tác b ảo vệ dữ liệu cá nhân c ủa cơ quan, t ổ chức, cá 
+nhân có liên quan. 
+5. Ti ếp nh ận h ồ s ơ, bi ểu m ẫu, thông tin v ề b ảo v ệ d ữ li ệu cá nhân theo quy 
+định tại Nghị định này.  
+6. Thúc đẩy các bi ện pháp và th ực hiện nghiên c ứu để đổi mới trong l ĩnh vực 
+bảo vệ dữ liệu cá nhân, triển khai hợp tác quốc tế về bảo vệ dữ liệu cá nhân. 
+7. Thanh tra, ki ểm tra, giải quyết khiếu nại, tố cáo, xử lý hành vi vi ph ạm quy 
+định về bảo vệ dữ liệu cá nhân theo quy định của pháp luật 
+Điều 33. Trách nhiệm của Bộ Thông tin và Truyền thông 
+1. Chỉ đạo các cơ quan truyền thông, báo chí, tổ chức và doanh nghiệp thuộc lĩnh 
+vực quản lý thực hiện bảo vệ dữ liệu cá nhân theo quy định tại Nghị định này. 
+2. Xây d ựng, h ướng dẫn và tri ển khai các bi ện pháp b ảo vệ dữ liệu cá nhân, 
+bảo đảm an toàn thông tin m ạng đối với dữ liệu cá nhân trong các ho ạt động thông 
+tin và truyền thông theo chức năng, nhiệm vụ được giao. 
+3. Phối hợp với Bộ Công an trong thanh tra, ki ểm tra, xử lý vi ph ạm pháp luật 
+về bảo vệ dữ liệu cá nhân. 
+Điều 34. Trách nhiệm của Bộ Quốc phòng 
+Quản lý, thanh tra, ki ểm tra, giám sát, x ử lý vi ph ạm và áp d ụng các quy định 
+bảo vệ dữ liệu cá nhân đối với các cơ quan, tổ chức, cá nhân thuộc phạm vi quản lý 
+của Bộ Quốc phòng theo quy định pháp luật và chức năng, nhiệm vụ được giao.  
+Điều 35. Trách nhiệm của Bộ Khoa học và Công nghệ 
+1. Phối hợp với Bộ Công an trong xây dựng Tiêu chuẩn bảo vệ dữ liệu cá nhân 
+và các khuyến nghị áp dụng Tiêu chuẩn bảo vệ dữ liệu cá nhân. 
+2. Nghiên c ứu, trao đổi Bộ Công an v ề các bi ện pháp b ảo vệ dữ liệu cá nhân 
+theo kịp sự phát triển của khoa học, công nghệ. 
+
+
+===PAGE 27===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 29 
+ 
+Điều 36. Trách nhiệm của bộ, cơ quan ngang bộ, cơ quan thuộc Chính phủ 
+1. Th ực hi ện qu ản lý nhà n ước đối v ới b ảo v ệ d ữ li ệu cá nhân đối v ới các 
+ngành, lĩnh vực quản lý theo quy định của pháp luật về bảo vệ dữ liệu cá nhân. 
+2. Xây d ựng và tri ển khai các n ội dung, nhi ệm vụ bảo vệ dữ liệu cá nhân t ại 
+Nghị định này. 
+3. Bổ sung các quy định bảo vệ dữ liệu cá nhân trong xây d ựng, triển khai các 
+nhiệm vụ của các bộ, ngành. 
+4. B ố trí kinh phí ph ục v ụ ho ạt động b ảo v ệ d ữ li ệu cá nhân theo phân c ấp 
+quản lý ngân sách hiện hành. 
+5. Ban hành Danh mục dữ liệu mở phù hợp với quy định bảo vệ dữ liệu cá nhân. 
+Điều 37. Trách nhi ệm c ủa Ủy ban nhân dân các t ỉnh, thành ph ố tr ực 
+thuộc Trung ương 
+1. Th ực hi ện qu ản lý nhà n ước đối v ới b ảo v ệ d ữ li ệu cá nhân đối v ới các 
+ngành, lĩnh vực quản lý theo quy định của pháp luật về bảo vệ dữ liệu cá nhân. 
+2. Triển khai các quy định về bảo vệ dữ liệu cá nhân tại Nghị định này. 
+3. B ố trí kinh phí ph ục v ụ ho ạt động b ảo v ệ d ữ li ệu cá nhân theo phân c ấp 
+quản lý ngân sách hiện hành. 
+4. Ban hành Danh mục dữ liệu mở phù hợp với quy định bảo vệ dữ liệu cá nhân. 
+Điều 38. Trách nhiệm của Bên Kiểm soát dữ liệu cá nhân 
+1. Th ực hi ện các bi ện pháp t ổ ch ức và k ỹ thu ật cùng các bi ện pháp an toàn, 
+bảo m ật phù h ợp để ch ứng minh các ho ạt động x ử lý d ữ li ệu đã được th ực hi ện 
+theo quy định của pháp luật về bảo vệ dữ liệu cá nhân, rà soát và c ập nhật các biện 
+pháp này khi cần thiết. 
+2. Ghi lại và lưu trữ nhật ký hệ thống quá trình xử lý dữ liệu cá nhân. 
+3. Thông báo hành vi vi ph ạm quy định v ề b ảo v ệ d ữ li ệu cá nhân theo quy 
+định tại Điều 23 Nghị định này.  
+4. Lựa chọn Bên X ử lý d ữ liệu cá nhân phù h ợp với nhiệm vụ rõ ràng và ch ỉ 
+làm việc với Bên Xử lý dữ liệu cá nhân có các biện pháp bảo vệ phù hợp. 
+5. Bảo đảm các quyền của chủ thể dữ liệu theo quy định tại Điều 9 Nghị định này. 
+
+
+===PAGE 28===
+ 
+30 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+6. Bên Kiểm soát dữ liệu cá nhân chịu trách nhiệm trước chủ thể dữ liệu về các 
+thiệt hại do quá trình xử lý dữ liệu cá nhân gây ra. 
+7. Phối hợp với Bộ Công an, cơ quan nhà nước có thẩm quyền trong bảo vệ dữ 
+liệu cá nhân, cung c ấp thông tin ph ục vụ điều tra, xử lý hành vi vi ph ạm quy định 
+của pháp luật về bảo vệ dữ liệu cá nhân.  
+Điều 39. Trách nhiệm của Bên Xử lý dữ liệu cá nhân 
+1. Chỉ tiếp nhận dữ liệu cá nhân sau khi có h ợp đồng hoặc thỏa thuận về xử lý 
+dữ liệu với Bên Kiểm soát dữ liệu cá nhân. 
+2. Xử lý d ữ liệu cá nhân theo đúng hợp đồng hoặc thỏa thuận ký k ết với Bên 
+Kiểm soát dữ liệu cá nhân. 
+3. Thực hiện đầy đủ các bi ện pháp b ảo vệ dữ liệu cá nhân quy định tại Nghị 
+định này và các văn bản pháp luật khác có liên quan. 
+4. Bên X ử lý d ữ li ệu cá nhân ch ịu trách nhi ệm tr ước ch ủ th ể d ữ li ệu v ề các 
+thiệt hại do quá trình xử lý dữ liệu cá nhân gây ra. 
+5. Xóa, trả lại toàn bộ dữ liệu cá nhân cho Bên Ki ểm soát dữ liệu cá nhân sau 
+khi kết thúc xử lý dữ liệu. 
+6. Phối hợp với Bộ Công an, cơ quan nhà nước có thẩm quyền trong bảo vệ dữ 
+liệu cá nhân, cung c ấp thông tin ph ục vụ điều tra, xử lý hành vi vi ph ạm quy định 
+của pháp luật về bảo vệ dữ liệu cá nhân.  
+Điều 40. Trách nhiệm của Bên Kiểm soát và xử lý dữ liệu 
+Thực hiện đầy đủ các quy định về trách nhi ệm của Bên Ki ểm soát d ữ liệu cá 
+nhân và Bên Xử lý dữ liệu cá nhân. 
+Điều 41. Trách nhiệm của Bên thứ Ba 
+Thực hiện đầy đủ các quy định về trách nhiệm xử lý dữ liệu cá nhân theo quy 
+định tại Nghị định này. 
+Điều 42. Trách nhiệm của tổ chức, cá nhân có liên quan 
+1. Có bi ện pháp b ảo v ệ d ữ li ệu cá nhân c ủa mình, ch ịu trách nhi ệm v ề tính 
+chính xác của dữ liệu cá nhân do mình cung cấp. 
+2. Thực hiện quy định về bảo vệ dữ liệu cá nhân tại Nghị định này. 
+
+
+===PAGE 29===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 31 
+ 
+3. Thông báo k ịp th ời cho B ộ Công an v ề nh ững vi ph ạm liên quan t ới ho ạt 
+động bảo vệ dữ liệu cá nhân. 
+4. Phối hợp với Bộ Công an trong xử lý những vi phạm liên quan tới hoạt động 
+bảo vệ dữ liệu cá nhân. 
+ 
+Chương IV 
+ĐIỀU KHOẢN THI HÀNH 
+ 
+Điều 43. Hiệu lực thi hành 
+1. Nghị định này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2023. 
+2. Các doanh nghi ệp siêu nh ỏ, doanh nghi ệp nh ỏ, doanh nghi ệp v ừa, doanh 
+nghiệp khởi nghiệp được quyền lựa chọn miễn trừ quy định về chỉ định cá nhân và 
+bộ ph ận b ảo v ệ d ữ li ệu cá nhân trong th ời gian 02 n ăm đầu k ể t ừ khi thành l ập 
+doanh nghiệp. 
+3. Các doanh nghi ệp siêu nh ỏ, doanh nghi ệp nh ỏ, doanh nghi ệp v ừa, doanh 
+nghiệp khởi nghiệp trực tiếp kinh doanh hoạt động xử lý dữ liệu cá nhân không áp 
+dụng quy định tại khoản 2 Điều này. 
+Điều 44. Trách nhiệm thi hành 
+1. Bộ tr ưởng B ộ Công an đôn đốc, kiểm tra, h ướng d ẫn vi ệc thực hiện Ngh ị 
+định này.  
+2. Bộ trưởng, Thủ trưởng cơ quan ngang b ộ, Thủ trưởng cơ quan thuộc Chính 
+phủ, Ch ủ t ịch Ủy ban nhân dân các t ỉnh, thành ph ố tr ực thu ộc Trung ương ch ịu 
+trách nhiệm thi hành Nghị định này./. 
+ 
+TM. CHÍNH PHỦ 
+KT. THỦ TƯỚNG 
+PHÓ THỦ TƯỚNG 
+aky] 
+Trần Lưu Quang 
+ 
+ 
+ 
+   
+   
+
+
+===PAGE 30===
+ 
+32 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+Phụ lục 
+(Kèm theo Nghị định số 13/2023/NĐ-CP  
+ngày 17 tháng 4 năm 2023 của Chính phủ) 
+ 
+ 
+Mẫu số 01 Phiếu yêu cầu cung cấp dữ liệu cá nhân (dành cho cá nhân) 
+Mẫu số 02 Phiếu yêu cầu cung cấp dữ liệu cá nhân (dành cho tổ chức, doanh nghiệp) 
+Mẫu số 03 Thông báo vi phạm quy định về bảo vệ dữ liệu cá nhân 
+Mẫu số 04 Thông báo gửi hồ sơ đánh giá tác động xử lý dữ liệu cá nhân 
+Mẫu số 05 Thông báo thay đổi nội dung hồ sơ 
+Mẫu số 06 Hồ sơ đánh giá tác động chuyển dữ liệu cá nhân ra nước ngoài 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+===PAGE 31===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 33 
+ 
+Mẫu số 01 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+.........., ngày...... tháng...... năm......  
+PHIẾU YÊU CẦU CUNG CẤP DỮ LIỆU CÁ NHÂN 
+(Dành cho cá nhân)  
+Kính gửi:.................................................. 
+ 
+1. Họ, tên cá nhân yêu cầu cung cấp dữ liệu cá nhân:.......................................... 
+.............................................................................................................................. 
+2. Người đại diện/Người giám hộ1:....................................................................... 
+3. Số CMTND/Thẻ căn cước công dân/Hộ chiếu................................................. 
+cấp ngày...../....../........ tại...................................................................................... 
+4. Nơi cư trú2:.................................................................. ...................................... 
+5. Số điện thoại3..................; Fax.....................; E-mail:............ ........................... 
+6. Dữ liệu cá nhân yêu cầu cung cấp4:................................................................... 
+7. Mục đích yêu cầu cung cấp:.............................................................................. 
+8. Yêu cầu cung cấp dữ liệu cá nhân lần thứ: 
+a) Lần đầu               b) Khác:.......... (ghi rõ số lần đã yêu cầu cung cấp thông tin  
+có nội dung nêu trên) 
+9. Số lượng bản5:.................................................................................................. 
+10. Phương thức nhận dữ liệu cá nhân: 
+□ Nhận tại nơi yêu cầu cung cấp  
+□ Nhận qua bưu điện (ghi rõ địa chỉ nhận):.......................................................
+□ Fax (ghi rõ số fax):.........................................................................................
+□ Nhận qua mạng điện tử (ghi rõ địa chỉ nhận):................................................
+□ Hình thức khác (ghi rõ):................................................................................. 
+11. Văn bản kèm theo (trong trường hợp có điều kiện):........................................... 
+   
+NGƯỜI YÊU CẦU 
+(Ký, ghi rõ họ tên) 
+                                           
+1 Theo quy định của Bộ luật Dân s ự về người đại diện, người giám h ộ đối với người yêu c ầu cung 
+cấp thông tin là ng ười chưa thành niên, người hạn chế năng lực hành vi dân s ự, người mất năng lực hành 
+vi dân sự, người có khó khăn trong nhận thức và làm chủ hành vi…  
+2 Ghi nơi cư trú của người đại diện/người giám hộ. 
+3 Ghi số điện thoại, fax, email của người đại diện/giám hộ. 
+4 Ghi rõ tên chủ thể dữ liệu và các thông tin liên quan cần cung cấp. 
+5 In, sao, chụp hoặc file dữ liệu. 
+
+
+===PAGE 32===
+ 
+34 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+Mẫu số 02 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+.........., ngày...... tháng...... năm......  
+PHIẾU YÊU CẦU CUNG CẤP DỮ LIỆU CÁ NHÂN 
+(Dành cho tổ chức, doanh nghiệp)  
+Kính gửi:...............................................  
+1. Tên tổ chức, doanh nghiệp:............................................................................... 
+....................................................................................... .......................................  
+2. Người đại diện của tổ chức, doanh nghiệp1:6:............................ ........................  
+3. Số CMTND/Thẻ căn cước công dân/Hộ chiếu................................................. 
+cấp ngày...../....../........ tại............................................................................................ 
+4. Địa chỉ trụ sở của tổ chức, doanh nghiệp:.................. ......................................  
+5. Số điện thoại2
+7.........................; Fax...............................; E-mail:...................... 
+6. Dữ liệu cá nhân yêu cầu cung cấp:................................................................... 
+7. Mục đích yêu cầu cung cấp:.............................................................................. 
+8. Yêu cầu cung cấp dữ liệu cá nhân lần thứ: 
+a) Lần đầu               b) Khác:......... (ghi rõ số lần đã yêu cầu cung cấp thông tin 
+có nội dung nêu trên) 
+9. Số lượng bản3:8:...................... ............................................................................  
+10. Phương thức nhận văn bản, hồ sơ, tài liệu: 
+□ Nhận tại nơi yêu cầu cung cấp thông tin 
+□ Nhận qua bưu điện (ghi rõ địa chỉ nhận):......................................................... 
+□ Fax (ghi rõ số fax):........................................................................................... 
+□ Nhận qua mạng điện tử (ghi rõ địa chỉ nhận):.................................................. 
+□ Hình thức khác (ghi rõ):................................................................................... 
+11. Văn bản kèm theo (trong trường hợp có điều kiện):.... 
+ 
+  NGƯỜI YÊU CẦU4
+9 
+(Ký, ghi rõ họ tên) 
+                                           
+1 Theo quy định của Bộ luật Dân sự về người đại diện của tổ chức, doanh nghiệp. 
+2 Ghi số điện thoại, fax, email của người đại diện yêu cầu cung cấp thông tin. 
+3 In, sao, chụp hoặc file dữ liệu. 
+4 Người đại diện ký, ghi rõ họ tên và đóng dấu của tổ chức, doanh nghiệp đó. 
+
+
+===PAGE 33===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 35 
+ 
+Mẫu số 03 
+TÊN TỔ CHỨC 
+ 
+ 
+Số: 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+....., ngày... tháng... năm... 
+THÔNG BÁO  
+VI PHẠM QUY ĐỊNH BẢO VỆ DỮ LIỆU CÁ NHÂN 
+ 
+Kính gửi: Bộ Công an 
+(Cục An ninh mạng và phòng, chống tội phạm sử dụng công nghệ cao, Bộ Công an) 
+ 
+Thực hiện quy định về bảo vệ dữ liệu cá nhân,..................1
+10 gửi Bộ Công an hồ sơ 
+đánh giá tác động xử lý dữ liệu cá nhân, như sau: 
+1. Thông tin về tổ chức, doanh nghiệp 
+- Tên tổ chức, doanh nghiệp:................................................................................ 
+- Địa chỉ trụ sở chính:........................................................................................... 
+- Địa chỉ trụ sở giao dịch:.....................................................................................  
+- Quy ết định thành l ập/Giấy ch ứng nh ận đăng ký doanh nghi ệp/Giấy ch ứng 
+nhận đăng ký kinh doanh/Gi ấy chứng nhận đầu tư số:..... do.... cấp ngày... tháng... 
+năm... tại... 
+- Điện thoại:.......................................... Website.................................................. 
+- Nhân sự chịu trách nhiệm bảo vệ dữ liệu cá nhân: 
+Họ và tên:.............................................................................................................. 
+Chức danh:............................................................................................................ 
+Số điện thoại liên lạc (cố định và di động):.......................................................... 
+Email:.................................................................................................................... 
+2. Mô tả hành vi vi phạm quy định bảo vệ dữ liệu cá nhân 
+- Thời gian:........................................................................................................... 
+- Địa điểm:............................................................................................................ 
+- Hành vi:.............................................................................................................. 
+- Tổ chức, cá nhân, các loại dữ liệu cá nhân và số lượng dữ liệu liên quan; 
+- Nhân sự chịu trách nhiệm bảo vệ dữ liệu cá nhân:............................................. 
+                                           
+1 Tên tổ chức, doanh nghiệp 
+
+
+===PAGE 34===
+ 
+36 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+Họ và tên:.............................................................................................................. 
+Chức danh:............................................................................................................ 
+Số điện thoại liên lạc (cố định và di động):.......................................................... 
+Email:.................................................................................................................... 
+- Hậu quả xảy ra:................................................................................................... 
+- Biện pháp áp dụng:............................................................................................. 
+3. Tài liệu kèm theo 
+1............................................................................................................................ 
+2............................................................................................................................ 
+4. Cam kết 
+(Tên c ơ quan, t ổ ch ức, doanh nghi ệp) xin cam k ết: Ch ịu trách nhi ệm tr ước 
+pháp lu ật v ề tính chính xác và tính h ợp pháp thông tin cung c ấp và tài li ệu 
+kèm theo. 
+ 
+Nơi nhận: 
+- Như trên; 
+... 
+TM. TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, đóng dấu) 
+ 
+
+
+===PAGE 35===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 37 
+ 
+Mẫu số 04 
+TÊN TỔ CHỨC 
+ 
+ 
+Số: 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+........, ngày…. tháng... năm...  
+THÔNG BÁO  
+GỬI HỒ SƠ ĐÁNH GIÁ TÁC ĐỘNG XỬ LÝ DỮ LIỆU CÁ NHÂN  
+Kính gửi: Bộ Công an 
+(Cục An ninh mạng và phòng, chống tội phạm sử dụng công nghệ cao,  
+Bộ Công an)  
+Thực hiện quy định về bảo vệ dữ liệu cá nhân,..................1
+11 gửi Bộ Công an Hồ sơ 
+đánh giá tác động xử lý dữ liệu cá nhân, như sau: 
+1. Thông tin về tổ chức, doanh nghiệp 
+- Tên tổ chức, doanh nghiệp:................................................................................ 
+- Địa chỉ trụ sở chính:........................................................................................... 
+- Địa chỉ trụ sở giao dịch:......................................................................................  
+- Quy ết định thành l ập/Giấy ch ứng nh ận đăng ký doanh nghi ệp/Giấy ch ứng 
+nhận đăng ký kinh doanh/Gi ấy chứng nhận đầu tư số:..... do.... cấp ngày... tháng... 
+năm... tại... 
+- Điện thoại:.............................. Website.............................................................. 
+- Nhân sự chịu trách nhiệm bảo vệ dữ liệu cá nhân:............................................. 
+Họ và tên:.............................................................................................................  
+Chức danh:............................................................................................................ 
+Số điện thoại liên lạc (cố định và di động):.........................................................  
+Email:.................................................................................................................... 
+2. Hồ sơ đánh giá tác động xử lý dữ liệu cá nhân 
+1............................................................................................................................  
+2............................................................................................................................. 
+3. Cam kết 
+(Tên c ơ quan, t ổ ch ức, doanh nghi ệp) xin cam k ết: Ch ịu trách nhi ệm tr ước 
+pháp luật về tính chính xác và tính h ợp pháp của hồ sơ đánh giá tác động xử lý dữ 
+liệu cá nhân và tài liệu kèm theo. 
+ 
+Nơi nhận: 
+- Như trên; 
+... 
+TM. TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, đóng dấu) 
+                                           
+1 Tên tổ chức, doanh nghiệp. 
+
+
+===PAGE 36===
+ 
+38 CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 
+  
+Mẫu số 05 
+TÊN TỔ CHỨC 
+ 
+ 
+Số: 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+........, ngày…. tháng... năm...  
+THÔNG BÁO  
+THAY ĐỔI NỘI DUNG HỒ SƠ......1
+12  
+Kính gửi: Bộ Công an 
+(Qua Cục An ninh mạng và phòng, chống tội phạm sử dụng công nghệ cao)  
+Thực hiện quy định về bảo vệ dữ liệu cá nhân,..................2
+13 gửi Bộ Công an Hồ sơ 
+đánh giá tác động xử lý dữ liệu cá nhân, như sau: 
+1. Thông tin về tổ chức, doanh nghiệp 
+- Tên tổ chức, doanh nghiệp:................................................................................ 
+- Địa chỉ trụ sở chính:........................................................................................... 
+- Địa chỉ trụ sở giao dịch:.....................................................................................  
+- Quyết định thành lập/Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận đăng 
+ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... cấp ngày... tháng... năm... tại... 
+- Điện thoại:................................ Website............................................................ 
+- Nhân sự chịu trách nhiệm bảo vệ dữ liệu cá nhân:............................................. 
+Họ và tên:.............................................................................................................  
+Chức danh:...........................................................................................................  
+Số điện thoại liên lạc (cố định và di động):.......................................................... 
+Email:.................................................................................................................... 
+2. Mô tả tóm tắt thay đổi nội dung hồ sơ 
+- Nội dung thay đổi:.............................................................................................. 
+- Lý do thay đổi:................................................................................................... 
+3. Tài liệu kèm theo 
+1.............................................................................................................................  
+2............................................................................................................................. 
+4. Cam kết 
+(Tên cơ quan, tổ chức, doanh nghiệp) xin cam kết: Chịu trách nhiệm trước pháp 
+luật về tính chính xác và tính hợp pháp của nội dung thay đổi và tài liệu kèm theo.  
+Nơi nhận: 
+- Như trên; 
+... 
+TM. TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, đóng dấu) 
+                                           
+1 Tên hồ sơ: Hồ sơ đánh giá tác động xử lý dữ liệu cá nhân hoặc Hồ sơ đánh giá tác động chuyển dữ 
+liệu cá nhân ra nước ngoài. 
+2 Tên tổ chức, doanh nghiệp. 
+
+
+===PAGE 37===
+ 
+ CÔNG BÁO/Số 685 + 686/Ngày 30-4-2023 39 
+ 
+Mẫu số 06 
+TÊN TỔ CHỨC 
+ 
+ 
+Số: 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+........, ngày…. tháng... năm... 
+ 
+HỒ SƠ ĐÁNH GIÁ TÁC ĐỘNG CHUYỂN DỮ LIỆU CÁ NHÂN  
+RA NƯỚC NGOÀI  
+Kính gửi: Bộ Công an 
+(Cục An ninh mạng và phòng, chống tội phạm sử dụng công nghệ cao, Bộ Công an)  
+Thực hiện quy định về bảo vệ dữ liệu cá nhân,..................1
+14 gửi Bộ Công an Hồ sơ 
+đánh giá tác động chuyển dữ liệu cá nhân ra nước ngoài, như sau: 
+1. Thông tin về tổ chức, doanh nghiệp 
+- Tên tổ chức, doanh nghiệp:................................................................................ 
+- Địa chỉ trụ sở chính:........................................................................................... 
+- Địa chỉ trụ sở giao dịch:.....................................................................................  
+- Quy ết định thành l ập/Giấy ch ứng nh ận đăng ký doanh nghi ệp/Giấy ch ứng 
+nhận đăng ký kinh doanh/Giấy chứng nhận đầu tư số:…... do.... cấp ngày... tháng... 
+năm... tại... 
+- Điện thoại:............................... Website............................................................. 
+- Nhân sự chịu trách nhiệm bảo vệ dữ liệu cá nhân:............................................. 
+Họ và tên:.............................................................................................................. 
+Chức danh:............................................................................................................ 
+Số điện thoại liên lạc (cố định và di động):.......................................................... 
+Email:.................................................................................................................... 
+2. Hồ sơ đánh giá tác động chuyển dữ liệu cá nhân ra nước ngoài 
+1............................................................................................................................  
+2............................................................................................................................ 
+3. Cam kết 
+(Tên c ơ quan, t ổ ch ức, doanh nghi ệp) xin cam k ết: Ch ịu trách nhi ệm tr ước 
+pháp luật về tính chính xác và tính h ợp pháp của Hồ sơ đánh giá tác động chuyển 
+dữ liệu cá nhân ra nước ngoài và tài liệu kèm theo. 
+ 
+Nơi nhận: 
+- Như trên; 
+... 
+TM. TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, đóng dấu)  
+                                           
+1 Tên tổ chức, doanh nghiệp 

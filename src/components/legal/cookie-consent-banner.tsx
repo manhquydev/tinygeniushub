@@ -34,7 +34,7 @@ export function CookieConsentBanner() {
   }
 
   return (
-    <aside className="fixed inset-x-3 bottom-3 z-[120] mx-auto w-full max-w-3xl rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_16px_38px_rgba(15,23,42,0.22)] sm:inset-x-6 sm:p-5">
+    <aside className="fixed inset-x-3 bottom-3 z-[320] mx-auto w-full max-w-3xl rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_16px_38px_rgba(15,23,42,0.22)] sm:inset-x-6 sm:p-5">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-base font-bold text-slate-900">Cài đặt cookie</h2>

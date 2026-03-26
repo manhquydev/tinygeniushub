@@ -1,0 +1,3917 @@
+
+===PAGE 1===
+ 
+2 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+VĂN BẢN QUY PHẠM PHÁP LUẬT 
+ 
+CHÍNH PHỦ 
+ 
+Nghị định số 147/2024/NĐ-CP ngày 09 tháng 11 năm 2024 
+quản lý, cung cấp, sử dụng dịch vụ internet  
+và thông tin trên mạng 
+ 
+(Tiếp theo Công báo số 1261 + 1262) 
+ 
+Điều 54. Trách nhiệm của doanh n ghiệp cung cấp dịch vụ trò chơi điện tử 
+trên mạng 
+Doanh nghiệp cung cấp dịch vụ trò chơi điện tử trên mạng có trách nhiệm sau: 
+1. Có ít nhất 01 hệ thống máy chủ đặt tại Việt Nam để phục vụ thanh tra, kiểm 
+tra, lưu trữ, cung cấp thông tin khi có yêu cầu của  Bộ Thông tin và Truyền thông, 
+Bộ Công an, cơ quan có thẩm quyền và giải quyết khiếu nại của người chơi đối với 
+việc cung cấp dịch vụ theo quy định; 
+2. Có trang thông tin điện tử giới thiệu, cung cấp dịch vụ trò chơi điện tử trên 
+mạng và hiển thị đầy đủ các thông tin sau: 
+a) Phân loại trò chơi điện tử theo độ tuổi người chơi đối với từng trò chơi; 
+b) Quy tắc của từng trò chơi (bao gồm cả việc thu tiền của người chơi); 
+c) Các quy định quản lý nội dung, thông tin, quản lý hoạt động của trò chơi; 
+d) Các quy tắ c về giải quyết khiếu nại, tranh chấp quyền lợi phát sinh giữa 
+người chơi và doanh nghiệp, giữa người chơi với người chơi; 
+đ) Hiển thị thông tin của doanh nghiệp gồm: Tên doanh nghiệp; địa chỉ văn 
+phòng giao dịch; số điện thoại liên hệ; số Giấy phép/Giấy c hứng nhận/Giấy xác 
+nhận/Quyết định phát hành; đoạn mã được liên kết đến mục số liệu cấp phép trên 
+Cổng thông tin điện tử của Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền 
+hình và thông tin điện tử). 
+Khi cung cấp trò chơi trên kho ứng dụng, phần mô t ả thông tin của trò chơi 
+trên kho ứng dụng phải thể hiện số Giấy phép/Giấy chứng nhận/Giấy xác nhận/  
+Quyết định phát hành; ngày, tháng, năm cấp; đoạn mã được liên kết đến mục số liệu 
+
+===PAGE 2===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 3 
+ 
+cấp phép trên Cổng thông tin điện tử của Bộ Thông tin và Truyền thông (Cụ c Phát 
+thanh, truyền hình và thông tin điện tử). 
+3. Áp dụng các biện pháp hạn chế tác động tiêu cực của trò chơi do doanh 
+nghiệp cung cấp, bao gồm: 
+a) Nội dung quảng cáo, giới thiệu về trò chơi (trên chương trình quảng cáo, 
+trên trang thông tin điện tử hoặ c ứng dụng trên mạng của doanh nghiệp) phải đúng 
+với nội dung, kịch bản, âm thanh, hình ảnh trong trò chơi đã được cấp phép, tuân 
+thủ các quy định về quảng cáo và phải bao gồm các thông tin sau: Tên trò chơi; 
+phân loại trò chơi theo độ tuổi; khuyến cáo về những tác động ngoài mong muốn 
+về thể chất, tinh thần có thể xảy ra đối với người chơi; 
+b) Thực hiện việc đăng ký, lưu trữ, xác thực và quản lý nội dung, thông tin của 
+người chơi theo quy định của pháp luật, đảm bảo chỉ những người chơi đã cung 
+cấp đầy đủ,  chính xác các thông tin theo quy định tại khoản 1 Điều 56 Nghị định 
+này mới được tham gia chơi trò chơi; cung cấp trò chơi có nội dung phù hợp với 
+lứa tuổi; cảnh báo mức độ ảnh hưởng của việc chơi quá thời gian/ngày và áp dụng 
+biện pháp giới hạn giờ chơi đối với trẻ em, người dưới 18 tuổi theo quy định của 
+pháp luật về bảo vệ trẻ em; bảo đảm người sử dụng dịch vụ có quyền quyết định 
+cho phép hoặc không cho phép doanh nghiệp cung cấp dịch vụ trò chơi điện tử trên 
+mạng được sử dụng thông tin của mình cho mục  đích quảng bá, truyền thông hoặc 
+cung cấp cho tổ chức, cá nhân khác. 
+4. Bảo đảm quyền lợi chính đáng của người chơi theo đúng quy tắc của trò 
+chơi đã công bố; chịu trách nhiệm về chất lượng dịch vụ, an toàn thông tin; có bộ 
+phận để tiếp nhận và giải quyết  khiếu nại và các tranh chấp phát sinh giữa người 
+chơi và doanh nghiệp, giữa người chơi với người chơi. 
+5. Tuân thủ quy định về vật phẩm ảo, điểm thưởng, đơn vị ảo theo quy định tại 
+Điều 57 Nghị định này. 
+6. Trường hợp ngừng cung cấp dịch vụ trò chơi điện tử trên mạng phải: Thông 
+báo trên trang thông tin điện tử  cung cấp trò chơi tối thiểu 90 ngày trước ngày dự 
+kiến ngừng cung cấp dịch vụ (trừ trường hợp phải dừng, đình chỉ hoạt động theo 
+yêu cầu của cơ quan có thẩm quyền); có các giải pháp bảo đảm quyền lợ i của 
+người chơi; báo cáo bằng văn bản với cơ quan có thẩm quyền cấp phép về các nội 
+dung này 15 ngày trước ngày chính thức ngừng cung cấp dịch vụ. 
+
+===PAGE 3===
+ 
+4 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+7. Triển khai các biện pháp kỹ thuật nghiệp vụ quản lý nội dung diễn đàn, nội 
+dung chia sẻ, trao đổi giữa cá c người chơi theo quy định tại khoản 2 Điều 28 Nghị 
+định này. 
+8. Không được quảng cáo trò chơi điện tử trên mạng khi chưa được cấp Quyết 
+định phát hành trò chơi điện tử G1  trên mạng hoặc cấp Giấy xác nhận thông báo 
+phát hành trò chơi điện tử G2, G3, G4 trê n mạng tại các diễn đàn, trang thông tin 
+điện tử của doanh nghiệp và phương tiện thông tin đại chúng khác. 
+9. Nộp phí thẩm định trò chơi điện tử trên mạng theo quy định về phí và lệ phí. 
+10. Thực hiện báo cáo định kỳ, đột xuất theo quy định tại khoản 2 Điề u 61 
+Nghị định này và gửi về Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền 
+hình và thông tin điện tử), Sở Thông tin và Truyền thông địa phương nơi doanh 
+nghiệp đăng ký trụ sở hoạt động. 
+11. Chịu sự thanh tra, kiểm tra và xử lý vi phạm của các cơ quan có thẩm quyền. 
+12. Tuân thủ các quy định của Luật Sở hữu trí tuệ và các văn bản có liên quan 
+về quyền sở hữu trí tuệ đối với trò chơi; tuân thủ các quy định của pháp luật về an 
+toàn thông tin mạng, an ninh thông tin, bảo mật thông tin của người chơi; Phố i hợp 
+với cơ quan có thẩm quyền trong việc điều tra, xử lý những hành vi vi phạm pháp 
+luật; cung cấp thông tin của người chơi cho cơ quan có thẩm quyền khi có yêu cầu 
+bằng văn bản để phục vụ công tác điều tra, xử lý hành vi vi phạm pháp luật về 
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng. 
+13. Tuân thủ quy định về việc phát hành và quản lý thẻ game theo quy định tại 
+Điều 58 Nghị định này. 
+14. Kết nối với các hình thức thanh toán hợp pháp để thu tiền người chơi, 
+thanh toán cho trò chơi điện tử trên mạng do doanh nghiệp phát hành. 
+15. Triển khai giải pháp bảo vệ trẻ em trên môi trường mạng theo quy định của 
+pháp luật về bảo vệ trẻ em. 
+Điều 55. Hội đồng tư vấn thẩm định trò chơi điện tử G1 trên mạng và Tổ giúp 
+việc của Hội đồng tư vấn thẩm định 
+1. Hội đồng tư vấn thẩm định trò chơi điện tử G1 trên mạng bao gồm đại diện 
+một số cơ quan, tổ chức có liên quan, có trình độ chuyên môn phù hợp. 
+2. Hội đồng tư vấn thẩm định trò chơi điện tử G1 trên mạng có nhiệm vụ tư 
+vấn trong quá trình thẩm định trò chơi điện tử G1 trên mạng và các trường hợp 
+
+===PAGE 4===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 5 
+ 
+đặc biệt khác theo yêu cầu của Bộ Thông tin và Truyền thông (Cục Phát thanh, 
+truyền hình và thông tin điện tử), bảo đảm công việc tư vấn thẩm định chặt chẽ, 
+khách quan. 
+3. Bộ Thông tin và Truyền thông ban hàn h Quyết định thành lập và Quy chế 
+hoạt động của Hội đồng tư vấn thẩm định trò chơi điện tử G1 trên mạng. 
+4. Hội đồng tư vấn thẩm định trò chơi điện tử G1 trên mạng được thành lập Tổ 
+giúp việc để giúp việc cho Hội đồng liên quan đến việc thẩm định trò chơi điện 
+tử G1 trên mạng. Tổ giúp việc do Bộ Thông tin và Truyền thông (Cục Phát thanh, 
+truyền hình và thông tin điện tử) thành lập. 
+Điều 56. Thông tin người chơi 
+1. Khi đăng ký tài khoản sử dụng trò chơi điện tử trên mạng, người chơi 
+phải cung cấp đầy đủ, chí nh xác những thông tin sau đây: Họ và tên; ngày, 
+tháng, năm sinh; số điện thoại di động tại Việt Nam. Trường hợp người chơi 
+dưới 16 tuổi thì cha, mẹ hoặc người giám hộ theo pháp luật dân sự đăng ký tài 
+khoản bằng thông tin của cha, mẹ hoặc người giám hộ th eo pháp luật dân sự và 
+có trách nhiệm giám sát và quản lý thời gian chơi, nội dung trò chơi của người 
+chơi dưới 16 tuổi truy cập.  
+2. Doanh nghiệp cung cấp dịch vụ trò chơi điện tử trên mạng phải lưu giữ các 
+thông tin của người chơi trong suốt quá trình ngư ời chơi sử dụng dịch vụ và trong 
+06 tháng sau khi người chơi ngừng sử dụng dịch vụ, bảo đảm người chơi có quyền 
+quyết định cho phép hoặc không cho phép doanh nghiệp cung cấp dịch vụ trò chơi 
+điện tử trên mạng được sử dụng thông tin của mình cho mục đích qu ảng bá, truyền 
+thông hoặc cung cấp cho tổ chức, cá nhân khác; phải triển khai hệ thống thiết bị kỹ 
+thuật nghiệp vụ để kết nối với cơ sở dữ liệu quốc gia về dân cư hoặc cơ sở dữ liệu 
+hộ tịch điện tử theo yêu cầu của cơ quan có thẩm quyền để xác thực thông t in của 
+người chơi. 
+Điều 57. Quy định về vật phẩm ảo, đơn vị ảo, điểm thưởng 
+1. Doanh nghiệp cung cấp dịch vụ trò chơi điện tử trên mạng chỉ được khởi tạo 
+các vật phẩm ảo, đơn vị ảo, điểm thưởng trong trò chơi điện tử trên mạng theo 
+đúng nội dung mà doanh n ghiệp đã báo cáo trong hồ sơ được cấp Quyết định phát 
+hành trò chơi điện tử G1 trên mạng, Giấy xác nhận thông báo phát hành trò chơi 
+điện tử G2, G3, G4 trên mạng. 
+
+===PAGE 5===
+ 
+6 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+2. Người chơi được dùng điểm thưởng hoặc đơn vị ảo có trong tài khoản trò 
+chơi của mình để mu a, đổi lấy vật phẩm ảo do doanh nghiệp cung cấp dịch vụ trò 
+chơi điện tử trên mạng khởi tạo trong chính trò chơi đó. 
+3. Doanh nghiệp cung cấp dịch vụ trò chơi điện tử trên mạng có nghĩa vụ quản 
+lý vật phẩm ảo, đơn vị ảo, điểm thưởng trong trò chơi điện tử theo đúng quy tắc trò 
+chơi đã công bố và phù hợp với nội dung trò chơi đã được phê duyệt, cấp Quyết 
+định. Không được gắn chương trình khuyến mãi có thưởng (bằng tiền hoặc hiện 
+vật thật bên ngoài trò chơi) vào giao diện, tính năng của trò chơi điện tử trên mạng. 
+4. Vật phẩm ảo, đơn vị ảo, điểm thưởng chỉ được sử dụng trong phạm vi trò 
+chơi điện tử trên mạng và theo đúng mục đích mà doanh nghiệp đã báo cáo, không 
+được quy đổi ngược lại thành tiền, thẻ trả trước dịch vụ viễn thông di động, thẻ 
+ngân hàng, thẻ m ua hàng, thẻ game, thẻ quà tặng hoặc các hiện vật có giá trị giao 
+dịch bên ngoài trò chơi điện tử trên mạng. 
+5. Không mua, bán vật phẩm ảo, đơn vị ảo, điểm thưởng giữa những người 
+chơi với nhau. 
+Điều 58. Quy định về phát hành thẻ game 
+1. Doanh nghiệp cung cấp dịch vụ trò chơi điện tử trên mạng được phát hành 
+và chịu trách nhiệm quản lý thẻ game. 
+2. Doanh nghiệp cung cấp dịch vụ trò chơi điện tử trên mạng chỉ sử dụng thẻ 
+game để  cho phép người chơi nạp tiền vào các trò chơi điện tử trên mạng  hợp 
+pháp của chí nh doanh nghiệp đó hoặc  của các doanh nghiệp khác  trong một tập 
+đoàn kinh tế, nhóm công ty, công ty mẹ, công ty con của doanh nghiệp đó; không 
+sử dụng thẻ game để nạp  tiền vào các trò chơi điện tử trên mạng không phép  hoặc 
+vào mục đích khác. 
+3. Doanh nghiệ p cung cấp dịch vụ trò chơi điện tử trên mạng khi phát hành 
+thẻ game phải ban hành quy định nội bộ về phát hành thẻ áp dụng trong hệ thống 
+của mình. Khi phát hành thẻ phi vật lý,  doanh nghiệp phải xây dựng tài liệu mô tả 
+quy trình mở/ngừng sử dụng thẻ, quy  trình thực hiện giao dịch thẻ, quy trình quản 
+lý rủi ro (bao gồm các bước: Nhận diện, đo lường, kiểm soát và xử lý rủi ro), 
+phạm vi sử dụng thẻ và biện pháp kiểm soát việc sử dụng thẻ đúng phạm vi đã 
+thỏa thuận. 
+
+===PAGE 6===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 7 
+ 
+Báo cáo về số lượng, mệnh giá thẻ, doanh th u do doanh nghiệp cung cấp dịch 
+vụ trò chơi điện tử trên mạng phát hành trong báo cáo định kỳ của doanh nghiệp và 
+gửi đến Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền hình và thông tin 
+điện tử), Sở Thông tin và Truyền thông địa phương nơi doanh ngh iệp đăng ký trụ 
+sở hoạt động. 
+4. Trước khi ngừng phát hành, sử dụng  thẻ game 30 ngày, doanh nghiệp cung 
+cấp dịch vụ trò chơi điện tử trên mạng phải thông báo bằng văn bản cho Bộ Thông 
+tin và Truyền thông (Cục Phát thanh, truyền hình và thông tin điện tử), Sở Thông 
+tin và Truyền thông địa phương, nơi doanh nghiệp đăng ký trụ sở hoạt động để 
+theo dõi, quản lý. 
+Nội dung báo cáo: Tổng số số lượng thẻ đã phát hành, tổng số lượng thẻ đã 
+nạp tiền, tổng số lượng thẻ còn tồn, mệnh giá thẻ, tổng doanh thu  trong thời gian 
+doanh nghiệp phát hành thẻ. 
+Doanh nghiệp cung cấp dịch vụ trò chơi điện tử trên mạng gửi báo cáo trực 
+tiếp hoặc thông qua dịch vụ bưu chính tới Bộ Thông tin và Truyền thông (Cục 
+Phát thanh, truyền hình và thông tin điện tử) Sở Thông tin và Truyền thôn g địa 
+phương, nơi doanh nghiệp đăng ký trụ sở hoạt động hoặc nộp trên Hệ thống dịch 
+vụ công trực tuyến của Bộ Thông tin và Truyền thông, Sở Thông tin và Truyền 
+thông địa phương.  
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử. 
+Điều 59. Trách nhiệm của doanh nghiệp cung cấp dịch vụ cho thuê máy 
+chủ, cho thuê chỗ đặt máy chủ, doanh nghiệp viễn thông, doanh nghiệp cung 
+cấp dịch vụ Internet 
+1. Từ chối, tạm ngừng hoặc ngừng kết nối với các trò chơi điện tử G1, G2, G3, G4 
+trên mạng chưa được cấp Giấy phép/Giấy chứng nhận/Giấy xác nhận/ Quyết định 
+theo quy định tại khoản 2, khoản 3 Điều 37 Nghị định này. 
+2. Thực hiện yêu cầu của cơ quan có thẩm quyền tạm ngừng hoặc ngừng kết 
+nối với các trò chơ i điện tử G1, G2, G3, G4 trên mạng chưa được cấp Giấy 
+phép/Giấy chứng nhận/Giấy xác nhận/Quyết định theo quy định tại khoản 2, khoản 3 
+Điều 37 Nghị định này hoặc theo quy định tại khoản 4 Điều 47 và khoản 4 Điều 53 
+Nghị định này. 
+
+===PAGE 7===
+ 
+8 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+3. Phối hợp với các cơ qua n có thẩm quyền trong việc bảo đảm an toàn thông 
+tin mạng và an ninh thông tin; điều tra, ngăn chặn các hành vi vi phạm pháp luật 
+trong hoạt động cung cấp, sử dụng dịch vụ trò chơi điện tử trên mạng. 
+4. Báo cáo với các cơ quan có thẩm quyền khi phát hiện c ác hành vi vi phạm 
+trong việc bảo đảm an toàn thông tin mạng, an ninh thông tin nhằm ngăn chặn kịp 
+thời các hành vi vi phạm pháp luật trong hoạt động cung cấp, sử dụng dịch vụ trò 
+chơi điện tử trên mạng. 
+5. Phối hợp với các doanh nghiệp cung cấp dịch vụ tr ò chơi điện tử trên mạng 
+triển khai biện pháp bảo vệ trẻ em và giới hạn giờ chơi đối với trẻ em, người dưới 
+18 tuổi theo quy định của pháp luật về bảo vệ trẻ em. 
+Điều 60. Trách nhiệm của tổ chức cung ứng dịch vụ thanh toán, tổ chức 
+cung ứng dịch vụ trung gian thanh toán 
+1. Từ chối, tạm ngừng hoặc ngừng kết nối với các trò chơi điện tử G1, G2, G3, G4 
+trên mạng chưa được cấp Giấy phép/Giấy chứng nhận/Giấy xác nhận/ Quyết định 
+theo quy định tại khoản 2, khoản 3 Điều 37 Nghị định này. 
+2. Thực hiện theo yêu cầu c ủa cơ quan có thẩm quyền tạm ngừng hoặc ngừng 
+kết nối với các trò chơi điện tử G1, G2, G3, G4 trên mạng chưa được cấp Giấy 
+phép/Giấy chứng nhận/Giấy xác nhận/Quyết định theo quy định tại khoản 2, khoản 3 
+Điều 37 Nghị định này hoặc theo quy định tại khoản 4 Điều 47 và khoản 4 Điều 53 
+Nghị định này. 
+3. Phối hợp với các cơ quan có thẩm quyền trong việc bảo đảm an toàn thông 
+tin mạng, an ninh thông tin; điều tra, ngăn chặn các hành vi vi phạm pháp luật 
+trong hoạt động cung cấp, sử dụng dịch vụ trò chơi điện tử trên mạng. 
+Điều 61. Quy định về cung cấp thông tin và chế độ báo cáo 
+1. Cung cấp thông tin: 
+a) Định kỳ hàng tháng, Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền 
+hình và thông tin điện tử) công bố và cập nhật danh sách các doanh nghiệp và các 
+trò chơi điện tử G1, G2, G3, G4 trên mạng đã được cấp phép; danh sách các trò 
+chơi đã ngừng phát hành; danh sách các Giấy phép/Giấy chứng nhận/Giấy xác 
+nhận/Quyết định đã bị đình chỉ, thu hồi, không còn hiệu lực trên Cổng thông tin 
+điện tử của Bộ Thông tin và Tru yền thông (Cục Phát thanh, truyền hình và thông 
+tin điện tử); 
+
+===PAGE 8===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 9 
+ 
+b) Định kỳ hàng tháng, Sở Thông tin và Truyền thông địa phương công bố và 
+cập nhật danh sách các doanh nghiệp và các trò chơi điện tử G2, G3, G4 trên mạng 
+đã được cấp phép, danh sách các trò chơ i điện tử G2, G3, G4 trên mạng đã ngừng 
+cung cấp, danh sách các Giấy chứng nhận/Giấy xác nhận bị đình chỉ, thu hồi, 
+không còn hiệu lực trên Cổng thông tin điện tử của Sở Thông tin và Truyền thông. 
+2. Chế độ báo cáo: 
+a) Doanh nghiệp cung cấp dịch vụ trò chơi điện tử trên mạng thực hiện chế độ 
+báo cáo định kỳ 06 tháng một lần (chậm nhất ngày 06 tháng 6 và chậm nhất ngày 25 
+tháng 11 hàng năm) theo Mẫu số 47 tại Phụ lục ban hành kèm theo Nghị định này 
+đến Bộ Thông tin v à Truyền thông (Cục Phát thanh, truyền hình và thông tin điện 
+tử) và Sở Thông tin và Truyền thông địa phương nơi doanh nghiệp đăng ký trụ sở 
+hoạt động và báo cáo đột xuất theo yêu cầu của cơ quan có thẩm quyền. 
+Doanh nghiệp gửi báo cáo trực tiếp hoặc thông  qua dịch vụ bưu chính tới Bộ 
+Thông tin và Truyền thông (Cục Phát thanh, truyền hình và thông tin điện tử) Sở 
+Thông tin và Truyền thông địa phương, nơi doanh nghiệp đăng ký trụ sở hoạt động 
+hoặc nộp trên Hệ thống dịch vụ công trực tuyến của Bộ Thông tin và  Truyền 
+thông, Sở Thông tin và Truyền thông địa phương. 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử; 
+b) Sở Thông tin và Truyền thông địa phương gửi báo cáo định kỳ 06 tháng một 
+lần (chậm nhất ngày 08 tháng 6 và chậm nhất ngày 27 tháng 11 hàng năm) về hoạt 
+động quản lý, cung cấp và sử dụng dịch vụ trò chơi điện tử tại địa phương hoặc 
+báo cáo đột xuất theo yêu cầu theo Mẫu số 48 tại Phụ lục ban hành kèm theo Nghị 
+định này đến Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền hình và thông 
+tin điện tử). 
+Sở Thông tin và Truyền thông địa phương gửi báo cáo trực tiếp hoặc thông 
+qua dịch vụ bưu chính tới Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền 
+hình và thông tin điện tử) hoặ c gửi trên Hệ thống dịch vụ công trực tuyến của Bộ 
+Thông tin và Truyền thông. 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử. 
+
+===PAGE 9===
+ 
+10 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Điều 62. Điều kiện hoạt động của điểm cung cấp dịch vụ t rò chơi điện tử 
+công cộng 
+1. Tổ chức, doanh nghiệp, cá nhân chỉ được thiết lập điểm cung cấp dịch vụ trò 
+chơi điện tử công cộng khi có giấy chứng nhận đủ điều kiện hoạt động điểm cung 
+cấp dịch vụ trò chơi điện tử công cộng. 
+2. Tổ chức, doanh nghiệp, cá nhâ n được cấp Giấy chứng nhận đủ điều kiện 
+hoạt động điểm cung cấp dịch vụ trò chơi điện tử công cộng khi đáp ứng các điều 
+kiện sau đây: 
+a) Có đăng ký kinh doanh điểm cung cấp dịch vụ trò chơi điện tử công cộng; 
+b) Có biển hiệu “Điểm cung cấp dịch vụ trò chơi  điện tử công cộng” ghi rõ tên 
+điểm, địa chỉ, số điện thoại liên hệ, số đăng ký kinh doanh. Trường hợp điểm cung 
+cấp dịch vụ trò chơi điện tử công cộng đồng thời là đại lý Internet thì thêm nội 
+dung “Đại lý Internet”. Trường hợp điểm cung cấp dịch vụ trò c hơi điện tử công 
+cộng đồng thời là điểm truy nhập Internet công cộng của doanh nghiệp thì thêm 
+nội dung “Điểm truy nhập Internet công cộng”; 
+c) Có thiết bị và nội quy phòng cháy, chữa cháy theo quy định về phòng, 
+chống cháy, nổ của Bộ Công an. 
+3. Ủy ban nhân dân các tỉnh, thành phố trực thuộc Trung ương: 
+a) Giao Ủy ban nhân dân quận, huyện, thị xã thẩm định hồ sơ, kiểm tra thực tế 
+và cấp, sửa đổi, bổ sung, gia hạn, cấp lại, thu hồi Giấy chứng nhận đủ điều kiện 
+hoạt động điểm cung cấp dịch vụ trò chơi điện tử công cộng áp dụng trên địa bàn; 
+b) Chỉ đạo Sở Thông tin và Truyền thông chủ trì, phối hợp với Ủy ban nhân 
+dân quận, huyện, thị xã trong việc phổ biến pháp luật, quản lý, thanh tra, kiểm tra, 
+xử lý vi phạm hoạt động của điểm truy nhập Internet công cộng v à điểm cung cấp 
+dịch vụ trò chơi điện tử công cộng trên địa bàn; chỉ đạo Ủy ban nhân dân quận, 
+huyện, thị xã công khai trên trang thông tin điện tử của cơ quan, đơn vị danh sách 
+các điểm cung cấp dịch vụ trò chơi điện tử công cộng được cấp và bị thu hồi Gi ấy 
+chứng nhận đủ điều kiện điểm cung cấp dịch vụ trò chơi điện tử công cộng trên địa 
+bàn, danh sách các trò chơi điện tử trên mạng đã được cấp Quyết định/Giấy xác 
+nhận phát hành và danh sách các trò chơi điện tử trên mạng đã bị thu hồi hoặc 
+dừng hoạt động;  thông báo cho các chủ điểm cung cấp dịch vụ trò chơi điện tử 
+
+===PAGE 10===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 11 
+ 
+công cộng trên địa bàn danh sách các trò chơi điện tử trên mạng đã được cấp 
+Quyết định/Giấy xác nhận phát hành và danh sách các trò chơi điện tử trên mạng 
+đã bị thu hồi hoặc dừng hoạt động và thực hiện báo cáo định kỳ chậm nhất ngày 20 
+tháng 11 hàng năm về Sở Thông tin và Truyền thông các nội dung theo Mẫu số 49 
+tại Phụ lục ban hành kèm theo Nghị định này để Sở Thông tin và Truyền thông 
+tổng hợp báo cáo Bộ Thông tin và Truyền thông (Cục Phát than h, truyền hình và 
+thông tin điện tử) chậm nhất ngày 25 tháng 11 hàng năm. 
+Hình thức gửi báo cáo: Nộp trực tiếp hoặc thông qua dịch vụ bưu chính tới Sở 
+Thông tin và Truyền thông địa phương hoặc nộp trên Hệ thống dịch vụ công trực 
+tuyến của Sở Thông tin và Truyền thông 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử. 
+Điều 63. Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ 
+trò chơi điện tử công cộng 
+1. Giấy chứng nhận đủ điề u kiện hoạt động điểm cung cấp dịch vụ trò chơi 
+điện tử công cộng có thời hạn 03 năm. 
+2. Mẫu Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò 
+chơi điện tử công cộng quy định theo Mẫu số 50 tại Phụ lục ban hành kèm theo 
+Nghị định này. 
+Điều 64. Quy trình, thủ tục cấp Giấy chứng nhận đủ điều kiện hoạt động 
+điểm cung cấp dịch vụ trò chơi điện tử công cộng 
+1. Hồ sơ đề nghị cấp Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp 
+dịch vụ trò chơi điện tử công cộng bao gồm: 
+a) Đơn đề nghị cấp Giấy chứng nhận theo Mẫu số 51a hoặc Mẫu số 51b tại 
+Phụ lục ban hành kèm theo Nghị định này; 
+b) Xuất trình chứng minh nhân dân/căn cước/căn cước công dân/hộ chiếu của 
+chủ điểm cung cấp dịch vụ trò chơi điện tử công cộng đối với trường hợp chủ điểm 
+là cá nhân; b ản sao chứng minh nhân dân/căn cước/căn cước công dân/hộ chiếu 
+của cá nhân đại diện cho tổ chức, doanh nghiệp trực tiếp quản lý điểm cung cấp 
+dịch vụ trò chơi điện tử công cộng đối với trường hợp chủ điểm là tổ chức, doanh 
+nghiệp trong trường hợp không thể  tra cứu trên hệ thống cơ sở dữ liệu quốc gia về 
+dân cư; 
+
+===PAGE 11===
+ 
+12 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+c) Tổ chức, doanh nghiệp, cá nhân nộp 01 bộ hồ sơ đề nghị cấp Giấy chứng 
+nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò chơi điện tử công cộng trực 
+tiếp hoặc thông qua dịch vụ bưu chính tới cơ  quan có thẩm quyền cấp phép hoặc 
+nộp trên hệ thống dịch vụ công trực tuyến của cơ quan có thẩm quyền cấp phép. 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử. 
+2. Thời hạn và quy trình xử lý hồ sơ: 
+Trong thời hạn 15 ngày, kể từ ngày nhận được hồ sơ theo quy định tại khoản 1 
+Điều này, cơ quan có thẩm quyền cấp phép thẩm định hồ sơ, kiểm tra thực tế và 
+cấp Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò chơi điện 
+tử công cộng. Trường hợp từ chối, cơ quan có thẩm quyền cấp phép có văn bản trả 
+lời và nêu rõ lý do. 
+Điều 65. Sửa đổi, bổ sung Giấy chứng nhận đủ điều kiện hoạt động điểm 
+cung cấp dịch vụ trò chơi điện tử công cộng 
+1. Tổ chức, doanh nghiệp, cá nhân là chủ điểm c ung cấp dịch vụ trò chơi điện 
+tử công cộng phải làm thủ tục đề nghị sửa đổi, bổ sung Giấy chứng nhận đủ điều 
+kiện hoạt động điểm cung cấp dịch vụ trò chơi điện tử công cộng trong thời hạn 10 
+ngày kể từ khi thay đổi các nội dung sau: 
+a) Thay đổi tên điểm cung cấp dịch vụ trò chơi điện tử công cộng; 
+b) Thay đổi chủ điểm cung cấp dịch vụ trò chơi điện tử công cộng đối với 
+trường hợp chủ điểm là cá nhân hoặc thay đổi người quản lý trực tiếp điểm cung 
+cấp dịch vụ trò chơi điện tử công cộng đối với trường hợp chủ  điểm là tổ chức, 
+doanh nghiệp. 
+2. Tổ chức, doanh nghiệp, cá nhân nộp 01 bộ hồ sơ đề nghị sửa đổi, bổ sung 
+Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò chơi điện tử 
+công cộng trực tiếp hoặc thông qua dịch vụ bưu chính tới cơ quan có thẩ m quyền 
+cấp phép hoặc nộp trên Hệ thống dịch vụ công trực tuyến của cơ quan có thẩm 
+quyền cấp phép. 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử. 
+
+===PAGE 12===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 13 
+ 
+Hồ sơ đề nghị sửa đổi, bổ sung bao gồm: 
+a) Đơn đề nghị sửa đổi, bổ sung nội dung Giấy chứng nhận theo Mẫu số 52a 
+hoặc Mẫu số 52b tại Phụ lục ban hành kèm theo Nghị định này; 
+b) Các tài liệu có liên quan đến các thông tin thay đổi (nếu có). 
+3. Trong thời hạn 05 ngày làm việc, cơ quan có thẩ m quyền cấp phép có trách 
+nhiệm thẩm định và cấp Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp 
+dịch vụ trò chơi điện tử công cộng sửa đổi, bổ sung thay thế cho Giấy chứng nhận 
+cũ. Trường hợp từ chối, cơ quan có thẩm quyền cấp phép có văn bản trả lời  và nêu 
+rõ lý do. 
+4. Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò chơi 
+điện tử công cộng sửa đổi, bổ sung có thời hạn bằng thời hạn còn lại của Giấy 
+chứng nhận cũ. 
+Điều 66. Gia hạn, cấp lại Giấy chứng nhận đủ điều kiện hoạt động điểm 
+cung cấp dịch vụ trò chơi điện tử công cộng 
+1. Chậm nhất 30 ngày trước khi hết hạn Giấy chứng nhận đã được cấp, tổ 
+chức, doanh nghiệp, cá nhân muốn gia hạn Giấy chứng nhận đã được cấp thực hiện 
+thủ tục đề nghị cấp gia hạn Giấy chứng nhận. 
+Hồ sơ đề nghị gia hạn Giấy chứng nhận bao gồm: 
+a) Đơn đề nghị gia hạn theo quy định tại Mẫu số 53a hoặc Mẫu số 53b tại Phụ 
+lục ban hành kèm theo Nghị định này; 
+b) Xuất trình chứng minh nhân dân/ căn cước/căn cước công dân/hộ chiếu của 
+chủ điểm cung cấp dịch vụ trò chơi điện tử công cộng đối với trường hợp chủ điểm 
+là cá nhân; bản sao chứng minh nhân dân/ căn cước/căn cước công dân/hộ chiếu 
+của cá nhân đại diện cho tổ chức, doanh nghiệp trực tiếp quản lý điểm cung cấp 
+dịch vụ trò chơi điện tử công cộng đối với trường hợp chủ điể m là tổ chức, doanh 
+nghiệp trong trường hợp không tra cứu được trên hệ thống cơ sở dữ liệu quốc gia 
+về dân cư. 
+Tổ chức, doanh nghiệp, cá nhân nộp 01 hồ sơ đề nghị gia hạn Giấy chứng nhận 
+trực tiếp hoặc thông qua dịch vụ bưu chính tới cơ quan có thẩm quyền cấp phép 
+hoặc nộp trên Hệ thống dịch vụ công trực tuyến của cơ quan có thẩm quyền cấp phép. 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử. 
+
+===PAGE 13===
+ 
+14 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+2. Trong thời hạn 05 ngày làm việc, cơ qua n có thẩm quyền cấp phép thẩm 
+định và cấp gia hạn Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch 
+vụ trò chơi điện tử công cộng theo Mẫu số 54 tại Phụ lục ban hành kèm theo Nghị 
+định này. Trường hợp từ chối, cơ quan có thẩm quyền cấp phép có văn bản trả lời 
+và nêu rõ lý do. 
+3. Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò chơi 
+điện tử công cộng được gia hạn 01 lần và không quá 02 năm. Trong thời hạn được 
+gia hạn Giấy chứng nhận, tổ chức, doanh nghiệp, cá nhân có thể nộp hồ sơ đề  nghị 
+cấp Giấy chứng nhận theo quy định tại Điều 63, Điều 64 Nghị định này. 
+4. Cấp lại Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò 
+chơi điện tử công cộng. 
+a) Tổ chức, doanh nghiệp, cá nhân có Giấy chứng nhận đủ điều kiện hoạt động 
+điểm cung cấp dịch vụ trò chơi điện tử công cộng  bị mất, bị hư hại không còn sử 
+dụng được thực hiện đề nghị cấp lại Giấy chứng nhận đủ điều kiện hoạt động điểm 
+cung cấp dịch vụ trò chơi điện tử  theo Mẫu số 55a hoặc Mẫu số 55b tại Phụ lục 
+ban hành kèm theo Nghị định này; 
+b) Tổ chức, doanh nghiệp, cá nhân nộp 01 bộ hồ sơ đề nghị cấp lại Giấy chứng 
+nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò chơi điện tử công cộng trực 
+tiếp hoặc thông qua dịch vụ bưu chính tới cơ quan có thẩm quyền cấp phép hoặc 
+nộp trên Hệ thống dịch vụ công trực tuyến của cơ quan có thẩm quyền cấp phép. 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử; 
+c) Trong thời hạn 05 ngày làm việc, kể từ ngày nhận được văn bản  đề nghị, cơ 
+quan có thẩm quyền cấp phép xem xét, cấp lại Giấy chứng nhận đủ điều kiện hoạt 
+động điểm cung cấp dịch vụ trò chơi điện tử công cộng theo Mẫu số 50 tại Phụ lục 
+ban hành kèm theo Nghị định này. Trường hợp từ chối, cơ quan có thẩm quyền cấp 
+phép có văn bản trả lời và nêu rõ lý do; 
+Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò chơi điện 
+tử công cộng được cấp lại có nội dung chính tương tự Giấy chứng nhận đủ điều 
+kiện hoạt động điểm cung cấp dịch vụ trò chơi điện tử công cộng đượ c đề nghị cấp 
+lại và bao gồm thông tin: Ngày cấp Giấy xác nhận lần đầu, cấp sửa đổi, bổ sung 
+(nếu có), ngày được cấp lại, số lần cấp lại. 
+
+===PAGE 14===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 15 
+ 
+Điều 67. Thu hồi Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp 
+dịch vụ trò chơi điện tử công cộng 
+1. Chủ điểm c ung cấp dịch vụ trò chơi điện tử công cộng bị thu hồi Giấy 
+chứng nhận đủ Điều kiện hoạt động đối với một trong các trường hợp sau: 
+a) Có hành vi gian dối hoặc cung cấp thông tin giả mạo để được cấp Giấy chứng 
+nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò chơi điện tử công cộng; 
+b) Giấy chứng nhận  đủ điều kiện hoạt động điểm cung cấp dịch vụ trò chơi 
+điện tử công cộng hết hiệu lực. 
+2. Trường hợp bị thu hồi theo quy định tại điểm a khoản 1 Điều này, sau thời 
+hạn 01 năm kể từ ngày bị thu hồi Giấy chứng  nhận, chủ điểm cung cấp dịch vụ trò 
+chơi điện tử công cộng có quyền đề nghị cấp Giấy chứng nhận mới nếu đáp ứng đủ 
+điều kiện để được cấp giấy chứng nhận theo quy định. 
+Điều 68. Trách nhiệm của chủ điểm cung cấp dịch vụ trò chơi điện tử 
+công cộng 
+Chủ điểm cung cấp dịch vụ trò chơi điện tử công cộng có trách nhiệm sau đây: 
+1. Được thiết lập hệ thống thiết bị để cung cấp dịch vụ trò chơi điện tử tại địa 
+điểm ghi trên Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò 
+chơi điện tử công cộng đã được cấp. 
+2. Được cung cấp dịch vụ truy nhập Internet sau khi đã ký hợp đồng đại lý 
+Internet với doanh nghiệp cung cấp dịch vụ truy nhập Internet. 
+3. Được yêu cầu doanh nghiệp ký hợp đồng đại lý Internet với mình hướng 
+dẫn, cung cấp thông tin về dịch vụ truy  nhập Internet và chịu sự kiểm tra, giám sát 
+của doanh nghiệp đó. 
+4. Được tham gia các chương trình đào tạo, tập huấn về Internet, trò chơi điện 
+tử do các cơ quan quản lý nhà nước tổ chức trên địa bàn. 
+5. Có bảng niêm yết công khai nội quy sử dụng dịch vụ trò chơi điện tử ở nơi 
+mọi người dễ nhận biết, bao gồm các điều cấm quy định tại khoản 1 Điều 8 Luật 
+An ninh mạng; Điều 7, Điều 69 Nghị định này. 
+6. Có bảng niêm yết danh sách cập nhật các trò chơi điện tử trên mạng đã được 
+cơ quan có thẩm quyền cấp phép p hát hành tại điểm cung cấp dịch vụ kèm theo 
+phân loại trò chơi theo độ tuổi (thông tin được cập nhật từ trên trang thông tin điện 
+
+===PAGE 15===
+ 
+16 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+tử của Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền hình và thông tin 
+điện tử) hoặc của Sở Thông tin và Truyền thông địa phương. 
+7. Không được tổ chức hoặc cho phép người sử dụng Internet sử dụng các tính 
+năng của máy tính tại địa điểm kinh doanh của mình để thực hiện các hành vi bị 
+cấm quy định tại Điều 8 Luật An ninh mạng. 
+8. Không được hoạt động từ 22 giờ đêm đến 8 giờ sáng hôm sau. 
+9. Thực hiện quy định về bảo đảm an toàn thông tin và an ninh thông tin. 
+10. Chịu sự thanh tra, kiểm tra và xử lý vi phạm của cơ quan có thẩm quyền. 
+Điều 69. Quyền và nghĩa vụ của người chơi 
+Người chơi có các quyền và nghĩa vụ sau đây: 
+1. Được chơi các trò chơi điện tử trên mạng đã được cấp Quyết định phát hành 
+trò chơi điện tử G1 trên mạng, cấp Giấy xác nhận thông báo phát hành trò chơi 
+điện tử G2, G3, G4 trên mạng. 
+2. Thực hiện quyền và nghĩa vụ của người sử dụng Internet quy định tại Điều 7 
+Nghị định này. 
+3. Được doanh nghiệp cung cấp dịch vụ trò chơi điện tử bảo đảm quyền lợi 
+theo quy tắc của trò chơi điện tử và quy tắc giải quyết khiếu nại, tranh chấp được 
+công bố trên trang thông tin điện tử cung cấp dịch vụ của doanh nghiệp. 
+4. Lựa chọn trò chơi điện tử phù hợp với độ tuổi của mình. 
+5. Không được lợi dụng trò chơi điện tử để thực hiện hành vi vi phạm pháp luật. 
+6. Thực hiện việc đăng ký thông tin người chơi theo quy định tại khoản 1 Điều 56 
+Nghị định này, đảm bảo các thông tin đăng ký là chính xác. 
+7. Chấp hành quy định về quản lý giờ chơi, quy định về thời gian hoạt động 
+của điểm cung cấp dịch vụ trò chơi điện tử công cộng. 
+ 
+Chương IV 
+CUNG CẤP DỊCH VỤ NỘI DUNG THÔNG TIN  
+TRÊN MẠNG VIỄN THÔNG DI ĐỘNG 
+ 
+Điều 70. Cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động 
+1. Cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động là việc tổ 
+chức, doanh nghiệp thiết lập hệ thống thiết bị tại Việt Nam để kết nối tới mạng 
+
+===PAGE 16===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 17 
+ 
+viễn thông di động nhằm cung cấp nội dung thông tin tới ngườ i sử dụng dịch vụ 
+viễn thông di động gắn liền với dịch vụ nhắn tin, dịch vụ thoại (dịch vụ gọi giá 
+cao, dịch vụ gọi tự do, dịch vụ giải đáp thông tin) và dịch vụ truy nhập Internet 
+trên mạng viễn thông di động. 
+Đăng ký kết nối để cung cấp dịch vụ nội dung thông tin trên mạng viễn thông 
+di động là việc tổ chức, doanh nghiệp thực hiện kê khai với cơ quan có thẩm quyền 
+các thông tin về tổ chức, doanh nghiệp, loại hình dịch vụ nội dung thông tin cung 
+cấp, phương thức cung cấp dịch vụ và cam kết bảo đảm đáp ứng các điều kiện 
+cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động. 
+2. Tổ chức, doanh nghiệp cung cấp dịch vụ nội dung thông tin trên mạng viễn 
+thông di động thực hiện thanh toán theo quy định tại khoản 3 Điều 61 Luật Viễn 
+thông phải có Giấy ch ứng nhận đăng ký kết nối để cung cấp dịch vụ nội dung 
+thông tin trên mạng viễn thông di động và đảm bảo tuân thủ quy định của pháp luật 
+tại Nghị định này về cung cấp dịch vụ nội dung thông tin chuyên ngành do mình 
+cung cấp. 
+Đối với dịch vụ gọi tự do, dịch vụ gọi giá cao thì không phải thực hiện thủ tục 
+đăng ký kết nối để cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động. 
+Đối với các dịch vụ nội dung thông tin cung cấp tới người sử dụng dịch vụ 
+viễn thông di động gắn liền với dịch vụ truy nhập  Internet trên mạng viễn thông di 
+động thì tổ chức, doanh nghiệp phải có Giấy phép, Giấy chứng nhận, Giấy xác 
+nhận chuyên ngành do Bộ Thông tin và Truyền thông hoặc Sở Thông tin và 
+Truyền thông cấp. 
+3. Điều kiện cấp Giấy chứng nhận đăng ký kết nối để cung cấp dịch vụ nội 
+dung thông tin trên mạng viễn thông di động: 
+a) Là tổ chức, doanh nghiệp thành lập theo quy định của pháp luật Việt Nam 
+có chức năng, nhiệm vụ hoặc ngành nghề đăng ký kinh doanh cung cấp dịch vụ nội 
+dung thông tin trên mạng viễn thông di độ ng đã được đăng tải trên Cổng thông tin 
+quốc gia về đăng ký doanh nghiệp;  
+b) Có nội dung thông tin bảo đảm phù hợp với quy định tại khoản 43 Điều 3 và 
+khoản 2 Điều này; có phương án cung cấp dịch vụ và cam kết bảo đảm thực hiện 
+đầy đủ trách nhiệm của tổ chức, doanh nghiệp cung cấp dịch vụ nội dung thông tin 
+trên mạng viễn thông di động quy định tại Điều 74 Nghị định này. 
+
+===PAGE 17===
+ 
+18 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Điều 71. Quy trình thủ tục cấp Giấy chứng nhận đăng ký  kết nối để cung 
+cấp dịch vụ nội dung thông tin trên mạng viễn thông di động 
+1. Hồ sơ đề nghị cấp Giấy chứng nhận đăng ký kết nối để cung cấp dịch vụ nội 
+dung thông tin trên mạng viễn thông di động bao gồm các tài liệu sau đây: 
+a) Đơn đề nghị đăng ký kết nối để cung cấp dịch vụ nội dung thông tin trên 
+mạng viễn thông di động theo Mẫu số 56 tại Phụ lục ban hành kèm theo Nghị 
+định này; 
+b) Bản sao hợp lệ (bao gồm bản sao được cấp từ sổ gốc hoặc bản sao có chứng 
+thực hoặc bản sao đối chiếu với bản gốc) một trong các loại giấy tờ: Giấy chứng 
+nhận đăng ký doanh nghiệp, Giấy chứng nhận đăng ký đ ầu tư, Quyết định thành 
+lập (hoặc bản sao hợp lệ Giấy chứng nhận, giấy phép tương đương hợp lệ khác 
+được cấp trước ngày có hiệu lực của Luật đầu tư số 67/2014/QH13 và Luật doanh 
+nghiệp số 59/2020/QH14); hoặc Quyết định chức năng, nhiệm vụ hoặc Điều lệ 
+hoạt động (đối với các tổ chức hội, đoàn thể) có chức năng, nhiệm vụ hoặc đăng ký 
+doanh nghiệp ngành nghề cung cấp dịch vụ nội dung thông tin trên mạng viễn 
+thông di động; 
+c) Báo cáo hoạt động kết nối để cung cấp dịch vụ nội dung thông tin trên mạng 
+viễn thông di động theo Mẫu số 61 tại Phụ lục ban hành kèm theo Nghị định này 
+trong trường hợp cấp mới do Giấy chứng nhận đăng ký kết nối hết thời hạn theo 
+quy định tại khoản 3 Điều này hoặc không còn hiệu lực theo quy định tại khoản 4 
+Điều này. 
+2. Thời hạn và quy t rình giải quyết hồ sơ đề nghị cấp Giấy chứng nhận đăng 
+ký kết nối để cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động: 
+a) Tổ chức, doanh nghiệp nộp 01 bộ hồ sơ đăng ký kết nối để cung cấp dịch vụ 
+nội dung thông tin trên mạng viễn thông di đ ộng trực tiếp hoặc thông qua dịch vụ 
+bưu chính tới Bộ Thông tin và Truyền thông (Cục Viễn thông) hoặc nộp trên Hệ 
+thống dịch vụ công trực tuyến của Bộ Thông tin và Truyền thông và chịu trách 
+nhiệm về tính trung thực và chính xác của hồ sơ. Trường hợp nộp t rên hệ thống 
+dịch vụ công trực tuyến, phải có chữ ký số theo quy định của pháp luật về giao 
+dịch điện tử; 
+b) Trong thời hạn 20 ngày kể từ ngày nhận được hồ sơ hợp lệ, Bộ Thông tin và 
+Truyền thông (Cục Viễn thông) xem xét cấp Giấy chứng nhận đăng ký kết nối  để 
+
+===PAGE 18===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 19 
+ 
+cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động cho tổ chức, 
+doanh nghiệp theo Mẫu số 57 tại Phụ lục ban hành kèm theo Nghị định này. 
+Trường hợp từ chối, trong thời hạn 05 ngày làm việc, Bộ Thông tin và Truyền 
+thông (Cục Viễn thông) có  văn bản trả lời, nêu rõ lý do và quy định pháp luật có 
+liên quan. 
+3. Giấy chứng nhận đăng ký kết nối để cung cấp dịch vụ nội dung thông tin 
+trên mạng viễn thông di động có thời hạn theo đề nghị của tổ chức, doanh nghiệp 
+nhưng không quá 05 (năm) năm. 
+4. Giấy chứng nhận đăng ký kết nối để cung cấp dịch vụ nội dung thông tin 
+trên mạng viễn thông di động không còn hiệu lực trong các trường hợp như sau: 
+a) Tổ chức, doanh nghiệp bị giải thể, bị phá sản; 
+b) Tổ chức, doanh nghiệp  bị thu hồi Giấy chứng nhận tại kho ản 2 Điều 73 
+Nghị định này. 
+Điều 72. Sửa đổi, bổ sung, gia hạn, cấp lại Giấy chứng nhận đăng ký kết 
+nối để cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động 
+1. Tổ chức, doanh nghiệp phải làm thủ tục sửa đổi, bổ sung Giấy chứng nhận 
+khi thay đổi một trong các nội dung sau đây: 
+a) Tên tổ chức, doanh nghiệp; 
+b) Địa chỉ trụ sở chính; 
+c) Người đại diện theo pháp luật; 
+d) Tên dịch vụ nội dung thông tin (bổ sung dịch vụ mới, ngừng cung cấp dịch 
+vụ, thay đổi tên dịch vụ); 
+đ) Mã, số viễn thông sử dụng để cung cấp dịch vụ; 
+e) Phương thức đăng ký, cung cấp dịch vụ. 
+Giấy chứng nhận sửa đổi, bổ sung có hiệu lực tới ngày hết hiệu lực của Giấy 
+chứng nhận được cấp ban đầu. 
+2. Hồ sơ đề nghị sửa đổi, bổ sung Giấy chứng nhận bao gồm các tài liệu sau đây: 
+a) Đơn đề nghị sửa đổi, bổ sung Giấy chứng nhận theo Mẫu số 58 tại Phụ lục 
+ban hành kèm theo Nghị định này; 
+b) Tài liệu chứng minh có liên quan về các nội dung đề nghị sửa đổi, bổ sung  
+(nếu có). 
+
+===PAGE 19===
+ 
+20 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+3. Thời hạn và quy trình giải quyết hồ sơ đề nghị sửa đổi, bổ sung G iấy 
+chứng nhận:  
+a) Tổ chức, doanh nghiệp nộp 01 bộ hồ sơ đề nghị sửa đổi, bổ sung Giấy 
+chứng nhận trực tiếp hoặc thông qua dịch vụ bưu chính tới Bộ Thông tin và Truyền 
+thông (Cục Viễn thông) hoặc nộp trên Hệ thống dịch vụ công trực tuyến của Bộ 
+Thông tin và Truyền thông. Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, 
+phải có chữ ký số theo quy định của pháp luật về giao dịch điện tử; 
+b) Trong thời hạn 05 ngày làm việc kể từ khi nhận được hồ sơ hợp lệ, Bộ 
+Thông tin và Truyền thông (Cục Viễn thông) thẩ m định, cấp sửa đổi, bổ sung Giấy 
+chứng nhận theo Mẫu số 57 tại Phụ lục ban hành kèm theo Nghị định này sau khi 
+cập nhật các nội dung sửa đổi, bổ sung. Trường hợp từ chối, Bộ Thông tin và 
+Truyền thông (Cục Viễn thông) có văn bản trả lời và nêu rõ lý do. 
+4. Gia hạn Giấy chứng nhận đăng ký kết nối: 
+a) Trước ít nhất 30 ngày kể từ ngày Giấy chứng nhận đăng ký kết nối hết hạn, 
+tổ chức, doanh nghiệp muốn gia hạn giấy chứng nhận phải gửi hồ sơ đề nghị gia 
+hạn Giấy chứng nhận theo Mẫu số 59 tại Phụ lục ban hành kèm theo Nghị định này 
+trực tiếp hoặc thông qua dịch vụ bưu chính tới Bộ Thông tin và Truyền thông (Cục 
+Viễn thông) hoặc nộp trên Hệ thống dịch vụ công trực tuyến của Bộ Thông tin và 
+Truyền thông. 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử; 
+b) Trong thời hạn 05 ngày làm việc kể từ khi nhận được hồ sơ hợp lệ, Bộ 
+Thông tin và Truyền thông (Cục Viễn thông) thẩm định, cấp gia hạn Giấy chứng 
+nhận đăng ký kết nối để cung cấp dịch vụ nội du ng thông tin trên mạng viễn thông 
+di động theo Mẫu số 57 tại Phụ lục ban hành kèm theo Nghị định này. Trường hợp 
+từ chối, Bộ Thông tin và Truyền thông (Cục Viễn thông) có văn bản trả lời và nêu 
+rõ lý do; 
+c) Giấy chứng nhận được gia hạn 01 lần với thời hạn không quá 02 năm kể từ 
+ngày hết hạn của Giấy chứng nhận đề nghị gia hạn. 
+5. Cấp lại Giấy chứng nhận: 
+a) Tổ chức, doanh nghiệp có Giấy chứng nhận bị mất, bị hư hại không còn sử 
+dụng được thực hiện đề nghị cấp lại Giấy chứng nhận theo Mẫu số 60 tại Phụ lục 
+ban hành kèm theo Nghị định này; 
+
+===PAGE 20===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 21 
+ 
+b) Tổ chức, doanh nghiệp nộp 01 bộ hồ sơ đề nghị cấp lại Giấy chứng nhận 
+trực tiếp hoặc thông qua dịch vụ bưu chính tới Bộ Thông tin và Truyền thông (Cục 
+Viễn thông) hoặc nộp trên Hệ thống dịch vụ công trực tuyến của Bộ Thôn g tin và 
+Truyền thông; 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký số theo 
+quy định của pháp luật về giao dịch điện tử; 
+c) Trong thời hạn 05 ngày làm việc, kể từ ngày nhận được đơn đề nghị hợp lệ, 
+Bộ Thông tin và Truyền thông (Cục Viễn thông) xem xét, cấp lại Giấy chứng nhận 
+cho doanh nghiệp theo Mẫu số 57 tại Phụ lục ban hành kèm theo Nghị định này. 
+Trường hợp từ chối, Bộ Thông tin và Truyền thông (Cục Viễn thông) có văn bản 
+trả lời và nêu rõ lý do; 
+d) Giấy chứng nhận được cấp lại có nội dung chính tương tự Giấy chứng nhận 
+được đề nghị cấp lại và bao gồm thông tin: Ngày cấp Giấy chứng nhận lần đầu, 
+cấp sửa đổi, bổ sung (nếu có), ngày được cấp lại, số lần cấp lại. 
+6. Việc xét cấp sửa đổi, bổ sung, gia hạn, cấp lại Giấy chứng nhận phả i đảm 
+bảo đáp ứng các điều kiện quy định tại khoản 3 Điều 70 Nghị định này. 
+Điều 73. Trình tự thủ tục đình chỉ hoạt động, thu hồi Giấy chứng nhận 
+đăng ký kết nối để cung cấp dịch vụ nội dung thông tin trên mạng viễn thông 
+di động 
+1. Cơ quan có thẩm quyền c ấp Giấy chứng nhận theo quy định tại Nghị định 
+này ban hành Quyết định đình chỉ hoạt động kết nối để cung cấp dịch vụ nội dung 
+thông tin trên mạng viễn thông di động trong thời hạn 03 tháng khi tổ chức, doanh 
+nghiệp vi phạm một trong các trường hợp sau: 
+a) Vi phạm quy định tại Điều 9 Luật Viễn thông, Điều 8 Luật An ninh mạng 
+được xác định bởi cơ quan có thẩm quyền; 
+b) Không tuân thủ quy định tại Điều 74 Nghị định này sau khi đã được cơ quan 
+có thẩm quyền yêu cầu khắc phục bằng văn bản. 
+2. Bộ Thông tin và Tr uyền thông (Cục Viễn thông) ban hành Quyết định thu 
+hồi Giấy chứng nhận đăng ký kết nối để cung cấp dịch vụ nội dung thông tin trên 
+mạng viễn thông di động trong các trường hợp sau: 
+a) Đến hết thời hạn bị đình chỉ, tổ chức, doanh nghiệp không báo cáo cơ qu an 
+quản lý và không có phương án khả thi để khắc phục vi phạm; 
+
+===PAGE 21===
+ 
+22 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+b) Có văn bản thông báo chấm dứt hoạt động hoặc trả lại Giấy chứng nhận; 
+c) Tổ chức, doanh nghiệp  không triển khai trên thực tế việc cung cấp dịch vụ 
+sau 12 tháng kể từ ngày Giấy chứng nhận có hiệu lực. 
+3. Trình tự, thủ tục đình chỉ hoạt động kết nối để cung cấp dịch vụ nội dung 
+thông tin trên mạng viễn thông di động và thu hồi Giấy chứng nhận đăng ký kết 
+nối để cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động: 
+a) Khi cơ quan có thẩm quyền phát hiện và thông báo về việc tổ chức, doanh 
+nghiệp vi phạm quy định tại điểm a, điểm b khoản 1 Điều này, Bộ Thông tin và 
+Truyền thông (Cục Viễn thông) ban hành Quyết định đình chỉ hoạt động kết nối để 
+cung cấp dịch vụ nội dung thông tin trên m ạng viễn thông di động trong thời hạn 
+03 tháng; 
+b) Khi cơ quan có thẩm quyền phát hiện và thông báo về việc tổ chức, doanh 
+nghiệp vi phạm quy định tại điểm c khoản 1 Điều này, Bộ Thông tin và Truyền 
+thông (Cục Viễn thông) ra thông báo bằng văn bản yêu cầu tổ chức, doanh nghiệp 
+khắc phục. Sau 15 ngày, kể từ ngày kết thúc thời hạn yêu cầu trong văn bản thông 
+báo mà tổ chức, doanh nghiệp không khắc phục thì cơ quan có thẩm quyền cấp 
+Giấy chứng nhận ban hành Quyết định đình chỉ Giấy chứng nhận đăng ký kết nối 
+để cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động trong thời 
+hạn 03 tháng; 
+c) Khi phát hiện hoặc nhận được phản ánh về việc tổ chức, doanh nghiệp vi 
+phạm quy định tại Điều 8 Luật An ninh mạng, Bộ Thông tin và Truyền thông (Cục 
+Viễn thông) chuyển nội dung liên quan tới cơ quan có thẩm quyền để xem xét, xác 
+minh và có ý kiến để làm cơ sở cho việc thực hiện quy định tại điểm a và điểm b 
+khoản 3 Điều này; 
+d) Khi tổ chức, doanh nghiệp thuộc một trong các trường hợp quy định khoản 2 
+Điều này, Bộ Thông tin và Truyền thông (Cục Viễn thông) ra Quyết định thu hồi 
+Giấy chứng nhận đăng ký kết nối để cung cấp dịch vụ nội dung thông tin trên 
+mạng viễn thông di động. 
+Điều 74. Trách nhiệm của tổ chức, doanh nghiệp cung cấp dịch vụ nội dung 
+thông tin trên mạng viễn thông di động 
+Tổ chức, doanh nghiệp cung cấp dịch vụ nội dung thông tin trên mạng viễn 
+thông di động theo quy định tại khoản 2 Điều 70 Nghị định này có trách nhiệm 
+sau đây: 
+
+===PAGE 22===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 23 
+ 
+1. Được thiết lập hệ thống thiết bị và thuê đường truyền dẫn viễn thông để kết 
+nối tới các doanh nghiệp viễn thông di động.  Được cung cấp dịch vụ theo định kỳ 
+(ngày, tuần, tháng, quý, năm) hoặc không định kỳ. 
+2. Có ít nhất 01 hệ thống máy chủ đặt tại Việt Nam để phục vụ thanh tra, kiểm 
+tra, lưu trữ, cung cấp thông tin khi có yêu cầu của Bộ Thông tin và Truyền thông, 
+Bộ Công an, cơ quan có thẩm quyền và giải quyết khiếu nại của người sử dụng đối 
+với việc cung cấp dịch vụ theo quy định. 
+3. Thực hiện các quy định về quản lý, sử dụng, khai thác kho số viễn thông, tài 
+nguyên Internet theo quy hoạch và quy định quản lý tài nguyên viễn thông. 
+4. Bảo đảm cung cấp nội dung thông tin tới người sử dụng dịch vụ theo đúng 
+quy định của pháp luật,  chịu sự quản lý của cơ quan nhà nước có thẩm quyền về 
+nội dung mà tổ chức, doanh nghiệp cung cấp. Ch ịu trách nhiệm trước pháp luật 
+về nội dung thông tin cung cấp và đảm bảo đáp ứng các điều kiện cung cấp dịch 
+vụ nội dung thông tin trên mạng viễn thông di động theo quy định khi cung cấp 
+dịch vụ. 
+5. Ban hành công khai thỏa thuận cung cấp và sử dụng dịch vụ  nội dung thông 
+tin trên mạng viễn thông di động, hướng dẫn giải quyết khiếu nại cho người sử 
+dụng biết trước khi cung cấp dịch vụ theo quy định của pháp luật có liên quan. 
+6. Cung cấp dịch vụ theo đúng chất lượng, giá cước dịch vụ đã công bố với 
+người sử dụng dịch vụ. 
+7. Đối với các dịch vụ cung cấp theo định kỳ (ngày, tuần, tháng, quý, năm), chỉ 
+được cung cấp dịch vụ sau khi có xác nhận đồng ý của người sử dụng dịch vụ và 
+có thông báo đăng ký dịch vụ thành công đến người sử dụng dịch vụ. 
+Phương thức xác nhận và thông báo: Qua tin nhắn ngắn SMS hoặc qua phương 
+thức khác do Bộ Thông tin và Truyền thông quyết định theo quy định pháp luật. 
+Thông báo đăng ký dịch vụ thành công đến người sử dụng dịch vụ bao gồm 
+các thông tin sau: Thuê bao đã đăng ký thành công [ tên dịch vụ vừa đăng ký]; mã, 
+số viễn thông để cung cấp dịch vụ; chu kỳ cước, giá cước; cách hủy; tổng đài hỗ 
+trợ tư vấn người sử dụng dịch vụ. 
+8. Bảo đảm cho người sử dụng khả năng từ chối dịch vụ; hủy dịch vụ; tra cứu 
+lịch sử các giao dịch trừ cước trong  vòng 180 ngày kể từ ngày đăng ký; truy vấn 
+
+===PAGE 23===
+ 
+24 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+miễn phí các dịch vụ thông tin đã đăng ký bằng các hình thức phù hợp (nhắn tin tới 
+số dịch vụ, gọi điện đến tổng đài hỗ trợ hoặc truy cập vào trang thông tin điện tử 
+cung cấp thông tin của doanh nghiệp và các hìn h thức khác). Trường hợp thuê bao 
+đã yêu cầu hủy dịch vụ, tổ chức, doanh nghiệp cung cấp dịch vụ phải gửi ngay tin 
+nhắn thông báo về kết quả xử lý. 
+9. Bảo đảm cung cấp dịch vụ theo đúng các yêu cầu của người sử dụng đã 
+đăng ký; không thực hiện việc thu tiề n dịch vụ đối với các dịch vụ nội dung thông 
+tin mà người sử dụng không nhận được hoặc nhận được nội dung thông tin không 
+đầy đủ, hoàn chỉnh theo đúng yêu cầu đã đăng ký. 
+10. Nội dung quảng cáo về dịch vụ phải bao gồm các thông tin sau: Tên dịch 
+vụ, cách đăng ký, chu kỳ cước, giá cước, cách từ chối, tổng đài hỗ trợ tư vấn người 
+sử dụng dịch vụ. Việc quảng cáo qua tin nhắn, thư điện tử, cuộc gọi phải tuân thủ 
+theo quy định của pháp luật về chống tin nhắn rác, thư điện tử rác, cuộc gọi rác. 
+11. Lưu trữ tối th iểu 12 tháng đối với các nội dung thông tin đã cung cấp; lưu 
+trữ tối thiểu 24 tháng dữ liệu xử lý các yêu cầu đăng ký, yêu cầu ngừng cung cấp 
+dịch vụ, chi tiết cước, thông tin khiếu nại của người sử dụng và kết quả xử lý khiếu 
+nại kể từ ngày tiếp nhận, xử lý để phục vụ cho công tác thanh tra, kiểm tra theo 
+quy định. 
+12. Tổ chức, doanh nghiệp cung cấp dịch vụ nội dung thông tin trên mạng viễn 
+thông di động phải có tổng đài hỗ trợ, tư vấn cho người sử dụng dịch vụ. 
+13. Thực hiện các quy định về bảo đảm an toà n, an ninh thông tin và chịu sự 
+kiểm soát của các cơ quan có thẩm quyền theo quy định của pháp luật. 
+14. Thực hiện các biện pháp bảo vệ quyền và lợi ích hợp pháp của người sử 
+dụng dịch vụ theo quy định của pháp luật. 
+15. Thực hiện chế độ báo cáo, thống kê định kỳ, đột xuất theo quy định tại 
+Điều 77 Nghị định này và chịu sự thanh tra, kiểm tra của Bộ Thông tin và Truyền 
+thông, các cơ quan có thẩm quyền. 
+Điều 75. Trách nhiệm của doanh nghiệp viễn thông di động 
+Doanh nghiệp viễn thông di động khi hợp tác với t ổ chức, doanh nghiệp cung 
+cấp dịch vụ nội dung thông tin trên mạng viễn thông di động theo quy định tại 
+khoản 2 Điều 70 Nghị định này có trách nhiệm sau đây: 
+
+===PAGE 24===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 25 
+ 
+1. Thực hiện hợp tác kinh doanh với tổ chức, doanh nghiệp cung cấp dịch vụ 
+nội dung thông tin trên mạng viễn thông di động theo nguyên tắc sau đây: 
+a) Thông qua thương lượng trên cơ sở bảo đảm công bằng, hợp lý, phù hợp với 
+quyền, lợi ích của các bên tham gia; 
+b) Sử dụng hiệu quả tài nguyên viễn thông và cơ sở hạ tầng viễn thông; 
+c) Bảo đảm hoạt động an toàn, thống nhất của các mạng viễn thông; 
+d) Bảo đảm quyền, lợi ích hợp pháp của người sử dụng dịch vụ viễn thông và 
+tổ chức, cá nhân có liên quan; bảo đảm bí mật thông tin của người sử dụng theo 
+quy định của pháp luật; 
+đ) Cung cấp kết nối cho các tổ chứ c, doanh nghiệp cung cấp dịch vụ nội dung 
+thông tin trên mạng viễn thông di động về mặt kỹ thuật trên mạng viễn thông và 
+thực hiện kết nối kịp thời, hợp lý, công khai, minh bạch; 
+e) Không phân biệt đối xử về kết nối, giá cước, thanh toán, tiêu chuẩn, quy 
+chuẩn kỹ thuật viễn thông, chất lượng mạng và dịch vụ viễn thông. 
+2. Chịu trách nhiệm kiểm soát quy trình, hệ thống cung cấp dịch vụ của các 
+tổ chức, doanh nghiệp cung cấp dịch vụ nội dung trên mạng viễn thông di động, 
+đảm bảo việc đăng ký, xác thực, từ chố i, gia hạn, hủy dịch vụ, thu cước và thông 
+báo tới người sử dụng dịch vụ phải tuân thủ theo đúng quy định của pháp luật có 
+liên quan. 
+3. Chịu trách nhiệm đảm bảo chỉ kết nối để cung cấp dịch vụ với các dịch vụ 
+nội dung tuân thủ theo đúng quy định của pháp luật có liên quan. 
+4. Tạm ngừng, ngừng kết nối hoặc từ chối kết nối với doanh nghiệp cung cấp 
+dịch vụ nội dung thông tin trên mạng viễn thông di động trong các trường hợp sau: 
+a) Doanh nghiệp viễn thông di động phát hiện hoặc đã xác thực các thông tin 
+phản ánh về các nội dung, dịch vụ vi phạm quy định tại Điều 8 Luật An ninh 
+mạng; 
+b) Có yêu cầu bằng văn bản, điện thoại, hoặc qua phương tiện điện tử của Bộ 
+Thông tin và Truyền thông (Cục Viễn thông), Bộ Công an (Cục An ninh mạng và 
+phòng, chống tội phạm sử dụ ng công nghệ cao). Thời gian thực hiện chậm nhất 
+là 24 giờ kể từ khi có yêu cầu; 
+
+===PAGE 25===
+ 
+26 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+c) Có Quyết định đình chỉ hoạt động kết nối để cung cấp dịch vụ nội dung 
+thông tin trên mạng viễn thông di động, Quyết định thu hồi Giấy chứng nhận 
+đăng ký kết nối theo quy đị nh tại Nghị định này hoặc có Quyết định thu hồi hoặc 
+thông báo chấp nhận hoàn trả mã, số viễn thông theo quy định của pháp luật về 
+viễn thông; 
+d) Tổ chức, doanh nghiệp cung cấp dịch vụ nội dung thông tin trên mạng viễn 
+thông di động không có Giấy chứng nhận hoặc Giấy chứng nhận đã hết hiệu lực. 
+5. Các doanh nghiệp viễn thông di động thống nhất sử dụng mã, số viễn thông 
+phù hợp quy hoạch về kho số để người sử dụng dịch vụ truy vấn thông tin các dịch 
+vụ nội dung thông tin đang sử dụng. Nội dung thông tin cung  cấp cho người sử 
+dụng bao gồm: Tên dịch vụ; mã, số viễn thông cung cấp dịch vụ; chu kỳ cước; giá 
+cước; cách hủy dịch vụ. 
+6. Gửi thông báo tới thuê bao vào ngày 25 hàng tháng để thông tin tới người sử 
+dụng về dịch vụ nội dung đang sử dụng (bao gồm các thôn g tin: Tên dịch vụ; gói 
+dịch vụ đang đăng ký; giá cước dịch vụ) qua tin nhắn ngắn SMS hoặc các phương 
+thức khác do Bộ Thông tin và Truyền thông quyết định. 
+7. Phối hợp với các tổ chức, doanh nghiệp cung cấp dịch vụ nội dung thông tin 
+trên mạng viễn thông d i động để giải quyết khiếu nại, tranh chấp về giá cước, chất 
+lượng dịch vụ cho người sử dụng theo quy định tại Điều 76 Nghị định này. 
+8. Thực hiện chế độ báo cáo, thống kê định kỳ, đột xuất theo quy định tại 
+Điều 77 Nghị định này và chịu sự thanh tra, kiểm  tra của Bộ Thông tin và Truyền 
+thông, cơ quan có thẩm quyền.  
+Điều 76. Giải quyết khiếu nại về cung cấp dịch vụ nội dung thông tin trên 
+mạng viễn thông di động 
+1. Doanh nghiệp viễn thông di động và tổ chức, doanh nghiệp cung cấp dịch 
+vụ nội dung thông tin trên mạng viễn thông di động có nghĩa vụ thực hiện trình tự, 
+thủ tục tiếp nhận, xử lý khiếu nại theo các quy định của pháp luật về bảo vệ người 
+tiêu dùng và quy định pháp luật có liên quan. 
+2. Trường hợp phát hiện thu phí sử dụng dịch vụ nội dung sai quy đ ịnh, tổ 
+chức, doanh nghiệp cung cấp dịch vụ nội dung và doanh nghiệp viễn thông có 
+trách nhiệm hoàn trả lại phần phí dịch vụ đã thu sai cho người sử dụng dịch vụ 
+trong vòng 30 ngày kể từ khi có kết quả giải quyết khiếu nại. 
+
+===PAGE 26===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 27 
+ 
+Điều 77. Chế độ báo cáo 
+1. Tổ chức, doanh nghiệp cung cấp dịch vụ nội dung thông tin trên mạng viễn 
+thông di động thực hiện chế độ báo cáo định kỳ trước ngày 25 tháng 11 hàng năm 
+theo Mẫu số 61 tại Phụ lục ban hành kèm theo Nghị định này, hoặc báo cáo đột 
+xuất khi có yêu cầu bằng văn bản , điện thoại, hoặc qua phương tiện điện tử của 
+Bộ Thông tin và Truyền thông (Cục Viễn thông) và Sở Thông tin và Truyền 
+thông địa phương.  
+Báo cáo nộp trực tiếp, qua đường bưu chính, qua phương tiện điện tử hoặc 
+dịch vụ công trực tuyến tới Bộ Thông tin và Tr uyền thông (Cục Viễn thông) và Sở 
+Thông tin và Truyền thông địa phương nơi doanh nghiệp đăng ký trụ sở hoạt động. 
+2. Tổ chức, doanh nghiệp viễn thông di động thực hiện chế độ báo cáo định kỳ 
+01 năm một lần và báo cáo đột xuất theo yêu cầu của cơ quan có thẩm quyền. 
+Tổ chức, doanh nghiệp viễn thông di động thực hiện chế độ báo cáo định kỳ 
+trước ngày 25 tháng 11 hàng năm theo Mẫu số 62 tại Phụ lục ban hành kèm theo 
+Nghị định này hoặc báo cáo đột xuất khi có yêu cầu bằng văn bản, điện thoại hoặc 
+qua phương tiệ n điện tử của Bộ Thông tin và Truyền thông (Cục Viễn thông) và 
+Sở Thông tin và Truyền thông địa phương. 
+Tổ chức, doanh nghiệp gửi báo cáo đến trực tiếp hoặc thông qua dịch vụ bưu 
+chính tới Bộ Thông tin và Truyền thông (Cục Viễn thông) và Sở Thông tin và 
+Truyền thông địa phương nơi doanh nghiệp đăng ký trụ sở hoạt động hoặc nộp trên 
+Hệ thống dịch vụ công trực tuyến của Bộ Thông tin và Truyền thông và Sở Thông 
+tin và Truyền thông địa phương. 
+Trường hợp nộp trên hệ thống dịch vụ công trực tuyến, phải có chữ ký  số theo 
+quy định của pháp luật về giao dịch điện tử. 
+Điều 78. Quyền và nghĩa vụ của người sử dụng dịch vụ nội dung thông tin 
+trên mạng viễn thông di động 
+Người sử dụng dịch vụ nội dung thông tin trên mạng viễn thông di động có 
+quyền và nghĩa vụ sau đây: 
+1. Được sử dụng các dịch vụ nội dung thông tin trên mạng viễn thông di động 
+trừ các dịch vụ bị cấm theo quy định của pháp luật. 
+2. Tuân thủ quy định sử dụng dịch vụ nội dung thông tin trên mạng viễn thông 
+di động và dịch vụ viễn thông theo quy định của pháp luật. 
+
+===PAGE 27===
+ 
+28 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+3. Tự kiểm tra và chịu trách nhiệm về việc quyết định sử dụng dịch vụ của mình. 
+4. Có quyền khiếu nại, tố cáo khi chất lượng dịch vụ,  nội dung dịch vụ không 
+đúng với nội dung dịch vụ mà tổ chức, doanh nghiệp cung cấp dịch vụ nội dung 
+thông tin trên mạng viễn thông di động đã công bố, thỏa thuận. 
+ 
+Chương V 
+GIÁM SÁT THÔNG TIN VÀ NGĂN CHẶN, GỠ BỎ THÔNG TIN  
+VI PHẠM PHÁP LUẬT TRÊN MẠNG 
+ 
+Điều 79. Giám sát thông tin trên mạng 
+1. Bộ Thông tin và Truyền thông, Bộ Công an triển khai hệ thống kỹ thuật 
+phục vụ giám sát, thu thập thông tin trên mạng trong phạm vi cả nước. 
+2. Doanh nghiệp viễn thông cung cấp dịch vụ Internet, doanh nghiệp cung cấp 
+dịch vụ Internet có trách nhiệm sau đây: 
+a) Triển khai các biện pháp giám sát, thu thập, phát hiện thông tin vi phạm 
+pháp luật trên mạng trên hạ tầng kỹ thuật, ứng dụng của doanh nghiệp theo hướng 
+dẫn, yêu cầu của Bộ Thông tin và Truyền thông, Bộ Công an (đối với các vi phạm 
+về bản quyền, sở hữu trí tuệ thì thực hiện theo Luật Sở hữu trí tuệ và các quy định 
+có liên quan); 
+b) Cung cấp thông tin, dữ liệu liên quan đến thuê bao viễn thông, Internet có 
+dấu hiệu vi phạm pháp luật trên mạng đảm bảo có thể tra cứu, định danh chính xác 
+tổ chức, cá nhân sử dụng dịch vụ theo yêu cầu của Bộ Thông tin và Truyền thông 
+(Cục An toàn thôn g tin) hoặc của Bộ Công an (Cục An ninh mạng và Phòng, 
+chống tội phạm sử dụng công nghệ cao). 
+Điều 80. Ngăn chặn, gỡ bỏ thông tin vi phạm pháp luật trên mạng 
+1. Các bộ, ngành, địa phương trong phạm vi chức năng, nhiệm vụ, quyền hạn 
+của mình có trách nhiệm thực hiện, hoặc phối hợp thực hiện ngăn chặn, xử lý 
+thông tin vi phạm pháp luật trên mạng liên quan tới lĩnh vực, địa bàn quản lý. 
+Trường hợp cần thiết, kịp thời gửi thông tin vi phạm pháp luật trên mạng liên quan 
+tới lĩnh vực, địa bàn quản lý tới Bộ Thông  tin và Truyền thông (Cục Phát thanh, 
+truyền hình và thông tin điện tử), Bộ Công an (Cục An ninh mạng và Phòng, chống 
+tội phạm sử dụng công nghệ cao) để xử lý. 
+
+===PAGE 28===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 29 
+ 
+2. Bộ Thông tin và Truyền thông (Cục An toàn thông tin), Bộ Công an (Cục 
+An ninh mạng và Phòng, chống tội phạm sử dụng công nghệ cao) là đầu mối chỉ 
+đạo và giám sát tuân thủ đối với các doanh nghiệp viễn thông, doanh nghiệp cung 
+cấp dịch vụ Internet, dịch vụ lưu trữ web (hosting), dịch vụ trung tâm dữ liệu (data 
+center) và các doanh nghiệp khác thực hiện ngăn chặn, gỡ bỏ thông tin vi phạm 
+pháp luật trên mạng. 
+3. Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền hình và thông tin 
+điện tử) và Bộ Công an (Cục An ninh mạng và Phòng, chống tội phạm sử dụng 
+công nghệ cao) là đầu mối chỉ đạo các doanh ngh iệp viễn thông, Internet thực hiện 
+từ chối cung cấp hoặc tạm ngừng cung cấp dịch vụ viễn thông, dịch vụ Internet, 
+các dịch vụ khác đối với tổ chức, cá nhân sử dụng dịch vụ để đăng tải thông tin vi 
+phạm pháp luật trên mạng. 
+4. Doanh nghiệp viễn thông, doanh  nghiệp cung cấp dịch vụ Internet, dịch vụ 
+lưu trữ web (hosting), dịch vụ trung tâm dữ liệu (data center) và các doanh nghiệp 
+cung cấp dịch vụ ứng dụng viễn thông có trách nhiệm: 
+a) Thực hiện ngăn chặn, gỡ bỏ các nội dung, dịch vụ, ứng dụng trên mạng vi 
+phạm pháp luật chậm nhất là 24 giờ kể từ khi có yêu cầu bằng văn bản, điện thoại 
+hoặc thư điện tử của Bộ Thông tin và Truyền thông (Cục An toàn thông tin), Bộ 
+Công an (Cục An ninh mạng và Phòng, chống tội phạm sử dụng công nghệ cao); 
+b) Từ chối cung cấp hoặc  tạm ngừng cung cấp dịch vụ viễn thông, dịch vụ 
+Internet, các dịch vụ khác đối với tổ chức, cá nhân sử dụng dịch vụ để đăng tải 
+thông tin vi phạm pháp luật trên mạng theo yêu cầu của Bộ Thông tin và Truyền 
+thông (Cục Phát thanh, truyền hình và thông tin đi ện tử), Bộ Công an (Cục An 
+ninh mạng và Phòng, chống tội phạm sử dụng công nghệ cao); 
+c) Doanh nghiệp viễn thông, doanh nghiệp cung cấp dịch vụ Internet kết nối, 
+nhận yêu cầu điều phối, báo cáo kết quả qua hệ thống kỹ thuật và thực hiện các 
+biện pháp xử lý  khác theo yêu cầu của Bộ Thông tin và Truyền thông (Cục An 
+toàn thông tin), Bộ Công an (Cục An ninh mạng và Phòng, chống tội phạm sử 
+dụng công nghệ cao). 
+5. Doanh nghiệp cung cấp dịch vụ Internet có trách nhiệm: 
+a) Triển khai các giải pháp tre ̂n thiết bị truy cạ ̂p mạng do doanh nghiẹ ̂p 
+cung cấp cho ngûời sử dụng để bảo vệ ngûời sử dụng không truy cập vào 
+
+===PAGE 29===
+ 
+30 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+các nguồn tho ̂ng tin vi phạm pháp luạ ̂t, ngân chận nguy co ̂ mất an toàn 
+thông tin mạng; kết nối, chia sẻ tho ̂ng tin, dữ  liệu với hẹ ̂ thống kỹ thuạ ̂t 
+của Bộ Thông tin và Truyền tho ̂ng (Cục An toàn tho ̂ng tin), Bộ Công an 
+(Cục An ninh mạng và Phòng, chống tội phạm sử dụng công nghệ cao); 
+b) Bộ Thông tin và Truyền tho ̂ng hûớng dẫn và điều phối các doanh  
+nghiệp triển khai các giải pháp theo quy định tại điểm a khoản 5 Điều này. 
+Điều 81. Trách nhiệm của doanh nghiệp khi giao kết hợp đồng cung cấp, 
+sử dụng dịch vụ Internet với các tổ chức, cá nhân trong và ngoài nước 
+Doanh nghiệp cung cấp dịch vụ Internet, doanh nghiệp cung cấp dịch vụ đăng 
+ký, duy trì tên miền phải quy định trong hợp đồng cung cấp, sử dụng dịch vụ 
+Internet, đăng ký, duy trì tên miền nội dung yêu cầu tổ chức, cá nhân trong và 
+ngoài nước tham gia giao kết hợp đồng sử dụng dịch vụ có trách nhiệm: 
+1. Không cung cấp, đăng tải, lưu giữ, truyền đưa các thông tin có nội dung vi 
+phạm pháp luật khi sử dụng dịch vụ Internet. 
+2. Thực hiện ngăn chặn, gỡ bỏ các nội dung vi phạm pháp luật khi có yêu cầu 
+của cơ quan nhà nước có thẩm quyền theo quy định của pháp luật. 
+ 
+Chương VI 
+ĐIỀU KHOẢN CHUYỂN TIẾP VÀ THI HÀNH 
+ 
+Điều 82. Điều khoản chuyển tiếp 
+1. Giấy phép thiết lập trang thông tin điện tử tổng hợp đã được cấp theo Nghị 
+định số 72/2013/NĐ-CP và Nghị định số 27/2013/NĐ -CP sẽ hết hiệu lực theo thời 
+hạn đã được cấp. 
+Trong vòng 90 ngày kể từ ngày Nghị định này có hiệu lực, cơ quan, tổ chức, 
+doanh nghiệp đã được cấp Giấy phép thiết lập trang thông tin điện tử tổng hợp 
+nếu có hoạt động liên kết với cơ quan báo chí theo quy định tại điểm c khoản 5 
+Điều 24 Nghị định này thì phải nộp hồ sơ đề nghị cấp lại giấy phép thiết lập trang 
+thông tin điện tử tổng hợp theo quy định tại khoản 1 Điều 28 và khoản 1 Điều 29 
+Nghị định này. 
+2. Giấy phép cung cấp dịch vụ mạng xã hội đã được cấp theo Nghị định  
+số 72/2013/NĐ-CP và Nghị định số 27/2013/NĐ -CP sẽ hết hiệu lực theo thời hạn 
+đã được cấp. 
+
+===PAGE 30===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 31 
+ 
+Trong vòng 90 ngày kể từ ngày Nghị định này có hiệu lực, cơ quan, tổ chức, 
+doanh nghiệp đã được cấp Giấy phép cung cấp dịch vụ mạng xã hội phải tiến hành 
+rà soát và báo cáo Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền hình và 
+thông tin điện tử) về tổng số lượt truy cập từ Việt Nam (total visits) thường xuyên 
+trong 01 tháng (số liệu thống kê trong thời gian 06 tháng liên tục) và số lượng 
+người sử dụng thường xuyên trong tháng trên mạng xã hội do mình quản lý. 
+3. Giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng, Giấy chứng nhận 
+cung cấp dịch vụ trò chơi điện tử G2, G3, G4 trên mạng đã được cấp theo Nghị 
+định số 72/2013/NĐ-CP và Nghị định số 27/2018/NĐ -CP sẽ hết hiệu lực t heo thời 
+hạn đã được cấp. 
+4. Quyết định phê duyệt nội dung, kịch bản trò chơi điện tử G1 trên mạng đã 
+được cấp sẽ hết hiệu lực khi Giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên 
+mạng đã cấp cho doanh nghiệp theo Nghị định số 72/2013/NĐ -CP và Nghị định  
+số 27/2018/NĐ-CP hết hiệu lực. 
+5. Trong vòng 90 ngày kể từ ngày Nghị định này có hiệu lực, các doanh nghiệp 
+đã được cấp Quyết định phê duyệt nội dung, kịch bản trò chơi điện tử trên mạng 
+theo quy định tại Nghị định số 72/2013/NĐ -CP và Nghị định số 27/2018 /NĐ-CP 
+phải tiến hành rà soát, thống kê và báo cáo Bộ Thông tin và Truyền thông (Cục 
+Phát thanh, truyền hình và thông tin điện tử) về các trò chơi đang phát hành (danh 
+sách và số lượng trò chơi đã được cấp phép kèm theo thông tin về trò chơi gồm: 
+Tên trò c hơi, phân loại độ tuổi, nguồn gốc trò chơi, phạm vi, phương thức cung 
+cấp dịch vụ; danh sách và số lượng trò chơi đã dừng phát hành). 
+6. Trong vòng 90 ngày kể từ ngày Nghị định này có hiệu lực, các doanh nghiệp 
+đã được cấp Quyết định phê duyệt nội dung, kị ch bản trò chơi điện tử trên mạng 
+theo quy định tại Thông tư liên tịch số 60/2006/TTLT -BVHTT-BBCVT-BCA 
+ngày 01 tháng 6 năm 2006 của liên Bộ Văn hóa - Thông tin, Bộ Bưu chính, Viễn 
+thông và Bộ Công an về quản lý trò chơi trực tuyến tiến hành rà soát, thống kê các 
+trò chơi đang phát hành và thực hiện thủ tục đề nghị cấp Quyết định phát hành trò 
+chơi điện tử G1 trên mạng theo quy định tại Điều 43, Điều 44 Nghị định này. 
+Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền hình và thông tin điện 
+tử) tiến hành t hẩm định và cấp lại Quyết định đối với những trò chơi điện tử G1 
+trên mạng đáp ứng các điều kiện theo quy định hoặc có văn bản thông báo dừng 
+phát hành đối với những trò chơi điện tử G1 trên mạng không đáp ứng các điều 
+kiện quy định tại Điều 43 Nghị định này. 
+
+===PAGE 31===
+ 
+32 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Trong thời hạn 90 ngày kể từ ngày có văn bản thông báo dừng phát hành của 
+Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền hình và thông tin điện tử) 
+thì doanh nghiệp phải dừng phát hành trò chơi. 
+7. Giấy xác nhận thông báo cung cấp dịch vụ trò chơ i điện tử G2, G3, G4 trên 
+mạng đã được cấp sẽ hết hiệu lực khi Giấy chứng nhận cung cấp dịch vụ trò chơi 
+điện tử G2, G3, G4 trên mạng đã cấp cho doanh nghiệp theo Nghị định số 
+72/2013/NĐ-CP và Nghị định số 27/2018/NĐ-CP hết hiệu lực. 
+8. Trong vòng 90 ngày kể từ ngày Nghị định này có hiệu lực, các doanh nghiệp 
+đã được cấp Giấy chứng nhận cung cấp dịch vụ trò chơi điện tử G2, G3, G4 trên 
+mạng theo quy định tại Nghị định số 72/2013/NĐ-CP và Nghị định số 27/2018/NĐ-CP 
+phải tiến hành rà soát, thống kê và báo cáo  Sở Thông tin và Truyền thông địa 
+phương nơi doanh nghiệp đăng ký trụ sở hoạt động về các trò chơi đang phát hành 
+(danh sách và số lượng trò chơi đã được cấp phép kèm theo thông tin về trò chơi 
+gồm: Tên trò chơi, phân loại độ tuổi, nguồn gốc trò chơi, loại  hình trò chơi cung 
+cấp (G2, G3, G4), phạm vi, phương thức cung cấp dịch vụ ); danh sách và số lượng 
+trò chơi đã dừng phát hành. 
+9. Giấy chứng nhận đăng ký cung cấp dịch vụ nội dung thông tin trên mạng 
+viễn thông di động sẽ hết hiệu lực sau 90 ngày kể từ th ời điểm Nghị định này có 
+hiệu lực. Để tiếp tục cung cấp dịch vụ theo quy định tại khoản 2 Điều 70 Nghị định 
+này, các tổ chức, doanh nghiệp đã được cấp Giấy chứng nhận đăng ký cung cấp 
+dịch vụ nội dung thông tin trên mạng viễn thông di động phải thực hiện t hủ tục cấp 
+Giấy chứng nhận đăng ký kết nối để cung cấp dịch vụ nội dung thông tin trên 
+mạng viễn thông di động theo quy định tại Điều 71 Nghị định này. 
+10. Trong vòng 90 ngày kể từ ngày Nghị định này có hiệu lực, tổ chức,  doanh 
+nghiệp, cá nhân nước ngoài cung cấp thông tin xuyên biên giới vào Việt Nam và tổ 
+chức, doanh nghiệp cung cấp dịch vụ mạng xã hội trong nước thực hiện xác thực 
+những tài khoản đang hoạt động của người sử dụng dịch vụ mạng xã hội theo quy 
+định tại điểm e khoản 3 Điều 23 và điểm b khoản 3 Điều 27 Nghị định này. 
+11. Sau 90 ngày kể từ ngày Nghị định này có hiệu lực, nếu các cơ quan, tổ 
+chức, doanh nghiệp , cá nhân không thực hiện theo quy định tại khoản 1, khoản 2, 
+khoản 5, khoản 6, khoản 8, khoản 10 Điều này thì sẽ bị xử lý theo quy định c ủa 
+pháp luật. 
+12. Đối với hồ sơ hợp lệ của cơ quan, tổ chức, doanh nghiệp, cá nhân đã nộp 
+cho cơ quan có thẩm quyền đề nghị cấp Giấy phép/Giấy chứng nhận/Quyết định/  
+
+===PAGE 32===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 33 
+ 
+Giấy xác nhận nhưng đến ngày Nghị định này có hiệu lực thi hành chưa được cấp 
+Giấy phép/Giấy chứng nhận/Quyết định/Giấy xác nhận thì tiếp tục thực hiện theo 
+quy định tại Nghị định số 72/2013/NĐ -CP ngày 15 tháng 7 năm 2013, Nghị định 
+số 27/2018/NĐ-CP ngày 01 tháng 3 năm 2018, Điều 2 Nghị định số 150/2018/NĐ-CP 
+ngày 07 tháng 11 năm 2018 của Chính  phủ, trừ trường hợp các bên lựa chọn áp 
+dụng quy định của Nghị định này.  
+Điều 83. Hiệu lực thi hành 
+1. Nghị định này có hiệu lực thi hành từ ngày 25 tháng 12 năm 2024. 
+2. Bãi bỏ các quy định sau: 
+a) Nghị định số 72/2013/NĐ -CP ngày 15 tháng 7 năm 2013 của  Chính phủ về 
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; 
+b) Nghị định số 27/2018/NĐ-CP ngày 01 tháng 3 năm 2018 của Chính phủ sửa 
+đổi, bổ sung một số điều của Nghị định số 72/2013/NĐ-CP ngày 15 tháng 7 năm 2013 
+của Chính phủ về quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; 
+c) Điều 2 Nghị đ ịnh số 150/2018/NĐ -CP ngày 07 tháng 11 năm 2018 của 
+Chính phủ sửa đổi một số Nghị định liên quan đến điều kiện đầu tư kinh doanh và 
+thủ tục hành chính trong lĩnh vực thông tin và truyền thông. 
+Điều 84. Tổ chức thực hiện 
+1. Bộ trưởng Bộ Thông tin và Truyền thông chịu trách nhiệm hướng dẫn, kiểm 
+tra việc thi hành Nghị định này. 
+2. Bộ trưởng Bộ Thông tin và Truyền thông ban hành Thông tư hướng dẫn chi 
+tiết các nội dung quy định tại Điều 9, khoản 2 Điều 11, Điều 12, Điều 13, Điều 14, 
+Điều 15, Điều 16, Điều 17, Điều 19 Nghị định này. 
+3. Các Bộ trưởng, Thủ trưởng cơ quan ngang bộ, Thủ trưởng cơ quan thuộc 
+Chính phủ, Chủ tịch Ủy ban nhân dân các cấp chịu trách nhiệm thi hành Nghị 
+định này./. 
+ 
+ TM. CHÍNH PHỦ 
+KT. THỦ TƯỚNG 
+PHÓ THỦ TƯỚNG 
+ 
+Hồ Đức Phớc 
+ 
+
+===PAGE 33===
+ 
+34 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Phụ lục 
+(Kèm theo Nghị định số 147/2024/NĐ-CP  
+ngày 09 tháng 11 năm 2024 của Chính phủ) 
+ 
+Mẫu số 01 Bản khai đăng ký chuyển giao Tên miền dùng chung cấp cao nhất 
+mới (New gTLD) với ICANN 
+Mẫu số 02 Báo cáo cung cấp dịch vụ đăng ký, duy trì tên miền quốc tế tại  
+Việt Nam 
+Mẫu số 03 Đơn đề nghị cung cấp dịch vụ đăng ký, duy trì tên miền quốc gia 
+Việt Nam “.vn” 
+Mẫu số 04 Kế hoạch kỹ thuật nhà đăng ký tên miền quốc gia Việt Nam “.vn” 
+Mẫu số 05 
+Các nội dung cần được quy định trong hợp đồng cung cấp dịch vụ 
+đăng ký, duy trì t ên miền quốc gia Việt Nam “.vn” ký giữa Trung 
+tâm Internet Việt Nam và doanh nghiệp đề nghị cung cấp dịch vụ 
+đăng ký, duy trì tên miền quốc gia Việt Nam “.vn” 
+Mẫu số 06 Đơn đề nghị cấp giấy phép hoạt động Tổ chức quản lý tên miền 
+dùng chung cấp cao nhất mới tại Việt Nam (New gTLD Registry) 
+Mẫu số 07 Bản khai đăng ký địa chỉ Internet (hoặc địa chỉ Internet và số hiệu 
+mạng) 
+Mẫu số 08 Mẫu Quyết định cấp địa chỉ Internet 
+Mẫu số 09 Báo cáo hoạt động cung cấp thông tin xuyên biên giới tại Việt Nam 
+Mẫu số 10 Thông báo thông tin liên hệ của tổ chức, cá nhân nước ngoài cung 
+cấp thông tin xuyên biên giới vào Việt Nam 
+Mẫu số 11 Giấy xác nhận thông báo thông tin liên hệ của tổ chức, cá nhân 
+nước ngoài cung cấp thông tin xuyên biên giới vào Việt Nam 
+Mẫu số 12 Thông báo thông tin liên hệ của tài khoản mạng xã hội/trang cộng 
+đồng/kênh nội dung/nhóm cộng đồng của cơ quan báo chí 
+Mẫu số 13 
+Giấy xác nhận thông báo thông tin liên hệ của tài khoản mạng  xã 
+hội/trang cộng đồng/kênh nội dung/nhóm cộng đồng của cơ quan 
+báo chí 
+
+===PAGE 34===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 35 
+ 
+Mẫu số 14 Báo cáo tình hình thực hiện Giấy phép thiết lập trang thông tin điện 
+tử tổng hợp 
+Mẫu số 15 Báo cáo tình hình thực hiện Giấy phép cung cấp dịch vụ mạng 
+xã hội  
+Mẫu số 16 Đơn đề nghị cấp Giấy phép thiết lập trang thông tin điện tử tổng hợp 
+Mẫu số 17 Đơn đề nghị cấp Giấy phép cung cấp dịch vụ mạng xã hội (kèm 
+theo Cam kết thực hiện giấy phép cung cấp dịch vụ mạng xã hội) 
+Mẫu số 18 Giấy phép thiết lập trang thông tin điện tử tổng hợp 
+Mẫu số 19 Giấy phép cung cấp dịch vụ mạng xã hội 
+Mẫu số 20 Thông báo cung cấp dịch vụ mạng xã hội 
+Mẫu số 21 Giấy xác nhận thông báo cung cấp dịch vụ mạng xã hội 
+Mẫu số 22 Đơn đề nghị sửa đổi, bổ sung Giấy phép thiết lập trang thông tin 
+điện tử tổng hợp 
+Mẫu số 23 Đơn đề nghị sửa đổi, bổ sung Giấy phép cung cấp d ịch vụ mạng  
+xã hội 
+Mẫu số 24 Đơn đề nghị sửa đổi, bổ sung Giấy xác nhận thông báo cung cấp 
+dịch vụ mạng xã hội 
+Mẫu số 25 Đơn đề nghị gia hạn Giấy phép thiết lập trang thông tin điện tử  
+tổng hợp 
+Mẫu số 26 Đơn đề nghị gia hạn Giấy phép cung cấp dịch vụ mạng xã hội 
+Mẫu số 27 Đơn đề nghị cấp lại Giấy phép thiết lập trang thông tin điện tử  
+tổng hợp 
+Mẫu số 28 Đơn đề nghị cấp lại Giấy phép cung cấp dịch vụ mạng xã hội 
+Mẫu số 29 Đơn đề nghị cấp Giấy phép cung cấp dịch vụ trò chơi điện tử G1  
+trên mạng 
+Mẫu số 30 Giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng 
+Mẫu số 31 Đơn đề nghị sửa đổi, bổ sung Giấy phép cung cấp dịch vụ trò chơi 
+điện tử G1 trên mạng 
+Mẫu số 32 Đơn đề nghị gia hạn Giấy phép cung cấp dịch vụ trò chơi điện tử G1 
+trên mạng 
+
+===PAGE 35===
+ 
+36 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 33 Đơn đề nghị cấp lại Giấy phép cung cấp dịch vụ trò chơi điện tử G1 
+trên mạng 
+Mẫu số 34 Đơn đề nghị cấp Quyết định phát hành trò chơi điện tử G1 trên mạng 
+Mẫu số 35 Quyết định phát hành trò chơi điện tử G1 trên mạng 
+Mẫu số 36 Đơn đề nghị sửa đổi, bổ sung  Quyết định phát hành trò chơi điện tử 
+G1 trên mạng 
+Mẫu số 37 Đơn đề nghị cấp lại Quyết định phát hành trò chơi điện tử G1 trên mạng 
+Mẫu số 38 Đơn đề nghị cấp giấy chứng nhận cung cấp dịch vụ trò chơi điện tử 
+G2, G3, G4 trên mạng 
+Mẫu số 39 Giấy chứng nh ận cung cấp dịch vụ trò chơi điện tử G2, G3, G4 
+trên mạng  
+Mẫu số 40 Đơn đề nghị sửa đổi, bổ sung Giấy chứng nhận cung cấp dịch vụ trò 
+chơi điện tử G2, G3, G4 trên mạng 
+Mẫu số 41 Đơn đề nghị gia hạn Giấy chứng nhận cung cấp dịch vụ trò chơi  
+điện tử G2, G3, G4 trên mạng 
+Mẫu số 42 Đơn đề nghị cấp lại Giấy chứng nhận cung cấp dịch vụ trò chơi điện 
+tử G2, G3, G4 trên mạng 
+Mẫu số 43 Tờ khai thông báo phát hành trò chơi điện tử G2, G3, G4 trên mạng 
+Mẫu số 44 Giấy xác nhận thông báo phát hành trò chơi điện tử G2, G3, G4 trên 
+mạng 
+Mẫu số 45 Tờ khai thông báo bổ sung thông tin trong quá trình cung cấp trò 
+chơi điện tử G2, G3, G4 trên mạng 
+Mẫu số 46 Đơn đề nghị cấp lại Giấy xác nhận thông báo phát hành trò chơi 
+điện tử G2, G3, G4 trên mạng 
+Mẫu số 47 Báo cáo hoạt động cung cấp dịch vụ trò chơi điện tử trên mạng 
+Mẫu số 48 Báo cáo hoạt động quản lý, cung cấp và sử dụng dịch vụ trò chơi 
+điện tử trên mạng tại địa phương 
+Mẫu số 49 Báo cáo tình hình hoạt động của các điểm truy nhập Internet công 
+cộng và điểm cung cấp dịch vụ trò chơi điện tử công cộng 
+
+===PAGE 36===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 37 
+ 
+Mẫu số 50 Giấy chứng nhận đủ điều kiện hoạt động điểm cung cấp dịch vụ trò 
+chơi điện tử công cộng 
+Mẫu số 51 
+(a/b) 
+Đơn đề nghị cấp giấy chứng nhận đủ điều kiện hoạt động điểm cung 
+cấp dịch vụ trò chơi điện tử công cộng (áp dụng cho chủ điểm là cá 
+nhân hoặc chủ điểm là tổ chức, doanh nghiệp) 
+Mẫu số 52 
+(a/b) 
+Đơn đề nghị sửa đổi, bổ sung giấy chứng nhận đủ điều kiện hoạt 
+động điểm cung cấp dịch vụ trò chơi điện tử công cộng (áp dụng 
+cho chủ điểm là cá nhân hoặc chủ điểm là tổ chức, doanh nghiệp) 
+Mẫu số 53 
+(a/b) 
+Đơn đề nghị gia hạn giấy chứng nhận đủ điều kiện hoạt động điểm 
+cung cấp dịch vụ trò chơi điện tử công cộng (áp dụng cho chủ điểm 
+là cá nhân hoặc chủ điểm là tổ chức, doanh nghiệp) 
+Mẫu số 54 Quyết định gia hạn giấy  chứng nhận đủ điều kiện hoạt động điểm 
+cung cấp dịch vụ trò chơi điện tử công cộng 
+Mẫu số 55 
+(a/b) 
+Đơn đề nghị cấp lại giấy chứng nhận đủ điều kiện hoạt động điểm 
+cung cấp dịch vụ trò chơi điện tử công cộng (áp dụng cho chủ điểm 
+là cá nhân hoặc chủ điểm là tổ chức, doanh nghiệp) 
+Mẫu số 56 Đơn đề nghị cấp Giấy chứng nhận đăng ký kết nối để cung cấp dịch 
+vụ nội dung thông tin trên mạng viễn thông di động 
+Mẫu số 57 Giấy chứng nhận đăng ký kết nối để cung cấp dịch vụ nội dung 
+thông tin trên mạng viễn thông di động 
+Mẫu số 58 Đơn đề nghị sửa đổi, bổ sung Giấy chứng nhận đăng ký kết nối để 
+cung cấp dịch vụ nội dung thông tin trên mạng viễn thông di động 
+Mẫu số 59 Đơn đề nghị gia hạn giấy chứng nhận đăng ký kết nối để cung cấp 
+dịch vụ nội dung thông tin trên mạng viễn thông di động 
+Mẫu số 60 Đơn đề nghị cấp lại Giấy chứng nhận đăng ký kết nối để cung cấp 
+dịch vụ nội dung thông tin trên mạng viễn thông di động 
+Mẫu số 61 Báo cáo hoạt động kết nối để cung cấp dịch vụ nội dung thông tin 
+trên mạng viễn thông di động  
+Mẫu số 62 Báo cáo định kỳ của doanh nghiệp viễn thông di động 
+ 
+ 
+
+===PAGE 37===
+ 
+38 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 01 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+BẢN KHAI ĐĂNG KÝ CHUYỂN GIAO TÊN MIỀN DÙNG CHUNG  
+CẤP CAO NHẤT MỚI (NEW GTLD) VỚI ICANN 
+ 
+Kính gửi: Bộ Thông tin và Truyền thông. 
+  
+1. Thông tin về chủ 
+thể cá nhân đăng ký  
+chuyển giao New gTLD 
+(Trường hợp cá nhân 
+đăng ký) 
+Họ và tên:........................................................................... 
+Ngày sinh:.......................................................................... 
+Số định danh cá nhân hoặc số CMTND hoặc số hộ 
+chiếu:.................................................................................. 
+Địa chỉ:............................................................................... 
+Tỉnh/thành phố:.................................................................. 
+Quốc gia:............................................................................ 
+Số điện thoại:..................................................................... 
+Email:................................................................................. 
+Postcode:............................................................................ 
+2. Thông tin về cơ 
+quan/tổ chức/doanh 
+nghiệp 
+(Trường hợp cơ quan/ 
+tổ chức/doanh nghiệp 
+đăng ký) 
+Tên cơ quan/tổ chức/doanh nghiệp:...................................  
+Mã định danh điện tử của tổ chức:.................................... 
+Mã số doanh nghiệp:.......................................................... 
+Địa chỉ liên hệ:...................................................................  
+Số điện thoại/fax:...............................................................  
+Email:.................................................................................  
+Website:.............................................................................  
+Ghi chú:..............................................................................  
+3. Người đại diện theo 
+pháp luật của cơ quan/ 
+tổ chức/doanh nghiệp 
+(Trường hợp tổ chức/ 
+doanh nghiệp đăng ký) 
+Họ và tên:........................................................................... 
+Chức vụ:............................................................................. 
+Số định danh cá nhân hoặc số CMTND hoặc số hộ 
+chiếu:.................................................................................. 
+Địa chỉ:............................................................................... 
+Tỉnh/thành phố:.................................................................. 
+Số điện thoại:..................................................................... 
+Email:................................................................................. 
+
+===PAGE 38===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 39 
+ 
+4. Đăng ký thông tin 
+về người chịu trách 
+nhiệm chính của cơ 
+quan/tổ chức/doanh 
+nghiệp trong việc 
+quản lý New gTLD 
+(Trường hợp cơ quan/ 
+tổ chức/doanh nghiệp 
+đăng ký) 
+Người chịu trách nhiệm quản lý New gTLD:  
+Họ tên:................................................................................  
+Chức vụ:.............................................................................  
+Địa chỉ liên hệ:...................................................................  
+Số điện thoại/fax:...............................................................  
+Email:.................................................................................  
+Người quản lý kỹ thuật:  
+Họ tên:................................................................................  
+Chức vụ:.............................................................................  
+Địa chỉ liên hệ:...................................................................  
+Số điện thoại/fax:...............................................................  
+Email:.................................................................................  
+5. Thông tin về New 
+TLD có nhu cầu đăng 
+ký với ICANN 
+New gTLD:........................................................................  
+6. Kế hoạch sử dụng 
+New gTLD 
+(Tổ chức mô tả chi tiết kế hoạch sử dụng New gTLD tại 
+đây) 
+7. Tài liệu gửi kèm (1) Thuyết minh về hạ tầng mạng lưới kỹ thuật; hệ thống  
+máy chủ DNS quản lý New gTLD. 
+(2) Dự báo đánh giá tác động xã hội, ảnh hưởng đối với 
+hoạt động Internet Việt Nam khi sử dụng New gTLD tại 
+Việt Nam. 
+8. Thông tin bổ sung   
+Cơ quan, tổ chức, doanh nghiệp, cá nhân cam kết  các thông tin đã cung cấp là 
+hoàn toàn chính xác và tuân thủ các quy định của pháp luật về quản lý và sử dụng 
+tài nguyên Internet. 
+  
+ 
+...., ngày..... tháng..... năm..... 
+XÁC NHẬN CỦA NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+
+===PAGE 39===
+ 
+40 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 02 
+ 
+TÊN NHÀ ĐĂNG KÝ 
+TÊN MIỀN QUỐC TẾ 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+Số:... ....., ngày..... tháng... năm... 
+ 
+BÁO CÁO CUNG CẤP DỊCH VỤ ĐĂNG KÝ, 
+DUY TRÌ TÊN MIỀN QUỐC TẾ TẠI VIỆT NAM 
+ 
+Kính gửi: Trung tâm Internet Việt Nam. 
+ 
+1. Thông tin về cơ quan, tổ chức, doanh nghiệp: 
+- Tên tổ chức, doanh nghiệp................................................................................. 
+- Mã định danh điện tử của tổ chức:..................................................................... 
+- Mã số doanh nghiệp........................................................................................... 
+- Tên giao dịch quốc tế:........................................................................................ 
+- Tên viết tắt:.........................................................................................................  
+- Địa chỉ trụ sở chính:........................................................................................... 
+- Điện thoại:.......................................................................................................... 
+- Fax:.....................................................................................................................  
+- Hộp thư điện tử:..................................................................................................  
+- Website:.............................................................................................................. 
+2. Đầu mối liên hệ 
+- Họ và tên người đại diện theo pháp luật của tổ chức, doanh nghiệp:................. 
+- Chức vụ:............................................................................................................. 
+- Địa chỉ liên hệ:.................................................................................................... 
+- Điện thoại:.......................................................................................................... 
+- Fax:.....................................................................................................................  
+- Hộp thư điện tử:.................................................................................................. 
+3. Thông tin về đối tác ký hợp đồng để cung cấp dịch vụ đăng ký, duy trì tên 
+miền quốc tế tại Việt Nam (chọn ô tương ứng): 
+Là Tổ chức quản lý tên miền và số quốc tế (ICANN).  □ 
+Là Nhà đăng ký tên miền chính thức (accredited registrar) của ICANN.  □ 
+
+===PAGE 40===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 41 
+ 
+- Tên đối tác:.........................................................................................................  
+- Tên viết tắt:......................................................................................................... 
+- Địa chỉ trụ sở chính:........................................................................................... 
+- Điện thoại/Fax:................................................................................................... 
+- Hộp thư điện tử................................................................................................... 
+- Website:..............................................................................................................  
+4. Cam kết 
+Tổ chức, doanh nghiệp cam kết tuân thủ các quy định của pháp luật Việt 
+Nam khi triển khai hoạt động cung cấp dịch vụ đăng ký, duy trì tên miền quốc 
+tế tại Việt Nam.  
+ 
+  XÁC NHẬN CỦA NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+
+===PAGE 41===
+ 
+42 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 03 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+...., ngày..... tháng..... năm..... 
+  
+ĐƠN ĐỀ NGHỊ CUNG CẤP DỊCH VỤ ĐĂNG KÝ, 
+DUY TRÌ TÊN MIỀN QUỐC GIA VIỆT NAM “.VN”  
+Kính gửi: Trung tâm Internet Việt Nam.  
+1. Thông tin về tổ chức, doanh nghiệp: 
+- Tên tổ chức, doanh nghiệp:................................................................................ 
+- Mã định danh điện tử của tổ chức:..................................................................... 
+- Mã số doanh nghiệp:.......................................................................................... 
+- Tên giao dịch quốc tế:........................................................................................ 
+- Tên viết tắt:......................................................................................................... 
+- Địa chỉ trụ sở chính:........................................................................................... 
+- Điện thoại:.......................................................................................................... 
+- Fax:..................................................................................................................... 
+- Email:................................................................................................................. 
+- Website:.............................................................................................................. 
+2. Đầu mối liên hệ 
+- Họ và tên người đại diện theo pháp luật của tổ chức, doanh nghiệp:................. 
+- Chức vụ:............................................................................................................. 
+- Địa chỉ liên hệ:................................................................................................... 
+- Điện thoại:.......................................................................................................... 
+- Fax:..................................................................................................................... 
+- Email:.................................................................................................................. 
+3. Nội dung: Tổ chức, doanh nghiệp có nhu cầu cung cấp dịc h vụ đăng ký, duy 
+trì tên miền quốc gia Việt Nam “.vn”, đề nghị Trung tâm Internet Việt Nam xem 
+xét ký hợp đồng để cung cấp dịch vụ đăng ký, duy trì tên miền quốc gia Việt Nam 
+“.vn” ra cộng đồng. 
+Tổ chức, doanh nghiệp cam kết các thông tin nêu trên là đúng  sự thật và bảo 
+đảm tuân thủ thực hiện hợp đồng Nhà đăng ký tên miền quốc gia Việt Nam “.vn” 
+theo đúng các quy định của pháp luật. 
+  
+  XÁC NHẬN CỦA NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+
+===PAGE 42===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 43 
+ 
+Mẫu số 04 
+KẾ HOẠCH KỸ THUẬT  
+NHÀ ĐĂNG KÝ TÊN MIỀN QUỐC GIA VIỆT NAM “.VN” 
+ 
+1 Thuyết minh chi 
+tiết kỹ thuật 
+- Hạ tầng phòng máy. 
+- Sơ đồ và kiến trúc mạng. 
+- Hệ thống kỹ thuật để triển khai cung cấp dịch vụ đăng 
+ký, duy trì tên miền. Các thành ph ần hệ thống chính (mô 
+tả chức năng, nguyên lý hoạt động và kết nối giữa các 
+thành phần hệ thống). 
+- Hệ thống máy chủ DNS. 
+- Phương án đảm bảo an toàn thông tin, dữ liệu, dự 
+phòng, cung cấp dịch vụ liên tục. 
+- Cam kết chất lượng dịch vụ (SLA) của hệ thống, dịch 
+vụ cung cấp. 
+2 
+Nhân sự triển 
+khai hệ thống và 
+cung cấp dịch vụ 
+- Phương án nhân sự kỹ thuật chuyên trách về quản trị 
+mạng, dịch vụ phù hợp với các giai đoạn xây dựng, phát 
+triển, duy trì hệ thống. 
+- Phương án nhân sự chuyên trách về quản lý tên miền. 
+3 
+Kế hoạch và mô 
+hình cung cấp 
+dịch vụ đăng ký, 
+duy trì tên miền 
+quốc gia Việt 
+Nam “.vn” 
+- Hình thức tiếp nhận đăng ký tên miền. 
+- Website cung cấp dịch vụ; các biểu mẫu, quy trình, nội 
+dung thông tin trên website. 
+- Kế hoạch quản lý chăm sóc khách hàng (liên lạc khách 
+hàng khi cần thiết, theo dõi nhắc nhở tên miền đến hạn 
+duy trì...) 
+- Kế hoạch, cách thức quản lý hồ sơ và thông tin, dữ liệu 
+tên miền. 
+- Thuyết minh về công tác xử lý khiếu nại về chất lượng 
+cung cấp dịch vụ và hỗ trợ, đảm bảo quyền lợi khách hàng. 
+4 
+Kinh nghiệm triển 
+khai dịch vụ đăng 
+ký, duy trì tên miền 
+và các dịch vụ liên 
+quan 
+- Danh mục các tên miền quốc tế mà tổ chức, doanh 
+nghiệp đang cung cấp dịch vụ. 
+- Danh mục các dịch vụ Internet mà tổ chức, doanh nghiệp 
+đang cung cấp. 
+
+===PAGE 43===
+ 
+44 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 05 
+ 
+CÁC NỘI DUNG CẦN ĐƯỢC QUY ĐỊNH TRONG HỢP ĐỒNG  
+CUNG CẤP DỊCH VỤ ĐĂNG KÝ, DUY TRÌ TÊN MIỀN QUỐC GIA VIỆT 
+NAM “.VN” KÝ GIỮA TRUNG TÂM INTERNET VIỆT NAM VÀ TỔ 
+CHỨC, DOANH NGHIỆP ĐỀ NGHỊ CUNG CẤP DỊCH VỤ ĐĂNG KÝ, 
+DUY TRÌ TÊN MIỀN QUỐC GIA VIỆT NAM “.VN” 
+ 
+1. Đối tượng của hợp đồng. 
+2. Thời hạn, địa điểm, phương thức thực hiện hợp đồng. 
+3. Quyền hạn và trách nhiệm của các bên 
+a) Quyền hạn và trách nhiệm của bên A (Trung tâm Internet Việt Nam): nêu cụ 
+thể các trách nhiệm về hướng dẫn, kiểm tra, giám sát hoạt độn g các Nhà đăng ký 
+tên miền quốc gia Việt Nam “.vn”; 
+b) Quyền hạn và trách nhiệm của bên B (Nhà đăng ký tên miền quốc gia Việt 
+Nam “.vn”): Nêu cụ thể các quyền và trách nhiệm của doanh nghiệp trong cung 
+cấp dịch vụ đăng ký, duy trì tên miền quốc gia Việt Na m “.vn” theo quy định tại 
+Nghị định này. 
+4. Điều khoản đáp ứng về tiêu chuẩn Nhà đăng ký tên miền quốc gia Việt Nam 
+“.vn” trong đó yêu cầu năng lực về nhân sự và kỹ thuật quy định tại Nghị định này, 
+cụ thể như sau: 
+a) Có số lượng cán bộ kỹ thuật chuyên trá ch về quản trị mạng, dịch vụ và cán 
+bộ chuyên trách quản lý nghiệp vụ tên miền quốc gia Việt Nam “.vn” phù hợp với 
+quy mô cung cấp dịch vụ; 
+b) Có hạ tầng mạng, hệ thống kỹ thuật, hệ thống máy chủ DNS được kết nối 
+với hạ tầng kỹ thuật của Trung tâm Internet Việt Nam; 
+c) Có cơ sở dữ liệu, phần mềm quản lý việc đăng ký, thu phí, duy trì tên miền 
+quốc gia Việt Nam “.vn”; 
+d) Có giải pháp đảm bảo an toàn, bảo mật thông tin; sao lưu dự phòng và khôi 
+phục nhanh chóng các dữ liệu khi sự cố xảy ra. 
+5. Cam kết về kế h oạch triển khai các hoạt động phát triển tên miền quốc gia 
+Việt Nam “.vn” và số lượng tên miền cụ thể. 
+6. Trách nhiệm do vi phạm hợp đồng. 
+7. Trách nhiệm khi chấm dứt hợp đồng. 
+8. Phạt vi phạm hợp đồng. 
+9. Các nội dung khác theo quy định của pháp luật về hợp đồng dân sự. 
+
+===PAGE 44===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 45 
+ 
+Mẫu số 06 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+....., ngày..... tháng..... năm.....   
+ĐƠN ĐỀ NGHỊ CẤP GIẤY PHÉP HOẠT ĐỘNG TỔ CHỨC QUẢN LÝ 
+TÊN MIỀN DÙNG CHUNG CẤP CAO NHẤT MỚI TẠI VIỆT NAM  
+(NEW GTLD REGISTRY) 
+ 
+Kính gửi: Bộ Thông tin và Truyền thông 
+ 
+1. Thông tin về tổ chức, doanh nghiệp: 
+- Tên tổ chức, doanh nghiệp:................................................................................ 
+- Mã định danh điện tử của tổ chức:..................................................................... 
+- Mã số doanh nghiệp:..........................................................................................  
+- Tên giao dịch quốc tế:........................................................................................ 
+- Tên viết tắt:.........................................................................................................  
+- Địa chỉ trụ sở chính:........................................................................................... 
+- Điện thoại:.......................................................................................................... 
+- Fax:.....................................................................................................................  
+- Email:................................................................................................................. 
+- Website:.............................................................................................................. 
+2. Đầu mối liên hệ 
+- Họ và tên người đại diện theo pháp luật của tổ chức, doanh nghiệp:................ 
+- Chức vụ:.............................................................................................................  
+- Địa chỉ liên hệ:.................................................................................................... 
+- Điện thoại:..........................................................................................................  
+- Fax:.....................................................................................................................  
+- Email:.................................................................................................................. 
+3. Nội dung: tổ chức, doanh nghiệp có nhu cầu thực hiện hoạt động Tổ chức 
+quản lý tên miền dùng chung cấp cao nhất mới (New gTLD Registry) tại Việt Nam 
+và cung cấp dịch vụ đăng ký, duy trì tên miền New gTLD cho tổ chức, cá nhân tại 
+Việt Nam, đề nghị Bộ Thông tin và Truyền thông xem xét cấp phép hoạt động.  
+Tổ chức, doanh nghiệp cam kết các thông  tin nêu trên là đúng sự thật và bảo 
+đảm tuân thủ đúng các quy định của pháp luật về quản lý và sử dụng tài nguyên 
+Internet, quản lý thông tin trên Internet. 
+  XÁC NHẬN CỦA NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+
+===PAGE 45===
+ 
+46 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 07 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+  
+BẢN KHAI ĐĂNG KÝ ĐỊA CHỈ INTERNET  
+(HOẶC ĐỊA CHỈ INTERNET VÀ SỐ HIỆU MẠNG) 
+ 
+Kính gửi: Trung tâm Internet Việt Nam. 
+ 
+1. Thông tin về cơ 
+quan/tổ chức/ doanh 
+nghiệp là chủ thể 
+đăng ký sử dụng 
+địa chỉ Internet 
+(hoặc địa chỉ 
+Internet và số hiệu 
+mạng) 
+Tên cơ quan/tổ chức/doanh nghiệp:........................................  
+Tên mạng (netname) thành viên:............................................ 
+(netname phải đảm bảo duy nhất, không trùng với netname 
+của các thành viên khác đã có) 
+Địa chỉ liên hệ:........................................................................ 
+Số điện thoại/fax:.................................................................... 
+Email:..................................................................................... 
+Abuse-mailbox:...................................................................... 
+Website:.................................................................................. 
+Mã định danh điện tử của tổ chức:......................................... 
+Mã số doanh nghiệp:.............................................................. 
+Ghi chú:.................................................................................. 
+2. Người đại diện 
+theo pháp luật của 
+cơ quan/tổ chức/ 
+doanh nghiệp  là 
+chủ thể đăng ký 
+sử dụng  địa chỉ 
+Internet/số hiệu 
+mạng  
+Họ và tên:................................................................................ 
+Chức vụ:.................................................................................. 
+Số định danh cá nhân hoặc số CMTND hoặc số hộ 
+chiếu:...................................................................................... 
+Địa chỉ:................................................................................... 
+Tỉnh/thành phố:....................................................................... 
+Số điện thoại:.......................................................................... 
+Email:...................................................................................... 
+3. Thông tin về 
+người chịu trách 
+nhiệm của cơ 
+quan/tổ chức/ doanh 
+nghiệp trong việc 
+Người chịu trách nhiệm quản lý địa chỉ Internet/số hiêu 
+mạng: 
+Họ tên:.................................................................................... 
+Chức vụ:.................................................................................. 
+Số điện thoại/fax:.................................................................... 
+
+===PAGE 46===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 47 
+ 
+quản lý  địa chỉ 
+Internet/số hiệu 
+mạng  
+ 
+Email:..................................................................................... 
+Người quản lý kỹ thuật:  
+Họ tên:.................................................................................... 
+Chức vụ:.................................................................................. 
+Số điện thoại/fax:.................................................................... 
+Email:..................................................................................... 
+4. Vùng địa chỉ 
+Internet/số hiệu 
+mạng có đề nghị 
+cấp * 
+◻ Trường hợp 1 - đăng ký mới: 
+IPv4/IPv6/ASN:...................................................................... 
+(VD: /23 IPv4, /48 IPv6 hoặc /32 IPv6, 01 ASN) 
+◻ Trường hợp 2 - đăng ký tái cấp IPv4:  
+(Nêu rõ thông tin vùng địa chỉ Interne t đang được Trung 
+tâm Internet Việt Nam niêm yết)  
+◻ Trường hợp 3 - đổi tên chủ thể sử dụng: 
+(Nêu rõ thông tin vùng địa chỉ Internet/số hiệu mạng  có 
+nhu cầu đổi tên chủ thể; thông tin tên chủ thể, tên mạng, mã 
+số cơ quan/đơn vị/doanh nghiệp đang đứng tên q uản lý 
+vùng địa chỉ Internet/số hiệu mạng)  
+◻ Trường hợp 4 - tiếp nhận vùng địa chỉ Internet, số hiệu 
+mạng từ tổ chức quốc tế: 
+(Nêu rõ thông tin vùng địa chỉ Internet/số hiệu mạng tiếp 
+nhận; thông tin về tên, tên mạng, địa chỉ, email liên hệ của 
+tổ chức quốc tế) 
+5. Hiện trạng sử 
+dụng các vùng 
+địa chỉ Internet 
+đã được cấp 
+Tổng địa chỉ Internet đã được cấp:......................................... 
+Tỷ lệ % địa chỉ Internet đã sử dụng:...................................... 
+Thông tin bổ sung:................................................................. 
+6. Kế hoạch sử 
+dụng vùng địa 
+chỉ hiện có đề 
+nghị cấp 
+(Tổ chức mô tả chi tiết kế hoạch sử dụng vùng địa chỉ 
+Internet có nhu cầu nghị cấp tại đây) 
+- Vùng địa chỉ | sử dụng nội bộ | thời điểm sử dụng hết 
+- Vùng địa chỉ | sử dụng cho dịch vụ | thời điểm sử dụng hết 
+VD: 01/24 IPv4 và 01/56 IPv6 | Hệ thống, dịch vụ CNTT 
+nội bộ | tháng.../202... 
+01/24 IPv4 và 01/48 IPv6 | Dịch vụ FTTH tại HN | 
+tháng.../202... 
+
+===PAGE 47===
+ 
+48 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+7. Thông tin kết nối 
+(thông tin đường 
+truyền kết nối 
+Internet) 
+Đường truyền kết nối Internet 1: Tên nhà cung cấp (số hiệu 
+mạng) 
+Đường truyền kết nối Internet 2: Tên nhà cung cấp (số hiệu 
+mạng) 
+VD: 
+Đường truyền kết nối Internet 1: VNPT (AS45899) 
+Đường truyền kết nối Internet 2: VNIX (AS23902) 
+8. Thông tin liên 
+hệ nộp phí duy trì, 
+sử dụng địa chỉ 
+Đơn vị thanh toán:.................................................................. 
+Họ và tên/Chức vụ người chịu trách nhiệm nộp phí:............. 
+Địa chỉ thanh toán:.................................................................. 
+Điện thoại/Fax:....................................................................... 
+Email:..................................................................................... 
+Cơ quan/Tổ chức/Doanh nghiệp đăng ký địa chỉ Internet cam kết t uân thủ quy 
+định của pháp luật về quản lý và sử dụng tài nguyên Internet.  
+ 
+....., ngày..... tháng.... năm.... 
+Xác nhận của tổ chức đăng ký 
+NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT/  
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số)  
+  
+Lưu ý:  
+- Yêu cầu bắt buộc khai toàn bộ các trường thông tin, áp dụng trong cả 4 
+trường hợp quy định tại mục 4. 
+- Địa chỉ email của các cá nhân đã đăng ký tại mục 3 sẽ được đưa vào danh 
+sách cho phép thực hiện các giao dịch qua email với Trun g tâm Internet Việt Nam 
+liên quan tới địa chỉ Internet, số hiệu mạng đã phân bổ, cấp. 
+- Lưu ý *: 
++ Tại mục 4: lựa chọn một trong các trường hợp. 
++ Tại phần xác nhận bản khai: Trường hợp thay đổi tên chủ thể sử dụng vùng 
+địa chỉ Internet/số hiệu mạng, yêu c ầu có xác nhận của cơ quan, tổ chức, doanh 
+nghiệp đang đứng tên quản lý vùng địa chỉ Internet/số hiệu mạng. 
+
+===PAGE 48===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 49 
+ 
+Mẫu số 08 
+ 
+BỘ THÔNG TIN VÀ TRUYỀN THÔNG 
+TRUNG TÂM INTERNET VIỆT NAM 
+ 
+Số:.../QĐ-VNNIC  
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+Hà Nội, ngày... tháng... năm...  
+QUYẾT ĐỊNH  
+Cấp/phân bổ địa chỉ Internet/số hiệu mạng cho <Công ty ABC> 
+ 
+GIÁM ĐỐC TRUNG TÂM INTERNET VIỆT NAM 
+ 
+Căn cứ Nghị định số..../NĐ -CP ngày.... tháng... năm..... của Chính phủ quy 
+định về quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng;  
+Căn cứ Thông tư số....../TT -BTTTT ngày.... tháng... năm.... của Bộ trưởng Bộ 
+Thông tin và Truyền thông quy định về quản lý và sử dụng tài nguyên Internet; 
+Căn cứ Quyết định số... của Bộ trưởng Bộ Thông tin và Truyền thông quy định 
+chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Trung tâm Internet Việt Nam; 
+Xét đề nghị của <Công ty ABC> và theo đề nghị của.........................................  
+ 
+QUYẾT ĐỊNH: 
+ 
+Điều 1. Cấp phát/phân bổ cho <Công ty ABC> dư ới tên mạng <NETNAME>-
+VN các vùng địa chỉ Internet, số hiệu mạng sau đây:  
+1. Địa chỉ Internet IPv4: 
+2. Địa chỉ Internet IPv6: 
+3. Số hiệu mạng ASN. 
+Điều 2.  <Công ty ABC> có trách nhiệm đưa vùng địa chỉ Internet, số hiệu 
+mạng được cấp/phân bổ vào sử dụng tu ân thủ các quy định hiện hành; tự xây 
+dựng chính sách định tuyến cho vùng địa chỉ; khai báo tên miền ngược đầy đủ; 
+phối hợp giải quyết các vấn đề về sử dụng địa chỉ Internet và số hiệu mạng khi có 
+yêu cầu; báo cáo, cập nhật thông tin sử dụng địa chỉ kịp th ời cho Trung tâm 
+Internet Việt Nam và nộp phí duy trì sử dụng hàng năm theo quy định của pháp 
+luật về phí và lệ phí.  
+Điều 3. Quyết định này có hiệu lực thi hành kể từ ngày ký. 
+Điều 4. Trưởng phòng <Đơn vị quản lý cấp phát/phân bổ địa chỉ Internet, số 
+hiệu mạng>... và Trưởng các đơn vị trực thuộc Trung tâm Internet Việt Nam:....  và 
+<Công ty ABC> chịu trách nhiệm thi hành Quyết định này. 
+ 
+Nơi nhận: 
+- Như Điều 4; 
+..... 
+- Lưu: VT. 
+GIÁM ĐỐC  
+(Ký tên, đóng dấu/ký số) 
+  
+
+===PAGE 49===
+ 
+50 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 09 
+ 
+TÊN TỔ CHỨC, DOANH NGHIỆP 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+Số:... ..., ngày..... tháng... năm... 
+ 
+BÁO CÁO HOẠT ĐỘNG  
+CUNG CẤP THÔNG TIN XUYÊN BIÊN GIỚI TẠI VIỆT NAM 
+ 
+Kính gửi: Bộ Thông tin và Truyền thông 
+ (Cục Phát thanh, truyền hình và thông tin điện tử) 
+ 
+1. Thông tin chung: 
+- Tên tổ chức, doanh nghiệp, cá nhân:.................................................................. 
+- Các dịch vụ cung cấp xuyên biên giới vào Việt Nam:....................................... 
+2. Báo cáo chi tiết các dịch vụ cung cấp xuyên biên giới vào Việt Nam: 
+- Số lượng tài khoản người sử dụng thường xuyên tại Việt Nam (monthly 
+active user):................................................................................................................. 
+- Doanh thu phát sinh tại Việt Nam trong năm:.................................................... 
+- Số lượng nội dung vi phạm pháp luật đã được ngăn chặn, gỡ bỏ theo yêu cầu 
+của cơ quan có thẩm quyền:........................................................................................ 
+- Số lượng xử lý khiếu nại của người sử dụng dịch vụ:........................................ 
+3. Kiến nghị, đề xuất (nếu có): 
+ 
+Nơi nhận: 
+- Như trên; 
+.......... 
+- Lưu:... 
+XÁC NHẬN CỦA CÁ NHÂN/ 
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+
+===PAGE 50===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 51 
+ 
+Mẫu số 10 
+ 
+TÊN TỔ CHỨC, DOANH NGHIỆP 
+ 
+ 
+Số:...... 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+..., ngày... tháng... năm... 
+ 
+THÔNG BÁO THÔNG TIN LIÊN HỆ  
+CỦA TỔ CHỨC, DOANH NGHIỆP, CÁ NHÂN NƯỚC NGOÀI  
+CUNG CẤP THÔNG TIN XUYÊN BIÊN GIỚI VÀO VIỆT NAM 
+ 
+Kính gửi: Bộ Thông tin và Truyền thông 
+ (Cục Phát thanh, truyền hình và thông tin điện tử). 
+ 
+Căn cứ Nghị định số.../NĐ -CP ngày... tháng... năm... của Chính phủ qu ản lý, 
+cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; 
+Chúng tôi thông báo thông tin liên hệ của chúng tôi tại Việt Nam như sau: 
+1. Thông tin về tổ chức, doanh nghiệp, cá nhân: 
+- Tên tổ chức, doanh nghiệp, cá nhân:.................................................................. 
+- Tên giao dịch:..................................................................................................... 
+- Địa chỉ trụ sở chính nơi đăng ký hoạt động:...................................................... 
+- Địa điểm đặt hệ thống máy chủ tại Việt Nam:................................................... 
+2. Đầu mối liên hệ:  
+- Tên tổ chức, doanh nghiệp, cá nhân đại diện liên hệ với Bộ Thông tin và 
+Truyền thông:.... 
+- Địa chỉ tại Việt Nam (nếu có):........................................................................... 
+- Email:.................................................................................................................. 
+- Điện thoại liên hệ:.............................................................................................. 
+3. Chúng tôi xác nhận rằng những thông tin do chúng tôi cung cấp trên đây là 
+chính xác và cam kết chịu trách nhiệm về những thông tin này. 
+ 
+ XÁC NHẬN CỦA CÁ NHÂN/ 
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+
+===PAGE 51===
+ 
+52 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 11 
+ 
+BỘ THÔNG TIN VÀ TRUYỀN THÔNG 
+CỤC PHÁT THANH, TRUYỀN HÌNH 
+VÀ THÔNG TIN ĐIỆN TỬ 
+ 
+Số:.../GXN-PTTH&TTĐT 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+ 
+Hà Nội, ngày... tháng... năm... 
+ 
+GIẤY XÁC NHẬN  
+THÔNG BÁO THÔNG TIN LIÊN HỆ  
+CỦA TỔ CHỨC, DOANH NGHIỆP, CÁ NHÂN NƯỚC NGOÀI  
+CUNG CẤP THÔNG TIN XUYÊN BIÊN GIỚI VÀO VIỆT NAM 
+  
+CỤC TRƯỞNG CỤC PHÁT THANH, TRUYỀN HÌNH  
+VÀ THÔNG TIN ĐIỆN TỬ  
+ 
+Căn cứ Nghị định số 48/2022/NĐ-CP ngày 26 tháng 7 năm 2022 của Chính 
+phủ quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Thông tin 
+và Truyền thông;  
+Căn cứ Nghị định số.../NĐ -CP ngày... tháng... năm... của Chính phủ quản lý, 
+cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; 
+Căn cứ Quyết định số.../QĐ -BTTTT ngày... tháng... năm... của Bộ trưởng Bộ 
+Thông tin và Truyền thông quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ 
+chức của Cục Phát thanh, truyền hình và thông tin điện tử; 
+Theo thông báo c ung cấp dịch vụ mạng xã hội của... (tổ chức, doanh nghiệp, 
+cá nhân thông báo); 
+Theo đề nghị của Trưởng phòng Phòng Thông tin điện tử. 
+ 
+Xác nhận thông báo thông tin liên hệ của tổ chức, doanh nghiệp, 
+cá nhân nước ngoài cung cấp thông tin xuyên biên giới vào Việt Nam 
+với những nội dung sau: 
+ 
+1. Thông tin tổ chức, doanh nghiệp, cá nhân nước ngoài: 
+- Tên tổ chức, doanh nghiệp, cá nhân:.................................................................. 
+- Tên giao dịch:..................................................................................................... 
+- Địa chỉ trụ sở chính nơi đăng ký hoạt động:...................................................... 
+- Địa điểm đặt hệ thống máy chủ tại Việt Nam:................................................... 
+
+===PAGE 52===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 53 
+ 
+2. Đầu mối liên hệ:  
+- Tên tổ chức, doanh nghiệp, cá nhân đại diện liên hệ với Bộ Thông tin và 
+Truyền thông:.............................................................................................................. 
+- Địa chỉ tại Việt Nam (nếu có):........................................................................... 
+- Email:................................................................................................................. 
+- Điện thoại liên hệ:............................................................................................... 
+3. Tổ chức, doanh nghiệp, cá nhân...... có trách nhiệm tuân thủ các quy định tại 
+Nghị định số... ngày... và các quy định khác của pháp luật có liên quan. 
+4. Trường hợp các thông tin trong thông báo có sự thay đổi, tổ chức, doanh 
+nghiệp, cá nhân.. ...... phải thực hiện lại thủ tục thông báo thông tin liên hệ của tổ 
+chức, doanh nghiệp, cá nhân nước ngoài cung cấp thông tin xuyên biên giới vào 
+Việt Nam. 
+ 
+Nơi nhận: 
+- Tổ chức, doanh nghiệp,  
+cá nhân......  
+- Thứ trưởng (để b/c); 
+- Thanh tra Bộ; 
+- Cục trưởng; 
+- Lưu: VT, TTĐT 
+CỤC TRƯỞNG 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+ 
+ 
+  
+
+===PAGE 53===
+ 
+54 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 12 
+ 
+TÊN CƠ QUAN BÁO CHÍ  
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+Số:... ......., ngày..... tháng..... năm..... 
+ 
+THÔNG BÁO THÔNG TIN LIÊN HỆ TÀI KHOẢN MẠNG XÃ HỘI/ 
+TRANG CỘNG ĐỒNG/KÊNH NỘI DUNG/NHÓM CỘNG ĐỒNG  
+CỦA CƠ QUAN BÁO CHÍ   
+Kính gửi: Bộ Thông tin và Truyền thông 
+ (Cục Phát thanh truyền hình và thông tin điện tử). 
+ 
+1. Thông tin cơ qua n báo chí sở hữu tài khoản/trang cộng đồng/kênh nội 
+dung/nhóm cộng đồng 
+- Tên cơ quan báo chí: 
+- Số Giấy phép hoạt động báo chí:        Ngày cấp phép:       Cơ quan cấp phép: 
+- Địa chỉ tòa soạn:  
+- Điện thoại liên hệ tòa soạn:  
+- Hộp thư điện tử:  
+- Họ tên Tổng biên tập: Điện thoại liên hệ: 
+2. Thông tin về tài khoản/trang cộng đồng/kênh nội dung/nhóm cộng đồng  
+- Tên tài khoản/trang cộng đồng/kênh nội dung/nhóm cộng đồng: 
+- Tên mạng xã hội: 
+- Số lượng người sử dụng theo dõi/đăng ký: 
+- Định hướng lĩnh vực, n ội dung cung cấp, trao đổi trên trang kênh, nhóm 
+(giải trí, thể thao, giáo dục...): 
+3. Cam kết 
+(Tên cơ quan báo chí) xin cam kết thực hiện đầy đủ các quy định tại Nghị định 
+số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung cấp, sử dụng dịch 
+vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin nêu trên là đúng sự thật, đảm bảo tuân thủ theo đúng tôn chỉ, 
+mục đích của cơ quan báo chí đã được ghi trong giấy phép hoạt động báo chí. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về hoạt động 
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; các quy định 
+của pháp luật về bản quyền; các văn bản pháp luật có liên quan hiện hành. 
+ 
+Nơi nhận: 
+- Như trên; 
+...... 
+- Lưu:...... 
+TỔNG BIÊN TẬP CƠ QUAN BÁO CHÍ  
+(Ký tên, đóng dấu/ký số) 
+
+===PAGE 54===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 55 
+ 
+Mẫu số 13 
+ 
+BỘ THÔNG TIN VÀ TRUYỀN THÔNG 
+CỤC PHÁT THANH, TRUYỀN HÌNH 
+VÀ THÔNG TIN ĐIỆN TỬ 
+ 
+Số:.../GXN-PTTH&TTĐT 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+ 
+Hà Nội, ngày... tháng... năm... 
+ 
+GIẤY XÁC NHẬN  
+THÔNG BÁO THÔNG TIN LIÊN HỆ TÀI KHOẢN MẠNG XÃ 
+HỘI/TRANG CỘNG ĐỒNG/KÊNH NỘI DUNG/ 
+NHÓM CỘNG ĐỒNG CỦA CƠ QUAN BÁO CHÍ  
+ 
+CỤC TRƯỞNG CỤC PHÁT THANH, TRUYỀN HÌNH  
+VÀ THÔNG TIN ĐIỆN TỬ  
+ 
+Căn cứ Nghị định số 48/2022/NĐ -CP ngày 26 tháng 7 năm 2022 của Chính 
+phủ quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Thông tin 
+và Truyền thông;  
+Căn cứ Nghị định số..../NĐ -CP ngày.... tháng... năm... của Chính phủ quản lý, 
+cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; 
+Căn cứ Quyết định số.../QĐ -BTTTT ngày... tháng... năm... của Bộ trưởng Bộ 
+Thông tin và Truyền thông quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ 
+chức của Cục Phát thanh, truyền hình và thông tin điện tử; 
+Theo thông báo cung cấp dịch vụ mạng xã hội của... (cơ quan báo chí thông báo); 
+Theo đề nghị của Trưởng phòng Phòng thông tin điện tử. 
+ 
+Xác nhận thông báo thông tin liên hệ của tài khoản mạng xã hội/  
+trang cộng đồng/kênh nội dung/nhóm cộng đồng của cơ quan báo chí  
+với những nội dung sau: 
+ 
+1. Thông tin cơ quan báo chí sở hữu tài khoản/t rang cộng đồng/kênh nội 
+dung/nhóm cộng đồng 
+- Tên cơ quan báo chí: 
+- Số Giấy phép hoạt động báo chí:           Ngày cấp phép:     Cơ quan cấp phép: 
+- Địa chỉ tòa soạn:  
+- Điện thoại liên hệ tòa soạn:  
+- Hộp thư điện tử:  
+- Họ tên Tổng biên tập:                           Điện thoại liên hệ: 
+
+===PAGE 55===
+ 
+56 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+2. Thông tin về tài khoản/trang cộng đồng/kênh nội dung/nhóm cộng đồng  
+- Tên tài khoản/trang cộng đồng/kênh nội dung/nhóm cộng đồng: 
+- Tên mạng xã hội: 
+- Số lượng người sử dụng theo dõi/đăng ký: 
+- Định hướng lĩnh vực, nội dung cung cấp, trao đổi trên trang kênh, nhóm (giải 
+trí, thể thao, giáo dục...): 
+3. Cơ quan báo chí...... có trách nhiệm tuân thủ các quy định tại Nghị định số... 
+ngày... của Chính phủ về quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin 
+trên mạng và các quy định khác của pháp luật có liên quan. 
+4. Trường hợp các thông tin trong thông báo có sự thay đổi, cơ quan báo chí 
+phải thực hiện lại thủ tục thông báo thông tin liên hệ tài khoản mạng xã hội/trang 
+cộng đồng/kênh nội dung/nhóm cộng đồng. 
+ 
+Nơi nhận: 
+- Cơ quan báo chí......  
+- Thứ trưởng (để b/c);  
+- Thanh tra Bộ; 
+- Cục trưởng; 
+- Lưu: VT, TTĐT. 
+CỤC TRƯỞNG 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 56===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 57 
+ 
+Mẫu số 14 
+ 
+TÊN CƠ QUAN, TỔ CHỨC,  
+DOANH NGHIỆP 
+  
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+...., ngày... tháng... năm... 
+  
+BÁO CÁO TÌNH HÌNH THỰC HIỆN  
+GIẤY PHÉP THIẾT LẬP TRANG THÔNG TIN ĐIỆN TỬ TỔNG HỢP  
+ (Từ tháng... năm... đến tháng... năm...)  
+ 
+Kính gửi:.......................... 
+ 
+(Cơ quan cấp giấy phép thiết lập trang thông tin điện tử tổng hợp cho tổ chức, 
+doanh nghiệp)  
+1. Tên cơ quan, tổ chức, doanh nghiệp:  
+- Tên giao dịch quốc tế: 
+- Tên viết tắt: 
+2. Địa chỉ trụ sở chính:  
+- Địa chỉ văn phòng giao dịch:  
+- Điện thoại/Fax:  
+- Website:  
+- Thư điện tử: 
+3. Nội dung báo cáo (nếu cơ quan, tổ chức, doanh nghiệp có hơn một trang 
+thông tin điện tử tổng hợp cần báo cáo thì cơ quan, tổ chức, doanh nghiệp báo cáo 
+lần lượt theo nội dung sau): 
+- Giấy phép thiết lập trang thông tin điện tử tổng hợp số... do...  cấp ngày...  
+tháng... năm... 
+- Tên trang: (Tên miền, tên ứng dụng)  
+- Nội dung thông tin đang cung cấp, các chuyên mục chính: 
+- Tổng số nhân sự phục vụ hoạt động trang thông tin điện tử tổng hợp; tăng, 
+giảm so với kỳ báo cáo trước. 
+- Số lượng nhân sự quản lý nội dung: 
+- Danh sách cơ quan báo chí có thỏa thuận hợp tác cung cấp nguồn tin (kèm 
+theo văn bản thỏa thuận cung cấp nguồn tin phát sinh trong kỳ báo cáo, nếu có): 
+
+===PAGE 57===
+ 
+58 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+- Tần suất cập nhật tin, bài (tính bằng đơn vị/ngày); tăng, giảm so với kỳ báo 
+cáo trước. 
+- Báo cáo về hoạt động liên kết nếu tổ chức, doanh nghiệp có liên kết với cơ 
+quan báo chí theo quy định tại điểm c khoản 5 Điều 24 Nghị định số... ngày...  của 
+Chính phủ về quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng.  
+- Lượt xem trun g bình/tháng (Page view/tháng); tăng, giảm so với kỳ báo 
+cáo trước.  
+- Lượt truy cập trung bình/tháng (Unique Visitor/tháng); tăng, giảm so với kỳ 
+báo cáo trước. 
+- Các dịch vụ phát sinh doanh thu của trang thông tin điện tử tổng hợp: 
+- Doanh thu trong kỳ báo cáo: 
+- Danh sách, số lượng khiếu nại của các cá nhân, tổ chức khác đối với thông 
+tin trên trang thông tin điện tử tổng hợp: Người khiếu nại, nội dung khiếu nại, kết 
+quả giải quyết khiếu nại: 
+- Các hành vi vi phạm về nội dung trong kỳ báo cáo đã bị nhắc n hở, xử lý 
+vi phạm:  
+ 
+Số 
+TT Thời gian Nội dung  
+vi phạm 
+Cơ quan yêu cầu xử lý  
+(Bộ TT&TT, Sở TT&TT, 
+Doanh nghiệp tự phát hiện) 
+Kết quả 
+xử lý 
+     
+ 
+- Các vấn đề về kỹ thuật đã gặp phải trong kỳ báo cáo (nếu có): 
+- Kiến nghị, đề xuất (nếu có):  
+Trân trọng. 
+ 
+Nơi nhận: 
+- Như trên; 
+- ..... 
+ 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+ NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+Đầu mối liên hệ về báo cáo tình hình triển khai giấy phép (họ tên, chức  vụ, 
+điện thoại, địa chỉ thư điện tử). 
+
+===PAGE 58===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 59 
+ 
+Mẫu số 15 
+ 
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+..., ngày... tháng... năm... 
+ 
+BÁO CÁO TÌNH HÌNH THỰC HIỆN 
+GIẤY PHÉP CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI 
+(Từ tháng... năm... đến tháng... năm...) 
+ 
+Kính gửi: - Bộ Thông tin và Truyền thông  
+ (Cục Phát thanh, truyền hình và thông tin điện tử); 
+ - Sở Thông tin và Truyền thông địa phương. 
+ 
+1. Tên cơ quan, tổ chức, doanh nghiệp:  
+2. Nội dung báo cáo (nếu cơ quan, tổ chức, doanh nghiệp có hơn một mạng xã 
+hội cần báo cáo thì cơ quan, tổ chức báo cáo lần lượt theo nội dung sau): 
+- Giấy phép cung cấp dịch vụ mạng xã hội số... do Bộ Thông tin và Truyền 
+thông cấp ngày... tháng... năm........ 
+- Tên trang: (Tên miền, tên ứng dụng) 
+- Các dịch vụ có phát sinh doanh thu:  
+- Doanh thu trong kỳ báo cáo: 
+- Tổng số nhân sự phục vụ hoạt động cung cấp dịch vụ mạng xã hội:.......  
+(trong đó.... nam,..... nữ) 
+- Số lượng đơn thư khiếu nại của các cá nhân, tổ chức khác đối với thông tin 
+trên mạng xã hội: nội dung khiếu nại, kết quả giải quyết khiếu nại. 
+- Kiến nghị, đề xuất (nếu có):  
+Trân trọng. 
+ 
+Nơi nhận: 
+- Như trên; 
+- ..... 
+ 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/  
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+Đầu mối liên hệ về báo cáo tình hình triển khai giấy phép (họ tên, chức vụ, 
+điện thoại, địa chỉ thư điện tử). 
+
+===PAGE 59===
+ 
+60 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 16 
+ 
+TÊN CƠ QUAN, TỔ CHỨC,  
+DOANH NGHIỆP 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+Số:... ...., ngày... tháng...năm... 
+  
+ĐƠN ĐỀ NGHỊ CẤP GIẤY PHÉP THIẾT LẬP 
+TRANG THÔNG TIN ĐIỆN TỬ TỔNG HỢP  
+ 
+Kính gửi:.................... 
+   
+(Tên cơ quan, tổ chức, doanh nghiệp) đề nghị được cấp giấy phép thiết lập 
+trang thông tin điện tử tổng hợp như sau: 
+Phần I. Thông tin chung  
+1. Tên cơ quan chủ quản (nếu có):...  
+2. Tên cơ quan, tổ chức, doanh nghiệp thiết lập trang thông tin điện tử tổng hợp:... 
+3. Địa chỉ trụ sở chính:...  
+Địa chỉ trụ sở giao dịch (nếu có):....  
+4. Quyết định thành lập/Điều lệ hoạt động/Giấy chứng nhận đăng ký doanh 
+nghiệp/Giấy chứng nhận đăng ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... 
+cấp ngày... tháng... năm... tại... 
+5. Điện thoại/Fax:................  
+- Website......................... 
+- Thư điện tử:....  
+Phần II. Mô tả tóm tắt về đề nghị cấp giấy phép 
+1. Tên trang (nếu có):............................. 
+2. Mục đích thiết lập trang thông tin điện tử tổng hợp:....................................... 
+3. Nội dung thông tin cung cấp trên trang thông tin điện tử tổng hợ p; các 
+chuyên mục, loại hình thông tin:...  
+4. Đối tượng phục vụ:........................................................................................... 
+5. Nguồn tin:......................................................................................................... 
+6. Tên cơ quan báo chí, lĩnh vực thông tin liên kết (nếu có hoạt động hợp tác 
+liên kết với cơ quan báo chí sản xuất tin bài):............................................................ 
+7. Phương thức cung cấp thông tin:...................................................................... 
+a) Trên trang thông tin điện tử tại tên miền:......................................................... 
+
+===PAGE 60===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 61 
+ 
+b) Qua ứng dụng.......... phân phối trên kho ứng dụng.......................................... 
+8. Nhà cung cấp dịch vụ kết nối Internet:............................................................. 
+9. Địa điểm đặt hệ thống máy chủ cung cấp dịch vụ tại Việt Nam:..................... 
+10. Nhân sự chịu trách nhiệm quản lý trang thông tin điện tử tổng hợp: 
+a) Nhân sự chịu trách nhiệm trước pháp luật: 
+- Họ và tên:........................................................................................................... 
+- Chức danh:......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+b) Nhân sự quản lý nội dung: 
+- Họ và tên:............................................................................................................ 
+- Chức danh:.......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+11. Thời gian đề nghị cấp phép:........ năm...... tháng. 
+12. Địa chỉ thư điện tử nhận đoạn mã (thể hiện biểu tượng trang thông tin điện 
+tử tổng hợp đã được cấp phép):................................................................................... 
+Phần III. Tài liệu kèm theo 
+1. ...........................................................................................................................  
+2. ........................................................................................................................... 
+Phần IV. Cam kết 
+(Tên cơ quan, tổ chức, doanh nghiệp) xin cam kết thực hiện đầy đủ các quy 
+định tại Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung 
+cấp, sử dụng dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông  tin cung cấp trong hồ sơ đề nghị cấp giấy phép thiết lập trang 
+thông tin điện tử tổng hợp và các tài liệu kèm theo là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về hoạt động 
+quản lý, cung cấp, sử dụng dịch vụ Internet và t hông tin trên mạng; các quy định 
+của pháp luật về bản quyền; các văn bản pháp luật có liên quan hiện hành. 
+3. Xây dựng quy trình quản lý nội dung, thông tin tổng hợp, kịp thời cập nhật, 
+điều chỉnh các nội dung dẫn lại khi nội dung nguồn thay đổi; gỡ bỏ nga y nội dung 
+thông tin đã tổng hợp khi nguồn thông tin được trích dẫn gỡ bỏ nội dung thông tin 
+đó theo quy định tại khoản 4 Điều 36 Luật Báo chí và khoản 3 Điều 34 Nghị định 
+số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+4. Kiểm soát nguồn tin, đảm bảo t hông tin tổng hợp đăng tải không vi phạm 
+bản quyền; có công cụ bằng phương tiện điện tử để tiếp nhận, xử lý khiếu nại của 
+người sử dụng về nội dung, dịch vụ; nội dung dẫn lại (theo thỏa thuận bằng văn 
+
+===PAGE 61===
+ 
+62 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+bản giữa trang thông tin điện tử tổng hợp với cơ quan báo chí) không sớm hơn 01 giờ 
+tính từ thời điểm phát hành nội dung nguồn theo quy định tại điểm b, điểm c khoản 1 
+Điều 28 Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ.  
+5. Không cho đăng tải ý kiến nhận xét, bình luận của độc giả về nội dung tin, 
+bài được dẫn lại; nội dung tổng hợp ghi rõ tên tác giả và tên nguồn tin (viết đầy đủ 
+tên nguồn tin), thời gian đã đăng, phát thông tin đó, đặt đường dẫn liên kết đến bài 
+viết nguồn ngay cuối bài dẫn lại theo quy định tại điểm d, điểm đ khoản 1 Điều 28  
+Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ.  
+6. Đảm bảo kết nối đến hệ thống giám sát của Bộ Thông tin và Truyền thông 
+để phục vụ cho việc theo dõi đăng tải tin bài trên trang thông tin điện tử tổng hợp 
+và thống kê lượng người sử dụng truy cập khi có yêu cầu theo quy định tại khoản 6 
+Điều 34 Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+7. Kiểm tra, giám sát và loại bỏ nội dung vi phạm  Điều 8 Luật An ninh mạng 
+chậm nhất là 24 giờ kể từ khi có yêu cầu bằng văn bản, điện thoại , hoặc qua 
+phương tiện điện tử của Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền 
+hình và thông tin điện tử), Bộ Công an (Cục An ninh mạng và phòng, chống tội 
+phạm sử dụng công nghệ cao), Sở Thông tin và Truyền thông địa phương và các 
+cơ quan có thẩm  quyền theo pháp luật chuyên ngành hoặc khi tự phát hiện vi 
+phạm; thực hiện việc xử lý các yêu cầu, khiếu nại về sở hữu trí tuệ theo các quy 
+định của pháp luật của Việt Nam về sở hữu trí tuệ; gỡ ngay nội dung dẫn lại 
+(không chậm hơn 03 giờ) sau khi nội dun g nguồn bị gỡ theo quy định tại khoản 4 
+Điều 34 Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+8. Triển khai giải pháp bảo vệ trẻ em trên môi trường mạng theo quy định của 
+pháp luật về bảo vệ trẻ em theo quy định tại khoản 5 Điều 34 Nghị định  
+số.../NĐ -CP ngày... tháng... năm... của Chính phủ. 
+9. Báo cáo theo quy định và chịu sự thanh tra, kiểm tra của các cơ quan quản 
+lý nhà nước có thẩm quyền theo quy định tại khoản 7 Điều 34 Nghị định 
+số.../NĐ -CP ngày... tháng... năm... của Chính phủ. 
+10. Thực hiện các trách nhiệm khác theo quy định của pháp luật. 
+ 
+Nơi nhận: 
+- Như trên;  
+- Cơ quan chủ quản 
+(nếu có);  
+......... 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC,  
+DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+(Đầu mối liên hệ về hồ sơ cấp phép (họ tên, chức vụ, điện thoại, địa chỉ  thư 
+điện tử). 
+
+===PAGE 62===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 63 
+ 
+Mẫu số 17 
+ 
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+Số:... ...., ngày... tháng... năm... 
+  
+ĐƠN ĐỀ NGHỊ CẤP GIẤY PHÉP  
+CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI  
+ 
+Kính gửi: Bộ Thông tin và Truyền thông 
+ (Cục Phát thanh truyền hình và thông tin điện tử). 
+ 
+(Tên cơ quan, tổ chức, doanh nghiệp) đề nghị được cấp giấy phép cung cấp 
+dịch vụ mạng xã hội như sau: 
+Phần 1. Thông tin chung  
+1. Tên cơ quan, tổ chức, doanh nghiệp:........ 
+2. Địa chỉ trụ sở chính:...... 
+3. Địa chỉ trụ sở giao dịch:.............. 
+4. Quyết định thành lập/Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng 
+nhận đăng ký kinh doanh/Giấy chứng nh ận đầu tư số:..... do.... cấp ngày... tháng... 
+năm... tại... 
+5. Điện thoại:................ Website......................... 
+Phần 2. Mô tả tóm tắt về đề nghị cấp giấy phép  
+1. Tên mạng xã hội (nếu có): 
+2. Mục đích cung cấp dịch vụ mạng xã hội:  
+3. Loại hình dịch vụ mạng xã hội: (dịch vụ tạo tài khoản, kênh cung cấp nội 
+dung, trang thông tin điện tử cá nhân...) 
+4. Đối tượng phục vụ:  
+5. Phương thức cung cấp dịch vụ:  
+a) Trên trang thông tin điện tử tại tên miền:  
+b) Qua ứng dụng... phân phối trên kho ứng dụng:  
+6. Quy trình quản lý:  
+7. Nhà cung cấp dịch vụ kết nối Internet:  
+
+===PAGE 63===
+ 
+64 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+8. Địa điểm đặt hệ thống máy chủ cung cấp dịch vụ tại Việt Nam:  
+9. Nhân sự chịu trách nhiệm quản lý nội dung thông tin trên mạng xã hội: 
+a) Nhân sự chịu trách nhiệm trước pháp luật: 
+- Họ và tên:........................................................................................................... 
+- Chức danh:......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+b) Nhân sự quản lý nội dung: 
+- Họ và tên:............................................................................................................ 
+- Chức danh:.......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+10. Thời gian đề nghị cấp phép:......... năm........ tháng. 
+11. Địa chỉ thư điện tử nhận đoạn mã (thể hiện biểu tượng mạng xã hội đã 
+được cấp phép):........................................................................................................... 
+Phần 3. Tài liệu kèm theo 
+1. ...........................................................................................................................  
+2. ........................................................................................................................... 
+Phần 4. Cam kết 
+(Tên cơ quan, tổ chức , doanh nghiệp) xin cam kết thực hiện đầy đủ các quy 
+định tại Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung 
+cấp, sử dụng dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Chịu trách nhiệm trước pháp luật về tính chính xác và t ính hợp pháp của nội 
+dung trong Đơn đề nghị cấp giấy phép cung cấp dịch vụ mạng xã hội và các tài 
+liệu kèm theo. 
+2. Nếu được cấp giấy phép cung cấp dịch vụ mạng xã hội, (tên cơ quan,  tổ 
+chức, doanh nghiệp) sẽ chấp hành nghiêm chỉnh các quy định của pháp lu ật Việt 
+Nam về hoạt động quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin; tuân 
+thủ nghiêm các quy định về trách nhiệm của cơ quan, tổ chức, doanh nghiệp cung 
+cấp dịch vụ mạng xã hội. 
+ 
+Nơi nhận: 
+- Như trên; 
+- Cơ quan chủ quản 
+(nếu có); 
+............ 
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC,  
+DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+
+===PAGE 64===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 65 
+ 
+Kèm theo Mẫu số 17 
+ 
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+Số:... 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+... , ngày... tháng... năm... 
+ 
+ 
+CAM KẾT THỰC HIỆN 
+GIẤY PHÉP CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI 
+(Tài liệu kèm theo Đơn đề nghị... số... ngày... tháng... năm...) 
+ 
+Kính gửi: Bộ Thông tin và Truyền thông 
+   (Cục Phát thanh truyền hình và thông tin điện tử). 
+ 
+1. Tên tổ chức, doanh nghiệp:........ 
+2. Địa chỉ trụ sở chính:......  
+3. Địa chỉ trụ sở giao dịch:... 
+4. Quyết định thành lập/Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng 
+nhận đăng ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... cấp ngày... th áng... 
+năm... tại... 
+5. Điện thoại:................ Website......................... 
+Cơ quan, tổ chức, doanh nghiệp xin cam kết thực hiện đầy đủ các quy định tại 
+Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung cấp, sử 
+dụng dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Cam kết thực hiện đúng các quy định tại giấy phép cung cấp dịch vụ mạng 
+xã hội. 
+2. Cung cấp dịch vụ mạng xã hội tuân thủ theo quy định của pháp luật và thỏa 
+thuận cung cấp và sử dụng dịch vụ với người sử dụng; m ô tả quy trình, cách thức 
+phân phối nội dung trên nền tảng mạng xã hội của mình và công bố công khai 
+trong Thỏa thuận cung cấp dịch vụ/Tiêu chuẩn cộng đồng cho người sử dụng dịch 
+vụ biết để lựa chọn sử dụng dịch vụ theo quy định tại khoản 2 Điều 35 Nghị đị nh 
+số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+3. Bảo đảm quyền quyết định của người sử dụng dịch vụ khi cho phép thông 
+tin của mình được sử dụng cho mục đích quảng bá, truyền thông và cung cấp cho 
+tổ chức, cá nhân khác theo quy định tại khoản 3 Điề u 35 Nghị định số.../NĐ -CP 
+ngày... tháng... năm... của Chính phủ. 
+
+===PAGE 65===
+ 
+66 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+4. Không đăng tải hoặc cho thành viên (bao gồm cả nhân sự của cơ quan, tổ 
+chức, doanh nghiệp cung cấp dịch vụ mạng xã hội) viết bài dưới hình thức phóng 
+sự, điều tra, phỏng vấn và đăng tải l ên mạng xã hội theo quy định tại khoản 4 
+Điều 35 Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ.  
+5. Kiểm tra, giám sát và loại bỏ thông tin, dịch vụ vi phạm Điều 8 Luật An 
+ninh mạng chậm nhất là 24 giờ kể từ thời điểm phát hiện vi phạm. Thông  báo đến 
+người đăng tải nội dung bị khiếu nại: lý do nội dung bị tạm khóa hoặc xóa bỏ; có 
+cơ chế để người có thông tin bị tạm khóa phản hồi lại theo quy định tại khoản 5 
+Điều 35 Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+6. Thực hiện việc  ngăn chặn, gỡ bỏ thông tin, dịch vụ vi phạm quy định của 
+pháp luật theo yêu cầu của các cơ quan có thẩm quyền theo quy định tại khoản 6 
+Điều 35 Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+7. Thực hiện việc tạm khóa hoặc khóa vĩnh viễn hoạ t động đối với các tài 
+khoản, trang cộng đồng, nhóm cộng đồng, kênh nội dung thường xuyên đăng tải 
+nội dung vi phạm pháp luật chậm nhất là 24 giờ khi có yêu cầu của các cơ quan có 
+thẩm quyền theo quy định tại khoản 7 Điều 35 Nghị định số.../NĐ -CP ngày... 
+tháng... năm... của Chính phủ.  
+8. Cung cấp thông tin của người sử dụng dịch vụ mạng xã hội cho cơ quan có 
+thẩm quyền khi có yêu cầu bằng văn bản để phục vụ công tác điều tra, xử lý hành 
+vi vi phạm pháp luật về quản lý, cung cấp, sử dụng dịch vụ internet và  thông tin 
+trên mạng theo quy định tại khoản 9 Điều 35 Nghị định số.../NĐ -CP ngày... 
+tháng... năm... của Chính phủ. 
+9. Thực hiện việc đăng ký, lưu trữ, xác thực và quản lý nội dung, thông tin của 
+người sử dụng dịch vụ mạng xã hội theo quy định của pháp luậ t. Bảo đảm chỉ 
+những người sử dụng đã cung cấp đầy đủ, chính xác thông tin theo quy định mới 
+được đăng tải thông tin (viết bài, bình luận, livestream) và chia sẻ thông tin trên 
+mạng xã hội. Thực hiện xóa thông tin của người sử dụng dịch vụ sau khi hết hạn 
+thời gian lưu trữ theo quy định theo quy định tại khoản 11 Điều 35 Nghị định 
+số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+10. Phối hợp với các cơ quan quản lý nhà nước cung cấp thông tin, phổ biến 
+quy định của pháp luật Việt Nam có liên quan đến việc  cung cấp, sử dụng Internet 
+và thông tin trên mạng đến người sử dụng  dịch vụ mạng xã hội theo quy định tại 
+khoản 12 Điều 35 Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+
+===PAGE 66===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 67 
+ 
+11. Triển khai giải pháp bảo vệ trẻ em trên môi trường mạng theo quy đị nh của 
+pháp luật về bảo vệ trẻ em theo quy định tại khoản 13 Điều 35 Nghị định 
+số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+12. Kết nối đến hệ thống giám sát của Bộ Thông tin và Truyền thông để phục 
+vụ việc thống kê, theo dõi lượng người sử dụng, tru y cập theo quy định tại 
+khoản 14 Điều 35 Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+13. Cung cấp công cụ tìm kiếm, rà quét nội dung theo yêu cầu của cơ quan có 
+thẩm quyền theo quy định tại khoản 15 Điều 35 Nghị định số.../NĐ -CP ngày... 
+tháng... năm... của Chính phủ. 
+14. Báo cáo theo quy định và chịu sự thanh tra, kiểm tra của các cơ quan  quản 
+lý nhà nước có thẩm quyền theo quy định tại khoản 16 Điều 35 Nghị định 
+số.../NĐ-CP ngày... tháng... năm... của Chính phủ. 
+15. Thực hiện các quyền và nghĩa vụ khác theo quy định của pháp luật. 
+(Tên cơ quan, tổ chức, doanh nghiệp) chịu trách nhiệm về nội dung đã cam kết 
+trên đây và sẽ chịu mọi hình thức xử lý theo quy định của pháp luật về cung cấp 
+dịch vụ mạng xã hội nếu vi phạm quy định tại giấy phép. 
+ 
+Nơi nhận: 
+- Như trên; 
+................ 
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/  
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+Đầu mối liên hệ về hồ sơ cấp phép (họ tên, chức vụ, điện thoại, địa chỉ thư 
+điện tử). 
+
+===PAGE 67===
+ 
+68 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 18 
+ 
+ 
+BỘ THÔNG TIN VÀ TRUYỀN THÔNG  
+(UBND TỈNH, THÀNH PHỐ  
+TRỰC THUỘC TW...) 
+CỤC PHÁT THANH, TRUYỀN 
+HÌNH VÀ THÔNG TIN ĐIỆN TỬ 
+ (SỞ THÔNG TIN VÀ TRUYỀN 
+THÔNG TỈNH, THÀNH PHỐ...)  
+ 
+Số:.../GP-TTĐT 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+  
+...., ngày... tháng.... năm.... 
+GIẤY PHÉP THIẾT LẬP TRANG THÔNG TIN ĐIỆN TỬ TỔNG HỢP  
+Cấp lần đầu: ngày.... tháng.... năm.... 
+Cấp sửa đổi, bổ sung: ngày... tháng... năm... 
+Cấp lại: ngày... tháng... năm... (nếu có) 
+Cấp gia hạn: ngày... tháng... năm... 
+ 
+CỤC TRƯỞNG CỤC PHÁT THANH, TRUYỀN HÌNH  
+VÀ THÔNG TIN ĐIỆN TỬ  
+(GIÁM ĐỐC SỞ THÔNG TIN VÀ TRUYỀN THÔNG)  
+ 
+Căn cứ Luật Báo chí; 
+Căn cứ Nghị định số.... ngày..... tháng..... năm.... của Chính phủ quy định chức 
+năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Thông tin và Truyền thông; 
+Căn cứ Nghị định số.../NĐ -CP ngày... tháng... năm... của Chính phủ quản lý, 
+cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; 
+Căn cứ Quyết định số.... quy định chức năng, nhiệm vụ, quyền hạn và cơ cấ u 
+tổ chức của (cơ quan cấp phép);  
+Theo đề nghị của...... (cơ quan, tổ chức, doanh nghiệp đề nghị cấp phép); 
+Theo đề nghị của Trưởng phòng Phòng Thông tin điện tử (Trưởng Phòng... 
+thuộc Sở Thông tin và Truyền thông tỉnh, thành phố). 
+ 
+QUYẾT ĐỊNH: 
+CẤP GIẤY PHÉP THIẾT LẬP TRANG THÔNG TIN ĐIỆN TỬ TỔNG 
+HỢP THEO NHỮNG QUY ĐỊNH SAU: 
+ 
+Điều 1. Cơ quan, tổ chức, doanh nghiệp được thiết lập trang thông tin điện 
+tử tổng hợp theo những quy định sau: 
+
+===PAGE 68===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 69 
+ 
+1. Tên cơ quan chủ quản (nếu có):... 
+2. Tên cơ quan, tổ chức, doanh nghiệp thiết lập trang thông tin điện tử tổng hợp:...  
+- Địa chỉ trụ sở chính:......  
+- Địa chỉ trụ sở giao dịch (nếu có):... 
+- Quyết định thành lập/Điều lệ hoạt động/Giấy chứng nhận đăng ký doanh 
+nghiệp/Giấy chứng nhận đăng ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... 
+cấp ngày... tháng... năm... tại... 
+- Điện thoại/Fax:................  
+- Website:............... 
+- Thư điện tử......................... 
+3. Tên trang (nếu có):......................... 
+4. Mục đích thiết lập trang tin điện tử tổng hợp:......................... 
+5. Nội dung thông tin cung cấp trên trang thông tin điện tử tổng hợp:................ 
+6. Nguồn tin:......................... 
+7. Tên cơ quan báo chí, lĩnh vực thông tin liên kết (nếu có hoạt động hợp tác 
+liên kết sản xuất tin bài với cơ quan báo chí):......................... 
+8. Phương thức cung cấp thông tin: 
+a) Trên trang thông tin điện tử tại tên miền:......................... 
+b) Qua ứng dụng.... phân phối trên kho ứng dụng... 
+9. Địa điểm đặt hệ thống máy chủ cung cấp dịch vụ tại Việt Nam:..................... 
+10. Nhân sự chịu trách nhiệm quản lý trang thông tin điện tử tổng hợp: 
+a) Nhân sự chịu trách nhiệm trước pháp luật: 
+- Họ và tên:............................................................................................................ 
+- Chức danh:.......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+b) Nhân sự quản lý nội dung: 
+- Họ và tên:........................................................................................................... 
+- Chức danh:.......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+
+===PAGE 69===
+ 
+70 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Điều 2. Ngoài các quy định tại Điều 1, (cơ quan, tổ chức, doanh nghiệp) có 
+các trách nhiệm sau: 
+1. Cơ quan, tổ chức, doanh nghiệp được cấp giấy phép thiết lập trang thông  
+tin điện tử tổng hợp phải thực hiện đúng các quy định về hoạt động quản lý, cung 
+cấp, sử dụng dịch vụ Internet và thông tin trên mạng; các quy định của pháp luật 
+về bản quyền; các cam kết tại hồ sơ đề nghị cấp phép và những điều ghi trong 
+giấy phép này. 
+2. Trường hợp trên trang thông tin điện tử tổng hợp có cung cấp dịch vụ khác 
+thuộc các ngành nghề kinh doanh có điều kiện cần phải có giấy phép, giấy chứng 
+nhận đủ điều kiện kinh doanh, cơ quan, tổ chức, doanh nghiệp phải thực hiện thủ 
+tục đề nghị cấp giấy phép hoặc giấy chứng nhận đủ điều kiện kinh doanh theo quy 
+định của pháp luật. 
+3. Xây dựng quy trình quản lý nội dung, thông tin tổng hợp, kịp thời cập nhật, 
+điều chỉnh các nội dung dẫn lại khi nội dung nguồn thay đổi; gỡ bỏ ngay nội dung 
+thông tin đã tổng hợp khi nguồn thông tin được trích dẫn gỡ bỏ nội dung thông tin 
+đó theo quy định tại khoản 4 Điều 36 Luật Báo chí. 
+4. Có cơ chế kiểm soát nguồn tin, đảm bảo thông tin tổng hợp đăng tải không 
+vi phạm bản quyền; có công cụ bằng phương tiện điện tử để tiếp n hận, xử lý khiếu 
+nại của người sử dụng về nội dung, dịch vụ; nội dung dẫn lại theo thỏa thuận bằng 
+văn bản giữa trang thông tin điện tử tổng hợp với cơ quan báo chí nhưng không 
+sớm hơn 01 giờ tính từ thời điểm phát hành nội dung nguồn. 
+5. Không cho đăng tả i ý kiến nhận xét, bình luận của độc giả về nội dung tin, 
+bài được dẫn lại; nội dung tổng hợp ghi rõ tên tác giả và tên nguồn tin (viết đầy đủ 
+tên nguồn tin), thời gian đã đăng, phát thông tin đó, đặt đường dẫn liên kết đến bài 
+viết nguồn ngay cuối bài dẫn lại.  
+6. Có phương án kỹ thuật đảm bảo kết nối đến hệ thống giám sát của Bộ 
+Thông tin và Truyền thông để phục vụ cho việc theo dõi đăng tải tin bài trên 
+trang thông tin điện tử tổng hợp và thống kê lượng người sử dụng truy cập khi có 
+yêu cầu. 
+7. Kiểm tra, giám sát và loại bỏ nội dung vi phạm  Điều 8 Luật An ninh mạng 
+chậm nhất là 24 giờ kể từ khi có yêu cầu bằng văn bản, điện thoại, hoặc qua 
+phương tiện điện tử của Bộ Thông tin và Truyền thông (Cục Phát thanh, truyền 
+hình và thông tin điện tử), Bộ Công an ( Cục An ninh mạng và phòng, chống tội 
+phạm sử dụng công nghệ cao), Sở Thông tin và Truyền thông địa phương và các 
+
+===PAGE 70===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 71 
+ 
+cơ quan có thẩm quyền theo pháp luật chuyên ngành hoặc khi tự phát hiện vi 
+phạm; thực hiện việc xử lý các yêu cầu, khiếu nại về sở hữu trí tuệ theo các quy 
+định của pháp luật của Việt Nam về sở hữu trí tuệ; gỡ ngay nội dung dẫn lại 
+(không chậm hơn 03 giờ) sau khi nội dung nguồn bị gỡ. 
+8. Triển khai giải pháp bảo vệ trẻ em trên môi trường mạng theo quy định của 
+pháp luật về bảo vệ trẻ em. 
+9. Báo cáo theo quy định và chịu sự thanh tra, kiểm tra của các cơ quan quản 
+lý nhà nước có thẩm quyền. 
+10. Thực hiện các trách nhiệm khác theo quy định của pháp luật. 
+Điều 3. Hiệu lực của giấy phép: 
+1. Giấy phép này có giá trị trong... năm (Giấy phép này có giá t rị đến ngày..... 
+tháng... năm... và thay thế giấy phép số...  cấp ngày.... tháng... năm... trong trường 
+hợp cấp sửa đổi, bổ sung, cấp lại, gia hạn giấy phép). 
+2. Giấy phép này có hiệu lực kể từ ngày ký. 
+ 
+Nơi nhận: 
+- Cơ quan, tổ chức, doanh nghiệp được cấp phép; 
+- Thứ trưởng (để b/c); 
+- Cục trưởng (Giám đốc Sở TT&TT tỉnh,  
+ thành phố trực thuộc TW); 
+- Cục PTTH&TTĐT (đối với giấy phép  
+ do Sở TT&TT tỉnh, thành phố cấp); 
+- Thanh tra Bộ; 
+- Lưu: VT,....... 
+CỤC TRƯỞNG  
+(GIÁM ĐỐC) 
+(Ký, ghi rõ họ tên, chức danh và 
+đóng dấu/ký số) 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 71===
+ 
+72 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 19 
+ 
+BỘ THÔNG TIN  
+VÀ TRUYỀN THÔNG 
+ 
+Số:.../GP-BTTTT 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+Hà Nội, ngày... tháng... năm...  
+ 
+GIẤY PHÉP CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI 
+Cấp lần đầu ngày....... tháng..... năm..... 
+Cấp sửa đổi, bổ sung ngày....... tháng..... năm.... (nếu có) 
+Cấp lại ngày..... tháng...... năm.....(nếu có) 
+Cấp gia hạn ngày..... tháng...... năm.....(nếu có) 
+ 
+BỘ TRƯỞNG BỘ THÔNG TIN VÀ TRUYỀN THÔNG 
+ 
+Căn cứ Nghị định số....... ngày... tháng.... nă m.....của Chính phủ quy định chức 
+năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Thông tin và Truyền thông;  
+Căn cứ Nghị định số.../NĐ -CP ngày... tháng... năm... của Chính phủ quản lý, 
+cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; 
+Theo đề nghị của (cơ quan, tổ chức, doanh nghiệp đề nghị cấp phép); 
+Theo đề nghị của Cục trưởng Cục Phát thanh, truyền hình và thông tin điện tử. 
+ 
+QUYẾT ĐỊNH: 
+CẤP GIẤY PHÉP CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI 
+THEO NHỮNG QUY ĐỊNH SAU: 
+ 
+Điều 1. Cơ quan, t ổ chức, doanh nghi ệp được cung cấp dịch vụ mạng xã 
+hội theo các quy định sau: 
+1. Tên cơ quan, tổ chức, doanh nghiệp cung cấp dịch vụ mạng xã hội:....... 
+- Địa chỉ trụ sở chính:......  
+- Địa chỉ trụ sở giao dịch:...  
+- Quyết định thành lập/Giấy chứng nhận đăng ký doanh nghiệ p/Giấy chứng 
+nhận đăng ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... cấp ngày... tháng... 
+năm... tại... 
+- Điện thoại:................ Website......................... 
+2. Tên mạng xã hội (nếu có):  
+3. Mục đích cung cấp dịch vụ mạng xã hội:  
+
+===PAGE 72===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 73 
+ 
+4. Loại hình dịch vụ mạng xã hội:  
+5. Phương thức cung cấp dịch vụ: 
+a) Trên trang thông tin điện tử tại tên miền:  
+b) Qua ứng dụng....phân phối trên kho ứng dụng... 
+6. Địa điểm đặt hệ thống máy chủ cung cấp dịch vụ tại Việt Nam:  
+7. Nhân sự chịu trách nhiệm quản lý nội dung thông tin trên mạng xã hội: 
+a) Nhân sự chịu trách nhiệm trước pháp luật: 
+- Họ và tên:............................................................................................................ 
+- Chức danh:.......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+b) Nhân sự quản lý nội dung: 
+- Họ và tên:............................................................................................................ 
+- Chức danh:.......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+Điều 2. Ngoài các quy định tại Điều 1, ( cơ quan, tổ chức, doanh nghiệp) có 
+các trách nhiệm sau: 
+1. (Cơ quan, tổ chức, doanh nghiệp) phải thực hiện đúng các quy định về hoạt 
+động quản lý, cung cấp, sử dụng dịch vụ Internet và thông  tin trên mạng; các cam 
+kết tại hồ sơ đề nghị cấp phép và những điều ghi trong giấy phép này.  
+2. Trường hợp trên mạng xã hội có cung cấp dịch vụ khác thuộc các ngành nghề 
+kinh doanh có điều kiện cần phải có giấy phép, giấy chứng nhận đủ điều kiện kinh 
+doanh, (Cơ quan, tổ chức, doanh nghiệp) phải thực hiện thủ tục đề nghị cấp giấy 
+phép hoặc giấy chứng nhận đủ điều kiện kinh doanh theo quy định của pháp luật. 
+Điều 3. Hiệu lực của giấy phép: 
+ 
+Nơi nhận: 
+- Cơ quan/Tổ chức/DN được  
+cấp phép;  
+- Bộ Công an; 
+- Bộ trưởng (để b/c);  
+- Thứ trưởng....; 
+- Thanh tra Bộ; 
+- Sở TTTT địa phương; 
+- Lưu: VT, PTTH&TTĐT,.. 
+KT. BỘ TRƯỞNG 
+THỨ TRƯỞNG 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 73===
+ 
+74 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 20 
+ 
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+Số:... 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+....., ngày... tháng... năm... 
+ 
+THÔNG BÁO CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI 
+ 
+Kính gửi: Bộ Thông tin và Truyền thông 
+ (Cục Phát thanh truyền hình và thông tin điện tử). 
+ 
+(Tên cơ quan, tổ chức, doanh nghiệp) thông báo cung cấp dịch vụ mạng xã hội 
+như sau: 
+Phần 1. Tên cơ quan, tổ chức, doanh nghiệp cung cấp dịch vụ mạng xã hội:... 
+- Địa chỉ trụ sở chính:......  
+- Địa chỉ trụ sở giao dịch:...  
+- Quyết định thành lập/Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng 
+nhận đăng ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... cấp ngày... tháng... 
+năm... tại... 
+- Điện thoại:................ Website......................... 
+Phần 2. Mô tả tóm tắt về thông báo cung cấp dịch vụ mạng xã hội  
+1. Tên mạng xã hội (nếu có): 
+2. Mục đích cung cấp dịch vụ mạng xã hội:......................................................... 
+3. Loại hình dịch vụ mạng xã hội: (dịch vụ tạo tài khoản, kênh (channel) cung 
+cấp nội dung, trang thông tin điện tử cá nhân...)......................................................... 
+4. Phương thức cung cấp dịch vụ:......................................................................... 
+a) Trên trang thông tin điện tử tại tên miền:......................................................... 
+b) Qua ứng dụng... phân phối trên kho ứng dụng:................................................ 
+5. Quy trình quản lý:... 
+6. Nhà cung cấp dịch vụ kết nối Internet:............................................................. 
+7. Địa điểm đặt hệ thống máy chủ cung cấp dịch vụ tại Việt Nam:..................... 
+8. Nhân sự chịu trách nhiệm quản lý nội dung thông tin trên mạng xã hội: 
+a) Nhân sự chịu trách nhiệm trước pháp luật: 
+
+===PAGE 74===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 75 
+ 
+- Họ và tên:............................................................................................................ 
+- Chức danh:.......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+b) Nhân sự quản lý nội dung: 
+- Họ và tên:............................................................................................................ 
+- Chức danh:.......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+Phần 3. Tài liệu kèm theo 
+1. .......................................................................................................................... 
+2. .......................................................................................................................... 
+Phần 4. Cam kết 
+(Tên cơ quan, tổ chức, doanh nghiệp) xin cam kết thực hiện đầy đủ các quy 
+định tại Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung 
+cấp, sử dụng dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong hồ sơ thông báo cung cấp dịch vụ mạng xã hội 
+là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về hoạt động  
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin; tuân thủ nghiêm các quy 
+định về trách nhiệm của tổ chức, doanh nghiệp cung cấp dịch vụ mạng xã hội. 
+ 
+Nơi nhận: 
+- Như trên; 
+................ 
+- Lưu:......... 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/NGƯỜI 
+ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 75===
+ 
+76 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 21 
+ 
+BỘ THÔNG TIN VÀ TRUYỀN THÔNG 
+CỤC PHÁT THANH, TRUYỀN HÌNH  
+VÀ THÔNG TIN ĐIỆN TỬ 
+ 
+Số:.../GXN-PTTH&TTĐT 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+ 
+Hà Nội, ngày... tháng... năm...  
+ 
+GIẤY XÁC NHẬN THÔNG BÁO CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI  
+Cấp lần đầu ngày....... tháng..... năm........ 
+Cấp sửa đổi, bổ sung ngày....... tháng..... năm.... (nếu có) 
+Cấp lại ngày..... tháng...... năm.....(nếu có) 
+ 
+CỤC TRƯỞNG CỤC PHÁT THANH TRUYỀN HÌNH  
+VÀ THÔNG TIN ĐIỆN TỬ 
+ 
+Căn cứ Nghị định số..... ngày.....tháng.....năm.....của Chính phủ quy định chức 
+năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Thông tin và Truyền thông;  
+Căn cứ Ng hị định số.../NĐ -CP ngày... tháng... năm... của Chính phủ quản lý, 
+cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; 
+Căn cứ Quyết định số..... ngày.....tháng.....năm.....của Bộ trưởng Bộ Thông tin 
+và Truyền thông quy định chức năng, nhiệm vụ, quyề n hạn và cơ cấu tổ chức của 
+Cục Phát thanh, truyền hình và thông tin điện tử; 
+Theo thông báo cung cấp dịch vụ mạng xã hội của... (cơ quan, tổ chức, doanh 
+nghiệp thông báo); 
+Theo đề nghị của Trưởng phòng Phòng thông tin điện tử. 
+ 
+XÁC NHẬN 
+THÔNG BÁO CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI  
+THEO NHỮNG QUY ĐỊNH SAU: 
+ 
+1. Tên cơ quan, tổ chức, doanh nghiệp cung cấp dịch vụ mạng xã hội: 
+2. Tên mạng xã hội (nếu có): 
+3. Mục đích cung cấp dịch vụ mạng xã hội:  
+4. Loại hình dịch vụ mạng xã hội: (dịch vụ tạo tài khoản, kênh (chan nel) cung 
+cấp nội dung, trang thông tin điện tử cá nhân...) 
+
+===PAGE 76===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 77 
+ 
+5. Đối tượng phục vụ:  
+6. Phương thức cung cấp dịch vụ:  
+a) Trên trang thông tin điện tử tại tên miền:  
+b) Qua ứng dụng... phân phối trên kho ứng dụng:  
+7. Quy trình quản lý:  
+8. Nhà cung cấp dịch vụ kết nối Internet:  
+9. Địa điểm đặt hệ thống máy chủ cung cấp dịch vụ tại Việt Nam:  
+10. Nhân sự chịu trách nhiệm quản lý nội dung thông tin trên mạng xã hội: 
+a) Nhân sự chịu trách nhiệm trước pháp luật: 
+- Họ và tên:........................................................................................................... 
+- Chức danh:......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+b) Nhân sự quản lý nội dung: 
+- Họ và tên:........................................................................................................... 
+- Chức danh:.......................................................................................................... 
+- Số điện thoại liên lạc (cả cố định và di động):................................................... 
+11. Cơ quan, tổ chức, doanh nghiệp cung cấp dịch vụ mạng xã hội theo đúng 
+nội dung và cam kết đã thông báo. 
+Trường hợp trên mạng xã hội có cung cấp dịch vụ khác thuộc các ngành nghề 
+kinh doanh có điều kiện cần phải có giấy phép, giấy chứng nhận đủ điều kiện kinh 
+doanh, (Cơ quan, tổ chức, doanh nghiệp) phải thực hiện thủ tục đề nghị cấp giấy 
+phép hoặc giấy chứng nhận đủ điều kiện kinh doanh theo quy định của pháp luật. 
+ 
+Nơi nhận: 
+- Cơ quan, tổ chức, doanh nghiệp được cấp 
+phép; 
+- Thứ trưởng (để b/c); 
+- Thanh tra Bộ; 
+- Sở TTTT địa phương; 
+- Cục trưởng; 
+- Lưu: VT, TTĐT. 
+CỤC TRƯỞNG 
+(Ký, ghi rõ họ tên, chức danh  
+và đóng dấu/ký số) 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 77===
+ 
+78 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 22  
+ 
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+Số:... ...., ngày... tháng... năm... 
+  
+ĐƠN ĐỀ NGHỊ SỬA ĐỔI, BỔ SUNG GIẤY PHÉP THIẾT LẬP 
+TRANG THÔNG TIN ĐIỆN TỬ TỔNG HỢP 
+ 
+Kính gửi:................. 
+ 
+Phần I. Thông tin chung   
+1. Tên cơ quan chủ quản:............ 
+2. Tên cơ quan, tổ chức, doanh nghiệp thiết lập trang thông tin điện tử tổng 
+hợp:................ 
+3. Địa chỉ trụ sở chính:...... 
+Địa chỉ trụ sở giao dịch (nếu có):....... 
+4. Điện thoại/fax:................  
+- Website......................... 
+- Thư điện tử:........ 
+5. Giấy phép thiết lập trang thông tin điện tử tổng hợp đề nghị được sửa đổi, 
+bổ sung: Giấy phép (tên giấy phép)... số.... cấp ngày.... tháng.... năm..... 
+6. Phương thức cung cấp thông tin:  
+a) Trên trang thông tin điện tử tại tên miền, tên trang:.... 
+b) Qua ứng dụng... phân phối trên kho ứng dụng:.......... 
+Phần II. Mô tả tóm tắt về đề nghị sửa đổi, bổ sung giấy phép 
+1. Nội dung đề nghị sửa đổi, bổ sung:  
+2. Lý do đề nghị sửa đổi, bổ sung: 
+Phần III. Tài liệu kèm theo 
+1. ..........................................................................................................................  
+2. .......................................................................................................................... 
+
+===PAGE 78===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 79 
+ 
+Phần IV. Cam kết 
+(Tên cơ quan, tổ chức, doanh nghiệp) xin cam kết thực hiện đầy đủ các quy 
+định tại Nghị định số.../.../NĐ -CP ngày... tháng... năm... của Chính phủ quản lý, 
+cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong hồ sơ đề nghị sửa đổi, bổ sung giấy phép thiết 
+lập trang thông tin điện tử tổng hợp và các tài liệu kèm theo là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp lu ật Việt Nam về hoạt động 
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; các quy định 
+của pháp luật về bản quyền; các văn bản pháp luật có liên quan hiện hành. 
+ 
+Nơi nhận: 
+- Như trên;  
+- Cơ quan chủ quản 
+(nếu có);  
+.................. 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC,  
+DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+(Đầu mối liên hệ về hồ sơ cấp phép (họ tên, chức vụ, điện thoại, địa chỉ  thư 
+điện tử). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 79===
+ 
+80 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 23 
+ 
+TÊN TỔ CHỨC, DOANH NGHIỆP 
+ 
+ 
+Số:..... 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+... , ngày... tháng... năm... 
+ 
+ 
+ĐƠN ĐỀ NGHỊ SỬA ĐỔI, BỔ SUNG 
+GIẤY PHÉP CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI 
+ 
+Kính gửi: Bộ Thông tin và Truyền thông 
+ (Cục Phát thanh truyền hình và thông tin điện tử). 
+ 
+(Tên cơ quan, tổ chức, doanh nghiệp) đề nghị được sửa đổi, bổ sung giấy phép cung 
+cấp dịch vụ mạng xã hội như sau: 
+Phần 1. Thông tin chung  
+1. Tên cơ quan, tổ chức, doanh nghiệp:........ 
+2. Địa chỉ trụ sở chính:......  
+3. Địa chỉ trụ sở giao dịch:.... 
+4. Quyết định thành lập/Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận 
+đăng ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... cấp ngày... tháng... năm... tại... 
+5. Điện thoại:................ Website......................... 
+6. Giấy phép cung cấp dịch vụ mạng xã hội cần sửa đổi, bổ sung:  
+Giấy phép (tên giấy phép) số... cấp ngày... tháng... năm... 
+Phần 2. Mô tả tóm tắt về đề nghị cấp giấy phép sửa đổi, bổ sung 
+1. Nội dung đề nghị sửa đổi, bổ sung:  
+2. Lý do đề nghị sửa đổi, bổ sung: 
+Phần 3. Tài liệu kèm theo 
+1. .................................................................................................................................... 
+2. .................................................................................................................................... 
+3. .................................................................................................................................... 
+Phần 4. Cam kết  
+(Tên cơ quan, tổ chức, doanh  nghiệp) xin cam kết thực hiện đầy đủ các quy định tại 
+Nghị định số..../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung cấp, sử dụng 
+dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong hồ sơ đề nghị cấp giấy phép cung  cấp dịch vụ mạng 
+xã hội sửa đổi, bổ sung và các tài liệu kèm theo là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về cung cấp dịch 
+vụ mạng xã hội và các quy định trong giấy phép cung cấp dịch vụ mạng xã hội sửa đổi, 
+bổ sung. 
+ 
+Nơi nhận: 
+- Như trên; 
+................ 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+
+===PAGE 80===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 81 
+ 
+Mẫu số 24 
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+Số:.... ....., ngày... tháng... năm... 
+ 
+ĐƠN ĐỀ NGHỊ SỬA ĐỔI, BỔ SUNG GIẤY XÁC NHẬN 
+THÔNG BÁO CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI  
+ 
+Kính gửi: Bộ Thông tin và Truyền thông 
+ (Cục Phát thanh truyền hình và thông tin điện tử).  
+(Tên cơ quan, tổ chức, doanh nghiệp) thay đổi nội dung thông báo cung cấp dịch vụ 
+mạng xã hội như sau: 
+Phần 1. Thông tin chung  
+1. Tên cơ quan chủ quản (nếu có):.................................................................................  
+2. Tên cơ quan, tổ chức, doanh nghiệp:......................................................................... 
+3. Địa chỉ trụ sở chính:......  
+4. Địa chỉ trụ sở giao dịch:..... 
+5. Quyết định thành lập/Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận 
+đăng ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... cấp ngày... tháng... năm... tại... 
+6. Điện thoại:................ Website......................... 
+7. Giấy xác nhận thông báo cung cấp dịch vụ mạng xã hội số:..................................... 
+Phần 2. Mô tả tóm tắt về thay đổi thông báo cung cấp dịch vụ mạng xã hội  
+1. Nội dung thay đổi:  
+2. Lý do thay đổi: 
+Phần 3. Tài liệu kèm theo 
+1. .................................................................................................................................... 
+2. .................................................................................................................................... 
+Phần 4. Cam kết 
+(Tên cơ quan, tổ chức, doanh nghiệp) xin cam kết thực hiện đầy đủ các quy định tại 
+Nghị định số..../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung cấp, sử dụng 
+dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong hồ sơ thông báo cung cấp dịch vụ mạng xã hội là 
+đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các  quy định của pháp luật Việt Nam về hoạt động 
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin; tuân thủ nghiêm các quy định 
+về trách nhiệm của cơ quan, tổ chức, doanh nghiệp cung cấp dịch vụ mạng xã hội.  
+ 
+Nơi nhận: 
+- Như trên; 
+................ 
+- Lưu:......... 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/  
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+
+===PAGE 81===
+ 
+82 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 25  
+ 
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+Số:... ...., ngày... tháng... năm... 
+  
+ĐƠN ĐỀ NGHỊ GIA HẠN GIẤY PHÉP THIẾT LẬP 
+TRANG THÔNG TIN ĐIỆN TỬ TỔNG HỢP  
+ 
+Kính gửi:.......................... 
+  
+(Tên cơ quan, tổ chức, doanh nghiệp) đề nghị được gia hạn giấy phép thiết lập 
+trang thông tin điện tử tổng hợp như sau: 
+Phần I. Thông tin chung  
+1. Tên cơ quan chủ quản (nếu có):...  
+2. Tên cơ quan, tổ chức, doanh nghiệp thiết lập trang thông tin điện tử tổng hợp:... 
+3. Địa chỉ trụ sở chính:...... 
+Địa chỉ trụ sở giao dịch (nếu có):... 
+4. Quyết định thành lập/Điều lệ hoạt động/Giấy chứng nhận đăng ký doanh 
+nghiệp/Giấy chứng nhận đăng ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... 
+cấp ngày... tháng... năm... tại... 
+5. Điện thoại/Fax:................  
+- Website......................... 
+- Thư điện tử:... 
+6. Giấy phép thiết lập trang thông tin điện tử tổng hợp đề nghị được gia hạn: 
+Giấy phép (tên giấy phép)...  số.... cấp ngày.... tháng.... năm..... 
+Phương thức cung cấp thông tin:  
+a) Trên trang thông tin điện tử tại tên miền, tên trang:.... 
+b) Qua ứng dụng... phân phối trên kho ứng dụng:.......... 
+Phần II. Mô tả tóm tắt về đề nghị gia hạn giấy phép 
+- Lý do đề nghị gia hạn............... 
+- Thời hạn đề nghị được gia hạn:.... năm.... tháng 
+
+===PAGE 82===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 83 
+ 
+Phần III. Tài liệu kèm theo 
+1. ..........................................................................................................................  
+2. .......................................................................................................................... 
+Phần IV. Cam kết 
+(Tên cơ quan, tổ chức, doanh nghiệp) xin cam kết thực hiện đầy đủ các quy 
+định tại Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung 
+cấp, sử dụng dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong hồ sơ đ ề nghị gia hạn giấy phép thiết lập trang 
+thông tin điện tử tổng hợp và các tài liệu kèm theo là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về hoạt động 
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; các  quy định 
+của pháp luật về bản quyền; các văn bản pháp luật có liên quan hiện hành. 
+ 
+Nơi nhận: 
+- Như trên;  
+- Cơ quan chủ quản 
+(nếu có);  
+.................. 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC,  
+DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+ 
+(Đầu mối liên hệ về hồ sơ cấp phép (họ tên, chức vụ, điện thoại, địa chỉ  thư 
+điện tử). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 83===
+ 
+84 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 26  
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+Số:......... 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+... , ngày... tháng... năm...  
+ĐƠN ĐỀ NGHỊ GIA HẠN 
+GIẤY PHÉP CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI  
+Kính gửi: Bộ Thông tin và Truyền thông 
+ (Cục Phát thanh truyền hình và thông tin điện tử). 
+ 
+(Tên cơ quan, tổ chức, doanh nghiệp) đề nghị được c ấp gia hạn giấy phép cung cấp 
+dịch vụ mạng xã hội như sau: 
+Phần 1. Thông tin chung  
+1. Tên cơ quan, tổ chức, doanh nghiệp:........ 
+2. Tên mạng xã hội (nếu có):..... 
+3. Địa chỉ trụ sở chính:......  
+4. Địa chỉ trụ sở giao dịch:...... 
+5. Điện thoại:................ Website......................... 
+6. Giấy phép cung cấp dịch vụ mạng xã hội đề nghị được gia hạn:  
+Giấy phép (tên giấy phép) số....cấp ngày.... tháng... năm..... 
+Phần 2. Mô tả tóm tắt về đề nghị gia hạn  
+Lý do đề nghị gia hạn............... 
+Thời hạn đề nghị được gia hạn:.... năm.... tháng 
+Phần 3. Tài liệu kèm theo  
+1. ....................................................................................................................................  
+2. .................................................................................................................................... 
+Phần 4. Cam kết  
+(Tên cơ quan, tổ chức, doanh nghiệp) xin cam kết thực hiện đầy đủ các quy định tại 
+Nghị định số..../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung cấp , sử dụng 
+dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong hồ sơ đề nghị gia hạn giấy phép cung cấp dịch vụ 
+mạng xã hội và các tài liệu kèm theo là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về hoạt động quản 
+lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng và các quy định trong giấy 
+phép cung cấp dịch vụ mạng xã hội được gia hạn. 
+ 
+Nơi nhận: 
+- Như trên; 
+................ 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/  
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+Đầu mối liên hệ về hồ sơ cấp phép (họ tên, chức vụ, điện thoại, địa chỉ thư điện tử). 
+
+===PAGE 84===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 85 
+ 
+Mẫu số 27 
+ 
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+Số:... ...., ngày... tháng... năm... 
+  
+ĐƠN ĐỀ NGHỊ CẤP LẠI GIẤY PHÉP THIẾT LẬP 
+TRANG THÔNG TIN ĐIỆN TỬ TỔNG HỢP  
+ 
+Kính gửi:............................. 
+  
+(Tên cơ quan, tổ chức, doanh nghiệp) đề nghị được cấp lại giấy p hép thiết lập 
+trang thông tin điện tử tổng hợp như sau: 
+Phần I. Thông tin chung  
+1. Tên cơ quan chủ quản (nếu có):...............  
+2. Tên cơ quan , tổ chức, doanh nghiệp thiết lập trang thông tin điện tử tổng 
+hợp:.............  
+3. Địa chỉ trụ sở chính:.......... 
+Địa chỉ trụ sở giao dịch (nếu có):............. 
+4. Quyết định thành lập/Điều lệ hoạt động/Giấy chứng nhận đăng ký doanh 
+nghiệp/Giấy chứng nhận đăng ký kinh doanh/Giấy chứng nhận đầu tư số:..... do.... 
+cấp ngày... tháng... năm... tại... 
+5. Điện thoại/Fax:................ 
+- Website......................... 
+- Thư điện tử:........... 
+6. Giấy phép thiết lập trang thông tin điện tử tổng hợp đề nghị được cấp lại: 
+Giấy phép (tên giấy phép)...  số.... cấp ngày.... tháng.... năm..... 
+Phạm vi cung cấp thông tin:  
+a) Trên trang thông tin điện tử tại tên miền, tên trang:.... 
+b) Qua ứng dụng... phân phối trên kho ứng dụng:.......... 
+Phần II. Mô tả tóm tắt về đề nghị cấp lại giấy phép 
+Lý do đề nghị cấp lại 
+□ Bị mất 
+
+===PAGE 85===
+ 
+86 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+□ Bị rách  
+□ Bị cháy  
+□ Bị tiêu hủy dưới hình thức khác (ghi rõ) 
+Phần III. Tài liệu kèm theo 
+1. ...........................................................................................................................  
+2. ........................................................................................................................... 
+Phần IV. Cam kết 
+(Tên cơ quan, tổ chức, doanh nghiệp) xin cam kết thực hiện đầy đủ các quy 
+định tại Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung 
+cấp, sử dụng dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong hồ sơ đề nghị cấp lại giấy phép thiết lập trang 
+thông tin điện tử tổng hợp và các tài liệu kèm theo là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về hoạt động 
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; các quy định 
+của pháp luật về bản quyền; các văn bản pháp luật có liên quan hiện hành. 
+ 
+Nơi nhận: 
+- Như trên;  
+- Cơ quan chủ quản 
+(nếu có);  
+............... 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC,  
+DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+(Đầu mối liên hệ về hồ sơ cấp phép (họ tên, chức vụ, điện thoại, địa chỉ  thư 
+điện tử). 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 86===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 87 
+ 
+Mẫu số 28 
+ 
+TÊN CƠ QUAN, TỔ CHỨC, 
+DOANH NGHIỆP 
+ 
+Số:....... 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+... , ngày... tháng... năm... 
+ 
+ 
+ĐƠN ĐỀ NGHỊ CẤP LẠI 
+GIẤY PHÉP CUNG CẤP DỊCH VỤ MẠNG XÃ HỘI 
+ 
+Kính gửi: Bộ Thông tin và Truyền thông 
+ (Cục Phát thanh truyền hình và thông tin điện tử).  
+(Tên cơ quan, tổ chức, doanh nghiệp) đề nghị được cấp lại giấy phép cung cấp dịch 
+vụ mạng xã hội như sau: 
+Phần 1. Thông tin chung  
+1. Tên cơ quan, tổ chức, doanh nghiệp:........ 
+2. Tên mạng xã hội (nếu có):.......... 
+3. Địa chỉ trụ sở chính:......  
+4. Địa chỉ trụ sở giao dịch:......... 
+5. Điện thoại:................ Website......................... 
+6. Giấy phép cung cấp dịch vụ mạng xã hội đề nghị được cấp lại:  
+Giấy phép (tên giấy phép) số.... cấp ngày.... tháng.... năm.... 
+Phần 2. Mô tả tóm tắt về đề nghị cấp lại  
+1. Giấy phép cung cấp dịch vụ mạng xã hội đề nghị được cấp lại 
+    Giấy phép (tên giấy phép) số....  cấp ngày.... tháng.... năm..... 
+2. Lý do đề nghị cấp lại 
+□ Bị mất 
+□ Bị rách  
+□ Bị cháy  
+□ Bị tiêu hủy dưới hình thức khác (ghi rõ) 
+Phần 3. Cam kết  
+(Tên cơ quan, tổ chức, doanh nghiệp) xin cam kết thực hiện đầy đủ các quy định tại 
+Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung cấp, sử dụng 
+dịch vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong h ồ sơ đề nghị cấp lại giấy phép cung cấp dịch vụ 
+mạng xã hội và các tài liệu kèm theo là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về hoạt động quản 
+lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng và các quy đ ịnh trong giấy 
+phép cung cấp dịch vụ mạng xã hội được cấp lại. 
+ 
+Nơi nhận: 
+- Như trên; 
+................ 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU CƠ QUAN, TỔ CHỨC, DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+Đầu mối liên hệ về hồ sơ cấp phép (họ tên, chức vụ, điện thoại, địa chỉ thư điện tử). 
+
+===PAGE 87===
+ 
+88 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 29 
+ 
+TÊN DOANH NGHIỆP 
+ 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc  
+ 
+Số:..... .., ngày..... tháng..... năm..... 
+ 
+ĐƠN ĐỀ NGHỊ CẤP GIẤY PHÉP  
+CUNG CẤP DỊCH VỤ TRÒ CHƠI ĐIỆN TỬ G1 TRÊN MẠNG 
+ 
+Kính gửi:  Bộ Thông tin và Truyền thông  
+(Cục Phát thanh, truyền hình và thông tin điện tử). 
+ 
+Phần 1. Thông tin chung 
+1. Tên doanh nghiệp: (ghi bằng chữ in hoa)......................................................... 
+- Tên giao dịch quốc tế:........................................................................................ 
+- Tên viết tắt:.........................................................................................................  
+2. Địa chỉ trụ sở chính:.......................................................................................... 
+- Địa chỉ văn phòng giao dịch:.......... Điện thoại:...................... Fax:................... 
+- Website giới thiệu hoạt động của Công ty:........................................................ 
+- Website cung cấp dịch vụ trò chơi điện tử G1 trên mạng:................................. 
+3. Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận đầu tư số:.... do.... 
+cấp ngày... tháng... năm... do.... 
+4. Họ và tên người đại diện theo pháp luật của doanh nghiệp:............................. 
+Chức vụ:................... Số điện thoại liên lạc:......................................................... 
+5. Địa chỉ đặt máy chủ và Tên doanh nghiệp cho thuê máy chủ, cho  thuê chỗ 
+đặt máy chủ:................................................................................................................ 
+6. Thời hạn đề nghị cấp phép: (tối đa 10 năm) 
+7. Tài liệu kèm theo: (theo quy định tại....) 
+Phần 2. Tài liệu kèm theo (quy định tại................ Nghị định..........................) 
+1. ..........................................................................................................................  
+Phần 3. Cam kết 
+1. Cam kết về việc thực hiện quyền và nghĩa vụ củ a tổ chức, doanh nghiệp 
+cung cấp dịch vụ trò chơi điện tử trên mạng: 
+Công ty....... cam kết thực nghiệm các quyền và nghĩa vụ của tổ chức, doanh 
+nghiệp cung cấp dịch vụ trò chơi điện tử trên mạng, cụ thể như sau: 
+
+===PAGE 88===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 89 
+ 
+- Chấp hành nghiêm chỉnh các quy định của p háp luật Việt Nam liên quan đến 
+cung cấp dịch vụ trò chơi điện tử trên mạng theo quy định tại Nghị định số.../NĐ-CP 
+ngày... tháng... năm... của Chính phủ quản lý, cung cấp, sử dụng dịch vụ Internet 
+và thông tin trên mạng; các quy định của pháp luật về than h toán và các quy định 
+khác của pháp luật có liên quan. 
+- Không lợi dụng việc cung cấp, sử dụng dịch vụ trò chơi điện tử để đánh bạc, 
+tổ chức đánh bạc, lừa đảo, kinh doanh trái pháp luật hoặc các hành vi vi phạm 
+pháp luật khác. 
+- Không đứng tên làm đại lý cho tổ chức, doanh nghiệp nước ngoài. 
+- Báo cáo và chịu sự thanh, kiểm tra của các cơ quan có thẩm quyền theo quy định. 
+2. Cam kết kế hoạch triển khai dịch vụ 
+Căn cứ vào các nội dung được trình bày trong hồ sơ đề nghị cấp giấy phép 
+cung cấp dịch vụ trò c hơi điện tử G1 trên mạng, doanh nghiệp...... cam kết triển 
+khai cung cấp dịch vụ sau khi được Bộ Thông tin và Truyền thông cấp giấy phép; 
+Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung cấp, sử 
+dụng dịch vụ Internet và thông tin t rên mạng; thực hiện đúng các quy định về 
+thanh toán và các quy định của pháp luật có liên quan. 
+3. Các nội dung cam kết khác 
+- Doanh nghiệp cam kết hồ sơ doanh nghiệp nộp đề nghị cấp Giấy phép cung 
+cấp dịch vụ trò chơi điện tử G1 trên mạng là đúng sự thật , đúng với thực tế của 
+doanh nghiệp và  bảo đảm đáp ứng đầy đủ các điều kiện về nhân sự, kỹ thuật, tài 
+chính, quản lý nội dung, thông tin... theo quy định của pháp luật hiện hành về hoạt 
+động cung cấp dịch vụ trò chơi điện tử trên mạng. 
+- Cam kết toàn bộ hệ  thống hỗ trợ và kết nối thanh toán cho game là đặt tại 
+Việt Nam và do doanh nghiệp chịu trách nhiệm quản lý, vận hành và kiểm soát tại 
+Việt Nam.  
+Doanh nghiệp...... cam kết nghiêm chỉnh chấp hành các biện pháp xử phạt theo 
+quy định của Nhà nước và Quyết đ ịnh của Bộ Thông tin và Truyền thông khi vi 
+phạm các cam kết nêu trên. 
+ 
+ Nơi nhận: 
+- Như trên; 
+................ 
+- Lưu:......... 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+
+===PAGE 89===
+ 
+90 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 30 
+ 
+BỘ THÔNG TIN VÀ TRUYỀN THÔNG 
+CỤC PHÁT THANH, TRUYỀN 
+HÌNH VÀ THÔNG TIN ĐIỆN TỬ 
+ 
+Số:.../GP-PTTH&TTĐT 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+ 
+Hà Nội, ngày... tháng... năm... 
+ 
+GIẤY PHÉP CUNG CẤP DỊCH VỤ TRÒ CHƠI ĐIỆN TỬ G1 TRÊN MẠNG 
+Cấp lần đầu ngày... tháng... năm...  
+Cấp sửa đổi, bổ sung ngày... tháng... năm...(nếu có) 
+Cấp lại ngày... tháng... năm... (nếu có)  
+Cấp gia hạn ngày... tháng... năm.... (nếu có) 
+ 
+CỤC TRƯỞNG  
+CỤC PHÁT THANH, TRUYỀN HÌNH VÀ THÔNG TIN ĐIỆN TỬ 
+ 
+ Căn cứ Nghị định số........./NĐ-CP ngày.... tháng.... năm.... của Chính phủ quy 
+định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Thông tin và 
+Truyền thông;  
+Căn cứ Nghị định số.../NĐ -CP ngày... tháng... năm... của Chính phủ quản lý, 
+cung cấp, sử dụng dịch vụ internet và thông tin trên mạng; 
+Căn cứ Quyết định số.../QĐ -BTTTT ngày......tháng...... năm.... của Bộ trưởng 
+Bộ Thông tin và Truyền thông quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu 
+tổ chức của Cục Phát thanh, truyền hình và thông tin điện tử; 
+Xét đề nghị của (Công ty có hồ sơ đề nghị cấp Giấy phép cung cấp dịch vụ trò 
+chơi điện tử G1 trên mạng); 
+Theo đề nghị của Trưởng phòng Phòng Thông tin điện tử. 
+ 
+QUYẾT ĐỊNH 
+CẤP GIẤY PHÉP CUNG CẤP DỊCH VỤ TRÒ CHƠI ĐIỆN TỬ G1  
+TRÊN MẠNG THEO NHỮNG QUY ĐỊNH SAU: 
+ 
+Điều 1. Thông tin doanh nghiệp: 
+1. Tên doanh nghiệp:............................................................................................. 
+- Tên giao dịch quốc tế:........................................................................................  
+- Tên viết tắt:........................................................................................................ 
+
+===PAGE 90===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 91 
+ 
+2. Địa chỉ trụ sở chính:.......................................................................................... 
+- Địa chỉ văn phòng giao dịch:..............................................................................  
+- Điện thoại:............................................ Fax:......................................................  
+- Website giới thiệu hoạt động của Công ty:........................................................ 
+- Website cung cấp dịch vụ trò chơi điện tử G1 trên mạng:................................. 
+3. Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận đầu tư số:.... do.... 
+cấp ngày... tháng... năm... do.... 
+4. Họ và tên người đại diện theo pháp luật của doanh nghiệp: 
+Chức vụ:................................... Số điện thoại liên lạc:........................................  
+5. Địa chỉ đặt máy chủ và Tên doanh nghiệp cho thuê máy chủ, cho th uê chỗ 
+đặt máy chủ:................................................................................................................ 
+Điều 2. Doanh nghiệp được cấp giấy phép phát hành trò chơi điện tử G1 trên 
+mạng phải thực hiện đúng các quy định tại: 
+- Nghị định số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung 
+cấp, sử dụng dịch vụ internet và thông tin trên mạng;  
+- Cam kết của doanh nghiệp tại Đơn đề nghị cấp giấy phép; 
+- Những điều ghi trong giấy phép này; các quy định về thanh toán và các q uy 
+định của pháp luật hiện hành có liên quan. 
+Điều 3. Hiệu lực của giấy phép: 
+ 
+Nơi nhận: 
+- Công ty............. 
+- Bộ Công an; 
+- Thứ trưởng (để b/c); 
+- Thanh tra Bộ TTTT; 
+- Sở TTTT địa phương; 
+- Cục trưởng; 
+- Lưu: VT, PTTH&TTĐT(12). 
+CỤC TRƯỞNG 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 91===
+ 
+92 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 31 
+ 
+TÊN TỔ CHỨC, DOANH NGHIỆP 
+ 
+ 
+Số:........... 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+... , ngày... tháng... năm... 
+ 
+  
+ĐƠN ĐỀ NGHỊ SỬA ĐỔI, BỔ SUNG 
+GIẤY PHÉP CUNG CẤP DỊCH VỤ TRÒ CHƠI ĐIỆN TỬ G1 TRÊN MẠNG 
+ 
+Kính gửi: Cục Phát thanh truyền hình và thông tin điện tử. 
+ 
+(Tên doanh nghiệp) đề nghị được sửa đổi, bổ sung giấy phép cung cấp dịch vụ 
+trò chơi điện tử G1 trên mạng như sau: 
+Phần 1. Thông tin chung  
+1. Tên doanh nghiệp: (ghi bằng chữ in hoa)......................................................... 
+- Tên giao dịch quốc tế:........................................................................................ 
+- Tên viết tắt:.........................................................................................................  
+2. Địa chỉ trụ sở chính:......................................................................................... 
+- Địa chỉ văn phòng giao dịch:........ Điện thoại:..................... Fax:...................... 
+- Website giới thiệu hoạt động của Công ty:........................................................ 
+- Website cung cấp dịch vụ trò chơi điện tử G1 trên mạng:................................. 
+3. Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứn g nhận đầu tư số:.... do.... 
+cấp ngày... tháng... năm... do.... 
+4. Giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng đề nghị được sửa 
+đổi, bổ sung:  
+Giấy phép (tên giấy phép) số.... cấp ngày....  tháng.... năm..... 
+Phần 2. Mô tả tóm tắt về đề nghị cấp Giấy phép sửa đổi, bổ sung 
+1. Nội dung đề nghị sửa đổi, bổ sung:  
+2. Lý do đề nghị sửa đổi, bổ sung 
+Phần 3. Tài liệu kèm theo 
+1. .......................................................................................................................... 
+2. .......................................................................................................................... 
+3. ........................................................................................................................... 
+
+===PAGE 92===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 93 
+ 
+Phần 4. Cam kết  
+(Tên doanh nghiệp) xin cam kết thực hiện đầy đủ các quy định tại Nghị định 
+số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung cấp, sử dụng dịch 
+vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong hồ sơ đề nghị cấp sửa đổi, bổ sung giấy phép cung 
+cấp dịch vụ trò chơi điện tử G1 trên mạng và các tài liệu kèm theo là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về hoạt động 
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; các quy định 
+trong giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng sửa đổi, bổ sung. 
+ 
+Nơi nhận: 
+- Như trên; 
+................ 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+Đầu mối liên hệ về hồ sơ cấp phép (họ tên, chức vụ, điện thoại, địa chỉ thư 
+điện tử). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===PAGE 93===
+ 
+94 CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 
+  
+Mẫu số 32 
+ 
+TÊN DOANH NGHIỆP 
+ 
+ 
+Số:... 
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM 
+Độc lập - Tự do - Hạnh phúc 
+ 
+... , ngày... tháng... năm... 
+ 
+ 
+ĐƠN ĐỀ NGHỊ GIA HẠN GIẤY PHÉP 
+CUNG CẤP DỊCH VỤ CHƠI ĐIỆN TỬ G1 TRÊN MẠNG 
+ 
+Kính gửi: Cục Phát thanh truyền hình và thông tin điện tử. 
+ 
+(Tên doanh nghiệp) đề nghị được cấp gia hạn giấy phép cung cấp dịch vụ trò 
+chơi điện tử G1 trên mạng như sau: 
+Phần 1. Thông tin chung  
+1.Tên doanh nghiệp: (ghi bằng chữ in hoa).......................................................... 
+- Tên giao dịch quốc tế:........................................................................................ 
+- Tên viết tắt:.........................................................................................................  
+2. Địa chỉ trụ sở chính:.......................................................................................... 
+- Địa chỉ văn phòng giao dịch:..... Điện thoại:........................ Fax:...................... 
+- Website giới thiệu hoạt động của Công ty:........................................................ 
+- Website cung cấp dịch vụ trò chơi điện tử G1 trên mạng:................................. 
+3. Giấy  chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận đầu tư số:... .... 
+do.... cấp ngày... tháng... năm... do.... 
+4. Giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng đề nghị được 
+gia hạn :  
+Giấy phép (tên giấy phép)  số.... cấp ngày.... tháng.... năm.... 
+Phần 2. Mô tả tóm tắt về đề nghị gia hạn  
+Lý do đề nghị gia hạn............... 
+Thời hạn đề nghị được gia hạn:.... năm.... tháng 
+Phần 3. Tài liệu kèm theo  
+1. ..........................................................................................................................  
+2. .......................................................................................................................... 
+
+===PAGE 94===
+ 
+ CÔNG BÁO/Số 1263 + 1264/Ngày 20-11-2024 95 
+ 
+Phần 4. Cam kết  
+(Tên doanh nghiệp) xin cam kết thực hiện đầy đủ các quy định tại Nghị định 
+số.../NĐ-CP ngày... tháng... năm... của Chính phủ quản lý, cung cấp, sử dụng dịch 
+vụ Internet và thông tin trên mạng, cụ thể: 
+1. Các thông tin cung cấp trong hồ sơ đề nghị gia hạn giấy phép cung cấp dịch 
+vụ trò chơi điện tử G1 trên mạng và các tài liệu kèm theo là đúng sự thật. 
+2. Chấp hành nghiêm chỉnh các quy định của pháp luật Việt Nam về hoạt động 
+quản lý, cung cấp, sử dụng dịch vụ Internet và thông tin trên mạng; các quy định 
+trong giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng gia hạn. 
+ 
+Nơi nhận: 
+- Như trên; 
+................ 
+XÁC NHẬN CỦA  
+NGƯỜI CHỊU TRÁCH NHIỆM TRƯỚC PHÁP LUẬT/ 
+NGƯỜI ĐỨNG ĐẦU DOANH NGHIỆP 
+(Ký, ghi rõ họ tên, chức danh và đóng dấu/ký số) 
+ 
+ 
+ 
+Đầu mối liên hệ về hồ sơ cấp phép (họ tên, chức vụ, điện thoại, địa chỉ thư 
+điện tử). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+(Xem tiếp Công báo số 1265 + 1266) 
+
+===PAGE 95===
