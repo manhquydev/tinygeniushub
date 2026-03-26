@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CookieConsentActions } from "@/components/legal/cookie-consent-actions";
 import {
   COOKIE_CONSENT_COOKIE_NAME,
-  parseCookieConsent,
-  isCookieConsentCurrentVersion,
+  shouldShowCookieConsentBanner,
 } from "@/lib/legal/cookie-consent";
 
 function readCookie(name: string) {
@@ -23,11 +22,12 @@ function readCookie(name: string) {
 }
 
 export function CookieConsentBanner() {
-  const [visible, setVisible] = useState(() => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
     const rawConsent = readCookie(COOKIE_CONSENT_COOKIE_NAME);
-    const parsed = parseCookieConsent(rawConsent);
-    return !parsed || !isCookieConsentCurrentVersion(parsed);
-  });
+    setVisible(shouldShowCookieConsentBanner(rawConsent));
+  }, []);
 
   if (!visible) {
     return null;

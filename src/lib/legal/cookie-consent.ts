@@ -69,3 +69,8 @@ export function hasMarketingConsent(raw: string | null | undefined) {
   const parsed = parseCookieConsent(raw);
   return parsed !== null && isCookieConsentCurrentVersion(parsed) && parsed.marketing === true;
 }
+
+export function shouldShowCookieConsentBanner(raw: string | null | undefined) {
+  const parsed = parseCookieConsent(raw);
+  return !parsed || !isCookieConsentCurrentVersion(parsed);
+}

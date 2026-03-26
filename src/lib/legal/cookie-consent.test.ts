@@ -6,6 +6,7 @@ import {
   hasMarketingConsent,
   parseCookieConsent,
   serializeCookieConsent,
+  shouldShowCookieConsentBanner,
 } from "@/lib/legal/cookie-consent";
 
 describe("cookie consent", () => {
@@ -39,5 +40,16 @@ describe("cookie consent", () => {
     expect(hasAnalyticsConsent(serializeCookieConsent(stale))).toBe(false);
     expect(hasMarketingConsent(serializeCookieConsent(stale))).toBe(false);
   });
-});
 
+  it("shows banner only when consent missing or stale", () => {
+    const current = buildCookieConsentState({ analytics: false, marketing: false });
+    const stale = {
+      ...current,
+      version: "2025-01-01",
+    };
+
+    expect(shouldShowCookieConsentBanner(null)).toBe(true);
+    expect(shouldShowCookieConsentBanner(serializeCookieConsent(current))).toBe(false);
+    expect(shouldShowCookieConsentBanner(serializeCookieConsent(stale))).toBe(true);
+  });
+});
