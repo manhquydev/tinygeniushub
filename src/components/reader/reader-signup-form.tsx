@@ -14,6 +14,7 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [legalAccepted, setLegalAccepted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -34,15 +35,26 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
           email,
           password,
           displayName,
+          legalAccepted,
         }),
       });
 
       const body = (await response.json()) as {
         ok?: boolean;
-        error?: { message?: string };
+        error?: {
+          message?: string;
+          details?: {
+            issues?: Array<{ path?: Array<string | number> }>;
+          };
+        };
       };
 
       if (!response.ok || !body.ok) {
+        const issuePath = String(body.error?.details?.issues?.[0]?.path?.[0] ?? "");
+        if (issuePath === "legalAccepted") {
+          setError("Bạn cần đồng ý Điều khoản, Chính sách bảo mật và Chính sách Cookie để đăng ký.");
+          return;
+        }
         setError(body.error?.message ?? "Không thể đăng ký.");
         return;
       }
@@ -57,16 +69,9 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
   }
 
   return (
-    <form
-      className="grid gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
-      onSubmit={handleSubmit}
-    >
-      <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900">
-        Đăng ký độc giả
-      </h1>
-      <p className="text-sm text-slate-600">
-        Tạo tài khoản để lưu bài viết và theo dõi cập nhật mới.
-      </p>
+    <form className="grid gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm" onSubmit={handleSubmit}>
+      <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Đăng ký độc giả</h1>
+      <p className="text-sm text-slate-600">Tạo tài khoản để lưu bài viết và theo dõi cập nhật mới.</p>
 
       <label className="grid gap-1 text-sm font-semibold text-slate-700">
         Tên hiển thị
@@ -101,11 +106,35 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
         />
       </label>
 
+      <label className="inline-checkbox text-sm text-slate-700">
+        <input
+          type="checkbox"
+          checked={legalAccepted}
+          onChange={(event) => setLegalAccepted(event.target.checked)}
+          required
+        />
+        <span>
+          Tôi đồng ý{" "}
+          <Link href="/terms" className="font-semibold text-teal-700 hover:text-teal-800">
+            Điều khoản sử dụng
+          </Link>
+          ,{" "}
+          <Link href="/privacy" className="font-semibold text-teal-700 hover:text-teal-800">
+            Chính sách bảo mật
+          </Link>{" "}
+          và{" "}
+          <Link href="/cookie-policy" className="font-semibold text-teal-700 hover:text-teal-800">
+            Chính sách Cookie
+          </Link>
+          .
+        </span>
+      </label>
+
       {error ? <p className="text-sm text-rose-600">{error}</p> : null}
 
       <button
         type="submit"
-        disabled={loading}
+        disabled={loading || !legalAccepted}
         className="h-11 rounded-full bg-teal-600 text-sm font-bold text-white transition hover:bg-teal-700 disabled:opacity-60"
       >
         {loading ? "Đang đăng ký..." : "Đăng ký"}
@@ -123,3 +152,4 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
     </form>
   );
 }
+

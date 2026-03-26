@@ -1,5 +1,38 @@
 # Project Changelog
 
+## [0.4.6] - 2026-03-26
+
+### Added
+- **Cookie policy surface**:
+  - New page: `/cookie-policy`
+  - New VN alias: `/chinh-sach-cookie` (redirect/canonical wiring)
+  - Footer + sitemap entries for cookie policy routes
+- **Cookie consent UX + enforcement**:
+  - Global consent banner for first visit / outdated consent version
+  - Reusable consent actions component
+  - Consent-aware analytics loader (GA4/Meta only after explicit consent)
+- **Reader signup legal test coverage**:
+  - New route regression: `src/app/api/reader/auth/signup/route.test.ts`
+- **Cookie consent unit coverage**:
+  - `src/lib/legal/cookie-consent.test.ts`
+
+### Changed
+- Updated legal content pages:
+  - `privacy`, `terms`, `refund-policy`
+  - legal basis references aligned to current VN framework in code/docs context
+- Signup legal consent is now enforced end-to-end:
+  - Parent signup UI + API schema (`legalAccepted`)
+  - Reader signup UI + API boundary (`legalAccepted`)
+- Proxy now clears non-essential experiment/attribution cookies when consent is missing/outdated.
+- Cookie withdrawal now clears common tracking cookies (`_ga*`, `_gid`, `_gat`, `_fbp`, `_fbc`) with broader domain cleanup strategy.
+- CSP `script-src` now explicitly allows GA/Meta domains needed for consent-driven tracker loading.
+- Signup now writes legal-consent audit evidence (`policyVersion`, `acceptedAt`, `ipAddress`, `userAgent`) for both parent and reader onboarding.
+- Added server-side cookie-consent audit endpoint (`/api/legal/cookie-consent`) and fail-close client flow so consent is only persisted after audit recording succeeds.
+- Fixed UTF-8 mojibake rendering in cookie consent actions and aligned legal cookie-name disclosure to runtime (`ccth_attr_v1`).
+- Revoke-to-necessary path is now privacy fail-safe: restrictive consent still applies locally on audit failure and stores a pending retry payload for later server sync.
+- Cookie-consent API rate-limit key now falls back to hashed user-agent when client IP is unknown; route tests now lock rate-limit contract (`limit/window/storeFailureMode`) and fallback key behavior.
+- Sitemap now prioritizes canonical legal/marketing URLs only (redirect aliases removed).
+
 ## [0.4.5] - 2026-03-26
 
 ### Added

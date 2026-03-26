@@ -424,6 +424,7 @@ async function main() {
             email: parentEmail,
             password: parentPassword,
             displayName: "Security Parent",
+            legalAccepted: true,
           });
     parentHeaders = { cookie: parentCookie };
 

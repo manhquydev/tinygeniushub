@@ -1,6 +1,6 @@
 # Project Roadmap
 
-**Last updated:** 2026-03-25
+**Last updated:** 2026-03-26
 **Status:** All phases complete — deployed to production.
 
 ---
@@ -19,6 +19,26 @@
 - Extended `StorefrontCourse` type with `ageGroup`, `reviewCount`, `reviewAverageRating`, `enrollmentCount`
 - `CourseSubject` enum and expanded `AgeGroup` enum (8 values) in Prisma schema
 - New `CourseReview` model in database
+
+---
+
+## Patch Stream - 2026-03-26 [COMPLETE]
+
+- Legal policy pages refreshed: `/privacy`, `/terms`, `/refund-policy`.
+- Added dedicated cookie policy route: `/cookie-policy` (+ VN alias `/chinh-sach-cookie`).
+- Consent enforcement hardened:
+  - non-essential cookies default off without explicit consent
+  - GA4/Meta script loading moved to consent-aware runtime loader
+  - proxy clears A/B + attribution cookies when consent missing/outdated
+  - browser-side withdrawal now clears common tracking cookies across host/domain variants
+  - consent audit log is now recorded server-side via dedicated API before client consent persistence
+  - restrictive revoke path now remains privacy-safe during audit outage and queues best-effort audit retry for later sync
+  - consent audit rate-limit key now uses IP-first, hashed-UA fallback when IP is unknown, covered by route test
+- Signup legal compliance hardened:
+  - parent signup and reader signup now require `legalAccepted=true`
+  - API-side validation added at signup boundary
+  - legal consent evidence persisted to audit log with policy version, timestamp, IP, and user-agent
+- Footer/sitemap legal discoverability updated with cookie policy links and canonical-only sitemap entries.
 
 ---
 

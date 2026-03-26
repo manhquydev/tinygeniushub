@@ -161,6 +161,7 @@ async function signupParent(baseUrl, email, password) {
       email,
       password,
       displayName: "E2E Parent",
+      legalAccepted: true,
     },
   });
 

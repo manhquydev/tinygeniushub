@@ -16,6 +16,7 @@ test("post-login parent nav shows activation links and support menu", async ({ p
       email,
       password,
       displayName: "E2E Parent Nav",
+      legalAccepted: true,
     },
   });
 

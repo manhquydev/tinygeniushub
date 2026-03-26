@@ -10,6 +10,7 @@ const {
   txSubscriptionCreateMock,
   txUserUpsertMock,
   txAccountUpsertMock,
+  txAuditLogCreateMock,
   hashPasswordMock,
   verifyPasswordMock,
 } = vi.hoisted(() => ({
@@ -21,6 +22,7 @@ const {
   txSubscriptionCreateMock: vi.fn(),
   txUserUpsertMock: vi.fn(),
   txAccountUpsertMock: vi.fn(),
+  txAuditLogCreateMock: vi.fn(),
   hashPasswordMock: vi.fn(),
   verifyPasswordMock: vi.fn(),
 }));
@@ -57,6 +59,7 @@ describe("registerParent", () => {
     txSubscriptionCreateMock.mockResolvedValue({});
     txUserUpsertMock.mockResolvedValue({});
     txAccountUpsertMock.mockResolvedValue({});
+    txAuditLogCreateMock.mockResolvedValue({});
 
     transactionMock.mockImplementation(async (callback: (tx: unknown) => Promise<unknown>) =>
       callback({
@@ -65,6 +68,7 @@ describe("registerParent", () => {
         subscription: { create: txSubscriptionCreateMock },
         user: { upsert: txUserUpsertMock },
         account: { upsert: txAccountUpsertMock },
+        auditLog: { create: txAuditLogCreateMock },
       }),
     );
   });
@@ -74,6 +78,7 @@ describe("registerParent", () => {
       email: "Parent@Example.com",
       password: "StrongPass123!",
       displayName: "Parent",
+      legalAccepted: true,
     });
 
     expect(hashPasswordMock).toHaveBeenCalledWith("StrongPass123!");
@@ -137,6 +142,15 @@ describe("registerParent", () => {
         password: "hashed-secret",
       }),
     });
+    expect(txAuditLogCreateMock).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        actorType: "parent",
+        actorId: "parent-1",
+        action: "LEGAL_CONSENT_ACCEPTED",
+        resourceType: "parent_account",
+        resourceId: "parent-1",
+      }),
+    });
     expect(parent).toEqual({
       id: "parent-1",
       email: "parent@example.com",
@@ -151,6 +165,7 @@ describe("registerParent", () => {
       registerParent({
         email: "parent@example.com",
         password: "StrongPass123!",
+        legalAccepted: true,
       }),
     ).rejects.toThrow("database unavailable");
   });

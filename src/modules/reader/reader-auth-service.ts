@@ -1,9 +1,11 @@
 import { createHash, randomBytes } from "node:crypto";
 import { z } from "zod";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
+import { prisma } from "@/lib/db";
+import { LEGAL_POLICY_VERSION } from "@/lib/legal/legal-policy-version";
 import { DomainError } from "@/modules/platform/errors";
+import { createAuditLog } from "@/modules/platform/audit-service";
 import {
-  createReaderAccount,
   createReaderSession,
   deleteExpiredReaderSessions,
   deleteReaderSessionByTokenHash,
@@ -19,6 +21,7 @@ const signupReaderSchema = z.object({
   email: z.string().email().max(255),
   password: z.string().min(8).max(120),
   displayName: z.string().trim().min(1).max(80).optional(),
+  legalAccepted: z.literal(true),
 });
 
 const loginReaderSchema = z.object({
@@ -79,19 +82,58 @@ export async function signupReader(
   }
 
   const passwordHash = await hashPassword(payload.password);
-  const reader = await createReaderAccount({
-    email: normalizedEmail,
-    displayName: buildReaderDisplayName(normalizedEmail, payload.displayName),
-    passwordHash,
-  });
-
   const sessionToken = generateSessionToken();
-  await createReaderSession({
-    readerId: reader.id,
-    tokenHash: hashSessionToken(sessionToken),
-    expiresAt: new Date(Date.now() + READER_SESSION_MAX_AGE_SECONDS * 1000),
-    ipAddress: context?.ipAddress ?? null,
-    userAgent: context?.userAgent ?? null,
+  const sessionTokenHash = hashSessionToken(sessionToken);
+  const sessionExpiresAt = new Date(Date.now() + READER_SESSION_MAX_AGE_SECONDS * 1000);
+  const acceptedAt = new Date().toISOString();
+
+  const reader = await prisma.$transaction(async (tx) => {
+    const nextReader = await tx.readerAccount.create({
+      data: {
+        email: normalizedEmail,
+        displayName: buildReaderDisplayName(normalizedEmail, payload.displayName),
+        passwordHash,
+      },
+      select: {
+        id: true,
+        email: true,
+        displayName: true,
+        image: true,
+        emailVerified: true,
+        isActive: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    await tx.readerSession.create({
+      data: {
+        readerId: nextReader.id,
+        tokenHash: sessionTokenHash,
+        expiresAt: sessionExpiresAt,
+        ipAddress: context?.ipAddress ?? null,
+        userAgent: context?.userAgent ?? null,
+      },
+    });
+
+    await createAuditLog({
+      dbClient: tx,
+      actorType: "reader",
+      actorId: nextReader.id,
+      action: "LEGAL_CONSENT_ACCEPTED",
+      resourceType: "reader_account",
+      resourceId: nextReader.id,
+      metadata: {
+        policyVersion: LEGAL_POLICY_VERSION,
+        policyScope: ["terms", "privacy", "cookie"],
+        acceptedAt,
+        ipAddress: context?.ipAddress ?? null,
+        userAgent: context?.userAgent ?? null,
+        source: "signup_form",
+      },
+    });
+
+    return nextReader;
   });
 
   return {

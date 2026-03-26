@@ -163,6 +163,7 @@ export function SiteFooter({ hasParent = false, socialLinks }: SiteFooterProps) 
               <p className="footer-col-title" style={{ marginTop: "0.75rem" }}>Pháp lý</p>
               <Link href="/privacy">Chính sách bảo mật</Link>
               <Link href="/terms">Điều khoản sử dụng</Link>
+              <Link href="/cookie-policy">Chính sách cookie</Link>
               <Link href="/refund-policy">Chính sách hoàn tiền</Link>
             </div>
           </nav>
@@ -180,6 +181,7 @@ export function SiteFooter({ hasParent = false, socialLinks }: SiteFooterProps) 
           <div className="footer-bottom-links">
             <Link href="/privacy">Bảo mật</Link>
             <Link href="/terms">Điều khoản</Link>
+            <Link href="/cookie-policy">Cookie</Link>
             <Link href="/refund-policy">Hoàn tiền</Link>
           </div>
         </div>

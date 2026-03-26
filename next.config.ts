@@ -9,7 +9,12 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     const isDev = process.env.NODE_ENV !== "production";
-    const scriptSrc = ["'self'", "'unsafe-inline'"];
+    const scriptSrc = [
+      "'self'",
+      "'unsafe-inline'",
+      "https://www.googletagmanager.com",
+      "https://connect.facebook.net",
+    ];
     if (isDev) {
       scriptSrc.push("'unsafe-eval'");
     }
@@ -63,6 +68,7 @@ const nextConfig: NextConfig = {
       { source: "/chinh-sach-bao-mat", destination: "/privacy", permanent: true },
       { source: "/dieu-khoan-su-dung", destination: "/terms", permanent: true },
       { source: "/chinh-sach-hoan-tien", destination: "/refund-policy", permanent: true },
+      { source: "/chinh-sach-cookie", destination: "/cookie-policy", permanent: true },
     ];
   },
 };

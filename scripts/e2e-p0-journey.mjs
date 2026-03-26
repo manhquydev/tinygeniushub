@@ -172,6 +172,7 @@ async function main() {
         email: testEmail,
         password,
         displayName: "P0 Parent",
+        legalAccepted: true,
       },
     });
 

@@ -12,6 +12,15 @@ import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
 import { enqueueLifecycleEmail } from "@/worker/queue";
 import { LifecycleEmailType } from "@prisma/client";
 
+function resolveAuditIp(clientIp: string) {
+  return clientIp !== "unknown" ? clientIp : null;
+}
+
+function resolveUserAgent(request: Request) {
+  const userAgent = request.headers.get("user-agent")?.trim();
+  return userAgent && userAgent.length > 0 ? userAgent : "unknown";
+}
+
 export async function POST(request: Request) {
   let clientIp = "unknown";
   let emailIdentityHash: string | undefined;
@@ -69,7 +78,10 @@ export async function POST(request: Request) {
       });
     }
 
-    const parent = await registerParent(input);
+    const parent = await registerParent(input, {
+      ipAddress: resolveAuditIp(clientIp),
+      userAgent: resolveUserAgent(request),
+    });
 
     const signIn = await auth.api.signInEmail({
       headers: request.headers,

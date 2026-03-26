@@ -47,6 +47,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.4,
     },
     {
+      url: `${siteUrl}/cookie-policy`,
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    {
       url: `${siteUrl}/courses`,
       changeFrequency: "weekly",
       priority: 0.8,
@@ -55,31 +60,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${siteUrl}/for-schools`,
       changeFrequency: "monthly",
       priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/gioi-thieu`,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/lien-he`,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${siteUrl}/privacy`,
-      changeFrequency: "monthly",
-      priority: 0.4,
-    },
-    {
-      url: `${siteUrl}/dieu-khoan-su-dung`,
-      changeFrequency: "monthly",
-      priority: 0.4,
-    },
-    {
-      url: `${siteUrl}/chinh-sach-hoan-tien`,
-      changeFrequency: "monthly",
-      priority: 0.4,
     },
     {
       url: `${siteUrl}/waitlist`,

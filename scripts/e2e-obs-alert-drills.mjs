@@ -182,6 +182,7 @@ async function main() {
         email: parentEmail,
         password: parentPassword,
         displayName: "OBS Drill Parent",
+        legalAccepted: true,
       },
     });
     assert(signup.response.status === 200, `Signup for obs drills failed: status=${signup.response.status}`);

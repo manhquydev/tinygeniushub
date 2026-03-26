@@ -475,6 +475,7 @@ async function main() {
       email: parentEmail,
       password: parentPassword,
       displayName: "Provider E2E Parent",
+      legalAccepted: true,
     });
 
     const parentCookie = signupResult.cookie;

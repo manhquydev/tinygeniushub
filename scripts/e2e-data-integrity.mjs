@@ -337,6 +337,7 @@ async function main() {
         email: parentEmail,
         password: parentPassword,
         displayName: "Integrity Parent",
+        legalAccepted: true,
       },
     });
     assert(signup.response.status === 200, `Signup failed: status=${signup.response.status}`);

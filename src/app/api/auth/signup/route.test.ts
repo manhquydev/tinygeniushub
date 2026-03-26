@@ -12,6 +12,7 @@ const {
   logWarnMock,
   registerParentMock,
   signInEmailMock,
+  enqueueLifecycleEmailMock,
 } = vi.hoisted(() => ({
   assertTrustedOriginMock: vi.fn(),
   assertRequestAllowedBySecurityControlsMock: vi.fn(),
@@ -23,6 +24,7 @@ const {
   logWarnMock: vi.fn(),
   registerParentMock: vi.fn(),
   signInEmailMock: vi.fn(),
+  enqueueLifecycleEmailMock: vi.fn(),
 }));
 
 vi.mock("@/lib/security/csrf", () => ({
@@ -67,6 +69,10 @@ vi.mock("@/lib/auth/better-auth", () => ({
   },
 }));
 
+vi.mock("@/worker/queue", () => ({
+  enqueueLifecycleEmail: enqueueLifecycleEmailMock,
+}));
+
 import { POST } from "@/app/api/auth/signup/route";
 
 describe("auth signup route", () => {
@@ -101,6 +107,7 @@ describe("auth signup route", () => {
         },
       },
     });
+    enqueueLifecycleEmailMock.mockResolvedValue(undefined);
   });
 
   it("returns 400 with validation message for invalid payload", async () => {
@@ -115,6 +122,7 @@ describe("auth signup route", () => {
         body: JSON.stringify({
           email: "invalid-email",
           password: "123",
+          legalAccepted: true,
         }),
       }),
     );
@@ -124,6 +132,31 @@ describe("auth signup route", () => {
     expect(response.status).toBe(400);
     expect(body.error.message).toBe("Invalid request payload");
     expect(Array.isArray(body.error.details?.issues)).toBe(true);
+    expect(registerParentMock).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 when legal consent is missing", async () => {
+    const response = await POST(
+      new Request("http://localhost/api/auth/signup", {
+        method: "POST",
+        headers: {
+          origin: "http://localhost",
+          host: "localhost",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "parent@example.com",
+          password: "password-123",
+          displayName: "Parent",
+        }),
+      }),
+    );
+
+    const body = await response.json();
+
+    expect(response.status).toBe(400);
+    expect(body.error.message).toBe("Invalid request payload");
+    expect(body.error.details?.issues?.[0]?.path).toContain("legalAccepted");
     expect(registerParentMock).not.toHaveBeenCalled();
   });
 
@@ -145,6 +178,7 @@ describe("auth signup route", () => {
         body: JSON.stringify({
           email: "parent@example.com",
           password: "password-123",
+          legalAccepted: true,
         }),
       }),
     );
@@ -187,6 +221,7 @@ describe("auth signup route", () => {
         body: JSON.stringify({
           email: "parent@example.com",
           password: "password-123",
+          legalAccepted: true,
         }),
       }),
     );
@@ -222,6 +257,7 @@ describe("auth signup route", () => {
         body: JSON.stringify({
           email: "parent@example.com",
           password: "password-123",
+          legalAccepted: true,
         }),
       }),
     );
@@ -261,6 +297,7 @@ describe("auth signup route", () => {
         body: JSON.stringify({
           email: "parent@example.com",
           password: "password-123",
+          legalAccepted: true,
         }),
       }),
     );
@@ -293,6 +330,7 @@ describe("auth signup route", () => {
           email: "parent@example.com",
           password: "password-123",
           displayName: "Parent",
+          legalAccepted: true,
         }),
       }),
     );
@@ -310,6 +348,18 @@ describe("auth signup route", () => {
         },
       },
     });
+    expect(registerParentMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        email: "parent@example.com",
+        password: "password-123",
+        displayName: "Parent",
+        legalAccepted: true,
+      }),
+      expect.objectContaining({
+        ipAddress: "203.0.113.10",
+        userAgent: "unknown",
+      }),
+    );
     expect(logInfoMock).toHaveBeenCalledWith(
       "auth.signup.succeeded",
       expect.objectContaining({

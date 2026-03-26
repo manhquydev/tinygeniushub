@@ -308,6 +308,7 @@ async function main() {
       email: parentEmail,
       password: parentPassword,
       displayName: "Auth Session Parent",
+      legalAccepted: true,
     });
     assertSessionCookieHardening(signup.setCookieHeader, "Signup cookie hardening", {
       requireSecure: requireSecureCookie,

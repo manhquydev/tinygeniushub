@@ -1,0 +1,4 @@
+export const LEGAL_POLICY_VERSION = "2026-03-26";
+
+export const LEGAL_POLICY_LAST_UPDATED_LABEL = "26/03/2026";
+

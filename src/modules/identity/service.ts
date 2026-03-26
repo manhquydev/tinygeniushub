@@ -2,6 +2,8 @@
 import { Prisma, PlanCode, SubscriptionStatus } from "@prisma/client";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { prisma } from "@/lib/db";
+import { LEGAL_POLICY_VERSION } from "@/lib/legal/legal-policy-version";
+import { createAuditLog } from "@/modules/platform/audit-service";
 import { DomainError } from "@/modules/platform/errors";
 import { z } from "zod";
 
@@ -9,6 +11,7 @@ export const signupSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8).max(120),
   displayName: z.string().min(1).max(80).optional(),
+  legalAccepted: z.literal(true),
 });
 
 export const loginSchema = z.object({
@@ -24,7 +27,15 @@ function mapPrismaError(error: unknown): never {
   throw error;
 }
 
-export async function registerParent(input: z.infer<typeof signupSchema>) {
+type RegisterParentContext = {
+  ipAddress?: string | null;
+  userAgent?: string | null;
+};
+
+export async function registerParent(
+  input: z.infer<typeof signupSchema>,
+  context?: RegisterParentContext,
+) {
   const parsed = signupSchema.parse(input);
   const normalizedEmail = parsed.email.toLowerCase();
   const userName = parsed.displayName ?? normalizedEmail;
@@ -96,6 +107,23 @@ export async function registerParent(input: z.infer<typeof signupSchema>) {
         update: {
           userId: parent.id,
           password: passwordHash,
+        },
+      });
+
+      await createAuditLog({
+        dbClient: tx,
+        actorType: "parent",
+        actorId: parent.id,
+        action: "LEGAL_CONSENT_ACCEPTED",
+        resourceType: "parent_account",
+        resourceId: parent.id,
+        metadata: {
+          policyVersion: LEGAL_POLICY_VERSION,
+          policyScope: ["terms", "privacy", "cookie"],
+          acceptedAt: new Date().toISOString(),
+          ipAddress: context?.ipAddress ?? null,
+          userAgent: context?.userAgent ?? null,
+          source: "signup_form",
         },
       });
 

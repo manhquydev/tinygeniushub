@@ -503,6 +503,7 @@ async function main() {
             email: parentEmail,
             password: parentPassword,
             displayName: "Full Journey Parent",
+            legalAccepted: true,
           });
     const parentHeaders = { cookie: parentCookie };
 

@@ -16,6 +16,7 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [legalAccepted, setLegalAccepted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -76,6 +77,9 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
       if (issuePath === "displayName") {
         return "Tên hiển thị không hợp lệ.";
       }
+      if (issuePath === "legalAccepted") {
+        return "Bạn cần đồng ý Điều khoản, Chính sách bảo mật và Chính sách Cookie để đăng ký.";
+      }
 
       return "Dữ liệu gửi lên không hợp lệ.";
     }
@@ -118,6 +122,7 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
           email,
           password,
           displayName: isSignup ? displayName : undefined,
+          legalAccepted: isSignup ? legalAccepted : undefined,
         }),
       });
 
@@ -202,11 +207,37 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
         />
       </label>
 
+      {isSignup ? (
+        <label className="inline-checkbox text-sm text-slate-700">
+          <input
+            type="checkbox"
+            checked={legalAccepted}
+            onChange={(event) => setLegalAccepted(event.target.checked)}
+            required
+          />
+          <span>
+            Tôi đồng ý{" "}
+            <Link href="/terms" className="font-semibold text-emerald-700 hover:text-emerald-800">
+              Điều khoản sử dụng
+            </Link>
+            ,{" "}
+            <Link href="/privacy" className="font-semibold text-emerald-700 hover:text-emerald-800">
+              Chính sách bảo mật
+            </Link>{" "}
+            và{" "}
+            <Link href="/cookie-policy" className="font-semibold text-emerald-700 hover:text-emerald-800">
+              Chính sách Cookie
+            </Link>
+            .
+          </span>
+        </label>
+      ) : null}
+
       {error ? <p className="text-sm font-medium text-rose-700">{error}</p> : null}
 
       <button
         type="submit"
-        disabled={loading}
+        disabled={loading || (isSignup && !legalAccepted)}
         className="solid-button full-width min-h-12 rounded-full text-sm font-bold shadow-[0_14px_28px_rgba(5,150,105,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
       >
         {loading ? "Đang xử lý..." : isSignup ? "Tạo tài khoản" : "Vào bảng điều khiển"}

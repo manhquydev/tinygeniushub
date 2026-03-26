@@ -11,6 +11,26 @@ import {
   READER_SESSION_MAX_AGE_SECONDS,
   signupReader,
 } from "@/modules/reader/reader-auth-service";
+import { z } from "zod";
+
+const readerLegalConsentSchema = z.object({
+  legalAccepted: z.literal(true),
+});
+
+function resolveAuditIp(clientIp: string) {
+  return clientIp !== "unknown" ? clientIp : null;
+}
+
+function resolveUserAgent(request: Request) {
+  const userAgent = request.headers.get("user-agent")?.trim();
+  return userAgent && userAgent.length > 0 ? userAgent : "unknown";
+}
+
+function resolveEmailForRateLimit(payload: unknown) {
+  if (!payload || typeof payload !== "object") return "";
+  const email = (payload as { email?: unknown }).email;
+  return typeof email === "string" ? email : "";
+}
 
 export async function POST(request: NextRequest) {
   let clientIp = "unknown";
@@ -38,7 +58,7 @@ export async function POST(request: NextRequest) {
 
     const rawBody = await request.json();
     const emailRateLimit = await enforceRateLimit({
-      key: `reader:auth:signup:email:${buildRateLimitIdentity(String(rawBody?.email ?? ""))}`,
+      key: `reader:auth:signup:email:${buildRateLimitIdentity(resolveEmailForRateLimit(rawBody))}`,
       limit: emailPolicy.limit,
       windowMs: emailPolicy.windowMs,
       storeFailureMode: "deny",
@@ -49,9 +69,16 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    const consentValidation = readerLegalConsentSchema.safeParse(rawBody);
+    if (!consentValidation.success) {
+      return fail("Invalid request payload", 400, {
+        issues: consentValidation.error.issues,
+      });
+    }
+
     const result = await signupReader(rawBody, {
-      ipAddress: clientIp,
-      userAgent: request.headers.get("user-agent"),
+      ipAddress: resolveAuditIp(clientIp),
+      userAgent: resolveUserAgent(request),
     });
 
     const response = ok({

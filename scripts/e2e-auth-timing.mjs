@@ -289,6 +289,7 @@ async function main() {
       email: timingParentEmail,
       password: timingParentPassword,
       displayName: "Timing Parent",
+      legalAccepted: true,
     });
 
     const adminCookie = await loginAdmin(baseUrl, {

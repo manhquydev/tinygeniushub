@@ -12,6 +12,7 @@ import {
   mergePilotAttributionState,
   serializePilotAttributionState,
 } from "@/modules/courses/pilot-attribution";
+import { COOKIE_CONSENT_COOKIE_NAME, hasAnalyticsConsent } from "@/lib/legal/cookie-consent";
 
 /** Assign A/B variant cookie if not already set. */
 function assignAbVariantCookie(
@@ -35,6 +36,12 @@ function shouldCaptureAttribution(request: NextRequest, pathname: string) {
   if (pathname.startsWith("/_next")) return false;
   if (pathname.includes(".")) return false;
   return true;
+}
+
+function shouldManageAnalyticsCookies(request: NextRequest, pathname: string) {
+  if (!shouldCaptureAttribution(request, pathname)) return false;
+  const acceptHeader = request.headers.get("accept") ?? "";
+  return acceptHeader.includes("text/html");
 }
 
 function assignAttributionCookie(request: NextRequest, response: NextResponse, pathname: string): void {
@@ -64,6 +71,23 @@ function assignAttributionCookie(request: NextRequest, response: NextResponse, p
   });
 }
 
+function clearAnalyticsCookies(request: NextRequest, response: NextResponse) {
+  response.cookies.delete(AB_PRICING_COOKIE);
+  response.cookies.delete(AB_COURSES_COOKIE);
+  response.cookies.delete(PILOT_ATTRIBUTION_COOKIE);
+  response.cookies.delete("_ga");
+  response.cookies.delete("_gid");
+  response.cookies.delete("_gat");
+  response.cookies.delete("_fbp");
+  response.cookies.delete("_fbc");
+
+  for (const cookie of request.cookies.getAll()) {
+    if (cookie.name.startsWith("_ga_")) {
+      response.cookies.delete(cookie.name);
+    }
+  }
+}
+
 export function proxy(request: NextRequest) {
   const maintenance = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true";
   const { pathname } = request.nextUrl;
@@ -85,17 +109,27 @@ export function proxy(request: NextRequest) {
     },
   });
 
-  // Assign A/B pricing variant on first visit to pricing or homepage.
-  if (pathname === "/" || pathname === "/pricing") {
-    assignAbVariantCookie(request, response, AB_PRICING_COOKIE);
-  }
+  const rawConsent = request.cookies.get(COOKIE_CONSENT_COOKIE_NAME)?.value ?? null;
+  const analyticsAllowed = hasAnalyticsConsent(rawConsent);
 
-  // Assign A/B courses storefront variant on courses touchpoints.
-  if (pathname === "/" || pathname === "/courses" || pathname.startsWith("/courses/")) {
-    assignAbVariantCookie(request, response, AB_COURSES_COOKIE);
-  }
+  if (shouldManageAnalyticsCookies(request, pathname)) {
+    if (analyticsAllowed) {
+      // Assign A/B pricing variant on first visit to pricing or homepage.
+      if (pathname === "/" || pathname === "/pricing") {
+        assignAbVariantCookie(request, response, AB_PRICING_COOKIE);
+      }
 
-  assignAttributionCookie(request, response, pathname);
+      // Assign A/B courses storefront variant on courses touchpoints.
+      if (pathname === "/" || pathname === "/courses" || pathname.startsWith("/courses/")) {
+        assignAbVariantCookie(request, response, AB_COURSES_COOKIE);
+      }
+
+      assignAttributionCookie(request, response, pathname);
+    } else {
+      // No consent (or outdated consent) must not keep non-essential cookies.
+      clearAnalyticsCookies(request, response);
+    }
+  }
 
   return response;
 }
