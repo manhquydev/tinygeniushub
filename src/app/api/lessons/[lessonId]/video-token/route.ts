@@ -17,6 +17,10 @@ import {
 } from "@/modules/courses/course-trial-policy";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
+function detectProtectedStreamType(url: string): "hls" | "file" {
+  return /\.m3u8($|[?#])/i.test(url) ? "hls" : "file";
+}
+
 // GET /api/lessons/[lessonId]/video-token
 // Returns a signed Bunny embed URL for authenticated users.
 export async function GET(
@@ -74,6 +78,7 @@ export async function GET(
       if (!resolvedSource) {
         return fail("Video not available", 404);
       }
+      const streamType = detectProtectedStreamType(resolvedSource);
       const token = parent
         ? buildVideoPlaybackToken({
             parentId: parent.id,
@@ -85,7 +90,7 @@ export async function GET(
       const securePlaybackPath = `/api/lessons/${lesson.id}/secure-playback?token=${encodeURIComponent(token)}`;
       return ok({
         embedUrl: securePlaybackPath,
-        streamType: "secure",
+        streamType,
       });
     }
 

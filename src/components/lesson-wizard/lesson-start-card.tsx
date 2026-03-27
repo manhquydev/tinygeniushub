@@ -188,7 +188,9 @@ export function LessonStartCard(props: LessonStartCardProps) {
       const tokenData = await fetchVideoTokenWithTimeout(props.lessonId);
       if (tokenData?.embedUrl) {
         setResolvedVideoSource(tokenData.embedUrl);
-        setResolvedVideoStreamType(tokenData.streamType === "hls" ? "hls" : "file");
+        setResolvedVideoStreamType(
+          tokenData.streamType === "hls" ? "hls" : tokenData.streamType === "file" ? "file" : null,
+        );
       } else {
         setResolvedVideoSource(isDirectVideoSource(props.videoSource) ? props.videoSource : null);
         setResolvedVideoStreamType(detectStreamTypeFromSource(props.videoSource));

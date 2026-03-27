@@ -17,7 +17,12 @@ import {
 
 type VideoState =
   | { status: "loading" }
-  | { status: "ready"; embedUrl: string; streamType: "embed" | "secure" }
+  | {
+      status: "ready";
+      embedUrl: string;
+      streamType: "embed" | "secure";
+      secureStreamTypeHint?: "hls" | "file" | null;
+    }
   | { status: "auth_required" }
   | { status: "unavailable" };
 
@@ -97,9 +102,20 @@ export function CourseLessonPreviewModal({
           return;
         }
 
-        const json = (await res.json()) as { ok: boolean; data?: { embedUrl?: string; streamType?: string } };
+        const json = (await res.json()) as {
+          ok: boolean;
+          data?: { embedUrl?: string; streamType?: "embed" | "secure" | "hls" | "file" };
+        };
         if (json.ok && json.data?.embedUrl) {
           const detectedStreamType = json.data.streamType === "embed" ? "embed" : "secure";
+          const secureStreamTypeHint =
+            detectedStreamType === "secure"
+              ? json.data.streamType === "hls"
+                ? "hls"
+                : json.data.streamType === "file"
+                  ? "file"
+                  : null
+              : null;
           hasTrackedPlaySuccessRef.current = false;
           watchedSecondsRef.current = 0;
           hasTrackedQualifiedRef.current = false;
@@ -110,6 +126,7 @@ export function CourseLessonPreviewModal({
             status: "ready",
             embedUrl: json.data.embedUrl,
             streamType: detectedStreamType,
+            secureStreamTypeHint,
           });
           return;
         }
@@ -287,7 +304,7 @@ export function CourseLessonPreviewModal({
                 video.streamType === "secure" ? (
                   <SecureVideoPlayer
                     src={video.embedUrl}
-                    streamTypeHint={null}
+                    streamTypeHint={video.secureStreamTypeHint ?? null}
                     className="h-full w-full"
                     title={lessonTitle}
                     onPlaybackStateChange={(isPlaying) => {

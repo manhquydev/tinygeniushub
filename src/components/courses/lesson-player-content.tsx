@@ -84,7 +84,9 @@ export function LessonPlayerContent({
         {video.status === "ready" && video.embedUrl && video.renderMode !== "iframe" && (
           <SecureVideoPlayer
             src={video.embedUrl}
-            streamTypeHint={video.streamType === "hls" ? "hls" : "file"}
+            streamTypeHint={
+              video.streamType === "hls" ? "hls" : video.streamType === "file" ? "file" : null
+            }
             title={selected?.lesson.title}
             style={{ width: "100%", height: "100%", display: "block", background: "#020617" }}
           />
