@@ -5,6 +5,12 @@ import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
 import { requireAdminFromRequest } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
+import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
+import { z } from "zod";
+
+const publishCourseSchema = z.object({
+  isPublished: z.boolean().optional(),
+});
 
 export async function POST(
   request: NextRequest,
@@ -16,15 +22,37 @@ export async function POST(
     if (rateLimit) return rateLimit;
     await requireAdminFromRequest(request);
     const { id } = await params;
+    const body = publishCourseSchema.parse(await request.json().catch(() => ({})));
 
-    const course = await prisma.course.findUnique({ where: { id } });
+    const course = await prisma.course.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        isPublished: true,
+        priceVnd: true,
+        listPriceVnd: true,
+        salePriceVnd: true,
+        saleStartsAt: true,
+        saleEndsAt: true,
+      },
+    });
     if (!course) {
       return fail("Course not found", 404);
     }
 
+    const nextPublished = body.isPublished ?? !course.isPublished;
+    if (nextPublished) {
+      const pricing = resolveCourseDisplayPricing(course);
+      if (!pricing.isPurchasable || pricing.saleStatus === "invalid") {
+        return fail("Course pricing is not ready for publish", 422, {
+          code: "COURSE_PUBLISH_PRICING_INVALID",
+        });
+      }
+    }
+
     const updated = await prisma.course.update({
       where: { id },
-      data: { isPublished: !course.isPublished },
+      data: { isPublished: nextPublished },
     });
 
     return ok({ course: updated });
@@ -32,5 +60,3 @@ export async function POST(
     return handleRouteError(error);
   }
 }
-
-

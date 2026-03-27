@@ -50,6 +50,8 @@ const loadPublishedCourse = cache(async function loadPublishedCourse(slug: strin
       priceVnd: true,
       listPriceVnd: true,
       salePriceVnd: true,
+      saleStartsAt: true,
+      saleEndsAt: true,
       durationDays: true,
       coverImageUrl: true,
       isPublished: true,

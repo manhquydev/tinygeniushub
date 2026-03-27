@@ -250,6 +250,8 @@ async function resolveCheckoutTarget(params: { parentId: string; slug: string })
       priceVnd: true,
       listPriceVnd: true,
       salePriceVnd: true,
+      saleStartsAt: true,
+      saleEndsAt: true,
     },
   });
 

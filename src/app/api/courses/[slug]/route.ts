@@ -11,7 +11,7 @@ export async function GET(
   try {
     const { slug } = await params;
     const course = await getCourse(slug);
-    if (!course) {
+    if (!course || !course.isPublished) {
       return fail("Course not found", 404);
     }
 

@@ -1012,6 +1012,8 @@ model Course {
   priceVnd            Int
   listPriceVnd        Int?
   salePriceVnd        Int?
+  saleStartsAt        DateTime?
+  saleEndsAt          DateTime?
   durationDays        Int
   isPublished         Boolean              @default(false)
   coverImageUrl       String?
@@ -1028,6 +1030,7 @@ model Course {
 
   @@index([subject, isPublished])
   @@index([ageGroup, isPublished])
+  @@index([isPublished, saleStartsAt, saleEndsAt])
 }
 
 model CourseReview {

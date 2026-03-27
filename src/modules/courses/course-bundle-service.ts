@@ -18,6 +18,8 @@ type PublishedCourseRow = {
   priceVnd: number;
   listPriceVnd: number | null;
   salePriceVnd: number | null;
+  saleStartsAt: Date | null;
+  saleEndsAt: Date | null;
   durationDays: number;
   coverImageUrl: string | null;
   lessonCount: number;
@@ -41,6 +43,8 @@ type BundleMetadataSourceRow = {
   priceVnd: number;
   listPriceVnd: number | null;
   salePriceVnd: number | null;
+  saleStartsAt: Date | null;
+  saleEndsAt: Date | null;
   durationDays: number;
   coverImageUrl: string | null;
 };
@@ -61,6 +65,8 @@ async function getPublishedCourses(): Promise<PublishedCourseRow[]> {
       priceVnd: true,
       listPriceVnd: true,
       salePriceVnd: true,
+      saleStartsAt: true,
+      saleEndsAt: true,
       durationDays: true,
       coverImageUrl: true,
       _count: {
@@ -79,6 +85,8 @@ async function getPublishedCourses(): Promise<PublishedCourseRow[]> {
     priceVnd: row.priceVnd,
     listPriceVnd: row.listPriceVnd,
     salePriceVnd: row.salePriceVnd,
+    saleStartsAt: row.saleStartsAt,
+    saleEndsAt: row.saleEndsAt,
     durationDays: row.durationDays,
     coverImageUrl: row.coverImageUrl,
     lessonCount: row._count.lessons,
@@ -90,6 +98,7 @@ async function getBundleMetadataSourceRows(): Promise<Map<string, BundleMetadata
   const entrySlugs = bundles.map((bundle) => bundle.entryCourseSlug);
   const rows = await prisma.course.findMany({
     where: {
+      isPublished: true,
       slug: {
         in: entrySlugs,
       },
@@ -101,6 +110,8 @@ async function getBundleMetadataSourceRows(): Promise<Map<string, BundleMetadata
       priceVnd: true,
       listPriceVnd: true,
       salePriceVnd: true,
+      saleStartsAt: true,
+      saleEndsAt: true,
       durationDays: true,
       coverImageUrl: true,
     },
@@ -177,16 +188,19 @@ function mapBundleCourses(bundle: CourseBundleDefinition, rows: PublishedCourseR
   const canonicalRows = selectCanonicalBundleCourses(bundle, matchedRows);
   const legacyRows = selectLegacyMonolithCourses(bundle, matchedRows);
 
-  const toBundleCourse = (row: PublishedCourseRow): PublishedBundleCourse => ({
-    id: row.id,
-    slug: row.slug,
-    title: row.title,
-    description: row.description,
-    durationDays: row.durationDays,
-    priceVnd: row.priceVnd,
-    coverImageUrl: row.coverImageUrl,
-    lessonCount: row.lessonCount,
-  });
+  const toBundleCourse = (row: PublishedCourseRow): PublishedBundleCourse => {
+    const pricing = resolveCourseDisplayPricing(row);
+    return {
+      id: row.id,
+      slug: row.slug,
+      title: row.title,
+      description: row.description,
+      durationDays: row.durationDays,
+      priceVnd: pricing.salePriceVnd,
+      coverImageUrl: row.coverImageUrl,
+      lessonCount: row.lessonCount,
+    };
+  };
 
   return {
     canonicalCourses: canonicalRows.map(toBundleCourse),

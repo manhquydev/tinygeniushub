@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowUp, ArrowDown, Trash2, Plus, Search, BookOpen, Users } from "lucide-react";
 import Link from "next/link";
+import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 
 // ---- Types ----
 type CourseLessonItem = {
@@ -51,6 +52,8 @@ type CourseDetail = {
   priceVnd: number;
   listPriceVnd?: number | null;
   salePriceVnd?: number | null;
+  saleStartsAt?: string | Date | null;
+  saleEndsAt?: string | Date | null;
   durationDays: number;
   isPublished: boolean;
   coverImageUrl: string | null;
@@ -77,6 +80,14 @@ function getVideoStatusLabel(status: string) {
 
 function getPublishStatusLabel(isPublished: boolean) {
   return isPublished ? "Đã xuất bản" : "Bản nháp";
+}
+
+function getSaleStatusLabel(status: string) {
+  if (status === "active") return "Khuyến mãi đang chạy";
+  if (status === "scheduled") return "Khuyến mãi sắp mở";
+  if (status === "expired") return "Khuyến mãi đã hết hạn";
+  if (status === "invalid") return "Khuyến mãi không hợp lệ";
+  return "Không có khuyến mãi";
 }
 
 function VideoStatusBadge({ status }: { status: string }) {
@@ -252,9 +263,7 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
   }
 
   const totalMinutes = lessons.reduce((sum, l) => sum + l.lesson.estimatedMinutes, 0);
-  const salePrice = course.salePriceVnd ?? course.priceVnd;
-  const listPrice = course.listPriceVnd ?? course.priceVnd;
-  const hasDiscount = listPrice > salePrice;
+  const pricing = resolveCourseDisplayPricing(course);
 
   return (
     <div className="space-y-6">
@@ -278,14 +287,15 @@ export function AdminCourseDetailClient({ course: initialCourse }: { course: Cou
           <div className="flex flex-wrap items-center gap-3">
             <div className="text-right text-sm text-[var(--admin-text-secondary)]">
               <div>
-                <span className="font-semibold">{new Intl.NumberFormat("vi-VN").format(salePrice)}đ</span>
-                {hasDiscount ? (
+                <span className="font-semibold">{new Intl.NumberFormat("vi-VN").format(pricing.salePriceVnd)}đ</span>
+                {pricing.hasDiscount ? (
                   <span className="ml-2 text-xs text-[var(--admin-text-muted)] line-through">
-                    {new Intl.NumberFormat("vi-VN").format(listPrice)}đ
+                    {new Intl.NumberFormat("vi-VN").format(pricing.listPriceVnd)}đ
                   </span>
                 ) : null}
               </div>
               <div>{course.durationDays} ngày</div>
+              <div className="text-xs text-[var(--admin-text-muted)]">{getSaleStatusLabel(pricing.saleStatus)}</div>
             </div>
             <button
               type="button"

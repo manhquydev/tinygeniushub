@@ -1,8 +1,12 @@
-﻿export type CoursePricingInput = {
+export type CoursePricingInput = {
   priceVnd: number;
   listPriceVnd?: number | null;
   salePriceVnd?: number | null;
+  saleStartsAt?: Date | string | null;
+  saleEndsAt?: Date | string | null;
 };
+
+export type SaleStatus = "none" | "scheduled" | "active" | "expired" | "invalid";
 
 export type CourseDisplayPricing = {
   salePriceVnd: number;
@@ -10,6 +14,9 @@ export type CourseDisplayPricing = {
   hasDiscount: boolean;
   isPurchasable: boolean;
   statusLabel: "ready" | "pending";
+  saleStatus: SaleStatus;
+  saleStartsAt: Date | null;
+  saleEndsAt: Date | null;
 };
 
 function normalizePositivePrice(value: number | null | undefined) {
@@ -20,6 +27,19 @@ function normalizePositivePrice(value: number | null | undefined) {
   return normalized > 0 ? normalized : null;
 }
 
+function normalizeDate(value: Date | string | null | undefined) {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+
+  const parsed = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return null;
+  }
+
+  return parsed;
+}
+
 export function resolveSalePriceVnd(input: CoursePricingInput) {
   const fromSale = normalizePositivePrice(input.salePriceVnd ?? null);
   const fromList = normalizePositivePrice(input.listPriceVnd ?? null);
@@ -28,15 +48,85 @@ export function resolveSalePriceVnd(input: CoursePricingInput) {
 }
 
 export function resolveListPriceVnd(input: CoursePricingInput) {
-  const salePrice = resolveSalePriceVnd(input);
   const candidate = normalizePositivePrice(input.listPriceVnd ?? null) ?? normalizePositivePrice(input.priceVnd) ?? 0;
-  const normalized = Math.max(0, Math.floor(candidate));
-  return normalized >= salePrice ? normalized : salePrice;
+  return Math.max(0, Math.floor(candidate));
 }
 
-export function resolveCourseDisplayPricing(input: CoursePricingInput): CourseDisplayPricing {
-  const salePriceVnd = resolveSalePriceVnd(input);
+function resolveSaleStatus(input: CoursePricingInput, now: Date): {
+  status: SaleStatus;
+  saleStartsAt: Date | null;
+  saleEndsAt: Date | null;
+  shouldApplySalePrice: boolean;
+} {
   const listPriceVnd = resolveListPriceVnd(input);
+  const configuredSalePriceVnd = normalizePositivePrice(input.salePriceVnd ?? null);
+  const hasDiscount = configuredSalePriceVnd !== null && configuredSalePriceVnd < listPriceVnd;
+
+  if (!hasDiscount) {
+    return {
+      status: "none",
+      saleStartsAt: null,
+      saleEndsAt: null,
+      shouldApplySalePrice: false,
+    };
+  }
+
+  const saleStartsAt = normalizeDate(input.saleStartsAt ?? null);
+  const saleEndsAt = normalizeDate(input.saleEndsAt ?? null);
+
+  if (!saleStartsAt && !saleEndsAt) {
+    return {
+      status: "active",
+      saleStartsAt: null,
+      saleEndsAt: null,
+      shouldApplySalePrice: true,
+    };
+  }
+
+  if (!saleStartsAt || !saleEndsAt || saleStartsAt.getTime() >= saleEndsAt.getTime()) {
+    return {
+      status: "invalid",
+      saleStartsAt,
+      saleEndsAt,
+      shouldApplySalePrice: false,
+    };
+  }
+
+  if (now.getTime() < saleStartsAt.getTime()) {
+    return {
+      status: "scheduled",
+      saleStartsAt,
+      saleEndsAt,
+      shouldApplySalePrice: false,
+    };
+  }
+
+  if (now.getTime() >= saleEndsAt.getTime()) {
+    return {
+      status: "expired",
+      saleStartsAt,
+      saleEndsAt,
+      shouldApplySalePrice: false,
+    };
+  }
+
+  return {
+    status: "active",
+    saleStartsAt,
+    saleEndsAt,
+    shouldApplySalePrice: true,
+  };
+}
+
+export function resolveCourseDisplayPricing(input: CoursePricingInput, now = new Date()): CourseDisplayPricing {
+  const listPriceVnd = resolveListPriceVnd(input);
+  const configuredSalePriceVnd = normalizePositivePrice(input.salePriceVnd ?? null);
+  const saleState = resolveSaleStatus(input, now);
+  const salePriceVnd =
+    configuredSalePriceVnd !== null && saleState.shouldApplySalePrice
+      ? configuredSalePriceVnd
+      : listPriceVnd;
+
   const isPurchasable = salePriceVnd > 0;
   const hasDiscount = isPurchasable && listPriceVnd > salePriceVnd;
 
@@ -46,5 +136,8 @@ export function resolveCourseDisplayPricing(input: CoursePricingInput): CourseDi
     hasDiscount,
     isPurchasable,
     statusLabel: isPurchasable ? "ready" : "pending",
+    saleStatus: saleState.status,
+    saleStartsAt: saleState.saleStartsAt,
+    saleEndsAt: saleState.saleEndsAt,
   };
 }

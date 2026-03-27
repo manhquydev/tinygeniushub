@@ -13,6 +13,12 @@ type GuestPreviewPlaybackClaims = {
   exp: number;
 };
 
+type CourseLessonPreviewWindowRow = {
+  courseId: string;
+  lessonId: string;
+  orderNo: number;
+};
+
 function toBase64Url(input: Buffer | string) {
   return Buffer.from(input).toString("base64url");
 }
@@ -29,26 +35,74 @@ export function isPublicPreviewCourseOrder(orderNo: number) {
   return Number.isInteger(orderNo) && orderNo >= 1 && orderNo <= COURSE_TRIAL_PREVIEW_LESSON_LIMIT;
 }
 
+export function isLessonWithinPublicPreviewWindow(
+  rows: CourseLessonPreviewWindowRow[],
+  lessonId: string,
+  previewLimit = COURSE_TRIAL_PREVIEW_LESSON_LIMIT,
+) {
+  if (!Number.isInteger(previewLimit) || previewLimit < 1) {
+    return false;
+  }
+
+  let currentCourseId: string | null = null;
+  let courseRank = 0;
+
+  for (const row of rows) {
+    if (row.courseId !== currentCourseId) {
+      currentCourseId = row.courseId;
+      courseRank = 1;
+    } else {
+      courseRank += 1;
+    }
+
+    if (courseRank > previewLimit) {
+      continue;
+    }
+
+    if (row.lessonId === lessonId) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 export async function isPublicPreviewEligibleLesson(
   db: Pick<PrismaClient, "courseLesson">,
   lessonId: string,
 ) {
-  const eligibleLesson = await db.courseLesson.findFirst({
+  const candidateCourses = await db.courseLesson.findMany({
     where: {
       lessonId,
-      orderNo: {
-        lte: COURSE_TRIAL_PREVIEW_LESSON_LIMIT,
-      },
       course: {
         isPublished: true,
       },
     },
     select: {
-      id: true,
+      courseId: true,
+    },
+    distinct: ["courseId"],
+  });
+
+  if (candidateCourses.length === 0) {
+    return false;
+  }
+
+  const orderedLessons = await db.courseLesson.findMany({
+    where: {
+      courseId: {
+        in: candidateCourses.map((item) => item.courseId),
+      },
+    },
+    orderBy: [{ courseId: "asc" }, { orderNo: "asc" }],
+    select: {
+      courseId: true,
+      lessonId: true,
+      orderNo: true,
     },
   });
 
-  return Boolean(eligibleLesson);
+  return isLessonWithinPublicPreviewWindow(orderedLessons, lessonId);
 }
 
 export async function isParentEnrolledForLesson(
