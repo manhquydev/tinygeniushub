@@ -5,11 +5,14 @@ import {
   COOKIE_CONSENT_COOKIE_NAME,
   hasAnalyticsConsent,
   hasMarketingConsent,
+  hasClarityConsent,
 } from "@/lib/legal/cookie-consent";
+import { loadClarity } from "@/lib/analytics/clarity";
 
 type AnalyticsByConsentProps = {
   ga4Id?: string;
   fbPixelId?: string;
+  clarityProjectId?: string;
 };
 
 type ConsentAwareWindow = Window & {
@@ -19,6 +22,7 @@ type ConsentAwareWindow = Window & {
   _fbq?: (...args: unknown[]) => void;
   __ccthGa4Loaded?: boolean;
   __ccthFbLoaded?: boolean;
+  __ccthClarityLoaded?: boolean;
 };
 
 function readCookie(name: string) {
@@ -93,7 +97,19 @@ function loadMetaPixel(pixelId: string) {
   win.__ccthFbLoaded = true;
 }
 
-export function AnalyticsByConsent({ ga4Id, fbPixelId }: AnalyticsByConsentProps) {
+function initClarity(projectId: string) {
+  const win = window as ConsentAwareWindow;
+  if (win.__ccthClarityLoaded) return;
+
+  loadClarity({ projectId });
+  win.__ccthClarityLoaded = true;
+}
+
+export function AnalyticsByConsent({
+  ga4Id,
+  fbPixelId,
+  clarityProjectId,
+}: AnalyticsByConsentProps) {
   useEffect(() => {
     const rawConsent = readCookie(COOKIE_CONSENT_COOKIE_NAME);
     if (!rawConsent) return;
@@ -105,7 +121,12 @@ export function AnalyticsByConsent({ ga4Id, fbPixelId }: AnalyticsByConsentProps
     if (fbPixelId && hasMarketingConsent(rawConsent)) {
       loadMetaPixel(fbPixelId);
     }
-  }, [ga4Id, fbPixelId]);
+
+    // Load Clarity
+    if (clarityProjectId && hasClarityConsent(rawConsent)) {
+      initClarity(clarityProjectId);
+    }
+  }, [ga4Id, fbPixelId, clarityProjectId]);
 
   return null;
 }

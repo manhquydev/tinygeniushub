@@ -46,6 +46,7 @@ export const metadata: Metadata = {
 
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
 const SW_VERSION = "20260314-cloud-garden-v3";
 // GA4_ID and FB_PIXEL_ID MUST remain build-time NEXT_PUBLIC_ vars (not runtime/DB-driven)
 // to avoid XSS via string interpolation in dangerouslySetInnerHTML below.
@@ -67,7 +68,7 @@ export default async function RootLayout({
           }}
         />
 
-        <AnalyticsByConsent ga4Id={GA4_ID} fbPixelId={FB_PIXEL_ID} />
+        <AnalyticsByConsent ga4Id={GA4_ID} fbPixelId={FB_PIXEL_ID} clarityProjectId={CLARITY_PROJECT_ID} />
         <CookieConsentBanner />
       </body>
     </html>

@@ -70,6 +70,14 @@ export function hasMarketingConsent(raw: string | null | undefined) {
   return parsed !== null && isCookieConsentCurrentVersion(parsed) && parsed.marketing === true;
 }
 
+/**
+ * Check if Clarity tracking is allowed.
+ * Clarity is an analytics tool, so it follows analytics consent.
+ */
+export function hasClarityConsent(rawConsent: string | null): boolean {
+  return hasAnalyticsConsent(rawConsent);
+}
+
 export function shouldShowCookieConsentBanner(raw: string | null | undefined) {
   const parsed = parseCookieConsent(raw);
   return !parsed || !isCookieConsentCurrentVersion(parsed);

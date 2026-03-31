@@ -103,6 +103,9 @@ const envSchema = z.object({
     .enum(["true", "false"])
     .default("false")
     .transform((value) => value === "true"),
+  // Microsoft Clarity analytics (optional)
+  NEXT_PUBLIC_CLARITY_PROJECT_ID: optionalNonEmptyString,
+  CLARITY_DATA_EXPORT_TOKEN: optionalNonEmptyString,
   ADMIN_EMAILS: z
     .string()
     .optional()
@@ -180,6 +183,9 @@ const parsedEnv = envSchema.parse({
   GA4_SERVICE_ACCOUNT_CLIENT_EMAIL: process.env.GA4_SERVICE_ACCOUNT_CLIENT_EMAIL,
   GA4_SERVICE_ACCOUNT_PRIVATE_KEY: process.env.GA4_SERVICE_ACCOUNT_PRIVATE_KEY,
   GA4_SOT_REQUIRED: process.env.GA4_SOT_REQUIRED,
+  // Microsoft Clarity analytics
+  NEXT_PUBLIC_CLARITY_PROJECT_ID: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
+  CLARITY_DATA_EXPORT_TOKEN: process.env.CLARITY_DATA_EXPORT_TOKEN,
   ADMIN_EMAILS: process.env.ADMIN_EMAILS,
   HEALTH_EXPOSE_DETAILS: process.env.HEALTH_EXPOSE_DETAILS,
   HEALTH_READY_CACHE_MS: process.env.HEALTH_READY_CACHE_MS,
