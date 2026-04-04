@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: abeka-import-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-abeka_import}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Abeka Import Service
+  abeka-import:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.abeka-import
+    container_name: abeka-import-service
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-abeka_import}?schema=public
+      ABEKA_DATA_PATH: /data/abeka
+      NODE_ENV: production
+    volumes:
+      # Mount your Abeka data directory
+      - ${ABEKA_DATA_PATH:-./data/abeka}:/data/abeka:ro
+      # Checkpoint directory for resume capability
+      - ./checkpoints:/app/checkpoints
+    command: ["scripts/abeka/production-import.ts", "--verbose", "--checkpoint=/app/checkpoints/import.chk"]
+
+  # Validation Service (runs once then exits)
+  abeka-validate:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.abeka-import
+    container_name: abeka-validate-service
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-abeka_import}?schema=public
+      ABEKA_DATA_PATH: /data/abeka
+    volumes:
+      - ${ABEKA_DATA_PATH:-./data/abeka}:/data/abeka:ro
+    command: ["scripts/abeka/validate-import.ts", "--data-path=/data/abeka", "--verify-cdn", "--verbose"]
+    profiles:
+      - validate
+
+  # Database Backup Service
+  backup:
+    image: postgres:16-alpine
+    container_name: abeka-backup
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-abeka_import}
+    volumes:
+      - ./backups:/backups
+    command: >
+      sh -c "
+        echo 'Creating backup...' &&
+        pg_dump -h postgres -U $$POSTGRES_USER -d $$POSTGRES_DB -F custom -f /backups/abeka_backup_$$(date +%Y%m%d_%H%M%S).dump &&
+        echo 'Backup complete'
+      "
+    profiles:
+      - backup
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

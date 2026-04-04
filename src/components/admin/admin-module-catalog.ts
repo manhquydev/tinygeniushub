@@ -8,6 +8,7 @@ import {
   Gift,
   GraduationCap,
   LayoutDashboard,
+  MousePointerClick,
   Newspaper,
   ShieldCheck,
   ShieldUser,
@@ -49,6 +50,14 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
     description: "Học tập, retention, insight vận hành.",
     href: "/admin/analytics",
     icon: BarChart3,
+    health: "complete",
+  },
+  {
+    key: "clarity",
+    title: "User Behavior",
+    description: "Microsoft Clarity heatmaps & recordings",
+    href: "/admin/analytics/clarity",
+    icon: MousePointerClick,
     health: "complete",
   },
   {
@@ -159,7 +168,7 @@ export const ADMIN_NAV_GROUPS: AdminNavGroup[] = [
   {
     key: "core-control",
     title: "Core Control",
-    moduleKeys: ["overview", "analytics", "users", "courses", "content"],
+    moduleKeys: ["overview", "analytics", "clarity", "users", "courses", "content"],
   },
   {
     key: "operations",

@@ -7,7 +7,7 @@ import {
   hasMarketingConsent,
   hasClarityConsent,
 } from "@/lib/legal/cookie-consent";
-import { loadClarity } from "@/lib/analytics/clarity";
+import { loadClarity } from "@/lib/analytics/clarity/loader";
 
 type AnalyticsByConsentProps = {
   ga4Id?: string;
@@ -130,4 +130,3 @@ export function AnalyticsByConsent({
 
   return null;
 }
-

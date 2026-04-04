@@ -1,0 +1,60 @@
+{
+  "startedAt": "2026-03-26T12:01:22.213Z",
+  "endedAt": "2026-03-26T12:01:37.882Z",
+  "baseUrl": "https://cungcontuhoc.io.vn",
+  "route": "/",
+  "results": [
+    {
+      "scenario": "desktop",
+      "route": "/",
+      "url": "https://cungcontuhoc.io.vn/",
+      "button": "Chỉ cookie cần thiết",
+      "visible": true,
+      "clickable": true,
+      "clickError": null,
+      "blockedBy": null,
+      "pointHitsButton": true,
+      "bannerDismissedAfterClick": false,
+      "screenshot": "plans\\reports\\cookie-banner-desktop-necessary-only.png"
+    },
+    {
+      "scenario": "desktop",
+      "route": "/",
+      "url": "https://cungcontuhoc.io.vn/",
+      "button": "Chấp nhận tất cả",
+      "visible": true,
+      "clickable": true,
+      "clickError": null,
+      "blockedBy": null,
+      "pointHitsButton": true,
+      "bannerDismissedAfterClick": false,
+      "screenshot": "plans\\reports\\cookie-banner-desktop-accept-all.png"
+    },
+    {
+      "scenario": "mobile-390x844",
+      "route": "/",
+      "url": "https://cungcontuhoc.io.vn/",
+      "button": "Chỉ cookie cần thiết",
+      "visible": true,
+      "clickable": true,
+      "clickError": null,
+      "blockedBy": null,
+      "pointHitsButton": true,
+      "bannerDismissedAfterClick": false,
+      "screenshot": "plans\\reports\\cookie-banner-mobile-390x844-necessary-only.png"
+    },
+    {
+      "scenario": "mobile-390x844",
+      "route": "/",
+      "url": "https://cungcontuhoc.io.vn/",
+      "button": "Chấp nhận tất cả",
+      "visible": true,
+      "clickable": true,
+      "clickError": null,
+      "blockedBy": null,
+      "pointHitsButton": true,
+      "bannerDismissedAfterClick": false,
+      "screenshot": "plans\\reports\\cookie-banner-mobile-390x844-accept-all.png"
+    }
+  ]
+}

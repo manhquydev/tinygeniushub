@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
       "'unsafe-inline'",
       "https://www.googletagmanager.com",
       "https://connect.facebook.net",
+      "https://www.clarity.ms",
+      "https://*.clarity.ms",
     ];
     if (isDev) {
       scriptSrc.push("'unsafe-eval'");
@@ -52,7 +54,7 @@ const nextConfig: NextConfig = {
               "font-src 'self' data:",
               "media-src 'self' blob: https:",
               "worker-src 'self' blob:",
-              "connect-src 'self' https: ws: wss:",
+              "connect-src 'self' https: ws: wss: https://www.clarity.ms https://*.clarity.ms",
               "object-src 'none'",
             ].join("; "),
           },

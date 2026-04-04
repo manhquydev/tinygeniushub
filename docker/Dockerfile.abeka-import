@@ -1,0 +1,50 @@
+# Dockerfile for Abeka Curriculum Import
+# Multi-stage build for production deployment
+
+FROM node:20-alpine AS base
+
+# Install dependencies for native modules
+RUN apk add --no-cache libc6-compat python3 make g++
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json pnpm-lock.yaml* ./
+COPY prisma ./prisma/
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Production stage
+FROM node:20-alpine AS production
+
+# Install required runtime dependencies
+RUN apk add --no-cache postgresql-client curl
+
+WORKDIR /app
+
+# Copy dependencies from base
+COPY --from=base /app/node_modules ./node_modules
+COPY --from=base /app/prisma ./prisma
+
+# Copy source code
+COPY src ./src
+COPY scripts ./scripts
+COPY tsconfig.json ./
+
+# Set environment
+ENV NODE_ENV=production
+ENV ABEKA_DATA_PATH=/data/abeka
+
+# Create data directory
+RUN mkdir -p /data/abeka
+
+# Entry point for import
+ENTRYPOINT ["npx", "tsx"]
+CMD ["scripts/abeka/production-import.ts", "--verbose"]

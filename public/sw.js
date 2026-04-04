@@ -54,7 +54,17 @@ self.addEventListener("fetch", (event) => {
       if (cachedResponse) {
         return cachedResponse;
       }
-      return fetch(event.request);
+      return fetch(event.request).catch(async () => {
+        if (event.request.destination === "document") {
+          const cache = await caches.open(CACHE_NAME);
+          return cache.match(OFFLINE_URL);
+        }
+
+        return new Response("", {
+          status: 503,
+          statusText: "Offline",
+        });
+      });
     })
   );
 });

@@ -13,7 +13,6 @@ import { BlogShare } from "@/components/blog/blog-share";
 import { BlogToc } from "@/components/blog/blog-toc";
 import { getReaderFromServerCookie } from "@/lib/auth/reader";
 import { env } from "@/lib/env";
-import { prisma } from "@/lib/db";
 import { extractToc } from "@/modules/blog/blog-markdown";
 import {
   BLOG_LIKE_SESSION_COOKIE_NAME,
@@ -24,42 +23,18 @@ import { generateBlogPostJsonLd, generateBlogPostMetadata } from "@/modules/blog
 import { blogService } from "@/modules/blog/blog-service";
 import { getBookmarkStatus } from "@/modules/reader/reader-service";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
 };
-
-export async function generateStaticParams() {
-  try {
-    const posts = await prisma.blogPost.findMany({
-      where: {
-        status: "PUBLISHED",
-      },
-      orderBy: {
-        publishedAt: "desc",
-      },
-      take: 50,
-      select: {
-        slug: true,
-      },
-    });
-
-    return posts.map((post) => ({
-      slug: post.slug,
-    }));
-  } catch {
-    // DB unavailable at build time — pages will be generated on-demand via ISR
-    return [];
-  }
-}
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = await blogService.getPostBySlug(slug);
 
   if (!post) {
-    return {};
+    notFound();
   }
 
   return generateBlogPostMetadata(post, env.BETTER_AUTH_URL);
