@@ -39,9 +39,6 @@ export async function GET(request: NextRequest) {
         grade: {
           select: { id: true, name: true, nameVi: true },
         },
-        _count: {
-          select: { weeklyPlans: true },
-        },
       },
       orderBy: { createdAt: 'desc' },
     });
