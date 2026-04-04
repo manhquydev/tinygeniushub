@@ -1504,6 +1504,8 @@ model AbekaVideo {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
+  lessonPackage   AbekaLessonPackage? @relation(fields: [lessonPackageId], references: [id], onDelete: SetNull)
+
   @@unique([videoId])
   @@index([gradeLevel, subjectCode])
   @@index([lessonNumber])
@@ -1574,6 +1576,7 @@ model AbekaLessonPackage {
   durationMinutes Int?
 
   lesson          AbekaLesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  videos          AbekaVideo[]
 
   @@unique([lessonId, subjectCode])
   @@index([lessonId])
