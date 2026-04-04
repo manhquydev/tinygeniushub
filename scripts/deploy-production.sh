@@ -25,8 +25,8 @@ NC='\033[0m' # No Color
 
 # Configuration
 DEPLOY_USER="deploy"
-APP_DIR="/home/deploy/app"
-REPO_URL="https://github.com/user/repo.git"
+APP_DIR="/srv/cungcontuhoc"
+REPO_URL="https://github.com/manhquydev/cungcontuhoc.git"
 PM2_ECOSYSTEM="ecosystem.config.js"
 
 # Flags
@@ -103,27 +103,40 @@ log_step() {
 # Pre-deployment checks
 log_step "Pre-Deployment Checks"
 
-# Check SSH key
-if [[ ! -f ~/.ssh/cungcontuhoc_deploy ]]; then
-  log_error "SSH key not found: ~/.ssh/cungcontuhoc_deploy"
+# Check SSH key - try multiple key locations
+SSH_KEY=""
+for key in ~/.ssh/cungcontuhoc_deploy ~/.ssh/id_ed25519 ~/.ssh/id_rsa; do
+  if [[ -f "$key" ]]; then
+    SSH_KEY="$key"
+    log_success "SSH key found: $key"
+    break
+  fi
+done
+
+if [[ -z "$SSH_KEY" ]]; then
+  log_error "No SSH key found"
   log_info "Generate key with: ssh-keygen -t ed25519 -f ~/.ssh/cungcontuhoc_deploy"
   exit 1
 fi
-log_success "SSH key found"
 
 # Check if server is reachable
 log_info "Testing SSH connection to $SERVER_IP..."
-if ! ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no -i ~/.ssh/cungcontuhoc_deploy "${DEPLOY_USER}@${SERVER_IP}" "echo 'SSH OK'" > /dev/null 2>&1; then
-  log_error "Cannot connect to server $SERVER_IP"
-  log_info "Ensure SSH key is added to server: ssh-copy-id -i ~/.ssh/cungcontuhoc_deploy.pub root@$SERVER_IP"
-  exit 1
+if ! ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no -i "$SSH_KEY" "${DEPLOY_USER}@${SERVER_IP}" "echo 'SSH OK'" > /dev/null 2>&1; then
+  log_warn "Cannot connect as deploy user, trying root..."
+  if ! ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no -i "$SSH_KEY" "root@${SERVER_IP}" "echo 'SSH OK'" > /dev/null 2>&1; then
+    log_error "Cannot connect to server $SERVER_IP"
+    log_info "Ensure SSH key is added to server"
+    exit 1
+  fi
+  DEPLOY_USER="root"
+  log_warn "Using root user for deployment"
 fi
 log_success "SSH connection successful"
 
 # Dry run mode
 if [[ "$DRY_RUN" == true ]]; then
   log_info "Dry run mode - SSH test complete"
-  log_success "Server $SERVER_IP is reachable"
+  log_success "Server $SERVER_IP is reachable as $DEPLOY_USER"
   exit 0
 fi
 
@@ -199,13 +212,13 @@ if [[ "$ROLLBACK" == true ]]; then
   log_info "Rolling back to previous commit..."
   DEPLOY_CMD="cd ${APP_DIR} && git checkout HEAD~1 && pnpm install --frozen-lockfile && pnpm db:generate && pnpm build && pm2 restart all"
 else
-  DEPLOY_CMD="cd ${APP_DIR} && git fetch origin && git checkout ${GIT_BRANCH} && git pull origin ${GIT_BRANCH} && pnpm install --frozen-lockfile && pnpm db:generate && pnpm prisma migrate deploy && pnpm build && pm2 restart all"
+  DEPLOY_CMD="cd ${APP_DIR} && git fetch origin && git checkout ${GIT_BRANCH} && git pull origin ${GIT_BRANCH} && pnpm install --frozen-lockfile && pnpm db:generate && DOTENV_CONFIG_PATH=.env.production pnpm prisma migrate deploy && pnpm build && pm2 restart all"
 fi
 
 log_info "Running remote deploy..."
-if ! ssh -i ~/.ssh/cungcontuhoc_deploy "${DEPLOY_USER}@${SERVER_IP}" "$DEPLOY_CMD"; then
+if ! ssh -i "$SSH_KEY" "${DEPLOY_USER}@${SERVER_IP}" "$DEPLOY_CMD"; then
   log_error "Remote deploy failed"
-  log_info "Check remote logs: ssh -i ~/.ssh/cungcontuhoc_deploy ${DEPLOY_USER}@${SERVER_IP} 'pm2 logs'"
+  log_info "Check remote logs: ssh -i $SSH_KEY ${DEPLOY_USER}@${SERVER_IP} 'pm2 logs'"
   exit 1
 fi
 log_success "Remote deploy complete"
@@ -217,39 +230,40 @@ log_info "Waiting for services to start..."
 sleep 5
 
 log_info "Checking health endpoint..."
-HEALTH_STATUS=$(ssh -i ~/.ssh/cungcontuhoc_deploy "${DEPLOY_USER}@${SERVER_IP}" "curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/api/health" || echo "000")
+HEALTH_STATUS=$(ssh -i "$SSH_KEY" "${DEPLOY_USER}@${SERVER_IP}" "curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/api/health" || echo "000")
 
 if [[ "$HEALTH_STATUS" == "200" ]]; then
   log_success "Health check passed (HTTP 200)"
 else
   log_error "Health check failed (HTTP $HEALTH_STATUS)"
   log_info "Checking PM2 status..."
-  ssh -i ~/.ssh/cungcontuhoc_deploy "${DEPLOY_USER}@${SERVER_IP}" "pm2 status"
+  ssh -i "$SSH_KEY" "${DEPLOY_USER}@${SERVER_IP}" "pm2 status"
   log_info "Recent logs:"
-  ssh -i ~/.ssh/cungcontuhoc_deploy "${DEPLOY_USER}@${SERVER_IP}" "pm2 logs --lines 50"
+  ssh -i "$SSH_KEY" "${DEPLOY_USER}@${SERVER_IP}" "pm2 logs --lines 50"
   exit 1
 fi
 
 log_info "Checking ready endpoint..."
-READY_RESPONSE=$(ssh -i ~/.ssh/cungcontuhoc_deploy "${DEPLOY_USER}@${SERVER_IP}" "curl -s http://localhost:3000/api/health/ready" || echo "{}")
+READY_RESPONSE=$(ssh -i "$SSH_KEY" "${DEPLOY_USER}@${SERVER_IP}" "curl -s http://localhost:3000/api/health/ready" || echo "{}")
 log_info "Ready response: $READY_RESPONSE"
 
 log_info "Checking PM2 status..."
-ssh -i ~/.ssh/cungcontuhoc_deploy "${DEPLOY_USER}@${SERVER_IP}" "pm2 status"
+ssh -i "$SSH_KEY" "${DEPLOY_USER}@${SERVER_IP}" "pm2 status"
 
 log_step "Deployment Summary"
 echo ""
 echo -e "${GREEN}✓ Deployment successful!${NC}"
 echo ""
 echo "Server:        $SERVER_IP"
+echo "User:          $DEPLOY_USER"
 echo "Commit:        $GIT_COMMIT"
 echo "Branch:        $GIT_BRANCH"
 echo "Timestamp:     $(date)"
 echo ""
 echo "Commands to monitor:"
-echo "  ssh -i ~/.ssh/cungcontuhoc_deploy ${DEPLOY_USER}@${SERVER_IP} 'pm2 status'"
-echo "  ssh -i ~/.ssh/cungcontuhoc_deploy ${DEPLOY_USER}@${SERVER_IP} 'pm2 logs'"
-echo "  ssh -i ~/.ssh/cungcontuhoc_deploy ${DEPLOY_USER}@${SERVER_IP} 'curl http://localhost:3000/api/health'"
+echo "  ssh -i $SSH_KEY ${DEPLOY_USER}@${SERVER_IP} 'pm2 status'"
+echo "  ssh -i $SSH_KEY ${DEPLOY_USER}@${SERVER_IP} 'pm2 logs'"
+echo "  ssh -i $SSH_KEY ${DEPLOY_USER}@${SERVER_IP} 'curl http://localhost:3000/api/health'"
 echo ""
 echo "Rollback if needed:"
 echo "  bash scripts/deploy-production.sh $SERVER_IP --rollback"
