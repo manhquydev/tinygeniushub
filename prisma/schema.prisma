@@ -1444,3 +1444,195 @@ model PackageSubscription {
 }
 
 // ========== END CURRICULUM PACKAGE SYSTEM ==========
+
+// ========== ABEKA CURRICULUM SYSTEM ==========
+
+enum AbekaSubjectCode {
+  PHONICS
+  ARITHMETIC
+  COMBINATION
+  ACTIVITIES
+  ROUTINES
+  SEATWORK_C
+  SEATWORK_M
+  SPELLING
+  WRITING_C
+  WRITING_M
+  BIBLE
+  HISTORY
+  SCIENCE
+  HEALTH
+  LITERATURE
+  COMPOSITION
+  VOCABULARY
+  POETRY
+  READING
+  GRAMMAR
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+  HIDDEN
+}
+
+enum AbekaAssignmentStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  SKIPPED
+  OVERDUE
+}
+
+model AbekaVideo {
+  id              String        @id @default(cuid())
+  videoId         String
+  gradeLevel      Int
+  lessonNumber    Int
+  subjectCode     AbekaSubjectCode
+  title           String
+  description     String?
+  cdnUrl          String
+  m3u8Path        String
+  thumbnailUrl    String?
+  durationMinutes Int?
+  teacherName     String?
+  lessonPackageId String?
+  status          ContentStatus @default(PUBLISHED)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@unique([videoId])
+  @@index([gradeLevel, subjectCode])
+  @@index([lessonNumber])
+}
+
+model AbekaGrade {
+  id            String        @id @default(cuid())
+  level         Int
+  name          String
+  nameVi        String
+  description   String?
+  totalLessons  Int           @default(170)
+  status        ContentStatus @default(PUBLISHED)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  subjects      AbekaSubject[]
+  lessons       AbekaLesson[]
+
+  @@unique([level])
+}
+
+model AbekaSubject {
+  id            String        @id @default(cuid())
+  code          AbekaSubjectCode
+  name          String
+  nameVi        String
+  description   String?
+  iconEmoji     String?
+  colorHex      String?
+  gradeId       String
+  orderNo       Int
+  isCore        Boolean       @default(true)
+  status        ContentStatus @default(PUBLISHED)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  grade         AbekaGrade    @relation(fields: [gradeId], references: [id], onDelete: Cascade)
+
+  @@unique([gradeId, code])
+  @@index([gradeId])
+}
+
+model AbekaLesson {
+  id            String        @id @default(cuid())
+  lessonNumber  Int
+  gradeId       String
+  title         String?
+  description   String?
+  bibleVerse    String?
+  memoryWork    String?
+  status        ContentStatus @default(PUBLISHED)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  grade         AbekaGrade    @relation(fields: [gradeId], references: [id], onDelete: Cascade)
+  packages      AbekaLessonPackage[]
+
+  @@unique([gradeId, lessonNumber])
+  @@index([gradeId])
+}
+
+model AbekaLessonPackage {
+  id              String        @id @default(cuid())
+  lessonId        String
+  subjectCode     AbekaSubjectCode
+  orderNo         Int           @default(0)
+  durationMinutes Int?
+
+  lesson          AbekaLesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([lessonId, subjectCode])
+  @@index([lessonId])
+}
+
+model AbekaLearningJourney {
+  id            String        @id @default(cuid())
+  childId       String
+  name          String
+  description   String?
+  gradeId       String
+  startDate     DateTime
+  targetEndDate DateTime?
+  actualEndDate DateTime?
+  isActive      Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  child         ChildProfile  @relation(fields: [childId], references: [id], onDelete: Cascade)
+  assignments   AbekaAssignment[]
+
+  @@index([childId, isActive])
+}
+
+model AbekaAssignment {
+  id            String                @id @default(cuid())
+  journeyId     String
+  lessonId      String
+  assignedDate  DateTime
+  dueDate       DateTime?
+  completedAt   DateTime?
+  status        AbekaAssignmentStatus @default(NOT_STARTED)
+  notes         String?
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+
+  journey       AbekaLearningJourney  @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+
+  @@index([journeyId, status])
+  @@index([assignedDate])
+}
+
+model AbekaProgress {
+  id                    String   @id @default(cuid())
+  childId               String
+  gradeId               String
+  lessonId              String
+  subjectCode           AbekaSubjectCode
+  videoId               String
+  watchedMinutes        Int      @default(0)
+  isCompleted           Boolean  @default(false)
+  completedAt           DateTime?
+  lastPositionSeconds   Int      @default(0)
+  watchCount            Int      @default(0)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@unique([childId, videoId])
+  @@index([childId, gradeId])
+  @@index([completedAt])
+}
+
+// ========== END ABEKA CURRICULUM SYSTEM ==========
