@@ -14,7 +14,7 @@ type PlanConfig = {
 
 const PLAN_CONFIG: Record<PayablePlanCode, PlanConfig> = {
   MONTHLY_STANDARD: {
-    amountVnd: 99_000,
+    amountVnd: 149_000,
     childProfileLimit: 3,
     caregiverLimit: 2,
     portfolioRetentionMaxDays: 90,

@@ -256,6 +256,17 @@ export const rateLimitPolicyCatalog = {
     minWindowMs: 1000 * 10,
     maxWindowMs: 1000 * 60 * 60,
   },
+  "billing.webhook.package.ip": {
+    label: "Package subscription webhook ingest / IP",
+    description: "Throttle package subscription webhook ingest bursts before signature validation.",
+    keyStrategy: "ip",
+    defaultLimit: 180,
+    defaultWindowMs: 1000 * 60,
+    minLimit: 20,
+    maxLimit: 5000,
+    minWindowMs: 1000 * 10,
+    maxWindowMs: 1000 * 60 * 60,
+  },
   "billing.checkout.ip": {
     label: "Checkout / IP",
     description: "Limit checkout session creation spikes from one IP.",

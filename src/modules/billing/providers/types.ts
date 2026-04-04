@@ -1,12 +1,14 @@
 import type { PayablePlanCode } from "@/modules/billing/plan-config";
+import type { PackageCode } from "@/modules/billing/package-config";
 
 export type CreateCheckoutSessionInput = {
   parentId: string;
   parentEmail: string;
-  planCode: PayablePlanCode;
+  planCode: PayablePlanCode | PackageCode | string;
   amountVnd: number;
   successUrl: string;
   cancelUrl: string;
+  metadata?: Record<string, string>;
 };
 
 export type CheckoutSessionResult = {
