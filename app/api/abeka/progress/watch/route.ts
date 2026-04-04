@@ -5,9 +5,8 @@ import { z } from 'zod';
 const updateProgressSchema = z.object({
   childId: z.string(),
   videoId: z.string(),
-  watchPercent: z.number().min(0).max(100),
-  watchSeconds: z.number().min(0),
-  lastPosition: z.number().min(0).optional(),
+  watchedMinutes: z.number().min(0),
+  lastPositionSeconds: z.number().min(0).optional(),
 });
 
 /**
@@ -29,7 +28,7 @@ export async function GET(request: NextRequest) {
       where.videoId = videoId;
     }
 
-    const progress = await prisma.abekaWatchProgress.findMany({
+    const progress = await prisma.abekaProgress.findMany({
       where,
       include: {
         video: {
@@ -72,7 +71,7 @@ export async function POST(request: Request) {
       return Response.json({ error: 'Child not found' }, { status: 404 });
     }
 
-    // Verify video exists
+    // Verify video exists and get grade info
     const video = await prisma.abekaVideo.findUnique({
       where: { id: data.videoId },
     });
@@ -81,45 +80,59 @@ export async function POST(request: Request) {
       return Response.json({ error: 'Video not found' }, { status: 404 });
     }
 
-    // Calculate duration in seconds if available
-    const durationSeconds = video.durationMinutes ? video.durationMinutes * 60 : null;
-
-    // Update or create progress
-    const progress = await prisma.abekaWatchProgress.upsert({
+    // Check if progress record exists
+    const existingProgress = await prisma.abekaProgress.findUnique({
       where: {
         childId_videoId: { childId: data.childId, videoId: data.videoId },
       },
-      create: {
-        childId: data.childId,
-        videoId: data.videoId,
-        watchPercent: data.watchPercent,
-        watchSeconds: data.watchSeconds,
-        durationSeconds,
-        lastPosition: data.lastPosition ?? 0,
-        isCompleted: data.watchPercent >= 90,
-        completedAt: data.watchPercent >= 90 ? new Date() : null,
-        lastWatchedAt: new Date(),
-      },
-      update: {
-        watchPercent: data.watchPercent,
-        watchSeconds: data.watchSeconds,
-        durationSeconds,
-        lastPosition: data.lastPosition ?? 0,
-        isCompleted: data.watchPercent >= 90,
-        completedAt: data.watchPercent >= 90 ? new Date() : null,
-        lastWatchedAt: new Date(),
-      },
     });
 
-    // TODO: Trigger streak update and badge checks
-    // await updateStreak(data.childId);
-    // const newBadges = await checkBadgeUnlocks(data.childId, 'watch', { videoId: data.videoId });
+    const isCompleted = data.watchedMinutes >= (video.durationMinutes || 0) * 0.9;
+    const now = new Date();
 
-    return Response.json({
-      progress,
-      isCompleted: progress.isCompleted,
-      // newBadges,
-    });
+    if (existingProgress) {
+      // Update existing progress
+      const progress = await prisma.abekaProgress.update({
+        where: {
+          childId_videoId: { childId: data.childId, videoId: data.videoId },
+        },
+        data: {
+          watchedMinutes: data.watchedMinutes,
+          lastPositionSeconds: data.lastPositionSeconds ?? existingProgress.lastPositionSeconds,
+          isCompleted: isCompleted || existingProgress.isCompleted,
+          completedAt: isCompleted && !existingProgress.isCompleted ? now : existingProgress.completedAt,
+          lastWatchedAt: now,
+          watchCount: { increment: 1 },
+        },
+      });
+
+      return Response.json({
+        progress,
+        isCompleted: progress.isCompleted,
+      });
+    } else {
+      // Create new progress record
+      const progress = await prisma.abekaProgress.create({
+        data: {
+          childId: data.childId,
+          videoId: data.videoId,
+          gradeId: String(video.gradeLevel),
+          lessonId: String(video.lessonNumber),
+          subjectCode: video.subjectCode,
+          watchedMinutes: data.watchedMinutes,
+          lastPositionSeconds: data.lastPositionSeconds ?? 0,
+          isCompleted,
+          completedAt: isCompleted ? now : null,
+          lastWatchedAt: now,
+          watchCount: 1,
+        },
+      });
+
+      return Response.json({
+        progress,
+        isCompleted: progress.isCompleted,
+      }, { status: 201 });
+    }
   } catch (error) {
     console.error('Error updating watch progress:', error);
     if (error instanceof z.ZodError) {
