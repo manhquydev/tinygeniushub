@@ -11,8 +11,8 @@ module.exports = {
     {
       // Main Web Application
       name: 'cungcontuhoc-web',
-      script: './node_modules/.bin/next',
-      args: 'start --hostname 0.0.0.0 --port 3000',
+      script: 'pnpm',
+      args: 'start',
       cwd: '/var/www/cungcontuhoc',
       env: { 
         NODE_ENV: 'production',
@@ -50,8 +50,8 @@ module.exports = {
     {
       // Background Worker Process
       name: 'cungcontuhoc-worker',
-      script: './node_modules/.bin/tsx',
-      args: 'src/worker/index.ts',
+      script: 'npx',
+      args: 'tsx src/worker/index.ts',
       cwd: '/var/www/cungcontuhoc',
       env: { 
         NODE_ENV: 'production' 
