@@ -40,7 +40,20 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:seed": "pnpm db:generate && tsx prisma/seed.ts",
+    "db:seed:abeka": "pnpm db:generate && tsx prisma/seeders/abeka-curriculum.ts",
+    "db:seed:packages": "pnpm db:generate && tsx prisma/seeders/curriculum-packages.ts",
     "db:import:three-courses": "pnpm db:generate && tsx prisma/scripts/import-three-courses-bootstrap.ts",
+    "abeka:import": "tsx scripts/abeka/import-curriculum.ts",
+    "abeka:import:grade": "tsx scripts/abeka/import-curriculum.ts --grade",
+    "abeka:import:reset": "tsx scripts/abeka/import-curriculum.ts --reset",
+    "abeka:import:prod": "tsx scripts/abeka/production-import.ts --verbose",
+    "abeka:import:resume": "tsx scripts/abeka/production-import.ts --resume --checkpoint=./checkpoints/abeka-import.chk",
+    "abeka:validate": "tsx scripts/abeka/validate-import.ts",
+    "abeka:validate:cdn": "tsx scripts/abeka/validate-import.ts --verify-cdn --strict",
+    "abeka:validate:db": "tsx scripts/abeka/validate-import.ts --db-verify --expected=20195",
+    "abeka:docker:import": "docker-compose -f docker/docker-compose.abeka.yml up -d postgres && docker-compose -f docker/docker-compose.abeka.yml up abeka-import",
+    "abeka:docker:validate": "docker-compose -f docker/docker-compose.abeka.yml --profile validate up abeka-validate",
+    "abeka:docker:backup": "docker-compose -f docker/docker-compose.abeka.yml --profile backup up backup",
     "worker:dev": "tsx src/worker/index.ts",
     "video:voiceover": "tsx scripts/video-pipeline/generate-voiceover.ts",
     "video:background": "tsx scripts/video-pipeline/generate-background.ts",
@@ -90,6 +103,7 @@
     "@remotion/cli": "^4.0.429",
     "@remotion/core": "1.0.0-y.46",
     "@remotion/renderer": "^4.0.429",
+    "@tanstack/react-query": "^5.96.2",
     "bcryptjs": "^3.0.3",
     "better-auth": "^1.4.18",
     "bullmq": "^5.69.3",
@@ -98,6 +112,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
+    "docx": "^9.6.1",
     "dotenv": "^17.3.1",
     "framer-motion": "^12.35.2",
     "hls.js": "^1.6.15",
@@ -160,5 +175,23 @@
       "fast-xml-parser": "5.5.7",
       "dompurify": "3.3.2"
     }
-  }
+  },
+  "description": "MVP foundation rebuilt from handover docs (`docs/handover/handover-master-agent-ready.md`) using:\r - Next.js 16 + React 19 + TypeScript\r - Prisma + PostgreSQL 16\r - Redis + BullMQ worker scaffold\r - Modular monolith domain boundaries",
+  "main": ".tmp-prod-blocked-ip-vantage-test.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manhquydev/cungcontuhoc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/manhquydev/cungcontuhoc/issues"
+  },
+  "homepage": "https://github.com/manhquydev/cungcontuhoc#readme"
 }

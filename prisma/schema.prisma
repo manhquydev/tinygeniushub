@@ -116,6 +116,9 @@ model ParentAccount {
   courseEnrollments       CourseEnrollment[]
   courseReviews           CourseReview[]
   organizationMemberships OrganizationMember[]
+  
+  // Curriculum Package Relations
+  packageSubscriptions      PackageSubscription[]
 }
 
 model Session {
@@ -295,6 +298,7 @@ model ChildProfile {
   placementAttempts  PlacementTestAttempt[]
   reviewQueues       ReviewQueue[]
   courseJourneys     ChildCourseJourney[]
+  packageSubscriptions PackageSubscription[]
 
   @@index([parentId])
 }
@@ -1385,3 +1389,58 @@ model PlacementTestResponse {
 
   @@index([attemptId])
 }
+
+// ========== CURRICULUM PACKAGE SYSTEM ==========
+
+enum PackageSubscriptionStatus {
+  ACTIVE
+  CANCELLED
+  EXPIRED
+}
+
+model CurriculumPackage {
+  id              String   @id @default(cuid())
+  code            String   @unique // e.g., "PRESCHOOL_PREMIUM", "ELEMENTARY_PRO", etc.
+  name            String
+  description     String?
+  grades          String[] // ["k4", "k5"] or ["g1", "g2", "g3", "g4", "g5"]
+  subjects        String[] // ["PH", "AT", "BI"] or [] for all subjects
+  videoCount      Int
+  monthlyPrice    Int      // VND
+  yearlyPrice     Int      // VND
+  isActive        Boolean  @default(true)
+  displayOrder    Int      @default(0) // For UI ordering
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  subscriptions   PackageSubscription[]
+
+  @@index([isActive, displayOrder])
+  @@index([grades])
+}
+
+model PackageSubscription {
+  id              String   @id @default(cuid())
+  parentId        String
+  childId         String?
+  packageId       String
+  status          PackageSubscriptionStatus @default(ACTIVE)
+  startDate       DateTime
+  endDate         DateTime
+  autoRenew       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  parent          ParentAccount    @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  child           ChildProfile?    @relation(fields: [childId], references: [id], onDelete: SetNull)
+  package         CurriculumPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+
+  @@index([parentId])
+  @@index([parentId, status])
+  @@index([packageId])
+  @@index([endDate])
+}
+
+// ========== END CURRICULUM PACKAGE SYSTEM ==========
