@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
     const assignment = await prisma.abekaAssignment.findUnique({
       where: { id: data.assignmentId },
       include: {
+        journey: true,
         dailyPlan: {
           include: {
             weeklyPlan: {
@@ -35,11 +36,6 @@ export async function POST(request: NextRequest) {
                 journey: true,
               },
             },
-          },
-        },
-        lessonPackage: {
-          include: {
-            lesson: true,
           },
         },
       },
@@ -61,7 +57,6 @@ export async function POST(request: NextRequest) {
       data: {
         status: 'COMPLETED',
         completedAt: new Date(),
-        actualMinutes: data.minutesLearned,
       },
     });
 

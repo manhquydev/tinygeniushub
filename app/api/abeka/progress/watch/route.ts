@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
       where.videoId = videoId;
     }
 
-    const progress = await prisma.abekaProgress.findMany({
+    const progress = await prisma.abekaWatchProgress.findMany({
       where,
       include: {
         video: {
@@ -81,7 +81,7 @@ export async function POST(request: Request) {
     }
 
     // Check if progress record exists
-    const existingProgress = await prisma.abekaProgress.findUnique({
+    const existingProgress = await prisma.abekaWatchProgress.findUnique({
       where: {
         childId_videoId: { childId: data.childId, videoId: data.videoId },
       },
@@ -92,17 +92,16 @@ export async function POST(request: Request) {
 
     if (existingProgress) {
       // Update existing progress
-      const progress = await prisma.abekaProgress.update({
+      const progress = await prisma.abekaWatchProgress.update({
         where: {
           childId_videoId: { childId: data.childId, videoId: data.videoId },
         },
         data: {
-          watchedMinutes: data.watchedMinutes,
-          lastPositionSeconds: data.lastPositionSeconds ?? existingProgress.lastPositionSeconds,
+          watchSeconds: data.watchedMinutes * 60, // Convert minutes to seconds
+          lastPosition: data.lastPositionSeconds ?? existingProgress.lastPosition,
           isCompleted: isCompleted || existingProgress.isCompleted,
           completedAt: isCompleted && !existingProgress.isCompleted ? now : existingProgress.completedAt,
           lastWatchedAt: now,
-          watchCount: { increment: 1 },
         },
       });
 
@@ -112,19 +111,16 @@ export async function POST(request: Request) {
       });
     } else {
       // Create new progress record
-      const progress = await prisma.abekaProgress.create({
+      const progress = await prisma.abekaWatchProgress.create({
         data: {
           childId: data.childId,
           videoId: data.videoId,
-          gradeId: String(video.gradeLevel),
-          lessonId: String(video.lessonNumber),
-          subjectCode: video.subjectCode,
-          watchedMinutes: data.watchedMinutes,
-          lastPositionSeconds: data.lastPositionSeconds ?? 0,
+          watchSeconds: data.watchedMinutes * 60, // Convert minutes to seconds
+          durationSeconds: video.durationMinutes ? video.durationMinutes * 60 : null,
+          lastPosition: data.lastPositionSeconds ?? 0,
           isCompleted,
           completedAt: isCompleted ? now : null,
           lastWatchedAt: now,
-          watchCount: 1,
         },
       });
 

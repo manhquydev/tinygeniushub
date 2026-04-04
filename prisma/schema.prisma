@@ -119,6 +119,9 @@ model ParentAccount {
   
   // Curriculum Package Relations
   packageSubscriptions      PackageSubscription[]
+
+  // Abeka Parent Preferences
+  abekaParentPreferences AbekaParentPreferences?
 }
 
 model Session {
@@ -300,6 +303,11 @@ model ChildProfile {
   courseJourneys     ChildCourseJourney[]
   packageSubscriptions PackageSubscription[]
   abekaJourneys      AbekaLearningJourney[]
+  abekaWatchProgress AbekaWatchProgress[]
+  childEarnedBadges  ChildEarnedBadge[]
+  childSkillProgress ChildSkillProgress[]
+  childGradeProgress ChildGradeProgress[]
+  abekaStreak        AbekaStreak?
 
   @@index([parentId])
 }
@@ -1505,7 +1513,7 @@ model AbekaVideo {
   updatedAt       DateTime      @updatedAt
 
   lessonPackage   AbekaLessonPackage? @relation(fields: [lessonPackageId], references: [id], onDelete: SetNull)
-  progress        AbekaProgress[]
+  watchProgress   AbekaWatchProgress[]
 
   @@unique([videoId])
   @@index([gradeLevel, subjectCode])
@@ -1526,6 +1534,8 @@ model AbekaGrade {
   subjects      AbekaSubject[]
   lessons       AbekaLesson[]
   journeys      AbekaLearningJourney[]
+  childGradeProgress ChildGradeProgress[]
+  skillNodes    AbekaSkillNode[]
 
   @@unique([level])
 }
@@ -1605,6 +1615,7 @@ model AbekaLearningJourney {
   child         ChildProfile  @relation(fields: [childId], references: [id], onDelete: Cascade)
   grade         AbekaGrade    @relation(fields: [gradeId], references: [id], onDelete: Cascade)
   assignments   AbekaAssignment[]
+  weeklyPlans   AbekaWeeklyPlan[]
 
   @@index([childId, isActive])
 }
@@ -1612,6 +1623,7 @@ model AbekaLearningJourney {
 model AbekaAssignment {
   id            String                @id @default(cuid())
   journeyId     String
+  dailyPlanId   String
   lessonId      String
   assignedDate  DateTime
   dueDate       DateTime?
@@ -1622,33 +1634,244 @@ model AbekaAssignment {
   updatedAt     DateTime              @updatedAt
 
   journey       AbekaLearningJourney  @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+  dailyPlan     AbekaDailyPlan        @relation(fields: [dailyPlanId], references: [id], onDelete: Cascade)
 
   @@index([journeyId, status])
+  @@index([dailyPlanId, status])
+  @@index([dailyPlanId, assignedDate])
   @@index([assignedDate])
 }
 
-model AbekaProgress {
+model AbekaWatchProgress {
   id                    String   @id @default(cuid())
   childId               String
-  gradeId               String
-  lessonId              String
-  subjectCode           AbekaSubjectCode
   videoId               String
-  watchedMinutes        Int      @default(0)
+  watchPercent          Int      @default(0)
+  watchSeconds          Int      @default(0)
+  durationSeconds       Int?
   isCompleted           Boolean  @default(false)
+  lastPosition          Int      @default(0)
+  lastWatchedAt         DateTime?
   completedAt           DateTime?
-  lastPositionSeconds   Int      @default(0)
-  watchCount            Int      @default(0)
-  lastWatchedAt         DateTime @default(now())
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 
+  child                 ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
   video                 AbekaVideo @relation(fields: [videoId], references: [id], onDelete: Cascade)
 
   @@unique([childId, videoId])
+  @@index([childId, lastWatchedAt])
+  @@index([childId, isCompleted])
+}
+
+model AbekaBadge {
+  id                String        @id @default(cuid())
+  code              String        @unique
+  name              String
+  nameVi            String
+  description       String
+  descriptionVi     String
+  iconUrl           String
+  colorHex          String        @default("#FFD700")
+  animationUrl      String?
+  requirementType   String
+  requirementValue  Int
+  isSecret          Boolean       @default(false)
+  orderNo           Int
+  status            ContentStatus @default(PUBLISHED)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  earnedBadges      ChildEarnedBadge[]
+
+  @@index([requirementType])
+}
+
+model ChildEarnedBadge {
+  id            String    @id @default(cuid())
+  childId       String
+  badgeId       String
+  earnedAt      DateTime  @default(now())
+  earnedContext Json?
+  isNew         Boolean   @default(true)
+  viewedAt      DateTime?
+
+  child         ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  badge         AbekaBadge   @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, badgeId])
+  @@index([childId, earnedAt])
+}
+
+model AbekaWeeklyPlan {
+  id                String            @id @default(cuid())
+  journeyId         String
+  weekNumber        Int
+  startDate         DateTime
+  endDate           DateTime
+  targetLessons     Int
+  targetMinutes     Int
+  completedLessons  Int               @default(0)
+  actualMinutes     Int               @default(0)
+  status            ContentStatus     @default(PUBLISHED)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  journey           AbekaLearningJourney @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+  dailyPlans        AbekaDailyPlan[]
+
+  @@unique([journeyId, weekNumber])
+  @@index([journeyId, weekNumber])
+}
+
+model AbekaDailyPlan {
+  id                    String            @id @default(cuid())
+  weeklyPlanId          String
+  dayOfWeek             Int
+  date                  DateTime
+  targetMinutes         Int               @default(120)
+  completedAssignments  Int               @default(0)
+  actualMinutes         Int               @default(0)
+  isCompleted           Boolean           @default(false)
+  completedAt           DateTime?
+  parentNotes           String?
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+
+  weeklyPlan            AbekaWeeklyPlan @relation(fields: [weeklyPlanId], references: [id], onDelete: Cascade)
+  assignments           AbekaAssignment[]
+
+  @@unique([weeklyPlanId, dayOfWeek])
+  @@index([weeklyPlanId, date])
+}
+
+model AbekaStreak {
+  id                String    @id @default(cuid())
+  childId           String    @unique
+  currentStreak     Int       @default(0)
+  longestStreak     Int       @default(0)
+  lastActivityDate  DateTime?
+  freezeCount       Int       @default(0)
+  freezeUsedDate    DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  child             ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  histories         AbekaStreakHistory[]
+}
+
+model AbekaStreakHistory {
+  id                String    @id @default(cuid())
+  streakId          String
+  date              DateTime
+  streakCount       Int
+  activityMinutes   Int
+  lessonsCompleted  Int
+  streakMaintained  Boolean   @default(true)
+  freezeUsed        Boolean   @default(false)
+  createdAt         DateTime  @default(now())
+
+  streak            AbekaStreak @relation(fields: [streakId], references: [id], onDelete: Cascade)
+
+  @@unique([streakId, date])
+  @@index([streakId, date])
+}
+
+model AbekaSkillNode {
+  id                String            @id @default(cuid())
+  gradeId           String
+  parentId          String?
+  subjectCode       AbekaSubjectCode
+  name              String
+  nameVi            String
+  description       String?
+  iconEmoji         String?
+  positionX         Float             @default(0)
+  positionY         Float             @default(0)
+  requiredLessons   Int[]
+  status            ContentStatus     @default(PUBLISHED)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  grade             AbekaGrade        @relation(fields: [gradeId], references: [id], onDelete: Cascade)
+  parent            AbekaSkillNode?   @relation("SkillTree", fields: [parentId], references: [id], onDelete: SetNull)
+  children          AbekaSkillNode[]  @relation("SkillTree")
+  prerequisites     AbekaSkillPrerequisite[] @relation("DependentSkill")
+  dependents        AbekaSkillPrerequisite[] @relation("PrereqSkill")
+  childProgress     ChildSkillProgress[]
+
+  @@index([gradeId, subjectCode])
+  @@index([parentId])
+}
+
+model AbekaSkillPrerequisite {
+  id                String    @id @default(cuid())
+  skillId           String
+  prerequisiteId    String
+
+  skill             AbekaSkillNode @relation("DependentSkill", fields: [skillId], references: [id], onDelete: Cascade)
+  prerequisite      AbekaSkillNode @relation("PrereqSkill", fields: [prerequisiteId], references: [id], onDelete: Cascade)
+
+  @@unique([skillId, prerequisiteId])
+}
+
+model ChildSkillProgress {
+  id                String    @id @default(cuid())
+  childId           String
+  skillNodeId       String
+  status            String    @default("locked")
+  progressPercent   Int       @default(0)
+  unlockedAt        DateTime?
+  startedAt         DateTime?
+  completedAt       DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  child             ChildProfile   @relation(fields: [childId], references: [id], onDelete: Cascade)
+  skillNode         AbekaSkillNode @relation(fields: [skillNodeId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, skillNodeId])
+  @@index([childId, status])
+}
+
+model ChildGradeProgress {
+  id                String    @id @default(cuid())
+  childId           String
+  gradeId           String
+  currentLessonNo   Int       @default(1)
+  totalLessons      Int
+  completedLessons  Int       @default(0)
+  totalMinutes      Int       @default(0)
+  subjectProgress   Json?
+  startedAt         DateTime  @default(now())
+  completedAt       DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  child             ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  grade             AbekaGrade   @relation(fields: [gradeId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, gradeId])
   @@index([childId, gradeId])
-  @@index([completedAt])
-  @@index([lastWatchedAt])
+}
+
+model AbekaParentPreferences {
+  id                      String            @id @default(cuid())
+  parentId                String            @unique
+  defaultStartTime        String            @default("08:00")
+  defaultDaysPerWeek      Int               @default(5)
+  defaultMinutesPerDay    Int               @default(120)
+  notifyOnLessonComplete  Boolean           @default(true)
+  notifyOnStreakMilestone Boolean           @default(true)
+  notifyWeeklyProgress    Boolean           @default(true)
+  preferredSubjects       AbekaSubjectCode[]
+  skipSubjects            AbekaSubjectCode[]
+  showBibleContent        Boolean           @default(true)
+  showSkillTree           Boolean           @default(true)
+  createdAt               DateTime          @default(now())
+  updatedAt               DateTime          @updatedAt
+
+  parent                  ParentAccount     @relation(fields: [parentId], references: [id], onDelete: Cascade)
 }
 
 // ========== END ABEKA CURRICULUM SYSTEM ==========
