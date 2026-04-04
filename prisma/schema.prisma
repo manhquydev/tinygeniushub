@@ -1524,6 +1524,7 @@ model AbekaGrade {
 
   subjects      AbekaSubject[]
   lessons       AbekaLesson[]
+  journeys      AbekaLearningJourney[]
 
   @@unique([level])
 }
@@ -1596,6 +1597,7 @@ model AbekaLearningJourney {
   updatedAt     DateTime      @updatedAt
 
   child         ChildProfile  @relation(fields: [childId], references: [id], onDelete: Cascade)
+  grade         AbekaGrade    @relation(fields: [gradeId], references: [id], onDelete: Cascade)
   assignments   AbekaAssignment[]
 
   @@index([childId, isActive])
