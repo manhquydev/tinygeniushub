@@ -299,6 +299,7 @@ model ChildProfile {
   reviewQueues       ReviewQueue[]
   courseJourneys     ChildCourseJourney[]
   packageSubscriptions PackageSubscription[]
+  abekaJourneys      AbekaLearningJourney[]
 
   @@index([parentId])
 }
