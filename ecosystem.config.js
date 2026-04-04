@@ -13,7 +13,7 @@ module.exports = {
       name: 'cungcontuhoc-web',
       script: './node_modules/.bin/next',
       args: 'start --hostname 0.0.0.0 --port 3000',
-      cwd: '/srv/cungcontuhoc',
+      cwd: '/var/www/cungcontuhoc',
       env: { 
         NODE_ENV: 'production',
         PORT: 3000
@@ -52,7 +52,7 @@ module.exports = {
       name: 'cungcontuhoc-worker',
       script: './node_modules/.bin/tsx',
       args: 'src/worker/index.ts',
-      cwd: '/srv/cungcontuhoc',
+      cwd: '/var/www/cungcontuhoc',
       env: { 
         NODE_ENV: 'production' 
       },
@@ -86,7 +86,7 @@ module.exports = {
       host: 'cungcontuhoc.io.vn',
       ref: 'origin/main',
       repo: 'https://github.com/manhquydev/cungcontuhoc.git',
-      path: '/srv/cungcontuhoc',
+      path: '/var/www/cungcontuhoc',
       'post-deploy': 'pnpm install && pnpm build && pm2 reload ecosystem.config.js --env production'
     }
   }
