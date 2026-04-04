@@ -1592,6 +1592,11 @@ model AbekaLearningJourney {
   startDate     DateTime
   targetEndDate DateTime?
   actualEndDate DateTime?
+  daysPerWeek   Int           @default(5)
+  minutesPerDay Int           @default(30)
+  totalLessons  Int           @default(170)
+  currentLessonNo Int         @default(1)
+  createdById   String?
   isActive      Boolean       @default(true)
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
