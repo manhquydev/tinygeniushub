@@ -1505,6 +1505,7 @@ model AbekaVideo {
   updatedAt       DateTime      @updatedAt
 
   lessonPackage   AbekaLessonPackage? @relation(fields: [lessonPackageId], references: [id], onDelete: SetNull)
+  progress        AbekaProgress[]
 
   @@unique([videoId])
   @@index([gradeLevel, subjectCode])
@@ -1638,12 +1639,16 @@ model AbekaProgress {
   completedAt           DateTime?
   lastPositionSeconds   Int      @default(0)
   watchCount            Int      @default(0)
+  lastWatchedAt         DateTime @default(now())
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
+
+  video                 AbekaVideo @relation(fields: [videoId], references: [id], onDelete: Cascade)
 
   @@unique([childId, videoId])
   @@index([childId, gradeId])
   @@index([completedAt])
+  @@index([lastWatchedAt])
 }
 
 // ========== END ABEKA CURRICULUM SYSTEM ==========
