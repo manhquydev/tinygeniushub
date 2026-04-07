@@ -1,0 +1,415 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Trang chủ Cùng Con Tự Học" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Logo Cùng Con Tự Học"
+      - navigation [ref=e5]:
+        - link "Khóa học" [ref=e6] [cursor=pointer]:
+          - /url: /courses
+          - generic [ref=e7]: Khóa học
+        - link "Bảng giá" [ref=e8] [cursor=pointer]:
+          - /url: /pricing
+          - generic [ref=e9]: Bảng giá
+        - link "Cách hoạt động" [ref=e10] [cursor=pointer]:
+          - /url: /#features
+          - generic [ref=e11]: Cách hoạt động
+        - link "Cho trường học" [ref=e12] [cursor=pointer]:
+          - /url: /for-schools
+          - generic [ref=e13]: Cho trường học
+        - link "Đăng nhập" [ref=e14] [cursor=pointer]:
+          - /url: /auth/login
+          - generic [ref=e15]: Đăng nhập
+        - link "Bắt đầu miễn phí" [ref=e16] [cursor=pointer]:
+          - /url: /auth/signup
+          - generic [ref=e17]: Bắt đầu miễn phí
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - heading [level=2] [ref=e22]: Khởi động học thuật G1 - 4 tuần
+          - paragraph [ref=e23]: 0đ (miễn phí tạm thời)
+        - link [ref=e24] [cursor=pointer]:
+          - /url: /contact
+          - text: Nhận tư vấn lộ trình
+      - navigation [ref=e25]:
+        - link "Khóa học" [ref=e26] [cursor=pointer]:
+          - /url: /courses
+        - img [ref=e27]
+        - generic [ref=e29]: Khởi động học thuật G1 - 4 tuần
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - img "Khởi động học thuật G1 - 4 tuần" [ref=e33]
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - paragraph [ref=e36]: Bài học
+              - paragraph [ref=e37]: "20"
+            - generic [ref=e38]:
+              - paragraph [ref=e39]: Thời hạn
+              - paragraph [ref=e40]: 28 ngày
+            - generic [ref=e41]:
+              - paragraph [ref=e42]: Nhịp gợi ý
+              - paragraph [ref=e43]: 5 bài/tuần
+          - generic [ref=e45]: 1 gia đình đã mua
+        - generic [ref=e46]:
+          - paragraph [ref=e47]: Khóa 1/6 - Abeka
+          - heading "Khởi động học thuật G1 - 4 tuần" [level=1] [ref=e48]
+          - paragraph [ref=e49]: Bé làm quen nhịp học lớp 1 với 5 bài/tuần, tập trung tạo nền tự học ban đầu. Phụ huynh có thể theo dõi tiến độ theo tuần và điều chỉnh nhịp học phù hợp.
+          - paragraph [ref=e50]: Tách theo từng cấp lớp rõ ràng để ba mẹ chọn đúng điểm bắt đầu, theo dõi tiến bộ và mở rộng dần.
+          - generic [ref=e51]:
+            - paragraph [ref=e52]: Con nhận được gì sau giai đoạn này?
+            - list [ref=e53]:
+              - listitem [ref=e54]:
+                - generic [ref=e56]: Bé học theo từng cấp lớp (K4 đến G12), không bị ngợp vì lộ trình quá dài.
+              - listitem [ref=e57]:
+                - generic [ref=e59]: Có checkpoint theo cụm bài để ôn truy hồi và nhớ lâu hơn.
+              - listitem [ref=e60]:
+                - generic [ref=e62]: Dễ nâng từ cấp lớp hiện tại lên cấp lớp tiếp theo khi đã hoàn thành.
+          - generic [ref=e63]:
+            - generic [ref=e64]:
+              - paragraph [ref=e65]: Giá thanh toán
+              - generic [ref=e66]:
+                - paragraph [ref=e67]: Khóa học đang mở miễn phí tạm thời (0đ).
+                - paragraph [ref=e68]: Giá có thể được điều chỉnh trong admin theo kế hoạch thương mại.
+            - generic [ref=e69]:
+              - link "Xem học thử miễn phí" [ref=e70] [cursor=pointer]:
+                - /url: "#curriculum-preview"
+              - link "Nhận tư vấn lộ trình" [ref=e71] [cursor=pointer]:
+                - /url: /contact
+              - link "Kiểm tra độ phù hợp trước khi mua" [ref=e72] [cursor=pointer]:
+                - /url: "#fit-checklist"
+              - paragraph [ref=e73]: Khóa học đang mở miễn phí tạm thời. Phụ huynh có thể xem học thử ngay để đánh giá độ phù hợp.
+            - generic [ref=e74]:
+              - paragraph [ref=e75]:
+                - img [ref=e76]
+                - text: Truy cập khóa học ngay sau khi giao dịch thành công.
+              - paragraph [ref=e78]:
+                - img [ref=e79]
+                - text: Trạng thái thanh toán được cập nhật tự động trên hệ thống.
+              - paragraph [ref=e82]:
+                - img [ref=e83]
+                - text: Theo dõi tiến bộ rõ theo số bài hoàn thành và mốc tuần học.
+      - generic [ref=e86]:
+        - heading "Phu huynh thuong muon xem nhanh" [level=2] [ref=e87]
+        - paragraph [ref=e88]: "Truoc khi cho con hoc, ba me thuong can 3 thu: con hoc gi, hoc voi nhip nao, va minh theo doi tien bo ra sao."
+        - generic [ref=e89]:
+          - paragraph [ref=e90]: Bai toan cua phu huynh
+          - paragraph [ref=e91]: Con cần học bài bản theo lớp nhưng phụ huynh không có nhiều thời gian tự soạn lộ trình mỗi tuần.
+        - generic [ref=e92]:
+          - article [ref=e93]:
+            - paragraph [ref=e94]: Con hoc gi trong giai doan dau?
+            - list [ref=e95]:
+              - listitem [ref=e96]:
+                - generic [ref=e98]: Giữ nhịp 5 bài/tuần để con không bị quá tải.
+              - listitem [ref=e99]:
+                - generic [ref=e101]: Sau 4 tuần có thể đạt khoảng 20 bài. Mốc 4 tuần khoảng 20 bài.
+          - article [ref=e102]:
+            - paragraph [ref=e103]: Ba me nhin tien bo o dau?
+            - list [ref=e104]:
+              - listitem [ref=e105]:
+                - generic [ref=e107]: Nhìn thấy rõ bé đang học cấp lớp nào và còn bao nhiêu bài.
+              - listitem [ref=e108]:
+                - generic [ref=e110]: Mỗi giai đoạn đều có mốc hoàn thành để đánh giá tiến bộ.
+              - listitem [ref=e111]:
+                - generic [ref=e113]: Có thể bắt đầu từ cấp lớp phù hợp thay vì mua một khóa quá rộng ngay từ đầu.
+          - article [ref=e114]:
+            - paragraph [ref=e115]: Nhip hoc nen bat dau the nao?
+            - list [ref=e116]:
+              - listitem [ref=e117]:
+                - generic [ref=e119]: Moi buoi 10-20 phut, uu tien deu dan hon hoc don.
+              - listitem [ref=e120]:
+                - generic [ref=e122]: "Moc khuyen nghi: 5 bài/tuan."
+              - listitem [ref=e123]:
+                - generic [ref=e125]: Xem thu truoc roi moi quyet dinh lo trinh dai hon.
+      - generic [ref=e126]:
+        - generic [ref=e127]:
+          - generic [ref=e128]:
+            - paragraph [ref=e129]: Fit checklist
+            - heading "Khóa này có phù hợp với bé nhà mình không?" [level=2] [ref=e130]
+            - paragraph [ref=e131]: Phụ huynh muốn xây nền đọc hiểu - từ vựng - tư duy học thuật theo cấp lớp.
+          - link "Xem lộ trình kết quả" [ref=e132] [cursor=pointer]:
+            - /url: "#outcome-timeline"
+        - generic [ref=e133]:
+          - article [ref=e134]:
+            - heading "Phù hợp nếu" [level=3] [ref=e135]
+            - list [ref=e136]:
+              - listitem [ref=e137]:
+                - img [ref=e138]
+                - generic [ref=e141]: Con cần lộ trình học thuật theo cấp lớp từ cơ bản đến nâng cao.
+              - listitem [ref=e142]:
+                - img [ref=e143]
+                - generic [ref=e146]: Phụ huynh muốn thấy rõ con đang ở cấp lớp nào và còn bao nhiêu bài.
+              - listitem [ref=e147]:
+                - img [ref=e148]
+                - generic [ref=e151]: Gia đình muốn duy trì nhịp học ổn định 4-5 bài mỗi tuần.
+          - article [ref=e152]:
+            - heading "Chưa phù hợp nếu" [level=3] [ref=e153]
+            - list [ref=e154]:
+              - listitem [ref=e155]:
+                - generic [ref=e157]: Con đang cần chương trình siêu ngắn để luyện thi gấp.
+              - listitem [ref=e158]:
+                - generic [ref=e160]: Bé chưa có thời gian duy trì nhịp học hàng tuần.
+              - listitem [ref=e161]:
+                - generic [ref=e163]: Gia đình chỉ muốn học thử ngắn hạn mà chưa xác định mục tiêu dài hơn 1 tháng.
+          - article [ref=e164]:
+            - heading "Nên mua khi" [level=3] [ref=e165]
+            - list [ref=e166]:
+              - listitem [ref=e167]:
+                - generic [ref=e169]: Bạn đã xác định được cấp lớp xuất phát phù hợp cho con.
+              - listitem [ref=e170]:
+                - generic [ref=e172]: Con sẵn sàng hoàn thành các cụm bài theo thứ tự.
+              - listitem [ref=e173]:
+                - generic [ref=e175]: Phụ huynh muốn có dữ liệu tiến độ để nâng cấp lộ trình đúng lúc.
+      - generic [ref=e176]:
+        - heading "Lộ trình kết quả sau khi mua" [level=2] [ref=e177]:
+          - img [ref=e178]
+          - text: Lộ trình kết quả sau khi mua
+        - paragraph [ref=e180]: Trình bày theo mốc thời gian để phụ huynh hình dung rõ giá trị nhận được, không còn cảm giác mơ hồ.
+        - generic [ref=e181]:
+          - paragraph [ref=e182]: Checkpoint cụ thể cho Grade G1
+          - list [ref=e183]:
+            - listitem [ref=e184]:
+              - generic [ref=e186]: Giữ nhịp 5 bài/tuần để con không bị quá tải.
+            - listitem [ref=e187]:
+              - generic [ref=e189]: Sau 4 tuần có thể đạt khoảng 20 bài. Mốc 4 tuần khoảng 20 bài.
+            - listitem [ref=e190]:
+              - generic [ref=e192]: "Checkpoint theo pha: Foundation 6 bài, Core 10 bài, Mastery 4 bài."
+        - generic [ref=e193]:
+          - article [ref=e194]:
+            - paragraph [ref=e195]: Tuần 1-2
+            - list [ref=e196]:
+              - listitem [ref=e197]:
+                - generic [ref=e199]: Ổn định nhịp 5 bài/tuần để không quá tải.
+              - listitem [ref=e200]:
+                - generic [ref=e202]: "Mục tiêu ngắn hạn: hoàn thành khoảng 10 bài."
+          - article [ref=e203]:
+            - paragraph [ref=e204]: Tuần 3-4
+            - list [ref=e205]:
+              - listitem [ref=e206]:
+                - generic [ref=e208]: "Mốc 4 tuần: khoảng 20 bài."
+              - listitem [ref=e209]:
+                - generic [ref=e211]: Giữ nhịp ổn định để hoàn tất Foundation đúng tiến độ.
+          - article [ref=e212]:
+            - paragraph [ref=e213]: Checkpoint nâng cấp
+            - list [ref=e214]:
+              - listitem [ref=e215]:
+                - generic [ref=e217]: Foundation 6, Core 10, Mastery 4 bài.
+              - listitem [ref=e218]:
+                - generic [ref=e220]: Hoàn tất Mastery để lên grade kế tiếp trong track grade g1.
+      - generic [ref=e221]:
+        - heading "Học thử 7 bài đầu" [level=2] [ref=e222]
+        - paragraph [ref=e223]: Phụ huynh có thể mở từng bài để xem video học thử và kiểm tra cách bé phản hồi trước khi quyết định lộ trình.
+        - generic [ref=e224]:
+          - paragraph [ref=e225]: Trial cố định
+          - paragraph [ref=e226]: Bạn xem trước 7 bài đầu để kiểm tra nhịp học, độ khó và mức phù hợp trước khi mua.
+          - paragraph [ref=e227]: Sau bài thứ 7, 13 bài còn lại sẽ mở khi mua. Nếu thấy chưa khớp level sau khi mua, đội ngũ có thể hỗ trợ đổi level/chuyển khóa theo chính sách.
+        - generic [ref=e228]:
+          - article [ref=e229] [cursor=pointer]:
+            - generic [ref=e230]:
+              - generic [ref=e231]:
+                - img [ref=e233]
+                - generic [ref=e236]:
+                  - generic [ref=e237]:
+                    - paragraph [ref=e238]: Bài 1
+                    - generic [ref=e239]:
+                      - img [ref=e240]
+                      - text: Học thử
+                  - heading "Abeka G1 Lesson 001" [level=3] [ref=e243]
+                  - paragraph [ref=e244]: Complete Abeka G1 Lesson 001 in the Abeka pathway with consistent daily progress.
+              - generic [ref=e245]:
+                - paragraph [ref=e246]: Thời lượng
+                - paragraph [ref=e247]: 15 phút
+          - article [ref=e248] [cursor=pointer]:
+            - generic [ref=e249]:
+              - generic [ref=e250]:
+                - img [ref=e252]
+                - generic [ref=e255]:
+                  - generic [ref=e256]:
+                    - paragraph [ref=e257]: Bài 2
+                    - generic [ref=e258]:
+                      - img [ref=e259]
+                      - text: Học thử
+                  - heading "Abeka G1 Lesson 002" [level=3] [ref=e262]
+                  - paragraph [ref=e263]: Complete Abeka G1 Lesson 002 in the Abeka pathway with consistent daily progress.
+              - generic [ref=e264]:
+                - paragraph [ref=e265]: Thời lượng
+                - paragraph [ref=e266]: 15 phút
+          - article [ref=e267] [cursor=pointer]:
+            - generic [ref=e268]:
+              - generic [ref=e269]:
+                - img [ref=e271]
+                - generic [ref=e274]:
+                  - generic [ref=e275]:
+                    - paragraph [ref=e276]: Bài 3
+                    - generic [ref=e277]:
+                      - img [ref=e278]
+                      - text: Học thử
+                  - heading "Abeka G1 Lesson 003" [level=3] [ref=e281]
+                  - paragraph [ref=e282]: Complete Abeka G1 Lesson 003 in the Abeka pathway with consistent daily progress.
+              - generic [ref=e283]:
+                - paragraph [ref=e284]: Thời lượng
+                - paragraph [ref=e285]: 15 phút
+          - article [ref=e286] [cursor=pointer]:
+            - generic [ref=e287]:
+              - generic [ref=e288]:
+                - img [ref=e290]
+                - generic [ref=e293]:
+                  - generic [ref=e294]:
+                    - paragraph [ref=e295]: Bài 4
+                    - generic [ref=e296]:
+                      - img [ref=e297]
+                      - text: Học thử
+                  - heading "Abeka G1 Lesson 004" [level=3] [ref=e300]
+                  - paragraph [ref=e301]: Complete Abeka G1 Lesson 004 in the Abeka pathway with consistent daily progress.
+              - generic [ref=e302]:
+                - paragraph [ref=e303]: Thời lượng
+                - paragraph [ref=e304]: 15 phút
+          - article [ref=e305] [cursor=pointer]:
+            - generic [ref=e306]:
+              - generic [ref=e307]:
+                - img [ref=e309]
+                - generic [ref=e312]:
+                  - generic [ref=e313]:
+                    - paragraph [ref=e314]: Bài 5
+                    - generic [ref=e315]:
+                      - img [ref=e316]
+                      - text: Học thử
+                  - heading "Abeka G1 Lesson 005" [level=3] [ref=e319]
+                  - paragraph [ref=e320]: Complete Abeka G1 Lesson 005 in the Abeka pathway with consistent daily progress.
+              - generic [ref=e321]:
+                - paragraph [ref=e322]: Thời lượng
+                - paragraph [ref=e323]: 15 phút
+          - article [ref=e324] [cursor=pointer]:
+            - generic [ref=e325]:
+              - generic [ref=e326]:
+                - img [ref=e328]
+                - generic [ref=e331]:
+                  - generic [ref=e332]:
+                    - paragraph [ref=e333]: Bài 6
+                    - generic [ref=e334]:
+                      - img [ref=e335]
+                      - text: Học thử
+                  - heading "Abeka G1 Lesson 006" [level=3] [ref=e338]
+                  - paragraph [ref=e339]: Complete Abeka G1 Lesson 006 in the Abeka pathway with consistent daily progress.
+              - generic [ref=e340]:
+                - paragraph [ref=e341]: Thời lượng
+                - paragraph [ref=e342]: 15 phút
+          - article [ref=e343] [cursor=pointer]:
+            - generic [ref=e344]:
+              - generic [ref=e345]:
+                - img [ref=e347]
+                - generic [ref=e350]:
+                  - generic [ref=e351]:
+                    - paragraph [ref=e352]: Bài 7
+                    - generic [ref=e353]:
+                      - img [ref=e354]
+                      - text: Học thử
+                  - heading "Abeka G1 Lesson 007" [level=3] [ref=e357]
+                  - paragraph [ref=e358]: Complete Abeka G1 Lesson 007 in the Abeka pathway with consistent daily progress.
+              - generic [ref=e359]:
+                - paragraph [ref=e360]: Thời lượng
+                - paragraph [ref=e361]: 15 phút
+          - paragraph [ref=e362]: +13 bài tiếp theo sẽ mở sau khi mua khóa.
+      - generic [ref=e363]:
+        - heading "Lộ trình rõ ràng trước khi quyết định" [level=2] [ref=e364]
+        - paragraph [ref=e365]: Phụ huynh có thể xem thử 7 bài đầu để xác nhận mức phù hợp trước khi đi xa hơn. Nếu cần đổi level/lộ trình, đội ngũ hỗ trợ trực tiếp theo tình hình học thật của bé.
+      - generic [ref=e366]:
+        - heading "Thông tin chi tiết thêm" [level=2] [ref=e367]
+        - paragraph [ref=e368]: Chỉ mở phần bạn cần xem, tránh phải đọc quá nhiều thông tin cùng lúc.
+        - generic [ref=e369]:
+          - group [ref=e370]:
+            - generic "So sánh với khóa liền kề" [ref=e371] [cursor=pointer]
+          - group [ref=e372]:
+            - generic "Đánh giá từ phụ huynh" [ref=e373] [cursor=pointer]
+          - group [ref=e374]:
+            - generic "Câu hỏi thường gặp" [ref=e375] [cursor=pointer]
+          - group [ref=e376]:
+            - generic "Khóa liên quan" [ref=e377] [cursor=pointer]
+      - generic [ref=e378]:
+        - heading "Bạn cần hỗ trợ chọn lộ trình cho bé?" [level=2] [ref=e379]
+        - paragraph [ref=e380]: Đội ngũ tư vấn sẽ giúp bạn chốt level phù hợp theo mục tiêu học và lịch sinh hoạt của gia đình.
+        - generic [ref=e381]:
+          - link "Liên hệ tư vấn" [ref=e382] [cursor=pointer]:
+            - /url: /contact
+          - link "Xem danh sách khóa" [ref=e383] [cursor=pointer]:
+            - /url: /courses
+  - contentinfo [ref=e384]:
+    - generic [ref=e385]:
+      - generic [ref=e386]:
+        - generic [ref=e387]:
+          - link "Trang chủ Cùng Con Tự Học" [ref=e388] [cursor=pointer]:
+            - /url: /
+            - img "TinyGeniusHub Logo" [ref=e389]
+          - paragraph [ref=e390]:
+            - text: Toán & Tiếng Anh cho bé 2–6 tuổi.
+            - text: Mỗi ngày 15 phút, thấy rõ con tiến bộ.
+          - generic [ref=e391]:
+            - link "Facebook Cùng Con Tự Học" [ref=e392] [cursor=pointer]:
+              - /url: https://facebook.com/cungcontuhoc
+              - img [ref=e393]
+            - link "YouTube Cùng Con Tự Học" [ref=e396] [cursor=pointer]:
+              - /url: https://youtube.com/@cungcontuhoc
+              - img [ref=e397]
+            - link "TikTok Cùng Con Tự Học" [ref=e400] [cursor=pointer]:
+              - /url: https://tiktok.com/@cungcontuhoc
+              - img [ref=e401]
+            - link "Zalo Cùng Con Tự Học" [ref=e404] [cursor=pointer]:
+              - /url: https://zalo.me/cungcontuhoc
+              - img [ref=e405]:
+                - generic [ref=e407]: Zalo
+        - navigation "Điều hướng chân trang" [ref=e408]:
+          - generic [ref=e409]:
+            - paragraph [ref=e410]: Sản phẩm
+            - link "Tính năng" [ref=e411] [cursor=pointer]:
+              - /url: /#features
+            - link "Bảng giá" [ref=e412] [cursor=pointer]:
+              - /url: /pricing
+            - link "Khóa học" [ref=e413] [cursor=pointer]:
+              - /url: /courses
+            - link "Cho trường học" [ref=e414] [cursor=pointer]:
+              - /url: /for-schools
+            - link "Câu hỏi thường gặp" [ref=e415] [cursor=pointer]:
+              - /url: /#faq
+          - generic [ref=e416]:
+            - paragraph [ref=e417]: Công ty
+            - link "Giới thiệu" [ref=e418] [cursor=pointer]:
+              - /url: /about
+            - link "Blog" [ref=e419] [cursor=pointer]:
+              - /url: /blog
+            - link "Liên hệ" [ref=e420] [cursor=pointer]:
+              - /url: /contact
+            - link "Giới thiệu bạn" [ref=e421] [cursor=pointer]:
+              - /url: /referral
+            - link "Mã quà tặng" [ref=e422] [cursor=pointer]:
+              - /url: /gift-code
+            - link "Đặt chỗ sớm" [ref=e423] [cursor=pointer]:
+              - /url: /waitlist
+          - generic [ref=e424]:
+            - paragraph [ref=e425]: Tài khoản
+            - link "Đăng nhập" [ref=e426] [cursor=pointer]:
+              - /url: /auth/login
+            - link "Đăng ký" [ref=e427] [cursor=pointer]:
+              - /url: /auth/signup
+            - paragraph [ref=e428]: Pháp lý
+            - link "Chính sách bảo mật" [ref=e429] [cursor=pointer]:
+              - /url: /privacy
+            - link "Điều khoản sử dụng" [ref=e430] [cursor=pointer]:
+              - /url: /terms
+            - link "Chính sách cookie" [ref=e431] [cursor=pointer]:
+              - /url: /cookie-policy
+            - link "Chính sách hoàn tiền" [ref=e432] [cursor=pointer]:
+              - /url: /refund-policy
+      - generic [ref=e434]:
+        - paragraph [ref=e435]:
+          - generic [ref=e436]: 🇻🇳
+          - generic [ref=e437]: © 2026 Cùng Con Tự Học. Bảo lưu mọi quyền.
+        - generic [ref=e438]:
+          - link "Bảo mật" [ref=e439] [cursor=pointer]:
+            - /url: /privacy
+          - link "Điều khoản" [ref=e440] [cursor=pointer]:
+            - /url: /terms
+          - link "Cookie" [ref=e441] [cursor=pointer]:
+            - /url: /cookie-policy
+          - link "Hoàn tiền" [ref=e442] [cursor=pointer]:
+            - /url: /refund-policy
+  - alert [ref=e443]

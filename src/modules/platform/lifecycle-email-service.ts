@@ -1,12 +1,10 @@
-﻿import { LifecycleEmailType, SubscriptionStatus } from "@prisma/client";
+import { LifecycleEmailType, SubscriptionStatus } from "@prisma/client";
 import { prisma } from "@/lib/db";
-import { env } from "@/lib/env";
-
-const PROVIDER = env.REPORT_EMAIL_PROVIDER;
-const BASE_URL = "https://cungcontuhoc.io.vn";
+import { resolveEmailPublicBaseUrl } from "@/lib/email/project-email-template-builder";
+import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 
 function lifecycleLink(path: string, campaign: string) {
-  return `${BASE_URL}${path}?utm_source=email&utm_medium=lifecycle&utm_campaign=${campaign}`;
+  return `${resolveEmailPublicBaseUrl()}${path}?utm_source=email&utm_medium=lifecycle&utm_campaign=${campaign}`;
 }
 
 function buildTrialWelcomeEmail(displayName: string | null) {
@@ -14,7 +12,7 @@ function buildTrialWelcomeEmail(displayName: string | null) {
   const dashboardUrl = lifecycleLink("/parent/dashboard", "trial_d0");
 
   return {
-    subject: "Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉",
+    subject: "Chào mừng bạn đến Cùng Con Tự Học - bắt đầu trong 2 phút",
     text: [
       `Xin chào ${name},`,
       "",
@@ -97,41 +95,12 @@ function buildTrialD7Email(displayName: string | null) {
 }
 
 async function sendEmail(to: string, subject: string, text: string) {
-  if (PROVIDER === "mock_email") {
-    console.log(`[lifecycle-email] mock send to=${to} subject="${subject}"`);
-    return;
-  }
-
-  if (PROVIDER === "resend") {
-    const recipient = env.REPORT_EMAIL_TO_OVERRIDE ?? to;
-    const payload = {
-      from: env.REPORT_EMAIL_FROM,
-      to: [recipient],
-      subject,
-      text,
-      ...(env.REPORT_EMAIL_REPLY_TO ? { reply_to: env.REPORT_EMAIL_REPLY_TO } : {}),
-      tags: [
-        { name: "feature", value: "lifecycle" },
-        { name: "environment", value: env.NODE_ENV },
-      ],
-    };
-
-    const response = await fetch(`${env.REPORT_EMAIL_RESEND_API_BASE_URL}/emails`, {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${env.REPORT_EMAIL_RESEND_API_KEY}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Resend lifecycle email failed: status=${response.status}`);
-    }
-    return;
-  }
-
-  throw new Error(`Unsupported email provider: ${PROVIDER}`);
+  await sendTransactionalEmail({
+    to,
+    subject,
+    text,
+    tags: [{ name: "feature", value: "lifecycle" }],
+  });
 }
 
 export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailType) {

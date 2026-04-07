@@ -16,6 +16,29 @@ interface AbekaVideoJson {
   lesson: number;
 }
 
+const SUBJECT_ORDER: Record<string, number> = {
+  PHONICS: 1,
+  ARITHMETIC: 2,
+  COMBINATION: 3,
+  ACTIVITIES: 4,
+  ROUTINES: 5,
+  SEATWORK_C: 6,
+  SEATWORK_M: 7,
+  SPELLING: 8,
+  WRITING_C: 9,
+  WRITING_M: 10,
+  BIBLE: 11,
+  HISTORY: 12,
+  SCIENCE: 13,
+  HEALTH: 14,
+  LITERATURE: 15,
+  COMPOSITION: 16,
+  VOCABULARY: 17,
+  POETRY: 18,
+  READING: 19,
+  GRAMMAR: 20,
+};
+
 // Subject mapping from title
 function getSubjectFromTitle(title: string): { code: string; name: string; nameVi: string } {
   const lowerTitle = title.toLowerCase();
@@ -41,10 +64,18 @@ function getSubjectFromTitle(title: string): { code: string; name: string; nameV
   return { code: 'ACTIVITIES', name: 'General', nameVi: 'Chung' };
 }
 
-// Parse grade from string (g1 -> 1, k4 -> -1, etc.)
+// Parse grade from string using canonical mapping:
+// K4 -> 0, K5 -> 1, G1 -> 2 ... G12 -> 13
 function parseGradeLevel(grade: string): number {
-  if (grade.startsWith('k')) return -1; // Preschool
-  if (grade.startsWith('g')) return parseInt(grade.replace('g', ''));
+  const normalized = grade.toLowerCase().trim();
+  if (normalized === 'k4') return 0;
+  if (normalized === 'k5') return 1;
+  if (normalized.startsWith('g')) {
+    const gradeNo = parseInt(normalized.replace('g', ''), 10);
+    if (Number.isFinite(gradeNo)) {
+      return gradeNo + 1; // G1 -> 2 ... G12 -> 13
+    }
+  }
   return 0;
 }
 
@@ -94,6 +125,7 @@ async function main() {
   console.log('');
 
   let totalImported = 0;
+  let totalUpdated = 0;
   let totalSkipped = 0;
   let totalErrors = 0;
 
@@ -103,8 +135,17 @@ async function main() {
     console.log(`📚 Processing ${gradeStr} (${gradeVideos.length} videos)...`);
 
     // Create or find grade
-    const gradeName = gradeStr.startsWith('k') ? `Kindergarten ${gradeStr.replace('k', '').toUpperCase()}` : `Grade ${gradeLevel}`;
-    const gradeNameVi = gradeStr.startsWith('k') ? `Mầm non ${gradeStr.replace('k', '')}` : `Lớp ${gradeLevel}`;
+    const normalizedGrade = gradeStr.toLowerCase();
+    const gradeName = normalizedGrade === 'k4'
+      ? 'K4'
+      : normalizedGrade === 'k5'
+        ? 'K5'
+        : `Grade ${gradeLevel - 1}`;
+    const gradeNameVi = normalizedGrade === 'k4'
+      ? 'Mầm non K4'
+      : normalizedGrade === 'k5'
+        ? 'Mầm non K5'
+        : `Lớp ${gradeLevel - 1}`;
     
     const grade = await prisma.abekaGrade.upsert({
       where: { level: gradeLevel },
@@ -143,10 +184,14 @@ async function main() {
           name: subjectInfo.name,
           nameVi: subjectInfo.nameVi,
           gradeId: grade.id,
-          orderNo: 0,
+          orderNo: SUBJECT_ORDER[subjectCode] ?? 999,
           isCore: true,
         },
-        update: {},
+        update: {
+          name: subjectInfo.name,
+          nameVi: subjectInfo.nameVi,
+          orderNo: SUBJECT_ORDER[subjectCode] ?? 999,
+        },
       });
     }
 
@@ -156,38 +201,97 @@ async function main() {
         const subjectInfo = getSubjectFromTitle(video.title);
         const videoId = parseVideoId(video.video_url);
         const teacherName = parseTeacher(video.description);
+        const lessonNumber = Number(video.lesson);
+
+        if (!Number.isFinite(lessonNumber) || lessonNumber <= 0) {
+          totalSkipped++;
+          continue;
+        }
+
+        const subject = await prisma.abekaSubject.findUnique({
+          where: {
+            gradeId_code: {
+              gradeId: grade.id,
+              code: subjectInfo.code as any,
+            },
+          },
+        });
+
+        if (!subject) {
+          totalErrors++;
+          continue;
+        }
+
+        const lesson = await prisma.abekaLesson.upsert({
+          where: {
+            gradeId_lessonNumber: {
+              gradeId: grade.id,
+              lessonNumber,
+            },
+          },
+          create: {
+            gradeId: grade.id,
+            lessonNumber,
+            title: `Lesson ${lessonNumber}`,
+          },
+          update: {},
+        });
+
+        const lessonPackage = await prisma.abekaLessonPackage.upsert({
+          where: {
+            lessonId_subjectCode: {
+              lessonId: lesson.id,
+              subjectCode: subjectInfo.code as any,
+            },
+          },
+          create: {
+            lessonId: lesson.id,
+            subjectCode: subjectInfo.code as any,
+            orderNo: subject.orderNo,
+          },
+          update: {
+            orderNo: subject.orderNo,
+          },
+        });
 
         // Check if video exists
         const existing = await prisma.abekaVideo.findUnique({
           where: { videoId },
         });
 
+        const data = {
+          title: video.title,
+          description: video.description,
+          gradeLevel,
+          lessonNumber,
+          subjectCode: subjectInfo.code as any,
+          cdnUrl: video.video_url,
+          m3u8Path: video.video_url.replace('https://fileta.hoctienganh.xyz', ''),
+          teacherName,
+          lessonPackageId: lessonPackage.id,
+          status: 'PUBLISHED' as const,
+        };
+
         if (existing) {
-          totalSkipped++;
-          continue;
+          await prisma.abekaVideo.update({
+            where: { videoId },
+            data,
+          });
+          totalUpdated++;
+        } else {
+          await prisma.abekaVideo.create({
+            data: {
+              videoId,
+              ...data,
+            },
+          });
+          totalImported++;
         }
 
-        // Create video
-        await prisma.abekaVideo.create({
-          data: {
-            videoId,
-            title: video.title,
-            description: video.description,
-            gradeLevel,
-            lessonNumber: video.lesson,
-            subjectCode: subjectInfo.code as any,
-            cdnUrl: video.video_url,
-            m3u8Path: video.video_url.replace('https://fileta.hoctienganh.xyz', ''),
-            teacherName,
-            status: 'PUBLISHED',
-          },
-        });
-
-        totalImported++;
-
         // Progress log every 100
-        if (totalImported % 100 === 0) {
-          process.stdout.write(`\r   📥 Imported: ${totalImported} | Skipped: ${totalSkipped} | Errors: ${totalErrors}`);
+        const processed = totalImported + totalUpdated;
+        if (processed > 0 && processed % 100 === 0) {
+          process.stdout.write(`\r   📥 Imported: ${totalImported} | Updated: ${totalUpdated} | Skipped: ${totalSkipped} | Errors: ${totalErrors}`);
         }
       } catch (error) {
         totalErrors++;
@@ -202,6 +306,7 @@ async function main() {
   console.log('📊 Import Summary');
   console.log('==================');
   console.log(`Total Imported: ${totalImported}`);
+  console.log(`Total Updated: ${totalUpdated}`);
   console.log(`Total Skipped: ${totalSkipped}`);
   console.log(`Total Errors: ${totalErrors}`);
   console.log('');

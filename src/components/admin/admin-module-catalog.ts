@@ -38,7 +38,7 @@ export type AdminNavGroup = {
 export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "overview",
-    title: "Overview",
+    title: "Tổng quan",
     description: "KPI tổng quan, xu hướng tăng trưởng, health snapshot.",
     href: "/admin/overview",
     icon: LayoutDashboard,

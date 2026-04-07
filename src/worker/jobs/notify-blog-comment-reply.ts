@@ -1,6 +1,7 @@
 import { Job, Worker } from "bullmq";
-import { env } from "@/lib/env";
 import { prisma } from "@/lib/db";
+import { resolveEmailPublicBaseUrl } from "@/lib/email/project-email-template-builder";
+import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import { logInfo } from "@/lib/observability/logger";
 import { createCommentReplyUnsubscribeToken } from "@/modules/blog/comment-reply-notification-token";
 import { redisConnection } from "@/worker/queue";
@@ -55,7 +56,7 @@ async function sendReplyNotificationEmail(payload: NotifyCommentReplyJobPayload)
     return false;
   }
 
-  const baseUrl = env.BETTER_AUTH_URL.replace(/\/$/, "");
+  const baseUrl = resolveEmailPublicBaseUrl();
   const postUrl = `${baseUrl}/blog/${post.slug}#comments`;
   const unsubToken = createCommentReplyUnsubscribeToken({
     commentId: parentComment.id,
@@ -76,41 +77,14 @@ async function sendReplyNotificationEmail(payload: NotifyCommentReplyJobPayload)
     unsubscribeUrl,
   ].join("\n");
 
-  if (env.REPORT_EMAIL_PROVIDER === "mock_email") {
-    console.log(
-      `[email] notify comment reply (mock): parent=${parentComment.id} reply=${replyComment.id} to=${parentComment.authorEmail}`,
-    );
-    return true;
-  }
+  await sendTransactionalEmail({
+    to: parentComment.authorEmail,
+    subject,
+    text,
+    tags: [{ name: "feature", value: "blog_comment_reply" }],
+  });
 
-  if (env.REPORT_EMAIL_PROVIDER === "resend") {
-    const response = await fetch(`${env.REPORT_EMAIL_RESEND_API_BASE_URL}/emails`, {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${env.REPORT_EMAIL_RESEND_API_KEY}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        from: env.REPORT_EMAIL_FROM,
-        to: [env.REPORT_EMAIL_TO_OVERRIDE ?? parentComment.authorEmail],
-        subject,
-        text,
-        ...(env.REPORT_EMAIL_REPLY_TO ? { reply_to: env.REPORT_EMAIL_REPLY_TO } : {}),
-        tags: [
-          { name: "feature", value: "blog_comment_reply" },
-          { name: "environment", value: env.NODE_ENV },
-        ],
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Comment reply email failed: status=${response.status}`);
-    }
-
-    return true;
-  }
-
-  throw new Error(`Unsupported report email provider: ${env.REPORT_EMAIL_PROVIDER}`);
+  return true;
 }
 
 export function createNotifyBlogCommentReplyWorker() {

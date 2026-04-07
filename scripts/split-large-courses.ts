@@ -2,11 +2,66 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+type SplitLesson = {
+  id: string;
+  orderNo: number;
+  unit: {
+    orderNo: number;
+  };
+};
+
 function generateSlug(title: string) {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+function parseNonNegativeInt(value: string | undefined, fallback: number) {
+  const parsed = Number.parseInt(String(value ?? ""), 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
+}
+
+function parseOptionalNonNegativeInt(value: string | undefined) {
+  if (value === undefined || value.trim() === "") return null;
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+}
+
+function parseOptionalDate(value: string | undefined) {
+  if (!value) return null;
+  const parsed = new Date(value);
+  return Number.isFinite(parsed.getTime()) ? parsed : null;
+}
+
 async function main() {
+  const forceResetPricingOnRerun = process.env.PILOT_FORCE_RESET_PRICING_ON_RERUN === "true";
+  const listPriceVnd = parseNonNegativeInt(process.env.PILOT_LIST_PRICE_VND, 299000);
+  const saleDurationDays = parseNonNegativeInt(process.env.PILOT_SALE_DURATION_DAYS, 30);
+  const salePriceRaw = process.env.PILOT_SALE_PRICE_VND;
+  const hasSalePriceConfigured = typeof salePriceRaw === "string" && salePriceRaw.trim().length > 0;
+  const salePriceCandidate = hasSalePriceConfigured ? parseOptionalNonNegativeInt(salePriceRaw) : 0;
+  const configuredSaleStartsAt = parseOptionalDate(process.env.PILOT_SALE_STARTS_AT);
+  const configuredSaleEndsAt = parseOptionalDate(process.env.PILOT_SALE_ENDS_AT);
+  const saleStartsAtCandidate = configuredSaleStartsAt ?? new Date();
+  const saleEndsAtCandidate =
+    configuredSaleEndsAt ??
+    new Date(saleStartsAtCandidate.getTime() + saleDurationDays * 24 * 60 * 60 * 1000);
+  const allowFreeSaleWithoutWindow = process.env.PILOT_ALLOW_FREE_SALE_WITHOUT_WINDOW === "true";
+  const hasExplicitSaleWindow =
+    saleStartsAtCandidate &&
+    saleEndsAtCandidate &&
+    saleStartsAtCandidate.getTime() < saleEndsAtCandidate.getTime();
+  const hasValidSaleWindow =
+    (!saleStartsAtCandidate && !saleEndsAtCandidate) ||
+    Boolean(hasExplicitSaleWindow);
+  const salePriceVnd =
+    typeof salePriceCandidate === "number" &&
+    listPriceVnd > 0 &&
+    salePriceCandidate < listPriceVnd &&
+    (salePriceCandidate > 0 || hasExplicitSaleWindow || allowFreeSaleWithoutWindow)
+      ? salePriceCandidate
+      : null;
+  const saleStartsAt = salePriceVnd !== null && hasValidSaleWindow ? saleStartsAtCandidate : null;
+  const saleEndsAt = salePriceVnd !== null && hasValidSaleWindow ? saleEndsAtCandidate : null;
+
   const slugsToSplit = ["abeka", "littlefox", "littlefoxcn"];
 
   for (const oldSlug of slugsToSplit) {
@@ -36,7 +91,7 @@ async function main() {
     }
 
     // Group lessons by level
-    const levelGroups: Record<string, { title: string, orderNo: number, lessons: any[] }> = {};
+    const levelGroups: Record<string, { title: string; orderNo: number; lessons: SplitLesson[] }> = {};
 
     for (const cl of oldCourse.lessons) {
       const lvl = cl.lesson.unit.level;
@@ -58,13 +113,26 @@ async function main() {
           slug: newSlug,
           title: lvl.title,
           description: oldCourse.description,
-          priceVnd: 500000, 
+          priceVnd: listPriceVnd,
+          listPriceVnd,
+          salePriceVnd,
+          saleStartsAt,
+          saleEndsAt,
           durationDays: 365,
           isPublished: true, 
           coverImageUrl: oldCourse.coverImageUrl,
         },
         update: {
           title: lvl.title,
+          ...(forceResetPricingOnRerun
+            ? {
+                priceVnd: listPriceVnd,
+                listPriceVnd,
+                salePriceVnd,
+                saleStartsAt,
+                saleEndsAt,
+              }
+            : {}),
           isPublished: true,
         }
       });

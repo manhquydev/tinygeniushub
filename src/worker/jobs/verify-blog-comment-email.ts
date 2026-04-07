@@ -1,5 +1,6 @@
 import { Job, Worker } from "bullmq";
-import { env } from "@/lib/env";
+import { resolveEmailPublicBaseUrl } from "@/lib/email/project-email-template-builder";
+import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import { logInfo } from "@/lib/observability/logger";
 import { redisConnection } from "@/worker/queue";
 
@@ -12,50 +13,23 @@ type VerifyBlogCommentJobPayload = {
 };
 
 async function sendVerifyEmail(payload: VerifyBlogCommentJobPayload) {
-  const verifyUrl = `${env.BETTER_AUTH_URL.replace(/\/$/, "")}/api/blog/comments/verify?token=${encodeURIComponent(payload.verifyToken)}`;
-  const subject = "Xac nhan binh luan cua ban tren CungConTuHoc";
+  const baseUrl = resolveEmailPublicBaseUrl();
+  const verifyUrl = `${baseUrl}/api/blog/comments/verify?token=${encodeURIComponent(payload.verifyToken)}`;
+  const postUrl = `${baseUrl}/blog/${payload.postSlug}`;
+  const subject = "Xác nhận bình luận của bạn trên Cùng Con Tự Học";
   const text = [
     `Xin chào ${payload.authorName},`,
-    "Cảm ơn bạn đã gửi bình luận trên CùngConTựHọc.",
+    "Cảm ơn bạn đã gửi bình luận trên Cùng Con Tự Học.",
     `Vui lòng xác nhận bình luận tại: ${verifyUrl}`,
-    `Bài viết: /blog/${payload.postSlug}`,
+    `Bài viết: ${postUrl}`,
   ].join("\n");
 
-  if (env.REPORT_EMAIL_PROVIDER === "mock_email") {
-    console.log(
-      `[email] verify blog comment (mock): comment=${payload.commentId} to=${payload.authorEmail} link=${verifyUrl}`,
-    );
-    return;
-  }
-
-  if (env.REPORT_EMAIL_PROVIDER === "resend") {
-    const response = await fetch(`${env.REPORT_EMAIL_RESEND_API_BASE_URL}/emails`, {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${env.REPORT_EMAIL_RESEND_API_KEY}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        from: env.REPORT_EMAIL_FROM,
-        to: [env.REPORT_EMAIL_TO_OVERRIDE ?? payload.authorEmail],
-        subject,
-        text,
-        ...(env.REPORT_EMAIL_REPLY_TO ? { reply_to: env.REPORT_EMAIL_REPLY_TO } : {}),
-        tags: [
-          { name: "feature", value: "blog_comment_verify" },
-          { name: "environment", value: env.NODE_ENV },
-        ],
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Verify comment email failed: status=${response.status}`);
-    }
-
-    return;
-  }
-
-  throw new Error(`Unsupported report email provider: ${env.REPORT_EMAIL_PROVIDER}`);
+  await sendTransactionalEmail({
+    to: payload.authorEmail,
+    subject,
+    text,
+    tags: [{ name: "feature", value: "blog_comment_verify" }],
+  });
 }
 
 export function createVerifyBlogCommentEmailWorker() {

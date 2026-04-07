@@ -7,7 +7,9 @@ import {
   listCourseBundles,
   type CourseBundleDefinition,
 } from "@/modules/courses/course-bundles";
+import { getBundleStorefrontContent } from "@/modules/courses/course-storefront-content";
 import { resolveCourseCoverImage } from "@/modules/courses/course-media";
+import { buildStorefrontCourseContract } from "@/modules/courses/storefront-course-contract";
 import { DomainError } from "@/modules/platform/errors";
 import { enqueueCertificateGeneration } from "@/worker/queue";
 
@@ -28,7 +30,9 @@ export type StorefrontCourse = {
   durationDays: number;
   createdAt: Date;
   coverImageUrl: string | null;
+  trackLabel: string;
   lessonCount: number;
+  videoCount: number;
   ageGroup: string | null;
   reviewCount: number;
   reviewAverageRating: number | null;
@@ -98,6 +102,27 @@ export async function getStorefrontCourses(): Promise<StorefrontCourse[]> {
   });
 
   const isVisible = buildStorefrontVisibilitySet(rows.map((row) => row.slug));
+  const courseIds = rows.map((row) => row.id);
+  const allocatedVideoRows =
+    courseIds.length > 0
+      ? await prisma.courseLesson.groupBy({
+          by: ["courseId"],
+          where: {
+            courseId: { in: courseIds },
+            lesson: {
+              OR: [
+                { videoSource: { not: null } },
+                { bunnyVideoId: { not: null } },
+                { videoStatus: { not: "none" } },
+              ],
+            },
+          },
+          _count: { _all: true },
+        })
+      : [];
+  const allocatedVideoCountByCourseId = new Map(
+    allocatedVideoRows.map((row) => [row.courseId, row._count._all]),
+  );
 
   return rows
     .filter((row) => isVisible(row.slug))
@@ -108,15 +133,31 @@ export async function getStorefrontCourses(): Promise<StorefrontCourse[]> {
       return a.slug.localeCompare(b.slug, "en", { numeric: true, sensitivity: "base" });
     })
     .map((row) => ({
+      ...(() => {
+        const bundle = getCourseBundleByCourseSlug(row.slug);
+        const contract = buildStorefrontCourseContract({
+          trackLabel: bundle
+            ? getBundleStorefrontContent(bundle.slug).shortLabel
+            : null,
+          lessonCount: row._count.lessons,
+          durationDays: row.durationDays,
+          videoCount: allocatedVideoCountByCourseId.get(row.id) ?? row._count.lessons,
+        });
+
+        return {
+          trackLabel: contract.trackLabel,
+          lessonCount: contract.lessonCount,
+          durationDays: contract.durationDays,
+          videoCount: contract.videoCount,
+        };
+      })(),
       id: row.id,
       slug: row.slug,
       title: row.title,
       description: row.description,
       subject: row.subject ?? null,
-      durationDays: row.durationDays,
       createdAt: row.createdAt,
       coverImageUrl: resolveCourseCoverImage(row.slug, row.coverImageUrl),
-      lessonCount: row._count.lessons,
       ageGroup: row.ageGroup ?? null,
       reviewCount: row.reviewCount,
       reviewAverageRating: row.reviewAverageRating,

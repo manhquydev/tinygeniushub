@@ -59,7 +59,7 @@ type NavGroup = {
 const NAV_GROUPS: NavGroup[] = [
   {
     label: "Tổng quan",
-    items: [{ href: "/admin/overview", label: "Dashboard", icon: LayoutDashboard }],
+    items: [{ href: "/admin/overview", label: "Tổng quan", icon: LayoutDashboard }],
   },
   {
     label: "Dữ liệu",

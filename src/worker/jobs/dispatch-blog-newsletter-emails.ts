@@ -1,6 +1,7 @@
 import { Job, Worker } from "bullmq";
 import { prisma } from "@/lib/db";
-import { env } from "@/lib/env";
+import { resolveEmailPublicBaseUrl } from "@/lib/email/project-email-template-builder";
+import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import { logInfo } from "@/lib/observability/logger";
 import { getNewsletterWeekStart, redisConnection } from "@/worker/queue";
 
@@ -101,16 +102,16 @@ function toWeeklyPayload(
   throw new Error("Invalid weekly newsletter payload");
 }
 
-function baseUrl() {
-  return env.BETTER_AUTH_URL.replace(/\/$/, "");
-}
-
 function buildVerifyUrl(token: string) {
-  return `${baseUrl()}/api/blog/newsletter/verify?token=${encodeURIComponent(token)}`;
+  return `${resolveEmailPublicBaseUrl()}/api/blog/newsletter/verify?token=${encodeURIComponent(token)}`;
 }
 
 function buildPostUrl(slug: string) {
-  return `${baseUrl()}/blog/${slug}`;
+  return `${resolveEmailPublicBaseUrl()}/blog/${slug}`;
+}
+
+function buildUnsubscribeUrl(unsubToken: string) {
+  return `${resolveEmailPublicBaseUrl()}/api/blog/newsletter/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
 }
 
 function buildNewsletterVerifyText(payload: VerifyBlogNewsletterJobPayload) {
@@ -126,13 +127,22 @@ function buildNewsletterVerifyText(payload: VerifyBlogNewsletterJobPayload) {
   ].join("\n");
 }
 
-function buildWeeklyNewsletterText(subscriberName: string | null, posts: NewsletterPost[]) {
+function buildWeeklyNewsletterText(
+  subscriberName: string | null,
+  posts: NewsletterPost[],
+  unsubscribeUrl: string,
+) {
   const name = subscriberName?.trim() || "phụ huynh";
   const lines = [`Xin chào ${name},`, "", "Đây là bản tin blog tuần này."];
   for (const post of posts) {
     lines.push(`- ${post.titleVi}: ${buildPostUrl(post.slug)}`);
   }
-  lines.push("", "Cảm ơn bạn đã theo dõi blog của chúng tôi.");
+  lines.push(
+    "",
+    "Cảm ơn bạn đã theo dõi blog của chúng tôi.",
+    "Bạn có thể ngừng nhận bản tin tại đây:",
+    unsubscribeUrl,
+  );
   return lines.join("\n");
 }
 
@@ -142,35 +152,12 @@ async function sendNewsletterEmail(input: {
   text: string;
   tags: Array<{ name: string; value: string }>;
 }) {
-  if (env.REPORT_EMAIL_PROVIDER === "mock_email") {
-    console.log(`[email] newsletter sent (mock): to=${input.to} subject="${input.subject}"`);
-    return;
-  }
-
-  if (env.REPORT_EMAIL_PROVIDER === "resend") {
-    const response = await fetch(`${env.REPORT_EMAIL_RESEND_API_BASE_URL}/emails`, {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${env.REPORT_EMAIL_RESEND_API_KEY}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        from: env.REPORT_EMAIL_FROM,
-        to: [env.REPORT_EMAIL_TO_OVERRIDE ?? input.to],
-        subject: input.subject,
-        text: input.text,
-        ...(env.REPORT_EMAIL_REPLY_TO ? { reply_to: env.REPORT_EMAIL_REPLY_TO } : {}),
-        tags: [...input.tags, { name: "environment", value: env.NODE_ENV }],
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Newsletter email failed: status=${response.status}`);
-    }
-    return;
-  }
-
-  throw new Error(`Unsupported report email provider: ${env.REPORT_EMAIL_PROVIDER}`);
+  await sendTransactionalEmail({
+    to: input.to,
+    subject: input.subject,
+    text: input.text,
+    tags: input.tags,
+  });
 }
 
 async function sendVerifyNewsletterEmail(payload: VerifyBlogNewsletterJobPayload) {
@@ -199,7 +186,7 @@ async function sendVerifyNewsletterEmail(payload: VerifyBlogNewsletterJobPayload
 
   await sendNewsletterEmail({
     to: subscriber.email,
-    subject: "Xac nhan dang ky ban tin blog",
+    subject: "Xác nhận đăng ký bản tin blog",
     text: buildNewsletterVerifyText(payload),
     tags: [
       { name: "feature", value: "blog_newsletter_verify" },
@@ -225,6 +212,7 @@ async function sendWeeklyNewsletterEmail(payload: DispatchBlogNewsletterJobPaylo
       verified: true,
       unsubscribedAt: true,
       lastEmailAt: true,
+      unsubToken: true,
     },
   });
 
@@ -264,8 +252,8 @@ async function sendWeeklyNewsletterEmail(payload: DispatchBlogNewsletterJobPaylo
 
   await sendNewsletterEmail({
     to: subscriber.email,
-    subject: "Ban tin blog tuan nay",
-    text: buildWeeklyNewsletterText(subscriber.nameVi, posts),
+    subject: "Bản tin blog tuần này",
+    text: buildWeeklyNewsletterText(subscriber.nameVi, posts, buildUnsubscribeUrl(subscriber.unsubToken)),
     tags: [
       { name: "feature", value: "blog_newsletter_weekly" },
       { name: "subscriber_id", value: subscriber.id },

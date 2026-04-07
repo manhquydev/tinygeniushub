@@ -19,7 +19,14 @@ type Props = {
 type CheckoutResponse = {
   ok: boolean;
   data?: { checkoutUrl: string; discountApplied: boolean; finalPriceVnd: number };
-  error?: { message?: string } | string;
+  error?:
+    | {
+        message?: string;
+        details?: {
+          code?: string;
+        };
+      }
+    | string;
 };
 
 function resolveCheckoutErrorMessage(response: CheckoutResponse | null, status: number) {
@@ -29,6 +36,19 @@ function resolveCheckoutErrorMessage(response: CheckoutResponse | null, status: 
 
   if (status >= 500) {
     return "Hệ thống thanh toán đang bận. Bạn vui lòng thử lại sau.";
+  }
+
+  const code =
+    response && typeof response.error === "object" && response.error
+      ? response.error.details?.code ?? null
+      : null;
+
+  if (code === "COURSE_PRICE_NOT_AVAILABLE") {
+    return "Khóa học đang chờ mở giá bán hoặc ưu đãi. Bạn có thể xem học thử và quay lại sau.";
+  }
+
+  if (code === "ALREADY_ENROLLED") {
+    return "Tài khoản của bạn đã sở hữu khóa học này.";
   }
 
   const message =

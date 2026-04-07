@@ -687,10 +687,18 @@ PAYOS_CLIENT_ID=your_payos_client_id
 PAYOS_API_KEY=your_payos_api_key
 PAYOS_CHECKSUM_KEY=your_payos_checksum_key
 
-# Email
-REPORT_EMAIL_PROVIDER=resend
-REPORT_EMAIL_RESEND_API_KEY=re_xxxxx
+# Email (Brevo transactional API)
+REPORT_EMAIL_PROVIDER=brevo
+REPORT_EMAIL_BREVO_API_KEY=xkeysib_xxxxx
+REPORT_EMAIL_BREVO_API_BASE_URL=https://api.brevo.com/v3
 REPORT_EMAIL_FROM=no-reply@cungcontuhoc.io.vn
+REPORT_EMAIL_REPLY_TO=support@cungcontuhoc.io.vn
+
+# Optional: Brevo SMTP relay reference (for external SMTP clients/tools)
+REPORT_EMAIL_BREVO_SMTP_SERVER=smtp-relay.brevo.com
+REPORT_EMAIL_BREVO_SMTP_PORT=587
+REPORT_EMAIL_BREVO_SMTP_LOGIN=your-login@smtp-brevo.com
+REPORT_EMAIL_BREVO_SMTP_PASSWORD=your-smtp-password
 
 # Cron
 CRON_SECRET=YOUR_CRON_SECRET_MIN_32_CHARS

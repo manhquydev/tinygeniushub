@@ -1,0 +1,374 @@
+﻿diff --git a/src/app/(main)/courses/page.tsx b/src/app/(main)/courses/page.tsx
+index c6ca8874..ddf0e4b4 100644
+--- a/src/app/(main)/courses/page.tsx
++++ b/src/app/(main)/courses/page.tsx
+@@ -202,7 +202,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
+             </section>
+           ) : (
+             <>
+-              <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
++              <section className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
+                 {visibleCourses.map((course, index) => {
+                   const bundle = getCourseBundleByCourseSlug(course.slug);
+                   const bundleContent = bundle ? getBundleStorefrontContent(bundle.slug) : null;
+diff --git a/src/app/api/admin/courses/[id]/publish/route.ts b/src/app/api/admin/courses/[id]/publish/route.ts
+index 2fee21ad..9dedf528 100644
+--- a/src/app/api/admin/courses/[id]/publish/route.ts
++++ b/src/app/api/admin/courses/[id]/publish/route.ts
+@@ -11,6 +11,7 @@ import { z } from "zod";
+ const publishCourseSchema = z.object({
+   isPublished: z.boolean().optional(),
+ });
++const MIN_COURSE_DESCRIPTION_LENGTH = 80;
+ 
+ export async function POST(
+   request: NextRequest,
+@@ -34,6 +35,7 @@ export async function POST(
+         salePriceVnd: true,
+         saleStartsAt: true,
+         saleEndsAt: true,
++        description: true,
+       },
+     });
+     if (!course) {
+@@ -42,8 +44,15 @@ export async function POST(
+ 
+     const nextPublished = body.isPublished ?? !course.isPublished;
+     if (nextPublished) {
++      const normalizedDescription = course.description.trim();
++      if (normalizedDescription.length < MIN_COURSE_DESCRIPTION_LENGTH) {
++        return fail("Course description is not ready for publish", 422, {
++          code: "COURSE_PUBLISH_DESCRIPTION_TOO_SHORT",
++          minDescriptionLength: MIN_COURSE_DESCRIPTION_LENGTH,
++        });
++      }
+       const pricing = resolveCourseDisplayPricing(course);
+-      if (!pricing.isPurchasable || pricing.saleStatus === "invalid") {
++      if (pricing.saleStatus === "invalid") {
+         return fail("Course pricing is not ready for publish", 422, {
+           code: "COURSE_PUBLISH_PRICING_INVALID",
+         });
+diff --git a/src/app/api/admin/courses/[id]/route.ts b/src/app/api/admin/courses/[id]/route.ts
+index 37b103ec..31d76784 100644
+--- a/src/app/api/admin/courses/[id]/route.ts
++++ b/src/app/api/admin/courses/[id]/route.ts
+@@ -30,6 +30,7 @@ const updateCourseSchema = z.object({
+   coverImageUrl: courseCoverImageSchema.nullish(),
+   isPublished: z.boolean().optional(),
+ });
++const MIN_COURSE_DESCRIPTION_LENGTH = 80;
+ 
+ type NormalizedCoursePricingPayload = {
+   priceVnd: number;
+@@ -118,6 +119,14 @@ export async function PATCH(
+       : null;
+ 
+     if (body.isPublished === true) {
++      const descriptionForPublish = (body.description ?? existing.description ?? "").trim();
++      if (descriptionForPublish.length < MIN_COURSE_DESCRIPTION_LENGTH) {
++        throw new DomainError(
++          "Course description is not ready for publish",
++          422,
++          "COURSE_PUBLISH_DESCRIPTION_TOO_SHORT",
++        );
++      }
+       const pricing = resolveCourseDisplayPricing(
+         normalizedPricing ?? {
+           priceVnd: existing.priceVnd,
+@@ -127,7 +136,7 @@ export async function PATCH(
+           saleEndsAt: existing.saleEndsAt,
+         },
+       );
+-      if (!pricing.isPurchasable || pricing.saleStatus === "invalid") {
++      if (pricing.saleStatus === "invalid") {
+         throw new DomainError(
+           "Course pricing is not ready for publish",
+           422,
+diff --git a/src/components/courses/course-card.tsx b/src/components/courses/course-card.tsx
+index 2e7a85f2..28e72e97 100644
+--- a/src/components/courses/course-card.tsx
++++ b/src/components/courses/course-card.tsx
+@@ -1,5 +1,5 @@
+ import Link from "next/link";
+-import { ArrowRight, Star } from "lucide-react";
++import { ArrowRight, BookOpen, Clock3 } from "lucide-react";
+ import type { StorefrontCourse } from "@/modules/courses/course-service";
+ import type { AbVariant } from "@/lib/ab-test-constants";
+ import type { BundleStorefrontContent } from "@/modules/courses/course-storefront-content";
+@@ -19,6 +19,14 @@ function formatCurrency(amount: number) {
+   return `${amount.toLocaleString("vi-VN")}đ`;
+ }
+ 
++function formatLessonCount(lessonCount: number) {
++  return `${lessonCount.toLocaleString("vi-VN")} bài`;
++}
++
++function formatDuration(durationDays: number) {
++  return `${durationDays.toLocaleString("vi-VN")} ngày`;
++}
++
+ export function CourseCard({
+   course,
+   bundleContent,
+@@ -28,17 +36,17 @@ export function CourseCard({
+   detailCtaLabel,
+ }: CourseCardProps) {
+   const ageLabel = course.ageGroup ? (AGE_GROUP_LABELS[course.ageGroup] ?? null) : null;
+-  const showRating = course.reviewCount > 0 && course.reviewAverageRating !== null;
+-  const showEnrollment = course.enrollmentCount > 0;
++  const trackLabel = bundleContent?.shortLabel ?? "Lộ trình học";
++  const isFree = course.pricing.salePriceVnd === 0;
+   const href = `/courses/${course.slug}`;
+ 
+   return (
+-    <article className="relative group cursor-pointer overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_28px_rgba(15,23,42,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
++    <article className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_28px_rgba(15,23,42,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+       {/* Full-card overlay link — makes entire card clickable */}
+       <Link href={href} className="absolute inset-0 z-0" aria-label={`Xem chi tiết khóa ${course.title}`} />
+ 
+       {/* Cover image */}
+-      <div className="relative overflow-hidden">
++      <div className="relative shrink-0 overflow-hidden">
+         {course.coverImageUrl ? (
+           // eslint-disable-next-line @next/next/no-img-element
+           <img
+@@ -57,63 +65,64 @@ export function CourseCard({
+         ) : null}
+       </div>
+ 
+-      <div className="grid gap-3 p-4 sm:p-5">
++      <div className="relative z-10 flex flex-1 flex-col p-4 sm:p-5">
+         {/* Track label + title + description */}
+-        <div className="space-y-1.5">
+-          <div className="flex flex-wrap items-center gap-2">
+-            {bundleContent ? (
+-              <p className="text-xs font-semibold uppercase tracking-[0.08em] text-sky-700">
+-                {bundleContent.shortLabel}
+-              </p>
+-            ) : null}
++        <div className="space-y-2">
++          <div className="flex min-h-6 min-w-0 items-center gap-2">
++            <p className="truncate text-xs font-semibold uppercase tracking-[0.08em] text-sky-700">{trackLabel}</p>
+             {showPilotBadge ? (
+-              <span className="inline-flex items-center rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-amber-700">
++              <span className="shrink-0 whitespace-nowrap rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-amber-700">
+                 Pilot 4-8 tuần
+               </span>
+             ) : null}
+           </div>
+-          <h2 className="text-lg font-extrabold tracking-[-0.01em] text-slate-900 transition-colors duration-150 group-hover:text-emerald-700">
++          <h2 className="min-h-[3.5rem] text-lg font-extrabold tracking-[-0.01em] text-slate-900 transition-colors duration-150 line-clamp-2 group-hover:text-emerald-700">
+             {course.title}
+           </h2>
+-          <p className="line-clamp-2 text-sm leading-relaxed text-slate-600">{course.description}</p>
++          <p className="min-h-[4.5rem] text-sm leading-relaxed text-slate-600 line-clamp-3">
++            {course.description}
++          </p>
+         </div>
+ 
+-        {/* Rating + enrollment row */}
+-        {(showRating || showEnrollment) ? (
+-          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
+-            {showRating ? (
+-              <span className="inline-flex items-center gap-1 font-semibold text-amber-600">
+-                <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+-                {course.reviewAverageRating!.toFixed(1)}
+-                <span className="font-normal text-slate-500">({course.reviewCount} đánh giá)</span>
+-              </span>
+-            ) : null}
+-            {showEnrollment ? (
+-              <span className="text-slate-500">{course.enrollmentCount.toLocaleString("vi-VN")} gia đình đã mua</span>
+-            ) : null}
++        {/* Lesson / duration / pricing summary */}
++        <div className="mt-4 grid gap-2 sm:grid-cols-3">
++          <div className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 px-3 py-2.5">
++            <BookOpen className="h-4 w-4 shrink-0 text-sky-600" aria-hidden="true" />
++            <div className="min-w-0">
++              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">Số bài</p>
++              <p className="text-sm font-bold text-slate-900">{formatLessonCount(course.lessonCount)}</p>
++            </div>
++          </div>
++          <div className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 px-3 py-2.5">
++            <Clock3 className="h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
++            <div className="min-w-0">
++              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">Thời lượng</p>
++              <p className="text-sm font-bold text-slate-900">{formatDuration(course.durationDays)}</p>
++            </div>
++          </div>
++          <div className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 px-3 py-2.5">
++            <div className="min-w-0">
++              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">Học phí</p>
++              {isFree ? (
++                <span className="mt-1 inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700">
++                  Miễn phí
++                </span>
++              ) : (
++                <div className="mt-1 flex flex-wrap items-baseline gap-2">
++                  <p className="text-sm font-black tracking-[-0.02em] text-emerald-700">
++                    {formatCurrency(course.pricing.salePriceVnd)}
++                  </p>
++                  {course.pricing.hasDiscount ? (
++                    <p className="text-xs text-slate-400 line-through">{formatCurrency(course.pricing.listPriceVnd)}</p>
++                  ) : null}
++                </div>
++              )}
++            </div>
+           </div>
+-        ) : null}
+-
+-        {/* Price */}
+-        <div className="flex items-end gap-2">
+-          {course.pricing.isPurchasable ? (
+-            <>
+-              <p className="text-xl font-black tracking-[-0.02em] text-emerald-700">
+-                {formatCurrency(course.pricing.salePriceVnd)}
+-              </p>
+-              {course.pricing.hasDiscount ? (
+-                <p className="pb-0.5 text-xs text-slate-400 line-through">
+-                  {formatCurrency(course.pricing.listPriceVnd)}
+-                </p>
+-              ) : null}
+-            </>
+-          ) : (
+-            <p className="text-sm font-bold text-amber-700">Giá đang cập nhật</p>
+-          )}
+         </div>
+ 
+-        {/* CTA — relative z-10 to sit above card overlay */}
+-        <div className="relative z-10">
++        {/* CTA — pinned to the bottom so the cards align evenly in the grid */}
++        <div className="relative z-10 mt-auto pt-4">
+           <BundleDetailTrackedLink
+             href={href}
+             className="solid-button w-full"
+diff --git a/src/components/courses/course-detail-sidebar.tsx b/src/components/courses/course-detail-sidebar.tsx
+index 5a48b4d1..cd12616e 100644
+--- a/src/components/courses/course-detail-sidebar.tsx
++++ b/src/components/courses/course-detail-sidebar.tsx
+@@ -27,6 +27,8 @@ export function CourseDetailSidebar({
+   variant,
+   checkoutLabel,
+ }: Props) {
++  const isFreeTemporary = pricing.salePriceVnd === 0;
++
+   return (
+     <div className="sticky top-6 space-y-4">
+       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+@@ -44,7 +46,18 @@ export function CourseDetailSidebar({
+             <p className="text-xs text-emerald-700/80">Thanh toán một lần, kích hoạt ngay sau xác nhận</p>
+           </>
+         ) : (
+-          <p className="mt-2 text-sm font-semibold text-amber-700">Giá đang cập nhật. Vui lòng liên hệ tư vấn trước khi mua.</p>
++          <div className="mt-2 grid gap-1.5">
++            <p className="text-sm font-semibold text-emerald-700">
++              {isFreeTemporary
++                ? "Khóa học đang mở miễn phí tạm thời (0đ)."
++                : "Giá đang cập nhật. Vui lòng liên hệ tư vấn trước khi mua."}
++            </p>
++            {isFreeTemporary ? (
++              <p className="text-xs text-emerald-700/80">
++                Giá có thể được điều chỉnh trong admin theo kế hoạch thương mại.
++              </p>
++            ) : null}
++          </div>
+         )}
+       </div>
+ 
+@@ -85,7 +98,7 @@ export function CourseDetailSidebar({
+             />
+           ) : (
+             <Link href="/contact" className="solid-button">
+-              Liên hệ tư vấn giá
++              {isFreeTemporary ? "Nhận tư vấn lộ trình" : "Liên hệ tư vấn giá"}
+             </Link>
+           )}
+           <FitCheckTrackedLink
+@@ -104,7 +117,11 @@ export function CourseDetailSidebar({
+             </p>
+           ) : null}
+           {!pricing.isPurchasable ? (
+-            <p className="text-xs text-amber-700">Checkout tạm khóa cho khóa học chưa có giá hợp lệ.</p>
++            <p className={`text-xs ${isFreeTemporary ? "text-emerald-700" : "text-amber-700"}`}>
++              {isFreeTemporary
++                ? "Checkout online tạm tắt cho khóa miễn phí tạm thời; đội ngũ sẽ hỗ trợ kích hoạt phù hợp."
++                : "Checkout tạm khóa cho khóa học chưa có giá hợp lệ."}
++            </p>
+           ) : null}
+         </div>
+       )}
+diff --git a/src/components/courses/course-detail-sticky-header.tsx b/src/components/courses/course-detail-sticky-header.tsx
+index 8575fd09..26010ae6 100644
+--- a/src/components/courses/course-detail-sticky-header.tsx
++++ b/src/components/courses/course-detail-sticky-header.tsx
+@@ -34,6 +34,7 @@ export function CourseDetailStickyHeader({
+   variant,
+ }: Props) {
+   const [visible, setVisible] = useState(false);
++  const isFreeTemporary = pricing.salePriceVnd === 0;
+ 
+   useEffect(() => {
+     const onScroll = () => setVisible(window.scrollY > 400);
+@@ -51,7 +52,11 @@ export function CourseDetailStickyHeader({
+       <div className="flex min-w-0 items-center gap-3">
+         <h2 className="truncate text-sm font-bold text-slate-900">{title}</h2>
+         <p className="shrink-0 text-sm font-black text-emerald-700">
+-          {pricing.isPurchasable ? formatCurrency(pricing.salePriceVnd) : "Giá đang cập nhật"}
++          {pricing.isPurchasable
++            ? formatCurrency(pricing.salePriceVnd)
++            : isFreeTemporary
++              ? "0đ (miễn phí tạm thời)"
++              : "Giá đang cập nhật"}
+         </p>
+       </div>
+       {isOwned ? (
+@@ -60,7 +65,7 @@ export function CourseDetailStickyHeader({
+         </Link>
+       ) : !pricing.isPurchasable ? (
+         <Link href="/contact" className="solid-button text-sm">
+-          Liên hệ tư vấn giá
++          {isFreeTemporary ? "Nhận tư vấn lộ trình" : "Liên hệ tư vấn giá"}
+         </Link>
+       ) : (
+         <CourseCheckoutButton
+diff --git a/src/modules/courses/course-checkout-service.ts b/src/modules/courses/course-checkout-service.ts
+index c45a8b8c..fd222148 100644
+--- a/src/modules/courses/course-checkout-service.ts
++++ b/src/modules/courses/course-checkout-service.ts
+@@ -58,7 +58,7 @@ function generatePayosOrderCode() {
+ function assertCheckoutAmountAvailable(amountVnd: number) {
+   if (amountVnd <= 0) {
+     throw new DomainError(
+-      "Course price is being updated. Please contact support before checkout.",
++      "This course is currently free temporary. Online checkout is disabled; please contact support for activation.",
+       422,
+       "COURSE_PRICE_NOT_AVAILABLE",
+     );
+diff --git a/src/modules/courses/course-pricing.ts b/src/modules/courses/course-pricing.ts
+index f0df351a..535a49e5 100644
+--- a/src/modules/courses/course-pricing.ts
++++ b/src/modules/courses/course-pricing.ts
+@@ -13,7 +13,7 @@ export type CourseDisplayPricing = {
+   listPriceVnd: number;
+   hasDiscount: boolean;
+   isPurchasable: boolean;
+-  statusLabel: "ready" | "pending";
++  statusLabel: "ready" | "pending" | "freeTemporary";
+   saleStatus: SaleStatus;
+   saleStartsAt: Date | null;
+   saleEndsAt: Date | null;
+@@ -129,13 +129,14 @@ export function resolveCourseDisplayPricing(input: CoursePricingInput, now = new
+ 
+   const isPurchasable = salePriceVnd > 0;
+   const hasDiscount = isPurchasable && listPriceVnd > salePriceVnd;
++  const isFreeTemporary = salePriceVnd === 0;
+ 
+   return {
+     salePriceVnd,
+     listPriceVnd,
+     hasDiscount,
+     isPurchasable,
+-    statusLabel: isPurchasable ? "ready" : "pending",
++    statusLabel: isFreeTemporary ? "freeTemporary" : isPurchasable ? "ready" : "pending",
+     saleStatus: saleState.status,
+     saleStartsAt: saleState.saleStartsAt,
+     saleEndsAt: saleState.saleEndsAt,

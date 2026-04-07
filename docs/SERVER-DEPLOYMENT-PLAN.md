@@ -1,4 +1,4 @@
-# Server Deployment Plan
+﻿# Server Deployment Plan
 
 Complete step-by-step deployment guide for Cung Con Tu Hoc production server.
 
@@ -56,10 +56,11 @@ BILLING_PROVIDER="stripe"
 STRIPE_SECRET_KEY="sk_live_xxx"
 STRIPE_WEBHOOK_SECRETS="whsec_xxx"
 
-# Email (if using Resend)
-REPORT_EMAIL_PROVIDER="resend"
-REPORT_EMAIL_RESEND_API_KEY="re_xxx"
-REPORT_EMAIL_FROM="noreply@your-domain.com"
+# Email (if using Brevo transactional API)
+REPORT_EMAIL_PROVIDER="brevo"
+REPORT_EMAIL_BREVO_API_KEY="xkeysib_xxx"
+REPORT_EMAIL_BREVO_API_BASE_URL="https://api.brevo.com/v3"
+REPORT_EMAIL_FROM="no-reply@your-domain.com"
 
 # Admin
 ADMIN_EMAILS="admin@your-domain.com"

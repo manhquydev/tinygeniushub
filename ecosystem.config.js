@@ -6,7 +6,7 @@
  * =============================================================================
  */
 
-module.exports = {
+export default {
   apps: [
     {
       // Main Web Application
@@ -14,6 +14,7 @@ module.exports = {
       script: 'pnpm',
       args: 'start',
       cwd: '/var/www/cungcontuhoc',
+      env_file: '/var/www/cungcontuhoc/.env',
       env: { 
         NODE_ENV: 'production',
         PORT: 3000
@@ -53,6 +54,7 @@ module.exports = {
       script: 'npx',
       args: 'tsx src/worker/index.ts',
       cwd: '/var/www/cungcontuhoc',
+      env_file: '/var/www/cungcontuhoc/.env',
       env: { 
         NODE_ENV: 'production' 
       },
@@ -75,7 +77,11 @@ module.exports = {
       
       // Monitoring & Control
       autorestart: true,
-      watch: false
+      watch: false,
+
+      env_production: {
+        NODE_ENV: 'production'
+      }
     }
   ],
 

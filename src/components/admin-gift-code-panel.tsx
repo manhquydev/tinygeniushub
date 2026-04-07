@@ -100,6 +100,7 @@ function GenerateFormPanel({
               <SelectContent>
                 <SelectItem value="YEARLY_STANDARD">YEARLY_STANDARD</SelectItem>
                 <SelectItem value="MONTHLY_STANDARD">MONTHLY_STANDARD</SelectItem>
+                <SelectItem value="YEARLY_FAMILY_PLUS">YEARLY_FAMILY_PLUS</SelectItem>
               </SelectContent>
             </Select>
           </div>

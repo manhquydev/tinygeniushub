@@ -1,8 +1,8 @@
 import { PaymentStatus, PlanCode, Prisma, SubscriptionStatus } from "@prisma/client";
 import { addDays } from "date-fns";
 import { z } from "zod";
-import { env } from "@/lib/env";
 import { prisma } from "@/lib/db";
+import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import { createNotificationForParent } from "@/modules/platform/notification-service";
 import { DomainError } from "@/modules/platform/errors";
 import { createAdminActionLog } from "./admin-user-service";
@@ -301,45 +301,21 @@ async function sendAdminManualEmail(params: {
   subject: string;
   body: string;
 }) {
-  if (env.REPORT_EMAIL_PROVIDER === "mock_email") {
-    console.log(
-      `[email] admin manual email (mock): to=${params.to} subject=${params.subject}`,
-    );
-    return { provider: "mock_email" as const };
-  }
-
-  if (env.REPORT_EMAIL_PROVIDER === "resend") {
-    const response = await fetch(`${env.REPORT_EMAIL_RESEND_API_BASE_URL}/emails`, {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${env.REPORT_EMAIL_RESEND_API_KEY}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        from: env.REPORT_EMAIL_FROM,
-        to: [env.REPORT_EMAIL_TO_OVERRIDE ?? params.to],
-        subject: params.subject,
-        text: params.body,
-        ...(env.REPORT_EMAIL_REPLY_TO ? { reply_to: env.REPORT_EMAIL_REPLY_TO } : {}),
-      }),
+  try {
+    const delivery = await sendTransactionalEmail({
+      to: params.to,
+      subject: params.subject,
+      text: params.body,
+      tags: [{ name: "feature", value: "admin_manual_email" }],
     });
-
-    if (!response.ok) {
-      throw new DomainError(
-        `Admin email delivery failed: status=${response.status}`,
-        502,
-        "ADMIN_EMAIL_DELIVERY_FAILED",
-      );
-    }
-
-    return { provider: "resend" as const };
+    return { provider: delivery.provider };
+  } catch (error) {
+    throw new DomainError(
+      error instanceof Error ? `Admin email delivery failed: ${error.message}` : "Admin email delivery failed",
+      502,
+      "ADMIN_EMAIL_DELIVERY_FAILED",
+    );
   }
-
-  throw new DomainError(
-    `Unsupported report email provider: ${env.REPORT_EMAIL_PROVIDER}`,
-    500,
-    "ADMIN_EMAIL_PROVIDER_UNSUPPORTED",
-  );
 }
 
 export async function sendAdminEmailToParent(input: {

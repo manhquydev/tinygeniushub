@@ -66,7 +66,10 @@ const envSchema = z.object({
   REPORT_EMAIL_PROVIDER: z.string().min(1).default("mock_email"),
   REPORT_EMAIL_RESEND_API_KEY: optionalNonEmptyString,
   REPORT_EMAIL_RESEND_API_BASE_URL: z.string().url().default("https://api.resend.com"),
+  REPORT_EMAIL_BREVO_API_KEY: optionalNonEmptyString,
+  REPORT_EMAIL_BREVO_API_BASE_URL: z.string().url().default("https://api.brevo.com/v3"),
   REPORT_EMAIL_FROM: optionalEmail,
+  REPORT_EMAIL_FROM_NAME: optionalNonEmptyString,
   REPORT_EMAIL_REPLY_TO: optionalEmail,
   REPORT_EMAIL_TO_OVERRIDE: optionalEmail,
   CRON_SECRET: z.string().min(32),
@@ -152,7 +155,10 @@ const parsedEnv = envSchema.parse({
   REPORT_EMAIL_PROVIDER: process.env.REPORT_EMAIL_PROVIDER,
   REPORT_EMAIL_RESEND_API_KEY: process.env.REPORT_EMAIL_RESEND_API_KEY,
   REPORT_EMAIL_RESEND_API_BASE_URL: process.env.REPORT_EMAIL_RESEND_API_BASE_URL,
+  REPORT_EMAIL_BREVO_API_KEY: process.env.REPORT_EMAIL_BREVO_API_KEY,
+  REPORT_EMAIL_BREVO_API_BASE_URL: process.env.REPORT_EMAIL_BREVO_API_BASE_URL,
   REPORT_EMAIL_FROM: process.env.REPORT_EMAIL_FROM,
+  REPORT_EMAIL_FROM_NAME: process.env.REPORT_EMAIL_FROM_NAME,
   REPORT_EMAIL_REPLY_TO: process.env.REPORT_EMAIL_REPLY_TO,
   REPORT_EMAIL_TO_OVERRIDE: process.env.REPORT_EMAIL_TO_OVERRIDE,
   CRON_SECRET: process.env.CRON_SECRET ?? (isProduction && !allowCiFallbacks ? undefined : "dev-cron-secret-change-this-must-be-32-chars!!"),
@@ -242,6 +248,16 @@ if (parsedEnv.REPORT_EMAIL_PROVIDER === "resend") {
 
   if (!parsedEnv.REPORT_EMAIL_FROM) {
     throw new Error("REPORT_EMAIL_FROM is required when REPORT_EMAIL_PROVIDER=resend");
+  }
+}
+
+if (parsedEnv.REPORT_EMAIL_PROVIDER === "brevo") {
+  if (!parsedEnv.REPORT_EMAIL_BREVO_API_KEY) {
+    throw new Error("REPORT_EMAIL_BREVO_API_KEY is required when REPORT_EMAIL_PROVIDER=brevo");
+  }
+
+  if (!parsedEnv.REPORT_EMAIL_FROM) {
+    throw new Error("REPORT_EMAIL_FROM is required when REPORT_EMAIL_PROVIDER=brevo");
   }
 }
 

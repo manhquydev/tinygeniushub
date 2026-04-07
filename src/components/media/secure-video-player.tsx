@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
@@ -30,7 +30,12 @@ export function SecureVideoPlayer({
   onPlaybackStateChange,
 }: SecureVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const playbackStateCallbackRef = useRef<((isPlaying: boolean) => void) | undefined>(onPlaybackStateChange);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    playbackStateCallbackRef.current = onPlaybackStateChange;
+  }, [onPlaybackStateChange]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -40,7 +45,7 @@ export function SecureVideoPlayer({
     let hls: { destroy: () => void; startLoad: () => void; recoverMediaError: () => void } | null = null;
     let usingNative = false;
     setError(null);
-    onPlaybackStateChange?.(false);
+    playbackStateCallbackRef.current?.(false);
 
     const teardownNativeSource = () => {
       video.removeAttribute("src");
@@ -142,7 +147,7 @@ export function SecureVideoPlayer({
 
     const emitPlaybackState = () => {
       const isPlaying = !video.paused && !video.ended && video.readyState >= 2;
-      onPlaybackStateChange?.(isPlaying);
+      playbackStateCallbackRef.current?.(isPlaying);
     };
 
     const events: Array<keyof HTMLMediaElementEventMap> = [
@@ -164,7 +169,7 @@ export function SecureVideoPlayer({
       for (const eventName of events) {
         video.removeEventListener(eventName, emitPlaybackState);
       }
-      onPlaybackStateChange?.(false);
+      playbackStateCallbackRef.current?.(false);
       isCancelled = true;
       if (hls) {
         hls.destroy();
@@ -172,7 +177,7 @@ export function SecureVideoPlayer({
         teardownNativeSource();
       }
     };
-  }, [onPlaybackStateChange, src, streamTypeHint]);
+  }, [src, streamTypeHint]);
 
   return (
     <>

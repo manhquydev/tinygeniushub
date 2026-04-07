@@ -1,6 +1,11 @@
 import { randomBytes } from "node:crypto";
 import { addDays } from "date-fns";
 import { prisma } from "@/lib/db";
+import {
+  getPayablePlanConfig,
+  payablePlanCodeSchema,
+  toPrismaPlanCode,
+} from "@/modules/billing/plan-config";
 import { DomainError } from "@/modules/platform/errors";
 
 /** Generate random 8-char uppercase alphanumeric code */
@@ -19,6 +24,7 @@ export async function generateGiftCodes(options: {
   expiresAt: Date;
   createdBy: string;
 }): Promise<string[]> {
+  const planCode = payablePlanCodeSchema.parse(options.planCode);
   const codes: string[] = [];
 
   for (let i = 0; i < options.count; i++) {
@@ -33,7 +39,7 @@ export async function generateGiftCodes(options: {
   await prisma.giftCode.createMany({
     data: codes.map((code) => ({
       code,
-      planCode: options.planCode,
+      planCode,
       durationDays: options.durationDays,
       expiresAt: options.expiresAt,
       createdBy: options.createdBy,
@@ -74,23 +80,33 @@ export async function redeemGiftCode(code: string, parentId: string): Promise<vo
     giftCode.durationDays,
   );
 
-  const planCode = giftCode.planCode === "YEARLY_FAMILY_PLUS" ? "YEARLY_FAMILY_PLUS" : "YEARLY_STANDARD";
+  const parsedPlan = payablePlanCodeSchema.safeParse(giftCode.planCode);
+  if (!parsedPlan.success) {
+    throw new DomainError("Gift code plan is invalid", 422, "GIFT_CODE_PLAN_INVALID");
+  }
+
+  const resolvedPlanCode = parsedPlan.data;
+  const resolvedPlanConfig = getPayablePlanConfig(resolvedPlanCode);
+  const prismaPlanCode = toPrismaPlanCode(resolvedPlanCode);
 
   await prisma.subscription.upsert({
     where: { parentId },
     create: {
       parentId,
-      planCode: planCode as "YEARLY_STANDARD" | "YEARLY_FAMILY_PLUS",
-      status: "ACTIVE_STANDARD",
+      planCode: prismaPlanCode,
+      status: resolvedPlanConfig.status,
       currentPeriodStart: periodStart,
       currentPeriodEnd: periodEnd,
-      childProfileLimit: 3,
-      caregiverLimit: 2,
-      portfolioRetentionMaxDays: 365,
+      childProfileLimit: resolvedPlanConfig.childProfileLimit,
+      caregiverLimit: resolvedPlanConfig.caregiverLimit,
+      portfolioRetentionMaxDays: resolvedPlanConfig.portfolioRetentionMaxDays,
     },
     update: {
-      planCode: planCode as "YEARLY_STANDARD" | "YEARLY_FAMILY_PLUS",
-      status: "ACTIVE_STANDARD",
+      planCode: prismaPlanCode,
+      status: resolvedPlanConfig.status,
+      childProfileLimit: resolvedPlanConfig.childProfileLimit,
+      caregiverLimit: resolvedPlanConfig.caregiverLimit,
+      portfolioRetentionMaxDays: resolvedPlanConfig.portfolioRetentionMaxDays,
       currentPeriodEnd: periodEnd,
     },
   });

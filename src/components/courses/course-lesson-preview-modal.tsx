@@ -47,6 +47,7 @@ export function CourseLessonPreviewModal({
 }: Props) {
   const [video, setVideo] = useState<VideoState>({ status: "loading" });
   const [previewStarted, setPreviewStarted] = useState(false);
+  const [startLoading, setStartLoading] = useState(false);
   const [securePlaying, setSecurePlaying] = useState(false);
 
   const hasTrackedPlaySuccessRef = useRef(false);
@@ -56,25 +57,12 @@ export function CourseLessonPreviewModal({
 
   const streamType = video.status === "ready" ? video.streamType : "unknown";
 
-  useEffect(() => {
-    let isActive = true;
-    const controller = new AbortController();
-
-    trackCoursePreviewModalOpen({
-      variant,
-      bundleSlug: courseSlug,
-      lessonId,
-      lessonTitle,
-      sourcePage: "course_detail",
-    });
-
-    async function loadPreview() {
+  const refreshPreviewSource = useCallback(
+    async (input?: { signal?: AbortSignal }) => {
       try {
         const res = await fetch(`/api/lessons/${lessonId}/video-token`, {
-          signal: controller.signal,
+          signal: input?.signal,
         });
-
-        if (!isActive) return;
 
         if (res.status === 401) {
           setVideo({ status: "auth_required" });
@@ -85,7 +73,7 @@ export function CourseLessonPreviewModal({
             lessonTitle,
             sourcePage: "course_detail",
           });
-          return;
+          return false;
         }
 
         if (!res.ok) {
@@ -99,50 +87,53 @@ export function CourseLessonPreviewModal({
             reason: "unavailable",
             status: res.status,
           });
-          return;
+          return false;
         }
 
         const json = (await res.json()) as {
           ok: boolean;
           data?: { embedUrl?: string; streamType?: "embed" | "secure" | "hls" | "file" };
         };
-        if (json.ok && json.data?.embedUrl) {
-          const detectedStreamType = json.data.streamType === "embed" ? "embed" : "secure";
-          const secureStreamTypeHint =
-            detectedStreamType === "secure"
-              ? json.data.streamType === "hls"
-                ? "hls"
-                : json.data.streamType === "file"
-                  ? "file"
-                  : null
-              : null;
-          hasTrackedPlaySuccessRef.current = false;
-          watchedSecondsRef.current = 0;
-          hasTrackedQualifiedRef.current = false;
-          hasTrackedCloseRef.current = false;
-          setSecurePlaying(false);
-          setPreviewStarted(false);
-          setVideo({
-            status: "ready",
-            embedUrl: json.data.embedUrl,
-            streamType: detectedStreamType,
-            secureStreamTypeHint,
+
+        if (!json.ok || !json.data?.embedUrl) {
+          setVideo({ status: "unavailable" });
+          trackCoursePreviewPlayFail({
+            variant,
+            bundleSlug: courseSlug,
+            lessonId,
+            lessonTitle,
+            sourcePage: "course_detail",
+            reason: "unavailable",
+            status: res.status,
           });
-          return;
+          return false;
         }
 
-        setVideo({ status: "unavailable" });
-        trackCoursePreviewPlayFail({
-          variant,
-          bundleSlug: courseSlug,
-          lessonId,
-          lessonTitle,
-          sourcePage: "course_detail",
-          reason: "unavailable",
-          status: res.status,
+        const detectedStreamType = json.data.streamType === "embed" ? "embed" : "secure";
+        const secureStreamTypeHint =
+          detectedStreamType === "secure"
+            ? json.data.streamType === "file"
+              ? "file"
+              : "hls"
+            : null;
+
+        hasTrackedPlaySuccessRef.current = false;
+        watchedSecondsRef.current = 0;
+        hasTrackedQualifiedRef.current = false;
+        hasTrackedCloseRef.current = false;
+        setSecurePlaying(false);
+        setPreviewStarted(false);
+        setVideo({
+          status: "ready",
+          embedUrl: json.data.embedUrl,
+          streamType: detectedStreamType,
+          secureStreamTypeHint,
         });
+        return true;
       } catch {
-        if (controller.signal.aborted || !isActive) return;
+        if (input?.signal?.aborted) {
+          return false;
+        }
 
         setVideo({ status: "unavailable" });
         trackCoursePreviewPlayFail({
@@ -153,16 +144,60 @@ export function CourseLessonPreviewModal({
           sourcePage: "course_detail",
           reason: "network_error",
         });
+        return false;
       }
-    }
+    },
+    [courseSlug, lessonId, lessonTitle, variant],
+  );
 
-    void loadPreview();
+  useEffect(() => {
+    let isActive = true;
+    const controller = new AbortController();
+
+    trackCoursePreviewModalOpen({
+      variant,
+      bundleSlug: courseSlug,
+      lessonId,
+      lessonTitle,
+      sourcePage: "course_detail",
+    });
+
+    void (async () => {
+      await refreshPreviewSource({ signal: controller.signal });
+      if (!isActive) return;
+    })();
 
     return () => {
       isActive = false;
       controller.abort();
     };
-  }, [courseSlug, lessonId, lessonTitle, variant]);
+  }, [courseSlug, lessonId, lessonTitle, refreshPreviewSource, variant]);
+
+  const handleStartPreview = useCallback(async () => {
+    if (startLoading) return;
+
+    if (video.status === "ready") {
+      setPreviewStarted(true);
+      return;
+    }
+
+    setStartLoading(true);
+    setVideo({ status: "loading" });
+    const refreshed = await refreshPreviewSource();
+    if (refreshed) {
+      setPreviewStarted(true);
+    }
+    setStartLoading(false);
+  }, [refreshPreviewSource, startLoading, video.status]);
+
+  const handleReloadPreview = useCallback(async () => {
+    if (startLoading) return;
+
+    setStartLoading(true);
+    setVideo({ status: "loading" });
+    await refreshPreviewSource();
+    setStartLoading(false);
+  }, [refreshPreviewSource, startLoading]);
 
   const trackModalClose = useCallback(
     (reason: CloseReason) => {
@@ -205,6 +240,16 @@ export function CourseLessonPreviewModal({
       });
     },
     [courseSlug, lessonId, lessonTitle, variant],
+  );
+
+  const handleSecurePlaybackStateChange = useCallback(
+    (isPlaying: boolean) => {
+      setSecurePlaying((current) => (current === isPlaying ? current : isPlaying));
+      if (isPlaying) {
+        markPlaySuccess("secure");
+      }
+    },
+    [markPlaySuccess],
   );
 
   useEffect(() => {
@@ -307,12 +352,7 @@ export function CourseLessonPreviewModal({
                     streamTypeHint={video.secureStreamTypeHint ?? null}
                     className="h-full w-full"
                     title={lessonTitle}
-                    onPlaybackStateChange={(isPlaying) => {
-                      setSecurePlaying(isPlaying);
-                      if (isPlaying) {
-                        markPlaySuccess("secure");
-                      }
-                    }}
+                    onPlaybackStateChange={handleSecurePlaybackStateChange}
                   />
                 ) : (
                   <iframe
@@ -330,8 +370,8 @@ export function CourseLessonPreviewModal({
                   <p className="text-sm leading-relaxed text-slate-300">
                     Bấm bắt đầu để mở video học thử và kiểm tra mức phù hợp.
                   </p>
-                  <button type="button" className="solid-button" onClick={() => setPreviewStarted(true)}>
-                    Bắt đầu xem thử
+                  <button type="button" className="solid-button" onClick={() => void handleStartPreview()} disabled={startLoading}>
+                    {startLoading ? "Đang mở video..." : "Bắt đầu xem thử"}
                   </button>
                 </div>
               )
@@ -357,6 +397,9 @@ export function CourseLessonPreviewModal({
                 <p className="text-sm leading-relaxed text-slate-400">
                   Bài học này chưa mở được video ngay lúc này. Hãy thử lại hoặc xem thông tin khóa để quyết định.
                 </p>
+                <button type="button" className="solid-button text-sm" onClick={() => void handleReloadPreview()} disabled={startLoading}>
+                  {startLoading ? "Đang thử lại..." : "Tải lại video"}
+                </button>
               </div>
             ) : null}
           </div>
@@ -373,6 +416,11 @@ export function CourseLessonPreviewModal({
             <Link href={`/courses/${courseSlug}`} className="solid-button" onClick={() => closeModal("cta")}>
               Xem trọn khóa để mua
             </Link>
+            {video.status === "ready" ? (
+              <button type="button" onClick={() => void handleReloadPreview()} className="ghost-button" disabled={startLoading}>
+                {startLoading ? "Đang tải lại..." : "Tải lại video"}
+              </button>
+            ) : null}
             <button type="button" onClick={() => closeModal("button")} className="ghost-button">
               Đóng cửa sổ thử
             </button>

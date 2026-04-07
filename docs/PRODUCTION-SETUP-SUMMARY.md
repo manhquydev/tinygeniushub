@@ -318,3 +318,59 @@ bash scripts/migrate-server.sh import
 ✅ **Testing:** 3-layer validation (pre/during/post)  
 
 **Hệ thống sẵn sàng deploy production!** 🎉
+
+---
+
+## WS4 UPDATE (2026-04-04): Production Verification + Observability Gate
+
+Scope implemented in this update:
+
+1. Added executable gate script: `scripts/production/production-gate-check.sh`
+2. Updated deployment policy: gate script is mandatory pre-deploy and post-deploy
+3. Added worker restart storm tracking and secrets readiness checks
+
+### Gate Script Behavior
+
+- UI smoke verification:
+- `/`
+- `/pricing`
+- `/courses`
+- `/try-garden`
+- `/admin/login`
+
+- Core API health verification:
+- `/api/health`
+- `/api/abeka/packages`
+
+- Package parity verification:
+- Enforces canonical package code set (8 packages)
+- Fails on count mismatch or code mismatch
+
+- Secrets readiness verification:
+- Loads `.env` by default
+- Fails for missing required secrets
+- Fails for placeholder secrets
+- Adds conditional requirements by provider mode
+
+- Worker observability verification:
+- Uses PM2 process list
+- Confirms worker online status
+- Detects restart storm by restart delta over observation window
+
+### Standard Runbook Commands
+
+```bash
+# Pre-deploy gate
+STAGE=pre-deploy BASE_URL="http://localhost:3000" ENV_FILE=".env" \
+  bash scripts/production/production-gate-check.sh
+
+# Post-deploy gate
+STAGE=post-deploy BASE_URL="http://localhost:3000" ENV_FILE=".env" \
+  bash scripts/production/production-gate-check.sh
+```
+
+### Failure Handling Policy
+
+- Any gate output with `FAIL > 0` means deployment is blocked.
+- Fix root cause, rerun gate, and only proceed when `FAIL = 0`.
+- For post-deploy failures, trigger rollback protocol if service impact is active.

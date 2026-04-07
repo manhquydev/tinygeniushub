@@ -64,6 +64,63 @@ pnpm dev
 pnpm worker:dev
 ```
 
+## Grapuco MCP (Codex Dev Loop)
+
+Reference docs: https://www.grapuco.com/docs
+
+1. Create local MCP config for Codex at `.codex/.mcp.json`:
+```json
+{
+  "mcpServers": {
+    "grapuco": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://api.grapuco.com/mcp",
+        "--header",
+        "X-Api-Key: YOUR_API_KEY"
+      ],
+      "env": {},
+      "disabled": false
+    }
+  }
+}
+```
+
+2. Authenticate + index repo to Grapuco:
+```bash
+pnpm grapuco:login
+pnpm grapuco:init
+pnpm grapuco:ingest
+```
+
+3. During development, keep architecture graph in sync:
+```bash
+pnpm grapuco:push
+# or continuous mode
+pnpm grapuco:watch
+```
+
+4. Optional checks:
+```bash
+pnpm grapuco:status
+pnpm grapuco:inspect
+pnpm grapuco:quality-report
+pnpm grapuco:semantic-search-fallback -- --query "checkout flow"
+pnpm grapuco:critical-file-impact-fallback -- --file src/modules/courses/course-checkout-service.ts
+```
+
+Notes:
+- You can pass key non-interactively: `pnpm grapuco:login -- --api-key <YOUR_API_KEY>`.
+- `grapuco:ingest` runs with `--all` (embeddings + flows) for better MCP context.
+- `grapuco:quality-report` compares current flow metrics vs baseline (`scripts/grapuco/flow-quality-baseline.json`) in warning mode.
+- `grapuco:semantic-search-fallback` auto-fallbacks to `search_code` when semantic results are empty.
+- `grapuco:critical-file-impact-fallback` supplements zero-flow impact results with dependency evidence.
+- Keep API key in local secret storage; do not commit real keys.
+- Team daily checklist (before editing files): `docs/grapuco-mcp-daily-workflow-checklist.md`.
+- Analysis report for current project graph quality and optimization points: `docs/grapuco-mcp-analysis-report-2026-04-05.md`.
+
 ## Core Endpoints
 
 - `POST /api/auth/signup`
@@ -182,11 +239,13 @@ Implementation plan and phases:
 - Storage upload pipeline supports `STORAGE_PROVIDER=mock_r2|cloudflare_r2` (`mock_r2` default).
 - Billing provider supports `mock_gateway|stripe` via `BILLING_PROVIDER`.
 - Course checkout provider supports `mock_gateway|payos` via `COURSE_PAYMENT_PROVIDER`.
-- Report email provider supports `mock_email|resend` via `REPORT_EMAIL_PROVIDER`.
+- Report email provider supports `mock_email|resend|brevo` via `REPORT_EMAIL_PROVIDER`.
 - Required env when using real providers:
   - `BILLING_PROVIDER=stripe` -> `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRETS` (optional override `STRIPE_API_BASE_URL`, `STRIPE_WEBHOOK_TOLERANCE_SECONDS`).
   - `COURSE_PAYMENT_PROVIDER=payos` -> `PAYOS_CLIENT_ID`, `PAYOS_API_KEY`, `PAYOS_CHECKSUM_KEY` (optional override `PAYOS_API_BASE_URL`).
   - `REPORT_EMAIL_PROVIDER=resend` -> `REPORT_EMAIL_RESEND_API_KEY`, `REPORT_EMAIL_FROM` (optional: `REPORT_EMAIL_REPLY_TO`, `REPORT_EMAIL_TO_OVERRIDE`).
+  - `REPORT_EMAIL_PROVIDER=brevo` -> `REPORT_EMAIL_BREVO_API_KEY`, `REPORT_EMAIL_FROM` (optional: `REPORT_EMAIL_BREVO_API_BASE_URL`, `REPORT_EMAIL_REPLY_TO`, `REPORT_EMAIL_TO_OVERRIDE`, `REPORT_EMAIL_FROM_NAME`).
+  - Brevo SMTP relay reference: server `smtp-relay.brevo.com`, ports `587|2525` (or `465` with SSL/TLS), use SMTP key (not API key) for SMTP relay connections.
 - PayOS webhook configuration:
   - Method: `POST`
   - Endpoint: `https://<your-domain>/api/billing/webhooks/payos`

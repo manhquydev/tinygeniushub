@@ -434,14 +434,14 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm db:seed:packages"
 **Expected Output:**
 ```
 Seeding Curriculum Packages...
-✓ Preschool Standard (k4-k5) - 1,450 videos
-✓ Preschool Premium (k4-k5) - 2,890 videos
-✓ Elementary Standard (g1-g3) - 4,230 videos
-✓ Elementary Premium (g1-g5) - 7,120 videos
-✓ Middle School (g6-g8) - 2,340 videos
-✓ High School Standard (g9-g10) - 1,890 videos
-✓ High School Premium (g9-g12) - 3,456 videos
-✓ Complete K-12 (k4-g12) - 20,195 videos
+✓ PRESCHOOL_PREMIUM (Mầm Non PREMIUM) - 680 videos
+✓ ELEMENTARY_PRO (Tiểu Học PRO) - 2,550 videos
+✓ MIDDLE_ADVANCED (Trung Học ADVANCED) - 2,040 videos
+✓ HIGH_ELITE (THPT ELITE) - 1,530 videos
+✓ ENGLISH_MASTER (Tiếng Anh MASTER) - 1,190 videos
+✓ MATH_THINKING (Toán Tư Duy MATH) - 1,700 videos
+✓ STEM_INNOVATOR (STEM INNOVATOR) - 2,040 videos
+✓ ULTIMATE (K4-G12) - 8,500 videos
 
 8 CurriculumPackage seeded successfully
 ```
@@ -449,8 +449,41 @@ Seeding Curriculum Packages...
 **Verify:**
 ```bash
 ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
-  docker exec postgres psql -U cungcontuhoc -d cungcontuhoc -c 'SELECT name, video_count FROM \"CurriculumPackage\" ORDER BY display_order;'"
+  docker exec postgres psql -U cungcontuhoc -d cungcontuhoc -c 'SELECT code, name, \"videoCount\", \"monthlyPrice\", \"yearlyPrice\" FROM \"CurriculumPackage\" ORDER BY \"displayOrder\";'"
 ```
+
+---
+
+### 6.1.1 Canonical Parity Check (Mandatory)
+
+Run after `pnpm db:seed:packages` and again after import:
+
+```bash
+ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
+  docker exec postgres psql -U cungcontuhoc -d cungcontuhoc << 'SQL'
+WITH canonical(code, \"videoCount\", \"monthlyPrice\", \"yearlyPrice\", \"displayOrder\") AS (
+  VALUES
+    ('PRESCHOOL_PREMIUM', 680, 199000, 1990000, 1),
+    ('ELEMENTARY_PRO', 2550, 349000, 3490000, 2),
+    ('MIDDLE_ADVANCED', 2040, 349000, 3490000, 3),
+    ('HIGH_ELITE', 1530, 449000, 4490000, 4),
+    ('ENGLISH_MASTER', 1190, 249000, 2490000, 5),
+    ('MATH_THINKING', 1700, 199000, 1990000, 6),
+    ('STEM_INNOVATOR', 2040, 299000, 2990000, 7),
+    ('ULTIMATE', 8500, 699000, 6990000, 8)
+)
+SELECT c.code
+FROM canonical c
+LEFT JOIN \"CurriculumPackage\" p ON p.code = c.code
+WHERE p.code IS NULL
+   OR p.\"videoCount\" <> c.\"videoCount\"
+   OR p.\"monthlyPrice\" <> c.\"monthlyPrice\"
+   OR p.\"yearlyPrice\" <> c.\"yearlyPrice\"
+   OR p.\"displayOrder\" <> c.\"displayOrder\";
+SQL"
+```
+
+Expected: no rows.
 
 ---
 
@@ -473,7 +506,7 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
 **Option C: Grade-by-Grade (if memory constrained)**
 ```bash
 # Import one grade at a time
-for grade in 0 1 2 3 4 5 6 7 8 9 10 11 13; do
+for grade in 0 1 2 3 4 5 6 7 8 9 10 11 12 13; do
   echo "Importing grade $grade..."
   ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
     pnpm abeka:import:grade --grade=$grade --verbose"

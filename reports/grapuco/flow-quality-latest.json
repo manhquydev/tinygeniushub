@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-04-05T07:43:47.154Z",
+  "repository": {
+    "id": "439af114-2709-44b7-9ef3-4f3dcf2dea5c",
+    "name": "cungcontuhoc",
+    "status": "COMPLETED"
+  },
+  "baseline": {
+    "generatedAt": "2026-04-05T10:00:00.000Z",
+    "flowCount": 50,
+    "apiHandlers": 265,
+    "coveragePct": 18.9,
+    "flowsWithHttpPath": 0,
+    "warningThresholds": {
+      "minCoveragePct": 18,
+      "minApiOnlyCoveragePct": 15,
+      "maxFlowDrop": 0,
+      "maxCoverageDropPct": 0.1,
+      "maxNoisePct": 25
+    },
+    "qualityGateTargets": {
+      "minCoveragePct": 25,
+      "minFlowsWithHttpPath": 80
+    }
+  },
+  "metrics": {
+    "apiHandlerCount": 265,
+    "totalFlows": 50,
+    "apiFlowCount": 42,
+    "nonApiFlowCount": 8,
+    "flowsWithHttpPath": 0,
+    "flowsWithDerivedHttpPath": 42,
+    "flowsMissingHttpPath": 50,
+    "entryPointCount": 19,
+    "apiEntrypointCount": 15,
+    "nonApiEntrypointCount": 4,
+    "flowCoveragePct": 18.87,
+    "apiOnlyCoveragePct": 15.85,
+    "entryPointCoveragePct": 5.66,
+    "noisePct": 16,
+    "entryPointNoisePct": 21.05
+  },
+  "deltas": {
+    "flowDrop": 0,
+    "coverageDropPct": 0.03
+  },
+  "warnings": []
+}

@@ -1,6 +1,7 @@
 ﻿import { EmailStatus, ParentPreferences, WeeklyEmailPreference } from "@prisma/client";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/db";
+import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import type { EnrichedSkillsSummary, SkillProgressByDomain } from "@/modules/adaptive/weekly-report-enricher";
 
 const EMAIL_CLAIM_TTL_MS = 15 * 60 * 1000;
@@ -102,55 +103,17 @@ export function canSendWeeklyEmail(input: EmailEligibilityInput) {
   return true;
 }
 
-async function sendWeeklyReportEmailMock(report: WeeklyReportEmailPayload) {
-  console.log(
-    `[email] weekly report sent (mock): report=${report.id} child=${report.child.nickname} to=${report.child.parent.email}`,
-  );
-}
-
-async function sendWeeklyReportEmailResend(report: WeeklyReportEmailPayload) {
+async function sendWeeklyReportEmail(report: WeeklyReportEmailPayload) {
   const to = env.REPORT_EMAIL_TO_OVERRIDE ?? report.child.parent.email;
   const subject = `Báo cáo tuần của ${report.child.nickname}`;
   const text = buildWeeklyReportEmailText(report);
 
-  const payload = {
-    from: env.REPORT_EMAIL_FROM,
-    to: [to],
+  await sendTransactionalEmail({
+    to,
     subject,
     text,
-    ...(env.REPORT_EMAIL_REPLY_TO ? { reply_to: env.REPORT_EMAIL_REPLY_TO } : {}),
-    tags: [
-      { name: "feature", value: "weekly_report" },
-      { name: "environment", value: env.NODE_ENV },
-    ],
-  };
-
-  const response = await fetch(`${env.REPORT_EMAIL_RESEND_API_BASE_URL}/emails`, {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${env.REPORT_EMAIL_RESEND_API_KEY}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(payload),
+    tags: [{ name: "feature", value: "weekly_report" }],
   });
-
-  if (!response.ok) {
-    throw new Error(`Resend delivery failed: status=${response.status}`);
-  }
-}
-
-async function sendWeeklyReportEmail(report: WeeklyReportEmailPayload) {
-  if (EMAIL_DELIVERY_PROVIDER === "mock_email") {
-    await sendWeeklyReportEmailMock(report);
-    return;
-  }
-
-  if (EMAIL_DELIVERY_PROVIDER === "resend") {
-    await sendWeeklyReportEmailResend(report);
-    return;
-  }
-
-  throw new Error(`Unsupported report email provider: ${EMAIL_DELIVERY_PROVIDER}`);
 }
 
 export async function deliverQueuedWeeklyReportEmails(limit = 100, parentId?: string) {

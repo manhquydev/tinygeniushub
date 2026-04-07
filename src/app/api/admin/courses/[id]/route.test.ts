@@ -75,7 +75,8 @@ describe("admin course detail route", () => {
       id: "course-1",
       slug: "toan-tu-duy",
       title: "Toan tu duy",
-      description: "Mo ta",
+      description:
+        "Mo ta khoa hoc du do dai de pass quality gate khi test normalize pricing payload.",
       priceVnd: 300000,
       listPriceVnd: 300000,
       salePriceVnd: null,
@@ -130,7 +131,8 @@ describe("admin course detail route", () => {
       id: "course-1",
       slug: "toan-tu-duy",
       title: "Toan tu duy",
-      description: "Mo ta",
+      description:
+        "Mo ta khoa hoc du do dai de pass quality gate khi test reject incomplete sale window.",
       priceVnd: 300000,
       listPriceVnd: 300000,
       salePriceVnd: null,
@@ -161,6 +163,105 @@ describe("admin course detail route", () => {
     expect(response.status).toBe(400);
     expect(body.ok).toBe(false);
     expect(body.error.message).toBe("Sale start and end time must be set together");
+    expect(prismaMock.course.update).not.toHaveBeenCalled();
+  });
+
+  it("allows publishing a zero-priced temporary course", async () => {
+    prismaMock.course.findUnique.mockResolvedValue({
+      id: "course-1",
+      slug: "toan-tu-duy",
+      title: "Toan tu duy",
+      description:
+        "Mo ta khoa hoc du do dai de pass quality gate khi publish course zero-priced temporary.",
+      priceVnd: 300000,
+      listPriceVnd: 300000,
+      salePriceVnd: null,
+      saleStartsAt: null,
+      saleEndsAt: null,
+      durationDays: 30,
+      coverImageUrl: null,
+      isPublished: false,
+    });
+    prismaMock.course.update.mockResolvedValue({
+      id: "course-1",
+      priceVnd: 0,
+      listPriceVnd: 0,
+      salePriceVnd: null,
+      isPublished: true,
+    });
+
+    const response = await PATCH(
+      new Request("http://localhost/api/admin/courses/course-1", {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          origin: "http://localhost",
+          host: "localhost",
+        },
+        body: JSON.stringify({
+          priceVnd: 0,
+          listPriceVnd: 0,
+          isPublished: true,
+        }),
+      }) as never,
+      { params: Promise.resolve({ id: "course-1" }) },
+    );
+    const body = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(body.ok).toBe(true);
+
+    const updatePayload = prismaMock.course.update.mock.calls[0][0] as {
+      data: {
+        priceVnd: number;
+        listPriceVnd: number;
+        salePriceVnd: number | null;
+        saleStartsAt: Date | null;
+        saleEndsAt: Date | null;
+        isPublished: boolean;
+      };
+    };
+    expect(updatePayload.data.priceVnd).toBe(0);
+    expect(updatePayload.data.listPriceVnd).toBe(0);
+    expect(updatePayload.data.salePriceVnd).toBeNull();
+    expect(updatePayload.data.saleStartsAt).toBeNull();
+    expect(updatePayload.data.saleEndsAt).toBeNull();
+    expect(updatePayload.data.isPublished).toBe(true);
+  });
+
+  it("rejects publish when description is too short", async () => {
+    prismaMock.course.findUnique.mockResolvedValue({
+      id: "course-1",
+      slug: "toan-tu-duy",
+      title: "Toan tu duy",
+      description: "Mo ta ngan",
+      priceVnd: 300000,
+      listPriceVnd: 300000,
+      salePriceVnd: null,
+      saleStartsAt: null,
+      saleEndsAt: null,
+      durationDays: 30,
+      coverImageUrl: null,
+      isPublished: false,
+    });
+
+    const response = await PATCH(
+      new Request("http://localhost/api/admin/courses/course-1", {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          origin: "http://localhost",
+          host: "localhost",
+        },
+        body: JSON.stringify({ isPublished: true }),
+      }) as never,
+      { params: Promise.resolve({ id: "course-1" }) },
+    );
+    const body = await response.json();
+
+    expect(response.status).toBe(422);
+    expect(body.ok).toBe(false);
+    expect(body.error.details.code).toBe("COURSE_PUBLISH_DESCRIPTION_TOO_SHORT");
     expect(prismaMock.course.update).not.toHaveBeenCalled();
   });
 });

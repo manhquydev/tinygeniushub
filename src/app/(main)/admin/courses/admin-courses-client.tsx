@@ -114,7 +114,7 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
       title: course.title,
       description: course.description,
       listPriceVnd: String(course.listPriceVnd ?? course.priceVnd),
-      salePriceVnd: course.salePriceVnd ? String(course.salePriceVnd) : "",
+      salePriceVnd: course.salePriceVnd === null || course.salePriceVnd === undefined ? "" : String(course.salePriceVnd),
       saleStartsAt: toDatetimeLocalInputValue(course.saleStartsAt),
       saleEndsAt: toDatetimeLocalInputValue(course.saleEndsAt),
       durationDays: String(course.durationDays),
@@ -143,7 +143,7 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
       }
 
       if (salePriceCandidate !== null) {
-        if (!Number.isFinite(salePriceCandidate) || salePriceCandidate <= 0) {
+        if (!Number.isFinite(salePriceCandidate) || salePriceCandidate < 0) {
           throw new Error("Giá khuyến mãi không hợp lệ");
         }
         if (salePriceCandidate >= listPriceVnd) {
@@ -254,7 +254,7 @@ export function AdminCoursesClient({ initialCourses }: { initialCourses: CourseR
             <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">Tiêu đề *<input className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal" value={form.title} onChange={(event) => setForm((current) => ({ ...current, title: event.target.value }))} /></label>
             <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)] md:col-span-2">Mô tả<textarea className="min-h-20 rounded-xl border border-[var(--admin-card-border)] px-3 py-2 text-sm font-normal" value={form.description} onChange={(event) => setForm((current) => ({ ...current, description: event.target.value }))} /></label>
             <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">Giá gốc (VND)<input type="number" className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal" value={form.listPriceVnd} onChange={(event) => setForm((current) => ({ ...current, listPriceVnd: event.target.value }))} /></label>
-            <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">Giá khuyến mãi (VND)<input type="number" className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal" value={form.salePriceVnd} onChange={(event) => setForm((current) => ({ ...current, salePriceVnd: event.target.value }))} placeholder="để trống nếu không sale" /></label>
+            <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">Giá khuyến mãi (VND)<input type="number" className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal" value={form.salePriceVnd} onChange={(event) => setForm((current) => ({ ...current, salePriceVnd: event.target.value }))} placeholder="để trống nếu không sale, nhập 0 để mở miễn phí tạm thời" /></label>
             <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">Bắt đầu sale<input type="datetime-local" className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal" value={form.saleStartsAt} onChange={(event) => setForm((current) => ({ ...current, saleStartsAt: event.target.value }))} /></label>
             <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">Kết thúc sale<input type="datetime-local" className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal" value={form.saleEndsAt} onChange={(event) => setForm((current) => ({ ...current, saleEndsAt: event.target.value }))} /></label>
             <label className="grid gap-1.5 text-sm font-semibold text-[var(--admin-text-secondary)]">Thời lượng (ngày)<input type="number" className="min-h-10 rounded-xl border border-[var(--admin-card-border)] px-3 text-sm font-normal" value={form.durationDays} onChange={(event) => setForm((current) => ({ ...current, durationDays: event.target.value }))} /></label>

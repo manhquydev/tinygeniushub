@@ -30,6 +30,7 @@ const updateCourseSchema = z.object({
   coverImageUrl: courseCoverImageSchema.nullish(),
   isPublished: z.boolean().optional(),
 });
+const MIN_COURSE_DESCRIPTION_LENGTH = 80;
 
 type NormalizedCoursePricingPayload = {
   priceVnd: number;
@@ -118,6 +119,14 @@ export async function PATCH(
       : null;
 
     if (body.isPublished === true) {
+      const descriptionForPublish = (body.description ?? existing.description ?? "").trim();
+      if (descriptionForPublish.length < MIN_COURSE_DESCRIPTION_LENGTH) {
+        throw new DomainError(
+          "Course description is not ready for publish",
+          422,
+          "COURSE_PUBLISH_DESCRIPTION_TOO_SHORT",
+        );
+      }
       const pricing = resolveCourseDisplayPricing(
         normalizedPricing ?? {
           priceVnd: existing.priceVnd,
@@ -127,7 +136,7 @@ export async function PATCH(
           saleEndsAt: existing.saleEndsAt,
         },
       );
-      if (!pricing.isPurchasable || pricing.saleStatus === "invalid") {
+      if (pricing.saleStatus === "invalid") {
         throw new DomainError(
           "Course pricing is not ready for publish",
           422,

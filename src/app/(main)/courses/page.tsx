@@ -5,10 +5,7 @@ import { BarChart3, BookOpen, ShieldCheck, SlidersHorizontal } from "lucide-reac
 import { AB_COURSES_COOKIE, type AbVariant } from "@/lib/ab-test-constants";
 import { parseFilterParams, type CourseFilterParams } from "@/lib/courses/course-filter-utils";
 import { getStorefrontCourses, type StorefrontCourse } from "@/modules/courses/course-service";
-import { getCourseBundleByCourseSlug } from "@/modules/courses/course-bundles";
-import { COURSE_TRIAL_PREVIEW_LESSON_LIMIT } from "@/modules/courses/course-trial-constants";
 import { isPilotSkuSlug } from "@/modules/courses/pilot-sku-catalog";
-import { getBundleStorefrontContent } from "@/modules/courses/course-storefront-content";
 import { CourseActiveFilters } from "@/components/courses/course-active-filters";
 import { CourseCard } from "@/components/courses/course-card";
 import { CourseCheckoutStatusBanner } from "@/components/courses/course-checkout-status-banner";
@@ -16,9 +13,7 @@ import { CourseFilterSidebar } from "@/components/courses/course-filter-sidebar"
 import { CourseMobileFilterTrigger } from "@/components/courses/course-mobile-filter-trigger";
 import { CoursePagination } from "@/components/courses/course-pagination";
 import { CourseSortSelect } from "@/components/courses/course-sort-select";
-import {
-  CourseCatalogViewTracker,
-} from "@/components/courses/course-storefront-tracking";
+import { CourseCatalogViewTracker } from "@/components/courses/course-storefront-tracking";
 
 export const metadata: Metadata = {
   title: "Khóa học cho bé - Cùng Con Tự Học",
@@ -114,34 +109,31 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
       <section className="overflow-hidden rounded-[28px] border border-emerald-100 bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_40%,#f0fdf4_100%)] p-5 shadow-sm sm:p-8">
         <div className="grid gap-5">
           <p className="inline-flex w-fit items-center rounded-full border border-emerald-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700">
-            Danh sách khóa học độc lập
+            Khóa học cho phụ huynh chọn nhanh
           </p>
           <div className="grid gap-3">
             <h1 className="text-3xl font-black tracking-[-0.03em] text-slate-900 sm:text-4xl">
-              Chọn đúng khóa để con tiến bộ sớm, không học sai mức
+              Chọn đúng khóa cho con trong 60 giây
             </h1>
             <p className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              Bộ lọc được giữ cố định khi cuộn, giúp phụ huynh so sánh nhanh theo mục tiêu, độ tuổi, ngân sách và thời
-              lượng trước khi quyết định mua.
+              Mỗi khóa đều trả lời rõ 3 câu hỏi: con học gì, có hợp không, và ba mẹ theo dõi tiến bộ ra sao.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/70 bg-white/85 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Trial cố định</p>
-              <p className="mt-1 text-sm font-black text-slate-900">
-                Xem trước {COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-slate-500">Đủ để kiểm tra mức phù hợp trước khi mua.</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Con học gì</p>
+              <p className="mt-1 text-sm font-black text-slate-900">Xem trước nội dung và mục tiêu của từng khóa</p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">Đủ để biết con sẽ học gì trước khi mở chi tiết.</p>
             </div>
             <div className="rounded-2xl border border-white/70 bg-white/85 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Chọn nhanh</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Có hợp không</p>
               <p className="mt-1 text-sm font-black text-slate-900">Lọc theo tuổi, giá, thời lượng</p>
-              <p className="mt-1 text-xs leading-relaxed text-slate-500">Giảm số khóa phải mở detail để so sánh.</p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">Rút gọn số khóa cần mở để so sánh kỹ.</p>
             </div>
             <div className="rounded-2xl border border-white/70 bg-white/85 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Mua tự tin</p>
-              <p className="mt-1 text-sm font-black text-slate-900">Đổi level/chuyển khóa khi chưa khớp</p>
-              <p className="mt-1 text-xs leading-relaxed text-slate-500">Hỗ trợ sau mua để giảm rủi ro chọn nhầm.</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Theo dõi tiến bộ</p>
+              <p className="mt-1 text-sm font-black text-slate-900">Thông tin theo dõi hiển thị ngay trên card</p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">Giúp ba mẹ quay lại kiểm tra và quyết định nhanh hơn.</p>
             </div>
           </div>
         </div>
@@ -172,7 +164,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
               <CourseSortSelect currentSort={filters.sort} />
             </div>
             <p className="mt-3 text-sm text-slate-600">
-              Hiển thị <span className="font-bold text-slate-900">{visibleCourses.length}</span> trên{" "}
+              Hiển thị <span className="font-bold text-slate-900">{visibleCourses.length}</span> /{" "}
               <span className="font-bold text-slate-900">{filteredCourses.length}</span> khóa phù hợp.
             </p>
             <div className="mt-3">
@@ -192,9 +184,9 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
             </section>
           ) : visibleCourses.length === 0 ? (
             <section className="card items-center text-center" style={{ padding: "2.2rem 1.25rem" }}>
-              <p className="text-lg font-bold text-slate-900">Không tìm thấy khóa phù hợp</p>
+              <p className="text-lg font-bold text-slate-900">Chưa tìm thấy khóa phù hợp</p>
               <p className="max-w-md text-sm leading-relaxed text-slate-600">
-                Thử nới rộng bộ lọc hoặc xóa toàn bộ để xem lại đầy đủ danh mục khóa học.
+                Thử nới bộ lọc để xem thêm lựa chọn cho con.
               </p>
               <Link href="/courses" className="ghost-button" style={{ width: "fit-content" }}>
                 Xóa bộ lọc
@@ -202,16 +194,12 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
             </section>
           ) : (
             <>
-              <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              <section className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {visibleCourses.map((course, index) => {
-                  const bundle = getCourseBundleByCourseSlug(course.slug);
-                  const bundleContent = bundle ? getBundleStorefrontContent(bundle.slug) : null;
-
                   return (
                     <CourseCard
                       key={course.slug}
                       course={course}
-                      bundleContent={bundleContent}
                       showPilotBadge={isPilotSkuSlug(course.slug)}
                       variant={coursesVariant}
                       index={startIndex + index}
@@ -227,33 +215,33 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
       </section>
 
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h2 className="text-lg font-extrabold text-slate-900">Vì sao phụ huynh dễ quyết định hơn?</h2>
+        <h2 className="text-lg font-extrabold text-slate-900">Vì sao phụ huynh quyết định nhanh hơn?</h2>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           <article className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
               <BookOpen className="h-4 w-4 text-sky-600" />
-              Mỗi card là một khóa
+              Tập trung vào điều quan trọng
             </p>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              Chọn trực tiếp khóa phù hợp, không cần đi qua lớp danh mục mơ hồ trước đó.
+              Mỗi card chỉ giữ thông tin giúp phụ huynh ra quyết định, tránh dồn quá nhiều dữ liệu kỹ thuật.
             </p>
           </article>
           <article className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
               <BarChart3 className="h-4 w-4 text-emerald-600" />
-              Lọc theo nhu cầu thật
+              So sánh nhanh theo nhu cầu thật
             </p>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              Có thể lọc theo độ tuổi, giá, thời lượng và từ khóa để rút ngắn thời gian so sánh.
+              Lọc theo độ tuổi, học phí, thời lượng để rút ngắn thời gian tìm khóa phù hợp cho con.
             </p>
           </article>
           <article className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
               <ShieldCheck className="h-4 w-4 text-amber-600" />
-              Bộ lọc luôn trong tầm tay
+              Quyết định có điểm tựa
             </p>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              Khi cuộn sâu xuống danh sách, bộ lọc desktop vẫn được cố định dưới nav để chỉnh nhanh mà không phải cuộn lên.
+              Dễ đối chiếu tiến độ sau khi học thử và nhận hỗ trợ chọn lộ trình trước khi chốt đăng ký.
             </p>
           </article>
         </div>

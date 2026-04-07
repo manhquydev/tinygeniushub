@@ -1376,3 +1376,61 @@ pm2 stop all && pnpm backup:restore -- --file=<backup-file> && pm2 start all
 
 *Generated for Cung Con Tu Hoc - Abeka Curriculum System*  
 *Version: 1.0.0 | 2026-04-04*
+
+---
+
+## WS4 Mandatory Gate: Production Verification + Observability (2026-04-04)
+
+Deployment is blocked unless this gate script passes both pre-deploy and post-deploy.
+
+### Required Commands
+
+```bash
+# Pre-deploy gate (run on production host)
+STAGE=pre-deploy \
+BASE_URL="http://localhost:3000" \
+ENV_FILE=".env" \
+bash scripts/production/production-gate-check.sh
+
+# Post-deploy gate (run immediately after deploy)
+STAGE=post-deploy \
+BASE_URL="http://localhost:3000" \
+ENV_FILE=".env" \
+bash scripts/production/production-gate-check.sh
+```
+
+### Gate Coverage (must pass)
+
+- UI smoke: `/`, `/pricing`, `/courses`, `/try-garden`, `/admin/login`
+- Core API health: `/api/health` payload must return `ok=true` and `status=ok`
+- Package parity: `/api/abeka/packages` must match canonical 8 package codes
+- Secrets readiness: required secrets must exist and no placeholder values
+- Worker observability: detect restart storm from PM2 restart delta in short window
+
+### Worker Restart Storm Tracking
+
+- Default threshold: fail if restart delta `> 2` within `20s`
+- Worker process name default: `cungcontuhoc-worker`
+- Override when needed:
+
+```bash
+bash scripts/production/production-gate-check.sh \
+  --worker-name "<pm2-worker-name>" \
+  --restart-window 30 \
+  --max-restart-delta 1
+```
+
+### Secrets Readiness Rules
+
+- Baseline required: `DATABASE_URL`, `SESSION_SECRET`, `BETTER_AUTH_SECRET`, `ADMIN_AUTH_SECRET`, `BETTER_AUTH_URL`, `BILLING_WEBHOOK_SECRET`, `CRON_SECRET`, `MOCK_UPLOAD_SIGNING_SECRET`, `REDIS_URL`
+- Provider-conditional requirements:
+- `BILLING_PROVIDER=stripe` -> `STRIPE_SECRET_KEY`
+- `COURSE_PAYMENT_PROVIDER=payos` -> `PAYOS_CLIENT_ID`, `PAYOS_API_KEY`, `PAYOS_CHECKSUM_KEY`
+- `REPORT_EMAIL_PROVIDER=resend` -> `REPORT_EMAIL_RESEND_API_KEY`, `REPORT_EMAIL_FROM`
+- `REPORT_EMAIL_PROVIDER=brevo` -> `REPORT_EMAIL_BREVO_API_KEY`, `REPORT_EMAIL_FROM`
+- Placeholder values (`replace-with`, `change_me`, `example.com`, `todo`) are treated as fail.
+
+### Deploy Decision Rule
+
+- `FAIL > 0` from gate script: stop deploy or rollback.
+- `FAIL = 0`: deployment gate passed.

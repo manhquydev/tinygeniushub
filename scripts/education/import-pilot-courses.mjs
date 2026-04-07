@@ -21,6 +21,65 @@ const prisma = new PrismaClient();
 const strictMode = process.argv.includes("--strict");
 const dryRun = process.argv.includes("--dry-run");
 const outPath = path.join(reportsDir, "pilot-import-result.json");
+const forceResetPricingOnRerun = process.env.PILOT_FORCE_RESET_PRICING_ON_RERUN === "true";
+
+function parseNonNegativeInt(value, fallback) {
+  const parsed = Number.parseInt(String(value ?? ""), 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
+}
+
+function parseOptionalNonNegativeInt(value) {
+  if (value === null || value === undefined || String(value).trim() === "") {
+    return null;
+  }
+  const parsed = Number.parseInt(String(value), 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+}
+
+function parseOptionalDate(value) {
+  if (!value) return null;
+  const parsed = new Date(value);
+  return Number.isFinite(parsed.getTime()) ? parsed : null;
+}
+
+const DEFAULT_LIST_PRICE_VND = parseNonNegativeInt(process.env.PILOT_LIST_PRICE_VND, 299000);
+const DEFAULT_SALE_DURATION_DAYS = parseNonNegativeInt(process.env.PILOT_SALE_DURATION_DAYS, 30);
+const hasSalePriceConfigured =
+  typeof process.env.PILOT_SALE_PRICE_VND === "string" &&
+  process.env.PILOT_SALE_PRICE_VND.trim().length > 0;
+const DEFAULT_SALE_PRICE_VND = hasSalePriceConfigured
+  ? parseOptionalNonNegativeInt(process.env.PILOT_SALE_PRICE_VND)
+  : 0;
+const configuredSaleStartsAt = parseOptionalDate(process.env.PILOT_SALE_STARTS_AT);
+const configuredSaleEndsAt = parseOptionalDate(process.env.PILOT_SALE_ENDS_AT);
+const DEFAULT_SALE_STARTS_AT = configuredSaleStartsAt ?? new Date();
+const DEFAULT_SALE_ENDS_AT =
+  configuredSaleEndsAt ??
+  new Date(DEFAULT_SALE_STARTS_AT.getTime() + DEFAULT_SALE_DURATION_DAYS * 24 * 60 * 60 * 1000);
+const allowFreeSaleWithoutWindow = process.env.PILOT_ALLOW_FREE_SALE_WITHOUT_WINDOW === "true";
+const hasExplicitSaleWindow =
+  DEFAULT_SALE_STARTS_AT &&
+  DEFAULT_SALE_ENDS_AT &&
+  DEFAULT_SALE_STARTS_AT.getTime() < DEFAULT_SALE_ENDS_AT.getTime();
+const hasValidSaleWindow =
+  (!DEFAULT_SALE_STARTS_AT && !DEFAULT_SALE_ENDS_AT) ||
+  Boolean(hasExplicitSaleWindow);
+const normalizedSalePriceVnd =
+  typeof DEFAULT_SALE_PRICE_VND === "number" &&
+  DEFAULT_LIST_PRICE_VND > 0 &&
+  DEFAULT_SALE_PRICE_VND < DEFAULT_LIST_PRICE_VND &&
+  (DEFAULT_SALE_PRICE_VND > 0 || hasExplicitSaleWindow || allowFreeSaleWithoutWindow)
+    ? DEFAULT_SALE_PRICE_VND
+    : null;
+const defaultCoursePricing = {
+  priceVnd: DEFAULT_LIST_PRICE_VND,
+  listPriceVnd: DEFAULT_LIST_PRICE_VND,
+  salePriceVnd: normalizedSalePriceVnd,
+  saleStartsAt:
+    normalizedSalePriceVnd !== null && hasValidSaleWindow ? DEFAULT_SALE_STARTS_AT : null,
+  saleEndsAt:
+    normalizedSalePriceVnd !== null && hasValidSaleWindow ? DEFAULT_SALE_ENDS_AT : null,
+};
 
 function summarizeCourseCode(courseCode) {
   if (courseCode === "abeka") return "Abeka";
@@ -158,9 +217,11 @@ async function main() {
             slug: planned.slug,
             title: buildCourseTitle(planned.row),
             description: buildDescription(planned.row, planned.sourceSlug, planned.strategy),
-            priceVnd: planned.sourceCourse.priceVnd,
-            listPriceVnd: planned.sourceCourse.listPriceVnd ?? planned.sourceCourse.priceVnd,
-            salePriceVnd: planned.sourceCourse.salePriceVnd ?? null,
+            priceVnd: defaultCoursePricing.priceVnd,
+            listPriceVnd: defaultCoursePricing.listPriceVnd,
+            salePriceVnd: defaultCoursePricing.salePriceVnd,
+            saleStartsAt: defaultCoursePricing.saleStartsAt,
+            saleEndsAt: defaultCoursePricing.saleEndsAt,
             durationDays: Math.max(7, Number(planned.row.weeks) * 7),
             isPublished: false,
             coverImageUrl: planned.sourceCourse.coverImageUrl,
@@ -168,9 +229,15 @@ async function main() {
           update: {
             title: buildCourseTitle(planned.row),
             description: buildDescription(planned.row, planned.sourceSlug, planned.strategy),
-            priceVnd: planned.sourceCourse.priceVnd,
-            listPriceVnd: planned.sourceCourse.listPriceVnd ?? planned.sourceCourse.priceVnd,
-            salePriceVnd: planned.sourceCourse.salePriceVnd ?? null,
+            ...(forceResetPricingOnRerun
+              ? {
+                  priceVnd: defaultCoursePricing.priceVnd,
+                  listPriceVnd: defaultCoursePricing.listPriceVnd,
+                  salePriceVnd: defaultCoursePricing.salePriceVnd,
+                  saleStartsAt: defaultCoursePricing.saleStartsAt,
+                  saleEndsAt: defaultCoursePricing.saleEndsAt,
+                }
+              : {}),
             durationDays: Math.max(7, Number(planned.row.weeks) * 7),
             coverImageUrl: planned.sourceCourse.coverImageUrl,
           },

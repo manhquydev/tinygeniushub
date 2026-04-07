@@ -74,25 +74,27 @@ describe("admin course publish route", () => {
     expect(response.status).toBe(404);
   });
 
-  it("blocks publish when pricing is not ready", async () => {
+  it("blocks publish when sale window is invalid", async () => {
     findUniqueMock.mockResolvedValueOnce({
       id: "course-1",
       isPublished: false,
-      priceVnd: 0,
-      listPriceVnd: null,
-      salePriceVnd: null,
-      saleStartsAt: null,
-      saleEndsAt: null,
+      priceVnd: 300000,
+      listPriceVnd: 300000,
+      salePriceVnd: 200000,
+      saleStartsAt: "2026-03-27T10:00:00.000Z",
+      saleEndsAt: "2026-03-27T08:00:00.000Z",
+      description:
+        "Mo ta khoa hoc du do dai de pass quality gate truoc khi kiem tra sale window invalid.",
     });
     resolveCourseDisplayPricingMock.mockReturnValueOnce({
-      salePriceVnd: 0,
-      listPriceVnd: 0,
+      salePriceVnd: 300000,
+      listPriceVnd: 300000,
       hasDiscount: false,
-      isPurchasable: false,
+      isPurchasable: true,
       statusLabel: "pending",
-      saleStatus: "none",
-      saleStartsAt: null,
-      saleEndsAt: null,
+      saleStatus: "invalid",
+      saleStartsAt: new Date("2026-03-27T10:00:00.000Z"),
+      saleEndsAt: new Date("2026-03-27T08:00:00.000Z"),
     });
 
     const response = await POST(buildRequest({ isPublished: true }), {
@@ -105,6 +107,44 @@ describe("admin course publish route", () => {
     expect(updateMock).not.toHaveBeenCalled();
   });
 
+  it("publishes zero-priced temporary courses", async () => {
+    findUniqueMock.mockResolvedValueOnce({
+      id: "course-1",
+      isPublished: false,
+      priceVnd: 0,
+      listPriceVnd: null,
+      salePriceVnd: null,
+      saleStartsAt: null,
+      saleEndsAt: null,
+      description:
+        "Mo ta khoa hoc mien phi tam thoi du 80 ky tu de route publish khong bi chan boi quality gate.",
+    });
+    resolveCourseDisplayPricingMock.mockReturnValueOnce({
+      salePriceVnd: 0,
+      listPriceVnd: 0,
+      hasDiscount: false,
+      isPurchasable: false,
+      statusLabel: "freeTemporary",
+      saleStatus: "none",
+      saleStartsAt: null,
+      saleEndsAt: null,
+    });
+    updateMock.mockResolvedValueOnce({
+      id: "course-1",
+      isPublished: true,
+    });
+
+    const response = await POST(buildRequest({ isPublished: true }), {
+      params: Promise.resolve({ id: "course-1" }),
+    });
+
+    expect(response.status).toBe(200);
+    expect(updateMock).toHaveBeenCalledWith({
+      where: { id: "course-1" },
+      data: { isPublished: true },
+    });
+  });
+
   it("publishes when pricing is valid", async () => {
     findUniqueMock.mockResolvedValueOnce({
       id: "course-1",
@@ -114,6 +154,8 @@ describe("admin course publish route", () => {
       salePriceVnd: 250000,
       saleStartsAt: null,
       saleEndsAt: null,
+      description:
+        "Mo ta khoa hoc thuong mai du do dai de pass quality gate truoc khi kiem tra pricing.",
     });
     resolveCourseDisplayPricingMock.mockReturnValueOnce({
       salePriceVnd: 250000,
@@ -139,5 +181,27 @@ describe("admin course publish route", () => {
       where: { id: "course-1" },
       data: { isPublished: true },
     });
+  });
+
+  it("blocks publish when description is too short", async () => {
+    findUniqueMock.mockResolvedValueOnce({
+      id: "course-1",
+      isPublished: false,
+      priceVnd: 300000,
+      listPriceVnd: 300000,
+      salePriceVnd: null,
+      saleStartsAt: null,
+      saleEndsAt: null,
+      description: "Mo ta ngan",
+    });
+
+    const response = await POST(buildRequest({ isPublished: true }), {
+      params: Promise.resolve({ id: "course-1" }),
+    });
+    const body = await response.json();
+
+    expect(response.status).toBe(422);
+    expect(body.error.details.code).toBe("COURSE_PUBLISH_DESCRIPTION_TOO_SHORT");
+    expect(updateMock).not.toHaveBeenCalled();
   });
 });

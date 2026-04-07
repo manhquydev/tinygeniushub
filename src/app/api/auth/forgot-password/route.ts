@@ -4,12 +4,13 @@ import { auth } from "@/lib/auth/better-auth";
 import { env } from "@/lib/env";
 import { fail, ok } from "@/lib/http";
 import { logInfo, logWarn } from "@/lib/observability/logger";
-import { buildRateLimitIdentity, enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
+import { buildRateLimitIdentity, getRequestIp } from "@/lib/rate-limit";
 import { handleRouteError } from "@/lib/route-error";
-import { assertTrustedOrigin } from "@/lib/security/csrf";
+import {
+  assertRouteSecurityPreconditions,
+  enforceRouteRateLimitBuckets,
+} from "@/lib/security/route-security-controls";
 import { DomainError } from "@/modules/platform/errors";
-import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
-import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
 
 const forgotPasswordSchema = z.object({
   email: z.string().email(),
@@ -23,48 +24,49 @@ export async function POST(request: Request) {
   let emailIdentityHash: string | undefined;
 
   try {
-    assertTrustedOrigin(request);
-    await assertRequestAllowedBySecurityControls(request);
+    await assertRouteSecurityPreconditions(request);
 
     clientIp = getRequestIp(request);
-    const [ipPolicy, emailPolicy] = await Promise.all([
-      getRateLimitPolicy("auth.forgot_password.ip"),
-      getRateLimitPolicy("auth.forgot_password.email"),
+    const ipRateLimitDenied = await enforceRouteRateLimitBuckets([
+      {
+        policyKey: "auth.forgot_password.ip",
+        key: `auth:forgot_password:${clientIp}`,
+        onDenied: (rateLimit) => {
+          logWarn("auth.forgot_password.rate_limited", {
+            scope: "ip",
+            ip: clientIp,
+            reason: rateLimit.reason,
+            retryAfterMs: rateLimit.retryAfterMs,
+          });
+          return ok({ message: SUCCESS_MESSAGE });
+        },
+      },
     ]);
-    const ipRateLimit = await enforceRateLimit({
-      key: `auth:forgot_password:${clientIp}`,
-      limit: ipPolicy.limit,
-      windowMs: ipPolicy.windowMs,
-      storeFailureMode: "deny",
-    });
-    if (!ipRateLimit.allowed) {
-      logWarn("auth.forgot_password.rate_limited", {
-        scope: "ip",
-        ip: clientIp,
-        reason: ipRateLimit.reason,
-        retryAfterMs: ipRateLimit.retryAfterMs,
-      });
-      return ok({ message: SUCCESS_MESSAGE });
+    if (ipRateLimitDenied) {
+      return ipRateLimitDenied;
     }
 
     const input = forgotPasswordSchema.parse(await request.json());
     emailIdentityHash = buildRateLimitIdentity(input.email);
 
-    const emailRateLimit = await enforceRateLimit({
-      key: `auth:forgot_password:email:${emailIdentityHash}`,
-      limit: emailPolicy.limit,
-      windowMs: emailPolicy.windowMs,
-      storeFailureMode: "deny",
-    });
-    if (!emailRateLimit.allowed) {
-      logWarn("auth.forgot_password.rate_limited", {
-        scope: "email",
-        ip: clientIp,
-        identityHash: emailIdentityHash,
-        reason: emailRateLimit.reason,
-        retryAfterMs: emailRateLimit.retryAfterMs,
-      });
-      return ok({ message: SUCCESS_MESSAGE });
+    const emailRateLimitDenied = await enforceRouteRateLimitBuckets([
+      {
+        policyKey: "auth.forgot_password.email",
+        key: `auth:forgot_password:email:${emailIdentityHash}`,
+        onDenied: (rateLimit) => {
+          logWarn("auth.forgot_password.rate_limited", {
+            scope: "email",
+            ip: clientIp,
+            identityHash: emailIdentityHash,
+            reason: rateLimit.reason,
+            retryAfterMs: rateLimit.retryAfterMs,
+          });
+          return ok({ message: SUCCESS_MESSAGE });
+        },
+      },
+    ]);
+    if (emailRateLimitDenied) {
+      return emailRateLimitDenied;
     }
 
     await auth.api.requestPasswordReset({

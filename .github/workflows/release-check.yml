@@ -66,6 +66,41 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Grapuco flow quality warning gate
+        env:
+          GRAPUCO_API_KEY: ${{ secrets.GRAPUCO_API_KEY }}
+        run: |
+          if [ -z "${GRAPUCO_API_KEY}" ]; then
+            echo "GRAPUCO_API_KEY secret is not set. Skip Grapuco flow quality check."
+            exit 0
+          fi
+
+          mkdir -p .codex
+          cat > .codex/.mcp.json <<EOF
+          {
+            "mcpServers": {
+              "grapuco": {
+                "command": "npx",
+                "args": [
+                  "-y",
+                  "mcp-remote",
+                  "https://api.grapuco.com/mcp",
+                  "--header",
+                  "X-Api-Key: ${GRAPUCO_API_KEY}"
+                ],
+                "env": {},
+                "disabled": false
+              }
+            }
+          }
+          EOF
+
+          pnpm grapuco:quality-report \
+            -- --stack codex \
+            --baseline-file scripts/grapuco/flow-quality-baseline.json \
+            --report-file reports/grapuco/flow-quality-latest.json \
+            --summary-file reports/grapuco/flow-quality-summary.md
+
       - name: Prepare database
         run: |
           pnpm prisma migrate deploy
@@ -106,6 +141,14 @@ jobs:
             echo "- Performance report was not generated." >> "$GITHUB_STEP_SUMMARY"
           fi
 
+          if [ -f reports/grapuco/flow-quality-summary.md ]; then
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "### Grapuco Flow Quality" >> "$GITHUB_STEP_SUMMARY"
+            cat reports/grapuco/flow-quality-summary.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- Grapuco flow quality summary was not generated." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: Upload release evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -117,5 +160,7 @@ jobs:
             reports/security/latest-summary.md
             reports/security/security-baseline-*.json
             reports/perf/latest.json
+            reports/grapuco/flow-quality-latest.json
+            reports/grapuco/flow-quality-summary.md
             test-results/playwright-report
             test-results/playwright-artifacts

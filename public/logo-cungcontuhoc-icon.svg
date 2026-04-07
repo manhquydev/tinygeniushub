@@ -1,54 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 0 300 250" width="100%" height="100%">
-  <!-- ICON ONLY - Dành cho Favicon Web, Avatar Social Media -->
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
   <defs>
-    <radialGradient id="knowledgeLight" cx="50%" cy="100%" r="100%">
-      <stop offset="0%" style="stop-color:#fef08a;stop-opacity:0.6" />
-      <stop offset="40%" style="stop-color:#fde047;stop-opacity:0.2" />
-      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
-    </radialGradient>
+    <linearGradient id="bookBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="sunGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#facc15" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.85"/>
+    </linearGradient>
   </defs>
 
-  <!-- Hào quang tri thức -->
-  <path d="M 60,195 A 140 140 0 0 1 340,195 Z" fill="url(#knowledgeLight)" />
-  
-  <!-- Cuốn sách -->
-  <g transform="translate(0, 5)">
-      <path d="M 200,210 C 120,205 80,185 80,185 C 80,185 130,225 200,225 C 270,225 320,185 320,185 C 320,185 280,205 200,210 Z" fill="#0284c7" />
-      <path d="M 200,218 C 140,215 90,188 90,188 C 90,188 110,168 115,168 C 140,188 170,198 200,198 Z" fill="#cbd5e1" />
-      <path d="M 200,215 C 140,212 90,185 90,185 C 90,185 110,165 115,165 C 140,185 170,195 200,195 Z" fill="#f8fafc" />
-      <path d="M 200,218 C 260,215 310,188 310,188 C 310,188 290,168 285,168 C 260,188 230,198 200,198 Z" fill="#cbd5e1" />
-      <path d="M 200,215 C 260,212 310,185 310,185 C 310,185 290,165 285,165 C 260,185 230,195 200,195 Z" fill="#ffffff" />
-      <path d="M 90,185 C 140,212 200,215 200,215 C 200,215 260,212 310,185" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.8" stroke-linecap="round" />
-      <path d="M 200,195 L 200,215" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" />
-  </g>
+  <circle cx="100" cy="60" r="20" fill="url(#sunGlow)"/>
+  <path d="M 100 24 L 104 37 L 117 41 L 104 45 L 100 58 L 96 45 L 83 41 L 96 37 Z" fill="#fde68a"/>
 
-  <!-- Cú Mẹ -->
-  <g transform="translate(0, -10)">
-      <path d="M 125,188 C 125,73 150,48 200,48 C 250,48 275,73 275,188 C 275,233 125,233 125,188 Z" fill="#172554" opacity="0.15" />
-      <path d="M 125,185 C 125,70 150,45 200,45 C 250,45 275,70 275,185 C 275,230 125,230 125,185 Z" fill="#1e3a8a" />
-      <path d="M 145,185 C 145,115 255,115 255,185 C 255,225 145,225 145,185 Z" fill="#3b82f6" opacity="0.25" />
-      <circle cx="165" cy="110" r="18" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
-      <circle cx="165" cy="110" r="7" fill="#1e1b4b" />
-      <circle cx="168" cy="107" r="2.5" fill="#ffffff" />
-      <circle cx="235" cy="110" r="18" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
-      <circle cx="235" cy="110" r="7" fill="#1e1b4b" />
-      <circle cx="238" cy="107" r="2.5" fill="#ffffff" />
-      <path d="M 194,125 Q 200,120 206,125 C 204,138 196,138 194,125 Z" fill="#fbbf24" stroke="#d97706" stroke-width="1" />
-      <path d="M 125,125 C 105,160 115,200 145,205" fill="none" stroke="#60a5fa" stroke-width="6" stroke-linecap="round" />
-      <path d="M 275,125 C 295,160 285,200 255,205" fill="none" stroke="#60a5fa" stroke-width="6" stroke-linecap="round" />
-  </g>
-  
-  <!-- Cú Con -->
-  <g transform="translate(0, -5)">
-      <path d="M 168,198 C 168,148 180,138 200,138 C 220,138 232,148 232,198 C 232,218 168,218 168,198 Z" fill="#0369a1" opacity="0.2" />
-      <path d="M 168,195 C 168,145 180,135 200,135 C 220,135 232,145 232,195 C 232,215 168,215 168,195 Z" fill="#0ea5e9" />
-      <circle cx="186" cy="160" r="9" fill="#ffffff" />
-      <circle cx="186" cy="158" r="4" fill="#0f172a" />
-      <circle cx="187.5" cy="156.5" r="1.5" fill="#ffffff" />
-      <circle cx="214" cy="160" r="9" fill="#ffffff" />
-      <circle cx="214" cy="158" r="4" fill="#0f172a" />
-      <circle cx="215.5" cy="156.5" r="1.5" fill="#ffffff" />
-      <path d="M 197,168 L 203,168 L 200,175 Z" fill="#fde047" />
-      <polygon points="200,182 202,189 208,189 203,193 205,200 200,195 195,200 197,193 192,189 198,189" fill="#f59e0b" />
-  </g>
+  <path d="M 28 90 C 52 74 76 74 100 88 L 100 150 C 76 134 52 134 28 150 Z" fill="url(#bookBlue)"/>
+  <path d="M 172 90 C 148 74 124 74 100 88 L 100 150 C 124 134 148 134 172 150 Z" fill="#2563eb"/>
+  <path d="M 100 86 L 100 151" stroke="#dbeafe" stroke-width="3" stroke-linecap="round"/>
+
+  <path d="M 38 103 C 56 91 72 91 90 98" stroke="#dbeafe" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M 38 117 C 56 105 72 105 90 112" stroke="#dbeafe" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M 162 103 C 144 91 128 91 110 98" stroke="#dbeafe" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M 162 117 C 144 105 128 105 110 112" stroke="#dbeafe" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <path d="M 24 156 C 52 142 88 140 100 142 C 112 140 148 142 176 156" fill="none" stroke="#1e40af" stroke-width="4" stroke-linecap="round"/>
 </svg>

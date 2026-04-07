@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { PlayCircle } from "lucide-react";
@@ -36,10 +36,16 @@ export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, 
   const showTrialBlock = !isOwned;
 
   return (
-    <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+    <section id="curriculum-preview" className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       <h2 className="text-lg font-extrabold text-slate-900">
         {isOwned ? `${totalLessonCount} bài học trong khóa` : `Học thử ${previewLessonCount} bài đầu`}
       </h2>
+
+      {!isOwned ? (
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          Phụ huynh có thể mở từng bài để xem video học thử và kiểm tra cách bé phản hồi trước khi quyết định lộ trình.
+        </p>
+      ) : null}
 
       {showTrialBlock ? (
         <div className="mt-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4">

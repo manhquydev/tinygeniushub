@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { env } from "@/lib/env";
+import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import { fail, ok } from "@/lib/http";
 import { logInfo, logWarn } from "@/lib/observability/logger";
 import { enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
@@ -18,16 +19,7 @@ const CONTACT_WINDOW_MS = 60 * 60 * 1000;
 const CONTACT_LIMIT = 5;
 
 async function sendContactEmail(payload: z.infer<typeof contactPayloadSchema>, clientIp: string) {
-  if (env.REPORT_EMAIL_PROVIDER !== "resend") {
-    console.log("[contact] received message", {
-      provider: env.REPORT_EMAIL_PROVIDER,
-      payload,
-      clientIp,
-    });
-    return;
-  }
-
-  const recipient = env.REPORT_EMAIL_TO_OVERRIDE ?? env.ADMIN_EMAILS[0] ?? env.REPORT_EMAIL_FROM;
+  const recipient = env.ADMIN_EMAILS[0] ?? env.REPORT_EMAIL_FROM;
   if (!recipient) {
     logWarn("contact.email_recipient_missing", {
       provider: env.REPORT_EMAIL_PROVIDER,
@@ -46,28 +38,32 @@ async function sendContactEmail(payload: z.infer<typeof contactPayloadSchema>, c
     payload.message,
   ].join("\n");
 
-  const response = await fetch(`${env.REPORT_EMAIL_RESEND_API_BASE_URL}/emails`, {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${env.REPORT_EMAIL_RESEND_API_KEY}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      from: env.REPORT_EMAIL_FROM,
-      to: [recipient],
-      subject: `[Liên hệ] ${payload.subject} - ${payload.name}`,
-      text,
-      ...(env.REPORT_EMAIL_REPLY_TO ? { reply_to: env.REPORT_EMAIL_REPLY_TO } : {}),
-      tags: [
-        { name: "feature", value: "contact_form" },
-        { name: "environment", value: env.NODE_ENV },
-      ],
-    }),
+  await sendTransactionalEmail({
+    to: recipient,
+    subject: `[Liên hệ] ${payload.subject} - ${payload.name}`,
+    text,
+    tags: [{ name: "feature", value: "contact_form" }],
   });
+}
 
-  if (!response.ok) {
-    throw new Error(`Contact email delivery failed: status=${response.status}`);
-  }
+async function sendContactAcknowledgementEmail(payload: z.infer<typeof contactPayloadSchema>) {
+  const text = [
+    `Xin chào ${payload.name},`,
+    "",
+    "Cùng Con Tự Học đã nhận được yêu cầu hỗ trợ của bạn.",
+    `Chủ đề: ${payload.subject}`,
+    "Đội ngũ sẽ phản hồi trong thời gian sớm nhất.",
+    "",
+    "Nội dung bạn đã gửi:",
+    payload.message,
+  ].join("\n");
+
+  await sendTransactionalEmail({
+    to: payload.email,
+    subject: `[Cùng Con Tự Học] Đã tiếp nhận yêu cầu: ${payload.subject}`,
+    text,
+    tags: [{ name: "feature", value: "contact_form_ack" }],
+  });
 }
 
 export async function POST(request: Request) {
@@ -93,6 +89,15 @@ export async function POST(request: Request) {
 
     const payload = contactPayloadSchema.parse(await request.json());
     await sendContactEmail(payload, clientIp);
+    try {
+      await sendContactAcknowledgementEmail(payload);
+    } catch (error) {
+      logWarn("contact.ack_email_failed", {
+        ip: clientIp,
+        email: payload.email,
+        message: error instanceof Error ? error.message : "Unknown error",
+      });
+    }
 
     logInfo("contact.form_submitted", {
       ip: clientIp,

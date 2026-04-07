@@ -5,7 +5,7 @@ import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
 import { getPublishedCoursesByBundleSlug } from "@/modules/courses/course-bundle-service";
 import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
-import { getEnrollment } from "@/modules/courses/course-service";
+import { enrollParent, getEnrollment } from "@/modules/courses/course-service";
 import { createPayosPaymentLink } from "@/modules/billing/payos-client";
 import type { PilotAttributionSnapshot } from "@/modules/courses/pilot-attribution";
 import { trackPilotCheckoutStarted } from "@/modules/courses/pilot-funnel-tracking-service";
@@ -27,6 +27,7 @@ type CheckoutTarget =
       courseSlug: string;
       title: string;
       amountVnd: number;
+      listPriceVnd: number;
     };
 
 type CheckoutSession = {
@@ -55,14 +56,27 @@ function generatePayosOrderCode() {
   return Number(`${Date.now().toString().slice(-10)}${randomInt(100, 999)}`);
 }
 
-function assertCheckoutAmountAvailable(amountVnd: number) {
+function assertBundleCheckoutAmountAvailable(amountVnd: number) {
   if (amountVnd <= 0) {
     throw new DomainError(
-      "Course price is being updated. Please contact support before checkout.",
+      "Course bundle checkout amount is not available.",
       422,
       "COURSE_PRICE_NOT_AVAILABLE",
     );
   }
+}
+
+function assertCourseCheckoutPricingAvailable(pricing: ReturnType<typeof resolveCourseDisplayPricing>) {
+  const isTemporaryFree = pricing.statusLabel === "freeTemporary" && pricing.salePriceVnd === 0;
+  if (pricing.salePriceVnd > 0 || isTemporaryFree) {
+    return;
+  }
+
+  throw new DomainError(
+    "This course price is not ready for checkout yet.",
+    422,
+    "COURSE_PRICE_NOT_AVAILABLE",
+  );
 }
 
 function parseJsonObject(value: unknown) {
@@ -228,7 +242,7 @@ async function resolveCheckoutTarget(params: { parentId: string; slug: string })
     }
 
     const bundleAmountVnd = bundleResult.bundle.priceVnd;
-    assertCheckoutAmountAvailable(bundleAmountVnd);
+    assertBundleCheckoutAmountAvailable(bundleAmountVnd);
 
     return {
       kind: "bundle",
@@ -268,7 +282,7 @@ async function resolveCheckoutTarget(params: { parentId: string; slug: string })
   }
 
   const pricing = resolveCourseDisplayPricing(course);
-  assertCheckoutAmountAvailable(pricing.salePriceVnd);
+  assertCourseCheckoutPricingAvailable(pricing);
 
   return {
     kind: "course",
@@ -276,6 +290,34 @@ async function resolveCheckoutTarget(params: { parentId: string; slug: string })
     courseSlug: course.slug,
     title: course.title,
     amountVnd: pricing.salePriceVnd,
+    listPriceVnd: pricing.listPriceVnd,
+  };
+}
+
+async function resolveKidCourseDestination(parentId: string, courseSlug: string) {
+  const firstChild = await prisma.childProfile.findFirst({
+    where: { parentId },
+    orderBy: { createdAt: "asc" },
+    select: { id: true },
+  });
+
+  if (!firstChild) {
+    return `/kid/courses/${encodeURIComponent(courseSlug)}`;
+  }
+
+  return `/kid/courses/${encodeURIComponent(courseSlug)}?childId=${encodeURIComponent(firstChild.id)}`;
+}
+
+async function createFreeTemporaryCheckoutSession(input: {
+  parentId: string;
+  target: Extract<CheckoutTarget, { kind: "course" }>;
+}): Promise<CheckoutSession> {
+  await enrollParent(input.target.courseId, input.parentId);
+
+  return {
+    checkoutUrl: await resolveKidCourseDestination(input.parentId, input.target.courseSlug),
+    externalSessionId: `free_course_${randomUUID()}`,
+    expiresAt: addMinutes(new Date(), 15),
   };
 }
 
@@ -420,32 +462,42 @@ export async function createCourseCheckoutSession(params: {
     slug: params.slug,
   });
 
-  const provider = resolveCoursePaymentProvider();
+  const provider = target.kind === "course" && target.amountVnd === 0
+    ? "free_temporary"
+    : resolveCoursePaymentProvider();
   const amountVnd = target.amountVnd;
 
-  const reusedPendingSession = await findReusablePendingCheckoutSession({
-    parentId: params.parentId,
-    provider,
-    target,
-    amountVnd,
-  });
+  const reusedPendingSession =
+    provider === "free_temporary"
+      ? null
+      : await findReusablePendingCheckoutSession({
+          parentId: params.parentId,
+          provider,
+          target,
+          amountVnd,
+        });
 
   const session =
     reusedPendingSession ??
-    (provider === "payos"
-      ? await createPayosCheckoutSession({
+    (provider === "free_temporary" && target.kind === "course"
+      ? await createFreeTemporaryCheckoutSession({
           parentId: params.parentId,
-          parentEmail: params.parentEmail,
           target,
-          amountVnd,
-          attribution: params.attribution,
         })
-      : await createMockCheckoutSession({
-          parentId: params.parentId,
-          target,
-          amountVnd,
-          attribution: params.attribution,
-        }));
+      : provider === "payos"
+        ? await createPayosCheckoutSession({
+            parentId: params.parentId,
+            parentEmail: params.parentEmail,
+            target,
+            amountVnd,
+            attribution: params.attribution,
+          })
+        : await createMockCheckoutSession({
+            parentId: params.parentId,
+            target,
+            amountVnd,
+            attribution: params.attribution,
+          }));
   const checkoutResourceId = `${params.parentId}:${session.externalSessionId}`;
   const existingCheckoutAudit = await prisma.auditLog.findFirst({
     where: {
@@ -491,9 +543,14 @@ export async function createCourseCheckoutSession(params: {
     });
   }
 
+  const discountApplied =
+    target.kind === "course"
+      ? target.listPriceVnd > target.amountVnd
+      : false;
+
   return {
     checkoutUrl: session.checkoutUrl,
-    discountApplied: false,
+    discountApplied,
     finalPriceVnd: amountVnd,
     expiresAt: session.expiresAt,
     sessionId: session.externalSessionId,

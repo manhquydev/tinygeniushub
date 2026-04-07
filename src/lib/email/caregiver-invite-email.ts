@@ -1,4 +1,5 @@
 import { env } from "@/lib/env";
+import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 
 export type CaregiverInviteEmailDelivery = {
   provider: string;
@@ -22,48 +23,26 @@ function formatExpiryDate(date: Date) {
 }
 
 export async function sendCaregiverInviteEmail(input: CaregiverInviteEmailInput): Promise<CaregiverInviteEmailDelivery> {
-  if (env.REPORT_EMAIL_PROVIDER !== "resend") {
-    // TODO: move caregiver invite emails to centralized transactional email queue.
-    return {
-      provider: env.REPORT_EMAIL_PROVIDER,
-      attempted: false,
-      sent: false,
-    };
-  }
-
   const parentLabel = input.parentDisplayName && input.parentDisplayName.length > 0 ? input.parentDisplayName : "Phụ huynh";
-  const payload = {
-    from: env.REPORT_EMAIL_FROM,
-    to: [env.REPORT_EMAIL_TO_OVERRIDE ?? input.to],
-    subject: "Thư mời caregiver từ Cùng Con Tự Học",
-    text: [
+  const subject = "Thư mời caregiver từ Cùng Con Tự Học";
+  const text = [
       `${parentLabel} đã mời bạn cùng theo dõi tiến độ học tập của bé.`,
       `Nhấn vào liên kết sau để chấp nhận lời mời: ${input.inviteUrl}`,
       `Lời mời hết hạn vào ngày ${formatExpiryDate(input.expiresAt)}.`,
-    ].join("\n"),
-    ...(env.REPORT_EMAIL_REPLY_TO ? { reply_to: env.REPORT_EMAIL_REPLY_TO } : {}),
+    ].join("\n");
+
+  const delivery = await sendTransactionalEmail({
+    to: input.to,
+    subject,
+    text,
     tags: [
       { name: "feature", value: "caregiver_invite" },
-      { name: "environment", value: env.NODE_ENV },
     ],
-  };
-
-  const response = await fetch(`${env.REPORT_EMAIL_RESEND_API_BASE_URL}/emails`, {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${env.REPORT_EMAIL_RESEND_API_KEY}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(payload),
   });
 
-  if (!response.ok) {
-    throw new Error(`Caregiver invite email delivery failed: status=${response.status}`);
-  }
-
   return {
-    provider: env.REPORT_EMAIL_PROVIDER,
-    attempted: true,
-    sent: true,
+    provider: delivery.provider,
+    attempted: delivery.attempted,
+    sent: delivery.sent,
   };
 }

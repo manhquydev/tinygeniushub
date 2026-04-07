@@ -24,6 +24,7 @@ import { BundleDetailViewTracker } from "@/components/courses/course-storefront-
 import { CourseDetailStickyHeader } from "@/components/courses/course-detail-sticky-header";
 import { CourseLevelChangeRequestCard } from "@/components/courses/course-level-change-request-card";
 import { CourseDetailHero } from "./course-detail-hero";
+import { CourseDetailParentPriorities } from "./course-detail-parent-priorities";
 import { CourseDetailFitChecklist } from "./course-detail-fit-checklist";
 import { CourseDetailDifference } from "./course-detail-difference";
 import { CourseDetailTimeline } from "./course-detail-timeline";
@@ -276,13 +277,6 @@ export default async function CourseDetailPage({ params }: Props) {
         courseSlug={course.slug}
         variant={coursesVariant}
       />
-      <CourseDetailDifference differenceCards={differenceCards} courseSlug={course.slug} variant={coursesVariant} />
-      <CourseDetailTimeline
-        outcomeTimeline={outcomeTimeline}
-        courseSlug={course.slug}
-        variant={coursesVariant}
-        claritySnapshot={claritySnapshot}
-      />
       <CourseDetailCurriculum
         lessons={curriculumLessons}
         totalLessonCount={course._count.lessons}
@@ -291,20 +285,76 @@ export default async function CourseDetailPage({ params }: Props) {
         variant={coursesVariant}
       />
       <section className="rounded-3xl border border-emerald-200 bg-emerald-50/70 p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-extrabold text-emerald-900 sm:text-lg">Mua tự tin hơn</h2>
+        <h2 className="text-base font-extrabold text-emerald-900 sm:text-lg">Khóa này có hợp với con không?</h2>
         <p className="mt-2 text-sm leading-relaxed text-emerald-900/80">
-          Xem thử {COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu để kiểm tra mức phù hợp. Nếu sau khi mua thấy chưa đúng
-          level, đội ngũ có thể hỗ trợ đổi level/chuyển khóa theo chính sách.
+          Phụ huynh có thể xem thử {COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu để xác nhận mức phù hợp trước khi đi xa hơn.
+          Nếu cần đổi level/lộ trình, đội ngũ hỗ trợ trực tiếp theo tình hình học thật của bé.
         </p>
+        {claritySnapshot ? (
+          <p className="mt-2 text-xs leading-relaxed text-emerald-900/80">
+            Gợi ý theo khóa này: duy trì khoảng {claritySnapshot.pacePerWeek} {claritySnapshot.unitLabel}/tuần để ba mẹ nhìn rõ tiến bộ theo mốc tuần.
+          </p>
+        ) : null}
       </section>
       {isOwned ? <CourseLevelChangeRequestCard courseSlug={course.slug} /> : null}
-      <CourseReviewsSection courseId={course.id} courseSlug={course.slug} parentId={parent?.id ?? null} isOwned={isOwned} />
-      <CourseDetailFaq />
-      <CourseRelatedSection courses={relatedCourses} />
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Bạn cần hỗ trợ trước khi thanh toán?</h2>
+        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Thông tin phụ huynh thường cần xem thêm</h2>
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          Đội ngũ tư vấn có thể giúp bạn chọn đúng khóa theo mục tiêu học của bé.
+          Chỉ mở đúng phần cần xem để giảm quá tải thông tin khi ra quyết định.
+        </p>
+        <div className="mt-4 grid gap-3">
+          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3" open>
+            <summary className="cursor-pointer text-sm font-bold text-slate-900">Con học gì và ba mẹ theo dõi ra sao?</summary>
+            <div className="mt-3 grid gap-3">
+              <CourseDetailParentPriorities
+                parentProblem={bundleContent?.parentProblem ?? null}
+                outcomes={bundleContent?.outcomes ?? []}
+                parentVisibleValue={bundleContent?.parentVisibleValue ?? []}
+                claritySnapshot={claritySnapshot}
+              />
+              <CourseDetailTimeline
+                outcomeTimeline={outcomeTimeline}
+                courseSlug={course.slug}
+                variant={coursesVariant}
+                claritySnapshot={claritySnapshot}
+              />
+            </div>
+          </details>
+          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+            <summary className="cursor-pointer text-sm font-bold text-slate-900">So sánh mức học liền kề</summary>
+            <div className="mt-3">
+              <CourseDetailDifference differenceCards={differenceCards} courseSlug={course.slug} variant={coursesVariant} />
+            </div>
+          </details>
+          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+            <summary className="cursor-pointer text-sm font-bold text-slate-900">Đánh giá từ phụ huynh</summary>
+            <div className="mt-3">
+              <CourseReviewsSection
+                courseId={course.id}
+                courseSlug={course.slug}
+                parentId={parent?.id ?? null}
+                isOwned={isOwned}
+              />
+            </div>
+          </details>
+          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+            <summary className="cursor-pointer text-sm font-bold text-slate-900">Câu hỏi thường gặp</summary>
+            <div className="mt-3">
+              <CourseDetailFaq />
+            </div>
+          </details>
+          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+            <summary className="cursor-pointer text-sm font-bold text-slate-900">Khóa liên quan</summary>
+            <div className="mt-3">
+              <CourseRelatedSection courses={relatedCourses} />
+            </div>
+          </details>
+        </div>
+      </section>
+      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Bạn cần hỗ trợ chọn lộ trình cho bé?</h2>
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          Đội ngũ tư vấn sẽ giúp bạn chốt level phù hợp theo mục tiêu học và lịch sinh hoạt của gia đình.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link href="/contact" className="ghost-button">Liên hệ tư vấn</Link>
@@ -314,3 +364,4 @@ export default async function CourseDetailPage({ params }: Props) {
     </div>
   );
 }
+

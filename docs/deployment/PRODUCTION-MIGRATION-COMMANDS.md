@@ -651,14 +651,14 @@ EOF
 ```
 🌱 Seeding Curriculum Packages...
 
-✅ Created package: PRESCHOOL_BASIC (Preschool Basic)
-✅ Created package: PRESCHOOL_PREMIUM (Preschool Premium)
-✅ Created package: ELEMENTARY_STARTER (Elementary Starter)
-✅ Created package: ELEMENTARY_CORE (Elementary Core)
-✅ Created package: MIDDLE_SCHOOL (Middle School Plus)
-✅ Created package: HIGH_SCHOOL_BASE (High School Base)
-✅ Created package: HIGH_SCHOOL_PRO (High School Pro)
-✅ Created package: ALL_ACCESS (All Access Pass)
+✅ Created package: PRESCHOOL_PREMIUM (Mầm Non PREMIUM)
+✅ Created package: ELEMENTARY_PRO (Tiểu Học PRO)
+✅ Created package: MIDDLE_ADVANCED (Trung Học ADVANCED)
+✅ Created package: HIGH_ELITE (THPT ELITE)
+✅ Created package: ENGLISH_MASTER (Tiếng Anh MASTER)
+✅ Created package: MATH_THINKING (Toán Tư Duy MATH)
+✅ Created package: STEM_INNOVATOR (STEM INNOVATOR)
+✅ Created package: ULTIMATE (ULTIMATE)
 
 ✅ Successfully seeded 8 curriculum packages
 ```
@@ -693,16 +693,58 @@ EOF
 ║           CURRICULUM PACKAGES VERIFICATION                ║
 ╚═══════════════════════════════════════════════════════════╝
 
-Code                  | Name              | Videos | Monthly $ | Yearly $ | Active
-----------------------+-------------------+--------+-----------+----------+--------
-PRESCHOOL_BASIC       | Preschool Basic   |   1800 |    990.00 |  9900.00 | t
-PRESCHOOL_PREMIUM     | Preschool Premium |   2200 |   1490.00 | 14900.00 | t
-ELEMENTARY_STARTER    | Elementary Starter|   3500 |   1990.00 | 19900.00 | t
-ELEMENTARY_CORE       | Elementary Core   |   5800 |   2990.00 | 29900.00 | t
-MIDDLE_SCHOOL         | Middle School Plus|   4200 |   2490.00 | 24900.00 | t
-HIGH_SCHOOL_BASE      | High School Base  |   2800 |   1990.00 | 19900.00 | t
-HIGH_SCHOOL_PRO       | High School Pro   |   5200 |   3490.00 | 34900.00 | t
-ALL_ACCESS            | All Access Pass   |  20195 |   4990.00 | 49900.00 | t
+Code                  | Name               | Videos | Monthly $ | Yearly $ | Active
+----------------------+--------------------+--------+-----------+----------+--------
+PRESCHOOL_PREMIUM     | Mầm Non PREMIUM    |    680 |   1990.00 | 19900.00 | t
+ELEMENTARY_PRO        | Tiểu Học PRO       |   2550 |   3490.00 | 34900.00 | t
+MIDDLE_ADVANCED       | Trung Học ADVANCED |   2040 |   3490.00 | 34900.00 | t
+HIGH_ELITE            | THPT ELITE         |   1530 |   4490.00 | 44900.00 | t
+ENGLISH_MASTER        | Tiếng Anh MASTER   |   1190 |   2490.00 | 24900.00 | t
+MATH_THINKING         | Toán Tư Duy MATH   |   1700 |   1990.00 | 19900.00 | t
+STEM_INNOVATOR        | STEM INNOVATOR     |   2040 |   2990.00 | 29900.00 | t
+ULTIMATE              | ULTIMATE           |   8500 |   6990.00 | 69900.00 | t
+```
+
+### 5.3 Canonical Parity Check (MANDATORY)
+
+Run after seed and again after import. All checks must pass:
+
+```bash
+ssh do-server << 'EOF'
+  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+    -- total must be 8
+    SELECT COUNT(*) AS package_count FROM "CurriculumPackage";
+
+    -- old package set must be empty
+    SELECT code
+    FROM "CurriculumPackage"
+    WHERE code IN (
+      'PRESCHOOL_BASIC', 'ELEMENTARY_STARTER', 'ELEMENTARY_CORE',
+      'MIDDLE_SCHOOL', 'HIGH_SCHOOL_BASE', 'HIGH_SCHOOL_PRO', 'ALL_ACCESS'
+    );
+
+    -- canonical parity (expect 0 rows)
+    WITH canonical(code, "videoCount", "monthlyPrice", "yearlyPrice", "displayOrder") AS (
+      VALUES
+        ('PRESCHOOL_PREMIUM', 680, 199000, 1990000, 1),
+        ('ELEMENTARY_PRO', 2550, 349000, 3490000, 2),
+        ('MIDDLE_ADVANCED', 2040, 349000, 3490000, 3),
+        ('HIGH_ELITE', 1530, 449000, 4490000, 4),
+        ('ENGLISH_MASTER', 1190, 249000, 2490000, 5),
+        ('MATH_THINKING', 1700, 199000, 1990000, 6),
+        ('STEM_INNOVATOR', 2040, 299000, 2990000, 7),
+        ('ULTIMATE', 8500, 699000, 6990000, 8)
+    )
+    SELECT c.code
+    FROM canonical c
+    LEFT JOIN "CurriculumPackage" p ON p.code = c.code
+    WHERE p.code IS NULL
+       OR p."videoCount" <> c."videoCount"
+       OR p."monthlyPrice" <> c."monthlyPrice"
+       OR p."yearlyPrice" <> c."yearlyPrice"
+       OR p."displayOrder" <> c."displayOrder";
+SQL
+EOF
 ```
 
 ---
@@ -872,14 +914,14 @@ Level | Name              | Lessons | Videos
 ──────────────────────────────────────────────────────────────
 Package Code            | Coverage
 ------------------------+---------------------------
-PRESCHOOL_BASIC         | ✅ 1,800 videos (K4-K5)
-PRESCHOOL_PREMIUM       | ✅ 2,200 videos (K4-K5)
-ELEMENTARY_STARTER      | ✅ 3,500 videos (G1-G3)
-ELEMENTARY_CORE         | ✅ 5,800 videos (G1-G5)
-MIDDLE_SCHOOL           | ✅ 4,200 videos (G6-G8)
-HIGH_SCHOOL_BASE        | ✅ 2,800 videos (G9-G10)
-HIGH_SCHOOL_PRO         | ✅ 5,200 videos (G9-G12)
-ALL_ACCESS              | ✅ 20,195 videos (All)
+PRESCHOOL_PREMIUM       | ✅ 680 videos (K4-K5)
+ELEMENTARY_PRO          | ✅ 2,550 videos (G1-G5)
+MIDDLE_ADVANCED         | ✅ 2,040 videos (G6-G9)
+HIGH_ELITE              | ✅ 1,530 videos (G10-G12)
+ENGLISH_MASTER          | ✅ 1,190 videos (K4-G5, English)
+MATH_THINKING           | ✅ 1,700 videos (K4-G8, Math)
+STEM_INNOVATOR          | ✅ 2,040 videos (G3-G8, STEM)
+ULTIMATE                | ✅ 8,500 videos (K4-G12)
 
 ══════════════════════════════════════════════════════════════
 ✅ ALL VALIDATION CHECKS PASSED
@@ -1255,6 +1297,7 @@ EOF
 - [ ] Old curriculum data truncated
 - [ ] Prisma migrations deployed
 - [ ] 8 Curriculum Packages seeded
+- [ ] Canonical package parity check passed (seed + import)
 - [ ] 20,195 Abeka videos imported
 - [ ] Video counts match expected (20,195)
 - [ ] Package counts match expected (8)

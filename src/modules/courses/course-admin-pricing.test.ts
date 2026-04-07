@@ -35,6 +35,35 @@ describe("normalizeCourseAdminPricing", () => {
     expect(result.saleEndsAt?.toISOString()).toBe("2026-03-27T10:00:00.000Z");
   });
 
+  it("accepts temporary free sale (0đ) with sale window", () => {
+    const result = normalizeCourseAdminPricing({
+      priceVnd: 300000,
+      listPriceVnd: 300000,
+      salePriceVnd: 0,
+      saleStartsAt: "2026-03-27T08:00:00.000Z",
+      saleEndsAt: "2026-03-27T10:00:00.000Z",
+    });
+
+    expect(result.listPriceVnd).toBe(300000);
+    expect(result.salePriceVnd).toBe(0);
+    expect(result.saleStartsAt?.toISOString()).toBe("2026-03-27T08:00:00.000Z");
+    expect(result.saleEndsAt?.toISOString()).toBe("2026-03-27T10:00:00.000Z");
+  });
+
+  it("accepts flash sale 0đ when list price is greater than zero", () => {
+    const result = normalizeCourseAdminPricing({
+      priceVnd: 300000,
+      listPriceVnd: 300000,
+      salePriceVnd: 0,
+      saleStartsAt: "2026-03-27T08:00:00.000Z",
+      saleEndsAt: "2026-03-27T10:00:00.000Z",
+    });
+
+    expect(result.salePriceVnd).toBe(0);
+    expect(result.saleStartsAt?.toISOString()).toBe("2026-03-27T08:00:00.000Z");
+    expect(result.saleEndsAt?.toISOString()).toBe("2026-03-27T10:00:00.000Z");
+  });
+
   it("rejects sale price greater than list price", () => {
     expect(() =>
       normalizeCourseAdminPricing({
@@ -69,4 +98,3 @@ describe("normalizeCourseAdminPricing", () => {
     ).toThrowError(DomainError);
   });
 });
-

@@ -15,6 +15,41 @@ describe("resolveCourseDisplayPricing", () => {
     expect(pricing.saleStatus).toBe("none");
   });
 
+  it("marks zero-priced courses with no discount as pending", () => {
+    const pricing = resolveCourseDisplayPricing({
+      priceVnd: 0,
+      listPriceVnd: null,
+      salePriceVnd: null,
+    });
+
+    expect(pricing.salePriceVnd).toBe(0);
+    expect(pricing.listPriceVnd).toBe(0);
+    expect(pricing.isPurchasable).toBe(false);
+    expect(pricing.statusLabel).toBe("pending");
+    expect(pricing.saleStatus).toBe("none");
+  });
+
+  it("treats sale 0đ as active free-temporary discount with checkout enabled", () => {
+    const now = new Date("2026-03-27T09:00:00.000Z");
+    const pricing = resolveCourseDisplayPricing(
+      {
+        priceVnd: 300000,
+        listPriceVnd: 300000,
+        salePriceVnd: 0,
+        saleStartsAt: "2026-03-27T08:00:00.000Z",
+        saleEndsAt: "2026-03-27T10:00:00.000Z",
+      },
+      now,
+    );
+
+    expect(pricing.salePriceVnd).toBe(0);
+    expect(pricing.listPriceVnd).toBe(300000);
+    expect(pricing.hasDiscount).toBe(true);
+    expect(pricing.isPurchasable).toBe(true);
+    expect(pricing.statusLabel).toBe("freeTemporary");
+    expect(pricing.saleStatus).toBe("active");
+  });
+
   it("applies active timed sale", () => {
     const now = new Date("2026-03-27T09:00:00.000Z");
     const pricing = resolveCourseDisplayPricing(
@@ -82,5 +117,23 @@ describe("resolveCourseDisplayPricing", () => {
     expect(pricing.salePriceVnd).toBe(300000);
     expect(pricing.hasDiscount).toBe(false);
   });
-});
 
+  it("reverts 0đ sale to list price after sale window ends", () => {
+    const now = new Date("2026-03-27T11:00:00.000Z");
+    const pricing = resolveCourseDisplayPricing(
+      {
+        priceVnd: 300000,
+        listPriceVnd: 300000,
+        salePriceVnd: 0,
+        saleStartsAt: "2026-03-27T08:00:00.000Z",
+        saleEndsAt: "2026-03-27T10:00:00.000Z",
+      },
+      now,
+    );
+
+    expect(pricing.saleStatus).toBe("expired");
+    expect(pricing.salePriceVnd).toBe(300000);
+    expect(pricing.statusLabel).toBe("ready");
+    expect(pricing.isPurchasable).toBe(true);
+  });
+});

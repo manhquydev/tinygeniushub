@@ -46,6 +46,7 @@ next-env.d.ts
 .tmp-*
 .tmp-chrome-*/
 .tmp-visual/
+/.grapuco/
 build.log
 type_check*.log
 repomix-output.xml

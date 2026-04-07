@@ -13,7 +13,10 @@ type Props = {
   title: string;
   pricing: {
     salePriceVnd: number;
+    listPriceVnd: number;
+    hasDiscount: boolean;
     isPurchasable: boolean;
+    statusLabel?: "ready" | "pending" | "freeTemporary";
   };
   courseSlug: string;
   checkoutLabel: string;
@@ -34,6 +37,10 @@ export function CourseDetailStickyHeader({
   variant,
 }: Props) {
   const [visible, setVisible] = useState(false);
+  const currentPriceVnd = Math.max(0, pricing.salePriceVnd);
+  const showDiscount = pricing.listPriceVnd > currentPriceVnd && pricing.hasDiscount;
+  const isFreeTemporary = pricing.statusLabel === "freeTemporary" && currentPriceVnd === 0;
+  const checkoutCtaLabel = isFreeTemporary ? "Nhận miễn phí ngay" : checkoutLabel;
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
@@ -50,9 +57,12 @@ export function CourseDetailStickyHeader({
     >
       <div className="flex min-w-0 items-center gap-3">
         <h2 className="truncate text-sm font-bold text-slate-900">{title}</h2>
-        <p className="shrink-0 text-sm font-black text-emerald-700">
-          {pricing.isPurchasable ? formatCurrency(pricing.salePriceVnd) : "Giá đang cập nhật"}
-        </p>
+        <div className="flex shrink-0 items-end gap-2">
+          <p className="text-sm font-black text-emerald-700">{formatCurrency(currentPriceVnd)}</p>
+          {showDiscount ? (
+            <p className="pb-0.5 text-xs text-slate-500 line-through">{formatCurrency(pricing.listPriceVnd)}</p>
+          ) : null}
+        </div>
       </div>
       {isOwned ? (
         <Link href={childEntryHref} className="solid-button text-sm">
@@ -60,12 +70,12 @@ export function CourseDetailStickyHeader({
         </Link>
       ) : !pricing.isPurchasable ? (
         <Link href="/contact" className="solid-button text-sm">
-          Liên hệ tư vấn giá
+          Nhận tư vấn lộ trình
         </Link>
       ) : (
         <CourseCheckoutButton
           courseSlug={courseSlug}
-          label={checkoutLabel}
+          label={checkoutCtaLabel}
           priceVnd={pricing.salePriceVnd}
           isAuthenticated={isAuthenticated}
           tracking={{ variant, bundleSlug: courseSlug }}

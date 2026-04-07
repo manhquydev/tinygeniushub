@@ -19,6 +19,31 @@ This system provides:
 - `AbekaVideo` - Individual video units (~20,195 total)
 - `AbekaLessonPackage` - Groups videos by subject within a lesson
 
+### Canonical Grade-Level Mapping (Official)
+
+This mapping is the single official convention for importer/data sync to prevent drift:
+
+| Grade Code | `AbekaGrade.level` |
+|------------|---------------------|
+| `K4` | `0` |
+| `K5` | `1` |
+| `G1` | `2` |
+| `G2` | `3` |
+| `G3` | `4` |
+| `G4` | `5` |
+| `G5` | `6` |
+| `G6` | `7` |
+| `G7` | `8` |
+| `G8` | `9` |
+| `G9` | `10` |
+| `G10` | `11` |
+| `G11` | `12` |
+| `G12` | `13` |
+
+Rules:
+- Never reuse `-1` for K4.
+- If docs and importer conflict, update docs to match importer code in `scripts/import-abeka-videos.ts`.
+
 ### Planning Models
 - `AbekaLearningJourney` - Child's learning path through a grade
 - `AbekaWeeklyPlan` - Week-by-week schedule

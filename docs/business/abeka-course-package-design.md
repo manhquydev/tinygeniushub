@@ -5,6 +5,51 @@
 
 ---
 
+## 📌 Canonical Package Catalog (Sync with Seeder)
+
+**Nguồn chuẩn duy nhất:** `prisma/seeders/curriculum-packages.ts`  
+**Quy tắc:** Nếu doc và seeder lệch nhau, luôn sửa doc theo seeder.
+
+| # | Code | Name | VideoCount | Monthly (VND) | Yearly (VND) |
+|---|------|------|-----------:|--------------:|-------------:|
+| 1 | `PRESCHOOL_PREMIUM` | Mầm Non PREMIUM | 680 | 199000 | 1990000 |
+| 2 | `ELEMENTARY_PRO` | Tiểu Học PRO | 2550 | 349000 | 3490000 |
+| 3 | `MIDDLE_ADVANCED` | Trung Học ADVANCED | 2040 | 349000 | 3490000 |
+| 4 | `HIGH_ELITE` | THPT ELITE | 1530 | 449000 | 4490000 |
+| 5 | `ENGLISH_MASTER` | Tiếng Anh MASTER | 1190 | 249000 | 2490000 |
+| 6 | `MATH_THINKING` | Toán Tư Duy MATH | 1700 | 199000 | 1990000 |
+| 7 | `STEM_INNOVATOR` | STEM INNOVATOR | 2040 | 299000 | 2990000 |
+| 8 | `ULTIMATE` | ULTIMATE | 8500 | 699000 | 6990000 |
+
+**Lưu ý triển khai:**
+- Không dùng lại bộ mã cũ: `PRESCHOOL_BASIC`, `ELEMENTARY_STARTER`, `ELEMENTARY_CORE`, `MIDDLE_SCHOOL`, `HIGH_SCHOOL_BASE`, `HIGH_SCHOOL_PRO`, `ALL_ACCESS`.
+- `videoCount` ở package là metadata thương mại của gói; không đại diện cho tổng unique `AbekaVideo` trong DB.
+
+## Canonical Grade Level Mapping (Lock)
+
+Chuẩn chính thức để tránh drift importer ở các lần import sau:
+
+- `K4 => level 0`
+- `K5 => level 1`
+- `G1 => level 2`
+- `G2 => level 3`
+- `G3 => level 4`
+- `G4 => level 5`
+- `G5 => level 6`
+- `G6 => level 7`
+- `G7 => level 8`
+- `G8 => level 9`
+- `G9 => level 10`
+- `G10 => level 11`
+- `G11 => level 12`
+- `G12 => level 13`
+
+Rule anti-drift:
+- Không dùng level `-1` cho `K4`.
+- Code importer (`scripts/import-abeka-videos.ts`) là chuẩn thực thi; docs phải đồng bộ theo code.
+
+---
+
 ## 📊 Tổng Quan Tài Nguyên
 
 ### Phân Bổ Video Theo Cấp Lớp

@@ -27,7 +27,7 @@ Status legend:
 | Track -> Level -> Unit -> Lesson hierarchy | Met | `prisma/schema.prisma`, `src/modules/content/service.ts` |
 | Lesson flow (watch + interact + complete) | Partial | Watch + complete APIs are live (`src/app/api/lessons/[lessonId]/watch*/route.ts`, `src/app/api/lessons/[lessonId]/complete/route.ts`), but richer activity enforcement is still minimal. |
 | Progress and gamification (streak, stars, badges) | Partial | Streak + completion reward are live (`src/modules/learning/completion-service.ts`), but stars/badges progression is not fully productized. |
-| Parent dashboard + weekly report | Partial | Weekly report and in-app flow are live (`src/modules/reports/weekly-report-service.ts`), email provider supports `mock_email|resend` with provider contract checks (`src/modules/reports/email-delivery-service.ts`), but real-provider delivery evidence is still pending. |
+| Parent dashboard + weekly report | Partial | Weekly report and in-app flow are live (`src/modules/reports/weekly-report-service.ts`), email provider supports `mock_email|resend|brevo` with provider contract checks (`src/modules/reports/email-delivery-service.ts`), but real-provider delivery evidence is still pending. |
 | Trial to paid conversion + webhook reconciliation | Partial | Webhook integrity is strong and tested, checkout provider supports `mock_gateway|stripe` (`src/modules/billing/providers/index.ts`), Stripe callback route and signature verification are live (`src/app/api/billing/webhooks/stripe/route.ts`, `src/modules/billing/stripe-webhook-service.ts`), but real-provider callback evidence is still pending. |
 | Admin operations for users/content/payments | Partial | Admin overview/payments/webhooks/trial-flag exist (`src/app/api/admin/*`), full CMS/moderation workflows are not complete. |
 
@@ -137,7 +137,7 @@ Remaining gap:
 
 ## 6) Critical Gaps Before Production
 1. Configure valid staging credentials for `stripe` + real callback path evidence (including signature rotation drill).
-2. Configure valid staging credentials for `resend` and collect delivery/retry/bounce evidence.
+2. Configure valid staging credentials for `brevo` (or `resend`) and collect delivery/retry/bounce evidence.
 3. Add HTTPS staging assertion for `Secure` session cookie and keep it in release gating.
 4. Complete advanced admin workflows (content moderation/CMS operations and operational runbooks).
 
@@ -147,7 +147,7 @@ Remaining gap:
    - Add webhook secret rotation runbook and tests.
    - Execute transition matrix checks (success/fail/refund/duplicate) against real Stripe callbacks in staging.
 2. Report delivery workstream:
-   - Run `resend` staging flow with validated sender domain + delivery telemetry.
+   - Run `brevo` staging flow with validated sender domain + delivery telemetry.
    - Add bounce/retry/idempotent send tests.
 3. Coverage workstream:
    - Keep API/business statements above `80%`.

@@ -158,74 +158,33 @@ npx prisma migrate deploy
 npx prisma migrate status
 ```
 
-#### Step 4: Seed CurriculumPackage (8 Packages)
+#### Step 4: Seed CurriculumPackage (8 Packages, Canonical)
 
-```sql
--- Seed 8 Curriculum Packages
-INSERT INTO "CurriculumPackage" (
-    id, code, name, description, grades, subjects, 
-    "videoCount", "monthlyPrice", "yearlyPrice", 
-    "isActive", "displayOrder", "createdAt", "updatedAt"
-)
-VALUES
-    -- Preschool Packages
-    (gen_random_uuid()::text, 'PRESCHOOL_BASIC', 'Preschool Basic', 
-     'Essential learning for K4-K5 students', 
-     ARRAY['k4', 'k5'], ARRAY[], 1800, 99000, 990000, true, 1, NOW(), NOW()),
-    
-    (gen_random_uuid()::text, 'PRESCHOOL_PREMIUM', 'Preschool Premium', 
-     'Complete K4-K5 curriculum with all subjects', 
-     ARRAY['k4', 'k5'], ARRAY['PHONICS', 'ARITHMETIC', 'ACTIVITIES'], 
-     2200, 149000, 1490000, true, 2, NOW(), NOW()),
-    
-    -- Elementary Packages
-    (gen_random_uuid()::text, 'ELEMENTARY_STARTER', 'Elementary Starter', 
-     'Grades 1-3 foundational curriculum', 
-     ARRAY['g1', 'g2', 'g3'], ARRAY[], 3500, 199000, 1990000, true, 3, NOW(), NOW()),
-    
-    (gen_random_uuid()::text, 'ELEMENTARY_CORE', 'Elementary Core', 
-     'Complete grades 1-5 curriculum', 
-     ARRAY['g1', 'g2', 'g3', 'g4', 'g5'], 
-     ARRAY['PHONICS', 'ARITHMETIC', 'SCIENCE', 'HISTORY'], 
-     5800, 299000, 2990000, true, 4, NOW(), NOW()),
-    
-    -- Middle School Packages
-    (gen_random_uuid()::text, 'MIDDLE_SCHOOL', 'Middle School Plus', 
-     'Grades 6-8 complete curriculum', 
-     ARRAY['g6', 'g7', 'g8'], 
-     ARRAY['MATH', 'SCIENCE', 'HISTORY', 'LITERATURE'], 
-     4200, 249000, 2490000, true, 5, NOW(), NOW()),
-    
-    -- High School Packages
-    (gen_random_uuid()::text, 'HIGH_SCHOOL_BASE', 'High School Base', 
-     'Grades 9-10 essential subjects', 
-     ARRAY['g9', 'g10'], ARRAY['MATH', 'SCIENCE', 'HISTORY'], 
-     2800, 199000, 1990000, true, 6, NOW(), NOW()),
-    
-    (gen_random_uuid()::text, 'HIGH_SCHOOL_PRO', 'High School Pro', 
-     'Complete grades 9-12 curriculum', 
-     ARRAY['g9', 'g10', 'g11', 'g12'], 
-     ARRAY['MATH', 'SCIENCE', 'HISTORY', 'LITERATURE', 'COMPOSITION'], 
-     5200, 349000, 3490000, true, 7, NOW(), NOW()),
-    
-    -- All Access
-    (gen_random_uuid()::text, 'ALL_ACCESS', 'All Access Pass', 
-     'Complete K4-12 curriculum access', 
-     ARRAY['k4', 'k5', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9', 'g10', 'g11', 'g12'], 
-     ARRAY[], 20195, 499000, 4990000, true, 8, NOW(), NOW())
+Use the canonical seed source only:
+- `prisma/seeders/curriculum-packages.ts`
 
-ON CONFLICT (code) DO UPDATE SET
-    name = EXCLUDED.name,
-    description = EXCLUDED.description,
-    grades = EXCLUDED.grades,
-    subjects = EXCLUDED.subjects,
-    "videoCount" = EXCLUDED."videoCount",
-    "monthlyPrice" = EXCLUDED."monthlyPrice",
-    "yearlyPrice" = EXCLUDED."yearlyPrice",
-    "isActive" = EXCLUDED."isActive",
-    "displayOrder" = EXCLUDED."displayOrder",
-    "updatedAt" = NOW();
+```bash
+# Canonical package seed (recommended)
+pnpm db:seed:packages
+
+# Equivalent direct run
+# npx tsx prisma/seeders/curriculum-packages.ts
 ```
+
+Do not maintain manual SQL `INSERT` blocks in this runbook. They drift from source-of-truth.
+
+**Canonical snapshot (must match seed file):**
+
+| Order | Code | VideoCount | Monthly (VND) | Yearly (VND) |
+|------:|------|-----------:|--------------:|-------------:|
+| 1 | `PRESCHOOL_PREMIUM` | 680 | 199000 | 1990000 |
+| 2 | `ELEMENTARY_PRO` | 2550 | 349000 | 3490000 |
+| 3 | `MIDDLE_ADVANCED` | 2040 | 349000 | 3490000 |
+| 4 | `HIGH_ELITE` | 1530 | 449000 | 4490000 |
+| 5 | `ENGLISH_MASTER` | 1190 | 249000 | 2490000 |
+| 6 | `MATH_THINKING` | 1700 | 199000 | 1990000 |
+| 7 | `STEM_INNOVATOR` | 2040 | 299000 | 2990000 |
+| 8 | `ULTIMATE` | 8500 | 699000 | 6990000 |
 
 **Verify packages:**
 ```sql
@@ -248,6 +207,53 @@ npx tsx scripts/abeka/production-import.ts \
 npx tsx scripts/abeka/production-import.ts \
   --resume \
   --checkpoint=./backups/import_checkpoint.json
+```
+
+#### Step 5.1: Parity Check Checklist (MANDATORY after seed/import)
+
+Run these checks and proceed only when all pass:
+
+```sql
+-- 1) Total package rows must be exactly 8
+SELECT COUNT(*) AS package_count FROM "CurriculumPackage";
+
+-- 2) Old package codes must not exist
+SELECT code
+FROM "CurriculumPackage"
+WHERE code IN (
+  'PRESCHOOL_BASIC', 'ELEMENTARY_STARTER', 'ELEMENTARY_CORE',
+  'MIDDLE_SCHOOL', 'HIGH_SCHOOL_BASE', 'HIGH_SCHOOL_PRO', 'ALL_ACCESS'
+);
+
+-- 3) Canonical parity check (expect 0 rows)
+WITH canonical(code, "videoCount", "monthlyPrice", "yearlyPrice", "displayOrder") AS (
+  VALUES
+    ('PRESCHOOL_PREMIUM', 680, 199000, 1990000, 1),
+    ('ELEMENTARY_PRO', 2550, 349000, 3490000, 2),
+    ('MIDDLE_ADVANCED', 2040, 349000, 3490000, 3),
+    ('HIGH_ELITE', 1530, 449000, 4490000, 4),
+    ('ENGLISH_MASTER', 1190, 249000, 2490000, 5),
+    ('MATH_THINKING', 1700, 199000, 1990000, 6),
+    ('STEM_INNOVATOR', 2040, 299000, 2990000, 7),
+    ('ULTIMATE', 8500, 699000, 6990000, 8)
+)
+SELECT
+  c.code,
+  p."videoCount" AS actual_video_count,
+  c."videoCount" AS expected_video_count,
+  p."monthlyPrice" AS actual_monthly_price,
+  c."monthlyPrice" AS expected_monthly_price,
+  p."yearlyPrice" AS actual_yearly_price,
+  c."yearlyPrice" AS expected_yearly_price,
+  p."displayOrder" AS actual_display_order,
+  c."displayOrder" AS expected_display_order
+FROM canonical c
+LEFT JOIN "CurriculumPackage" p ON p.code = c.code
+WHERE p.code IS NULL
+   OR p."videoCount" <> c."videoCount"
+   OR p."monthlyPrice" <> c."monthlyPrice"
+   OR p."yearlyPrice" <> c."yearlyPrice"
+   OR p."displayOrder" <> c."displayOrder";
 ```
 
 **Import Options:**
@@ -334,11 +340,11 @@ Level | Name              | Lessons | Videos
 ──────────────────────────────────────────────────────────────
 Code                  | Name              | VideoCount
 ----------------------+-------------------+------------
-PRESCHOOL_BASIC       | Preschool Basic   | 1800
-PRESCHOOL_PREMIUM     | Preschool Premium | 2200
-ELEMENTARY_STARTER    | Elementary Starter| 3500
+PRESCHOOL_PREMIUM     | Mầm Non PREMIUM   | 680
+ELEMENTARY_PRO        | Tiểu Học PRO      | 2550
+MIDDLE_ADVANCED       | Trung Học ADVANCED| 2040
 ...
-ALL_ACCESS            | All Access Pass   | 20195
+ULTIMATE              | ULTIMATE          | 8500
 
 ══════════════════════════════════════════════════════════════
                       VERIFICATION COMPLETE
