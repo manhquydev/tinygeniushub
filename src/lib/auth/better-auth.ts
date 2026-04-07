@@ -17,6 +17,30 @@ function resolveUserLabel(name: string | null | undefined, email: string) {
   return localPart || "bạn";
 }
 
+function sanitizeUrlForEmail(rawUrl: string) {
+  return rawUrl.replace(/\u00ad/g, "").replace(/%C2%AD/gi, "");
+}
+
+function resolveResetPasswordPageUrl(rawUrl: string) {
+  const fallbackUrl = new URL("/auth/reset-password", env.BETTER_AUTH_URL);
+
+  try {
+    const parsedUrl = new URL(sanitizeUrlForEmail(rawUrl));
+    const tokenFromQuery = parsedUrl.searchParams.get("token");
+    const tokenFromPath = parsedUrl.pathname.split("/").filter(Boolean).at(-1);
+    const token = (tokenFromQuery ?? tokenFromPath ?? "").trim().replace(/\u00ad/g, "");
+
+    if (!token || token.toLowerCase() === "reset-password") {
+      return fallbackUrl.toString();
+    }
+
+    fallbackUrl.searchParams.set("token", token);
+    return fallbackUrl.toString();
+  } catch {
+    return fallbackUrl.toString();
+  }
+}
+
 export const auth = betterAuth({
   baseURL: env.BETTER_AUTH_URL,
   secret: env.BETTER_AUTH_SECRET,
@@ -29,13 +53,14 @@ export const auth = betterAuth({
     disableSignUp: true,
     autoSignIn: true,
     sendResetPassword: async ({ user, url }) => {
+      const resetPasswordUrl = resolveResetPasswordPageUrl(url);
       const userLabel = resolveUserLabel(user.name, user.email);
       const text = [
         `Xin chào ${userLabel},`,
         "",
         "Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản Cùng Con Tự Học của bạn.",
         "Để tiếp tục, vui lòng truy cập liên kết sau:",
-        url,
+        resetPasswordUrl,
         "",
         "Nếu bạn không yêu cầu đặt lại mật khẩu, bạn có thể bỏ qua email này.",
         "Vì lý do bảo mật, liên kết có thời hạn sử dụng ngắn.",
