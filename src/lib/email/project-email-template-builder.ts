@@ -25,6 +25,8 @@ const FEATURE_TITLES: Record<string, string> = {
   blog_comment_reply: "Có phản hồi mới cho bình luận của bạn",
   admin_manual_email: "Thông báo từ bộ phận hỗ trợ",
   forgot_password: "Đặt lại mật khẩu tài khoản",
+  package_subscription_success: "Thanh toán gói học thành công",
+  package_subscription_failed: "Thanh toán gói học chưa thành công",
 };
 
 const CANONICAL_APP_BASE_URL = "https://cungcontuhoc.io.vn";

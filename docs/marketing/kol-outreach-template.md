@@ -91,10 +91,10 @@ Cảm ơn bạn đã nhận lời! Đây là tóm tắt nhanh để bắt đầu
 
 🔑 ACCOUNT
 → Mình sẽ gửi link đặt mật khẩu riêng qua email: [email của KOL]
-→ Đăng nhập tại: cungcontuhoc.vn/auth/login
+→ Đăng nhập tại: https://cungcontuhoc.io.vn/auth/login
 
 📱 MÃ GIỚI THIỆU CỦA BẠN: [CODE]
-Share link: cungcontuhoc.vn/auth/signup?ref=[CODE]
+Share link: https://cungcontuhoc.io.vn/auth/signup?ref=[CODE]
 → Mỗi phụ huynh đăng ký = +7 ngày free cho bạn
 
 📋 KHÔNG CÓ QUY ĐỊNH GÌ CỨNG NHẮC
@@ -104,7 +104,7 @@ Share link: cungcontuhoc.vn/auth/signup?ref=[CODE]
 - Gắn thẻ @cungcontuhoc hoặc để link trong bio/caption — tuỳ bạn
 
 💬 CÓ CẦU HỎI GÌ?
-Reply Messenger này hoặc email: support@cungcontuhoc.vn
+Reply Messenger này hoặc email: support@cungcontuhoc.io.vn
 
 Chúc bé học vui! 🎉
 
