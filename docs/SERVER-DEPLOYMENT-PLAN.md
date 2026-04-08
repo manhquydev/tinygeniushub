@@ -60,6 +60,7 @@ STRIPE_WEBHOOK_SECRETS="whsec_xxx"
 REPORT_EMAIL_PROVIDER="brevo"
 REPORT_EMAIL_BREVO_API_KEY="xkeysib_xxx"
 REPORT_EMAIL_BREVO_API_BASE_URL="https://api.brevo.com/v3"
+REPORT_EMAIL_BREVO_WEBHOOK_SECRET="set-strong-webhook-secret"
 REPORT_EMAIL_FROM="no-reply@your-domain.com"
 
 # Admin

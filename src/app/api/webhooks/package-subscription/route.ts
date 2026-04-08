@@ -10,7 +10,6 @@ import { NextRequest } from "next/server";
 import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
 import { resolveEmailPublicBaseUrl } from "@/lib/email/project-email-template-builder";
-import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import { logInfo, logWarn, logError } from "@/lib/observability/logger";
 import { enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
 import { handleRouteError } from "@/lib/route-error";
@@ -18,6 +17,7 @@ import { fail, ok } from "@/lib/http";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
 import { PaymentStatus } from "@prisma/client";
+import { enqueueTransactionalEmail } from "@/worker/queue";
 import { createAuditLog } from "@/modules/platform/audit-service";
 
 // Local enum until Prisma generates the full types
@@ -387,7 +387,7 @@ async function queueConfirmationEmail(parentId: string, packageId: string, subsc
       "Đội ngũ Cùng Con Tự Học",
     ].join("\n");
 
-    await sendTransactionalEmail({
+    await enqueueTransactionalEmail({
       to: parent.email,
       subject: `[Cùng Con Tự Học] Thanh toán thành công: ${packageInfo.name}`,
       text,
@@ -456,7 +456,7 @@ async function queueFailureNotification(parentId: string, paymentRecordId: strin
       "Đội ngũ Cùng Con Tự Học",
     ].join("\n");
 
-    await sendTransactionalEmail({
+    await enqueueTransactionalEmail({
       to: parent.email,
       subject: "[Cùng Con Tự Học] Thanh toán chưa thành công",
       text,

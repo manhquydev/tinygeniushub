@@ -2,9 +2,10 @@ import { PaymentStatus, PlanCode, Prisma, SubscriptionStatus } from "@prisma/cli
 import { addDays } from "date-fns";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
-import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
+import { env } from "@/lib/env";
 import { createNotificationForParent } from "@/modules/platform/notification-service";
 import { DomainError } from "@/modules/platform/errors";
+import { enqueueTransactionalEmail } from "@/worker/queue";
 import { createAdminActionLog } from "./admin-user-service";
 
 const subscriptionStatusFilterSchema = z.enum([
@@ -302,13 +303,13 @@ async function sendAdminManualEmail(params: {
   body: string;
 }) {
   try {
-    const delivery = await sendTransactionalEmail({
+    await enqueueTransactionalEmail({
       to: params.to,
       subject: params.subject,
       text: params.body,
       tags: [{ name: "feature", value: "admin_manual_email" }],
     });
-    return { provider: delivery.provider };
+    return { provider: env.REPORT_EMAIL_PROVIDER };
   } catch (error) {
     throw new DomainError(
       error instanceof Error ? `Admin email delivery failed: ${error.message}` : "Admin email delivery failed",

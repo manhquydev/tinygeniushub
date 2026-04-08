@@ -5,6 +5,7 @@ import { createBlogNewsletterWorker } from "@/worker/jobs/dispatch-blog-newslett
 import { createVerifyBlogCommentEmailWorker } from "@/worker/jobs/verify-blog-comment-email";
 import { createNotifyBlogCommentReplyWorker } from "@/worker/jobs/notify-blog-comment-reply";
 import { createLifecycleEmailsWorker } from "@/worker/jobs/dispatch-lifecycle-emails";
+import { createTransactionalEmailsWorker } from "@/worker/jobs/dispatch-transactional-emails";
 import { createCertificateWorker } from "@/worker/jobs/generate-certificate";
 import { createBulkEnrollWorker } from "@/worker/jobs/bulk-enroll-processor";
 import { enqueueRetentionCleanup, enqueueWeeklyReportEmails, enqueueWeeklyReports, enqueueDispatchPendingLifecycleEmails } from "@/worker/queue";
@@ -17,6 +18,7 @@ const blogNewsletterWorker = createBlogNewsletterWorker();
 const verifyBlogCommentEmailWorker = createVerifyBlogCommentEmailWorker();
 const notifyBlogCommentReplyWorker = createNotifyBlogCommentReplyWorker();
 const lifecycleEmailWorker = createLifecycleEmailsWorker();
+const transactionalEmailWorker = createTransactionalEmailsWorker();
 const certificateWorker = createCertificateWorker();
 const bulkEnrollWorker = createBulkEnrollWorker();
 
@@ -58,6 +60,12 @@ notifyBlogCommentReplyWorker.on("completed", (job) => {
 
 lifecycleEmailWorker.on("completed", (job) => {
   logInfo("worker.lifecycle_email.completed", {
+    jobId: job.id,
+  });
+});
+
+transactionalEmailWorker.on("completed", (job) => {
+  logInfo("worker.transactional_email.completed", {
     jobId: job.id,
   });
 });
@@ -120,6 +128,13 @@ notifyBlogCommentReplyWorker.on("failed", (job, error) => {
 
 lifecycleEmailWorker.on("failed", (job, error) => {
   logError("worker.lifecycle_email.failed", {
+    jobId: job?.id,
+    error,
+  });
+});
+
+transactionalEmailWorker.on("failed", (job, error) => {
+  logError("worker.transactional_email.failed", {
     jobId: job?.id,
     error,
   });
@@ -191,6 +206,7 @@ process.on("SIGINT", async () => {
     verifyBlogCommentEmailWorker.close(),
     notifyBlogCommentReplyWorker.close(),
     lifecycleEmailWorker.close(),
+    transactionalEmailWorker.close(),
     certificateWorker.close(),
     bulkEnrollWorker.close(),
   ]);

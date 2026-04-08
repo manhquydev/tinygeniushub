@@ -1,6 +1,7 @@
 ﻿import { Queue } from "bullmq";
 import { LifecycleEmailType } from "@prisma/client";
 import { env } from "@/lib/env";
+import type { SendTransactionalEmailInput } from "@/lib/email/transactional-email-sender";
 import { createRedisConnectionOptions } from "@/lib/redis-connection";
 import type { BulkEnrollRow } from "@/modules/organizations/bulk-enroll-service";
 
@@ -46,6 +47,10 @@ export const blogCommentReplyEmailQueue = new Queue("blog-comment-reply-emails",
 });
 
 export const lifecycleEmailQueue = new Queue("lifecycle-emails", {
+  connection: redisConnection,
+});
+
+export const transactionalEmailQueue = new Queue("transactional-emails", {
   connection: redisConnection,
 });
 
@@ -214,4 +219,32 @@ export async function enqueueDispatchPendingLifecycleEmails() {
   );
 }
 
+
+
+
+type EnqueueTransactionalEmailOptions = {
+  jobId?: string;
+  delayMs?: number;
+};
+
+export async function enqueueTransactionalEmail(
+  payload: SendTransactionalEmailInput,
+  options?: EnqueueTransactionalEmailOptions,
+) {
+  return transactionalEmailQueue.add(
+    "send-transactional-email",
+    payload,
+    {
+      jobId: options?.jobId,
+      delay: options?.delayMs,
+      attempts: 4,
+      backoff: {
+        type: "exponential",
+        delay: 5000,
+      },
+      removeOnComplete: true,
+      removeOnFail: 100,
+    },
+  );
+}
 

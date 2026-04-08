@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { env } from "@/lib/env";
-import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import { fail, ok } from "@/lib/http";
 import { logInfo, logWarn } from "@/lib/observability/logger";
 import { enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
+import { enqueueTransactionalEmail } from "@/worker/queue";
 
 const contactPayloadSchema = z.object({
   name: z.string().trim().min(2).max(120),
@@ -38,7 +38,7 @@ async function sendContactEmail(payload: z.infer<typeof contactPayloadSchema>, c
     payload.message,
   ].join("\n");
 
-  await sendTransactionalEmail({
+  await enqueueTransactionalEmail({
     to: recipient,
     subject: `[Liên hệ] ${payload.subject} - ${payload.name}`,
     text,
@@ -58,7 +58,7 @@ async function sendContactAcknowledgementEmail(payload: z.infer<typeof contactPa
     payload.message,
   ].join("\n");
 
-  await sendTransactionalEmail({
+  await enqueueTransactionalEmail({
     to: payload.email,
     subject: `[Cùng Con Tự Học] Đã tiếp nhận yêu cầu: ${payload.subject}`,
     text,

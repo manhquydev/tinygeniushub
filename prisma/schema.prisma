@@ -71,8 +71,12 @@ enum EmailStatus {
 
 enum LifecycleEmailType {
   TRIAL_WELCOME
+  TRIAL_D1
   TRIAL_D3
+  TRIAL_D5
   TRIAL_D7
+  WINBACK_D30
+  RENEWAL_14D
 }
 
 enum NotificationType {

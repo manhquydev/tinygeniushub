@@ -1,10 +1,10 @@
 import { z } from "zod";
 import { NextResponse } from "next/server";
 import { env } from "@/lib/env";
-import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import { logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestIp, enforceRateLimit } from "@/lib/rate-limit";
 import { handleRouteError } from "@/lib/route-error";
+import { enqueueTransactionalEmail } from "@/worker/queue";
 
 const schema = z.object({
   email: z.string().email().max(254),
@@ -19,7 +19,7 @@ async function sendWaitlistEmails(email: string, childAge: number | null, ip: st
   const adminRecipient = env.ADMIN_EMAILS[0] ?? env.REPORT_EMAIL_FROM;
 
   if (adminRecipient) {
-    await sendTransactionalEmail({
+    await enqueueTransactionalEmail({
       to: adminRecipient,
       subject: "[Waitlist] Đăng ký mới",
       text: [
@@ -32,7 +32,7 @@ async function sendWaitlistEmails(email: string, childAge: number | null, ip: st
     });
   }
 
-  await sendTransactionalEmail({
+  await enqueueTransactionalEmail({
     to: email,
     subject: "Đã nhận đăng ký danh sách chờ",
     text: [

@@ -112,7 +112,10 @@ async function sendWeeklyReportEmail(report: WeeklyReportEmailPayload) {
     to,
     subject,
     text,
-    tags: [{ name: "feature", value: "weekly_report" }],
+    tags: [
+      { name: "feature", value: "weekly_report" },
+      { name: "weekly_report_id", value: report.id },
+    ],
   });
 }
 

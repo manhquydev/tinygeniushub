@@ -3,7 +3,7 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/db";
-import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
+import { enqueueTransactionalEmail } from "@/worker/queue";
 
 const PASSWORD_ROUNDS = 12;
 const trustedOrigins = Array.from(new Set([env.BETTER_AUTH_URL, ...env.AUTH_TRUSTED_ORIGINS]));
@@ -66,7 +66,7 @@ export const auth = betterAuth({
         "Vì lý do bảo mật, liên kết có thời hạn sử dụng ngắn.",
       ].join("\n");
 
-      await sendTransactionalEmail({
+      await enqueueTransactionalEmail({
         to: user.email,
         subject: "Đặt lại mật khẩu tài khoản Cùng Con Tự Học",
         text,

@@ -1,5 +1,5 @@
 import { env } from "@/lib/env";
-import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
+import { enqueueTransactionalEmail } from "@/worker/queue";
 
 export type CaregiverInviteEmailDelivery = {
   provider: string;
@@ -31,7 +31,7 @@ export async function sendCaregiverInviteEmail(input: CaregiverInviteEmailInput)
       `Lời mời hết hạn vào ngày ${formatExpiryDate(input.expiresAt)}.`,
     ].join("\n");
 
-  const delivery = await sendTransactionalEmail({
+  await enqueueTransactionalEmail({
     to: input.to,
     subject,
     text,
@@ -41,8 +41,8 @@ export async function sendCaregiverInviteEmail(input: CaregiverInviteEmailInput)
   });
 
   return {
-    provider: delivery.provider,
-    attempted: delivery.attempted,
-    sent: delivery.sent,
+    provider: env.REPORT_EMAIL_PROVIDER,
+    attempted: true,
+    sent: true,
   };
 }

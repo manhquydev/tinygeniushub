@@ -1,98 +1,21 @@
 import { LifecycleEmailType, SubscriptionStatus } from "@prisma/client";
 import { prisma } from "@/lib/db";
-import { resolveEmailPublicBaseUrl } from "@/lib/email/project-email-template-builder";
 import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
+import { buildLifecycleEmailContent } from "@/modules/platform/lifecycle-email-copy-builder";
 
-function lifecycleLink(path: string, campaign: string) {
-  return `${resolveEmailPublicBaseUrl()}${path}?utm_source=email&utm_medium=lifecycle&utm_campaign=${campaign}`;
-}
+const RENEWAL_ELIGIBLE_STATUSES: SubscriptionStatus[] = [
+  SubscriptionStatus.ACTIVE_STANDARD,
+  SubscriptionStatus.ACTIVE_FAMILYPLUS,
+  SubscriptionStatus.GRACE,
+  SubscriptionStatus.CANCELED_AT_PERIOD_END,
+];
 
-function buildTrialWelcomeEmail(displayName: string | null) {
-  const name = displayName ?? "bạn";
-  const dashboardUrl = lifecycleLink("/parent/dashboard", "trial_d0");
-
-  return {
-    subject: "Chào mừng bạn đến Cùng Con Tự Học - bắt đầu trong 2 phút",
-    text: [
-      `Xin chào ${name},`,
-      "",
-      "Cảm ơn bạn đã đăng ký Cùng Con Tự Học.",
-      "Bé nhà bạn sắp bắt đầu lộ trình Toán tư duy + Tiếng Anh Phonics với nhịp học 15 phút/ngày.",
-      "",
-      "Bước tiếp theo (mất khoảng 2 phút):",
-      "1) Mở dashboard phụ huynh",
-      "2) Chọn bài đầu tiên phù hợp độ tuổi của bé",
-      "3) Duy trì lịch học ngắn, đều mỗi ngày",
-      "",
-      `Bắt đầu ngay: ${dashboardUrl}`,
-      "",
-      "Không cần thẻ tín dụng · Trial 7 ngày miễn phí.",
-      "",
-      "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
-    ].join("\n"),
-  };
-}
-
-function buildTrialD3Email(displayName: string | null) {
-  const name = displayName ?? "bạn";
-  const reportUrl = lifecycleLink("/parent/reports", "trial_d3_progress");
-
-  return {
-    subject: "Báo cáo mini 3 ngày đầu của bé — đang tiến bộ thế nào? 📊",
-    text: [
-      `Xin chào ${name},`,
-      "",
-      "Bé đã đi được 3 ngày đầu tiên trong trial.",
-      "Đây là mốc quan trọng để giữ nhịp học và xây thói quen đều mỗi ngày.",
-      "",
-      "Mẹo tăng hiệu quả trong tuần đầu:",
-      "• Giữ khung giờ học cố định mỗi ngày",
-      "• Sau mỗi bài, phụ huynh hỏi lại bé 1 câu ngắn để củng cố ghi nhớ",
-      "• Mỗi buổi học chỉ cần 15 phút, không cần kéo dài",
-      "",
-      `Xem báo cáo và tiến độ hiện tại: ${reportUrl}`,
-      "",
-      "Còn 4 ngày trial để kiểm chứng rõ sự phù hợp với gia đình.",
-      "",
-      "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
-    ].join("\n"),
-  };
-}
-
-function buildTrialD7Email(displayName: string | null) {
-  const name = displayName ?? "bạn";
-  const pricingUrl = lifecycleLink("/pricing", "trial_d7_convert");
-  const courseUrl = lifecycleLink("/courses", "trial_d7_courses_upsell");
-
-  return {
-    subject: "Trial sắp kết thúc — giữ lộ trình học cho bé ngay hôm nay",
-    text: [
-      `Xin chào ${name},`,
-      "",
-      "Hôm nay là ngày cuối của 7 ngày dùng thử miễn phí.",
-      "Nếu bé đã bắt đầu vào nếp học, đây là lúc giữ lộ trình không gián đoạn.",
-      "",
-      "Gói năm hiện tại:",
-      "• Standard: 799,000 VND/năm (~2,189 VND/ngày)",
-      "• Family+: 1,199,000 VND/năm (~3,285 VND/ngày)",
-      "",
-      "Quyền lợi chính:",
-      "✓ Toán tư duy + Tiếng Anh Phonics trọn năm",
-      "✓ Báo cáo tuần tự động cho phụ huynh",
-      "✓ Hoàn tiền 100% trong 30 ngày đầu nếu chưa phù hợp",
-      "",
-      `Chọn gói phù hợp: ${pricingUrl}`,
-      "",
-      "Ưu đãi thêm cho thành viên gói năm: giảm 20% toàn bộ Khóa học Premium.",
-      `Xem khóa học: ${courseUrl}`,
-      "",
-      "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
-    ].join("\n"),
-  };
-}
+const WINBACK_ELIGIBLE_STATUSES: SubscriptionStatus[] = [
+  SubscriptionStatus.ACTIVE_STANDARD,
+  SubscriptionStatus.ACTIVE_FAMILYPLUS,
+  SubscriptionStatus.GRACE,
+  SubscriptionStatus.CANCELED_AT_PERIOD_END,
+];
 
 async function sendEmail(to: string, subject: string, text: string) {
   await sendTransactionalEmail({
@@ -116,16 +39,20 @@ export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailT
   });
   if (existing) return;
 
-  let subject: string;
-  let text: string;
+  const renewalEndDate =
+    type === LifecycleEmailType.RENEWAL_14D
+      ? (
+          await prisma.subscription.findUnique({
+            where: { parentId },
+            select: { currentPeriodEnd: true },
+          })
+        )?.currentPeriodEnd
+      : null;
 
-  if (type === LifecycleEmailType.TRIAL_WELCOME) {
-    ({ subject, text } = buildTrialWelcomeEmail(parent.displayName));
-  } else if (type === LifecycleEmailType.TRIAL_D3) {
-    ({ subject, text } = buildTrialD3Email(parent.displayName));
-  } else {
-    ({ subject, text } = buildTrialD7Email(parent.displayName));
-  }
+  const { subject, text } = buildLifecycleEmailContent(type, {
+    displayName: parent.displayName,
+    renewalEndDate,
+  });
 
   await sendEmail(parent.email, subject, text);
 
@@ -137,13 +64,33 @@ export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailT
 export async function dispatchPendingLifecycleEmails() {
   const now = new Date();
 
+  const d1Start = new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000);
+  const d1End = new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000);
+
   const d3Start = new Date(now.getTime() - 4 * 24 * 60 * 60 * 1000);
   const d3End = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000);
+
+  const d5Start = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000);
+  const d5End = new Date(now.getTime() - 5 * 24 * 60 * 60 * 1000);
 
   const d7Start = new Date(now.getTime() - 8 * 24 * 60 * 60 * 1000);
   const d7End = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-  const [d3Candidates, d7Candidates] = await Promise.all([
+  const winbackStart = new Date(now.getTime() - 31 * 24 * 60 * 60 * 1000);
+  const winbackEnd = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+  const renewalStart = new Date(now.getTime() + 13 * 24 * 60 * 60 * 1000);
+  const renewalEnd = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+
+  const [d1Candidates, d3Candidates, d5Candidates, d7Candidates, winbackCandidates, renewalCandidates] = await Promise.all([
+    prisma.subscription.findMany({
+      where: {
+        status: SubscriptionStatus.TRIALING,
+        currentPeriodStart: { gte: d1Start, lt: d1End },
+        parent: { lifecycleEmails: { none: { type: LifecycleEmailType.TRIAL_D1 } } },
+      },
+      select: { parentId: true },
+    }),
     prisma.subscription.findMany({
       where: {
         status: SubscriptionStatus.TRIALING,
@@ -155,8 +102,42 @@ export async function dispatchPendingLifecycleEmails() {
     prisma.subscription.findMany({
       where: {
         status: SubscriptionStatus.TRIALING,
+        currentPeriodStart: { gte: d5Start, lt: d5End },
+        parent: { lifecycleEmails: { none: { type: LifecycleEmailType.TRIAL_D5 } } },
+      },
+      select: { parentId: true },
+    }),
+    prisma.subscription.findMany({
+      where: {
+        status: SubscriptionStatus.TRIALING,
         currentPeriodStart: { gte: d7Start, lt: d7End },
         parent: { lifecycleEmails: { none: { type: LifecycleEmailType.TRIAL_D7 } } },
+      },
+      select: { parentId: true },
+    }),
+    prisma.parentAccount.findMany({
+      where: {
+        lastActiveAt: { gte: winbackStart, lt: winbackEnd },
+        subscription: {
+          is: {
+            status: { in: WINBACK_ELIGIBLE_STATUSES },
+          },
+        },
+        lifecycleEmails: {
+          none: { type: LifecycleEmailType.WINBACK_D30 },
+        },
+      },
+      select: { id: true },
+    }),
+    prisma.subscription.findMany({
+      where: {
+        status: { in: RENEWAL_ELIGIBLE_STATUSES },
+        currentPeriodEnd: { gte: renewalStart, lt: renewalEnd },
+        parent: {
+          lifecycleEmails: {
+            none: { type: LifecycleEmailType.RENEWAL_14D },
+          },
+        },
       },
       select: { parentId: true },
     }),
@@ -165,9 +146,27 @@ export async function dispatchPendingLifecycleEmails() {
   let sent = 0;
   let failed = 0;
 
+  for (const sub of d1Candidates) {
+    try {
+      await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D1);
+      sent++;
+    } catch {
+      failed++;
+    }
+  }
+
   for (const sub of d3Candidates) {
     try {
       await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D3);
+      sent++;
+    } catch {
+      failed++;
+    }
+  }
+
+  for (const sub of d5Candidates) {
+    try {
+      await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D5);
       sent++;
     } catch {
       failed++;
@@ -183,5 +182,32 @@ export async function dispatchPendingLifecycleEmails() {
     }
   }
 
-  return { d3: d3Candidates.length, d7: d7Candidates.length, sent, failed };
+  for (const parent of winbackCandidates) {
+    try {
+      await sendLifecycleEmail(parent.id, LifecycleEmailType.WINBACK_D30);
+      sent++;
+    } catch {
+      failed++;
+    }
+  }
+
+  for (const sub of renewalCandidates) {
+    try {
+      await sendLifecycleEmail(sub.parentId, LifecycleEmailType.RENEWAL_14D);
+      sent++;
+    } catch {
+      failed++;
+    }
+  }
+
+  return {
+    d1: d1Candidates.length,
+    d3: d3Candidates.length,
+    d5: d5Candidates.length,
+    d7: d7Candidates.length,
+    winback: winbackCandidates.length,
+    renewal: renewalCandidates.length,
+    sent,
+    failed,
+  };
 }
