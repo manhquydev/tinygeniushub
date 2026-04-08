@@ -13,7 +13,8 @@ type ApiResponse<TData> = {
 
 type AdminLogEntry = {
   id: string;
-  adminEmail: string;
+  source: "ADMIN_ACTION" | "AUDIT_LOG";
+  actor: string;
   action: string;
   target: string | null;
   createdAt: string;
@@ -68,6 +69,7 @@ export function AdminActionLogPanel() {
           <TableHeader>
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Thời gian</TableHead>
+              <TableHead className="text-xs">Nguồn</TableHead>
               <TableHead className="text-xs">Người thực hiện</TableHead>
               <TableHead className="text-xs">Thao tác</TableHead>
               <TableHead className="text-xs">Đối tượng</TableHead>
@@ -77,6 +79,7 @@ export function AdminActionLogPanel() {
             {loading ? Array.from({ length: 4 }).map((_, index) => (
               <TableRow key={`admin-log-skeleton-${index}`}>
                 <TableCell><div className="h-4 w-28 animate-pulse rounded bg-[var(--admin-sidebar-accent)]" /></TableCell>
+                <TableCell><div className="h-4 w-20 animate-pulse rounded bg-[var(--admin-sidebar-accent)]" /></TableCell>
                 <TableCell><div className="h-4 w-40 animate-pulse rounded bg-[var(--admin-sidebar-accent)]" /></TableCell>
                 <TableCell><div className="h-4 w-24 animate-pulse rounded bg-[var(--admin-sidebar-accent)]" /></TableCell>
                 <TableCell><div className="h-4 w-28 animate-pulse rounded bg-[var(--admin-sidebar-accent)]" /></TableCell>
@@ -85,13 +88,18 @@ export function AdminActionLogPanel() {
             {!loading ? logs.map((entry) => (
               <TableRow key={entry.id}>
                 <TableCell className="text-xs text-[var(--admin-text-secondary)]">{new Date(entry.createdAt).toLocaleString("vi-VN")}</TableCell>
-                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{entry.adminEmail}</TableCell>
+                <TableCell className="text-xs">
+                  <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide border-[var(--admin-card-border)] text-[var(--admin-text-secondary)]">
+                    {entry.source === "ADMIN_ACTION" ? "ADMIN" : "AUDIT"}
+                  </span>
+                </TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">{entry.actor}</TableCell>
                 <TableCell className="text-xs font-semibold text-[var(--admin-text-primary)]">{entry.action}</TableCell>
                 <TableCell className="text-xs text-[var(--admin-text-secondary)]">{entry.target ?? "-"}</TableCell>
               </TableRow>
             )) : null}
             {!loading && logs.length === 0 ? (
-              <TableRow><TableCell colSpan={4} className="text-xs text-[var(--admin-text-secondary)]">Chưa có nhật ký nào.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={5} className="text-xs text-[var(--admin-text-secondary)]">Chưa có nhật ký nào.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>

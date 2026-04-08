@@ -4,7 +4,7 @@ import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { enforceAdminMutationRateLimit } from "@/lib/security/admin-rate-limit";
-import { createAdminActionLog, getAdminActionLogs } from "@/modules/admin/service";
+import { createAdminActionLog, getAdminUnifiedLogs } from "@/modules/admin/service";
 import { z } from "zod";
 
 const ADMIN_LOG_VIEW_ROLES = ["SUPER_ADMIN"];
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 
     const limitRaw = request.nextUrl.searchParams.get("limit");
     const limit = limitRaw ? Number.parseInt(limitRaw, 10) : 50;
-    const logs = await getAdminActionLogs(Number.isFinite(limit) ? Math.min(limit, 200) : 50);
+    const logs = await getAdminUnifiedLogs(Number.isFinite(limit) ? Math.min(limit, 200) : 50);
 
     return ok({ logs });
   } catch (error) {

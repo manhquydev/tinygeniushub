@@ -49,6 +49,9 @@ const { prismaMock, createAuditLogMock, createNotificationForParentMock, resolve
       findMany: vi.fn(),
       create: vi.fn(),
     },
+    auditLog: {
+      findMany: vi.fn(),
+    },
   },
   createAuditLogMock: vi.fn(),
   createNotificationForParentMock: vi.fn(),
@@ -75,6 +78,7 @@ import {
   createAdminActionLog,
   executeAdminBulkUsersAction,
   getAdminActionLogs,
+  getAdminUnifiedLogs,
   getAdminLearningAnalytics,
   getAdminOverview,
   getAdminRetentionAnalytics,
@@ -523,6 +527,79 @@ describe("getAdminActionLogs", () => {
     expect(prismaMock.adminActionLog.findMany).toHaveBeenCalledWith(
       expect.objectContaining({
         take: 50,
+      }),
+    );
+  });
+});
+
+describe("getAdminUnifiedLogs", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("merges AdminActionLog and AuditLog, sorts by createdAt desc, and limits results", async () => {
+    prismaMock.adminActionLog.findMany.mockResolvedValue([
+      {
+        id: "admin-1",
+        adminEmail: "admin@example.com",
+        action: "ADMIN_ACTION_ONE",
+        target: "parent:1",
+        detail: { source: "admin" },
+        createdAt: new Date("2026-04-08T10:00:00.000Z"),
+      },
+    ]);
+    prismaMock.auditLog.findMany.mockResolvedValue([
+      {
+        id: "audit-1",
+        actorType: "parent",
+        actorId: "parent-123",
+        action: "PARENT_LOGIN",
+        resourceType: "parent_account",
+        resourceId: "parent-123",
+        metadata: { ip: "127.0.0.1" },
+        createdAt: new Date("2026-04-08T11:00:00.000Z"),
+      },
+      {
+        id: "audit-2",
+        actorType: "system",
+        actorId: null,
+        action: "SYSTEM_CRON",
+        resourceType: "cron",
+        resourceId: null,
+        metadata: null,
+        createdAt: new Date("2026-04-08T09:00:00.000Z"),
+      },
+    ]);
+
+    const result = await getAdminUnifiedLogs(2);
+
+    expect(prismaMock.adminActionLog.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        take: 2,
+      }),
+    );
+    expect(prismaMock.auditLog.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        take: 2,
+      }),
+    );
+
+    expect(result).toHaveLength(2);
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        id: "audit:audit-1",
+        source: "AUDIT_LOG",
+        actor: "parent:parent-123",
+        action: "PARENT_LOGIN",
+        target: "parent_account:parent-123",
+      }),
+    );
+    expect(result[1]).toEqual(
+      expect.objectContaining({
+        id: "admin:admin-1",
+        source: "ADMIN_ACTION",
+        actor: "admin@example.com",
+        action: "ADMIN_ACTION_ONE",
       }),
     );
   });

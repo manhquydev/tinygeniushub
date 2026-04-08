@@ -6,13 +6,13 @@ const {
   requireAdminFromRequestMock,
   assertTrustedOriginMock,
   enforceAdminMutationRateLimitMock,
-  getAdminActionLogsMock,
+  getAdminUnifiedLogsMock,
   createAdminActionLogMock,
 } = vi.hoisted(() => ({
   requireAdminFromRequestMock: vi.fn(),
   assertTrustedOriginMock: vi.fn(),
   enforceAdminMutationRateLimitMock: vi.fn(),
-  getAdminActionLogsMock: vi.fn(),
+  getAdminUnifiedLogsMock: vi.fn(),
   createAdminActionLogMock: vi.fn(),
 }));
 
@@ -29,7 +29,7 @@ vi.mock("@/lib/security/admin-rate-limit", () => ({
 }));
 
 vi.mock("@/modules/admin/service", () => ({
-  getAdminActionLogs: getAdminActionLogsMock,
+  getAdminUnifiedLogs: getAdminUnifiedLogsMock,
   createAdminActionLog: createAdminActionLogMock,
 }));
 
@@ -47,10 +47,11 @@ describe("admin log route", () => {
     });
     assertTrustedOriginMock.mockImplementation(() => {});
     enforceAdminMutationRateLimitMock.mockResolvedValue(null);
-    getAdminActionLogsMock.mockResolvedValue([
+    getAdminUnifiedLogsMock.mockResolvedValue([
       {
-        id: "log-1",
-        adminEmail: "admin@example.com",
+        id: "admin:log-1",
+        source: "ADMIN_ACTION",
+        actor: "admin@example.com",
         action: "TEST_ACTION",
         target: "target-1",
         detail: null,
@@ -74,7 +75,7 @@ describe("admin log route", () => {
 
     expect(response.status).toBe(200);
     expect(requireAdminFromRequestMock).toHaveBeenCalledWith(request, ADMIN_LOG_ROLES);
-    expect(getAdminActionLogsMock).toHaveBeenCalledWith(200);
+    expect(getAdminUnifiedLogsMock).toHaveBeenCalledWith(200);
     expect(body.ok).toBe(true);
     expect(Array.isArray(body.data.logs)).toBe(true);
   });
@@ -84,7 +85,7 @@ describe("admin log route", () => {
     const response = await GET(request);
 
     expect(response.status).toBe(200);
-    expect(getAdminActionLogsMock).toHaveBeenCalledWith(50);
+    expect(getAdminUnifiedLogsMock).toHaveBeenCalledWith(50);
   });
 
   it("GET maps auth errors via route error handler", async () => {

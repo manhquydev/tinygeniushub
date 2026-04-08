@@ -105,6 +105,77 @@ export async function getAdminActionLogs(limit = 50) {
   });
 }
 
+export type AdminUnifiedLogEntry = {
+  id: string;
+  source: "ADMIN_ACTION" | "AUDIT_LOG";
+  actor: string;
+  action: string;
+  target: string | null;
+  detail: unknown;
+  createdAt: Date;
+};
+
+export async function getAdminUnifiedLogs(limit = 50): Promise<AdminUnifiedLogEntry[]> {
+  const normalizedLimit = Math.min(Math.max(limit, 1), 200);
+
+  const [adminActionLogs, auditLogs] = await Promise.all([
+    prisma.adminActionLog.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: normalizedLimit,
+      select: {
+        id: true,
+        adminEmail: true,
+        action: true,
+        target: true,
+        detail: true,
+        createdAt: true,
+      },
+    }),
+    prisma.auditLog.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: normalizedLimit,
+      select: {
+        id: true,
+        actorType: true,
+        actorId: true,
+        action: true,
+        resourceType: true,
+        resourceId: true,
+        metadata: true,
+        createdAt: true,
+      },
+    }),
+  ]);
+
+  const normalizedAdminActionLogs: AdminUnifiedLogEntry[] = adminActionLogs.map((entry) => ({
+    id: `admin:${entry.id}`,
+    source: "ADMIN_ACTION",
+    actor: entry.adminEmail,
+    action: entry.action,
+    target: entry.target,
+    detail: entry.detail,
+    createdAt: entry.createdAt,
+  }));
+
+  const normalizedAuditLogs: AdminUnifiedLogEntry[] = auditLogs.map((entry) => ({
+    id: `audit:${entry.id}`,
+    source: "AUDIT_LOG",
+    actor: entry.actorId ? `${entry.actorType}:${entry.actorId}` : entry.actorType,
+    action: entry.action,
+    target: entry.resourceId ? `${entry.resourceType}:${entry.resourceId}` : entry.resourceType,
+    detail: entry.metadata,
+    createdAt: entry.createdAt,
+  }));
+
+  return [...normalizedAdminActionLogs, ...normalizedAuditLogs]
+    .sort((left, right) => right.createdAt.getTime() - left.createdAt.getTime())
+    .slice(0, normalizedLimit);
+}
+
 export async function createAdminActionLog(input: {
   adminEmail: string;
   action: string;
