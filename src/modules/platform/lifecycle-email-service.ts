@@ -1,7 +1,9 @@
 import { LifecycleEmailType, SubscriptionStatus } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { resolveEmailPublicBaseUrl } from "@/lib/email/project-email-template-builder";
 import { sendTransactionalEmail } from "@/lib/email/transactional-email-sender";
 import { buildLifecycleEmailContent } from "@/modules/platform/lifecycle-email-copy-builder";
+import { createMarketingEmailUnsubscribeToken } from "@/modules/platform/marketing-email-unsubscribe-token";
 
 const RENEWAL_ELIGIBLE_STATUSES: SubscriptionStatus[] = [
   SubscriptionStatus.ACTIVE_STANDARD,
@@ -26,13 +28,31 @@ async function sendEmail(to: string, subject: string, text: string) {
   });
 }
 
+function buildMarketingUnsubscribeUrl(parentId: string, email: string) {
+  const token = createMarketingEmailUnsubscribeToken({
+    parentId,
+    parentEmail: email,
+  });
+  return `${resolveEmailPublicBaseUrl()}/api/email/marketing/unsubscribe?token=${encodeURIComponent(token)}`;
+}
+
 export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailType) {
   const parent = await prisma.parentAccount.findUnique({
     where: { id: parentId },
-    select: { email: true, displayName: true },
+    select: {
+      id: true,
+      email: true,
+      displayName: true,
+      preferences: {
+        select: {
+          marketingEmailOptIn: true,
+        },
+      },
+    },
   });
 
   if (!parent) return;
+  if (parent.preferences && !parent.preferences.marketingEmailOptIn) return;
 
   const existing = await prisma.lifecycleEmailLog.findUnique({
     where: { parentId_type: { parentId, type } },
@@ -53,8 +73,15 @@ export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailT
     displayName: parent.displayName,
     renewalEndDate,
   });
+  const unsubscribeUrl = buildMarketingUnsubscribeUrl(parent.id, parent.email);
+  const finalText = [
+    text,
+    "",
+    "Nếu bạn không muốn nhận email marketing từ Cùng Con Tự Học, hủy đăng ký tại đây:",
+    unsubscribeUrl,
+  ].join("\n");
 
-  await sendEmail(parent.email, subject, text);
+  await sendEmail(parent.email, subject, finalText);
 
   await prisma.lifecycleEmailLog.create({
     data: { parentId, type },

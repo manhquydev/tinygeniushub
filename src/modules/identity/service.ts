@@ -56,6 +56,7 @@ export async function registerParent(
           parentId: parent.id,
           weeklyReportChannel: "IN_APP_AND_EMAIL",
           weeklyReportEmailEnabled: true,
+          marketingEmailOptIn: true,
           timezone: "Asia/Bangkok",
         },
       });

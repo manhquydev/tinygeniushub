@@ -232,7 +232,7 @@ model ParentPreferences {
   parentId                 String        @unique
   weeklyReportChannel      String        @default("IN_APP_AND_EMAIL")
   weeklyReportEmailEnabled Boolean       @default(true)
-  marketingEmailOptIn      Boolean       @default(false)
+  marketingEmailOptIn      Boolean       @default(true)
   timezone                 String        @default("Asia/Bangkok")
   parent                   ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
 }

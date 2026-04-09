@@ -226,4 +226,6 @@ Cùng Con Tự Học
   - `utm_medium=lifecycle`
   - `utm_campaign=[sequence_id]`
 - Bắt buộc có cơ chế unsubscribe/manage preferences khi gửi production.
+  - Lifecycle marketing unsubscribe endpoint: `/api/email/marketing/unsubscribe?token=...`
+  - Blog newsletter unsubscribe endpoint: `/api/blog/newsletter/unsubscribe?token=...`
 - Ưu tiên ESP: Resend hoặc Brevo.
