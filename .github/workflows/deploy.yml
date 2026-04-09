@@ -111,8 +111,23 @@ jobs:
           pm2 describe cungcontuhoc-web >/dev/null
           pm2 describe cungcontuhoc-worker >/dev/null
 
-          curl -fsS "http://127.0.0.1:3000/api/health" >/dev/null
-          curl -fsS "http://127.0.0.1:3000/api/health/ready" >/dev/null
+          wait_for_health() {
+            local url="$1"
+            local max_attempts="${2:-20}"
+            local attempt=1
+
+            until curl -fsS "$url" >/dev/null; do
+              if [[ "$attempt" -ge "$max_attempts" ]]; then
+                echo "::error::Health check failed after ${max_attempts} attempts: ${url}"
+                return 1
+              fi
+              sleep 1
+              attempt=$((attempt + 1))
+            done
+          }
+
+          wait_for_health "http://127.0.0.1:3000/api/health" 25
+          wait_for_health "http://127.0.0.1:3000/api/health/ready" 25
 
           cd "${app_dir}"
           pnpm prisma migrate status
