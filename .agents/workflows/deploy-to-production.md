@@ -1,152 +1,121 @@
 ---
-description: How to access the server and deploy code to Production (DigitalOcean)
+description: Production deploy workflow with tracked execution and no-manual-SSH default
 ---
 
 # Deploy to Production Workflow
 
-The Cùng Con Tự Học project is hosted on a DigitalOcean Droplet (Ubuntu), running PM2 for the Next.js application, Docker for PostgreSQL/Redis, and NGINX as the reverse proxy.
+Mục tiêu: deploy an toàn, theo dõi được toàn bộ tiến trình, giảm thao tác tay, giảm rủi ro production drift.
 
-## 1. Server Access Information
+## 1. Deployment model (recommended)
 
-The project uses SSH key authentication. Before doing any server operations, verify your SSH connection.
+### Primary: GitHub Actions + Self-hosted Runner (no manual SSH)
 
-- **Host IP:** `152.42.246.218`
-- **User:** `root`
-- **SSH Alias:** `do-server` (Ensure this alias is configured in your local `~/.ssh/config` pointing to the droplet IP).
-- **App Path on Server:** `/var/www/cungcontuhoc`
+- Workflow: `.github/workflows/deploy.yml`
+- Trigger:
+  - Auto: sau khi `Release Check` pass trên `main`
+  - Manual: `workflow_dispatch` (cho hotfix/ref cụ thể)
+- Runtime:
+  - Runner chạy trực tiếp trên production host
+  - Deploy trong `APP_DIR` bằng `scripts/deploy/remote-deploy.sh`
+- Theo dõi:
+  - Build/deploy logs xuất artifact
+  - PM2 snapshot xuất artifact
+  - Health checks nội bộ + external probes
+  - Summary hiển thị ngay trong GitHub Actions run
 
-To verify connection, you can run:
-```bash
-ssh do-server "uptime"
-```
+=> Team không cần SSH tay để deploy thường ngày.
 
-## 2. Standard Deployment Steps
+### Fallback: GitHub Actions SSH deploy
 
-If there are new commits in `main` and you need to deploy production, run:
+- Workflow: `.github/workflows/deploy-digitalocean-ssh.yml`
+- Chỉ dùng khi self-hosted runner unavailable.
 
-```bash
-ssh do-server "cd /var/www/cungcontuhoc && git pull --ff-only origin main && pnpm install --frozen-lockfile && pnpm prisma migrate deploy && pnpm build && pm2 reload cungcontuhoc-web && pm2 reload cungcontuhoc-worker"
-```
+## 2. Required production config
 
-Notes:
-- PM2 process names are `cungcontuhoc-web` and `cungcontuhoc-worker`.
-- Do not use `pm2 reload cungcontuhoc` (process not found on current production).
-- `pnpm prisma migrate deploy` must run in deploy flow.
+- GitHub Environment: `production` (nên bật required reviewers)
+- Repo Variables (khuyến nghị):
+  - `PROD_APP_DIR` (default `/var/www/cungcontuhoc`)
+  - `PROD_PUBLIC_BASE_URL` (default `https://cungcontuhoc.io.vn`)
+- Server prerequisites:
+  - `pnpm`, `pm2`, repo code tại `PROD_APP_DIR`
+  - PM2 process names:
+    - `cungcontuhoc-web`
+    - `cungcontuhoc-worker`
+  - env production file: `.env.production`
 
-### Recommended Deterministic Flow (Preferred over one-liner)
-
-To reduce hidden failures, run step-by-step and stop immediately at first error:
-
-```bash
-ssh do-server "cd /var/www/cungcontuhoc && git pull --ff-only origin main"
-ssh do-server "cd /var/www/cungcontuhoc && pnpm install --frozen-lockfile"
-ssh do-server "cd /var/www/cungcontuhoc && pnpm prisma migrate deploy"
-ssh do-server "cd /var/www/cungcontuhoc && pnpm build"
-ssh do-server "pm2 reload cungcontuhoc-web && pm2 reload cungcontuhoc-worker"
-```
-
-Why this is preferred:
-- Easier to identify failing step (pull/install/migrate/build/reload).
-- Easier to retry only failed step.
-- Prevents long one-line command from masking intermediate errors.
-
-### Important Warning 🔥: Memory/OOM Issues
-The Next.js `pnpm build` process consumes a significant amount of RAM. The server has 4GB RAM + 2GB Swap. 
-If the build process hangs or gets stuck for more than 3-4 minutes, it means the server is experiencing Out of Memory (OOM) starvation. 
-
-In the event of OOM or hanging builds, run the **Memory-Safe Deployment** sequence instead:
+### One-time self-hosted runner setup (on production server)
 
 ```bash
-# 1. Stop web + worker to free up memory
-ssh do-server "pm2 stop cungcontuhoc-web && pm2 stop cungcontuhoc-worker"
-
-# 2. Pull code, install deps, apply migration, and build
-ssh do-server "cd /var/www/cungcontuhoc && git pull --ff-only origin main && pnpm install --frozen-lockfile && pnpm prisma migrate deploy && pnpm build"
-
-# 3. Start web + worker again
-ssh do-server "pm2 start cungcontuhoc-web && pm2 start cungcontuhoc-worker"
+mkdir -p ~/actions-runner && cd ~/actions-runner
+# download runner package from GitHub Actions UI
+./config.sh --url https://github.com/manhquydev/cungcontuhoc --token <RUNNER_TOKEN> --labels production
+./svc.sh install
+./svc.sh start
 ```
 
-### Build Lock Recovery (`.next` lock / stale build artifacts)
+Required labels for workflow matching:
+- `self-hosted`
+- `linux`
+- `x64`
+- `production`
 
-If build fails with lock/contention symptoms (often `.next` artifacts), recover with:
+## 3. Standard deploy flow (no manual SSH)
 
-```bash
-# Optional: inspect stuck build process
-ssh do-server "ps -ef | grep '[n]ext build' || true"
+1. Merge PR vào `main` (Release Check must pass).
+2. Workflow `Deploy to Production (No SSH Manual)` chạy tự động.
+3. Pipeline thực thi tuần tự:
+   - Resolve ref + preflight
+   - `remote-deploy.sh`:
+     - fetch + checkout exact commit
+     - `pnpm install --frozen-lockfile`
+     - `pnpm db:generate`
+     - `pnpm prisma migrate deploy` (retry)
+     - `pnpm build`
+     - restart `cungcontuhoc-web` + `cungcontuhoc-worker`
+   - Post deploy gates:
+     - `pm2 describe` 2 process
+     - `/api/health`, `/api/health/ready`
+     - `pnpm prisma migrate status`
+     - external probes
+4. Download artifacts nếu cần audit:
+   - deploy log
+   - pm2 status snapshot
 
-# Optional: kill stale build process if still running
-ssh do-server "pkill -f '[n]ext build' || true"
+## 4. Hotfix deploy flow
 
-ssh do-server "pm2 stop cungcontuhoc-web && pm2 stop cungcontuhoc-worker"
-ssh do-server "cd /var/www/cungcontuhoc && rm -rf .next && pnpm build"
-ssh do-server "pm2 start cungcontuhoc-web && pm2 start cungcontuhoc-worker"
-```
+Manual trigger workflow `deploy.yml`:
+- input `ref`: commit SHA / tag / branch cần deploy
+- input `health_probe_count`: số lần external check
 
-Then re-run post-deploy verification commands.
+Use case: deploy patch nhanh mà vẫn giữ full log + health gates.
 
-## 3. Database operations
- Prisma is used for the database. To run Prisma migrations or seed the database on production:
-```bash
-ssh do-server "cd /var/www/cungcontuhoc && pnpm prisma migrate deploy"
-ssh do-server "cd /var/www/cungcontuhoc && pnpm db:seed"
-```
+## 5. Rollback strategy
 
-Important:
-- Do not use `pnpm db:migrate` in production because it maps to `prisma migrate dev`.
+Rollback không SSH tay:
+1. Chọn run manual của `deploy.yml`
+2. Set `ref` = commit SHA stable trước đó
+3. Trigger deploy lại
+4. Verify health + PM2 snapshot trong workflow artifacts
 
-## 4. Git Remote Security (Required)
+## 6. Operational quality gates (must keep)
 
-Production server must use SSH remote, not PAT in URL.
+- Không deploy nếu `Release Check` fail.
+- Không skip migration trong production deploy.
+- Không dùng wildcard PM2 commands (`restart all`, `reload all`).
+- Không dùng `prisma migrate dev` trên production.
+- Không deploy tay bằng one-liner SSH nếu không có incident đặc biệt.
 
-Check current remote:
-```bash
-ssh do-server "cd /var/www/cungcontuhoc && git remote -v"
-```
+## 7. Why this creates real value
 
-Switch to SSH remote:
-```bash
-ssh do-server "cd /var/www/cungcontuhoc && git remote set-url origin git@github.com:manhquydev/cungcontuhoc.git && git fetch origin"
-```
+- Giảm MTTR: deploy/rollback bằng workflow + input ref.
+- Auditability: có artifact logs + summary mỗi lần deploy.
+- Deterministic: checkout exact commit thay vì pull mơ hồ.
+- Safer operations: health gates bắt lỗi sớm trước khi coi deploy là thành công.
 
-Verify SSH auth from server:
-```bash
-ssh do-server "ssh -T git@github.com -o BatchMode=yes -o StrictHostKeyChecking=accept-new"
-```
+## 8. Incident path
 
-If old PAT was exposed in remote URL/history, rotate/revoke it in GitHub immediately.
-
-## 5. Post-Deploy Verification
-
-```bash
-ssh do-server "curl -sS http://localhost:3000/api/health && echo && curl -sS http://localhost:3000/api/health/ready && echo && pm2 status"
-```
-
-For email verification enforcement check (live):
-- Signup parent returns `verification.required=true`
-- Signup does not set `ccth_session` cookie
-- Login before verify returns `403` with `EMAIL_NOT_VERIFIED`
-
-## 6. Common Issues & Fast Fixes
-
-- `Process or Namespace cungcontuhoc not found`
-  - Cause: wrong PM2 name
-  - Fix: use `cungcontuhoc-web` / `cungcontuhoc-worker`
-
-- Build hangs/OOM
-  - Cause: memory pressure during `pnpm build`
-  - Fix: use memory-safe flow (stop PM2 first), or add temporary swap before build
-
-- `prisma migrate deploy` not applied in deploy step
-  - Risk: code/db schema mismatch
-  - Fix: enforce migration in every deploy command
-
-- `git pull` fails with auth/token issue
-  - Cause: HTTPS remote with expired token
-  - Fix: switch `origin` to SSH remote and verify `ssh -T git@github.com`
-
-## 7. Administrative Logins
-Admin configurations are set in the `.env` file via `ADMIN_EMAILS`.
-- Test Admin Account: `demo.parent@cungcontuhoc.vn`
-- Password: `DemoPass123!`
-- Dashboard Route: `http://152.42.246.218/admin`
+Khi production incident:
+1. Tạm dừng auto deploy (disable workflow hoặc lock environment).
+2. Trigger rollback bằng `deploy.yml` với last-known-good SHA.
+3. Thu thập artifact từ run failed để RCA.
+4. Sau fix, redeploy qua cùng workflow để giữ audit trail.

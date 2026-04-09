@@ -1,5 +1,24 @@
 # Project Changelog
 
+## [0.4.7] - 2026-04-10
+
+### Changed
+- Simplified course detail UX at `/courses/[slug]` to reduce decision overload:
+  - Removed long-form blocks (fit checklist, timeline, difference, FAQ, reviews, related courses, support accordion stack).
+  - Kept conversion-first flow: concise description, lesson preview, checkout.
+  - Streamlined hero/sidebar copy and CTAs to focus on: `Xem học thử` and `Mua khóa`.
+  - Updated curriculum intro copy to be shorter and clearer for quick scan.
+- Simplified courses listing UX at `/courses`:
+  - Removed the entire hero block "Khóa học cho phụ huynh chọn nhanh".
+  - Removed the bottom explanatory section to keep page focused on filtering and browsing.
+  - Refactored course cards into compact format with only core decision info (title, short desc, lessons, duration, price, CTA).
+  - Filter sidebar now uses data-driven options (subject/age only shown when actual storefront data contains those values).
+- Production deploy workflow reworked for safer operations without manual SSH:
+  - `.github/workflows/deploy.yml` is now self-hosted-runner based with tracked logs, PM2 snapshot artifacts, and health gates.
+  - `.github/workflows/deploy-digitalocean-ssh.yml` kept as manual fallback only and fixed PM2 process names (`cungcontuhoc-web`, `cungcontuhoc-worker`).
+  - `scripts/deploy/remote-deploy.sh` now deploys exact commit SHA and writes deploy metadata (`.deploy/latest.json`).
+  - Updated deployment workflow docs to make no-manual-SSH path the default.
+
 ## [0.4.6] - 2026-03-26
 
 ### Added

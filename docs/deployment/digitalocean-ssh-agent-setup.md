@@ -1,6 +1,10 @@
-# DigitalOcean SSH Setup for Agent Deploy
+# DigitalOcean SSH Setup for Agent Deploy (Fallback Mode)
 
-This guide configures the repository so an automation agent (GitHub Actions runner) can deploy to your DigitalOcean server over SSH safely.
+This guide configures SSH-based deployment as a fallback path.
+
+Primary production path is now no-manual-SSH via self-hosted runner:
+- Workflow: `.github/workflows/deploy.yml`
+- Deploy executes directly on prod host with tracked logs and health gates.
 
 ## Key principle: which key goes where
 
@@ -67,14 +71,20 @@ In GitHub repo settings, add:
 - `DO_SSH_USER`: deploy user (for example `deploy`)
 - `DO_SSH_PRIVATE_KEY`: full private key content (`-----BEGIN OPENSSH PRIVATE KEY----- ...`)
 - `DO_SSH_KNOWN_HOSTS`: output from `ssh-keyscan -H ...`
-- `DO_APP_DIR`: app path on server (for example `/srv/cungcontuhoc`)
+- `DO_APP_DIR`: app path on server (for example `/var/www/cungcontuhoc`)
 - `GA4_PROPERTY_ID`: production GA4 property ID used as SoT (must match production web stream for `cungcontuhoc.io.vn`)
 - `GA4_SERVICE_ACCOUNT_CLIENT_EMAIL`: service account email for GA4 Data API readonly access
 - `GA4_SERVICE_ACCOUNT_PRIVATE_KEY`: service account private key (full key with line breaks)
 - `GA4_SOT_REQUIRED`: set `true` in production once SoT rollout is mandatory
 
-Post-deploy restart command is now fixed in workflow as:
-- `pm2 restart cungcontuhoc --update-env || pm2 start cungcontuhoc`
+Post-deploy restart command should target current process names:
+- `pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web`
+- `pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker`
+
+Avoid wildcard PM2 commands in production workflows:
+- Do not use `pm2 restart all`
+- Do not use `pm2 reload all`
+- Do not use `pm2 stop all`
 
 If your runtime differs (systemd/docker), update `.github/workflows/deploy-digitalocean-ssh.yml` accordingly.
 
@@ -89,9 +99,9 @@ On the server, ensure:
 
 ## Step 6: Trigger deploy
 
-- Automatic: when `Release Check` workflow succeeds on `main`.
-- Manual: run workflow `Deploy DigitalOcean via SSH` with `workflow_dispatch`.
+- Manual only: run workflow `Deploy DigitalOcean via SSH (Fallback)` with `workflow_dispatch`.
   - `dry_run = true` to test SSH only.
+  - Use this path only when self-hosted runner deploy is unavailable.
 
 ## Security checklist
 
