@@ -10,14 +10,19 @@ if [[ -z "$deploy_ref" ]]; then
 fi
 
 echo "[deploy] Checking out ${deploy_ref}"
-git fetch --prune origin --tags
+git fetch --prune origin --tags +refs/heads/*:refs/remotes/origin/*
 
-if ! git rev-parse --verify "${deploy_ref}^{commit}" >/dev/null 2>&1; then
-  echo "[deploy] Invalid ref: ${deploy_ref}"
+resolved_ref="${deploy_ref}"
+if git show-ref --verify --quiet "refs/remotes/origin/${deploy_ref}"; then
+  resolved_ref="refs/remotes/origin/${deploy_ref}"
+fi
+
+if ! git rev-parse --verify "${resolved_ref}^{commit}" >/dev/null 2>&1; then
+  echo "[deploy] Invalid ref: ${deploy_ref} (resolved as ${resolved_ref})"
   exit 1
 fi
 
-deploy_sha="$(git rev-parse --verify "${deploy_ref}^{commit}")"
+deploy_sha="$(git rev-parse --verify "${resolved_ref}^{commit}")"
 echo "[deploy] Resolved deploy SHA: ${deploy_sha}"
 git checkout --force "${deploy_sha}"
 
@@ -67,11 +72,20 @@ done
 echo "[deploy] Building production bundle"
 pnpm build
 
+run_default_post_deploy() {
+  echo "[deploy] Running default PM2 restart"
+  pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web
+  pm2 describe cungcontuhoc-web >/dev/null
+
+  pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker
+  pm2 describe cungcontuhoc-worker >/dev/null
+}
+
 if [[ -n "$post_deploy_cmd" ]]; then
   echo "[deploy] Running post-deploy command"
   bash -lc "$post_deploy_cmd"
 else
-  echo "[deploy] No post-deploy command set (POST_DEPLOY_CMD is empty)"
+  run_default_post_deploy
 fi
 
 echo "[deploy] Writing deployment metadata"

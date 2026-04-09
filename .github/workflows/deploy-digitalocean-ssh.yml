@@ -14,13 +14,14 @@ on:
         default: false
 
 concurrency:
-  group: deploy-digitalocean-main
+  group: deploy-production-cungcontuhoc
   cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    environment: production
     permissions:
       contents: read
     env:
@@ -28,7 +29,7 @@ jobs:
       APP_DIR: /var/www/cungcontuhoc
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           ref: ${{ env.DEPLOY_REF }}
           fetch-depth: 0
@@ -90,7 +91,8 @@ jobs:
           GA4_SOT_REQUIRED: ${{ secrets.GA4_SOT_REQUIRED }}
         run: |
           set -euo pipefail
-          POST_CMD_B64="$(printf '%s' 'pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web; pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker' | base64 -w0)"
+          POST_DEPLOY_SCRIPT=$'set -euo pipefail\npm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web\npm2 describe cungcontuhoc-web >/dev/null\npm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker\npm2 describe cungcontuhoc-worker >/dev/null\ncurl -fsS http://127.0.0.1:3000/api/health >/dev/null\ncurl -fsS http://127.0.0.1:3000/api/health/ready >/dev/null'
+          POST_CMD_B64="$(printf '%s' "$POST_DEPLOY_SCRIPT" | base64 -w0)"
           GA4_PROPERTY_ID_B64="$(printf '%s' "${GA4_PROPERTY_ID:-}" | base64 -w0)"
           GA4_SERVICE_ACCOUNT_CLIENT_EMAIL_B64="$(printf '%s' "${GA4_SERVICE_ACCOUNT_CLIENT_EMAIL:-}" | base64 -w0)"
           GA4_SERVICE_ACCOUNT_PRIVATE_KEY_B64="$(printf '%s' "${GA4_SERVICE_ACCOUNT_PRIVATE_KEY:-}" | base64 -w0)"
