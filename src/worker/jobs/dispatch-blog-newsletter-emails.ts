@@ -114,7 +114,7 @@ function buildUnsubscribeUrl(unsubToken: string) {
   return `${resolveEmailPublicBaseUrl()}/api/blog/newsletter/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
 }
 
-function buildNewsletterVerifyText(payload: VerifyBlogNewsletterJobPayload) {
+function buildNewsletterVerifyText(payload: VerifyBlogNewsletterJobPayload, unsubscribeUrl: string) {
   const name = payload.nameVi?.trim() || "phụ huynh";
   const verifyUrl = buildVerifyUrl(payload.verifyToken);
   return [
@@ -124,6 +124,8 @@ function buildNewsletterVerifyText(payload: VerifyBlogNewsletterJobPayload) {
     `Nhấn vào link này để xác nhận: ${verifyUrl}`,
     "",
     "Nếu bạn không yêu cầu đăng ký, có thể bỏ qua email này.",
+    "Hoặc hủy đăng ký tại đây:",
+    unsubscribeUrl,
   ].join("\n");
 }
 
@@ -169,6 +171,7 @@ async function sendVerifyNewsletterEmail(payload: VerifyBlogNewsletterJobPayload
       verifyToken: true,
       verified: true,
       unsubscribedAt: true,
+      unsubToken: true,
     },
   });
 
@@ -187,7 +190,7 @@ async function sendVerifyNewsletterEmail(payload: VerifyBlogNewsletterJobPayload
   await sendNewsletterEmail({
     to: subscriber.email,
     subject: "Xác nhận đăng ký bản tin blog",
-    text: buildNewsletterVerifyText(payload),
+    text: buildNewsletterVerifyText(payload, buildUnsubscribeUrl(subscriber.unsubToken)),
     tags: [
       { name: "feature", value: "blog_newsletter_verify" },
       { name: "subscriber_id", value: payload.subscriberId },

@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
+import { resolveEmailPublicBaseUrl } from "@/lib/email/project-email-template-builder";
 import { handleRouteError } from "@/lib/route-error";
 import { newsletterService } from "@/modules/blog/newsletter-service";
+
+function redirectToBlogWithSubscribeState(requestUrl: string, subscribed: "true" | "false") {
+  const target = new URL("/blog", resolveEmailPublicBaseUrl(requestUrl));
+  target.searchParams.set("subscribed", subscribed);
+  return NextResponse.redirect(target);
+}
 
 export async function GET(request: Request) {
   try {
@@ -11,10 +18,10 @@ export async function GET(request: Request) {
 
     const verified = await newsletterService.verifySubscription(token);
     if (!verified) {
-      return NextResponse.redirect(new URL("/blog?subscribed=false", request.url));
+      return redirectToBlogWithSubscribeState(request.url, "false");
     }
 
-    return NextResponse.redirect(new URL("/blog?subscribed=true", request.url));
+    return redirectToBlogWithSubscribeState(request.url, "true");
   } catch (error) {
     return handleRouteError(error, {
       routeId: "blog.newsletter.verify",
