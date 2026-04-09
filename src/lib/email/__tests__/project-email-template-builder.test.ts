@@ -40,6 +40,46 @@ describe("renderProjectEmailHtml", () => {
     expect(html).toContain(">Đặt lại mật khẩu<");
   });
 
+  it("renders centered CTA and unsubscribe footer without exposing raw URL text", () => {
+    const unsubscribeUrl = "https://cungcontuhoc.io.vn/api/email/marketing/unsubscribe?token=abc123";
+    const html = renderProjectEmailHtml({
+      subject: "Lifecycle",
+      text: [
+        "Xin chào phụ huynh,",
+        "",
+        "Mở dashboard: https://cungcontuhoc.io.vn/parent/dashboard",
+        "",
+        "Nếu bạn không muốn nhận email marketing từ Cùng Con Tự Học, hủy đăng ký tại đây:",
+        unsubscribeUrl,
+      ].join("\n"),
+      tags: [{ name: "feature", value: "lifecycle" }],
+    });
+
+    expect(html).toContain('td align="center" style="padding:4px 28px 24px;"');
+    expect(html).toContain(">Mở bảng điều khiển<");
+    expect(html).toContain(">Hủy đăng ký<");
+    expect(html).not.toContain(`>${unsubscribeUrl}<`);
+  });
+
+  it("supports dark-mode-safe metadata and removes legacy unsubscribe prompt lines", () => {
+    const html = renderProjectEmailHtml({
+      subject: "Reply notification",
+      text: [
+        "Có phản hồi mới cho bình luận của bạn.",
+        "",
+        "Xem chi tiết: https://cungcontuhoc.io.vn/blog/demo#comments",
+        "",
+        "Nếu bạn không muốn nhận email thông báo trả lời nữa, bấm link:",
+        "https://cungcontuhoc.io.vn/api/blog/comments/unsubscribe?token=abc123",
+      ].join("\n"),
+      tags: [{ name: "feature", value: "blog_comment_reply" }],
+    });
+
+    expect(html).toContain('meta name="color-scheme" content="light"');
+    expect(html).toContain(">Hủy đăng ký<");
+    expect(html).not.toContain("bấm link:");
+  });
+
   it("formats ordered and checklist lines as list items", () => {
     const html = renderProjectEmailHtml({
       subject: "Checklist",
