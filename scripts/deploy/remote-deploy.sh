@@ -10,9 +10,16 @@ if [[ -z "$deploy_ref" ]]; then
 fi
 
 echo "[deploy] Checking out ${deploy_ref}"
-git fetch --prune origin
-git checkout --force "$deploy_ref"
-git pull --ff-only origin main || true
+git fetch --prune origin --tags
+
+if ! git rev-parse --verify "${deploy_ref}^{commit}" >/dev/null 2>&1; then
+  echo "[deploy] Invalid ref: ${deploy_ref}"
+  exit 1
+fi
+
+deploy_sha="$(git rev-parse --verify "${deploy_ref}^{commit}")"
+echo "[deploy] Resolved deploy SHA: ${deploy_sha}"
+git checkout --force "${deploy_sha}"
 
 echo "[deploy] Installing dependencies"
 pnpm install --frozen-lockfile
@@ -66,5 +73,15 @@ if [[ -n "$post_deploy_cmd" ]]; then
 else
   echo "[deploy] No post-deploy command set (POST_DEPLOY_CMD is empty)"
 fi
+
+echo "[deploy] Writing deployment metadata"
+mkdir -p .deploy
+cat > .deploy/latest.json <<EOF
+{
+  "deployRef": "${deploy_ref}",
+  "deploySha": "${deploy_sha}",
+  "deployedAtUtc": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+}
+EOF
 
 echo "[deploy] Completed successfully"

@@ -1,34 +1,174 @@
-name: Deploy to Production
+name: Deploy to Production (No SSH Manual)
 
 on:
-  push:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Git ref to deploy (branch, tag, or commit SHA)"
+        required: false
+        default: "main"
+      health_probe_count:
+        description: "How many external health probes after deploy"
+        required: false
+        default: "10"
+  workflow_run:
+    workflows:
+      - Release Check
+    types:
+      - completed
     branches:
       - main
 
+concurrency:
+  group: deploy-production-main
+  cancel-in-progress: false
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main')
+    runs-on: [self-hosted, linux, x64, production]
+    timeout-minutes: 45
+    environment: production
+    permissions:
+      contents: read
+      actions: read
+    env:
+      PROD_APP_DIR: ${{ vars.PROD_APP_DIR }}
+      PROD_PUBLIC_BASE_URL: ${{ vars.PROD_PUBLIC_BASE_URL }}
+      DEPLOY_ENV_FILE: .env.production
+      INPUT_REF: ${{ inputs.ref }}
+      INPUT_HEALTH_PROBE_COUNT: ${{ inputs.health_probe_count }}
+      WORKFLOW_RUN_SHA: ${{ github.event.workflow_run.head_sha }}
     steps:
-      - name: Deploy to DigitalOcean Droplet via SSH
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Resolve deployment variables
+        id: vars
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            deploy_ref="${INPUT_REF:-main}"
+            probe_count="${INPUT_HEALTH_PROBE_COUNT:-10}"
+          else
+            deploy_ref="${WORKFLOW_RUN_SHA}"
+            probe_count="10"
+          fi
+
+          app_dir="${PROD_APP_DIR:-/var/www/cungcontuhoc}"
+          public_base_url="${PROD_PUBLIC_BASE_URL:-https://cungcontuhoc.io.vn}"
+          ts="$(date -u +%Y%m%dT%H%M%SZ)"
+          log_dir="${RUNNER_TEMP}/deploy-logs"
+          log_path="${log_dir}/deploy-${ts}.log"
+          status_path="${log_dir}/pm2-status-${ts}.txt"
+
+          mkdir -p "${log_dir}"
+
+          echo "deploy_ref=${deploy_ref}" >> "$GITHUB_OUTPUT"
+          echo "probe_count=${probe_count}" >> "$GITHUB_OUTPUT"
+          echo "app_dir=${app_dir}" >> "$GITHUB_OUTPUT"
+          echo "public_base_url=${public_base_url}" >> "$GITHUB_OUTPUT"
+          echo "log_path=${log_path}" >> "$GITHUB_OUTPUT"
+          echo "status_path=${status_path}" >> "$GITHUB_OUTPUT"
+
+      - name: Preflight checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          app_dir="${{ steps.vars.outputs.app_dir }}"
+          test -d "${app_dir}" || { echo "::error::APP_DIR not found: ${app_dir}"; exit 1; }
+          command -v pnpm >/dev/null || { echo "::error::pnpm not found on runner"; exit 1; }
+          command -v pm2 >/dev/null || { echo "::error::pm2 not found on runner"; exit 1; }
+          test -f "${app_dir}/scripts/deploy/remote-deploy.sh" || {
+            echo "::error::Missing deploy script at ${app_dir}/scripts/deploy/remote-deploy.sh"
+            exit 1
+          }
+
+      - name: Deploy application
+        shell: bash
+        run: |
+          set -euo pipefail
+          app_dir="${{ steps.vars.outputs.app_dir }}"
+          deploy_ref="${{ steps.vars.outputs.deploy_ref }}"
+          log_path="${{ steps.vars.outputs.log_path }}"
+
+          cd "${app_dir}"
+          bash scripts/deploy/remote-deploy.sh "${deploy_ref}" 2>&1 | tee "${log_path}"
+
+      - name: Process and readiness checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          status_path="${{ steps.vars.outputs.status_path }}"
+          app_dir="${{ steps.vars.outputs.app_dir }}"
+
+          pm2 status | tee "${status_path}"
+
+          # Process name check is explicit to prevent false-positive deploy.
+          pm2 describe cungcontuhoc-web >/dev/null
+          pm2 describe cungcontuhoc-worker >/dev/null
+
+          curl -fsS "http://127.0.0.1:3000/api/health" >/dev/null
+          curl -fsS "http://127.0.0.1:3000/api/health/ready" >/dev/null
+
+          cd "${app_dir}"
+          pnpm prisma migrate status
+
+      - name: External health probes
+        shell: bash
+        run: |
+          set -euo pipefail
+          probe_count="${{ steps.vars.outputs.probe_count }}"
+          public_base_url="${{ steps.vars.outputs.public_base_url }}"
+
+          # Ensure numeric probe count with sane default.
+          if ! [[ "${probe_count}" =~ ^[0-9]+$ ]]; then
+            probe_count="10"
+          fi
+          if [[ "${probe_count}" -lt 1 ]]; then
+            probe_count="1"
+          fi
+          if [[ "${probe_count}" -gt 30 ]]; then
+            probe_count="30"
+          fi
+
+          ok=0
+          for _ in $(seq 1 "${probe_count}"); do
+            curl -fsS "${public_base_url}/" >/dev/null
+            ok=$((ok + 1))
+            sleep 1
+          done
+          echo "external_probes_ok=${ok}/${probe_count}"
+
+      - name: Publish deployment summary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          log_path="${{ steps.vars.outputs.log_path }}"
+          status_path="${{ steps.vars.outputs.status_path }}"
+          deploy_ref="${{ steps.vars.outputs.deploy_ref }}"
+          app_dir="${{ steps.vars.outputs.app_dir }}"
+          public_base_url="${{ steps.vars.outputs.public_base_url }}"
+
+          echo "## Production Deploy Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Mode: Self-hosted runner (no manual SSH)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Deploy ref: \`${deploy_ref}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- App dir: \`${app_dir}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Public URL: ${public_base_url}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Log file: \`${log_path}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- PM2 snapshot: \`${status_path}\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload deployment artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /var/www/cungcontuhoc
-            
-            # 1. Stop the application to free up memory (Memory-Safe Deployment)
-            pm2 stop cungcontuhoc
-            
-            # 2. Pull latest code, install dependencies, and build
-            git pull
-            pnpm install
-            pnpm build
-            
-            # 3. Run database migrations and seed
-            pnpm db:migrate
-            pnpm db:seed
-            
-            # 4. Start the application again
-            pm2 start cungcontuhoc
+          name: deploy-production-runner-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            ${{ steps.vars.outputs.log_path }}
+            ${{ steps.vars.outputs.status_path }}

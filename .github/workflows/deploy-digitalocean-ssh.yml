@@ -1,4 +1,4 @@
-name: Deploy DigitalOcean via SSH
+name: Deploy DigitalOcean via SSH (Fallback)
 
 on:
   workflow_dispatch:
@@ -12,13 +12,6 @@ on:
         required: false
         type: boolean
         default: false
-  workflow_run:
-    workflows:
-      - Release Check
-    types:
-      - completed
-    branches:
-      - main
 
 concurrency:
   group: deploy-digitalocean-main
@@ -26,17 +19,12 @@ concurrency:
 
 jobs:
   deploy:
-    if: >
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'workflow_run' &&
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
       contents: read
     env:
-      DEPLOY_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.event.workflow_run.head_sha }}
+      DEPLOY_REF: ${{ inputs.ref }}
       APP_DIR: /var/www/cungcontuhoc
     steps:
       - name: Checkout repository
@@ -102,7 +90,7 @@ jobs:
           GA4_SOT_REQUIRED: ${{ secrets.GA4_SOT_REQUIRED }}
         run: |
           set -euo pipefail
-          POST_CMD_B64="$(printf '%s' 'pm2 restart cungcontuhoc --update-env || pm2 start cungcontuhoc' | base64 -w0)"
+          POST_CMD_B64="$(printf '%s' 'pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web; pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker' | base64 -w0)"
           GA4_PROPERTY_ID_B64="$(printf '%s' "${GA4_PROPERTY_ID:-}" | base64 -w0)"
           GA4_SERVICE_ACCOUNT_CLIENT_EMAIL_B64="$(printf '%s' "${GA4_SERVICE_ACCOUNT_CLIENT_EMAIL:-}" | base64 -w0)"
           GA4_SERVICE_ACCOUNT_PRIVATE_KEY_B64="$(printf '%s' "${GA4_SERVICE_ACCOUNT_PRIVATE_KEY:-}" | base64 -w0)"
