@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { trackEvent } from "@/lib/analytics/track-event";
 import { sanitizeNextPath } from "@/lib/auth/safe-next-path";
@@ -13,6 +13,7 @@ interface AuthFormProps {
 
 export function AuthForm({ mode, nextPath }: AuthFormProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -24,6 +25,8 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
   const safeNextPath = sanitizeNextPath(nextPath);
   const nextQuery = safeNextPath ? `?next=${encodeURIComponent(safeNextPath)}` : "";
   const postAuthPath = safeNextPath ?? "/parent/dashboard";
+  const verifyState = searchParams.get("verify");
+  const loginInfoMessage = getLoginInfoMessageFromVerifyState(verifyState);
   const formTitle = isSignup ? "Tạo tài khoản phụ huynh" : "Đăng nhập phụ huynh";
   const formSubtitle = isSignup
     ? "Tạo tài khoản để quản lý hồ sơ của bé, xem bài học mẫu và mua khóa học phù hợp."
@@ -38,6 +41,38 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
 
   function isLikelyEnglishOnlyMessage(message: string) {
     return /^[A-Za-z0-9\s,.'":;!?()/-]+$/.test(message);
+  }
+
+  function getLoginInfoMessageFromVerifyState(state: string | null) {
+    if (!state || isSignup) {
+      return null;
+    }
+
+    if (state === "pending") {
+      return "Tài khoản đã tạo. Vui lòng mở email để xác minh trước khi đăng nhập.";
+    }
+
+    if (state === "delivery-issue") {
+      return "Tài khoản đã tạo nhưng hệ thống chưa gửi được email xác minh. Vui lòng thử đăng nhập lại để gửi lại email hoặc liên hệ hỗ trợ.";
+    }
+
+    if (state === "success") {
+      return "Email đã xác minh thành công. Bạn có thể đăng nhập.";
+    }
+
+    if (state === "expired") {
+      return "Liên kết xác minh đã hết hạn. Vui lòng đăng nhập để hệ thống gửi lại email xác minh.";
+    }
+
+    if (state === "invalid" || state === "missing") {
+      return "Liên kết xác minh không hợp lệ. Vui lòng đăng nhập để nhận lại email xác minh.";
+    }
+
+    if (state === "signup-success") {
+      return "Tài khoản đã tạo thành công. Bạn có thể đăng nhập.";
+    }
+
+    return null;
   }
 
   function formatAuthError(
@@ -59,6 +94,16 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
 
     if (response.status === 401) {
       return "Email hoặc mật khẩu chưa đúng.";
+    }
+
+    if (
+      response.status === 403 &&
+      (code === "EMAIL_NOT_VERIFIED" || code === "EMAIL_NOT_VERIFIED_DELIVERY_FAILED")
+    ) {
+      if (code === "EMAIL_NOT_VERIFIED_DELIVERY_FAILED") {
+        return "Email chưa được xác minh và hệ thống chưa gửi lại được email xác minh. Vui lòng thử lại sau.";
+      }
+      return "Email chưa được xác minh. Hệ thống đã gửi lại email xác minh, vui lòng kiểm tra hộp thư.";
     }
 
     if (response.status === 409 && code === "EMAIL_EXISTS") {
@@ -128,6 +173,12 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
 
       const body = (await response.json()) as {
         ok?: boolean;
+        data?: {
+          verification?: {
+            required?: boolean;
+            emailDispatch?: "queued" | "failed" | "not_required";
+          };
+        };
         error?: {
           message?: string;
           details?: {
@@ -149,6 +200,16 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
 
       if (isSignup) {
         trackEvent("complete_registration");
+        const verification = body.data?.verification;
+        if (verification?.required) {
+          const verifyStatus = verification.emailDispatch === "queued" ? "pending" : "delivery-issue";
+          router.push(`/auth/login?verify=${encodeURIComponent(verifyStatus)}`);
+          router.refresh();
+          return;
+        }
+        router.push("/auth/login?verify=signup-success");
+        router.refresh();
+        return;
       }
 
       router.push(postAuthPath);
@@ -233,6 +294,11 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
         </label>
       ) : null}
 
+      {loginInfoMessage ? (
+        <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-700">
+          {loginInfoMessage}
+        </p>
+      ) : null}
       {error ? <p className="text-sm font-medium text-rose-700">{error}</p> : null}
 
       <button

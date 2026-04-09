@@ -6,10 +6,14 @@ import { logInfo, logWarn } from "@/lib/observability/logger";
 import { buildRateLimitIdentity, enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
-import { loginSchema } from "@/modules/identity/service";
+import {
+  isParentEmailVerified,
+  issueParentEmailVerificationChallenge,
+} from "@/modules/identity/parent-email-verification-service";
+import { authenticateParent, loginSchema } from "@/modules/identity/service";
 import { DomainError } from "@/modules/platform/errors";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
-import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
+import { getAdminSecurityControls, getRateLimitPolicy } from "@/modules/platform/security-policy-service";
 
 const LOGIN_FAILURE_MIN_DURATION_MS = 250;
 
@@ -97,6 +101,43 @@ export async function POST(request: Request) {
       });
     }
 
+    const parent = await authenticateParent(input, {
+      touchLastActiveAt: false,
+    });
+    const controls = await getAdminSecurityControls();
+    if (controls.parentEmailVerificationRequired) {
+      const verified = await isParentEmailVerified(parent.id);
+      if (!verified) {
+        try {
+          await issueParentEmailVerificationChallenge({
+            parent: {
+              id: parent.id,
+              email: parent.email,
+              displayName: parent.displayName,
+            },
+            ttlMinutes: controls.parentEmailVerificationTokenTtlMinutes,
+          });
+        } catch (challengeError) {
+          logWarn("auth.login.verification_email_enqueue_failed", {
+            parentId: parent.id,
+            ip: clientIp,
+            message: challengeError instanceof Error ? challengeError.message : "unknown_error",
+          });
+          throw new DomainError(
+            "Email chưa được xác minh và hệ thống chưa gửi lại được email xác minh. Vui lòng thử lại sau.",
+            403,
+            "EMAIL_NOT_VERIFIED_DELIVERY_FAILED",
+          );
+        }
+
+        throw new DomainError(
+          "Email chưa được xác minh. Chúng tôi đã gửi lại email xác minh, vui lòng kiểm tra hộp thư.",
+          403,
+          "EMAIL_NOT_VERIFIED",
+        );
+      }
+    }
+
     const signIn = await auth.api.signInEmail({
       headers: request.headers,
       body: {
@@ -119,16 +160,7 @@ export async function POST(request: Request) {
       return fail("Invalid credentials", 401);
     }
 
-    const parent = await prisma.parentAccount.findUnique({
-      where: { id: authUserId },
-      select: {
-        id: true,
-        email: true,
-        displayName: true,
-      },
-    });
-
-    if (!parent) {
+    if (authUserId !== parent.id) {
       logWarn("auth.login.failed", {
         reason: "invalid_credentials",
         ip: clientIp,
@@ -143,7 +175,13 @@ export async function POST(request: Request) {
       data: { lastActiveAt: new Date() },
     });
 
-    const response = ok({ parent });
+    const response = ok({
+      parent: {
+        id: parent.id,
+        email: parent.email,
+        displayName: parent.displayName,
+      },
+    });
     appendSetCookieHeaders(response, signIn.headers);
 
     logInfo("auth.login.succeeded", {
@@ -162,6 +200,17 @@ export async function POST(request: Request) {
         code: normalizedError.code,
       });
       await waitMinimumLoginFailureDuration(requestStartedAtMs);
+    } else if (
+      normalizedError instanceof DomainError &&
+      (normalizedError.code === "EMAIL_NOT_VERIFIED" ||
+        normalizedError.code === "EMAIL_NOT_VERIFIED_DELIVERY_FAILED")
+    ) {
+      logWarn("auth.login.failed", {
+        reason: "email_not_verified",
+        ip: clientIp,
+        identityHash: emailIdentityHash,
+        code: normalizedError.code,
+      });
     } else if (normalizedError instanceof DomainError) {
       logWarn("auth.login.failed", {
         reason: "domain_error",

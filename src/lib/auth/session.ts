@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { auth } from "@/lib/auth/better-auth";
 import { prisma } from "@/lib/db";
 import { getImpersonatedParentIdFromCookieHeader } from "@/lib/auth/impersonation";
+import { getAdminSecurityControls } from "@/modules/platform/security-policy-service";
 
 export const SESSION_COOKIE_NAME = "ccth_session";
 
@@ -22,6 +23,18 @@ async function resolveAuthenticatedParentFromHeaders(requestHeaders: Headers) {
   }
 
   const user = session.user as SessionUser;
+  const securityControls = await getAdminSecurityControls();
+  if (securityControls.parentEmailVerificationRequired) {
+    const authUser = await prisma.user.findUnique({
+      where: { id: user.id },
+      select: { emailVerified: true },
+    });
+
+    if (!authUser?.emailVerified) {
+      return null;
+    }
+  }
+
   const parent = user.parentId
     ? await prisma.parentAccount.findUnique({
         where: { id: user.parentId },

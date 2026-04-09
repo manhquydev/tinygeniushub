@@ -1,14 +1,13 @@
-import { appendSetCookieHeaders, normalizeBetterAuthError } from "@/lib/auth/better-auth-utils";
-import { auth } from "@/lib/auth/better-auth";
 import { fail, ok } from "@/lib/http";
 import { logInfo, logWarn } from "@/lib/observability/logger";
 import { buildRateLimitIdentity, enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
+import { issueParentEmailVerificationChallenge } from "@/modules/identity/parent-email-verification-service";
 import { registerParent, signupSchema } from "@/modules/identity/service";
 import { DomainError } from "@/modules/platform/errors";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
-import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
+import { getAdminSecurityControls, getRateLimitPolicy } from "@/modules/platform/security-policy-service";
 import { enqueueLifecycleEmail } from "@/worker/queue";
 import { LifecycleEmailType } from "@prisma/client";
 
@@ -83,16 +82,36 @@ export async function POST(request: Request) {
       userAgent: resolveUserAgent(request),
     });
 
-    const signIn = await auth.api.signInEmail({
-      headers: request.headers,
-      body: {
-        email: input.email,
-        password: input.password,
-        rememberMe: true,
-      },
-      returnHeaders: true,
-      returnStatus: true,
-    });
+    const controls = await getAdminSecurityControls();
+    let verificationExpiresAt: Date | null = null;
+    let verificationEmailDispatch: "queued" | "failed" | "not_required" = "not_required";
+
+    if (controls.parentEmailVerificationRequired) {
+      try {
+        const challenge = await issueParentEmailVerificationChallenge({
+          parent: {
+            id: parent.id,
+            email: parent.email,
+            displayName: parent.displayName,
+          },
+          ttlMinutes: controls.parentEmailVerificationTokenTtlMinutes,
+        });
+        verificationExpiresAt = challenge.expiresAt;
+        verificationEmailDispatch = "queued";
+      } catch (verificationError) {
+        verificationEmailDispatch = "failed";
+        logWarn("auth.signup.verification_email_enqueue_failed", {
+          parentId: parent.id,
+          ip: clientIp,
+          message: verificationError instanceof Error ? verificationError.message : "unknown_error",
+        });
+      }
+    } else {
+      // Fire-and-forget: queue D0 welcome email (errors are non-fatal)
+      enqueueLifecycleEmail(parent.id, LifecycleEmailType.TRIAL_WELCOME).catch(() => {
+        logWarn("auth.signup.lifecycle_email_enqueue_failed", { parentId: parent.id });
+      });
+    }
 
     const response = ok({
       parent: {
@@ -100,34 +119,32 @@ export async function POST(request: Request) {
         email: parent.email,
         displayName: parent.displayName,
       },
+      verification: {
+        required: controls.parentEmailVerificationRequired,
+        emailDispatch: verificationEmailDispatch,
+        expiresAt: verificationExpiresAt?.toISOString() ?? null,
+      },
     });
-
-    appendSetCookieHeaders(response, signIn.headers);
 
     logInfo("auth.signup.succeeded", {
       parentId: parent.id,
       ip: clientIp,
-    });
-
-    // Fire-and-forget: queue D0 welcome email (errors are non-fatal)
-    enqueueLifecycleEmail(parent.id, LifecycleEmailType.TRIAL_WELCOME).catch(() => {
-      logWarn("auth.signup.lifecycle_email_enqueue_failed", { parentId: parent.id });
+      verificationRequired: controls.parentEmailVerificationRequired,
     });
 
     return response;
   } catch (error) {
-    const normalizedError = normalizeBetterAuthError(error);
-    if (normalizedError instanceof DomainError) {
+    if (error instanceof DomainError) {
       logWarn("auth.signup.failed", {
-        reason: normalizedError.code === "EMAIL_EXISTS" ? "email_exists" : "domain_error",
+        reason: error.code === "EMAIL_EXISTS" ? "email_exists" : "domain_error",
         ip: clientIp,
         identityHash: emailIdentityHash,
-        code: normalizedError.code,
-        status: normalizedError.status,
+        code: error.code,
+        status: error.status,
       });
     }
 
-    return handleRouteError(normalizedError, {
+    return handleRouteError(error, {
       routeId: "auth.signup",
       ip: clientIp,
       identityHash: emailIdentityHash,

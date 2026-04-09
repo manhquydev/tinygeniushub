@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -30,6 +31,8 @@ type SecurityControls = {
   globalLimitMultiplier: number;
   blockedIpCidrs: string[];
   readinessAllowlistCidrs: string[];
+  parentEmailVerificationRequired: boolean;
+  parentEmailVerificationTokenTtlMinutes: number;
 };
 
 interface AdminSecurityPanelProps {
@@ -163,6 +166,8 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
             globalLimitMultiplier: securityControls.globalLimitMultiplier,
             blockedIpCidrs: parseCidrList(blockedIpCidrsRaw),
             readinessAllowlistCidrs: parseCidrList(readinessAllowlistRaw),
+            parentEmailVerificationRequired: securityControls.parentEmailVerificationRequired,
+            parentEmailVerificationTokenTtlMinutes: securityControls.parentEmailVerificationTokenTtlMinutes,
           },
         }),
       });
@@ -223,6 +228,66 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
       <div>
         <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Bảo mật hệ thống</h2>
         <p className="text-xs text-[var(--admin-text-secondary)]">Điều chỉnh giới hạn truy cập theo endpoint, đồng thời quản lý danh sách chặn và danh sách cho phép.</p>
+      </div>
+
+      <div
+        id="parent-email-verification-module"
+        className="space-y-3 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4"
+      >
+        <div className="space-y-1">
+          <h3 className="text-sm font-semibold text-[var(--admin-text-primary)]">
+            Module xác minh email phụ huynh
+          </h3>
+          <p className="text-xs text-[var(--admin-text-secondary)]">
+            Chỉ áp dụng cho tài khoản parent dùng dịch vụ. Reader chỉ đọc nội dung website không bị ảnh hưởng.
+          </p>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="flex items-center justify-between rounded-md border border-[var(--admin-card-border)] px-3 py-2">
+            <div className="space-y-0.5">
+              <p className="text-sm font-medium text-[var(--admin-text-primary)]">
+                Bắt buộc verify email trước khi login
+              </p>
+              <p className="text-xs text-[var(--admin-text-secondary)]">
+                Tắt khi dịch vụ email gặp sự cố khẩn cấp để tránh gián đoạn đăng nhập.
+              </p>
+            </div>
+            <Switch
+              checked={securityControls.parentEmailVerificationRequired}
+              onCheckedChange={(checked) =>
+                setSecurityControls((current) => ({
+                  ...current,
+                  parentEmailVerificationRequired: checked,
+                }))
+              }
+            />
+          </div>
+
+          <div className="grid gap-1.5">
+            <Label htmlFor="parent-email-verify-ttl">TTL token xác minh (phút)</Label>
+            <Input
+              id="parent-email-verify-ttl"
+              type="number"
+              min={5}
+              max={1440}
+              value={securityControls.parentEmailVerificationTokenTtlMinutes}
+              onChange={(event) => {
+                const parsed = Number.parseInt(event.target.value, 10);
+                if (Number.isNaN(parsed)) {
+                  return;
+                }
+                setSecurityControls((current) => ({
+                  ...current,
+                  parentEmailVerificationTokenTtlMinutes: Math.min(Math.max(parsed, 5), 1440),
+                }));
+              }}
+            />
+            <p className="text-xs text-[var(--admin-text-secondary)]">
+              Mặc định 15 phút. Có thể tùy biến qua giao diện thay vì sửa code.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">

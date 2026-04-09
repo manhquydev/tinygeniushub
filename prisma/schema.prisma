@@ -126,6 +126,7 @@ model ParentAccount {
 
   // Abeka Parent Preferences
   abekaParentPreferences AbekaParentPreferences?
+  emailVerificationTokens ParentEmailVerificationToken[]
 }
 
 model Session {
@@ -137,6 +138,18 @@ model Session {
   parent    ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
 
   @@index([parentId])
+}
+
+model ParentEmailVerificationToken {
+  id        String        @id @default(cuid())
+  parentId  String
+  tokenHash String        @unique
+  expiresAt DateTime
+  consumedAt DateTime?
+  createdAt DateTime      @default(now())
+  parent    ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  @@index([parentId, expiresAt, consumedAt])
 }
 
 model User {

@@ -29,6 +29,29 @@ function readingTimeFromMarkdown(markdown: string) {
   return Math.max(1, Math.ceil(words / 200));
 }
 
+async function seedAdminSecuritySettings() {
+  const defaultRateLimitPolicies: Prisma.InputJsonValue = {};
+  const defaultSecurityControls: Prisma.InputJsonValue = {
+    ddosMode: "normal",
+    globalLimitMultiplier: 1,
+    blockedIpCidrs: [],
+    readinessAllowlistCidrs: [],
+    parentEmailVerificationRequired: true,
+    parentEmailVerificationTokenTtlMinutes: 15,
+  };
+
+  await prisma.adminSecuritySettings.upsert({
+    where: { id: "default" },
+    update: {},
+    create: {
+      id: "default",
+      rateLimitPolicies: defaultRateLimitPolicies,
+      securityControls: defaultSecurityControls,
+      updatedByActorId: "prisma-seed",
+    },
+  });
+}
+
 async function seedContent() {
   type LessonSeed = {
     orderNo: number;
@@ -476,12 +499,13 @@ async function seedDemoParent() {
       email,
       name: parent.displayName ?? email,
       parentId: parent.id,
+      emailVerified: true,
     },
     create: {
       id: parent.id,
       email,
       name: parent.displayName ?? email,
-      emailVerified: false,
+      emailVerified: true,
       parentId: parent.id,
     },
   });
@@ -721,6 +745,7 @@ The most effective early education balances structured learning with free play, 
 }
 
 async function main() {
+  await seedAdminSecuritySettings();
   await seedContent();
   await seedDemoParent();
   await seedBlog();

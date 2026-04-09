@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ShieldAlert } from "lucide-react";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { AdminFeatureFlagsPanel } from "@/components/admin-feature-flags-panel";
@@ -15,10 +16,18 @@ export default async function AdminSecurityPage() {
         icon={<ShieldAlert size={18} />}
         eyebrow="System Governance"
         actions={(
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">
-            <ShieldAlert size={11} />
-            Chỉ SUPER_ADMIN
-          </span>
+          <div className="flex items-center gap-2">
+            <Link
+              href="#parent-email-verification-module"
+              className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700 hover:bg-teal-100"
+            >
+              Mở module verify email
+            </Link>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">
+              <ShieldAlert size={11} />
+              Chỉ SUPER_ADMIN
+            </span>
+          </div>
         )}
       />
 

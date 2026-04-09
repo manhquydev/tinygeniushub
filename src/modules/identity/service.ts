@@ -1,4 +1,4 @@
-﻿import { addDays } from "date-fns";
+import { addDays } from "date-fns";
 import { Prisma, PlanCode, SubscriptionStatus } from "@prisma/client";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { prisma } from "@/lib/db";
@@ -134,7 +134,12 @@ export async function registerParent(
   }
 }
 
-export async function authenticateParent(input: z.infer<typeof loginSchema>) {
+export async function authenticateParent(
+  input: z.infer<typeof loginSchema>,
+  options?: {
+    touchLastActiveAt?: boolean;
+  },
+) {
   const parsed = loginSchema.parse(input);
   const parent = await prisma.parentAccount.findUnique({
     where: { email: parsed.email.toLowerCase() },
@@ -153,10 +158,13 @@ export async function authenticateParent(input: z.infer<typeof loginSchema>) {
     throw new DomainError("Invalid credentials", 401, "INVALID_CREDENTIALS");
   }
 
-  await prisma.parentAccount.update({
-    where: { id: parent.id },
-    data: { lastActiveAt: new Date() },
-  });
+  const shouldTouchLastActiveAt = options?.touchLastActiveAt ?? true;
+  if (shouldTouchLastActiveAt) {
+    await prisma.parentAccount.update({
+      where: { id: parent.id },
+      data: { lastActiveAt: new Date() },
+    });
+  }
 
   return parent;
 }

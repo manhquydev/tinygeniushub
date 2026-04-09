@@ -433,6 +433,8 @@ export const adminSecurityControlsSchema = z.object({
   globalLimitMultiplier: z.coerce.number().min(0.2).max(1).default(1),
   blockedIpCidrs: ipNetworkListSchema.default([]),
   readinessAllowlistCidrs: ipNetworkListSchema.default([]),
+  parentEmailVerificationRequired: z.boolean().default(true),
+  parentEmailVerificationTokenTtlMinutes: z.coerce.number().int().min(5).max(1440).default(15),
 });
 
 export type AdminSecurityControls = z.infer<typeof adminSecurityControlsSchema>;
@@ -491,6 +493,8 @@ export function getDefaultAdminSecurityControls(): AdminSecurityControls {
     globalLimitMultiplier: 1,
     blockedIpCidrs: [],
     readinessAllowlistCidrs: [],
+    parentEmailVerificationRequired: true,
+    parentEmailVerificationTokenTtlMinutes: 15,
   };
 }
 
