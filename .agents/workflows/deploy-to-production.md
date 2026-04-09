@@ -72,6 +72,12 @@ ssh do-server "pm2 start cungcontuhoc-web && pm2 start cungcontuhoc-worker"
 If build fails with lock/contention symptoms (often `.next` artifacts), recover with:
 
 ```bash
+# Optional: inspect stuck build process
+ssh do-server "ps -ef | grep '[n]ext build' || true"
+
+# Optional: kill stale build process if still running
+ssh do-server "pkill -f '[n]ext build' || true"
+
 ssh do-server "pm2 stop cungcontuhoc-web && pm2 stop cungcontuhoc-worker"
 ssh do-server "cd /var/www/cungcontuhoc && rm -rf .next && pnpm build"
 ssh do-server "pm2 start cungcontuhoc-web && pm2 start cungcontuhoc-worker"
