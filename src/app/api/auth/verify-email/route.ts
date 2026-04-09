@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { resolveEmailPublicBaseUrl } from "@/lib/email/project-email-template-builder";
 import { logWarn } from "@/lib/observability/logger";
 import { handleRouteError } from "@/lib/route-error";
 import { consumeParentEmailVerificationToken } from "@/modules/identity/parent-email-verification-service";
@@ -6,7 +7,7 @@ import { enqueueLifecycleEmail } from "@/worker/queue";
 import { LifecycleEmailType } from "@prisma/client";
 
 function redirectToLoginWithVerifyState(requestUrl: string, state: string) {
-  const target = new URL("/auth/login", requestUrl);
+  const target = new URL("/auth/login", resolveEmailPublicBaseUrl(requestUrl));
   target.searchParams.set("verify", state);
   return NextResponse.redirect(target);
 }
