@@ -48,7 +48,7 @@ export function CourseDetailSidebar({
   const isPendingPricing = pricing.statusLabel === "pending";
   const saleEndsAtLabel = formatSaleEndAt(pricing.saleEndsAt ?? null);
   const trialAnchorHref = "#curriculum-preview";
-  const checkoutCtaLabel = isFreeSale ? "Nhận khóa 0đ ngay" : checkoutLabel;
+  const checkoutCtaLabel = isFreeSale ? "Nhận khóa miễn phí ngay" : checkoutLabel;
 
   return (
     <div className="sticky top-6 space-y-4">
