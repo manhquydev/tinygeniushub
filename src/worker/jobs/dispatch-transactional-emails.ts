@@ -32,9 +32,11 @@ export function createTransactionalEmailsWorker() {
       }
 
       const delivery = await sendTransactionalEmail(job.data);
-      logInfo("worker.transactional_email.sent", {
+      logInfo("worker.transactional_email.result", {
         jobId: job.id,
         provider: delivery.provider,
+        attempted: delivery.attempted,
+        sent: delivery.sent,
         to: job.data.to,
         subject: job.data.subject,
       });
@@ -45,4 +47,3 @@ export function createTransactionalEmailsWorker() {
     },
   );
 }
-

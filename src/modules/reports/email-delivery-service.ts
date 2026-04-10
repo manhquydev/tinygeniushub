@@ -108,7 +108,7 @@ async function sendWeeklyReportEmail(report: WeeklyReportEmailPayload) {
   const subject = `Báo cáo tuần của ${report.child.nickname}`;
   const text = buildWeeklyReportEmailText(report);
 
-  await sendTransactionalEmail({
+  return sendTransactionalEmail({
     to,
     subject,
     text,
@@ -209,7 +209,22 @@ export async function deliverQueuedWeeklyReportEmails(limit = 100, parentId?: st
     }
 
     try {
-      await sendWeeklyReportEmail(report);
+      const delivery = await sendWeeklyReportEmail(report);
+      if (!delivery.sent) {
+        await prisma.weeklyReport.updateMany({
+          where: {
+            id: report.id,
+            emailStatus: EmailStatus.PROCESSING,
+          },
+          data: {
+            emailStatus: EmailStatus.BOUNCED,
+            emailClaimedAt: null,
+          },
+        });
+
+        skipped += 1;
+        continue;
+      }
 
       await prisma.weeklyReport.updateMany({
         where: {

@@ -24,7 +24,7 @@ async function sendVerifyEmail(payload: VerifyBlogCommentJobPayload) {
     `Bài viết: ${postUrl}`,
   ].join("\n");
 
-  await sendTransactionalEmail({
+  return sendTransactionalEmail({
     to: payload.authorEmail,
     subject,
     text,
@@ -40,7 +40,11 @@ export function createVerifyBlogCommentEmailWorker() {
         return;
       }
 
-      await sendVerifyEmail(job.data);
+      const delivery = await sendVerifyEmail(job.data);
+      if (!delivery.sent) {
+        return;
+      }
+
       logInfo("worker.blog_comment_verify_email.sent", {
         jobId: job.id,
         commentId: job.data.commentId,

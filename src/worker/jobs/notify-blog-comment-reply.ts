@@ -77,14 +77,14 @@ async function sendReplyNotificationEmail(payload: NotifyCommentReplyJobPayload)
     unsubscribeUrl,
   ].join("\n");
 
-  await sendTransactionalEmail({
+  const delivery = await sendTransactionalEmail({
     to: parentComment.authorEmail,
     subject,
     text,
     tags: [{ name: "feature", value: "blog_comment_reply" }],
   });
 
-  return true;
+  return delivery.sent;
 }
 
 export function createNotifyBlogCommentReplyWorker() {

@@ -20,7 +20,7 @@ const WINBACK_ELIGIBLE_STATUSES: SubscriptionStatus[] = [
 ];
 
 async function sendEmail(to: string, subject: string, text: string) {
-  await sendTransactionalEmail({
+  return sendTransactionalEmail({
     to,
     subject,
     text,
@@ -51,13 +51,13 @@ export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailT
     },
   });
 
-  if (!parent) return;
-  if (parent.preferences && !parent.preferences.marketingEmailOptIn) return;
+  if (!parent) return false;
+  if (parent.preferences && !parent.preferences.marketingEmailOptIn) return false;
 
   const existing = await prisma.lifecycleEmailLog.findUnique({
     where: { parentId_type: { parentId, type } },
   });
-  if (existing) return;
+  if (existing) return false;
 
   const renewalEndDate =
     type === LifecycleEmailType.RENEWAL_14D
@@ -81,11 +81,16 @@ export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailT
     unsubscribeUrl,
   ].join("\n");
 
-  await sendEmail(parent.email, subject, finalText);
+  const delivery = await sendEmail(parent.email, subject, finalText);
+  if (!delivery.sent) {
+    return false;
+  }
 
   await prisma.lifecycleEmailLog.create({
     data: { parentId, type },
   });
+
+  return true;
 }
 
 export async function dispatchPendingLifecycleEmails() {
@@ -175,8 +180,8 @@ export async function dispatchPendingLifecycleEmails() {
 
   for (const sub of d1Candidates) {
     try {
-      await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D1);
-      sent++;
+      const delivered = await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D1);
+      if (delivered) sent++;
     } catch {
       failed++;
     }
@@ -184,8 +189,8 @@ export async function dispatchPendingLifecycleEmails() {
 
   for (const sub of d3Candidates) {
     try {
-      await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D3);
-      sent++;
+      const delivered = await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D3);
+      if (delivered) sent++;
     } catch {
       failed++;
     }
@@ -193,8 +198,8 @@ export async function dispatchPendingLifecycleEmails() {
 
   for (const sub of d5Candidates) {
     try {
-      await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D5);
-      sent++;
+      const delivered = await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D5);
+      if (delivered) sent++;
     } catch {
       failed++;
     }
@@ -202,8 +207,8 @@ export async function dispatchPendingLifecycleEmails() {
 
   for (const sub of d7Candidates) {
     try {
-      await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D7);
-      sent++;
+      const delivered = await sendLifecycleEmail(sub.parentId, LifecycleEmailType.TRIAL_D7);
+      if (delivered) sent++;
     } catch {
       failed++;
     }
@@ -211,8 +216,8 @@ export async function dispatchPendingLifecycleEmails() {
 
   for (const parent of winbackCandidates) {
     try {
-      await sendLifecycleEmail(parent.id, LifecycleEmailType.WINBACK_D30);
-      sent++;
+      const delivered = await sendLifecycleEmail(parent.id, LifecycleEmailType.WINBACK_D30);
+      if (delivered) sent++;
     } catch {
       failed++;
     }
@@ -220,8 +225,8 @@ export async function dispatchPendingLifecycleEmails() {
 
   for (const sub of renewalCandidates) {
     try {
-      await sendLifecycleEmail(sub.parentId, LifecycleEmailType.RENEWAL_14D);
-      sent++;
+      const delivered = await sendLifecycleEmail(sub.parentId, LifecycleEmailType.RENEWAL_14D);
+      if (delivered) sent++;
     } catch {
       failed++;
     }

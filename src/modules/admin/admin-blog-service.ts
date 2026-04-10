@@ -1,4 +1,5 @@
 ﻿import { prisma } from "@/lib/db";
+import { EMAIL_FEATURE_FLAG_DEFINITIONS } from "@/lib/email/email-feature-flags";
 import { createAuditLog } from "@/modules/platform/audit-service";
 import { DomainError } from "@/modules/platform/errors";
 import { z } from "zod";
@@ -24,32 +25,49 @@ export const updateFeatureFlagSchema = z.object({
   enabled: z.boolean(),
 });
 
-const defaultFeatureFlags = [
+type DefaultFeatureFlagSeed = {
+  key: string;
+  description: string;
+  enabled: boolean;
+};
+
+const defaultFeatureFlags: DefaultFeatureFlagSeed[] = [
   {
     key: "PARENT_V2_DASHBOARD",
     description: "Dashboard phụ huynh phiên bản mới",
+    enabled: false,
   },
   {
     key: "BETA_LESSON_EDITOR",
     description: "Trình soạn nội dung beta",
+    enabled: false,
   },
   {
     key: "CAREGIVER_VIDEO_CALL",
     description: "Tính năng video call người chăm sóc (sắp ra mắt)",
+    enabled: false,
   },
   {
     key: "REFERRAL_V2",
     description: "Hệ thống giới thiệu v2",
+    enabled: false,
   },
   {
     key: "AI_LESSON_SUGGESTIONS",
     description: "Gợi ý bài học bằng AI (sắp ra mắt)",
+    enabled: false,
   },
   {
     key: "KID_SKY_GARDEN_MVP",
     description: "Giao diện khu vườn trên mây cho trang học của bé",
+    enabled: false,
   },
-] as const;
+  ...EMAIL_FEATURE_FLAG_DEFINITIONS.map((flag) => ({
+    key: flag.key,
+    description: flag.description,
+    enabled: true,
+  })),
+];
 
 // Module-level cache: only seed default flags once per process lifetime
 let defaultFlagsEnsured = false;
@@ -64,7 +82,7 @@ async function ensureDefaultFeatureFlags() {
         },
         create: {
           key: flag.key,
-          enabled: false,
+          enabled: flag.enabled,
           description: flag.description,
           updatedBy: "system",
         },

@@ -154,7 +154,7 @@ async function sendNewsletterEmail(input: {
   text: string;
   tags: Array<{ name: string; value: string }>;
 }) {
-  await sendTransactionalEmail({
+  return sendTransactionalEmail({
     to: input.to,
     subject: input.subject,
     text: input.text,
@@ -187,7 +187,7 @@ async function sendVerifyNewsletterEmail(payload: VerifyBlogNewsletterJobPayload
     return false;
   }
 
-  await sendNewsletterEmail({
+  const delivery = await sendNewsletterEmail({
     to: subscriber.email,
     subject: "Xác nhận đăng ký bản tin blog",
     text: buildNewsletterVerifyText(payload, buildUnsubscribeUrl(subscriber.unsubToken)),
@@ -197,7 +197,7 @@ async function sendVerifyNewsletterEmail(payload: VerifyBlogNewsletterJobPayload
     ],
   });
 
-  return true;
+  return delivery.sent;
 }
 
 async function sendWeeklyNewsletterEmail(payload: DispatchBlogNewsletterJobPayload) {
@@ -253,7 +253,7 @@ async function sendWeeklyNewsletterEmail(payload: DispatchBlogNewsletterJobPaylo
     return false;
   }
 
-  await sendNewsletterEmail({
+  const delivery = await sendNewsletterEmail({
     to: subscriber.email,
     subject: "Bản tin blog tuần này",
     text: buildWeeklyNewsletterText(subscriber.nameVi, posts, buildUnsubscribeUrl(subscriber.unsubToken)),
@@ -263,6 +263,9 @@ async function sendWeeklyNewsletterEmail(payload: DispatchBlogNewsletterJobPaylo
       { name: "week_start", value: weekStartAt.toISOString().slice(0, 10) },
     ],
   });
+  if (!delivery.sent) {
+    return false;
+  }
 
   await prisma.blogNewsletterSubscriber.updateMany({
     where: {

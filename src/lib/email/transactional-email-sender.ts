@@ -1,4 +1,5 @@
 import { env } from "@/lib/env";
+import { isEmailFeatureEnabled } from "@/lib/email/email-feature-flags";
 import { renderProjectEmailHtml } from "@/lib/email/project-email-template-builder";
 
 export type EmailTag = {
@@ -24,6 +25,10 @@ function normalizeTags(tags?: EmailTag[]) {
   const baseTags = [...(tags ?? [])];
   baseTags.push({ name: "environment", value: env.NODE_ENV });
   return baseTags;
+}
+
+function findFeatureTag(tags: EmailTag[]) {
+  return tags.find((tag) => tag.name === "feature")?.value ?? null;
 }
 
 async function sendWithResend(input: SendTransactionalEmailInput, tags: EmailTag[]) {
@@ -82,6 +87,17 @@ export async function sendTransactionalEmail(
   input: SendTransactionalEmailInput,
 ): Promise<TransactionalEmailDelivery> {
   const tags = normalizeTags(input.tags);
+  const featureTag = findFeatureTag(tags);
+  const enabled = await isEmailFeatureEnabled(featureTag);
+
+  if (!enabled) {
+    console.info(`[email] skipped by admin toggle: feature=${featureTag ?? "unknown"} to=${input.to}`);
+    return {
+      provider: env.REPORT_EMAIL_PROVIDER,
+      attempted: false,
+      sent: false,
+    };
+  }
 
   if (env.REPORT_EMAIL_PROVIDER === "mock_email") {
     console.log(`[email] mock sent: to=${input.to} subject="${input.subject}"`);
