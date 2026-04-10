@@ -3,6 +3,8 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { DomainError } from "@/modules/platform/errors";
 
+const CHILD_PROFILE_LIMIT = 1;
+
 export const childProfileInputSchema = z.object({
   nickname: z.string().min(1).max(60),
   ageBand: z.enum(["2-3", "3-4", "4-5", "5-6"]),
@@ -33,18 +35,10 @@ export async function createChildProfile(parentId: string, input: z.infer<typeof
     try {
       return await prisma.$transaction(
         async (tx) => {
-          const [profileCount, subscription] = await Promise.all([
-            tx.childProfile.count({ where: { parentId } }),
-            tx.subscription.findUnique({ where: { parentId } }),
-          ]);
-
-          if (!subscription) {
-            throw new DomainError("Subscription not found", 404, "SUBSCRIPTION_NOT_FOUND");
-          }
-
-          if (isProfileLimitReached(profileCount, subscription.childProfileLimit)) {
+          const profileCount = await tx.childProfile.count({ where: { parentId } });
+          if (isProfileLimitReached(profileCount, CHILD_PROFILE_LIMIT)) {
             throw new DomainError(
-              `Child profile limit reached (${subscription.childProfileLimit}). Upgrade plan to add more children.`,
+              "Each parent account supports one primary child profile.",
               409,
               "PROFILE_LIMIT_REACHED",
             );

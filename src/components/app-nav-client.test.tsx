@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+/* eslint-disable @next/next/no-img-element */
 
 import { fireEvent, render, screen } from "@testing-library/react";
 import type { ReactNode } from "react";
@@ -20,7 +21,7 @@ vi.mock("next/navigation", () => ({
 }));
 
 vi.mock("next/image", () => ({
-  default: ({ priority, ...props }: Record<string, unknown> & { priority?: boolean }) => (
+  default: ({ priority: _priority, ...props }: Record<string, unknown> & { priority?: boolean }) => (
     <img {...props} alt={String(props.alt ?? "")} />
   ),
 }));
@@ -99,13 +100,13 @@ describe("AppNavClient", () => {
   it("renders variant B CTA and tracks click label correctly", () => {
     render(<AppNavClient hasParent={false} isAdmin={false} guestCtaVariant="B" />);
 
-    const cta = screen.getByRole("link", { name: /Xem gói học/i });
+    const cta = screen.getByRole("link", { name: /Xem khóa học/i });
     fireEvent.click(cta);
 
     expect(trackEvent).toHaveBeenCalledWith("nav_click", {
       state: "guest",
       location: "desktop_top",
-      label: "Xem gói học",
+      label: "Xem khóa học",
       href: "/auth/signup",
     });
   });

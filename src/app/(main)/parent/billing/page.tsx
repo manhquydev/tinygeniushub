@@ -9,16 +9,6 @@ export const metadata: Metadata = {
   title: "Thanh toán và hóa đơn - Cùng Con Tự Học",
 };
 
-const SUBSCRIPTION_STATUS_LABEL: Record<string, string> = {
-  TRIALING: "Tài khoản cơ bản",
-  ACTIVE_STANDARD: "Standard (năm)",
-  ACTIVE_FAMILYPLUS: "Family+ (năm)",
-  CANCELED_AT_PERIOD_END: "Đã hủy gia hạn",
-  EXPIRED: "Đã hết hạn",
-  GRACE: "Đang gia hạn",
-  REFUNDED: "Đã hoàn tiền",
-};
-
 const PAYMENT_STATUS_LABEL: Record<string, string> = {
   SUCCEEDED: "Thành công",
   PENDING: "Đang xử lý",
@@ -73,40 +63,25 @@ export default async function ParentBillingPage() {
   const parent = await getParentFromServerCookie();
   if (!parent) redirect("/session-expired?next=/parent/billing");
 
-  const [subscription, payments] = await Promise.all([
-    prisma.subscription.findUnique({
-      where: { parentId: parent.id },
-      select: {
-        planCode: true,
-        status: true,
-        childProfileLimit: true,
-        caregiverLimit: true,
-        currentPeriodEnd: true,
-        autoRenew: true,
-      },
-    }),
-    prisma.paymentRecord.findMany({
-      where: { parentId: parent.id },
-      orderBy: { processedAt: "desc" },
-      take: 20,
-      select: {
-        id: true,
-        provider: true,
-        amountVnd: true,
-        status: true,
-        processedAt: true,
-        rawPayload: true,
-      },
-    }),
-  ]);
+  const payments = await prisma.paymentRecord.findMany({
+    where: { parentId: parent.id },
+    orderBy: { processedAt: "desc" },
+    take: 20,
+    select: {
+      id: true,
+      provider: true,
+      amountVnd: true,
+      status: true,
+      processedAt: true,
+      rawPayload: true,
+    },
+  });
 
   const succeededPayments = payments.filter((payment) => payment.status === "SUCCEEDED");
   const pendingPayments = payments.filter((payment) => payment.status === "PENDING");
   const failedPayments = payments.filter((payment) => payment.status === "FAILED");
 
   const totalSpent = succeededPayments.reduce((sum, payment) => sum + payment.amountVnd, 0);
-  const subscriptionStatus = subscription?.status ?? "TRIALING";
-  const subscriptionLabel = SUBSCRIPTION_STATUS_LABEL[subscriptionStatus] ?? subscriptionStatus;
 
   return (
     <div className="page-stack">
@@ -178,37 +153,17 @@ export default async function ParentBillingPage() {
           <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Thông tin tài khoản</h2>
           <div className="mt-4 grid gap-3">
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Trạng thái gói</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">{subscriptionLabel}</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Mô hình thanh toán</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">Mua theo từng khóa học</p>
             </div>
-            {subscription ? (
-              <>
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                  <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Mức tài khoản</p>
-                  <p className="mt-1 text-sm font-bold text-slate-900">{subscription.planCode}</p>
-                </div>
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                  <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Giới hạn hồ sơ bé</p>
-                  <p className="mt-1 text-sm font-bold text-slate-900">{subscription.childProfileLimit} hồ sơ</p>
-                </div>
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                  <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Giới hạn caregiver</p>
-                  <p className="mt-1 text-sm font-bold text-slate-900">{subscription.caregiverLimit} tài khoản</p>
-                </div>
-                {subscription.currentPeriodEnd ? (
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                    <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Chu kỳ hiện tại</p>
-                    <p className="mt-1 text-sm font-bold text-slate-900">Đến {formatDate(subscription.currentPeriodEnd)}</p>
-                  </div>
-                ) : null}
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                  <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tự động gia hạn</p>
-                  <p className="mt-1 text-sm font-bold text-slate-900">{subscription.autoRenew ? "Đang bật" : "Đang tắt"}</p>
-                </div>
-              </>
-            ) : (
-              <p className="text-sm text-slate-600">Bạn đang dùng mô hình mua khóa học theo từng giao dịch.</p>
-            )}
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Phương thức hiện tại</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">PayOS - chuyển khoản ngân hàng</p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tự động gia hạn</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">Không áp dụng với mô hình mua theo khóa</p>
+            </div>
           </div>
         </article>
       </section>
@@ -222,7 +177,7 @@ export default async function ParentBillingPage() {
           </p>
           <p className="inline-flex items-start gap-2">
             <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
-            Nếu trạng thái còn "Đang xử lý", vui lòng chờ thêm vài phút để webhook đồng bộ.
+            Nếu trạng thái còn &quot;Đang xử lý&quot;, vui lòng chờ thêm vài phút để webhook đồng bộ.
           </p>
           <p className="inline-flex items-start gap-2">
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-600" />

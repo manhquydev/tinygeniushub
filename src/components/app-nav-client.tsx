@@ -101,7 +101,7 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
     { href: "/parent/children", label: "Hồ sơ bé", matchMode: "prefix" },
     { href: "/parent/courses", label: "Khóa học", matchMode: "prefix" },
     { href: "/parent/reports", label: "Báo cáo", matchMode: "prefix" },
-    { href: "/parent/billing", label: "Gói dịch vụ", matchMode: "prefix" },
+    { href: "/parent/billing", label: "Thanh toán", matchMode: "prefix" },
     ...(isAdmin ? [{ href: "/admin", label: "Admin", matchMode: "prefix" as const }] : []),
   ];
 
@@ -118,8 +118,8 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
   ];
   const currentLinks = hasParent ? parentLinks : guestLinks;
   const mobileLinks = currentLinks.map((item) => ({ ...item, hideOnMobile: false }));
-  const guestCtaLabelFull = guestCtaVariant === "B" ? "Xem gói học" : "Bắt đầu miễn phí";
-  const guestCtaLabelShort = guestCtaVariant === "B" ? "Xem gói" : "Bắt đầu";
+  const guestCtaLabelFull = guestCtaVariant === "B" ? "Xem khóa học" : "Bắt đầu miễn phí";
+  const guestCtaLabelShort = guestCtaVariant === "B" ? "Xem khóa" : "Bắt đầu";
 
   const trackNavClick = (item: NavItemConfig, location: NavTrackingLocation) => {
     trackEvent("nav_click", {
@@ -130,12 +130,12 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
     });
   };
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileMenuOpen(false);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSupportMenuOpen(false);
   }, [pathname]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleInterceptNavigation = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!isKidUI) return;

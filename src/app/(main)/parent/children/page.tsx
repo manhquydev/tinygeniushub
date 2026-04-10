@@ -8,7 +8,7 @@ type CaregiverInviteStatus = "pending" | "accepted" | "expired";
 export default async function ParentChildrenPage() {
   const parent = await requireParent();
 
-  const [children, subscription, caregiverInvites, caregiversCount] = await Promise.all([
+  const [children, caregiverInvites, caregiversCount] = await Promise.all([
     prisma.childProfile.findMany({
       where: { parentId: parent.id },
       orderBy: { createdAt: "asc" },
@@ -17,13 +17,6 @@ export default async function ParentChildrenPage() {
         nickname: true,
         ageBand: true,
         avatarId: true,
-      },
-    }),
-    prisma.subscription.findUnique({
-      where: { parentId: parent.id },
-      select: {
-        childProfileLimit: true,
-        caregiverLimit: true,
       },
     }),
     prisma.caregiverInvite.findMany({
@@ -44,7 +37,8 @@ export default async function ParentChildrenPage() {
     }),
   ]);
 
-  const caregiverLimit = subscription?.caregiverLimit ?? 2;
+  const caregiverLimit = 2;
+  const childLimit = 1;
   const now = new Date();
   const pendingInvites = caregiverInvites.filter(
     (invite) => !invite.accepted && invite.expiresAt.getTime() > now.getTime(),
@@ -75,11 +69,11 @@ export default async function ParentChildrenPage() {
         </p>
         <h1 className="mt-3 text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">Quản lý hồ sơ bé</h1>
         <p className="mt-2 max-w-[70ch] text-sm leading-relaxed text-slate-600 sm:text-base">
-          Tạo hồ sơ mới, chỉnh thông tin bé và truy cập nhanh bài học hằng ngày từ một giao diện quản trị thống nhất.
+          Mỗi tài khoản có một hồ sơ chính xuyên suốt. Chỉnh thông tin bé và truy cập nhanh bài học hằng ngày tại đây.
         </p>
       </section>
 
-      <ChildrenManager initialChildren={children} childLimit={subscription?.childProfileLimit ?? 3} />
+      <ChildrenManager initialChildren={children} childLimit={childLimit} />
       <CaregiverManager
         initialCaregivers={invitesWithStatus}
         initialCaregiverLimit={caregiverLimit}

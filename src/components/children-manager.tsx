@@ -320,7 +320,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
       return;
     }
     if (reachedLimit) {
-      setError("Bạn đã chạm giới hạn số hồ sơ của gói hiện tại.");
+      setError("Tài khoản đã có hồ sơ bé chính. Vui lòng chỉnh sửa hồ sơ hiện tại.");
       setInfo(null);
       focusCreateSection();
       return;
@@ -477,7 +477,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
           <div>
             <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Quản lý hồ sơ bé</h2>
             <p className="mt-1 text-sm leading-relaxed text-slate-500">
-              Gói hiện tại giới hạn {childLimit} hồ sơ. Family+ cho phép tối đa 5 hồ sơ.
+              Mỗi tài khoản có {childLimit} hồ sơ bé chính, sử dụng xuyên suốt hành trình học tập.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -548,7 +548,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="text-xs text-slate-500">
                 {reachedLimit
-                  ? "Đã đạt giới hạn hồ sơ của gói hiện tại. Vui lòng nâng cấp để tạo thêm."
+                  ? "Bạn đã có hồ sơ chính. Có thể chỉnh sửa tên, độ tuổi và avatar ở danh sách bên dưới."
                   : "Bạn có thể chỉnh sửa tên tuổi và avatar sau khi tạo hồ sơ."}
               </p>
               <button
@@ -557,7 +557,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 disabled={reachedLimit || loading}
               >
                 <PlusCircle size={18} />
-                {reachedLimit ? "Đã chạm giới hạn" : loading ? "Đang tạo..." : "Thêm hồ sơ"}
+                {reachedLimit ? "Đã có hồ sơ chính" : loading ? "Đang tạo..." : "Thêm hồ sơ"}
               </button>
             </div>
           </form>
