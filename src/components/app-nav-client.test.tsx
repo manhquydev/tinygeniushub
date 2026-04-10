@@ -99,13 +99,13 @@ describe("AppNavClient", () => {
   it("renders variant B CTA and tracks click label correctly", () => {
     render(<AppNavClient hasParent={false} isAdmin={false} guestCtaVariant="B" />);
 
-    const cta = screen.getByRole("link", { name: /Xem gói học/i });
+    const cta = screen.getByRole("link", { name: /Xem khóa học/i });
     fireEvent.click(cta);
 
     expect(trackEvent).toHaveBeenCalledWith("nav_click", {
       state: "guest",
       location: "desktop_top",
-      label: "Xem gói học",
+      label: "Xem khóa học",
       href: "/auth/signup",
     });
   });

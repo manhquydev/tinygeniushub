@@ -21,6 +21,7 @@ export function isProfileLimitReached(profileCount: number, childProfileLimit: n
 }
 
 const MAX_CHILD_PROFILE_CREATE_RETRIES = 3;
+const MAX_CHILD_PROFILES_PER_PARENT = 1;
 
 function isTransactionSerializationFailure(error: unknown) {
   return error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2034";
@@ -33,18 +34,11 @@ export async function createChildProfile(parentId: string, input: z.infer<typeof
     try {
       return await prisma.$transaction(
         async (tx) => {
-          const [profileCount, subscription] = await Promise.all([
-            tx.childProfile.count({ where: { parentId } }),
-            tx.subscription.findUnique({ where: { parentId } }),
-          ]);
+          const profileCount = await tx.childProfile.count({ where: { parentId } });
 
-          if (!subscription) {
-            throw new DomainError("Subscription not found", 404, "SUBSCRIPTION_NOT_FOUND");
-          }
-
-          if (isProfileLimitReached(profileCount, subscription.childProfileLimit)) {
+          if (isProfileLimitReached(profileCount, MAX_CHILD_PROFILES_PER_PARENT)) {
             throw new DomainError(
-              `Child profile limit reached (${subscription.childProfileLimit}). Upgrade plan to add more children.`,
+              `Child profile limit reached (${MAX_CHILD_PROFILES_PER_PARENT}). Only one profile is allowed per parent account.`,
               409,
               "PROFILE_LIMIT_REACHED",
             );
