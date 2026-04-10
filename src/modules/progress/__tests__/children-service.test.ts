@@ -12,6 +12,9 @@ const { prismaMock } = vi.hoisted(() => ({
       update: vi.fn(),
       delete: vi.fn(),
     },
+    subscription: {
+      findUnique: vi.fn(),
+    },
   },
 }));
 
@@ -61,8 +64,11 @@ describe("children-service", () => {
     });
   });
 
-  it("creates child profile when parent has no existing profile", async () => {
-    prismaMock.childProfile.count.mockResolvedValueOnce(0);
+  it("creates child profile when subscription has remaining limit", async () => {
+    prismaMock.childProfile.count.mockResolvedValueOnce(1);
+    prismaMock.subscription.findUnique.mockResolvedValueOnce({
+      childProfileLimit: 3,
+    });
     prismaMock.childProfile.create.mockResolvedValueOnce({
       id: "child-1",
       nickname: "Kid One",
@@ -90,8 +96,26 @@ describe("children-service", () => {
     });
   });
 
-  it("throws PROFILE_LIMIT_REACHED when parent already has one profile", async () => {
-    prismaMock.childProfile.count.mockResolvedValueOnce(1);
+  it("throws SUBSCRIPTION_NOT_FOUND when parent has no subscription", async () => {
+    prismaMock.childProfile.count.mockResolvedValueOnce(0);
+    prismaMock.subscription.findUnique.mockResolvedValueOnce(null);
+
+    await expect(
+      createChildProfile("parent-1", {
+        nickname: "Kid One",
+        ageBand: "4-5",
+      }),
+    ).rejects.toMatchObject({
+      code: "SUBSCRIPTION_NOT_FOUND",
+      status: 404,
+    });
+  });
+
+  it("throws PROFILE_LIMIT_REACHED when profile limit is exhausted", async () => {
+    prismaMock.childProfile.count.mockResolvedValueOnce(3);
+    prismaMock.subscription.findUnique.mockResolvedValueOnce({
+      childProfileLimit: 3,
+    });
 
     await expect(
       createChildProfile("parent-1", {
@@ -113,7 +137,10 @@ describe("children-service", () => {
     prismaMock.$transaction
       .mockRejectedValueOnce(serializationError)
       .mockImplementationOnce(async (callback: (tx: typeof prismaMock) => Promise<unknown>) => callback(prismaMock));
-    prismaMock.childProfile.count.mockResolvedValueOnce(0);
+    prismaMock.childProfile.count.mockResolvedValueOnce(1);
+    prismaMock.subscription.findUnique.mockResolvedValueOnce({
+      childProfileLimit: 3,
+    });
     prismaMock.childProfile.create.mockResolvedValueOnce({
       id: "child-2",
       nickname: "Kid Retry",

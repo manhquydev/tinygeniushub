@@ -320,7 +320,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
       return;
     }
     if (reachedLimit) {
-      setError("Tài khoản hiện chỉ dùng 1 hồ sơ bé xuyên suốt.");
+      setError("Bạn đã chạm giới hạn số hồ sơ của gói hiện tại.");
       setInfo(null);
       focusCreateSection();
       return;
@@ -477,7 +477,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
           <div>
             <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Quản lý hồ sơ bé</h2>
             <p className="mt-1 text-sm leading-relaxed text-slate-500">
-              Mỗi tài khoản dùng một hồ sơ bé xuyên suốt để theo dõi tiến độ tập trung và nhất quán.
+              Gói hiện tại giới hạn {childLimit} hồ sơ. Family+ cho phép tối đa 5 hồ sơ.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -490,7 +490,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
               className="inline-flex min-h-10 items-center justify-center gap-1 rounded-full border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:-translate-y-0.5"
             >
               <ChevronUp size={14} />
-              Đến khu vực hồ sơ
+              Đến form thêm hồ sơ
             </button>
           </div>
         </div>
@@ -501,72 +501,66 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         className="rounded-3xl border border-slate-200/75 bg-gradient-to-br from-white via-slate-50 to-slate-100 p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]"
       >
         <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
-          <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">
-            {reachedLimit ? "Hồ sơ chính đã được thiết lập" : "Thiết lập hồ sơ bé"}
-          </h3>
+          <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">Thêm tài khoản con</h3>
           <p className="mt-1 text-sm text-slate-500">
-            {reachedLimit
-              ? "Tài khoản hiện chỉ dùng một hồ sơ học tập xuyên suốt. Bạn vẫn có thể chỉnh sửa hồ sơ hiện tại bên dưới."
-              : "Điền thông tin cơ bản để tạo hồ sơ học tập chính cho bé."}
+            Điền thông tin cơ bản để tạo hồ sơ học tập mới cho bé. Bước này đồng bộ với luồng thiết lập ban đầu.
           </p>
 
-          {!reachedLimit ? (
-            <form className="mt-4 space-y-4" onSubmit={handleCreate}>
-              <AvatarPicker
-                label="Chọn nhân vật đại diện"
-                selectedAvatarId={avatarId}
-                onSelectAvatar={setAvatarId}
-                disabled={loading}
-                compact={false}
-                prefersReducedMotion={prefersReducedMotion}
+          <form className="mt-4 space-y-4" onSubmit={handleCreate}>
+            <AvatarPicker
+              label="Chọn nhân vật đại diện"
+              selectedAvatarId={avatarId}
+              onSelectAvatar={setAvatarId}
+              disabled={reachedLimit || loading}
+              compact={false}
+              prefersReducedMotion={prefersReducedMotion}
+            />
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-600">
+              Nhân vật đã chọn: <span className="font-bold text-slate-900">{selectedCreateAvatar.label}</span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-[minmax(0,1fr)_180px]">
+              <input
+                ref={createNicknameRef}
+                className={inputBaseClass}
+                placeholder="Tên gọi ở nhà"
+                value={nickname}
+                onChange={(event) => setNickname(event.target.value)}
+                required
+                disabled={reachedLimit || loading}
               />
 
-              <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-600">
-                Nhân vật đã chọn: <span className="font-bold text-slate-900">{selectedCreateAvatar.label}</span>
-              </div>
-
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-[minmax(0,1fr)_180px]">
-                <input
-                  ref={createNicknameRef}
-                  className={inputBaseClass}
-                  placeholder="Tên gọi ở nhà"
-                  value={nickname}
-                  onChange={(event) => setNickname(event.target.value)}
-                  required
-                  disabled={loading}
-                />
-
-                <select
-                  className={inputBaseClass}
-                  value={ageBand}
-                  onChange={(event) => setAgeBand(event.target.value as AgeBand)}
-                  disabled={loading}
-                >
-                  {ageBandOptions.map((option) => (
-                    <option value={option} key={option}>
-                      {option} tuổi
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="text-xs text-slate-500">Bạn có thể chỉnh sửa tên tuổi và avatar sau khi tạo hồ sơ.</p>
-                <button
-                  type="submit"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-600 to-cyan-600 px-4 text-sm font-bold text-white shadow-[0_8px_20px_rgba(13,148,136,0.28)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
-                  disabled={loading}
-                >
-                  <PlusCircle size={18} />
-                  {loading ? "Đang tạo..." : "Tạo hồ sơ chính"}
-                </button>
-              </div>
-            </form>
-          ) : (
-            <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-              Hồ sơ chính đã sẵn sàng. Kéo xuống danh sách bên dưới để chỉnh sửa hoặc vào bài học ngay.
+              <select
+                className={inputBaseClass}
+                value={ageBand}
+                onChange={(event) => setAgeBand(event.target.value as AgeBand)}
+                disabled={reachedLimit || loading}
+              >
+                {ageBandOptions.map((option) => (
+                  <option value={option} key={option}>
+                    {option} tuổi
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
+
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-xs text-slate-500">
+                {reachedLimit
+                  ? "Đã đạt giới hạn hồ sơ của gói hiện tại. Vui lòng nâng cấp để tạo thêm."
+                  : "Bạn có thể chỉnh sửa tên tuổi và avatar sau khi tạo hồ sơ."}
+              </p>
+              <button
+                type="submit"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-600 to-cyan-600 px-4 text-sm font-bold text-white shadow-[0_8px_20px_rgba(13,148,136,0.28)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={reachedLimit || loading}
+              >
+                <PlusCircle size={18} />
+                {reachedLimit ? "Đã chạm giới hạn" : loading ? "Đang tạo..." : "Thêm hồ sơ"}
+              </button>
+            </div>
+          </form>
         </div>
       </section>
 
