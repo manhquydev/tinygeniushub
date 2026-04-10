@@ -106,7 +106,7 @@ export function RevenueDashboard() {
       </div>
 
       {/* Revenue by Plan */}
-      <AdminSectionCard title="Doanh thu theo gói" icon={<Users size={16} />}>
+      <AdminSectionCard title="Phân nhóm doanh thu" icon={<Users size={16} />}>
         <div className="space-y-4">
           {Object.entries(data.revenueByPlan)
             .filter(([plan]) => plan !== "TRIAL")
@@ -114,7 +114,7 @@ export function RevenueDashboard() {
               <div key={plan} className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="font-medium text-[var(--admin-text-primary)]">
-                    {plan === "STANDARD" ? "Gói Tiêu chuẩn" : "Gói Gia đình Plus"}
+                    {plan === "STANDARD" ? "Nhóm tiêu chuẩn" : "Nhóm gia đình"}
                   </span>
                   <span className="text-[var(--admin-text-primary)] font-semibold">
                     {formatVND(revenue)}
@@ -131,7 +131,7 @@ export function RevenueDashboard() {
             ))}
           {Object.keys(data.revenueByPlan).filter(p => p !== "TRIAL").length === 0 && (
             <p className="text-sm text-[var(--admin-text-muted)] italic">
-              Chưa có dữ liệu doanh thu theo gói
+              Chưa có dữ liệu phân nhóm doanh thu
             </p>
           )}
         </div>

@@ -13,7 +13,7 @@ export function DashboardShortcutsSection({ firstChildId }: Props) {
           href="/parent/children"
           className="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 px-5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(13,148,136,0.3)] transition hover:-translate-y-0.5"
         >
-          Quản lý hồ sơ bé
+          Hồ sơ học tập của bé
         </Link>
         <Link
           href={firstChildId ? `/kid/courses?childId=${encodeURIComponent(firstChildId)}` : "/kid/courses"}
@@ -25,7 +25,7 @@ export function DashboardShortcutsSection({ firstChildId }: Props) {
           href="/parent/courses"
           className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
         >
-          Khoá học Premium
+          Khóa đã mua
         </Link>
         <Link
           href="/parent/reports"
