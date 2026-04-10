@@ -136,8 +136,9 @@ export function resolveCourseDisplayPricing(input: CoursePricingInput, now = new
       : listPriceVnd;
 
   const hasDiscount = listPriceVnd > salePriceVnd;
-  const isFreeTemporary = salePriceVnd === 0 && hasDiscount;
-  const isPendingPriceConfig = salePriceVnd === 0 && !hasDiscount;
+  const hasExplicitZeroSale = configuredSalePriceVnd === 0;
+  const isFreeTemporary = salePriceVnd === 0 && (hasDiscount || hasExplicitZeroSale);
+  const isPendingPriceConfig = salePriceVnd === 0 && !isFreeTemporary;
   const isPurchasable = salePriceVnd > 0 || isFreeTemporary;
 
   return {

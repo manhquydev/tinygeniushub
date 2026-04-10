@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { CalendarDays, ChevronRight, CircleCheckBig, Clock3, ShieldCheck } from "lucide-react";
+import { ChevronRight, CircleCheckBig, ShieldCheck } from "lucide-react";
 import { CourseCheckoutButton } from "@/components/courses/course-checkout-button";
-import { FitCheckTrackedLink } from "@/components/courses/course-storefront-tracking";
 import type { AbVariant } from "@/lib/ab-test-constants";
 import type { CourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { COURSE_TRIAL_PREVIEW_LESSON_LIMIT } from "@/modules/courses/course-trial-constants";
@@ -17,11 +16,6 @@ type Props = {
   childEntryHref: string;
   variant: AbVariant;
   checkoutLabel: string;
-  personalization?: {
-    phaseHint?: string | null;
-    bestFor?: string | null;
-    cadenceHint?: string | null;
-  };
 };
 
 function formatCurrency(amount: number) {
@@ -47,7 +41,6 @@ export function CourseDetailSidebar({
   childEntryHref,
   variant,
   checkoutLabel,
-  personalization,
 }: Props) {
   const currentPriceVnd = Math.max(0, pricing.salePriceVnd);
   const showDiscount = pricing.listPriceVnd > currentPriceVnd && pricing.hasDiscount;
@@ -55,12 +48,12 @@ export function CourseDetailSidebar({
   const isPendingPricing = pricing.statusLabel === "pending";
   const saleEndsAtLabel = formatSaleEndAt(pricing.saleEndsAt ?? null);
   const trialAnchorHref = "#curriculum-preview";
-  const checkoutCtaLabel = isFreeSale ? "Nhận miễn phí ngay" : checkoutLabel;
+  const checkoutCtaLabel = isFreeSale ? "Nhận khóa 0đ ngay" : checkoutLabel;
 
   return (
     <div className="sticky top-6 space-y-4">
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700">Giá hôm nay</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700">Giá khóa học</p>
         <div className="mt-1 flex items-end gap-2">
           <p className="text-3xl font-black tracking-[-0.02em] text-emerald-700">{formatCurrency(currentPriceVnd)}</p>
           {showDiscount ? (
@@ -78,24 +71,13 @@ export function CourseDetailSidebar({
         <p className="mt-1 text-xs text-emerald-700/80">
           {pricing.isPurchasable
             ? isFreeSale
-              ? "Nhận khóa ngay với giá 0đ trong khung ưu đãi hiện tại."
-              : "Thanh toán một lần, kích hoạt ngay sau khi xác nhận."
+              ? "Nhận khóa ngay với giá 0đ. Hệ thống kích hoạt trực tiếp, không qua PayOS."
+              : "Thanh toán một lần, mở khóa ngay sau khi xác nhận."
             : isPendingPricing
-              ? `Khóa đang chờ mở giá/ưu đãi. Trong lúc chờ, phụ huynh có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
+              ? `Khóa này đang tạm khóa thanh toán online. Trong lúc chờ, phụ huynh có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
               : `Phụ huynh vẫn có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu trước khi chốt lộ trình.`}
         </p>
       </div>
-
-      {personalization?.phaseHint || personalization?.bestFor || personalization?.cadenceHint ? (
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 p-4 text-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-sky-700">Tóm tắt nhanh cho phụ huynh</p>
-          <div className="mt-2 grid gap-1.5 text-sky-900">
-            {personalization.phaseHint ? <p>{personalization.phaseHint}</p> : null}
-            {personalization.bestFor ? <p>{personalization.bestFor}</p> : null}
-            {personalization.cadenceHint ? <p>{personalization.cadenceHint}</p> : null}
-          </div>
-        </div>
-      ) : null}
 
       {isOwned ? (
         <div className="grid gap-3 rounded-2xl border border-emerald-200 bg-white p-4">
@@ -110,20 +92,13 @@ export function CourseDetailSidebar({
             <Link href="/parent/courses" className="ghost-button">
               Xem khóa đã mua
             </Link>
-            <FitCheckTrackedLink
-              href="#fit-checklist"
-              className="ghost-button"
-              variant={variant}
-              sourcePage="course_detail"
-              ctaLabel="Xem checklist phù hợp"
-              bundleSlug={courseSlug}
-            >
-              Xem checklist phù hợp
-            </FitCheckTrackedLink>
           </div>
         </div>
       ) : (
-        <div className="grid gap-2">
+        <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4">
+          <Link href={trialAnchorHref} className="ghost-button">
+            Xem học thử trước
+          </Link>
           {pricing.isPurchasable ? (
             <CourseCheckoutButton
               courseSlug={courseSlug}
@@ -133,34 +108,19 @@ export function CourseDetailSidebar({
               tracking={{ variant, bundleSlug: courseSlug }}
             />
           ) : (
-            <>
-              <Link href={trialAnchorHref} className="solid-button">
-                Xem bài học thử
-              </Link>
-              <Link href="/contact" className="ghost-button">
-                Nhận tư vấn lộ trình
-              </Link>
-            </>
+            <Link href="/contact" className="ghost-button">
+              Nhận tư vấn nhanh
+            </Link>
           )}
-          <FitCheckTrackedLink
-            href="#fit-checklist"
-            className="ghost-button"
-            variant={variant}
-            sourcePage="course_detail"
-            ctaLabel="Kiểm tra độ phù hợp trước khi mua"
-            bundleSlug={courseSlug}
-          >
-            Kiểm tra độ phù hợp trước khi mua
-          </FitCheckTrackedLink>
           {!isAuthenticated && pricing.isPurchasable ? (
             <p className="text-xs text-slate-500">
-              Hệ thống sẽ đưa bạn đến đăng nhập/đăng ký và quay lại đúng khóa học này để tiếp tục thanh toán.
+              Hệ thống sẽ đưa bạn đến đăng nhập/đăng ký và quay lại đúng khóa học này để tiếp tục nhận khóa.
             </p>
           ) : null}
           {!pricing.isPurchasable ? (
             <p className="text-xs text-amber-700">
               {isPendingPricing
-                ? `Khóa đang chờ mở giá/ưu đãi. Tạm thời phụ huynh vẫn xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
+                ? `Khóa này đang tạm khóa thanh toán online. Phụ huynh vẫn xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
                 : `Thanh toán online đang tạm khóa. Phụ huynh vẫn có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`}
             </p>
           ) : null}
@@ -169,16 +129,8 @@ export function CourseDetailSidebar({
 
       <div className="grid gap-2 rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
         <p className="inline-flex items-start gap-2">
-          <CalendarDays className="mt-0.5 h-4 w-4 shrink-0 text-sky-600" />
-          Truy cập khóa học ngay sau khi giao dịch thành công.
-        </p>
-        <p className="inline-flex items-start gap-2">
-          <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
-          Trạng thái thanh toán được cập nhật tự động trên hệ thống.
-        </p>
-        <p className="inline-flex items-start gap-2">
           <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
-          Theo dõi tiến bộ rõ theo số bài hoàn thành và mốc tuần học.
+          Mua một lần, kích hoạt học ngay. Nếu chưa chắc level, hãy xem học thử trước.
         </p>
       </div>
 
@@ -203,7 +155,7 @@ export function CourseDetailSidebar({
             <p className="text-sm font-black text-emerald-800">{formatCurrency(currentPriceVnd)}</p>
           </div>
           <Link href={trialAnchorHref} className="solid-button text-sm">
-            Xem bài học thử
+            Xem học thử
           </Link>
         </div>
       ) : null}

@@ -40,7 +40,7 @@ export function CourseDetailStickyHeader({
   const currentPriceVnd = Math.max(0, pricing.salePriceVnd);
   const showDiscount = pricing.listPriceVnd > currentPriceVnd && pricing.hasDiscount;
   const isFreeTemporary = pricing.statusLabel === "freeTemporary" && currentPriceVnd === 0;
-  const checkoutCtaLabel = isFreeTemporary ? "Nhận miễn phí ngay" : checkoutLabel;
+  const checkoutCtaLabel = isFreeTemporary ? "Nhận khóa 0đ ngay" : checkoutLabel;
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);

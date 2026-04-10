@@ -5,6 +5,8 @@ import { X } from "lucide-react";
 import {
   AGE_GROUP_LABELS,
   DURATION_LABELS,
+  PHASE_LABELS,
+  PROGRAM_LABELS,
   SUBJECT_LABELS,
   type CourseFilterParams,
 } from "@/lib/courses/course-filter-utils";
@@ -20,6 +22,14 @@ function buildChips(filters: CourseFilterParams): FilterChip[] {
 
   if (filters.q) {
     chips.push({ key: "q", label: `Tìm: ${filters.q}` });
+  }
+
+  if (filters.program && PROGRAM_LABELS[filters.program]) {
+    chips.push({ key: "program", label: PROGRAM_LABELS[filters.program] });
+  }
+
+  if (filters.phase && PHASE_LABELS[filters.phase]) {
+    chips.push({ key: "phase", label: PHASE_LABELS[filters.phase] });
   }
 
   if (filters.subject && SUBJECT_LABELS[filters.subject]) {

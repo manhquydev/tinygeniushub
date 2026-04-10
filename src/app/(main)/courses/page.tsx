@@ -5,12 +5,13 @@ import { SlidersHorizontal } from "lucide-react";
 import { AB_COURSES_COOKIE, type AbVariant } from "@/lib/ab-test-constants";
 import {
   AGE_GROUP_LABELS,
+  PHASE_LABELS,
+  PROGRAM_LABELS,
   parseFilterParams,
   SUBJECT_LABELS,
   type CourseFilterParams,
 } from "@/lib/courses/course-filter-utils";
 import { getStorefrontCourses, type StorefrontCourse } from "@/modules/courses/course-service";
-import { isPilotSkuSlug } from "@/modules/courses/pilot-sku-catalog";
 import { CourseActiveFilters } from "@/components/courses/course-active-filters";
 import { CourseCard } from "@/components/courses/course-card";
 import { CourseCheckoutStatusBanner } from "@/components/courses/course-checkout-status-banner";
@@ -33,15 +34,36 @@ interface CoursesPageProps {
 }
 
 const PAGE_SIZE = 9;
+type ProgramKey = keyof typeof PROGRAM_LABELS;
+type PhaseKey = keyof typeof PHASE_LABELS;
 
 function getActiveFilterCount(filters: CourseFilterParams) {
   let count = 0;
   if (filters.q) count += 1;
+  if (filters.program) count += 1;
+  if (filters.phase) count += 1;
   if (filters.subject) count += 1;
   if (filters.ageGroup) count += 1;
   if (filters.duration) count += 1;
   if (filters.minPrice !== undefined || filters.maxPrice !== undefined) count += 1;
   return count;
+}
+
+function detectProgramKey(slug: string): ProgramKey | null {
+  const normalized = slug.toLowerCase();
+  if (normalized.startsWith("abeka-")) return "abeka";
+  if (normalized.startsWith("lfen-")) return "lfen";
+  if (normalized.startsWith("lfcn-")) return "lfcn";
+  return null;
+}
+
+function detectPhaseKey(slug: string): PhaseKey | null {
+  const normalized = slug.toLowerCase();
+  if (normalized.includes("-intro-")) return "intro";
+  if (normalized.includes("-starter-")) return "starter";
+  if (normalized.includes("-foundation-")) return "foundation";
+  if (normalized.includes("-builder-")) return "builder";
+  return null;
 }
 
 function matchesDuration(durationDays: number, duration: CourseFilterParams["duration"]) {
@@ -57,6 +79,8 @@ function filterCourses(courses: StorefrontCourse[], filters: CourseFilterParams)
   return courses.filter((course) => {
     const searchable = `${course.title} ${course.description}`.toLowerCase();
     if (normalizedQuery && !searchable.includes(normalizedQuery)) return false;
+    if (filters.program && detectProgramKey(course.slug) !== filters.program) return false;
+    if (filters.phase && detectPhaseKey(course.slug) !== filters.phase) return false;
     if (filters.subject && course.subject !== filters.subject) return false;
     if (filters.ageGroup && course.ageGroup !== filters.ageGroup) return false;
     if (filters.minPrice !== undefined && course.pricing.salePriceVnd < filters.minPrice) return false;
@@ -90,6 +114,29 @@ function deriveFilterOptions(courses: StorefrontCourse[]) {
     return typeof value === "string" && value !== "ALL_AGES" && value in AGE_GROUP_LABELS;
   };
 
+  const isKnownProgram = (value: ProgramKey | null): value is ProgramKey => {
+    return value !== null;
+  };
+  const isKnownPhase = (value: PhaseKey | null): value is PhaseKey => {
+    return value !== null;
+  };
+
+  const programKeys = Array.from(
+    new Set(
+      courses
+        .map((course) => detectProgramKey(course.slug))
+        .filter(isKnownProgram),
+    ),
+  ).sort((a, b) => PROGRAM_LABELS[a].localeCompare(PROGRAM_LABELS[b], "vi"));
+
+  const phaseKeys = Array.from(
+    new Set(
+      courses
+        .map((course) => detectPhaseKey(course.slug))
+        .filter(isKnownPhase),
+    ),
+  ).sort((a, b) => PHASE_LABELS[a].localeCompare(PHASE_LABELS[b], "vi"));
+
   const subjectKeys = Array.from(
     new Set(
       courses
@@ -106,7 +153,7 @@ function deriveFilterOptions(courses: StorefrontCourse[]) {
     ),
   ).sort((a, b) => AGE_GROUP_LABELS[a].localeCompare(AGE_GROUP_LABELS[b], "vi"));
 
-  return { subjectKeys, ageGroupKeys };
+  return { programKeys, phaseKeys, subjectKeys, ageGroupKeys };
 }
 
 export default async function CoursesPage({ searchParams }: CoursesPageProps) {
@@ -148,8 +195,10 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
           <div className="sticky z-20" style={{ top: "calc(var(--app-nav-height) + 0.9rem)" }}>
             <div className="max-h-[calc(100dvh-var(--app-nav-height)-1.2rem)] overflow-y-auto pr-1">
               <CourseFilterSidebar
-                key={`desktop-${filters.q ?? ""}-${filters.minPrice ?? ""}-${filters.maxPrice ?? ""}-${filters.subject ?? ""}-${filters.ageGroup ?? ""}-${filters.duration ?? ""}`}
+                key={`desktop-${filters.q ?? ""}-${filters.program ?? ""}-${filters.phase ?? ""}-${filters.minPrice ?? ""}-${filters.maxPrice ?? ""}-${filters.subject ?? ""}-${filters.ageGroup ?? ""}-${filters.duration ?? ""}`}
                 currentFilters={filters}
+                availableProgramKeys={filterOptions.programKeys}
+                availablePhaseKeys={filterOptions.phaseKeys}
                 availableSubjectKeys={filterOptions.subjectKeys}
                 availableAgeGroupKeys={filterOptions.ageGroupKeys}
               />
@@ -164,6 +213,8 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                 <CourseMobileFilterTrigger
                   currentFilters={filters}
                   activeFilterCount={activeFilterCount}
+                  availableProgramKeys={filterOptions.programKeys}
+                  availablePhaseKeys={filterOptions.phaseKeys}
                   availableSubjectKeys={filterOptions.subjectKeys}
                   availableAgeGroupKeys={filterOptions.ageGroupKeys}
                 />
@@ -209,7 +260,6 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                     <CourseCard
                       key={course.slug}
                       course={course}
-                      showPilotBadge={isPilotSkuSlug(course.slug)}
                       variant={coursesVariant}
                       index={startIndex + index}
                       detailCtaLabel="Xem chi tiết"

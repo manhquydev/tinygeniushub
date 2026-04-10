@@ -44,7 +44,7 @@ function resolveCheckoutErrorMessage(response: CheckoutResponse | null, status: 
       : null;
 
   if (code === "COURSE_PRICE_NOT_AVAILABLE") {
-    return "Khóa học đang chờ mở giá bán hoặc ưu đãi. Bạn có thể xem học thử và quay lại sau.";
+    return "Khóa học này đang tạm khóa thanh toán online. Bạn có thể xem học thử và nhận tư vấn ngay.";
   }
 
   if (code === "ALREADY_ENROLLED") {

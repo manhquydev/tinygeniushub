@@ -7,6 +7,19 @@ export const SUBJECT_LABELS: Record<string, string> = {
   OTHER: "Khác",
 };
 
+export const PROGRAM_LABELS: Record<string, string> = {
+  abeka: "Abeka",
+  lfen: "Little Fox English",
+  lfcn: "Little Fox Chinese",
+};
+
+export const PHASE_LABELS: Record<string, string> = {
+  intro: "Khởi động",
+  starter: "Bắt đầu",
+  foundation: "Nền tảng",
+  builder: "Xây nền",
+};
+
 export const AGE_GROUP_LABELS: Record<string, string> = {
   ALL_AGES: "Mọi độ tuổi",
   UNDER_3: "Dưới 3 tuổi",
@@ -33,6 +46,8 @@ export const SORT_OPTIONS = [
 
 export type CourseFilterParams = {
   q?: string;
+  program?: string;
+  phase?: string;
   subject?: string;
   ageGroup?: string;
   minPrice?: number;
@@ -49,6 +64,8 @@ function firstString(value: string | string[] | undefined): string | undefined {
 
 const VALID_SUBJECTS = new Set(Object.keys(SUBJECT_LABELS));
 const VALID_AGE_GROUPS = new Set(Object.keys(AGE_GROUP_LABELS));
+const VALID_PROGRAMS = new Set(Object.keys(PROGRAM_LABELS));
+const VALID_PHASES = new Set(Object.keys(PHASE_LABELS));
 const VALID_DURATIONS = new Set(["short", "medium", "long"]);
 const VALID_SORTS = new Set(SORT_OPTIONS.map((o) => o.value));
 const MAX_PRICE = 10_000_000;
@@ -57,6 +74,8 @@ export function parseFilterParams(
   searchParams: Record<string, string | string[] | undefined>,
 ): CourseFilterParams {
   const q = firstString(searchParams.q)?.trim();
+  const program = firstString(searchParams.program);
+  const phase = firstString(searchParams.phase);
   const subject = firstString(searchParams.subject);
   const ageGroup = firstString(searchParams.ageGroup);
   const duration = firstString(searchParams.duration);
@@ -67,6 +86,8 @@ export function parseFilterParams(
 
   return {
     q: q && q.length > 0 ? q.slice(0, 80) : undefined,
+    program: program && VALID_PROGRAMS.has(program) ? program : undefined,
+    phase: phase && VALID_PHASES.has(phase) ? phase : undefined,
     subject: subject && VALID_SUBJECTS.has(subject) ? subject : undefined,
     ageGroup: ageGroup && VALID_AGE_GROUPS.has(ageGroup) ? ageGroup : undefined,
     duration: duration && VALID_DURATIONS.has(duration) ? (duration as CourseFilterParams["duration"]) : undefined,

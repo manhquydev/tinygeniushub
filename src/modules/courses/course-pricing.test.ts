@@ -50,6 +50,21 @@ describe("resolveCourseDisplayPricing", () => {
     expect(pricing.saleStatus).toBe("active");
   });
 
+  it("treats explicit sale 0đ with zero list price as free-temporary and purchasable", () => {
+    const pricing = resolveCourseDisplayPricing({
+      priceVnd: 0,
+      listPriceVnd: 0,
+      salePriceVnd: 0,
+    });
+
+    expect(pricing.salePriceVnd).toBe(0);
+    expect(pricing.listPriceVnd).toBe(0);
+    expect(pricing.hasDiscount).toBe(false);
+    expect(pricing.isPurchasable).toBe(true);
+    expect(pricing.statusLabel).toBe("freeTemporary");
+    expect(pricing.saleStatus).toBe("none");
+  });
+
   it("applies active timed sale", () => {
     const now = new Date("2026-03-27T09:00:00.000Z");
     const pricing = resolveCourseDisplayPricing(

@@ -8,6 +8,8 @@ import type { CourseFilterParams } from "@/lib/courses/course-filter-utils";
 interface Props {
   currentFilters: CourseFilterParams;
   activeFilterCount: number;
+  availableProgramKeys: string[];
+  availablePhaseKeys: string[];
   availableSubjectKeys: string[];
   availableAgeGroupKeys: string[];
 }
@@ -15,6 +17,8 @@ interface Props {
 function buildFilterKey(filters: CourseFilterParams) {
   return [
     filters.q ?? "",
+    filters.program ?? "",
+    filters.phase ?? "",
     filters.subject ?? "",
     filters.ageGroup ?? "",
     filters.duration ?? "",
@@ -26,6 +30,8 @@ function buildFilterKey(filters: CourseFilterParams) {
 export function CourseMobileFilterTrigger({
   currentFilters,
   activeFilterCount,
+  availableProgramKeys,
+  availablePhaseKeys,
   availableSubjectKeys,
   availableAgeGroupKeys,
 }: Props) {
@@ -54,6 +60,8 @@ export function CourseMobileFilterTrigger({
             <CourseFilterSidebar
               key={`mobile-${buildFilterKey(currentFilters)}`}
               currentFilters={currentFilters}
+              availableProgramKeys={availableProgramKeys}
+              availablePhaseKeys={availablePhaseKeys}
               availableSubjectKeys={availableSubjectKeys}
               availableAgeGroupKeys={availableAgeGroupKeys}
             />
