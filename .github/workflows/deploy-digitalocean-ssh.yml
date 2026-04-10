@@ -27,9 +27,11 @@ jobs:
     env:
       DEPLOY_REF: ${{ inputs.ref }}
       APP_DIR: /var/www/cungcontuhoc
+      SSH_USER: root
+      SSH_PORT: "22"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
         with:
           ref: ${{ env.DEPLOY_REF }}
           fetch-depth: 0
@@ -37,13 +39,12 @@ jobs:
       - name: Validate required secrets
         env:
           DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
-          DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
           DO_SSH_PRIVATE_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
           DO_SSH_KNOWN_HOSTS: ${{ secrets.DO_SSH_KNOWN_HOSTS }}
         run: |
           set -euo pipefail
           missing=0
-          for name in DO_SSH_HOST DO_SSH_USER DO_SSH_PRIVATE_KEY DO_SSH_KNOWN_HOSTS; do
+          for name in DO_SSH_HOST DO_SSH_PRIVATE_KEY DO_SSH_KNOWN_HOSTS; do
             if [ -z "${!name:-}" ]; then
               echo "::error::Missing required secret: $name"
               missing=1
@@ -68,22 +69,21 @@ jobs:
       - name: Verify SSH connectivity
         env:
           DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
-          DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
         run: |
           set -euo pipefail
           ssh \
+            -p "${{ env.SSH_PORT }}" \
             -i ~/.ssh/do_deploy_key \
             -o BatchMode=yes \
             -o IdentitiesOnly=yes \
             -o StrictHostKeyChecking=yes \
-            "$DO_SSH_USER@$DO_SSH_HOST" \
+            "${{ env.SSH_USER }}@$DO_SSH_HOST" \
             "echo 'SSH connection established'"
 
       - name: Deploy on remote server
         if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
         env:
           DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
-          DO_SSH_USER: ${{ secrets.DO_SSH_USER }}
           DEPLOY_REF: ${{ env.DEPLOY_REF }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
           GA4_SERVICE_ACCOUNT_CLIENT_EMAIL: ${{ secrets.GA4_SERVICE_ACCOUNT_CLIENT_EMAIL }}
@@ -99,11 +99,12 @@ jobs:
           GA4_SOT_REQUIRED_B64="$(printf '%s' "${GA4_SOT_REQUIRED:-}" | base64 -w0)"
 
           ssh \
+            -p "${{ env.SSH_PORT }}" \
             -i ~/.ssh/do_deploy_key \
             -o BatchMode=yes \
             -o IdentitiesOnly=yes \
             -o StrictHostKeyChecking=yes \
-            "$DO_SSH_USER@$DO_SSH_HOST" "bash -s" <<REMOTE_SCRIPT
+            "${{ env.SSH_USER }}@$DO_SSH_HOST" "bash -s" <<REMOTE_SCRIPT
           set -euo pipefail
           cd "${{ env.APP_DIR }}"
           test -f scripts/deploy/remote-deploy.sh || {
