@@ -8,6 +8,8 @@ import type { CourseFilterParams } from "@/lib/courses/course-filter-utils";
 interface Props {
   currentFilters: CourseFilterParams;
   activeFilterCount: number;
+  availableSubjectKeys: string[];
+  availableAgeGroupKeys: string[];
 }
 
 function buildFilterKey(filters: CourseFilterParams) {
@@ -21,7 +23,12 @@ function buildFilterKey(filters: CourseFilterParams) {
   ].join("|");
 }
 
-export function CourseMobileFilterTrigger({ currentFilters, activeFilterCount }: Props) {
+export function CourseMobileFilterTrigger({
+  currentFilters,
+  activeFilterCount,
+  availableSubjectKeys,
+  availableAgeGroupKeys,
+}: Props) {
   return (
     <div className="md:hidden">
       <Sheet>
@@ -44,7 +51,12 @@ export function CourseMobileFilterTrigger({ currentFilters, activeFilterCount }:
             <SheetTitle>Bộ lọc khóa học</SheetTitle>
           </SheetHeader>
           <div className="mt-4">
-            <CourseFilterSidebar key={`mobile-${buildFilterKey(currentFilters)}`} currentFilters={currentFilters} />
+            <CourseFilterSidebar
+              key={`mobile-${buildFilterKey(currentFilters)}`}
+              currentFilters={currentFilters}
+              availableSubjectKeys={availableSubjectKeys}
+              availableAgeGroupKeys={availableAgeGroupKeys}
+            />
           </div>
         </SheetContent>
       </Sheet>

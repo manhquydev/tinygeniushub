@@ -11,13 +11,17 @@ import {
 
 interface CourseFilterSidebarProps {
   currentFilters: CourseFilterParams;
+  availableSubjectKeys: string[];
+  availableAgeGroupKeys: string[];
 }
 
-const SUBJECT_KEYS = Object.keys(SUBJECT_LABELS);
-const AGE_GROUP_KEYS = Object.keys(AGE_GROUP_LABELS).filter((k) => k !== "ALL_AGES");
 const DURATION_KEYS = Object.keys(DURATION_LABELS) as Array<keyof typeof DURATION_LABELS>;
 
-export function CourseFilterSidebar({ currentFilters }: CourseFilterSidebarProps) {
+export function CourseFilterSidebar({
+  currentFilters,
+  availableSubjectKeys,
+  availableAgeGroupKeys,
+}: CourseFilterSidebarProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [keyword, setKeyword] = useState(currentFilters.q ?? "");
@@ -128,44 +132,48 @@ export function CourseFilterSidebar({ currentFilters }: CourseFilterSidebarProps
         />
       </div>
 
-      <div className="grid gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Môn học</p>
-        {SUBJECT_KEYS.map((key) => (
-          <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
-            <input
-              type="checkbox"
-              checked={currentFilters.subject === key}
-              onChange={() => updateParam("subject", currentFilters.subject === key ? null : key)}
-              className="rounded border-slate-300 text-emerald-600"
-            />
-            {SUBJECT_LABELS[key]}
-          </label>
-        ))}
-      </div>
+      {availableSubjectKeys.length > 0 ? (
+        <div className="grid gap-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Môn học</p>
+          {availableSubjectKeys.map((key) => (
+            <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
+              <input
+                type="checkbox"
+                checked={currentFilters.subject === key}
+                onChange={() => updateParam("subject", currentFilters.subject === key ? null : key)}
+                className="rounded border-slate-300 text-emerald-600"
+              />
+              {SUBJECT_LABELS[key]}
+            </label>
+          ))}
+        </div>
+      ) : null}
 
-      <div className="grid gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Độ tuổi</p>
-        {AGE_GROUP_KEYS.map((key) => (
-          <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
-            <input
-              type="radio"
-              name="ageGroup"
-              checked={currentFilters.ageGroup === key}
-              onChange={() => updateParam("ageGroup", key)}
-              className="border-slate-300 text-emerald-600"
-            />
-            {AGE_GROUP_LABELS[key]}
-          </label>
-        ))}
-        {currentFilters.ageGroup ? (
-          <button
-            onClick={() => updateParam("ageGroup", null)}
-            className="text-left text-xs text-slate-400 hover:text-slate-600"
-          >
-            Bỏ chọn
-          </button>
-        ) : null}
-      </div>
+      {availableAgeGroupKeys.length > 0 ? (
+        <div className="grid gap-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Độ tuổi</p>
+          {availableAgeGroupKeys.map((key) => (
+            <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
+              <input
+                type="radio"
+                name="ageGroup"
+                checked={currentFilters.ageGroup === key}
+                onChange={() => updateParam("ageGroup", key)}
+                className="border-slate-300 text-emerald-600"
+              />
+              {AGE_GROUP_LABELS[key]}
+            </label>
+          ))}
+          {currentFilters.ageGroup ? (
+            <button
+              onClick={() => updateParam("ageGroup", null)}
+              className="text-left text-xs text-slate-400 hover:text-slate-600"
+            >
+              Bỏ chọn
+            </button>
+          ) : null}
+        </div>
+      ) : null}
 
       <div className="grid gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Giá (VND)</p>
