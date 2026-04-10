@@ -9,7 +9,6 @@ import {
   DollarSign,
   Activity,
   Download,
-  Calendar,
   RefreshCw,
   Filter,
 } from "lucide-react";
@@ -105,10 +104,24 @@ interface UnifiedSnapshot {
     };
   };
   revenue: {
-    mrr: number;
-    arr: number;
     totalRevenue30d: number;
     totalRevenue7d: number;
+    courseOrderCount30d: number;
+    courseOrderCount7d: number;
+    uniqueBuyers30d: number;
+    successfulEnrollments30d: number;
+    averageOrderValue30d: number;
+    revenueByProduct: Record<"COURSE_SINGLE" | "COURSE_BUNDLE" | "COURSE_OTHER", number>;
+    topCourses30d: Array<{
+      courseId: string;
+      courseSlug: string;
+      title: string;
+      enrollmentCount: number;
+      revenueVnd: number;
+    }>;
+    // Legacy fields kept in API for one compatibility cycle.
+    mrr: number;
+    arr: number;
     revenueByPlan: Record<string, number>;
     churnRate: number;
     churnRevenue30d: number;
@@ -126,6 +139,8 @@ interface TimeSeriesData {
   users: number;
   completions: number;
   newCustomers: number;
+  paidOrders?: number;
+  successfulEnrollments?: number;
   churnedCustomers: number;
 }
 
@@ -242,11 +257,25 @@ export default function AdminAnalyticsPage() {
         }));
         break;
       case "revenue":
-        data = Object.entries(snapshot.revenue.revenueByPlan).map(([plan, revenue]) => ({
-          plan,
-          revenue,
-          percentage: snapshot.revenue.mrr > 0 ? ((revenue / snapshot.revenue.mrr) * 100).toFixed(2) : 0,
-        }));
+        data = [
+          ...Object.entries(snapshot.revenue.revenueByProduct).map(([product, revenue]) => ({
+            kind: "bucket",
+            product,
+            revenue,
+            percentage:
+              snapshot.revenue.totalRevenue30d > 0
+                ? ((revenue / snapshot.revenue.totalRevenue30d) * 100).toFixed(2)
+                : 0,
+          })),
+          ...snapshot.revenue.topCourses30d.map((course) => ({
+            kind: "course",
+            courseId: course.courseId,
+            courseSlug: course.courseSlug,
+            title: course.title,
+            enrollmentCount: course.enrollmentCount,
+            revenueVnd: course.revenueVnd,
+          })),
+        ];
         break;
       case "timeseries":
         data = timeSeries.map(ts => ({ ...ts })) as Record<string, unknown>[];
@@ -293,8 +322,6 @@ export default function AdminAnalyticsPage() {
     title: lesson.title,
     completionCount: lesson.completionCount,
   }));
-
-  const netMrrChange = snapshot.revenue.newMrr30d - snapshot.revenue.churnRevenue30d;
 
   return (
     <div className="space-y-6">
@@ -413,9 +440,12 @@ export default function AdminAnalyticsPage() {
               }}
             />
             <AdminStatCard
-              label="MRR (Doanh thu hàng tháng)"
-              value={formatVND(snapshot.revenue.mrr)}
-              icon={<DollarSign size={16} />}
+              label="Đơn khóa học (30 ngày)"
+              value={snapshot.revenue.courseOrderCount30d}
+              trend={{
+                value: snapshot.revenue.uniqueBuyers30d,
+                label: `${snapshot.revenue.uniqueBuyers30d} phụ huynh mua khóa`,
+              }}
             />
           </div>
 
@@ -577,8 +607,8 @@ export default function AdminAnalyticsPage() {
               trend={{ value: snapshot.retention.newParents30d, label: `${snapshot.retention.newParents30d} trong 30 ngày` }}
             />
             <AdminStatCard
-              label="Rời bỏ (30 ngày)"
-              value={snapshot.retention.churned30d}
+              label="Phụ huynh mua khóa (30 ngày)"
+              value={snapshot.revenue.uniqueBuyers30d}
             />
             <AdminStatCard
               label="Tỷ lệ giữ chân"

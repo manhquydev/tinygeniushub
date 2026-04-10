@@ -26,6 +26,9 @@ export interface TimeSeriesDataPoint {
   users: number;
   completions: number;
   newCustomers: number;
+  paidOrders: number;
+  successfulEnrollments: number;
+  // Legacy field kept for one compatibility cycle.
   churnedCustomers: number;
 }
 
@@ -95,16 +98,19 @@ export async function getUnifiedTimeSeriesData(days: number = 30): Promise<TimeS
       },
     });
     
+    const dateKey = date.toISOString().split("T")[0];
     const revenueData = revenueTimeSeries.find(
-      (r) => r.date === date.toISOString().split("T")[0]
-    ) || { revenue: 0, newCustomers: 0, churnedCustomers: 0 };
+      (r) => r.date === dateKey,
+    ) || { revenue: 0, newCustomers: 0, paidOrders: 0, successfulEnrollments: 0, churnedCustomers: 0 };
     
     data.push({
-      date: date.toISOString().split("T")[0],
+      date: dateKey,
       revenue: revenueData.revenue,
       users: activeUsers.length,
       completions,
       newCustomers: revenueData.newCustomers,
+      paidOrders: revenueData.paidOrders,
+      successfulEnrollments: revenueData.successfulEnrollments,
       churnedCustomers: revenueData.churnedCustomers,
     });
   }

@@ -1,20 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { DollarSign, TrendingUp, TrendingDown, Users } from "lucide-react";
+import { DollarSign, ShoppingCart, Users, BookOpen } from "lucide-react";
 import { AdminStatCard } from "@/components/admin/ui/admin-stat-card";
 import { AdminSectionCard } from "@/components/admin/ui/admin-section-card";
-import { Progress } from "@/components/ui/progress";
 
 interface RevenueData {
-  mrr: number;
-  arr: number;
   totalRevenue30d: number;
   totalRevenue7d: number;
-  revenueByPlan: Record<string, number>;
-  churnRate: number;
-  churnRevenue30d: number;
-  newMrr30d: number;
+  courseOrderCount30d: number;
+  courseOrderCount7d: number;
+  uniqueBuyers30d: number;
+  successfulEnrollments30d: number;
+  averageOrderValue30d: number;
+  revenueByProduct: Record<"COURSE_SINGLE" | "COURSE_BUNDLE" | "COURSE_OTHER", number>;
+  topCourses30d: Array<{
+    courseId: string;
+    courseSlug: string;
+    title: string;
+    enrollmentCount: number;
+    revenueVnd: number;
+  }>;
 }
 
 function formatVND(amount: number): string {
@@ -73,119 +79,99 @@ export function RevenueDashboard() {
     );
   }
 
-  const netMrrChange = data.newMrr30d - data.churnRevenue30d;
-
   return (
     <div className="space-y-6">
-      {/* Main Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <AdminStatCard
-          label="Doanh thu định kỳ hàng tháng (MRR)"
-          value={formatVND(data.mrr)}
-          icon={<DollarSign size={16} />}
-        />
-        <AdminStatCard
-          label="Doanh thu định kỳ hàng năm (ARR)"
-          value={formatVND(data.arr)}
-          icon={<TrendingUp size={16} />}
-        />
-        <AdminStatCard
-          label="Doanh thu 30 ngày"
+          label="Doanh thu khóa học 30 ngày"
           value={formatVND(data.totalRevenue30d)}
           icon={<DollarSign size={16} />}
         />
         <AdminStatCard
-          label="Tỷ lệ rời bỏ (Churn Rate)"
-          value={`${data.churnRate}%`}
-          icon={<TrendingDown size={16} />}
-          trend={{
-            value: data.churnRate,
-            label: data.churnRate > 5 ? "Cao" : "Tốt",
-          }}
+          label="Doanh thu khóa học 7 ngày"
+          value={formatVND(data.totalRevenue7d)}
+          icon={<DollarSign size={16} />}
+        />
+        <AdminStatCard
+          label="Số đơn khóa học 30 ngày"
+          value={data.courseOrderCount30d}
+          icon={<ShoppingCart size={16} />}
+        />
+        <AdminStatCard
+          label="Giá trị đơn trung bình 30 ngày"
+          value={formatVND(data.averageOrderValue30d)}
+          icon={<DollarSign size={16} />}
+        />
+        <AdminStatCard
+          label="Phụ huynh mua khóa (30 ngày)"
+          value={data.uniqueBuyers30d}
+          icon={<Users size={16} />}
+        />
+        <AdminStatCard
+          label="Ghi danh thành công (30 ngày)"
+          value={data.successfulEnrollments30d}
+          icon={<BookOpen size={16} />}
         />
       </div>
 
-      {/* Revenue by Plan */}
-      <AdminSectionCard title="Doanh thu theo gói" icon={<Users size={16} />}>
+      <AdminSectionCard title="Doanh thu theo loại đơn" icon={<ShoppingCart size={16} />}>
         <div className="space-y-4">
-          {Object.entries(data.revenueByPlan)
-            .filter(([plan]) => plan !== "TRIAL")
-            .map(([plan, revenue]) => (
-              <div key={plan} className="space-y-2">
+          {Object.entries(data.revenueByProduct)
+            .filter(([, revenue]) => revenue > 0)
+            .map(([product, revenue]) => (
+              <div key={product} className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="font-medium text-[var(--admin-text-primary)]">
-                    {plan === "STANDARD" ? "Gói Tiêu chuẩn" : "Gói Gia đình Plus"}
+                    {product === "COURSE_SINGLE"
+                      ? "Mua lẻ từng khóa"
+                      : product === "COURSE_BUNDLE"
+                        ? "Mua theo bộ khóa học"
+                        : "Đơn hàng khác"}
                   </span>
                   <span className="text-[var(--admin-text-primary)] font-semibold">
                     {formatVND(revenue)}
                   </span>
                 </div>
-                <Progress
-                  value={data.mrr > 0 ? (revenue / data.mrr) * 100 : 0}
-                  className="h-2"
-                />
                 <p className="text-xs text-[var(--admin-text-muted)]">
-                  {data.mrr > 0 ? ((revenue / data.mrr) * 100).toFixed(1) : 0}% tổng MRR
+                  {data.totalRevenue30d > 0 ? ((revenue / data.totalRevenue30d) * 100).toFixed(1) : 0}% tổng doanh thu
                 </p>
               </div>
             ))}
-          {Object.keys(data.revenueByPlan).filter(p => p !== "TRIAL").length === 0 && (
+          {Object.values(data.revenueByProduct).every((revenue) => revenue <= 0) && (
             <p className="text-sm text-[var(--admin-text-muted)] italic">
-              Chưa có dữ liệu doanh thu theo gói
+              Chưa có dữ liệu doanh thu theo loại đơn
             </p>
           )}
         </div>
       </AdminSectionCard>
 
-      {/* MRR Movement Cards */}
-      <AdminSectionCard title="Biến động MRR (30 ngày)" icon={<TrendingUp size={16} />}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg border border-emerald-100 dark:border-emerald-900">
-            <p className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">MRR mới</p>
-            <p className="text-xl font-bold text-emerald-700 dark:text-emerald-300 mt-1">
-              +{formatVND(data.newMrr30d)}
+      <AdminSectionCard title="Top khóa học theo doanh thu (30 ngày)" icon={<BookOpen size={16} />}>
+        <div className="space-y-3">
+          {data.topCourses30d.map((course, index) => (
+            <div
+              key={course.courseId}
+              className="flex items-center justify-between rounded-lg border border-[var(--admin-card-border)] px-3 py-2"
+            >
+              <div className="min-w-0 pr-3">
+                <p className="text-sm font-semibold text-[var(--admin-text-primary)] truncate">
+                  {index + 1}. {course.title}
+                </p>
+                <p className="text-xs text-[var(--admin-text-muted)] truncate">
+                  {course.enrollmentCount} lượt ghi danh
+                </p>
+              </div>
+              <p className="text-sm font-bold text-[var(--admin-text-primary)]">
+                {formatVND(course.revenueVnd)}
+              </p>
+            </div>
+          ))}
+          {data.topCourses30d.length === 0 && (
+            <p className="text-sm text-[var(--admin-text-muted)] italic">
+              Chưa có dữ liệu khóa học phát sinh doanh thu
             </p>
-            <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1">
-              Từ đăng ký mới
-            </p>
-          </div>
-
-          <div className="p-4 bg-rose-50 dark:bg-rose-950/30 rounded-lg border border-rose-100 dark:border-rose-900">
-            <p className="text-sm text-rose-600 dark:text-rose-400 font-medium">MRR mất</p>
-            <p className="text-xl font-bold text-rose-700 dark:text-rose-300 mt-1">
-              -{formatVND(data.churnRevenue30d)}
-            </p>
-            <p className="text-xs text-rose-600 dark:text-rose-400 mt-1">
-              Từ khách hàng rời bỏ
-            </p>
-          </div>
-
-          <div className={`p-4 rounded-lg border ${
-            netMrrChange >= 0
-              ? "bg-blue-50 dark:bg-blue-950/30 border-blue-100 dark:border-blue-900"
-              : "bg-amber-50 dark:bg-amber-950/30 border-amber-100 dark:border-amber-900"
-          }`}>
-            <p className={`text-sm font-medium ${
-              netMrrChange >= 0
-                ? "text-blue-600 dark:text-blue-400"
-                : "text-amber-600 dark:text-amber-400"
-            }`}>
-              Thay đổi MRR ròng
-            </p>
-            <p className={`text-xl font-bold mt-1 ${
-              netMrrChange >= 0
-                ? "text-blue-700 dark:text-blue-300"
-                : "text-amber-700 dark:text-amber-300"
-            }`}>
-              {netMrrChange >= 0 ? "+" : ""}{formatVND(netMrrChange)}
-            </p>
-            <p className={`text-xs mt-1 ${
-              netMrrChange >= 0
-                ? "text-blue-600 dark:text-blue-400"
-                : "text-amber-600 dark:text-amber-400"
-            }`}>
-              {netMrrChange >= 0 ? "Tăng trưởng" : "Giảm"} so với tháng trước
-            </p>
+          )}
+          <div className="rounded-lg bg-[var(--admin-sidebar-accent)] p-3 text-xs text-[var(--admin-text-secondary)]">
+            7 ngày gần nhất có {data.courseOrderCount7d} đơn khóa học.
           </div>
         </div>
       </AdminSectionCard>
