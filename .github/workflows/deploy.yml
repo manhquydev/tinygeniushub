@@ -80,12 +80,21 @@ jobs:
           set -euo pipefail
           app_dir="${{ steps.vars.outputs.app_dir }}"
           test -d "${app_dir}" || { echo "::error::APP_DIR not found: ${app_dir}"; exit 1; }
+          command -v node >/dev/null || { echo "::error::node not found on runner"; exit 1; }
           command -v pnpm >/dev/null || { echo "::error::pnpm not found on runner"; exit 1; }
           command -v pm2 >/dev/null || { echo "::error::pm2 not found on runner"; exit 1; }
+          command -v pg_dump >/dev/null || { echo "::error::pg_dump not found on runner"; exit 1; }
+          command -v pg_restore >/dev/null || { echo "::error::pg_restore not found on runner"; exit 1; }
           test -f "${app_dir}/scripts/deploy/remote-deploy.sh" || {
             echo "::error::Missing deploy script at ${app_dir}/scripts/deploy/remote-deploy.sh"
             exit 1
           }
+
+          node_major="$(node -p "process.versions.node.split('.')[0]")"
+          if [[ "${node_major}" -lt 22 ]]; then
+            echo "::error::Runner Node.js ${node_major} is unsupported; require >=22"
+            exit 1
+          fi
 
       - name: Deploy application
         shell: bash
@@ -179,7 +188,7 @@ jobs:
 
       - name: Upload deployment artifacts
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         with:
           name: deploy-production-runner-${{ github.run_id }}-${{ github.run_attempt }}
           retention-days: 14
