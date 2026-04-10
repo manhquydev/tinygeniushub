@@ -41,19 +41,7 @@ export default async function ParentDashboardPage() {
   const latestReportByChild = reports.reduce<Map<string, (typeof reports)[number]>>((acc, r) => { if (!acc.has(r.child.id)) acc.set(r.child.id, r); return acc; }, new Map());
 
   const metricCards: DashboardMetric[] = [
-    {
-      id: "children",
-      label: "Hồ sơ học tập",
-      value: String(children.length),
-      hint:
-        children.length <= FIXED_CHILD_PROFILE_LIMIT
-          ? `${children.length}/${FIXED_CHILD_PROFILE_LIMIT} hồ sơ chính`
-          : `${children.length} hồ sơ, cần chuẩn hóa về 1 hồ sơ chính`,
-      progress: clampPercent((children.length / FIXED_CHILD_PROFILE_LIMIT) * 100),
-      toneClass: "bg-teal-500/12 text-teal-700",
-      progressClass: "from-teal-500 to-cyan-500",
-      icon: Users,
-    },
+    { id: "children", label: "Hồ sơ bé", value: String(children.length), hint: `${children.length}/${FIXED_CHILD_PROFILE_LIMIT} hồ sơ xuyên suốt`, progress: clampPercent((children.length / FIXED_CHILD_PROFILE_LIMIT) * 100), toneClass: "bg-teal-500/12 text-teal-700", progressClass: "from-teal-500 to-cyan-500", icon: Users },
     { id: "lessons", label: "Bài đã hoàn thành", value: String(completionCount), hint: `Mục tiêu: ${completionGoal} bài`, progress: clampPercent((completionCount / completionGoal) * 100), toneClass: "bg-amber-500/12 text-amber-700", progressClass: "from-amber-400 to-orange-500", icon: Award },
     { id: "reports", label: "Báo cáo tuần", value: String(reports.length), hint: `Mục tiêu: ${reportsGoal} báo cáo`, progress: clampPercent((reports.length / reportsGoal) * 100), toneClass: "bg-sky-500/12 text-sky-700", progressClass: "from-sky-500 to-blue-500", icon: BookOpenCheck },
   ];
