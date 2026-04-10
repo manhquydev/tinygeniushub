@@ -38,12 +38,12 @@ export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, 
   return (
     <section id="curriculum-preview" className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       <h2 className="text-lg font-extrabold text-slate-900">
-        {isOwned ? `${totalLessonCount} bài học trong khóa` : `Học thử ${previewLessonCount} bài đầu`}
+        {isOwned ? `${totalLessonCount} bài học trong khóa` : `Xem học thử ${previewLessonCount} bài đầu`}
       </h2>
 
       {!isOwned ? (
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          Phụ huynh có thể mở từng bài để xem video học thử và kiểm tra cách bé phản hồi trước khi quyết định lộ trình.
+          Chạm vào từng bài để xem thử nhanh nội dung trước khi quyết định mua.
         </p>
       ) : null}
 
@@ -51,13 +51,12 @@ export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, 
         <div className="mt-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4">
           <p className="text-xs font-bold uppercase tracking-[0.08em] text-emerald-700">Trial cố định</p>
           <p className="mt-1 text-sm font-semibold leading-relaxed text-emerald-900">
-            Bạn xem trước {previewLessonCount} bài đầu để kiểm tra nhịp học, độ khó và mức phù hợp trước khi mua.
+            Bạn xem trước {previewLessonCount} bài đầu để kiểm tra độ phù hợp trước khi mua.
           </p>
           <p className="mt-2 text-xs leading-relaxed text-emerald-800/90">
             {lockedCount > 0
               ? `Sau bài thứ ${previewLessonCount}, ${lockedCount} bài còn lại sẽ mở khi mua.`
-              : "Khóa này hiện mở trọn vẹn trong phạm vi học thử."}{" "}
-            Nếu thấy chưa khớp level sau khi mua, đội ngũ có thể hỗ trợ đổi level/chuyển khóa theo chính sách.
+              : "Khóa này hiện mở trọn vẹn trong phạm vi học thử."}
           </p>
         </div>
       ) : null}

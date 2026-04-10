@@ -1,42 +1,20 @@
 import { cache } from "react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound, permanentRedirect } from "next/navigation";
 import { AB_COURSES_COOKIE, type AbVariant } from "@/lib/ab-test-constants";
-import { prisma } from "@/lib/db";
 import { getParentFromServerCookie } from "@/lib/auth/session";
-import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
-import { resolveCourseCoverImage } from "@/modules/courses/course-media";
-import { getCourseBundleByCourseSlug } from "@/modules/courses/course-bundles";
-import { getStorefrontCourses, getRelatedCourses } from "@/modules/courses/course-service";
-import { COURSE_TRIAL_PREVIEW_LESSON_LIMIT } from "@/modules/courses/course-trial-constants";
-import {
-  buildCourseClaritySnapshot,
-  getBundleStorefrontContent,
-} from "@/modules/courses/course-storefront-content";
-import { isLegacyBundleRouteSlug } from "@/modules/courses/legacy-bundle-routes";
+import { prisma } from "@/lib/db";
 import { buildCourseJsonLd, safeJsonLd } from "@/lib/seo/course-jsonld";
 import { CourseBreadcrumb } from "@/components/courses/course-breadcrumb";
-import { CourseRelatedSection } from "@/components/courses/course-related-section";
-import { CourseReviewsSection } from "@/components/courses/course-reviews-section";
-import { BundleDetailViewTracker } from "@/components/courses/course-storefront-tracking";
 import { CourseDetailStickyHeader } from "@/components/courses/course-detail-sticky-header";
-import { CourseLevelChangeRequestCard } from "@/components/courses/course-level-change-request-card";
-import { CourseDetailHero } from "./course-detail-hero";
-import { CourseDetailParentPriorities } from "./course-detail-parent-priorities";
-import { CourseDetailFitChecklist } from "./course-detail-fit-checklist";
-import { CourseDetailDifference } from "./course-detail-difference";
-import { CourseDetailTimeline } from "./course-detail-timeline";
+import { BundleDetailViewTracker } from "@/components/courses/course-storefront-tracking";
+import { resolveCourseCoverImage } from "@/modules/courses/course-media";
+import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
+import { COURSE_TRIAL_PREVIEW_LESSON_LIMIT } from "@/modules/courses/course-trial-constants";
+import { isLegacyBundleRouteSlug } from "@/modules/courses/legacy-bundle-routes";
 import { CourseDetailCurriculum } from "./course-detail-curriculum";
-import { CourseDetailFaq } from "./course-detail-faq";
-import {
-  getFitChecklist,
-  getOutcomeTimeline,
-  compareTrackCourses,
-  buildDifferencePoints,
-  type TrackCourseLite,
-} from "./course-detail-data";
+import { CourseDetailHero } from "./course-detail-hero";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -56,11 +34,9 @@ const loadPublishedCourse = cache(async function loadPublishedCourse(slug: strin
       durationDays: true,
       coverImageUrl: true,
       isPublished: true,
-      subject: true,
-      ageGroup: true,
       reviewAverageRating: true,
       reviewCount: true,
-      _count: { select: { lessons: true, enrollments: true } },
+      _count: { select: { lessons: true } },
     },
   });
 });
@@ -85,19 +61,6 @@ const loadCourseCurriculumLessons = cache(async function loadCourseCurriculumLes
     },
   });
 });
-
-async function loadTrackCourses(bundleSlug: string): Promise<TrackCourseLite[]> {
-  const candidates = await getStorefrontCourses();
-  return candidates
-    .filter((item) => getCourseBundleByCourseSlug(item.slug)?.slug === bundleSlug)
-    .map((item) => ({
-      id: item.id,
-      slug: item.slug,
-      title: item.title,
-      durationDays: item.durationDays,
-      lessonCount: item.lessonCount,
-    }));
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -146,63 +109,7 @@ export default async function CourseDetailPage({ params }: Props) {
   const parent = await getParentFromServerCookie();
   const pricing = resolveCourseDisplayPricing(course);
   const checkoutLabel = coursesVariant === "B" ? "Mua khóa và bắt đầu ngay" : "Mua khóa học";
-  const bundle = getCourseBundleByCourseSlug(course.slug);
-  const bundleContent = bundle ? getBundleStorefrontContent(bundle.slug) : null;
   const normalizedCover = resolveCourseCoverImage(course.slug, course.coverImageUrl);
-  const fitChecklist = getFitChecklist(bundle?.slug ?? null);
-  const claritySnapshot = bundle
-    ? buildCourseClaritySnapshot({
-        bundleSlug: bundle.slug,
-        courseSlug: course.slug,
-        courseTitle: course.title,
-        lessonCount: course._count.lessons,
-      })
-    : null;
-  const outcomeTimeline = getOutcomeTimeline(bundle?.slug ?? null, claritySnapshot);
-  const courseUnitLabel = bundleContent?.courseUnitLabel ?? "giai đoạn";
-
-  let trackPosition: number | null = null;
-  let trackTotal: number | null = null;
-  const trackLabel: string | null = bundle?.title ?? null;
-  let differenceCards: { key: string; comparedBundleSlug: string; title: string; points: string[] }[] = [];
-  if (bundle) {
-    const trackCourses = await loadTrackCourses(bundle.slug);
-    const ordered = [...trackCourses].sort((a, b) => compareTrackCourses(a, b, bundle.entryCourseSlug));
-    const idx = ordered.findIndex((item) => item.id === course.id);
-    if (idx >= 0) {
-      trackPosition = idx + 1;
-      trackTotal = ordered.length;
-      const current: TrackCourseLite = {
-        id: course.id,
-        slug: course.slug,
-        title: course.title,
-        durationDays: course.durationDays,
-        lessonCount: course._count.lessons,
-      };
-      const prev = ordered[idx - 1] ?? null;
-      const next = ordered[idx + 1] ?? null;
-      differenceCards = [
-        prev
-          ? {
-              key: "previous",
-              comparedBundleSlug: prev.slug,
-              title: `So với khóa liền trước: ${prev.title}`,
-              points: buildDifferencePoints(current, prev, "previous", courseUnitLabel),
-            }
-          : null,
-        next
-          ? {
-              key: "next",
-              comparedBundleSlug: next.slug,
-              title: `So với khóa liền sau: ${next.title}`,
-              points: buildDifferencePoints(current, next, "next", courseUnitLabel),
-            }
-          : null,
-      ].filter((c): c is NonNullable<typeof c> => c !== null);
-    }
-  }
-
-  const relatedCourses = await getRelatedCourses({ courseId: course.id, subject: course.subject, ageGroup: course.ageGroup });
 
   let isOwned = false;
   let childEntryHref = `/kid/courses/${encodeURIComponent(course.slug)}`;
@@ -223,7 +130,6 @@ export default async function CourseDetailPage({ params }: Props) {
   }
 
   const curriculumLessons = await loadCourseCurriculumLessons(course.id, isOwned);
-
   const courseJsonLd = buildCourseJsonLd({
     slug: course.slug,
     title: course.title,
@@ -238,6 +144,7 @@ export default async function CourseDetailPage({ params }: Props) {
     <div className="page-stack pb-24 lg:pb-0">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(courseJsonLd) }} />
       <BundleDetailViewTracker variant={coursesVariant} bundleSlug={course.slug} tracks={1} lessons={course._count.lessons} />
+
       <CourseDetailStickyHeader
         title={course.title}
         pricing={pricing}
@@ -248,7 +155,9 @@ export default async function CourseDetailPage({ params }: Props) {
         childEntryHref={childEntryHref}
         variant={coursesVariant}
       />
+
       <CourseBreadcrumb courseTitle={course.title} courseSlug={course.slug} />
+
       <CourseDetailHero
         slug={course.slug}
         title={course.title}
@@ -256,27 +165,14 @@ export default async function CourseDetailPage({ params }: Props) {
         lessonCount={course._count.lessons}
         durationDays={course.durationDays}
         normalizedCover={normalizedCover}
-        bundle={bundle}
         pricing={pricing}
         isOwned={isOwned}
         isAuthenticated={Boolean(parent)}
         childEntryHref={childEntryHref}
         variant={coursesVariant}
         checkoutLabel={checkoutLabel}
-        reviewAverageRating={course.reviewAverageRating}
-        reviewCount={course.reviewCount}
-        enrollmentCount={course._count.enrollments}
-        trackPosition={trackPosition}
-        trackTotal={trackTotal}
-        trackLabel={trackLabel}
-        claritySnapshot={claritySnapshot}
       />
-      <CourseDetailFitChecklist
-        fitChecklist={fitChecklist}
-        bestFor={bundleContent?.bestFor ?? null}
-        courseSlug={course.slug}
-        variant={coursesVariant}
-      />
+
       <CourseDetailCurriculum
         lessons={curriculumLessons}
         totalLessonCount={course._count.lessons}
@@ -284,84 +180,6 @@ export default async function CourseDetailPage({ params }: Props) {
         isOwned={isOwned}
         variant={coursesVariant}
       />
-      <section className="rounded-3xl border border-emerald-200 bg-emerald-50/70 p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-extrabold text-emerald-900 sm:text-lg">Khóa này có hợp với con không?</h2>
-        <p className="mt-2 text-sm leading-relaxed text-emerald-900/80">
-          Phụ huynh có thể xem thử {COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu để xác nhận mức phù hợp trước khi đi xa hơn.
-          Nếu cần đổi level/lộ trình, đội ngũ hỗ trợ trực tiếp theo tình hình học thật của bé.
-        </p>
-        {claritySnapshot ? (
-          <p className="mt-2 text-xs leading-relaxed text-emerald-900/80">
-            Gợi ý theo khóa này: duy trì khoảng {claritySnapshot.pacePerWeek} {claritySnapshot.unitLabel}/tuần để ba mẹ nhìn rõ tiến bộ theo mốc tuần.
-          </p>
-        ) : null}
-      </section>
-      {isOwned ? <CourseLevelChangeRequestCard courseSlug={course.slug} /> : null}
-      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Thông tin phụ huynh thường cần xem thêm</h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          Chỉ mở đúng phần cần xem để giảm quá tải thông tin khi ra quyết định.
-        </p>
-        <div className="mt-4 grid gap-3">
-          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3" open>
-            <summary className="cursor-pointer text-sm font-bold text-slate-900">Con học gì và ba mẹ theo dõi ra sao?</summary>
-            <div className="mt-3 grid gap-3">
-              <CourseDetailParentPriorities
-                parentProblem={bundleContent?.parentProblem ?? null}
-                outcomes={bundleContent?.outcomes ?? []}
-                parentVisibleValue={bundleContent?.parentVisibleValue ?? []}
-                claritySnapshot={claritySnapshot}
-              />
-              <CourseDetailTimeline
-                outcomeTimeline={outcomeTimeline}
-                courseSlug={course.slug}
-                variant={coursesVariant}
-                claritySnapshot={claritySnapshot}
-              />
-            </div>
-          </details>
-          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-            <summary className="cursor-pointer text-sm font-bold text-slate-900">So sánh mức học liền kề</summary>
-            <div className="mt-3">
-              <CourseDetailDifference differenceCards={differenceCards} courseSlug={course.slug} variant={coursesVariant} />
-            </div>
-          </details>
-          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-            <summary className="cursor-pointer text-sm font-bold text-slate-900">Đánh giá từ phụ huynh</summary>
-            <div className="mt-3">
-              <CourseReviewsSection
-                courseId={course.id}
-                courseSlug={course.slug}
-                parentId={parent?.id ?? null}
-                isOwned={isOwned}
-              />
-            </div>
-          </details>
-          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-            <summary className="cursor-pointer text-sm font-bold text-slate-900">Câu hỏi thường gặp</summary>
-            <div className="mt-3">
-              <CourseDetailFaq />
-            </div>
-          </details>
-          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-            <summary className="cursor-pointer text-sm font-bold text-slate-900">Khóa liên quan</summary>
-            <div className="mt-3">
-              <CourseRelatedSection courses={relatedCourses} />
-            </div>
-          </details>
-        </div>
-      </section>
-      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Bạn cần hỗ trợ chọn lộ trình cho bé?</h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          Đội ngũ tư vấn sẽ giúp bạn chốt level phù hợp theo mục tiêu học và lịch sinh hoạt của gia đình.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <Link href="/contact" className="ghost-button">Liên hệ tư vấn</Link>
-          <Link href="/courses" className="ghost-button">Xem danh sách khóa</Link>
-        </div>
-      </section>
     </div>
   );
 }
-
