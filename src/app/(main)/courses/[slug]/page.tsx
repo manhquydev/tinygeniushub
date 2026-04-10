@@ -14,6 +14,7 @@ import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { COURSE_TRIAL_PREVIEW_LESSON_LIMIT } from "@/modules/courses/course-trial-constants";
 import { isLegacyBundleRouteSlug } from "@/modules/courses/legacy-bundle-routes";
 import { CourseDetailCurriculum } from "./course-detail-curriculum";
+import { CourseDetailFaq } from "./course-detail-faq";
 import { CourseDetailHero } from "./course-detail-hero";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -180,6 +181,8 @@ export default async function CourseDetailPage({ params }: Props) {
         isOwned={isOwned}
         variant={coursesVariant}
       />
+
+      <CourseDetailFaq />
     </div>
   );
 }

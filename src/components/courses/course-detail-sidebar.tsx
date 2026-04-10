@@ -71,10 +71,10 @@ export function CourseDetailSidebar({
         <p className="mt-1 text-xs text-emerald-700/80">
           {pricing.isPurchasable
             ? isFreeSale
-              ? "Nhận khóa ngay với giá 0đ. Hệ thống kích hoạt trực tiếp, không qua PayOS."
-              : "Thanh toán một lần, mở khóa ngay sau khi xác nhận."
+              ? "Đăng ký ngay để mở toàn bộ khóa học với ưu đãi 0đ trong thời gian giới hạn."
+              : "Mua 1 lần, vào học ngay sau khi thanh toán thành công."
             : isPendingPricing
-              ? `Khóa này đang tạm khóa thanh toán online. Trong lúc chờ, phụ huynh có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
+              ? `Khóa này đang tạm ngưng đăng ký online. Trong lúc chờ, phụ huynh có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
               : `Phụ huynh vẫn có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu trước khi chốt lộ trình.`}
         </p>
       </div>
@@ -114,14 +114,14 @@ export function CourseDetailSidebar({
           )}
           {!isAuthenticated && pricing.isPurchasable ? (
             <p className="text-xs text-slate-500">
-              Hệ thống sẽ đưa bạn đến đăng nhập/đăng ký và quay lại đúng khóa học này để tiếp tục nhận khóa.
+              Đăng nhập để hoàn tất đăng ký, rồi quay lại đúng khóa học này.
             </p>
           ) : null}
           {!pricing.isPurchasable ? (
             <p className="text-xs text-amber-700">
               {isPendingPricing
-                ? `Khóa này đang tạm khóa thanh toán online. Phụ huynh vẫn xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
-                : `Thanh toán online đang tạm khóa. Phụ huynh vẫn có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`}
+                ? `Khóa này đang tạm ngưng đăng ký online. Phụ huynh vẫn xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
+                : `Đăng ký online đang tạm ngưng. Phụ huynh vẫn có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`}
             </p>
           ) : null}
         </div>
@@ -130,7 +130,7 @@ export function CourseDetailSidebar({
       <div className="grid gap-2 rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
         <p className="inline-flex items-start gap-2">
           <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
-          Mua một lần, kích hoạt học ngay. Nếu chưa chắc level, hãy xem học thử trước.
+          Mua một lần, vào học ngay. Nếu chưa chắc level, hãy xem học thử trước.
         </p>
       </div>
 

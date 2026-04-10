@@ -99,14 +99,14 @@ function resolveBannerCopy(input: {
     case "invalid":
       return {
         tone: "border-rose-200 bg-rose-50 text-rose-900 ring-1 ring-rose-100",
-        title: "Phiên thanh toán không hợp lệ",
-        body: "Liên kết trả về không khớp dữ liệu giao dịch.",
+        title: "Liên kết thanh toán đã hết hiệu lực",
+        body: "Vui lòng quay lại khóa học và tạo lại lượt thanh toán mới.",
       };
     case "not_found":
       return {
         tone: "border-rose-200 bg-rose-50 text-rose-900 ring-1 ring-rose-100",
-        title: "Không tìm thấy giao dịch",
-        body: "Mã giao dịch không tồn tại hoặc đã hết hiệu lực.",
+        title: "Không xác nhận được thanh toán",
+        body: "Vui lòng kiểm tra lại hoặc liên hệ hỗ trợ nếu bạn đã thanh toán.",
       };
     default:
       return null;
@@ -212,9 +212,6 @@ export function CourseCheckoutStatusBanner() {
     <section className={`rounded-2xl border px-4 py-3 text-sm sm:px-5 ${banner.tone}`}>
       <p className="font-extrabold">{banner.title}</p>
       <p className="mt-1 leading-relaxed">{banner.body}</p>
-      {orderCode ? (
-        <p className="mt-1 text-xs opacity-80">Mã giao dịch: {orderCode}</p>
-      ) : null}
     </section>
   );
 }

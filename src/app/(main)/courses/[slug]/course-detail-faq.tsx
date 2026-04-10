@@ -13,7 +13,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Sau khi mua, tôi có thể học ngay không?",
-    a: "Có. Khóa học được kích hoạt tự động ngay sau khi giao dịch được xác nhận, thường trong vài phút.",
+    a: "Có. Sau khi thanh toán thành công, bé có thể vào học ngay.",
   },
   {
     q: "Nếu không phù hợp, tôi có được hoàn tiền không?",

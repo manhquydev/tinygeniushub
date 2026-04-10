@@ -44,25 +44,14 @@ function resolveCheckoutErrorMessage(response: CheckoutResponse | null, status: 
       : null;
 
   if (code === "COURSE_PRICE_NOT_AVAILABLE") {
-    return "Khóa học này đang tạm khóa thanh toán online. Bạn có thể xem học thử và nhận tư vấn ngay.";
+    return "Khóa học này đang tạm ngưng đăng ký online. Bạn có thể xem học thử hoặc nhận tư vấn ngay.";
   }
 
   if (code === "ALREADY_ENROLLED") {
     return "Tài khoản của bạn đã sở hữu khóa học này.";
   }
 
-  const message =
-    typeof response?.error === "string"
-      ? response.error
-      : typeof response?.error?.message === "string"
-        ? response.error.message
-        : null;
-
-  if (message && /(payos|webhook|gateway|provider|transaction)/i.test(message)) {
-    return "Hệ thống thanh toán đang bận. Bạn vui lòng thử lại sau.";
-  }
-
-  return message ?? "Có lỗi xảy ra, vui lòng thử lại.";
+  return "Không thể hoàn tất thanh toán lúc này. Vui lòng thử lại sau ít phút.";
 }
 
 function buildAuthEntryUrl(courseSlug: string) {
@@ -85,6 +74,7 @@ export function CourseCheckoutButton({
 }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const showPriceTag = priceVnd > 0;
 
   async function handleCheckout() {
     const authEntryUrl = buildAuthEntryUrl(courseSlug);
@@ -142,7 +132,7 @@ export function CourseCheckoutButton({
         className={className ?? "solid-button"}
         style={{ width: "fit-content", opacity: loading ? 0.7 : 1 }}
       >
-        {loading ? "Đang xử lý..." : `${label} - ${priceVnd.toLocaleString("vi-VN")}đ`}
+        {loading ? "Đang xử lý..." : showPriceTag ? `${label} - ${priceVnd.toLocaleString("vi-VN")}đ` : label}
       </button>
       {error ? (
         <p className="error-text" style={{ fontSize: "0.85rem" }}>
