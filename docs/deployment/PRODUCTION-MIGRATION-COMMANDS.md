@@ -425,7 +425,7 @@ Total active subscriptions:
 
 ```bash
 # Option A: Full stop (downtime ~5 minutes)
-ssh do-server "pm2 stop all"
+ssh do-server "pm2 stop cungcontuhoc-web && pm2 stop cungcontuhoc-worker"
 
 # Verify stopped
 ssh do-server "pm2 status"
@@ -1074,11 +1074,9 @@ ssh do-server << 'EOF'
   # Build application first
   pnpm build
   
-  # Restart all processes
-  pm2 restart all
-  
-  # Or reload for zero-downtime
-  pm2 reload all
+  # Restart named processes only
+  pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web
+  pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker
 EOF
 ```
 
@@ -1143,7 +1141,7 @@ ssh do-server << 'EOF'
   
   # 1. Stop application
   echo "Step 1: Stopping application..."
-  pm2 stop all
+  pm2 stop cungcontuhoc-web && pm2 stop cungcontuhoc-worker
   
   # 2. Find latest pre-migration backup
   LATEST_BACKUP=$(ls -t backups/postgres/*.dump | head -1)
@@ -1168,7 +1166,8 @@ ssh do-server << 'EOF'
   
   # 6. Start application
   echo "Step 6: Starting application..."
-  pm2 start all
+  pm2 start cungcontuhoc-web
+  pm2 start cungcontuhoc-worker
   
   # 7. Verify
   echo "Step 7: Verification..."
@@ -1262,12 +1261,13 @@ CurriculumPackage\\"
     CASCADE;
   " && \
   pnpm prisma migrate deploy && \
+  pnpm prisma migrate status && \
   pnpm db:generate && \
   pnpm db:seed:packages && \
   pnpm abeka:import:prod --checkpoint=./checkpoints/import.chk && \
   pnpm abeka:validate:db && \
   pnpm build && \
-  pm2 reload all && \
+  pm2 reload cungcontuhoc-web && pm2 reload cungcontuhoc-worker && \
   curl -s http://localhost:3000/api/health | jq .
 REMOTESCRIPT
 ```

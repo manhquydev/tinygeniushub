@@ -52,7 +52,7 @@ Nếu dùng workflow SSH có sẵn:
 
 Manual trên VPS:
 ```bash
-cd /srv/cungcontuhoc
+cd /var/www/cungcontuhoc
 git fetch --prune origin
 git checkout --force <ref>
 git pull --ff-only origin main
@@ -66,10 +66,10 @@ pnpm build
 
 Chạy trên VPS sau khi deploy code:
 ```bash
-cd /srv/cungcontuhoc
+cd /var/www/cungcontuhoc
 pnpm tsx prisma/scripts/import-three-courses-bootstrap.ts \
   --api-root /srv/abeka_tools/api \
-  --bootstrap /srv/cungcontuhoc/docs/api/program-bootstrap/three-courses-program.json \
+  --bootstrap /var/www/cungcontuhoc/docs/api/program-bootstrap/three-courses-program.json \
   --publish
 ```
 
@@ -82,9 +82,9 @@ Kết quả mong đợi:
 
 Ví dụ PM2:
 ```bash
-cd /srv/cungcontuhoc
+cd /var/www/cungcontuhoc
 pm2 start "pnpm start --hostname 0.0.0.0 --port 3000" --name cungcontuhoc-web
-pm2 start "pnpm worker:dev" --name cungcontuhoc-worker
+pm2 start "pnpm tsx src/worker/index.ts" --name cungcontuhoc-worker
 pm2 save
 ```
 

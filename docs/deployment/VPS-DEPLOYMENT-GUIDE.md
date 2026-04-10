@@ -247,7 +247,7 @@ server {
 
     # Static files caching
     location /_next/static {
-        alias /srv/cungcontuhoc/.next/static;
+        alias /var/www/cungcontuhoc/.next/static;
         expires 1y;
         add_header Cache-Control "public, immutable";
         access_log off;
@@ -632,7 +632,7 @@ echo "✅ Redis configured with AOF persistence!"
 #!/bin/bash
 set -euo pipefail
 
-APP_DIR="/srv/cungcontuhoc"
+APP_DIR="/var/www/cungcontuhoc"
 REPO_URL="https://github.com/manhquydev/cungcontuhoc.git"
 
 echo "📁 Setting up application..."
@@ -660,7 +660,7 @@ echo "Next: Configure .env.production"
 
 ### 4.2 Environment Configuration Template
 
-Create `/srv/cungcontuhoc/.env.production`:
+Create `/var/www/cungcontuhoc/.env.production`:
 
 ```bash
 # Database (using PgBouncer on port 6432)
@@ -718,7 +718,7 @@ RATE_LIMIT_TRUST_PROXY=true
 RATE_LIMIT_TRUSTED_HOPS=1
 
 # Backup
-BACKUP_OUTPUT_DIR=/srv/cungcontuhoc/backups/postgres
+BACKUP_OUTPUT_DIR=/var/www/cungcontuhoc/backups/postgres
 BACKUP_OFFSITE_ENABLED=true
 BACKUP_OFFSITE_R2_BUCKET=your-backup-bucket
 BACKUP_OFFSITE_R2_PREFIX=postgres/prod
@@ -740,7 +740,7 @@ module.exports = {
       name: 'cungcontuhoc-web',
       script: './node_modules/.bin/next',
       args: 'start --hostname 0.0.0.0 --port 3000',
-      cwd: '/srv/cungcontuhoc',
+      cwd: '/var/www/cungcontuhoc',
       env: { NODE_ENV: 'production' },
       max_memory_restart: '1G',
       restart_delay: 3000,
@@ -753,7 +753,7 @@ module.exports = {
       name: 'cungcontuhoc-worker',
       script: './node_modules/.bin/tsx',
       args: 'src/worker/index.ts',
-      cwd: '/srv/cungcontuhoc',
+      cwd: '/var/www/cungcontuhoc',
       env: { NODE_ENV: 'production' },
       max_memory_restart: '512M',
       log_file: '/var/log/pm2/cungcontuhoc-worker.log',
@@ -772,7 +772,7 @@ module.exports = {
 set -euo pipefail
 
 echo "🚀 Starting initial deployment..."
-cd /srv/cungcontuhoc
+cd /var/www/cungcontuhoc
 
 # Pull latest code
 git fetch origin && git checkout main && git pull origin main
@@ -819,7 +819,7 @@ rsync -avz --progress ./abeka_tools/api/ deploy@cungcontuhoc.io.vn:/srv/abeka_to
 #!/bin/bash
 set -euo pipefail
 
-cd /srv/cungcontuhoc
+cd /var/www/cungcontuhoc
 
 echo "🎓 Starting Abeka curriculum import..."
 
@@ -835,7 +835,7 @@ echo "✅ Abeka import complete!"
 echo "📚 Importing full course catalog..."
 pnpm tsx prisma/scripts/import-three-courses-bootstrap.ts \
   --api-root /srv/abeka_tools/api \
-  --bootstrap /srv/cungcontuhoc/docs/api/program-bootstrap/three-courses-program.json \
+  --bootstrap /var/www/cungcontuhoc/docs/api/program-bootstrap/three-courses-program.json \
   --publish
 
 echo "✅ Full catalog import complete!"
@@ -875,7 +875,7 @@ echo "Ready: $(curl -s https://cungcontuhoc.io.vn/api/health/ready | jq -r '.rea
 #!/bin/bash
 set -euo pipefail
 
-APP_DIR="/srv/cungcontuhoc"
+APP_DIR="/var/www/cungcontuhoc"
 BACKUP_DIR="/srv/backups/postgres"
 RETENTION_DAYS=7
 
@@ -941,17 +941,17 @@ fi
 echo "🚚 Migrating from $OLD_SERVER to $NEW_SERVER..."
 
 # 1. Create backup on old server
-ssh deploy@$OLD_SERVER "cd /srv/cungcontuhoc && pnpm backup:create"
+ssh deploy@$OLD_SERVER "cd /var/www/cungcontuhoc && pnpm backup:create"
 LATEST=$(ssh deploy@$OLD_SERVER "ls -t /srv/backups/postgres/*.dump | head -1")
 
 # 2. Transfer to new server
 rsync -avz "deploy@$OLD_SERVER:$LATEST" "deploy@$NEW_SERVER:/srv/backups/postgres/"
 
 # 3. Restore on new server
-ssh deploy@$NEW_SERVER "cd /srv/cungcontuhoc && pnpm backup:restore -- --file=/srv/backups/postgres/$(basename $LATEST)"
+ssh deploy@$NEW_SERVER "cd /var/www/cungcontuhoc && pnpm backup:restore -- --file=/srv/backups/postgres/$(basename $LATEST)"
 
 # 4. Start services
-ssh deploy@$NEW_SERVER "cd /srv/cungcontuhoc && pm2 start ecosystem.config.js --env production && pm2 save"
+ssh deploy@$NEW_SERVER "cd /var/www/cungcontuhoc && pm2 start ecosystem.config.js --env production && pm2 save"
 
 echo "✅ Migration complete! Update DNS to point $DOMAIN to $NEW_SERVER"
 ```
@@ -981,7 +981,8 @@ echo "[$(date)] health=$HEALTH ready=$READY" >> $LOG_FILE
 # Alert and restart if down
 if [ "$HEALTH" != "200" ]; then
   echo "[$(date)] ALERT: Health check failed!" >> $LOG_FILE
-  pm2 restart all || true
+  pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web
+  pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker
 fi
 ```
 
@@ -1036,7 +1037,7 @@ pm2 logs cungcontuhoc-web
 # Check Node.js version
 node --version  # Should be v20.x
 # Check environment
-cat /srv/cungcontuhoc/.env.production | grep -E "^(DATABASE_URL|REDIS_URL)"
+cat /var/www/cungcontuhoc/.env.production | grep -E "^(DATABASE_URL|REDIS_URL)"
 # Test database
 psql "$(grep DATABASE_URL .env.production | cut -d'=' -f2-)" -c "SELECT 1;"
 ```
@@ -1059,7 +1060,7 @@ sudo nginx -t && sudo systemctl reload nginx
 
 ```bash
 # Deploy new code
-cd /srv/cungcontuhoc && git pull && pnpm install && pnpm build && pm2 reload all
+cd /var/www/cungcontuhoc && git pull --ff-only origin main && pnpm install --frozen-lockfile && pnpm prisma migrate deploy && pnpm prisma migrate status && pnpm build && pm2 reload cungcontuhoc-web && pm2 reload cungcontuhoc-worker
 
 # Check status
 pm2 status && curl https://cungcontuhoc.io.vn/api/health
@@ -1076,7 +1077,8 @@ tail -f /var/log/nginx/error.log
 sudo tail -f /var/log/postgresql/*.log
 
 # Restart services
-pm2 restart all
+pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web
+pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker
 sudo systemctl restart postgresql redis-server nginx
 ```
 
