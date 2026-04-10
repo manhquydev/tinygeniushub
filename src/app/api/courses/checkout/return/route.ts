@@ -1,6 +1,16 @@
-﻿import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { PaymentStatus } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
+import {
+  hashCheckoutReturnState,
+  verifyCheckoutReturnState,
+} from "@/modules/courses/course-checkout-return-state";
+import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
+import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
+
+const CHECKOUT_RETURN_STATE_MAX_AGE_MS = 90 * 60 * 1000;
+const CHECKOUT_RETURN_ERROR_PATH = "/courses?checkout=error";
 
 function redirectTo(pathname: string) {
   return new NextResponse(null, {
@@ -12,21 +22,29 @@ function redirectTo(pathname: string) {
 }
 
 export async function GET(request: NextRequest) {
+  await assertRequestAllowedBySecurityControls(request);
+
+  const ipPolicy = await getRateLimitPolicy("courses.checkout.return.ip");
+  const rateLimit = await enforceRateLimit({
+    key: `courses:checkout:return:ip:${getRequestIp(request)}`,
+    limit: ipPolicy.limit,
+    windowMs: ipPolicy.windowMs,
+    storeFailureMode: "deny",
+  });
+  if (!rateLimit.allowed) {
+    return redirectTo(CHECKOUT_RETURN_ERROR_PATH);
+  }
+
   const orderCode = request.nextUrl.searchParams.get("orderCode");
+  const state = request.nextUrl.searchParams.get("state");
   const paymentLinkId = request.nextUrl.searchParams.get("id");
   const code = request.nextUrl.searchParams.get("code");
   const status = request.nextUrl.searchParams.get("status")?.toUpperCase() ?? null;
   const cancel = request.nextUrl.searchParams.get("cancel")?.toLowerCase();
   const cancelledByQuery = cancel === "true" || cancel === "1" || status === "CANCELLED";
 
-  if (!orderCode) {
-    return redirectTo("/courses?checkout=invalid");
-  }
-  if (cancelledByQuery) {
-    return redirectTo(`/courses?checkout=cancelled&orderCode=${encodeURIComponent(orderCode)}`);
-  }
-  if (status === "FAILED" || (code && code !== "00" && status !== "PAID")) {
-    return redirectTo(`/courses?checkout=failed&orderCode=${encodeURIComponent(orderCode)}`);
+  if (!orderCode || !state) {
+    return redirectTo(CHECKOUT_RETURN_ERROR_PATH);
   }
 
   const paymentRecord = await prisma.paymentRecord.findUnique({
@@ -37,7 +55,6 @@ export async function GET(request: NextRequest) {
       },
     },
     select: {
-      id: true,
       parentId: true,
       status: true,
       rawPayload: true,
@@ -45,7 +62,7 @@ export async function GET(request: NextRequest) {
   });
 
   if (!paymentRecord) {
-    return redirectTo("/courses?checkout=not_found");
+    return redirectTo(CHECKOUT_RETURN_ERROR_PATH);
   }
 
   const raw =
@@ -53,9 +70,28 @@ export async function GET(request: NextRequest) {
       ? (paymentRecord.rawPayload as Record<string, unknown>)
       : null;
   const payos = raw?.payos && typeof raw.payos === "object" ? (raw.payos as Record<string, unknown>) : null;
+  const expectedStateHash = typeof payos?.returnStateHash === "string" ? payos.returnStateHash : null;
+  if (!expectedStateHash || hashCheckoutReturnState(state) !== expectedStateHash) {
+    return redirectTo(CHECKOUT_RETURN_ERROR_PATH);
+  }
+
+  const isStateValid = verifyCheckoutReturnState({
+    state,
+    orderCode,
+    parentId: paymentRecord.parentId,
+    maxAgeMs: CHECKOUT_RETURN_STATE_MAX_AGE_MS,
+  });
+  if (!isStateValid) {
+    return redirectTo(CHECKOUT_RETURN_ERROR_PATH);
+  }
+
   const expectedPaymentLinkId = typeof payos?.paymentLinkId === "string" ? payos.paymentLinkId : null;
   if (paymentLinkId && expectedPaymentLinkId && paymentLinkId !== expectedPaymentLinkId) {
-    return redirectTo("/courses?checkout=invalid");
+    return redirectTo(CHECKOUT_RETURN_ERROR_PATH);
+  }
+
+  if (cancelledByQuery || status === "FAILED" || (code && code !== "00" && status !== "PAID")) {
+    return redirectTo(CHECKOUT_RETURN_ERROR_PATH);
   }
 
   if (paymentRecord.status !== PaymentStatus.SUCCEEDED) {

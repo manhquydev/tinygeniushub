@@ -10,6 +10,7 @@ type CheckoutQueryStatus =
   | "cancelled"
   | "invalid"
   | "not_found"
+  | "error"
   | "success";
 
 type PollStatus = "pending" | "succeeded" | "failed" | "not_found";
@@ -34,6 +35,7 @@ function readQueryStatus(value: string | null): CheckoutQueryStatus | null {
     value === "cancelled" ||
     value === "invalid" ||
     value === "not_found" ||
+    value === "error" ||
     value === "success"
   ) {
     return value;
@@ -85,28 +87,14 @@ function resolveBannerCopy(input: {
         body: "Khóa học đã được kích hoạt.",
       };
     case "failed":
-      return {
-        tone: "border-rose-200 bg-rose-50 text-rose-900 ring-1 ring-rose-100",
-        title: "Thanh toán thất bại",
-        body: "Giao dịch chưa thành công. Bạn vui lòng thử lại.",
-      };
     case "cancelled":
+    case "invalid":
+    case "not_found":
+    case "error":
       return {
         tone: "border-slate-200 bg-slate-50 text-slate-900 ring-1 ring-slate-100",
-        title: "Bạn đã hủy thanh toán",
-        body: "Bạn có thể quay lại khi sẵn sàng.",
-      };
-    case "invalid":
-      return {
-        tone: "border-rose-200 bg-rose-50 text-rose-900 ring-1 ring-rose-100",
-        title: "Liên kết thanh toán đã hết hiệu lực",
-        body: "Vui lòng quay lại khóa học và tạo lại lượt thanh toán mới.",
-      };
-    case "not_found":
-      return {
-        tone: "border-rose-200 bg-rose-50 text-rose-900 ring-1 ring-rose-100",
-        title: "Không xác nhận được thanh toán",
-        body: "Vui lòng kiểm tra lại hoặc liên hệ hỗ trợ nếu bạn đã thanh toán.",
+        title: "Chưa thể xác nhận thanh toán",
+        body: "Vui lòng thử lại sau ít phút. Nếu đã bị trừ tiền, hãy liên hệ hỗ trợ.",
       };
     default:
       return null;

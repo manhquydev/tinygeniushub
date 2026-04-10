@@ -7,6 +7,10 @@ import { getPublishedCoursesByBundleSlug } from "@/modules/courses/course-bundle
 import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { enrollParent, getEnrollment } from "@/modules/courses/course-service";
 import { createPayosPaymentLink } from "@/modules/billing/payos-client";
+import {
+  createCheckoutReturnState,
+  hashCheckoutReturnState,
+} from "@/modules/courses/course-checkout-return-state";
 import type { PilotAttributionSnapshot } from "@/modules/courses/pilot-attribution";
 import { trackPilotCheckoutStarted } from "@/modules/courses/pilot-funnel-tracking-service";
 import { DomainError } from "@/modules/platform/errors";
@@ -370,6 +374,11 @@ async function createPayosCheckoutSession(input: {
 }): Promise<CheckoutSession> {
   const orderCode = generatePayosOrderCode();
   const orderCodeText = String(orderCode);
+  const returnState = createCheckoutReturnState({
+    orderCode: orderCodeText,
+    parentId: input.parentId,
+  });
+  const returnStateHash = hashCheckoutReturnState(returnState);
 
   await prisma.paymentRecord.create({
     data: {
@@ -382,13 +391,20 @@ async function createPayosCheckoutSession(input: {
         kind: "course_checkout",
         target: input.target,
         attribution: input.attribution,
+        payos: {
+          returnStateHash,
+        },
       },
     },
   });
 
   try {
-    const returnUrl = buildAbsoluteUrl(`/api/courses/checkout/return?orderCode=${encodeURIComponent(orderCodeText)}`);
-    const cancelUrl = buildAbsoluteUrl(`/courses?checkout=cancelled&orderCode=${encodeURIComponent(orderCodeText)}`);
+    const returnQuery = new URLSearchParams({
+      orderCode: orderCodeText,
+      state: returnState,
+    });
+    const returnUrl = buildAbsoluteUrl(`/api/courses/checkout/return?${returnQuery.toString()}`);
+    const cancelUrl = buildAbsoluteUrl(`/api/courses/checkout/return?${returnQuery.toString()}&cancel=1`);
 
     const link = await createPayosPaymentLink({
       orderCode,
@@ -423,6 +439,7 @@ async function createPayosCheckoutSession(input: {
             checkoutUrl: link.checkoutUrl,
             orderCode: link.orderCode,
             expiredAt: link.expiredAt ?? null,
+            returnStateHash,
           },
         },
       },

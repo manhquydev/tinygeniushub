@@ -289,6 +289,17 @@ export const rateLimitPolicyCatalog = {
     minWindowMs: 1000 * 30,
     maxWindowMs: 1000 * 60 * 60,
   },
+  "courses.checkout.return.ip": {
+    label: "Course checkout return / IP",
+    description: "Throttle public PayOS return endpoint probes from one source IP.",
+    keyStrategy: "ip",
+    defaultLimit: 120,
+    defaultWindowMs: 1000 * 60 * 10,
+    minLimit: 20,
+    maxLimit: 1200,
+    minWindowMs: 1000 * 30,
+    maxWindowMs: 1000 * 60 * 60,
+  },
   "reports.generate.ip": {
     label: "Report generate / IP",
     description: "Protect report generation endpoint from repeated expensive calls.",

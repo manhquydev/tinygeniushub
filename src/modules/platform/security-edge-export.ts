@@ -164,6 +164,15 @@ const edgeRouteTemplates: EdgeRouteTemplate[] = [
     cloudflareExpression: '(http.request.uri.path eq "/api/billing/checkout" and http.request.method eq "POST")',
   },
   {
+    routeId: "courses_checkout_return",
+    pathPattern: "/api/courses/checkout/return",
+    method: "GET",
+    policyKey: "courses.checkout.return.ip",
+    riskTier: "high",
+    cloudflareExpression:
+      '(http.request.uri.path eq "/api/courses/checkout/return" and http.request.method eq "GET")',
+  },
+  {
     routeId: "reports_generate",
     pathPattern: "/api/reports/generate",
     method: "POST",
