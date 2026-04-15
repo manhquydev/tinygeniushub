@@ -1,0 +1,146 @@
+name: Jules Auto Remediation
+
+on:
+  workflow_run:
+    workflows:
+      - Release Check
+    types:
+      - completed
+  issues:
+    types:
+      - labeled
+
+concurrency:
+  group: jules-auto-remediation-${{ github.event_name }}-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  failed-tests-priority:
+    if: >
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Dispatch failed CI trigger to Jules orchestrator
+        env:
+          JULES_WEBHOOK_ENDPOINT: ${{ secrets.JULES_WEBHOOK_ENDPOINT }}
+          JULES_ORCHESTRATOR_WEBHOOK_TOKEN: ${{ secrets.JULES_ORCHESTRATOR_WEBHOOK_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
+          CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+        run: |
+          set -euo pipefail
+          if [ -z "${JULES_WEBHOOK_ENDPOINT}" ] || [ -z "${JULES_ORCHESTRATOR_WEBHOOK_TOKEN}" ]; then
+            echo "Missing required secrets JULES_WEBHOOK_ENDPOINT or JULES_ORCHESTRATOR_WEBHOOK_TOKEN"
+            exit 1
+          fi
+
+          payload="$(jq -n \
+            --arg repo "$REPOSITORY" \
+            --arg workflowName "$WORKFLOW_NAME" \
+            --arg runUrl "$RUN_URL" \
+            --arg branch "$BRANCH" \
+            --arg sha "$SHA" \
+            --arg conclusion "$CONCLUSION" \
+            --argjson runId "$RUN_ID" \
+            '{
+              trigger: "failed_ci",
+              repo: $repo,
+              workflowName: $workflowName,
+              runId: $runId,
+              runUrl: $runUrl,
+              branch: $branch,
+              sha: $sha,
+              conclusion: $conclusion
+            }'
+          )"
+
+          response_file="$(mktemp)"
+          status_code="$(curl -sS -o "$response_file" -w "%{http_code}" \
+            -X POST "$JULES_WEBHOOK_ENDPOINT" \
+            -H "Authorization: Bearer $JULES_ORCHESTRATOR_WEBHOOK_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$payload")"
+
+          echo "HTTP status: $status_code"
+          cat "$response_file"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Jules failed-ci dispatch" >> "$GITHUB_STEP_SUMMARY"
+          echo "- HTTP status: \`$status_code\`" >> "$GITHUB_STEP_SUMMARY"
+          jq -r '.' "$response_file" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$status_code" -ge 300 ]; then
+            exit 1
+          fi
+
+  label-based-fallback:
+    if: >
+      github.event_name == 'issues' &&
+      (github.event.label.name == 'jules:auto' || github.event.label.name == 'jules:sensitive-opt-in')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: read
+    steps:
+      - name: Dispatch labeled issue trigger to Jules orchestrator
+        env:
+          JULES_WEBHOOK_ENDPOINT: ${{ secrets.JULES_WEBHOOK_ENDPOINT }}
+          JULES_ORCHESTRATOR_WEBHOOK_TOKEN: ${{ secrets.JULES_ORCHESTRATOR_WEBHOOK_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_LABELS_JSON: ${{ toJson(github.event.issue.labels) }}
+        run: |
+          set -euo pipefail
+          if [ -z "${JULES_WEBHOOK_ENDPOINT}" ] || [ -z "${JULES_ORCHESTRATOR_WEBHOOK_TOKEN}" ]; then
+            echo "Missing required secrets JULES_WEBHOOK_ENDPOINT or JULES_ORCHESTRATOR_WEBHOOK_TOKEN"
+            exit 1
+          fi
+
+          payload="$(jq -n \
+            --arg repo "$REPOSITORY" \
+            --argjson issueNumber "$ISSUE_NUMBER" \
+            --arg issueUrl "$ISSUE_URL" \
+            --arg issueTitle "$ISSUE_TITLE" \
+            --arg issueBody "${ISSUE_BODY:-}" \
+            --argjson issueLabels "$ISSUE_LABELS_JSON" \
+            '{
+              trigger: "issue_label",
+              repo: $repo,
+              issueNumber: $issueNumber,
+              issueUrl: $issueUrl,
+              issueTitle: $issueTitle,
+              issueBody: $issueBody,
+              labels: ($issueLabels | map(.name))
+            }'
+          )"
+
+          response_file="$(mktemp)"
+          status_code="$(curl -sS -o "$response_file" -w "%{http_code}" \
+            -X POST "$JULES_WEBHOOK_ENDPOINT" \
+            -H "Authorization: Bearer $JULES_ORCHESTRATOR_WEBHOOK_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$payload")"
+
+          echo "HTTP status: $status_code"
+          cat "$response_file"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Jules issue-label dispatch" >> "$GITHUB_STEP_SUMMARY"
+          echo "- HTTP status: \`$status_code\`" >> "$GITHUB_STEP_SUMMARY"
+          jq -r '.' "$response_file" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$status_code" -ge 500 ]; then
+            exit 1
+          fi
+

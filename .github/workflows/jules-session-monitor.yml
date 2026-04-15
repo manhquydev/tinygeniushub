@@ -1,0 +1,75 @@
+name: Jules Session Monitor
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: jules-session-monitor-${{ github.repository }}
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Poll Jules sessions and forward status to feedback webhook
+        env:
+          JULES_API_KEY: ${{ secrets.JULES_API_KEY }}
+          JULES_BASE_URL: ${{ secrets.JULES_BASE_URL }}
+          JULES_FEEDBACK_ENDPOINT: ${{ secrets.JULES_FEEDBACK_ENDPOINT }}
+          JULES_ORCHESTRATOR_WEBHOOK_TOKEN: ${{ secrets.JULES_ORCHESTRATOR_WEBHOOK_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${JULES_API_KEY}" ] || [ -z "${JULES_FEEDBACK_ENDPOINT}" ] || [ -z "${JULES_ORCHESTRATOR_WEBHOOK_TOKEN}" ]; then
+            echo "Required Jules monitor secrets are missing."
+            exit 1
+          fi
+
+          BASE_URL="${JULES_BASE_URL:-https://jules.googleapis.com}"
+          sessions_file="$(mktemp)"
+
+          curl -sS \
+            -H "x-goog-api-key: $JULES_API_KEY" \
+            "$BASE_URL/v1alpha/sessions?pageSize=20" > "$sessions_file"
+
+          session_count="$(jq '.sessions | length // 0' "$sessions_file")"
+          echo "Sessions fetched: $session_count"
+          echo "### Jules Session Monitor" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Sessions fetched: \`$session_count\`" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$session_count" -eq 0 ]; then
+            exit 0
+          fi
+
+          jq -c '.sessions[] | {id, state, url}' "$sessions_file" | while read -r session; do
+            session_id="$(echo "$session" | jq -r '.id')"
+            session_state="$(echo "$session" | jq -r '.state // "UNKNOWN"')"
+            session_url="$(echo "$session" | jq -r '.url // empty')"
+
+            payload="$(jq -n \
+              --arg repo "$REPOSITORY" \
+              --arg sessionId "$session_id" \
+              --arg state "$session_state" \
+              --arg sessionUrl "$session_url" \
+              '{
+                repo: $repo,
+                trigger: "feedback",
+                sessionId: $sessionId,
+                state: $state,
+                sessionUrl: (if $sessionUrl == "" then null else $sessionUrl end),
+                note: "Scheduled session monitor update"
+              }'
+            )"
+
+            curl -sS -X POST "$JULES_FEEDBACK_ENDPOINT" \
+              -H "Authorization: Bearer $JULES_ORCHESTRATOR_WEBHOOK_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d "$payload" > /dev/null
+          done
+

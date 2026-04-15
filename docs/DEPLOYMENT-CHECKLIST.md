@@ -387,7 +387,7 @@
   ```
 
 #### 2.1.3 Node.js & Dependencies
-- [ ] **Node.js 20 LTS installed** 🔴
+- [ ] **Node.js 22 LTS installed** 🔴
   ```bash
   node --version && npm --version
   ```
@@ -995,6 +995,55 @@
 - [ ] **PM2 monitoring enabled** 🟡
   ```bash
   pm2 monitor
+
+#### 3.2.3 Jules Auto-Remediation Monitoring 🔴
+- [ ] **Jules webhook endpoints are configured in production** 🔴
+  ```bash
+  # Required GitHub secrets
+  # JULES_WEBHOOK_ENDPOINT=https://<domain>/api/integrations/jules/github-webhook
+  # JULES_FEEDBACK_ENDPOINT=https://<domain>/api/integrations/jules/session-feedback
+  # JULES_ORCHESTRATOR_WEBHOOK_TOKEN=<long-random-token>
+  # JULES_API_KEY=<rotated-jules-api-key>
+  ```
+
+- [ ] **Jules key scope validated before enabling workflows** 🔴
+  ```bash
+  JULES_API_KEY=<key> pnpm jules:validate-key
+  ```
+  **Expected Output:**
+  ```
+  Key scope check: PASS
+  ```
+
+- [ ] **Jules auto-remediation workflows enabled** 🔴
+  ```bash
+  # .github/workflows/jules-auto-remediation.yml
+  # .github/workflows/jules-session-monitor.yml
+  ```
+
+- [ ] **Sensitive systems are opt-in only** 🔴
+  ```bash
+  # Auth/Billing tasks require label jules:sensitive-opt-in
+  # Non-sensitive automation remains default path
+  ```
+
+- [ ] **Monitoring endpoint accessible for super admin** 🟡
+  ```bash
+  curl -sf "https://<domain>/api/admin/integrations/jules/monitoring?limit=50"
+  ```
+  **Expected Output:**
+  ```json
+  {
+    "ok": true,
+    "data": {
+      "metrics": {
+        "total": 10,
+        "outcome:created": 7
+      },
+      "events": []
+    }
+  }
+  ```
   ```
 
 #### 3.2.2 Database Monitoring
