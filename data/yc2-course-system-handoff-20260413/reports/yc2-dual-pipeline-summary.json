@@ -1,0 +1,51 @@
+{
+  "courses_total": 61,
+  "course_items_total": 36244,
+  "phim_items": 0,
+  "courses_by_mode": {
+    "source-native": 46,
+    "topic-mixed": 15
+  },
+  "items_by_mode_source": [
+    {
+      "course_mode": "source-native",
+      "content_source": "abeka",
+      "item_count": 20195
+    },
+    {
+      "course_mode": "source-native",
+      "content_source": "littlefox",
+      "item_count": 8718
+    },
+    {
+      "course_mode": "source-native",
+      "content_source": "playgg",
+      "item_count": 1250
+    },
+    {
+      "course_mode": "source-native",
+      "content_source": "playtt",
+      "item_count": 5631
+    },
+    {
+      "course_mode": "topic-mixed",
+      "content_source": "abeka",
+      "item_count": 150
+    },
+    {
+      "course_mode": "topic-mixed",
+      "content_source": "littlefox",
+      "item_count": 99
+    },
+    {
+      "course_mode": "topic-mixed",
+      "content_source": "playgg",
+      "item_count": 90
+    },
+    {
+      "course_mode": "topic-mixed",
+      "content_source": "playtt",
+      "item_count": 111
+    }
+  ]
+}

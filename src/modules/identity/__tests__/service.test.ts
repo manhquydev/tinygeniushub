@@ -95,6 +95,7 @@ describe("registerParent", () => {
         parentId: "parent-1",
         weeklyReportChannel: "IN_APP_AND_EMAIL",
         weeklyReportEmailEnabled: true,
+        marketingEmailOptIn: true,
       }),
     });
     expect(txSubscriptionCreateMock).toHaveBeenCalledWith({
@@ -238,5 +239,19 @@ describe("authenticateParent", () => {
       data: { lastActiveAt: expect.any(Date) },
     });
     expect(parent.id).toBe("parent-1");
+  });
+
+  it("does not update lastActiveAt when touchLastActiveAt is disabled", async () => {
+    await authenticateParent(
+      {
+        email: "Parent@Example.com",
+        password: "StrongPass123!",
+      },
+      {
+        touchLastActiveAt: false,
+      },
+    );
+
+    expect(parentUpdateMock).not.toHaveBeenCalled();
   });
 });

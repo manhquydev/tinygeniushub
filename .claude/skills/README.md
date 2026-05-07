@@ -74,7 +74,7 @@ This repository includes a diverse collection of example skills demonstrating di
 - **webapp-testing** - Test local web applications using Playwright for UI verification and debugging
 
 ## Enterprise & Communication
-- **brand-guidelines** - Apply Anthropic's official brand colors and typography to artifacts
+- **brand** - Apply Anthropic's official brand colors and typography to artifacts
 - **internal-comms** - Write internal communications like status reports, newsletters, and FAQs
 - **theme-factory** - Style artifacts with 10 pre-set professional themes or generate custom themes on-the-fly
 

@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-04-13",
+  "database_files": {
+    "yc2_db": "C:\\Users\\manhquy\\.gemini\\antigravity\\scratch\\abeka_tools\\output\\database\\topic-courses-yc2.db",
+    "unified_db": "C:\\Users\\manhquy\\.gemini\\antigravity\\scratch\\abeka_tools\\unified_content.db"
+  },
+  "coverage": {
+    "total_videos_4_sources": 35854,
+    "tagged_confidence_ge_0_7": 35854,
+    "coverage_percent": 100.0
+  },
+  "courses": {
+    "courses_total": 61,
+    "courses_by_mode": {
+      "source-native": 46,
+      "topic-mixed": 15
+    },
+    "items_by_mode_source": [
+      {
+        "course_mode": "source-native",
+        "content_source": "abeka",
+        "item_count": 20195
+      },
+      {
+        "course_mode": "source-native",
+        "content_source": "littlefox",
+        "item_count": 8718
+      },
+      {
+        "course_mode": "source-native",
+        "content_source": "playgg",
+        "item_count": 1250
+      },
+      {
+        "course_mode": "source-native",
+        "content_source": "playtt",
+        "item_count": 5631
+      },
+      {
+        "course_mode": "topic-mixed",
+        "content_source": "abeka",
+        "item_count": 150
+      },
+      {
+        "course_mode": "topic-mixed",
+        "content_source": "littlefox",
+        "item_count": 99
+      },
+      {
+        "course_mode": "topic-mixed",
+        "content_source": "playgg",
+        "item_count": 90
+      },
+      {
+        "course_mode": "topic-mixed",
+        "content_source": "playtt",
+        "item_count": 111
+      }
+    ]
+  },
+  "quality_checks": {
+    "phim_items": 0,
+    "source_native_misc_courses": 0,
+    "source_native_abeka_unknown": 0,
+    "source_native_littlefox_unknown": 0
+  },
+  "littlefox_fs_fixed_map": {
+    "map_entries": 137,
+    "fs_unique_in_collections": 136,
+    "mapped_fixed": 136,
+    "fallback_needed": 0
+  }
+}

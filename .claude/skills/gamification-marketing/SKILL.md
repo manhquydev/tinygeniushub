@@ -1,6 +1,10 @@
 ---
-name: gamification-marketing
+name: ckm:gamification-marketing
 description: Design gamified marketing campaigns using points, badges, leaderboards, streaks, challenges. Use for loyalty programs, referral campaigns, onboarding flows, engagement boosts, email gamification. Provides mechanics selection, psychology alignment, strategy docs, templates, KPIs.
+argument-hint: "[mechanic or campaign]"
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # Gamification Marketing

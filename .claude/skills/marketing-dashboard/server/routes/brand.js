@@ -39,7 +39,7 @@ brand.get('/tokens', (c) => {
 // GET /api/brand/voice - Run inject-brand-context.cjs --json
 brand.get('/voice', async (c) => {
   try {
-    const scriptPath = path.resolve(process.cwd(), '../brand-guidelines/scripts/inject-brand-context.cjs')
+    const scriptPath = path.resolve(process.cwd(), '../brand/scripts/inject-brand-context.cjs')
     const guidelinesPath = path.resolve(process.cwd(), '../../../docs/brand-guidelines.md')
 
     // Validate script exists

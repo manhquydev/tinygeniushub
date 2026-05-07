@@ -59,7 +59,7 @@
 ```
 scripts/
 ├── vps-setup.sh              # Security hardening
-├── nodejs-install.sh         # Node.js 20 + pnpm
+├── nodejs-install.sh         # Node.js 22 + pnpm
 ├── nginx-ssl-setup.sh        # Nginx + Let's Encrypt
 ├── postgres-setup.sh         # PostgreSQL 15
 ├── pgbouncer-setup.sh        # Connection pooling

@@ -23,7 +23,6 @@ type(scope): description
 - **No period at end**
 - **Scope optional but recommended**
 - **Focus on WHAT, not HOW**
-- Only use `feat`, `fix`, or `perf` prefixes for files in `.claude` directory (do not use `docs`).
 
 ## NEVER Include AI Attribution
 - ❌ "Generated with Claude"

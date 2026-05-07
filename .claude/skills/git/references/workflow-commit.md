@@ -22,9 +22,7 @@ git diff --cached --name-only | awk -F'/' '{
 
 ## Tool 2: Split Decision
 
-NOTE: 
-- Search for related issues on GitHub and add to body.
-- Only use `feat`, `fix`, or `perf` prefixes for files in `.claude` directory (do not use `docs`).
+NOTE: Search for related issues on GitHub and add to body.
 
 **From groups, decide:**
 

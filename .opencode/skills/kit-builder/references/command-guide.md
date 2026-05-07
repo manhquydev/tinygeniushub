@@ -33,7 +33,7 @@ argument-hint: [topic] [keywords]
 ---
 
 💡💡💡
-Activate `content-marketing`, `seo-optimization`, `copywriting` skills.
+Activate `content-marketing`, `seo`, `copywriting` skills.
 
 ## Arguments
 - $TOPIC = first arg

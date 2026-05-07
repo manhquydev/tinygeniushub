@@ -103,8 +103,8 @@ bash <(curl -s https://raw.githubusercontent.com/user/repo/main/scripts/vps-setu
 # Update system
 apt-get update && apt-get upgrade -y
 
-# Install Node.js 20.x
-curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+# Install Node.js 22.x
+curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 apt-get install -y nodejs
 
 # Install pnpm

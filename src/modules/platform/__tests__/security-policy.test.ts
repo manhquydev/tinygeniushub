@@ -43,6 +43,8 @@ describe("adminSecurityControlsSchema", () => {
       globalLimitMultiplier: 0.8,
       blockedIpCidrs: ["203.0.113.0/24", "203.0.113.0/24", "2001:DB8::1"],
       readinessAllowlistCidrs: ["10.0.0.0/8"],
+      parentEmailVerificationRequired: true,
+      parentEmailVerificationTokenTtlMinutes: 15,
     });
 
     expect(parsed.blockedIpCidrs).toEqual(["203.0.113.0/24", "2001:db8::1"]);
@@ -60,6 +62,8 @@ describe("applySecurityControlsToPolicy", () => {
         globalLimitMultiplier: 0.5,
         blockedIpCidrs: [],
         readinessAllowlistCidrs: [],
+        parentEmailVerificationRequired: true,
+        parentEmailVerificationTokenTtlMinutes: 15,
       },
     );
 

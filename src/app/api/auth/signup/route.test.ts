@@ -1,29 +1,32 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { LifecycleEmailType } from "@prisma/client";
 import { DomainError } from "@/modules/platform/errors";
 
 const {
   assertTrustedOriginMock,
   assertRequestAllowedBySecurityControlsMock,
   getRateLimitPolicyMock,
+  getAdminSecurityControlsMock,
   enforceRateLimitMock,
   getRequestIpMock,
   buildRateLimitIdentityMock,
   logInfoMock,
   logWarnMock,
   registerParentMock,
-  signInEmailMock,
+  issueParentEmailVerificationChallengeMock,
   enqueueLifecycleEmailMock,
 } = vi.hoisted(() => ({
   assertTrustedOriginMock: vi.fn(),
   assertRequestAllowedBySecurityControlsMock: vi.fn(),
   getRateLimitPolicyMock: vi.fn(),
+  getAdminSecurityControlsMock: vi.fn(),
   enforceRateLimitMock: vi.fn(),
   getRequestIpMock: vi.fn(),
   buildRateLimitIdentityMock: vi.fn(),
   logInfoMock: vi.fn(),
   logWarnMock: vi.fn(),
   registerParentMock: vi.fn(),
-  signInEmailMock: vi.fn(),
+  issueParentEmailVerificationChallengeMock: vi.fn(),
   enqueueLifecycleEmailMock: vi.fn(),
 }));
 
@@ -37,6 +40,7 @@ vi.mock("@/modules/platform/security-access-guard", () => ({
 
 vi.mock("@/modules/platform/security-policy-service", () => ({
   getRateLimitPolicy: getRateLimitPolicyMock,
+  getAdminSecurityControls: getAdminSecurityControlsMock,
 }));
 
 vi.mock("@/lib/rate-limit", () => ({
@@ -61,12 +65,8 @@ vi.mock("@/modules/identity/service", async () => {
   };
 });
 
-vi.mock("@/lib/auth/better-auth", () => ({
-  auth: {
-    api: {
-      signInEmail: signInEmailMock,
-    },
-  },
+vi.mock("@/modules/identity/parent-email-verification-service", () => ({
+  issueParentEmailVerificationChallenge: issueParentEmailVerificationChallengeMock,
 }));
 
 vi.mock("@/worker/queue", () => ({
@@ -85,6 +85,14 @@ describe("auth signup route", () => {
       limit: 10,
       windowMs: 60_000,
     });
+    getAdminSecurityControlsMock.mockResolvedValue({
+      ddosMode: "normal",
+      globalLimitMultiplier: 1,
+      blockedIpCidrs: [],
+      readinessAllowlistCidrs: [],
+      parentEmailVerificationRequired: true,
+      parentEmailVerificationTokenTtlMinutes: 15,
+    });
     enforceRateLimitMock.mockResolvedValue({
       allowed: true,
       remaining: 9,
@@ -97,15 +105,8 @@ describe("auth signup route", () => {
       email: "parent@example.com",
       displayName: "Parent",
     });
-    signInEmailMock.mockResolvedValue({
-      headers: new Headers({
-        "set-cookie": "ccth_session=token; Path=/; HttpOnly",
-      }),
-      response: {
-        user: {
-          id: "parent-1",
-        },
-      },
+    issueParentEmailVerificationChallengeMock.mockResolvedValue({
+      expiresAt: new Date("2026-04-08T10:15:00.000Z"),
     });
     enqueueLifecycleEmailMock.mockResolvedValue(undefined);
   });
@@ -277,47 +278,7 @@ describe("auth signup route", () => {
     );
   });
 
-  it("returns normalized auth error from better-auth API", async () => {
-    signInEmailMock.mockRejectedValueOnce({
-      name: "APIError",
-      statusCode: 401,
-      body: {
-        message: "Invalid email or password",
-      },
-    });
-
-    const response = await POST(
-      new Request("http://localhost/api/auth/signup", {
-        method: "POST",
-        headers: {
-          origin: "http://localhost",
-          host: "localhost",
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          email: "parent@example.com",
-          password: "password-123",
-          legalAccepted: true,
-        }),
-      }),
-    );
-    const body = await response.json();
-
-    expect(response.status).toBe(401);
-    expect(body.error.message).toBe("Invalid email or password");
-    expect(body.error.details?.code).toBe("AUTH_API_ERROR");
-    expect(logWarnMock).toHaveBeenCalledWith(
-      "auth.signup.failed",
-      expect.objectContaining({
-        reason: "domain_error",
-        ip: "203.0.113.10",
-        identityHash: "email-hash",
-        code: "AUTH_API_ERROR",
-      }),
-    );
-  });
-
-  it("returns parent payload and sets auth cookie on success", async () => {
+  it("returns verification-required payload after signup success", async () => {
     const response = await POST(
       new Request("http://localhost/api/auth/signup", {
         method: "POST",
@@ -337,7 +298,7 @@ describe("auth signup route", () => {
     const body = await response.json();
 
     expect(response.status).toBe(200);
-    expect(response.headers.get("set-cookie")).toContain("ccth_session=token");
+    expect(response.headers.get("set-cookie")).toBeNull();
     expect(body).toEqual({
       ok: true,
       data: {
@@ -346,8 +307,117 @@ describe("auth signup route", () => {
           email: "parent@example.com",
           displayName: "Parent",
         },
+        verification: {
+          required: true,
+          emailDispatch: "queued",
+          expiresAt: "2026-04-08T10:15:00.000Z",
+        },
       },
     });
+    expect(issueParentEmailVerificationChallengeMock).toHaveBeenCalledWith({
+      parent: {
+        id: "parent-1",
+        email: "parent@example.com",
+        displayName: "Parent",
+      },
+      ttlMinutes: 15,
+    });
+    expect(enqueueLifecycleEmailMock).not.toHaveBeenCalled();
+  });
+
+  it("still returns success when verification email enqueue fails", async () => {
+    issueParentEmailVerificationChallengeMock.mockRejectedValueOnce(new Error("queue down"));
+
+    const response = await POST(
+      new Request("http://localhost/api/auth/signup", {
+        method: "POST",
+        headers: {
+          origin: "http://localhost",
+          host: "localhost",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "parent@example.com",
+          password: "password-123",
+          displayName: "Parent",
+          legalAccepted: true,
+        }),
+      }),
+    );
+    const body = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("set-cookie")).toBeNull();
+    expect(body.data.verification).toEqual({
+      required: true,
+      emailDispatch: "failed",
+      expiresAt: null,
+    });
+    expect(logWarnMock).toHaveBeenCalledWith(
+      "auth.signup.verification_email_enqueue_failed",
+      expect.objectContaining({
+        parentId: "parent-1",
+        ip: "203.0.113.10",
+      }),
+    );
+  });
+
+  it("queues lifecycle email directly when parent verification is disabled", async () => {
+    getAdminSecurityControlsMock.mockResolvedValueOnce({
+      ddosMode: "normal",
+      globalLimitMultiplier: 1,
+      blockedIpCidrs: [],
+      readinessAllowlistCidrs: [],
+      parentEmailVerificationRequired: false,
+      parentEmailVerificationTokenTtlMinutes: 30,
+    });
+
+    const response = await POST(
+      new Request("http://localhost/api/auth/signup", {
+        method: "POST",
+        headers: {
+          origin: "http://localhost",
+          host: "localhost",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "parent@example.com",
+          password: "password-123",
+          displayName: "Parent",
+          legalAccepted: true,
+        }),
+      }),
+    );
+    const body = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(body.data.verification).toEqual({
+      required: false,
+      emailDispatch: "not_required",
+      expiresAt: null,
+    });
+    expect(issueParentEmailVerificationChallengeMock).not.toHaveBeenCalled();
+    expect(enqueueLifecycleEmailMock).toHaveBeenCalledWith("parent-1", LifecycleEmailType.TRIAL_WELCOME);
+  });
+
+  it("registers parent with context and logs success", async () => {
+    await POST(
+      new Request("http://localhost/api/auth/signup", {
+        method: "POST",
+        headers: {
+          origin: "http://localhost",
+          host: "localhost",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "parent@example.com",
+          password: "password-123",
+          displayName: "Parent",
+          legalAccepted: true,
+        }),
+      }),
+    );
+
     expect(registerParentMock).toHaveBeenCalledWith(
       expect.objectContaining({
         email: "parent@example.com",
@@ -365,6 +435,7 @@ describe("auth signup route", () => {
       expect.objectContaining({
         parentId: "parent-1",
         ip: "203.0.113.10",
+        verificationRequired: true,
       }),
     );
   });

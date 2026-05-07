@@ -1,0 +1,62 @@
+# YC2 Source-Native Course Report
+
+- courses_created: 46
+- course_items_total: 35794
+- noise_excluded: 2
+- strict_mode: True
+- small_bucket_dropped_count: 4
+- small_bucket_dropped_items: 58
+
+## Items by source
+- abeka: 20195
+- littlefox: 8718
+- playgg: 1250
+- playtt: 5631
+
+## Courses
+- [abeka] Abeka G1 | items=3992
+- [abeka] Abeka G2 | items=3027
+- [abeka] Abeka K5 | items=2581
+- [abeka] Abeka K4 | items=2460
+- [abeka] Abeka G3 | items=2196
+- [abeka] Abeka G4 | items=2033
+- [abeka] Abeka G6 | items=1974
+- [abeka] Abeka G5 | items=1932
+- [littlefox] Little Fox Level 2 | items=1238
+- [littlefox] Little Fox Level 6 | items=1226
+- [littlefox] Little Fox Level 3 | items=1216
+- [littlefox] Little Fox Level 4 | items=1179
+- [littlefox] Little Fox Level 5 | items=1011
+- [littlefox] Little Fox Level 7 | items=855
+- [littlefox] Little Fox Level 1 | items=790
+- [littlefox] Little Fox Level 8 | items=753
+- [littlefox] Little Fox Level 9 | items=450
+- [playgg] PlayGG Heinemann | items=350
+- [playgg] PlayGG Muzzy | items=150
+- [playgg] PlayGG Numberblocks | items=120
+- [playgg] PlayGG Noep | items=99
+- [playgg] PlayGG Kle | items=94
+- [playgg] PlayGG Alphablocks | items=90
+- [playgg] PlayGG Gogo | items=80
+- [playgg] PlayGG Single Stories | items=68
+- [playgg] PlayGG Little Seed | items=50
+- [playgg] PlayGG Khoahoc | items=44
+- [playgg] PlayGG Peppa Pig | items=41
+- [playgg] PlayGG Ted Ed | items=34
+- [playgg] PlayGG School Bus | items=30
+- [playtt] PlayTT Acellus | items=4083
+- [playtt] PlayTT Heinemann | items=300
+- [playtt] PlayTT Teded | items=214
+- [playtt] PlayTT Muzzy | items=150
+- [playtt] PlayTT Numberblocks | items=120
+- [playtt] PlayTT Khoahoc | items=100
+- [playtt] PlayTT Noep | items=99
+- [playtt] PlayTT Kle | items=98
+- [playtt] PlayTT Alphablocks | items=90
+- [playtt] PlayTT School Bus | items=80
+- [playtt] PlayTT Single Stories | items=68
+- [playtt] PlayTT Little Seed | items=50
+- [playtt] PlayTT Ben10 | items=49
+- [playtt] PlayTT Ess | items=48
+- [playtt] PlayTT Peppapig | items=43
+- [playtt] PlayTT Gogo | items=39

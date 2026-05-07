@@ -1,10 +1,14 @@
 ---
-name: content-hub
+name: ckm:content-hub
 description: Browser-based asset gallery for managing marketing assets. Visual grid with filter/search, brand context sidebar, and actions (preview, edit, generate). R2-ready manifest for future cloud sync. Use when browsing assets, managing content library, or generating new assets with brand context.
+argument-hint: "[action: open|browse|search]"
 license: MIT
 allowed-tools:
   - Bash
   - Read
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # Content Hub
@@ -74,6 +78,6 @@ Assets stored in `.assets/manifest.json` with R2 fields:
 
 **Command**: `/write:hub`
 
-**Related Skills**: brand-guidelines, ai-multimodal, design
+**Related Skills**: brand, ai-multimodal, design
 
 **Agents**: content-creator, ui-ux-designer

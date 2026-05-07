@@ -70,7 +70,10 @@
           "node $HOME/.claude/hooks/descriptive-name.cjs",
           "node $HOME/.claude/hooks/scout-block.cjs",
           "node $HOME/.claude/hooks/privacy-block.cjs",
-          "node $HOME/.claude/hooks/post-edit-simplify-reminder.cjs"
+          "node $HOME/.claude/hooks/post-edit-simplify-reminder.cjs",
+          "node $HOME/.claude/hooks/usage-quota-cache-refresh.cjs",
+          "node $HOME/.claude/hooks/session-state.cjs",
+          "node $HOME/.claude/hooks/plan-format-kanban.cjs"
         ],
         "mcpServers": []
       }
@@ -82,7 +85,8 @@
           "node $HOME/.claude/hooks/campaign-tracking.cjs",
           "node $HOME/.claude/hooks/approval-workflow.cjs",
           "node $HOME/.claude/hooks/write-compact-marker.cjs",
-          "node $HOME/.claude/hooks/session-end.cjs"
+          "node $HOME/.claude/hooks/session-end.cjs",
+          "node $HOME/.claude/hooks/usage-context-awareness.cjs"
         ],
         "mcpServers": []
       }

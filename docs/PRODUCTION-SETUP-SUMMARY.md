@@ -84,7 +84,7 @@ pnpm abeka:validate:db
 | Script | Chức Năng |
 |--------|-----------|
 | `vps-setup.sh` | VPS hardening (UFW, fail2ban, security) |
-| `nodejs-install.sh` | Node.js 20 + pnpm + PM2 |
+| `nodejs-install.sh` | Node.js 22 + pnpm + PM2 |
 | `nginx-ssl-setup.sh` | Nginx + Let's Encrypt SSL |
 | `postgres-setup.sh` | PostgreSQL 15 + database |
 | `pgbouncer-setup.sh` | Connection pooling (port 6432) |

@@ -1,8 +1,10 @@
 ---
 name: ck:cook
-description: "ALWAYS activate this skill before implementing EVERY feature, plan, or fix."
-version: 2.1.1
+description: ALWAYS activate this skill before implementing EVERY feature, plan, or fix.
 argument-hint: "[task|plan-path] [--interactive|--fast|--parallel|--auto|--no-test]"
+metadata:
+  author: claudekit
+  version: "2.1.1"
 ---
 
 # Cook - Smart Feature Implementation
@@ -82,9 +84,9 @@ Human review required at these checkpoints (skipped with `--auto`):
 - **Testing:** 100% pass required (unless no-test mode)
 - **Code Review:** User approval OR auto-approve (score≥9.5, 0 critical)
 - **Finalize (MANDATORY - never skip):**
-  1. `project-manager` subagent → run full plan sync-back (all completed tasks/steps across all `phase-XX-*.md`, not only current phase), then update `plan.md` status/progress
+  1. `project-manager` subagent → update plan/phase status to complete
   2. `docs-manager` subagent → update `./docs` if changes warrant
-  3. `TaskUpdate` → mark all Claude Tasks complete after sync-back verification
+  3. `TaskUpdate` → mark all Claude Tasks complete
   4. Ask user if they want to commit via `git-manager` subagent
 
 ## Required Subagents (MANDATORY)
@@ -92,7 +94,7 @@ Human review required at these checkpoints (skipped with `--auto`):
 | Phase | Subagent | Requirement |
 |-------|----------|-------------|
 | Research | `researcher` | Optional in fast/code |
-| Scout | `ck:scout` | Optional in code |
+| Scout | `scout` | Optional in code |
 | Plan | `planner` | Optional in code |
 | UI Work | `ui-ux-designer` | If frontend work |
 | Testing | `tester`, `debugger` | **MUST** spawn |

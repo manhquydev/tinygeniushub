@@ -1,147 +1,147 @@
 ---
 name: ck:code-review
-description: "Review code quality, receive feedback with technical rigor, verify completion claims. Use before PRs, after implementing features, when claiming task completion. Includes scout-based edge case detection and native Task pipeline orchestration."
+description: Use when receiving code review feedback (especially if unclear or technically questionable), when completing tasks or major features requiring review before proceeding, or before making any completion/success claims. Covers three practices - receiving feedback with technical rigor over performative agreement, requesting reviews via code-reviewer subagent, and verification gates requiring evidence before any status claims. Essential for subagent-driven development, pull requests, and preventing false completion claims.
 argument-hint: "[context] OR codebase [parallel]"
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # Code Review
 
 Guide proper code review practices emphasizing technical rigor, evidence-based claims, and verification over performative responses.
 
-## Default (No Arguments)
+## Overview
 
-If invoked with context (recent changes/PR), proceed with review. If invoked WITHOUT arguments, use `AskUserQuestion` to present available review operations:
+Code review requires three distinct practices:
 
-| Operation | Description |
-|-----------|-------------|
-| `(default)` | Review recent changes/PR |
-| `codebase` | Full codebase scan & analysis |
-| `codebase parallel` | Parallel multi-reviewer audit |
+1. **Receiving feedback** - Technical evaluation over performative agreement
+2. **Requesting reviews** - Systematic review via code-reviewer subagent
+3. **Verification gates** - Evidence before any completion claims
 
-Present as options via `AskUserQuestion` with header "Review Operation", question "What would you like to do?".
+Each practice has specific triggers and protocols detailed in reference files.
 
 ## Core Principle
 
-**YAGNI**, **KISS**, **DRY** always. Technical correctness over social comfort.
+Always honoring **YAGNI**, **KISS**, and **DRY** principles.
 **Be honest, be brutal, straight to the point, and be concise.**
 
-Verify before implementing. Ask before assuming. Evidence before claims.
+**Technical correctness over social comfort.** Verify before implementing. Ask before assuming. Evidence before claims.
 
-## Practices
+## When to Use This Skill
 
-| Practice | When | Reference |
-|----------|------|-----------|
-| Receiving feedback | Unclear feedback, external reviewers, needs prioritization | `references/code-review-reception.md` |
-| Requesting review | After tasks, before merge, stuck on problem | `references/requesting-code-review.md` |
-| Verification gates | Before any completion claim, commit, PR | `references/verification-before-completion.md` |
-| Edge case scouting | After implementation, before review | `references/edge-case-scouting.md` |
-| **Task-managed reviews** | Multi-file features (3+ files), parallel reviewers, fix cycles | `references/task-management-reviews.md` |
+### Receiving Feedback
+Trigger when:
+- Receiving code review comments from any source
+- Feedback seems unclear or technically questionable
+- Multiple review items need prioritization
+- External reviewer lacks full context
+- Suggestion conflicts with existing decisions
+
+**Reference:** `references/code-review-reception.md`
+
+### Requesting Review
+Trigger when:
+- Completing tasks in subagent-driven development (after EACH task)
+- Finishing major features or refactors
+- Before merging to main branch
+- Stuck and need fresh perspective
+- After fixing complex bugs
+
+**Reference:** `references/requesting-code-review.md`
+
+### Verification Gates
+Trigger when:
+- About to claim tests pass, build succeeds, or work is complete
+- Before committing, pushing, or creating PRs
+- Moving to next task
+- Any statement suggesting success/completion
+- Expressing satisfaction with work
+
+**Reference:** `references/verification-before-completion.md`
 
 ## Quick Decision Tree
 
 ```
 SITUATION?
 │
-├─ Received feedback → STOP if unclear, verify if external, implement if human partner
-├─ Completed work → Scout edge cases → Request code-reviewer subagent
-├─ Multi-file feature (3+ files) → Create review pipeline tasks (scout→review→fix→verify)
-└─ About to claim status → RUN verification command FIRST
+├─ Received feedback
+│  ├─ Unclear items? → STOP, ask for clarification first
+│  ├─ From human partner? → Understand, then implement
+│  └─ From external reviewer? → Verify technically before implementing
+│
+├─ Completed work
+│  ├─ Major feature/task? → Request code-reviewer subagent review
+│  └─ Before merge? → Request code-reviewer subagent review
+│
+└─ About to claim status
+   ├─ Have fresh verification? → State claim WITH evidence
+   └─ No fresh verification? → RUN verification command first
 ```
 
-## Receiving Feedback
+## Receiving Feedback Protocol
 
-**Pattern:** READ → UNDERSTAND → VERIFY → EVALUATE → RESPOND → IMPLEMENT
+### Response Pattern
+READ → UNDERSTAND → VERIFY → EVALUATE → RESPOND → IMPLEMENT
 
-**Rules:**
-- No performative agreement: "You're absolutely right!", "Great point!"
-- No implementation before verification
-- Restate, ask questions, push back with reasoning, or just work
-- YAGNI check: grep for usage before implementing "proper" features
+### Key Rules
+- ❌ No performative agreement: "You're absolutely right!", "Great point!", "Thanks for [anything]"
+- ❌ No implementation before verification
+- ✅ Restate requirement, ask questions, push back with technical reasoning, or just start working
+- ✅ If unclear: STOP and ask for clarification on ALL unclear items first
+- ✅ YAGNI check: grep for usage before implementing suggested "proper" features
 
-**Source handling:**
-- Human partner: Trusted - implement after understanding
-- External reviewers: Verify technically, check breakage, push back if wrong
+### Source Handling
+- **Human partner:** Trusted - implement after understanding, no performative agreement
+- **External reviewers:** Verify technically correct, check for breakage, push back if wrong
 
 **Full protocol:** `references/code-review-reception.md`
 
-## Requesting Review
+## Requesting Review Protocol
 
-**When:** After each task, major features, before merge
+### When to Request
+- After each task in subagent-driven development
+- After major feature completion
+- Before merge to main
 
-**Process:**
-1. **Scout edge cases first** (see below)
-2. Get SHAs: `BASE_SHA=$(git rev-parse HEAD~1)` and `HEAD_SHA=$(git rev-parse HEAD)`
-3. Dispatch code-reviewer subagent with: WHAT, PLAN, BASE_SHA, HEAD_SHA, DESCRIPTION
-4. Fix Critical immediately, Important before proceeding
+### Process
+1. Get git SHAs: `BASE_SHA=$(git rev-parse HEAD~1)` and `HEAD_SHA=$(git rev-parse HEAD)`
+2. Dispatch code-reviewer subagent via Task tool with: WHAT_WAS_IMPLEMENTED, PLAN_OR_REQUIREMENTS, BASE_SHA, HEAD_SHA, DESCRIPTION
+3. Act on feedback: Fix Critical immediately, Important before proceeding, note Minor for later
 
 **Full protocol:** `references/requesting-code-review.md`
 
-## Edge Case Scouting
+## Verification Gates Protocol
 
-**When:** After implementation, before requesting code-reviewer
+### The Iron Law
+**NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE**
 
-**Process:**
-1. Invoke `/ck:scout` with edge-case-focused prompt
-2. Scout analyzes: affected files, data flows, error paths, boundary conditions
-3. Review scout findings for potential issues
-4. Address critical gaps before code review
+### Gate Function
+IDENTIFY command → RUN full command → READ output → VERIFY confirms claim → THEN claim
 
-**Full protocol:** `references/edge-case-scouting.md`
+Skip any step = lying, not verifying
 
-## Task-Managed Review Pipeline
+### Requirements
+- Tests pass: Test output shows 0 failures
+- Build succeeds: Build command exit 0
+- Bug fixed: Test original symptom passes
+- Requirements met: Line-by-line checklist verified
 
-**When:** Multi-file features (3+ changed files), parallel code-reviewer scopes, review cycles with Critical fix iterations.
-
-**Pipeline:** scout → review → fix → verify (each a Task with dependency chain)
-
-```
-TaskCreate: "Scout edge cases"         → pending
-TaskCreate: "Review implementation"    → pending, blockedBy: [scout]
-TaskCreate: "Fix critical issues"      → pending, blockedBy: [review]
-TaskCreate: "Verify fixes pass"        → pending, blockedBy: [fix]
-```
-
-**Parallel reviews:** Spawn scoped code-reviewer subagents for independent file groups (e.g., backend + frontend). Fix task blocks on all reviewers completing.
-
-**Re-review cycles:** If fixes introduce new issues, create cycle-2 review task. Limit 3 cycles, escalate to user after.
-
-**Full protocol:** `references/task-management-reviews.md`
-
-## Verification Gates
-
-**Iron Law:** NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
-
-**Gate:** IDENTIFY command → RUN full → READ output → VERIFY confirms → THEN claim
-
-**Requirements:**
-- Tests pass: Output shows 0 failures
-- Build succeeds: Exit 0
-- Bug fixed: Original symptom passes
-- Requirements met: Checklist verified
-
-**Red Flags:** "should"/"probably"/"seems to", satisfaction before verification, trusting agent reports
+### Red Flags - STOP
+Using "should"/"probably"/"seems to", expressing satisfaction before verification, committing without verification, trusting agent reports, ANY wording implying success without running verification
 
 **Full protocol:** `references/verification-before-completion.md`
 
 ## Integration with Workflows
 
-- **Subagent-Driven:** Scout edge cases → Review after EACH task → Verify before next
-- **Pull Requests:** Scout → Verify tests → Code-reviewer review → Merge
-- **Task Pipeline:** Create review tasks with dependencies → auto-unblock through chain
-- **Cook Handoff:** Cook completes phase → review pipeline tasks → all complete → cook proceeds
-
-## Codebase Analysis Subcommands
-
-| Subcommand | Reference | Purpose |
-|------------|-----------|---------|
-| `/ck:code-review codebase` | `references/codebase-scan-workflow.md` | Scan & analyze the codebase |
-| `/ck:code-review codebase parallel` | `references/parallel-review-workflow.md` | Ultrathink edge cases, then parallel verify |
+- **Subagent-Driven:** Review after EACH task, verify before moving to next
+- **Pull Requests:** Verify tests pass, request code-reviewer review before merge
+- **General:** Apply verification gates before any status claims, push back on invalid feedback
 
 ## Bottom Line
 
-1. Technical rigor over social performance
-2. Scout edge cases before review
-3. Task-manage reviews for multi-file features
-4. Evidence before claims
+1. Technical rigor over social performance - No performative agreement
+2. Systematic review processes - Use code-reviewer subagent
+3. Evidence before claims - Verification gates always
 
-Verify. Scout. Question. Then implement. Evidence. Then claim.
+Verify. Question. Then implement. Evidence. Then claim.

@@ -1,7 +1,11 @@
 ---
-name: content-marketing
+name: ckm:content-marketing
 description: Activate for content strategy, editorial calendars, content pillar mapping, blog planning, and content audit. Use when planning content programs, creating editorial workflows, or building topic clusters.
+argument-hint: "[content-type] [topic]"
 license: MIT
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # Content Marketing
@@ -51,7 +55,7 @@ Load: `references/content-audit-checklist.md`
 7. Set measurement framework
 
 ### Blog Planning Workflow
-1. Keyword research (use seo-optimization skill)
+1. Keyword research (use seo skill)
 2. Select template based on intent
 3. Create content brief
 4. Outline → Draft → Edit → Publish
@@ -71,7 +75,7 @@ Content reports go to `assets/reports/content/{date}-{content-type}-audit.md`
 
 **Primary Agents:** content-creator, campaign-manager, attraction-specialist
 
-**Skill Dependencies:** seo-optimization, brand-guidelines, creativity, assets-organizing (report organization)
+**Skill Dependencies:** seo, brand, creativity, assets-organizing (report organization)
 
 ## Best Practices
 

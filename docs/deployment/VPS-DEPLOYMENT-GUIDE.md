@@ -6,7 +6,7 @@ Complete guide for deploying the **Cùng Con Tự Học** (Abeka Curriculum Syst
 - **OS:** Ubuntu 22.04 LTS
 - **Database:** PostgreSQL 15 + PgBouncer (connection pooling)
 - **Cache:** Redis 7 (with AOF persistence)
-- **Node.js:** v20 LTS
+- **Node.js:** v22 LTS
 - **Process Manager:** PM2
 - **Reverse Proxy:** Nginx
 - **SSL:** Let's Encrypt (Certbot)
@@ -138,7 +138,7 @@ ssh root@your.vps.ip.address "bash /tmp/vps-setup.sh"
 ssh-copy-id deploy@your.vps.ip.address
 ```
 
-### 2.2 Node.js 20 + PM2 Installation
+### 2.2 Node.js 22 + PM2 Installation
 
 **`scripts/nodejs-install.sh`** - Run as deploy user:
 
@@ -146,16 +146,16 @@ ssh-copy-id deploy@your.vps.ip.address
 #!/bin/bash
 set -euo pipefail
 
-echo "📦 Installing Node.js 20 LTS..."
+echo "📦 Installing Node.js 22 LTS..."
 
 # Add NodeSource repository
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 
 # Install Node.js
 sudo apt install -y nodejs
 
 # Verify
-node --version  # Should show v20.x.x
+node --version  # Should show v22.x.x
 npm --version
 
 # Install pnpm globally
@@ -1035,7 +1035,7 @@ fi
 ```bash
 pm2 logs cungcontuhoc-web
 # Check Node.js version
-node --version  # Should be v20.x
+node --version  # Should be v22.x
 # Check environment
 cat /var/www/cungcontuhoc/.env.production | grep -E "^(DATABASE_URL|REDIS_URL)"
 # Test database

@@ -9,6 +9,8 @@ describe("buildSecurityEdgePolicyExport", () => {
         globalLimitMultiplier: 0.6,
         blockedIpCidrs: ["203.0.113.0/24"],
         readinessAllowlistCidrs: ["10.0.0.0/8"],
+        parentEmailVerificationRequired: true,
+        parentEmailVerificationTokenTtlMinutes: 15,
       },
       policies: [
         {

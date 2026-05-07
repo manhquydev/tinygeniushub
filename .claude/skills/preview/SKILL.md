@@ -1,75 +1,87 @@
 ---
 name: ck:preview
-description: "View files/directories OR generate visual explanations, slides, diagrams."
-argument-hint: "[path] OR --explain|--slides|--diagram|--ascii [topic]"
+description: Path to markdown file, plan directory, or plans collection
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
-# Preview
-
-Universal viewer + visual generator. View existing content OR generate new visual explanations.
-
-## Default (No Arguments)
-
-If invoked without arguments, use `AskUserQuestion` to present available preview operations:
-
-| Operation | Description |
-|-----------|-------------|
-| `(view)` | View a file or directory |
-| `--explain` | Generate visual explanation |
-| `--slides` | Generate presentation slides |
-| `--diagram` | Generate architecture diagram |
-| `--ascii` | Terminal-friendly diagram |
-| `--stop` | Stop preview server |
-
-Present as options via `AskUserQuestion` with header "Preview Operation", question "What would you like to do?".
+Universal viewer using `markdown-novel-viewer` skill - pass ANY path and see it rendered nicely.
 
 ## Usage
 
-### View Mode
-- `/ck:preview <file.md>` - View markdown file in novel-reader UI
-- `/ck:preview <directory/>` - Browse directory contents
-- `/ck:preview --stop` - Stop running server
+- `/preview <file.md>` - View markdown file in novel-reader UI
+- `/preview <directory/>` - Browse directory contents
+- `/preview --stop` - Stop running server
 
-### Generation Mode
-- `/ck:preview --explain <topic>` - Generate visual explanation (ASCII + Mermaid + prose)
-- `/ck:preview --slides <topic>` - Generate presentation slides (one concept per slide)
-- `/ck:preview --diagram <topic>` - Generate focused diagram (ASCII + Mermaid)
-- `/ck:preview --ascii <topic>` - Generate ASCII-only diagram (terminal-friendly)
+## Examples
 
-## Argument Resolution
+```bash
+/preview plans/my-plan/plan.md     # View markdown file
+/preview plans/                    # Browse plans directory
+/preview docs/                     # Browse docs directory
+/preview any/path/to/file.md      # View any markdown file
+/preview any/path/                 # Browse any directory
+```
 
-When processing arguments, follow this priority order:
+## Execution
 
-1. **`--stop`** → Stop server (exit)
-2. **Generation flags** (`--explain`, `--slides`, `--diagram`, `--ascii`) → Generation mode. Load `references/generation-modes.md`
-3. **Resolve path from argument:**
-   - If argument is an explicit path → use directly
-   - If argument is a contextual reference → resolve from recent conversation context
-4. **Resolved path exists on filesystem** → View mode. Load `references/view-mode.md`
-5. **Path doesn't exist or can't resolve** → Ask user to clarify
+**IMPORTANT:** Run server as Claude Code background task using `run_in_background: true` with the Bash tool. This makes the server visible in `/tasks` and manageable via `KillShell`.
 
-**Topic-to-slug conversion:**
-- Lowercase the topic
-- Replace spaces/special chars with hyphens
-- Remove non-alphanumeric except hyphens
-- Collapse multiple hyphens → single hyphen
-- Trim leading/trailing hyphens
-- **Max 80 chars** - truncate at word boundary if longer
+Check if this script is located in the current workspace or in `$HOME/.claude/skills/markdown-novel-viewer` directory:
+- If in current workspace: `$SKILL_DIR_PATH` = `./.claude/skills/markdown-novel-viewer/`
+- If in home directory: `$SKILL_DIR_PATH` = `$HOME/.claude/skills/markdown-novel-viewer/`
 
-**Multiple flags:** If multiple generation flags provided, use first one; remaining treated as topic.
+### Stop Server
 
-**Placeholder `{topic}`:** Replaced with original user input in title case (not the slug).
+If `--stop` flag is provided:
 
-## Error Handling
+```bash
+node $SKILL_DIR_PATH/scripts/server.cjs --stop
+```
 
-| Error | Action |
-|-------|--------|
-| Invalid topic (empty) | Ask user to provide a topic |
-| Flag without topic | Ask user: "Please provide a topic: `/ck:preview --explain <topic>`" |
-| Topic becomes empty after sanitization | Ask for topic with alphanumeric characters |
-| File write failure | Report error, suggest checking permissions |
-| Server startup failure | Check if port in use, try `/ck:preview --stop` first |
-| No generation flag + unresolvable reference | Ask user to clarify which file they meant |
-| Existing file at output path | Overwrite with new content (no prompt) |
-| Server already running | Reuse existing server instance, just open new URL |
-| Parent `plans/` dir missing | Create directories recursively before write |
+### Start Server
+
+Otherwise, run the `markdown-novel-viewer` server as CC background task with `--foreground` flag (keeps process alive for CC task management):
+
+```bash
+# Determine if path is file or directory
+INPUT_PATH="{{path}}"
+if [[ -d "$INPUT_PATH" ]]; then
+  # Directory mode - browse
+  node $SKILL_DIR_PATH/scripts/server.cjs \
+    --dir "$INPUT_PATH" \
+    --host 0.0.0.0 \
+    --open \
+    --foreground
+else
+  # File mode - view markdown
+  node $SKILL_DIR_PATH/scripts/server.cjs \
+    --file "$INPUT_PATH" \
+    --host 0.0.0.0 \
+    --open \
+    --foreground
+fi
+```
+
+**Critical:** When calling the Bash tool:
+- Set `run_in_background: true` to run as CC background task
+- Set `timeout: 300000` (5 minutes) to prevent premature termination
+- Parse JSON output and report URL to user
+
+Example Bash tool call:
+```json
+{
+  "command": "node .claude/skills/markdown-novel-viewer/scripts/server.cjs --dir \"path\" --host 0.0.0.0 --open --foreground",
+  "run_in_background": true,
+  "timeout": 300000,
+  "description": "Start preview server in background"
+}
+```
+
+After starting, parse the JSON output (e.g., `{"success":true,"url":"http://localhost:3456/view?file=...","networkUrl":"http://192.168.1.x:3456/view?file=..."}`) and report:
+- Local URL for browser access
+- Network URL for remote device access (if available)
+- Inform user that server is now running as CC background task (visible in `/tasks`)
+
+**CRITICAL:** MUST display the FULL URL including path and query string (e.g., `http://localhost:3456/view?file=/path/to/file.md`). NEVER truncate to just `host:port` (e.g., `http://localhost:3456`). The full URL is required for direct file access.

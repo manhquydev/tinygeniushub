@@ -1,3 +1,11 @@
+---
+name: ckm:marketing-dashboard
+description: Local-first marketing command center for solopreneurs. Manage campaigns, content, and assets with Claude Code AI automation.
+metadata:
+  author: claudekit
+  version: "1.0.0"
+---
+
 # Marketing Dashboard
 
 **Status:** Foundation Phase (Phase 1 Complete)

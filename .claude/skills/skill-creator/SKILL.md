@@ -1,9 +1,11 @@
 ---
 name: ck:skill-creator
 description: Create or update Claude skills optimized for Skillmark benchmarks. Use for new skills, skill scripts, references, benchmark optimization, extending Claude's capabilities.
-version: 3.0.0
-license: Complete terms in LICENSE.txt
 argument-hint: "[skill-name or description]"
+license: Complete terms in LICENSE.txt
+metadata:
+  author: claudekit
+  version: "3.0.0"
 ---
 
 # Skill Creator
@@ -42,7 +44,7 @@ Full anatomy & requirements: `references/skill-anatomy-and-requirements.md`
 
 Follow the 7-step process in `references/skill-creation-workflow.md`:
 1. Understand with concrete examples (AskUserQuestion)
-2. Research (activate `/ck:docs-seeker`, `/ck:research` skills)
+2. Research (activate `/docs-seeker`, `/research` skills)
 3. Plan reusable contents (scripts, references, assets)
 4. Initialize (`scripts/init_skill.py <name> --path <dir>`)
 5. Edit (implement resources, write SKILL.md, optimize for benchmarks)

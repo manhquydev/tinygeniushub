@@ -21,12 +21,12 @@ assets/
 | Skill | Status | Notes |
 |-------|--------|-------|
 | design | ✅ | Routes to brand/design-system/ui |
-| brand-guidelines | ✅ | Logo, fonts, colors |
+| brand | ✅ | Logo, fonts, colors |
 | design-system | ✅ | Tokens, component specs |
 | copywriting | ✅ | Formulas, templates |
 | content-marketing | ✅ | Blog, audit, strategy |
-| email-marketing | ✅ | Templates, deliverability |
-| social-media | ✅ | Platform-specific |
+| email | ✅ | Templates, deliverability |
+| social | ✅ | Platform-specific |
 
 ### Pending Skills
 

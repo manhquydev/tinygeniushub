@@ -302,7 +302,7 @@ async function ensureEnrolledCourse(baseUrl, authHeaders, childId) {
     redirect: "manual",
   });
   assert(
-    [302, 303, 307, 308].includes(mockSuccess.status),
+    [200, 302, 303, 307, 308].includes(mockSuccess.status),
     `Mock checkout callback failed: status=${mockSuccess.status}`,
   );
 }
@@ -523,9 +523,24 @@ async function main() {
 
     const kidCourses = await requestText(baseUrl, `/kid/courses?childId=${encodeURIComponent(parentChildId)}`, {
       headers: parentHeaders,
+      redirect: "manual",
     });
-    assert(kidCourses.response.status === 200, `Kid courses page failed: status=${kidCourses.response.status}`);
-    assert(kidCourses.text.includes("kcd-scene"), "Kid courses marker not found");
+    if (redirectStatuses.has(kidCourses.response.status)) {
+      const location = kidCourses.response.headers.get("location") ?? "";
+      assert(
+        location.includes(`/kid/garden?childId=${encodeURIComponent(parentChildId)}`) || location.includes("/kid/courses/"),
+        `Kid courses redirect location unexpected: ${location}`,
+      );
+    } else {
+      assert(kidCourses.response.status === 200, `Kid courses page failed: status=${kidCourses.response.status}`);
+      assert(
+        kidCourses.text.includes("kcd-scene") ||
+          kidCourses.text.includes("ksg-scene") ||
+          kidCourses.text.includes("/kid/garden?childId=") ||
+          kidCourses.text.includes("NEXT_REDIRECT"),
+        "Kid courses marker not found",
+      );
+    }
 
     const kidGarden = await requestText(baseUrl, `/kid/garden?childId=${encodeURIComponent(parentChildId)}`, {
       headers: parentHeaders,

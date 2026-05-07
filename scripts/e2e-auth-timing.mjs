@@ -205,8 +205,12 @@ async function signupParent(baseUrl, payload) {
   assert(signup.response.status === 200, `Signup failed for ${payload.email}: status=${signup.response.status}`);
   assert(signup.json?.ok === true, `Signup did not return ok=true for ${payload.email}`);
   const cookie = getSessionCookie(signup.response.headers.get("set-cookie"));
-  assert(cookie, `Missing session cookie for ${payload.email}`);
-  return cookie;
+  if (cookie) {
+    return cookie;
+  }
+
+  // Signup may complete without issuing a session in some auth flows.
+  return loginParent(baseUrl, payload);
 }
 
 async function getAdminSecuritySettings(baseUrl, adminHeaders) {

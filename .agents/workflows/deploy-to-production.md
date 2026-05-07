@@ -37,11 +37,15 @@ Mục tiêu: deploy an toàn, theo dõi được toàn bộ tiến trình, giả
   - `PROD_APP_DIR` (default `/var/www/cungcontuhoc`)
   - `PROD_PUBLIC_BASE_URL` (default `https://cungcontuhoc.io.vn`)
 - Server prerequisites:
-  - `pnpm`, `pm2`, repo code tại `PROD_APP_DIR`
+  - `node` >= 22, `pnpm`, `pm2`, `pg_dump`, `pg_restore`, repo code tại `PROD_APP_DIR`
   - PM2 process names:
     - `cungcontuhoc-web`
     - `cungcontuhoc-worker`
   - env production file: `.env.production`
+  - optional backup retention env:
+    - `DEPLOY_PRE_MIGRATE_BACKUP_DIR` (default `backups/pre-migrate`)
+    - `DEPLOY_PRE_MIGRATE_BACKUP_KEEP_DAYS` (default `14`)
+    - `DEPLOY_PRE_MIGRATE_BACKUP_KEEP_COUNT` (default `20`)
 
 ### One-time self-hosted runner setup (on production server)
 
@@ -69,9 +73,13 @@ Required labels for workflow matching:
      - fetch + checkout exact commit
      - `pnpm install --frozen-lockfile`
      - `pnpm db:generate`
+     - mandatory pre-migrate PostgreSQL backup (`pg_dump`) + dump readability check (`pg_restore --list`)
+     - backup file permission locked (`0700` dir, `0600` dump)
+     - backup retention prune by age/count
      - `pnpm prisma migrate deploy` (retry)
      - `pnpm build`
      - restart `cungcontuhoc-web` + `cungcontuhoc-worker`
+     - generate `.deploy/latest.json` + `.deploy/rollback-policy.md`
    - Post deploy gates:
      - `pm2 describe` 2 process
      - `/api/health`, `/api/health/ready`
@@ -91,11 +99,20 @@ Use case: deploy patch nhanh mà vẫn giữ full log + health gates.
 
 ## 5. Rollback strategy
 
-Rollback không SSH tay:
+### Application rollback (nhanh, không restore DB)
 1. Chọn run manual của `deploy.yml`
 2. Set `ref` = commit SHA stable trước đó
 3. Trigger deploy lại
 4. Verify health + PM2 snapshot trong workflow artifacts
+
+### Full rollback (DB + app, bắt buộc maintenance window)
+1. Lấy backup path từ `.deploy/latest.json` (`preMigrateBackupFile`)
+2. Chuẩn bị `DB_RESTORE_URL` đã sanitize (xóa Prisma-only params: `schema`, `connection_limit`, `pool_timeout`, `pgbouncer`, `statement_cache_size`)
+3. Restore DB bằng:
+   - `pg_restore --clean --if-exists --no-owner --no-privileges --dbname "$DB_RESTORE_URL" "<backup-file>"`
+4. Rollback app về SHA cũ (manual dispatch `ref=<last-known-good-sha>`)
+5. Verify `/api/health` + `/api/health/ready`
+6. Lưu incident notes + root-cause sau khi ổn định
 
 ## 6. Operational quality gates (must keep)
 
@@ -119,3 +136,14 @@ Khi production incident:
 2. Trigger rollback bằng `deploy.yml` với last-known-good SHA.
 3. Thu thập artifact từ run failed để RCA.
 4. Sau fix, redeploy qua cùng workflow để giữ audit trail.
+
+## 9. Resolved decisions
+
+- Runner root -> deploy user riêng:
+  - **Decision:** Có, nhưng làm theo phased migration (chạy song song + cutover có kiểm soát), không đổi đột ngột.
+  - **Reason:** Giảm blast radius mà vẫn giữ khả năng rollback vận hành.
+- Backup bắt buộc trước `prisma migrate deploy` + rollback policy:
+  - **Decision:** Có, đã triển khai trong `scripts/deploy/remote-deploy.sh`.
+  - **Result:** Deploy fail-closed nếu backup không tạo/verify được; có rollback policy artifact theo từng lần deploy.
+- Pin action/toolchain còn warning Node20:
+  - **Decision:** Có, pin SHA cho actions chính và nâng runtime CI lên Node 22.

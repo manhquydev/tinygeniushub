@@ -1179,7 +1179,7 @@ export function KidSkyGardenScene({
                       className="ksg2-planter"
                     />
                     <Image
-                      src="/images/cloud-garden/ground/course_sapling_level0.png"
+                      src="/images/cloud-garden/ui/course_sapling_level0.png"
                       alt=""
                       width={108}
                       height={128}

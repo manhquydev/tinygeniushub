@@ -1,6 +1,10 @@
 ---
-name: ab-test-setup
+name: ckm:ab-test-setup
 description: When the user wants to plan, design, or implement an A/B test or experiment. Also use when the user mentions "A/B test," "split test," "experiment," "test this change," "variant copy," "multivariate test," or "hypothesis." For tracking implementation, see analytics-tracking.
+argument-hint: "[page or feature]"
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # A/B Test Setup

@@ -4,11 +4,9 @@
  */
 
 const fs = require('fs');
-const os = require('os');
 const path = require('path');
 
-// Cross-platform temp directory for PID files
-const PID_DIR = os.tmpdir();
+const PID_DIR = '/tmp';
 const PID_PREFIX = 'plans-kanban-';
 
 /**

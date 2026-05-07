@@ -1,5 +1,26 @@
 # Project Changelog
 
+## [0.4.8] - 2026-04-10
+
+### Changed
+- Hardened production deploy safety gates:
+  - `scripts/deploy/remote-deploy.sh` now enforces mandatory pre-migrate PostgreSQL backup (`pg_dump`) before `prisma migrate deploy`.
+  - Backup is fail-closed (deploy stops if backup/create/verify fails).
+  - Backup permissions now restricted (`0700` backup dir, `0600` dump file).
+  - Backup retention pruning added (`DEPLOY_PRE_MIGRATE_BACKUP_KEEP_DAYS`, `DEPLOY_PRE_MIGRATE_BACKUP_KEEP_COUNT`) to prevent disk growth.
+  - Deploy now writes rollback artifacts per run:
+    - `.deploy/latest.json` (deploy SHA, previous SHA, backup path/checksum)
+    - `.deploy/rollback-policy.md` (app-only rollback + full DB rollback procedure)
+- Deploy workflow preflight now validates `pg_dump`/`pg_restore` availability and enforces Node.js >= 22 on production runner.
+- Reduced deprecation risk in CI/CD workflow runtime:
+  - Pinned actions to SHA for `checkout`, `setup-node`, `pnpm/action-setup`, `upload-artifact` in release/nightly/deploy workflows.
+  - Upgraded workflow Node runtime from 20 -> 22 in:
+    - `.github/workflows/release-check.yml`
+    - `.github/workflows/nightly-local-full.yml`
+- Updated deploy runbook:
+  - `.agents/workflows/deploy-to-production.md` now includes mandatory backup gate and explicit rollback policy split (application rollback vs full DB+app rollback).
+  - Decision log added for unresolved deploy questions (runner hardening, backup policy, Node20 deprecation mitigation).
+
 ## [0.4.7] - 2026-04-10
 
 ### Changed

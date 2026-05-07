@@ -298,7 +298,13 @@ async function ensureEnrolledCourse(baseUrl, authHeaders, childId) {
   assert(checkout.response.status === 200, `Checkout failed: status=${checkout.response.status}`);
   assert(checkout.json?.ok === true, "Checkout did not return ok=true");
   const checkoutUrl = checkout.json?.data?.checkoutUrl;
-  assert(typeof checkoutUrl === "string" && checkoutUrl.startsWith("/"), "Checkout response missing checkoutUrl");
+  assert(typeof checkoutUrl === "string" && checkoutUrl.length > 0, "Checkout response missing checkoutUrl");
+
+  // Non-mock providers can return absolute hosted payment URLs.
+  // In production-hardening runs, we avoid invoking external checkout callbacks.
+  if (!checkoutUrl.startsWith("/")) {
+    return;
+  }
 
   const mockSuccess = await fetch(`${baseUrl}${checkoutUrl}`, {
     method: "GET",
@@ -306,7 +312,7 @@ async function ensureEnrolledCourse(baseUrl, authHeaders, childId) {
     redirect: "manual",
   });
   assert(
-    [302, 303, 307, 308].includes(mockSuccess.status),
+    [200, 302, 303, 307, 308].includes(mockSuccess.status),
     `Mock checkout callback failed: status=${mockSuccess.status}`,
   );
 }
@@ -370,9 +376,14 @@ async function patchAdminSecuritySettings(baseUrl, adminHeaders, payload) {
 
 async function main() {
   process.env.RATE_LIMIT_TRUST_PROXY = process.env.RATE_LIMIT_TRUST_PROXY ?? "true";
-  process.env.COURSE_PAYMENT_PROVIDER = process.env.COURSE_PAYMENT_PROVIDER ?? "mock_gateway";
+  process.env.COURSE_PAYMENT_PROVIDER = process.env.COURSE_PAYMENT_PROVIDER ?? "payos";
   process.env.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK =
-    process.env.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK ?? "true";
+    process.env.ALLOW_PROD_MOCK_CHECKOUT_CALLBACK ?? "false";
+  if (process.env.COURSE_PAYMENT_PROVIDER === "payos") {
+    process.env.PAYOS_CLIENT_ID = process.env.PAYOS_CLIENT_ID ?? "e2e-payos-client-id";
+    process.env.PAYOS_API_KEY = process.env.PAYOS_API_KEY ?? "e2e-payos-api-key";
+    process.env.PAYOS_CHECKSUM_KEY = process.env.PAYOS_CHECKSUM_KEY ?? "e2e-payos-checksum-key";
+  }
   process.env.E2E_CLIENT_IP =
     process.env.E2E_CLIENT_IP ?? `198.51.100.${20 + Math.floor(Math.random() * 180)}`;
   const runId = `${Date.now()}-${randomUUID().slice(0, 8)}`;

@@ -1,8 +1,11 @@
 ---
 name: ck:copywriting
 description: Conversion copywriting formulas, headline templates, email copy patterns, landing page structures, CTA optimization, and writing style extraction. Activate for writing high-converting copy, crafting headlines, email campaigns, landing pages, or applying custom writing styles from assets/writing-styles/ directory.
-license: MIT
 argument-hint: "[copy-type] [context]"
+license: MIT
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # Copywriting
@@ -59,15 +62,6 @@ Load: `references/landing-page-copy.md` | `references/cta-patterns.md`
 Hero: Headline (promise) → Subheadline (how) → CTA (action) → Social proof
 CTAs: "Start [verb]ing" • "Get [benefit]" • "Yes, I want [benefit]"
 
-## Workflows
-
-| Workflow | Purpose | Use When |
-|----------|---------|----------|
-| `references/workflow-cro.md` | CRO optimization (25 principles) + plan creation workflow | Conversion optimization & CRO plan requests |
-| `references/workflow-enhance.md` | Copy enhancement | Improving existing copy |
-| `references/workflow-fast.md` | Quick copy generation | Simple, time-sensitive requests |
-| `references/workflow-good.md` | Quality copy with research | High-stakes content |
-
 ## References
 
 | File | Purpose |
@@ -80,12 +74,12 @@ CTAs: "Start [verb]ing" • "Get [benefit]" • "Yes, I want [benefit]"
 | `references/cta-patterns.md` | CTA optimization |
 | `references/power-words.md` | Power words by emotion |
 | `references/social-media-copy.md` | Platform-specific copy |
-| `scripts/extract-writing-styles.py` | Extract styles from multi-format files |
+| `scripts/extract-writing-styles.py` | Extract styles from multi-format files (PDF, DOCX, images) |
 | `templates/copy-brief.md` | Creative brief template |
 
 ## Agent Integration
 
-**Primary:** fullstack-developer | **Related:** brand-guidelines, content-marketing, email-marketing
+**Primary:** copywriter | **Related:** brand, content-marketing, email
 
 ## Best Practices
 

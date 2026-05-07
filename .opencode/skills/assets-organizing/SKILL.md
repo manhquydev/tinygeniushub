@@ -1,6 +1,10 @@
 ---
-name: assets-organizing
+name: ckm:assets-organizing
 description: Organize all outputs from slash commands and subagents in assets/ directory by topics, date format, and slugs.
+argument-hint: "[directory or asset-type]"
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # Assets Organizing
@@ -153,8 +157,8 @@ This skill integrates with:
 - `campaign-debugger` agent - Diagnostic reports
 - `content-reviewer` agent - Review reports
 - `analytics` skill - Analytics reports
-- `seo-optimization` skill - SEO reports
-- `social-media` skill - Social reports
-- `campaign-management` skill - Campaign reports
+- `seo` skill - SEO reports
+- `social` skill - Social reports
+- `campaign` skill - Campaign reports
 - `ads-management` skill - Ads reports
-- `email-marketing` skill - Email reports
+- `email` skill - Email reports

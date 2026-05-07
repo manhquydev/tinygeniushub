@@ -242,6 +242,6 @@ examples:
 ## Integration
 
 Use with:
-- `brand-guidelines` skill - Align with brand voice
+- `brand` skill - Align with brand voice
 - `/youtube:blog` command - Apply style to video-to-article
 - `/content:good` command - Style-aware content generation

@@ -5,17 +5,21 @@ const {
   getSessionMock,
   parentFindUniqueMock,
   parentFindFirstMock,
+  userFindUniqueMock,
   userUpdateManyMock,
   getImpersonatedParentIdFromCookieHeaderMock,
   adminFindFirstMock,
+  getAdminSecurityControlsMock,
 } = vi.hoisted(() => ({
   headersMock: vi.fn(),
   getSessionMock: vi.fn(),
   parentFindUniqueMock: vi.fn(),
   parentFindFirstMock: vi.fn(),
+  userFindUniqueMock: vi.fn(),
   userUpdateManyMock: vi.fn(),
   getImpersonatedParentIdFromCookieHeaderMock: vi.fn(),
   adminFindFirstMock: vi.fn(),
+  getAdminSecurityControlsMock: vi.fn(),
 }));
 
 vi.mock("next/headers", () => ({
@@ -37,12 +41,17 @@ vi.mock("@/lib/db", () => ({
       findFirst: parentFindFirstMock,
     },
     user: {
+      findUnique: userFindUniqueMock,
       updateMany: userUpdateManyMock,
     },
     adminAccount: {
       findFirst: adminFindFirstMock,
     },
   },
+}));
+
+vi.mock("@/modules/platform/security-policy-service", () => ({
+  getAdminSecurityControls: getAdminSecurityControlsMock,
 }));
 
 vi.mock("@/lib/env", () => ({
@@ -68,6 +77,12 @@ describe("getParentFromRequest", () => {
     vi.clearAllMocks();
     userUpdateManyMock.mockResolvedValue({ count: 1 });
     adminFindFirstMock.mockResolvedValue(null);
+    getAdminSecurityControlsMock.mockResolvedValue({
+      parentEmailVerificationRequired: false,
+    });
+    userFindUniqueMock.mockResolvedValue({
+      emailVerified: true,
+    });
   });
 
   it("returns null when no auth session exists", async () => {
@@ -223,6 +238,30 @@ describe("getParentFromRequest", () => {
       id: "impersonated-parent",
       email: "parent@example.com",
     });
+  });
+
+  it("returns null when verification is required and auth user email is not verified", async () => {
+    getAdminSecurityControlsMock.mockResolvedValueOnce({
+      parentEmailVerificationRequired: true,
+    });
+    userFindUniqueMock.mockResolvedValueOnce({
+      emailVerified: false,
+    });
+    getSessionMock.mockResolvedValueOnce({
+      user: {
+        id: "auth-user-unverified",
+        email: "parent@example.com",
+        parentId: "parent-1",
+      },
+    });
+
+    const result = await getParentFromRequest({
+      headers: new Headers({ cookie: "ccth_session=session-unverified" }),
+    } as never);
+
+    expect(result).toBeNull();
+    expect(parentFindUniqueMock).not.toHaveBeenCalled();
+    expect(parentFindFirstMock).not.toHaveBeenCalled();
   });
 });
 

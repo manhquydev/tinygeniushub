@@ -1,10 +1,13 @@
 ---
-name: cip-design
+name: ckm:cip-design
 description: "Corporate Identity Program design with 50 deliverables, 20 styles, 20 industries. Generate CIP mockups with Gemini Nano Banana (Flash/Pro). Actions: design, create, generate brand identity. Deliverables: business card, letterhead, signage, vehicle, apparel, packaging. Styles: corporate, luxury, minimal, modern."
+argument-hint: "[deliverable or brand-element]"
 license: MIT
-version: 1.0.0
 dependencies:
   - ai-multimodal  # For Gemini Nano Banana image generation
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # CIP Design - Corporate Identity Program Intelligence

@@ -15,7 +15,7 @@ async function monitorConsole() {
 
   try {
     const browser = await getBrowser({
-      headless: args.headless
+      headless: args.headless !== 'false'
     });
 
     const page = await getPage(browser);
@@ -71,10 +71,8 @@ async function monitorConsole() {
     } else {
       await disconnectBrowser();
     }
-    process.exit(0);
   } catch (error) {
     outputError(error);
-    process.exit(1);
   }
 }
 

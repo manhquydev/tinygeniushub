@@ -37,9 +37,9 @@ Body: Quick reference, workflow, tables. <100 lines.
 | Skill | Purpose |
 |-------|---------|
 | copywriting | Conversion formulas, headlines, CTAs |
-| email-marketing | Sequences, templates, deliverability |
-| seo-optimization | Keywords, audits, pSEO |
-| brand-guidelines | Voice, colors, logo usage |
+| email | Sequences, templates, deliverability |
+| seo | Keywords, audits, pSEO |
+| brand | Voice, colors, logo usage |
 
 ## Creation Workflow
 

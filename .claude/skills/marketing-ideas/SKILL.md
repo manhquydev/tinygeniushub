@@ -1,6 +1,10 @@
 ---
-name: marketing-ideas
+name: ckm:marketing-ideas
 description: "When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the user asks for 'marketing ideas,' 'growth ideas,' 'how to market,' 'marketing strategies,' 'marketing tactics,' 'ways to promote,' or 'ideas to grow.' This skill provides 140 proven marketing approaches organized by category."
+argument-hint: "[product or niche]"
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # Marketing Ideas for SaaS
@@ -558,7 +562,7 @@ When recommending ideas:
 ## Related Skills
 
 - **programmatic-seo**: For scaling SEO content (#40)
-- **competitor-alternatives**: For comparison pages (#2)
+- **competitor**: For comparison pages (#2)
 - **email-sequence**: For email marketing tactics
 - **free-tool-strategy**: For engineering as marketing (#30)
 - **page-cro**: For landing page optimization

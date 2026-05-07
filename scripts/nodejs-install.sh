@@ -2,7 +2,7 @@
 # =============================================================================
 # Node.js Installation Script - Cùng Con Tự Học
 # =============================================================================
-# Purpose: Install Node.js 20 LTS, pnpm, and PM2
+# Purpose: Install Node.js 22 LTS, pnpm, and PM2
 # Run as: deploy user (with sudo access)
 # Target: Ubuntu 22.04 LTS
 # =============================================================================
@@ -29,13 +29,13 @@ error_handler() {
 }
 trap 'error_handler $LINENO' ERR
 
-echo "📦 Installing Node.js 20 LTS and related tools..."
+echo "📦 Installing Node.js 22 LTS and related tools..."
 
 # -----------------------------------------------------------------------------
-# 1. Install Node.js 20 LTS
+# 1. Install Node.js 22 LTS
 # -----------------------------------------------------------------------------
-log_info "Adding NodeSource repository for Node.js 20..."
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+log_info "Adding NodeSource repository for Node.js 22..."
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 
 log_info "Installing Node.js..."
 sudo apt-get install -y nodejs

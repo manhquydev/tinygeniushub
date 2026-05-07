@@ -113,7 +113,7 @@ async function screenshot() {
 
   try {
     const browser = await getBrowser({
-      headless: args.headless
+      headless: args.headless !== 'false'
     });
 
     const page = await getPage(browser);
@@ -183,7 +183,6 @@ async function screenshot() {
     } else {
       await disconnectBrowser();
     }
-    process.exit(0);
   } catch (error) {
     // Enhance error message if selector-related
     if (args.selector) {

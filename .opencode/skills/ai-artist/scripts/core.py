@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-AI Artist Core - BM25 search engine for prompt engineering resources
+AI Artist Core - BM25 search engine for prompt engineering
 """
 
 import csv
@@ -15,42 +15,44 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 MAX_RESULTS = 3
 
 CSV_CONFIG = {
-    "use-case": {
-        "file": "use-cases.csv",
-        "search_cols": ["Use Case", "Category", "Keywords", "Best Platforms"],
-        "output_cols": ["Use Case", "Category", "Keywords", "Prompt Template", "Key Elements", "Best Platforms", "Aspect Ratios", "Tips", "Example"]
-    },
     "style": {
-        "file": "styles.csv",
-        "search_cols": ["Style Name", "Category", "Keywords", "Description", "Best For"],
-        "output_cols": ["Style Name", "Category", "Description", "Key Characteristics", "Color Palette", "Best For", "Platforms", "Prompt Keywords"]
+        "file": "image-styles.csv",
+        "search_cols": ["Style", "Category", "Prompt Keywords", "Best For"],
+        "output_cols": ["Style", "Category", "Prompt Keywords", "Lighting", "Composition", "Quality Modifiers", "Negative Prompt", "Best For", "Platform Tips"]
     },
     "platform": {
         "file": "platforms.csv",
-        "search_cols": ["Platform", "Type", "Keywords", "Strengths"],
-        "output_cols": ["Platform", "Type", "Prompt Style", "Key Parameters", "Strengths", "Limitations", "Aspect Ratios", "Best Practices"]
+        "search_cols": ["Platform", "Type", "Prompt Style", "Strengths"],
+        "output_cols": ["Platform", "Type", "Prompt Style", "Key Parameters", "Syntax Examples", "Strengths", "Limitations", "Best Practices"]
     },
-    "technique": {
-        "file": "techniques.csv",
-        "search_cols": ["Technique", "Category", "Keywords", "Description", "When to Use"],
-        "output_cols": ["Technique", "Category", "Description", "When to Use", "Syntax Example", "Platforms", "Tips"]
+    "subject": {
+        "file": "subjects.csv",
+        "search_cols": ["Subject Type", "Category", "Prompt Modifiers", "Common Issues"],
+        "output_cols": ["Subject Type", "Category", "Prompt Modifiers", "Detail Keywords", "Common Issues", "Tips"]
     },
-    "lighting": {
-        "file": "lighting.csv",
-        "search_cols": ["Lighting Type", "Category", "Keywords", "Description", "Mood", "Best For"],
-        "output_cols": ["Lighting Type", "Category", "Description", "Mood", "Best For", "Prompt Keywords", "Technical Notes"]
+    "llm": {
+        "file": "llm-patterns.csv",
+        "search_cols": ["Pattern Name", "Category", "When to Use", "Template"],
+        "output_cols": ["Pattern Name", "Category", "Template", "When to Use", "Example", "Tips"]
     },
-    "template": {
-        "file": "nano-banana-templates.csv",
-        "search_cols": ["Category", "Template Name", "Keywords"],
-        "output_cols": ["Category", "Template Name", "Keywords", "Prompt Template", "Aspect Ratio", "Tips"]
+    "quality": {
+        "file": "quality-modifiers.csv",
+        "search_cols": ["Modifier", "Category", "Effect", "When to Use"],
+        "output_cols": ["Modifier", "Category", "Effect", "Platform Compatibility", "Example Usage", "When to Use"]
     },
-    "awesome": {
+    "domain": {
+        "file": "domains.csv",
+        "search_cols": ["Domain", "Description", "Key Considerations", "Common Mistakes"],
+        "output_cols": ["Domain", "Description", "Key Considerations", "Prompt Structure", "Common Mistakes", "Best Platforms"]
+    },
+    "examples": {
         "file": "awesome-prompts.csv",
-        "search_cols": ["title", "description", "prompt"],
+        "search_cols": ["title", "category", "description", "prompt"],
         "output_cols": ["id", "title", "category", "description", "prompt", "author", "source"]
     }
 }
+
+AVAILABLE_DOMAINS = list(CSV_CONFIG.keys())
 
 
 # ============ BM25 IMPLEMENTATION ============
@@ -153,11 +155,13 @@ def detect_domain(query):
     query_lower = query.lower()
 
     domain_keywords = {
-        "use-case": ["avatar", "profile", "thumbnail", "poster", "social", "youtube", "instagram", "marketing", "product", "e-commerce", "infographic", "comic", "game", "app", "web", "header", "banner"],
-        "style": ["style", "aesthetic", "photorealistic", "anime", "manga", "3d", "render", "illustration", "pixel", "watercolor", "oil", "cyberpunk", "vaporwave", "minimalist", "vintage", "retro"],
-        "platform": ["midjourney", "dalle", "dall-e", "stable diffusion", "flux", "nano banana", "gemini", "imagen", "ideogram", "leonardo", "firefly", "platform", "tool"],
-        "technique": ["prompt", "technique", "weight", "emphasis", "negative", "json", "structured", "iteration", "reference", "identity", "multi-panel", "search grounding"],
-        "lighting": ["lighting", "light", "shadow", "golden hour", "blue hour", "rembrandt", "butterfly", "neon", "volumetric", "softbox", "rim light", "studio"]
+        "style": ["style", "aesthetic", "look", "mood", "cyberpunk", "minimalist", "cinematic", "anime", "watercolor", "oil painting", "retro", "vintage", "photorealistic", "fantasy", "vaporwave", "pop art"],
+        "platform": ["midjourney", "dall-e", "dalle", "stable diffusion", "flux", "imagen", "veo", "runway", "gemini", "claude", "gpt", "platform", "model", "parameters", "syntax"],
+        "subject": ["portrait", "person", "people", "human", "animal", "creature", "architecture", "building", "interior", "product", "food", "landscape", "cityscape", "abstract", "hands", "group", "text"],
+        "llm": ["llm", "prompt", "system", "chain of thought", "few-shot", "role", "template", "pattern", "reasoning", "json", "format", "instruction", "constraint"],
+        "quality": ["quality", "resolution", "8k", "4k", "detailed", "sharp", "lighting", "render", "professional", "masterpiece", "hd", "focus"],
+        "domain": ["marketing", "social media", "ecommerce", "e-commerce", "brand", "editorial", "gaming", "film", "video", "publishing", "education", "healthcare", "fashion", "technology", "web", "ui"],
+        "examples": ["example", "sample", "template", "inspiration", "reference", "show me", "like", "similar", "idea", "nano banana", "gemini image", "quote card", "infographic", "thumbnail", "comic", "poster", "avatar", "selfie", "bento"]
     }
 
     scores = {domain: sum(1 for kw in keywords if kw in query_lower) for domain, keywords in domain_keywords.items()}
@@ -190,8 +194,8 @@ def search(query, domain=None, max_results=MAX_RESULTS):
 def search_all_domains(query, max_per_domain=2):
     """Search across all domains for comprehensive results"""
     all_results = {}
-    for domain in CSV_CONFIG.keys():
+    for domain in AVAILABLE_DOMAINS:
         result = search(query, domain, max_per_domain)
-        if result.get("count", 0) > 0:
+        if result.get("results"):
             all_results[domain] = result
     return all_results

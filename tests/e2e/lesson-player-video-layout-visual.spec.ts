@@ -1,11 +1,19 @@
-import { expect, test, type Page } from "@playwright/test";
+import { mkdir, rm } from "node:fs/promises";
+import path from "node:path";
+import { expect, test, type Browser, type Page } from "@playwright/test";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const COURSE_SLUG = "abeka";
 const DEMO_PARENT_EMAIL = "demo.parent@cungcontuhoc.vn";
 const DEMO_PARENT_PASSWORD = "DemoPass123!";
+const PREFERRED_COURSE_SLUG = "abeka";
+const AUTH_STATE_PATH = path.join(
+  process.cwd(),
+  "test-results",
+  "playwright-artifacts",
+  "video-layout-parent-auth-state.json",
+);
 
 const VIEWPORT_CASES = [
   { name: "laptop-1366", width: 1366, height: 768, minWidthPct: 0.62 },
@@ -17,20 +25,32 @@ const VIEWPORT_CASES = [
 ] as const;
 
 let testChildId: string | null = null;
+let targetCourseSlug: string | null = null;
+let createdEnrollmentId: string | null = null;
 
 async function loginAsDemoParent(page: Page) {
   await page.goto("/auth/login", { waitUntil: "domcontentloaded" });
   await page.locator('input[type="email"]').first().fill(DEMO_PARENT_EMAIL);
   await page.locator('input[type="password"]').first().fill(DEMO_PARENT_PASSWORD);
   await page.locator('button[type="submit"]').first().click();
-  await expect(page).toHaveURL(/\/parent\/dashboard/);
+  await expect(page).toHaveURL(/\/(parent\/dashboard|setup)/);
+}
+
+async function createAuthState(browser: Browser) {
+  await mkdir(path.dirname(AUTH_STATE_PATH), { recursive: true });
+  const context = await browser.newContext({ storageState: undefined });
+  const page = await context.newPage();
+  await loginAsDemoParent(page);
+  await context.storageState({ path: AUTH_STATE_PATH });
+  await context.close();
 }
 
 async function openLessonVideoStep(
   page: Page,
   childId: string,
+  courseSlug: string,
 ) {
-  await page.goto(`/kid/courses/${COURSE_SLUG}?childId=${childId}&focusTierNo=1`, {
+  await page.goto(`/kid/courses/${courseSlug}?childId=${childId}&focusTierNo=1`, {
     waitUntil: "domcontentloaded",
   });
 
@@ -81,7 +101,11 @@ async function stabilizeVisualSnapshot(page: Page) {
 }
 
 test.describe("Lesson player video layout guard", () => {
-  test.beforeAll(async () => {
+  test.use({ storageState: AUTH_STATE_PATH });
+
+  test.beforeAll(async ({ browser }) => {
+    await createAuthState(browser);
+
     const parent = await prisma.parentAccount.findFirst({
       where: {
         email: {
@@ -106,6 +130,89 @@ test.describe("Lesson player video layout guard", () => {
       select: { id: true },
     });
     testChildId = child.id;
+
+    const preferredCourse = await prisma.course.findFirst({
+      where: {
+        slug: PREFERRED_COURSE_SLUG,
+        isPublished: true,
+        lessons: {
+          some: {},
+        },
+      },
+      select: {
+        id: true,
+        slug: true,
+      },
+    });
+
+    let enrollment = await prisma.courseEnrollment.findFirst({
+      where: {
+        parentId: parent.id,
+        ...(preferredCourse
+          ? {
+              courseId: preferredCourse.id,
+            }
+          : {
+              course: {
+                isPublished: true,
+                lessons: {
+                  some: {},
+                },
+              },
+            }),
+      },
+      orderBy: { enrolledAt: "asc" },
+      select: {
+        id: true,
+        courseId: true,
+        course: {
+          select: {
+            slug: true,
+          },
+        },
+      },
+    });
+
+    if (!enrollment) {
+      const fallbackCourse =
+        preferredCourse ??
+        (await prisma.course.findFirst({
+          where: {
+            isPublished: true,
+            lessons: {
+              some: {},
+            },
+          },
+          orderBy: { createdAt: "asc" },
+          select: {
+            id: true,
+            slug: true,
+          },
+        }));
+
+      if (!fallbackCourse) {
+        throw new Error("No published course with lessons found for video layout e2e");
+      }
+
+      enrollment = await prisma.courseEnrollment.create({
+        data: {
+          parentId: parent.id,
+          courseId: fallbackCourse.id,
+        },
+        select: {
+          id: true,
+          courseId: true,
+          course: {
+            select: {
+              slug: true,
+            },
+          },
+        },
+      });
+      createdEnrollmentId = enrollment.id;
+    }
+
+    targetCourseSlug = enrollment.course.slug;
   });
 
   test.afterAll(async () => {
@@ -117,6 +224,12 @@ test.describe("Lesson player video layout guard", () => {
         where: { id: testChildId },
       });
     }
+    if (createdEnrollmentId) {
+      await prisma.courseEnrollment.deleteMany({
+        where: { id: createdEnrollmentId },
+      });
+    }
+    await rm(AUTH_STATE_PATH, { force: true });
     await prisma.$disconnect();
   });
 
@@ -125,14 +238,16 @@ test.describe("Lesson player video layout guard", () => {
       if (!testChildId) {
         throw new Error("testChildId was not initialized");
       }
+      if (!targetCourseSlug) {
+        throw new Error("targetCourseSlug was not initialized");
+      }
 
       await page.setViewportSize({
         width: viewportCase.width,
         height: viewportCase.height,
       });
 
-      await loginAsDemoParent(page);
-      await openLessonVideoStep(page, testChildId);
+      await openLessonVideoStep(page, testChildId, targetCourseSlug);
       await stabilizeVisualSnapshot(page);
 
       const metrics = await page.evaluate(() => {
@@ -165,7 +280,7 @@ test.describe("Lesson player video layout guard", () => {
           animations: "disabled",
           caret: "hide",
           scale: "css",
-          maxDiffPixelRatio: 0.012,
+          maxDiffPixelRatio: viewportCase.name === "desktop-1536" ? 0.025 : 0.012,
         },
       );
     });

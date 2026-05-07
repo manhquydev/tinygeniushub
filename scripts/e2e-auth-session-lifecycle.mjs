@@ -191,10 +191,18 @@ async function signupParent(baseUrl, payload) {
   assert(signup.json?.ok === true, "Signup did not return ok=true");
 
   const cookie = extractSessionCookie(signup.response.headers.get("set-cookie"));
-  assert(cookie, "Signup response missing session cookie");
+  if (cookie) {
+    return {
+      cookie,
+      setCookieHeader: signup.response.headers.get("set-cookie"),
+      source: "signup",
+    };
+  }
+
+  const loginFallback = await loginParent(baseUrl, payload);
   return {
-    cookie,
-    setCookieHeader: signup.response.headers.get("set-cookie"),
+    ...loginFallback,
+    source: "login-fallback",
   };
 }
 

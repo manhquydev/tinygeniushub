@@ -1,3 +1,11 @@
+---
+name: ckm:storage
+description: S3-compatible object storage integration for marketing assets. Works with Cloudflare R2, AWS S3, MinIO, Backblaze B2, DigitalOcean Spaces.
+metadata:
+  author: claudekit
+  version: "1.0.0"
+---
+
 # Storage Skill
 
 S3-compatible object storage integration for marketing assets. Works with Cloudflare R2, AWS S3, MinIO, Backblaze B2, DigitalOcean Spaces.

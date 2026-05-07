@@ -1,137 +1,53 @@
 ---
 name: ck:plan
-description: "Plan implementations, design architectures, create technical roadmaps with detailed phases. Use for feature planning, system design, solution architecture, implementation strategy, phase documentation."
-argument-hint: "[task] OR archive|red-team|validate"
-license: MIT
+description: 💡💡💡 Intelligent plan creation with prompt enhancement
+argument-hint: "[archive|ci|cro|fast|hard|parallel|two|validate] [task]"
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
-# Planning
+## Your mission
+<task>
+$ARGUMENTS
+</task>
 
-Create detailed technical implementation plans through research, codebase analysis, solution design, and comprehensive documentation.
+## Pre-Creation Check (Active vs Suggested Plan Detection)
 
-## Default (No Arguments)
+Check the `## Plan Context` section in the injected context:
+- If "Plan:" shows a path → Active plan exists. Ask user: "Active plan found: {path}. Continue with this? [Y/n]"
+- If "Suggested:" shows a path → Branch-matched plan hint only. Ask user if they want to activate it or create new.
+- If "Plan: none" → Proceed to create new plan using naming pattern from `## Naming` section.
 
-If invoked with a task description, proceed with planning workflow. If invoked WITHOUT arguments or with unclear intent, use `AskUserQuestion` to present available operations:
+## Workflow
+- Analyze the given task and use `AskUserQuestion` tool to ask for more details if needed.
+- Decide to use `/plan:fast` or `/plan:hard` SlashCommands based on the complexity.
+- Execute SlashCommand: `/plan:fast <detailed-instructions-prompt>` or `/plan:hard <detailed-instructions-prompt>`
+- Activate `planning` skill.
+- Note: `detailed-instructions-prompt` is **an enhanced prompt** that describes the task in detail based on the provided task description.
 
-| Operation | Description |
-|-----------|-------------|
-| `(default)` | Create implementation plan for a task |
-| `archive` | Write journal entry & archive plans |
-| `red-team` | Adversarial plan review |
-| `validate` | Critical questions interview |
-
-Present as options via `AskUserQuestion` with header "Planning Operation", question "What would you like to do?".
-
-## Workflow Modes
-
-Default: `--auto` (analyze task complexity and auto-pick mode).
-
-| Flag | Mode | Research | Red Team | Validation | Cook Flag |
-|------|------|----------|----------|------------|-----------|
-| `--auto` | Auto-detect | Follows mode | Follows mode | Follows mode | Follows mode |
-| `--fast` | Fast | Skip | Skip | Skip | `--auto` |
-| `--hard` | Hard | 2 researchers | Yes | Optional | (none) |
-| `--parallel` | Parallel | 2 researchers | Yes | Optional | `--parallel` |
-| `--two` | Two approaches | 2+ researchers | After selection | After selection | (none) |
-
-Add `--no-tasks` to skip task hydration in any mode.
-
-Load: `references/workflow-modes.md` for auto-detection logic, per-mode workflows, context reminders.
-
-## When to Use
-
-- Planning new feature implementations
-- Architecting system designs
-- Evaluating technical approaches
-- Creating implementation roadmaps
-- Breaking down complex requirements
-
-## Core Responsibilities & Rules
-
-Always honoring **YAGNI**, **KISS**, and **DRY** principles.
-**Be honest, be brutal, straight to the point, and be concise.**
-
-### 1. Research & Analysis
-Load: `references/research-phase.md`
-**Skip if:** Fast mode or provided with researcher reports
-
-### 2. Codebase Understanding
-Load: `references/codebase-understanding.md`
-**Skip if:** Provided with scout reports
-
-### 3. Solution Design
-Load: `references/solution-design.md`
-
-### 4. Plan Creation & Organization
-Load: `references/plan-organization.md`
-
-### 5. Task Breakdown & Output Standards
-Load: `references/output-standards.md`
-
-## Workflow Process
-
-1. **Pre-Creation Check** → Check Plan Context for active/suggested/none
-2. **Mode Detection** → Auto-detect or use explicit flag (see `workflow-modes.md`)
-3. **Research Phase** → Spawn researchers (skip in fast mode)
-4. **Codebase Analysis** → Read docs, scout if needed
-5. **Plan Documentation** → Write comprehensive plan via planner subagent
-6. **Red Team Review** → Use `Skill` tool: `plan:red-team {plan-path}` (hard/parallel/two modes)
-7. **Post-Plan Validation** → Use `Skill` tool: `plan:validate {plan-path}` (hard/parallel/two modes)
-8. **Hydrate Tasks** → Create Claude Tasks from phases (default on, `--no-tasks` to skip)
-9. **Context Reminder** → Output cook command with absolute path (MANDATORY)
-
-## Output Requirements
-
-- DO NOT implement code - only create plans
-- Respond with plan file path and summary
-- Ensure self-contained plans with necessary context
-- Include code snippets/pseudocode when clarifying
-- Fully respect the `./docs/development-rules.md` file
-
-## Task Management
-
-Plan files = persistent. Tasks = session-scoped. Hydration bridges the gap.
-
-**Default:** Auto-hydrate tasks after plan files are written. Skip with `--no-tasks`.
-**3-Task Rule:** <3 phases → skip task creation.
-
-Load: `references/task-management.md` for hydration pattern, TaskCreate patterns, cook handoff protocol.
-
-### Hydration Workflow
-1. Write plan.md + phase files (persistent layer)
-2. TaskCreate per phase with `addBlockedBy` chain
-3. TaskCreate for critical/high-risk steps within phases
-4. Metadata: phase, priority, effort, planDir, phaseFile
-5. Cook picks up via TaskList (same session) or re-hydrates (new session)
-
-## Active Plan State
-
-Check `## Plan Context` injected by hooks:
-- **"Plan: {path}"** → Active plan. Ask "Continue? [Y/n]"
-- **"Suggested: {path}"** → Branch hint only. Ask if activate or create new.
-- **"Plan: none"** → Create new using `Plan dir:` from `## Naming`
-
-After creating plan: `node .opencode/scripts/set-active-plan.cjs {plan-dir}`
-Reports: Active plans → plan-specific path. Suggested → default path.
-
-### Important
-DO NOT create plans or reports in USER directory.
-ALWAYS create plans or reports in CURRENT WORKING PROJECT DIRECTORY.
+## Important Notes
+**IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
+**IMPORTANT:** Sacrifice grammar for the sake of concision when writing reports.
+**IMPORTANT:** Ensure token efficiency while maintaining high quality.
+**IMPORTANT:** In reports, list any unresolved questions at the end, if any.
+**IMPORTANT**: **Do not** start implementing.
 
 ## Subcommands
 
-| Subcommand | Reference | Purpose |
-|------------|-----------|---------|
-| `/ck:plan archive` | `references/archive-workflow.md` | Archive plans + write journal entries |
-| `/ck:plan red-team` | `references/red-team-workflow.md` | Adversarial plan review with hostile reviewers |
-| `/ck:plan validate` | `references/validate-workflow.md` | Validate plan with critical questions interview |
+| Subcommand | Description | Reference |
+|------------|-------------|-----------|
+| `archive` | Write journal entries and archive specific plans or all plans | `references/archive.md` |
+| `ci` | Analyze Github Actions logs and provide a plan to fix the issues | `references/ci.md` |
+| `cro` | Create a CRO plan for the given content | `references/cro.md` |
+| `fast` | 💡💡 No research. Only analyze and create an implementation plan | `references/fast.md` |
+| `hard` | 💡💡💡 Research, analyze, and create an implementation plan | `references/hard.md` |
+| `parallel` | 💡💡💡 Create detailed plan with parallel-executable phases | `references/parallel.md` |
+| `two` | 💡💡💡💡 Research & create an implementation plan with 2 approaches | `references/two.md` |
+| `validate` | Validate plan with critical questions interview | `references/validate.md` |
 
-## Quality Standards
+## Routing
 
-- Thorough and specific, consider long-term maintainability
-- Research thoroughly when uncertain
-- Address security and performance concerns
-- Detailed enough for junior developers
-- Validate against existing codebase patterns
-
-**Remember:** Plan quality determines implementation success. Be comprehensive and consider all solution aspects.
+1. Parse subcommand from `$ARGUMENTS` (first word)
+2. Load corresponding `references/{subcommand}.md`
+3. Execute with remaining arguments

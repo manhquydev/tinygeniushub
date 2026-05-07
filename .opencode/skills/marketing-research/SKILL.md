@@ -1,7 +1,11 @@
 ---
-name: marketing-research
+name: ckm:marketing-research
 description: Research market trends, competitors, audience insights, and marketing best practices. Use before marketing-planning for data-driven strategy.
+argument-hint: "[topic or market]"
 license: MIT
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # Marketing Research

@@ -5,7 +5,7 @@ Fast debug-fix-review cycle for simple issues.
 ## Steps
 
 ### Step 1: Debug
-Activate `ck:debug` skill. Find root cause quickly. Verify the root cause with multiple `Explore` subagents in parallel.
+Activate `debugging` skill. Find root cause quickly.
 - Read error message/logs
 - Locate affected file(s)
 - Identify exact fix needed
@@ -47,10 +47,10 @@ Report summary to user.
 
 ## Skills/Subagents Activated
 
-- `ck:debug` - Always (Step 1)
+- `debugging` - Always (Step 1)
 - Parallel `git-manager` - Verification (Step 2)
 - `code-reviewer` subagent - Always (Step 3)
-- `ck:context-engineering` - If dealing with AI/LLM code
+- `context-engineering` - If dealing with AI/LLM code
 
 ## Notes
 

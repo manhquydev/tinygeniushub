@@ -23,6 +23,8 @@ describe("assertRequestAllowedBySecurityControls", () => {
       globalLimitMultiplier: 1,
       blockedIpCidrs: ["203.0.113.0/24"],
       readinessAllowlistCidrs: [],
+      parentEmailVerificationRequired: true,
+      parentEmailVerificationTokenTtlMinutes: 15,
     });
 
     await expect(assertRequestAllowedBySecurityControls(new Request("http://localhost"))).rejects.toMatchObject({
@@ -38,6 +40,8 @@ describe("assertRequestAllowedBySecurityControls", () => {
       globalLimitMultiplier: 1,
       blockedIpCidrs: [],
       readinessAllowlistCidrs: ["10.0.0.0/8"],
+      parentEmailVerificationRequired: true,
+      parentEmailVerificationTokenTtlMinutes: 15,
     });
 
     await expect(
@@ -57,6 +61,8 @@ describe("assertRequestAllowedBySecurityControls", () => {
       globalLimitMultiplier: 1,
       blockedIpCidrs: ["203.0.113.0/24"],
       readinessAllowlistCidrs: [],
+      parentEmailVerificationRequired: true,
+      parentEmailVerificationTokenTtlMinutes: 15,
     });
 
     await expect(assertRequestAllowedBySecurityControls(new Request("http://localhost"))).resolves.toBeUndefined();
@@ -69,6 +75,8 @@ describe("assertRequestAllowedBySecurityControls", () => {
       globalLimitMultiplier: 1,
       blockedIpCidrs: [],
       readinessAllowlistCidrs: ["10.0.0.0/8"],
+      parentEmailVerificationRequired: true,
+      parentEmailVerificationTokenTtlMinutes: 15,
     });
 
     await expect(
@@ -88,6 +96,8 @@ describe("assertRequestAllowedBySecurityControls", () => {
       globalLimitMultiplier: 1,
       blockedIpCidrs: ["203.0.113.0/24"],
       readinessAllowlistCidrs: [],
+      parentEmailVerificationRequired: true,
+      parentEmailVerificationTokenTtlMinutes: 15,
     });
 
     await expect(assertRequestAllowedBySecurityControls(new Request("http://localhost"))).rejects.toMatchObject({

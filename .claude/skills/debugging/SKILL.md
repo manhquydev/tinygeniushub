@@ -1,8 +1,11 @@
 ---
-name: Debugging
+name: ckm:debugging
 description: Systematic debugging framework ensuring root cause investigation before fixes. Includes four-phase debugging process, backward call stack tracing, multi-layer validation, and verification protocols. Use when encountering bugs, test failures, unexpected behavior, performance issues, or before claiming work complete. Prevents random fixes, masks over symptoms, and false completion claims.
-version: 3.0.0
+argument-hint: "[error or issue description]"
 languages: all
+metadata:
+  author: claudekit
+  version: "3.0.0"
 ---
 
 # Debugging

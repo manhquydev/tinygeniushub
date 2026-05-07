@@ -316,7 +316,8 @@ async function stopServer(child) {
 
 async function main() {
   process.env.RATE_LIMIT_TRUST_PROXY = process.env.RATE_LIMIT_TRUST_PROXY ?? "true";
-  process.env.CRON_SECRET = process.env.CRON_SECRET ?? "e2e-cron-secret-please-change";
+  process.env.CRON_SECRET =
+    process.env.CRON_SECRET ?? "e2e-cron-secret-please-change-min-32-characters";
   await runBuild();
 
   const port = Number(process.env.E2E_PORT ?? (await getFreePort()));
@@ -327,7 +328,7 @@ async function main() {
     await waitForReady(baseUrl);
 
     await assertRoute(baseUrl, "/", 200, "Cùng Con Tự Học");
-    await assertRoute(baseUrl, "/pricing", 200, "Bảng giá rõ ràng");
+    await assertRoute(baseUrl, "/pricing", 200, "Bảng giá minh bạch theo từng khóa");
     await assertRoute(baseUrl, "/auth/login", 200, "Đăng nhập phụ huynh");
     await assertRoute(baseUrl, "/api/health", 200, "\"status\":\"ok\"");
     await assertRouteStatusIn(baseUrl, "/api/health/ready", [200, 503]);

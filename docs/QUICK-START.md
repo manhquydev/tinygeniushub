@@ -10,7 +10,7 @@
 
 | Yêu cầu | Version | Kiểm tra |
 |---------|---------|----------|
-| Node.js | 20+ | `node --version` |
+| Node.js | 22+ | `node --version` |
 | PostgreSQL | 15+ | `psql --version` |
 | pnpm | 10+ | `pnpm --version` |
 | Git | 2.x | `git --version` |
@@ -18,10 +18,10 @@
 ### Cài đặt nhanh:
 
 ```bash
-# Node.js 20 (nếu chưa có)
+# Node.js 22 (nếu chưa có)
 # macOS/Linux (nvm)
-nvm install 20
-nvm use 20
+nvm install 22
+nvm use 22
 
 # Windows - download tại https://nodejs.org/
 

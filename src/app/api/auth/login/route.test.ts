@@ -1,29 +1,36 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { DomainError } from "@/modules/platform/errors";
 
 const {
   assertTrustedOriginMock,
   assertRequestAllowedBySecurityControlsMock,
   getRateLimitPolicyMock,
+  getAdminSecurityControlsMock,
   enforceRateLimitMock,
   getRequestIpMock,
   buildRateLimitIdentityMock,
   logInfoMock,
   logWarnMock,
   signInEmailMock,
-  parentFindUniqueMock,
   parentUpdateMock,
+  authenticateParentMock,
+  isParentEmailVerifiedMock,
+  issueParentEmailVerificationChallengeMock,
 } = vi.hoisted(() => ({
   assertTrustedOriginMock: vi.fn(),
   assertRequestAllowedBySecurityControlsMock: vi.fn(),
   getRateLimitPolicyMock: vi.fn(),
+  getAdminSecurityControlsMock: vi.fn(),
   enforceRateLimitMock: vi.fn(),
   getRequestIpMock: vi.fn(),
   buildRateLimitIdentityMock: vi.fn(),
   logInfoMock: vi.fn(),
   logWarnMock: vi.fn(),
   signInEmailMock: vi.fn(),
-  parentFindUniqueMock: vi.fn(),
   parentUpdateMock: vi.fn(),
+  authenticateParentMock: vi.fn(),
+  isParentEmailVerifiedMock: vi.fn(),
+  issueParentEmailVerificationChallengeMock: vi.fn(),
 }));
 
 vi.mock("@/lib/security/csrf", () => ({
@@ -36,6 +43,7 @@ vi.mock("@/modules/platform/security-access-guard", () => ({
 
 vi.mock("@/modules/platform/security-policy-service", () => ({
   getRateLimitPolicy: getRateLimitPolicyMock,
+  getAdminSecurityControls: getAdminSecurityControlsMock,
 }));
 
 vi.mock("@/lib/rate-limit", () => ({
@@ -60,10 +68,25 @@ vi.mock("@/lib/auth/better-auth", () => ({
 vi.mock("@/lib/db", () => ({
   prisma: {
     parentAccount: {
-      findUnique: parentFindUniqueMock,
       update: parentUpdateMock,
     },
   },
+}));
+
+vi.mock("@/modules/identity/service", async () => {
+  const actual = await vi.importActual<typeof import("@/modules/identity/service")>(
+    "@/modules/identity/service",
+  );
+
+  return {
+    ...actual,
+    authenticateParent: authenticateParentMock,
+  };
+});
+
+vi.mock("@/modules/identity/parent-email-verification-service", () => ({
+  isParentEmailVerified: isParentEmailVerifiedMock,
+  issueParentEmailVerificationChallenge: issueParentEmailVerificationChallengeMock,
 }));
 
 import { POST } from "@/app/api/auth/login/route";
@@ -78,6 +101,14 @@ describe("auth login route", () => {
       limit: 10,
       windowMs: 60_000,
     });
+    getAdminSecurityControlsMock.mockResolvedValue({
+      ddosMode: "normal",
+      globalLimitMultiplier: 1,
+      blockedIpCidrs: [],
+      readinessAllowlistCidrs: [],
+      parentEmailVerificationRequired: true,
+      parentEmailVerificationTokenTtlMinutes: 15,
+    });
     enforceRateLimitMock.mockResolvedValue({
       allowed: true,
       remaining: 9,
@@ -85,6 +116,15 @@ describe("auth login route", () => {
     });
     getRequestIpMock.mockReturnValue("203.0.113.10");
     buildRateLimitIdentityMock.mockReturnValue("email-hash");
+    authenticateParentMock.mockResolvedValue({
+      id: "parent-1",
+      email: "parent@example.com",
+      displayName: "Parent",
+    });
+    isParentEmailVerifiedMock.mockResolvedValue(true);
+    issueParentEmailVerificationChallengeMock.mockResolvedValue({
+      expiresAt: new Date("2026-04-08T10:15:00.000Z"),
+    });
     signInEmailMock.mockResolvedValue({
       headers: new Headers({
         "set-cookie": "ccth_session=token; Path=/; HttpOnly",
@@ -94,11 +134,6 @@ describe("auth login route", () => {
           id: "parent-1",
         },
       },
-    });
-    parentFindUniqueMock.mockResolvedValue({
-      id: "parent-1",
-      email: "parent@example.com",
-      displayName: "Parent",
     });
     parentUpdateMock.mockResolvedValue({
       id: "parent-1",
@@ -207,13 +242,41 @@ describe("auth login route", () => {
     );
   });
 
-  it("returns 401 when auth result does not provide user id", async () => {
-    signInEmailMock.mockResolvedValueOnce({
-      headers: new Headers(),
-      response: {
-        user: {},
-      },
-    });
+  it("returns 401 when credentials are invalid", async () => {
+    authenticateParentMock.mockRejectedValueOnce(new DomainError("Invalid credentials", 401, "INVALID_CREDENTIALS"));
+
+    const response = await POST(
+      new Request("http://localhost/api/auth/login", {
+        method: "POST",
+        headers: {
+          origin: "http://localhost",
+          host: "localhost",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "parent@example.com",
+          password: "wrong-password",
+        }),
+      }),
+    );
+    const body = await response.json();
+
+    expect(response.status).toBe(401);
+    expect(body.error.message).toBe("Invalid credentials");
+    expect(signInEmailMock).not.toHaveBeenCalled();
+    expect(logWarnMock).toHaveBeenCalledWith(
+      "auth.login.failed",
+      expect.objectContaining({
+        reason: "invalid_credentials",
+        ip: "203.0.113.10",
+        identityHash: "email-hash",
+        code: "INVALID_CREDENTIALS",
+      }),
+    );
+  });
+
+  it("returns 403 and reissues verification email when parent email is not verified", async () => {
+    isParentEmailVerifiedMock.mockResolvedValueOnce(false);
 
     const response = await POST(
       new Request("http://localhost/api/auth/login", {
@@ -231,20 +294,68 @@ describe("auth login route", () => {
     );
     const body = await response.json();
 
-    expect(response.status).toBe(401);
-    expect(body.error.message).toBe("Invalid credentials");
+    expect(response.status).toBe(403);
+    expect(body.error.details?.code).toBe("EMAIL_NOT_VERIFIED");
+    expect(body.error.message).toContain("Email chưa được xác minh");
+    expect(issueParentEmailVerificationChallengeMock).toHaveBeenCalledWith({
+      parent: {
+        id: "parent-1",
+        email: "parent@example.com",
+        displayName: "Parent",
+      },
+      ttlMinutes: 15,
+    });
+    expect(signInEmailMock).not.toHaveBeenCalled();
     expect(logWarnMock).toHaveBeenCalledWith(
       "auth.login.failed",
       expect.objectContaining({
-        reason: "invalid_credentials",
+        reason: "email_not_verified",
         ip: "203.0.113.10",
         identityHash: "email-hash",
+        code: "EMAIL_NOT_VERIFIED",
       }),
     );
   });
 
-  it("returns 401 when parent profile is missing", async () => {
-    parentFindUniqueMock.mockResolvedValueOnce(null);
+  it("returns 403 when email verification resend fails", async () => {
+    isParentEmailVerifiedMock.mockResolvedValueOnce(false);
+    issueParentEmailVerificationChallengeMock.mockRejectedValueOnce(new Error("queue down"));
+
+    const response = await POST(
+      new Request("http://localhost/api/auth/login", {
+        method: "POST",
+        headers: {
+          origin: "http://localhost",
+          host: "localhost",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "parent@example.com",
+          password: "password-123",
+        }),
+      }),
+    );
+    const body = await response.json();
+
+    expect(response.status).toBe(403);
+    expect(body.error.details?.code).toBe("EMAIL_NOT_VERIFIED_DELIVERY_FAILED");
+    expect(signInEmailMock).not.toHaveBeenCalled();
+    expect(logWarnMock).toHaveBeenCalledWith(
+      "auth.login.verification_email_enqueue_failed",
+      expect.objectContaining({
+        parentId: "parent-1",
+        ip: "203.0.113.10",
+      }),
+    );
+  });
+
+  it("returns 401 when auth result does not provide user id", async () => {
+    signInEmailMock.mockResolvedValueOnce({
+      headers: new Headers(),
+      response: {
+        user: {},
+      },
+    });
 
     const response = await POST(
       new Request("http://localhost/api/auth/login", {
@@ -311,11 +422,6 @@ describe("auth login route", () => {
         code: "AUTH_API_ERROR",
       }),
     );
-    const failedAuthSecurityLog = logWarnMock.mock.calls.find(
-      (call) => call[0] === "auth.login.failed",
-    )?.[1];
-    expect(JSON.stringify(failedAuthSecurityLog)).not.toContain("parent@example.com");
-    expect(JSON.stringify(failedAuthSecurityLog)).not.toContain("password-123");
   });
 
   it("enforces email bucket rate limit even when source ip rotates", async () => {
@@ -339,13 +445,7 @@ describe("auth login route", () => {
         retryAfterMs: 0,
       };
     });
-    signInEmailMock.mockRejectedValue({
-      name: "APIError",
-      statusCode: 401,
-      body: {
-        message: "Invalid email or password",
-      },
-    });
+    authenticateParentMock.mockRejectedValue(new DomainError("Invalid credentials", 401, "INVALID_CREDENTIALS"));
 
     const attempt1 = await POST(
       new Request("http://localhost/api/auth/login", {
@@ -400,7 +500,7 @@ describe("auth login route", () => {
     expect(attempt3.status).toBe(429);
     expect(attempt3.headers.get("Retry-After")).toBe("5");
     expect(body3.error.message).toBe("Too many login attempts. Please retry later.");
-    expect(signInEmailMock).toHaveBeenCalledTimes(2);
+    expect(signInEmailMock).not.toHaveBeenCalled();
     expect(logWarnMock).toHaveBeenCalledWith(
       "auth.login.rate_limited",
       expect.objectContaining({
@@ -440,6 +540,15 @@ describe("auth login route", () => {
         },
       },
     });
+    expect(authenticateParentMock).toHaveBeenCalledWith(
+      {
+        email: "parent@example.com",
+        password: "password-123",
+      },
+      {
+        touchLastActiveAt: false,
+      },
+    );
     expect(logInfoMock).toHaveBeenCalledWith(
       "auth.login.succeeded",
       expect.objectContaining({

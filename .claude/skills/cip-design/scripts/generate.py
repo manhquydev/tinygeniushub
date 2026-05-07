@@ -6,7 +6,8 @@ CIP Design Generator - Generate corporate identity mockups using Gemini Nano Ban
 Uses Gemini's native image generation (Nano Banana Flash/Pro) for high-quality mockups.
 Supports text-and-image-to-image generation for using actual brand logos.
 
-- gemini-2.5-flash-image: Fast generation, cost-effective (default)
+- gemini-3.1-flash-image-preview: Nano Banana 2 - fastest, near-Pro quality (NEW DEFAULT)
+- gemini-2.5-flash-image: Previous default, stable
 - gemini-3-pro-image-preview: Pro quality, 4K text rendering
 
 Image Editing (text-and-image-to-image):
@@ -27,10 +28,11 @@ from core import search, get_cip_brief
 
 # Model options
 MODELS = {
-    "flash": "gemini-2.5-flash-image",      # Nano Banana Flash - fast, default
-    "pro": "gemini-3-pro-image-preview"      # Nano Banana Pro - quality, 4K text
+    "flash2": "gemini-3.1-flash-image-preview",  # Nano Banana 2 - fastest, near-Pro quality (NEW DEFAULT)
+    "flash": "gemini-2.5-flash-image",            # Nano Banana Flash - previous default, stable
+    "pro": "gemini-3-pro-image-preview"            # Nano Banana Pro - quality, 4K text
 }
-DEFAULT_MODEL = "flash"
+DEFAULT_MODEL = "flash2"
 
 
 def load_logo_image(logo_path):
@@ -191,7 +193,8 @@ def generate_with_nano_banana(prompt_data, output_dir=None, model_key="flash", a
     2. Image editing: Text-and-image-to-image using provided logo (logo_image=PIL.Image)
 
     Models:
-    - flash: gemini-2.5-flash-image (fast, cost-effective) - DEFAULT
+    - flash2: gemini-3.1-flash-image-preview (fastest, near-Pro quality) - NEW DEFAULT
+    - flash: gemini-2.5-flash-image (previous default, stable)
     - pro: gemini-3-pro-image-preview (quality, 4K text rendering)
 
     Args:
@@ -389,7 +392,8 @@ Examples:
   python generate.py --brand "MyBrand" --logo logo.png --deliverable "vehicle" --output ./mockups --ratio 16:9
 
 Models:
-  flash (default): gemini-2.5-flash-image - Fast, cost-effective
+  flash2 (default): gemini-3.1-flash-image-preview - Fastest, near-Pro quality (NEW DEFAULT)
+  flash: gemini-2.5-flash-image - Previous default, stable
   pro: gemini-3-pro-image-preview - Quality, 4K text rendering
 
 Image Editing Mode:

@@ -15,6 +15,17 @@
             "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/session-init.cjs"
           }
         ]
+      },
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/usage-quota-cache-refresh.cjs",
+            "timeout": 8,
+            "_origin": "engineer"
+          }
+        ]
       }
     ],
     "SubagentStart": [
@@ -66,6 +77,15 @@
             "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/cook-after-plan-reminder.cjs"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/session-state.cjs",
+            "_origin": "engineer"
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -74,11 +94,31 @@
           {
             "type": "command",
             "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/dev-rules-reminder.cjs"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/usage-quota-cache-refresh.cjs",
+            "timeout": 30,
+            "_origin": "engineer"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/dev-rules-reminder.cjs",
+            "_origin": "marketing"
           },
           {
             "type": "command",
             "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/usage-context-awareness.cjs",
-            "timeout": 30
+            "timeout": 30,
+            "_origin": "marketing"
           }
         ]
       }
@@ -114,6 +154,11 @@
           {
             "type": "command",
             "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/post-edit-simplify-reminder.cjs"
+          },
+          {
+            "type": "command",
+            "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/plan-format-kanban.cjs",
+            "_origin": "engineer"
           }
         ]
       },
@@ -122,8 +167,19 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/usage-context-awareness.cjs",
-            "timeout": 10
+            "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/usage-quota-cache-refresh.cjs",
+            "timeout": 10,
+            "_origin": "engineer"
+          }
+        ]
+      },
+      {
+        "matcher": "Task|TaskCreate|TaskUpdate|TodoWrite",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/session-state.cjs",
+            "_origin": "engineer"
           }
         ]
       }
@@ -151,6 +207,22 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"%CLAUDE_PROJECT_DIR%\"/.claude/hooks/session-state.cjs",
+            "_origin": "engineer"
+          }
+        ]
+      }
     ]
+  },
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "attribution": {
+    "commit": "",
+    "pr": ""
   }
 }

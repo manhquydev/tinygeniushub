@@ -1,8 +1,11 @@
 ---
-name: logo-design
+name: ckm:logo-design
 description: "Logo design intelligence with 55 styles, 30 color palettes, 25 industries. Generate logos with Gemini Nano Banana model, search styles/colors/industries. Actions: design, create, generate logo. Industries: tech, healthcare, finance, food, fashion, fitness. Styles: minimalist, vintage, luxury, geometric, abstract, mascot, emblem. Features: AI prompt generation, design briefs, color psychology."
+argument-hint: "[brand-name] [style]"
 license: MIT
-version: 1.0.0
+metadata:
+  author: claudekit
+  version: "1.0.0"
 ---
 
 # Logo Design - AI-Powered Logo Intelligence
