@@ -28,7 +28,7 @@ async function sendContactEmail(payload: z.infer<typeof contactPayloadSchema>, c
   }
 
   const text = [
-    "Yêu cầu liên hệ mới từ website Cùng Con Tự Học",
+    "Yêu cầu liên hệ mới từ website TinyGenius Hub",
     `Họ tên: ${payload.name}`,
     `Email: ${payload.email}`,
     `Chủ đề: ${payload.subject}`,
@@ -50,7 +50,7 @@ async function sendContactAcknowledgementEmail(payload: z.infer<typeof contactPa
   const text = [
     `Xin chào ${payload.name},`,
     "",
-    "Cùng Con Tự Học đã nhận được yêu cầu hỗ trợ của bạn.",
+    "TinyGenius Hub đã nhận được yêu cầu hỗ trợ của bạn.",
     `Chủ đề: ${payload.subject}`,
     "Đội ngũ sẽ phản hồi trong thời gian sớm nhất.",
     "",
@@ -60,7 +60,7 @@ async function sendContactAcknowledgementEmail(payload: z.infer<typeof contactPa
 
   await enqueueTransactionalEmail({
     to: payload.email,
-    subject: `[Cùng Con Tự Học] Đã tiếp nhận yêu cầu: ${payload.subject}`,
+    subject: `[TinyGenius Hub] Đã tiếp nhận yêu cầu: ${payload.subject}`,
     text,
     tags: [{ name: "feature", value: "contact_form_ack" }],
   });

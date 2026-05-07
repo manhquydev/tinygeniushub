@@ -5,8 +5,8 @@ import { LEGAL_POLICY_LAST_UPDATED_LABEL } from "@/lib/legal/legal-policy-versio
 export const metadata: Metadata = {
   title: "Chính sách Cookie",
   description:
-    "Giải thích cách Cùng Con Tự Học dùng cookie cần thiết, phân tích và tiếp thị; cách phụ huynh quản lý hoặc rút lại đồng ý.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/cookie-policy" },
+    "Giải thích cách TinyGenius Hub dùng cookie cần thiết, phân tích và tiếp thị; cách phụ huynh quản lý hoặc rút lại đồng ý.",
+  alternates: { canonical: "https://tinygeniushubvn.tech/cookie-policy" },
 };
 
 export default function CookiePolicyPage() {
@@ -14,7 +14,7 @@ export default function CookiePolicyPage() {
     <article className="prose-page">
       <h1>Chính sách Cookie</h1>
       <p>
-        Chính sách này mô tả cách Cùng Con Tự Học dùng cookie khi bạn truy cập website/app. Chúng tôi chỉ bật cookie
+        Chính sách này mô tả cách TinyGenius Hub dùng cookie khi bạn truy cập website/app. Chúng tôi chỉ bật cookie
         không thiết yếu sau khi có đồng ý rõ ràng từ phụ huynh.
       </p>
 
@@ -79,7 +79,7 @@ export default function CookiePolicyPage() {
       <h2>7. Liên hệ</h2>
       <p>
         Nếu cần hỗ trợ về lựa chọn cookie hoặc quyền dữ liệu cá nhân, vui lòng liên hệ:{" "}
-        <a href="mailto:privacy@cungcontuhoc.io.vn">privacy@cungcontuhoc.io.vn</a>.
+        <a href="mailto:privacy@tinygeniushubvn.tech">privacy@tinygeniushubvn.tech</a>.
       </p>
 
       <p className="last-updated">Ngày cập nhật gần nhất: {LEGAL_POLICY_LAST_UPDATED_LABEL}</p>

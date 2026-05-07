@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Giải pháp học tập cho trường mầm non — Cùng Con Tự Học",
+  title: "Giải pháp học tập cho trường mầm non — TinyGenius Hub",
   description:
     "Nền tảng Toán tư duy + Tiếng Anh Phonics cho trường mầm non: bảng điều khiển giáo viên, báo cáo phụ huynh và nhập danh sách học sinh nhanh.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/for-schools" },
+  alternates: { canonical: "https://tinygeniushubvn.tech/for-schools" },
   openGraph: {
-    title: "Giải pháp học tập cho trường mầm non — Cùng Con Tự Học",
+    title: "Giải pháp học tập cho trường mầm non — TinyGenius Hub",
     description: "Bảng điều khiển giáo viên · Báo cáo phụ huynh · Khởi tạo nhanh",
-    url: "https://cungcontuhoc.io.vn/for-schools",
+    url: "https://tinygeniushubvn.tech/for-schools",
     type: "website",
   },
 };

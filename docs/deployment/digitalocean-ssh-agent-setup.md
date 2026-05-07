@@ -31,12 +31,12 @@ It deploys by:
 Run locally:
 
 ```bash
-ssh-keygen -t ed25519 -f ~/.ssh/cungcontuhoc_do_deploy -C "github-actions@cungcontuhoc"
+ssh-keygen -t ed25519 -f ~/.ssh/tinygeniushub_do_deploy -C "github-actions@tinygeniushubvn.tech"
 ```
 
 This creates:
-- `~/.ssh/cungcontuhoc_do_deploy` (private key)
-- `~/.ssh/cungcontuhoc_do_deploy.pub` (public key)
+- `~/.ssh/tinygeniushub_do_deploy` (private key)
+- `~/.ssh/tinygeniushub_do_deploy.pub` (public key)
 
 ## Step 2: Add public key to the server
 
@@ -45,7 +45,7 @@ Use a dedicated deploy user (recommended `deploy`), then add the public key:
 ```bash
 mkdir -p ~/.ssh && chmod 700 ~/.ssh
 cat >> ~/.ssh/authorized_keys
-# paste content from cungcontuhoc_do_deploy.pub, then Ctrl+D
+# paste content from tinygeniushub_do_deploy.pub, then Ctrl+D
 chmod 600 ~/.ssh/authorized_keys
 ```
 
@@ -71,15 +71,15 @@ In GitHub repo settings, add:
 - `DO_SSH_USER`: deploy user (for example `deploy`)
 - `DO_SSH_PRIVATE_KEY`: full private key content (`-----BEGIN OPENSSH PRIVATE KEY----- ...`)
 - `DO_SSH_KNOWN_HOSTS`: output from `ssh-keyscan -H ...`
-- `DO_APP_DIR`: app path on server (for example `/var/www/cungcontuhoc`)
-- `GA4_PROPERTY_ID`: production GA4 property ID used as SoT (must match production web stream for `cungcontuhoc.io.vn`)
+- `DO_APP_DIR`: app path on server (for example `/var/www/tinygeniushub`)
+- `GA4_PROPERTY_ID`: production GA4 property ID used as SoT (must match production web stream for `tinygeniushubvn.tech`)
 - `GA4_SERVICE_ACCOUNT_CLIENT_EMAIL`: service account email for GA4 Data API readonly access
 - `GA4_SERVICE_ACCOUNT_PRIVATE_KEY`: service account private key (full key with line breaks)
 - `GA4_SOT_REQUIRED`: set `true` in production once SoT rollout is mandatory
 
 Post-deploy restart command should target current process names:
-- `pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web`
-- `pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker`
+- `pm2 restart tinygeniushub-web --update-env || pm2 start tinygeniushub-web`
+- `pm2 restart tinygeniushub-worker --update-env || pm2 start tinygeniushub-worker`
 
 Avoid wildcard PM2 commands in production workflows:
 - Do not use `pm2 restart all`

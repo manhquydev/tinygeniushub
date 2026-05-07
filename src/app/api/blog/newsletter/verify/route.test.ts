@@ -11,7 +11,7 @@ vi.mock("@/modules/blog/newsletter-service", () => ({
 }));
 
 vi.mock("@/lib/email/project-email-template-builder", () => ({
-  resolveEmailPublicBaseUrl: vi.fn(() => "https://cungcontuhoc.io.vn"),
+  resolveEmailPublicBaseUrl: vi.fn(() => "https://tinygeniushubvn.tech"),
 }));
 
 import { GET } from "@/app/api/blog/newsletter/verify/route";
@@ -33,7 +33,7 @@ describe("blog newsletter verify route", () => {
     const response = await GET(new Request("http://localhost/api/blog/newsletter/verify?token=invalid"));
 
     expect(response.status).toBe(307);
-    expect(response.headers.get("location")).toBe("https://cungcontuhoc.io.vn/blog?subscribed=false");
+    expect(response.headers.get("location")).toBe("https://tinygeniushubvn.tech/blog?subscribed=false");
   });
 
   it("redirects to subscribed=true when token is valid", async () => {
@@ -42,6 +42,6 @@ describe("blog newsletter verify route", () => {
     const response = await GET(new Request("http://localhost/api/blog/newsletter/verify?token=valid"));
 
     expect(response.status).toBe(307);
-    expect(response.headers.get("location")).toBe("https://cungcontuhoc.io.vn/blog?subscribed=true");
+    expect(response.headers.get("location")).toBe("https://tinygeniushubvn.tech/blog?subscribed=true");
   });
 });

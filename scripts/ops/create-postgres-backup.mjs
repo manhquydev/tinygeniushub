@@ -50,7 +50,7 @@ function getDatabaseName() {
     }
   }
 
-  return "cungcontuhoc";
+  return "tinygeniushub";
 }
 
 async function runOffsiteUpload(filePath) {

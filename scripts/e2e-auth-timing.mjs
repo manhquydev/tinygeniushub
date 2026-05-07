@@ -265,7 +265,7 @@ async function main() {
   const medianDeltaMaxMs = Number(process.env.E2E_AUTH_TIMING_MEDIAN_DELTA_MAX_MS ?? 120);
   const p95DeltaMaxMs = Number(process.env.E2E_AUTH_TIMING_P95_DELTA_MAX_MS ?? 180);
 
-  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@cungcontuhoc.io.vn";
+  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@tinygeniushubvn.tech";
   const adminPassword = process.env.E2E_ADMIN_PASSWORD ?? "DemoAdmin123!";
   const timingParentEmail = process.env.E2E_AUTH_TIMING_EMAIL ?? `timing-${Date.now()}@example.com`;
   const timingParentPassword = process.env.E2E_AUTH_TIMING_PASSWORD ?? "TimingPass123!";

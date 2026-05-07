@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description:
     "Bảng giá minh bạch theo từng khóa, xem bài học mẫu trước khi mua và chính sách hoàn tiền trong 30 ngày.",
   alternates: {
-    canonical: "https://cungcontuhoc.io.vn/pricing",
+    canonical: "https://tinygeniushubvn.tech/pricing",
   },
   openGraph: {
-    title: "Bảng giá khóa học — Cùng Con Tự Học",
+    title: "Bảng giá khóa học — TinyGenius Hub",
     description: "Mua theo từng khóa · Thanh toán nhanh · Hoàn tiền 30 ngày",
-    url: "https://cungcontuhoc.io.vn/pricing",
+    url: "https://tinygeniushubvn.tech/pricing",
     type: "website",
   },
 };

@@ -16,7 +16,7 @@ test.describe("admin footer social links", () => {
 
   test("admin updates footer social links and homepage reflects immediately", async ({ page }) => {
     const runId = Date.now();
-    const adminEmail = `e2e.admin.footer.${runId}@cungcontuhoc.vn`;
+    const adminEmail = `e2e.admin.footer.${runId}@tinygeniushubvn.tech`;
     const adminPassword = "E2EFooterLinks@2026!";
 
     const originalSettings = await prisma.siteContentSettings.findUnique({

@@ -2,9 +2,9 @@
 
 const { envMock } = vi.hoisted(() => ({
   envMock: {
-    BETTER_AUTH_URL: "https://cungcontuhoc.io.vn",
-    REPORT_EMAIL_FROM: "no-reply@cungcontuhoc.io.vn",
-    REPORT_EMAIL_REPLY_TO: "support@cungcontuhoc.io.vn",
+    BETTER_AUTH_URL: "https://tinygeniushubvn.tech",
+    REPORT_EMAIL_FROM: "no-reply@tinygeniushubvn.tech",
+    REPORT_EMAIL_REPLY_TO: "support@tinygeniushubvn.tech",
   },
 }));
 
@@ -22,9 +22,9 @@ describe("renderProjectEmailHtml", () => {
       tags: [{ name: "feature", value: "contact_form_ack" }],
     });
 
-    expect(html).toContain("logo-cungcontuhoc-mascot-email.png");
+    expect(html).toContain("logo-tinygeniushub-mascot-email.png");
     expect(html).toContain("Chúng tôi đã nhận yêu cầu hỗ trợ của bạn");
-    expect(html).toContain("support@cungcontuhoc.io.vn");
+    expect(html).toContain("support@tinygeniushubvn.tech");
     expect(html).toContain("Nền tảng đồng hành cùng phụ huynh");
   });
 
@@ -41,15 +41,15 @@ describe("renderProjectEmailHtml", () => {
   });
 
   it("renders centered CTA and unsubscribe footer without exposing raw URL text", () => {
-    const unsubscribeUrl = "https://cungcontuhoc.io.vn/api/email/marketing/unsubscribe?token=abc123";
+    const unsubscribeUrl = "https://tinygeniushubvn.tech/api/email/marketing/unsubscribe?token=abc123";
     const html = renderProjectEmailHtml({
       subject: "Lifecycle",
       text: [
         "Xin chào phụ huynh,",
         "",
-        "Mở dashboard: https://cungcontuhoc.io.vn/parent/dashboard",
+        "Mở dashboard: https://tinygeniushubvn.tech/parent/dashboard",
         "",
-        "Nếu bạn không muốn nhận email marketing từ Cùng Con Tự Học, hủy đăng ký tại đây:",
+        "Nếu bạn không muốn nhận email marketing từ TinyGenius Hub, hủy đăng ký tại đây:",
         unsubscribeUrl,
       ].join("\n"),
       tags: [{ name: "feature", value: "lifecycle" }],
@@ -67,10 +67,10 @@ describe("renderProjectEmailHtml", () => {
       text: [
         "Có phản hồi mới cho bình luận của bạn.",
         "",
-        "Xem chi tiết: https://cungcontuhoc.io.vn/blog/demo#comments",
+        "Xem chi tiết: https://tinygeniushubvn.tech/blog/demo#comments",
         "",
         "Nếu bạn không muốn nhận email thông báo trả lời nữa, bấm link:",
-        "https://cungcontuhoc.io.vn/api/blog/comments/unsubscribe?token=abc123",
+        "https://tinygeniushubvn.tech/api/blog/comments/unsubscribe?token=abc123",
       ].join("\n"),
       tags: [{ name: "feature", value: "blog_comment_reply" }],
     });

@@ -1,6 +1,6 @@
 # VPS Production Deployment Guide
 
-Complete guide for deploying the **Cùng Con Tự Học** (Abeka Curriculum System) on Ubuntu 22.04 LTS VPS.
+Complete guide for deploying the **TinyGenius Hub** (Abeka Curriculum System) on Ubuntu 22.04 LTS VPS.
 
 **Target Stack:**
 - **OS:** Ubuntu 22.04 LTS
@@ -42,7 +42,7 @@ Complete guide for deploying the **Cùng Con Tự Học** (Abeka Curriculum Syst
 
 - Domain A record pointing to VPS IP
 - Optional: `www` subdomain
-- Example: `cungcontuhoc.io.vn` -> `your.vps.ip.address`
+- Example: `tinygeniushubvn.tech` -> `your.vps.ip.address`
 
 ### 1.3 Required Access
 
@@ -63,7 +63,7 @@ Complete guide for deploying the **Cùng Con Tự Học** (Abeka Curriculum Syst
 #!/bin/bash
 set -euo pipefail
 
-echo "🚀 Starting VPS setup for Cung Con Tu Hoc..."
+echo "🚀 Starting VPS setup for TinyGenius Hub..."
 
 # Update system
 echo "📦 Updating packages..."
@@ -182,8 +182,8 @@ echo "✅ Node.js, pnpm, and PM2 installed!"
 #!/bin/bash
 set -euo pipefail
 
-DOMAIN="${1:-cungcontuhoc.io.vn}"
-EMAIL="${2:-admin@cungcontuhoc.io.vn}"
+DOMAIN="${1:-tinygeniushubvn.tech}"
+EMAIL="${2:-admin@tinygeniushubvn.tech}"
 
 echo "🔧 Installing Nginx..."
 sudo apt install -y nginx
@@ -193,7 +193,7 @@ sudo rm -f /etc/nginx/sites-enabled/default
 
 # Create Nginx configuration
 echo "⚙️  Configuring Nginx..."
-sudo tee /etc/nginx/sites-available/cungcontuhoc << 'EOF'
+sudo tee /etc/nginx/sites-available/tinygeniushub << 'EOF'
 upstream app_server {
     server 127.0.0.1:3000;
     keepalive 32;
@@ -247,7 +247,7 @@ server {
 
     # Static files caching
     location /_next/static {
-        alias /var/www/cungcontuhoc/.next/static;
+        alias /var/www/tinygeniushub/.next/static;
         expires 1y;
         add_header Cache-Control "public, immutable";
         access_log off;
@@ -306,10 +306,10 @@ server {
 EOF
 
 # Replace DOMAIN placeholder
-sudo sed -i "s/DOMAIN/$DOMAIN/g" /etc/nginx/sites-available/cungcontuhoc
+sudo sed -i "s/DOMAIN/$DOMAIN/g" /etc/nginx/sites-available/tinygeniushub
 
 # Enable site
-sudo ln -sf /etc/nginx/sites-available/cungcontuhoc /etc/nginx/sites-enabled/
+sudo ln -sf /etc/nginx/sites-available/tinygeniushub /etc/nginx/sites-enabled/
 
 # Test configuration
 sudo nginx -t
@@ -351,8 +351,8 @@ echo "Certificate: /etc/letsencrypt/live/$DOMAIN/"
 #!/bin/bash
 set -euo pipefail
 
-DB_NAME="${1:-cungcontuhoc}"
-DB_USER="${2:-cungcontuhoc_app}"
+DB_NAME="${1:-tinygeniushub}"
+DB_USER="${2:-tinygeniushub_app}"
 DB_PASS="${3:-$(openssl rand -base64 24)}"
 
 echo "🐘 Installing PostgreSQL 15..."
@@ -413,8 +413,8 @@ echo "⚠️  SAVE THIS PASSWORD SECURELY!"
 #!/bin/bash
 set -euo pipefail
 
-DB_NAME="${1:-cungcontuhoc}"
-DB_USER="${2:-cungcontuhoc_app}"
+DB_NAME="${1:-tinygeniushub}"
+DB_USER="${2:-tinygeniushub_app}"
 DB_PASS="${3:-your_password_here}"
 
 echo "🏊 Installing PgBouncer..."
@@ -632,7 +632,7 @@ echo "✅ Redis configured with AOF persistence!"
 #!/bin/bash
 set -euo pipefail
 
-APP_DIR="/var/www/cungcontuhoc"
+APP_DIR="/var/www/tinygeniushub"
 REPO_URL="https://github.com/manhquydev/cungcontuhoc.git"
 
 echo "📁 Setting up application..."
@@ -643,8 +643,8 @@ sudo chown deploy:deploy $APP_DIR
 
 # Clone repository
 cd /srv
-git clone $REPO_URL cungcontuhoc
-cd cungcontuhoc
+git clone $REPO_URL tinygeniushub
+cd tinygeniushub
 
 # Install dependencies
 echo "📦 Installing dependencies..."
@@ -660,17 +660,17 @@ echo "Next: Configure .env.production"
 
 ### 4.2 Environment Configuration Template
 
-Create `/var/www/cungcontuhoc/.env.production`:
+Create `/var/www/tinygeniushub/.env.production`:
 
 ```bash
 # Database (using PgBouncer on port 6432)
-DATABASE_URL=postgresql://cungcontuhoc_app:YOUR_PASSWORD@127.0.0.1:6432/cungcontuhoc?schema=public
+DATABASE_URL=postgresql://tinygeniushub_app:YOUR_PASSWORD@127.0.0.1:6432/tinygeniushub?schema=public
 
 # Session & Auth Secrets (generate: openssl rand -hex 32)
 SESSION_SECRET=YOUR_64_CHAR_HEX_SECRET
 BETTER_AUTH_SECRET=YOUR_64_CHAR_HEX_SECRET
-BETTER_AUTH_URL=https://cungcontuhoc.io.vn
-AUTH_TRUSTED_ORIGINS=https://cungcontuhoc.io.vn,https://www.cungcontuhoc.io.vn
+BETTER_AUTH_URL=https://tinygeniushubvn.tech
+AUTH_TRUSTED_ORIGINS=https://tinygeniushubvn.tech,https://www.tinygeniushubvn.tech
 
 # Admin Secret
 ADMIN_AUTH_SECRET=YOUR_64_CHAR_HEX_SECRET
@@ -691,8 +691,8 @@ PAYOS_CHECKSUM_KEY=your_payos_checksum_key
 REPORT_EMAIL_PROVIDER=brevo
 REPORT_EMAIL_BREVO_API_KEY=xkeysib_xxxxx
 REPORT_EMAIL_BREVO_API_BASE_URL=https://api.brevo.com/v3
-REPORT_EMAIL_FROM=no-reply@cungcontuhoc.io.vn
-REPORT_EMAIL_REPLY_TO=support@cungcontuhoc.io.vn
+REPORT_EMAIL_FROM=no-reply@tinygeniushubvn.tech
+REPORT_EMAIL_REPLY_TO=support@tinygeniushubvn.tech
 
 # Optional: Brevo SMTP relay reference (for external SMTP clients/tools)
 REPORT_EMAIL_BREVO_SMTP_SERVER=smtp-relay.brevo.com
@@ -718,7 +718,7 @@ RATE_LIMIT_TRUST_PROXY=true
 RATE_LIMIT_TRUSTED_HOPS=1
 
 # Backup
-BACKUP_OUTPUT_DIR=/var/www/cungcontuhoc/backups/postgres
+BACKUP_OUTPUT_DIR=/var/www/tinygeniushub/backups/postgres
 BACKUP_OFFSITE_ENABLED=true
 BACKUP_OFFSITE_R2_BUCKET=your-backup-bucket
 BACKUP_OFFSITE_R2_PREFIX=postgres/prod
@@ -726,7 +726,7 @@ BACKUP_OFFSITE_R2_PREFIX=postgres/prod
 # Misc
 LOG_LEVEL=info
 NODE_ENV=production
-ADMIN_EMAILS=admin@cungcontuhoc.io.vn
+ADMIN_EMAILS=admin@tinygeniushubvn.tech
 ```
 
 ### 4.3 PM2 Ecosystem Configuration
@@ -737,26 +737,26 @@ ADMIN_EMAILS=admin@cungcontuhoc.io.vn
 module.exports = {
   apps: [
     {
-      name: 'cungcontuhoc-web',
+      name: 'tinygeniushub-web',
       script: './node_modules/.bin/next',
       args: 'start --hostname 0.0.0.0 --port 3000',
-      cwd: '/var/www/cungcontuhoc',
+      cwd: '/var/www/tinygeniushub',
       env: { NODE_ENV: 'production' },
       max_memory_restart: '1G',
       restart_delay: 3000,
       max_restarts: 5,
-      log_file: '/var/log/pm2/cungcontuhoc-web.log',
+      log_file: '/var/log/pm2/tinygeniushub-web.log',
       log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
       autorestart: true
     },
     {
-      name: 'cungcontuhoc-worker',
+      name: 'tinygeniushub-worker',
       script: './node_modules/.bin/tsx',
       args: 'src/worker/index.ts',
-      cwd: '/var/www/cungcontuhoc',
+      cwd: '/var/www/tinygeniushub',
       env: { NODE_ENV: 'production' },
       max_memory_restart: '512M',
-      log_file: '/var/log/pm2/cungcontuhoc-worker.log',
+      log_file: '/var/log/pm2/tinygeniushub-worker.log',
       autorestart: true
     }
   ]
@@ -772,7 +772,7 @@ module.exports = {
 set -euo pipefail
 
 echo "🚀 Starting initial deployment..."
-cd /var/www/cungcontuhoc
+cd /var/www/tinygeniushub
 
 # Pull latest code
 git fetch origin && git checkout main && git pull origin main
@@ -797,7 +797,7 @@ pm2 save
 pm2 startup systemd
 
 echo "✅ Initial deployment complete!"
-echo "Check: curl https://cungcontuhoc.io.vn/api/health"
+echo "Check: curl https://tinygeniushubvn.tech/api/health"
 ```
 
 ---
@@ -808,7 +808,7 @@ echo "Check: curl https://cungcontuhoc.io.vn/api/health"
 
 ```bash
 # From local machine
-rsync -avz --progress ./abeka_tools/api/ deploy@cungcontuhoc.io.vn:/srv/abeka_tools/api/
+rsync -avz --progress ./abeka_tools/api/ deploy@tinygeniushubvn.tech:/srv/abeka_tools/api/
 ```
 
 ### 5.2 Import Script
@@ -819,7 +819,7 @@ rsync -avz --progress ./abeka_tools/api/ deploy@cungcontuhoc.io.vn:/srv/abeka_to
 #!/bin/bash
 set -euo pipefail
 
-cd /var/www/cungcontuhoc
+cd /var/www/tinygeniushub
 
 echo "🎓 Starting Abeka curriculum import..."
 
@@ -835,7 +835,7 @@ echo "✅ Abeka import complete!"
 echo "📚 Importing full course catalog..."
 pnpm tsx prisma/scripts/import-three-courses-bootstrap.ts \
   --api-root /srv/abeka_tools/api \
-  --bootstrap /var/www/cungcontuhoc/docs/api/program-bootstrap/three-courses-program.json \
+  --bootstrap /var/www/tinygeniushub/docs/api/program-bootstrap/three-courses-program.json \
   --publish
 
 echo "✅ Full catalog import complete!"
@@ -850,7 +850,7 @@ echo "✅ Full catalog import complete!"
 echo "🔍 Verifying deployment..."
 
 # Database counts
-sudo -u postgres psql -d cungcontuhoc << 'EOF'
+sudo -u postgres psql -d tinygeniushub << 'EOF'
 SELECT 'Abeka Grades' as table_name, COUNT(*) as count FROM "AbekaGrade"
 UNION ALL SELECT 'Abeka Lessons', COUNT(*) FROM "AbekaLesson"
 UNION ALL SELECT 'Courses', COUNT(*) FROM "Course"
@@ -859,8 +859,8 @@ EOF
 
 # API health checks
 echo ""
-echo "Health: $(curl -s https://cungcontuhoc.io.vn/api/health | jq -r '.status // "unknown"')"
-echo "Ready: $(curl -s https://cungcontuhoc.io.vn/api/health/ready | jq -r '.ready // "unknown"')"
+echo "Health: $(curl -s https://tinygeniushubvn.tech/api/health | jq -r '.status // "unknown"')"
+echo "Ready: $(curl -s https://tinygeniushubvn.tech/api/health/ready | jq -r '.ready // "unknown"')"
 ```
 
 ---
@@ -875,7 +875,7 @@ echo "Ready: $(curl -s https://cungcontuhoc.io.vn/api/health/ready | jq -r '.rea
 #!/bin/bash
 set -euo pipefail
 
-APP_DIR="/var/www/cungcontuhoc"
+APP_DIR="/var/www/tinygeniushub"
 BACKUP_DIR="/srv/backups/postgres"
 RETENTION_DAYS=7
 
@@ -886,13 +886,13 @@ cd $APP_DIR
 export $(grep -v '^#' .env.production | xargs)
 
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-BACKUP_FILE="cungcontuhoc_${TIMESTAMP}.dump"
+BACKUP_FILE="tinygeniushub_${TIMESTAMP}.dump"
 
 echo "[$(date)] Starting backup: $BACKUP_FILE"
 
 # Create backup
-pg_dump -h 127.0.0.1 -p 6432 -U cungcontuhoc_app \
-  -Fc -f "$BACKUP_DIR/$BACKUP_FILE" cungcontuhoc
+pg_dump -h 127.0.0.1 -p 6432 -U tinygeniushub_app \
+  -Fc -f "$BACKUP_DIR/$BACKUP_FILE" tinygeniushub
 
 # Calculate checksum
 cd $BACKUP_DIR
@@ -916,7 +916,7 @@ if [ "$BACKUP_OFFSITE_ENABLED" = "true" ]; then
 fi
 
 # Clean old backups
-find $BACKUP_DIR -name "cungcontuhoc_*.dump*" -mtime +$RETENTION_DAYS -delete
+find $BACKUP_DIR -name "tinygeniushub_*.dump*" -mtime +$RETENTION_DAYS -delete
 
 echo "[$(date)] Backup complete!"
 ```
@@ -931,7 +931,7 @@ set -euo pipefail
 
 OLD_SERVER="${1:-}"
 NEW_SERVER="${2:-}"
-DOMAIN="cungcontuhoc.io.vn"
+DOMAIN="tinygeniushubvn.tech"
 
 if [ -z "$OLD_SERVER" ] || [ -z "$NEW_SERVER" ]; then
   echo "Usage: $0 <old-server-ip> <new-server-ip>"
@@ -941,17 +941,17 @@ fi
 echo "🚚 Migrating from $OLD_SERVER to $NEW_SERVER..."
 
 # 1. Create backup on old server
-ssh deploy@$OLD_SERVER "cd /var/www/cungcontuhoc && pnpm backup:create"
+ssh deploy@$OLD_SERVER "cd /var/www/tinygeniushub && pnpm backup:create"
 LATEST=$(ssh deploy@$OLD_SERVER "ls -t /srv/backups/postgres/*.dump | head -1")
 
 # 2. Transfer to new server
 rsync -avz "deploy@$OLD_SERVER:$LATEST" "deploy@$NEW_SERVER:/srv/backups/postgres/"
 
 # 3. Restore on new server
-ssh deploy@$NEW_SERVER "cd /var/www/cungcontuhoc && pnpm backup:restore -- --file=/srv/backups/postgres/$(basename $LATEST)"
+ssh deploy@$NEW_SERVER "cd /var/www/tinygeniushub && pnpm backup:restore -- --file=/srv/backups/postgres/$(basename $LATEST)"
 
 # 4. Start services
-ssh deploy@$NEW_SERVER "cd /var/www/cungcontuhoc && pm2 start ecosystem.config.js --env production && pm2 save"
+ssh deploy@$NEW_SERVER "cd /var/www/tinygeniushub && pm2 start ecosystem.config.js --env production && pm2 save"
 
 echo "✅ Migration complete! Update DNS to point $DOMAIN to $NEW_SERVER"
 ```
@@ -968,8 +968,8 @@ echo "✅ Migration complete! Update DNS to point $DOMAIN to $NEW_SERVER"
 #!/bin/bash
 set -euo pipefail
 
-APP_URL="https://cungcontuhoc.io.vn"
-LOG_FILE="/var/log/cungcontuhoc/health-check.log"
+APP_URL="https://tinygeniushubvn.tech"
+LOG_FILE="/var/log/tinygeniushub/health-check.log"
 
 mkdir -p $(dirname $LOG_FILE)
 
@@ -981,8 +981,8 @@ echo "[$(date)] health=$HEALTH ready=$READY" >> $LOG_FILE
 # Alert and restart if down
 if [ "$HEALTH" != "200" ]; then
   echo "[$(date)] ALERT: Health check failed!" >> $LOG_FILE
-  pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web
-  pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker
+  pm2 restart tinygeniushub-web --update-env || pm2 start tinygeniushub-web
+  pm2 restart tinygeniushub-worker --update-env || pm2 start tinygeniushub-worker
 fi
 ```
 
@@ -993,7 +993,7 @@ fi
 
 ### 7.2 Log Rotation
 
-**`/etc/logrotate.d/cungcontuhoc`**:
+**`/etc/logrotate.d/tinygeniushub`**:
 
 ```
 /var/log/pm2/*.log {
@@ -1033,11 +1033,11 @@ fi
 
 **Application won't start:**
 ```bash
-pm2 logs cungcontuhoc-web
+pm2 logs tinygeniushub-web
 # Check Node.js version
 node --version  # Should be v22.x
 # Check environment
-cat /var/www/cungcontuhoc/.env.production | grep -E "^(DATABASE_URL|REDIS_URL)"
+cat /var/www/tinygeniushub/.env.production | grep -E "^(DATABASE_URL|REDIS_URL)"
 # Test database
 psql "$(grep DATABASE_URL .env.production | cut -d'=' -f2-)" -c "SELECT 1;"
 ```
@@ -1060,10 +1060,10 @@ sudo nginx -t && sudo systemctl reload nginx
 
 ```bash
 # Deploy new code
-cd /var/www/cungcontuhoc && git pull --ff-only origin main && pnpm install --frozen-lockfile && pnpm prisma migrate deploy && pnpm prisma migrate status && pnpm build && pm2 reload cungcontuhoc-web && pm2 reload cungcontuhoc-worker
+cd /var/www/tinygeniushub && git pull --ff-only origin main && pnpm install --frozen-lockfile && pnpm prisma migrate deploy && pnpm prisma migrate status && pnpm build && pm2 reload tinygeniushub-web && pm2 reload tinygeniushub-worker
 
 # Check status
-pm2 status && curl https://cungcontuhoc.io.vn/api/health
+pm2 status && curl https://tinygeniushubvn.tech/api/health
 
 # Create backup
 pnpm backup:create -- --offsite
@@ -1077,8 +1077,8 @@ tail -f /var/log/nginx/error.log
 sudo tail -f /var/log/postgresql/*.log
 
 # Restart services
-pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web
-pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker
+pm2 restart tinygeniushub-web --update-env || pm2 start tinygeniushub-web
+pm2 restart tinygeniushub-worker --update-env || pm2 start tinygeniushub-worker
 sudo systemctl restart postgresql redis-server nginx
 ```
 

@@ -1,7 +1,7 @@
 # Documentation Accuracy Verification Report
 
 **Generated:** 2026-04-04  
-**Project:** Cung Con Tu Hoc  
+**Project:** TinyGenius Hub  
 **Scope:** Environment Variables, Scripts, API Endpoints, File Paths
 
 ---
@@ -371,10 +371,10 @@
    ```javascript
    module.exports = {
      apps: [{
-       name: 'cungcontuhoc-web',
+       name: 'tinygeniushub-web',
        script: './node_modules/.bin/next',
        args: 'start --hostname 0.0.0.0 --port 3000',
-       cwd: '/srv/cungcontuhoc',
+       cwd: '/srv/tinygeniushub',
        env: { NODE_ENV: 'production' },
        max_memory_restart: '1G',
        restart_delay: 3000,

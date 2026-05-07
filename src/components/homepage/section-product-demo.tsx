@@ -87,7 +87,7 @@ export function SectionProductDemo() {
             <article className="card hp-demo-card">
               <div className="hp-demo-visual is-report hp-mock-report">
                 <div className="hp-mock-email-chrome">
-                  <div className="hp-mock-email-from">Từ: Cùng Con Tự Học</div>
+                  <div className="hp-mock-email-from">Từ: TinyGenius Hub</div>
                   <div className="hp-mock-email-subject">📊 Báo cáo tuần của bé Minh</div>
                 </div>
                 <div className="hp-mock-report-body">

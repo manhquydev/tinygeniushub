@@ -25,7 +25,7 @@ NC='\033[0m' # No Color
 
 # Configuration
 DEPLOY_USER="deploy"
-APP_DIR="/srv/cungcontuhoc"
+APP_DIR="/srv/tinygeniushub"
 REPO_URL="https://github.com/manhquydev/cungcontuhoc.git"
 PM2_ECOSYSTEM="ecosystem.config.js"
 
@@ -105,7 +105,7 @@ log_step "Pre-Deployment Checks"
 
 # Check SSH key - try multiple key locations
 SSH_KEY=""
-for key in ~/.ssh/cungcontuhoc_deploy ~/.ssh/id_ed25519 ~/.ssh/id_rsa; do
+for key in ~/.ssh/tinygeniushub_deploy ~/.ssh/id_ed25519 ~/.ssh/id_rsa; do
   if [[ -f "$key" ]]; then
     SSH_KEY="$key"
     log_success "SSH key found: $key"
@@ -115,7 +115,7 @@ done
 
 if [[ -z "$SSH_KEY" ]]; then
   log_error "No SSH key found"
-  log_info "Generate key with: ssh-keygen -t ed25519 -f ~/.ssh/cungcontuhoc_deploy"
+  log_info "Generate key with: ssh-keygen -t ed25519 -f ~/.ssh/tinygeniushub_deploy"
   exit 1
 fi
 

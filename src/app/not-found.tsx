@@ -38,7 +38,7 @@ export default function NotFound() {
           </h1>
           <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
             Có thể đường dẫn đã thay đổi hoặc không còn tồn tại. Bạn có thể quay về trang chủ để tiếp tục hành trình học
-            cùng Cùng Con Tự Học.
+            cùng TinyGenius Hub.
           </p>
         </div>
 

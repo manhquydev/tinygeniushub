@@ -47,7 +47,7 @@ vi.mock("@/modules/platform/marketing-email-unsubscribe-token", () => ({
 }));
 
 vi.mock("@/lib/email/project-email-template-builder", () => ({
-  resolveEmailPublicBaseUrl: vi.fn(() => "https://cungcontuhoc.io.vn"),
+  resolveEmailPublicBaseUrl: vi.fn(() => "https://tinygeniushubvn.tech"),
 }));
 
 import { sendLifecycleEmail } from "@/modules/platform/lifecycle-email-service";
@@ -103,7 +103,7 @@ describe("sendLifecycleEmail", () => {
         to: "parent@example.com",
         subject: "Lifecycle subject",
         text: expect.stringContaining(
-          "https://cungcontuhoc.io.vn/api/email/marketing/unsubscribe?token=token-123",
+          "https://tinygeniushubvn.tech/api/email/marketing/unsubscribe?token=token-123",
         ),
       }),
     );

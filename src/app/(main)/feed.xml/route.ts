@@ -52,9 +52,9 @@ function buildRssXml(input: {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
 <channel>
-  <title>Cùng Con Tự Học Blog</title>
+  <title>TinyGenius Hub Blog</title>
   <link>${escapeXml(`${input.siteUrl}/blog`)}</link>
-  <description>Bài viết mới nhất từ Cùng Con Tự Học.</description>
+  <description>Bài viết mới nhất từ TinyGenius Hub.</description>
   <language>vi</language>
   <lastBuildDate>${toRssDate(new Date())}</lastBuildDate>
 ${itemsXml}

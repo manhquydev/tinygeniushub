@@ -21,7 +21,7 @@ function renderHtmlMessage(message: string) {
   </head>
   <body style="font-family: system-ui, sans-serif; margin: 0; background: #f8fafc; color: #0f172a;">
     <main style="max-width: 560px; margin: 64px auto; padding: 24px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px;">
-      <h1 style="font-size: 20px; margin: 0 0 12px;">Cùng Con Tự Học</h1>
+      <h1 style="font-size: 20px; margin: 0 0 12px;">TinyGenius Hub</h1>
       <p style="font-size: 16px; margin: 0; line-height: 1.6;">${message}</p>
     </main>
   </body>

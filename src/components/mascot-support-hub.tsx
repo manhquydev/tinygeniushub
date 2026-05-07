@@ -238,7 +238,7 @@ export function MascotSupportHub() {
                   }}
                 >
                   <m.a
-                    href="https://zalo.me"
+                    href="/contact"
                     target="_blank"
                     rel="noreferrer"
                     variants={{

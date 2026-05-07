@@ -20,7 +20,7 @@ on:
       - main
 
 concurrency:
-  group: deploy-production-cungcontuhoc
+  group: deploy-production-tinygeniushub
   cancel-in-progress: false
 
 jobs:
@@ -58,8 +58,8 @@ jobs:
             probe_count="10"
           fi
 
-          app_dir="${PROD_APP_DIR:-/var/www/cungcontuhoc}"
-          public_base_url="${PROD_PUBLIC_BASE_URL:-https://cungcontuhoc.io.vn}"
+          app_dir="${PROD_APP_DIR:-/var/www/tinygeniushub}"
+          public_base_url="${PROD_PUBLIC_BASE_URL:-https://tinygeniushubvn.tech}"
           ts="$(date -u +%Y%m%dT%H%M%SZ)"
           log_dir="${RUNNER_TEMP}/deploy-logs"
           log_path="${log_dir}/deploy-${ts}.log"
@@ -117,8 +117,8 @@ jobs:
           pm2 status | tee "${status_path}"
 
           # Process name check is explicit to prevent false-positive deploy.
-          pm2 describe cungcontuhoc-web >/dev/null
-          pm2 describe cungcontuhoc-worker >/dev/null
+          pm2 describe tinygeniushub-web >/dev/null
+          pm2 describe tinygeniushub-worker >/dev/null
 
           wait_for_health() {
             local url="$1"

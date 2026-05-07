@@ -46,7 +46,7 @@ export function GiftCodeForm() {
         }}
       >
         <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "#15803d" }}>
-          Đã kích hoạt! Chào mừng bạn đến Cùng Con Tự Học 🎉
+          Đã kích hoạt! Chào mừng bạn đến TinyGenius Hub 🎉
         </p>
       </div>
     );

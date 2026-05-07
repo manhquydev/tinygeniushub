@@ -408,7 +408,7 @@ async function main() {
   const defaultParentEmail = `full-${runId}@example.com`;
   const parentEmail = process.env.E2E_PARENT_EMAIL ?? defaultParentEmail;
   const parentPassword = process.env.E2E_PARENT_PASSWORD ?? "FullJourneyPass123!";
-  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@cungcontuhoc.io.vn";
+  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@tinygeniushubvn.tech";
   const adminPassword = process.env.E2E_ADMIN_PASSWORD ?? "DemoAdmin123!";
   process.env.E2E_CLIENT_IP = process.env.E2E_CLIENT_IP ?? `198.51.100.${20 + Math.floor(Math.random() * 180)}`;
 

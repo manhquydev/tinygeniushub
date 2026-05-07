@@ -47,7 +47,7 @@ export function AdminLoginForm() {
                 </div>
                 <h1 className="mt-4 text-2xl font-bold tracking-tight">Cổng Nội Bộ</h1>
                 <p className="mt-2 text-center text-sm text-slate-400">
-                    Hệ thống dành riêng cho Ban Quản Trị Cùng Con Tự Học
+                    Hệ thống dành riêng cho Ban Quản Trị TinyGenius Hub
                 </p>
             </div>
 
@@ -66,7 +66,7 @@ export function AdminLoginForm() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm text-slate-800 outline-none transition focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-500/10"
-                            placeholder="admin@cungcontuhoc.vn"
+                            placeholder="admin@tinygeniushubvn.tech"
                             required
                             disabled={isLoading}
                         />

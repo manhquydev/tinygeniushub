@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Facebook, Youtube, Music2, MessageCircle, Save, RotateCcw } from "lucide-react";
+import { Facebook, Youtube, Save, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,25 +22,13 @@ const SOCIAL_FIELDS: {
     key: "facebook",
     label: "Facebook",
     icon: <Facebook size={16} className="text-[#1877F2]" />,
-    placeholder: "https://facebook.com/cungcontuhoc",
+    placeholder: "https://facebook.com/tinygeniushub",
   },
   {
     key: "youtube",
     label: "YouTube",
     icon: <Youtube size={16} className="text-[#FF0000]" />,
-    placeholder: "https://youtube.com/@cungcontuhoc",
-  },
-  {
-    key: "tiktok",
-    label: "TikTok",
-    icon: <Music2 size={16} className="text-[#010101]" />,
-    placeholder: "https://tiktok.com/@cungcontuhoc",
-  },
-  {
-    key: "zalo",
-    label: "Zalo",
-    icon: <MessageCircle size={16} className="text-[#0068FF]" />,
-    placeholder: "https://zalo.me/cungcontuhoc",
+    placeholder: "https://youtube.com/@TinyGeniusHubUs",
   },
 ];
 

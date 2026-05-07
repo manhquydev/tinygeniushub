@@ -3,8 +3,8 @@ import { LEGAL_POLICY_LAST_UPDATED_LABEL } from "@/lib/legal/legal-policy-versio
 
 export const metadata: Metadata = {
   title: "Chính sách bảo mật",
-  description: "Cam kết bảo vệ dữ liệu phụ huynh và dữ liệu trẻ em trên nền tảng Cùng Con Tự Học.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/privacy" },
+  description: "Cam kết bảo vệ dữ liệu phụ huynh và dữ liệu trẻ em trên nền tảng TinyGenius Hub.",
+  alternates: { canonical: "https://tinygeniushubvn.tech/privacy" },
 };
 
 export default function PrivacyPolicyPage() {
@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
     <article className="prose-page">
       <h1>Chính sách bảo mật</h1>
       <p>
-        Chính sách này giải thích cách Cùng Con Tự Học thu thập, xử lý, lưu trữ và bảo vệ dữ liệu cá nhân của phụ
+        Chính sách này giải thích cách TinyGenius Hub thu thập, xử lý, lưu trữ và bảo vệ dữ liệu cá nhân của phụ
         huynh, dữ liệu học tập của trẻ em khi sử dụng nền tảng.
       </p>
 
@@ -88,8 +88,8 @@ export default function PrivacyPolicyPage() {
 
       <h2>10. Liên hệ thực hiện quyền dữ liệu</h2>
       <ul>
-        <li>Email: privacy@cungcontuhoc.io.vn</li>
-        <li>Đơn vị vận hành: Cùng Con Tự Học</li>
+        <li>Email: privacy@tinygeniushubvn.tech</li>
+        <li>Đơn vị vận hành: TinyGenius Hub</li>
       </ul>
 
       <p className="last-updated">Ngày cập nhật gần nhất: {LEGAL_POLICY_LAST_UPDATED_LABEL}</p>

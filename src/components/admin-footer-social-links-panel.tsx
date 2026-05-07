@@ -9,8 +9,6 @@ import { Label } from "@/components/ui/label";
 const FOOTER_SOCIAL_FIELDS: Array<{ key: keyof FooterSocialLinks; label: string }> = [
   { key: "facebook", label: "Facebook" },
   { key: "youtube", label: "YouTube" },
-  { key: "tiktok", label: "TikTok" },
-  { key: "zalo", label: "Zalo" },
 ];
 
 export function AdminFooterSocialLinksPanel() {

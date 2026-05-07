@@ -8,7 +8,7 @@ Mục tiêu: chốt cách tổ chức nội dung để:
 
 ## 1) Taxonomy nội dung (từ lớn → nhỏ)
 ### Program
-- Ví dụ: “Cùng Con Tự Học — Giai đoạn mầm non”
+- Ví dụ: “TinyGenius Hub — Giai đoạn mầm non”
 
 ### Track
 - English / Math / Habit

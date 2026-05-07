@@ -1,5 +1,5 @@
 /**
- * PM2 Ecosystem Configuration - Cùng Con Tự Học
+ * PM2 Ecosystem Configuration - TinyGenius Hub
  * =============================================================================
  * Purpose: Process Manager configuration for production deployment
  * Usage: pm2 start ecosystem.config.js --env production
@@ -10,11 +10,11 @@ export default {
   apps: [
     {
       // Main Web Application
-      name: 'cungcontuhoc-web',
+      name: 'tinygeniushub-web',
       script: 'pnpm',
       args: 'start',
-      cwd: '/var/www/cungcontuhoc',
-      env_file: '/var/www/cungcontuhoc/.env',
+      cwd: '/var/www/tinygeniushub',
+      env_file: '/var/www/tinygeniushub/.env',
       env: { 
         NODE_ENV: 'production',
         PORT: 3000
@@ -31,9 +31,9 @@ export default {
       min_uptime: '10s',      // Must stay up 10s to be considered stable
       
       // Logging
-      log_file: '/var/log/pm2/cungcontuhoc-web.log',
-      out_file: '/var/log/pm2/cungcontuhoc-web-out.log',
-      error_file: '/var/log/pm2/cungcontuhoc-web-error.log',
+      log_file: '/var/log/pm2/tinygeniushub-web.log',
+      out_file: '/var/log/pm2/tinygeniushub-web-out.log',
+      error_file: '/var/log/pm2/tinygeniushub-web-error.log',
       log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
       merge_logs: true,
       
@@ -50,11 +50,11 @@ export default {
     },
     {
       // Background Worker Process
-      name: 'cungcontuhoc-worker',
+      name: 'tinygeniushub-worker',
       script: 'npx',
       args: 'tsx src/worker/index.ts',
-      cwd: '/var/www/cungcontuhoc',
-      env_file: '/var/www/cungcontuhoc/.env',
+      cwd: '/var/www/tinygeniushub',
+      env_file: '/var/www/tinygeniushub/.env',
       env: { 
         NODE_ENV: 'production' 
       },
@@ -69,9 +69,9 @@ export default {
       max_restarts: 3,
       
       // Logging
-      log_file: '/var/log/pm2/cungcontuhoc-worker.log',
-      out_file: '/var/log/pm2/cungcontuhoc-worker-out.log',
-      error_file: '/var/log/pm2/cungcontuhoc-worker-error.log',
+      log_file: '/var/log/pm2/tinygeniushub-worker.log',
+      out_file: '/var/log/pm2/tinygeniushub-worker-out.log',
+      error_file: '/var/log/pm2/tinygeniushub-worker-error.log',
       log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
       merge_logs: true,
       
@@ -89,10 +89,10 @@ export default {
   deploy: {
     production: {
       user: 'deploy',
-      host: 'cungcontuhoc.io.vn',
+      host: 'tinygeniushubvn.tech',
       ref: 'origin/main',
       repo: 'https://github.com/manhquydev/cungcontuhoc.git',
-      path: '/var/www/cungcontuhoc',
+      path: '/var/www/tinygeniushub',
       'post-deploy': 'pnpm install && pnpm build && pm2 reload ecosystem.config.js --env production'
     }
   }

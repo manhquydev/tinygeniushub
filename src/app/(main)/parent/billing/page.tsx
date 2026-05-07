@@ -6,7 +6,7 @@ import { prisma } from "@/lib/db";
 import { getParentFromServerCookie } from "@/lib/auth/session";
 
 export const metadata: Metadata = {
-  title: "Thanh toán và hóa đơn - Cùng Con Tự Học",
+  title: "Thanh toán và hóa đơn - TinyGenius Hub",
 };
 
 const PAYMENT_STATUS_LABEL: Record<string, string> = {

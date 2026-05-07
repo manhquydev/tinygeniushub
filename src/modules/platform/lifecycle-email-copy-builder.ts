@@ -31,11 +31,11 @@ function buildTrialWelcomeEmail(displayName: string | null): LifecycleEmailConte
   const name = parentName(displayName);
   const dashboardUrl = lifecycleLink("/parent/dashboard", "trial_d0");
   return {
-    subject: "Chào mừng bạn đến Cùng Con Tự Học - bắt đầu trong 2 phút",
+    subject: "Chào mừng bạn đến TinyGenius Hub - bắt đầu trong 2 phút",
     text: [
       `Xin chào ${name},`,
       "",
-      "Cảm ơn bạn đã đăng ký Cùng Con Tự Học.",
+      "Cảm ơn bạn đã đăng ký TinyGenius Hub.",
       "Bé nhà bạn sắp bắt đầu lộ trình Toán tư duy + Tiếng Anh Phonics với nhịp học 15 phút/ngày.",
       "",
       "Bắt đầu ngay:",
@@ -44,7 +44,7 @@ function buildTrialWelcomeEmail(displayName: string | null): LifecycleEmailConte
       "Không cần thẻ tín dụng · Trial 7 ngày miễn phí.",
       "",
       "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
+      "Đội ngũ TinyGenius Hub",
     ].join("\n"),
   };
 }
@@ -63,7 +63,7 @@ function buildTrialD1Email(displayName: string | null): LifecycleEmailContent {
       `Mở dashboard: ${dashboardUrl}`,
       "",
       "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
+      "Đội ngũ TinyGenius Hub",
     ].join("\n"),
   };
 }
@@ -84,7 +84,7 @@ function buildTrialD3Email(displayName: string | null): LifecycleEmailContent {
       "Còn 4 ngày trial để kiểm chứng rõ sự phù hợp với gia đình.",
       "",
       "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
+      "Đội ngũ TinyGenius Hub",
     ].join("\n"),
   };
 }
@@ -103,7 +103,7 @@ function buildTrialD5Email(displayName: string | null): LifecycleEmailContent {
       `Chia sẻ tại đây: ${referralUrl}`,
       "",
       "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
+      "Đội ngũ TinyGenius Hub",
     ].join("\n"),
   };
 }
@@ -126,7 +126,7 @@ function buildTrialD7Email(displayName: string | null): LifecycleEmailContent {
       `Chọn gói phù hợp: ${pricingUrl}`,
       "",
       "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
+      "Đội ngũ TinyGenius Hub",
     ].join("\n"),
   };
 }
@@ -147,7 +147,7 @@ function buildWinbackD30Email(displayName: string | null): LifecycleEmailContent
       "Nếu cần hỗ trợ, bạn chỉ cần phản hồi email này.",
       "",
       "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
+      "Đội ngũ TinyGenius Hub",
     ].join("\n"),
   };
 }
@@ -170,7 +170,7 @@ function buildRenewal14dEmail(displayName: string | null, renewalEndDate?: Date 
       `Gia hạn tại đây: ${pricingUrl}`,
       "",
       "Thân,",
-      "Đội ngũ Cùng Con Tự Học",
+      "Đội ngũ TinyGenius Hub",
     ].join("\n"),
   };
 }

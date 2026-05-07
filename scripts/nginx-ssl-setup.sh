@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Nginx + SSL Setup Script - Cùng Con Tự Học
+# Nginx + SSL Setup Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Configure Nginx reverse proxy with Let's Encrypt SSL
 # Run as: deploy user (with sudo access)
@@ -32,8 +32,8 @@ trap 'error_handler $LINENO' ERR
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-DOMAIN="${1:-cungcontuhoc.io.vn}"
-EMAIL="${2:-admin@cungcontuhoc.io.vn}"
+DOMAIN="${1:-tinygeniushubvn.tech}"
+EMAIL="${2:-admin@tinygeniushubvn.tech}"
 
 echo "🔧 Setting up Nginx + SSL for $DOMAIN..."
 
@@ -55,7 +55,7 @@ log_success "Default site removed"
 # 3. Create Nginx Configuration
 # -----------------------------------------------------------------------------
 log_info "Creating Nginx configuration..."
-sudo tee /etc/nginx/sites-available/cungcontuhoc > /dev/null << 'EOF'
+sudo tee /etc/nginx/sites-available/tinygeniushub > /dev/null << 'EOF'
 upstream app_server {
     server 127.0.0.1:3000;
     keepalive 32;
@@ -109,7 +109,7 @@ server {
 
     # Static files caching
     location /_next/static {
-        alias /srv/cungcontuhoc/.next/static;
+        alias /srv/tinygeniushub/.next/static;
         expires 1y;
         add_header Cache-Control "public, immutable";
         access_log off;
@@ -168,14 +168,14 @@ server {
 EOF
 
 # Replace DOMAIN placeholder
-sudo sed -i "s/DOMAIN/$DOMAIN/g" /etc/nginx/sites-available/cungcontuhoc
+sudo sed -i "s/DOMAIN/$DOMAIN/g" /etc/nginx/sites-available/tinygeniushub
 log_success "Nginx configuration created"
 
 # -----------------------------------------------------------------------------
 # 4. Enable Site
 # -----------------------------------------------------------------------------
 log_info "Enabling Nginx site..."
-sudo ln -sf /etc/nginx/sites-available/cungcontuhoc /etc/nginx/sites-enabled/
+sudo ln -sf /etc/nginx/sites-available/tinygeniushub /etc/nginx/sites-enabled/
 sudo nginx -t
 log_success "Nginx configuration validated"
 

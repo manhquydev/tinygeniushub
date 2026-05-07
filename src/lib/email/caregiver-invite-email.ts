@@ -24,7 +24,7 @@ function formatExpiryDate(date: Date) {
 
 export async function sendCaregiverInviteEmail(input: CaregiverInviteEmailInput): Promise<CaregiverInviteEmailDelivery> {
   const parentLabel = input.parentDisplayName && input.parentDisplayName.length > 0 ? input.parentDisplayName : "Phụ huynh";
-  const subject = "Thư mời caregiver từ Cùng Con Tự Học";
+  const subject = "Thư mời caregiver từ TinyGenius Hub";
   const text = [
       `${parentLabel} đã mời bạn cùng theo dõi tiến độ học tập của bé.`,
       `Nhấn vào liên kết sau để chấp nhận lời mời: ${input.inviteUrl}`,

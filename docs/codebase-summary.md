@@ -1,13 +1,13 @@
 # Codebase Summary
 
-**Last updated:** 2026-03-19 — Phases 01–05 complete. Deployed to production at https://cungcontuhoc.io.vn.
+**Last updated:** 2026-03-19 — Phases 01–05 complete. Deployed to production at https://tinygeniushubvn.tech.
 
 ---
 
 ## Production Deployment
 
 - **Server:** DigitalOcean Ubuntu 24.04, IP `152.42.246.218`
-- **Domain:** cungcontuhoc.io.vn — A records set, SSL via Let's Encrypt
+- **Domain:** tinygeniushubvn.tech — A records set, SSL via Let's Encrypt
 - **Runtime:** PM2 process manager + Nginx reverse proxy
 - **Services:** Docker Compose — PostgreSQL 16 + Redis 7
 - **CI/CD:** `.github/workflows/deploy-digitalocean-ssh.yml` (GitHub Actions SSH deploy key)
@@ -198,7 +198,7 @@
 
 ## Project Overview
 
-**Cùng Con Tự Học** — Vietnamese EdTech platform for children ages 2–6 (Toán tư duy + Tiếng Anh Phonics).
+**TinyGenius Hub** — Vietnamese EdTech platform for children ages 2–6 (Toán tư duy + Tiếng Anh Phonics).
 
 ### Stack
 - **Framework**: Next.js 16 (App Router), React 19, TypeScript

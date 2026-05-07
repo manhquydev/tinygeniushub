@@ -64,7 +64,7 @@ export default function MaintenancePage() {
             Kiểm tra lại trang chủ
           </Link>
           <a
-            href="https://zalo.me/cungcontuhoc"
+            href="/contact"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"

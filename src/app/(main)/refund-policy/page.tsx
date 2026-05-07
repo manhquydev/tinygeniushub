@@ -3,8 +3,8 @@ import { LEGAL_POLICY_LAST_UPDATED_LABEL } from "@/lib/legal/legal-policy-versio
 
 export const metadata: Metadata = {
   title: "Chính sách hoàn tiền",
-  description: "Chính sách hoàn tiền cho giao dịch mua khóa học tại Cùng Con Tự Học.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/refund-policy" },
+  description: "Chính sách hoàn tiền cho giao dịch mua khóa học tại TinyGenius Hub.",
+  alternates: { canonical: "https://tinygeniushubvn.tech/refund-policy" },
 };
 
 export default function RefundPolicyPage() {
@@ -38,7 +38,7 @@ export default function RefundPolicyPage() {
 
       <h2>4. Kênh tiếp nhận</h2>
       <ul>
-        <li>Email: billing@cungcontuhoc.io.vn</li>
+        <li>Email: billing@tinygeniushubvn.tech</li>
         <li>Tiêu đề gợi ý: “Yêu cầu hoàn tiền - [Email tài khoản]”.</li>
       </ul>
 

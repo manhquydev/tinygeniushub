@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Initial Deployment Script - Cùng Con Tự Học
+# Initial Deployment Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Full initial deployment of the application
 # Run as: deploy user
@@ -32,7 +32,7 @@ trap 'error_handler $LINENO' ERR
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-APP_DIR="/srv/cungcontuhoc"
+APP_DIR="/srv/tinygeniushub"
 ENV_FILE=".env.production"
 
 echo "🚀 Starting initial deployment..."

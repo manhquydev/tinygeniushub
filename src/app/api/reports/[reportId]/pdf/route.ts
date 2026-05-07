@@ -295,7 +295,7 @@ export async function GET(
     <main class="sheet">
       <header class="header">
         <div>
-          <div class="brand">Cùng Con Tự Học</div>
+          <div class="brand">TinyGenius Hub</div>
           <div class="subtitle">Báo cáo học tập tuần</div>
         </div>
         <div class="meta">

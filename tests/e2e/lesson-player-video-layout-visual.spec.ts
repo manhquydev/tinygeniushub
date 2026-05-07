@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const DEMO_PARENT_EMAIL = "demo.parent@cungcontuhoc.vn";
+const DEMO_PARENT_EMAIL = "demo.parent@tinygeniushubvn.tech";
 const DEMO_PARENT_PASSWORD = "DemoPass123!";
 const PREFERRED_COURSE_SLUG = "abeka";
 const AUTH_STATE_PATH = path.join(

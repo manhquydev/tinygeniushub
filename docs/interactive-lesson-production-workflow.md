@@ -1,6 +1,6 @@
 # Interactive Lesson Production Workflow
 
-> Quy trình chuẩn hóa sản xuất bài giảng tương tác cho hệ thống Cùng Con Tự Học.
+> Quy trình chuẩn hóa sản xuất bài giảng tương tác cho hệ thống TinyGenius Hub.
 > Mỗi bài giảng = 6 bước tương tác + TTS audio + mascot animation.
 
 ## Tổng quan hệ thống
@@ -441,12 +441,12 @@ git commit -m "feat(lesson): add interactive lesson {id} - {title}"
 git push origin main
 
 # Deploy to VPS
-ssh do-server "cd /var/www/cungcontuhoc && git pull && pnpm install && pnpm build && pm2 restart cungcontuhoc"
+ssh do-server "cd /var/www/tinygeniushub && git pull && pnpm install && pnpm build && pm2 restart tinygeniushub-web"
 
 # Nếu build bị OOM (4GB RAM server):
-ssh do-server "pm2 stop cungcontuhoc"
-ssh do-server "cd /var/www/cungcontuhoc && git pull && pnpm install && pnpm build"
-ssh do-server "pm2 start cungcontuhoc"
+ssh do-server "pm2 stop tinygeniushub-web"
+ssh do-server "cd /var/www/tinygeniushub && git pull && pnpm install && pnpm build"
+ssh do-server "pm2 start tinygeniushub-web"
 ```
 
 ---

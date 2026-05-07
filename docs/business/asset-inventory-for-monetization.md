@@ -1,6 +1,6 @@
 # Asset Inventory for Monetization
 
-**Project:** Cung Con Tu Hoc ("Learning Together")  
+**Project:** TinyGenius Hub ("Learning Together")  
 **Analysis Date:** 2026-04-04  
 **Platform:** Educational Learning Journey OS for Children (Age 2-6)  
 **Primary Market:** Vietnam, Singapore (expansion ready)

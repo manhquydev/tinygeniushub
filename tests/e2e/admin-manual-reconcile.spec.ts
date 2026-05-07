@@ -4,7 +4,7 @@ import { hashSync } from "bcryptjs";
 
 const prisma = new PrismaClient();
 
-const ADMIN_EMAIL = process.env.E2E_ADMIN_EMAIL ?? "e2e.admin@cungcontuhoc.vn";
+const ADMIN_EMAIL = process.env.E2E_ADMIN_EMAIL ?? "e2e.admin@tinygeniushubvn.tech";
 const ADMIN_PASSWORD = process.env.E2E_ADMIN_PASSWORD ?? "E2EAdmin@2026!";
 
 test.describe("admin manual reconcile", () => {
@@ -24,7 +24,7 @@ test.describe("admin manual reconcile", () => {
     }
 
     const runId = Date.now();
-    const parentEmail = `e2e.reconcile.parent.${runId}@cungcontuhoc.vn`;
+    const parentEmail = `e2e.reconcile.parent.${runId}@tinygeniushubvn.tech`;
     const parent = await prisma.parentAccount.create({
       data: {
         email: parentEmail,

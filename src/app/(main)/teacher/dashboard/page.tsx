@@ -5,7 +5,7 @@ import { getParentFromServerCookie } from "@/lib/auth/session";
 import { getOrgStudentProgress } from "@/modules/organizations/organization-service";
 
 export const metadata: Metadata = {
-  title: "Lớp học — Cùng Con Tự Học",
+  title: "Lớp học — TinyGenius Hub",
 };
 
 export default async function TeacherDashboardPage() {

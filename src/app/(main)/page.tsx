@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Cùng Con Tự Học | Khu Vườn Trên Mây",
+    absolute: "TinyGenius Hub | Khu Vườn Trên Mây",
   },
   description:
     "Nền tảng học tập lấy trẻ làm trung tâm cho bé 2-6 tuổi. Xem bài học mẫu, chọn khóa phù hợp và bắt đầu học ngay.",
@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: "https://cungcontuhoc.io.vn",
+    canonical: "https://tinygeniushubvn.tech",
   },
   openGraph: {
-    title: "Cùng Con Tự Học | Khu Vườn Trên Mây",
+    title: "TinyGenius Hub | Khu Vườn Trên Mây",
     description: "Xem bài học mẫu, mua khóa trực tiếp và theo dõi tiến bộ của bé qua báo cáo định kỳ.",
-    url: "https://cungcontuhoc.io.vn",
+    url: "https://tinygeniushubvn.tech",
     type: "website",
     locale: "vi_VN",
     images: [
@@ -28,12 +28,12 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Cùng Con Tự Học - Khu Vườn Trên Mây",
+        alt: "TinyGenius Hub - Khu Vườn Trên Mây",
       },
     ],
   },
   twitter: {
-    title: "Cùng Con Tự Học | Khu Vườn Trên Mây",
+    title: "TinyGenius Hub | Khu Vườn Trên Mây",
     description: "Khám phá bài học, chọn đúng khóa và theo dõi tiến bộ rõ ràng cùng bé.",
     images: ["/opengraph-image"],
   },
@@ -42,15 +42,15 @@ export const metadata: Metadata = {
 const jsonLdWebsite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Cùng Con Tự Học",
-  url: "https://cungcontuhoc.io.vn",
+  name: "TinyGenius Hub",
+  url: "https://tinygeniushubvn.tech",
   inLanguage: "vi",
   description: "Nền tảng học tập tương tác cho trẻ nhỏ và phụ huynh.",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://cungcontuhoc.io.vn/courses?q={search_term_string}",
+      urlTemplate: "https://tinygeniushubvn.tech/courses?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -59,11 +59,11 @@ const jsonLdWebsite = {
 const jsonLdApp = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Cùng Con Tự Học",
+  name: "TinyGenius Hub",
   applicationCategory: "EducationalApplication",
   operatingSystem: "Web",
   inLanguage: "vi",
-  url: "https://cungcontuhoc.io.vn",
+  url: "https://tinygeniushubvn.tech",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.8",
@@ -71,18 +71,18 @@ const jsonLdApp = {
   },
   author: {
     "@type": "Organization",
-    name: "Cùng Con Tự Học",
+    name: "TinyGenius Hub",
   },
 };
 
 const jsonLdOrganization = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
-  name: "Cùng Con Tự Học",
-  url: "https://cungcontuhoc.io.vn",
-  logo: "https://cungcontuhoc.io.vn/logo.png",
+  name: "TinyGenius Hub",
+  url: "https://tinygeniushubvn.tech",
+  logo: "https://tinygeniushubvn.tech/logo.png",
   description: "Nền tảng giáo dục sớm dành cho trẻ từ 2-6 tuổi.",
-  sameAs: ["https://www.facebook.com/cungcontuhoc", "https://zalo.me/cungcontuhoc"],
+  sameAs: ["https://www.facebook.com/tinygeniushub"],
   address: {
     "@type": "PostalAddress",
     addressCountry: "VN",
@@ -91,7 +91,7 @@ const jsonLdOrganization = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Customer Support",
-    email: "support@cungcontuhoc.io.vn",
+    email: "support@tinygeniushubvn.tech",
   },
 };
 
@@ -102,8 +102,8 @@ const jsonLdCourse = {
   description: "Chương trình học tương tác cho trẻ 2-6 tuổi, có theo dõi tiến bộ rõ ràng cho phụ huynh.",
   provider: {
     "@type": "Organization",
-    name: "Cùng Con Tự Học",
-    sameAs: "https://cungcontuhoc.io.vn",
+    name: "TinyGenius Hub",
+    sameAs: "https://tinygeniushubvn.tech",
   },
   educationalLevel: "Mầm non",
   audience: {

@@ -10,7 +10,7 @@ async function main() {
 
   // 2. Find demo parent
   const demoParent = await prisma.user.findUnique({
-    where: { email: 'demo.parent@cungcontuhoc.vn' }
+    where: { email: 'demo.parent@tinygeniushubvn.tech' }
   });
 
   if (!demoParent) {

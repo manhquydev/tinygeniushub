@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 const COURSE_SLUG = "little-fox-en-level-1";
 const ABEKA_COURSE_SLUG = "abeka";
-const DEMO_PARENT_EMAIL = "demo.parent@cungcontuhoc.vn";
+const DEMO_PARENT_EMAIL = "demo.parent@tinygeniushubvn.tech";
 const DEMO_PARENT_PASSWORD = "DemoPass123!";
 
 let testChildId: string | null = null;

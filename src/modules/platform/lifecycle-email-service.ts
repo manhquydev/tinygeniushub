@@ -77,7 +77,7 @@ export async function sendLifecycleEmail(parentId: string, type: LifecycleEmailT
   const finalText = [
     text,
     "",
-    "Nếu bạn không muốn nhận email marketing từ Cùng Con Tự Học, hủy đăng ký tại đây:",
+    "Nếu bạn không muốn nhận email marketing từ TinyGenius Hub, hủy đăng ký tại đây:",
     unsubscribeUrl,
   ].join("\n");
 

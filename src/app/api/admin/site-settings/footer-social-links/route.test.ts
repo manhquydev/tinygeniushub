@@ -42,10 +42,8 @@ vi.mock("@/modules/platform/site-content-settings-service", () => ({
 import { GET, PATCH } from "@/app/api/admin/site-settings/footer-social-links/route";
 
 const BASE_LINKS = {
-  facebook: "https://facebook.com/cungcontuhoc",
-  youtube: "https://youtube.com/@cungcontuhoc",
-  tiktok: "https://tiktok.com/@cungcontuhoc",
-  zalo: "https://zalo.me/cungcontuhoc",
+  facebook: "https://facebook.com/tinygeniushub",
+  youtube: "https://youtube.com/@TinyGeniusHubUs",
 };
 
 describe("admin footer social links route", () => {
@@ -156,8 +154,6 @@ describe("admin footer social links route", () => {
     const nextLinks = {
       facebook: "https://facebook.com/new-page",
       youtube: "https://youtube.com/@new-channel",
-      tiktok: "https://tiktok.com/@new-account",
-      zalo: "https://zalo.me/new-account",
     };
     updateFooterSocialLinksMock.mockResolvedValueOnce(nextLinks);
 

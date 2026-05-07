@@ -1,4 +1,4 @@
-const BASE_URL = "https://cungcontuhoc.io.vn";
+const BASE_URL = "https://tinygeniushubvn.tech";
 
 /** Safely serialize JSON-LD for dangerouslySetInnerHTML — escapes <, >, & to prevent XSS */
 export function safeJsonLd(data: unknown): string {
@@ -10,7 +10,7 @@ export function safeJsonLd(data: unknown): string {
 
 const PROVIDER = {
   "@type": "Organization",
-  name: "Cùng Con Tự Học",
+  name: "TinyGenius Hub",
   url: BASE_URL,
 };
 
@@ -64,7 +64,7 @@ export function buildCourseListJsonLd(courses: Array<{ slug: string; title: stri
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Khóa học - Cùng Con Tự Học",
+    name: "Khóa học - TinyGenius Hub",
     url: `${BASE_URL}/courses`,
     numberOfItems: courses.length,
     itemListElement: courses.map((course, index) => ({

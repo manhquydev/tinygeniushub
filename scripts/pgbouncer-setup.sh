@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# PgBouncer Setup Script - Cùng Con Tự Học
+# PgBouncer Setup Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Configure PgBouncer for PostgreSQL connection pooling
 # Run as: root or with sudo
@@ -32,8 +32,8 @@ trap 'error_handler $LINENO' ERR
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-DB_NAME="${1:-cungcontuhoc}"
-DB_USER="${2:-cungcontuhoc_app}"
+DB_NAME="${1:-tinygeniushub}"
+DB_USER="${2:-tinygeniushub_app}"
 DB_PASS="${3:-}"
 
 if [ -z "$DB_PASS" ]; then

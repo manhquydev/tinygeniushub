@@ -384,12 +384,12 @@ async function queueConfirmationEmail(parentId: string, packageId: string, subsc
       "Nếu cần hỗ trợ, bạn có thể phản hồi email này.",
       "",
       "Trân trọng,",
-      "Đội ngũ Cùng Con Tự Học",
+      "Đội ngũ TinyGenius Hub",
     ].join("\n");
 
     await enqueueTransactionalEmail({
       to: parent.email,
-      subject: `[Cùng Con Tự Học] Thanh toán thành công: ${packageInfo.name}`,
+      subject: `[TinyGenius Hub] Thanh toán thành công: ${packageInfo.name}`,
       text,
       tags: [
         { name: "feature", value: "package_subscription_success" },
@@ -441,7 +441,7 @@ async function queueFailureNotification(parentId: string, paymentRecordId: strin
     const name = parent.displayName?.trim() || "phụ huynh";
     const appBaseUrl = resolveEmailPublicBaseUrl();
     const retryUrl = `${appBaseUrl}/pricing?utm_source=email&utm_medium=transactional&utm_campaign=package_subscription_failed`;
-    const supportEmail = env.REPORT_EMAIL_REPLY_TO ?? "support@cungcontuhoc.io.vn";
+    const supportEmail = env.REPORT_EMAIL_REPLY_TO ?? "support@tinygeniushubvn.tech";
     const text = [
       `Xin chào ${name},`,
       "",
@@ -453,12 +453,12 @@ async function queueFailureNotification(parentId: string, paymentRecordId: strin
       `Nếu cần hỗ trợ, vui lòng liên hệ: ${supportEmail}`,
       "",
       "Trân trọng,",
-      "Đội ngũ Cùng Con Tự Học",
+      "Đội ngũ TinyGenius Hub",
     ].join("\n");
 
     await enqueueTransactionalEmail({
       to: parent.email,
-      subject: "[Cùng Con Tự Học] Thanh toán chưa thành công",
+      subject: "[TinyGenius Hub] Thanh toán chưa thành công",
       text,
       tags: [
         { name: "feature", value: "package_subscription_failed" },

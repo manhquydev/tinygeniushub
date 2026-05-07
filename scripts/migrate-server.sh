@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Server Migration Script - Cùng Con Tự Học
+# Server Migration Script - TinyGenius Hub
 # =============================================================================
 # Purpose: One-command server migration with minimal downtime
 # Run from: local machine or any server
@@ -34,13 +34,13 @@ trap 'error_handler $LINENO' ERR
 # -----------------------------------------------------------------------------
 OLD_SERVER="${1:-}"
 NEW_SERVER="${2:-}"
-DOMAIN="${3:-cungcontuhoc.io.vn}"
+DOMAIN="${3:-tinygeniushubvn.tech}"
 
 if [ -z "$OLD_SERVER" ] || [ -z "$NEW_SERVER" ]; then
     echo "Usage: $0 <old-server-ip> <new-server-ip> [domain]"
     echo ""
     echo "Example:"
-    echo "  $0 192.168.1.10 192.168.1.20 cungcontuhoc.io.vn"
+    echo "  $0 192.168.1.10 192.168.1.20 tinygeniushubvn.tech"
     exit 1
 fi
 
@@ -52,7 +52,7 @@ echo ""
 # 1. Create Backup on Old Server
 # -----------------------------------------------------------------------------
 log_info "Step 1: Creating backup on old server..."
-ssh deploy@$OLD_SERVER "cd /srv/cungcontuhoc && pnpm backup:create -- --offsite" || {
+ssh deploy@$OLD_SERVER "cd /srv/tinygeniushub && pnpm backup:create -- --offsite" || {
     log_error "Backup creation failed on old server"
     exit 1
 }
@@ -92,7 +92,7 @@ log_success "Backup transferred: /srv/backups/postgres/$BACKUP_FILENAME"
 # 4. Restore Backup on New Server
 # -----------------------------------------------------------------------------
 log_info "Step 4: Restoring backup on new server..."
-ssh deploy@$NEW_SERVER "cd /srv/cungcontuhoc && pnpm backup:restore -- --file=/srv/backups/postgres/$BACKUP_FILENAME" || {
+ssh deploy@$NEW_SERVER "cd /srv/tinygeniushub && pnpm backup:restore -- --file=/srv/backups/postgres/$BACKUP_FILENAME" || {
     log_error "Backup restore failed on new server"
     exit 1
 }
@@ -105,8 +105,8 @@ log_info "Step 5: Syncing application environment..."
 read -p "Sync .env.production from old server? (y/N): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    scp "deploy@$OLD_SERVER:/srv/cungcontuhoc/.env.production" \
-        "deploy@$NEW_SERVER:/srv/cungcontuhoc/.env.production" || {
+    scp "deploy@$OLD_SERVER:/srv/tinygeniushub/.env.production" \
+        "deploy@$NEW_SERVER:/srv/tinygeniushub/.env.production" || {
         log_warn "Environment file sync failed"
     }
     log_success "Environment file synced"
@@ -116,7 +116,7 @@ fi
 # 6. Start Services on New Server
 # -----------------------------------------------------------------------------
 log_info "Step 6: Starting services on new server..."
-ssh deploy@$NEW_SERVER "cd /srv/cungcontuhoc && pm2 start ecosystem.config.js --env production && pm2 save" || {
+ssh deploy@$NEW_SERVER "cd /srv/tinygeniushub && pm2 start ecosystem.config.js --env production && pm2 save" || {
     log_error "Failed to start services on new server"
     exit 1
 }

@@ -17,17 +17,17 @@ bash scripts/deploy/production-email-verify-hotfix.sh deploy@<server-ip> main
 ## Optional environment overrides
 
 ```bash
-APP_DIR=/var/www/cungcontuhoc \
-BASE_URL=https://cungcontuhoc.io.vn \
-WEB_PROCESS=cungcontuhoc-web \
-WORKER_PROCESS=cungcontuhoc-worker \
+APP_DIR=/var/www/tinygeniushub \
+BASE_URL=https://tinygeniushubvn.tech \
+WEB_PROCESS=tinygeniushub-web \
+WORKER_PROCESS=tinygeniushub-worker \
 REMOTE_ENV_FILE=.env.production \
 bash scripts/deploy/production-email-verify-hotfix.sh do-server main
 ```
 
 Always verify PM2 process names before restart:
 - `pm2 status`
-- Ensure `cungcontuhoc-web` and `cungcontuhoc-worker` exist.
+- Ensure `tinygeniushub-web` and `tinygeniushub-worker` exist.
 
 ## What this script verifies
 

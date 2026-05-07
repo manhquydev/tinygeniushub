@@ -1,0 +1,26 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bookBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="sunGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#facc15" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="100" cy="60" r="20" fill="url(#sunGlow)"/>
+  <path d="M 100 24 L 104 37 L 117 41 L 104 45 L 100 58 L 96 45 L 83 41 L 96 37 Z" fill="#fde68a"/>
+
+  <path d="M 28 90 C 52 74 76 74 100 88 L 100 150 C 76 134 52 134 28 150 Z" fill="url(#bookBlue)"/>
+  <path d="M 172 90 C 148 74 124 74 100 88 L 100 150 C 124 134 148 134 172 150 Z" fill="#2563eb"/>
+  <path d="M 100 86 L 100 151" stroke="#dbeafe" stroke-width="3" stroke-linecap="round"/>
+
+  <path d="M 38 103 C 56 91 72 91 90 98" stroke="#dbeafe" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M 38 117 C 56 105 72 105 90 112" stroke="#dbeafe" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M 162 103 C 144 91 128 91 110 98" stroke="#dbeafe" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M 162 117 C 144 105 128 105 110 112" stroke="#dbeafe" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <path d="M 24 156 C 52 142 88 140 100 142 C 112 140 148 142 176 156" fill="none" stroke="#1e40af" stroke-width="4" stroke-linecap="round"/>
+</svg>

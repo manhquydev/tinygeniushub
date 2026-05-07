@@ -14,7 +14,7 @@ on:
         default: false
 
 concurrency:
-  group: deploy-production-cungcontuhoc
+  group: deploy-production-tinygeniushub
   cancel-in-progress: false
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
       contents: read
     env:
       DEPLOY_REF: ${{ inputs.ref }}
-      APP_DIR: /var/www/cungcontuhoc
+      APP_DIR: /var/www/tinygeniushub
       SSH_USER: root
       SSH_PORT: "22"
     steps:
@@ -91,7 +91,7 @@ jobs:
           GA4_SOT_REQUIRED: ${{ secrets.GA4_SOT_REQUIRED }}
         run: |
           set -euo pipefail
-          POST_DEPLOY_SCRIPT=$'set -euo pipefail\npm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web\npm2 describe cungcontuhoc-web >/dev/null\npm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker\npm2 describe cungcontuhoc-worker >/dev/null\nfor url in http://127.0.0.1:3000/api/health http://127.0.0.1:3000/api/health/ready; do\n  ready=0\n  for _ in $(seq 1 20); do\n    if curl -fsS \"$url\" >/dev/null; then\n      ready=1\n      break\n    fi\n    sleep 1\n  done\n  if [[ \"$ready\" -ne 1 ]]; then\n    echo \"[deploy] health check failed: $url\"\n    exit 1\n  fi\ndone'
+          POST_DEPLOY_SCRIPT=$'set -euo pipefail\npm2 restart tinygeniushub-web --update-env || pm2 start tinygeniushub-web\npm2 describe tinygeniushub-web >/dev/null\npm2 restart tinygeniushub-worker --update-env || pm2 start tinygeniushub-worker\npm2 describe tinygeniushub-worker >/dev/null\nfor url in http://127.0.0.1:3000/api/health http://127.0.0.1:3000/api/health/ready; do\n  ready=0\n  for _ in $(seq 1 20); do\n    if curl -fsS \"$url\" >/dev/null; then\n      ready=1\n      break\n    fi\n    sleep 1\n  done\n  if [[ \"$ready\" -ne 1 ]]; then\n    echo \"[deploy] health check failed: $url\"\n    exit 1\n  fi\ndone'
           POST_CMD_B64="$(printf '%s' "$POST_DEPLOY_SCRIPT" | base64 -w0)"
           GA4_PROPERTY_ID_B64="$(printf '%s' "${GA4_PROPERTY_ID:-}" | base64 -w0)"
           GA4_SERVICE_ACCOUNT_CLIENT_EMAIL_B64="$(printf '%s' "${GA4_SERVICE_ACCOUNT_CLIENT_EMAIL:-}" | base64 -w0)"

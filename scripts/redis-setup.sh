@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Redis Setup Script - Cùng Con Tự Học
+# Redis Setup Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Install and configure Redis with AOF persistence
 # Run as: root or with sudo

@@ -67,19 +67,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (isLegacyBundleRouteSlug(slug)) {
     return {
-      title: "Danh sách khóa học - Cùng Con Tự Học",
+      title: "Danh sách khóa học - TinyGenius Hub",
       description: "Khóa học hiển thị theo mô hình từng khóa độc lập.",
-      alternates: { canonical: "https://cungcontuhoc.io.vn/courses" },
+      alternates: { canonical: "https://tinygeniushubvn.tech/courses" },
     };
   }
   const course = await loadPublishedCourse(slug);
   if (!course || !course.isPublished) return { title: "Khóa học không tồn tại" };
 
   const coverUrl = resolveCourseCoverImage(course.slug, course.coverImageUrl);
-  const canonicalUrl = `https://cungcontuhoc.io.vn/courses/${course.slug}`;
+  const canonicalUrl = `https://tinygeniushubvn.tech/courses/${course.slug}`;
 
   return {
-    title: `${course.title} - Cùng Con Tự Học`,
+    title: `${course.title} - TinyGenius Hub`,
     description: course.description,
     alternates: { canonical: canonicalUrl },
     openGraph: {

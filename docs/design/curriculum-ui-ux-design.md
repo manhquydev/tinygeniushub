@@ -1,6 +1,6 @@
 # Abeka Curriculum Organization System — UI/UX Design Document
 
-**Project:** Cung Con Tu Hoc (Abeka Curriculum Module)  
+**Project:** TinyGenius Hub (Abeka Curriculum Module)  
 **Version:** 1.0  
 **Date:** April 3, 2026  
 **Status:** Design Specification  
@@ -26,7 +26,7 @@
 
 ### 1.1 Purpose
 
-This document defines the complete UI/UX design system for the Abeka Curriculum Organization System — a specialized module within Cung Con Tu Hoc that enables structured K4-12 curriculum management, parent planning tools, and gamified student learning experiences.
+This document defines the complete UI/UX design system for the Abeka Curriculum Organization System — a specialized module within TinyGenius Hub that enables structured K4-12 curriculum management, parent planning tools, and gamified student learning experiences.
 
 ### 1.2 Key Differentiation
 

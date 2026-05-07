@@ -43,7 +43,7 @@ export function SectionHero() {
                   <span />
                   <span />
                 </div>
-                <span className="hp-dash-title">Cung Con Tu Hoc</span>
+                <span className="hp-dash-title">TinyGenius Hub</span>
               </div>
 
               <div className="hp-dash-card hp-dash-card-main">

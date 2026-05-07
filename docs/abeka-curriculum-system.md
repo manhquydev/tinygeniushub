@@ -147,7 +147,7 @@ To apply the database migration:
 pnpm db:migrate
 
 # Or apply manually
-psql -d cungcontuhoc -f prisma/migrations/20250403233600_abeka_curriculum_system/migration.sql
+psql -d tinygeniushub -f prisma/migrations/20250403233600_abeka_curriculum_system/migration.sql
 ```
 
 ## File Structure

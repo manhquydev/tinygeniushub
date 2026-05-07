@@ -1,6 +1,6 @@
 # Top 5 Most Profitable Monetization Directions
 
-**Platform:** Cung Con Tu Hoc ("Learning Together")  
+**Platform:** TinyGenius Hub ("Learning Together")  
 **Analysis Date:** 2026-04-04  
 **Assets Evaluated:** 20,195 Abeka videos, 5-level curriculum, gamification system, parent/child accounts, SePay infrastructure  
 **Market Focus:** Vietnam, Singapore (ASEAN expansion ready)

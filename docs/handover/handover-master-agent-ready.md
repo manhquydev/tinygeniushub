@@ -1,9 +1,9 @@
-# Cung Con Tu Hoc - Master Handover Document (Agent-Ready, Single File)
+# TinyGenius Hub - Master Handover Document (Agent-Ready, Single File)
 
 ## 0. Document Metadata
 - Version: 2.1
 - Date: 2026-02-20
-- Product: Cung Con Tu Hoc
+- Product: TinyGenius Hub
 - Target region: Singapore (primary)
 - Operations model: Fully self-managed
 - Intended readers: Product Owner, Tech Lead, Engineering Team, DevOps/SRE, QA, and coding agents (Codex, Claude Code, OpenCode)
@@ -118,7 +118,7 @@ These decisions resolve previously open items so a new team can start immediatel
 ## 6. Product Definition
 
 ### 6.1 Product Summary
-- Product name: Cung Con Tu Hoc
+- Product name: TinyGenius Hub
 - Domain: Learning Journey OS for children age 2-6
 - Primary user: Parent
 - Secondary user: Child

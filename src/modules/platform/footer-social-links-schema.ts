@@ -18,8 +18,6 @@ const footerSocialLinkFieldSchema = z
 export const footerSocialLinksSchema = z.object({
   facebook: footerSocialLinkFieldSchema,
   youtube: footerSocialLinkFieldSchema,
-  tiktok: footerSocialLinkFieldSchema,
-  zalo: footerSocialLinkFieldSchema,
 });
 
 export function parseFooterSocialLinks(input: unknown): FooterSocialLinks {

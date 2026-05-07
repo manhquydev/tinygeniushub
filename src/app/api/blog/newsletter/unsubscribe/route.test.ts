@@ -11,7 +11,7 @@ vi.mock("@/modules/blog/newsletter-service", () => ({
 }));
 
 vi.mock("@/lib/email/project-email-template-builder", () => ({
-  resolveEmailPublicBaseUrl: vi.fn(() => "https://cungcontuhoc.io.vn"),
+  resolveEmailPublicBaseUrl: vi.fn(() => "https://tinygeniushubvn.tech"),
 }));
 
 import { GET } from "@/app/api/blog/newsletter/unsubscribe/route";
@@ -28,7 +28,7 @@ describe("blog newsletter unsubscribe route", () => {
 
     expect(unsubscribeMock).toHaveBeenCalledWith("abc");
     expect(response.status).toBe(307);
-    expect(response.headers.get("location")).toBe("https://cungcontuhoc.io.vn/blog?unsubscribed=true");
+    expect(response.headers.get("location")).toBe("https://tinygeniushubvn.tech/blog?unsubscribed=true");
   });
 
   it("still redirects when token is missing", async () => {
@@ -36,6 +36,6 @@ describe("blog newsletter unsubscribe route", () => {
 
     expect(unsubscribeMock).not.toHaveBeenCalled();
     expect(response.status).toBe(307);
-    expect(response.headers.get("location")).toBe("https://cungcontuhoc.io.vn/blog?unsubscribed=true");
+    expect(response.headers.get("location")).toBe("https://tinygeniushubvn.tech/blog?unsubscribed=true");
   });
 });

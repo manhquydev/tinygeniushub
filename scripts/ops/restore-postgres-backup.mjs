@@ -31,7 +31,7 @@ function getDatabaseName() {
     }
   }
 
-  return "cungcontuhoc";
+  return "tinygeniushub";
 }
 
 async function run() {

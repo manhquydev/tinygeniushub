@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Daily Backup Script - Cùng Con Tự Học
+# Daily Backup Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Automated daily database backup with offsite upload
 # Usage: Place in /etc/cron.daily/ or run manually
@@ -32,10 +32,10 @@ trap 'error_handler $LINENO' ERR
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-APP_DIR="/srv/cungcontuhoc"
+APP_DIR="/srv/tinygeniushub"
 BACKUP_DIR="/srv/backups/postgres"
 RETENTION_DAYS=7
-LOG_FILE="/var/log/cungcontuhoc/backup.log"
+LOG_FILE="/var/log/tinygeniushub/backup.log"
 
 # Create log directory
 mkdir -p $(dirname $LOG_FILE)
@@ -77,7 +77,7 @@ cd $APP_DIR
 # 4. Create Backup
 # -----------------------------------------------------------------------------
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-BACKUP_FILE="cungcontuhoc_${TIMESTAMP}.dump"
+BACKUP_FILE="tinygeniushub_${TIMESTAMP}.dump"
 
 log_info "Creating backup: $BACKUP_FILE" | tee -a $LOG_FILE
 
@@ -133,10 +133,10 @@ fi
 # 8. Clean Old Backups
 # -----------------------------------------------------------------------------
 log_info "Cleaning backups older than $RETENTION_DAYS days..." | tee -a $LOG_FILE
-find $BACKUP_DIR -name "cungcontuhoc_*.dump" -mtime +$RETENTION_DAYS -delete || true
-find $BACKUP_DIR -name "cungcontuhoc_*.dump.sha256" -mtime +$RETENTION_DAYS -delete || true
-find $BACKUP_DIR -name "cungcontuhoc_*.dump.json" -mtime +$RETENTION_DAYS -delete || true
-DELETED_COUNT=$(find $BACKUP_DIR -name "cungcontuhoc_*.dump" -mtime +$RETENTION_DAYS 2>/dev/null | wc -l)
+find $BACKUP_DIR -name "tinygeniushub_*.dump" -mtime +$RETENTION_DAYS -delete || true
+find $BACKUP_DIR -name "tinygeniushub_*.dump.sha256" -mtime +$RETENTION_DAYS -delete || true
+find $BACKUP_DIR -name "tinygeniushub_*.dump.json" -mtime +$RETENTION_DAYS -delete || true
+DELETED_COUNT=$(find $BACKUP_DIR -name "tinygeniushub_*.dump" -mtime +$RETENTION_DAYS 2>/dev/null | wc -l)
 log_success "Old backups cleaned ($DELETED_COUNT remaining files removed)" | tee -a $LOG_FILE
 
 # -----------------------------------------------------------------------------

@@ -14,10 +14,10 @@ type StripeCheckoutSessionResponse = {
 
 function getPlanDisplayName(planCode: CreateCheckoutSessionInput["planCode"]) {
   if (planCode === "YEARLY_FAMILY_PLUS") {
-    return "Cung Con Tu Hoc - Family Plus (Yearly)";
+    return "TinyGenius Hub - Family Plus (Yearly)";
   }
 
-  return "Cung Con Tu Hoc - Standard (Yearly)";
+  return "TinyGenius Hub - Standard (Yearly)";
 }
 
 function toStripeSession(raw: StripeCheckoutSessionResponse): CheckoutSessionResult {

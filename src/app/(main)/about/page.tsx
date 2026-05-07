@@ -4,8 +4,8 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Giới thiệu",
   description:
-    "Câu chuyện hình thành Cùng Con Tự Học và lý do chúng tôi xây nền tảng học tập lấy trẻ làm trung tâm cho gia đình Việt.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/about" },
+    "Câu chuyện hình thành TinyGenius Hub và lý do chúng tôi xây nền tảng học tập lấy trẻ làm trung tâm cho gia đình Việt.",
+  alternates: { canonical: "https://tinygeniushubvn.tech/about" },
 };
 
 export default function AboutPage() {
@@ -14,7 +14,7 @@ export default function AboutPage() {
       <section className="about-hero">
         <h1>Câu chuyện của chúng tôi</h1>
         <p className="about-lead">
-          Cùng Con Tự Học được xây dựng bởi những phụ huynh thấu hiểu thách thức khi giúp con học đều đặn mỗi ngày
+          TinyGenius Hub được xây dựng bởi những phụ huynh thấu hiểu thách thức khi giúp con học đều đặn mỗi ngày
           tại nhà.
         </p>
       </section>
@@ -40,7 +40,7 @@ export default function AboutPage() {
           thật thay vì chỉ đoán?
         </p>
         <p>
-          Cùng Con Tự Học ra đời để trả lời các câu hỏi đó bằng hệ bài học có cấu trúc, chỉ số tiến bộ đo được và báo
+          TinyGenius Hub ra đời để trả lời các câu hỏi đó bằng hệ bài học có cấu trúc, chỉ số tiến bộ đo được và báo
           cáo tuần rõ ràng.
         </p>
       </section>
@@ -64,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       <section className="about-cta">
-        <h2>Bắt đầu cùng Cùng Con Tự Học</h2>
+        <h2>Bắt đầu cùng TinyGenius Hub</h2>
         <p>Tạo tài khoản phụ huynh và khám phá khóa học phù hợp nhất với mục tiêu của con.</p>
         <Link href="/courses">Khám phá khóa học</Link>
       </section>

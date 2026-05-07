@@ -3,8 +3,8 @@ import { LEGAL_POLICY_LAST_UPDATED_LABEL } from "@/lib/legal/legal-policy-versio
 
 export const metadata: Metadata = {
   title: "Điều khoản sử dụng",
-  description: "Điều khoản và điều kiện sử dụng nền tảng Cùng Con Tự Học.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/terms" },
+  description: "Điều khoản và điều kiện sử dụng nền tảng TinyGenius Hub.",
+  alternates: { canonical: "https://tinygeniushubvn.tech/terms" },
 };
 
 export default function TermsOfServicePage() {
@@ -12,7 +12,7 @@ export default function TermsOfServicePage() {
     <article className="prose-page">
       <h1>Điều khoản sử dụng</h1>
       <p>
-        Điều khoản này quy định quyền và nghĩa vụ giữa người dùng và Cùng Con Tự Học khi sử dụng website, ứng dụng và
+        Điều khoản này quy định quyền và nghĩa vụ giữa người dùng và TinyGenius Hub khi sử dụng website, ứng dụng và
         các dịch vụ liên quan.
       </p>
 
@@ -97,7 +97,7 @@ export default function TermsOfServicePage() {
       </p>
 
       <h2>13. Liên hệ</h2>
-      <p>Email hỗ trợ: support@cungcontuhoc.io.vn</p>
+      <p>Email hỗ trợ: support@tinygeniushubvn.tech</p>
 
       <h2>14. Cơ sở pháp lý tham chiếu</h2>
       <ul>

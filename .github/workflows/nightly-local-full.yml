@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
-      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/cungcontuhoc?schema=public
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/tinygeniushub?schema=public
       REDIS_URL: redis://127.0.0.1:6379
       SESSION_SECRET: nightly-session-secret-with-at-least-thirty-two-characters
       BETTER_AUTH_SECRET: nightly-better-auth-secret-with-at-least-thirty-two-characters
@@ -45,6 +45,6 @@ jobs:
 
       - name: Run full local regression
         env:
-          E2E_ADMIN_EMAIL: demo.admin@cungcontuhoc.vn
+          E2E_ADMIN_EMAIL: demo.admin@tinygeniushubvn.tech
           E2E_ADMIN_PASSWORD: DemoAdmin123!
         run: pnpm test:local:full

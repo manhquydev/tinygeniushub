@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Application Setup Script - Cùng Con Tự Học
+# Application Setup Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Clone repository and install application dependencies
 # Run as: deploy user
@@ -32,7 +32,7 @@ trap 'error_handler $LINENO' ERR
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-APP_DIR="/srv/cungcontuhoc"
+APP_DIR="/srv/tinygeniushub"
 REPO_URL="https://github.com/manhquydev/cungcontuhoc.git"
 
 echo "📁 Setting up application repository..."

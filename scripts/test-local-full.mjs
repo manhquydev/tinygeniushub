@@ -26,7 +26,7 @@ function runCommand(command, options = {}) {
 }
 
 async function main() {
-  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@cungcontuhoc.io.vn";
+  const adminEmail = process.env.E2E_ADMIN_EMAIL ?? "demo.admin@tinygeniushubvn.tech";
   const adminPassword = process.env.E2E_ADMIN_PASSWORD ?? "DemoAdmin123!";
   const adminAuthSecret =
     process.env.ADMIN_AUTH_SECRET ?? process.env.BETTER_AUTH_SECRET ?? "local-admin-auth-secret-minimum-32-characters";

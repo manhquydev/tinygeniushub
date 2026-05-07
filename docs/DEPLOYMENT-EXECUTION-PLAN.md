@@ -31,8 +31,8 @@
 | Component | Current State | Target State |
 |-----------|---------------|--------------|
 | **Server** | 152.42.246.218 (DigitalOcean) | Same |
-| **App Path** | /var/www/cungcontuhoc | Same |
-| **PM2 Process** | cungcontuhoc | Same |
+| **App Path** | /var/www/tinygeniushub | Same |
+| **PM2 Process** | tinygeniushub-web, tinygeniushub-worker | Same |
 | **Database** | PostgreSQL (Docker) | Same + Abeka tables |
 | **Curriculum Data** | Existing 3 courses | 8 CurriculumPackage + 20,195 videos |
 
@@ -158,7 +158,7 @@ ssh root@152.42.246.218 "watch -n 2 'free -h'"
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "pm2 list && pm2 describe cungcontuhoc-web"
+ssh root@152.42.246.218 "pm2 list && pm2 describe tinygeniushub-web"
 ```
 
 **Expected Output:**
@@ -166,8 +166,8 @@ ssh root@152.42.246.218 "pm2 list && pm2 describe cungcontuhoc-web"
 ┌─────┬────────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
 │ id  │ name                   │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
 ├─────┼────────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
-│ 0   │ cungcontuhoc-web       │ default     │ 0.1.0   │ fork    │ 12345    │ 2D     │ 0    │ online    │ 0.2%     │ 85.4mb   │ root     │ disabled │
-│ 1   │ cungcontuhoc-worker    │ default     │ 0.1.0   │ fork    │ 12346    │ 2D     │ 0    │ online    │ 0.1%     │ 45.2mb   │ root     │ disabled │
+│ 0   │ tinygeniushub-web       │ default     │ 0.1.0   │ fork    │ 12345    │ 2D     │ 0    │ online    │ 0.2%     │ 85.4mb   │ root     │ disabled │
+│ 1   │ tinygeniushub-worker    │ default     │ 0.1.0   │ fork    │ 12346    │ 2D     │ 0    │ online    │ 0.1%     │ 45.2mb   │ root     │ disabled │
 └─────┴────────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 ```
 
@@ -177,7 +177,7 @@ ssh root@152.42.246.218 "pm2 list && pm2 describe cungcontuhoc-web"
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && docker exec postgres psql -U cungcontuhoc -d cungcontuhoc -c 'SELECT version();'"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && docker exec postgres psql -U tinygeniushub -d tinygeniushub -c 'SELECT version();'"
 ```
 
 **Expected Output:**
@@ -202,14 +202,14 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && docker exec postgres psql -
 ssh root@152.42.246.218
 
 # Create backup directory
-cd /var/www/cungcontuhoc
+cd /var/www/tinygeniushub
 mkdir -p backups/$(date +%Y%m%d)
 
 # Backup database
-docker exec postgres pg_dump -U cungcontuhoc -d cungcontuhoc \
+docker exec postgres pg_dump -U tinygeniushub -d tinygeniushub \
   --verbose --no-owner --no-acl \
   --format=custom \
-  -f /backups/cungcontuhoc-$(date +%Y%m%d-%H%M%S).dump
+  -f /backups/tinygeniushub-$(date +%Y%m%d-%H%M%S).dump
 
 # Or use the built-in backup script
 pnpm backup:create
@@ -225,10 +225,10 @@ Backup verified: ✓
 **Verify Backup:**
 ```bash
 # List backup files
-ls -lh /var/www/cungcontuhoc/backups/
+ls -lh /var/www/tinygeniushub/backups/
 
 # Check file size (should be > 10MB)
-du -h /var/www/cungcontuhoc/backups/*.dump | head -1
+du -h /var/www/tinygeniushub/backups/*.dump | head -1
 ```
 
 ---
@@ -237,7 +237,7 @@ du -h /var/www/cungcontuhoc/backups/*.dump | head -1
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && git rev-parse HEAD > .pre-deploy-commit && cat .pre-deploy-commit"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && git rev-parse HEAD > .pre-deploy-commit && cat .pre-deploy-commit"
 ```
 
 **Expected Output:**
@@ -259,8 +259,8 @@ echo "Rollback commit saved: $ROLLBACK_COMMIT"
 **Command:**
 ```bash
 # If you want to preserve current curriculum data
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
-  docker exec postgres psql -U cungcontuhoc -d cungcontuhoc -c \"COPY (SELECT * FROM \"Course\") TO STDOUT WITH CSV HEADER\" > /tmp/courses-backup.csv"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
+  docker exec postgres psql -U tinygeniushub -d tinygeniushub -c \"COPY (SELECT * FROM \"Course\") TO STDOUT WITH CSV HEADER\" > /tmp/courses-backup.csv"
 ```
 
 ---
@@ -279,13 +279,13 @@ ssh root@152.42.246.218 "pm2 stop all && pm2 save"
 **Expected Output:**
 ```
 [PM2] Applying action stopProcessId on app [all](ids: [ 0, 1 ])
-[PM2] [cungcontuhoc-web](0) ✓
-[PM2] [cungcontuhoc-worker](1) ✓
+[PM2] [tinygeniushub-web](0) ✓
+[PM2] [tinygeniushub-worker](1) ✓
 ┌─────┬────────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
 │ id  │ name                   │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
 ├─────┼────────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
-│ 0   │ cungcontuhoc-web       │ default     │ 0.1.0   │ fork    │ N/A      │ 0s     │ 0    │ stopped   │ 0%       │ 0b       │ root     │ disabled │
-│ 1   │ cungcontuhoc-worker    │ default     │ 0.1.0   │ fork    │ N/A      │ 0s     │ 0    │ stopped   │ 0%       │ 0b       │ root     │ disabled │
+│ 0   │ tinygeniushub-web       │ default     │ 0.1.0   │ fork    │ N/A      │ 0s     │ 0    │ stopped   │ 0%       │ 0b       │ root     │ disabled │
+│ 1   │ tinygeniushub-worker    │ default     │ 0.1.0   │ fork    │ N/A      │ 0s     │ 0    │ stopped   │ 0%       │ 0b       │ root     │ disabled │
 └─────┴────────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 ```
 
@@ -295,7 +295,7 @@ ssh root@152.42.246.218 "pm2 stop all && pm2 save"
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && git status && git pull origin main"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && git status && git pull origin main"
 ```
 
 **Expected Output:**
@@ -321,7 +321,7 @@ Fast-forward
 **If Merge Conflicts:**
 ```bash
 # Reset and pull fresh
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && git reset --hard HEAD && git pull origin main"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && git reset --hard HEAD && git pull origin main"
 ```
 
 ---
@@ -330,7 +330,7 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && git reset --hard HEAD && gi
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm install --frozen-lockfile"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm install --frozen-lockfile"
 ```
 
 **Expected Output:**
@@ -343,7 +343,7 @@ Done in 12.4s
 **If Lockfile Issues:**
 ```bash
 # Remove and reinstall
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && rm -rf node_modules pnpm-lock.yaml && pnpm install"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && rm -rf node_modules pnpm-lock.yaml && pnpm install"
 ```
 
 ---
@@ -354,7 +354,7 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && rm -rf node_modules pnpm-lo
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm db:generate"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm db:generate"
 ```
 
 **Expected Output:**
@@ -372,7 +372,7 @@ Prisma Client generated (version: 6.16.0)
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm prisma migrate deploy"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm prisma migrate deploy"
 ```
 
 **Expected Output:**
@@ -391,10 +391,10 @@ Applied migration(s) successfully
 **If Migration Fails:**
 ```bash
 # Check migration status
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm prisma migrate status"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm prisma migrate status"
 
 # If needed, resolve manually
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm prisma migrate resolve --applied 20260404_add_abeka_tables"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm prisma migrate resolve --applied 20260404_add_abeka_tables"
 ```
 
 ---
@@ -403,8 +403,8 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm prisma migrate resolve
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
-  docker exec postgres psql -U cungcontuhoc -d cungcontuhoc -c \"\\dt \"Abeka*\"\""
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
+  docker exec postgres psql -U tinygeniushub -d tinygeniushub -c \"\\dt \"Abeka*\"\""
 ```
 
 **Expected Output:**
@@ -412,11 +412,11 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
                  List of relations
  Schema |         Name         | Type  |  Owner
 ────────┼──────────────────────┼───────┼───────────
- public | AbekaGrade           | table | cungcontuhoc
- public | AbekaLesson          | table | cungcontuhoc
- public | AbekaLessonPackage   | table | cungcontuhoc
- public | AbekaSubject         | table | cungcontuhoc
- public | AbekaVideo           | table | cungcontuhoc
+ public | AbekaGrade           | table | tinygeniushub
+ public | AbekaLesson          | table | tinygeniushub
+ public | AbekaLessonPackage   | table | tinygeniushub
+ public | AbekaSubject         | table | tinygeniushub
+ public | AbekaVideo           | table | tinygeniushub
 (5 rows)
 ```
 
@@ -428,7 +428,7 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm db:seed:packages"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm db:seed:packages"
 ```
 
 **Expected Output:**
@@ -448,8 +448,8 @@ Seeding Curriculum Packages...
 
 **Verify:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
-  docker exec postgres psql -U cungcontuhoc -d cungcontuhoc -c 'SELECT code, name, \"videoCount\", \"monthlyPrice\", \"yearlyPrice\" FROM \"CurriculumPackage\" ORDER BY \"displayOrder\";'"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
+  docker exec postgres psql -U tinygeniushub -d tinygeniushub -c 'SELECT code, name, \"videoCount\", \"monthlyPrice\", \"yearlyPrice\" FROM \"CurriculumPackage\" ORDER BY \"displayOrder\";'"
 ```
 
 ---
@@ -459,8 +459,8 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
 Run after `pnpm db:seed:packages` and again after import:
 
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
-  docker exec postgres psql -U cungcontuhoc -d cungcontuhoc << 'SQL'
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
+  docker exec postgres psql -U tinygeniushub -d tinygeniushub << 'SQL'
 WITH canonical(code, \"videoCount\", \"monthlyPrice\", \"yearlyPrice\", \"displayOrder\") AS (
   VALUES
     ('PRESCHOOL_PREMIUM', 680, 199000, 1990000, 1),
@@ -493,13 +493,13 @@ Expected: no rows.
 
 **Option A: Full Import (Recommended for production)**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
   pnpm abeka:import:prod --verbose --checkpoint=./checkpoints/abeka-import.chk"
 ```
 
 **Option B: Resume Import (if interrupted)**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
   pnpm abeka:import:resume --checkpoint=./checkpoints/abeka-import.chk"
 ```
 
@@ -508,7 +508,7 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
 # Import one grade at a time
 for grade in 0 1 2 3 4 5 6 7 8 9 10 11 12 13; do
   echo "Importing grade $grade..."
-  ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
+  ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
     pnpm abeka:import:grade --grade=$grade --verbose"
 done
 ```
@@ -520,7 +520,7 @@ done
 ╚════════════════════════════════════════════════════════╝
 
 🔍 Validating preconditions...
-✅ Data path accessible: /var/www/cungcontuhoc/data/abeka
+✅ Data path accessible: /var/www/tinygeniushub/data/abeka
 ✅ Database connection OK
 
 📋 Configuration:
@@ -581,7 +581,7 @@ Errors:                       0
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm abeka:validate:db"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm abeka:validate:db"
 ```
 
 **Expected Output:**
@@ -632,7 +632,7 @@ ssh root@152.42.246.218 "watch -n 5 'free -h && echo \"---\" && swapon -s'"
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && NODE_ENV=production pnpm build"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && NODE_ENV=production pnpm build"
 ```
 
 **Expected Output:**
@@ -669,7 +669,7 @@ Build completed in 189.45s
 ssh root@152.42.246.218 "fallocate -l 4G /swapfile2 && chmod 600 /swapfile2 && mkswap /swapfile2 && swapon /swapfile2"
 
 # Retry build
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && NODE_ENV=production pnpm build"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && NODE_ENV=production pnpm build"
 
 # Remove temporary swap after
 ssh root@152.42.246.218 "swapoff /swapfile2 && rm /swapfile2"
@@ -681,18 +681,18 @@ ssh root@152.42.246.218 "swapoff /swapfile2 && rm /swapfile2"
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pm2 start ecosystem.config.js --env production"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pm2 start ecosystem.config.js --env production"
 ```
 
 **Expected Output:**
 ```
-[PM2] Starting /var/www/cungcontuhoc/node_modules/.bin/next in fork_mode (1 instance)
+[PM2] Starting /var/www/tinygeniushub/node_modules/.bin/next in fork_mode (1 instance)
 [PM2] Done.
 ┌─────┬────────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
 │ id  │ name                   │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
 ├─────┼────────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
-│ 0   │ cungcontuhoc-web       │ default     │ 0.2.0   │ fork    │ 23456    │ 3s     │ 0    │ online    │ 12%      │ 145.2mb  │ root     │ disabled │
-│ 1   │ cungcontuhoc-worker    │ default     │ 0.2.0   │ fork    │ 23457    │ 3s     │ 0    │ online    │ 5%       │ 68.4mb   │ root     │ disabled │
+│ 0   │ tinygeniushub-web       │ default     │ 0.2.0   │ fork    │ 23456    │ 3s     │ 0    │ online    │ 12%      │ 145.2mb  │ root     │ disabled │
+│ 1   │ tinygeniushub-worker    │ default     │ 0.2.0   │ fork    │ 23457    │ 3s     │ 0    │ online    │ 5%       │ 68.4mb   │ root     │ disabled │
 └─────┴────────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 ```
 
@@ -762,7 +762,7 @@ curl -s http://152.42.246.218:3000/api/curriculum/stats | jq '.totalVideos'
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "pm2 logs cungcontuhoc-web --lines 20"
+ssh root@152.42.246.218 "pm2 logs tinygeniushub-web --lines 20"
 ```
 
 **Expected Output:**
@@ -786,7 +786,7 @@ ssh root@152.42.246.218 "pm2 logs cungcontuhoc-web --lines 20"
 **Automated:**
 ```bash
 # Run E2E smoke test
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm test:e2e"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm test:e2e"
 ```
 
 ---
@@ -795,7 +795,7 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm test:e2e"
 
 **Command:**
 ```bash
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm backup:create"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm backup:create"
 ```
 
 ---
@@ -811,19 +811,19 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm backup:create"
 ssh root@152.42.246.218 "pm2 stop all"
 
 # 2. Restore database from backup
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
-  docker exec -i postgres pg_restore -U cungcontuhoc -d cungcontuhoc --clean --if-exists < \
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
+  docker exec -i postgres pg_restore -U tinygeniushub -d tinygeniushub --clean --if-exists < \
   backups/20260404-143022.dump"
 
 # 3. Revert code
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
   git reset --hard $(cat .pre-deploy-commit)"
 
 # 4. Reinstall dependencies
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm install"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm install"
 
 # 5. Rebuild
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm build"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm build"
 
 # 6. Start application
 ssh root@152.42.246.218 "pm2 start all"
@@ -837,12 +837,12 @@ ssh root@152.42.246.218 "pm2 start all"
 
 ```bash
 # Restore database only
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
-  docker exec -i postgres pg_restore -U cungcontuhoc -d cungcontuhoc --clean --if-exists < \
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
+  docker exec -i postgres pg_restore -U tinygeniushub -d tinygeniushub --clean --if-exists < \
   backups/20260404-143022.dump"
 
 # Reset migration status
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
   pnpm prisma migrate resolve --rolled-back 20260404_add_abeka_tables"
 ```
 
@@ -854,11 +854,11 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
 
 ```bash
 # Clear Abeka data only
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
-  docker exec postgres psql -U cungcontuhoc -d cungcontuhoc -c \"DELETE FROM \\\"AbekaVideo\\\"; DELETE FROM \\\"AbekaLessonPackage\\\"; DELETE FROM \\\"AbekaLesson\\\"; DELETE FROM \\\"AbekaSubject\\\"; DELETE FROM \\\"AbekaGrade\\\"; DELETE FROM \\\"CurriculumPackage\\\";\""
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
+  docker exec postgres psql -U tinygeniushub -d tinygeniushub -c \"DELETE FROM \\\"AbekaVideo\\\"; DELETE FROM \\\"AbekaLessonPackage\\\"; DELETE FROM \\\"AbekaLesson\\\"; DELETE FROM \\\"AbekaSubject\\\"; DELETE FROM \\\"AbekaGrade\\\"; DELETE FROM \\\"CurriculumPackage\\\";\""
 
 # Rebuild and restart
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm build && pm2 reload all"
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && pnpm build && pm2 reload all"
 ```
 
 ---
@@ -867,8 +867,8 @@ ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && pnpm build && pm2 reload al
 
 ```bash
 # Check database is back to pre-deploy state
-ssh root@152.42.246.218 "cd /var/www/cungcontuhoc && \
-  docker exec postgres psql -U cungcontuhoc -d cungcontuhoc -c \"SELECT COUNT(*) FROM \\\"AbekaVideo\\\";\""
+ssh root@152.42.246.218 "cd /var/www/tinygeniushub && \
+  docker exec postgres psql -U tinygeniushub -d tinygeniushub -c \"SELECT COUNT(*) FROM \\\"AbekaVideo\\\";\""
 
 # Should return 0
 
@@ -896,7 +896,7 @@ curl -s http://152.42.246.218:3000/api/health | jq '.status'
 ```bash
 # Full deployment (all phases)
 ssh root@152.42.246.218 << 'EOF'
-cd /var/www/cungcontuhoc
+cd /var/www/tinygeniushub
 
 # Pre-checks
 free -h && df -h

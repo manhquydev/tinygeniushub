@@ -9,10 +9,10 @@ if [[ -z "$TARGET" ]]; then
 fi
 
 GIT_REF="${2:-$(git rev-parse --abbrev-ref HEAD)}"
-APP_DIR="${APP_DIR:-/var/www/cungcontuhoc}"
-BASE_URL="${BASE_URL:-https://cungcontuhoc.io.vn}"
-WEB_PROCESS="${WEB_PROCESS:-cungcontuhoc-web}"
-WORKER_PROCESS="${WORKER_PROCESS:-cungcontuhoc-worker}"
+APP_DIR="${APP_DIR:-/var/www/tinygeniushub}"
+BASE_URL="${BASE_URL:-https://tinygeniushubvn.tech}"
+WEB_PROCESS="${WEB_PROCESS:-tinygeniushub-web}"
+WORKER_PROCESS="${WORKER_PROCESS:-tinygeniushub-worker}"
 REMOTE_ENV_FILE="${REMOTE_ENV_FILE:-.env.production}"
 
 echo "[hotfix] target=$TARGET ref=$GIT_REF app_dir=$APP_DIR base_url=$BASE_URL"

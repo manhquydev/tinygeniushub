@@ -5,8 +5,8 @@ import { ContactForm } from "@/components/contact-form";
 
 export const metadata: Metadata = {
   title: "Liên hệ",
-  description: "Liên hệ với đội ngũ Cùng Con Tự Học để được hỗ trợ hoặc hợp tác.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/contact" },
+  description: "Liên hệ với đội ngũ TinyGenius Hub để được hỗ trợ hoặc hợp tác.",
+  alternates: { canonical: "https://tinygeniushubvn.tech/contact" },
 };
 
 export default function ContactPage() {
@@ -23,7 +23,7 @@ export default function ContactPage() {
             <Mail size={18} aria-hidden />
             <div>
               <strong>Email hỗ trợ</strong>
-              <p>support@cungcontuhoc.io.vn</p>
+              <p>support@tinygeniushubvn.tech</p>
             </div>
           </div>
 

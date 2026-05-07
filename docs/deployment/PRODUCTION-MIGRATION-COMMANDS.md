@@ -73,8 +73,8 @@ Swap:          1Gi       100Mi       900Mi
 ┌────┬─────────────────────────┬─────────┬──────┬───────────┬────────┐
 │ id │ name                    │ mode    │ ↺    │ status    │ cpu    │
 ├────┼─────────────────────────┼─────────┼──────┼───────────┼────────┤
-│ 0  │ cungcontuhoc-web        │ fork    │ 0    │ online    │ 5%     │
-│ 1  │ cungcontuhoc-worker     │ fork    │ 0    │ online    │ 2%     │
+│ 0  │ tinygeniushub-web        │ fork    │ 0    │ online    │ 5%     │
+│ 1  │ tinygeniushub-worker     │ fork    │ 0    │ online    │ 2%     │
 └────┴─────────────────────────┴─────────┴──────┴───────────┴────────┘
 
 === DOCKER STATUS ===
@@ -111,7 +111,7 @@ ssh do-server "curl -s http://localhost:3000/api/health/ready | jq ."
 ```bash
 # SSH into server and create backup
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   # Create backup with timestamp
   pnpm backup:create
@@ -127,7 +127,7 @@ EOF
 **Expected Output:**
 ```
 🔄 Creating database backup...
-📦 Backup created: backups/postgres/cungcontuhoc_20260404_120000.dump
+📦 Backup created: backups/postgres/tinygeniushub_20260404_120000.dump
 ✅ Size: 145MB
 📤 Uploading to offsite storage...
 ✅ Upload complete
@@ -141,13 +141,13 @@ ssh do-server << 'EOF'
   TIMESTAMP=$(date +%Y%m%d_%H%M%S)
   docker exec postgres pg_dump \
     -U postgres \
-    -d cungcontuhoc \
+    -d tinygeniushub \
     -F custom \
     -f /tmp/backup_pre_abeka_${TIMESTAMP}.dump
   
   # Copy to backups directory
   docker cp postgres:/tmp/backup_pre_abeka_${TIMESTAMP}.dump \
-    /var/www/cungcontuhoc/backups/postgres/
+    /var/www/tinygeniushub/backups/postgres/
   
   echo "Backup created: backup_pre_abeka_${TIMESTAMP}.dump"
 EOF
@@ -158,7 +158,7 @@ EOF
 ```bash
 # Backup only Abeka-related tables
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   TIMESTAMP=$(date +%Y%m%d_%H%M%S)
   BACKUP_DIR="./backups/pre-migration-${TIMESTAMP}"
   
@@ -167,35 +167,35 @@ ssh do-server << 'EOF'
   # Backup tables individually
   docker exec postgres pg_dump \
     -U postgres \
-    -d cungcontuhoc \
+    -d tinygeniushub \
     --data-only \
     --table="AbekaVideo" \
     > ${BACKUP_DIR}/01_abeka_videos.sql
   
   docker exec postgres pg_dump \
     -U postgres \
-    -d cungcontuhoc \
+    -d tinygeniushub \
     --data-only \
     --table="AbekaLesson" \
     > ${BACKUP_DIR}/02_abeka_lessons.sql
   
   docker exec postgres pg_dump \
     -U postgres \
-    -d cungcontuhoc \
+    -d tinygeniushub \
     --data-only \
     --table="AbekaSubject" \
     > ${BACKUP_DIR}/03_abeka_subjects.sql
   
   docker exec postgres pg_dump \
     -U postgres \
-    -d cungcontuhoc \
+    -d tinygeniushub \
     --data-only \
     --table="AbekaGrade" \
     > ${BACKUP_DIR}/04_abeka_grades.sql
   
   docker exec postgres pg_dump \
     -U postgres \
-    -d cungcontuhoc \
+    -d tinygeniushub \
     --data-only \
     --table="CurriculumPackage" \
     > ${BACKUP_DIR}/05_curriculum_packages.sql
@@ -212,11 +212,11 @@ EOF
 
 ```bash
 # List backups
-ssh do-server "ls -lht /var/www/cungcontuhoc/backups/postgres/ | head -10"
+ssh do-server "ls -lht /var/www/tinygeniushub/backups/postgres/ | head -10"
 
 # Verify backup integrity
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   LATEST=$(ls -t backups/postgres/*.dump | head -1)
   pnpm backup:verify -- --file=${LATEST}
 EOF
@@ -225,10 +225,10 @@ EOF
 **Expected Output:**
 ```
 total 150M
--rw-r--r-- 1 deploy deploy 145M Apr  4 12:00 cungcontuhoc_20260404_120000.dump
--rw-r--r-- 1 deploy deploy 140M Apr  3 12:00 cungcontuhoc_20260403_120000.dump
+-rw-r--r-- 1 deploy deploy 145M Apr  4 12:00 tinygeniushub_20260404_120000.dump
+-rw-r--r-- 1 deploy deploy 140M Apr  3 12:00 tinygeniushub_20260403_120000.dump
 
-🔍 Verifying backup: backups/postgres/cungcontuhoc_20260404_120000.dump
+🔍 Verifying backup: backups/postgres/tinygeniushub_20260404_120000.dump
 ✅ Backup format: Custom
 ✅ Tables found: 25
 ✅ Data integrity: OK
@@ -244,9 +244,9 @@ total 150M
 ```bash
 # Query current table counts
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     \echo '╔═══════════════════════════════════════════════════════════╗'
     \echo '║         CURRENT DATABASE STATE - PRE-MIGRATION            ║'
     \echo '╚═══════════════════════════════════════════════════════════╝'
@@ -312,7 +312,7 @@ PackageSubscription    | 0
 ```bash
 # Verify user data that MUST be preserved
 ssh do-server << 'EOF'
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     \echo '╔═══════════════════════════════════════════════════════════╗'
     \echo '║           CRITICAL USER DATA (PRESERVE THESE)             ║'
     \echo '╚═══════════════════════════════════════════════════════════╝'
@@ -372,7 +372,7 @@ Lesson                 | 85
 ```bash
 # Check if any active curriculum subscriptions exist
 ssh do-server << 'EOF'
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     \echo '╔═══════════════════════════════════════════════════════════╗'
     \echo '║           ACTIVE SUBSCRIPTIONS CHECK                      ║'
     \echo '╚═══════════════════════════════════════════════════════════╝'
@@ -425,7 +425,7 @@ Total active subscriptions:
 
 ```bash
 # Option A: Full stop (downtime ~5 minutes)
-ssh do-server "pm2 stop cungcontuhoc-web && pm2 stop cungcontuhoc-worker"
+ssh do-server "pm2 stop tinygeniushub-web && pm2 stop tinygeniushub-worker"
 
 # Verify stopped
 ssh do-server "pm2 status"
@@ -438,7 +438,7 @@ ssh do-server "pm2 status"
 ```bash
 # Truncate old Abeka data (keep reference tables like AbekaGrade)
 ssh do-server << 'EOF'
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     \echo '╔═══════════════════════════════════════════════════════════╗'
     \echo '║           TRUNCATING OLD ABEKA DATA                       ║'
     \echo '╚═══════════════════════════════════════════════════════════╝'
@@ -524,7 +524,7 @@ CurriculumPackage   |     0 | ✅ OK
 ```bash
 # CRITICAL: Verify user data was NOT touched
 ssh do-server << 'EOF'
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     \echo '╔═══════════════════════════════════════════════════════════╗'
     \echo '║         VERIFY USER DATA PRESERVED                        ║'
     \echo '╚═══════════════════════════════════════════════════════════╝'
@@ -567,7 +567,7 @@ PaymentTransaction  | 3,450 | ✅ PRESERVED
 ```bash
 # Run migrations on production database
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   # Deploy pending migrations
   pnpm prisma migrate deploy
@@ -577,7 +577,7 @@ EOF
 **Expected Output:**
 ```
 Prisma schema loaded from prisma/schema.prisma
-Datasource "db": PostgreSQL database "cungcontuhoc", schema "public" at "postgres:5432"
+Datasource "db": PostgreSQL database "tinygeniushub", schema "public" at "postgres:5432"
 
 3 migration(s) found in prisma/migrations.
 
@@ -603,7 +603,7 @@ migrations/
 ```bash
 # Check migration status
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   pnpm prisma migrate status
 EOF
 ```
@@ -611,7 +611,7 @@ EOF
 **Expected Output:**
 ```
 Prisma schema loaded from prisma/schema.prisma
-Datasource "db": PostgreSQL database "cungcontuhoc", schema "public" at "postgres:5432"
+Datasource "db": PostgreSQL database "tinygeniushub", schema "public" at "postgres:5432"
 
 3 migration(s) found in prisma/migrations.
 
@@ -623,7 +623,7 @@ Database schema is up to date! ✅
 ```bash
 # Generate updated Prisma client
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   pnpm db:generate
 EOF
 ```
@@ -642,7 +642,7 @@ EOF
 ```bash
 # Seed the 8 curriculum packages
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   pnpm db:seed:packages
 EOF
 ```
@@ -668,7 +668,7 @@ EOF
 ```bash
 # Query packages
 ssh do-server << 'EOF'
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     \echo '╔═══════════════════════════════════════════════════════════╗'
     \echo '║           CURRICULUM PACKAGES VERIFICATION                ║'
     \echo '╚═══════════════════════════════════════════════════════════╝'
@@ -711,7 +711,7 @@ Run after seed and again after import. All checks must pass:
 
 ```bash
 ssh do-server << 'EOF'
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     -- total must be 8
     SELECT COUNT(*) AS package_count FROM "CurriculumPackage";
 
@@ -756,7 +756,7 @@ EOF
 ```bash
 # Create checkpoint directory
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   mkdir -p checkpoints
   chmod 755 checkpoints
 EOF
@@ -767,7 +767,7 @@ EOF
 ```bash
 # Import all 20,195 videos with checkpoint
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   # Full import with checkpoint and verbose output
   pnpm abeka:import:prod --checkpoint=./checkpoints/import.chk 2>&1 | tee logs/import-$(date +%Y%m%d_%H%M%S).log
@@ -779,7 +779,7 @@ EOF
 ```bash
 # With specific options
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   npx tsx scripts/abeka/production-import.ts \
     --verbose \
@@ -836,7 +836,7 @@ Status:                   ✅ COMPLETED
 ```bash
 # If import fails, resume from checkpoint
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   pnpm abeka:import:prod \
     --resume \
@@ -850,7 +850,7 @@ EOF
 ```bash
 # Import just Grade 5 for testing
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   npx tsx scripts/abeka/production-import.ts \
     --grade=5 \
@@ -868,7 +868,7 @@ EOF
 ```bash
 # Run verification script
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   pnpm abeka:validate:db
 EOF
 ```
@@ -933,7 +933,7 @@ ULTIMATE                | ✅ 8,500 videos (K4-G12)
 ```bash
 # Run manual verification
 ssh do-server << 'EOF'
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     \echo '╔═══════════════════════════════════════════════════════════╗'
     \echo '║           MANUAL VERIFICATION QUERIES                     ║'
     \echo '╚═══════════════════════════════════════════════════════════╝'
@@ -1037,10 +1037,10 @@ level |    name     | videos
 ```bash
 # Verify a sample of CDN URLs are accessible
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   # Get sample of CDN URLs and verify
-  docker exec postgres psql -U postgres -d cungcontuhoc -t -A << 'SQL' | \
+  docker exec postgres psql -U postgres -d tinygeniushub -t -A << 'SQL' | \
     head -20 | while read url; do
       if [ -n "$url" ]; then
         status=$(curl -s -o /dev/null -w "%{http_code}" "$url" 2>/dev/null || echo "000")
@@ -1069,14 +1069,14 @@ URL: https://cdn.example.com/videos/k4/phonics/lesson02/video1.m3u8... Status: 2
 ```bash
 # Restart PM2 processes
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   # Build application first
   pnpm build
   
   # Restart named processes only
-  pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web
-  pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker
+  pm2 restart tinygeniushub-web --update-env || pm2 start tinygeniushub-web
+  pm2 restart tinygeniushub-worker --update-env || pm2 start tinygeniushub-worker
 EOF
 ```
 
@@ -1118,8 +1118,8 @@ EOF
 ┌────┬─────────────────────────┬─────────┬──────┬───────────┬────────┐
 │ id │ name                    │ mode    │ ↺    │ status    │ cpu    │
 ├────┼─────────────────────────┼─────────┼──────┼───────────┼────────┤
-│ 0  │ cungcontuhoc-web        │ fork    │ 0    │ online    │ 5%     │
-│ 1  │ cungcontuhoc-worker     │ fork    │ 0    │ online    │ 2%     │
+│ 0  │ tinygeniushub-web        │ fork    │ 0    │ online    │ 5%     │
+│ 1  │ tinygeniushub-worker     │ fork    │ 0    │ online    │ 2%     │
 └────┴─────────────────────────┴─────────┴──────┴───────────┴────────┘
 ```
 
@@ -1134,14 +1134,14 @@ EOF
 # Only use if migration completely failed
 
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   echo "🚨 STARTING EMERGENCY ROLLBACK"
   echo ""
   
   # 1. Stop application
   echo "Step 1: Stopping application..."
-  pm2 stop cungcontuhoc-web && pm2 stop cungcontuhoc-worker
+  pm2 stop tinygeniushub-web && pm2 stop tinygeniushub-worker
   
   # 2. Find latest pre-migration backup
   LATEST_BACKUP=$(ls -t backups/postgres/*.dump | head -1)
@@ -1151,7 +1151,7 @@ ssh do-server << 'EOF'
   echo "Step 3: Restoring database..."
   docker exec -i postgres pg_restore \
     -U postgres \
-    -d cungcontuhoc \
+    -d tinygeniushub \
     --clean \
     --if-exists \
     < $LATEST_BACKUP
@@ -1166,8 +1166,8 @@ ssh do-server << 'EOF'
   
   # 6. Start application
   echo "Step 6: Starting application..."
-  pm2 start cungcontuhoc-web
-  pm2 start cungcontuhoc-worker
+  pm2 start tinygeniushub-web
+  pm2 start tinygeniushub-worker
   
   # 7. Verify
   echo "Step 7: Verification..."
@@ -1185,12 +1185,12 @@ EOF
 ```bash
 # If import was incomplete, reset and re-import
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   
   echo "🔄 PARTIAL ROLLBACK - Reset and Re-import"
   
   # 1. Truncate Abeka tables
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     TRUNCATE TABLE 
       "AbekaVideo",
       "AbekaLessonPackage",
@@ -1228,11 +1228,11 @@ ssh do-server << 'EOF'
   echo "✅ Health check: $health"
   
   # Check database connection
-  docker exec postgres psql -U postgres -d cungcontuhoc -c "SELECT 1" > /dev/null 2>&1
+  docker exec postgres psql -U postgres -d tinygeniushub -c "SELECT 1" > /dev/null 2>&1
   echo "✅ Database connection: OK"
   
   # Check user data preserved
-  parent_count=$(docker exec postgres psql -U postgres -d cungcontuhoc -t -c "SELECT COUNT(*) FROM \"Parent\"" | xargs)
+  parent_count=$(docker exec postgres psql -U postgres -d tinygeniushub -t -c "SELECT COUNT(*) FROM \"Parent\"" | xargs)
   echo "✅ Parent accounts: $parent_count"
   
   echo ""
@@ -1249,9 +1249,9 @@ EOF
 ```bash
 # Complete migration in one command (run from local machine)
 ssh do-server << 'REMOTESCRIPT'
-  cd /var/www/cungcontuhoc && \
+  cd /var/www/tinygeniushub && \
   pnpm backup:create && \
-  docker exec postgres psql -U postgres -d cungcontuhoc -c "
+  docker exec postgres psql -U postgres -d tinygeniushub -c "
     TRUNCATE TABLE \\"
 AbekaVideo\\", \\"
 AbekaLessonPackage\\", \\"
@@ -1267,7 +1267,7 @@ CurriculumPackage\\"
   pnpm abeka:import:prod --checkpoint=./checkpoints/import.chk && \
   pnpm abeka:validate:db && \
   pnpm build && \
-  pm2 reload cungcontuhoc-web && pm2 reload cungcontuhoc-worker && \
+  pm2 reload tinygeniushub-web && pm2 reload tinygeniushub-worker && \
   curl -s http://localhost:3000/api/health | jq .
 REMOTESCRIPT
 ```
@@ -1277,11 +1277,11 @@ REMOTESCRIPT
 ```bash
 # Check migration status quickly
 ssh do-server << 'EOF'
-  cd /var/www/cungcontuhoc
+  cd /var/www/tinygeniushub
   echo "=== Video Count ==="
-  docker exec postgres psql -U postgres -d cungcontuhoc -t -c "SELECT COUNT(*) FROM \"AbekaVideo\"" | xargs
+  docker exec postgres psql -U postgres -d tinygeniushub -t -c "SELECT COUNT(*) FROM \"AbekaVideo\"" | xargs
   echo "=== Package Count ==="
-  docker exec postgres psql -U postgres -d cungcontuhoc -t -c "SELECT COUNT(*) FROM \"CurriculumPackage\"" | xargs
+  docker exec postgres psql -U postgres -d tinygeniushub -t -c "SELECT COUNT(*) FROM \"CurriculumPackage\"" | xargs
   echo "=== Health ==="
   curl -s http://localhost:3000/api/health | jq -r '.status'
 EOF
@@ -1329,14 +1329,14 @@ EOF
 #### Issue: Import Times Out
 ```bash
 # Resume from checkpoint with more retries
-ssh do-server "cd /var/www/cungcontuhoc && pnpm abeka:import:prod --resume --checkpoint=./checkpoints/import.chk --max-retries=5"
+ssh do-server "cd /var/www/tinygeniushub && pnpm abeka:import:prod --resume --checkpoint=./checkpoints/import.chk --max-retries=5"
 ```
 
 #### Issue: Low Video Count
 ```bash
 # Check which grades have issues
 ssh do-server << 'EOF'
-  docker exec postgres psql -U postgres -d cungcontuhoc << 'SQL'
+  docker exec postgres psql -U postgres -d tinygeniushub << 'SQL'
     SELECT g.level, g.name, COUNT(v.id) as videos
     FROM "AbekaGrade" g
     LEFT JOIN "AbekaLesson" l ON l."gradeId" = g.id
@@ -1351,7 +1351,7 @@ EOF
 #### Issue: Checkpoint Corrupted
 ```bash
 # Remove and restart
-ssh do-server "cd /var/www/cungcontuhoc && rm -f checkpoints/import.chk && pnpm abeka:import:prod --checkpoint=./checkpoints/import.chk"
+ssh do-server "cd /var/www/tinygeniushub && rm -f checkpoints/import.chk && pnpm abeka:import:prod --checkpoint=./checkpoints/import.chk"
 ```
 
 ---

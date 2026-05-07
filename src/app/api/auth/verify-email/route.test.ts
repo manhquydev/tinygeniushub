@@ -23,7 +23,7 @@ vi.mock("@/lib/observability/logger", () => ({
 }));
 
 vi.mock("@/lib/email/project-email-template-builder", () => ({
-  resolveEmailPublicBaseUrl: vi.fn(() => "https://cungcontuhoc.io.vn"),
+  resolveEmailPublicBaseUrl: vi.fn(() => "https://tinygeniushubvn.tech"),
 }));
 
 import { GET } from "@/app/api/auth/verify-email/route";
@@ -37,7 +37,7 @@ describe("auth verify-email route", () => {
   it("redirects to login with missing status when token is absent", async () => {
     const response = await GET(new Request("http://localhost/api/auth/verify-email"));
     expect(response.status).toBe(307);
-    expect(response.headers.get("location")).toBe("https://cungcontuhoc.io.vn/auth/login?verify=missing");
+    expect(response.headers.get("location")).toBe("https://tinygeniushubvn.tech/auth/login?verify=missing");
     expect(consumeParentEmailVerificationTokenMock).not.toHaveBeenCalled();
   });
 
@@ -46,7 +46,7 @@ describe("auth verify-email route", () => {
 
     const response = await GET(new Request("http://localhost/api/auth/verify-email?token=abc"));
     expect(response.status).toBe(307);
-    expect(response.headers.get("location")).toBe("https://cungcontuhoc.io.vn/auth/login?verify=invalid");
+    expect(response.headers.get("location")).toBe("https://tinygeniushubvn.tech/auth/login?verify=invalid");
   });
 
   it("redirects to login with expired status when token expired", async () => {
@@ -54,7 +54,7 @@ describe("auth verify-email route", () => {
 
     const response = await GET(new Request("http://localhost/api/auth/verify-email?token=abc"));
     expect(response.status).toBe(307);
-    expect(response.headers.get("location")).toBe("https://cungcontuhoc.io.vn/auth/login?verify=expired");
+    expect(response.headers.get("location")).toBe("https://tinygeniushubvn.tech/auth/login?verify=expired");
   });
 
   it("redirects to login success and enqueues lifecycle email when token is verified", async () => {
@@ -65,7 +65,7 @@ describe("auth verify-email route", () => {
 
     const response = await GET(new Request("http://localhost/api/auth/verify-email?token=abc"));
     expect(response.status).toBe(307);
-    expect(response.headers.get("location")).toBe("https://cungcontuhoc.io.vn/auth/login?verify=success");
+    expect(response.headers.get("location")).toBe("https://tinygeniushubvn.tech/auth/login?verify=success");
     expect(enqueueLifecycleEmailMock).toHaveBeenCalledWith("parent-1", "TRIAL_WELCOME");
   });
 });

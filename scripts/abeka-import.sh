@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Abeka Curriculum Import Script - Cùng Con Tự Học
+# Abeka Curriculum Import Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Import Abeka curriculum data with checkpoint support
 # Run as: deploy user
@@ -32,7 +32,7 @@ trap 'error_handler $LINENO' ERR
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-APP_DIR="/srv/cungcontuhoc"
+APP_DIR="/srv/tinygeniushub"
 ABEKA_TOOLS_DIR="/srv/abeka_tools"
 CHECKPOINT_FILE="$APP_DIR/.abeka_import_checkpoint"
 
@@ -97,7 +97,7 @@ if [ "$LAST_STEP" -lt 2 ]; then
     if [ ! -d "$ABEKA_TOOLS_DIR/api" ]; then
         log_warn "Abeka tools directory not found: $ABEKA_TOOLS_DIR/api"
         log_info "Please upload Abeka tools first:"
-        log_info "  rsync -avz ./abeka_tools/api/ deploy@cungcontuhoc.io.vn:/srv/abeka_tools/api/"
+        log_info "  rsync -avz ./abeka_tools/api/ deploy@tinygeniushubvn.tech:/srv/abeka_tools/api/"
         
         # Ask for confirmation
         read -p "Continue without Abeka tools? (y/N): " -n 1 -r
@@ -163,6 +163,6 @@ log_success "Abeka import complete!"
 echo "=========================================="
 echo ""
 echo "Verification commands:"
-echo "  curl https://cungcontuhoc.io.vn/api/health"
-echo "  curl https://cungcontuhoc.io.vn/api/health/ready"
+echo "  curl https://tinygeniushubvn.tech/api/health"
+echo "  curl https://tinygeniushubvn.tech/api/health/ready"
 echo ""

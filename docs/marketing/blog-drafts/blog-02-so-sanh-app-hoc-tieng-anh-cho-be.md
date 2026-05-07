@@ -3,11 +3,11 @@ title: "So Sánh 5 App Học Tiếng Anh Cho Bé Tốt Nhất 2026 (Review Thậ
 slug: "so-sanh-app-hoc-tieng-anh-cho-be-2026"
 category: "cong-cu-hoc-tap"
 targetKeyword: "app học tiếng Anh cho trẻ em"
-metaDesc: "Review thật 5 app học tiếng Anh cho bé phổ biến nhất năm 2026: Monkey Junior, Khan Academy Kids, IXL, và Cùng Con Tự Học — ưu nhược điểm thực tế."
+metaDesc: "Review thật 5 app học tiếng Anh cho bé phổ biến nhất năm 2026: Monkey Junior, Khan Academy Kids, IXL, và TinyGenius Hub — ưu nhược điểm thực tế."
 status: draft
 ---
 
-> **Công khai minh bạch:** Bài viết này được biên soạn bởi đội ngũ Cùng Con Tự Học. Chúng tôi cố gắng đánh giá khách quan dựa trên thông tin công khai và phản hồi từ phụ huynh, nhưng bạn nên cân nhắc nguồn gốc. Xem thêm review độc lập từ cộng đồng phụ huynh trên các hội nhóm Facebook.
+> **Công khai minh bạch:** Bài viết này được biên soạn bởi đội ngũ TinyGenius Hub. Chúng tôi cố gắng đánh giá khách quan dựa trên thông tin công khai và phản hồi từ phụ huynh, nhưng bạn nên cân nhắc nguồn gốc. Xem thêm review độc lập từ cộng đồng phụ huynh trên các hội nhóm Facebook.
 
 # So Sánh 5 App Học Tiếng Anh Cho Bé Tốt Nhất 2026
 
@@ -103,7 +103,7 @@ Bài này tổng hợp thông tin công khai và phản hồi từ phụ huynh V
 
 ---
 
-## 5. Cùng Con Tự Học ⭐⭐⭐⭐
+## 5. TinyGenius Hub ⭐⭐⭐⭐
 
 **Phù hợp:** 2–6 tuổi | **Giá:** 120,000 VND/năm (~$5)
 
@@ -131,18 +131,18 @@ Bài này tổng hợp thông tin công khai và phản hồi từ phụ huynh V
 | Khan Academy Kids | 2–8 | Miễn phí | Có (cơ bản) | Không | Không |
 | IXL | 4–18 | ~3–6M VND | Chi tiết | Không | Không |
 | Kira Kids | 2–6 | Freemium | Chưa rõ | Có | ? |
-| **Cùng Con Tự Học** | **2–6** | **120K VND** | **Chi tiết** | **Có** | **Không** |
+| **TinyGenius Hub** | **2–6** | **120K VND** | **Chi tiết** | **Có** | **Không** |
 
 ---
 
 ## Lời khuyên chọn app
 
-**Nếu ngân sách eo hẹp:** Khan Academy Kids (miễn phí) + Cùng Con Tự Học (120K/năm) là combo tốt nhất.
+**Nếu ngân sách eo hẹp:** Khan Academy Kids (miễn phí) + TinyGenius Hub (120K/năm) là combo tốt nhất.
 
-**Nếu muốn theo dõi tiến độ chi tiết:** Cùng Con Tự Học có báo cáo tuần chi tiết nhất ở tầm giá này.
+**Nếu muốn theo dõi tiến độ chi tiết:** TinyGenius Hub có báo cáo tuần chi tiết nhất ở tầm giá này.
 
 **Nếu bé đã học khá, cần nâng cao:** IXL (nếu ngân sách cho phép).
 
 ---
 
-*Bạn muốn thử Cùng Con Tự Học? [Dùng thử 7 ngày miễn phí](/auth/signup) — không cần thẻ tín dụng.*
+*Bạn muốn thử TinyGenius Hub? [Dùng thử 7 ngày miễn phí](/auth/signup) — không cần thẻ tín dụng.*

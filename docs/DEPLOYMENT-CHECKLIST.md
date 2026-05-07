@@ -2,7 +2,7 @@
 
 > **Version:** 1.0.0  
 > **Last Updated:** 2026-04-04  
-> **Target:** Cung Con Tu Hoc - Abeka Curriculum (20,195 videos, 14 grades K4-12)  
+> **Target:** TinyGenius Hub - Abeka Curriculum (20,195 videos, 14 grades K4-12)  
 > **Estimated Time:** 6-8 hours for full deployment
 
 ---
@@ -207,7 +207,7 @@
   ```
   DATABASE_URL="postgresql://ccth_prod:***@localhost:5432/ccth_prod"
   BETTER_AUTH_SECRET="[32+ char secret]"
-  APP_URL="https://cungcontuhoc.vn"
+  APP_URL="https://tinygeniushubvn.tech"
   ```
 
 - [ ] **Abeka-specific variables configured** 🔴
@@ -550,7 +550,7 @@
 - [ ] **Code deployed to VPS** 🔴
   ```bash
   # Option 1: Git clone
-  git clone https://github.com/your-org/cungcontuhoc.git /var/www/ccth
+  git clone https://github.com/your-org/tinygeniushub.git /var/www/tinygeniushub
   cd /var/www/ccth
   git checkout main
   
@@ -1072,18 +1072,18 @@
 #### 3.3.1 SSL Certificate
 - [ ] **Certificate installed** 🔴
   ```bash
-  sudo certbot certificates | grep cungcontuhoc
+  sudo certbot certificates | grep tinygeniushubvn
   ```
   **Expected Output:**
   ```
-  Certificate Name: cungcontuhoc.vn
-    Domains: cungcontuhoc.vn www.cungcontuhoc.vn
+  Certificate Name: tinygeniushubvn.tech
+    Domains: tinygeniushubvn.tech www.tinygeniushubvn.tech
     Expiry Date: 2026-07-04 (VALID: 89 days)
   ```
 
 - [ ] **HTTPS endpoint accessible** 🔴
   ```bash
-  curl -sf https://cungcontuhoc.vn/api/health
+  curl -sf https://tinygeniushubvn.tech/api/health
   ```
   **Expected Output:**
   ```json
@@ -1093,7 +1093,7 @@
 - [ ] **SSL Labs Grade A+** 🟢
   ```bash
   # Run SSL Labs scan (manual check)
-  # https://www.ssllabs.com/ssltest/analyze.html?d=cungcontuhoc.vn
+  # https://www.ssllabs.com/ssltest/analyze.html?d=tinygeniushubvn.tech
   # Expected: Grade A or A+
   ```
 
@@ -1111,7 +1111,7 @@
 #### 3.4.1 DNS Configuration
 - [ ] **A records point to VPS** 🔴
   ```bash
-  dig +short cungcontuhoc.vn
+  dig +short tinygeniushubvn.tech
   ```
   **Expected Output:**
   ```
@@ -1120,17 +1120,17 @@
 
 - [ ] **WWW CNAME or A record** 🟡
   ```bash
-  dig +short www.cungcontuhoc.vn
+  dig +short www.tinygeniushubvn.tech
   ```
   **Expected Output:**
   ```
-  cungcontuhoc.vn.
+  tinygeniushubvn.tech.
   123.456.789.012
   ```
 
 - [ ] **MX records (if email enabled)** 🟢
   ```bash
-  dig +short MX cungcontuhoc.vn
+  dig +short MX tinygeniushubvn.tech
   ```
 
 ---
@@ -1330,7 +1330,7 @@
 
 - [ ] **Verify new server** 🔴
   ```bash
-  curl -f https://cungcontuhoc.vn/api/health
+  curl -f https://tinygeniushubvn.tech/api/health
   ```
 
 ---
@@ -1423,7 +1423,7 @@ pm2 stop all && pnpm backup:restore -- --file=<backup-file> && pm2 start all
 
 ---
 
-*Generated for Cung Con Tu Hoc - Abeka Curriculum System*  
+*Generated for TinyGenius Hub - Abeka Curriculum System*  
 *Version: 1.0.0 | 2026-04-04*
 
 ---
@@ -1459,7 +1459,7 @@ bash scripts/production/production-gate-check.sh
 ### Worker Restart Storm Tracking
 
 - Default threshold: fail if restart delta `> 2` within `20s`
-- Worker process name default: `cungcontuhoc-worker`
+- Worker process name default: `tinygeniushub-worker`
 - Override when needed:
 
 ```bash

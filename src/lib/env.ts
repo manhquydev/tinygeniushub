@@ -98,7 +98,7 @@ const envSchema = z.object({
     .transform((value) => value === "true"),
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
-  OBSERVABILITY_SERVICE_NAME: z.string().min(1).default("cungcontuhoc-web"),
+  OBSERVABILITY_SERVICE_NAME: z.string().min(1).default("tinygeniushub-web"),
   APP_VERSION: z.string().min(1).default("0.1.0"),
   GA4_PROPERTY_ID: optionalNonEmptyString,
   GA4_SERVICE_ACCOUNT_CLIENT_EMAIL: optionalEmail,
@@ -129,7 +129,7 @@ const envSchema = z.object({
 
 const parsedEnv = envSchema.parse({
   DATABASE_URL:
-    process.env.DATABASE_URL ?? (isProduction ? undefined : "postgresql://postgres:postgres@localhost:5432/cungcontuhoc?schema=public"),
+    process.env.DATABASE_URL ?? (isProduction ? undefined : "postgresql://postgres:postgres@localhost:5432/tinygeniushub?schema=public"),
   SESSION_SECRET:
     process.env.SESSION_SECRET ?? (isProduction ? undefined : "dev-session-secret-change-this-in-production-32"),
   BETTER_AUTH_SECRET:

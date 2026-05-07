@@ -198,12 +198,12 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
           <Link
             href="/"
             className="brand brand-feature-logo"
-            aria-label="Trang chủ Cùng Con Tự Học"
+            aria-label="Trang chủ TinyGenius Hub"
             onClick={(event) => handleInterceptNavigation(event, "/")}
           >
             <Image
               src="/logos/tinygeniushub_logo_horizon.png"
-              alt="Logo Cùng Con Tự Học"
+              alt="Logo TinyGenius Hub"
               width={1584}
               height={672}
               priority

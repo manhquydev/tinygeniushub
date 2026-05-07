@@ -3,7 +3,7 @@ import { requireAdminSession } from "@/modules/admin/admin-auth-service";
 import { redirect } from "next/navigation";
 
 export const metadata = {
-    title: "Admin Login - Cùng Con Tự Học",
+    title: "Admin Login - TinyGenius Hub",
     robots: "noindex, nofollow",
 };
 

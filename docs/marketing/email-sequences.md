@@ -1,4 +1,4 @@
-﻿# Email Sequences — Cùng Con Tự Học
+﻿# Email Sequences — TinyGenius Hub
 
 Lifecycle email sequences cho trial conversion, retention và upsell.
 Toàn bộ copy dùng tiếng Việt, đồng bộ giá hiện tại:
@@ -29,12 +29,12 @@ Toàn bộ copy dùng tiếng Việt, đồng bộ giá hiện tại:
 
 ### D0 — Welcome (trigger: signup complete)
 
-**Subject:** Chào mừng đến Cùng Con Tự Học! Bắt đầu trong 2 phút 🎉
+**Subject:** Chào mừng đến TinyGenius Hub! Bắt đầu trong 2 phút 🎉
 
 ```text
 Xin chào [Tên phụ huynh],
 
-Cảm ơn bạn đã đăng ký Cùng Con Tự Học.
+Cảm ơn bạn đã đăng ký TinyGenius Hub.
 Hành trình của bé [Tên bé] bắt đầu từ hôm nay với Toán tư duy + Tiếng Anh Phonics.
 
 Bước tiếp theo (2 phút):
@@ -43,11 +43,11 @@ Bước tiếp theo (2 phút):
 3) Duy trì 15 phút mỗi ngày
 
 Bắt đầu ngay:
-https://cungcontuhoc.io.vn/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d0
+https://tinygeniushubvn.tech/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d0
 
 Không cần thẻ tín dụng · Trial 7 ngày miễn phí.
 
-Cùng Con Tự Học
+TinyGenius Hub
 ```
 
 ### D1 — Activation Nudge (trigger: chưa hoàn thành bài đầu)
@@ -61,11 +61,11 @@ Chúng tôi thấy [Tên bé] chưa hoàn thành bài học đầu tiên.
 Chỉ cần 15 phút hôm nay để tạo thói quen học đều.
 
 Mở bài học đầu tiên:
-https://cungcontuhoc.io.vn/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d1_activation
+https://tinygeniushubvn.tech/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d1_activation
 
 Mẹo nhanh: Học cùng khung giờ cố định giúp bé vào nếp nhanh hơn.
 
-Cùng Con Tự Học
+TinyGenius Hub
 ```
 
 ### D3 — Mini Progress Report (trigger: đã học >= 1 bài)
@@ -81,11 +81,11 @@ Xin chào [Tên phụ huynh],
 - Chuỗi học: [streak] ngày
 
 Xem báo cáo chi tiết:
-https://cungcontuhoc.io.vn/parent/reports?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d3_progress
+https://tinygeniushubvn.tech/parent/reports?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d3_progress
 
 Còn 4 ngày trial. Đây là thời điểm tốt để giữ đà học của bé.
 
-Cùng Con Tự Học
+TinyGenius Hub
 ```
 
 ### D5 — Referral Prompt + Value Reminder (trigger: D5 trial)
@@ -98,11 +98,11 @@ Xin chào [Tên phụ huynh],
 [Tên bé] vừa đạt mốc: [thành tựu].
 Nếu bạn thấy hành trình này hữu ích, hãy chia sẻ cho một phụ huynh khác:
 
-https://cungcontuhoc.io.vn/auth/signup?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d5_referral
+https://tinygeniushubvn.tech/auth/signup?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d5_referral
 
 Mỗi lượt giới thiệu thành công: cả hai gia đình nhận thêm 7 ngày premium miễn phí.
 
-Cùng Con Tự Học
+TinyGenius Hub
 ```
 
 ### D7 — Trial Expiry + Annual CTA (trigger: trial sắp kết thúc)
@@ -124,11 +124,11 @@ Tóm tắt trial:
 - Family+: 1,199,000 VND/năm
 
 Chọn gói phù hợp:
-https://cungcontuhoc.io.vn/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d7_convert
+https://tinygeniushubvn.tech/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d7_convert
 
 Cam kết: Hoàn tiền 100% trong 30 ngày đầu.
 
-Cùng Con Tự Học
+TinyGenius Hub
 ```
 
 ---
@@ -147,9 +147,9 @@ Tóm tắt tuần này của [Tên bé]:
 - So với tuần trước: [+N / -N bài]
 
 Xem đầy đủ:
-https://cungcontuhoc.io.vn/parent/reports?utm_source=email&utm_medium=lifecycle&utm_campaign=weekly_digest
+https://tinygeniushubvn.tech/parent/reports?utm_source=email&utm_medium=lifecycle&utm_campaign=weekly_digest
 
-Cùng Con Tự Học
+TinyGenius Hub
 ```
 
 ---
@@ -165,11 +165,11 @@ Xin chào [Tên phụ huynh],
 Lộ trình vẫn sẵn sàng — chỉ cần 15 phút hôm nay để bắt đầu lại.
 
 Quay lại dashboard:
-https://cungcontuhoc.io.vn/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=winback_d30
+https://tinygeniushubvn.tech/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=winback_d30
 
 Nếu bạn cần hỗ trợ, chỉ cần reply email này.
 
-Cùng Con Tự Học
+TinyGenius Hub
 ```
 
 ---
@@ -185,11 +185,11 @@ Gói Standard đang hỗ trợ tối đa 3 hồ sơ bé.
 Nếu gia đình muốn thêm hồ sơ, Family+ cho phép đến 5 bé và 4 caregiver.
 
 Nâng cấp Family+:
-https://cungcontuhoc.io.vn/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=upsell_family_plus
+https://tinygeniushubvn.tech/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=upsell_family_plus
 
 Family+ phù hợp khi gia đình cần báo cáo gộp và theo dõi nhiều bé cùng lúc.
 
-Cùng Con Tự Học
+TinyGenius Hub
 ```
 
 ---
@@ -205,14 +205,14 @@ Gói hiện tại sẽ hết hạn vào [ngày hết hạn].
 Gia hạn sớm để không làm gián đoạn lộ trình học của bé.
 
 Gia hạn tại:
-https://cungcontuhoc.io.vn/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=renewal_14d
+https://tinygeniushubvn.tech/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=renewal_14d
 
 Tổng kết năm vừa qua:
 - Bài đã hoàn thành: [N]
 - Chuỗi học dài nhất: [N] ngày
 - Tiến độ lộ trình: [%]
 
-Cùng Con Tự Học
+TinyGenius Hub
 ```
 
 ---

@@ -258,7 +258,7 @@ The EdTech market has reached **$254.8 billion in 2024** with projected growth a
 1. **VietEdu** - K-12 content platform
 2. **Antoree** - English tutoring
 3. **Topica** - Corporate training
-4. **Cung Con Tu Hoc** - Early childhood education (target segment)
+4. **TinyGenius Hub** - Early childhood education (target segment)
 
 **Competitive Strategies:**
 - Localized content (Vietnamese language, local curriculum)
@@ -596,7 +596,7 @@ The EdTech market has reached **$254.8 billion in 2024** with projected growth a
 
 ### 7.1 Recommended Revenue Model Stack
 
-For a platform like **Cung Con Tu Hoc** (Vietnamese children's education), we recommend:
+For a platform like **TinyGenius Hub** (Vietnamese children's education), we recommend:
 
 **Primary Model: Freemium + Subscription Hybrid**
 
@@ -711,7 +711,7 @@ Enterprise (Schools/Institutions)
 **Examples:** Squirrel AI charges $100-$200/month
 **Value Proposition:** Adaptive learning, personalized pacing, outcome improvements
 
-**Implementation for Cung Con Tu Hoc:**
+**Implementation for TinyGenius Hub:**
 - AI-generated practice problems
 - Personalized lesson recommendations
 - Adaptive difficulty adjustment

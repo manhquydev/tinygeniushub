@@ -58,7 +58,7 @@ export const auth = betterAuth({
       const text = [
         `Xin chào ${userLabel},`,
         "",
-        "Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản Cùng Con Tự Học của bạn.",
+        "Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản TinyGenius Hub của bạn.",
         "Để tiếp tục, vui lòng truy cập liên kết sau:",
         resetPasswordUrl,
         "",
@@ -68,7 +68,7 @@ export const auth = betterAuth({
 
       await enqueueTransactionalEmail({
         to: user.email,
-        subject: "Đặt lại mật khẩu tài khoản Cùng Con Tự Học",
+        subject: "Đặt lại mật khẩu tài khoản TinyGenius Hub",
         text,
         tags: [{ name: "feature", value: "forgot_password" }],
       });

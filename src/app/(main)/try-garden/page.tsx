@@ -5,15 +5,15 @@ import { TryGardenClient } from "./try-garden-client";
  * /try-garden - Trang xem thử công khai.
  */
 export const metadata: Metadata = {
-  title: "Khu Vườn Trên Mây - Xem thử khóa học | Cùng Con Tự Học",
+  title: "Khu Vườn Trên Mây - Xem thử khóa học | TinyGenius Hub",
   description:
     "Khám phá Khu Vườn Trên Mây với trải nghiệm xem thử bài học tương tác cho bé 2-6 tuổi trước khi mua khóa.",
-  keywords: ["xem thử khóa học", "học sớm cho bé", "toán tư duy cho bé", "tiếng Anh phonics", "Cùng Con Tự Học"],
+  keywords: ["xem thử khóa học", "học sớm cho bé", "toán tư duy cho bé", "tiếng Anh phonics", "TinyGenius Hub"],
   openGraph: {
     title: "Khu Vườn Trên Mây - Xem thử khóa học",
     description: "Khám phá thế giới học tập và xem thử bài học trước khi mua.",
-    url: "https://cungcontuhoc.io.vn/try-garden",
-    siteName: "Cùng Con Tự Học",
+    url: "https://tinygeniushubvn.tech/try-garden",
+    siteName: "TinyGenius Hub",
     images: [
       {
         url: "/og-images/try-garden.png",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://cungcontuhoc.io.vn/try-garden",
+    canonical: "https://tinygeniushubvn.tech/try-garden",
   },
 };
 

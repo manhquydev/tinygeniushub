@@ -182,11 +182,11 @@ pnpm build
 
 run_default_post_deploy() {
   echo "[deploy] Running default PM2 restart"
-  pm2 restart cungcontuhoc-web --update-env || pm2 start cungcontuhoc-web
-  pm2 describe cungcontuhoc-web >/dev/null
+  pm2 restart tinygeniushub-web --update-env || pm2 start tinygeniushub-web
+  pm2 describe tinygeniushub-web >/dev/null
 
-  pm2 restart cungcontuhoc-worker --update-env || pm2 start cungcontuhoc-worker
-  pm2 describe cungcontuhoc-worker >/dev/null
+  pm2 restart tinygeniushub-worker --update-env || pm2 start tinygeniushub-worker
+  pm2 describe tinygeniushub-worker >/dev/null
 }
 
 if [[ -n "$post_deploy_cmd" ]]; then

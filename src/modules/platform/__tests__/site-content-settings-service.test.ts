@@ -55,8 +55,6 @@ describe("site-content-settings-service", () => {
     const customLinks = {
       facebook: "https://facebook.com/custom-page",
       youtube: "https://youtube.com/@custom-channel",
-      tiktok: "https://tiktok.com/@custom-account",
-      zalo: "https://zalo.me/custom-account",
     };
     siteContentSettingsFindUniqueMock.mockResolvedValue({
       footerSocialLinks: customLinks,
@@ -88,8 +86,6 @@ describe("site-content-settings-service", () => {
     const customLinks = {
       facebook: "https://facebook.com/next-page",
       youtube: "https://youtube.com/@next-channel",
-      tiktok: "https://tiktok.com/@next-account",
-      zalo: "https://zalo.me/next-account",
     };
     siteContentSettingsUpsertMock.mockResolvedValue({
       footerSocialLinks: customLinks,

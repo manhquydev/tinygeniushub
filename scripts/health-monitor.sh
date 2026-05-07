@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Health Monitor Script - Cùng Con Tự Học
+# Health Monitor Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Health check monitoring with auto-restart on failure
 # Usage: Run via cron every 5 minutes
@@ -26,8 +26,8 @@ log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-APP_URL="${1:-https://cungcontuhoc.io.vn}"
-LOG_FILE="/var/log/cungcontuhoc/health-check.log"
+APP_URL="${1:-https://tinygeniushubvn.tech}"
+LOG_FILE="/var/log/tinygeniushub/health-check.log"
 RESTART_ON_FAILURE="${RESTART_ON_FAILURE:-true}"
 ALERT_THRESHOLD=3  # Number of consecutive failures before alerting
 
@@ -66,7 +66,7 @@ fi
 # -----------------------------------------------------------------------------
 # 3. Track Consecutive Failures
 # -----------------------------------------------------------------------------
-FAILURE_COUNT_FILE="/tmp/cungcontuhoc_health_failures"
+FAILURE_COUNT_FILE="/tmp/tinygeniushub_health_failures"
 
 if [ "$FAILURE_DETECTED" = true ]; then
     # Increment failure count

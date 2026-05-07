@@ -2,7 +2,7 @@
 
 **Ngày tạo:** 04/04/2026  
 **Tổng video:** 20,195 videos Abeka  
-**Hệ thống:** Cùng Con Tự Học - Curriculum 5 cấp độ + SePay Payment + Gamification
+**Hệ thống:** TinyGenius Hub - Curriculum 5 cấp độ + SePay Payment + Gamification
 
 ---
 

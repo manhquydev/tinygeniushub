@@ -2,7 +2,7 @@
 # Verify DigitalOcean production environment
 
 SERVER="do-server"
-APP_PATH="/var/www/cungcontuhoc"
+APP_PATH="/var/www/tinygeniushub"
 
 # Colors for output
 RED='\033[0;31m'

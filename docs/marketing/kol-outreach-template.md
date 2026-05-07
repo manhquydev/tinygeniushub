@@ -1,4 +1,4 @@
-# KOL Outreach Templates — Cùng Con Tự Học
+# KOL Outreach Templates — TinyGenius Hub
 Nano/micro KOL outreach scripts for Vietnamese parenting influencers.
 
 ---
@@ -23,7 +23,7 @@ Nano/micro KOL outreach scripts for Vietnamese parenting influencers.
 ```
 Chào [Tên],
 
-Mình là [Tên bạn] từ Cùng Con Tự Học — ứng dụng học tiếng Anh + toán cho bé 2–6 tuổi.
+Mình là [Tên bạn] từ TinyGenius Hub — ứng dụng học tiếng Anh + toán cho bé 2–6 tuổi.
 Mình xem qua content của bạn và thấy rất phù hợp với phụ huynh mà mình đang hướng tới.
 
 Bạn có muốn thử dùng app miễn phí 1 tháng cho bé và chia sẻ trải nghiệm thật của gia đình không?
@@ -34,7 +34,7 @@ Phụ huynh được giới thiệu qua bạn cũng sẽ nhận 7 ngày thử mi
 
 Reply đây để mình gửi thêm thông tin nhé!
 
-[Tên bạn] — Cùng Con Tự Học
+[Tên bạn] — TinyGenius Hub
 ```
 
 ---
@@ -44,7 +44,7 @@ Reply đây để mình gửi thêm thông tin nhé!
 ```
 Chào chị/anh [Tên],
 
-Em đang xây dựng Cùng Con Tự Học — ứng dụng lộ trình học tiếng Anh + toán cho trẻ 2–6 tuổi,
+Em đang xây dựng TinyGenius Hub — ứng dụng lộ trình học tiếng Anh + toán cho trẻ 2–6 tuổi,
 với báo cáo tiến độ chi tiết mỗi tuần để phụ huynh theo dõi được bé tiến bộ như thế nào.
 
 Em thấy nội dung của chị/anh rất gần gũi với phụ huynh có con nhỏ — đúng đối tượng mình muốn tiếp cận.
@@ -58,7 +58,7 @@ Nếu hợp tác, chị/anh sẽ nhận:
 
 Chị/anh có muốn mình share thêm thông tin không?
 
-[Tên] — Cùng Con Tự Học
+[Tên] — TinyGenius Hub
 ```
 
 ---
@@ -68,7 +68,7 @@ Chị/anh có muốn mình share thêm thông tin không?
 ```
 Chào [Tên],
 
-Mình follow up lần này về đề xuất hợp tác với Cùng Con Tự Học.
+Mình follow up lần này về đề xuất hợp tác với TinyGenius Hub.
 
 Nếu timing chưa phù hợp thì hoàn toàn no problem — mình vẫn muốn tặng bạn
 1 tháng dùng app miễn phí cho bé, không có điều kiện gì cả.
@@ -91,10 +91,10 @@ Cảm ơn bạn đã nhận lời! Đây là tóm tắt nhanh để bắt đầu
 
 🔑 ACCOUNT
 → Mình sẽ gửi link đặt mật khẩu riêng qua email: [email của KOL]
-→ Đăng nhập tại: https://cungcontuhoc.io.vn/auth/login
+→ Đăng nhập tại: https://tinygeniushubvn.tech/auth/login
 
 📱 MÃ GIỚI THIỆU CỦA BẠN: [CODE]
-Share link: https://cungcontuhoc.io.vn/auth/signup?ref=[CODE]
+Share link: https://tinygeniushubvn.tech/auth/signup?ref=[CODE]
 → Mỗi phụ huynh đăng ký = +7 ngày free cho bạn
 
 📋 KHÔNG CÓ QUY ĐỊNH GÌ CỨNG NHẮC
@@ -104,11 +104,11 @@ Share link: https://cungcontuhoc.io.vn/auth/signup?ref=[CODE]
 - Gắn thẻ @cungcontuhoc hoặc để link trong bio/caption — tuỳ bạn
 
 💬 CÓ CẦU HỎI GÌ?
-Reply Messenger này hoặc email: support@cungcontuhoc.io.vn
+Reply Messenger này hoặc email: support@tinygeniushubvn.tech
 
 Chúc bé học vui! 🎉
 
-[Tên] — Cùng Con Tự Học
+[Tên] — TinyGenius Hub
 ```
 
 ---

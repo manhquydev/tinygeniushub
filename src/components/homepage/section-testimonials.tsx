@@ -10,7 +10,7 @@ const TESTIMONIALS = [
     name: "Chị Thanh Lan",
     context: "Mẹ bé Minh, 4 tuổi · Đang dùng 3 tháng",
     quote:
-      "Tôi từng nghĩ con 4 tuổi chưa cần học Toán có hệ thống. Nhưng sau 6 tuần dùng Cùng Con Tự Học, bé Minh đã biết cộng trừ trong phạm vi 20 — trong khi các bạn cùng lớp vẫn đang luyện đếm 1–10. Điều tôi thích nhất là báo cáo tuần: tôi thấy rõ tuần này con học bài nào, điểm quiz ra sao, và tuần tới nên tập trung gì. Lần đầu tiên tôi thật sự biết con đang học được gì.",
+      "Tôi từng nghĩ con 4 tuổi chưa cần học Toán có hệ thống. Nhưng sau 6 tuần dùng TinyGenius Hub, bé Minh đã biết cộng trừ trong phạm vi 20 — trong khi các bạn cùng lớp vẫn đang luyện đếm 1–10. Điều tôi thích nhất là báo cáo tuần: tôi thấy rõ tuần này con học bài nào, điểm quiz ra sao, và tuần tới nên tập trung gì. Lần đầu tiên tôi thật sự biết con đang học được gì.",
     rating: 5,
   },
   {

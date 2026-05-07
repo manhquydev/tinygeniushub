@@ -20,7 +20,7 @@ type ExtractedLink = {
 const FEATURE_TITLES: Record<string, string> = {
   weekly_report: "Báo cáo tuần của bé đã sẵn sàng",
   lifecycle: "Thông báo từ lộ trình học của bé",
-  caregiver_invite: "Lời mời caregiver từ Cùng Con Tự Học",
+  caregiver_invite: "Lời mời caregiver từ TinyGenius Hub",
   contact_form: "Yêu cầu liên hệ mới",
   contact_form_ack: "Chúng tôi đã nhận yêu cầu hỗ trợ của bạn",
   waitlist_confirmation: "Xác nhận đăng ký danh sách chờ",
@@ -36,8 +36,8 @@ const FEATURE_TITLES: Record<string, string> = {
   package_subscription_failed: "Thanh toán gói học chưa thành công",
 };
 
-const CANONICAL_APP_BASE_URL = "https://cungcontuhoc.io.vn";
-const CANONICAL_SUPPORT_EMAIL = "support@cungcontuhoc.io.vn";
+const CANONICAL_APP_BASE_URL = "https://tinygeniushubvn.tech";
+const CANONICAL_SUPPORT_EMAIL = "support@tinygeniushubvn.tech";
 const EMAIL_FONT_STACK =
   "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif";
 
@@ -158,7 +158,7 @@ function resolvePreheader(title: string, text: string) {
     .filter((line) => line.length > 0 && !/^https?:\/\/[^\s)]+$/i.test(line));
 
   if (lines.length === 0) {
-    return `${title} - Cùng Con Tự Học`;
+    return `${title} - TinyGenius Hub`;
   }
 
   return `${lines[0].slice(0, 120)}${lines[0].length > 120 ? "..." : ""}`;
@@ -320,7 +320,7 @@ export function renderProjectEmailHtml(input: RenderProjectEmailHtmlInput) {
   const preheader = resolvePreheader(title, normalizedText);
 
   const appBaseUrl = resolveEmailPublicBaseUrl();
-  const logoUrl = `${appBaseUrl}/logo-cungcontuhoc-mascot-email.png`;
+  const logoUrl = `${appBaseUrl}/logo-tinygeniushub-mascot-email.png`;
 
   const supportEmail = resolveSupportEmail();
   const supportEmailHref = `mailto:${supportEmail}`;
@@ -357,7 +357,7 @@ export function renderProjectEmailHtml(input: RenderProjectEmailHtmlInput) {
     '      <table role="presentation" class="email-card" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:16px;border:1px solid #dbe5f3;overflow:hidden;">',
     "        <tr>",
     '          <td style="padding:28px 28px 22px;background:linear-gradient(135deg,#0b3f91 0%,#0b5fff 55%,#22c1ee 100%);">',
-    `            <img src="${escapeHtml(logoUrl)}" alt="Cùng Con Tự Học" style="display:block;height:72px;width:72px;max-width:100%;border-radius:16px;background:rgba(255,255,255,0.16);padding:4px;" />`,
+    `            <img src="${escapeHtml(logoUrl)}" alt="TinyGenius Hub" style="display:block;height:72px;width:72px;max-width:100%;border-radius:16px;background:rgba(255,255,255,0.16);padding:4px;" />`,
     '            <p style="margin:12px 0 0;color:#dbeafe;font-size:13px;line-height:1.5;">Nền tảng đồng hành cùng phụ huynh xây thói quen học tập mỗi ngày</p>',
     `            <h1 style="margin:14px 0 0;color:#ffffff;font-size:24px;line-height:1.35;font-weight:700;">${escapeHtml(title)}</h1>`,
     "          </td>",
@@ -375,11 +375,11 @@ export function renderProjectEmailHtml(input: RenderProjectEmailHtmlInput) {
     "        <tr>",
     '          <td class="email-footer" style="padding:16px 28px 26px;color:#64748b;font-size:12px;line-height:1.7;">',
     unsubscribeUrl
-      ? `            Bạn đang nhận email cập nhật từ Cùng Con Tự Học. <a href="${escapeHtml(unsubscribeUrl)}" style="color:#0b5fff;text-decoration:none;">Hủy đăng ký</a>.<br/>`
+      ? `            Bạn đang nhận email cập nhật từ TinyGenius Hub. <a href="${escapeHtml(unsubscribeUrl)}" style="color:#0b5fff;text-decoration:none;">Hủy đăng ký</a>.<br/>`
       : "",
     '            Nếu cần hỗ trợ, vui lòng phản hồi email này hoặc liên hệ:',
     `            <a href="${escapeHtml(supportEmailHref)}" style="color:#0b5fff;text-decoration:none;font-weight:600;">${escapeHtml(supportEmail)}</a><br/>`,
-    `            © ${year} Cùng Con Tự Học · ${escapeHtml(CANONICAL_APP_BASE_URL)}`,
+    `            © ${year} TinyGenius Hub · ${escapeHtml(CANONICAL_APP_BASE_URL)}`,
     "          </td>",
     "        </tr>",
     "      </table>",

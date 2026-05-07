@@ -160,7 +160,7 @@ describe("billing webhook route", () => {
       eventId: "evt_1",
       eventType: "payment_succeeded",
       transactionId: "txn_1",
-      parentEmail: "demo.parent@cungcontuhoc.io.vn",
+      parentEmail: "demo.parent@tinygeniushubvn.tech",
       amountVnd: 1000000,
       planCode: "YEARLY_STANDARD",
     };

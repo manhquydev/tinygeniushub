@@ -79,7 +79,7 @@ export async function issueParentEmailVerificationChallenge(input: {
   const text = [
     `Xin chào ${parentLabel},`,
     "",
-    "Vui lòng xác minh email để kích hoạt tài khoản Cùng Con Tự Học.",
+    "Vui lòng xác minh email để kích hoạt tài khoản TinyGenius Hub.",
     `Nhấn vào liên kết xác minh: ${verificationUrl}`,
     `Liên kết có hiệu lực trong ${ttlMinutes} phút.`,
     "",
@@ -88,7 +88,7 @@ export async function issueParentEmailVerificationChallenge(input: {
 
   await enqueueTransactionalEmail({
     to: input.parent.email,
-    subject: "Xác minh email tài khoản Cùng Con Tự Học",
+    subject: "Xác minh email tài khoản TinyGenius Hub",
     text,
     tags: [
       { name: "feature", value: "parent_email_verify" },

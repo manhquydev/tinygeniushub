@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 55
     env:
-      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/cungcontuhoc?schema=public
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/tinygeniushub?schema=public
       REDIS_URL: redis://127.0.0.1:6379
       SESSION_SECRET: ci-session-secret-with-at-least-thirty-two-characters
       BILLING_WEBHOOK_SECRET: ci-webhook-secret
@@ -27,13 +27,13 @@ jobs:
       postgres:
         image: postgres:16-alpine
         env:
-          POSTGRES_DB: cungcontuhoc
+          POSTGRES_DB: tinygeniushub
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U postgres -d cungcontuhoc"
+          --health-cmd "pg_isready -U postgres -d tinygeniushub"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5

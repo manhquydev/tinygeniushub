@@ -8,8 +8,8 @@ import "./referral.css";
 
 export const metadata: Metadata = {
   title: "Giới thiệu bạn bè",
-  description: "Mời bạn bè tham gia Cùng Con Tự Học để cả hai cùng nhận ưu đãi cho khóa học.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/referral" },
+  description: "Mời bạn bè tham gia TinyGenius Hub để cả hai cùng nhận ưu đãi cho khóa học.",
+  alternates: { canonical: "https://tinygeniushubvn.tech/referral" },
 };
 
 const TIERS = [

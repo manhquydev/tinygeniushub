@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# VPS Setup Script - Cùng Con Tự Học
+# VPS Setup Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Initial VPS hardening and security setup
 # Run as: root
@@ -29,7 +29,7 @@ error_handler() {
 }
 trap 'error_handler $LINENO' ERR
 
-echo "🚀 Starting VPS setup for Cùng Con Tự Học..."
+echo "🚀 Starting VPS setup for TinyGenius Hub..."
 
 # -----------------------------------------------------------------------------
 # 1. System Update

@@ -1,4 +1,4 @@
-# GTM Launch Playbook — Cùng Con Tự Học
+# GTM Launch Playbook — TinyGenius Hub
 **Phiên bản:** 1.0 · **Cập nhật:** 2026-02-25
 **Mục tiêu:** 100 paying users Day 30 · 700 paying users Day 90
 

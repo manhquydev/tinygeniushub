@@ -1,4 +1,4 @@
-# SSH Commands Reference - Cùng Con Tự Học
+# SSH Commands Reference - TinyGenius Hub
 
 Quick copy-paste SSH commands for server management and deployment.
 
@@ -7,13 +7,13 @@ Quick copy-paste SSH commands for server management and deployment.
 ### 1. SSH Key Setup
 ```bash
 # Generate SSH key
-ssh-keygen -t ed25519 -f ~/.ssh/cungcontuhoc_deploy -C "deploy@cungcontuhoc"
+ssh-keygen -t ed25519 -f ~/.ssh/tinygeniushub_deploy -C "deploy@tinygeniushubvn.tech"
 
 # Copy to server (as root first)
-ssh-copy-id -i ~/.ssh/cungcontuhoc_deploy.pub root@<server-ip>
+ssh-copy-id -i ~/.ssh/tinygeniushub_deploy.pub root@<server-ip>
 
 # Test connection
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "echo 'SSH OK'"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "echo 'SSH OK'"
 ```
 
 ### 2. Domain & DNS Check
@@ -33,7 +33,7 @@ nslookup your-domain.com
 ### Initial Server Setup
 ```bash
 # SSH into server
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip>
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip>
 
 # Download and run VPS setup
 bash <(curl -s https://raw.githubusercontent.com/manhquydev/cungcontuhoc/main/scripts/vps-setup.sh)
@@ -46,7 +46,7 @@ ssh root@<server-ip> "bash /tmp/vps-setup.sh"
 ### Install Node.js, pnpm, PM2
 ```bash
 # SSH as deploy user
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>
 
 # Run Node.js installation
 bash scripts/nodejs-install.sh
@@ -55,10 +55,10 @@ bash scripts/nodejs-install.sh
 ### Setup PostgreSQL
 ```bash
 # SSH as root
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip>
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip>
 
 # Run PostgreSQL setup
-bash scripts/postgres-setup.sh cungcontuhoc cungcontuhoc_app "your-secure-password"
+bash scripts/postgres-setup.sh tinygeniushub tinygeniushub_app "your-secure-password"
 ```
 
 ---
@@ -86,10 +86,10 @@ bash scripts/deploy-production.sh <server-ip> --skip-backup
 ### Manual Deploy Steps (On Server)
 ```bash
 # 1. SSH to server
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>
 
 # 2. Switch to app directory
-cd /srv/cungcontuhoc
+cd /srv/tinygeniushub
 
 # 3. Pull latest code
 git fetch origin
@@ -128,7 +128,7 @@ pm2 restart all
 ### Health Checks
 ```bash
 # SSH to server
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>
 
 # Check health endpoint
 curl http://localhost:3000/api/health
@@ -143,27 +143,27 @@ curl https://your-domain.com/api/health
 ### Check PM2 Status & Logs
 ```bash
 # View process status
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 status"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 status"
 
 # View all logs
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 logs"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 logs"
 
 # View web logs only
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 logs cungcontuhoc-web"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 logs tinygeniushub-web"
 
 # View worker logs only
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 logs cungcontuhoc-worker"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 logs tinygeniushub-worker"
 
 # View last 100 lines
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 logs --lines 100"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 logs --lines 100"
 ```
 
 ### Database Verification
 ```bash
 # Connect to database
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>
 su - postgres
-psql -d cungcontuhoc
+psql -d tinygeniushub
 
 # Check table counts
 \dt
@@ -184,7 +184,7 @@ exit
 ### System Resources
 ```bash
 # SSH and check resources
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>
 
 # Disk space
 df -h
@@ -206,19 +206,19 @@ pm2 monit
 ### Database Connections
 ```bash
 # Monitor active connections
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "su - postgres -c 'psql -c \"SELECT count(*) FROM pg_stat_activity;\"'"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "su - postgres -c 'psql -c \"SELECT count(*) FROM pg_stat_activity;\"'"
 
 # View connection details
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "su - postgres -c 'psql -c \"SELECT datname, usename, state, count(*) FROM pg_stat_activity GROUP BY datname, usename, state;\"'"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "su - postgres -c 'psql -c \"SELECT datname, usename, state, count(*) FROM pg_stat_activity GROUP BY datname, usename, state;\"'"
 ```
 
 ### Redis Check
 ```bash
 # Test Redis
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "redis-cli ping"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "redis-cli ping"
 
 # Redis info
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "redis-cli info"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "redis-cli info"
 ```
 
 ---
@@ -228,8 +228,8 @@ ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "redis-cli info"
 ### Code Rollback
 ```bash
 # SSH to server
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>
-cd /srv/cungcontuhoc
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>
+cd /srv/tinygeniushub
 
 # View git history
 git log --oneline -10
@@ -251,8 +251,8 @@ curl http://localhost:3000/api/health
 ### Database Rollback
 ```bash
 # SSH to server
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>
-cd /srv/cungcontuhoc
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>
+cd /srv/tinygeniushub
 
 # List available backups
 ls -la backups/postgres/
@@ -262,14 +262,14 @@ pnpm backup:restore -- --file=backups/postgres/<backup-file>.dump
 
 # Or manually with psql
 su - postgres
-psql -d cungcontuhoc < /path/to/backup_pre_migration.sql
+psql -d tinygeniushub < /path/to/backup_pre_migration.sql
 ```
 
 ### Emergency Full Rollback Script
 ```bash
 # Save and run on server
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> << 'EOF'
-cd /srv/cungcontuhoc
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> << 'EOF'
+cd /srv/tinygeniushub
 
 echo "Starting emergency rollback..."
 
@@ -300,28 +300,28 @@ EOF
 ### Create Backup
 ```bash
 # Local backup
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "cd /srv/cungcontuhoc && pnpm backup:create"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "cd /srv/tinygeniushub && pnpm backup:create"
 
 # With offsite upload (R2)
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "cd /srv/cungcontuhoc && pnpm backup:create -- --offsite"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "cd /srv/tinygeniushub && pnpm backup:create -- --offsite"
 
 # With Google Drive upload
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "cd /srv/cungcontuhoc && pnpm backup:create -- --gdrive"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "cd /srv/tinygeniushub && pnpm backup:create -- --gdrive"
 ```
 
 ### List & Download Backups
 ```bash
 # List local backups
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "ls -la /srv/cungcontuhoc/backups/postgres/"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "ls -la /srv/tinygeniushub/backups/postgres/"
 
 # List Google Drive backups
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "cd /srv/cungcontuhoc && pnpm backup:gdrive:list"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "cd /srv/tinygeniushub && pnpm backup:gdrive:list"
 
 # Download from Google Drive
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "cd /srv/cungcontuhoc && pnpm backup:gdrive:download -- --remote-key=postgres/prod/<backup-file>.dump"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "cd /srv/tinygeniushub && pnpm backup:gdrive:download -- --remote-key=postgres/prod/<backup-file>.dump"
 
 # Verify backup
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "cd /srv/cungcontuhoc && pnpm backup:verify -- --file=backups/postgres/<backup-file>.dump"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "cd /srv/tinygeniushub && pnpm backup:verify -- --file=backups/postgres/<backup-file>.dump"
 ```
 
 ---
@@ -331,46 +331,46 @@ ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "cd /srv/cungcontuhoc && pn
 ### Restart Services
 ```bash
 # Restart all PM2 processes
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 restart all"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 restart all"
 
 # Restart only web
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 restart cungcontuhoc-web"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 restart tinygeniushub-web"
 
 # Restart only worker
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 restart cungcontuhoc-worker"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 restart tinygeniushub-worker"
 
 # Reload with zero downtime
-ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 reload all"
+ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 reload all"
 ```
 
 ### Nginx Management
 ```bash
 # Test Nginx config
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "nginx -t"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "nginx -t"
 
 # Reload Nginx
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "systemctl reload nginx"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "systemctl reload nginx"
 
 # Restart Nginx
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "systemctl restart nginx"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "systemctl restart nginx"
 
 # View Nginx error logs
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "tail -f /var/log/nginx/error.log"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "tail -f /var/log/nginx/error.log"
 
 # View Nginx access logs
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "tail -f /var/log/nginx/access.log"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "tail -f /var/log/nginx/access.log"
 ```
 
 ### SSL Certificate
 ```bash
 # Renew certificates
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "certbot renew"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "certbot renew"
 
 # Dry run renewal test
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "certbot renew --dry-run"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "certbot renew --dry-run"
 
 # Force renewal
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "certbot renew --force-renewal"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "certbot renew --force-renewal"
 ```
 
 ---
@@ -380,22 +380,22 @@ ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "certbot renew --force-renewa
 ### Upload Files
 ```bash
 # Upload single file
-scp -i ~/.ssh/cungcontuhoc_deploy ./local-file.txt deploy@<server-ip>:/srv/cungcontuhoc/
+scp -i ~/.ssh/tinygeniushub_deploy ./local-file.txt deploy@<server-ip>:/srv/tinygeniushub/
 
 # Upload directory
-scp -i ~/.ssh/cungcontuhoc_deploy -r ./local-dir/ deploy@<server-ip>:/srv/cungcontuhoc/
+scp -i ~/.ssh/tinygeniushub_deploy -r ./local-dir/ deploy@<server-ip>:/srv/tinygeniushub/
 
 # Upload .env.production
-scp -i ~/.ssh/cungcontuhoc_deploy ./.env.production deploy@<server-ip>:/srv/cungcontuhoc/
+scp -i ~/.ssh/tinygeniushub_deploy ./.env.production deploy@<server-ip>:/srv/tinygeniushub/
 ```
 
 ### Download Files
 ```bash
 # Download single file
-scp -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>:/srv/cungcontuhoc/logs/app.log ./local.log
+scp -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>:/srv/tinygeniushub/logs/app.log ./local.log
 
 # Download directory
-scp -i ~/.ssh/cungcontuhoc_deploy -r deploy@<server-ip>:/srv/cungcontuhoc/backups/ ./backups/
+scp -i ~/.ssh/tinygeniushub_deploy -r deploy@<server-ip>:/srv/tinygeniushub/backups/ ./backups/
 ```
 
 ---
@@ -404,11 +404,11 @@ scp -i ~/.ssh/cungcontuhoc_deploy -r deploy@<server-ip>:/srv/cungcontuhoc/backup
 
 ```bash
 # Server aliases
-alias ssh-prod='ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>'
-alias ssh-prod-root='ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip>'
-alias prod-logs='ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 logs"'
-alias prod-status='ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "pm2 status"'
-alias prod-health='ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip> "curl -s http://localhost:3000/api/health"'
+alias ssh-prod='ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>'
+alias ssh-prod-root='ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip>'
+alias prod-logs='ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 logs"'
+alias prod-status='ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "pm2 status"'
+alias prod-health='ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip> "curl -s http://localhost:3000/api/health"'
 alias prod-deploy='bash scripts/deploy-production.sh <server-ip>'
 ```
 
@@ -418,7 +418,7 @@ alias prod-deploy='bash scripts/deploy-production.sh <server-ip>'
 
 | Command | Purpose |
 |---------|---------|
-| `ssh -i ~/.ssh/cungcontuhoc_deploy deploy@<server-ip>` | SSH to server |
+| `ssh -i ~/.ssh/tinygeniushub_deploy deploy@<server-ip>` | SSH to server |
 | `pm2 status` | Check process status |
 | `pm2 logs` | View logs |
 | `pm2 restart all` | Restart all services |

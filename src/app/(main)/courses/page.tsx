@@ -22,9 +22,9 @@ import { CourseSortSelect } from "@/components/courses/course-sort-select";
 import { CourseCatalogViewTracker } from "@/components/courses/course-storefront-tracking";
 
 export const metadata: Metadata = {
-  title: "Khóa học cho bé - Cùng Con Tự Học",
+  title: "Khóa học cho bé - TinyGenius Hub",
   description: "Xem nhanh khóa học, học thử trước, chọn mua đúng nhu cầu của gia đình.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/courses" },
+  alternates: { canonical: "https://tinygeniushubvn.tech/courses" },
 };
 
 type SearchParamsInput = Record<string, string | string[] | undefined>;

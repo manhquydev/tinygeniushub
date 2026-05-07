@@ -1,6 +1,6 @@
 # Monetization Strategy Vietnam Playbook
 
-**Product:** Cung Con Tu Hoc (Abeka-based K4-12 Education Platform)  
+**Product:** TinyGenius Hub (Abeka-based K4-12 Education Platform)  
 **Market:** Vietnam  
 **Date:** April 2026  
 **Status:** Strategic Framework
@@ -596,7 +596,7 @@ Annual Run Rate:              1,449,000,000đ
 | **ViettelStudy** | 99k-199k/month | Telecom bundle advantage |
 | **Toppy** | 199k-399k/month | Live tutoring emphasis |
 | **Monkey Junior** | 299k-599k/year | Gamification leader |
-| **Cung Con Tu Hoc** | 99k-349k/month | **US standard advantage** |
+| **TinyGenius Hub** | 99k-349k/month | **US standard advantage** |
 
 **Positioning:** Giá cạnh tranh, chất lượng Mỹ (Competitive price, US quality)
 

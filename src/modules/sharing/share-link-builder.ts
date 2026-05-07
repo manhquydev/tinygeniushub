@@ -3,7 +3,7 @@
  * Supports Zalo, Facebook, and WhatsApp (fallback).
  */
 
-const BASE_URL = "https://cungcontuhoc.io.vn";
+const BASE_URL = "https://tinygeniushubvn.tech";
 
 export type SharePlatform = "zalo" | "facebook" | "whatsapp";
 
@@ -34,7 +34,7 @@ export function buildShareMessage(input: ShareLinkInput, platform: SharePlatform
 
   const stats = streakDays >= 7 ? `${streakDays} ngày liên tiếp` : `${lessonsThisWeek} bài học tuần này`;
 
-  return `Bé ${name} vừa hoàn thành ${stats} với Cùng Con Tự Học. Xem khóa học và mua trực tiếp qua chuyển khoản/QR: ${link}`;
+  return `Bé ${name} vừa hoàn thành ${stats} với TinyGenius Hub. Xem khóa học và mua trực tiếp qua chuyển khoản/QR: ${link}`;
 }
 
 export function buildPlatformShareUrl(input: ShareLinkInput, platform: SharePlatform): string {

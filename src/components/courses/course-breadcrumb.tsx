@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { buildBreadcrumbJsonLd, safeJsonLd } from "@/lib/seo/course-jsonld";
 
-const BASE_URL = "https://cungcontuhoc.io.vn";
+const BASE_URL = "https://tinygeniushubvn.tech";
 
 type Props = { courseTitle: string; courseSlug: string };
 

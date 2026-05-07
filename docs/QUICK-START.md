@@ -1,4 +1,4 @@
-# ⚡ Quick Start Guide - Cùng Con Tự Học
+# ⚡ Quick Start Guide - TinyGenius Hub
 
 > **Mục tiêu:** Developer mới chạy project trong **5 phút**.
 
@@ -43,7 +43,7 @@ npm install -g pnpm@10.24.0
 ```bash
 # Clone repository
 git clone https://github.com/manhquydev/cungcontuhoc.git
-cd cungcontuhoc
+cd tinygeniushub
 
 # Install dependencies
 pnpm install
@@ -70,7 +70,7 @@ cp .env.example .env
 
 ```bash
 # Database (nếu PostgreSQL đã có sẵn, dùng URL của bạn)
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/cungcontuhoc?schema=public
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/tinygeniushub?schema=public
 
 # Secrets - generate ngẫu nhiên 32+ ký tự
 SESSION_SECRET=your-32-char-secret-key-here-abc123
@@ -116,7 +116,7 @@ pnpm db:seed
 
 ```bash
 # Tạo database
-psql -U postgres -c "CREATE DATABASE cungcontuhoc;"
+psql -U postgres -c "CREATE DATABASE tinygeniushub;"
 
 # Chạy migration
 pnpm db:migrate
@@ -163,7 +163,7 @@ pnpm worker:dev
 - 🔧 Admin: http://localhost:3000/admin
 
 **Test credentials:**
-- Parent: `demo.parent@cungcontuhoc.vn` / `DemoPass123!`
+- Parent: `demo.parent@tinygeniushubvn.tech` / `DemoPass123!`
 
 **⏱️ Timestamp: 04:00 - 05:00** ✅
 

@@ -185,7 +185,7 @@ async function signupParent(baseUrl, email, password) {
 }
 
 async function loginParent(baseUrl) {
-  const seededEmail = "demo.parent@cungcontuhoc.io.vn";
+  const seededEmail = "demo.parent@tinygeniushubvn.tech";
   const configuredEmail = process.env.E2E_PARENT_EMAIL;
   const configuredPassword = process.env.E2E_PARENT_PASSWORD;
   const email = configuredEmail ?? seededEmail;
@@ -327,7 +327,7 @@ async function main() {
   try {
     await waitForReady(baseUrl);
 
-    await assertRoute(baseUrl, "/", 200, "Cùng Con Tự Học");
+    await assertRoute(baseUrl, "/", 200, "TinyGenius Hub");
     await assertRoute(baseUrl, "/pricing", 200, "Bảng giá minh bạch theo từng khóa");
     await assertRoute(baseUrl, "/auth/login", 200, "Đăng nhập phụ huynh");
     await assertRoute(baseUrl, "/api/health", 200, "\"status\":\"ok\"");

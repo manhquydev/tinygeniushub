@@ -1,7 +1,7 @@
 # Brainstorm: Nâng Cấp Giao Diện Trang Chủ "Khu Vườn Trên Mây"
 
 **Date:** 2026-03-12  
-**Project:** Cùng Con Tự Học (Educational Platform for Kids 2-6 years)  
+**Project:** TinyGenius Hub (Educational Platform for Kids 2-6 years)  
 **Objective:** Redesign homepage with "Cloud Garden" theme - visual-first, immersive, interactive  
 **Participants:** Product team + Brainstormer AI Agent  
 **Status:** ✅ **CONSENSUS REACHED** - Approach E: Progressive Exploration

@@ -32,8 +32,8 @@ export default async function Image({ params }: OpenGraphProps) {
     },
   });
 
-  const title = post?.titleVi ?? "Blog Cùng Con Tự Học";
-  const author = post?.author.displayName ?? "Cùng Con Tự Học";
+  const title = post?.titleVi ?? "Blog TinyGenius Hub";
+  const author = post?.author.displayName ?? "TinyGenius Hub";
 
   return new ImageResponse(
     (
@@ -62,7 +62,7 @@ export default async function Image({ params }: OpenGraphProps) {
             background: "rgba(255, 255, 255, 0.16)",
           }}
         >
-          Blog Cùng Con Tự Học
+          Blog TinyGenius Hub
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>

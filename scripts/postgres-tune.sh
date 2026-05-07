@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# PostgreSQL Performance Tuning Script - Cùng Con Tự Học
+# PostgreSQL Performance Tuning Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Auto-tune PostgreSQL based on available RAM
 # Run as: root or with sudo

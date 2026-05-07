@@ -5,10 +5,10 @@ import { IconCalendar, IconStar } from "@/components/icons";
 import "./waitlist.css";
 
 export const metadata: Metadata = {
-  title: "Danh sách ưu tiên — Cùng Con Tự Học",
+  title: "Danh sách ưu tiên — TinyGenius Hub",
   description:
     "Đăng ký danh sách ưu tiên để nhận thông báo mở đợt mới và ưu đãi sớm dành cho gia đình đăng ký trước.",
-  alternates: { canonical: "https://cungcontuhoc.io.vn/waitlist" },
+  alternates: { canonical: "https://tinygeniushubvn.tech/waitlist" },
   robots: { index: false, follow: false },
 };
 

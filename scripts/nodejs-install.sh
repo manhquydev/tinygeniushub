@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Node.js Installation Script - Cùng Con Tự Học
+# Node.js Installation Script - TinyGenius Hub
 # =============================================================================
 # Purpose: Install Node.js 22 LTS, pnpm, and PM2
 # Run as: deploy user (with sudo access)

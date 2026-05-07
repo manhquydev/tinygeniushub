@@ -3,13 +3,13 @@ services:
     image: postgres:16-alpine
     restart: unless-stopped
     environment:
-      POSTGRES_DB: cungcontuhoc
+      POSTGRES_DB: tinygeniushub
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "127.0.0.1:5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d cungcontuhoc"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d tinygeniushub"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -50,7 +50,7 @@ services:
         condition: service_healthy
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/cungcontuhoc?schema=public
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/tinygeniushub?schema=public
       REDIS_URL: redis://redis:6379
       BETTER_AUTH_URL: http://localhost:3000
       SESSION_SECRET: ${SESSION_SECRET:-dev-session-secret-change-this-in-production-32}
@@ -72,7 +72,7 @@ services:
       XDG_CACHE_HOME: /tmp/.cache
       COREPACK_DEFAULT_TO_LATEST: "0"
       RUN_DB_SEED: "true"
-      SEED_PARENT_EMAIL: demo.parent@cungcontuhoc.vn
+      SEED_PARENT_EMAIL: demo.parent@tinygeniushubvn.tech
       SEED_PARENT_PASSWORD: DemoPass123!
     command:
       ["/app/scripts/start-web.sh"]
@@ -108,7 +108,7 @@ services:
         condition: service_healthy
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/cungcontuhoc?schema=public
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/tinygeniushub?schema=public
       REDIS_URL: redis://redis:6379
       BETTER_AUTH_URL: http://localhost:3000
       SESSION_SECRET: ${SESSION_SECRET:-dev-session-secret-change-this-in-production-32}

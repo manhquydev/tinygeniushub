@@ -2,7 +2,7 @@
 # Deploy to DigitalOcean production
 
 SERVER="do-server"
-APP_PATH="/var/www/cungcontuhoc"
+APP_PATH="/var/www/tinygeniushub"
 
 # Parse command line arguments
 DRY_RUN=false
@@ -92,7 +92,7 @@ fi
 if [ "$MEMORY_SAFE" = true ]; then
   echo ""
   echo "=== Memory-safe mode: Stopping PM2 ==="
-  execute "ssh $SERVER 'pm2 stop cungcontuhoc'" "Stopping PM2..."
+  execute "ssh $SERVER 'pm2 stop tinygeniushub'" "Stopping PM2..."
 fi
 
 # 4. Git pull
@@ -132,15 +132,15 @@ execute "ssh $SERVER \"cd $APP_PATH && pnpm build\"" "Building application..."
 echo ""
 echo "=== Starting application ==="
 if [ "$MEMORY_SAFE" = true ]; then
-  execute "ssh $SERVER 'pm2 start cungcontuhoc'" "Starting PM2..."
+  execute "ssh $SERVER 'pm2 start tinygeniushub'" "Starting PM2..."
 else
-  execute "ssh $SERVER 'pm2 reload cungcontuhoc'" "Reloading PM2..."
+  execute "ssh $SERVER 'pm2 reload tinygeniushub'" "Reloading PM2..."
 fi
 
 # 12. Post-deploy verification
 echo ""
 echo "=== Verification ==="
-execute "ssh $SERVER 'pm2 status cungcontuhoc'" "PM2 status:"
+execute "ssh $SERVER 'pm2 status tinygeniushub'" "PM2 status:"
 execute "ssh $SERVER 'curl -sf http://localhost:3000/api/health && echo \"OK\" || echo \"Health check failed\"'" "Health check:"
 
 echo ""

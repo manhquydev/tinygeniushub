@@ -2,15 +2,13 @@ import type { AbVariant } from "@/lib/ab-test-constants";
 
 export const PILOT_ATTRIBUTION_COOKIE = "ccth_attr_v1";
 
-const OWNED_DOMAIN_SUFFIX = "cungcontuhoc.io.vn";
+const OWNED_DOMAIN_SUFFIX = "tinygeniushubvn.tech";
 const SOCIAL_SOURCES = new Set([
   "facebook",
   "fb",
   "instagram",
   "ig",
-  "tiktok",
   "youtube",
-  "zalo",
   "linkedin",
   "x",
   "twitter",

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { GiftCodeForm } from "@/components/gift-code-form";
 
 export const metadata: Metadata = {
-  title: "Nhập mã quà tặng — Cùng Con Tự Học",
-  description: "Kích hoạt mã quà tặng để truy cập khóa học hoặc gói dịch vụ Cùng Con Tự Học.",
+  title: "Nhập mã quà tặng — TinyGenius Hub",
+  description: "Kích hoạt mã quà tặng để truy cập khóa học hoặc gói dịch vụ TinyGenius Hub.",
 };
 
 export default function GiftCodePage() {

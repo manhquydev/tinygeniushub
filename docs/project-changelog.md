@@ -1,5 +1,18 @@
 # Project Changelog
 
+## [0.5.0] - 2026-05-07
+
+### Changed
+- **Rebrand: "Cùng Con Tự Học" → "TinyGenius Hub"**
+  - Domain: `cungcontuhoc.io.vn` → `tinygeniushubvn.tech`
+  - PM2 processes: `cungcontuhoc-web`/`cungcontuhoc-worker` → `tinygeniushub-web`/`tinygeniushub-worker`
+  - Database name/user: `cungcontuhoc` → `tinygeniushub`
+  - Server path: `/var/www/cungcontuhoc` → `/var/www/tinygeniushub`
+  - Email domain: `@cungcontuhoc.vn` → `@tinygeniushubvn.tech`
+  - Social channels narrowed to Facebook (`tinygeniushub`) + YouTube (`@TinyGeniusHubUs`)
+  - Documentation updated across all operational docs to reflect new branding
+- All deployment scripts, nginx configs, SSH key names, logrotate, and monitoring commands aligned to new naming
+
 ## [0.4.8] - 2026-04-10
 
 ### Changed
@@ -36,7 +49,7 @@
   - Filter sidebar now uses data-driven options (subject/age only shown when actual storefront data contains those values).
 - Production deploy workflow reworked for safer operations without manual SSH:
   - `.github/workflows/deploy.yml` is now self-hosted-runner based with tracked logs, PM2 snapshot artifacts, and health gates.
-  - `.github/workflows/deploy-digitalocean-ssh.yml` kept as manual fallback only and fixed PM2 process names (`cungcontuhoc-web`, `cungcontuhoc-worker`).
+  - `.github/workflows/deploy-digitalocean-ssh.yml` kept as manual fallback only and fixed PM2 process names (`tinygeniushub-web`, `tinygeniushub-worker`).
   - `scripts/deploy/remote-deploy.sh` now deploys exact commit SHA and writes deploy metadata (`.deploy/latest.json`).
   - Updated deployment workflow docs to make no-manual-SSH path the default.
 

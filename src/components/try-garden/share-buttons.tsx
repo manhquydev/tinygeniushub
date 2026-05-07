@@ -5,7 +5,6 @@
  * 
  * Floating bottom-right buttons for:
  * - Facebook sharing
- * - Zalo sharing
  * - Copy link to clipboard
  * 
  * Analytics: Tracks share clicks with event_category: "try_garden"
@@ -19,7 +18,7 @@ export function ShareButtons() {
 
   const shareUrl = typeof window !== "undefined" 
     ? window.location.href 
-    : "https://cungcontuhoc.io.vn/try-garden";
+    : "https://tinygeniushubvn.tech/try-garden";
 
   const shareTitle = "Khu Vườn Trên Mây - Học Toán & Tiếng Anh cho bé";
   const shareDescription = "Khám phá Khu Vườn Trên Mây - Học qua trò chơi tương tác dành cho bé 2-6 tuổi!";
@@ -37,26 +36,6 @@ export function ShareButtons() {
     // Open Facebook share dialog
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
     window.open(facebookUrl, "_blank", "width=600,height=400");
-  };
-
-  const handleZaloShare = () => {
-    // Track event
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "share", {
-        event_category: "try_garden",
-        event_label: "zalo",
-        method: "zalo",
-      });
-    }
-
-    // Open Zalo share (mobile-only, fallback to copy link)
-    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      const zaloUrl = `https://zalo.me/share/?u=${encodeURIComponent(shareUrl)}`;
-      window.location.href = zaloUrl;
-    } else {
-      // Desktop fallback: copy link
-      handleCopyLink();
-    }
   };
 
   const handleCopyLink = () => {
@@ -118,39 +97,6 @@ export function ShareButtons() {
         }}
       >
         <Facebook size={24} />
-      </button>
-
-      {/* Zalo Share */}
-      <button
-        onClick={handleZaloShare}
-        style={{
-          width: "56px",
-          height: "56px",
-          borderRadius: "50%",
-          backgroundColor: "#0068ff",
-          color: "#fff",
-          border: "none",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 4px 12px rgba(0, 104, 255, 0.4)",
-          transition: "transform 0.2s, box-shadow 0.2s",
-          fontSize: "1.5rem",
-          fontWeight: 700,
-        }}
-        aria-label="Chia sẻ qua Zalo"
-        title="Chia sẻ qua Zalo"
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.1)";
-          e.currentTarget.style.boxShadow = "0 6px 16px rgba(0, 104, 255, 0.6)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0 4px 12px rgba(0, 104, 255, 0.4)";
-        }}
-      >
-        Z
       </button>
 
       {/* Copy Link */}

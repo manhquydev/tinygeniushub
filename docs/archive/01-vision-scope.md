@@ -10,7 +10,7 @@ Theo khảo sát/insight thị trường của Cimigo, mẹ Việt vừa **ambit
 Ngoài ra, WHO khuyến nghị trẻ nhỏ hạn chế thời gian màn hình và ưu tiên hoạt động tương tác/đọc kể chuyện với người chăm sóc — vì vậy hệ cần thiết kế theo hướng **học ngắn + nhiều offline + đồng hành**. 
 
 ## 2) Vision
-“Cùng Con Tự Học” là **Learning Journey OS** cho phụ huynh:
+“TinyGenius Hub” là **Learning Journey OS** cho phụ huynh:
 - Tạo **hành trình học tại nhà** (Daily Journey) từ tài nguyên video
 - Chuẩn hoá “mỗi ngày 15–25 phút” thành *thói quen* + *tiến bộ đo được*
 - Phụ huynh nhìn dashboard là biết: “con đang đi đúng đường”

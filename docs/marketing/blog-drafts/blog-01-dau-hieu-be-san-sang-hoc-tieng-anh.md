@@ -69,7 +69,7 @@ Nguyên tắc vàng cho trẻ 3–5 tuổi:
 2. **Kết hợp audio + visual** — não bộ trẻ nhỏ xử lý hình ảnh và âm thanh cùng lúc hiệu quả hơn chỉ đọc
 3. **Theo dõi tiến độ** — bé (và bố mẹ) cần thấy sự tiến bộ để duy trì động lực
 
-Nếu bạn muốn bắt đầu với lộ trình có cấu trúc, báo cáo tiến độ hàng tuần, và nội dung phù hợp từng độ tuổi — [dùng thử Cùng Con Tự Học 7 ngày miễn phí](/auth/signup), không cần nhập thẻ.
+Nếu bạn muốn bắt đầu với lộ trình có cấu trúc, báo cáo tiến độ hàng tuần, và nội dung phù hợp từng độ tuổi — [dùng thử TinyGenius Hub 7 ngày miễn phí](/auth/signup), không cần nhập thẻ.
 
 ---
 

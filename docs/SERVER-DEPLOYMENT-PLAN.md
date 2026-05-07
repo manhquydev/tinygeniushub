@@ -1,6 +1,6 @@
 ﻿# Server Deployment Plan
 
-Complete step-by-step deployment guide for Cung Con Tu Hoc production server.
+Complete step-by-step deployment guide for TinyGenius Hub production server.
 
 ## Pre-Deployment Checklist
 
@@ -21,13 +21,13 @@ Complete step-by-step deployment guide for Cung Con Tu Hoc production server.
 ### 3. SSH Key Ready
 ```bash
 # Generate deploy key locally
-ssh-keygen -t ed25519 -f ~/.ssh/cungcontuhoc_deploy -C "deploy@cungcontuhoc"
+ssh-keygen -t ed25519 -f ~/.ssh/tinygeniushub_deploy -C "deploy@tinygeniushubvn.tech"
 
 # Copy public key to server
-ssh-copy-id -i ~/.ssh/cungcontuhoc_deploy.pub root@<server-ip>
+ssh-copy-id -i ~/.ssh/tinygeniushub_deploy.pub root@<server-ip>
 
 # Test connection
-ssh -i ~/.ssh/cungcontuhoc_deploy root@<server-ip> "echo 'SSH OK'"
+ssh -i ~/.ssh/tinygeniushub_deploy root@<server-ip> "echo 'SSH OK'"
 ```
 
 ### 4. Environment Variables
@@ -35,7 +35,7 @@ Prepare `.env.production` file with all required variables:
 
 ```bash
 # Database
-DATABASE_URL="postgresql://user:pass@localhost:5432/cungcontuhoc?schema=public"
+DATABASE_URL="postgresql://user:pass@localhost:5432/tinygeniushub?schema=public"
 
 # Redis
 REDIS_URL="redis://localhost:6379"
@@ -49,7 +49,7 @@ STORAGE_PROVIDER="cloudflare_r2"
 R2_ACCOUNT_ID="xxx"
 R2_ACCESS_KEY_ID="xxx"
 R2_SECRET_ACCESS_KEY="xxx"
-R2_BUCKET_NAME="cungcontuhoc-media"
+R2_BUCKET_NAME="tinygeniushub-media"
 
 # Billing (if using Stripe)
 BILLING_PROVIDER="stripe"
@@ -157,9 +157,9 @@ chmod 600 /home/deploy/.ssh/authorized_keys
 su - postgres
 
 # Create database and user
-psql -c "CREATE USER cungcontuhoc WITH PASSWORD 'your-secure-password';"
-psql -c "CREATE DATABASE cungcontuhoc OWNER cungcontuhoc;"
-psql -c "GRANT ALL PRIVILEGES ON DATABASE cungcontuhoc TO cungcontuhoc;"
+psql -c "CREATE USER tinygeniushub WITH PASSWORD 'your-secure-password';"
+psql -c "CREATE DATABASE tinygeniushub OWNER tinygeniushub;"
+psql -c "GRANT ALL PRIVILEGES ON DATABASE tinygeniushub TO tinygeniushub;"
 
 # Exit postgres user
 exit
@@ -230,7 +230,7 @@ cat > ecosystem.config.js << 'EOF'
 module.exports = {
   apps: [
     {
-      name: 'cungcontuhoc-web',
+      name: 'tinygeniushub-web',
       cwd: '/home/deploy/app',
       script: 'node_modules/next/dist/bin/next',
       args: 'start',
@@ -254,7 +254,7 @@ module.exports = {
       kill_timeout: 5000
     },
     {
-      name: 'cungcontuhoc-worker',
+      name: 'tinygeniushub-worker',
       cwd: '/home/deploy/app',
       script: 'tsx',
       args: 'src/worker/index.ts',
@@ -294,8 +294,8 @@ pm2 startup systemd
 exit
 
 # Create Nginx config
-cat > /etc/nginx/sites-available/cungcontuhoc << 'EOF'
-upstream cungcontuhoc {
+cat > /etc/nginx/sites-available/tinygeniushub << 'EOF'
+upstream tinygeniushub {
     server 127.0.0.1:3000;
     keepalive 64;
 }
@@ -337,7 +337,7 @@ server {
     
     # Proxy to Next.js
     location / {
-        proxy_pass http://cungcontuhoc;
+        proxy_pass http://tinygeniushub;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -351,14 +351,14 @@ server {
     
     # Static files caching
     location /_next/static {
-        proxy_pass http://cungcontuhoc;
+        proxy_pass http://tinygeniushub;
         proxy_cache_valid 200 365d;
         add_header Cache-Control "public, immutable";
     }
     
     # Health check endpoint (no caching)
     location /api/health {
-        proxy_pass http://cungcontuhoc;
+        proxy_pass http://tinygeniushub;
         proxy_cache_bypass 1;
         access_log off;
     }
@@ -366,7 +366,7 @@ server {
 EOF
 
 # Enable site
-ln -sf /etc/nginx/sites-available/cungcontuhoc /etc/nginx/sites-enabled/
+ln -sf /etc/nginx/sites-available/tinygeniushub /etc/nginx/sites-enabled/
 rm -f /etc/nginx/sites-enabled/default
 
 # Test and reload Nginx
@@ -415,10 +415,10 @@ su - deploy
 pm2 logs
 
 # View web only
-pm2 logs cungcontuhoc-web
+pm2 logs tinygeniushub-web
 
 # View worker only
-pm2 logs cungcontuhoc-worker
+pm2 logs tinygeniushub-worker
 
 # View last 100 lines
 pm2 logs --lines 100
@@ -428,7 +428,7 @@ pm2 logs --lines 100
 ```bash
 # Connect to database
 su - postgres
-psql -d cungcontuhoc
+psql -d tinygeniushub
 
 # Verify table counts
 \dt
@@ -526,7 +526,7 @@ echo "--- Disk Space ---"
 df -h | grep -E "(/$|/var)"
 
 echo "--- Database Connections ---"
-PGPASSWORD=$DB_PASSWORD psql -h localhost -U cungcontuhoc -d cungcontuhoc -c "SELECT count(*) as active_connections FROM pg_stat_activity WHERE state = 'active';"
+PGPASSWORD=$DB_PASSWORD psql -h localhost -U tinygeniushub -d tinygeniushub -c "SELECT count(*) as active_connections FROM pg_stat_activity WHERE state = 'active';"
 
 echo "--- Redis Ping ---"
 redis-cli ping
@@ -542,7 +542,7 @@ chmod +x /home/deploy/app/scripts/monitor.sh
 
 ### 5. Setup Logrotate
 ```bash
-cat > /etc/logrotate.d/cungcontuhoc << 'EOF'
+cat > /etc/logrotate.d/tinygeniushub << 'EOF'
 /home/deploy/app/logs/*.log {
     daily
     missingok
@@ -592,7 +592,7 @@ curl http://localhost:3000/api/health
 su - postgres
 
 # Restore from backup
-psql -d cungcontuhoc < /path/to/backup_pre_migration.sql
+psql -d tinygeniushub < /path/to/backup_pre_migration.sql
 
 # Or use backup:restore script (as deploy user)
 su - deploy
@@ -674,13 +674,13 @@ cat > ~/app/scripts/alert-check.sh << 'EOF'
 #!/bin/bash
 HEALTH=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/health)
 if [ "$HEALTH" != "200" ]; then
-    echo "ALERT: Health check failed with status $HEALTH" | mail -s "CungContuhoc Alert" admin@your-domain.com
+    echo "ALERT: Health check failed with status $HEALTH" | mail -s "TinyGenius Hub Alert" admin@your-domain.com
 fi
 
 # Check disk space
 DISK_USAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
 if [ "$DISK_USAGE" -gt 85 ]; then
-    echo "ALERT: Disk usage at ${DISK_USAGE}%" | mail -s "CungContuhoc Disk Alert" admin@your-domain.com
+    echo "ALERT: Disk usage at ${DISK_USAGE}%" | mail -s "TinyGenius Hub Disk Alert" admin@your-domain.com
 fi
 EOF
 
@@ -728,7 +728,7 @@ swapon /swapfile
 echo '/swapfile none swap sw 0 0' >> /etc/fstab
 
 # Reduce PM2 instances
-pm2 scale cungcontuhoc-web 1
+pm2 scale tinygeniushub-web 1
 ```
 
 **502 Bad Gateway:**

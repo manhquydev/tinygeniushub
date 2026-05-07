@@ -1,4 +1,4 @@
-# 30-Day Content Calendar — Cùng Con Tự Học
+# 30-Day Content Calendar — TinyGenius Hub
 **Launch Sprint:** Tháng đầu tiên sau khi ra mắt chính thức
 **Goal:** 10,000+ impressions · 500+ trial signups (90-day target)
 
@@ -61,7 +61,7 @@
 **Hook:** Close-up bé nói từ đầu tiên
 
 ### Thứ 6 (D12) — Facebook Group Post #4
-**Content:** "Review thật sau 2 tuần dùng Cùng Con Tự Học cho con 4 tuổi"
+**Content:** "Review thật sau 2 tuần dùng TinyGenius Hub cho con 4 tuổi"
 **Type:** Detailed micro-review — link to pricing page
 
 ### Thứ 7 (D13) — TikTok #6 (Format C)
@@ -119,7 +119,7 @@
 **Tone:** Practical, relatable
 
 ### Thứ 6 (D26) — Facebook Group Post #8
-**Content:** "Q&A: mọi câu hỏi về Cùng Con Tự Học — mình trả lời thật hết"
+**Content:** "Q&A: mọi câu hỏi về TinyGenius Hub — mình trả lời thật hết"
 **Type:** AMA (Ask Me Anything) — high engagement, trust
 
 ### Thứ 7 (D27) — TikTok #12 (Format C)

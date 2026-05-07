@@ -186,7 +186,7 @@ export async function generateWeeklyReportForChild(childId: string, referenceDat
       nextWeek: [
         "Duy trì thói quen học 15-20 phút mỗi ngày để đạt hiệu quả tốt nhất",
         "Ôn tập lại các trò chơi nhỏ ôn tập (D+1, D+3) để ghi nhớ bài",
-        "Kết hợp thêm 1 hoạt động tương tác gia đình (offline) của Cùng Con Tự Học",
+        "Kết hợp thêm 1 hoạt động tương tác gia đình (offline) của TinyGenius Hub",
       ],
     },
     deliveredInAppAt: new Date(),

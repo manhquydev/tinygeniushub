@@ -94,7 +94,7 @@ su - deploy
 bash <(curl -s https://raw.githubusercontent.com/manhquydev/cungcontuhoc/main/scripts/deploy-initial.sh)
 
 # 5. Import Abeka
-cd ~/cungcontuhoc
+cd ~/tinygeniushub
 pnpm abeka:import:prod --checkpoint=./checkpoints/import.chk
 ```
 
@@ -148,7 +148,7 @@ bash scripts/deploy-production.sh <server-ip> --rollback     # Rollback mode
 ssh deploy@<server-ip>
 
 # Regenerate Prisma client
-cd ~/cungcontuhoc
+cd ~/tinygeniushub
 pnpm db:generate
 
 # Restart PM2
@@ -167,7 +167,7 @@ pm2 restart all
 - [x] Server deployment plan ready
 - [ ] VPS purchased (4GB RAM, 50GB SSD, Ubuntu 22.04)
 - [ ] Domain configured (DNS A record → VPS IP)
-- [ ] SSH key generated (`~/.ssh/cungcontuhoc_deploy`)
+- [ ] SSH key generated (`~/.ssh/tinygeniushub_deploy`)
 - [ ] `.env.production` created với secrets
 - [ ] Staging test completed (recommended)
 
@@ -200,7 +200,7 @@ curl http://localhost:3000/api/abeka/packages
 ### Code Rollback
 ```bash
 ssh deploy@<server-ip>
-cd ~/cungcontuhoc
+cd ~/tinygeniushub
 git checkout <previous-commit>
 pm2 restart all
 ```

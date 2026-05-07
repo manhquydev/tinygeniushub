@@ -1,4 +1,4 @@
-# Cung Con Tu Hoc - Documentation Index
+# TinyGenius Hub - Documentation Index
 
 ## Official Handover Document (Single File)
 - `docs/handover/handover-master-agent-ready.md`

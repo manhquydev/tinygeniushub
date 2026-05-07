@@ -81,16 +81,12 @@ describe("SiteFooter", () => {
         socialLinks={{
           facebook: "https://facebook.com/new-page",
           youtube: "https://youtube.com/@new-channel",
-          tiktok: "https://tiktok.com/@new-account",
-          zalo: "https://zalo.me/new-account",
         }}
       />,
     );
 
     expect(screen.getByLabelText(/facebook/i)).toHaveAttribute("href", "https://facebook.com/new-page");
     expect(screen.getByLabelText(/youtube/i)).toHaveAttribute("href", "https://youtube.com/@new-channel");
-    expect(screen.getByLabelText(/tiktok/i)).toHaveAttribute("href", "https://tiktok.com/@new-account");
-    expect(screen.getByLabelText(/zalo/i)).toHaveAttribute("href", "https://zalo.me/new-account");
   });
 
   it("does not render on admin routes", () => {

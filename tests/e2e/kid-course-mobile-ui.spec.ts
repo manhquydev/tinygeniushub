@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const DEMO_PARENT_EMAIL = "demo.parent@cungcontuhoc.vn";
+const DEMO_PARENT_EMAIL = "demo.parent@tinygeniushubvn.tech";
 const DEMO_PARENT_PASSWORD = "DemoPass123!";
 
 let testChildId: string | null = null;
