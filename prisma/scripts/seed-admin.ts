@@ -7,7 +7,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAILS?.split(",")[0]?.trim() || "demo.admin@cungcontuhoc.vn";
+const ADMIN_EMAIL = process.env.ADMIN_EMAILS?.split(",")[0]?.trim() || "demo.admin@tinygeniushubvn.tech";
 const ADMIN_PASSWORD = process.env.ADMIN_SEED_PASSWORD || "CungConTuHoc@2026!";
 const ADMIN_DISPLAY_NAME = "Admin";
 const ADMIN_ROLE = "SUPER_ADMIN";

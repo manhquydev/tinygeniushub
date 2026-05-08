@@ -448,7 +448,7 @@ async function seedContent() {
 }
 
 async function seedDemoParent() {
-  const email = (process.env.SEED_PARENT_EMAIL ?? "demo.parent@cungcontuhoc.io.vn").toLowerCase();
+  const email = (process.env.SEED_PARENT_EMAIL ?? "demo.parent@tinygeniushubvn.tech").toLowerCase();
   const password = process.env.SEED_PARENT_PASSWORD ?? "DemoPass123!";
 
   const parent = await prisma.parentAccount.upsert({
@@ -557,13 +557,13 @@ async function seedBlog() {
     where: { slug: "ban-bien-tap" },
     update: {
       displayName: "Ban Biên Tập",
-      role: "Biên tập viên Cùng Con Tự Học",
+      role: "Biên tập viên TinyGenius Hub",
       active: true,
     },
     create: {
       slug: "ban-bien-tap",
       displayName: "Ban Biên Tập",
-      role: "Biên tập viên Cùng Con Tự Học",
+      role: "Biên tập viên TinyGenius Hub",
       active: true,
     },
   });

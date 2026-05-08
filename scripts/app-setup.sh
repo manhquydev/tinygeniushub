@@ -33,7 +33,7 @@ trap 'error_handler $LINENO' ERR
 # Configuration
 # -----------------------------------------------------------------------------
 APP_DIR="/srv/tinygeniushub"
-REPO_URL="https://github.com/manhquydev/cungcontuhoc.git"
+REPO_URL="https://github.com/manhquydev/tinygeniushub.git"
 
 echo "📁 Setting up application repository..."
 
@@ -59,7 +59,7 @@ if [ -d "$APP_DIR/.git" ]; then
     git pull origin main
 else
     cd /srv
-    git clone $REPO_URL cungcontuhoc
+    git clone $REPO_URL tinygeniushub
 fi
 
 log_success "Repository cloned/pulled"

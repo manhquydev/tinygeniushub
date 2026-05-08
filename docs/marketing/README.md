@@ -1,6 +1,6 @@
 # Marketing Documentation
 
-Index of marketing docs for cungcontuhoc.vn EdTech project.
+Index of marketing docs for tinygeniushubvn.tech EdTech project.
 
 ## Documents
 

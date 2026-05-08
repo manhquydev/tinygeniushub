@@ -9,7 +9,7 @@
 ### Thứ 2 (D1) — Blog Post #1
 **Title:** "5 dấu hiệu bé sẵn sàng học tiếng Anh (3–5 tuổi)"
 **Target keyword:** học tiếng Anh cho trẻ 3 tuổi
-**Platform:** Blog cungcontuhoc.vn/blog
+**Platform:** Blog tinygeniushubvn.tech/blog
 **CTA:** Dùng thử 7 ngày miễn phí
 
 ### Thứ 3 (D2) — TikTok #1 (Format B: Educational)

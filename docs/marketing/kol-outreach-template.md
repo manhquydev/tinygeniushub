@@ -101,7 +101,7 @@ Share link: https://tinygeniushubvn.tech/auth/signup?ref=[CODE]
 - Dùng thật, cảm nhận thật
 - Chia sẻ khi bạn thấy bé có kết quả thú vị
 - Không cần post theo lịch hoặc dùng hashtag cụ thể
-- Gắn thẻ @cungcontuhoc hoặc để link trong bio/caption — tuỳ bạn
+- Gắn thẻ @tinygeniushub hoặc để link trong bio/caption — tuỳ bạn
 
 💬 CÓ CẦU HỎI GÌ?
 Reply Messenger này hoặc email: support@tinygeniushubvn.tech

@@ -309,7 +309,7 @@ remote: Counting objects: 100% (45/45), done.
 remote: Compressing objects: 100% (23/23), done.
 remote: Total 45 (delta 28), reused 42 (delta 26)
 Unpacking objects: 100% (45/45), 12.34 KiB | 2.45 MiB/s, done.
-From https://github.com/manhquydev/cungcontuhoc
+From https://github.com/manhquydev/tinygeniushub
    abc1234..def5678  main       -> origin/main
 Updating abc1234..def5678
 Fast-forward

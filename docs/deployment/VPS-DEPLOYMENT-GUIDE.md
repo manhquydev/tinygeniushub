@@ -633,7 +633,7 @@ echo "✅ Redis configured with AOF persistence!"
 set -euo pipefail
 
 APP_DIR="/var/www/tinygeniushub"
-REPO_URL="https://github.com/manhquydev/cungcontuhoc.git"
+REPO_URL="https://github.com/manhquydev/tinygeniushub.git"
 
 echo "📁 Setting up application..."
 

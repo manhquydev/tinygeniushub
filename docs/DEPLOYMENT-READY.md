@@ -2,7 +2,7 @@
 
 **Ngày:** 04/04/2026  
 **Status:** ✅ **READY FOR PRODUCTION DEPLOYMENT**  
-**GitHub:** https://github.com/manhquydev/cungcontuhoc
+**GitHub:** https://github.com/manhquydev/tinygeniushub
 
 ---
 

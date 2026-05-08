@@ -92,7 +92,7 @@ function parseTeacher(description: string): string | undefined {
 }
 
 async function main() {
-  const dataPath = process.argv[2] || '/var/www/cungcontuhoc/data/abeka_database.json';
+  const dataPath = process.argv[2] || '/var/www/tinygeniushub/data/abeka_database.json';
   
   console.log('🎓 Abeka Video Import');
   console.log('======================');

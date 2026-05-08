@@ -42,7 +42,7 @@ npm install -g pnpm@10.24.0
 
 ```bash
 # Clone repository
-git clone https://github.com/manhquydev/cungcontuhoc.git
+git clone https://github.com/manhquydev/tinygeniushub.git
 cd tinygeniushub
 
 # Install dependencies

@@ -49,9 +49,9 @@ echo ""
 
 # 2. PM2 Status
 echo "=== PM2 Process Status ==="
-check "ssh $SERVER 'pm2 status cungcontuhoc | grep -q online'" "PM2 process online" true
-check "ssh $SERVER 'pm2 show cungcontuhoc | grep -q \"uptime\"'" "PM2 uptime info" false
-ssh $SERVER 'pm2 status cungcontuhoc 2>/dev/null || echo "Process not found"'
+check "ssh $SERVER 'pm2 status tinygeniushub | grep -q online'" "PM2 process online" true
+check "ssh $SERVER 'pm2 show tinygeniushub | grep -q \"uptime\"'" "PM2 uptime info" false
+ssh $SERVER 'pm2 status tinygeniushub 2>/dev/null || echo "Process not found"'
 echo ""
 
 # 3. Application Health
@@ -77,12 +77,12 @@ echo ""
 # 6. Recent Logs
 echo "=== Recent Application Logs ==="
 echo "Last 20 lines of PM2 logs:"
-ssh $SERVER 'pm2 logs cungcontuhoc --lines 20 --nostream 2>/dev/null || echo "No PM2 logs available"'
+ssh $SERVER 'pm2 logs tinygeniushub --lines 20 --nostream 2>/dev/null || echo "No PM2 logs available"'
 echo ""
 
 # 7. Error check
 echo "=== Error Check ==="
-check "ssh $SERVER 'pm2 logs cungcontuhoc --lines 50 --nostream 2>/dev/null | grep -i \"error\" | wc -l | xargs -I {} test {} -lt 5'" "Low error count (< 5 recent)" false
+check "ssh $SERVER 'pm2 logs tinygeniushub --lines 50 --nostream 2>/dev/null | grep -i \"error\" | wc -l | xargs -I {} test {} -lt 5'" "Low error count (< 5 recent)" false
 echo ""
 
 # 8. Nginx status (if applicable)

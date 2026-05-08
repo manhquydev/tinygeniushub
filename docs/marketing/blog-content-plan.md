@@ -24,7 +24,7 @@
 
 **Target keyword:** ứng dụng học tiếng Anh cho trẻ em
 **Meta description:** So sánh 7 ứng dụng học tiếng Anh hàng đầu cho trẻ em Việt Nam năm 2025 — ưu nhược điểm, độ tuổi phù hợp và chi phí thực tế.
-**Outline:** Tiêu chí đánh giá ứng dụng • Top 7 ứng dụng (bao gồm cungcontuhoc.vn) • So sánh bảng tính năng • Khuyến nghị theo độ tuổi • Mẹo kết hợp nhiều ứng dụng
+**Outline:** Tiêu chí đánh giá ứng dụng • Top 7 ứng dụng (bao gồm tinygeniushubvn.tech) • So sánh bảng tính năng • Khuyến nghị theo độ tuổi • Mẹo kết hợp nhiều ứng dụng
 
 ---
 

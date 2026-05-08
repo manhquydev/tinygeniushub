@@ -12,7 +12,7 @@ EXPECTED_PACKAGE_CODES_DEFAULT="PRESCHOOL_PREMIUM,ELEMENTARY_PRO,MIDDLE_ADVANCED
 EXPECTED_PACKAGE_CODES="${EXPECTED_PACKAGE_CODES:-$EXPECTED_PACKAGE_CODES_DEFAULT}"
 REQUIRED_SECRETS="${REQUIRED_SECRETS:-DATABASE_URL,SESSION_SECRET,BETTER_AUTH_SECRET,ADMIN_AUTH_SECRET,BETTER_AUTH_URL,BILLING_WEBHOOK_SECRET,CRON_SECRET,MOCK_UPLOAD_SIGNING_SECRET,REDIS_URL}"
 
-WORKER_PROCESS_NAME="${WORKER_PROCESS_NAME:-cungcontuhoc-worker}"
+WORKER_PROCESS_NAME="${WORKER_PROCESS_NAME:-tinygeniushub-worker}"
 RESTART_WINDOW_SECONDS="${RESTART_WINDOW_SECONDS:-20}"
 MAX_RESTART_DELTA="${MAX_RESTART_DELTA:-2}"
 CHECK_WORKER="${CHECK_WORKER:-true}"
@@ -43,7 +43,7 @@ Options:
   --env-file PATH               Env file used for secrets readiness (default: .env)
   --required-secrets CSV        Override required secret keys
   --expected-package-codes CSV  Override expected package codes
-  --worker-name NAME            PM2 worker process name (default: cungcontuhoc-worker)
+  --worker-name NAME            PM2 worker process name (default: tinygeniushub-worker)
   --restart-window SEC          Observe worker restarts in window seconds (default: 20)
   --max-restart-delta N         Fail if restart delta > N (default: 2)
   --skip-worker                 Skip worker restart storm check

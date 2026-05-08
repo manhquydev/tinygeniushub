@@ -26,7 +26,7 @@ NC='\033[0m' # No Color
 # Configuration
 DEPLOY_USER="deploy"
 APP_DIR="/srv/tinygeniushub"
-REPO_URL="https://github.com/manhquydev/cungcontuhoc.git"
+REPO_URL="https://github.com/manhquydev/tinygeniushub.git"
 PM2_ECOSYSTEM="ecosystem.config.js"
 
 # Flags
