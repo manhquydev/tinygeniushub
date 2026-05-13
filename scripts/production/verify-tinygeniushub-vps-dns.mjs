@@ -15,6 +15,10 @@ const NAMESERVERS = [
   "cont603385.mercury.orderbox-dns.com",
   "cont603385.venus.orderbox-dns.com",
 ];
+const ORDERBOX_API_BASE_URL = (process.env.ORDERBOX_API_BASE_URL ?? "https://httpapi.com").replace(/\/+$/, "");
+const ORDERBOX_AUTH_USERID = process.env.ORDERBOX_AUTH_USERID ?? process.env.ORDERBOX_AUTH_USER_ID ?? "";
+const ORDERBOX_API_KEY = process.env.ORDERBOX_API_KEY ?? "";
+const SHOULD_DELETE_STALE_RECORDS = process.env.ORDERBOX_DELETE_STALE_A_RECORDS === "1";
 
 const checks = [];
 const staleRecordFailures = [];
@@ -57,10 +61,10 @@ function formatLogicBoxesHost(host) {
   return host.endsWith(`.${DOMAIN}`) ? host.slice(0, -DOMAIN.length - 1) : host;
 }
 
-function formatDeleteIpv4RecordUrl(host, address) {
+function buildDeleteIpv4RecordParams(host, address, authUserid, apiKey) {
   const params = new URLSearchParams({
-    "auth-userid": "ORDERBOX_AUTH_USERID",
-    "api-key": "ORDERBOX_API_KEY",
+    "auth-userid": authUserid,
+    "api-key": apiKey,
     "domain-name": DOMAIN,
     value: address,
   });
@@ -70,7 +74,33 @@ function formatDeleteIpv4RecordUrl(host, address) {
     params.set("host", logicBoxesHost);
   }
 
-  return `https://test.httpapi.com/api/dns/manage/delete-ipv4-record.json?${params}`;
+  return params;
+}
+
+function formatDeleteIpv4RecordUrl(
+  host,
+  address,
+  {
+    baseUrl = "https://test.httpapi.com",
+    authUserid = "ORDERBOX_AUTH_USERID",
+    apiKey = "ORDERBOX_API_KEY",
+  } = {},
+) {
+  return `${baseUrl}/api/dns/manage/delete-ipv4-record.json?${buildDeleteIpv4RecordParams(
+    host,
+    address,
+    authUserid,
+    apiKey,
+  )}`;
+}
+
+function isOrderBoxErrorResponse(text) {
+  try {
+    const body = JSON.parse(text);
+    return Boolean(body.error || body.status === "ERROR");
+  } catch {
+    return /error/i.test(text) && !/success/i.test(text);
+  }
 }
 
 async function resolveAFrom(nsAddress, host) {
@@ -141,6 +171,54 @@ async function fetchWithTimeout(url, options = {}) {
     });
   } finally {
     clearTimeout(timeout);
+  }
+}
+
+async function deleteStaleOrderBoxRecords(stalePairs) {
+  if (!SHOULD_DELETE_STALE_RECORDS) {
+    console.error(
+      "\nAutomated cleanup skipped: set ORDERBOX_DELETE_STALE_A_RECORDS=1 with ORDERBOX_AUTH_USERID and ORDERBOX_API_KEY to delete stale A records.",
+    );
+    return;
+  }
+
+  if (!ORDERBOX_AUTH_USERID || !ORDERBOX_API_KEY) {
+    console.error("\nAutomated cleanup requested but ORDERBOX_AUTH_USERID or ORDERBOX_API_KEY is missing.");
+    return;
+  }
+
+  console.error(`\nAutomated cleanup enabled against ${ORDERBOX_API_BASE_URL}.`);
+  let failedDeletes = 0;
+
+  for (const pair of [...stalePairs].sort()) {
+    const [host, , address] = pair.split(" ");
+    const url = formatDeleteIpv4RecordUrl(host, address, {
+      baseUrl: ORDERBOX_API_BASE_URL,
+      authUserid: ORDERBOX_AUTH_USERID,
+      apiKey: ORDERBOX_API_KEY,
+    });
+
+    try {
+      const response = await fetchWithTimeout(url, { method: "POST" });
+      const text = await response.text();
+      const ok = response.ok && !isOrderBoxErrorResponse(text);
+
+      if (ok) {
+        console.error(`- Cleanup request accepted for ${pair}`);
+      } else {
+        failedDeletes += 1;
+        console.error(`- Cleanup request failed for ${pair}: ${response.status} ${text.slice(0, 180)}`);
+      }
+    } catch (error) {
+      failedDeletes += 1;
+      console.error(`- Cleanup request failed for ${pair}: ${error.message}`);
+    }
+  }
+
+  if (failedDeletes === 0) {
+    console.error("- Cleanup requests completed; wait for DNS propagation and rerun this verifier.");
+  } else {
+    console.error(`- ${failedDeletes} cleanup request(s) failed; fix API access or use the control panel.`);
   }
 }
 
@@ -215,6 +293,8 @@ if (failed.length > 0) {
       const [host, , address] = pair.split(" ");
       console.error(`- Delete API (${pair}): POST ${formatDeleteIpv4RecordUrl(host, address)}`);
     }
+
+    await deleteStaleOrderBoxRecords(stalePairs);
 
     console.error("- Do not SSH into stale IPs; they are not the approved project VPS.");
   }
