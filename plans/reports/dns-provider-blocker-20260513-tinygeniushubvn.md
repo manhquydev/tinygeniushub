@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 00:30 ICT
+Last verified: 2026-05-14 00:33 ICT
 
 ## Status
 
@@ -24,7 +24,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing from local/public resolver paths. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:30 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because public resolvers still return stale records.
+Latest result: still failing from local/public resolver paths. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:33 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because authoritative DNS and local resolver paths still return stale records.
 
 Authoritative nameservers still return old A records:
 
@@ -37,8 +37,8 @@ Expected A record only:
 
 Examples from latest checks:
 
-- Local strict verifier on 2026-05-14: `23 production verification check(s) failed` after expanding coverage to both OrderBox nameserver families
-- VPS strict verifier on 2026-05-14: passed once, showing source-network inconsistency
+- Local strict verifier on 2026-05-14: `21 production verification check(s) failed` after expanding coverage to both OrderBox nameserver families
+- VPS strict verifier on 2026-05-14: `3 production verification check(s) failed`
 - `tinygeniushubvn.tech @ 162.251.82.119` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
 - `www.tinygeniushubvn.tech @ 162.251.82.125` returned `165.22.211.19`
 - `tinygeniushubvn.tech @ 162.251.82.250` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
@@ -50,10 +50,27 @@ Examples from latest checks:
 Public resolver sample on 2026-05-14:
 
 - `1.1.1.1` returned correct `152.42.246.218`
-- `8.8.8.8` returned `tinygeniushubvn.tech -> 152.42.246.218` and `www.tinygeniushubvn.tech -> 165.22.211.19`
+- `8.8.8.8` returned correct `152.42.246.218`
 - `9.9.9.9` returned correct `152.42.246.218`
-- `208.67.222.222` returned `tinygeniushubvn.tech -> 165.22.211.19, 165.22.48.193`
-- `208.67.222.222` returned `www.tinygeniushubvn.tech -> 152.42.246.218`
+- `208.67.222.222` returned correct `152.42.246.218`
+
+Local resolver and curl sample on 2026-05-14:
+
+- Default `Resolve-DnsName tinygeniushubvn.tech` returned `152.42.246.218`
+- Default `Resolve-DnsName www.tinygeniushubvn.tech` returned stale `165.22.211.19`
+- `curl -v https://tinygeniushubvn.tech/` resolved `165.22.48.193, 152.42.246.218, 165.22.211.19` and failed TLS on the first stale IP
+
+## Completion Audit
+
+| Requirement | Evidence | Status |
+| --- | --- | --- |
+| SSH only to project VPS `152.42.246.218` | All server commands use direct `root@152.42.246.218`; stale IPs were never SSH targets | Pass |
+| Latest patch on VPS | `/var/www/cungcontuhoc` fast-forwarded after each pushed commit; latest checked via `git rev-parse HEAD` | Pass |
+| App works on VPS | `http://127.0.0.1:3000/api/health/ready` returns ready on the VPS | Pass |
+| No basic 502/app outage | Direct VPS health and `www` public checks return 200; nginx/PM2 errors were previously empty after route probes | Pass |
+| Domain `www.tinygeniushubvn.tech` works | Public `www` checks return `200` on `152.42.246.218` | Pass |
+| Apex `tinygeniushubvn.tech` works reliably | Local curl still resolves stale IPs and fails TLS; authoritative checks still return stale A records | Fail |
+| DNS migrated fully to new VPS | Strict verifier fails locally and on VPS because stale A records remain on OrderBox backing nameservers | Fail |
 
 ## DNS Automation Check
 
