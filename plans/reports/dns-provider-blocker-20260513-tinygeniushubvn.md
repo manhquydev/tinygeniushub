@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 00:53 ICT
+Last verified: 2026-05-14 00:55 ICT
 
 ## Status
 
@@ -24,7 +24,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:53 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because authoritative DNS and local resolver paths still return stale records.
+Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:55 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because authoritative DNS and local resolver paths still return stale records.
 
 Authoritative nameservers still return old A records:
 
@@ -38,9 +38,12 @@ Expected A record only:
 Examples from latest checks:
 
 - Local strict verifier on 2026-05-14 after cleanup-hint patch: `22 production verification check(s) failed`
-- VPS strict verifier on 2026-05-14 after deploy of `17a0d669`: `2 production verification check(s) failed`
+- VPS strict verifier on 2026-05-14 after deploy of `17a0d669`: `5 production verification check(s) failed`
 - `tinygeniushubvn.tech @ tech-domains.earth.orderbox-dns.com (162.251.82.119)` returned `165.22.211.19, 165.22.48.193`
-- `tinygeniushubvn.tech @ cont603385.earth.orderbox-dns.com (162.251.82.119)` returned `165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ tech-domains.earth.orderbox-dns.com (162.251.82.247)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ tech-domains.mercury.orderbox-dns.com (162.251.82.123)` returned `165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ cont603385.earth.orderbox-dns.com (162.251.82.247)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ cont603385.mars.orderbox-dns.com (162.251.82.252)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
 - `https://tinygeniushubvn.tech/` public fetch failed from local resolver path with TLS error
 - Forced apex check with `--resolve tinygeniushubvn.tech:443:152.42.246.218` returned `301` to `https://www.tinygeniushubvn.tech/`
 - `https://www.tinygeniushubvn.tech/`, `/api/health/ready`, `/pricing`, and `/courses` public fetches returned `200` on `152.42.246.218`
