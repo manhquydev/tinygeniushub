@@ -73,6 +73,39 @@ Keep only:
 - `tinygeniushubvn.tech A 152.42.246.218`
 - `www.tinygeniushubvn.tech A 152.42.246.218`
 
+## Operator Runbook
+
+Use the OrderBox/LogicBoxes control panel if API credentials are not already available. LogicBoxes documents the UI path as Control Panel -> domain order -> DNS Service -> Manage DNS -> A Records. For apex/root A records, leave Host Name blank. For `www`, use Host Name `www`. To remove an A record, open the record name from the A Records list and use Delete Record.
+
+Records to leave after cleanup:
+
+| Host | Type | Value | TTL |
+| --- | --- | --- | --- |
+| blank/apex | A | `152.42.246.218` | `14400` or provider default |
+| `www` | A | `152.42.246.218` | `14400` or provider default |
+
+Records to delete:
+
+| Host | Type | Value |
+| --- | --- | --- |
+| blank/apex | A | `165.22.211.19` |
+| blank/apex | A | `165.22.48.193` |
+| `www` | A | `165.22.211.19` |
+| `www` | A | `165.22.48.193` if present |
+
+If API credentials are available, the official record-search endpoint can list A records before deletion:
+
+```text
+GET https://test.httpapi.com/api/dns/manage/search-records.json?auth-userid=<id>&api-key=<key>&domain-name=tinygeniushubvn.tech&type=A&no-of-records=50&page-no=1
+```
+
+The current project/VPS environment does not contain `auth-userid` or `api-key`, so API cleanup is not possible from this session.
+
+Reference docs:
+
+- LogicBoxes DNS records UI: https://manage.logicboxes.com/kb/servlet/KBServlet/faq471.html
+- LogicBoxes DNS record search API: https://manage.logicboxes.com/kb/answer/1106
+
 Then wait for TTL/propagation and rerun:
 
 ```bash
