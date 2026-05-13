@@ -1,6 +1,6 @@
 # Codebase Summary
 
-**Last updated:** 2026-03-19 — Phases 01–05 complete. Deployed to production at https://tinygeniushubvn.tech.
+**Last updated:** 2026-03-19 — Phases 01–05 complete. Deployed to production at https://www.tinygeniushubvn.tech.
 
 ---
 

@@ -56,7 +56,7 @@
 ## Production Deployment [COMPLETE]
 
 - **Server:** DigitalOcean Ubuntu 24.04 — IP `152.42.246.218`
-- **Domain:** [tinygeniushubvn.tech](https://tinygeniushubvn.tech) — A records + SSL via Let's Encrypt
+- **Domain:** [tinygeniushubvn.tech](https://www.tinygeniushubvn.tech) — A records + SSL via Let's Encrypt
 - **Stack:** PM2 + Nginx reverse proxy, Docker Compose (PostgreSQL 16 + Redis 7)
 - **CI/CD:** GitHub Actions `deploy-digitalocean-ssh.yml` (SSH deploy key)
 - **Seed data:** 13 SEO blog articles, categories, tags

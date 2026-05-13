@@ -669,8 +669,8 @@ DATABASE_URL=postgresql://tinygeniushub_app:YOUR_PASSWORD@127.0.0.1:6432/tinygen
 # Session & Auth Secrets (generate: openssl rand -hex 32)
 SESSION_SECRET=YOUR_64_CHAR_HEX_SECRET
 BETTER_AUTH_SECRET=YOUR_64_CHAR_HEX_SECRET
-BETTER_AUTH_URL=https://tinygeniushubvn.tech
-AUTH_TRUSTED_ORIGINS=https://tinygeniushubvn.tech,https://www.tinygeniushubvn.tech
+BETTER_AUTH_URL=https://www.tinygeniushubvn.tech
+AUTH_TRUSTED_ORIGINS=https://www.tinygeniushubvn.tech,https://www.tinygeniushubvn.tech
 
 # Admin Secret
 ADMIN_AUTH_SECRET=YOUR_64_CHAR_HEX_SECRET
@@ -797,7 +797,7 @@ pm2 save
 pm2 startup systemd
 
 echo "✅ Initial deployment complete!"
-echo "Check: curl https://tinygeniushubvn.tech/api/health"
+echo "Check: curl https://www.tinygeniushubvn.tech/api/health"
 ```
 
 ---
@@ -859,8 +859,8 @@ EOF
 
 # API health checks
 echo ""
-echo "Health: $(curl -s https://tinygeniushubvn.tech/api/health | jq -r '.status // "unknown"')"
-echo "Ready: $(curl -s https://tinygeniushubvn.tech/api/health/ready | jq -r '.ready // "unknown"')"
+echo "Health: $(curl -s https://www.tinygeniushubvn.tech/api/health | jq -r '.status // "unknown"')"
+echo "Ready: $(curl -s https://www.tinygeniushubvn.tech/api/health/ready | jq -r '.ready // "unknown"')"
 ```
 
 ---
@@ -968,7 +968,7 @@ echo "✅ Migration complete! Update DNS to point $DOMAIN to $NEW_SERVER"
 #!/bin/bash
 set -euo pipefail
 
-APP_URL="https://tinygeniushubvn.tech"
+APP_URL="https://www.tinygeniushubvn.tech"
 LOG_FILE="/var/log/tinygeniushub/health-check.log"
 
 mkdir -p $(dirname $LOG_FILE)
@@ -1063,7 +1063,7 @@ sudo nginx -t && sudo systemctl reload nginx
 cd /var/www/tinygeniushub && git pull --ff-only origin main && pnpm install --frozen-lockfile && pnpm prisma migrate deploy && pnpm prisma migrate status && pnpm build && pm2 reload tinygeniushub-web && pm2 reload tinygeniushub-worker
 
 # Check status
-pm2 status && curl https://tinygeniushubvn.tech/api/health
+pm2 status && curl https://www.tinygeniushubvn.tech/api/health
 
 # Create backup
 pnpm backup:create -- --offsite

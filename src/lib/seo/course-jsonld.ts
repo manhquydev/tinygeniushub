@@ -1,4 +1,4 @@
-const BASE_URL = "https://tinygeniushubvn.tech";
+const BASE_URL = "https://www.tinygeniushubvn.tech";
 
 /** Safely serialize JSON-LD for dangerouslySetInnerHTML — escapes <, >, & to prevent XSS */
 export function safeJsonLd(data: unknown): string {

@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/contact-form";
 export const metadata: Metadata = {
   title: "Liên hệ",
   description: "Liên hệ với đội ngũ TinyGenius Hub để được hỗ trợ hoặc hợp tác.",
-  alternates: { canonical: "https://tinygeniushubvn.tech/contact" },
+  alternates: { canonical: "https://www.tinygeniushubvn.tech/contact" },
 };
 
 export default function ContactPage() {

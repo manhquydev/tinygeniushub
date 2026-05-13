@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import "@/components/homepage/cloud-garden-home.css";
 import { CloudGardenHome } from "@/components/homepage/cloud-garden-home";
 import Link from "next/link";
@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: "https://tinygeniushubvn.tech",
+    canonical: "https://www.tinygeniushubvn.tech",
   },
   openGraph: {
     title: "TinyGenius Hub | Khu Vườn Trên Mây",
     description: "Xem bài học mẫu, mua khóa trực tiếp và theo dõi tiến bộ của bé qua báo cáo định kỳ.",
-    url: "https://tinygeniushubvn.tech",
+    url: "https://www.tinygeniushubvn.tech",
     type: "website",
     locale: "vi_VN",
     images: [
@@ -43,14 +43,14 @@ const jsonLdWebsite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "TinyGenius Hub",
-  url: "https://tinygeniushubvn.tech",
+  url: "https://www.tinygeniushubvn.tech",
   inLanguage: "vi",
   description: "Nền tảng học tập tương tác cho trẻ nhỏ và phụ huynh.",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://tinygeniushubvn.tech/courses?q={search_term_string}",
+      urlTemplate: "https://www.tinygeniushubvn.tech/courses?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -63,7 +63,7 @@ const jsonLdApp = {
   applicationCategory: "EducationalApplication",
   operatingSystem: "Web",
   inLanguage: "vi",
-  url: "https://tinygeniushubvn.tech",
+  url: "https://www.tinygeniushubvn.tech",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.8",
@@ -79,8 +79,8 @@ const jsonLdOrganization = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   name: "TinyGenius Hub",
-  url: "https://tinygeniushubvn.tech",
-  logo: "https://tinygeniushubvn.tech/logo.png",
+  url: "https://www.tinygeniushubvn.tech",
+  logo: "https://www.tinygeniushubvn.tech/logo.png",
   description: "Nền tảng giáo dục sớm dành cho trẻ từ 2-6 tuổi.",
   sameAs: ["https://www.facebook.com/tinygeniushub"],
   address: {
@@ -103,7 +103,7 @@ const jsonLdCourse = {
   provider: {
     "@type": "Organization",
     name: "TinyGenius Hub",
-    sameAs: "https://tinygeniushubvn.tech",
+    sameAs: "https://www.tinygeniushubvn.tech",
   },
   educationalLevel: "Mầm non",
   audience: {

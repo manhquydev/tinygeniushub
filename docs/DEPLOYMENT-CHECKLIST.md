@@ -207,7 +207,7 @@
   ```
   DATABASE_URL="postgresql://ccth_prod:***@localhost:5432/ccth_prod"
   BETTER_AUTH_SECRET="[32+ char secret]"
-  APP_URL="https://tinygeniushubvn.tech"
+  APP_URL="https://www.tinygeniushubvn.tech"
   ```
 
 - [ ] **Abeka-specific variables configured** 🔴
@@ -1083,7 +1083,7 @@
 
 - [ ] **HTTPS endpoint accessible** 🔴
   ```bash
-  curl -sf https://tinygeniushubvn.tech/api/health
+  curl -sf https://www.tinygeniushubvn.tech/api/health
   ```
   **Expected Output:**
   ```json
@@ -1330,7 +1330,7 @@
 
 - [ ] **Verify new server** 🔴
   ```bash
-  curl -f https://tinygeniushubvn.tech/api/health
+  curl -f https://www.tinygeniushubvn.tech/api/health
   ```
 
 ---

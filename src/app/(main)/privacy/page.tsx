@@ -4,7 +4,7 @@ import { LEGAL_POLICY_LAST_UPDATED_LABEL } from "@/lib/legal/legal-policy-versio
 export const metadata: Metadata = {
   title: "Chính sách bảo mật",
   description: "Cam kết bảo vệ dữ liệu phụ huynh và dữ liệu trẻ em trên nền tảng TinyGenius Hub.",
-  alternates: { canonical: "https://tinygeniushubvn.tech/privacy" },
+  alternates: { canonical: "https://www.tinygeniushubvn.tech/privacy" },
 };
 
 export default function PrivacyPolicyPage() {

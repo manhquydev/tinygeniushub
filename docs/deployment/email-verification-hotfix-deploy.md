@@ -18,7 +18,7 @@ bash scripts/deploy/production-email-verify-hotfix.sh deploy@<server-ip> main
 
 ```bash
 APP_DIR=/var/www/tinygeniushub \
-BASE_URL=https://tinygeniushubvn.tech \
+BASE_URL=https://www.tinygeniushubvn.tech \
 WEB_PROCESS=tinygeniushub-web \
 WORKER_PROCESS=tinygeniushub-worker \
 REMOTE_ENV_FILE=.env.production \

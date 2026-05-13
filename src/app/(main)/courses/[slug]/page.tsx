@@ -69,14 +69,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: "Danh sách khóa học - TinyGenius Hub",
       description: "Khóa học hiển thị theo mô hình từng khóa độc lập.",
-      alternates: { canonical: "https://tinygeniushubvn.tech/courses" },
+      alternates: { canonical: "https://www.tinygeniushubvn.tech/courses" },
     };
   }
   const course = await loadPublishedCourse(slug);
   if (!course || !course.isPublished) return { title: "Khóa học không tồn tại" };
 
   const coverUrl = resolveCourseCoverImage(course.slug, course.coverImageUrl);
-  const canonicalUrl = `https://tinygeniushubvn.tech/courses/${course.slug}`;
+  const canonicalUrl = `https://www.tinygeniushubvn.tech/courses/${course.slug}`;
 
   return {
     title: `${course.title} - TinyGenius Hub`,

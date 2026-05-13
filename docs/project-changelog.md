@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [0.5.1] - 2026-05-13
+
+### Changed
+- Canonical production URLs now prefer `https://www.tinygeniushubvn.tech` across app metadata, JSON-LD, share links, email URL fallbacks, deployment defaults, and public runbooks.
+- Kept `@tinygeniushubvn.tech` email addresses and owned-domain suffix checks unchanged.
+- Cleaned `/try-garden` share tracking typing while preserving Facebook/copy share behavior.
+
 ## [0.5.0] - 2026-05-07
 
 ### Changed

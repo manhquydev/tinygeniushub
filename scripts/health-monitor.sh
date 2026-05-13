@@ -26,7 +26,7 @@ log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-APP_URL="${1:-https://tinygeniushubvn.tech}"
+APP_URL="${1:-https://www.tinygeniushubvn.tech}"
 LOG_FILE="/var/log/tinygeniushub/health-check.log"
 RESTART_ON_FAILURE="${RESTART_ON_FAILURE:-true}"
 ALERT_THRESHOLD=3  # Number of consecutive failures before alerting

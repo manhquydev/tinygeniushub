@@ -1,4 +1,4 @@
-﻿import "./pricing.css";
+import "./pricing.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { IconCheckCircle, IconInfo } from "@/components/icons";
@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description:
     "Bảng giá minh bạch theo từng khóa, xem bài học mẫu trước khi mua và chính sách hoàn tiền trong 30 ngày.",
   alternates: {
-    canonical: "https://tinygeniushubvn.tech/pricing",
+    canonical: "https://www.tinygeniushubvn.tech/pricing",
   },
   openGraph: {
     title: "Bảng giá khóa học — TinyGenius Hub",
     description: "Mua theo từng khóa · Thanh toán nhanh · Hoàn tiền 30 ngày",
-    url: "https://tinygeniushubvn.tech/pricing",
+    url: "https://www.tinygeniushubvn.tech/pricing",
     type: "website",
   },
 };

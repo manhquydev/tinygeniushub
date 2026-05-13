@@ -91,10 +91,10 @@ Cảm ơn bạn đã nhận lời! Đây là tóm tắt nhanh để bắt đầu
 
 🔑 ACCOUNT
 → Mình sẽ gửi link đặt mật khẩu riêng qua email: [email của KOL]
-→ Đăng nhập tại: https://tinygeniushubvn.tech/auth/login
+→ Đăng nhập tại: https://www.tinygeniushubvn.tech/auth/login
 
 📱 MÃ GIỚI THIỆU CỦA BẠN: [CODE]
-Share link: https://tinygeniushubvn.tech/auth/signup?ref=[CODE]
+Share link: https://www.tinygeniushubvn.tech/auth/signup?ref=[CODE]
 → Mỗi phụ huynh đăng ký = +7 ngày free cho bạn
 
 📋 KHÔNG CÓ QUY ĐỊNH GÌ CỨNG NHẮC

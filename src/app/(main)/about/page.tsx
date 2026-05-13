@@ -1,11 +1,11 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Giới thiệu",
   description:
     "Câu chuyện hình thành TinyGenius Hub và lý do chúng tôi xây nền tảng học tập lấy trẻ làm trung tâm cho gia đình Việt.",
-  alternates: { canonical: "https://tinygeniushubvn.tech/about" },
+  alternates: { canonical: "https://www.tinygeniushubvn.tech/about" },
 };
 
 export default function AboutPage() {

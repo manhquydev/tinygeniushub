@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { TryGardenClient } from "./try-garden-client";
 
 /**
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Khu Vườn Trên Mây - Xem thử khóa học",
     description: "Khám phá thế giới học tập và xem thử bài học trước khi mua.",
-    url: "https://tinygeniushubvn.tech/try-garden",
+    url: "https://www.tinygeniushubvn.tech/try-garden",
     siteName: "TinyGenius Hub",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://tinygeniushubvn.tech/try-garden",
+    canonical: "https://www.tinygeniushubvn.tech/try-garden",
   },
 };
 

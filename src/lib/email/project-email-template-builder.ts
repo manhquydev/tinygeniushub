@@ -1,4 +1,4 @@
-﻿import { env } from "@/lib/env";
+import { env } from "@/lib/env";
 
 type TemplateTag = {
   name: string;
@@ -36,7 +36,7 @@ const FEATURE_TITLES: Record<string, string> = {
   package_subscription_failed: "Thanh toán gói học chưa thành công",
 };
 
-const CANONICAL_APP_BASE_URL = "https://tinygeniushubvn.tech";
+const CANONICAL_APP_BASE_URL = "https://www.tinygeniushubvn.tech";
 const CANONICAL_SUPPORT_EMAIL = "support@tinygeniushubvn.tech";
 const EMAIL_FONT_STACK =
   "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif";

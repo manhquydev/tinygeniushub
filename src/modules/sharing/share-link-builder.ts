@@ -1,9 +1,9 @@
-﻿/**
+/**
  * Builds share URLs with UTM tracking for weekly report viral sharing.
  * Supports Zalo, Facebook, and WhatsApp (fallback).
  */
 
-const BASE_URL = "https://tinygeniushubvn.tech";
+const BASE_URL = "https://www.tinygeniushubvn.tech";
 
 export type SharePlatform = "zalo" | "facebook" | "whatsapp";
 

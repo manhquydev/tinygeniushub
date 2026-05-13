@@ -1,8 +1,8 @@
-﻿import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 const { envMock } = vi.hoisted(() => ({
   envMock: {
-    BETTER_AUTH_URL: "https://tinygeniushubvn.tech",
+    BETTER_AUTH_URL: "https://www.tinygeniushubvn.tech",
     REPORT_EMAIL_FROM: "no-reply@tinygeniushubvn.tech",
     REPORT_EMAIL_REPLY_TO: "support@tinygeniushubvn.tech",
   },
@@ -41,13 +41,13 @@ describe("renderProjectEmailHtml", () => {
   });
 
   it("renders centered CTA and unsubscribe footer without exposing raw URL text", () => {
-    const unsubscribeUrl = "https://tinygeniushubvn.tech/api/email/marketing/unsubscribe?token=abc123";
+    const unsubscribeUrl = "https://www.tinygeniushubvn.tech/api/email/marketing/unsubscribe?token=abc123";
     const html = renderProjectEmailHtml({
       subject: "Lifecycle",
       text: [
         "Xin chào phụ huynh,",
         "",
-        "Mở dashboard: https://tinygeniushubvn.tech/parent/dashboard",
+        "Mở dashboard: https://www.tinygeniushubvn.tech/parent/dashboard",
         "",
         "Nếu bạn không muốn nhận email marketing từ TinyGenius Hub, hủy đăng ký tại đây:",
         unsubscribeUrl,
@@ -67,10 +67,10 @@ describe("renderProjectEmailHtml", () => {
       text: [
         "Có phản hồi mới cho bình luận của bạn.",
         "",
-        "Xem chi tiết: https://tinygeniushubvn.tech/blog/demo#comments",
+        "Xem chi tiết: https://www.tinygeniushubvn.tech/blog/demo#comments",
         "",
         "Nếu bạn không muốn nhận email thông báo trả lời nữa, bấm link:",
-        "https://tinygeniushubvn.tech/api/blog/comments/unsubscribe?token=abc123",
+        "https://www.tinygeniushubvn.tech/api/blog/comments/unsubscribe?token=abc123",
       ].join("\n"),
       tags: [{ name: "feature", value: "blog_comment_reply" }],
     });

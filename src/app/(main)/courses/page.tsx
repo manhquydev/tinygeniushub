@@ -24,7 +24,7 @@ import { CourseCatalogViewTracker } from "@/components/courses/course-storefront
 export const metadata: Metadata = {
   title: "Khóa học cho bé - TinyGenius Hub",
   description: "Xem nhanh khóa học, học thử trước, chọn mua đúng nhu cầu của gia đình.",
-  alternates: { canonical: "https://tinygeniushubvn.tech/courses" },
+  alternates: { canonical: "https://www.tinygeniushubvn.tech/courses" },
 };
 
 type SearchParamsInput = Record<string, string | string[] | undefined>;

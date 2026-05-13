@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Chính sách Cookie",
   description:
     "Giải thích cách TinyGenius Hub dùng cookie cần thiết, phân tích và tiếp thị; cách phụ huynh quản lý hoặc rút lại đồng ý.",
-  alternates: { canonical: "https://tinygeniushubvn.tech/cookie-policy" },
+  alternates: { canonical: "https://www.tinygeniushubvn.tech/cookie-policy" },
 };
 
 export default function CookiePolicyPage() {

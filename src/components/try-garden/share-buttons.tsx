@@ -13,25 +13,36 @@
 import { useState } from "react";
 import { Facebook, Share2, Check } from "lucide-react";
 
+type GtagWindow = Window & {
+  gtag?: (eventType: string, eventName: string, params: Record<string, string>) => void;
+};
+
+function trackShare(method: "facebook" | "copy_link") {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const gtag = (window as GtagWindow).gtag;
+  if (typeof gtag !== "function") {
+    return;
+  }
+
+  gtag("event", "share", {
+    event_category: "try_garden",
+    event_label: method,
+    method,
+  });
+}
+
 export function ShareButtons() {
   const [copied, setCopied] = useState(false);
 
   const shareUrl = typeof window !== "undefined" 
     ? window.location.href 
-    : "https://tinygeniushubvn.tech/try-garden";
-
-  const shareTitle = "Khu Vườn Trên Mây - Học Toán & Tiếng Anh cho bé";
-  const shareDescription = "Khám phá Khu Vườn Trên Mây - Học qua trò chơi tương tác dành cho bé 2-6 tuổi!";
+    : "https://www.tinygeniushubvn.tech/try-garden";
 
   const handleFacebookShare = () => {
-    // Track event
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "share", {
-        event_category: "try_garden",
-        event_label: "facebook",
-        method: "facebook",
-      });
-    }
+    trackShare("facebook");
 
     // Open Facebook share dialog
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
@@ -39,14 +50,7 @@ export function ShareButtons() {
   };
 
   const handleCopyLink = () => {
-    // Track event
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "share", {
-        event_category: "try_garden",
-        event_label: "copy_link",
-        method: "copy_link",
-      });
-    }
+    trackShare("copy_link");
 
     // Copy to clipboard
     navigator.clipboard.writeText(shareUrl).then(() => {

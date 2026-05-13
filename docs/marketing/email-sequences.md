@@ -1,4 +1,4 @@
-﻿# Email Sequences — TinyGenius Hub
+# Email Sequences — TinyGenius Hub
 
 Lifecycle email sequences cho trial conversion, retention và upsell.
 Toàn bộ copy dùng tiếng Việt, đồng bộ giá hiện tại:
@@ -43,7 +43,7 @@ Bước tiếp theo (2 phút):
 3) Duy trì 15 phút mỗi ngày
 
 Bắt đầu ngay:
-https://tinygeniushubvn.tech/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d0
+https://www.tinygeniushubvn.tech/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d0
 
 Không cần thẻ tín dụng · Trial 7 ngày miễn phí.
 
@@ -61,7 +61,7 @@ Chúng tôi thấy [Tên bé] chưa hoàn thành bài học đầu tiên.
 Chỉ cần 15 phút hôm nay để tạo thói quen học đều.
 
 Mở bài học đầu tiên:
-https://tinygeniushubvn.tech/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d1_activation
+https://www.tinygeniushubvn.tech/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d1_activation
 
 Mẹo nhanh: Học cùng khung giờ cố định giúp bé vào nếp nhanh hơn.
 
@@ -81,7 +81,7 @@ Xin chào [Tên phụ huynh],
 - Chuỗi học: [streak] ngày
 
 Xem báo cáo chi tiết:
-https://tinygeniushubvn.tech/parent/reports?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d3_progress
+https://www.tinygeniushubvn.tech/parent/reports?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d3_progress
 
 Còn 4 ngày trial. Đây là thời điểm tốt để giữ đà học của bé.
 
@@ -98,7 +98,7 @@ Xin chào [Tên phụ huynh],
 [Tên bé] vừa đạt mốc: [thành tựu].
 Nếu bạn thấy hành trình này hữu ích, hãy chia sẻ cho một phụ huynh khác:
 
-https://tinygeniushubvn.tech/auth/signup?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d5_referral
+https://www.tinygeniushubvn.tech/auth/signup?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d5_referral
 
 Mỗi lượt giới thiệu thành công: cả hai gia đình nhận thêm 7 ngày premium miễn phí.
 
@@ -124,7 +124,7 @@ Tóm tắt trial:
 - Family+: 1,199,000 VND/năm
 
 Chọn gói phù hợp:
-https://tinygeniushubvn.tech/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d7_convert
+https://www.tinygeniushubvn.tech/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=trial_d7_convert
 
 Cam kết: Hoàn tiền 100% trong 30 ngày đầu.
 
@@ -147,7 +147,7 @@ Tóm tắt tuần này của [Tên bé]:
 - So với tuần trước: [+N / -N bài]
 
 Xem đầy đủ:
-https://tinygeniushubvn.tech/parent/reports?utm_source=email&utm_medium=lifecycle&utm_campaign=weekly_digest
+https://www.tinygeniushubvn.tech/parent/reports?utm_source=email&utm_medium=lifecycle&utm_campaign=weekly_digest
 
 TinyGenius Hub
 ```
@@ -165,7 +165,7 @@ Xin chào [Tên phụ huynh],
 Lộ trình vẫn sẵn sàng — chỉ cần 15 phút hôm nay để bắt đầu lại.
 
 Quay lại dashboard:
-https://tinygeniushubvn.tech/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=winback_d30
+https://www.tinygeniushubvn.tech/parent/dashboard?utm_source=email&utm_medium=lifecycle&utm_campaign=winback_d30
 
 Nếu bạn cần hỗ trợ, chỉ cần reply email này.
 
@@ -185,7 +185,7 @@ Gói Standard đang hỗ trợ tối đa 3 hồ sơ bé.
 Nếu gia đình muốn thêm hồ sơ, Family+ cho phép đến 5 bé và 4 caregiver.
 
 Nâng cấp Family+:
-https://tinygeniushubvn.tech/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=upsell_family_plus
+https://www.tinygeniushubvn.tech/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=upsell_family_plus
 
 Family+ phù hợp khi gia đình cần báo cáo gộp và theo dõi nhiều bé cùng lúc.
 
@@ -205,7 +205,7 @@ Gói hiện tại sẽ hết hạn vào [ngày hết hạn].
 Gia hạn sớm để không làm gián đoạn lộ trình học của bé.
 
 Gia hạn tại:
-https://tinygeniushubvn.tech/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=renewal_14d
+https://www.tinygeniushubvn.tech/pricing?utm_source=email&utm_medium=lifecycle&utm_campaign=renewal_14d
 
 Tổng kết năm vừa qua:
 - Bài đã hoàn thành: [N]

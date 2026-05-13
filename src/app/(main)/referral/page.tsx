@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getParentFromServerCookie } from "@/lib/auth/session";
 import { getReferralSummaryForParentReadOnly } from "@/modules/referral/service";
@@ -9,7 +9,7 @@ import "./referral.css";
 export const metadata: Metadata = {
   title: "Giới thiệu bạn bè",
   description: "Mời bạn bè tham gia TinyGenius Hub để cả hai cùng nhận ưu đãi cho khóa học.",
-  alternates: { canonical: "https://tinygeniushubvn.tech/referral" },
+  alternates: { canonical: "https://www.tinygeniushubvn.tech/referral" },
 };
 
 const TIERS = [

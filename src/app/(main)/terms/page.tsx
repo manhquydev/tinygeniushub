@@ -4,7 +4,7 @@ import { LEGAL_POLICY_LAST_UPDATED_LABEL } from "@/lib/legal/legal-policy-versio
 export const metadata: Metadata = {
   title: "Điều khoản sử dụng",
   description: "Điều khoản và điều kiện sử dụng nền tảng TinyGenius Hub.",
-  alternates: { canonical: "https://tinygeniushubvn.tech/terms" },
+  alternates: { canonical: "https://www.tinygeniushubvn.tech/terms" },
 };
 
 export default function TermsOfServicePage() {

@@ -18,7 +18,7 @@ vi.mock("@/modules/platform/marketing-email-unsubscribe-token", () => ({
 }));
 
 vi.mock("@/lib/email/project-email-template-builder", () => ({
-  resolveEmailPublicBaseUrl: vi.fn(() => "https://tinygeniushubvn.tech"),
+  resolveEmailPublicBaseUrl: vi.fn(() => "https://www.tinygeniushubvn.tech"),
 }));
 
 vi.mock("@/lib/db", () => ({

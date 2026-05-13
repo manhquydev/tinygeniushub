@@ -4,7 +4,7 @@ import { LEGAL_POLICY_LAST_UPDATED_LABEL } from "@/lib/legal/legal-policy-versio
 export const metadata: Metadata = {
   title: "Chính sách hoàn tiền",
   description: "Chính sách hoàn tiền cho giao dịch mua khóa học tại TinyGenius Hub.",
-  alternates: { canonical: "https://tinygeniushubvn.tech/refund-policy" },
+  alternates: { canonical: "https://www.tinygeniushubvn.tech/refund-policy" },
 };
 
 export default function RefundPolicyPage() {

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { WaitlistForm } from "./waitlist-form";
 import { IconCalendar, IconStar } from "@/components/icons";
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Danh sách ưu tiên — TinyGenius Hub",
   description:
     "Đăng ký danh sách ưu tiên để nhận thông báo mở đợt mới và ưu đãi sớm dành cho gia đình đăng ký trước.",
-  alternates: { canonical: "https://tinygeniushubvn.tech/waitlist" },
+  alternates: { canonical: "https://www.tinygeniushubvn.tech/waitlist" },
   robots: { index: false, follow: false },
 };
 

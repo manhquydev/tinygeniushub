@@ -10,7 +10,7 @@ fi
 
 GIT_REF="${2:-$(git rev-parse --abbrev-ref HEAD)}"
 APP_DIR="${APP_DIR:-/var/www/tinygeniushub}"
-BASE_URL="${BASE_URL:-https://tinygeniushubvn.tech}"
+BASE_URL="${BASE_URL:-https://www.tinygeniushubvn.tech}"
 WEB_PROCESS="${WEB_PROCESS:-tinygeniushub-web}"
 WORKER_PROCESS="${WORKER_PROCESS:-tinygeniushub-worker}"
 REMOTE_ENV_FILE="${REMOTE_ENV_FILE:-.env.production}"

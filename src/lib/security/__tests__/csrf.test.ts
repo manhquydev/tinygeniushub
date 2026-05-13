@@ -34,11 +34,11 @@ describe("assertTrustedOrigin", () => {
   });
 
   it("allows referer fallback when origin header is missing", () => {
-    const request = new Request("https://tinygeniushubvn.tech/api/reports/generate", {
+    const request = new Request("https://www.tinygeniushubvn.tech/api/reports/generate", {
       method: "POST",
       headers: {
-        host: "tinygeniushubvn.tech",
-        referer: "https://tinygeniushubvn.tech/parent/dashboard",
+        host: "www.tinygeniushubvn.tech",
+        referer: "https://www.tinygeniushubvn.tech/parent/dashboard",
       },
     });
 
@@ -59,11 +59,11 @@ describe("assertTrustedOrigin", () => {
   });
 
   it("rejects cross-site fetch metadata requests", () => {
-    const request = new Request("https://tinygeniushubvn.tech/api/reports/generate", {
+    const request = new Request("https://www.tinygeniushubvn.tech/api/reports/generate", {
       method: "POST",
       headers: {
-        host: "tinygeniushubvn.tech",
-        origin: "https://tinygeniushubvn.tech",
+        host: "www.tinygeniushubvn.tech",
+        origin: "https://www.tinygeniushubvn.tech",
         "sec-fetch-site": "cross-site",
       },
     });
@@ -83,10 +83,10 @@ describe("assertTrustedOrigin", () => {
   });
 
   it("rejects origin mismatch", () => {
-    const request = new Request("https://tinygeniushubvn.tech/api/reports/generate", {
+    const request = new Request("https://www.tinygeniushubvn.tech/api/reports/generate", {
       method: "POST",
       headers: {
-        host: "tinygeniushubvn.tech",
+        host: "www.tinygeniushubvn.tech",
         origin: "https://attacker.example",
       },
     });
