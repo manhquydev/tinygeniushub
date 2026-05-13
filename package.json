@@ -86,7 +86,8 @@
     "education:weekly-pack": "pnpm education:funnel-report && pnpm education:courses-ab-cvr && pnpm education:funnel-gates && pnpm education:board-dashboard",
     "education:checks": "pnpm education:baseline && pnpm education:verify-split && pnpm education:manifest",
     "education:pipeline": "pnpm education:checks && pnpm education:import-pilot && pnpm education:verify-db-pilot",
-    "jules:validate-key": "node scripts/jules/validate-api-key.mjs"
+    "jules:validate-key": "node scripts/jules/validate-api-key.mjs",
+    "prod:verify-vps-dns": "node scripts/production/verify-tinygeniushub-vps-dns.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.995.0",

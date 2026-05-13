@@ -1,4 +1,4 @@
-﻿# Cung Con Tu Hoc (MVP Rebuild)
+﻿# TinyGenius Hub (MVP Rebuild)
 
 MVP foundation rebuilt from handover docs (`docs/handover/handover-master-agent-ready.md`) using:
 - Next.js 16 + React 19 + TypeScript
@@ -252,10 +252,10 @@ Implementation plan and phases:
   - Ensure `BETTER_AUTH_URL` is your production HTTPS domain so checkout return/cancel URLs are valid.
 - Detailed runbook: `docs/payos-course-checkout-setup.md`
 - `pnpm test:e2e:full` expects two local accounts:
-  - parent: `demo.parent@cungcontuhoc.vn` / `DemoPass123!`
-  - admin: `demo.admin@cungcontuhoc.vn` / `DemoAdmin123!`
+  - parent: `demo.parent@tinygeniushubvn.tech` / `DemoPass123!`
+  - admin: `demo.admin@tinygeniushubvn.tech` / `DemoAdmin123!`
   Create/update admin seed account with:
-  `SEED_PARENT_EMAIL=demo.admin@cungcontuhoc.vn SEED_PARENT_PASSWORD=DemoAdmin123! pnpm db:seed`
+  `SEED_PARENT_EMAIL=demo.admin@tinygeniushubvn.tech SEED_PARENT_PASSWORD=DemoAdmin123! pnpm db:seed`
 - `pnpm test:e2e:security` validates: rate-limit 429, blocked IP policy, readiness allowlist deny, ddos multiplier effect, burst-concurrency throttling (watch/report/readiness), edge export sync.
 - `pnpm test:local:full` runs full local flow end-to-end (infra up, migrate, seed, build, e2e smoke/p0/full/security).
 - Nightly CI workflow: `.github/workflows/nightly-local-full.yml` runs `pnpm test:local:full` on schedule/manual trigger.

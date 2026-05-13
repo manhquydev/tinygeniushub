@@ -34,13 +34,13 @@ Mục tiêu: deploy an toàn, theo dõi được toàn bộ tiến trình, giả
 
 - GitHub Environment: `production` (nên bật required reviewers)
 - Repo Variables (khuyến nghị):
-  - `PROD_APP_DIR` (default `/var/www/cungcontuhoc`)
-  - `PROD_PUBLIC_BASE_URL` (default `https://cungcontuhoc.io.vn`)
+  - `PROD_APP_DIR` (default `/var/www/tinygeniushub`)
+  - `PROD_PUBLIC_BASE_URL` (default `https://tinygeniushubvn.tech`)
 - Server prerequisites:
   - `node` >= 22, `pnpm`, `pm2`, `pg_dump`, `pg_restore`, repo code tại `PROD_APP_DIR`
   - PM2 process names:
-    - `cungcontuhoc-web`
-    - `cungcontuhoc-worker`
+    - `tinygeniushub-web`
+    - `tinygeniushub-worker`
   - env production file: `.env.production`
   - optional backup retention env:
     - `DEPLOY_PRE_MIGRATE_BACKUP_DIR` (default `backups/pre-migrate`)
@@ -78,7 +78,7 @@ Required labels for workflow matching:
      - backup retention prune by age/count
      - `pnpm prisma migrate deploy` (retry)
      - `pnpm build`
-     - restart `cungcontuhoc-web` + `cungcontuhoc-worker`
+     - restart `tinygeniushub-web` + `tinygeniushub-worker`
      - generate `.deploy/latest.json` + `.deploy/rollback-policy.md`
    - Post deploy gates:
      - `pm2 describe` 2 process

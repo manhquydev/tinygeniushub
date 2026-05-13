@@ -14,6 +14,19 @@ vi.mock("@/lib/db", () => ({
   prisma: prismaMock,
 }));
 
+const sendTransactionalEmailMock = vi.hoisted(() => vi.fn());
+
+vi.mock("@/lib/env", () => ({
+  env: {
+    REPORT_EMAIL_PROVIDER: "mock_email",
+    REPORT_EMAIL_TO_OVERRIDE: undefined,
+  },
+}));
+
+vi.mock("@/lib/email/transactional-email-sender", () => ({
+  sendTransactionalEmail: sendTransactionalEmailMock,
+}));
+
 import {
   canSendWeeklyEmail,
   deliverQueuedWeeklyReportEmails,
@@ -103,6 +116,7 @@ describe("deliverQueuedWeeklyReportEmails", () => {
     vi.clearAllMocks();
     prismaMock.weeklyReport.updateMany.mockReset();
     prismaMock.weeklyReport.findMany.mockReset();
+    sendTransactionalEmailMock.mockResolvedValue({ sent: true, provider: "mock_email" });
   });
 
   it("skips report when another worker already claimed it", async () => {
