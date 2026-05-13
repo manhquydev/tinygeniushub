@@ -10,6 +10,10 @@ const NAMESERVERS = [
   "tech-domains.mars.orderbox-dns.com",
   "tech-domains.mercury.orderbox-dns.com",
   "tech-domains.venus.orderbox-dns.com",
+  "cont603385.earth.orderbox-dns.com",
+  "cont603385.mars.orderbox-dns.com",
+  "cont603385.mercury.orderbox-dns.com",
+  "cont603385.venus.orderbox-dns.com",
 ];
 
 const checks = [];

@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 00:12 ICT
+Last verified: 2026-05-14 00:28 ICT
 
 ## Status
 
@@ -9,7 +9,7 @@ VPS/app deploy is healthy on `152.42.246.218`, but domain verification is still 
 
 ## Verified Working
 
-- Deployed commit: `4b66f66764a6ada7ea9d2a45fab2c700c0811434`
+- Deployed commit: verified with `git rev-parse HEAD` on `/var/www/cungcontuhoc` after each sync
 - VPS path: `/var/www/cungcontuhoc`
 - PM2 apps: `tinygeniushub-web`, `tinygeniushub-worker`
 - Health: `http://152.42.246.218/api/health/ready` returns ready
@@ -24,7 +24,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing from local/public resolver paths. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:12 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because public resolvers still return stale records.
+Latest result: still failing from local/public resolver paths. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:28 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because public resolvers still return stale records.
 
 Authoritative nameservers still return old A records:
 
@@ -37,7 +37,7 @@ Expected A record only:
 
 Examples from latest checks:
 
-- Local strict verifier on 2026-05-14: `11 production verification check(s) failed`
+- Local strict verifier on 2026-05-14: `17 production verification check(s) failed` after expanding coverage to both OrderBox nameserver families
 - VPS strict verifier on 2026-05-14: passed once, showing source-network inconsistency
 - `tinygeniushubvn.tech @ 162.251.82.119` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
 - `www.tinygeniushubvn.tech @ 162.251.82.125` returned `165.22.211.19`
@@ -69,6 +69,8 @@ Direct checks against both nameserver families still return stale records on som
 - `cont603385.*.orderbox-dns.com`: stale apex answers include `165.22.211.19` and `165.22.48.193`; one `www` sample returned `165.22.211.19`
 
 This rules out a verifier-only issue caused by querying the wrong OrderBox hostname family.
+
+The production verifier now checks both families directly.
 
 Current live NS/SOA evidence:
 
