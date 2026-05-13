@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 01:24 ICT
+Last verified: 2026-05-14 01:26 ICT
 
 ## Status
 
@@ -24,7 +24,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 01:24 ICT on 2026-05-14 failed from local/public source networks. The failing backing nameservers vary between runs, so any intermittent pass does not prove public users are safe while authoritative DNS can still return stale records.
+Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 01:26 ICT on 2026-05-14 failed from local/public source networks. The failing backing nameservers vary between runs, so any intermittent pass does not prove public users are safe while authoritative DNS can still return stale records.
 
 Authoritative nameservers still return old A records:
 
@@ -49,7 +49,7 @@ Examples from latest checks:
 Public resolver sample on 2026-05-14:
 
 - `1.1.1.1` returned correct `152.42.246.218`
-- `8.8.8.8` returned correct apex `152.42.246.218`, but `www` returned stale `165.22.211.19`
+- `8.8.8.8` returned correct `152.42.246.218`
 - `9.9.9.9` returned correct `152.42.246.218`
 - `208.67.222.222` returned correct apex `152.42.246.218`, but `www` returned stale `165.22.211.19`
 
