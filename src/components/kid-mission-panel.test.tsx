@@ -55,8 +55,8 @@ describe("KidMissionPanel", () => {
             lessons: [
               {
                 id: "lesson-2",
-                title: "To mau chu cai",
-                objective: "Luyen tap nhan dien chu cai",
+                title: "Color the alphabet",
+                objective: "Practice letter recognition",
                 estimatedMinutes: 12,
               },
             ],
@@ -72,8 +72,8 @@ describe("KidMissionPanel", () => {
     render(
       <KidMissionPanel
         childrenProfiles={[
-          { id: "child-1", nickname: "Be Na" },
-          { id: "child-2", nickname: "Be Bin" },
+          { id: "child-1", nickname: "Nina" },
+          { id: "child-2", nickname: "Ben" },
         ]}
         initialChildId="child-1"
         initialLessons={[
@@ -89,8 +89,8 @@ describe("KidMissionPanel", () => {
 
     expect(screen.getByText("Learn letter A")).toBeInTheDocument();
     expect(screen.getByText("Identify the letter A")).toBeInTheDocument();
-    expect(screen.getByText(/10\s*ph.u?t/i)).toBeInTheDocument();
-    expect(screen.getByText("Be Na")).toBeInTheDocument();
+    expect(screen.getByText(/10\s*minutes/i)).toBeInTheDocument();
+    expect(screen.getByText("Nina")).toBeInTheDocument();
   });
 
   it("starts lesson when start button is clicked", async () => {
@@ -98,7 +98,7 @@ describe("KidMissionPanel", () => {
 
     render(
       <KidMissionPanel
-        childrenProfiles={[{ id: "child-1", nickname: "Be Na" }]}
+        childrenProfiles={[{ id: "child-1", nickname: "Nina" }]}
         initialChildId="child-1"
         initialLessons={[
           {
@@ -111,10 +111,10 @@ describe("KidMissionPanel", () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /bat dau bai hoc|start lesson/i }));
+    fireEvent.click(screen.getByRole("button", { name: /start the lesson/i }));
 
     await waitFor(() => {
-      expect(screen.getByText(/start learning letter a|bat dau hoc chu a/i)).toBeInTheDocument();
+      expect(screen.getByText(/starting learn letter a/i)).toBeInTheDocument();
     });
   });
 
@@ -124,8 +124,8 @@ describe("KidMissionPanel", () => {
     render(
       <KidMissionPanel
         childrenProfiles={[
-          { id: "child-1", nickname: "Be Na" },
-          { id: "child-2", nickname: "Be Bin" },
+          { id: "child-1", nickname: "Nina" },
+          { id: "child-2", nickname: "Ben" },
         ]}
         initialChildId="child-1"
         initialLessons={[
@@ -139,18 +139,18 @@ describe("KidMissionPanel", () => {
       />,
     );
 
-    const mascotButton = screen.getByRole("button", { name: /mascot guide/i });
+    const mascotButton = screen.getByRole("button", { name: /guide mascot/i });
     fireEvent.click(mascotButton);
     expect(playYayMock).toHaveBeenCalledTimes(1);
 
-    fireEvent.click(screen.getByRole("button", { name: "Be Na" }));
-    const childBinEntry = await screen.findByText("Be Bin");
+    fireEvent.click(screen.getByRole("button", { name: "Nina" }));
+    const childBinEntry = await screen.findByText("Ben");
     const childBinWrapper = childBinEntry.closest("div");
     const childBinButton = childBinWrapper?.querySelector("button");
     expect(childBinButton).not.toBeNull();
 
     if (!childBinButton) {
-      throw new Error("Expected child switch button for Be Bin");
+      throw new Error("Expected child switch button for Ben");
     }
 
     fireEvent.click(childBinButton);

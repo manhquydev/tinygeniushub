@@ -85,8 +85,8 @@ export async function GET(request: NextRequest) {
         reports.map((report) =>
           createNotification(userId, {
             type: NotificationType.REPORT,
-            title: `B\u00e1o c\u00e1o tu\u1ea7n c\u1ee7a ${childNameById.get(report.childId) ?? "b\u00e9"} \u0111\u00e3 s\u1eb5n s\u00e0ng!`,
-            message: "B\u1ea1n c\u00f3 th\u1ec3 xem chi ti\u1ebft ti\u1ebfn \u0111\u1ed9 h\u1ecdc t\u1eadp ngay b\u00e2y gi\u1edd.",
+            title: `${childNameById.get(report.childId) ?? "Your child"}'s weekly report is ready!`,
+            message: "You can view detailed learning progress now.",
             href: "/parent/reports",
           }),
         ),

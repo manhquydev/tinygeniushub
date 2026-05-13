@@ -10,7 +10,7 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { vi } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import { ArrowLeft, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -69,7 +69,7 @@ function DailyPlanPageContent() {
             <div className="min-w-0">
               <h1 className="font-bold truncate">Good morning, {childName}!</h1>
               <p className="text-sm text-slate-500">
-                {format(new Date(), "EEEE, d MMMM", { locale: vi })}
+                {format(new Date(), "EEEE, MMMM d", { locale: enUS })}
               </p>
             </div>
           </div>

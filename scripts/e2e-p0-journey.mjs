@@ -202,7 +202,7 @@ async function main() {
       method: "POST",
       headers: authHeaders,
       body: {
-        nickname: "Be Na",
+        nickname: "Nina",
         ageBand: "4-5",
       },
     });

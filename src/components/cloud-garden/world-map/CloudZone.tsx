@@ -10,7 +10,7 @@
  *
  * Props:
  *  - zone      : subject identifier
- *  - label     : Vietnamese display name
+ *  - label     : English display name
  *  - isToday   : highlights with golden glow (today's recommended zone)
  *  - progress  : 0–1 for the SVG progress ring around the bubble
  *  - isLocked  : disables interaction
@@ -197,7 +197,7 @@ export function CloudZone({
       }
       role="button"
       tabIndex={isLocked ? -1 : 0}
-      aria-label={`${displayLabel}${isLocked ? " (kh\u00f3a)" : ""}${isHighlighted ? " - H\u00f4m nay!" : ""}`}
+      aria-label={`${displayLabel}${isLocked ? " (locked)" : ""}${isHighlighted ? " - Today!" : ""}`}
       aria-disabled={isLocked}
       onClick={handleClick}
       onKeyDown={(e) => e.key === "Enter" || e.key === " " ? handleClick() : undefined}

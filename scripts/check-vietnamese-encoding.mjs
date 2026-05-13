@@ -37,6 +37,7 @@ const EXCLUDED_PATH_SEGMENTS = [
   "test-results/",
 ];
 const vietnameseDiacriticRegex = new RegExp("[\\u00c0-\\u024f\\u1e00-\\u1eff]", "u");
+const unicodeEscapeRegex = /\\u\{([0-9a-fA-F]+)\}|\\u([0-9a-fA-F]{4})/g;
 
 async function collectSourceFiles(directory) {
   let entries;
@@ -87,6 +88,25 @@ async function collectSourceFiles(directory) {
   return files;
 }
 
+function decodeUnicodeEscapes(line) {
+  return line.replace(unicodeEscapeRegex, (match, bracedCode, shortCode) => {
+    const code = Number.parseInt(bracedCode ?? shortCode, 16);
+    if (!Number.isFinite(code)) {
+      return match;
+    }
+
+    try {
+      return String.fromCodePoint(code);
+    } catch {
+      return match;
+    }
+  });
+}
+
+function isUnicodeRangeDefinition(line) {
+  return /(?:\\\\u|\\u)00c0\s*-\s*(?:\\\\u|\\u)024f|(?:\\\\u|\\u)1e00\s*-\s*(?:\\\\u|\\u)1eff/i.test(line);
+}
+
 async function main() {
   const files = (
     await Promise.all(
@@ -115,6 +135,11 @@ async function main() {
 
       if (vietnameseDiacriticRegex.test(line)) {
         warnings.push(`WARN: ${relativePath}:${index + 1}  Vietnamese diacritic text remains`);
+        continue;
+      }
+
+      if (!isUnicodeRangeDefinition(line) && vietnameseDiacriticRegex.test(decodeUnicodeEscapes(line))) {
+        warnings.push(`WARN: ${relativePath}:${index + 1}  Vietnamese unicode-escaped text remains`);
       }
     }
   }

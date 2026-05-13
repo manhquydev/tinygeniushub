@@ -84,7 +84,7 @@ describe("admin course publish route", () => {
       saleStartsAt: "2026-03-27T10:00:00.000Z",
       saleEndsAt: "2026-03-27T08:00:00.000Z",
       description:
-        "Mo ta khoa hoc du do dai de pass quality gate truoc khi kiem tra sale window invalid.",
+        "A course description long enough to pass the quality gate before checking an invalid sale window.",
     });
     resolveCourseDisplayPricingMock.mockReturnValueOnce({
       salePriceVnd: 300000,
@@ -117,7 +117,7 @@ describe("admin course publish route", () => {
       saleStartsAt: null,
       saleEndsAt: null,
       description:
-        "Mo ta khoa hoc mien phi tam thoi du 80 ky tu de route publish khong bi chan boi quality gate.",
+        "A temporary free course description long enough for the publish route to pass the quality gate.",
     });
     resolveCourseDisplayPricingMock.mockReturnValueOnce({
       salePriceVnd: 0,
@@ -155,7 +155,7 @@ describe("admin course publish route", () => {
       saleStartsAt: null,
       saleEndsAt: null,
       description:
-        "Mo ta khoa hoc thuong mai du do dai de pass quality gate truoc khi kiem tra pricing.",
+        "A paid course description long enough to pass the quality gate before checking pricing.",
     });
     resolveCourseDisplayPricingMock.mockReturnValueOnce({
       salePriceVnd: 250000,
@@ -192,7 +192,7 @@ describe("admin course publish route", () => {
       salePriceVnd: null,
       saleStartsAt: null,
       saleEndsAt: null,
-      description: "Mo ta ngan",
+      description: "Short description",
     });
 
     const response = await POST(buildRequest({ isPublished: true }), {

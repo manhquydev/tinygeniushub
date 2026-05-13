@@ -191,7 +191,7 @@ export async function DELETE(
     });
     if (enrolledCount > 0) {
       throw new DomainError(
-        "Khong the xoa khoa hoc da co hoc vien dang ky",
+        "Courses with enrollments cannot be deleted",
         409,
         "COURSE_HAS_ENROLLMENTS",
       );

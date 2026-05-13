@@ -19,6 +19,7 @@ import {
   getBlogLikeIdentityHash,
   hasPostLike,
 } from "@/modules/blog/blog-repository";
+import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import { generateBlogPostJsonLd, generateBlogPostMetadata } from "@/modules/blog/blog-seo";
 import { blogService } from "@/modules/blog/blog-service";
 import { getBookmarkStatus } from "@/modules/reader/reader-service";
@@ -45,7 +46,7 @@ function formatDate(value: Date | null) {
     return "Unpublished";
   }
 
-  return new Intl.DateTimeFormat("vi-VN", {
+  return new Intl.DateTimeFormat("en-US", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -148,7 +149,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold"
               style={getCategoryBadgeStyle(post.category.color)}
             >
-              {post.category.nameVi}
+              {getBlogCategoryDisplayName(post.category)}
             </span>
 
             <h1 className="text-3xl font-black leading-tight tracking-[-0.02em] text-slate-900 sm:text-4xl">{post.titleVi}</h1>

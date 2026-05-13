@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 function formatDate(value: Date | null) {
@@ -7,7 +8,7 @@ function formatDate(value: Date | null) {
     return "Unpublished";
   }
 
-  return new Intl.DateTimeFormat("vi-VN", {
+  return new Intl.DateTimeFormat("en-US", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -73,7 +74,7 @@ export function BlogCardFeatured({ post }: { post: BlogPostCardDTO }) {
               className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold"
               style={getCategoryBadgeStyle(post.category.color)}
             >
-              {post.category.nameVi}
+              {getBlogCategoryDisplayName(post.category)}
             </span>
 
             <h2 className="break-words text-2xl font-black leading-tight tracking-[-0.02em] sm:text-3xl">{post.titleVi}</h2>

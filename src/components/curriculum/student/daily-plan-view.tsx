@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Play, RotateCcw, Trophy, Clock } from "lucide-react";
 import { format } from "date-fns";
-import { vi } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import confetti from "canvas-confetti";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -144,7 +144,7 @@ export function DailyPlanView({
             🌅 Hello{childName ? ` ${childName}` : ""}!
           </h1>
           <p className="text-slate-500">
-            {format(today, "EEEE, d MMMM", { locale: vi })}
+            {format(today, "EEEE, MMMM d", { locale: enUS })}
           </p>
         </div>
         {plan.isCompleted && (

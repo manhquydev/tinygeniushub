@@ -17,9 +17,9 @@ export function LessonStartCard({
     <article data-testid={`lesson-card-${lessonId}`}>
       <h3>{title}</h3>
       <p>{objective}</p>
-      <span>{estimatedMinutes} phut</span>
+      <span>{estimatedMinutes} minutes</span>
       <button type="button" onClick={() => onLessonSelect?.(lessonId)}>
-        Bat dau bai hoc
+        Start the lesson
       </button>
     </article>
   );

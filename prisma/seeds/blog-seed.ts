@@ -54,29 +54,29 @@ const BLOG_POSTS: BlogPostSeed[] = [
     titleVi: "5 signs your baby is ready to learn English (3-5 years old)",
     excerptVi:
       "Early recognition of 5 important signs helps parents choose the right time to start English for 3-5 year old children.",
-    contentMarkdown: `# 5 dau hieu be san sang hoc tieng Anh (3-5 tuoi)
+    contentMarkdown: `# 5 signs your child is ready to learn English
 
-Tu khoa chinh: **be san sang hoc tieng Anh 3-5 tuoi**
+Focus keyword: **child ready to learn English ages 3-5**
 
-Nhieu phu huynh hoi: “Khi nao nen cho con bat dau tieng Anh?” Cau tra loi khong nam o mot moc tuoi co dinh, ma nam o **muc san sang** cua tung be. Neu bat dau qua som khi be chua co hung thu, viec hoc de tro thanh ap luc. Neu bat dau dung thoi diem, be tiep thu tu nhien va tu tin hon rat nhieu.
+Many parents ask when a child should start English. The answer is not a fixed birthday; it depends on each child's readiness. When the timing is right, children learn more naturally and feel more confident.
 
-## Dau hieu 1: Be hung thu voi am thanh va bai hat
-The baby often repeats melodies and likes to imitate character sounds or sayings in children's videos. This is a very good foundation to get acquainted with English pronunciation.
+## Sign 1: Interest in sounds and songs
+Your child often repeats melodies or imitates character voices. This is a strong foundation for pronunciation.
 
-## Dau hieu 2: Be co the tap trung 7-10 phut
+## Sign 2: Can focus for 7-10 minutes
 At the age of 3-5, short attention span is normal. As long as your child can follow an activity for 7-10 minutes, it is enough to start mini-lessons.
 
-## Dau hieu 3: Be thich goi ten do vat xung quanh
-When your baby actively names objects in the house or asks the question "what is this?", this is a sign that language is developing strongly.
+## Sign 3: Names objects around the house
+When your child actively names objects or asks "what is this?", language development is active.
 
-## Dau hieu 4: Be phan hoi tot voi tro choi tuong tac
+## Sign 4: Responds well to interactive games
 Activities such as choosing answers, filling in simple words or listening and pointing to the correct picture help children learn while still having fun.
 
-## Dau hieu 5: Phu huynh co the dong hanh ngan moi ngay
+## Sign 5: Parents can join briefly every day
 Just 15 minutes/day, regularly 5-6 days/week, the effectiveness will be much higher than studying on weekends.
 
 ## Conclusion
-Prioritize "being at your baby's pace" instead of chasing comparison. When there are 3-4 signs above, parents can begin the foundational English path gently and sustainably.`,
+Prioritize your child's pace instead of comparison. When 3-4 signs are present, parents can start a gentle and sustainable English foundation.`,
     type: BlogPostType.GUIDE,
     categorySlug: "tieng-anh-som",
     ageGroup: AgeGroup.AGE_3_5,
@@ -88,25 +88,25 @@ Prioritize "being at your baby's pace" instead of chasing comparison. When there
     titleVi: "Comparing English learning apps for children 2026: what do parents need to look at?",
     excerptVi:
       "Important criteria when comparing English learning apps for children in 2026: roadmap, level of interaction, progress reports and safety.",
-    contentMarkdown: `# So sanh app hoc tieng Anh cho be 2026: phu huynh can nhin vao gi?
+    contentMarkdown: `# Comparing English learning apps for children in 2026
 
-Tu khoa chinh: **so sanh app hoc tieng Anh cho be 2026**
+Focus keyword: **compare English learning apps for children 2026**
 
 When looking for an English learning app for their children, parents are often attracted by eye-catching interfaces or "quick learning" ads. But to choose the right platform for children 3-8 years old, it is necessary to evaluate according to clear criteria.
 
-## 1) Co lo trinh theo do tuoi khong?
+## 1) Does it provide an age-based roadmap?
 A good app must clearly divide levels, goals and learning progress. If the content is fragmentary, children can easily learn and forget quickly.
 
-## 2) Bai hoc co tuong tac that hay chi xem video?
+## 2) Are lessons truly interactive?
 Simply watching videos does not create enough language reflexes. Prioritize apps that have activities like choosing answers, filling in words, and listening to recognize sounds.
 
-## 3) Co bao cao tien do cho phu huynh?
+## 3) Are progress reports available for parents?
 Parents need to know what their children learn, what their strengths and weaknesses are in order to adjust. If there is no weekly report, it is very difficult to accompany long-term.
 
-## 4) Noi dung co an toan cho tre nho?
+## 4) Is the content safe for young children?
 Apps for children should limit external advertising, avoid distracting links and give parents control.
 
-## 5) Nhip hoc co phu hop lich gia dinh?
+## 5) Does the learning rhythm fit family life?
 The 15 minutes/day model helps maintain habits, especially for busy families. The key is regularity.
 
 ## Conclusion
@@ -124,17 +124,17 @@ Don't choose an app just because of "many features". Choose an app that helps yo
       "The 15-minute/day strategy helps children maintain sustainable study habits without getting tired: small goals, fixed rhythm and timely praise.",
     contentMarkdown: `# How to make your child study 15 minutes a day without getting bored?
 
-Tu khoa chinh: **be hoc 15 phut moi ngay**
+Focus keyword: **child studies 15 minutes a day**
 
-15 phut nghe co ve it, nhung neu lam dung, day la “diem vang” cho tre 3-8 tuoi: du ngan de khong qua tai, du dai de co ket qua.
+Fifteen minutes sounds short, but it is a strong rhythm for children ages 3-8: short enough to avoid overload, long enough to create progress.
 
 ## Divide 15 minutes into 3 stages
-- 5 phut khoi dong: bai hat hoac cau hoi nhanh.
-- 7 phut lam bai chinh: tap trung mot ky nang.
-- 3 phut tong ket: nhac lai dieu be vua lam duoc.
+- 5 minutes warm-up: a song or quick question.
+- 7 minutes main task: focus on one skill.
+- 3 minutes recap: repeat what your child just learned.
 
 ## Use a fixed schedule
-Hoc cung mot khung gio giup be hinh thanh thoi quen. Vi du: sau an toi 20 phut la “gio hoc cung con”.
+Studying at the same time helps children build a habit. For example, start 20 minutes after dinner.
 
 ## Alternate forms of operation
 One session chooses the answer, the next session listens to identify, the next session arranges. Change reduces boredom.
@@ -158,28 +158,28 @@ If you want your child to learn regularly, design a gentle and consistent learni
     titleVi: "Weekly child progress report: why do parents need to monitor?",
     excerptVi:
       "Weekly progress reports help parents clearly understand the skills their children have achieved, the gaps that need to be filled, and the next week's learning plan.",
-    contentMarkdown: `# Progress report con theo tuan: vi sao phu huynh can theo doi?
+    contentMarkdown: `# Weekly child progress report: why parents should monitor it
 
-Tu khoa chinh: **bao cao tien do con theo tuan**
+Focus keyword: **weekly child progress report**
 
-Nhieu gia dinh cho con hoc deu nhung van lo lang: “Con that su tien bo chua?” Bao cao tuan giup tra loi cau hoi nay bang du lieu cu the.
+Many families study consistently but still wonder whether their child is truly improving. A weekly report answers that question with concrete data.
 
 ## What should be in the weekly report?
-- Number of completed articles.
+- Number of completed lessons.
 - Exercise scores and stability level.
-- ​​A series of consecutive school days.
+- Consecutive learning days.
 - Outstanding skills and skills that need more practice.
 
-## Loi ich 1: Tranh hoc cam tinh
+## Benefit 1: Avoid guessing
 No more judging by feeling. Parents know clearly where their children are strong.
 
-## Loi ich 2: Ra quyet dinh hoc tuan toi
+## Benefit 2: Decide next week's focus
 If your child is weak in listening, next week increase listening activities. If your child is good at reading, you can increase the difficulty level.
 
-## Loi ich 3: Tang dong luc cho be
+## Benefit 3: Increase motivation
 When your child sees results week by week, it's easier for him or her to maintain the habit.
 
-## Loi ich 4: Giam ap luc kem con
+## Benefit 4: Reduce pressure on parents
 Parents do not need to sit next to them for too long, but they still stay focused.
 
 ## Conclusion
@@ -195,31 +195,31 @@ Weekly reports are not just for "checking out", but are a tool to help parents m
     titleVi: "Grade 1 math at home: 7 activities to help children understand numbers faster",
     excerptVi:
       "7 grade 1 math activities at home using familiar objects to help children understand numbers, basic addition and subtraction, and logical thinking.",
-    contentMarkdown: `# Grade 1 Math tai nha: 7 hoat dong giup be hieu so nhanh hon
+    contentMarkdown: `# Grade 1 math at home: 7 activities to build number sense
 
-Tu khoa chinh: **toan lop 1 tai nha**
+Focus keyword: **grade 1 math at home**
 
 Without the need for expensive learning materials, parents can still help their children learn 1st grade math effectively right at home.
 
-## 1) Dem do vat that
+## 1) Count real objects
 Use bottle caps, pencils, and fruit for your child to count and group.
 
-## 2) Tro choi “so nao mat tich”
+## 2) Play the missing-number game
 Write the number sequence 1-20, leave one number blank for your child to fill in.
 
-## 3) Cong tru bang que tinh
+## 3) Add and subtract with counting sticks
 Let your child practice with their hands before working on paper.
 
-## 4) So sanh lon hon - nho hon
+## 4) Compare greater and smaller numbers
 Use symbols >, < with familiar numbers.
 
-## 5) Ghep phep tinh voi ket qua
+## 5) Match equations with results
 Create calculation cards and result cards for children to match.
 
-## 6) Bai toan tinh huong
-Vi du: “Co 8 cai banh, an 3 cai con may cai?”
+## 6) Use everyday word problems
+Example: "There are 8 cookies. If we eat 3, how many are left?"
 
-## 7) So thanh tich cuoi tuan
+## 7) Record weekly wins
 Every week write down 3 things your child does well to increase confidence.
 
 ## Conclusion
@@ -235,28 +235,28 @@ Grade 1 math needs visualization and enough repetition. 15 minutes a day with sh
     titleVi: "Grade 2 multiplication tables through games: how to learn and remember for a long time without pressure",
     excerptVi:
       "Turn the 2nd grade multiplication table into a game for your child to remember for a long time, have fun learning and be more confident when doing math problems with words.",
-    contentMarkdown: `# Bang nhan lop 2 qua tro choi: cach hoc nho lau khong ap luc
+    contentMarkdown: `# Grade 2 multiplication tables through games
 
-Tu khoa chinh: **bang nhan lop 2**
+Focus keyword: **grade 2 multiplication table**
 
 Many 2nd graders are afraid of the multiplication table because they memorize it mechanically. A more effective way is to learn through games and real-life situations.
 
-## Tro choi 1: Bingo bang nhan
+## Game 1: Multiplication bingo
 Each cell is a result. Parents read the multiplication equation, and children check the correct box.
 
-## Tro choi 2: The ghep cap
+## Game 2: Matching cards
 One card is the calculation, the other card is the result. Children match correctly as quickly as possible.
 
-## Tro choi 3: “Ai nhanh hon”
+## Game 3: Who is faster?
 Divide into 2 small teams indoors, each team answers 5 multiplication problems.
 
-## Tro choi 4: Mua hang gia lap
+## Game 4: Pretend shopping
 For example, 3 packages of cakes, each package has 4 pieces, how much is the total?
 
 ## Long-lasting memory tips
-- Hoc theo cum (2-5 truoc, roi 6-9).
-- ​​Review 10 spells every day, don't study cumulatively.
-- ​​Combine reading aloud and short writing.
+- Learn in groups: 2-5 first, then 6-9.
+- Review 10 facts every day instead of cramming.
+- Combine reading aloud and short written practice.
 
 ## Conclusion
 When learning the multiplication table through games, children understand the nature of "multiplication is repeated addition" and reduce the pressure of memorization.`,
@@ -271,25 +271,25 @@ When learning the multiplication table through games, children understand the na
     titleVi: "Grade 1 Phonics: 8-week roadmap for beginner parents",
     excerptVi:
       "Grade 1 phonics roadmap in 8 weeks: from letter sounds, from CVC to reading short sentences, suitable for new parents to accompany their children.",
-    contentMarkdown: `# Phonics lop 1: lo trinh 8 tuan cho phu huynh moi bat dau
+    contentMarkdown: `# Grade 1 phonics: an 8-week roadmap for beginner parents
 
-Tu khoa chinh: **phonics lop 1**
+Focus keyword: **grade 1 phonics roadmap**
 
 Phonics helps children read sounds correctly and combine words faster. For grade 1 children, parents can follow the 8-week schedule.
 
-## Tuan 1-2: Am chu cai co ban
+## Weeks 1-2: Basic letter sounds
 Focus on common sounds, practice listening and repeating.
 
-## Tuan 3-4: Tu CVC am ngan
-Vi du: cat, bed, sit. Ket hop dien tu va chon dap an.
+## Weeks 3-4: Short-vowel CVC words
+Examples: cat, bed, sit. Combine word completion and answer selection.
 
-## Tuan 5-6: Digraph co ban
+## Weeks 5-6: Basic digraphs
 Get familiar with sh, ch, th through simple words.
 
-## Tuan 7: Sight words dau tien
+## Week 7: First sight words
 Learn words that appear frequently in short sentences.
 
-## Tuan 8: Ghep tu thanh cau
+## Week 8: Build words into sentences
 Start with 3-4 word sentences, prioritize familiar everyday sentences.
 
 ## Note for parents
@@ -310,9 +310,9 @@ With a clear roadmap, grade 1 phonics becomes easier and your child will be conf
     titleVi: "Checklist of grade 1 skills: Math and English that parents should follow",
     excerptVi:
       "Grade 1 skills list for Math and English helps parents check their children's learning progress by month.",
-    contentMarkdown: `# Checklist ky nang lop 1: Toan va Tieng Anh phu huynh nen theo doi
+    contentMarkdown: `# Grade 1 skills checklist for Math and English
 
-Tu khoa chinh: **checklist ky nang lop 1**
+Focus keyword: **grade 1 skills checklist**
 
 Checklist helps parents monitor learning progress instead of just looking at scores.
 
@@ -351,24 +351,24 @@ A good checklist must be clear, measurable and have an action plan for the follo
     titleVi: "How to read weekly study reports to tutor your child without pressure",
     excerptVi:
       "Guide parents to read the weekly learning report in 3 steps: look at trends, choose a focus and design a short lesson.",
-    contentMarkdown: `# How to read weekly study reports to tutor your child without pressure
+    contentMarkdown: `# How to read weekly study reports without pressure
 
-Tu khoa chinh: **cach doc bao cao hoc tap tuan**
+Focus keyword: **how to read weekly learning reports**
 
 Weekly reports are only truly useful when parents know how to read and turn data into action.
 
-## Buoc 1: Nhin xu huong thay vi mot con so
+## Step 1: Look at trends instead of one number
 Don't just look at how high or low this week's score is. Compare the last 2-3 weeks to see the trend.
 
-## Buoc 2: Chon 1 trong tam cho tuan moi
-Vi du: neu con sai nhieu phan nghe, tuan moi uu tien 3 buoi luyen nghe ngan.
+## Step 2: Choose one focus for the new week
+For example, if listening accuracy is weak, prioritize three short listening sessions next week.
 
-## Buoc 3: Thiet ke lich hoc nhe
+## Step 3: Design a light study schedule
 Create a fixed schedule of 15 minutes/day, 5 days/week. Keeping pace is more important than studying.
 
 ## Realistic goal setting template
-- Muc tieu ky nang: “Dung 8/10 cau phan am /sh/”.
-- Muc tieu thoi quen: “Hoc du 5 buoi”.
+- Skill goal: "Answer 8/10 /sh/ sound questions correctly."
+- Habit goal: "Complete 5 learning sessions."
 
 ## How to respond to your child
 Let's start with strengths, then say what needs improvement.
@@ -388,7 +388,7 @@ The weekly report is an action map for parents. Reading correctly will help your
       "Suggested 12 weekend games to help 6-8 year olds learn Math and English naturally, reducing passive screen time.",
     contentMarkdown: `# 12 weekend learning games for 6-8 year olds
 
-Tu khoa chinh: **tro choi hoc tap cho be 6-8 tuoi**
+Focus keyword: **learning games for children ages 6-8**
 
 Weekend is a good time to review knowledge in a fun and family-bonding way.
 

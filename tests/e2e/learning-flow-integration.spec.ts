@@ -85,24 +85,24 @@ test.describe("Learning Flow Integration", () => {
     await page.getByLabel("Display name").fill(displayName);
     await page.getByLabel("Email").fill(email);
     await page.getByLabel("Password").fill(password);
-    await page.getByRole("button", { name: /Bat dau dung thu/i }).click();
+    await page.getByRole("button", { name: /Create an account/i }).click();
 
     await expect(page).toHaveURL(/\/setup/);
 
-    await page.locator("#setup-child-nickname").fill("Be Sao");
-    await page.getByRole("button", { name: /^Tiep tuc$/i }).click();
-    await page.getByRole("button", { name: /Hoan tat thiet lap/i }).click();
-    await page.getByRole("button", { name: /Vao bang dieu khien phu huynh/i }).click();
+    await page.locator("#setup-child-nickname").fill("Star");
+    await page.getByRole("button", { name: /^Continue$/i }).click();
+    await page.getByRole("button", { name: /Complete setup/i }).click();
+    await page.getByRole("button", { name: /Go to the parent dashboard/i }).click();
 
     await expect(page).toHaveURL(/\/parent\/dashboard/);
 
     await page.goto(`/courses/${TARGET_COURSE_SLUG}`);
 
-    const learningNowLink = page.getByRole("link", { name: /Vao hoc ngay/i });
+    const learningNowLink = page.getByRole("link", { name: /Learn now/i });
     if (await learningNowLink.count()) {
       await learningNowLink.first().click();
     } else {
-      const checkoutButton = page.getByRole("button", { name: /Mua khoa hoc/i });
+      const checkoutButton = page.getByRole("button", { name: /Buy the course/i });
       await expect(checkoutButton).toBeVisible();
       await checkoutButton.click();
     }

@@ -73,10 +73,10 @@ describe("admin course detail route", () => {
   it("normalizes pricing payload when patching sale configuration", async () => {
     prismaMock.course.findUnique.mockResolvedValue({
       id: "course-1",
-      slug: "toan-tu-duy",
-      title: "Toan tu duy",
+      slug: "mental-math",
+      title: "Mental Math",
       description:
-        "Mo ta khoa hoc du do dai de pass quality gate khi test normalize pricing payload.",
+        "A course description long enough to pass the quality gate when testing pricing payload normalization.",
       priceVnd: 300000,
       listPriceVnd: 300000,
       salePriceVnd: null,
@@ -129,10 +129,10 @@ describe("admin course detail route", () => {
   it("rejects incomplete sale window in patch payload", async () => {
     prismaMock.course.findUnique.mockResolvedValue({
       id: "course-1",
-      slug: "toan-tu-duy",
-      title: "Toan tu duy",
+      slug: "mental-math",
+      title: "Mental Math",
       description:
-        "Mo ta khoa hoc du do dai de pass quality gate khi test reject incomplete sale window.",
+        "A course description long enough to pass the quality gate when testing an incomplete sale window.",
       priceVnd: 300000,
       listPriceVnd: 300000,
       salePriceVnd: null,
@@ -169,10 +169,10 @@ describe("admin course detail route", () => {
   it("allows publishing a zero-priced temporary course", async () => {
     prismaMock.course.findUnique.mockResolvedValue({
       id: "course-1",
-      slug: "toan-tu-duy",
-      title: "Toan tu duy",
+      slug: "mental-math",
+      title: "Mental Math",
       description:
-        "Mo ta khoa hoc du do dai de pass quality gate khi publish course zero-priced temporary.",
+        "A course description long enough to pass the quality gate when publishing a zero-priced course.",
       priceVnd: 300000,
       listPriceVnd: 300000,
       salePriceVnd: null,
@@ -232,9 +232,9 @@ describe("admin course detail route", () => {
   it("rejects publish when description is too short", async () => {
     prismaMock.course.findUnique.mockResolvedValue({
       id: "course-1",
-      slug: "toan-tu-duy",
-      title: "Toan tu duy",
-      description: "Mo ta ngan",
+      slug: "mental-math",
+      title: "Mental Math",
+      description: "Short description",
       priceVnd: 300000,
       listPriceVnd: 300000,
       salePriceVnd: null,

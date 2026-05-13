@@ -28,7 +28,7 @@ interface LessonCompleteScreenProps {
 
 function StarRating({ stars, total = 3 }: { stars: number; total?: number }) {
   return (
-    <div style={{ display: "flex", gap: 8, justifyContent: "center" }} aria-label={`${stars} sao`}>
+    <div style={{ display: "flex", gap: 8, justifyContent: "center" }} aria-label={`${stars} stars`}>
       {Array.from({ length: total }, (_, i) => {
         const filled = i < stars;
         return (
@@ -82,7 +82,7 @@ export function LessonCompleteScreen({
       transition={{ duration: 0.35 }}
       role="dialog"
       aria-modal="true"
-      aria-label="Ho\u00e0n th\u00e0nh b\u00e0i h\u1ecdc!"
+      aria-label="Lesson completed!"
     >
       {/* Particle burst */}
       {showBurst && !prefersReducedMotion && (
@@ -122,7 +122,7 @@ export function LessonCompleteScreen({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          {"Xu\u1ea5t s\u1eafc! \ud83c\udf89"}
+          {"Excellent! \ud83c\udf89"}
         </m.h2>
 
         <p className="cg-subtext" style={{ textAlign: "center" }}>
@@ -153,7 +153,7 @@ export function LessonCompleteScreen({
               fill="#fde047" stroke="#f59e0b" strokeWidth="1"
             />
           </svg>
-          <span>{`+${starsEarned} sao • T\u1ed5ng: ${totalStars}`}</span>
+          <span>{`+${starsEarned} stars - Total: ${totalStars}`}</span>
         </m.div>
 
         {/* CTA buttons */}
@@ -165,9 +165,9 @@ export function LessonCompleteScreen({
               initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.85 }}
-              aria-label="Ti\u1ebfp t\u1ee5c b\u00e0i ti\u1ebfp theo"
+              aria-label="Continue to the next lesson"
             >
-              {"B\u00e0i ti\u1ebfp \u2192"}
+              {"Next lesson \u2192"}
             </m.button>
           )}
           <m.button
@@ -175,7 +175,7 @@ export function LessonCompleteScreen({
             initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.95 }}
-            aria-label="V\u1ec1 khu v\u01b0\u1eddn"
+            aria-label="Back to the garden"
             style={{
               background: "rgba(255,255,255,0.12)",
               border: "1px solid rgba(255,255,255,0.25)",
@@ -187,7 +187,7 @@ export function LessonCompleteScreen({
               fontSize: "0.95rem",
             }}
           >
-            {"V\u1ec1 khu v\u01b0\u1eddn \ud83c\udf3f"}
+            {"Back to the garden \ud83c\udf3f"}
           </m.button>
         </div>
       </m.div>

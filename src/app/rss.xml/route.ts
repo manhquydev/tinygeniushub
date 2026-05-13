@@ -6,9 +6,9 @@ function escapeForCdata(value: string) {
 
 export async function GET() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.tinygeniushubvn.tech";
-  const channelTitle = "C\u00f9ng Con T\u1ef1 H\u1ecdc - Blog";
+  const channelTitle = "TinyGenius Hub - Blog";
   const channelDescription =
-    "Ki\u1ebfn th\u1ee9c nu\u00f4i d\u1ea1y con v\u00e0 ph\u00e1t tri\u1ec3n to\u00e0n di\u1ec7n cho tr\u1ebb 2-6 tu\u1ed5i";
+    "Practical guidance for parents supporting children ages 2-6.";
 
   try {
     const { posts } = await blogRepository.findPosts({
@@ -39,7 +39,7 @@ export async function GET() {
     <title>${channelTitle}</title>
     <link>${siteUrl}/blog</link>
     <description>${channelDescription}</description>
-    <language>vi</language>
+    <language>en</language>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>
     ${items}
   </channel>

@@ -3,6 +3,7 @@ import { BlogCard } from "@/components/blog/blog-card";
 import { BlogCardFeatured } from "@/components/blog/blog-card-featured";
 import { BlogSidebar } from "@/components/blog/blog-sidebar";
 import * as blogRepository from "@/modules/blog/blog-repository";
+import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import { generateBlogListMetadata } from "@/modules/blog/blog-seo";
 import { blogService } from "@/modules/blog/blog-service";
 
@@ -108,7 +109,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               className="inline-flex min-h-10 shrink-0 items-center rounded-full px-3 text-sm font-semibold"
               style={getCategoryBadgeStyle(category.color)}
             >
-              {category.nameVi}
+              {getBlogCategoryDisplayName(category)}
             </Link>
           ))}
         </div>

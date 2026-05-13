@@ -17,7 +17,7 @@ export default async function KidAppLayout({ children }: { children: ReactNode }
   return (
     <main
       className="kid-app-shell"
-      aria-label={"Khu v\u1ef1c h\u1ecdc t\u1eadp cho b\u00e9"}
+      aria-label="Child learning area"
       data-route={isGarden ? "garden" : "default"}
       style={
         isGarden

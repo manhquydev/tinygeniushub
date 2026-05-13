@@ -40,6 +40,8 @@ const CANONICAL_APP_BASE_URL = "https://www.tinygeniushubvn.tech";
 const CANONICAL_SUPPORT_EMAIL = "support@tinygeniushubvn.tech";
 const EMAIL_FONT_STACK =
   "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif";
+const unsubscribeCopyPattern =
+  /unsubscribe|stop receiving|stop emails|opt out|remove me|cancel subscription|newsletter/i;
 
 function escapeHtml(value: string) {
   return value
@@ -82,8 +84,7 @@ function extractLinks(text: string): ExtractedLink[] {
         links.push({
           url,
           label,
-          isUnsubscribe: /unsubscribe|h\u1ee7y \u0111\u0103ng k\u00fd|huy dang ky|ng\u1eebng nh\u1eadn|ngung nhan/i.test(trimmed)
-            || /\/unsubscribe\b/i.test(url),
+          isUnsubscribe: unsubscribeCopyPattern.test(trimmed) || /\/unsubscribe\b/i.test(url),
         });
         continue;
       }
@@ -98,8 +99,7 @@ function extractLinks(text: string): ExtractedLink[] {
       links.push({
         url: match,
         label: null,
-        isUnsubscribe: /unsubscribe|h\u1ee7y \u0111\u0103ng k\u00fd|huy dang ky|ng\u1eebng nh\u1eadn|ngung nhan/i.test(trimmed)
-          || /\/unsubscribe\b/i.test(match),
+        isUnsubscribe: unsubscribeCopyPattern.test(trimmed) || /\/unsubscribe\b/i.test(match),
       });
     }
   }
@@ -137,11 +137,7 @@ function stripUnsubscribeCopy(text: string, unsubscribeUrl: string | null) {
       return false;
     }
 
-    if (
-      /unsubscribe|h\u1ee7y \u0111\u0103ng k\u00fd|huy dang ky|ng\u1eebng nh\u1eadn email|ngung nhan email|ng\u1eebng nh\u1eadn b\u1ea3n tin|ngung nhan ban tin|kh\u00f4ng mu\u1ed1n nh\u1eadn email|khong muon nhan email|b\u1ea5m link|bam link/i.test(
-        trimmed,
-      )
-    ) {
+    if (unsubscribeCopyPattern.test(trimmed)) {
       return false;
     }
 
@@ -332,7 +328,7 @@ export function renderProjectEmailHtml(input: RenderProjectEmailHtmlInput) {
 
   return [
     "<!doctype html>",
-    '<html lang="vi">',
+    '<html lang="en">',
     "<head>",
     '  <meta charset="utf-8" />',
     '  <meta name="viewport" content="width=device-width, initial-scale=1" />',

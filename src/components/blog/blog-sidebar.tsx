@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BlogNewsletterWidget } from "@/components/blog/blog-newsletter-widget";
 import { BlogTrendingPosts } from "@/components/blog/blog-trending-posts";
+import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import type { BlogCategory, BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 type BlogSidebarProps = {
@@ -60,7 +61,7 @@ export function BlogSidebar({ categories, trendingPosts }: BlogSidebarProps) {
               className="inline-flex items-center rounded-full px-3 py-1.5 text-xs font-semibold"
               style={getCategoryBadgeStyle(category.color)}
             >
-              {category.nameVi}
+              {getBlogCategoryDisplayName(category)}
             </Link>
           ))}
         </div>
