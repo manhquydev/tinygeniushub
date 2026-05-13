@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 01:19 ICT
+Last verified: 2026-05-14 01:24 ICT
 
 ## Status
 
@@ -24,7 +24,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 01:19 ICT on 2026-05-14 failed from local/public source networks. The failing backing nameservers vary between runs, so any intermittent pass does not prove public users are safe while authoritative DNS can still return stale records.
+Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 01:24 ICT on 2026-05-14 failed from local/public source networks. The failing backing nameservers vary between runs, so any intermittent pass does not prove public users are safe while authoritative DNS can still return stale records.
 
 Authoritative nameservers still return old A records:
 
@@ -38,7 +38,7 @@ Expected A record only:
 Examples from latest checks:
 
 - Local strict verifier on 2026-05-14 after cleanup-hint patch: latest sample `20 production verification check(s) failed`
-- VPS strict verifier on 2026-05-14 after deploy of `a5b0b967`: recent samples ranged from `1` to `6` fails as OrderBox backing nameservers rotated; most recent sample failed `1 production verification check(s)`
+- VPS strict verifier on 2026-05-14 after deploy of `a5b0b967`: recent samples ranged from `1` to `6` fails as OrderBox backing nameservers rotated; most recent sample failed `5 production verification check(s)`
 - `tinygeniushubvn.tech @ tech-domains.earth.orderbox-dns.com (162.251.82.246)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
 - `tinygeniushubvn.tech @ cont603385.mars.orderbox-dns.com (162.251.82.252)` returned `165.22.211.19, 165.22.48.193`
 - `tinygeniushubvn.tech @ cont603385.venus.orderbox-dns.com (162.251.82.121)` returned `165.22.211.19, 165.22.48.193`
@@ -49,7 +49,7 @@ Examples from latest checks:
 Public resolver sample on 2026-05-14:
 
 - `1.1.1.1` returned correct `152.42.246.218`
-- `8.8.8.8` returned correct `152.42.246.218`
+- `8.8.8.8` returned correct apex `152.42.246.218`, but `www` returned stale `165.22.211.19`
 - `9.9.9.9` returned correct `152.42.246.218`
 - `208.67.222.222` returned correct apex `152.42.246.218`, but `www` returned stale `165.22.211.19`
 
