@@ -142,12 +142,21 @@ If API credentials are available, the official record-search endpoint can list A
 GET https://test.httpapi.com/api/dns/manage/search-records.json?auth-userid=<id>&api-key=<key>&domain-name=tinygeniushubvn.tech&type=A&no-of-records=50&page-no=1
 ```
 
+The official IPv4 delete endpoint can remove each stale A record:
+
+```text
+POST https://test.httpapi.com/api/dns/manage/delete-ipv4-record.json?auth-userid=<id>&api-key=<key>&domain-name=tinygeniushubvn.tech&host=<blank-or-www>&value=<stale-ip>
+```
+
+Use no `host` value for apex/root records. Use `host=www` for the `www` record.
+
 The current project/VPS environment does not contain `auth-userid` or `api-key`, so API cleanup is not possible from this session.
 
 Reference docs:
 
 - LogicBoxes DNS records UI: https://manage.logicboxes.com/kb/servlet/KBServlet/faq471.html
 - LogicBoxes DNS record search API: https://manage.logicboxes.com/kb/answer/1106
+- LogicBoxes IPv4 delete API: https://manage.logicboxes.com/kb/answer/1171
 
 Then wait for TTL/propagation and rerun:
 
