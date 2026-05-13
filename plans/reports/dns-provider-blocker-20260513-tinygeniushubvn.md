@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 01:15 ICT
+Last verified: 2026-05-14 01:16 ICT
 
 ## Status
 
@@ -24,7 +24,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 01:15 ICT on 2026-05-14 failed from local/public source networks. The failing backing nameservers vary between runs, so any intermittent pass does not prove public users are safe while authoritative DNS can still return stale records.
+Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 01:16 ICT on 2026-05-14 failed from local/public source networks. The failing backing nameservers vary between runs, so any intermittent pass does not prove public users are safe while authoritative DNS can still return stale records.
 
 Authoritative nameservers still return old A records:
 
@@ -38,7 +38,7 @@ Expected A record only:
 Examples from latest checks:
 
 - Local strict verifier on 2026-05-14 after cleanup-hint patch: latest sample `20 production verification check(s) failed`
-- VPS strict verifier on 2026-05-14 after deploy of `17a0d669`: recent samples ranged from `1` to `6` fails as OrderBox backing nameservers rotated; most recent sample failed `3 production verification check(s)`
+- VPS strict verifier on 2026-05-14 after deploy of `a5b0b967`: recent samples ranged from `1` to `6` fails as OrderBox backing nameservers rotated; most recent sample failed `5 production verification check(s)`
 - `tinygeniushubvn.tech @ tech-domains.earth.orderbox-dns.com (162.251.82.246)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
 - `tinygeniushubvn.tech @ cont603385.mars.orderbox-dns.com (162.251.82.252)` returned `165.22.211.19, 165.22.48.193`
 - `tinygeniushubvn.tech @ cont603385.venus.orderbox-dns.com (162.251.82.121)` returned `165.22.211.19, 165.22.48.193`
@@ -82,7 +82,7 @@ ORDERBOX_AUTH_USERID=... ORDERBOX_API_KEY=... ORDERBOX_DELETE_STALE_A_RECORDS=1 
 
 By default it only verifies and prints cleanup hints. When cleanup is enabled, it uses `https://httpapi.com` unless `ORDERBOX_API_BASE_URL` is set. LogicBoxes documents test URL examples and requires API IP registration, so live cleanup needs real credentials plus API IP allowlisting.
 
-Safety check on 2026-05-14 01:15 ICT: running with `ORDERBOX_DELETE_STALE_A_RECORDS=1` but without credentials did not call the delete API and printed `Automated cleanup requested but ORDERBOX_AUTH_USERID or ORDERBOX_API_KEY is missing.`
+Safety check on 2026-05-14 01:15 ICT: running with `ORDERBOX_DELETE_STALE_A_RECORDS=1` but without credentials did not call the delete API and printed `Automated cleanup requested but ORDERBOX_AUTH_USERID or ORDERBOX_API_KEY is missing.` VPS default-mode check on 2026-05-14 01:16 ICT printed `Automated cleanup skipped...`, confirming deployed default behavior is verification-only.
 
 ## Registrar And Delegation Evidence
 
