@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 ICT
+Last verified: 2026-05-14 00:12 ICT
 
 ## Status
 
@@ -24,7 +24,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing from local/public resolver paths. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:04 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because public resolvers still return stale records.
+Latest result: still failing from local/public resolver paths. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:12 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because public resolvers still return stale records.
 
 Authoritative nameservers still return old A records:
 
@@ -37,7 +37,7 @@ Expected A record only:
 
 Examples from latest checks:
 
-- Local strict verifier on 2026-05-14: `9 production verification check(s) failed`
+- Local strict verifier on 2026-05-14: `11 production verification check(s) failed`
 - VPS strict verifier on 2026-05-14: passed once, showing source-network inconsistency
 - `tinygeniushubvn.tech @ 162.251.82.119` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
 - `www.tinygeniushubvn.tech @ 162.251.82.125` returned `165.22.211.19`
@@ -50,8 +50,7 @@ Examples from latest checks:
 Public resolver sample on 2026-05-14:
 
 - `1.1.1.1` returned correct `152.42.246.218`
-- `8.8.8.8` returned `tinygeniushubvn.tech -> 165.22.48.193, 165.22.211.19, 152.42.246.218`
-- `8.8.8.8` returned `www.tinygeniushubvn.tech -> 165.22.211.19`
+- `8.8.8.8` returned correct `152.42.246.218`
 - `9.9.9.9` returned correct `152.42.246.218`
 - `208.67.222.222` returned `tinygeniushubvn.tech -> 165.22.211.19, 165.22.48.193`
 - `208.67.222.222` returned `www.tinygeniushubvn.tech -> 165.22.211.19`
