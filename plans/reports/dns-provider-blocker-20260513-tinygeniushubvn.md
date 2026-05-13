@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 01:26 ICT
+Last verified: 2026-05-14 01:28 ICT
 
 ## Status
 
@@ -72,7 +72,7 @@ Local resolver and curl sample on 2026-05-14:
 
 ## DNS Automation Check
 
-No usable DNS automation credential was found in the local environment, GitHub-visible configuration, VPS environment files, or project scripts/docs. Local and VPS environment variables were rechecked on 2026-05-14 01:04 ICT for OrderBox/LogicBoxes/HTTPAPI/DNS API patterns and returned no matches. Local CLIs available include `wrangler`, `gh`, and `gcloud`, but the active authoritative nameservers are OrderBox (`tech-domains.*.orderbox-dns.com`), not Cloudflare or Google Cloud DNS.
+No usable DNS automation credential was found in the local environment, GitHub-visible configuration, VPS environment files, or project scripts/docs. Local and VPS environment variables were rechecked on 2026-05-14 01:04 ICT for OrderBox/LogicBoxes/HTTPAPI/DNS API patterns and returned no matches. GitHub repo-level and environment-level (`Preview`, `Production`) secret/variable names were rechecked on 2026-05-14 01:28 ICT and returned no OrderBox/LogicBoxes/HTTPAPI/DNS/Namify matches. Local CLIs available include `wrangler`, `gh`, and `gcloud`, but the active authoritative nameservers are OrderBox (`tech-domains.*.orderbox-dns.com`), not Cloudflare or Google Cloud DNS.
 
 The production verifier now supports an explicit cleanup opt-in for whoever has credentials:
 
