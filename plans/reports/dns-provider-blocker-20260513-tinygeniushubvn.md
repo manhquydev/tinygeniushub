@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 00:59 ICT
+Last verified: 2026-05-14 01:02 ICT
 
 ## Status
 
@@ -24,7 +24,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:59 ICT on 2026-05-14 failed from local/public source networks. The failing backing nameservers vary between runs, so any intermittent pass does not prove public users are safe while authoritative DNS can still return stale records.
+Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 01:02 ICT on 2026-05-14 failed from local/public source networks. The failing backing nameservers vary between runs, so any intermittent pass does not prove public users are safe while authoritative DNS can still return stale records.
 
 Authoritative nameservers still return old A records:
 
@@ -38,11 +38,13 @@ Expected A record only:
 Examples from latest checks:
 
 - Local strict verifier on 2026-05-14 after cleanup-hint patch: `22 production verification check(s) failed`
-- VPS strict verifier on 2026-05-14 after deploy of `17a0d669`: latest sample `4 production verification check(s) failed`; previous samples ranged from `1` to `5` fails as OrderBox backing nameservers rotated
-- `tinygeniushubvn.tech @ tech-domains.earth.orderbox-dns.com (162.251.82.118)` returned `165.22.211.19, 165.22.48.193`
-- `tinygeniushubvn.tech @ tech-domains.mars.orderbox-dns.com (162.251.82.253)` returned `165.22.211.19, 165.22.48.193`
-- `tinygeniushubvn.tech @ tech-domains.mercury.orderbox-dns.com (162.251.82.250)` returned `165.22.211.19, 165.22.48.193`
-- `tinygeniushubvn.tech @ cont603385.mars.orderbox-dns.com (162.251.82.253)` returned `165.22.211.19, 165.22.48.193`
+- VPS strict verifier on 2026-05-14 after deploy of `17a0d669`: latest sample `6 production verification check(s) failed`; previous samples ranged from `1` to `6` fails as OrderBox backing nameservers rotated
+- `tinygeniushubvn.tech @ tech-domains.mars.orderbox-dns.com (162.251.82.252)` returned `165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ cont603385.earth.orderbox-dns.com (162.251.82.118)` returned `165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ cont603385.earth.orderbox-dns.com (162.251.82.246)` returned `165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ cont603385.mercury.orderbox-dns.com (162.251.82.251)` returned `165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ cont603385.venus.orderbox-dns.com (162.251.82.120)` returned `165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ cont603385.venus.orderbox-dns.com (162.251.82.249)` returned `165.22.211.19, 165.22.48.193`
 - `https://tinygeniushubvn.tech/` public fetch failed from local resolver path with TLS error
 - Forced apex check with `--resolve tinygeniushubvn.tech:443:152.42.246.218` returned `301` to `https://www.tinygeniushubvn.tech/`
 - `https://www.tinygeniushubvn.tech/`, `/api/health/ready`, `/pricing`, and `/courses` public fetches returned `200` on `152.42.246.218`
