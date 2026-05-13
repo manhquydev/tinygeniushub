@@ -69,6 +69,17 @@ async function fetchWithTimeout(url, options = {}) {
 
 async function checkHttp() {
   try {
+    const response = await fetchWithTimeout(`https://${DOMAIN}/`, { method: "HEAD" });
+    record(
+      `https://${DOMAIN}/`,
+      response.status === 200 || response.status === 301 || response.status === 302,
+      `${response.status} ${response.statusText} location=${response.headers.get("location") ?? ""}`,
+    );
+  } catch (error) {
+    record(`https://${DOMAIN}/`, false, error.message);
+  }
+
+  try {
     const response = await fetchWithTimeout(`http://${EXPECTED_IP}/`, { method: "HEAD" });
     record(`http://${EXPECTED_IP}/`, response.status === 200, `${response.status} ${response.statusText}`);
   } catch (error) {

@@ -17,7 +17,6 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - app_internal
-      - app_public
 
   redis:
     image: redis:7-alpine
@@ -31,7 +30,6 @@ services:
       retries: 20
     networks:
       - app_internal
-      - app_public
 
   web:
     build:

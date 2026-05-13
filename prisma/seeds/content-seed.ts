@@ -157,7 +157,7 @@ const TRACKS: TrackSeed[] = [
                   prompt: "Nghe âm và chọn từ đúng",
                   spec: {
                     type: "LISTEN_IDENTIFY",
-                    audioUrl: "https://cdn.tinygeniushubvn.tech/audio/phonics/listen-b.mp3",
+                    audioUrl: "/audio/lessons/nghe-am-b/kw-ball.mp3",
                     question: "Âm vừa nghe phù hợp với từ nào?",
                     options: ["ball", "sun", "fish", "tree"],
                     correctIndex: 0,
@@ -270,7 +270,7 @@ const TRACKS: TrackSeed[] = [
                   prompt: "Nghe và chọn từ có âm /sh/",
                   spec: {
                     type: "LISTEN_IDENTIFY",
-                    audioUrl: "https://cdn.tinygeniushubvn.tech/audio/phonics/listen-sh.mp3",
+                    audioUrl: "/audio/lessons/dien-chu-cvc/kw-sit.mp3",
                     question: "Từ nào có âm /sh/?",
                     options: ["ship", "chair", "thumb", "drum"],
                     correctIndex: 0,
@@ -335,7 +335,7 @@ const TRACKS: TrackSeed[] = [
                   prompt: "Nghe câu và chọn từ đúng",
                   spec: {
                     type: "LISTEN_IDENTIFY",
-                    audioUrl: "https://cdn.tinygeniushubvn.tech/audio/phonics/listen-sentence-01.mp3",
+                    audioUrl: "/audio/lessons/dien-chu-cvc/step-4-activity.mp3",
                     question: "Từ nào hoàn thành câu vừa nghe?",
                     options: ["the", "run", "dog", "blue"],
                     correctIndex: 0,
@@ -430,7 +430,7 @@ const TRACKS: TrackSeed[] = [
                   prompt: "Nghe và chọn chữ số đúng",
                   spec: {
                     type: "LISTEN_IDENTIFY",
-                    audioUrl: "https://cdn.tinygeniushubvn.tech/audio/math/listen-number-07.mp3",
+                    audioUrl: "/audio/lessons/so-1-5/step-4-activity.mp3",
                     question: "Số vừa nghe là số nào?",
                     options: ["6", "7", "8", "9"],
                     correctIndex: 1,
@@ -563,7 +563,7 @@ const TRACKS: TrackSeed[] = [
                   prompt: "Nghe đề bài và chọn phép tính đúng",
                   spec: {
                     type: "LISTEN_IDENTIFY",
-                    audioUrl: "https://cdn.tinygeniushubvn.tech/audio/math/listen-word-problem-01.mp3",
+                    audioUrl: "/audio/lessons/hinh-tron-vuong/step-4-activity.mp3",
                     question: "Lan có 12 viên kẹo, mẹ cho thêm 5 viên. Chọn phép tính đúng:",
                     options: ["12 + 5", "12 - 5", "5 - 12", "12 x 5"],
                     correctIndex: 0,
