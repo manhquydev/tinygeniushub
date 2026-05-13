@@ -113,7 +113,7 @@ export async function enrichWeeklyReport(
       .map((s) => ({
         skillNameVi: s.skill.nameVi,
         mastery: s.masteryScore,
-        reason: weekAttemptSkillIds.has(s.skillId) ? "Studying but not making progress" : "Haven't practiced this week",
+        reason: weekAttemptSkillIds.has(s.skillId) ? "Studying but not making progress" : "Haven't practiced yet",
       }))
       .slice(0, 3);
 

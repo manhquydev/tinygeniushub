@@ -135,6 +135,7 @@ export class PackageValidator {
       SubscriptionStatus.TRIALING,
       SubscriptionStatus.ACTIVE_STANDARD,
       SubscriptionStatus.ACTIVE_FAMILYPLUS,
+      SubscriptionStatus.GRACE,
     ];
     
     const isActive = activeStatuses.includes(subscription.status);
@@ -154,12 +155,13 @@ export class PackageValidator {
         case SubscriptionStatus.REFUNDED:
           errors.push('The subscription has been refunded and is no longer valid.');
           break;
-        case SubscriptionStatus.GRACE:
-          warnings.push('Subscription is on renewal period. Please pay early.');
-          break;
         default:
-          errors.push(`Invalid package status:${subscription.status}`);
+          errors.push(`Invalid package status: ${subscription.status}`);
       }
+    }
+
+    if (subscription.status === SubscriptionStatus.GRACE) {
+      warnings.push('Subscription has been extended during grace period. Please renew soon.');
     }
     
     // Check expiration
@@ -174,7 +176,8 @@ export class PackageValidator {
     
     // Warn if expiring soon (within 7 days)
     if (isActive && daysRemaining <= 7 && daysRemaining > 0) {
-      warnings.push(`The subscription will expire at a later date${daysRemaining}day. Please renew soon!`);
+      const dayLabel = daysRemaining === 1 ? 'day' : 'days';
+      warnings.push(`The subscription will expire in ${daysRemaining} ${dayLabel}. Please renew soon!`);
     }
     
     return {

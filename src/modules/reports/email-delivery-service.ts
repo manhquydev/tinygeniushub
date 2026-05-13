@@ -32,9 +32,9 @@ function formatDomainName(domain: string): string {
 function formatSkillProgressSection(progress: SkillProgressByDomain): string {
   const lines: string[] = [];
   lines.push(`  ${formatDomainName(progress.domain)}:`);
-  lines.push(`Total skills:${progress.totalSkills}`);
-  lines.push(`Proficiency:${progress.masteredCount}| Rather:${progress.proficientCount}| Currently studying:${progress.developingCount}`);
-  lines.push(`General level:${Math.round(progress.overallMastery * 100)}%`);
+  lines.push(`Total skills: ${progress.totalSkills}`);
+  lines.push(`Proficiency: ${progress.masteredCount} | Rather: ${progress.proficientCount} | Currently studying: ${progress.developingCount}`);
+  lines.push(`General level: ${Math.round(progress.overallMastery * 100)}%`);
 
   if (progress.topImprovements.length > 0) {
     lines.push("Outstanding progress:");
@@ -56,8 +56,8 @@ function formatSkillProgressSection(progress: SkillProgressByDomain): string {
 /** Build email text body including adaptive skill data when available. */
 export function buildWeeklyReportEmailText(report: WeeklyReportEmailPayload): string {
   const lines: string[] = [
-    `Weekly report is ready for your baby${report.child.nickname}.`,
-    `Report code:${report.id}`,
+    `Weekly report is ready for your baby ${report.child.nickname}.`,
+    `Report code: ${report.id}`,
   ];
 
   const summary = report.skillsSummary as Record<string, unknown> | null | undefined;
@@ -73,7 +73,7 @@ export function buildWeeklyReportEmailText(report: WeeklyReportEmailPayload): st
     if (adaptive.reviewStats) {
       const { scheduled, completed, accuracy } = adaptive.reviewStats;
       lines.push("");
-      lines.push(`Review:${completed}/${scheduled}post | Accuracy:${Math.round(accuracy * 100)}%`);
+      lines.push(`Review: ${completed}/${scheduled} articles | Accuracy: ${Math.round(accuracy * 100)}%`);
     }
   }
 
@@ -105,7 +105,7 @@ export function canSendWeeklyEmail(input: EmailEligibilityInput) {
 
 async function sendWeeklyReportEmail(report: WeeklyReportEmailPayload) {
   const to = env.REPORT_EMAIL_TO_OVERRIDE ?? report.child.parent.email;
-  const subject = `Weekly report of${report.child.nickname}`;
+  const subject = `Weekly report of ${report.child.nickname}`;
   const text = buildWeeklyReportEmailText(report);
 
   return sendTransactionalEmail({

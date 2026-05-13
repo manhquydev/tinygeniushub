@@ -90,6 +90,6 @@ describe("renderProjectEmailHtml", () => {
     expect(html).toContain("<ol");
     expect(html).toContain(">Turn on notifications<");
     expect(html).toContain(">☑ Email confirmed<");
-    expect(html).toContain(">☐ No parent configured yet<");
+    expect(html).toContain(">☐ Parents not configured<");
   });
 });

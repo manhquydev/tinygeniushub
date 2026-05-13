@@ -67,7 +67,7 @@ function normalizeUrlForDisplay(rawUrl: string) {
 }
 
 function extractLinks(text: string): ExtractedLink[] {
-  const lines = text.split(/\r?\n/);
+  const lines = normalizeTextLineBreaks(text).split(/\r?\n/);
   const links: ExtractedLink[] = [];
 
   for (const line of lines) {
@@ -126,7 +126,7 @@ function findUnsubscribeUrl(text: string) {
 }
 
 function stripUnsubscribeCopy(text: string, unsubscribeUrl: string | null) {
-  const lines = text.split(/\r?\n/);
+  const lines = normalizeTextLineBreaks(text).split(/\r?\n/);
   const filtered = lines.filter((line) => {
     const trimmed = line.trim();
     if (!trimmed) {
@@ -148,7 +148,7 @@ function stripUnsubscribeCopy(text: string, unsubscribeUrl: string | null) {
 }
 
 function resolvePreheader(title: string, text: string) {
-  const lines = text
+  const lines = normalizeTextLineBreaks(text)
     .split(/\r?\n/)
     .map((line) => line.trim())
     .filter((line) => line.length > 0 && !/^https?:\/\/[^\s)]+$/i.test(line));
@@ -198,7 +198,7 @@ function lineToHtml(line: string) {
 }
 
 function textToHtmlBody(text: string) {
-  const blocks = text
+  const blocks = normalizeTextLineBreaks(text)
     .split(/\r?\n\r?\n/)
     .map((block) => block.trim())
     .filter((block) => block.length > 0);
@@ -254,6 +254,10 @@ function textToHtmlBody(text: string) {
     .join("");
 }
 
+function normalizeTextLineBreaks(text: string) {
+  return text.replace(/\\r\\n|\\n|\\r/g, "\n");
+}
+
 export function resolveEmailPublicBaseUrl(rawBaseUrl?: string) {
   const candidateBaseUrl =
     typeof rawBaseUrl === "string" && rawBaseUrl.length > 0
@@ -300,7 +304,7 @@ function resolveCtaLabel(feature: string) {
   }
 
   if (feature === "lifecycle") {
-    return "Open the control panel";
+    return "Open control panel";
   }
 
   return "See details";

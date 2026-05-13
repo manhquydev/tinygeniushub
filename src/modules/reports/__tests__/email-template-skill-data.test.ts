@@ -47,7 +47,7 @@ describe("buildWeeklyReportEmailText", () => {
                 { skillNameVi: "Add 1 digit", masteryBefore: 0.3, masteryAfter: 0.8 },
               ],
               needsAttention: [
-                { skillNameVi: "Subtract 2 digits", mastery: 0.2, reason: "Haven't practiced this week" },
+                { skillNameVi: "Subtract 2 digits", mastery: 0.2, reason: "Haven't practiced yet" },
               ],
             },
           ],
