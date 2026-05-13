@@ -1,6 +1,6 @@
 # Vietnamese Text Inventory
 
-Generated: 2026-05-13T20:34:20.490Z
+Generated: 2026-05-13T20:35:37.188Z
 
 ## Scope
 
@@ -11,26 +11,24 @@ Generated: 2026-05-13T20:34:20.490Z
 ## Summary
 
 - Files scanned: 17220
-- Vietnamese-containing lines: 6077
+- Vietnamese-containing lines: 6075
 
 ### By Area
 
 - docs-data-assets: 6075
-- runtime-source: 2
 
 ### By Top Directory
 
 - docs: 5985
 - assets: 76
 - data: 14
-- public: 2
 
 ### By Extension
 
 - .md: 5273
 - .json: 644
 - .sql: 122
-- .svg: 38
+- .svg: 36
 
 ### Top Files
 
@@ -6842,11 +6840,6 @@ Generated: 2026-05-13T20:34:20.490Z
 - docs-data-assets:23909: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_c7bd997d7715f18f', 'col_8c5999ad2228a1d6', 69, '69. Eva Perón', 'Superstars in History 33: Eva Perón', 'https://cdn.littlefox.com/contents_5/hls/1080/cb21265a88/1671165973cf79ae6addba60ad018347359bd144d2/stream.m3u8?_=1671166045', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0009155&cn=0', `
 - docs-data-assets:32105: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_897953091d85ee07', 'col_cdf55ae55f2eee62', 2, '2. Tone Change Rules 2: Tone Change Rules with Yī', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/784c88d828/15730041396c990b7aca7bc7058f5e98ea909e924b/stream.m3u8?_=1573004139', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0007100&cn`
 - docs-data-assets:32106: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_688c5b3a9c2b346e', 'col_cdf55ae55f2eee62', 3, '3. Tone Change Rules 3: Tone Change Rules with Bù', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/7c154d27c8/15730042668e930496927757aac0dbd2438cb3f4f6/stream.m3u8?_=1573004267', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0007101&cn`
-
-### public/logo-tinygeniushub-horizontal.svg
-
-- runtime-source:30: `<text x="0" y="0" font-family="'Nunito', 'Segoe UI', sans-serif" font-size="34" font-weight="800" fill="#0f172a" letter-spacing="0.8">CÙNG CON TỰ HỌC</text>`
-- runtime-source:31: `<text x="2" y="30" font-family="'Inter', 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#2563eb" letter-spacing="3">HỌC CHỦ ĐỘNG • PHÁT TRIỂN TƯ DUY</text>`
 
 ## Unresolved Questions
 
