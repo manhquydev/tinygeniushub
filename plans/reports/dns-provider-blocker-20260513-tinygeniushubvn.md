@@ -59,6 +59,23 @@ Public resolver sample on 2026-05-14:
 
 No usable DNS automation credential was found in the local environment, GitHub-visible configuration, VPS environment files, or project scripts/docs. Local CLIs available include `wrangler`, `gh`, and `gcloud`, but the active authoritative nameservers are OrderBox (`tech-domains.*.orderbox-dns.com`), not Cloudflare or Google Cloud DNS. The project server cannot remove these records without OrderBox/registrar access.
 
+## Registrar And Delegation Evidence
+
+Registry RDAP for `tinygeniushubvn.tech` identifies the registrar as Namify Domains Inc (`IANA Registrar ID 1913`). RDAP nameservers are OrderBox-family hosts (`cont603385.*.orderbox-dns.com`), while live DNS currently delegates to `tech-domains.*.orderbox-dns.com`. This confirms the cleanup must happen in the registrar/OrderBox DNS control plane, not on the `152.42.246.218` VPS.
+
+Current live NS/SOA evidence:
+
+- NS: `tech-domains.earth.orderbox-dns.com`
+- NS: `tech-domains.mars.orderbox-dns.com`
+- NS: `tech-domains.mercury.orderbox-dns.com`
+- NS: `tech-domains.venus.orderbox-dns.com`
+- SOA contact: `dauxanhco102.gmail.com`
+- SOA serial: `2026051302`
+
+Reference:
+
+- RDAP: https://rdap.radix.host/rdap/domain/tinygeniushubvn.tech
+
 ## Required DNS Provider Action
 
 In OrderBox/DNS provider, remove all stale A records:
