@@ -9,8 +9,8 @@ export default async function AdminImpersonationPage() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        title="Đăng nhập thay"
-        description="Giả lập phiên đăng nhập của người dùng để hỗ trợ hoặc gỡ lỗi. Chỉ Super Admin."
+        title="Log in instead"
+        description="Simulate a user login session for support or debugging. Super Admin only."
         icon={<ShieldUser size={18} />}
         eyebrow="System"
       />

@@ -80,7 +80,7 @@ describe("buildRecommendations", () => {
 
     const recs = buildRecommendations(skills);
     expect(recs.length).toBeGreaterThan(0);
-    expect(recs[0]).toContain("1 kỹ năng cơ bản");
+    expect(recs[0]).toContain("1 basic skill");
   });
 
   it("generates recommendation for developing skills", () => {
@@ -89,7 +89,7 @@ describe("buildRecommendations", () => {
     ];
 
     const recs = buildRecommendations(skills);
-    expect(recs.some((r) => r.includes("đang phát triển"))).toBe(true);
+    expect(recs.some((r) => r.includes("is developing"))).toBe(true);
   });
 
   it("generates recommendation for mastered skills", () => {
@@ -98,6 +98,6 @@ describe("buildRecommendations", () => {
     ];
 
     const recs = buildRecommendations(skills);
-    expect(recs.some((r) => r.includes("nắm vững"))).toBe(true);
+    expect(recs.some((r) => r.includes("got it"))).toBe(true);
   });
 });

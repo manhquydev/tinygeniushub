@@ -22,13 +22,13 @@ describe("buildWeeklyReportEmailText", () => {
 
     expect(text).toContain("Minh");
     expect(text).toContain("report-123");
-    expect(text).toContain("Đăng nhập hệ thống");
+    expect(text).toContain("Log in to the system");
   });
 
   it("does not include skill section when no adaptive data", () => {
     const text = buildWeeklyReportEmailText(makeReport({ skillsSummary: { ENGLISH: { lessons: 3 } } }));
 
-    expect(text).not.toContain("Tiến độ kỹ năng");
+    expect(text).not.toContain("Skill progress");
   });
 
   it("includes skill progress when adaptive data present", () => {
@@ -44,10 +44,10 @@ describe("buildWeeklyReportEmailText", () => {
               developingCount: 2,
               overallMastery: 0.65,
               topImprovements: [
-                { skillNameVi: "Cộng 1 chữ số", masteryBefore: 0.3, masteryAfter: 0.8 },
+                { skillNameVi: "Add 1 digit", masteryBefore: 0.3, masteryAfter: 0.8 },
               ],
               needsAttention: [
-                { skillNameVi: "Trừ 2 chữ số", mastery: 0.2, reason: "Chưa luyện tập tuần này" },
+                { skillNameVi: "Subtract 2 digits", mastery: 0.2, reason: "Haven't practiced this week" },
               ],
             },
           ],
@@ -56,16 +56,16 @@ describe("buildWeeklyReportEmailText", () => {
       },
     }));
 
-    expect(text).toContain("Tiến độ kỹ năng");
-    expect(text).toContain("Toán");
-    expect(text).toContain("Tổng kỹ năng: 10");
-    expect(text).toContain("Thành thạo: 3");
+    expect(text).toContain("Skill progress");
+    expect(text).toContain("Maths");
+    expect(text).toContain("Total skills: 10");
+    expect(text).toContain("Proficiency: 3");
     expect(text).toContain("65%");
-    expect(text).toContain("Cộng 1 chữ số");
+    expect(text).toContain("Add 1 digit");
     expect(text).toContain("30% → 80%");
-    expect(text).toContain("Trừ 2 chữ số");
-    expect(text).toContain("Chưa luyện tập");
-    expect(text).toContain("3/5 bài");
+    expect(text).toContain("Subtract 2 digits");
+    expect(text).toContain("Haven't practiced yet");
+    expect(text).toContain("3/5 articles");
     expect(text).toContain("80%");
   });
 
@@ -100,8 +100,8 @@ describe("buildWeeklyReportEmailText", () => {
       },
     }));
 
-    expect(text).toContain("Toán");
-    expect(text).toContain("Tiếng Anh Phonics");
+    expect(text).toContain("Maths");
+    expect(text).toContain("English Phonics");
   });
 
   it("handles empty skillsProgress array gracefully", () => {
@@ -115,7 +115,7 @@ describe("buildWeeklyReportEmailText", () => {
     }));
 
     // Should not crash and should not include skill section
-    expect(text).not.toContain("Tiến độ kỹ năng");
-    expect(text).toContain("Đăng nhập hệ thống");
+    expect(text).not.toContain("Skill progress");
+    expect(text).toContain("Log in to the system");
   });
 });

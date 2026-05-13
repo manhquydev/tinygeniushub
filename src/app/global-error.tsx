@@ -32,13 +32,13 @@ export default function GlobalError({
 
           <section className="relative mx-auto flex w-full max-w-5xl flex-col gap-5 rounded-[2rem] border border-white/20 bg-slate-950/72 p-4 shadow-[0_28px_60px_rgba(2,6,23,0.55)] backdrop-blur-xl sm:gap-6 sm:p-8">
             <p className="inline-flex w-fit items-center rounded-full border border-amber-200/35 bg-amber-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-amber-100/95">
-              Lỗi hệ thống 500
+              System error 500
             </p>
 
             <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/50">
               <Image
                 src="/images/system/cloud-garden/system_500_error.png"
-                alt="Linh vật Cáo đang sửa lỗi hệ thống trong xưởng máy"
+                alt="Fox mascot is fixing system errors in the machine shop"
                 width={1368}
                 height={768}
                 priority
@@ -48,10 +48,10 @@ export default function GlobalError({
 
             <div className="grid gap-3 text-left">
               <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl">
-                Hệ thống đang gặp sự cố tạm thời
+                The system is experiencing a temporary problem
               </h1>
               <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
-                Chúng tôi đã ghi nhận lỗi và đang xử lý. Bạn có thể tải lại trang hoặc quay về trang chủ để tiếp tục.
+                We have noted the error and are working on it. You can reload the page or return to the home page to continue.
               </p>
             </div>
 
@@ -66,7 +66,7 @@ export default function GlobalError({
                   animation: "notFoundShimmer 2.5s linear infinite",
                 }}
               >
-                Tải lại trang
+                Reload page
               </button>
               <button
                 type="button"
@@ -75,7 +75,7 @@ export default function GlobalError({
                 }}
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
               >
-                Về trang chủ
+                Return to home page
               </button>
             </div>
           </section>

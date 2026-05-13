@@ -80,13 +80,13 @@ export function buildRecommendations(scoredSkills: ScoredSkill[]): string[] {
   const mastered = scoredSkills.filter((s) => s.level === "MASTERED" || s.level === "PROFICIENT");
 
   if (notStarted.length > 0) {
-    recommendations.push(`Cần học từ đầu ${notStarted.length} kỹ năng cơ bản`);
+    recommendations.push(`Need to learn from the beginning${notStarted.length}basic skills`);
   }
   if (developing.length > 0) {
-    recommendations.push(`Cần luyện tập thêm ${developing.length} kỹ năng đang phát triển`);
+    recommendations.push(`Need more practice${developing.length}developing skills`);
   }
   if (mastered.length > 0) {
-    recommendations.push(`Đã nắm vững ${mastered.length} kỹ năng, có thể học nâng cao`);
+    recommendations.push(`Got it${mastered.length}skills, can be learned to improve`);
   }
 
   return recommendations;

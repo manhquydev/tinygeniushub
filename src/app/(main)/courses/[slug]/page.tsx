@@ -67,13 +67,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (isLegacyBundleRouteSlug(slug)) {
     return {
-      title: "Danh sách khóa học - TinyGenius Hub",
-      description: "Khóa học hiển thị theo mô hình từng khóa độc lập.",
+      title: "Course List - TinyGenius Hub",
+      description: "Courses are displayed in an independent model.",
       alternates: { canonical: "https://www.tinygeniushubvn.tech/courses" },
     };
   }
   const course = await loadPublishedCourse(slug);
-  if (!course || !course.isPublished) return { title: "Khóa học không tồn tại" };
+  if (!course || !course.isPublished) return { title: "The course does not exist" };
 
   const coverUrl = resolveCourseCoverImage(course.slug, course.coverImageUrl);
   const canonicalUrl = `https://www.tinygeniushubvn.tech/courses/${course.slug}`;
@@ -109,7 +109,7 @@ export default async function CourseDetailPage({ params }: Props) {
   const coursesVariant: AbVariant = cookieStore.get(AB_COURSES_COOKIE)?.value === "B" ? "B" : "A";
   const parent = await getParentFromServerCookie();
   const pricing = resolveCourseDisplayPricing(course);
-  const checkoutLabel = coursesVariant === "B" ? "Mua khóa và bắt đầu ngay" : "Mua khóa học";
+  const checkoutLabel = coursesVariant === "B" ? "Buy the course and get started right away" : "Buy the course";
   const normalizedCover = resolveCourseCoverImage(course.slug, course.coverImageUrl);
 
   let isOwned = false;

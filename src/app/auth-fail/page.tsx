@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Xác thực thất bại",
+  title: "Authentication failed",
 };
 
 export default function AuthFailPage() {
@@ -34,7 +34,7 @@ export default function AuthFailPage() {
         <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/50">
           <Image
             src="/images/system/cloud-garden/system_404_error.png"
-            alt="Linh vật Cáo đang kiểm tra vấn đề xác thực bằng kính lúp"
+            alt="The Fox mascot is examining the authenticity issue with a magnifying glass"
             width={1368}
             height={768}
             priority
@@ -44,10 +44,10 @@ export default function AuthFailPage() {
 
         <div className="grid gap-3 text-left">
           <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl">
-            Không thể xác thực tài khoản
+            Unable to authenticate account
           </h1>
           <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
-            Phiên đăng nhập hiện tại không hợp lệ hoặc dịch vụ xác thực đang gián đoạn. Vui lòng thử đăng nhập lại.
+            The current login session is invalid or the authentication service is interrupted. Please try logging in again.
           </p>
         </div>
 
@@ -61,13 +61,13 @@ export default function AuthFailPage() {
               animation: "notFoundShimmer 2.5s linear infinite",
             }}
           >
-            Đăng nhập lại
+            Log in again
           </Link>
           <Link
             href="/auth/forgot-password"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
           >
-            Quên mật khẩu
+            Forgot password
           </Link>
         </div>
       </section>

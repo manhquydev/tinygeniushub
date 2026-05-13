@@ -37,7 +37,7 @@ export default async function AdminOverviewPage() {
     <div className="space-y-6">
       <AdminPageHeader
         title="Admin Command Center"
-        description="Bảng điều hành module theo mức hoàn thiện, sức khỏe vận hành và các chỉ số kinh doanh cốt lõi."
+        description="Module operating table according to maturity level, operational health and core business indicators."
         icon={<Layers3 size={18} />}
         eyebrow="Reassessment Session"
       />
@@ -68,9 +68,9 @@ export default async function AdminOverviewPage() {
         <AdminModuleHealthGrid modules={visibleModules} />
       </AdminSectionCard>
 
-      <AdminSectionCard title="Trạng thái gói đăng ký" icon={<CreditCard size={16} />}>
+      <AdminSectionCard title="Subscription status" icon={<CreditCard size={16} />}>
         {subscriptionsByStatus.length === 0 ? (
-          <AdminEmptyState message="Chưa có dữ liệu gói đăng ký." />
+          <AdminEmptyState message="No subscription data available." />
         ) : (
           <div className="flex flex-wrap gap-2">
             {subscriptionsByStatus.map(([status, count]) => (
@@ -83,9 +83,9 @@ export default async function AdminOverviewPage() {
         )}
       </AdminSectionCard>
 
-      <AdminSectionCard title="Trạng thái webhook" icon={<Activity size={16} />}>
+      <AdminSectionCard title="Webhook state" icon={<Activity size={16} />}>
         {webhooksByStatus.length === 0 ? (
-          <AdminEmptyState message="Chưa có dữ liệu webhook." />
+          <AdminEmptyState message="No webhook data yet." />
         ) : (
           <div className="flex flex-wrap gap-2">
             {webhooksByStatus.map(([status, count]) => (
@@ -98,12 +98,12 @@ export default async function AdminOverviewPage() {
         )}
       </AdminSectionCard>
 
-      <AdminSectionCard title="Giới thiệu và liên kết" icon={<Gift size={16} />}>
+      <AdminSectionCard title="Introduction and links" icon={<Gift size={16} />}>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <AdminStatCard label="Mã giới thiệu" value={overview.counts.referralCodes} />
-          <AdminStatCard label="Lượt quy về" value={overview.counts.referralAttributions} />
-          <AdminStatCard label="Giới thiệu đã thanh toán" value={overview.counts.paidReferrals} />
-          <AdminStatCard label="Phần thưởng đã cấp" value={overview.counts.rewardedReferrals} />
+          <AdminStatCard label="Referral code" value={overview.counts.referralCodes} />
+          <AdminStatCard label="Returns" value={overview.counts.referralAttributions} />
+          <AdminStatCard label="Paid referrals" value={overview.counts.paidReferrals} />
+          <AdminStatCard label="Rewards granted" value={overview.counts.rewardedReferrals} />
         </div>
       </AdminSectionCard>
     </div>

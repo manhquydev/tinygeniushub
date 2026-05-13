@@ -76,8 +76,8 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
       <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Người đăng ký bản tin</h1>
-            <p className="mt-1 text-sm text-[var(--admin-text-muted)]">Quản lý danh sách đã xác thực nhận bản tin.</p>
+            <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Newsletter subscribers</h1>
+            <p className="mt-1 text-sm text-[var(--admin-text-muted)]">Manage the list that has been authenticated to receive the newsletter.</p>
           </div>
           <AdminBlogNewsletterExportButton />
         </div>
@@ -85,11 +85,11 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-muted)]">Đang nhận bản tin</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-muted)]">Receiving newsletter</p>
           <p className="mt-2 text-3xl font-black text-[var(--admin-text-primary)]">{activeSubscribers}</p>
         </div>
         <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-muted)]">Đã hủy đăng ký</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-muted)]">Unsubscribed</p>
           <p className="mt-2 text-3xl font-black text-[var(--admin-text-primary)]">{unsubscribedCount}</p>
         </div>
       </div>
@@ -99,9 +99,9 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
           <TableHeader>
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Email</TableHead>
-              <TableHead className="text-xs">Tên</TableHead>
-              <TableHead className="text-xs">Thời điểm đăng ký</TableHead>
-              <TableHead className="text-xs">Xác thực</TableHead>
+              <TableHead className="text-xs">Name</TableHead>
+              <TableHead className="text-xs">Registration time</TableHead>
+              <TableHead className="text-xs">Authentic</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -113,12 +113,12 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
                   {new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(subscriber.subscribedAt)}
                 </TableCell>
                 <TableCell>
-                  <Badge variant="outline" className="text-xs border-emerald-200 bg-emerald-50 text-emerald-700">Đã xác thực</Badge>
+                  <Badge variant="outline" className="text-xs border-emerald-200 bg-emerald-50 text-emerald-700">Verified</Badge>
                 </TableCell>
               </TableRow>
             ))}
             {subscribers.length === 0 ? (
-              <TableRow><TableCell colSpan={4} className="text-center text-sm text-[var(--admin-text-muted)] py-8">Không có người đăng ký.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={4} className="text-center text-sm text-[var(--admin-text-muted)] py-8">There are no subscribers.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>
@@ -126,7 +126,7 @@ export default async function AdminBlogNewsletterPage({ searchParams }: AdminNew
 
       <div className="flex items-center justify-between rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-3">
         <Button asChild variant="outline" size="sm" className={cn(currentPage <= 1 && "pointer-events-none opacity-50")}>
-          <Link href={buildHref(Math.max(1, currentPage - 1))}>Trước</Link>
+          <Link href={buildHref(Math.max(1, currentPage - 1))}>Before</Link>
         </Button>
         <p className="text-sm text-[var(--admin-text-secondary)]">Trang {currentPage}/{totalPages}</p>
         <Button asChild variant="outline" size="sm" className={cn(currentPage >= totalPages && "pointer-events-none opacity-50")}>

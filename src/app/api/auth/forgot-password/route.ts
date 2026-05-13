@@ -16,8 +16,8 @@ const forgotPasswordSchema = z.object({
   email: z.string().email(),
 });
 
-const SUCCESS_MESSAGE = "Nếu email tồn tại trong hệ thống, chúng tôi sẽ gửi hướng dẫn đặt lại mật khẩu trong ít phút.";
-const RESET_NOT_ENABLED_MESSAGE = "Chức năng quên mật khẩu đang được cấu hình. Vui lòng liên hệ hỗ trợ trong thời gian chờ cập nhật.";
+const SUCCESS_MESSAGE = "If the email exists in the system, we will send password reset instructions within a few minutes.";
+const RESET_NOT_ENABLED_MESSAGE = "Forgot password function is being configured. Please contact support while waiting for updates.";
 
 export async function POST(request: Request) {
   let clientIp = "unknown";

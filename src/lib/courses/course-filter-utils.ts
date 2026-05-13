@@ -1,10 +1,10 @@
 export const SUBJECT_LABELS: Record<string, string> = {
-  MATH: "Toán học",
-  ENGLISH: "Tiếng Anh",
-  SCIENCE: "Khoa học",
-  ART: "Mỹ thuật",
-  MUSIC: "Âm nhạc",
-  OTHER: "Khác",
+  MATH: "Mathematics",
+  ENGLISH: "English",
+  SCIENCE: "Science",
+  ART: "Art",
+  MUSIC: "Music",
+  OTHER: "Other",
 };
 
 export const PROGRAM_LABELS: Record<string, string> = {
@@ -14,34 +14,34 @@ export const PROGRAM_LABELS: Record<string, string> = {
 };
 
 export const PHASE_LABELS: Record<string, string> = {
-  intro: "Khởi động",
-  starter: "Bắt đầu",
-  foundation: "Nền tảng",
-  builder: "Xây nền",
+  intro: "Start up",
+  starter: "Begin",
+  foundation: "Foundation",
+  builder: "Building the foundation",
 };
 
 export const AGE_GROUP_LABELS: Record<string, string> = {
-  ALL_AGES: "Mọi độ tuổi",
-  UNDER_3: "Dưới 3 tuổi",
-  AGE_3_5: "3-5 tuổi",
-  AGE_4_6: "4-6 tuổi",
-  AGE_6_8: "6-8 tuổi",
-  AGE_7_9: "7-9 tuổi",
-  AGE_9_12: "9-12 tuổi",
-  AGE_10_12: "10-12 tuổi",
+  ALL_AGES: "All ages",
+  UNDER_3: "Under 3 years old",
+  AGE_3_5: "3-5 years old",
+  AGE_4_6: "4-6 years old",
+  AGE_6_8: "6-8 years old",
+  AGE_7_9: "7-9 years old",
+  AGE_9_12: "9-12 years old",
+  AGE_10_12: "10-12 years old",
 };
 
 export const DURATION_LABELS = {
-  short: "Ngắn (<30 ngày)",
-  medium: "Vừa (30-60 ngày)",
-  long: "Dài (>60 ngày)",
+  short: "Short (<30 days)",
+  medium: "Medium (30-60 days)",
+  long: "Long (>60 days)",
 };
 
 export const SORT_OPTIONS = [
-  { value: "newest", label: "Mới nhất" },
-  { value: "price_asc", label: "Giá tăng dần" },
-  { value: "price_desc", label: "Giá giảm dần" },
-  { value: "duration_asc", label: "Thời lượng ngắn trước" },
+  { value: "newest", label: "Latest" },
+  { value: "price_asc", label: "Prices gradually increase" },
+  { value: "price_desc", label: "Prices gradually decrease" },
+  { value: "duration_asc", label: "Short duration first" },
 ];
 
 export type CourseFilterParams = {

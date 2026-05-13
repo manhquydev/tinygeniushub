@@ -201,8 +201,8 @@ export async function getSkillGapReport(
     affectedStudentCount: g.belowProficientCount,
     suggestedAction:
       g.belowProficientPercent > 0.6
-        ? "Cần dạy lại toàn lớp kỹ năng này"
-        : "Tổ chức nhóm ôn tập cho học sinh dưới mức thành thạo",
+        ? "This skill needs to be re-taught to the entire class"
+        : "Organize review groups for students below the proficiency level",
   }));
 
   return { gapAlerts };

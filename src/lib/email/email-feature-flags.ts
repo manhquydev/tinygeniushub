@@ -9,57 +9,57 @@ export type EmailFeatureFlagDefinition = {
 export const EMAIL_FEATURE_FLAG_DEFINITIONS: EmailFeatureFlagDefinition[] = [
   {
     key: "EMAIL_WEEKLY_REPORT_ENABLED",
-    description: "Bật/tắt email báo cáo tuần gửi cho phụ huynh.",
+    description: "Enable/disable weekly report emails sent to parents.",
     featureTags: ["weekly_report"],
   },
   {
     key: "EMAIL_MARKETING_LIFECYCLE_ENABLED",
-    description: "Bật/tắt email nhắc học và chăm sóc vòng đời (D1/D3/D5/D7, winback, renewal).",
+    description: "Enable/disable email reminders for learning and lifecycle care (D1/D3/D5/D7, winback, renewal).",
     featureTags: ["lifecycle"],
   },
   {
     key: "EMAIL_MARKETING_BLOG_NEWSLETTER_ENABLED",
-    description: "Bật/tắt email newsletter blog (xác nhận đăng ký + bản tin tuần).",
+    description: "Enable/disable blog email newsletter (subscription confirmation + weekly newsletter).",
     featureTags: ["blog_newsletter_verify", "blog_newsletter_weekly"],
   },
   {
     key: "EMAIL_BLOG_COMMENT_NOTIFICATIONS_ENABLED",
-    description: "Bật/tắt email xác minh bình luận và thông báo phản hồi bình luận blog.",
+    description: "Enable/disable comment verification emails and blog comment response notifications.",
     featureTags: ["blog_comment_verify", "blog_comment_reply"],
   },
   {
     key: "EMAIL_PARENT_VERIFICATION_ENABLED",
-    description: "Bật/tắt email xác minh tài khoản phụ huynh.",
+    description: "Enable/disable parent account verification email.",
     featureTags: ["parent_email_verify"],
   },
   {
     key: "EMAIL_PASSWORD_RESET_ENABLED",
-    description: "Bật/tắt email đặt lại mật khẩu.",
+    description: "Enable/disable password reset email.",
     featureTags: ["forgot_password"],
   },
   {
     key: "EMAIL_PAYMENT_NOTIFICATIONS_ENABLED",
-    description: "Bật/tắt email thông báo thanh toán gói học (thành công/thất bại).",
+    description: "Enable/disable learning package payment notification email (success/failure).",
     featureTags: ["package_subscription_success", "package_subscription_failed"],
   },
   {
     key: "EMAIL_CAREGIVER_INVITE_ENABLED",
-    description: "Bật/tắt email mời caregiver.",
+    description: "Enable/disable caregiver invitation email.",
     featureTags: ["caregiver_invite"],
   },
   {
     key: "EMAIL_ADMIN_MANUAL_ENABLED",
-    description: "Bật/tắt email thủ công gửi từ admin cho phụ huynh.",
+    description: "Enable/disable manual emails sent from admin to parents.",
     featureTags: ["admin_manual_email"],
   },
   {
     key: "EMAIL_CONTACT_FORM_ENABLED",
-    description: "Bật/tắt email form liên hệ (thông báo nội bộ + phản hồi xác nhận).",
+    description: "Enable/disable contact form email (internal notification + confirmation response).",
     featureTags: ["contact_form", "contact_form_ack"],
   },
   {
     key: "EMAIL_WAITLIST_ENABLED",
-    description: "Bật/tắt email waitlist (thông báo nội bộ + xác nhận người đăng ký).",
+    description: "Enable/disable email waitlist (internal notification + subscriber confirmation).",
     featureTags: ["waitlist_admin", "waitlist_confirmation"],
   },
 ];

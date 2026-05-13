@@ -29,15 +29,15 @@ function getFirstValue(value: string | string[] | undefined) {
 function getStatusLabel(status: BlogPostStatus) {
   switch (status) {
     case "DRAFT":
-      return "Nháp";
+      return "Draft";
     case "REVIEW":
-      return "Chờ duyệt";
+      return "Waiting for approval";
     case "PUBLISHED":
-      return "Đã xuất bản";
+      return "Published";
     case "SCHEDULED":
-      return "Lên lịch";
+      return "Schedule";
     case "ARCHIVED":
-      return "Lưu trữ";
+      return "Storage";
     default:
       return status;
   }
@@ -100,17 +100,17 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
       <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Quản lý bài viết</h1>
-            <p className="mt-1 text-sm text-[var(--admin-text-muted)]">Lọc theo trạng thái hoặc tiêu đề.</p>
+            <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Article management</h1>
+            <p className="mt-1 text-sm text-[var(--admin-text-muted)]">Filter by status or title.</p>
           </div>
           <Button asChild className="bg-teal-600 hover:bg-teal-700">
-            <Link href="/admin/blog/posts/new">Viết bài mới</Link>
+            <Link href="/admin/blog/posts/new">Write a new post</Link>
           </Button>
         </div>
 
         <form method="GET" className="mt-4 grid gap-3 md:grid-cols-[220px_1fr_auto]">
           <select name="status" defaultValue={status ?? ""} className="h-10 rounded-lg border border-[var(--admin-card-border)] px-3 text-sm">
-            <option value="">Tất cả trạng thái</option>
+            <option value="">All statuses</option>
             <option value="DRAFT">{getStatusLabel("DRAFT")}</option>
             <option value="REVIEW">{getStatusLabel("REVIEW")}</option>
             <option value="PUBLISHED">{getStatusLabel("PUBLISHED")}</option>
@@ -121,11 +121,11 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
             type="search"
             name="q"
             defaultValue={q}
-            placeholder="Tìm tiêu đề"
+            placeholder="Find title"
             className="h-10 rounded-lg border border-[var(--admin-card-border)] px-3 text-sm"
           />
           <Button type="submit" variant="outline">
-            Lọc
+            Filter
           </Button>
         </form>
       </div>
@@ -151,7 +151,7 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-3">
         <div className="flex gap-2">
           <Button asChild variant="outline" size="sm" className={cn(currentPage === 1 && "pointer-events-none opacity-50")}>
-            <Link href={buildHref(Math.max(1, currentPage - 1), status, q || undefined)}>Trước</Link>
+            <Link href={buildHref(Math.max(1, currentPage - 1), status, q || undefined)}>Before</Link>
           </Button>
           <Button
             asChild

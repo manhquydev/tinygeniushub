@@ -21,7 +21,7 @@ export default async function AdminBlogAuthorsPage() {
   return (
     <div className="space-y-6">
       <section className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
-        <h1 className="text-3xl font-black tracking-[-0.02em] text-[var(--admin-text-primary)]">Quản lý tác giả blog</h1>
+        <h1 className="text-3xl font-black tracking-[-0.02em] text-[var(--admin-text-primary)]">Manage blog authors</h1>
       </section>
 
       <AdminBlogAuthorCreateForm />
@@ -31,11 +31,11 @@ export default async function AdminBlogAuthorsPage() {
           <table className="min-w-full text-left text-sm">
             <thead className="bg-[var(--admin-sidebar-accent)] text-xs uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
               <tr>
-                <th className="px-4 py-3">Tên</th>
-                <th className="px-4 py-3">Vai trò</th>
+                <th className="px-4 py-3">Name</th>
+                <th className="px-4 py-3">Role</th>
                 <th className="px-4 py-3">Email</th>
-                <th className="px-4 py-3">Kích hoạt</th>
-                <th className="px-4 py-3">Số bài viết</th>
+                <th className="px-4 py-3">Activate</th>
+                <th className="px-4 py-3">Number of articles</th>
               </tr>
             </thead>
             <tbody>
@@ -44,7 +44,7 @@ export default async function AdminBlogAuthorsPage() {
                   <td className="px-4 py-3 font-semibold text-[var(--admin-text-primary)]">{author.displayName}</td>
                   <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{author.role}</td>
                   <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{author.email ?? "-"}</td>
-                  <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{author.active ? "Bật" : "Tắt"}</td>
+                  <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{author.active ? "Turn on" : "Turn off"}</td>
                   <td className="px-4 py-3 text-[var(--admin-text-secondary)]">{author._count.posts}</td>
                 </tr>
               ))}

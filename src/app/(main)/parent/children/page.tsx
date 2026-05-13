@@ -67,9 +67,9 @@ export default async function ParentChildrenPage() {
         <p className="inline-flex w-fit rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
           Parent Children
         </p>
-        <h1 className="mt-3 text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">Quản lý hồ sơ bé</h1>
+        <h1 className="mt-3 text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">Manage baby records</h1>
         <p className="mt-2 max-w-[70ch] text-sm leading-relaxed text-slate-600 sm:text-base">
-          Mỗi tài khoản có một hồ sơ chính xuyên suốt. Chỉnh thông tin bé và truy cập nhanh bài học hằng ngày tại đây.
+          Each account has one main profile throughout. Adjust your child's information and quickly access daily lessons here.
         </p>
       </section>
 

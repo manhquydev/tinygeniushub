@@ -28,7 +28,7 @@ const COURSE_BUNDLES: readonly CourseBundleDefinition[] = [
   {
     slug: "abeka",
     title: "Abeka",
-    description: "Bộ Abeka đầy đủ từ K4 đến G12, mua một lần mở trọn bộ lộ trình.",
+    description: "Full set of Abeka from K4 to G12, buy once to open the entire route.",
     coverImageUrl: "/images/courses/course_cover_abeka.png",
     entryCourseSlug: "abeka",
     courseSlugRules: [
@@ -44,7 +44,7 @@ const COURSE_BUNDLES: readonly CourseBundleDefinition[] = [
   {
     slug: "little-fox-en",
     title: "Little Fox English",
-    description: "Bộ Little Fox English đầy đủ từ Level 1 đến Level 9, mở toàn bộ nội dung.",
+    description: "Complete Little Fox English set from Level 1 to Level 9, open all content.",
     coverImageUrl: "/images/courses/course_cover_littlefox.png",
     entryCourseSlug: "littlefox",
     courseSlugRules: [
@@ -61,7 +61,7 @@ const COURSE_BUNDLES: readonly CourseBundleDefinition[] = [
   {
     slug: "little-fox-cn",
     title: "Little Fox Chinese",
-    description: "Bộ Little Fox Chinese đầy đủ từ Level 1 đến Level 5, mua một lần học trọn bộ.",
+    description: "Complete Little Fox Chinese set from Level 1 to Level 5, buy once to learn the whole set.",
     coverImageUrl: "/images/courses/course_cover_littlefox_cn.png",
     entryCourseSlug: "littlefoxcn",
     courseSlugRules: [

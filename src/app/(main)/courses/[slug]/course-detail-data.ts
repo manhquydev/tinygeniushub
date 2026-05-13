@@ -24,72 +24,72 @@ export type TrackCourseLite = {
 
 const DEFAULT_FIT_CHECKLIST: FitChecklistContent = {
   fitIf: [
-    "Phụ huynh muốn có lộ trình học rõ ràng theo tuần.",
-    "Gia đình cần theo dõi tiến độ bằng số bài hoàn thành.",
-    "Muốn mua khóa có thể học ngay, không cần setup thêm.",
+    "Parents want to have a clear weekly learning schedule.",
+    "Families need to track progress by the number of completed lessons.",
+    "If you want to buy a course, you can learn it right away, no need for additional setup.",
   ],
   notFitIf: [
-    "Bé chưa sẵn sàng tự học tối thiểu 3 buổi mỗi tuần.",
-    "Gia đình chưa có khung giờ cố định để duy trì nhịp học.",
-    "Đang cần chương trình luyện thi cấp tốc trong thời gian rất ngắn.",
+    "Your child is not ready to self-study at least 3 sessions per week.",
+    "The family does not have a fixed time frame to maintain the study rhythm.",
+    "In need of an intensive exam preparation program in a very short time.",
   ],
   buyWhen: [
-    "Bạn đã xác định mục tiêu học 8-12 tuần cho con.",
-    "Con có thể cam kết hoàn thành bài đều đặn mỗi tuần.",
-    "Phụ huynh muốn có dữ liệu rõ ràng để quyết định học tiếp.",
+    "You have determined a learning goal of 8-12 weeks for your child.",
+    "You can commit to completing the assignment regularly every week.",
+    "Parents want clear data to make informed decisions.",
   ],
 };
 
 const FIT_CHECKLIST_BY_BUNDLE: Record<CourseBundleSlug, FitChecklistContent> = {
   abeka: {
     fitIf: [
-      "Con cần lộ trình học thuật theo cấp lớp từ cơ bản đến nâng cao.",
-      "Phụ huynh muốn thấy rõ con đang ở cấp lớp nào và còn bao nhiêu bài.",
-      "Gia đình muốn duy trì nhịp học ổn định 4-5 bài mỗi tuần.",
+      "Your child needs an academic roadmap by grade level from basic to advanced.",
+      "Parents want to clearly see what grade level their child is in and how many lessons are left.",
+      "The family wants to maintain a stable learning rhythm of 4-5 lessons per week.",
     ],
     notFitIf: [
-      "Con đang cần chương trình siêu ngắn để luyện thi gấp.",
-      "Bé chưa có thời gian duy trì nhịp học hàng tuần.",
-      "Gia đình chỉ muốn học thử ngắn hạn mà chưa xác định mục tiêu dài hơn 1 tháng.",
+      "I need a super short program to prepare for exams urgently.",
+      "Your child does not have time to maintain a weekly learning rhythm.",
+      "The family only wants a short-term trial lesson but has not yet determined a goal longer than 1 month.",
     ],
     buyWhen: [
-      "Bạn đã xác định được cấp lớp xuất phát phù hợp cho con.",
-      "Con sẵn sàng hoàn thành các cụm bài theo thứ tự.",
-      "Phụ huynh muốn có dữ liệu tiến độ để nâng cấp lộ trình đúng lúc.",
+      "You have determined the appropriate starting grade level for your child.",
+      "I am ready to complete the groups of lessons in order.",
+      "Parents want progress data to upgrade pathways in a timely manner.",
     ],
   },
   "little-fox-en": {
     fitIf: [
-      "Con cần tăng nghe hiểu và từ vựng tiếng Anh qua truyện.",
-      "Phụ huynh muốn lộ trình chia level rõ ràng để tránh học dàn trải.",
-      "Gia đình muốn con luyện tập ngắn hàng ngày thay vì buổi học quá dài.",
+      "Children need to increase listening comprehension and English vocabulary through stories.",
+      "Parents want a clear leveling roadmap to avoid scattered learning.",
+      "Families want their children to practice briefly every day instead of having too long lessons.",
     ],
     notFitIf: [
-      "Con chưa thể ngồi học liên tục 10-15 phút cho mỗi phiên.",
-      "Gia đình muốn lộ trình ngữ pháp chuyên sâu thay vì học qua ngữ cảnh truyện.",
-      "Bé đang cần luyện thi chứng chỉ trong thời gian quá gấp.",
+      "My child cannot yet sit and study continuously for 10-15 minutes per session.",
+      "Families want an in-depth grammar route instead of learning through story context.",
+      "The child needs to prepare for the certification exam in a very urgent time.",
     ],
     buyWhen: [
-      "Con đã có nền tảng cơ bản và cần tăng nghe hiểu theo lộ trình.",
-      "Phụ huynh muốn theo dõi level hiện tại và mục tiêu level kế tiếp.",
-      "Gia đình chấp nhận nhịp học đều 4-5 buổi mỗi tuần để tạo phản xạ.",
+      "I have a basic foundation and need to increase my listening comprehension along the way.",
+      "Parents want to monitor the current level and next level goals.",
+      "Families accept a regular study rhythm of 4-5 sessions per week to create reflexes.",
     ],
   },
   "little-fox-cn": {
     fitIf: [
-      "Con bắt đầu hoặc củng cố nền tảng tiếng Trung theo level.",
-      "Gia đình muốn mô hình học ngắn, đều và đo tiến độ hàng tuần.",
-      "Phụ huynh cần tiêu chí rõ ràng để biết khi nào nên nâng level.",
+      "Children begin or strengthen their Chinese foundation by level.",
+      "Families want a short, steady learning model with weekly progress measurements.",
+      "Parents need clear criteria to know when to level up.",
     ],
     notFitIf: [
-      "Con chưa sẵn sàng nghe và nhắc lại từ mới theo chu kỳ.",
-      "Gia đình chưa có thời gian học ổn định hàng tuần.",
-      "Bạn đang cần lộ trình luyện thi HSK chuyên sâu trong ngắn hạn.",
+      "Your child is not ready to listen and repeat new words periodically.",
+      "The family does not have a stable weekly study time.",
+      "You need a short-term, intensive HSK exam preparation roadmap.",
     ],
     buyWhen: [
-      "Con bắt đầu nhận diện âm-từ cơ bản và cần luyện đều.",
-      "Phụ huynh muốn theo dõi các mốc level rõ ràng thay vì học rời rạc.",
-      "Gia đình muốn có checklist để ra quyết định nâng cấp đúng thời điểm.",
+      "Children begin to recognize basic sounds and words and need to practice regularly.",
+      "Parents want to track clear level milestones instead of learning sporadically.",
+      "The family wants to have a checklist to make the decision to upgrade at the right time.",
     ],
   },
 };
@@ -102,69 +102,69 @@ export function getFitChecklist(bundleSlug: CourseBundleSlug | null): FitCheckli
 // ─── Outcome Timeline ─────────────────────────────────────────────────────────
 
 const DEFAULT_TIMELINE: TimelineStage[] = [
-  { label: "Tuần 1-2", points: ["Làm quen lộ trình và nhịp học.", "Hoàn thành các bài nền tảng đầu tiên."] },
-  { label: "Tuần 3-4", points: ["Tăng dần độ chủ động khi học.", "Bắt đầu có checkpoint rõ cho phụ huynh theo dõi."] },
+  { label: "Week 1-2", points: ["Get familiar with the learning schedule and rhythm.", "Complete the foundation lessons first."] },
+  { label: "Week 3-4", points: ["Gradually increase your proactiveness when studying.", "Start having clear checkpoints for parents to monitor."] },
   {
-    label: "Sau hoàn thành",
-    points: ["Xác định được mức hiện tại của con.", "Có cơ sở rõ ràng để quyết định mua giai đoạn tiếp theo."],
+    label: "After completion",
+    points: ["Determine your child's current level.", "There is a clear basis to decide to buy the next phase."],
   },
 ];
 
 const TIMELINE_BY_BUNDLE: Record<CourseBundleSlug, TimelineStage[]> = {
   abeka: [
     {
-      label: "Tuần 1-2",
-      points: ["Chọn đúng cấp lớp bắt đầu và ổn định nhịp 4-5 bài/tuần.", "Con làm quen bài cốt lõi đầu tiên."],
+      label: "Week 1-2",
+      points: ["Choose the right starting grade level and settle into a rhythm of 4-5 lessons/week.", "I get acquainted with the core lesson first."],
     },
     {
-      label: "Tuần 3-4",
+      label: "Week 3-4",
       points: [
-        "Con đi đều theo cấp lớp, giảm tình trạng học nhảy cóc.",
-        "Phụ huynh thấy rõ mốc hoàn thành theo cụm bài.",
+        "Children move steadily according to grade level, reducing skipping classes.",
+        "Parents can clearly see the completion milestones for each group of lessons.",
       ],
     },
     {
-      label: "Sau hoàn thành",
+      label: "After completion",
       points: [
-        "Con sẵn sàng chuyển cấp lớp tiếp theo.",
-        "Gia đình có dữ liệu tiến độ để quyết định nâng cấp chính xác.",
+        "I'm ready to move to the next grade level.",
+        "Families have progress data to make accurate upgrade decisions.",
       ],
     },
   ],
   "little-fox-en": [
     {
-      label: "Tuần 1-2",
-      points: ["Con làm quen nhịp nghe-đọc bằng truyện ngắn.", "Thiết lập thói quen học ngắn nhưng đều."],
+      label: "Week 1-2",
+      points: ["I get used to the listening-reading rhythm with short stories.", "Establish a short but regular study routine."],
     },
     {
-      label: "Tuần 3-4",
+      label: "Week 3-4",
       points: [
-        "Từ vựng và nghe hiểu cải thiện qua cụm bài liên tục.",
-        "Phụ huynh nhìn rõ level hiện tại và tốc độ tiến bộ.",
+        "Vocabulary and listening comprehension improve through continuous series of lessons.",
+        "Parents can clearly see the current level and progress rate.",
       ],
     },
     {
-      label: "Sau hoàn thành",
-      points: ["Con đủ tự tin để lên level cao hơn.", "Gia đình có căn cứ rõ để quyết định mua level tiếp theo."],
+      label: "After completion",
+      points: ["I am confident enough to move to a higher level.", "The family has a clear basis to decide to buy the next level."],
     },
   ],
   "little-fox-cn": [
     {
-      label: "Tuần 1-2",
-      points: ["Con làm quen âm và từ theo level đang học.", "Thiết lập nhịp học ngắn, đều, không quá tải."],
+      label: "Week 1-2",
+      points: ["Children become familiar with sounds and words according to the level they are learning.", "Set a short, steady study rhythm, without overload."],
     },
     {
-      label: "Tuần 3-4",
+      label: "Week 3-4",
       points: [
-        "Khả năng nhận diện và ghi nhớ từ cải thiện rõ.",
-        "Phụ huynh thấy được mức sẵn sàng trước khi nâng level.",
+        "The ability to recognize and remember words is clearly improved.",
+        "Parents can see their readiness level before upgrading.",
       ],
     },
     {
-      label: "Sau hoàn thành",
+      label: "After completion",
       points: [
-        "Con sẵn sàng level kế tiếp với nền bền vững hơn.",
-        "Gia đình có tiêu chí rõ để mua giai đoạn tiếp.",
+        "I'm ready for the next level with a more sustainable foundation.",
+        "The family has clear criteria for buying the next stage.",
       ],
     },
   ],
@@ -187,33 +187,33 @@ export function getOutcomeTimeline(
   const twoWeekTarget = claritySnapshot.pacePerWeek * 2;
   const cadenceLine =
     claritySnapshot.week5Target !== undefined
-      ? `Mốc 5 tuần: khoảng ${claritySnapshot.week5Target} ${unitLabel}.`
+      ? `5 week mark: approx${claritySnapshot.week5Target} ${unitLabel}.`
       : claritySnapshot.week6Target !== undefined
-        ? `Mốc 6 tuần: khoảng ${claritySnapshot.week6Target} ${unitLabel}.`
-        : `Giữ nhịp ổn định để hoàn tất Foundation đúng tiến độ.`;
+        ? `6 week mark: approx${claritySnapshot.week6Target} ${unitLabel}.`
+        : `Maintain a stable pace to complete Foundation on schedule.`;
 
   return [
     {
-      label: "Tuần 1-2",
+      label: "Week 1-2",
       points: [
-        `Ổn định nhịp ${claritySnapshot.pacePerWeek} ${unitLabel}/tuần để không quá tải.`,
-        `Mục tiêu ngắn hạn: hoàn thành khoảng ${twoWeekTarget} ${unitLabel}.`,
+        `Stable rhythm${claritySnapshot.pacePerWeek} ${unitLabel}/week to avoid overload.`,
+        `Short-term goal: complete approx${twoWeekTarget} ${unitLabel}.`,
       ],
     },
     {
-      label: "Tuần 3-4",
+      label: "Week 3-4",
       points: [
-        `Mốc 4 tuần: khoảng ${claritySnapshot.week4Target} ${unitLabel}.`,
+        `4 week mark: approx${claritySnapshot.week4Target} ${unitLabel}.`,
         cadenceLine,
       ],
     },
     {
-      label: "Checkpoint nâng cấp",
+      label: "Checkpoint upgrade",
       points: [
         `Foundation ${claritySnapshot.phaseCounts.foundation}, Core ${claritySnapshot.phaseCounts.core}, Mastery ${claritySnapshot.phaseCounts.mastery} ${unitLabel}.`,
         bundleSlug === "abeka"
-          ? `Hoàn tất Mastery để lên grade kế tiếp trong track ${scopeLabel}.`
-          : `Hoàn tất Mastery để lên level kế tiếp trong track ${scopeLabel}.`,
+          ? `Complete Mastery to advance to the next level in the track${scopeLabel}.`
+          : `Complete Mastery to advance to the next level in the track${scopeLabel}.`,
       ],
     },
   ];
@@ -244,9 +244,9 @@ export function compareTrackCourses(a: TrackCourseLite, b: TrackCourseLite, entr
 
 function formatDelta(currentValue: number, adjacentValue: number, unit: string) {
   const delta = currentValue - adjacentValue;
-  if (delta === 0) return `Khối lượng ${unit} tương đương.`;
-  if (delta > 0) return `Nhiều hơn ${delta} ${unit}.`;
-  return `Ít hơn ${Math.abs(delta)} ${unit}.`;
+  if (delta === 0) return `Volume${unit}equivalent.`;
+  if (delta > 0) return `More${delta} ${unit}.`;
+  return `Less${Math.abs(delta)} ${unit}.`;
 }
 
 export function buildDifferencePoints(
@@ -262,24 +262,24 @@ export function buildDifferencePoints(
   if (currentLevel !== null && adjacentLevel !== null && currentLevel !== adjacentLevel) {
     const levelGap = Math.abs(currentLevel - adjacentLevel);
     if (direction === "previous") {
-      points.push(`Mức độ tiếp nối sau khóa trước khoảng ${levelGap} ${courseUnitLabel}.`);
+      points.push(`The degree of continuation after the previous course is approx${levelGap} ${courseUnitLabel}.`);
     } else {
-      points.push(`Là bước đệm trước khóa kế tiếp khoảng ${levelGap} ${courseUnitLabel}.`);
+      points.push(`Is a stepping stone before the next course approx${levelGap} ${courseUnitLabel}.`);
     }
   }
 
-  points.push(`Số bài so với khóa liền kề: ${formatDelta(current.lessonCount, adjacent.lessonCount, "bài")}`);
-  points.push(`Thời hạn truy cập: ${formatDelta(current.durationDays, adjacent.durationDays, "ngày")}`);
+  points.push(`Number of cards compared to adjacent keys:${formatDelta(current.lessonCount, adjacent.lessonCount, "post")}`);
+  points.push(`Access period:${formatDelta(current.durationDays, adjacent.durationDays, "day")}`);
 
   if (direction === "previous") {
-    points.push(`Nên chọn khi con đã sẵn sàng đi tiếp từ ${adjacent.title}.`);
+    points.push(`You should choose when your child is ready to move on${adjacent.title}.`);
   } else {
-    points.push(`Nếu con hoàn thành tốt khóa này, có thể nâng lên ${adjacent.title}.`);
+    points.push(`If you complete this course well, you can upgrade${adjacent.title}.`);
   }
 
   return points;
 }
 
 export function formatCurrency(amount: number) {
-  return `${amount.toLocaleString("vi-VN")}đ`;
+  return `${amount.toLocaleString("vi-VN")}D`;
 }

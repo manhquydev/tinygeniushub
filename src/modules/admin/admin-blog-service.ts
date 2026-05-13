@@ -34,32 +34,32 @@ type DefaultFeatureFlagSeed = {
 const defaultFeatureFlags: DefaultFeatureFlagSeed[] = [
   {
     key: "PARENT_V2_DASHBOARD",
-    description: "Dashboard phụ huynh phiên bản mới",
+    description: "New version of parent dashboard",
     enabled: false,
   },
   {
     key: "BETA_LESSON_EDITOR",
-    description: "Trình soạn nội dung beta",
+    description: "Beta content editor",
     enabled: false,
   },
   {
     key: "CAREGIVER_VIDEO_CALL",
-    description: "Tính năng video call người chăm sóc (sắp ra mắt)",
+    description: "Caregiver video call feature (coming soon)",
     enabled: false,
   },
   {
     key: "REFERRAL_V2",
-    description: "Hệ thống giới thiệu v2",
+    description: "Referral system v2",
     enabled: false,
   },
   {
     key: "AI_LESSON_SUGGESTIONS",
-    description: "Gợi ý bài học bằng AI (sắp ra mắt)",
+    description: "AI lesson suggestions (coming soon)",
     enabled: false,
   },
   {
     key: "KID_SKY_GARDEN_MVP",
-    description: "Giao diện khu vườn trên mây cho trang học của bé",
+    description: "Cloud garden interface for your child's school site",
     enabled: false,
   },
   ...EMAIL_FEATURE_FLAG_DEFINITIONS.map((flag) => ({
@@ -160,12 +160,12 @@ export async function createAnnouncement(params: {
   });
 
   if (payload.endsAt && payload.endsAt <= new Date()) {
-    throw new DomainError("Thời gian kết thúc phải ở tương lai.", 400, "INVALID_ANNOUNCEMENT_ENDS_AT");
+    throw new DomainError("The end time must be in the future.", 400, "INVALID_ANNOUNCEMENT_ENDS_AT");
   }
 
   if (payload.scheduledAt && payload.endsAt && payload.scheduledAt >= payload.endsAt) {
     throw new DomainError(
-      "Thời gian lập lịch phải sớm hơn thời gian kết thúc.",
+      "The scheduling time must be earlier than the end time.",
       400,
       "INVALID_ANNOUNCEMENT_SCHEDULE",
     );
@@ -223,7 +223,7 @@ export async function updateAnnouncementActive(params: {
   });
 
   if (!current) {
-    throw new DomainError("Không tìm thấy thông báo hệ thống.", 404, "ANNOUNCEMENT_NOT_FOUND");
+    throw new DomainError("System messages not found.", 404, "ANNOUNCEMENT_NOT_FOUND");
   }
 
   const nextActive = payload.active ?? !current.active;
@@ -306,7 +306,7 @@ export async function updateFeatureFlag(params: {
   });
 
   if (!existing) {
-    throw new DomainError("Không tìm thấy feature flag.", 404, "FEATURE_FLAG_NOT_FOUND");
+    throw new DomainError("Feature flag not found.", 404, "FEATURE_FLAG_NOT_FOUND");
   }
 
   return prisma.featureFlag.update({

@@ -28,7 +28,7 @@ export function WaitlistForm() {
   if (status === "success") {
     return (
       <p style={{ color: "var(--color-success, #16a34a)", fontWeight: 600 }}>
-        ✅ Đăng ký thành công! Chúng tôi sẽ liên hệ sớm nhất.
+        ✅ Registration successful! We will contact as soon as possible.
       </p>
     );
   }
@@ -37,7 +37,7 @@ export function WaitlistForm() {
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       <div>
         <label htmlFor="wl-email" style={{ display: "block", marginBottom: "6px", fontWeight: 500 }}>
-          Email của bạn
+          Your email
         </label>
         <input
           id="wl-email"
@@ -50,30 +50,30 @@ export function WaitlistForm() {
       </div>
       <div>
         <label htmlFor="wl-age" style={{ display: "block", marginBottom: "6px", fontWeight: 500 }}>
-          Bé nhà bạn bao nhiêu tuổi?{" "}
-          <span style={{ fontWeight: 400, color: "var(--color-muted, #888)" }}>(không bắt buộc)</span>
+          How old is your baby?{" "}
+          <span style={{ fontWeight: 400, color: "var(--color-muted, #888)" }}>(optional)</span>
         </label>
         <select
           id="wl-age"
           name="childAge"
           style={{ width: "100%", padding: "10px 14px", border: "1px solid var(--color-border, #ddd)", borderRadius: "6px", fontSize: "1rem", boxSizing: "border-box" }}
         >
-          <option value="">Chọn độ tuổi</option>
+          <option value="">Select age</option>
           {[1, 2, 3, 4, 5, 6, 7, 8].map((age) => (
-            <option key={age} value={age}>{age} tuổi</option>
+            <option key={age} value={age}>{age} years old</option>
           ))}
         </select>
       </div>
       {status === "error" && (
         <p style={{ color: "var(--color-error, #dc2626)", fontSize: "0.875rem" }}>
-          Có lỗi xảy ra. Vui lòng thử lại.
+          An error occurred. Please try again.
         </p>
       )}
       <button type="submit" className="solid-button" disabled={status === "loading"}>
-        {status === "loading" ? "Đang gửi..." : "Đăng ký nhận thông báo"}
+        {status === "loading" ? "Sending..." : "Sign up to receive notifications"}
       </button>
       <p className="muted-text" style={{ fontSize: "0.875rem" }}>
-        Không spam. Chỉ thông báo khi ra mắt và ưu đãi cho người đăng ký sớm.
+        No spam. Announcement only upon launch and incentives for early registrants.
       </p>
     </form>
   );

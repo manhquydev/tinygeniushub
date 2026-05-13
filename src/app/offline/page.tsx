@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Mất kết nối",
+  title: "Lost connection",
 };
 
 const CLOUD_GARDEN_SYSTEM_IMAGE = "/images/system/cloud-garden/system_offline_error.png";
@@ -20,13 +20,13 @@ export default function OfflinePage() {
 
       <section className="relative mx-auto flex w-full max-w-5xl flex-col gap-5 rounded-[2rem] border border-white/20 bg-slate-950/72 p-4 shadow-[0_28px_60px_rgba(2,6,23,0.55)] backdrop-blur-xl sm:gap-6 sm:p-8">
         <p className="inline-flex w-fit items-center rounded-full border border-sky-200/35 bg-sky-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-sky-100/95">
-          Mất kết nối mạng
+          Lost network connection
         </p>
 
         <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/50">
           <Image
             src={CLOUD_GARDEN_SYSTEM_IMAGE}
-            alt="Khung cảnh Cloud Garden khi hệ thống tạm thời mất kết nối mạng"
+            alt="Cloud Garden scene when the system temporarily loses network connection"
             width={1368}
             height={768}
             priority
@@ -36,11 +36,11 @@ export default function OfflinePage() {
 
         <div className="grid gap-3 text-left">
           <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl">
-            Không thể kết nối Internet
+            Cannot connect to the Internet
           </h1>
           <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
-            Vui lòng kiểm tra Wi-Fi hoặc dữ liệu di động, sau đó thử tải lại. Khi mạng ổn định, hệ thống sẽ tự tiếp tục
-            phiên học của bé.
+            Please check your Wi-Fi or mobile data, then try downloading again. Once the network is stable, the system will continue on its own
+            baby's study session.
           </p>
         </div>
 
@@ -54,13 +54,13 @@ export default function OfflinePage() {
               animation: "notFoundShimmer 2.5s linear infinite",
             }}
           >
-            Thử lại ngay
+            Try again now
           </Link>
           <Link
             href="/contact"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
           >
-            Liên hệ hỗ trợ
+            Contact support
           </Link>
         </div>
       </section>

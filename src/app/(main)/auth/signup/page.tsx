@@ -17,9 +17,9 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
 
   return (
     <AuthSplitShell
-      badge="Mở khóa hành trình học"
-      title="Tạo tài khoản để bắt đầu hành trình cùng con"
-      description="Tạo tài khoản phụ huynh, xem bài học mẫu và chọn khóa phù hợp cho bé chỉ trong vài bước."
+      badge="Unlock your learning journey"
+      title="Create an account to start your journey with your child"
+      description="Create a parent account, view sample lessons and choose the right course for your child in just a few steps."
       actionProp="reading"
       backgroundImageSrc="/images/bg/bg_map_math_island.png"
       stickerSrc="/kisu-assets/stickers/sticker_reward_coin.png"

@@ -31,9 +31,9 @@ export default async function AdminBlogDashboardPage() {
           <PenSquare size={18} className="text-violet-600" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Quản lý Blog</h1>
+          <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Blog Management</h1>
           <p className="text-sm text-[var(--admin-text-muted)]">
-            Nội dung, newsletter và phân tích blog.
+            Content, newsletter and blog analytics.
           </p>
         </div>
         <div className="ml-auto flex items-center gap-2">
@@ -43,14 +43,14 @@ export default async function AdminBlogDashboardPage() {
             className="inline-flex items-center gap-1.5 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-3 py-1.5 text-xs font-semibold text-[var(--admin-text-secondary)] shadow-sm hover:bg-[var(--admin-sidebar-accent)]"
           >
             <ExternalLink size={12} />
-            Xem blog công khai
+            View public blog
           </Link>
           <Link
             href="/admin/blog/posts/new"
             className="inline-flex items-center gap-1.5 rounded-xl bg-teal-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-teal-700"
           >
             <PenSquare size={12} />
-            Viết bài mới
+            Write a new post
           </Link>
         </div>
       </div>
@@ -58,25 +58,25 @@ export default async function AdminBlogDashboardPage() {
       {/* KPI stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
-          label="Đã xuất bản"
+          label="Published"
           value={publishedCount}
           icon={FileText}
           accent="emerald"
         />
         <StatCard
-          label="Bản nháp"
+          label="Draft"
           value={draftCount}
           icon={BookOpen}
           accent="amber"
         />
         <StatCard
-          label="Người đăng ký"
+          label="Subscriber"
           value={subscriberCount.toLocaleString("vi-VN")}
           icon={Users}
           accent="teal"
         />
         <StatCard
-          label="Tổng lượt xem"
+          label="Total views"
           value={totalViews.toLocaleString("vi-VN")}
           icon={Eye}
           accent="violet"
@@ -93,8 +93,8 @@ export default async function AdminBlogDashboardPage() {
             <PenSquare size={18} />
           </div>
           <div>
-            <p className="font-bold">Viết bài mới</p>
-            <p className="text-sm text-teal-100">Tạo bài viết blog ngay</p>
+            <p className="font-bold">Write a new post</p>
+            <p className="text-sm text-teal-100">Create a blog post now</p>
           </div>
           <span className="ml-auto text-lg">→</span>
         </Link>
@@ -106,9 +106,9 @@ export default async function AdminBlogDashboardPage() {
             <FileText size={18} className="text-[var(--admin-text-secondary)]" />
           </div>
           <div>
-            <p className="font-bold text-[var(--admin-text-primary)]">Quản lý bài viết</p>
+            <p className="font-bold text-[var(--admin-text-primary)]">Article management</p>
             <p className="text-sm text-[var(--admin-text-muted)]">
-              {publishedCount} đã xuất bản, {draftCount} nháp
+              {publishedCount} published, {draftCount} drafts
             </p>
           </div>
           <span className="ml-auto text-[var(--admin-text-muted)]">→</span>
@@ -119,7 +119,7 @@ export default async function AdminBlogDashboardPage() {
       {topPost ? (
         <div className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
-            Bài viết xem nhiều nhất
+            Most viewed articles
           </p>
           <p className="text-lg font-bold text-[var(--admin-text-primary)]">{topPost.titleVi}</p>
           <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-[var(--admin-text-muted)]">
@@ -136,7 +136,7 @@ export default async function AdminBlogDashboardPage() {
             ) : null}
             <span className="flex items-center gap-1">
               <Eye size={13} />
-              {(topPost.viewCount ?? 0).toLocaleString("vi-VN")} lượt xem
+              {(topPost.viewCount ?? 0).toLocaleString("vi-VN")} views
             </span>
           </div>
           <div className="mt-4">
@@ -144,7 +144,7 @@ export default async function AdminBlogDashboardPage() {
               href={`/admin/blog/posts/${topPost.id}`}
               className="inline-flex items-center gap-1.5 rounded-xl border border-teal-200 bg-teal-50 px-3 py-1.5 text-xs font-semibold text-teal-700 hover:bg-teal-100"
             >
-              Xem bài viết →
+              View article →
             </Link>
           </div>
         </div>
@@ -153,15 +153,15 @@ export default async function AdminBlogDashboardPage() {
       {/* Sub-section nav cards */}
       <div>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
-          Quản lý nhanh
+          Quick management
         </p>
         <div className="grid gap-2 sm:grid-cols-3">
           {[
-            { href: "/admin/blog/categories", label: "Danh mục" },
-            { href: "/admin/blog/authors", label: "Tác giả" },
-            { href: "/admin/blog/newsletter", label: "Bản tin" },
-            { href: "/admin/blog/analytics", label: "Phân tích Blog" },
-            { href: "/admin/blog/comments", label: "Bình luận" },
+            { href: "/admin/blog/categories", label: "Category" },
+            { href: "/admin/blog/authors", label: "Author" },
+            { href: "/admin/blog/newsletter", label: "Newsletter" },
+            { href: "/admin/blog/analytics", label: "Blog Analysis" },
+            { href: "/admin/blog/comments", label: "Comment" },
           ].map((item) => (
             <Link
               key={item.href}

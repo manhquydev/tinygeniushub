@@ -39,12 +39,12 @@ describe("buildShareMessage", () => {
 
   it("highlights streak when >= 7 days", () => {
     const msg = buildShareMessage({ ...BASE_INPUT, streakDays: 7 }, "zalo");
-    expect(msg).toContain("7 ngày liên tiếp");
+    expect(msg).toContain("7 consecutive days");
   });
 
   it("shows lessons when streak < 7 days", () => {
     const msg = buildShareMessage(BASE_INPUT, "whatsapp");
-    expect(msg).toContain("5 bài học");
+    expect(msg).toContain("5 lessons");
   });
 
   it("trims and caps long child names at 30 chars", () => {

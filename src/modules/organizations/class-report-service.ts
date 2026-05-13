@@ -39,7 +39,7 @@ export async function generateClassReport(orgId: string, teacherParentId: string
   });
 
   // Report title
-  const subtitle = `Báo cáo lớp học — ${dateStr}`;
+  const subtitle = `Class report —${dateStr}`;
   page.drawText(subtitle, {
     x: margin,
     y: height - 52,
@@ -51,7 +51,7 @@ export async function generateClassReport(orgId: string, teacherParentId: string
   // Table headers
   const tableTop = height - 90;
   const colWidths = [120, 120, 100, 80, 95];
-  const colHeaders = ["Tên học sinh", "Email phụ huynh", "Bài học (30 ngày)", "Streak (ngày)", "Hoạt động cuối"];
+  const colHeaders = ["Student name", "Parent email", "Lessons (30 days)", "Streak (day)", "Last activity"];
   const rowHeight = 20;
 
   let x = margin;

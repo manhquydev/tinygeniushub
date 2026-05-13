@@ -54,11 +54,11 @@ export const MOCK_MATH_MAP: MockSkillMap = {
   masteredCount: 1,
   overallProgress: 0.52,
   skills: [
-    { id: "s1", nameVi: "Đếm số 1-20", iconEmoji: "🔢", masteryScore: 0.95, masteryLevel: "MASTERED", isLocked: false, totalAttempts: 28 },
-    { id: "s2", nameVi: "Phép cộng 1 chữ số", iconEmoji: "➕", masteryScore: 0.62, masteryLevel: "DEVELOPING", isLocked: false, totalAttempts: 18 },
-    { id: "s3", nameVi: "Phép trừ 1 chữ số", iconEmoji: "➖", masteryScore: 0.41, masteryLevel: "NOVICE", isLocked: false, totalAttempts: 10 },
-    { id: "s4", nameVi: "Hình học cơ bản", iconEmoji: "🔷", masteryScore: 0, masteryLevel: "NOT_STARTED", isLocked: true, totalAttempts: 0 },
-    { id: "s5", nameVi: "Đo lường", iconEmoji: "📏", masteryScore: 0, masteryLevel: "NOT_STARTED", isLocked: true, totalAttempts: 0 },
+    { id: "s1", nameVi: "Count numbers 1-20", iconEmoji: "🔢", masteryScore: 0.95, masteryLevel: "MASTERED", isLocked: false, totalAttempts: 28 },
+    { id: "s2", nameVi: "1-digit addition", iconEmoji: "➕", masteryScore: 0.62, masteryLevel: "DEVELOPING", isLocked: false, totalAttempts: 18 },
+    { id: "s3", nameVi: "1-digit subtraction", iconEmoji: "➖", masteryScore: 0.41, masteryLevel: "NOVICE", isLocked: false, totalAttempts: 10 },
+    { id: "s4", nameVi: "Basic geometry", iconEmoji: "🔷", masteryScore: 0, masteryLevel: "NOT_STARTED", isLocked: true, totalAttempts: 0 },
+    { id: "s5", nameVi: "Measurement", iconEmoji: "📏", masteryScore: 0, masteryLevel: "NOT_STARTED", isLocked: true, totalAttempts: 0 },
   ],
 };
 
@@ -77,10 +77,10 @@ export const MOCK_ENGLISH_MAP: MockSkillMap = {
 
 export const MOCK_WEEKLY_SUMMARY: MockWeeklySummary = {
   newProficient: [{ skillId: "e2", nameVi: "CVC Words" }],
-  biggestImprovement: { skillId: "s2", nameVi: "Phép cộng 1 chữ số", delta: 15 },
+  biggestImprovement: { skillId: "s2", nameVi: "1-digit addition", delta: 15 },
   reviewsCompleted: 3,
   upcomingReviews: [
-    { skillId: "s1", nameVi: "Đếm số 1-20", scheduledAt: new Date(Date.now() + 86400000).toISOString() },
+    { skillId: "s1", nameVi: "Count numbers 1-20", scheduledAt: new Date(Date.now() + 86400000).toISOString() },
   ],
 };
 
@@ -114,7 +114,7 @@ function buildMockDetail(id: string): MockSkillDetail | null {
     recentAttempts: attempts,
     nextReview: skill.masteryScore > 0.3 ? new Date(Date.now() + 86400000).toISOString() : null,
     trend: skill.masteryScore >= 0.6 ? "IMPROVING" : skill.masteryScore >= 0.3 ? "STABLE" : "DECLINING",
-    prerequisites: id === "s3" ? [{ id: "s2", nameVi: "Phép cộng 1 chữ số", masteryLevel: "DEVELOPING" as MockMasteryLevel }] : [],
+    prerequisites: id === "s3" ? [{ id: "s2", nameVi: "1-digit addition", masteryLevel: "DEVELOPING" as MockMasteryLevel }] : [],
   };
 }
 

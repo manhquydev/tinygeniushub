@@ -15,7 +15,7 @@ export default async function AdminSkillsPage() {
     <div className="space-y-6">
       <AdminPageHeader
         title="Skills Mapping"
-        description="Quản lý phân loại kỹ năng học tập và ánh xạ bài học."
+        description="Manage learning skills classification and lesson mapping."
         icon={<Sparkles size={18} />}
         eyebrow="Governance"
       />

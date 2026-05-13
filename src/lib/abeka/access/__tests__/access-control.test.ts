@@ -125,7 +125,7 @@ describe('PackageAccessControl', () => {
       );
       
       expect(result.hasAccess).toBe(false);
-      expect(result.reason).toContain('nâng cấp gói');
+      expect(result.reason).toContain('package upgrade');
     });
     
     it('should allow access when grade is within package range', async () => {
@@ -372,7 +372,7 @@ describe('Utility Functions', () => {
     it('should return mapping for valid plan code', () => {
       const mapping = getPackageMapping(PlanCode.MONTHLY_STANDARD);
       expect(mapping).toBeDefined();
-      expect(mapping?.name).toBe('Tiểu Học PRO');
+      expect(mapping?.name).toBe('Primary School PRO');
       expect(mapping?.minGrade).toBe(0);
       expect(mapping?.maxGrade).toBe(5);
     });

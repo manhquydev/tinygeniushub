@@ -20,11 +20,11 @@ export default async function ParentSetupPage() {
         />
         <div className="relative z-[1] space-y-2">
           <p className="inline-flex w-fit rounded-full border border-teal-200 bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-teal-700">
-            Thiết lập phụ huynh
+            Parental settings
           </p>
-          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">Khởi tạo hành trình đầu tiên cho bé</h1>
+          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">Start your baby's first journey</h1>
           <p className="max-w-[70ch] text-sm leading-relaxed text-slate-600 sm:text-base">
-            Chào {parent.displayName ?? parent.email}. Hoàn tất 3 bước thiết lập để kích hoạt bảng điều khiển thông minh dành riêng cho gia đình bạn.
+            Hi {parent.displayName ?? parent.email}. Complete the 3 setup steps to activate your smart home control panel.
           </p>
         </div>
       </section>

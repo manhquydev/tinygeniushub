@@ -38,7 +38,7 @@ function DailyPlanSkeleton() {
 function DailyPlanPageContent() {
   const searchParams = useSearchParams();
   const childId = searchParams.get("childId") || "demo-child";
-  const childName = searchParams.get("name") || "Bé";
+  const childName = searchParams.get("name") || "Little";
   const childAvatar = searchParams.get("avatar") || undefined;
 
   const [selectedAssignment, setSelectedAssignment] = useState<AbekaAssignment | null>(null);
@@ -67,7 +67,7 @@ function DailyPlanPageContent() {
               </AvatarFallback>
             </Avatar>
             <div className="min-w-0">
-              <h1 className="font-bold truncate">🌅 Chào {childName}!</h1>
+              <h1 className="font-bold truncate">Good morning, {childName}!</h1>
               <p className="text-sm text-slate-500">
                 {format(new Date(), "EEEE, d MMMM", { locale: vi })}
               </p>

@@ -125,7 +125,7 @@ export async function POST(
     }
 
     return NextResponse.json(
-      { message: "Vui lòng kiểm tra email để duyệt bình luận" },
+      { message: "Please check your email to approve comments" },
       { status: 201 },
     );
   } catch (error) {

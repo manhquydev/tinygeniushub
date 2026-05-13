@@ -23,12 +23,12 @@ function formatExpiryDate(date: Date) {
 }
 
 export async function sendCaregiverInviteEmail(input: CaregiverInviteEmailInput): Promise<CaregiverInviteEmailDelivery> {
-  const parentLabel = input.parentDisplayName && input.parentDisplayName.length > 0 ? input.parentDisplayName : "Phụ huynh";
-  const subject = "Thư mời caregiver từ TinyGenius Hub";
+  const parentLabel = input.parentDisplayName && input.parentDisplayName.length > 0 ? input.parentDisplayName : "Parents";
+  const subject = "Caregiver invitation from TinyGenius Hub";
   const text = [
-      `${parentLabel} đã mời bạn cùng theo dõi tiến độ học tập của bé.`,
-      `Nhấn vào liên kết sau để chấp nhận lời mời: ${input.inviteUrl}`,
-      `Lời mời hết hạn vào ngày ${formatExpiryDate(input.expiresAt)}.`,
+      `${parentLabel}invited you to follow your child's learning progress.`,
+      `Click on the following link to accept the invitation:${input.inviteUrl}`,
+      `Invitation expires on${formatExpiryDate(input.expiresAt)}.`,
     ].join("\n");
 
   await enqueueTransactionalEmail({

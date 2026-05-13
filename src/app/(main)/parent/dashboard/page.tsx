@@ -41,9 +41,9 @@ export default async function ParentDashboardPage() {
   const latestReportByChild = reports.reduce<Map<string, (typeof reports)[number]>>((acc, r) => { if (!acc.has(r.child.id)) acc.set(r.child.id, r); return acc; }, new Map());
 
   const metricCards: DashboardMetric[] = [
-    { id: "children", label: "Số hồ sơ bé", value: String(children.length), hint: `${children.length}/${childLimit} hồ sơ`, progress: clampPercent((children.length / childLimit) * 100), toneClass: "bg-teal-500/12 text-teal-700", progressClass: "from-teal-500 to-cyan-500", icon: Users },
-    { id: "lessons", label: "Bài đã hoàn thành", value: String(completionCount), hint: `Mục tiêu: ${completionGoal} bài`, progress: clampPercent((completionCount / completionGoal) * 100), toneClass: "bg-amber-500/12 text-amber-700", progressClass: "from-amber-400 to-orange-500", icon: Award },
-    { id: "reports", label: "Báo cáo tuần", value: String(reports.length), hint: `Mục tiêu: ${reportsGoal} báo cáo`, progress: clampPercent((reports.length / reportsGoal) * 100), toneClass: "bg-sky-500/12 text-sky-700", progressClass: "from-sky-500 to-blue-500", icon: BookOpenCheck },
+    { id: "children", label: "Baby file number", value: String(children.length), hint: `${children.length}/${childLimit}file`, progress: clampPercent((children.length / childLimit) * 100), toneClass: "bg-teal-500/12 text-teal-700", progressClass: "from-teal-500 to-cyan-500", icon: Users },
+    { id: "lessons", label: "Lesson completed", value: String(completionCount), hint: `Target:${completionGoal}post`, progress: clampPercent((completionCount / completionGoal) * 100), toneClass: "bg-amber-500/12 text-amber-700", progressClass: "from-amber-400 to-orange-500", icon: Award },
+    { id: "reports", label: "Weekly report", value: String(reports.length), hint: `Target:${reportsGoal}report`, progress: clampPercent((reports.length / reportsGoal) * 100), toneClass: "bg-sky-500/12 text-sky-700", progressClass: "from-sky-500 to-blue-500", icon: BookOpenCheck },
   ];
 
   const childrenData = children.map((child) => {
@@ -55,7 +55,7 @@ export default async function ParentDashboardPage() {
     <div className="page-stack">
       <DashboardHeroSection
         parentDisplayName={parent.displayName ?? parent.email}
-        heroMessage={hasRecentCompletion ? "Xin chúc mừng! Bé vừa hoàn thành một chặng học mới." : "Xin chào Ba Mẹ! Các bạn nhỏ đang học rất tốt mỗi ngày."}
+        heroMessage={hasRecentCompletion ? "Congratulations! The child has just completed a new stage of learning." : "Hello Mom and Dad! The children are learning very well every day."}
         hasRecentCompletion={hasRecentCompletion}
       />
 

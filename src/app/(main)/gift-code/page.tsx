@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import { GiftCodeForm } from "@/components/gift-code-form";
 
 export const metadata: Metadata = {
-  title: "Nhập mã quà tặng — TinyGenius Hub",
-  description: "Kích hoạt mã quà tặng để truy cập khóa học hoặc gói dịch vụ TinyGenius Hub.",
+  title: "Enter gift code — TinyGenius Hub",
+  description: "Activate the gift code to access the TinyGenius Hub course or service package.",
 };
 
 export default function GiftCodePage() {
   return (
     <div className="page-stack">
       <section className="card" style={{ maxWidth: 480, margin: "0 auto", width: "100%" }}>
-        <h1 style={{ fontSize: "1.6rem", fontWeight: 800 }}>Nhập mã quà tặng</h1>
+        <h1 style={{ fontSize: "1.6rem", fontWeight: 800 }}>Enter the gift code</h1>
         <p className="muted-text">
-          Nhận được mã từ người thân hoặc chương trình khuyến mãi? Nhập mã bên dưới để kích hoạt ngay.
+          Received a code from a relative or a promotion? Enter the code below to activate immediately.
         </p>
         <GiftCodeForm />
       </section>

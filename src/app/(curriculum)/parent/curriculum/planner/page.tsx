@@ -306,10 +306,10 @@ export default function WeeklyPlannerPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-800">
-            📅 Kế Hoạch Học Tập
+            📅 Study Plan
           </h1>
           <p className="text-slate-500">
-            Lập lịch học tập hàng tuần cho con
+            Make a weekly study schedule for your child
           </p>
         </div>
 

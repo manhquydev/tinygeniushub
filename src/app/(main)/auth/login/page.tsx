@@ -17,9 +17,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
   return (
     <AuthSplitShell
-      badge="Truy cập phụ huynh"
-      title="Chào mừng ba mẹ quay lại hành trình tự học"
-      description="Đăng nhập để xem tiến độ học tập, mở bài học hôm nay và đồng hành cùng bé mỗi ngày."
+      badge="Parental access"
+      title="Parents, welcome back to your self-study journey"
+      description="Log in to view learning progress, open today's lesson and accompany your child every day."
       backgroundImageSrc="/images/bg/bg_hero_cloud_learning.png"
       stickerSrc="/kisu-assets/stickers/sticker_cheer.png"
     >

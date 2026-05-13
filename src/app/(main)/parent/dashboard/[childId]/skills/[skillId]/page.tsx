@@ -37,10 +37,10 @@ export default async function SkillDetailPage({ params }: PageProps) {
     <div className="page-stack">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-xs text-slate-400 px-1">
-        <Link href="/parent/dashboard" className="hover:text-slate-600 transition-colors">Tổng quan</Link>
+        <Link href="/parent/dashboard" className="hover:text-slate-600 transition-colors">Overview</Link>
         <span className="text-slate-300">/</span>
         <Link href={`/parent/dashboard/${childId}/skills`} className="hover:text-slate-600 transition-colors">
-          Bản đồ kỹ năng
+          Skill map
         </Link>
         <span className="text-slate-300">/</span>
         <span className="text-slate-500 font-medium truncate max-w-[120px]">{detail.skill.nameVi}</span>
@@ -57,12 +57,12 @@ export default async function SkillDetailPage({ params }: PageProps) {
 
       {/* CTA */}
       <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-center">
-        <p className="text-sm text-indigo-700 font-medium mb-2">Sẵn sàng luyện tập thêm?</p>
+        <p className="text-sm text-indigo-700 font-medium mb-2">Ready for more practice?</p>
         <Link
           href={`/parent/dashboard`}
           className="inline-block rounded-xl bg-indigo-600 px-5 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
         >
-          Vào học ngay
+          Go to school now
         </Link>
       </div>
     </div>

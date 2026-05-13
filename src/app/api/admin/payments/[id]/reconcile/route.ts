@@ -32,7 +32,7 @@ const reconcileActionSchema = z
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["webhookResolution"],
-        message: "webhookEventId và webhookResolution phải đi cùng nhau.",
+        message: "webhookEventId and webhookResolution must go together.",
       });
     }
   });
@@ -212,7 +212,7 @@ async function syncEnrollmentsFromPaymentTarget(input: {
   const courseIds = await resolveCourseIdsFromCheckoutTarget(input.tx, input.rawPayload);
   if (courseIds.length === 0) {
     throw new DomainError(
-      "Không resolve được danh sách khóa học từ payment target.",
+      "Unable to resolve course list from payment target.",
       409,
       "PAYMENT_RECONCILE_TARGET_INVALID",
     );
@@ -276,18 +276,18 @@ async function resolveWebhookUpdate(input: {
   });
 
   if (!webhook) {
-    throw new DomainError("Webhook event không tồn tại.", 404, "WEBHOOK_EVENT_NOT_FOUND");
+    throw new DomainError("Webhook event does not exist.", 404, "WEBHOOK_EVENT_NOT_FOUND");
   }
 
   if (webhook.provider !== input.paymentRecord.provider) {
-    throw new DomainError("Webhook provider không khớp payment.", 400, "WEBHOOK_PROVIDER_MISMATCH");
+    throw new DomainError("Webhook provider does not match payment.", 400, "WEBHOOK_PROVIDER_MISMATCH");
   }
 
   const auditTrail = asRecord(webhook.auditTrail);
   const linkedPaymentRecordId = normalizeStringOrNumber(auditTrail?.paymentRecordId);
   if (linkedPaymentRecordId && linkedPaymentRecordId !== input.paymentRecord.id) {
     throw new DomainError(
-      "Webhook event đang được gắn với payment khác.",
+      "Webhook event is being attached to another payment.",
       400,
       "WEBHOOK_EVENT_PAYMENT_MISMATCH",
     );
@@ -300,7 +300,7 @@ async function resolveWebhookUpdate(input: {
   });
   if (transactionHints.size === 0) {
     throw new DomainError(
-      "Webhook event không có dấu vết transaction để xác minh.",
+      "Webhook events have no transaction traces to verify.",
       409,
       "WEBHOOK_EVENT_TRANSACTION_UNVERIFIABLE",
     );
@@ -308,7 +308,7 @@ async function resolveWebhookUpdate(input: {
 
   if (!transactionHints.has(input.paymentRecord.providerTransactionId)) {
     throw new DomainError(
-      "Webhook event không thuộc transaction payment này.",
+      "Webhook event is not part of this transaction payment.",
       400,
       "WEBHOOK_EVENT_TRANSACTION_MISMATCH",
     );
@@ -368,7 +368,7 @@ export async function POST(
       });
 
       if (!paymentRecord) {
-        throw new DomainError("Payment không tồn tại.", 404, "PAYMENT_NOT_FOUND");
+        throw new DomainError("Payment does not exist.", 404, "PAYMENT_NOT_FOUND");
       }
 
       let nextStatus = paymentRecord.status;
@@ -398,7 +398,7 @@ export async function POST(
       if (body.action === "SYNC_ENROLLMENTS") {
         if (paymentRecord.status !== PaymentStatus.SUCCEEDED) {
           throw new DomainError(
-            "Payment chưa ở trạng thái SUCCEEDED. Dùng MARK_SUCCEEDED_AND_SYNC trước.",
+            "Payment is not in SUCCEEDED status. Use MARK_SUCCEEDED_AND_SYNC first.",
             409,
             "PAYMENT_NOT_SUCCEEDED",
           );

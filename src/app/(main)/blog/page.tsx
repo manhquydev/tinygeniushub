@@ -81,19 +81,19 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     <div className="page-stack">
       {subscribed ? (
         <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-semibold text-emerald-700">
-          Bạn đã đăng ký newsletter thành công.
+          You have successfully subscribed to the newsletter.
         </section>
       ) : null}
 
       {subscribeFailed ? (
         <section className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold text-amber-700">
-          Liên kết xác thực newsletter không hợp lệ hoặc đã hết hạn.
+          The newsletter validation link is invalid or has expired.
         </section>
       ) : null}
 
       {unsubscribed ? (
         <section className="rounded-2xl border border-sky-200 bg-sky-50 p-4 text-sm font-semibold text-sky-700">
-          Bạn đã hủy đăng ký newsletter.
+          You have unsubscribed from the newsletter.
         </section>
       ) : null}
 
@@ -116,12 +116,12 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
       <section className="space-y-4">
         <div className="section-header">
-          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Bài viết mới nhất</h1>
+          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Latest article</h1>
           <Link
             href="/blog/search"
             className="text-sm font-semibold text-teal-700 hover:text-teal-800"
           >
-            Tìm kiếm bài viết
+            Search articles
           </Link>
         </div>
 
@@ -137,7 +137,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           </div>
         ) : (
           <section className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm">
-            Chưa có bài viết chính thức. Nội dung sẽ hiển thị ngay khi đội ngũ xuất bản bài viết mới.
+            There is no official post yet. Content will appear as soon as the team publishes a new article.
           </section>
         )}
       </section>

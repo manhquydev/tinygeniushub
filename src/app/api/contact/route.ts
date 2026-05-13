@@ -11,7 +11,7 @@ import { enqueueTransactionalEmail } from "@/worker/queue";
 const contactPayloadSchema = z.object({
   name: z.string().trim().min(2).max(120),
   email: z.string().email(),
-  subject: z.enum(["Hỗ trợ kỹ thuật", "Hợp tác / B2B", "Báo lỗi", "Khác"]),
+  subject: z.enum(["Technical support", "Collaboration / B2B", "Report error", "Other"]),
   message: z.string().trim().min(10).max(500),
 });
 
@@ -28,19 +28,19 @@ async function sendContactEmail(payload: z.infer<typeof contactPayloadSchema>, c
   }
 
   const text = [
-    "Yêu cầu liên hệ mới từ website TinyGenius Hub",
-    `Họ tên: ${payload.name}`,
+    "Request new contact from TinyGenius Hub website",
+    `Full name:${payload.name}`,
     `Email: ${payload.email}`,
-    `Chủ đề: ${payload.subject}`,
+    `Topic:${payload.subject}`,
     `IP: ${clientIp}`,
     "",
-    "Nội dung:",
+    "Content:",
     payload.message,
   ].join("\n");
 
   await enqueueTransactionalEmail({
     to: recipient,
-    subject: `[Liên hệ] ${payload.subject} - ${payload.name}`,
+    subject: `[Contact]${payload.subject} - ${payload.name}`,
     text,
     tags: [{ name: "feature", value: "contact_form" }],
   });
@@ -48,19 +48,19 @@ async function sendContactEmail(payload: z.infer<typeof contactPayloadSchema>, c
 
 async function sendContactAcknowledgementEmail(payload: z.infer<typeof contactPayloadSchema>) {
   const text = [
-    `Xin chào ${payload.name},`,
+    `Hello${payload.name},`,
     "",
-    "TinyGenius Hub đã nhận được yêu cầu hỗ trợ của bạn.",
-    `Chủ đề: ${payload.subject}`,
-    "Đội ngũ sẽ phản hồi trong thời gian sớm nhất.",
+    "TinyGenius Hub has received your support request.",
+    `Topic:${payload.subject}`,
+    "The team will respond as soon as possible.",
     "",
-    "Nội dung bạn đã gửi:",
+    "Content you sent:",
     payload.message,
   ].join("\n");
 
   await enqueueTransactionalEmail({
     to: payload.email,
-    subject: `[TinyGenius Hub] Đã tiếp nhận yêu cầu: ${payload.subject}`,
+    subject: `[TinyGenius Hub] Request received:${payload.subject}`,
     text,
     tags: [{ name: "feature", value: "contact_form_ack" }],
   });
@@ -82,7 +82,7 @@ export async function POST(request: Request) {
     });
 
     if (!rateLimit.allowed) {
-      return fail("Bạn gửi biểu mẫu quá nhanh. Vui lòng thử lại sau.", 429, {
+      return fail("You submitted the form too quickly. Please try again later.", 429, {
         retryAfterMs: rateLimit.retryAfterMs,
       });
     }
@@ -107,7 +107,7 @@ export async function POST(request: Request) {
 
     return ok({
       success: true,
-      message: "Đã nhận được tin nhắn của bạn",
+      message: "Your message has been received",
     });
   } catch (error) {
     return handleRouteError(error, {

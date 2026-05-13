@@ -87,7 +87,7 @@ describe('PackageValidator', () => {
       const result = await validator.validateSubscription(mockParentId);
       
       expect(result.isValid).toBe(false);
-      expect(result.errors.some(e => e.includes('hết hạn') || e.includes('hủy'))).toBe(true);
+      expect(result.errors.some(e => e.includes('expired') || e.includes('cancel'))).toBe(true);
     });
     
     it('should return warning for subscription expiring soon', async () => {
@@ -104,7 +104,7 @@ describe('PackageValidator', () => {
       
       expect(result.isValid).toBe(true);
       expect(result.warnings.length).toBeGreaterThan(0);
-      expect(result.warnings.some(w => w.includes('5 ngày'))).toBe(true);
+      expect(result.warnings.some(w => w.includes('5 days'))).toBe(true);
       expect(result.daysRemaining).toBe(5);
     });
     
@@ -122,7 +122,7 @@ describe('PackageValidator', () => {
       
       // Grace period is considered valid but with warning
       expect(result.isValid).toBe(true);
-      expect(result.warnings.some(w => w.includes('gia hạn'))).toBe(true);
+      expect(result.warnings.some(w => w.includes('extended'))).toBe(true);
     });
     
     it('should handle refunded subscription', async () => {
@@ -135,7 +135,7 @@ describe('PackageValidator', () => {
       const result = await validator.validateSubscription(mockParentId);
       
       expect(result.isValid).toBe(false);
-      expect(result.errors.some(e => e.includes('hoàn tiền'))).toBe(true);
+      expect(result.errors.some(e => e.includes('refund'))).toBe(true);
     });
     
     it('should include plan name in result', async () => {
@@ -150,7 +150,7 @@ describe('PackageValidator', () => {
       
       const result = await validator.validateSubscription(mockParentId);
       
-      expect(result.planName).toBe('Toàn Khoá PRO');
+      expect(result.planName).toBe('Full Course PRO');
     });
   });
   

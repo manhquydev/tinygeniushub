@@ -24,27 +24,27 @@ function formatDateVi(date: Date) {
 }
 
 function parentName(displayName: string | null) {
-  return displayName?.trim() || "bạn";
+  return displayName?.trim() || "you";
 }
 
 function buildTrialWelcomeEmail(displayName: string | null): LifecycleEmailContent {
   const name = parentName(displayName);
   const dashboardUrl = lifecycleLink("/parent/dashboard", "trial_d0");
   return {
-    subject: "Chào mừng bạn đến TinyGenius Hub - bắt đầu trong 2 phút",
+    subject: "Welcome to TinyGenius Hub - get started in 2 minutes",
     text: [
-      `Xin chào ${name},`,
+      `Hello${name},`,
       "",
-      "Cảm ơn bạn đã đăng ký TinyGenius Hub.",
-      "Bé nhà bạn sắp bắt đầu lộ trình Toán tư duy + Tiếng Anh Phonics với nhịp học 15 phút/ngày.",
+      "Thank you for signing up for TinyGenius Hub.",
+      "Your child is about to start the Mental Math + English Phonics program with a learning rhythm of 15 minutes/day.",
       "",
-      "Bắt đầu ngay:",
+      "Get started now:",
       dashboardUrl,
       "",
-      "Không cần thẻ tín dụng · Trial 7 ngày miễn phí.",
+      "No credit card required · Free 7-day trial.",
       "",
-      "Thân,",
-      "Đội ngũ TinyGenius Hub",
+      "Close,",
+      "TinyGenius Hub Team",
     ].join("\n"),
   };
 }
@@ -53,17 +53,17 @@ function buildTrialD1Email(displayName: string | null): LifecycleEmailContent {
   const name = parentName(displayName);
   const dashboardUrl = lifecycleLink("/parent/dashboard", "trial_d1_activation");
   return {
-    subject: "Nhắc nhẹ ngày 1 - giúp bé hoàn thành bài đầu tiên hôm nay",
+    subject: "Gentle reminder on day 1 - help your child complete the first lesson today",
     text: [
-      `Xin chào ${name},`,
+      `Hello${name},`,
       "",
-      "Ngày đầu tiên là mốc quan trọng để bé vào nếp học.",
-      "Chỉ cần 15 phút để hoàn thành bài đầu tiên và tạo đà cho cả tuần.",
+      "The first day is an important milestone for your baby to get into the learning routine.",
+      "It only takes 15 minutes to complete the first lesson and set momentum for the whole week.",
       "",
-      `Mở dashboard: ${dashboardUrl}`,
+      `Open dashboard:${dashboardUrl}`,
       "",
-      "Thân,",
-      "Đội ngũ TinyGenius Hub",
+      "Close,",
+      "TinyGenius Hub Team",
     ].join("\n"),
   };
 }
@@ -72,19 +72,19 @@ function buildTrialD3Email(displayName: string | null): LifecycleEmailContent {
   const name = parentName(displayName);
   const reportUrl = lifecycleLink("/parent/reports", "trial_d3_progress");
   return {
-    subject: "Báo cáo mini 3 ngày đầu của bé — đang tiến bộ thế nào? 📊",
+    subject: "Baby's first 3 days mini report — how is it progressing? 📊",
     text: [
-      `Xin chào ${name},`,
+      `Hello${name},`,
       "",
-      "Bé đã đi được 3 ngày đầu tiên trong trial.",
-      "Đây là mốc quan trọng để giữ nhịp học và xây thói quen đều mỗi ngày.",
+      "Baby has been walking for the first 3 days of the trial.",
+      "This is an important milestone to maintain a study rhythm and build a consistent daily routine.",
       "",
-      `Xem báo cáo và tiến độ hiện tại: ${reportUrl}`,
+      `View reports and current progress:${reportUrl}`,
       "",
-      "Còn 4 ngày trial để kiểm chứng rõ sự phù hợp với gia đình.",
+      "There are 4 days of trial left to clearly verify its suitability for families.",
       "",
-      "Thân,",
-      "Đội ngũ TinyGenius Hub",
+      "Close,",
+      "TinyGenius Hub Team",
     ].join("\n"),
   };
 }
@@ -93,17 +93,17 @@ function buildTrialD5Email(displayName: string | null): LifecycleEmailContent {
   const name = parentName(displayName);
   const referralUrl = lifecycleLink("/auth/signup", "trial_d5_referral");
   return {
-    subject: "Ngày 5 trial - chia sẻ cho phụ huynh khác để nhận thêm ưu đãi",
+    subject: "Day 5 trial - share with other parents to receive more incentives",
     text: [
-      `Xin chào ${name},`,
+      `Hello${name},`,
       "",
-      "Nếu gia đình thấy hành trình học của bé đang phù hợp, bạn có thể giới thiệu cho phụ huynh khác.",
-      "Mỗi lượt giới thiệu thành công sẽ giúp cả hai gia đình nhận thêm ưu đãi theo chương trình giới thiệu hiện hành.",
+      "If your family finds your child's learning journey suitable, you can recommend it to other parents.",
+      "Each successful referral will help both families receive additional incentives according to the current referral program.",
       "",
-      `Chia sẻ tại đây: ${referralUrl}`,
+      `Share here:${referralUrl}`,
       "",
-      "Thân,",
-      "Đội ngũ TinyGenius Hub",
+      "Close,",
+      "TinyGenius Hub Team",
     ].join("\n"),
   };
 }
@@ -112,21 +112,21 @@ function buildTrialD7Email(displayName: string | null): LifecycleEmailContent {
   const name = parentName(displayName);
   const pricingUrl = lifecycleLink("/pricing", "trial_d7_convert");
   return {
-    subject: "Trial sắp kết thúc — giữ lộ trình học cho bé ngay hôm nay",
+    subject: "Trial is about to end — keep your child's learning path today",
     text: [
-      `Xin chào ${name},`,
+      `Hello${name},`,
       "",
-      "Hôm nay là ngày cuối của 7 ngày dùng thử miễn phí.",
-      "Nếu bé đã bắt đầu vào nếp học, đây là lúc giữ lộ trình không gián đoạn.",
+      "Today is the last day of the 7-day free trial.",
+      "If your child has started to learn, this is the time to keep the schedule uninterrupted.",
       "",
-      "Gói năm hiện tại:",
-      "• Standard: 799,000 VND/năm",
-      "• Family+: 1,199,000 VND/năm",
+      "Current year plan:",
+      "• Standard: 799,000 VND/year",
+      "• Family+: 1,199,000 VND/year",
       "",
-      `Chọn gói phù hợp: ${pricingUrl}`,
+      `Choose the right package:${pricingUrl}`,
       "",
-      "Thân,",
-      "Đội ngũ TinyGenius Hub",
+      "Close,",
+      "TinyGenius Hub Team",
     ].join("\n"),
   };
 }
@@ -135,19 +135,19 @@ function buildWinbackD30Email(displayName: string | null): LifecycleEmailContent
   const name = parentName(displayName);
   const dashboardUrl = lifecycleLink("/parent/dashboard", "winback_d30");
   return {
-    subject: "Bé nhớ bạn rồi - quay lại học 15 phút hôm nay nhé",
+    subject: "Baby misses you - come back to study for 15 minutes today",
     text: [
-      `Xin chào ${name},`,
+      `Hello${name},`,
       "",
-      "Đã một thời gian gia đình chưa quay lại lộ trình học.",
-      "Chỉ cần 15 phút hôm nay để khởi động lại thói quen học tập của bé.",
+      "It's been a while since the family has returned to their studies.",
+      "Just 15 minutes today to restart your baby's learning habits.",
       "",
-      `Quay lại dashboard: ${dashboardUrl}`,
+      `Return to dashboard:${dashboardUrl}`,
       "",
-      "Nếu cần hỗ trợ, bạn chỉ cần phản hồi email này.",
+      "If you need support, just respond to this email.",
       "",
-      "Thân,",
-      "Đội ngũ TinyGenius Hub",
+      "Close,",
+      "TinyGenius Hub Team",
     ].join("\n"),
   };
 }
@@ -156,21 +156,21 @@ function buildRenewal14dEmail(displayName: string | null, renewalEndDate?: Date 
   const name = parentName(displayName);
   const pricingUrl = lifecycleLink("/pricing", "renewal_14d");
   const renewalDateLine = renewalEndDate
-    ? `Gói hiện tại sẽ hết hạn vào ngày ${formatDateVi(renewalEndDate)}.`
-    : "Gói hiện tại của bạn sắp đến hạn gia hạn.";
+    ? `The current package will expire on${formatDateVi(renewalEndDate)}.`
+    : "Your current plan is due for renewal.";
 
   return {
-    subject: "Nhắc gia hạn gói học trước 14 ngày để không gián đoạn lộ trình",
+    subject: "Remind to renew the study package 14 days in advance so as not to interrupt the route",
     text: [
-      `Xin chào ${name},`,
+      `Hello${name},`,
       "",
       renewalDateLine,
-      "Gia hạn sớm giúp giữ nhịp học liên tục cho bé.",
+      "Renewing early helps keep your child's learning rhythm continuous.",
       "",
-      `Gia hạn tại đây: ${pricingUrl}`,
+      `Renew here:${pricingUrl}`,
       "",
-      "Thân,",
-      "Đội ngũ TinyGenius Hub",
+      "Close,",
+      "TinyGenius Hub Team",
     ].join("\n"),
   };
 }

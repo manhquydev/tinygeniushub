@@ -45,9 +45,9 @@ export default async function ParentReportsPage() {
         <p className="inline-flex w-fit rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
           Parent Reports
         </p>
-        <h1 className="mt-3 text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">Trung tâm phân tích học tập</h1>
+        <h1 className="mt-3 text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">Center for learning analytics</h1>
         <p className="mt-2 max-w-[70ch] text-sm leading-relaxed text-slate-600 sm:text-base">
-          Theo dõi toàn cảnh hiệu suất học tập trong tuần của từng bé: thời lượng học, kết quả kỹ năng và gợi ý hành động cụ thể để phụ huynh đồng hành hiệu quả hơn.
+          Track each child&apos;s weekly learning performance: study time, skill outcomes, and concrete action suggestions so parents can support more effectively.
         </p>
       </section>
 

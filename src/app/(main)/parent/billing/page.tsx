@@ -6,14 +6,14 @@ import { prisma } from "@/lib/db";
 import { getParentFromServerCookie } from "@/lib/auth/session";
 
 export const metadata: Metadata = {
-  title: "Thanh toán và hóa đơn - TinyGenius Hub",
+  title: "Payments and Invoicing - TinyGenius Hub",
 };
 
 const PAYMENT_STATUS_LABEL: Record<string, string> = {
-  SUCCEEDED: "Thành công",
-  PENDING: "Đang xử lý",
-  FAILED: "Thất bại",
-  REFUNDED: "Đã hoàn tiền",
+  SUCCEEDED: "Success",
+  PENDING: "Processing",
+  FAILED: "Failure",
+  REFUNDED: "Refund given",
 };
 
 const PAYMENT_STATUS_CLASS: Record<string, string> = {
@@ -24,7 +24,7 @@ const PAYMENT_STATUS_CLASS: Record<string, string> = {
 };
 
 function formatCurrency(amount: number) {
-  return `${amount.toLocaleString("vi-VN")}đ`;
+  return `${amount.toLocaleString("vi-VN")}D`;
 }
 
 function formatDate(date: Date) {
@@ -33,19 +33,19 @@ function formatDate(date: Date) {
 
 function getProviderLabel(provider: string) {
   if (provider === "payos") return "PayOS";
-  if (provider === "mock_gateway") return "Mô phỏng";
+  if (provider === "mock_gateway") return "Simulation";
   return provider.toUpperCase();
 }
 
 function getPaymentTitle(rawPayload: unknown) {
   if (!rawPayload || typeof rawPayload !== "object") {
-    return "Thanh toán dịch vụ";
+    return "Service payment";
   }
 
   const payload = rawPayload as Record<string, unknown>;
   const target = payload.target && typeof payload.target === "object" ? (payload.target as Record<string, unknown>) : null;
   if (!target) {
-    return "Thanh toán dịch vụ";
+    return "Service payment";
   }
 
   const title = typeof target.title === "string" ? target.title : null;
@@ -54,9 +54,9 @@ function getPaymentTitle(rawPayload: unknown) {
   }
 
   const kind = typeof target.kind === "string" ? target.kind : null;
-  if (kind === "bundle") return "Mua bộ khóa học";
-  if (kind === "course") return "Mua khóa học";
-  return "Thanh toán dịch vụ";
+  if (kind === "bundle") return "Buy the course set";
+  if (kind === "course") return "Buy the course";
+  return "Service payment";
 }
 
 export default async function ParentBillingPage() {
@@ -89,27 +89,27 @@ export default async function ParentBillingPage() {
         <div className="grid gap-4">
           <h1 className="flex items-center gap-2 text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-3xl">
             <Wallet className="h-6 w-6 text-sky-600" />
-            Thanh toán và hóa đơn
+            Payments and invoices
           </h1>
           <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-            Trang này tập trung vào giao dịch mua khóa học. Thanh toán hiện tại sử dụng PayOS theo hình thức chuyển
-            khoản ngân hàng.
+            This page focuses on course purchases. Current payments use PayOS in the form of transfers
+            bank account.
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-2xl border border-slate-200 bg-white p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tổng đã thanh toán</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Total paid</p>
               <p className="mt-1 text-2xl font-black text-slate-900">{formatCurrency(totalSpent)}</p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Giao dịch thành công</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Successful transaction</p>
               <p className="mt-1 text-2xl font-black text-emerald-600">{succeededPayments.length}</p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Đang xử lý</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Processing</p>
               <p className="mt-1 text-2xl font-black text-amber-600">{pendingPayments.length}</p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Thất bại</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Failure</p>
               <p className="mt-1 text-2xl font-black text-rose-600">{failedPayments.length}</p>
             </div>
           </div>
@@ -118,12 +118,12 @@ export default async function ParentBillingPage() {
 
       <section className="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
         <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-          <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Lịch sử giao dịch gần đây</h2>
-          <p className="mt-1 text-sm text-slate-600">Theo dõi chi tiết từng giao dịch và trạng thái xử lý.</p>
+          <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Recent transaction history</h2>
+          <p className="mt-1 text-sm text-slate-600">Track details of each transaction and processing status.</p>
 
           {payments.length === 0 ? (
             <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-600">
-              Chưa có giao dịch nào. Bạn có thể bắt đầu từ trang khóa học.
+              There are no transactions yet. You can start from the course page.
             </div>
           ) : (
             <div className="mt-4 grid gap-3">
@@ -150,49 +150,49 @@ export default async function ParentBillingPage() {
         </article>
 
         <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-          <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Thông tin tài khoản</h2>
+          <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Account information</h2>
           <div className="mt-4 grid gap-3">
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Mô hình thanh toán</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">Mua theo từng khóa học</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Payment model</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">Buy by course</p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Phương thức hiện tại</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">PayOS - chuyển khoản ngân hàng</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Current method</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">PayOS - bank transfer</p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tự động gia hạn</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">Không áp dụng với mô hình mua theo khóa</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Automatic renewal</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">Does not apply to purchase by key model</p>
             </div>
           </div>
         </article>
       </section>
 
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Lưu ý khi thanh toán qua chuyển khoản</h2>
+        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Note when paying via bank transfer</h2>
         <div className="mt-3 grid gap-2 text-sm text-slate-600">
           <p className="inline-flex items-start gap-2">
             <CircleCheckBig className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
-            Sau khi chuyển khoản thành công, hệ thống tự động ghi nhận và mở khóa học.
+            After successful transfer, the system automatically records and opens the course.
           </p>
           <p className="inline-flex items-start gap-2">
             <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
-            Nếu trạng thái còn &quot;Đang xử lý&quot;, vui lòng chờ thêm vài phút để webhook đồng bộ.
+            If the status is still &quot;Processing&quot;, please wait a few more minutes for webhook sync.
           </p>
           <p className="inline-flex items-start gap-2">
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-600" />
-            Cần hỗ trợ giao dịch? Gửi mã đơn hàng qua trang liên hệ để đội ngũ xử lý nhanh.
+            Need trading support? Send your order code via the contact page for quick processing by the team.
           </p>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link href="/courses" className="solid-button">
-            Mua thêm khóa học
+            Buy additional courses
           </Link>
           <Link href="/contact" className="ghost-button">
-            Liên hệ hỗ trợ
+            Contact support
           </Link>
           <Link href="/parent/courses" className="ghost-button">
-            Đi tới khóa đã mua
+            Go to the purchased key
           </Link>
         </div>
       </section>
@@ -200,13 +200,13 @@ export default async function ParentBillingPage() {
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <h2 className="flex items-center gap-2 text-base font-extrabold text-slate-900 sm:text-lg">
           <ReceiptText className="h-5 w-5 text-slate-700" />
-          Cần xuất hóa đơn hoặc đối soát giao dịch?
+          Need to issue invoices or reconcile transactions?
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          Vui lòng gửi thời gian giao dịch, số tiền và nhà cung cấp thanh toán để chúng tôi hỗ trợ đối soát nhanh.
+          Please send transaction time, amount and payment provider so we can support quick reconciliation.
         </p>
         <Link href="/contact" className="ghost-button" style={{ marginTop: "0.75rem", width: "fit-content" }}>
-          Gửi yêu cầu đối soát
+          Send request for reconciliation
         </Link>
       </section>
     </div>

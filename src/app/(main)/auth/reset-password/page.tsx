@@ -4,9 +4,9 @@ import { ResetPasswordForm } from "@/components/reset-password-form";
 export default function ResetPasswordPage() {
   return (
     <AuthSplitShell
-      badge="Đặt lại mật khẩu"
-      title="Cập nhật mật khẩu mới để quay lại bảng điều khiển"
-      description="Sau khi hoàn tất, bạn có thể đăng nhập lại và tiếp tục theo dõi lộ trình học tập của bé."
+      badge="Reset password"
+      title="Update the new password to return to the dashboard"
+      description="Once completed, you can log back in and continue tracking your child's learning journey."
       actionProp="magic"
       backgroundImageSrc="/images/bg/bg_course_space_exploration.png"
       stickerSrc="/kisu-assets/stickers/sticker_book.png"

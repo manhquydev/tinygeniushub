@@ -16,9 +16,9 @@ import {
  * Package tiers that define grade access ranges
  * 
  * Example:
- * - "Tiểu Học PRO" (Elementary PRO): Grades G1-G5
- * - "Trung Học PRO" (Middle School PRO): Grades G6-G9
- * - "Toàn Khoá PRO" (Full PRO): All grades K4-G12
+ * - "Primary School PRO" (Elementary PRO): Grades G1-G5
+ * - "High School PRO" (Middle School PRO): Grades G6-G9
+ * - "Full Course PRO" (Full PRO): All grades K4-G12
  */
 export interface PackageGradeMapping {
   planCode: PlanCode;
@@ -40,28 +40,28 @@ export const PACKAGE_GRADE_MAPPINGS: PackageGradeMapping[] = [
     minGrade: 0, // K4
     maxGrade: 2, // G1 - Trial allows K4, K5, G1
     name: 'Trial',
-    description: 'Dùng thử - K4 đến G1',
+    description: 'Try it out - K4 to G1',
   },
   {
     planCode: PlanCode.MONTHLY_STANDARD,
     minGrade: 0, // K4
     maxGrade: 5, // G5 - Elementary
-    name: 'Tiểu Học PRO',
-    description: 'Tiểu Học PRO - K4 đến G5',
+    name: 'Primary School PRO',
+    description: 'PRO Elementary - K4 to G5',
   },
   {
     planCode: PlanCode.YEARLY_STANDARD,
     minGrade: 0, // K4
     maxGrade: 5, // G5 - Elementary
-    name: 'Tiểu Học PRO (Năm)',
-    description: 'Tiểu Học PRO - K4 đến G5',
+    name: 'PRO Primary (Year)',
+    description: 'PRO Elementary - K4 to G5',
   },
   {
     planCode: PlanCode.YEARLY_FAMILY_PLUS,
     minGrade: 0, // K4
     maxGrade: 13, // G12 - All grades
-    name: 'Toàn Khoá PRO',
-    description: 'Toàn Khoá PRO - Tất cả các cấp',
+    name: 'Full Course PRO',
+    description: 'Full PRO Course - All levels',
   },
 ];
 
@@ -261,8 +261,8 @@ export class PackageAccessControl {
       const maxGradeName = gradeLevelToName(mapping?.maxGrade ?? 5);
       return {
         hasAccess: false,
-        reason: `Package "${mapping?.name ?? planCode}" chỉ được xem đến lớp ${maxGradeName}. ` +
-                `Video này thuộc lớp ${gradeLevelToName(gradeLevel)} yêu cầu nâng cấp gói.`,
+        reason: `Package "${mapping?.name ?? planCode}" can only be viewed in class${maxGradeName}. ` +
+                `This video belongs to class${gradeLevelToName(gradeLevel)}package upgrade required.`,
         subscription,
         accessibleGrades,
       };

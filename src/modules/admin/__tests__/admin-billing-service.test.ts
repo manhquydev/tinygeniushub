@@ -27,7 +27,7 @@ describe("validateCoupon", () => {
 
     expect(result).toEqual({
       valid: false,
-      message: "Mã giảm giá không tồn tại.",
+      message: "Discount code does not exist.",
     });
     expect(prismaMock.couponCode.update).not.toHaveBeenCalled();
   });
@@ -45,7 +45,7 @@ describe("validateCoupon", () => {
 
     expect(result).toEqual({
       valid: false,
-      message: "Mã giảm giá đã hết lượt sử dụng.",
+      message: "The discount code has expired.",
     });
     expect(prismaMock.couponCode.update).not.toHaveBeenCalled();
   });

@@ -4,8 +4,8 @@ import { Clock3, Mail, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 
 export const metadata: Metadata = {
-  title: "Liên hệ",
-  description: "Liên hệ với đội ngũ TinyGenius Hub để được hỗ trợ hoặc hợp tác.",
+  title: "Contact",
+  description: "Contact the TinyGenius Hub team for support or collaboration.",
   alternates: { canonical: "https://www.tinygeniushubvn.tech/contact" },
 };
 
@@ -13,8 +13,8 @@ export default function ContactPage() {
   return (
     <div className="contact-page">
       <header className="contact-header">
-        <h1>Liên hệ với chúng tôi</h1>
-        <p className="muted-text">Chúng tôi luôn sẵn sàng hỗ trợ phụ huynh, nhà trường và đối tác.</p>
+        <h1>Contact us</h1>
+        <p className="muted-text">We are always ready to support parents, schools and partners.</p>
       </header>
 
       <section className="contact-grid">
@@ -22,7 +22,7 @@ export default function ContactPage() {
           <div className="contact-info-item">
             <Mail size={18} aria-hidden />
             <div>
-              <strong>Email hỗ trợ</strong>
+              <strong>Support email</strong>
               <p>support@tinygeniushubvn.tech</p>
             </div>
           </div>
@@ -30,21 +30,21 @@ export default function ContactPage() {
           <div className="contact-info-item">
             <Clock3 size={18} aria-hidden />
             <div>
-              <strong>Thời gian phản hồi</strong>
-              <p>Trong vòng 24-48 giờ làm việc</p>
+              <strong>Response time</strong>
+              <p>Within 24-48 working hours</p>
             </div>
           </div>
 
           <div className="contact-info-item">
             <MapPin size={18} aria-hidden />
             <div>
-              <strong>Địa chỉ liên hệ</strong>
-              <p>Việt Nam (làm việc từ xa)</p>
+              <strong>Contact address</strong>
+              <p>Vietnam (working remotely)</p>
             </div>
           </div>
 
           <p className="muted-text">
-            Cần giải đáp nhanh? Xem câu hỏi thường gặp tại{" "}
+            Need quick answers? See frequently asked questions at{" "}
             <Link href="/#faq" className="hp-more-link">
               /#faq
             </Link>

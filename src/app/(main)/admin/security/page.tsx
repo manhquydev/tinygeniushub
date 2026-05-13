@@ -11,8 +11,8 @@ export default async function AdminSecurityPage() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        title="Bảo mật hệ thống"
-        description="DDoS mode, rate limits, blocklist IP và feature flags."
+        title="System security"
+        description="DDoS mode, rate limits, IP blocklist and feature flags."
         icon={<ShieldAlert size={18} />}
         eyebrow="System Governance"
         actions={(
@@ -21,11 +21,11 @@ export default async function AdminSecurityPage() {
               href="#parent-email-verification-module"
               className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700 hover:bg-teal-100"
             >
-              Mở module verify email
+              Open the email verification module
             </Link>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">
               <ShieldAlert size={11} />
-              Chỉ SUPER_ADMIN
+              SUPER_ADMIN only
             </span>
           </div>
         )}

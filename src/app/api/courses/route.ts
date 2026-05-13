@@ -9,7 +9,7 @@ export async function GET() {
     return ok({
       contractVersion: STOREFRONT_COURSE_CONTRACT_VERSION,
       contract: {
-        trackLabel: "string (fallback: 'Lộ trình học')",
+        trackLabel: "string (fallback: 'Learning path')",
         lessonCount: "number > 0 (fallback from videoCount)",
         durationDays: "number > 0 (fallback from lessonCount cadence)",
         videoCount: "number > 0 (actual allocated content, fallback from lessonCount)",

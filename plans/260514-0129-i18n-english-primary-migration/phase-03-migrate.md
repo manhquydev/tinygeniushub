@@ -2,16 +2,16 @@
 
 ## Overview
 - Priority: high
-- Status: pending
+- Status: in progress
 - Replace Vietnamese hardcoded runtime strings module by module.
 
 ## Migration Modules
 1. `layout-and-shared-ui` - complete
-2. `public-marketing-and-legal-pages`
-3. `auth-parent-and-dashboard`
-4. `courses-and-kid-learning`
-5. `admin-and-teacher`
-6. `api-modules-workers-emails`
+2. `public-marketing-and-legal-pages` - complete
+3. `auth-parent-and-dashboard` - complete
+4. `courses-and-kid-learning` - complete
+5. `admin-and-teacher` - complete
+6. `api-modules-workers-emails` - complete
 7. `prisma-seeds-scripts-tests`
 
 ## Requirements

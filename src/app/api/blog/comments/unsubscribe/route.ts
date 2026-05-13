@@ -17,7 +17,7 @@ function renderHtmlMessage(message: string) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Thông báo bình luận</title>
+    <title>Notice of comments</title>
   </head>
   <body style="font-family: system-ui, sans-serif; margin: 0; background: #f8fafc; color: #0f172a;">
     <main style="max-width: 560px; margin: 64px auto; padding: 24px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px;">
@@ -44,7 +44,7 @@ export async function GET(request: Request) {
 
     const parsedToken = parseCommentReplyUnsubscribeToken(token);
     if (!parsedToken) {
-      return renderHtmlMessage("Link hủy đăng ký không hợp lệ.");
+      return renderHtmlMessage("The unsubscribe link is not valid.");
     }
 
     const comment = await prisma.blogComment.findUnique({
@@ -57,7 +57,7 @@ export async function GET(request: Request) {
     });
 
     if (!comment) {
-      return renderHtmlMessage("Không tìm thấy bình luận tương ứng với link này.");
+      return renderHtmlMessage("No comments were found corresponding to this link.");
     }
 
     const verifiedCommentId = verifyCommentReplyUnsubscribeToken({
@@ -66,11 +66,11 @@ export async function GET(request: Request) {
     });
 
     if (!verifiedCommentId || verifiedCommentId !== comment.id) {
-      return renderHtmlMessage("Link hủy đăng ký không hợp lệ hoặc đã hết hạn.");
+      return renderHtmlMessage("The unsubscribe link is invalid or has expired.");
     }
 
     if (!comment.notifyOnReply) {
-      return renderHtmlMessage("Bạn đã tắt thông báo trả lời bình luận trước đó.");
+      return renderHtmlMessage("You have turned off notifications for replying to previous comments.");
     }
 
     await prisma.blogComment.update({
@@ -80,7 +80,7 @@ export async function GET(request: Request) {
       },
     });
 
-    return renderHtmlMessage("Bạn đã tắt thông báo email cho phản hồi bình luận.");
+    return renderHtmlMessage("You have turned off email notifications for comment responses.");
   } catch (error) {
     return handleRouteError(error, {
       routeId: "blog.comments.unsubscribe",

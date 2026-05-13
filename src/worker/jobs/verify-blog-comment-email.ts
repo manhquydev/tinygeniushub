@@ -16,12 +16,12 @@ async function sendVerifyEmail(payload: VerifyBlogCommentJobPayload) {
   const baseUrl = resolveEmailPublicBaseUrl();
   const verifyUrl = `${baseUrl}/api/blog/comments/verify?token=${encodeURIComponent(payload.verifyToken)}`;
   const postUrl = `${baseUrl}/blog/${payload.postSlug}`;
-  const subject = "Xác nhận bình luận của bạn trên TinyGenius Hub";
+  const subject = "Confirm your comment on TinyGenius Hub";
   const text = [
-    `Xin chào ${payload.authorName},`,
-    "Cảm ơn bạn đã gửi bình luận trên TinyGenius Hub.",
-    `Vui lòng xác nhận bình luận tại: ${verifyUrl}`,
-    `Bài viết: ${postUrl}`,
+    `Hello${payload.authorName},`,
+    "Thank you for submitting your comment on TinyGenius Hub.",
+    `Please confirm comments at:${verifyUrl}`,
+    `Article:${postUrl}`,
   ].join("\n");
 
   return sendTransactionalEmail({

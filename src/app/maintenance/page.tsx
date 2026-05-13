@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bảo trì hệ thống",
+  title: "System maintenance",
 };
 
 export default function MaintenancePage() {
@@ -27,14 +27,14 @@ export default function MaintenancePage() {
             className="h-8 w-auto object-contain sm:h-9"
           />
           <p className="inline-flex items-center rounded-full border border-cyan-200/35 bg-cyan-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-cyan-100/95">
-            Bảo trì hệ thống
+            System maintenance
           </p>
         </div>
 
         <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/50">
           <Image
             src="/images/system/cloud-garden/system_loading_hero.png"
-            alt="Linh vật Cáo đang chạy trên đường cầu vồng trong quá trình nâng cấp hệ thống"
+            alt="The Fox mascot is running on the rainbow track during a system upgrade"
             width={1368}
             height={768}
             priority
@@ -44,10 +44,10 @@ export default function MaintenancePage() {
 
         <div className="grid gap-3 text-left">
           <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl">
-            Hệ thống đang được nâng cấp
+            The system is being upgraded
           </h1>
           <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
-            Chúng tôi đang cập nhật nền tảng để phụ huynh và bé có trải nghiệm ổn định hơn. Vui lòng quay lại sau ít phút.
+            We are updating the platform to give parents and children a more stable experience. Please come back in a few minutes.
           </p>
         </div>
 
@@ -61,7 +61,7 @@ export default function MaintenancePage() {
               animation: "notFoundShimmer 2.5s linear infinite",
             }}
           >
-            Kiểm tra lại trang chủ
+            Check the home page again
           </Link>
           <a
             href="/contact"
@@ -69,7 +69,7 @@ export default function MaintenancePage() {
             rel="noopener noreferrer"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
           >
-            Liên hệ hỗ trợ
+            Contact support
           </a>
         </div>
       </section>

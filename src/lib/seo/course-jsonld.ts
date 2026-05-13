@@ -64,7 +64,7 @@ export function buildCourseListJsonLd(courses: Array<{ slug: string; title: stri
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Khóa học - TinyGenius Hub",
+    name: "Course - TinyGenius Hub",
     url: `${BASE_URL}/courses`,
     numberOfItems: courses.length,
     itemListElement: courses.map((course, index) => ({

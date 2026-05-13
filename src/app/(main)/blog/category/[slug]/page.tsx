@@ -117,7 +117,7 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
 
       <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <p className="text-sm font-semibold text-slate-600">
-          {result.total} bài viết
+          {result.total} posts
         </p>
         <BlogCategoryFilter basePath={`/blog/category/${category.slug}`} currentSort={sort} />
       </section>
@@ -134,11 +134,11 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
             href={buildCategoryPageHref(category.slug, page - 1, sort)}
             className="inline-flex min-h-10 items-center rounded-xl border border-slate-300 px-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
           >
-            ← Trang trước
+            ← Previous page
           </Link>
         ) : (
           <span className="inline-flex min-h-10 items-center rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-400">
-            ← Trang trước
+            ← Previous page
           </span>
         )}
 

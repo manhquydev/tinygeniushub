@@ -17,10 +17,10 @@ export function CourseDetailFitChecklist({ fitChecklist, bestFor, courseSlug, va
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.08em] text-sky-700">Fit checklist</p>
           <h2 className="mt-1 text-lg font-extrabold text-slate-900">
-            Khóa này có phù hợp với bé nhà mình không?
+            Is this course suitable for my baby?
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-slate-600">
-            {bestFor ?? "Đọc nhanh checklist trước khi thanh toán để tránh mua sai nhu cầu."}
+            {bestFor ?? "Quickly read the checklist before paying to avoid buying for the wrong needs."}
           </p>
         </div>
         <FitCheckTrackedLink
@@ -28,16 +28,16 @@ export function CourseDetailFitChecklist({ fitChecklist, bestFor, courseSlug, va
           className="ghost-button"
           variant={variant}
           sourcePage="course_detail"
-          ctaLabel="Xem lộ trình kết quả"
+          ctaLabel="See the results roadmap"
           bundleSlug={courseSlug}
         >
-          Xem lộ trình kết quả
+          See the results roadmap
         </FitCheckTrackedLink>
       </div>
 
       <div className="mt-4 grid gap-3 lg:grid-cols-3">
         <article className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-          <h3 className="text-sm font-extrabold text-emerald-800">Phù hợp nếu</h3>
+          <h3 className="text-sm font-extrabold text-emerald-800">Suitable if</h3>
           <ul className="mt-3 space-y-2 text-sm text-emerald-900/90">
             {fitChecklist.fitIf.map((item) => (
               <li key={item} className="inline-flex items-start gap-2">
@@ -49,7 +49,7 @@ export function CourseDetailFitChecklist({ fitChecklist, bestFor, courseSlug, va
         </article>
 
         <article className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
-          <h3 className="text-sm font-extrabold text-amber-800">Chưa phù hợp nếu</h3>
+          <h3 className="text-sm font-extrabold text-amber-800">Not suitable if</h3>
           <ul className="mt-3 space-y-2 text-sm text-amber-900/90">
             {fitChecklist.notFitIf.map((item) => (
               <li key={item} className="inline-flex items-start gap-2">
@@ -61,7 +61,7 @@ export function CourseDetailFitChecklist({ fitChecklist, bestFor, courseSlug, va
         </article>
 
         <article className="rounded-2xl border border-sky-200 bg-sky-50 p-4">
-          <h3 className="text-sm font-extrabold text-sky-800">Nên mua khi</h3>
+          <h3 className="text-sm font-extrabold text-sky-800">Should buy when</h3>
           <ul className="mt-3 space-y-2 text-sm text-sky-900/90">
             {fitChecklist.buyWhen.map((item) => (
               <li key={item} className="inline-flex items-start gap-2">

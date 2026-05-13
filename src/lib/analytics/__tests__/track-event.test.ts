@@ -55,13 +55,13 @@ describe("trackEvent", () => {
     trackEvent("nav_click", {
       state: "parent",
       location: "footer",
-      label: "Bảng giá",
+      label: "Price list",
       href: "/pricing",
     });
     expect(window.gtag).toHaveBeenCalledWith("event", "nav_click", {
       state: "parent",
       location: "footer",
-      label: "Bảng giá",
+      label: "Price list",
       href: "/pricing",
     });
     expect(window.fbq).not.toHaveBeenCalled();

@@ -2,7 +2,7 @@
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "TinyGeniusHub - Nền tảng học tập sớm cho trẻ 2-6 tuổi";
+export const alt = "TinyGeniusHub - Early learning platform for children 2-6 years old";
 export const size = {
   width: 1200,
   height: 630,
@@ -75,7 +75,7 @@ export default async function Image() {
             color: "#0f172a",
           }}
         >
-          Toán & Tiếng Anh cho bé 2-6 tuổi
+          Math & English for children 2-6 years old
         </div>
 
         <div
@@ -86,7 +86,7 @@ export default async function Image() {
             color: "#0f766e",
           }}
         >
-          15 phút mỗi ngày - thấy rõ tiến bộ
+          15 minutes a day - see clear progress
         </div>
       </div>
     ),

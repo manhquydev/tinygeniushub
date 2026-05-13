@@ -296,7 +296,7 @@ describe("auth login route", () => {
 
     expect(response.status).toBe(403);
     expect(body.error.details?.code).toBe("EMAIL_NOT_VERIFIED");
-    expect(body.error.message).toContain("Email chưa được xác minh");
+    expect(body.error.message).toContain("Email has not been verified");
     expect(issueParentEmailVerificationChallengeMock).toHaveBeenCalledWith({
       parent: {
         id: "parent-1",

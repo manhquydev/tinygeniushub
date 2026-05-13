@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { sanitizeNextPath } from "@/lib/auth/safe-next-path";
 
 export const metadata: Metadata = {
-  title: "Phiên đăng nhập đã hết hạn",
+  title: "Login session has expired",
 };
 
 const CLOUD_GARDEN_SYSTEM_IMAGE = "/images/system/cloud-garden/system_offline_error.png";
@@ -53,7 +53,7 @@ export default async function SessionExpiredPage({ searchParams }: SessionExpire
         <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/50">
           <Image
             src={CLOUD_GARDEN_SYSTEM_IMAGE}
-            alt="Khung cảnh Cloud Garden khi phiên đăng nhập cần được làm mới"
+            alt="Cloud Garden scene when the login session needs to be refreshed"
             width={1368}
             height={768}
             priority
@@ -63,10 +63,10 @@ export default async function SessionExpiredPage({ searchParams }: SessionExpire
 
         <div className="grid gap-3 text-left">
           <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl">
-            Phiên đăng nhập đã hết hạn
+            Login session has expired
           </h1>
           <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
-            Vì lý do bảo mật, bạn cần đăng nhập lại để tiếp tục truy cập trang này.
+            For security reasons, you need to log in again to continue accessing this page.
           </p>
         </div>
 
@@ -80,13 +80,13 @@ export default async function SessionExpiredPage({ searchParams }: SessionExpire
               animation: "notFoundShimmer 2.5s linear infinite",
             }}
           >
-            Đăng nhập lại
+            Log in again
           </Link>
           <Link
             href="/"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
           >
-            Về trang chủ
+            Return to home page
           </Link>
         </div>
       </section>

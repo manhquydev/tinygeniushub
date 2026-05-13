@@ -70,13 +70,13 @@ export function generateBlogPostJsonLd(post: BlogPostFullDTO, siteUrl: string): 
 export function generateBlogListMetadata(): Metadata {
   return {
     title: "Blog TinyGeniusHub",
-    description: "Kiến thức, phương pháp và tài nguyên giúp phụ huynh đồng hành cùng bé học tại nhà.",
+    description: "Knowledge, methods and resources help parents accompany their children to learn at home.",
     alternates: {
       canonical: "/blog",
     },
     openGraph: {
       title: "Blog TinyGeniusHub",
-      description: "Kiến thức, phương pháp và tài nguyên giúp phụ huynh đồng hành cùng bé học tại nhà.",
+      description: "Knowledge, methods and resources help parents accompany their children to learn at home.",
       type: "website",
       url: "/blog",
     },

@@ -11,9 +11,9 @@ function isHttpUrl(value: string) {
 const footerSocialLinkFieldSchema = z
   .string()
   .trim()
-  .url("URL không hợp lệ.")
-  .max(320, "URL quá dài.")
-  .refine(isHttpUrl, "URL phải bắt đầu bằng http:// hoặc https://");
+  .url("Invalid URL.")
+  .max(320, "The URL is too long.")
+  .refine(isHttpUrl, "URL must start with http:// or https://");
 
 export const footerSocialLinksSchema = z.object({
   facebook: footerSocialLinkFieldSchema,

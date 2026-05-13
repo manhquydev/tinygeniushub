@@ -95,8 +95,8 @@ export async function notifyCommentReply(input: {
   await createReaderNotification({
     readerId: reader.id,
     type: "comment_reply",
-    title: "Có phản hồi bình luận mới",
-    message: `Ai đó vừa trả lời bình luận của bạn trong bài "${input.postTitle}".`,
+    title: "There is a new comment response",
+    message: `Someone just replied to your comment in the article "${input.postTitle}".`,
     link: `/blog/${input.postSlug}#comments`,
     payload: {
       postSlug: input.postSlug,
@@ -131,7 +131,7 @@ export async function notifyNewPost(postId: string) {
     readerIds.map((readerId) => ({
       readerId,
       type: "new_post",
-      title: "Bài viết mới bạn có thể quan tâm",
+      title: "New article you may be interested in",
       message: post.titleVi,
       link: `/blog/${post.slug}`,
       payload: {

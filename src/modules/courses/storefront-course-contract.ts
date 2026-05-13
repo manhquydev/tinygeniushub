@@ -36,7 +36,7 @@ function fallbackDurationFromLessons(lessonCount: number) {
 
 export function buildStorefrontCourseContract(input: Input): StorefrontCourseContract {
   const normalizedTrackLabel = input.trackLabel?.trim();
-  const trackLabel = normalizedTrackLabel ? normalizedTrackLabel : "Lộ trình học";
+  const trackLabel = normalizedTrackLabel ? normalizedTrackLabel : "Study roadmap";
 
   const inputLessonCount = normalizePositiveInt(input.lessonCount);
   const inputVideoCount = normalizePositiveInt(input.videoCount);

@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { TryGardenClient } from "./try-garden-client";
 
 /**
- * /try-garden - Trang xem thử công khai.
+ * /try-garden - Public preview page.
  */
 export const metadata: Metadata = {
-  title: "Khu Vườn Trên Mây - Xem thử khóa học | TinyGenius Hub",
+  title: "Cloud Garden - Course Preview | TinyGenius Hub",
   description:
-    "Khám phá Khu Vườn Trên Mây với trải nghiệm xem thử bài học tương tác cho bé 2-6 tuổi trước khi mua khóa.",
-  keywords: ["xem thử khóa học", "học sớm cho bé", "toán tư duy cho bé", "tiếng Anh phonics", "TinyGenius Hub"],
+    "Explore the Cloud Garden with the experience of previewing interactive lessons for children 2-6 years old before purchasing the course.",
+  keywords: ["check out the course", "early learning for children", "mental math for children", "English phonics", "TinyGenius Hub"],
   openGraph: {
-    title: "Khu Vườn Trên Mây - Xem thử khóa học",
-    description: "Khám phá thế giới học tập và xem thử bài học trước khi mua.",
+    title: "Cloud Garden - Preview the course",
+    description: "Explore the world of learning and preview lessons before you buy.",
     url: "https://www.tinygeniushubvn.tech/try-garden",
     siteName: "TinyGenius Hub",
     images: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: "/og-images/try-garden.png",
         width: 1200,
         height: 630,
-        alt: "Khu Vườn Trên Mây - Xem thử",
+        alt: "Cloud Garden - Check it out",
       },
     ],
     locale: "vi_VN",
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Khu Vườn Trên Mây - Xem thử khóa học",
-    description: "Xem bài học mẫu và chọn khóa học phù hợp với bé.",
+    title: "Cloud Garden - Preview the course",
+    description: "View sample lessons and choose the right course for your child.",
     images: ["/og-images/try-garden.png"],
   },
   robots: {

@@ -54,28 +54,28 @@ export interface PlanConfig {
 export const PLAN_CONFIGS: Record<PlanCode, PlanConfig> = {
   [PlanCode.TRIAL]: {
     code: PlanCode.TRIAL,
-    name: 'Dùng thử',
+    name: 'Try it out',
     maxChildren: 1,
     maxCaregivers: 0,
     isPaid: false,
   },
   [PlanCode.MONTHLY_STANDARD]: {
     code: PlanCode.MONTHLY_STANDARD,
-    name: 'Tiểu Học PRO - Tháng',
+    name: 'PRO Elementary - Month',
     maxChildren: 3,
     maxCaregivers: 2,
     isPaid: true,
   },
   [PlanCode.YEARLY_STANDARD]: {
     code: PlanCode.YEARLY_STANDARD,
-    name: 'Tiểu Học PRO - Năm',
+    name: 'PRO Elementary - Year',
     maxChildren: 3,
     maxCaregivers: 2,
     isPaid: true,
   },
   [PlanCode.YEARLY_FAMILY_PLUS]: {
     code: PlanCode.YEARLY_FAMILY_PLUS,
-    name: 'Toàn Khoá PRO',
+    name: 'Full Course PRO',
     maxChildren: 5,
     maxCaregivers: 5,
     isPaid: true,
@@ -112,7 +112,7 @@ export class PackageValidator {
     
     // No subscription found
     if (!subscription) {
-      errors.push('Không tìm thấy gói đăng ký. Vui lòng đăng ký gói để tiếp tục.');
+      errors.push('No subscription found. Please subscribe to the package to continue.');
       return {
         isValid: false,
         isActive: false,
@@ -142,29 +142,29 @@ export class PackageValidator {
     if (!isActive) {
       switch (subscription.status) {
         case SubscriptionStatus.EXPIRED:
-          errors.push('Gói đăng ký đã hết hạn. Vui lòng gia hạn để tiếp tục.');
+          errors.push('Subscription has expired. Please renew to continue.');
           break;
         case SubscriptionStatus.CANCELED_AT_PERIOD_END:
           if (!isExpired) {
-            warnings.push('Gói đăng ký sẽ hết hạn vào cuối chu kỳ. Vui lòng gia hạn để không gián đoạn.');
+            warnings.push('Subscription will expire at the end of the period. Please extend to avoid interruption.');
           } else {
-            errors.push('Gói đăng ký đã bị hủy và hết hạn.');
+            errors.push('Subscription has been canceled and expired.');
           }
           break;
         case SubscriptionStatus.REFUNDED:
-          errors.push('Gói đăng ký đã được hoàn tiền và không còn hiệu lực.');
+          errors.push('The subscription has been refunded and is no longer valid.');
           break;
         case SubscriptionStatus.GRACE:
-          warnings.push('Gói đăng ký đang trong thời gian gia hạn. Vui lòng thanh toán sớm.');
+          warnings.push('Subscription is on renewal period. Please pay early.');
           break;
         default:
-          errors.push(`Trạng thái gói không hợp lệ: ${subscription.status}`);
+          errors.push(`Invalid package status:${subscription.status}`);
       }
     }
     
     // Check expiration
-    if (isExpired && !errors.some(e => e.includes('hết hạn'))) {
-      errors.push('Gói đăng ký đã hết hạn. Vui lòng gia hạn để tiếp tục.');
+    if (isExpired && !errors.some(e => e.includes('expired'))) {
+      errors.push('Subscription has expired. Please renew to continue.');
     }
     
     // Calculate days remaining
@@ -174,7 +174,7 @@ export class PackageValidator {
     
     // Warn if expiring soon (within 7 days)
     if (isActive && daysRemaining <= 7 && daysRemaining > 0) {
-      warnings.push(`Gói đăng ký sẽ hết hạn sau ${daysRemaining} ngày. Hãy gia hạn sớm!`);
+      warnings.push(`The subscription will expire at a later date${daysRemaining}day. Please renew soon!`);
     }
     
     return {

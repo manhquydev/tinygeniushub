@@ -72,8 +72,8 @@ export default async function AdminOperationsPage() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        title="Vận hành hệ thống"
-        description="Thanh toán, webhook, trial-flag, thông báo và dữ liệu xuất."
+        title="Operate the system"
+        description="Payments, webhooks, trial-flags, notifications, and exported data."
         icon={<Settings2 size={18} />}
         actions={<AdminExportData />}
         eyebrow="Commerce & Ops"

@@ -93,7 +93,7 @@ export default function BlogSearchPage() {
           return;
         }
 
-        setError("Tìm kiếm thất bại. Vui lòng thử lại.");
+        setError("Search failed. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -109,23 +109,23 @@ export default function BlogSearchPage() {
   return (
     <div className="page-stack">
       <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Tìm kiếm bài viết</h1>
-        <p className="mt-2 text-sm text-slate-600">Nhập từ khóa để tìm bài viết phù hợp với nhu cầu của gia đình bạn.</p>
+        <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Search articles</h1>
+        <p className="mt-2 text-sm text-slate-600">Enter keywords to find articles that suit your family's needs.</p>
 
         <label className="mt-4 block">
-          <span className="sr-only">Từ khóa tìm kiếm</span>
+          <span className="sr-only">Search keywords</span>
           <input
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Ví dụ: tiếng Anh, toán tư duy, kỹ năng sống..."
+            placeholder="For example: English, mental math, life skills..."
             className="min-h-12 w-full rounded-2xl border border-slate-300 px-4 text-sm text-slate-900 outline-none ring-teal-200 transition focus:ring-2"
           />
         </label>
 
         {normalizedQuery.length >= 2 ? (
           <p className="mt-3 text-sm font-semibold text-slate-700">
-            Tìm thấy {total} kết quả cho &quot;{normalizedQuery}&quot;
+            Found {total} results for &quot;{normalizedQuery}&quot;
           </p>
         ) : null}
       </section>
@@ -144,7 +144,7 @@ export default function BlogSearchPage() {
 
       {!loading && !error && normalizedQuery.length >= 2 && results.length === 0 ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-6 text-center text-sm text-slate-600 shadow-sm">
-          Không tìm thấy bài viết phù hợp.
+          No matching articles were found.
         </section>
       ) : null}
 
@@ -165,7 +165,7 @@ export default function BlogSearchPage() {
                     className="line-clamp-2 text-sm text-slate-600"
                     dangerouslySetInnerHTML={{ __html: highlightQuery(post.excerptVi, normalizedQuery) }}
                   />
-                  <p className="text-xs font-semibold text-slate-500">{post.readingTimeMin} phút đọc</p>
+                  <p className="text-xs font-semibold text-slate-500">{post.readingTimeMin} min read</p>
                 </div>
               </Link>
             </article>

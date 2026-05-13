@@ -19,11 +19,11 @@ import type { LessonSubject } from "@/components/cloud-garden/lesson-zone/Lesson
 const VALID_ZONES: LessonSubject[] = ["math", "phonics", "art", "music", "story"];
 
 const ZONE_TITLES: Record<LessonSubject, string> = {
-  math:    "Vườn Toán Học",
-  phonics: "Vườn Tiếng Anh",
-  art:     "Vườn Nghệ Thuật",
-  music:   "Vườn Âm Nhạc",
-  story:   "Vườn Kể Chuyện",
+  math:    "Math Garden",
+  phonics: "English Garden",
+  art:     "Art Garden",
+  music:   "Music Garden",
+  story:   "Storytelling Garden",
 };
 
 interface ZonePageProps {

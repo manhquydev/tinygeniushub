@@ -64,16 +64,16 @@ async function sendReplyNotificationEmail(payload: NotifyCommentReplyJobPayload)
   });
   const unsubscribeUrl = `${baseUrl}/api/blog/comments/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
 
-  const subject = "Có phản hồi mới cho bình luận của bạn";
+  const subject = "There is a new response to your comment";
   const text = [
-    `Xin chào ${parentComment.authorName},`,
+    `Hello${parentComment.authorName},`,
     "",
-    `Có người vừa trả lời bình luận của bạn trong bài: ${post.titleVi}`,
-    `Người trả lời: ${replyComment.authorName}`,
+    `Someone just replied to your comment in the article:${post.titleVi}`,
+    `Respondent:${replyComment.authorName}`,
     "",
-    `Xem chi tiết: ${postUrl}`,
+    `See details:${postUrl}`,
     "",
-    "Nếu bạn không muốn nhận email thông báo trả lời nữa, bấm link:",
+    "If you no longer want to receive email notification of replies, click the link:",
     unsubscribeUrl,
   ].join("\n");
 

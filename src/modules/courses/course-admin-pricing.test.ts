@@ -35,7 +35,7 @@ describe("normalizeCourseAdminPricing", () => {
     expect(result.saleEndsAt?.toISOString()).toBe("2026-03-27T10:00:00.000Z");
   });
 
-  it("accepts temporary free sale (0đ) with sale window", () => {
+  it("accepts temporary free sale (0 VND) with sale window", () => {
     const result = normalizeCourseAdminPricing({
       priceVnd: 300000,
       listPriceVnd: 300000,
@@ -50,7 +50,7 @@ describe("normalizeCourseAdminPricing", () => {
     expect(result.saleEndsAt?.toISOString()).toBe("2026-03-27T10:00:00.000Z");
   });
 
-  it("accepts flash sale 0đ when list price is greater than zero", () => {
+  it("accepts flash sale 0 VND when list price is greater than zero", () => {
     const result = normalizeCourseAdminPricing({
       priceVnd: 300000,
       listPriceVnd: 300000,

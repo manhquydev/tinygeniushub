@@ -29,7 +29,7 @@ describe("resolveCourseDisplayPricing", () => {
     expect(pricing.saleStatus).toBe("none");
   });
 
-  it("treats sale 0đ as active free-temporary discount with checkout enabled", () => {
+  it("treats sale 0 VND as active free-temporary discount with checkout enabled", () => {
     const now = new Date("2026-03-27T09:00:00.000Z");
     const pricing = resolveCourseDisplayPricing(
       {
@@ -50,7 +50,7 @@ describe("resolveCourseDisplayPricing", () => {
     expect(pricing.saleStatus).toBe("active");
   });
 
-  it("treats explicit sale 0đ with zero list price as free-temporary and purchasable", () => {
+  it("treats explicit sale 0VND with zero list price as free-temporary and purchasable", () => {
     const pricing = resolveCourseDisplayPricing({
       priceVnd: 0,
       listPriceVnd: 0,
@@ -133,7 +133,7 @@ describe("resolveCourseDisplayPricing", () => {
     expect(pricing.hasDiscount).toBe(false);
   });
 
-  it("reverts 0đ sale to list price after sale window ends", () => {
+  it("reverts 0 VND sale to list price after sale window ends", () => {
     const now = new Date("2026-03-27T11:00:00.000Z");
     const pricing = resolveCourseDisplayPricing(
       {

@@ -17,9 +17,9 @@ type Props = {
 export function CourseDetailDifference({ differenceCards, courseSlug, variant }: Props) {
   return (
     <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-      <h2 className="text-lg font-extrabold text-slate-900">Khóa này khác gì các khóa liền kề?</h2>
+      <h2 className="text-lg font-extrabold text-slate-900">How is this key different from adjacent keys?</h2>
       <p className="mt-2 text-sm leading-relaxed text-slate-600">
-        So sánh trong cùng track để phụ huynh biết khi nào nên chọn khóa này và khi nào nên lên/xuống khóa khác.
+        Compare within the same track so parents know when to choose one course and when to move up/down to another course.
       </p>
 
       {differenceCards.length > 0 ? (
@@ -45,8 +45,8 @@ export function CourseDetailDifference({ differenceCards, courseSlug, variant }:
         </div>
       ) : (
         <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-          Chưa có đủ khóa liền kề trong cùng track để so sánh trực tiếp. Bạn có thể xem checklist ở trên để quyết
-          định.
+          There are not yet enough adjacent keys in the same track for direct comparison. You can see the checklist above to decide
+          Dinh.
         </div>
       )}
     </section>

@@ -18,7 +18,7 @@ type CourseScopeResolution = {
 
 export type CourseClaritySnapshot = {
   scopeLabel: string;
-  unitLabel: "bài" | "tập";
+  unitLabel: "post" | "vol";
   pacePerWeek: number;
   week4Target: number;
   week5Target?: number;
@@ -82,8 +82,8 @@ function resolvePacePerWeek(bundleSlug: CourseBundleSlug, scope: CourseScopeReso
   return 4;
 }
 
-function resolveUnitLabel(bundleSlug: CourseBundleSlug): "bài" | "tập" {
-  return bundleSlug === "abeka" ? "bài" : "tập";
+function resolveUnitLabel(bundleSlug: CourseBundleSlug): "post" | "vol" {
+  return bundleSlug === "abeka" ? "post" : "vol";
 }
 
 function resolvePhaseCounts(lessonCount: number) {
@@ -134,15 +134,15 @@ export function buildCourseClaritySnapshot(input: {
 
   const cadenceLine =
     week5Target !== undefined
-      ? `Mốc 5 tuần khoảng ${week5Target} ${unitLabel}.`
+      ? `The 5 week mark is approx${week5Target} ${unitLabel}.`
       : week6Target !== undefined
-        ? `Mốc 6 tuần khoảng ${week6Target} ${unitLabel}.`
-        : `Mốc 4 tuần khoảng ${week4Target} ${unitLabel}.`;
+        ? `6 week mark approx${week6Target} ${unitLabel}.`
+        : `4 week mark approx${week4Target} ${unitLabel}.`;
 
-  const cardOutcomeLine = `${scope.scopeLabel}: ${pacePerWeek} ${unitLabel}/tuần, mốc 4 tuần khoảng ${week4Target} ${unitLabel}.`;
+  const cardOutcomeLine = `${scope.scopeLabel}: ${pacePerWeek} ${unitLabel}/week, 4 week mark approx${week4Target} ${unitLabel}.`;
   const detailOutcomeLines = [
-    `Giữ nhịp ${pacePerWeek} ${unitLabel}/tuần để con không bị quá tải.`,
-    `Sau 4 tuần có thể đạt khoảng ${week4Target} ${unitLabel}. ${cadenceLine}`,
+    `Keep the rhythm${pacePerWeek} ${unitLabel}/week so your child doesn't get overloaded.`,
+    `After 4 weeks can reach approx${week4Target} ${unitLabel}. ${cadenceLine}`,
     `Checkpoint theo pha: Foundation ${phaseCounts.foundation} ${unitLabel}, Core ${phaseCounts.core} ${unitLabel}, Mastery ${phaseCounts.mastery} ${unitLabel}.`,
   ];
 
@@ -161,61 +161,61 @@ export function buildCourseClaritySnapshot(input: {
 
 const STORE_CONTENT: Record<CourseBundleSlug, BundleStorefrontContent> = {
   abeka: {
-    shortLabel: "Nền tảng học thuật có lộ trình",
+    shortLabel: "The academic foundation has a roadmap",
     parentProblem:
-      "Con cần học bài bản theo lớp nhưng phụ huynh không có nhiều thời gian tự soạn lộ trình mỗi tuần.",
+      "Children need to study systematically in class, but parents do not have much time to prepare their own schedules each week.",
     promise:
-      "Tách theo từng cấp lớp rõ ràng để ba mẹ chọn đúng điểm bắt đầu, theo dõi tiến bộ và mở rộng dần.",
-    bestFor: "Phụ huynh muốn xây nền đọc hiểu - từ vựng - tư duy học thuật theo cấp lớp.",
+      "Clearly separated by grade level so parents can choose the right starting point, track progress and gradually expand.",
+    bestFor: "Parents want to build reading comprehension - vocabulary - academic thinking according to grade level.",
     outcomes: [
-      "Bé học theo từng cấp lớp (K4 đến G12), không bị ngợp vì lộ trình quá dài.",
-      "Có checkpoint theo cụm bài để ôn truy hồi và nhớ lâu hơn.",
-      "Dễ nâng từ cấp lớp hiện tại lên cấp lớp tiếp theo khi đã hoàn thành.",
+      "Children learn at each grade level (K4 to G12), without being overwhelmed because the route is too long.",
+      "There are checkpoints based on clusters of lessons to review and remember longer.",
+      "Easy to upgrade from current grade level to the next grade level once completed.",
     ],
     parentVisibleValue: [
-      "Nhìn thấy rõ bé đang học cấp lớp nào và còn bao nhiêu bài.",
-      "Mỗi giai đoạn đều có mốc hoàn thành để đánh giá tiến bộ.",
-      "Có thể bắt đầu từ cấp lớp phù hợp thay vì mua một khóa quá rộng ngay từ đầu.",
+      "See clearly what grade level your child is in and how many lessons are left.",
+      "Each stage has a completion milestone to evaluate progress.",
+      "You can start from the appropriate grade level instead of buying a course that is too broad from the beginning.",
     ],
-    courseUnitLabel: "cấp lớp",
+    courseUnitLabel: "grade level",
   },
   "little-fox-en": {
-    shortLabel: "Luyện nghe - đọc tiếng Anh qua truyện",
+    shortLabel: "Practice listening - reading English through stories",
     parentProblem:
-      "Con học tiếng Anh qua video rời rạc, thiếu lộ trình tăng dần độ khó nên dễ chán và khó theo dõi.",
+      "Children learn English through discrete videos, lacking a roadmap of increasing difficulty, so they get bored easily and find it difficult to follow.",
     promise:
-      "Chia theo cấp độ 1-9 để phụ huynh thấy rõ con đang ở đâu, học bao nhiêu tập và tiến bộ như thế nào.",
-    bestFor: "Phụ huynh muốn con tăng nghe hiểu, từ vựng và phản xạ tiếng Anh qua hình thức học bằng truyện.",
+      "Divided into levels 1-9 so parents can clearly see where their children are, how many lessons they have learned and how they are progressing.",
+    bestFor: "Parents want their children to increase listening comprehension, vocabulary and English reflexes through story-based learning.",
     outcomes: [
-      "Nội dung đi từ cấp độ dễ đến khó, phù hợp tiến độ tự nhiên của trẻ.",
-      "Bài học ngắn + truy hồi theo cụm giúp tăng ghi nhớ dài hạn.",
-      "Có thể học đều mỗi ngày với khối lượng nhỏ, giảm áp lực cho cả con và phụ huynh.",
+      "Content ranges from easy to difficult levels, suitable for children's natural progress.",
+      "Short lessons + cluster retrieval help increase long-term memory.",
+      "You can study regularly every day in small amounts, reducing pressure for both children and parents.",
     ],
     parentVisibleValue: [
-      "Thấy rõ cấp độ hiện tại và tổng số tập đã hoàn thành.",
-      "Dễ đặt mục tiêu tuần theo số bài cụ thể.",
-      "Dễ chuyển cấp độ khi đã hoàn thành giai đoạn hiện tại.",
+      "Clearly see the current level and total number of completed episodes.",
+      "Easy to set weekly goals based on a specific number of articles.",
+      "Easy to change levels once you complete the current stage.",
     ],
-    courseUnitLabel: "cấp độ",
+    courseUnitLabel: "level",
   },
   "little-fox-cn": {
-    shortLabel: "Lộ trình tiếng Trung cho trẻ mới bắt đầu",
+    shortLabel: "Chinese language roadmap for beginners",
     parentProblem:
-      "Tiếng Trung cho trẻ thường thiếu lộ trình rõ theo mức độ, phụ huynh khó chọn điểm bắt đầu.",
+      "Chinese for children often lacks a clear roadmap by level, making it difficult for parents to choose a starting point.",
     promise:
-      "Tách theo cấp độ 1-5 để ba mẹ bắt đầu đúng mức, theo dõi dễ và mở rộng từng bước.",
-    bestFor: "Phụ huynh muốn con làm quen tiếng Trung theo nhịp ổn định, có thể theo dõi được hàng tuần.",
+      "Separated into levels 1-5 so parents can start at the right level, follow easily and expand step by step.",
+    bestFor: "Parents want their children to get acquainted with Chinese at a steady pace that can be monitored weekly.",
     outcomes: [
-      "Lộ trình cấp độ rõ ràng, tránh học dàn trải.",
-      "Học đều với cụm bài ngắn để giữ thói quen học liên tục.",
-      "Dễ đánh giá mức sẵn sàng trước khi chuyển cấp độ tiếp theo.",
+      "Clear level roadmap, avoid scattered learning.",
+      "Study regularly with short lesson clusters to keep the habit of studying continuously.",
+      "Easily assess readiness before moving to the next level.",
     ],
     parentVisibleValue: [
-      "Bảng tiến độ rõ theo từng cấp độ.",
-      "Thấy ngay tổng số bài, thời lượng truy cập và trạng thái hoàn thành.",
-      "Dễ phối hợp cùng con tại nhà nhờ mục tiêu tuần ngắn gọn.",
+      "Clear progress table for each level.",
+      "Immediately see the total number of articles, access time and completion status.",
+      "Easy to coordinate with your child at home thanks to short weekly goals.",
     ],
-    courseUnitLabel: "cấp độ",
+    courseUnitLabel: "level",
   },
 };
 

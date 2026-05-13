@@ -3,21 +3,21 @@
  * 
  * Pricing fixes applied:
  * - Lite tier: 99K → 149K (margin 3% → 36%) - MOVED to plan-config.ts
- * - Trung Học: 399K → 349K (competitive với Tiểu Học)
+ * - Middle School: 399K -> 349K (competitive with Elementary)
  */
 
 import { z } from "zod";
 
 // Package code schema for validation
 export const packageCodeSchema = z.enum([
-  "PRESCHOOL_PREMIUM",      // K4-K5: Mầm Non
-  "ELEMENTARY_PRO",         // G1-G5: Tiểu Học  
-  "MIDDLE_SCHOOL_ADVANCED", // G6-G9: Trung Học
+  "PRESCHOOL_PREMIUM",      // K4-K5: Preschool
+  "ELEMENTARY_PRO",         // G1-G5: Elementary
+  "MIDDLE_SCHOOL_ADVANCED", // G6-G9: Middle School
   "HIGH_SCHOOL_ELITE",      // G10-G12: THPT
-  "ENGLISH_MASTER",         // K4-G5: Tiếng Anh
-  "MATH_THINKING",          // K4-G8: Toán Tư Duy
+  "ENGLISH_MASTER",         // K4-G5: English
+  "MATH_THINKING",          // K4-G8: Thinking Math
   "STEM_INNOVATOR",         // G3-G8: STEM
-  "ULTIMATE_FULL",          // K4-G12: Toàn Diện
+  "ULTIMATE_FULL",          // K4-G12: Full Access
 ]);
 
 export type PackageCode = z.infer<typeof packageCodeSchema>;
@@ -46,8 +46,8 @@ export const PACKAGE_CONFIG: Record<PackageCode, PackageConfig> = {
   PRESCHOOL_PREMIUM: {
     code: "PRESCHOOL_PREMIUM",
     name: "Preschool Premium",
-    nameVi: "Gói Mầm Non PREMIUM",
-    description: "Nền tảng vàng cho con yêu - Từ chưa biết chữ đến đọc thông viết thạo",
+    nameVi: "PREMIUM Preschool Package",
+    description: "Golden foundation for children - From illiterate to fluent in reading and writing",
     grades: ["k4", "k5"],
     gradeRange: "K4-K5",
     subjects: ["PH", "AT", "BI", "AC", "WR"],
@@ -57,21 +57,21 @@ export const PACKAGE_CONFIG: Record<PackageCode, PackageConfig> = {
     yearlyPrice: 1_790_000,
     displayOrder: 1,
     features: [
-      "Phonics cơ bản từ ABC",
-      "Nhận biết chữ cái và âm",
-      "Kỹ năng sống đầu đời",
-      "Nền tảng đạo đức",
-      "Hoạt động sáng tạo"
+      "Basic Phonics from ABC",
+      "Recognize letters and sounds",
+      "Early life skills",
+      "Ethical foundation",
+      "Creative activities"
     ],
-    targetAge: "2-6 tuổi",
-    valueProposition: "Chuẩn bị nền tảng vững chắc cho việc học tập"
+    targetAge: "2-6 years old",
+    valueProposition: "Prepare a solid foundation for learning"
   },
 
   ELEMENTARY_PRO: {
     code: "ELEMENTARY_PRO",
     name: "Elementary PRO",
-    nameVi: "Gói Tiểu Học PRO",
-    description: "5 năm vàng - Xây dựng nền tảng vững chắc cho tương lai",
+    nameVi: "PRO Primary Package",
+    description: "5 golden years - Building a solid foundation for the future",
     grades: ["g1", "g2", "g3", "g4", "g5"],
     gradeRange: "G1-G5",
     subjects: ["PH", "RE", "AT", "SC", "HI", "WR", "BI"],
@@ -81,45 +81,45 @@ export const PACKAGE_CONFIG: Record<PackageCode, PackageConfig> = {
     yearlyPrice: 2_990_000,
     displayOrder: 2,
     features: [
-      "Phonics nâng cao",
-      "Toán tư duy logic",
-      "Khoa học cơ bản",
-      "Lịch sử thế giới",
-      "Đọc hiểu và viết luận"
+      "Advanced Phonics",
+      "Logical thinking math",
+      "Basic science",
+      "World history",
+      "Reading comprehension and essay writing"
     ],
-    targetAge: "6-11 tuổi",
-    valueProposition: "Nền tảng toàn diện cho cấp 2"
+    targetAge: "6-11 years old",
+    valueProposition: "Comprehensive foundation for level 2"
   },
 
   MIDDLE_SCHOOL_ADVANCED: {
     code: "MIDDLE_SCHOOL_ADVANCED",
     name: "Middle School Advanced",
-    nameVi: "Gói Trung Học ADVANCED",
-    description: "Chinh phục THCS - Từ học sinh giỏi đến xuất sắc",
+    nameVi: "ADVANCED High School Package",
+    description: "Conquering middle school - From good student to excellent student",
     grades: ["g6", "g7", "g8", "g9"],
     gradeRange: "G6-G9",
     subjects: ["AT", "SC", "HI", "RE", "BI", "WR"],
     videoCount: 5800,
     lessonCount: 680,
-    monthlyPrice: 349_000,  // Fixed: 399K → 349K (competitive with Tiểu Học)
+    monthlyPrice: 349_000,  // Fixed: 399K -> 349K (competitive with Elementary)
     yearlyPrice: 3_190_000, // Adjusted yearly to match
     displayOrder: 3,
     features: [
-      "Toán đại số và hình học",
-      "Khoa học tự nhiên",
-      "Lịch sử Mỹ",
-      "Văn học Anh phân tích",
-      "Tư duy phản biện"
+      "Algebra and geometry",
+      "Natural science",
+      "American History",
+      "English literature analysis",
+      "Critical thinking"
     ],
-    targetAge: "11-15 tuổi",
-    valueProposition: "Chuẩn bị vững chắc cho cấp 3"
+    targetAge: "11-15 years old",
+    valueProposition: "Solid preparation for level 3"
   },
 
   HIGH_SCHOOL_ELITE: {
     code: "HIGH_SCHOOL_ELITE",
     name: "High School Elite",
-    nameVi: "Gói THPT ELITE",
-    description: "Vào đại học top - Chuẩn bị vượt trội cho tương lai",
+    nameVi: "ELITE High School Package",
+    description: "Go to a top university - Prepare outstandingly for the future",
     grades: ["g10", "g11", "g12"],
     gradeRange: "G10-G12",
     subjects: ["AT", "SC", "HI", "RE", "BI", "WR"],
@@ -129,21 +129,21 @@ export const PACKAGE_CONFIG: Record<PackageCode, PackageConfig> = {
     yearlyPrice: 3_990_000,
     displayOrder: 4,
     features: [
-      "Calculus và Geometry nâng cao",
-      "Chemistry và Physics chuyên sâu",
-      "Chuẩn bị SAT/ĐH",
-      "Văn học phân tích nâng cao",
-      "Chính trị và Kinh tế"
+      "Advanced Calculus and Geometry",
+      "Intensive Chemistry and Physics",
+      "Prepare for SAT/University",
+      "Advanced analytical literature",
+      "Politics and Economics"
     ],
-    targetAge: "15-18 tuổi",
-    valueProposition: "Vượt trội trong kỳ thi đại học"
+    targetAge: "15-18 years old",
+    valueProposition: "Excel in the university exam"
   },
 
   ENGLISH_MASTER: {
     code: "ENGLISH_MASTER",
     name: "English Master",
-    nameVi: "Gói Tiếng Anh MASTER",
-    description: "Song ngữ từ nhỏ - Tiếng Anh như người bản xứ",
+    nameVi: "MASTER English Package",
+    description: "Bilingual since childhood - English like a native",
     grades: ["k4", "k5", "g1", "g2", "g3", "g4", "g5"],
     gradeRange: "K4-G5",
     subjects: ["PH", "RE", "WR"],
@@ -153,21 +153,21 @@ export const PACKAGE_CONFIG: Record<PackageCode, PackageConfig> = {
     yearlyPrice: 2_190_000,
     displayOrder: 5,
     features: [
-      "Phonics từ cơ bản đến nâng cao",
-      "Đọc hiểu và phát âm chuẩn Mỹ",
-      "Viết luận cơ bản",
-      "Từ ABC đến đọc thông viết thạo",
-      "6 năm tiếng Anh liên tục"
+      "Phonics from basic to advanced",
+      "Read and pronounce American standards",
+      "Basic essay writing",
+      "From ABC to fluent reading and writing",
+      "6 years of continuous English"
     ],
-    targetAge: "2-11 tuổi",
-    valueProposition: "Tiếng Anh vượt trội từ nhỏ"
+    targetAge: "2-11 years old",
+    valueProposition: "English has excelled since childhood"
   },
 
   MATH_THINKING: {
     code: "MATH_THINKING",
     name: "Math Thinking",
-    nameVi: "Gói Toán Tư Duy",
-    description: "Tư duy Toán học - Con giỏi logic, không sợ đề",
+    nameVi: "Mental Math Package",
+    description: "Mathematical Thinking - I'm good at logic, not afraid of problems",
     grades: ["k4", "k5", "g1", "g2", "g3", "g4", "g5", "g6", "g7", "g8"],
     gradeRange: "K4-G8",
     subjects: ["AT"],
@@ -177,21 +177,21 @@ export const PACKAGE_CONFIG: Record<PackageCode, PackageConfig> = {
     yearlyPrice: 1_790_000,
     displayOrder: 6,
     features: [
-      "Số học từ cơ bản đến nâng cao",
-      "Đại số và hình học",
-      "Tư duy logic",
-      "Giải bài toán thực tế",
-      "9 năm toán liên tục"
+      "Arithmetic from basic to advanced",
+      "Algebra and geometry",
+      "Logical thinking",
+      "Solve real problems",
+      "9 years of continuous math"
     ],
-    targetAge: "2-14 tuổi",
-    valueProposition: "Nền tảng toán học vững chắc"
+    targetAge: "2-14 years old",
+    valueProposition: "Solid mathematical foundation"
   },
 
   STEM_INNOVATOR: {
     code: "STEM_INNOVATOR",
     name: "STEM Innovator",
-    nameVi: "Gói STEM INNOVATOR",
-    description: "Nhà khoa học nhí - Khám phá thế giới tự nhiên",
+    nameVi: "STEM INNOVATOR Package",
+    description: "Little scientist - Explore the natural world",
     grades: ["g3", "g4", "g5", "g6", "g7", "g8"],
     gradeRange: "G3-G8",
     subjects: ["SC", "AT"],
@@ -201,21 +201,21 @@ export const PACKAGE_CONFIG: Record<PackageCode, PackageConfig> = {
     yearlyPrice: 2_690_000,
     displayOrder: 7,
     features: [
-      "Khoa học từ cơ bản đến nâng cao",
-      "Thí nghiệm ảo",
-      "Tư duy khoa học",
-      "Toán ứng dụng",
-      "6 năm STEM liên tục"
+      "Science from basic to advanced",
+      "Virtual experiment",
+      "Scientific thinking",
+      "Applied Mathematics",
+      "6 consecutive years of STEM"
     ],
-    targetAge: "8-14 tuổi",
-    valueProposition: "Nền tảng STEM cho tương lai"
+    targetAge: "8-14 years old",
+    valueProposition: "STEM foundation for the future"
   },
 
   ULTIMATE_FULL: {
     code: "ULTIMATE_FULL",
     name: "Ultimate Full Access",
-    nameVi: "Gói Toàn Diện ULTIMATE",
-    description: "Kho báu tri thức - Một lần đầu tư, trọn đời thụ hưởng",
+    nameVi: "ULTIMATE Comprehensive Package",
+    description: "Treasure of knowledge - One time investment, lifetime enjoyment",
     grades: ["k4", "k5", "g1", "g2", "g3", "g4", "g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12"],
     gradeRange: "K4-G12",
     subjects: [], // All subjects
@@ -225,14 +225,14 @@ export const PACKAGE_CONFIG: Record<PackageCode, PackageConfig> = {
     yearlyPrice: 6_990_000,
     displayOrder: 8,
     features: [
-      "Toàn bộ 20,195 video",
-      "Tất cả 8 môn học",
-      "14 cấp lớp từ K4 đến G12",
-      "Đa người dùng trong gia đình",
-      "Dashboard và báo cáo tiến độ"
+      "Total 20,195 videos",
+      "All 8 subjects",
+      "14 grade levels from K4 to G12",
+      "Multi-user in the family",
+      "Dashboard and progress reports"
     ],
-    targetAge: "2-18 tuổi",
-    valueProposition: "Giá trị tốt nhất cho gia đình"
+    targetAge: "2-18 years old",
+    valueProposition: "Best value for families"
   },
 };
 
@@ -301,11 +301,11 @@ export function getUpgradeOptions(currentCode: PackageCode): PackageConfig[] {
 // Subject code mapping for reference
 export const SUBJECT_CODES: Record<string, { name: string; nameVi: string }> = {
   PH: { name: "Phonics", nameVi: "Phonics" },
-  RE: { name: "Reading", nameVi: "Đọc hiểu" },
-  AT: { name: "Arithmetic/Math", nameVi: "Toán" },
-  SC: { name: "Science", nameVi: "Khoa học" },
-  HI: { name: "History", nameVi: "Lịch sử" },
-  BI: { name: "Bible", nameVi: "Kinh Thánh" },
-  WR: { name: "Writing", nameVi: "Viết" },
-  AC: { name: "Activities", nameVi: "Hoạt động" }
+  RE: { name: "Reading", nameVi: "Read comprehension" },
+  AT: { name: "Arithmetic/Math", nameVi: "Maths" },
+  SC: { name: "Science", nameVi: "Science" },
+  HI: { name: "History", nameVi: "History" },
+  BI: { name: "Bible", nameVi: "Bible" },
+  WR: { name: "Writing", nameVi: "Write" },
+  AC: { name: "Activities", nameVi: "Work" }
 };

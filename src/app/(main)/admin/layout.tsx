@@ -38,7 +38,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
           <div className="flex min-w-0 items-center gap-2">
             <ShieldCheck size={14} className="shrink-0 text-teal-600" />
             <p className="truncate text-sm font-medium text-[var(--admin-text-primary)]">
-              Quản trị
+              Administration
             </p>
           </div>
 

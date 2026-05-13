@@ -11,8 +11,8 @@ export default async function AdminSiteSettingsPage() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        title="Cài đặt trang"
-        description="Quản lý liên kết mạng xã hội và các cài đặt nội dung hiển thị trên website."
+        title="Page settings"
+        description="Manage social network links and content settings displayed on the website."
         icon={<Link2 size={18} />}
         eyebrow="Site Settings"
       />

@@ -35,7 +35,7 @@ export default async function AcceptInvitePage({ searchParams }: AcceptInvitePag
     if (error instanceof DomainError) {
       errorMessage = error.message;
     } else {
-      errorMessage = "Không thể xử lý lời mời lúc này. Vui lòng thử lại sau.";
+      errorMessage = "Invitations cannot be processed at this time. Please try again later.";
     }
   }
 
@@ -48,10 +48,10 @@ export default async function AcceptInvitePage({ searchParams }: AcceptInvitePag
           Caregiver Invite
         </p>
         <h1 className="mt-3 text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">
-          Xác nhận lời mời caregiver
+          Confirm caregiver invitation
         </h1>
         <p className="mt-2 max-w-[70ch] text-sm leading-relaxed text-slate-600 sm:text-base">
-          Hoàn tất bước xác nhận để cùng phụ huynh theo dõi tiến độ học tập của bé.
+          Complete the confirmation step to monitor your child's learning progress with parents.
         </p>
       </section>
 
@@ -69,18 +69,18 @@ export default async function AcceptInvitePage({ searchParams }: AcceptInvitePag
           {hasSuccess ? (
             <>
               <h2 className="mt-4 text-2xl font-black tracking-[-0.02em] text-slate-900">
-                Bạn đã được thêm làm caregiver!
+                You have been added as a caregiver!
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">
                 {parentDisplayName
-                  ? `Lời mời từ ${parentDisplayName} đã được xác nhận thành công.`
-                  : "Lời mời đã được xác nhận thành công."}
+                  ? `Invitation from${parentDisplayName}has been successfully confirmed.`
+                  : "The invitation has been successfully confirmed."}
               </p>
             </>
           ) : (
             <>
               <h2 className="mt-4 text-2xl font-black tracking-[-0.02em] text-slate-900">
-                Không thể chấp nhận lời mời
+                Invitation cannot be accepted
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">
                 {errorMessage}
@@ -92,7 +92,7 @@ export default async function AcceptInvitePage({ searchParams }: AcceptInvitePag
             href="/"
             className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 px-5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(13,148,136,0.3)] transition hover:-translate-y-0.5"
           >
-            Về trang chủ
+            Return to home page
           </Link>
         </div>
       </section>

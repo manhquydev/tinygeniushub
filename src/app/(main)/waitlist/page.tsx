@@ -5,9 +5,9 @@ import { IconCalendar, IconStar } from "@/components/icons";
 import "./waitlist.css";
 
 export const metadata: Metadata = {
-  title: "Danh sách ưu tiên — TinyGenius Hub",
+  title: "Priority List — TinyGenius Hub",
   description:
-    "Đăng ký danh sách ưu tiên để nhận thông báo mở đợt mới và ưu đãi sớm dành cho gia đình đăng ký trước.",
+    "Register for the priority list to receive notifications of new openings and early incentives for families who register in advance.",
   alternates: { canonical: "https://www.tinygeniushubvn.tech/waitlist" },
   robots: { index: false, follow: false },
 };
@@ -16,36 +16,36 @@ export default function WaitlistPage() {
   return (
     <div className="page-stack">
       <section className="hero">
-        <h1>Nhận thông báo mở đợt mới</h1>
+        <h1>Receive notification of new batch opening</h1>
         <p>
-          Chúng tôi ưu tiên <strong>50 gia đình đăng ký sớm</strong> trong mỗi đợt mở mới để tối ưu trải nghiệm và hỗ
-          trợ sát sao hơn.
+          We prioritize <strong>50 early registered families</strong> in each new opening to optimize the experience and support
+          provide closer support.
         </p>
       </section>
 
       <section className="card">
-        <h2>Đăng ký nhận thông báo</h2>
+        <h2>Sign up to receive notifications</h2>
         <WaitlistForm />
       </section>
 
       <section className="card-grid">
         <article className="card waitlist-info-card">
           <IconStar size={28} className="waitlist-card-icon" />
-          <h2>Quyền lợi đăng ký sớm</h2>
-          <p className="muted-text">Ưu tiên nhận ưu đãi theo từng đợt mở khóa và hỗ trợ nhanh từ đội ngũ vận hành.</p>
+          <h2>Early registration benefits</h2>
+          <p className="muted-text">Priority to receive incentives for each unlock period and quick support from the operations team.</p>
         </article>
         <article className="card waitlist-info-card">
           <IconCalendar size={28} className="waitlist-card-icon" />
-          <h2>Thời điểm nhận thông tin</h2>
-          <p className="muted-text">Bạn sẽ nhận email ngay khi có đợt mở mới, lịch khởi tạo và ưu đãi đi kèm.</p>
+          <h2>Time to receive information</h2>
+          <p className="muted-text">You will receive an email as soon as there is a new opening, initialization schedule and accompanying incentives.</p>
         </article>
       </section>
 
       <section style={{ textAlign: "center", padding: "16px 0" }}>
         <p className="muted-text">
-          Đã có tài khoản?{" "}
+          Already have an account?{" "}
           <Link href="/auth/login" style={{ color: "var(--color-accent)" }}>
-            Đăng nhập tại đây
+            Login here
           </Link>
         </p>
       </section>

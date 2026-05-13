@@ -175,9 +175,9 @@ export function formatGradeName(level: number): string {
  * Get Vietnamese display name for grade
  */
 export function formatGradeNameVi(level: number): string {
-  if (level === 0) return 'Mầm 4 tuổi';
-  if (level === 1) return 'Mầm 5 tuổi';
-  return `Lớp ${level - 1}`;
+  if (level === 0) return 'Sprout 4 years old';
+  if (level === 1) return 'Sprout 5 years old';
+  return `Class${level - 1}`;
 }
 
 /**
@@ -214,26 +214,26 @@ export function getSubjectName(code: AbekaSubjectCode): string {
  */
 export function getSubjectNameVi(code: AbekaSubjectCode): string {
   const names: Record<AbekaSubjectCode, string> = {
-    'PHONICS': 'Học vần',
-    'ARITHMETIC': 'Toán học',
-    'COMBINATION': 'Luyện tập Toán',
-    'ACTIVITIES': 'Hoạt động',
-    'ROUTINES': 'Thói quen lớp học',
-    'SEATWORK_C': 'Bài tập (Chữ viết tắt)',
-    'SEATWORK_M': 'Bài tập (Chữ in)',
-    'SPELLING': 'Chính tả',
-    'WRITING_C': 'Viết (Chữ viết tắt)',
-    'WRITING_M': 'Viết (Chữ in)',
-    'BIBLE': 'Kinh Thánh',
-    'HISTORY': 'Lịch sử',
-    'SCIENCE': 'Khoa học',
-    'HEALTH': 'Sức khỏe',
-    'LITERATURE': 'Văn học',
-    'COMPOSITION': 'Viết văn',
-    'VOCABULARY': 'Từ vựng',
-    'POETRY': 'Thơ',
-    'READING': 'Đọc hiểu',
-    'GRAMMAR': 'Ngữ pháp',
+    'PHONICS': 'Learn rhymes',
+    'ARITHMETIC': 'Mathematics',
+    'COMBINATION': 'Practice Math',
+    'ACTIVITIES': 'Work',
+    'ROUTINES': 'Classroom habits',
+    'SEATWORK_C': 'Exercises (Abbreviations)',
+    'SEATWORK_M': 'Exercise (Print)',
+    'SPELLING': 'Spelling',
+    'WRITING_C': 'Write (Abbreviation)',
+    'WRITING_M': 'Write (Print)',
+    'BIBLE': 'Bible',
+    'HISTORY': 'History',
+    'SCIENCE': 'Science',
+    'HEALTH': 'Health',
+    'LITERATURE': 'Literature',
+    'COMPOSITION': 'Writing',
+    'VOCABULARY': 'Vocabulary',
+    'POETRY': 'Verse',
+    'READING': 'Read comprehension',
+    'GRAMMAR': 'Grammar',
   };
   return names[code] || code;
 }

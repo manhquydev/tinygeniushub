@@ -267,15 +267,15 @@ export async function acceptCaregiverInviteByToken(token: string) {
   });
 
   if (!invite) {
-    throw new DomainError("Lời mời không hợp lệ.", 404, "CAREGIVER_INVITE_INVALID");
+    throw new DomainError("Invitation is not valid.", 404, "CAREGIVER_INVITE_INVALID");
   }
 
   if (invite.accepted) {
-    throw new DomainError("Lời mời này đã được chấp nhận trước đó.", 409, "CAREGIVER_INVITE_ACCEPTED");
+    throw new DomainError("This invitation has been previously accepted.", 409, "CAREGIVER_INVITE_ACCEPTED");
   }
 
   if (invite.expiresAt.getTime() <= now.getTime()) {
-    throw new DomainError("Lời mời này đã hết hạn.", 410, "CAREGIVER_INVITE_EXPIRED");
+    throw new DomainError("This invitation has expired.", 410, "CAREGIVER_INVITE_EXPIRED");
   }
 
   const updatedInvite = await prisma.caregiverInvite.update({

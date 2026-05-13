@@ -27,7 +27,7 @@ function formatDate(date: Date) {
 }
 
 function formatCurrency(value: number) {
-  return `${new Intl.NumberFormat("vi-VN").format(value)}đ`;
+  return `${new Intl.NumberFormat("vi-VN").format(value)}D`;
 }
 
 function buildHref(
@@ -137,10 +137,10 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
   const state = { q: query, status, sort, view };
   const statusOptions: Array<{ key: ParentCourseStatus; label: string; count: number }> = [
-    { key: "all", label: "Tất cả", count: totalCourses },
-    { key: "learning", label: "Đang học", count: learningCourses },
-    { key: "completed", label: "Đã hoàn thành", count: completedCourses },
-    { key: "not_started", label: "Chưa bắt đầu", count: notStartedCourses },
+    { key: "all", label: "All", count: totalCourses },
+    { key: "learning", label: "Studying", count: learningCourses },
+    { key: "completed", label: "Completed", count: completedCourses },
+    { key: "not_started", label: "Haven't started yet", count: notStartedCourses },
   ];
 
   return (
@@ -151,26 +151,26 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
         <div className="grid gap-4">
           <h1 className="flex items-center gap-2 text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-3xl">
             <BookOpen className="h-6 w-6 text-sky-600" />
-            Quản lý khóa học đã mua
+            Manage purchased courses
           </h1>
           <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-            Tìm nhanh, lọc theo trạng thái và đổi kiểu xem để quản lý danh sách khóa học gọn hơn khi số lượng khóa tăng.
+            Quickly search, filter by status, and change view styles to manage course lists more compactly as the number of courses increases.
           </p>
           <div className="grid gap-3 sm:grid-cols-4">
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Đã mua</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Purchased</p>
               <p className="mt-1 text-2xl font-black text-slate-900">{totalCourses}</p>
             </div>
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Đang học</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Studying</p>
               <p className="mt-1 text-2xl font-black text-sky-600">{learningCourses}</p>
             </div>
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Hoàn thành</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Complete</p>
               <p className="mt-1 text-2xl font-black text-emerald-600">{completedCourses}</p>
             </div>
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tiến độ tổng</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Total progress</p>
               <p className="mt-1 text-2xl font-black text-slate-900">{completionRate}%</p>
             </div>
           </div>
@@ -179,12 +179,12 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
       {enrollments.length === 0 ? (
         <section className="card items-center text-center" style={{ padding: "2.25rem 1.25rem" }}>
-          <p className="text-lg font-bold text-slate-900">Bạn chưa mua khóa học nào</p>
+          <p className="text-lg font-bold text-slate-900">You have not purchased any courses yet</p>
           <p className="max-w-md text-sm leading-relaxed text-slate-600">
-            Khám phá danh sách khóa học theo mục tiêu của bé. Sau khi thanh toán thành công, khóa sẽ mở ngay trong trang này.
+            Explore the list of courses according to your child's goals. After successful payment, the lock will open immediately on this page.
           </p>
           <Link href="/courses" className="solid-button" style={{ width: "fit-content" }}>
-            Xem khóa học đang mở bán
+            See courses available for sale
           </Link>
         </section>
       ) : (
@@ -204,7 +204,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                     type="search"
                     name="q"
                     defaultValue={query}
-                    placeholder="Tìm theo tên khóa hoặc mô tả..."
+                    placeholder="Search by key name or description..."
                     className="w-full rounded-xl border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
                   />
                 </form>
@@ -217,7 +217,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         : "border-slate-300 bg-white text-slate-600 hover:border-slate-400"
                     }`}
                   >
-                    Mới mua
+                    Just bought
                   </Link>
                   <Link
                     href={buildHref(state, { sort: "progress_desc" })}
@@ -227,7 +227,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         : "border-slate-300 bg-white text-slate-600 hover:border-slate-400"
                     }`}
                   >
-                    Tiến độ cao
+                    High progress
                   </Link>
                   <Link
                     href={buildHref(state, { sort: "title_asc" })}
@@ -281,7 +281,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                   </Link>
                   {(query || status !== "all" || sort !== "recent") && (
                     <Link href="/parent/courses" className="text-xs font-semibold text-slate-500 hover:text-slate-700">
-                      Đặt lại
+                      Reset
                     </Link>
                   )}
                 </div>
@@ -291,12 +291,12 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
           {sortedRows.length === 0 ? (
             <section className="card items-center text-center" style={{ padding: "2rem 1.25rem" }}>
-              <p className="text-lg font-bold text-slate-900">Không có khóa phù hợp bộ lọc</p>
+              <p className="text-lg font-bold text-slate-900">There is no filter matching lock</p>
               <p className="max-w-md text-sm leading-relaxed text-slate-600">
-                Hãy thử đổi trạng thái, cách sắp xếp hoặc từ khóa tìm kiếm để xem lại danh sách.
+                Try changing the status, sorting, or search keywords to see the list again.
               </p>
               <Link href="/parent/courses" className="ghost-button" style={{ width: "fit-content" }}>
-                Xóa bộ lọc
+                Clear filter
               </Link>
             </section>
           ) : view === "grid" ? (
@@ -332,10 +332,10 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                             }`}
                           >
                             {statusValue === "completed"
-                              ? "Đã hoàn thành"
+                              ? "Completed"
                               : statusValue === "learning"
-                                ? "Đang học"
-                                : "Chưa bắt đầu"}
+                                ? "Studying"
+                                : "Haven't started yet"}
                           </span>
                           <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-600">
                             {progressPct}%
@@ -351,19 +351,19 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         <CalendarDays className="h-3 w-3" /> {formatDate(enrollment.enrolledAt)}
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
-                        <Clock3 className="h-3 w-3" /> {enrollment.course.durationDays} ngày
+                        <Clock3 className="h-3 w-3" /> {enrollment.course.durationDays} days
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
-                        {completedLessons}/{totalLessons} bài
+                        {completedLessons}/{totalLessons} lessons
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
-                        Giá {formatCurrency(pricing.salePriceVnd)}
+                        Price {formatCurrency(pricing.salePriceVnd)}
                       </span>
                     </div>
 
                     <div>
                       <div className="mb-1 flex items-center justify-between text-[11px] text-slate-500">
-                        <span>Tiến độ học</span>
+                        <span>Study progress</span>
                         <span>{progressPct}%</span>
                       </div>
                       <div className="h-1.5 overflow-hidden rounded-full bg-slate-200">
@@ -372,7 +372,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                           style={{ width: `${progressPct}%` }}
                         />
                       </div>
-                      <p className="mt-1 text-[11px] text-slate-400">Truy cập {enrollment.course.durationDays} ngày từ khi mua</p>
+                      <p className="mt-1 text-[11px] text-slate-400">Access for {enrollment.course.durationDays} days from purchase</p>
                     </div>
 
                     <div className="flex flex-wrap gap-1.5">
@@ -380,13 +380,13 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         href={continueHref}
                         className="inline-flex items-center rounded-lg bg-emerald-600 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700"
                       >
-                        Học tiếp <ChevronRight className="ml-1 h-3.5 w-3.5" />
+                        Continue <ChevronRight className="ml-1 h-3.5 w-3.5" />
                       </Link>
                       <Link
                         href={detailHref}
                         className="inline-flex items-center rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:border-slate-400"
                       >
-                        Xem khóa
+                        See key
                       </Link>
                       {enrollment.certificateUrl ? (
                         <a
@@ -395,7 +395,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                           rel="noopener noreferrer"
                           className="inline-flex items-center rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:border-slate-400"
                         >
-                          <Award className="mr-1 h-3.5 w-3.5" /> Chứng chỉ
+                          <Award className="mr-1 h-3.5 w-3.5" /> Certificate
                         </a>
                       ) : null}
                     </div>
@@ -441,21 +441,21 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                           }`}
                         >
                           {statusValue === "completed"
-                            ? "Đã hoàn thành"
+                            ? "Completed"
                             : statusValue === "learning"
-                              ? "Đang học"
-                              : "Chưa bắt đầu"}
+                              ? "Studying"
+                              : "Haven't started yet"}
                         </span>
                         <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-600">
-                          {progressPct}% tiến độ
+                          {progressPct}% progress
                         </span>
                       </div>
                       <h2 className="line-clamp-1 text-sm font-extrabold text-slate-900">{enrollment.course.title}</h2>
                       <p className="mt-1 line-clamp-2 text-xs text-slate-600">{enrollment.course.description}</p>
                       <div className="mt-2 flex flex-wrap gap-1.5 text-[11px] text-slate-500">
-                        <span>Đăng ký {formatDate(enrollment.enrolledAt)}</span>
+                        <span>Enrolled {formatDate(enrollment.enrolledAt)}</span>
                         <span>•</span>
-                        <span>{completedLessons}/{totalLessons} bài</span>
+                        <span>{completedLessons}/{totalLessons} lessons</span>
                         <span>•</span>
                         <span>{formatCurrency(pricing.salePriceVnd)}</span>
                       </div>
@@ -466,13 +466,13 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         href={continueHref}
                         className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700"
                       >
-                        Học tiếp <ChevronRight className="ml-1 h-3.5 w-3.5" />
+                        Continue <ChevronRight className="ml-1 h-3.5 w-3.5" />
                       </Link>
                       <Link
                         href={detailHref}
                         className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:border-slate-400"
                       >
-                        Xem khóa
+                        See key
                       </Link>
                       {enrollment.certificateUrl ? (
                         <a
@@ -481,7 +481,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                           rel="noopener noreferrer"
                           className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:border-slate-400"
                         >
-                          <Award className="mr-1 h-3.5 w-3.5" /> Chứng chỉ
+                          <Award className="mr-1 h-3.5 w-3.5" /> Certificate
                         </a>
                       ) : null}
                     </div>
@@ -494,16 +494,16 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
       )}
 
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Mua thêm khóa học mới</h2>
+        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Buy new courses</h2>
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          Bạn có thể mở rộng lộ trình học cho bé bất kỳ lúc nào. Danh mục mới sẽ giữ nguyên trải nghiệm lọc và so sánh nhanh.
+          You can expand your child's learning path at any time. The new categories will keep the quick filtering and comparison experience intact.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link href="/courses" className="solid-button">
-            Xem tất cả khóa học
+            See all courses
           </Link>
           <Link href="/parent/billing" className="ghost-button">
-            Xem lịch sử thanh toán
+            View payment history
           </Link>
         </div>
       </section>
