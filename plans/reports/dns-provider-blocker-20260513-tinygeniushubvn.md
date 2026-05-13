@@ -8,7 +8,7 @@ VPS/app deploy is healthy on `152.42.246.218`, but domain verification is still 
 
 ## Verified Working
 
-- Deployed commit: `ac144e071e34d7e1270b524311f63ac8c688d6ed`
+- Deployed commit: `d1645e9a132f40f98e38699be9e977e47d3d66ee`
 - VPS path: `/var/www/cungcontuhoc`
 - PM2 apps: `tinygeniushub-web`, `tinygeniushub-worker`
 - Health: `http://152.42.246.218/api/health/ready` returns ready
@@ -23,7 +23,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing. Five consecutive verifier attempts between 23:18 and 23:23 ICT on 2026-05-13 failed with 8-11 production DNS checks, so this is not a single transient resolver sample.
+Latest result: still failing. Multiple verifier and direct authoritative DNS attempts between 23:18 and 23:53 ICT on 2026-05-13 failed from both local and VPS source networks, so this is not a single transient resolver sample.
 
 Authoritative nameservers still return old A records:
 
@@ -34,12 +34,16 @@ Expected A record only:
 
 - `152.42.246.218`
 
-Examples from latest verifier:
+Examples from latest checks:
 
-- `tinygeniushubvn.tech @ tech-domains.earth.orderbox-dns.com (162.251.82.119)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
-- `tinygeniushubvn.tech @ tech-domains.venus.orderbox-dns.com (162.251.82.248)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
-- `www.tinygeniushubvn.tech @ tech-domains.mars.orderbox-dns.com (162.251.82.252)` returned `165.22.211.19` during one poll attempt
-- `https://tinygeniushubvn.tech/` public fetch failed
+- Local direct authoritative summary: `stale_or_error_checks=9`
+- VPS direct authoritative summary: `stale_or_error_checks=4`
+- `tinygeniushubvn.tech @ 162.251.82.118` returned `152.42.246.218, 165.22.48.193, 165.22.211.19`
+- `www.tinygeniushubvn.tech @ 162.251.82.118` returned `165.22.211.19`
+- `tinygeniushubvn.tech @ 162.251.82.124` returned `165.22.48.193, 165.22.211.19`
+- `tinygeniushubvn.tech @ 162.251.82.250` returned `165.22.48.193, 165.22.211.19`
+- `https://tinygeniushubvn.tech/` public fetch failed from local resolver path
+- `https://www.tinygeniushubvn.tech/` public fetch returned `200` on `152.42.246.218`
 
 Public resolver sample:
 
