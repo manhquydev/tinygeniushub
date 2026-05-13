@@ -8,7 +8,7 @@ VPS/app deploy is healthy on `152.42.246.218`, but domain verification is still 
 
 ## Verified Working
 
-- Deployed commit: `aec0a9a474161dbb89804991c4bfb5c3eab4bf8a`
+- Deployed commit: `ac144e071e34d7e1270b524311f63ac8c688d6ed`
 - VPS path: `/var/www/cungcontuhoc`
 - PM2 apps: `tinygeniushub-web`, `tinygeniushub-worker`
 - Health: `http://152.42.246.218/api/health/ready` returns ready
@@ -23,7 +23,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: failed with 10 production DNS checks.
+Latest result: still failing. Five consecutive verifier attempts between 23:18 and 23:23 ICT on 2026-05-13 failed with 8-11 production DNS checks, so this is not a single transient resolver sample.
 
 Authoritative nameservers still return old A records:
 
@@ -37,8 +37,8 @@ Expected A record only:
 Examples from latest verifier:
 
 - `tinygeniushubvn.tech @ tech-domains.earth.orderbox-dns.com (162.251.82.119)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
-- `tinygeniushubvn.tech @ tech-domains.mars.orderbox-dns.com (162.251.82.124)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
-- `www.tinygeniushubvn.tech @ tech-domains.mercury.orderbox-dns.com (162.251.82.250)` returned `165.22.211.19`
+- `tinygeniushubvn.tech @ tech-domains.venus.orderbox-dns.com (162.251.82.248)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
+- `www.tinygeniushubvn.tech @ tech-domains.mars.orderbox-dns.com (162.251.82.252)` returned `165.22.211.19` during one poll attempt
 - `https://tinygeniushubvn.tech/` public fetch failed
 
 Public resolver sample:
