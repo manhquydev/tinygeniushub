@@ -35,8 +35,8 @@ function flattenTree(nodes: SkillNode[], depth = 0): FlatSkill[] {
 }
 
 const DOMAIN_LABELS: Record<string, string> = {
-  MATH: "Toán học",
-  ENGLISH_PHONICS: "Phonics Tiếng Anh",
+  MATH: "Mathematics",
+  ENGLISH_PHONICS: "English Phonics",
 };
 
 async function fetchSkillTree(): Promise<SkillNode[]> {
@@ -65,13 +65,13 @@ export function AdminSkillsPanel({ initialSkills }: { initialSkills: SkillNode[]
   }
 
   async function handleDelete(skillId: string) {
-    if (!confirm("Xác nhận xóa skill này? Thao tác không thể hoàn tác.")) return;
+    if (!confirm("Confirm deletion of this skill? The operation cannot be undone.")) return;
     setDeletingId(skillId);
     setDeleteError(null);
     try {
       const res = await fetch(`/api/admin/skills/${skillId}`, { method: "DELETE" });
       if (!res.ok) {
-        let message = `Xóa thất bại (${res.status})`;
+        let message = `Delete failed (${res.status})`;
         try {
           const body = await res.json() as { error?: string; message?: string };
           if (body.error) message = body.error;
@@ -98,7 +98,7 @@ export function AdminSkillsPanel({ initialSkills }: { initialSkills: SkillNode[]
         </div>
         <Button size="sm" className="h-8 text-xs gap-1 bg-teal-600 hover:bg-teal-700" onClick={() => setShowForm(true)}>
           <Plus size={13} />
-          Thêm skill
+          Add skills
         </Button>
       </div>
 
@@ -121,16 +121,16 @@ export function AdminSkillsPanel({ initialSkills }: { initialSkills: SkillNode[]
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs">Skill</TableHead>
               <TableHead className="text-xs">Domain</TableHead>
-              <TableHead className="text-xs">Lớp</TableHead>
+              <TableHead className="text-xs">Class</TableHead>
               <TableHead className="text-xs">Code</TableHead>
-              <TableHead className="text-xs">Thao tác</TableHead>
+              <TableHead className="text-xs">Operation</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {flat.length === 0 && (
               <TableRow>
                 <TableCell colSpan={5} className="text-center text-xs text-[var(--admin-text-secondary)] py-8">
-                  Chưa có skill nào.
+                  No skills yet.
                 </TableCell>
               </TableRow>
             )}
@@ -147,7 +147,7 @@ export function AdminSkillsPanel({ initialSkills }: { initialSkills: SkillNode[]
                 <TableCell>
                   <Badge variant="outline" className="text-xs">{DOMAIN_LABELS[skill.domain] ?? skill.domain}</Badge>
                 </TableCell>
-                <TableCell className="text-xs text-[var(--admin-text-secondary)]">Lớp {skill.gradeLevel}</TableCell>
+                <TableCell className="text-xs text-[var(--admin-text-secondary)]">Class {skill.gradeLevel}</TableCell>
                 <TableCell><code className="text-xs font-mono text-[var(--admin-text-secondary)]">{skill.code}</code></TableCell>
                 <TableCell>
                   <Button
@@ -156,7 +156,7 @@ export function AdminSkillsPanel({ initialSkills }: { initialSkills: SkillNode[]
                     className="h-6 w-6 p-0 text-rose-500 hover:text-rose-700"
                     onClick={() => void handleDelete(skill.id)}
                     disabled={deletingId === skill.id}
-                    title="Xóa skill"
+                    title="Delete skills"
                   >
                     <Trash2 size={12} />
                   </Button>

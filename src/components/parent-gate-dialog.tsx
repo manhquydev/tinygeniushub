@@ -114,13 +114,13 @@ export function ParentGateDialog({ open, onClose, onVerified }: ParentGateDialog
             }
           >
             <div className="parent-gate-head">
-              <h2 id="parent-gate-title">Xác nhận phụ huynh</h2>
-              <button type="button" className="parent-gate-close" onClick={onClose} aria-label="Đóng xác nhận phụ huynh">
+              <h2 id="parent-gate-title">Parental confirmation</h2>
+              <button type="button" className="parent-gate-close" onClick={onClose} aria-label="Close parent confirmation">
                 <X size={20} />
               </button>
             </div>
 
-            <p className="parent-gate-copy">{`Vui lòng nhập kết quả của ${challenge.left} x ${challenge.right} để tiếp tục`}</p>
+            <p className="parent-gate-copy">{`Please enter the results of${challenge.left} x ${challenge.right}to continue`}</p>
 
             <div className={`parent-gate-answer ${isInvalid ? "parent-gate-answer-error" : ""}`}>
               <input
@@ -140,7 +140,7 @@ export function ParentGateDialog({ open, onClose, onVerified }: ParentGateDialog
                     verifyAnswer();
                   }
                 }}
-                aria-label="Kết quả phép tính xác nhận phụ huynh"
+                aria-label="The results of the calculation confirm the parent"
                 placeholder="..."
               />
             </div>
@@ -161,11 +161,11 @@ export function ParentGateDialog({ open, onClose, onVerified }: ParentGateDialog
               })}
             </div>
 
-            {isInvalid ? <p className="parent-gate-error">Sai kết quả. Vui lòng thử lại.</p> : null}
+            {isInvalid ? <p className="parent-gate-error">Wrong result. Please try again.</p> : null}
 
             <button type="button" className="parent-gate-submit" onClick={verifyAnswer} disabled={answer.length === 0}>
               <CheckCircle2 size={18} />
-              <span>Tiếp tục</span>
+              <span>Continue</span>
             </button>
           </m.div>
         </m.div>

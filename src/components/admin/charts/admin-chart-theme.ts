@@ -9,35 +9,35 @@ export const revenueChartConfig: ChartConfig = {
 
 export const userGrowthChartConfig: ChartConfig = {
   newUsers: {
-    label: "Người dùng mới",
+    label: "New user",
     color: "hsl(199 89% 48%)", // sky
   },
 };
 
 export const streakChartConfig: ChartConfig = {
-  zero: { label: "0 ngày", color: "hsl(215 16% 63%)" },
-  low: { label: "1-3 ngày", color: "hsl(38 92% 50%)" },
-  medium: { label: "4-7 ngày", color: "hsl(199 89% 48%)" },
-  high: { label: "Trên 7 ngày", color: "hsl(152 60% 48%)" },
+  zero: { label: "0 days", color: "hsl(215 16% 63%)" },
+  low: { label: "1-3 days", color: "hsl(38 92% 50%)" },
+  medium: { label: "4-7 days", color: "hsl(199 89% 48%)" },
+  high: { label: "Over 7 days", color: "hsl(152 60% 48%)" },
 };
 
 export const enrollmentChartConfig: ChartConfig = {
   count: {
-    label: "Số lượng",
+    label: "Quantity",
     color: "hsl(174 60% 40%)",
   },
 };
 
 export const blogViewsChartConfig: ChartConfig = {
   views: {
-    label: "Lượt xem",
+    label: "View",
     color: "hsl(258 90% 66%)", // violet
   },
 };
 
 export const registrationChartConfig: ChartConfig = {
   registrations: {
-    label: "Đăng ký mới",
+    label: "New registration",
     color: "hsl(199 89% 48%)",
   },
 };

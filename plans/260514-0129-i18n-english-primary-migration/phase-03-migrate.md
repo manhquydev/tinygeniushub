@@ -6,7 +6,7 @@
 - Replace Vietnamese hardcoded runtime strings module by module.
 
 ## Migration Modules
-1. `layout-and-shared-ui`
+1. `layout-and-shared-ui` - complete
 2. `public-marketing-and-legal-pages`
 3. `auth-parent-and-dashboard`
 4. `courses-and-kid-learning`

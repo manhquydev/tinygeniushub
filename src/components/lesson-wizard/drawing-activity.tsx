@@ -140,7 +140,7 @@ export function DrawingActivity({
               cursor: "pointer",
               boxShadow: selectedColor === color ? "0 0 0 2px #1e293b" : undefined,
             }}
-            aria-label={`Màu ${color}`}
+            aria-label={`Color${color}`}
           />
         ))}
       </div>

@@ -49,7 +49,7 @@ export function AdminBlogCategoryCreateForm() {
       setOrderNo("0");
       router.refresh();
     } catch {
-      setError("Không thể tạo danh mục.");
+      setError("Unable to create category.");
     } finally {
       setSubmitting(false);
     }
@@ -58,13 +58,13 @@ export function AdminBlogCategoryCreateForm() {
   return (
     <form onSubmit={handleSubmit} className="grid gap-3 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 sm:grid-cols-2">
       <Input value={slug} onChange={(event) => setSlug(event.target.value)} placeholder="slug" required />
-      <Input value={nameVi} onChange={(event) => setNameVi(event.target.value)} placeholder="Tên danh mục" required />
+      <Input value={nameVi} onChange={(event) => setNameVi(event.target.value)} placeholder="Category name" required />
       <Input value={emoji} onChange={(event) => setEmoji(event.target.value)} placeholder="Emoji" />
       <Input value={color} onChange={(event) => setColor(event.target.value)} placeholder="#10b981" />
-      <Input value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Mô tả" className="sm:col-span-2" />
-      <Input type="number" value={orderNo} onChange={(event) => setOrderNo(event.target.value)} placeholder="Thứ tự" />
+      <Input value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Describe" className="sm:col-span-2" />
+      <Input type="number" value={orderNo} onChange={(event) => setOrderNo(event.target.value)} placeholder="Order" />
       <Button type="submit" disabled={submitting} className="bg-teal-600 hover:bg-teal-700">
-        {submitting ? "Đang tạo..." : "Tạo danh mục"}
+        {submitting ? "Creating..." : "Create categories"}
       </Button>
       {error ? <p className="text-sm text-rose-700 sm:col-span-2">{error}</p> : null}
     </form>

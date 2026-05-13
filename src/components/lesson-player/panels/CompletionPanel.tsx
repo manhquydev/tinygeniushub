@@ -90,7 +90,7 @@ export function CompletionPanel({
       >
         <Image
           src={HERO_STICKER}
-          alt="Hoàn thành bài học"
+          alt="Complete the lesson"
           width={128}
           height={128}
           className="lp-done-hero-sticker"
@@ -112,7 +112,7 @@ export function CompletionPanel({
         <div className="lp-done-title-line" aria-hidden="true" />
 
         <p className="lp-done-subtitle">
-          {tierLabel ? `Tầng ${tierLabel} ·` : ""} Bé đã hoàn thành bài học xuất sắc!
+          {tierLabel ? `Floor${tierLabel} ·` : ""} Child completed the lesson successfully!
         </p>
 
         {/* XP / Coin chips */}
@@ -141,7 +141,7 @@ export function CompletionPanel({
         {/* Tier Progress Bar */}
         {tierProgressAfter > tierProgressBefore && (
           <TierProgressBar
-            label={tierLabel ? `Tiến độ tầng ${tierLabel}` : "Tiến độ"}
+            label={tierLabel ? `Progress floor${tierLabel}` : "Progress"}
             before={tierProgressBefore}
             after={tierProgressAfter}
           />
@@ -156,9 +156,9 @@ export function CompletionPanel({
               onClick={onNextLesson}
               whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
               whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-              aria-label={`Chuyển sang bài tiếp theo: ${nextLessonTitle}`}
+              aria-label={`Skip to the next lesson:${nextLessonTitle}`}
             >
-              Bài tiếp theo
+              Next article
             </m.button>
           ) : null}
 
@@ -167,10 +167,10 @@ export function CompletionPanel({
             className="lp-btn-ghost"
             onClick={onBackToMap}
             whileHover={prefersReducedMotion ? undefined : { opacity: 0.85 }}
-            aria-label="Quay lại bản đồ học tập"
+            aria-label="Return to the learning map"
             style={{ width: "100%" }}
           >
-            Quay về bản đồ
+            Return to the map
           </m.button>
         </div>
       </m.div>

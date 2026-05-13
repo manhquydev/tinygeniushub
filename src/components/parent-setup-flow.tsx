@@ -88,7 +88,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
 
   function goToStepTwo() {
     if (!canContinueStepOne) {
-      setError("Vui lòng nhập tên gọi thân mật của bé.");
+      setError("Please enter your baby's nickname.");
       return;
     }
 
@@ -98,7 +98,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
 
   async function completeOnboarding() {
     if (!canContinueStepOne) {
-      setError("Vui lòng nhập tên gọi thân mật của bé.");
+      setError("Please enter your baby's nickname.");
       setStep(1);
       return;
     }
@@ -118,7 +118,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
 
       const body = (await response.json()) as OnboardingCompleteResponse;
       if (!response.ok || !body.ok || !body.data?.child) {
-        setError(body.error?.message ?? "Không thể hoàn tất thiết lập. Vui lòng thử lại.");
+        setError(body.error?.message ?? "Setup could not be completed. Please try again.");
         return;
       }
 
@@ -126,7 +126,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
       await triggerConfettiBurst();
       setStep(3);
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : "Lỗi không xác định.");
+      setError(submitError instanceof Error ? submitError.message : "Unknown error.");
     } finally {
       setSubmitting(false);
     }
@@ -146,7 +146,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
 
       <div className="relative z-[1] grid gap-5 lg:grid-cols-[300px_minmax(0,1fr)] lg:items-start">
         <aside className="rounded-2xl border border-slate-200/80 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 text-white shadow-[0_12px_30px_rgba(15,23,42,0.4)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">Trợ lý thiết lập</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">Setup assistant</p>
           <div className="mt-3 flex justify-center rounded-2xl border border-slate-700/80 bg-slate-900/70 p-3">
             <Mascot
               variant="duo"
@@ -161,7 +161,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
             />
           </div>
           <p className="mt-3 text-sm leading-relaxed text-slate-200">
-            Chào {parentDisplayName}. Chỉ cần 3 bước ngắn gọn là bảng điều khiển sẽ sẵn sàng cho bé.
+            Hi {parentDisplayName}. Just 3 short steps and the control panel will be ready for your baby.
           </p>
           <div className="mt-4 grid gap-2">
             {[1, 2, 3].map((index) => {
@@ -180,7 +180,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
                 >
                   {done ? <CheckCircle2 size={16} /> : <Star size={16} />}
                   <span className="font-semibold">
-                    {index === 1 ? "Đặt tên cho bé" : index === 2 ? "Chọn nhân vật đại diện" : "Hoàn tất thiết lập"}
+                    {index === 1 ? "Name your baby" : index === 2 ? "Choose an avatar" : "Complete setup"}
                   </span>
                 </div>
               );
@@ -194,28 +194,28 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
               <header>
                 <p className="inline-flex w-fit items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700">
                   <Sparkles size={14} />
-                  Bước 1/3
+                  Step 1/3
                 </p>
-                <h2 className="mt-3 text-2xl font-black tracking-[-0.02em] text-slate-900">Bé nhà bạn tên gì?</h2>
+                <h2 className="mt-3 text-2xl font-black tracking-[-0.02em] text-slate-900">What's your baby's name?</h2>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                  Tên gọi này sẽ được hiển thị trong bảng điều khiển và báo cáo học tập.
+                  This name will be displayed in dashboards and learning reports.
                 </p>
               </header>
 
               <div className="space-y-2">
                 <label htmlFor="setup-child-nickname" className="text-sm font-semibold text-slate-700">
-                  Tên gọi thân mật của bé
+                  Baby's nickname
                 </label>
                 <input
                   id="setup-child-nickname"
                   value={nickname}
                   onChange={(event) => setNickname(event.target.value)}
-                  placeholder="Ví dụ: Anna, Bông, Bin..."
+                  placeholder="For example: Anna, Bong, Bin..."
                   className="h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-800 outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100"
                   autoFocus
                   maxLength={60}
                 />
-                <p className="text-xs text-slate-500">Bạn có thể đổi tên này trong trang Hồ sơ bé bất cứ lúc nào.</p>
+                <p className="text-xs text-slate-500">You can change this name in your Baby's Profile page at any time.</p>
               </div>
 
               <div className="flex flex-wrap justify-end gap-2">
@@ -224,7 +224,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
                   onClick={goToStepTwo}
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 px-5 text-sm font-bold text-white shadow-[0_12px_24px_rgba(13,148,136,0.28)] transition hover:-translate-y-0.5"
                 >
-                  Tiếp tục
+                  Continue
                   <ChevronRight size={16} />
                 </button>
               </div>
@@ -236,13 +236,13 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
               <header>
                 <p className="inline-flex w-fit items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
                   <Rocket size={14} />
-                  Bước 2/3
+                  Step 2/3
                 </p>
                 <h2 className="mt-3 text-2xl font-black tracking-[-0.02em] text-slate-900">
-                  Chọn nhân vật đại diện cho {nicknameTrimmed || "bé"}
+                  Choose an avatar cho {nicknameTrimmed || "little"}
                 </h2>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                  Chọn linh vật bé yêu thích để cá nhân hóa hành trình học tập ngay từ đầu.
+                  Choose your child's favorite mascot to personalize their learning journey right from the start.
                 </p>
               </header>
 
@@ -262,7 +262,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
                           ? "border-teal-400 shadow-[0_10px_20px_rgba(13,148,136,0.18)] ring-2 ring-teal-300/70"
                           : "border-slate-200 hover:border-slate-300"
                       }`}
-                      aria-label={`Chọn nhân vật ${avatar.label}`}
+                      aria-label={`Choose character${avatar.label}`}
                     >
                       <m.div
                         animate={
@@ -296,7 +296,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
               </div>
 
               <div className="rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-600">
-                Nhân vật đã chọn: <span className="font-bold text-slate-900">{selectedAvatar.label}</span>
+                Selected character: <span className="font-bold text-slate-900">{selectedAvatar.label}</span>
               </div>
 
               <div className="flex flex-wrap justify-between gap-2">
@@ -306,7 +306,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5"
                 >
                   <ChevronLeft size={16} />
-                  Quay lại
+                  Come back
                 </button>
                 <button
                   type="button"
@@ -314,7 +314,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
                   disabled={submitting}
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 px-5 text-sm font-bold text-white shadow-[0_12px_24px_rgba(13,148,136,0.28)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {submitting ? "Đang khởi tạo..." : "Hoàn tất thiết lập"}
+                  {submitting ? "Initializing..." : "Complete setup"}
                   <Sparkles size={16} />
                 </button>
               </div>
@@ -328,11 +328,11 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
               </div>
               <div className="space-y-1">
                 <p className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
-                  Bước 3/3 - Hoàn tất
+                  Step 3/3 - Complete
                 </p>
-                <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Xin chúc mừng! Thiết lập đã hoàn tất</h2>
+                <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Congratulations! Setup is complete</h2>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  Hồ sơ của <span className="font-bold text-slate-900">{childName || nicknameTrimmed}</span> đã sẵn sàng. Bảng điều khiển sẽ hiển thị dữ liệu và gợi ý học tập ngay bây giờ.
+                  Profile for <span className="font-bold text-slate-900">{childName || nicknameTrimmed}</span> is ready. The dashboard will show data and learning suggestions now.
                 </p>
               </div>
               <button
@@ -340,7 +340,7 @@ export function ParentSetupFlow({ parentDisplayName }: ParentSetupFlowProps) {
                 onClick={continueToDashboard}
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 px-5 text-sm font-bold text-white shadow-[0_12px_24px_rgba(13,148,136,0.28)] transition hover:-translate-y-0.5"
               >
-                Vào bảng điều khiển phụ huynh
+                Go to the parent dashboard
                 <ChevronRight size={16} />
               </button>
             </div>

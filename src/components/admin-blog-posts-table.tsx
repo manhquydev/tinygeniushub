@@ -51,15 +51,15 @@ function getStatusPillClass(status: BlogPostStatus) {
 function getStatusLabel(status: BlogPostStatus) {
   switch (status) {
     case "DRAFT":
-      return "Nháp";
+      return "Draft";
     case "REVIEW":
-      return "Chờ duyệt";
+      return "Waiting for approval";
     case "PUBLISHED":
-      return "Đã xuất bản";
+      return "Published";
     case "SCHEDULED":
-      return "Lên lịch";
+      return "Schedule";
     case "ARCHIVED":
-      return "Lưu trữ";
+      return "Storage";
     default:
       return status;
   }
@@ -102,7 +102,7 @@ export function AdminBlogPostsTable({ posts }: AdminBlogPostsTableProps) {
     });
 
     if (!response.ok) {
-      setActionError("Không thể thực hiện thao tác hàng loạt. Vui lòng thử lại.");
+      setActionError("Cannot perform batch operation. Please try again.");
       return;
     }
 
@@ -119,14 +119,14 @@ export function AdminBlogPostsTable({ posts }: AdminBlogPostsTableProps) {
               <TableHead className="w-10">
                 <Checkbox checked={allSelected} onCheckedChange={(value) => toggleSelectAll(!!value)} />
               </TableHead>
-              <TableHead className="text-xs">Ảnh bìa</TableHead>
-              <TableHead className="text-xs">Tiêu đề</TableHead>
-              <TableHead className="text-xs">Trạng thái</TableHead>
-              <TableHead className="text-xs">Danh mục</TableHead>
-              <TableHead className="text-xs">Tác giả</TableHead>
-              <TableHead className="text-xs">Lượt xem</TableHead>
-              <TableHead className="text-xs">Ngày tạo</TableHead>
-              <TableHead className="text-xs">Thao tác</TableHead>
+              <TableHead className="text-xs">Cover photo</TableHead>
+              <TableHead className="text-xs">Title</TableHead>
+              <TableHead className="text-xs">Status</TableHead>
+              <TableHead className="text-xs">Category</TableHead>
+              <TableHead className="text-xs">Author</TableHead>
+              <TableHead className="text-xs">View</TableHead>
+              <TableHead className="text-xs">Creation date</TableHead>
+              <TableHead className="text-xs">Operation</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -168,7 +168,7 @@ export function AdminBlogPostsTable({ posts }: AdminBlogPostsTableProps) {
                 <TableCell>
                   <div className="flex items-center gap-2">
                     <Link href={`/admin/blog/posts/${post.id}/edit`} className="text-xs font-semibold text-teal-700 hover:text-teal-800">
-                      Sửa
+                      Fix
                     </Link>
                     <Link
                       href={`/blog/${post.slug}`}
@@ -185,7 +185,7 @@ export function AdminBlogPostsTable({ posts }: AdminBlogPostsTableProps) {
             {posts.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={9} className="text-center text-sm text-[var(--admin-text-muted)] py-8">
-                  Không có bài viết phù hợp.
+                  There are no matching articles.
                 </TableCell>
               </TableRow>
             ) : null}
@@ -196,20 +196,20 @@ export function AdminBlogPostsTable({ posts }: AdminBlogPostsTableProps) {
       <AdminBlogBulkActionsBar
         selectedIds={selectedIds}
         actions={[
-          { value: "publish", label: "Xuất bản" },
+          { value: "publish", label: "Publish" },
           {
             value: "archive",
-            label: "Lưu trữ",
+            label: "Storage",
             variant: "outline",
             requiresConfirm: true,
-            confirmMessage: "Lưu trữ các bài viết đã chọn?",
+            confirmMessage: "Archive selected articles?",
           },
           {
             value: "delete",
-            label: "Xóa mềm",
+            label: "Soft erase",
             variant: "destructive",
             requiresConfirm: true,
-            confirmMessage: "Xóa mềm (chuyển lưu trữ) các bài viết đã chọn?",
+            confirmMessage: "Soft delete (archive transfer) of selected articles?",
           },
         ]}
         onAction={runBulkAction}

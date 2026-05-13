@@ -179,7 +179,7 @@ export function InteractiveLessonFlow({
             <button
               type="button"
               onClick={() => setExitGateOpen(true)}
-              aria-label="Thoát bài học"
+              aria-label="Exit lesson"
               style={{
                 display: "flex",
                 alignItems: "center",

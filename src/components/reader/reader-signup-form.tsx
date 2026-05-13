@@ -52,17 +52,17 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
       if (!response.ok || !body.ok) {
         const issuePath = String(body.error?.details?.issues?.[0]?.path?.[0] ?? "");
         if (issuePath === "legalAccepted") {
-          setError("Bạn cần đồng ý Điều khoản, Chính sách bảo mật và Chính sách Cookie để đăng ký.");
+          setError("You need to agree to the Terms, Privacy Policy and Cookie Policy to register.");
           return;
         }
-        setError(body.error?.message ?? "Không thể đăng ký.");
+        setError(body.error?.message ?? "Unable to register.");
         return;
       }
 
       router.push(safeNextPath);
       router.refresh();
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : "Không thể đăng ký.");
+      setError(submitError instanceof Error ? submitError.message : "Unable to register.");
     } finally {
       setLoading(false);
     }
@@ -70,11 +70,11 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
 
   return (
     <form className="grid gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm" onSubmit={handleSubmit}>
-      <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Đăng ký độc giả</h1>
-      <p className="text-sm text-slate-600">Tạo tài khoản để lưu bài viết và theo dõi cập nhật mới.</p>
+      <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Subscribe as a reader</h1>
+      <p className="text-sm text-slate-600">Create an account to save articles and follow new updates.</p>
 
       <label className="grid gap-1 text-sm font-semibold text-slate-700">
-        Tên hiển thị
+        Display name
         <input
           className="h-11 rounded-xl border border-slate-300 bg-white px-3 text-sm"
           required
@@ -95,7 +95,7 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
       </label>
 
       <label className="grid gap-1 text-sm font-semibold text-slate-700">
-        Mật khẩu
+        Password
         <input
           type="password"
           className="h-11 rounded-xl border border-slate-300 bg-white px-3 text-sm"
@@ -114,17 +114,17 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
           required
         />
         <span>
-          Tôi đồng ý{" "}
+          I agree{" "}
           <Link href="/terms" className="font-semibold text-teal-700 hover:text-teal-800">
-            Điều khoản sử dụng
+            Terms of use
           </Link>
           ,{" "}
           <Link href="/privacy" className="font-semibold text-teal-700 hover:text-teal-800">
-            Chính sách bảo mật
+            Privacy policy
           </Link>{" "}
-          và{" "}
+          and{" "}
           <Link href="/cookie-policy" className="font-semibold text-teal-700 hover:text-teal-800">
-            Chính sách Cookie
+            Cookie Policy
           </Link>
           .
         </span>
@@ -137,16 +137,16 @@ export function ReaderSignupForm({ nextPath }: ReaderSignupFormProps) {
         disabled={loading || !legalAccepted}
         className="h-11 rounded-full bg-teal-600 text-sm font-bold text-white transition hover:bg-teal-700 disabled:opacity-60"
       >
-        {loading ? "Đang đăng ký..." : "Đăng ký"}
+        {loading ? "Registering..." : "Register"}
       </button>
 
       <p className="text-sm text-slate-600">
-        Đã có tài khoản?{" "}
+        Already have an account?{" "}
         <Link
           href={`/reader/login${safeNextPath ? `?next=${encodeURIComponent(safeNextPath)}` : ""}`}
           className="font-bold text-teal-700 hover:text-teal-800"
         >
-          Đăng nhập
+          Log in
         </Link>
       </p>
     </form>

@@ -24,7 +24,7 @@ export function AdminOperationsPanel({
     <div className="space-y-4">
       <div className="flex items-center gap-3">
         <Label htmlFor="record-limit" className="text-sm text-[var(--admin-text-secondary)] shrink-0">
-          Giới hạn bản ghi
+          Record limit
         </Label>
         <Input
           id="record-limit"

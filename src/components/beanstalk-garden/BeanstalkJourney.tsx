@@ -55,14 +55,14 @@ function resolveNodePosition(index: number, total: number) {
 function resolveStatusLabel(status: BeanstalkJourneySummary["status"]) {
   switch (status) {
     case "COMPLETED":
-      return "Hoàn thành";
+      return "Complete";
     case "PAUSED":
-      return "Tạm dừng";
+      return "Pause";
     case "ACTIVE":
-      return "Đang học";
+      return "Studying";
     case "SEEDED":
     default:
-      return "Mới gieo hạt";
+      return "Just planted the seeds";
   }
 }
 
@@ -123,7 +123,7 @@ export function BeanstalkJourney({
       <div className="bs-hud">
         <div className="bs-hud-stack">
           <label className="bs-hud-pill">
-            <span className="bs-hud-label">Bé học</span>
+            <span className="bs-hud-label">Baby learns</span>
             <select
               className="bs-hud-select"
               value={activeChildId}
@@ -144,8 +144,8 @@ export function BeanstalkJourney({
           </label>
 
           <div className="bs-hud-pill">
-            <span className="bs-hud-label">Tiến độ</span>
-            <strong>{`Tầng ${currentTierNo}/${Math.max(totalTiers, 1)}`}</strong>
+            <span className="bs-hud-label">Progress</span>
+            <strong>{`Floor${currentTierNo}/${Math.max(totalTiers, 1)}`}</strong>
           </div>
         </div>
 
@@ -154,7 +154,7 @@ export function BeanstalkJourney({
             <>
               <div className="bs-hud-pill">
                 <span className="bs-hud-label">{selectedJourney.courseTitle}</span>
-                <strong>{`${selectedJourney.completedLessons}/${selectedJourney.totalLessons} bài`}</strong>
+                <strong>{`${selectedJourney.completedLessons}/${selectedJourney.totalLessons}post`}</strong>
                 <span className="bs-hud-status">{resolveStatusLabel(selectedJourney.status)}</span>
               </div>
               {courseCtaHref ? (
@@ -165,14 +165,14 @@ export function BeanstalkJourney({
                     router.push(courseCtaHref);
                   }}
                 >
-                  Vào học ngay
+                  Go to school now
                 </button>
               ) : null}
             </>
           ) : (
             <div className="bs-hud-pill">
-              <span className="bs-hud-label">Chưa có cây nào</span>
-              <strong>Hãy mua khóa học để gieo hạt</strong>
+              <span className="bs-hud-label">There are no trees yet</span>
+              <strong>Buy the course to sow seeds</strong>
             </div>
           )}
         </div>
@@ -181,7 +181,7 @@ export function BeanstalkJourney({
       <div className="bs-journey-tabs">
         {journeys.length === 0 ? (
           <div className="bs-empty-banner">
-            <p>Chưa có hành trình nào cho bé này.</p>
+            <p>There is no itinerary yet for this baby.</p>
             <button
               type="button"
               className="bs-action-button"
@@ -189,7 +189,7 @@ export function BeanstalkJourney({
                 router.push("/courses");
               }}
             >
-              Mở danh sách khóa học
+              Open the course list
             </button>
           </div>
         ) : (
@@ -207,7 +207,7 @@ export function BeanstalkJourney({
               }}
             >
               <span className="bs-journey-tab-title">{journey.courseTitle}</span>
-              <span className="bs-journey-tab-meta">{`${journey.completedTiers}/${journey.totalTiers} tầng`}</span>
+              <span className="bs-journey-tab-meta">{`${journey.completedTiers}/${journey.totalTiers}floor`}</span>
             </button>
           ))
         )}
@@ -223,7 +223,7 @@ export function BeanstalkJourney({
         <div className="bs-ground">
           <img
             src="/assets/garden/ground.png"
-            alt="Mặt đất khu vườn"
+            alt="Garden ground"
             className="bs-asset-raw"
             style={{ width: "100%", height: "auto" }}
           />
@@ -270,7 +270,7 @@ export function BeanstalkJourney({
               >
                 <img
                   src="/assets/garden/cloud_platform.png"
-                  alt={`Tầng mây ${tier.tierNo}`}
+                  alt={`Cloud layer${tier.tierNo}`}
                   className="bs-asset-raw"
                   style={{ width: "100%", height: "auto" }}
                 />
@@ -287,14 +287,14 @@ export function BeanstalkJourney({
                   router.push(`/courses/${activeJourneyCourseSlug}/lessons`);
                 }}
                 disabled={!canOpenCourse}
-                aria-label={`Tầng ${tier.tierNo}: ${tier.title}`}
+                aria-label={`Floor${tier.tierNo}: ${tier.title}`}
               >
                 <span className="text-2xl">{label}</span>
               </button>
 
               <div className="bs-tier-meta" style={{ left: `${cloudOffset}px` }}>
                 <strong>{tier.title}</strong>
-                <span>{`${tier.lessonCompleted}/${tier.lessonTotal} bài`}</span>
+                <span>{`${tier.lessonCompleted}/${tier.lessonTotal}post`}</span>
               </div>
             </div>
           );
@@ -303,8 +303,8 @@ export function BeanstalkJourney({
 
       {selectedJourney ? (
         <div className="bs-footer-note">
-          <p>{`Hành trình: ${selectedJourney.seedName}`}</p>
-          {activeJourneyCourseTitle ? <p>{`Khóa học: ${activeJourneyCourseTitle}`}</p> : null}
+          <p>{`Trip:${selectedJourney.seedName}`}</p>
+          {activeJourneyCourseTitle ? <p>{`Course:${activeJourneyCourseTitle}`}</p> : null}
         </div>
       ) : null}
     </div>

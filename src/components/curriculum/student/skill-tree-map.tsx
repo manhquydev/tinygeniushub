@@ -103,8 +103,8 @@ export function SkillTreeMap({
     return (
       <div className="flex h-full items-center justify-center">
         <div className="text-center">
-          <p className="text-lg text-slate-600">Không thể tải bản đồ kỹ năng</p>
-          <p className="text-sm text-slate-400">Vui lòng thử lại sau</p>
+          <p className="text-lg text-slate-600">Unable to load skill map</p>
+          <p className="text-sm text-slate-400">Please try again later</p>
         </div>
       </div>
     );
@@ -177,9 +177,9 @@ export function SkillTreeMap({
             <span className="text-sm font-bold">{gradeId}</span>
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-700">Tiến độ</p>
+            <p className="text-sm font-medium text-slate-700">Progress</p>
             <p className="text-lg font-bold" style={{ color: gradeColor }}>
-              {skillTree.completedLessons}/{skillTree.totalLessons} bài
+              {skillTree.completedLessons}/{skillTree.totalLessons} lessons
             </p>
           </div>
         </div>
@@ -254,7 +254,7 @@ function SkillTreeSkeleton() {
     <div className="flex h-full w-full items-center justify-center">
       <div className="space-y-4 text-center">
         <div className="mx-auto h-16 w-16 animate-spin rounded-full border-4 border-slate-200 border-t-sky-500"></div>
-        <p className="text-slate-500">Đang tải bản đồ kỹ năng...</p>
+        <p className="text-slate-500">Loading skill map...</p>
       </div>
     </div>
   );

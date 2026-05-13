@@ -156,25 +156,25 @@ function buildSkillScores(report: ReportWithChild, skillsSummary: Record<string,
   return [
     {
       id: "focus",
-      label: "Mức độ tập trung",
+      label: "Concentration level",
       value: focus,
       toneClass: "from-teal-500 to-cyan-500",
     },
     {
       id: "memory",
-      label: "Trí nhớ",
+      label: "Memory",
       value: memory,
       toneClass: "from-amber-500 to-orange-500",
     },
     {
       id: "math",
-      label: "Toán học",
+      label: "Mathematics",
       value: math,
       toneClass: "from-sky-500 to-blue-500",
     },
     {
       id: "language",
-      label: "Ngôn ngữ",
+      label: "Language",
       value: language,
       toneClass: "from-violet-500 to-indigo-500",
     },
@@ -223,7 +223,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
       const body = await response.json();
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể tạo lại báo cáo tuần");
+        setError(body.error?.message ?? "Unable to regenerate weekly report");
         return;
       }
 
@@ -233,7 +233,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
         setReports((refreshBody.data?.reports ?? []) as unknown as ReportWithChild[]);
       }
     } catch (regenerateError) {
-      setError(regenerateError instanceof Error ? regenerateError.message : "Lỗi không xác định");
+      setError(regenerateError instanceof Error ? regenerateError.message : "Unknown error");
     } finally {
       setLoading(false);
     }
@@ -251,14 +251,14 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
       const body = await response.json();
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể gửi weekly email");
+        setError(body.error?.message ?? "Unable to send weekly email");
         return;
       }
 
       const result = body.data.result as { sent: number; skipped: number; bounced: number };
-      setInfo(`Đã gửi: ${result.sent}, bỏ qua: ${result.skipped}, lỗi/bounce: ${result.bounced}`);
+      setInfo(`Sent:${result.sent}, skip:${result.skipped}, error/bounce:${result.bounced}`);
     } catch (sendError) {
-      setError(sendError instanceof Error ? sendError.message : "Lỗi không xác định");
+      setError(sendError instanceof Error ? sendError.message : "Unknown error");
     } finally {
       setSending(false);
     }
@@ -312,9 +312,9 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
       <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Báo cáo học tập tuần</h2>
+            <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Weekly study report</h2>
             <p className="mt-1 text-sm leading-relaxed text-slate-500">
-              Theo dõi tiến độ học, năng lực kỹ năng và gợi ý hành động cho phụ huynh.
+              Monitor learning progress, skill capacity and suggest actions for parents.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -324,7 +324,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
               disabled={loading}
             >
               <RefreshCcw size={15} />
-              {loading ? "Đang tạo..." : "Tạo báo cáo ngay"}
+              {loading ? "Creating..." : "Generate reports now"}
             </button>
             <button
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
@@ -332,7 +332,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
               disabled={sending}
             >
               <Mail size={15} />
-              {sending ? "Đang gửi..." : "Gửi email báo cáo"}
+              {sending ? "Sending..." : "Email report"}
             </button>
           </div>
         </div>
@@ -349,8 +349,8 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
         <section className="rounded-3xl border border-slate-200/75 bg-white p-6 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
           <div className="mascot-empty-state">
             <Mascot variant="small" state="sleepy" size={164} actionProp="none" motionLevel="minimal" pauseWhenOffscreen />
-            <h3>Chưa có gì ở đây cả...</h3>
-            <p className="muted-text">Chưa có báo cáo tuần nào được tạo.</p>
+            <h3>Nothing here yet...</h3>
+            <p className="muted-text">No weekly reports have been generated yet.</p>
           </div>
         </section>
       ) : (
@@ -360,9 +360,9 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
           const skillScores = buildSkillScores(report, skillsSummary);
           const radarPoints = buildRadarPoints(skillScores);
           const trend = report.trend;
-          const minutesTrend = buildTrendBadge(trend?.minutesChange ?? 0, "phút");
-          const lessonsTrend = buildTrendBadge(trend?.lessonsChange ?? 0, "bài");
-          const streakTrend = buildTrendBadge(trend?.streakChange ?? 0, "ngày");
+          const minutesTrend = buildTrendBadge(trend?.minutesChange ?? 0, "minute");
+          const lessonsTrend = buildTrendBadge(trend?.lessonsChange ?? 0, "post");
+          const streakTrend = buildTrendBadge(trend?.streakChange ?? 0, "day");
           const overallScore =
             skillScores.length > 0
               ? Math.round(skillScores.reduce((total, skill) => total + skill.value, 0) / skillScores.length)
@@ -374,7 +374,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                 <div className="space-y-1">
                   <h3 className="text-xl font-black tracking-[-0.02em] text-slate-900">{report.child.nickname}</h3>
                   <p className="text-sm leading-relaxed text-slate-500">
-                    Tuần:{" "}
+                    Week:{" "}
                     {new Date(report.weekStart).toLocaleDateString("vi-VN", {
                       weekday: "short",
                       day: "2-digit",
@@ -391,7 +391,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
-                    Cập nhật: {new Date(report.generatedAt).toLocaleDateString("vi-VN")}
+                    Updated: {new Date(report.generatedAt).toLocaleDateString("vi-VN")}
                   </span>
                   <button
                     type="button"
@@ -400,7 +400,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                       openPrintableReport(report.id);
                     }}
                   >
-                    Tải về PDF
+                    Download PDF
                   </button>
                 </div>
               </div>
@@ -410,41 +410,41 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
                     <Trophy size={18} />
                   </div>
-                  <h4 className="text-lg font-black tracking-[-0.01em] text-slate-900">Tóm tắt thành tích</h4>
+                  <h4 className="text-lg font-black tracking-[-0.01em] text-slate-900">Summary of achievements</h4>
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                   <article className="rounded-xl border border-slate-200 bg-white p-4">
                     <div className="flex items-center gap-2 text-slate-600">
                       <Clock3 size={16} />
-                      <span className="text-sm font-semibold">Thời gian học</span>
+                      <span className="text-sm font-semibold">Study time</span>
                     </div>
                     <span className={`mt-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold ${minutesTrend.className}`}>
                       {minutesTrend.text}
                     </span>
                     <p className="mt-2 text-3xl font-black tracking-[-0.02em] text-slate-900">{report.minutesLearned}</p>
-                    <p className="text-xs font-semibold text-slate-500">phút / tuần</p>
+                    <p className="text-xs font-semibold text-slate-500">minutes/week</p>
                   </article>
                   <article className="rounded-xl border border-slate-200 bg-white p-4">
                     <div className="flex items-center gap-2 text-slate-600">
                       <BookOpenCheck size={16} />
-                      <span className="text-sm font-semibold">Bài học</span>
+                      <span className="text-sm font-semibold">Lesson</span>
                     </div>
                     <span className={`mt-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold ${lessonsTrend.className}`}>
                       {lessonsTrend.text}
                     </span>
                     <p className="mt-2 text-3xl font-black tracking-[-0.02em] text-slate-900">{report.lessonsCompleted}</p>
-                    <p className="text-xs font-semibold text-slate-500">bài hoàn thành</p>
+                    <p className="text-xs font-semibold text-slate-500">completed lesson</p>
                   </article>
                   <article className="rounded-xl border border-slate-200 bg-white p-4">
                     <div className="flex items-center gap-2 text-slate-600">
                       <Flame size={16} />
-                      <span className="text-sm font-semibold">Chuỗi liên tục</span>
+                      <span className="text-sm font-semibold">Continuous series</span>
                     </div>
                     <span className={`mt-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold ${streakTrend.className}`}>
                       {streakTrend.text}
                     </span>
                     <p className="mt-2 text-3xl font-black tracking-[-0.02em] text-slate-900">{report.streakDays}</p>
-                    <p className="text-xs font-semibold text-slate-500">ngày học liên tiếp</p>
+                    <p className="text-xs font-semibold text-slate-500">consecutive school days</p>
                   </article>
                 </div>
               </div>
@@ -454,13 +454,13 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sky-100 text-sky-700">
                     <Brain size={18} />
                   </div>
-                  <h4 className="text-lg font-black tracking-[-0.01em] text-slate-900">Đánh giá kỹ năng</h4>
+                  <h4 className="text-lg font-black tracking-[-0.01em] text-slate-900">Skills assessment</h4>
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
                   <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-semibold text-slate-500">Radar tổng quan</p>
+                      <p className="text-sm font-semibold text-slate-500">Overview radar</p>
                       <span className="rounded-full bg-sky-100 px-2 py-0.5 text-xs font-bold text-sky-700">{overallScore}%</span>
                     </div>
                     <div className="mt-3 flex justify-center">
@@ -499,7 +499,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-100 text-amber-700">
                     <Lightbulb size={18} />
                   </div>
-                  <h4 className="text-lg font-black tracking-[-0.01em] text-amber-900">Lời khuyên từ chuyên gia AI</h4>
+                  <h4 className="text-lg font-black tracking-[-0.01em] text-amber-900">Advice from AI experts</h4>
                 </div>
 
                 {recommendations?.nextWeek && recommendations.nextWeek.length > 0 ? (
@@ -510,7 +510,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                   </ul>
                 ) : (
                   <p className="text-sm leading-relaxed text-amber-900/80">
-                    Tuần này bé học ổn định. Phụ huynh nên duy trì nhịp học ngắn mỗi ngày và tăng hoạt động tương tác gia đình vào cuối tuần.
+                    This week, the baby's learning is stable. Parents should maintain a short study schedule each day and increase family interaction activities on weekends.
                   </p>
                 )}
               </div>

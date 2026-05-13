@@ -13,12 +13,12 @@ interface SignUpModalProps {
 }
 
 const zoneDisplayNames: Record<GardenZone, string> = {
-  math: "Toán",
-  phonics: "Tiếng Anh Phonics",
-  art: "Mỹ thuật",
-  music: "Âm nhạc",
-  story: "Kể chuyện",
-  today: "Hôm nay",
+  math: "Maths",
+  phonics: "English Phonics",
+  art: "Art",
+  music: "Music",
+  story: "Tell stories",
+  today: "Today",
 };
 
 export function SignUpModal({ isOpen, onClose, zoneName, source = "homepage" }: SignUpModalProps) {
@@ -42,7 +42,7 @@ export function SignUpModal({ isOpen, onClose, zoneName, source = "homepage" }: 
 
   if (!isOpen) return null;
 
-  const displayZone = zoneName ? zoneDisplayNames[zoneName] || zoneName : "một khu học tập";
+  const displayZone = zoneName ? zoneDisplayNames[zoneName] || zoneName : "a study area";
 
   const handleSignUpClick = () => {
     if (typeof window !== "undefined" && (window as { gtag?: (...args: unknown[]) => void }).gtag) {
@@ -100,7 +100,7 @@ export function SignUpModal({ isOpen, onClose, zoneName, source = "homepage" }: 
             justifyContent: "center",
             transition: "background 0.2s",
           }}
-          aria-label="Đóng"
+          aria-label="Close"
         >
           <X size={24} color="var(--cgh-ink)" />
         </button>
@@ -131,7 +131,7 @@ export function SignUpModal({ isOpen, onClose, zoneName, source = "homepage" }: 
               color: "var(--cgh-ink)",
             }}
           >
-            Mở khóa toàn bộ khu học tập
+            Unlock the entire study area
           </h2>
 
           <p
@@ -143,8 +143,8 @@ export function SignUpModal({ isOpen, onClose, zoneName, source = "homepage" }: 
               opacity: 0.8,
             }}
           >
-            Bạn vừa chọn <strong>{displayZone}</strong>. Tạo tài khoản để mở toàn bộ khu học tập và tiếp tục chọn khóa
-            phù hợp cho bé.
+            You have just selected <strong>{displayZone}</strong>. Create an account to open the entire study area and continue choosing courses
+            suitable for baby.
           </p>
 
           <ul
@@ -157,10 +157,10 @@ export function SignUpModal({ isOpen, onClose, zoneName, source = "homepage" }: 
               color: "var(--cgh-ink)",
             }}
           >
-            <li>Mở toàn bộ khu học tập</li>
-            <li>Lộ trình cá nhân hóa theo từng bé</li>
-            <li>Báo cáo tiến độ hàng tuần cho phụ huynh</li>
-            <li>Thanh toán nhanh bằng chuyển khoản hoặc QR</li>
+            <li>Open the entire learning area</li>
+            <li>Personalized roadmap for each child</li>
+            <li>Weekly progress reports to parents</li>
+            <li>Fast payment by bank transfer or QR</li>
           </ul>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
@@ -182,7 +182,7 @@ export function SignUpModal({ isOpen, onClose, zoneName, source = "homepage" }: 
                 transition: "all 0.2s",
               }}
             >
-              Tạo tài khoản
+              Create an account
             </Link>
 
             <button
@@ -200,7 +200,7 @@ export function SignUpModal({ isOpen, onClose, zoneName, source = "homepage" }: 
                 transition: "all 0.2s",
               }}
             >
-              Tiếp tục xem thử
+              Continue to check it out
             </button>
           </div>
         </div>

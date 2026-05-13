@@ -42,7 +42,7 @@ function formatSchedule(value: string | null) {
   const year = String(date.getFullYear());
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
-  return `Lịch: ${day}/${month}/${year} ${hours}:${minutes}`;
+  return `Calendar:${day}/${month}/${year} ${hours}:${minutes}`;
 }
 
 export function AdminAnnouncementPanel() {
@@ -71,13 +71,13 @@ export function AdminAnnouncementPanel() {
       });
       const body = await response.json();
       if (!response.ok || !body.ok || !Array.isArray(body.data?.announcements)) {
-        setError(body.error?.message ?? "Không tải được thông báo hệ thống.");
+        setError(body.error?.message ?? "Unable to load system notifications.");
         return;
       }
 
       setAnnouncements(body.data.announcements as AnnouncementRow[]);
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "Lỗi không xác định.");
+      setError(loadError instanceof Error ? loadError.message : "Unknown error.");
     } finally {
       setLoading(false);
     }
@@ -89,7 +89,7 @@ export function AdminAnnouncementPanel() {
 
   async function handleCreate() {
     if (message.trim().length === 0) {
-      setError("Vui lòng nhập nội dung thông báo.");
+      setError("Please enter notification content.");
       return;
     }
 
@@ -112,7 +112,7 @@ export function AdminAnnouncementPanel() {
       });
       const body = await response.json();
       if (!response.ok || !body.ok || !body.data?.announcement) {
-        setError(body.error?.message ?? "Không tạo được thông báo hệ thống.");
+        setError(body.error?.message ?? "Unable to create system notification.");
         return;
       }
 
@@ -120,10 +120,10 @@ export function AdminAnnouncementPanel() {
       setType("INFO");
       setScheduledAt("");
       setEndsAt("");
-      setInfo("Đã đăng thông báo mới.");
+      setInfo("New announcement posted.");
       await loadAnnouncements();
     } catch (createError) {
-      setError(createError instanceof Error ? createError.message : "Lỗi không xác định.");
+      setError(createError instanceof Error ? createError.message : "Unknown error.");
     } finally {
       setSubmitting(false);
     }
@@ -146,14 +146,14 @@ export function AdminAnnouncementPanel() {
       });
       const body = await response.json();
       if (!response.ok || !body.ok || !body.data?.announcement) {
-        setError(body.error?.message ?? "Không cập nhật được trạng thái thông báo.");
+        setError(body.error?.message ?? "Unable to update notification status.");
         return;
       }
 
-      setInfo(item.active ? "Đã tắt thông báo." : "Đã bật thông báo.");
+      setInfo(item.active ? "Notifications turned off." : "Notifications enabled.");
       await loadAnnouncements();
     } catch (toggleError) {
-      setError(toggleError instanceof Error ? toggleError.message : "Lỗi không xác định.");
+      setError(toggleError instanceof Error ? toggleError.message : "Unknown error.");
     } finally {
       setUpdatingId(null);
     }
@@ -161,25 +161,25 @@ export function AdminAnnouncementPanel() {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Thông báo hệ thống</h3>
+      <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">System notifications</h3>
 
       <div className="grid gap-3">
         <div className="grid gap-1.5">
-          <Label htmlFor="ann-message">Nội dung thông báo (tối đa 200 ký tự)</Label>
+          <Label htmlFor="ann-message">Notification content (maximum 200 characters)</Label>
           <Input
             id="ann-message"
             value={message}
             onChange={(event) => setMessage(event.target.value.slice(0, 200))}
             type="text"
             maxLength={200}
-            placeholder="Ví dụ: Hệ thống bảo trì vào 22:00 tối nay."
+            placeholder="For example: System maintenance at 22:00 tonight."
           />
-          <span className="text-xs text-[var(--admin-text-secondary)]">Còn lại {remainingChars} ký tự</span>
+          <span className="text-xs text-[var(--admin-text-secondary)]">Remaining {remainingChars} characters</span>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
           <div className="grid gap-1.5">
-            <Label>Loại</Label>
+            <Label>Type</Label>
             <Select value={type} onValueChange={(value) => setType(value as AnnouncementType)}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
@@ -190,17 +190,17 @@ export function AdminAnnouncementPanel() {
             </Select>
           </div>
           <div className="grid gap-1.5">
-            <Label htmlFor="ann-scheduled">Lập lịch (tùy chọn, để trống = đăng ngay)</Label>
+            <Label htmlFor="ann-scheduled">Schedule (optional, leave blank = post now)</Label>
             <Input id="ann-scheduled" type="datetime-local" value={scheduledAt} onChange={(event) => setScheduledAt(event.target.value)} />
           </div>
           <div className="grid gap-1.5">
-            <Label htmlFor="ann-ends">Kết thúc (tùy chọn)</Label>
+            <Label htmlFor="ann-ends">Finish (optional)</Label>
             <Input id="ann-ends" type="date" min={toDateInputValue(new Date())} value={endsAt} onChange={(event) => setEndsAt(event.target.value)} />
           </div>
         </div>
 
         <Button type="button" className="w-fit bg-teal-600 hover:bg-teal-700" onClick={() => void handleCreate()} disabled={submitting}>
-          {submitting ? "Đang đăng..." : "Đăng thông báo"}
+          {submitting ? "Posting..." : "Post an announcement"}
         </Button>
       </div>
 
@@ -208,19 +208,19 @@ export function AdminAnnouncementPanel() {
         <Table>
           <TableHeader>
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
-              <TableHead className="text-xs">Nội dung</TableHead>
-              <TableHead className="text-xs">Loại</TableHead>
-              <TableHead className="text-xs">Lập lịch</TableHead>
-              <TableHead className="text-xs">Hết hạn</TableHead>
-              <TableHead className="text-xs">Trạng thái</TableHead>
-              <TableHead className="text-xs">Tạo bởi</TableHead>
-              <TableHead className="text-xs">Hành động</TableHead>
+              <TableHead className="text-xs">Content</TableHead>
+              <TableHead className="text-xs">Type</TableHead>
+              <TableHead className="text-xs">Make a schedule</TableHead>
+              <TableHead className="text-xs">Expired</TableHead>
+              <TableHead className="text-xs">Status</TableHead>
+              <TableHead className="text-xs">Created by</TableHead>
+              <TableHead className="text-xs">Act</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {loading ? Array.from({ length: 3 }).map((_, index) => (
               <TableRow key={`announcement-skeleton-${index}`}>
-                <TableCell colSpan={7} className="text-xs text-[var(--admin-text-secondary)]">Đang tải...</TableCell>
+                <TableCell colSpan={7} className="text-xs text-[var(--admin-text-secondary)]">Loading...</TableCell>
               </TableRow>
             )) : null}
             {!loading ? announcements.map((item) => (
@@ -228,8 +228,8 @@ export function AdminAnnouncementPanel() {
                 <TableCell className="text-xs max-w-xs">{item.message}</TableCell>
                 <TableCell className="text-xs">{item.type}</TableCell>
                 <TableCell className="text-xs">{formatSchedule(item.scheduledAt)}</TableCell>
-                <TableCell className="text-xs">{item.endsAt ? new Date(item.endsAt).toLocaleDateString("vi-VN") : "Không giới hạn"}</TableCell>
-                <TableCell className="text-xs">{item.active ? "Đang bật" : "Đang tắt"}</TableCell>
+                <TableCell className="text-xs">{item.endsAt ? new Date(item.endsAt).toLocaleDateString("vi-VN") : "Unlimited"}</TableCell>
+                <TableCell className="text-xs">{item.active ? "On" : "Turning off"}</TableCell>
                 <TableCell className="text-xs">{item.createdBy}</TableCell>
                 <TableCell>
                   <Button
@@ -240,13 +240,13 @@ export function AdminAnnouncementPanel() {
                     onClick={() => void toggleAnnouncementActive(item)}
                     disabled={updatingId === item.id}
                   >
-                    {updatingId === item.id ? "Đang cập nhật..." : item.active ? "Tắt" : "Bật"}
+                    {updatingId === item.id ? "Updating..." : item.active ? "Turn off" : "Turn on"}
                   </Button>
                 </TableCell>
               </TableRow>
             )) : null}
             {!loading && announcements.length === 0 ? (
-              <TableRow><TableCell colSpan={7} className="text-xs text-[var(--admin-text-secondary)]">Chưa có thông báo hệ thống.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={7} className="text-xs text-[var(--admin-text-secondary)]">There are no system notifications yet.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>

@@ -15,7 +15,7 @@ import type {
  * No authentication or database queries required.
  * 
  * Features:
- * - Mock child profiles (Bé Hương, Bé Minh)
+ * - Mock child profiles (Baby Huong, Baby Minh)
  * - Mock journey data with realistic progress
  * - Triggers sign-up modal on navigation attempts
  * - Same visual UX as real /kid/garden route
@@ -41,17 +41,17 @@ interface BeanstalkJourneyDemoProps {
 
 // Mock data - realistic Vietnamese child learning journey
 const MOCK_CHILDREN: BeanstalkChildProfile[] = [
-  { id: "demo-child-1", nickname: "Bé Hương" },
-  { id: "demo-child-2", nickname: "Bé Minh" },
+  { id: "demo-child-1", nickname: "Baby Huong" },
+  { id: "demo-child-2", nickname: "Baby Minh" },
 ];
 
 const MOCK_JOURNEYS: BeanstalkJourneySummary[] = [
   {
     id: "demo-journey-toan-1",
     courseSlug: "toan-tu-duy-1",
-    courseTitle: "Toán Tư Duy 1",
+    courseTitle: "Math Thinking 1",
     status: "ACTIVE",
-    seedName: "Hạt Toán",
+    seedName: "Math Beads",
     currentTierNo: 3,
     currentTierProgress: 45, // 45% through tier 3
     totalTiers: 5,
@@ -62,9 +62,9 @@ const MOCK_JOURNEYS: BeanstalkJourneySummary[] = [
   {
     id: "demo-journey-tieng-anh-1",
     courseSlug: "tieng-anh-mam-non",
-    courseTitle: "Tiếng Anh Mầm Non",
+    courseTitle: "Preschool English",
     status: "ACTIVE",
-    seedName: "Hạt ABC",
+    seedName: "ABC County",
     currentTierNo: 2,
     currentTierProgress: 70,
     totalTiers: 4,
@@ -75,9 +75,9 @@ const MOCK_JOURNEYS: BeanstalkJourneySummary[] = [
   {
     id: "demo-journey-ky-nang",
     courseSlug: "ky-nang-song",
-    courseTitle: "Kỹ Năng Sống",
+    courseTitle: "Life Skills",
     status: "SEEDED",
-    seedName: "Hạt Khéo Tay",
+    seedName: "Skillful Beads",
     currentTierNo: 1,
     currentTierProgress: 0,
     totalTiers: 3,
@@ -90,7 +90,7 @@ const MOCK_JOURNEYS: BeanstalkJourneySummary[] = [
 const MOCK_TIERS_TOAN: BeanstalkJourneyTier[] = [
   {
     tierNo: 1,
-    title: "Gà Con Vàng",
+    title: "Golden Chick",
     lessonTotal: 10,
     lessonCompleted: 10,
     isUnlocked: true,
@@ -98,7 +98,7 @@ const MOCK_TIERS_TOAN: BeanstalkJourneyTier[] = [
   },
   {
     tierNo: 2,
-    title: "Thỏ Nhỏ Nhanh Nhẹn",
+    title: "Nimble Little Rabbit",
     lessonTotal: 10,
     lessonCompleted: 10,
     isUnlocked: true,
@@ -106,7 +106,7 @@ const MOCK_TIERS_TOAN: BeanstalkJourneyTier[] = [
   },
   {
     tierNo: 3,
-    title: "Sóc Bay Thông Minh",
+    title: "Smart Flying Squirrel",
     lessonTotal: 10,
     lessonCompleted: 4, // Currently on this tier (45% progress ≈ 4.5 lessons)
     isUnlocked: true,
@@ -114,7 +114,7 @@ const MOCK_TIERS_TOAN: BeanstalkJourneyTier[] = [
   },
   {
     tierNo: 4,
-    title: "Rồng Xanh Dũng Mãnh",
+    title: "Brave Green Dragon",
     lessonTotal: 10,
     lessonCompleted: 0,
     isUnlocked: false, // Locked
@@ -122,7 +122,7 @@ const MOCK_TIERS_TOAN: BeanstalkJourneyTier[] = [
   },
   {
     tierNo: 5,
-    title: "Phượng Hoàng Tự Tin",
+    title: "Confident Phoenix",
     lessonTotal: 10,
     lessonCompleted: 0,
     isUnlocked: false, // Locked
@@ -168,15 +168,15 @@ const MOCK_TIERS_TIENG_ANH: BeanstalkJourneyTier[] = [
 const MOCK_TIERS_KY_NANG: BeanstalkJourneyTier[] = [
   {
     tierNo: 1,
-    title: "Tự Phục Vụ Bản Thân",
+    title: "Self-Service",
     lessonTotal: 10,
     lessonCompleted: 0,
-    isUnlocked: true, // Tier 1 luôn unlocked
+    isUnlocked: true, // Tier 1 always unlocked
     isCompleted: false,
   },
   {
     tierNo: 2,
-    title: "Giao Tiếp Tự Tin",
+    title: "Communicate Confidently",
     lessonTotal: 10,
     lessonCompleted: 0,
     isUnlocked: false,
@@ -184,7 +184,7 @@ const MOCK_TIERS_KY_NANG: BeanstalkJourneyTier[] = [
   },
   {
     tierNo: 3,
-    title: "Làm Việc Nhóm",
+    title: "Team Work",
     lessonTotal: 10,
     lessonCompleted: 0,
     isUnlocked: false,
@@ -197,7 +197,7 @@ export function BeanstalkJourneyDemo({
   initialChildId = "demo-child-1",
   initialJourneyId = "demo-journey-toan-1",
 }: BeanstalkJourneyDemoProps) {
-  // State for demo mode (không dùng real router)
+  // State for demo mode (not using real router)
   const [activeChildId] = useState(initialChildId);
   const [activeJourneyId] = useState(initialJourneyId);
 
@@ -221,7 +221,7 @@ export function BeanstalkJourneyDemo({
     } else {
       console.log("[BeanstalkJourneyDemo] Navigation attempt:", url);
       // Fallback: alert user to sign up
-      alert("Đăng ký để trải nghiệm đầy đủ tính năng!");
+      alert("Sign up to experience full features!");
     }
   };
 

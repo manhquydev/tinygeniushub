@@ -37,13 +37,13 @@ export function WeeklyProgressChart({ weeks, childNickname }: WeeklyProgressChar
   const maxMinutes = Math.max(1, ...normalizedWeeks.map((week) => week.minutesLearned));
 
   return (
-    <section className="weekly-chart-container" aria-label={`Biểu đồ tiến độ tuần của ${childNickname}`}>
+    <section className="weekly-chart-container" aria-label={`Weekly progress chart of${childNickname}`}>
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-base font-bold text-slate-900">Tiến độ 6 tuần gần nhất - {childNickname}</h3>
-        <p className="text-xs text-slate-500">Đơn vị: phút học / tuần</p>
+        <h3 className="text-base font-bold text-slate-900">Progress over the last 6 weeks - {childNickname}</h3>
+        <p className="text-xs text-slate-500">Unit: study minutes/week</p>
       </div>
 
-      <svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`} width="100%" role="img" aria-label="Biểu đồ cột phút học theo tuần" className="mt-3">
+      <svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`} width="100%" role="img" aria-label="Column chart of study minutes by week" className="mt-3">
         {[0, 1, 2, 3, 4].map((index) => {
           const y = CHART_MARGIN.top + (chartInnerHeight / 4) * index;
           const minutesLabel = Math.round(maxMinutes - (maxMinutes / 4) * index);
@@ -107,7 +107,7 @@ export function WeeklyProgressChart({ weeks, childNickname }: WeeklyProgressChar
           <div key={`legend-${week.weekStart}-${index}`} className="chart-legend-item">
             <strong className="text-slate-700">T{index + 1}</strong>
             <span>
-              🔥 {week.streakDays} ngày · 📚 {week.lessonsCompleted} bài
+              🔥 {week.streakDays} days · 📚 {week.lessonsCompleted} posts
             </span>
           </div>
         ))}

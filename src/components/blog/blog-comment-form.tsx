@@ -44,7 +44,7 @@ export function BlogCommentForm({ slug, parentId, onSubmitted }: BlogCommentForm
       setSuccess(true);
       onSubmitted?.();
     } catch {
-      setError("Không thể gửi bình luận. Vui lòng thử lại.");
+      setError("Cannot post comments. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -77,7 +77,7 @@ export function BlogCommentForm({ slug, parentId, onSubmitted }: BlogCommentForm
             disabled={success || loading}
             className="min-h-11 w-full rounded-xl border border-slate-300 px-3 text-sm"
           />
-          <p className="text-xs font-normal text-slate-500">Email chỉ dùng để xác nhận, không hiển thị công khai.</p>
+          <p className="text-xs font-normal text-slate-500">Email is only used for confirmation, not displayed publicly.</p>
         </label>
       </div>
 
@@ -96,10 +96,10 @@ export function BlogCommentForm({ slug, parentId, onSubmitted }: BlogCommentForm
       </label>
 
       {error ? <p className="text-sm font-semibold text-rose-700">{error}</p> : null}
-      {success ? <p className="text-sm font-semibold text-emerald-700">Cảm ơn! Hãy kiểm tra email {authorEmail} để duyệt bình luận.</p> : null}
+      {success ? <p className="text-sm font-semibold text-emerald-700">Thanks! Check email {authorEmail} to approve the comment.</p> : null}
 
       <button type="submit" disabled={loading || success} className="solid-button">
-        {loading ? "Đang gửi..." : "Gửi bình luận"}
+        {loading ? "Sending..." : "Submit a comment"}
       </button>
     </form>
   );

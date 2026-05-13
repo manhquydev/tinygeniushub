@@ -58,33 +58,33 @@ function resolveBannerCopy(input: {
       if (input.pollTimedOut) {
         return {
           tone: "border-sky-200 bg-sky-50 text-sky-900 ring-1 ring-sky-100",
-          title: "Đang xác nhận thanh toán",
-          body: "Hệ thống đang hoàn tất bước xác nhận. Bạn có thể tải lại trang sau ít phút.",
+          title: "Confirming payment",
+          body: "The system is completing the confirmation step. You can reload the page after a few minutes.",
         };
       }
       return {
         tone: "border-sky-200 bg-sky-50 text-sky-900 ring-1 ring-sky-100",
-        title: "Đang xác nhận thanh toán",
-        body: "Giao dịch đã được ghi nhận. Hệ thống sẽ tự mở khóa ngay khi xác nhận xong.",
+        title: "Confirming payment",
+        body: "The transaction has been recorded. The system will automatically unlock as soon as confirmation is complete.",
       };
     case "pending":
       if (input.pollTimedOut) {
         return {
           tone: "border-amber-200 bg-amber-50 text-amber-900 ring-1 ring-amber-100",
-          title: "Thanh toán chưa hoàn tất",
-          body: "Bạn có thể mở lại liên kết thanh toán hoặc kiểm tra lại sau.",
+          title: "Payment has not been completed",
+          body: "You can reopen the payment link or check back later.",
         };
       }
       return {
         tone: "border-amber-200 bg-amber-50 text-amber-900 ring-1 ring-amber-100",
-        title: "Thanh toán đang chờ xử lý",
-        body: "Nếu bạn đã thanh toán thành công, hệ thống sẽ tự cập nhật trong ít phút.",
+        title: "Payment is pending",
+        body: "If you have successfully paid, the system will update itself in a few minutes.",
       };
     case "success":
       return {
         tone: "border-emerald-200 bg-emerald-50 text-emerald-900 ring-1 ring-emerald-100",
-        title: "Thanh toán thành công",
-        body: "Khóa học đã được kích hoạt.",
+        title: "Payment successful",
+        body: "The course has been activated.",
       };
     case "failed":
     case "cancelled":
@@ -93,8 +93,8 @@ function resolveBannerCopy(input: {
     case "error":
       return {
         tone: "border-slate-200 bg-slate-50 text-slate-900 ring-1 ring-slate-100",
-        title: "Chưa thể xác nhận thanh toán",
-        body: "Vui lòng thử lại sau ít phút. Nếu đã bị trừ tiền, hãy liên hệ hỗ trợ.",
+        title: "Payment cannot be confirmed",
+        body: "Please try again in a few minutes. If money has been deducted, please contact support.",
       };
     default:
       return null;

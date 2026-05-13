@@ -191,7 +191,7 @@ function resolveJourneyNodeMascotProfile({
       gazeDirection,
       motionLevel: isCelebratingCompletion ? "full" : "soft",
       size: isCelebratingCompletion ? 66 : 56,
-      title: "Mascot mốc hoàn thành",
+      title: "Mascot landmark completed",
     };
   }
 
@@ -202,7 +202,7 @@ function resolveJourneyNodeMascotProfile({
       gazeDirection,
       motionLevel: "full",
       size: 64,
-      title: "Mascot mốc đang học",
+      title: "Mascot mold is studying",
     };
   }
 
@@ -212,7 +212,7 @@ function resolveJourneyNodeMascotProfile({
     gazeDirection,
     motionLevel: "minimal",
     size: 52,
-    title: "Mascot mốc sắp mở khóa",
+    title: "Mascot landmark is about to unlock",
   };
 }
 
@@ -645,7 +645,7 @@ export function KidMissionPanel({
   const ensureGoalAllowsLessonStart = useCallback(async () => {
     const allowed = await refreshGoalGuardForChild(activeChildId, { silent: true });
     if (!allowed) {
-      setMascotMessage("Hôm nay con đã học đủ rồi, mình nghỉ ngơi một chút nhé!");
+      setMascotMessage("You've studied enough today, let's rest a bit!");
       setIsProfilePopupOpen(false);
       resetInactivityTimer();
     }
@@ -671,7 +671,7 @@ export function KidMissionPanel({
         ...current,
         [activeChildId]: true,
       }));
-      setMascotMessage("Bố mẹ đã đồng ý, con có thể học thêm một chút nữa!");
+      setMascotMessage("Mom and Dad agreed, I can study a little more!");
       setMascotStateForDuration("happy", 1400, true);
       resetInactivityTimer();
       return;
@@ -1191,7 +1191,7 @@ export function KidMissionPanel({
                   motionLevel={prefersReducedMotion ? "minimal" : guideMascotProfile.motionLevel}
                   pauseWhenOffscreen
                   className="pointer-events-none"
-                  title="Mascot hướng dẫn"
+                  title="Mascot instructions"
                 />
               </m.div>
             </m.div>

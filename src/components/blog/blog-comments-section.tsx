@@ -38,7 +38,7 @@ export function BlogCommentsSection({ slug }: BlogCommentsSectionProps) {
       const payload = (await response.json()) as { comments?: BlogComment[] };
       setComments(payload.comments ?? []);
     } catch {
-      setError("Không thể tải bình luận.");
+      setError("Unable to load comments.");
     } finally {
       setLoading(false);
     }
@@ -58,19 +58,19 @@ export function BlogCommentsSection({ slug }: BlogCommentsSectionProps) {
   return (
     <section className="space-y-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       <div className="section-header">
-        <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Bình luận ({count})</h2>
+        <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Comments ({count})</h2>
       </div>
 
       {commented ? (
         <p className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-semibold text-emerald-700">
-          Bình luận đã được gửi! Kiểm tra email để xác nhận.
+          Comment has been submitted! Check email for confirmation.
         </p>
       ) : null}
 
-      {loading ? <p className="text-sm text-slate-500">Đang tải bình luận...</p> : null}
+      {loading ? <p className="text-sm text-slate-500">Loading comments...</p> : null}
       {error ? <p className="text-sm font-semibold text-rose-700">{error}</p> : null}
 
-      {!loading && comments.length === 0 ? <p className="text-sm text-slate-500">Chưa có bình luận nào.</p> : null}
+      {!loading && comments.length === 0 ? <p className="text-sm text-slate-500">There are no comments yet.</p> : null}
 
       <div className="space-y-3">
         {comments.map((comment) => (

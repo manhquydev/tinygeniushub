@@ -7,7 +7,7 @@
  *  - SkyBackground (gradient + stars + shooting star)
  *  - GroundCloudLayer (3-layer SVG wave at bottom)
  *  - MagicTree (center SVG)
- *  - 5× CloudZone (positioned around the tree)
+ *  - 5x CloudZone (positioned around the tree)
  *  - GardenMascotGuide (bottom-left)
  *  - CloudProgressBar (bottom-center)
  *  - Parent Zone button (bottom-right)
@@ -162,7 +162,7 @@ export function CloudWorldMap({
           <CloudProgressBar
             total={progressTotal}
             filled={progressFilled}
-            ariaLabel={`${progressFilled} trong ${progressTotal} b\u00e0i h\u00f4m nay`}
+            ariaLabel={`${progressFilled} in ${progressTotal} b\u00e0i h\u00f4m nay`}
           />
         </div>
 

@@ -116,7 +116,7 @@ export function LessonBrowser({
     <div className="flex h-[calc(100vh-4rem)]">
       {/* Sidebar - Grade Selector */}
       <aside className="w-64 border-r bg-white p-4 overflow-y-auto">
-        <h2 className="mb-4 text-lg font-semibold text-slate-800">🎓 Chọn Lớp</h2>
+        <h2 className="mb-4 text-lg font-semibold text-slate-800">🎓 Select Class</h2>
         <GradeList
           grades={grades}
           selectedGrade={selectedGradeId}
@@ -131,10 +131,10 @@ export function LessonBrowser({
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <h1 className="text-2xl font-bold text-slate-800">
-                📚 Duyệt Giáo Trình
+                📚 Browse the Syllabus
               </h1>
               <p className="text-slate-500">
-                Khám phá {filteredLessons.length} bài học Abeka
+                Explore {filteredLessons.length} Abeka lessons
               </p>
             </div>
 
@@ -146,7 +146,7 @@ export function LessonBrowser({
                 className={showFilters ? "bg-slate-100" : ""}
               >
                 <SlidersHorizontal className="h-4 w-4 mr-2" />
-                Bộ lọc
+                Filter
               </Button>
 
               <div className="flex items-center border rounded-lg p-1">
@@ -177,7 +177,7 @@ export function LessonBrowser({
               onChange={(value) =>
                 setFilters((prev) => ({ ...prev, searchQuery: value }))
               }
-              placeholder="Tìm bài học..."
+              placeholder="Find lessons..."
               className="flex-1"
             />
           </div>
@@ -222,14 +222,14 @@ export function LessonBrowser({
           ) : (
             <div className="text-center py-12 bg-white rounded-xl border border-dashed">
               <p className="text-slate-500">
-                Không tìm thấy bài học nào phù hợp với bộ lọc.
+                No lessons found matching the filter.
               </p>
               <Button
                 variant="link"
                 onClick={handleClearAllFilters}
                 className="mt-2"
               >
-                Xóa bộ lọc
+                Clear filter
               </Button>
             </div>
           )}

@@ -30,8 +30,8 @@ function getProgressPercent(journey: EnrolledCourseForKidDashboard["journey"], t
 function readPlotVisual(journey: EnrolledCourseForKidDashboard["journey"]) {
   if (!journey) {
     return {
-      statusLabel: "Chưa gieo hạt",
-      actionLabel: "Bắt đầu",
+      statusLabel: "Haven't sown seeds yet",
+      actionLabel: "Begin",
       plotSrc: "/images/cloud-garden/ground/course_plot_locked.png",
       tone: "locked" as const,
     };
@@ -40,30 +40,30 @@ function readPlotVisual(journey: EnrolledCourseForKidDashboard["journey"]) {
   switch (journey.status) {
     case "COMPLETED":
       return {
-        statusLabel: "Đã nở hoa",
-        actionLabel: "Xem lại",
+        statusLabel: "Has bloomed",
+        actionLabel: "Review",
         plotSrc: "/images/cloud-garden/ground/course_plot_completed.png",
         tone: "completed" as const,
       };
     case "ACTIVE":
       return {
-        statusLabel: "Đang lớn lên",
-        actionLabel: "Học tiếp",
+        statusLabel: "Growing up",
+        actionLabel: "Continue studying",
         plotSrc: "/images/cloud-garden/ground/course_plot_active.png",
         tone: "active" as const,
       };
     case "PAUSED":
       return {
-        statusLabel: "Đang tạm nghỉ",
-        actionLabel: "Tiếp tục",
+        statusLabel: "Taking a break",
+        actionLabel: "Continue",
         plotSrc: "/images/cloud-garden/ground/course_plot_active.png",
         tone: "active" as const,
       };
     case "SEEDED":
     default:
       return {
-        statusLabel: "Mầm mới",
-        actionLabel: "Khám phá",
+        statusLabel: "New sprouts",
+        actionLabel: "Discover",
         plotSrc: "/images/cloud-garden/ground/course_plot_active.png",
         tone: "seeded" as const,
       };
@@ -73,13 +73,13 @@ function readPlotVisual(journey: EnrolledCourseForKidDashboard["journey"]) {
 function readContinueLabel(suggestedStatus?: string | null) {
   switch (suggestedStatus) {
     case "COMPLETED":
-      return "Xem lại";
+      return "Review";
     case "ACTIVE":
-      return "Học tiếp";
+      return "Continue studying";
     case "PAUSED":
-      return "Tiếp tục";
+      return "Continue";
     default:
-      return "Khám phá";
+      return "Discover";
   }
 }
 
@@ -225,7 +225,7 @@ export function KidSharedGardenDashboard({
     <div
       className="ksg-scene"
       data-testid="kid-garden-scene"
-      aria-label="Khu vườn học tập của bé"
+      aria-label="Children's learning garden"
       aria-busy={isNavigating}
     >
       <div className="ksg-ambient" data-testid="kid-garden-ambient" aria-hidden="true">
@@ -276,23 +276,23 @@ export function KidSharedGardenDashboard({
             handleGoParentDashboard();
           }}
           disabled={isNavigating}
-          aria-label="Quay về phụ huynh"
+          aria-label="Return to parent"
         >
           <ArrowLeft size={18} />
-          {pendingAction === "go-parent-dashboard" ? "Đang mở..." : "Phụ huynh"}
+          {pendingAction === "go-parent-dashboard" ? "Open..." : "Parents"}
         </button>
 
         <label className="ksg-child-switch">
           <span className="ksg-child-avatar" aria-hidden="true">
             {avatarLetter}
           </span>
-          <span className="ksg-child-name">{activeChild?.nickname ?? "Bé"}</span>
+          <span className="ksg-child-name">{activeChild?.nickname ?? "Little"}</span>
           {childrenProfiles.length > 1 ? (
             <select
               className="ksg-child-select"
               value={childId}
               onChange={(event) => handleChildChange(event.target.value)}
-              aria-label="Chọn bé"
+              aria-label="Choose baby"
               disabled={isNavigating}
             >
               {childrenProfiles.map((child) => (
@@ -312,10 +312,10 @@ export function KidSharedGardenDashboard({
             handleContinueLearning();
           }}
           disabled={!suggestedCourse || isNavigating}
-          aria-label="Vào khóa học gợi ý"
+          aria-label="Go to the suggested course"
         >
           <Sparkles size={16} />
-          {pendingAction === "continue-learning" ? "Đang mở..." : continueLabel}
+          {pendingAction === "continue-learning" ? "Open..." : continueLabel}
         </button>
       </header>
 
@@ -323,29 +323,29 @@ export function KidSharedGardenDashboard({
         <section className="ksg-hero">
           <Image
             src="/kisu-assets/stickers/sticker_hint.png"
-            alt="Kisu gợi ý cho bé"
+            alt="Kisu suggests to the baby"
             width={128}
             height={128}
             className="ksg-hero-kisu"
           />
           <div className="ksg-hero-content">
-            <h1>Khu vườn học tập</h1>
-            <p>Chạm vào chậu cây để bé học tiếp từng khóa nhé.</p>
+            <h1>Learning garden</h1>
+            <p>Touch the plant pot for your child to continue learning each course.</p>
           </div>
         </section>
 
-        <section className="ksg-kpi-strip" aria-label="Tổng quan tiến độ">
+        <section className="ksg-kpi-strip" aria-label="Progress overview">
           <article className="ksg-kpi-chip">
             <strong>{summary.totalCourses}</strong>
-            <span>Khóa đã mua</span>
+            <span>Purchased key</span>
           </article>
           <article className="ksg-kpi-chip">
             <strong>{summary.activeCourses}</strong>
-            <span>Đang học</span>
+            <span>Studying</span>
           </article>
           <article className="ksg-kpi-chip">
             <strong>{summary.completedCourses}</strong>
-            <span>Đã hoàn thành</span>
+            <span>Completed</span>
           </article>
         </section>
 
@@ -353,13 +353,13 @@ export function KidSharedGardenDashboard({
           <section className="ksg-empty">
             <Image
               src="/images/nodes/kisu_companion_balloon.png"
-              alt="Kisu đồng hành"
+              alt="Kisu accompanies"
               width={180}
               height={180}
               className="ksg-empty-kisu"
             />
-            <h2>Vườn của bé chưa có hạt giống</h2>
-            <p>Ba mẹ mở khóa học trước để bé bắt đầu gieo mầm nhé.</p>
+            <h2>The baby's garden doesn't have any seeds yet</h2>
+            <p>Parents, please open the course first so your child can start sowing seeds.</p>
             <button
               type="button"
               onClick={(event) => {
@@ -368,7 +368,7 @@ export function KidSharedGardenDashboard({
               }}
               disabled={isNavigating}
             >
-              {pendingAction === "go-parent-courses" ? "Đang mở..." : "Mở danh sách khóa học"}
+              {pendingAction === "go-parent-courses" ? "Open..." : "Open the course list"}
             </button>
           </section>
         ) : (
@@ -398,7 +398,7 @@ export function KidSharedGardenDashboard({
                     handleOpenCourse(course.slug);
                   }}
                   aria-disabled={isNavigating}
-                  aria-label={`Mở khóa học ${course.title}`}
+                  aria-label={`Open the course${course.title}`}
                   onKeyDown={(event) => {
                     if (isNavigating) {
                       return;
@@ -448,7 +448,7 @@ export function KidSharedGardenDashboard({
                     <p className="ksg-plot-status">{plotVisual.statusLabel}</p>
 
                     <div className="ksg-progress-row">
-                      <span>{`${completedLessons}/${course.totalLessons} bài`}</span>
+                      <span>{`${completedLessons}/${course.totalLessons}post`}</span>
                       <span>{`${progress}%`}</span>
                     </div>
                     <div className="ksg-progress-track">
@@ -466,7 +466,7 @@ export function KidSharedGardenDashboard({
                       }}
                       disabled={isNavigating}
                     >
-                      {pendingAction === "open-course" ? "Đang mở..." : plotVisual.actionLabel}
+                      {pendingAction === "open-course" ? "Open..." : plotVisual.actionLabel}
                     </button>
                   </div>
                 </article>

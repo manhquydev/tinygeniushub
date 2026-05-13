@@ -216,12 +216,12 @@ export function LessonPlayerScene({
         body: JSON.stringify({ childId }),
       });
       if (!result) {
-        setStatus("Mạng chậm, chưa thể khởi tạo phiên xem video.");
+        setStatus("Network is slow, cannot initiate video viewing session.");
         return;
       }
       const body = result.body as { ok?: boolean; data?: { session?: WatchSessionPayload } } | null;
       if (!result.response.ok || !body?.ok) {
-        setStatus("Không thể khởi tạo phiên xem video.");
+        setStatus("Unable to initialize video viewing session.");
         return;
       }
       const session = body.data?.session;
@@ -242,7 +242,7 @@ export function LessonPlayerScene({
       setWatchSessionExpiresAtMs(new Date(session.expiresAt!).getTime());
       setWatchHeartbeatSequence(0);
     } catch {
-      setStatus("Không thể khởi tạo phiên xem video.");
+      setStatus("Unable to initialize video viewing session.");
     } finally {
       setWatchSessionLoading(false);
     }
@@ -321,7 +321,7 @@ export function LessonPlayerScene({
         body: JSON.stringify({ childId, sessionToken: watchSessionToken }),
       });
       if (!result) {
-        setStatus("Kết nối chậm, chưa thể xác nhận xem video.");
+        setStatus("Slow connection, cannot confirm video viewing.");
         return false;
       }
       const body = result.body as {
@@ -358,11 +358,11 @@ export function LessonPlayerScene({
           : requiredWatchSeconds;
       const remainingSeconds = Math.max(0, required - watched);
       if (remainingSeconds > 0) {
-        setStatus(`Con cần xem thêm khoảng ${remainingSeconds} giây trước khi tiếp tục.`);
+        setStatus(`I need to see more about approx${remainingSeconds}seconds before continuing.`);
       }
       return false;
     } catch {
-      setStatus("Không thể xác nhận đã xem video.");
+      setStatus("Unable to confirm viewing of video.");
       return false;
     } finally {
       setWatchLoading(false);
@@ -421,7 +421,7 @@ export function LessonPlayerScene({
         if (!result) {
           setActivities([]);
           setActivityLoadError(true);
-          setStatus("Không tải được bài tập, con có thể hoàn thành bài để tiếp tục.");
+          setStatus("If you can't download the exercise, you can complete it to continue.");
           return;
         }
         const body = result.body as {
@@ -474,7 +474,7 @@ export function LessonPlayerScene({
         });
         const body = (result?.body ?? null) as { ok?: boolean } | null;
         if (!result || !result.response.ok || !body?.ok) {
-          setStatus("Không thể hoàn thành bài học. Vui lòng thử lại.");
+          setStatus("Unable to complete lesson. Please try again.");
           return;
         }
         if (!opts?.skipFx) {
@@ -589,10 +589,10 @@ export function LessonPlayerScene({
           type="button"
           className="lp-hud-back"
           onClick={onClose}
-          aria-label="Thoát bài học"
+          aria-label="Exit lesson"
         >
           <ArrowLeft size={20} />
-          <span className="lp-hud-back-label">Thoát</span>
+          <span className="lp-hud-back-label">Exit</span>
         </button>
         <div className="lp-hud-info">
           {tierLabel ? (
@@ -601,13 +601,13 @@ export function LessonPlayerScene({
           <p className="lp-hud-title">{title}</p>
         </div>
         {/* Time pill – pure CSS dot indicator (no emoji) */}
-        <div className="lp-hud-time-pill" aria-label={`Thời lượng ${estimatedMinutes} phút`}>
-          {estimatedMinutes} phút
+        <div className="lp-hud-time-pill" aria-label={`Duration${estimatedMinutes}minute`}>
+          {estimatedMinutes}minute
         </div>
       </header>
 
       {/* Step progress track */}
-      <div className="lp-step-track" role="progressbar" aria-valuenow={step + 1} aria-valuemax={5} aria-label="Tiến độ bài học">
+      <div className="lp-step-track" role="progressbar" aria-valuenow={step + 1} aria-valuemax={5} aria-label="Lesson progress">
         {([0, 1, 2, 3, 4] as LessonStep[]).map((s) => (
           <span
             key={s}
@@ -680,12 +680,12 @@ export function LessonPlayerScene({
                   }}
                 >
                   <h3 style={{ margin: 0, fontSize: "1.2rem", color: "var(--lp-track-primary)" }}>
-                    {activityLoadError ? "Chưa tải được câu hỏi" : "Không có câu hỏi luyện tập"}
+                    {activityLoadError ? "Unable to load question" : "There are no practice questions"}
                   </h3>
                   <p className="muted-text" style={{ margin: 0 }}>
                     {activityLoadError
-                      ? "Con hãy thử tải lại, hoặc hoàn thành bài học để tiếp tục."
-                      : "Bài này hiện chưa có bài tập tương tác. Con có thể hoàn thành bài học ngay."}
+                      ? "Please try downloading again, or complete the lesson to continue."
+                      : "This article currently does not have interactive exercises. You can complete the lesson right away."}
                   </p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem", width: "100%" }}>
                     {activityLoadError ? (
@@ -695,7 +695,7 @@ export function LessonPlayerScene({
                         onClick={retryLoadActivities}
                         disabled={loading}
                       >
-                        Thử tải lại
+                        Try downloading again
                       </button>
                     ) : null}
                     <button
@@ -706,7 +706,7 @@ export function LessonPlayerScene({
                       }}
                       disabled={loading}
                     >
-                      {loading ? "Đang hoàn thành..." : "Hoàn thành bài học"}
+                      {loading ? "Completing..." : "Complete the lesson"}
                     </button>
                   </div>
                 </div>
@@ -726,7 +726,7 @@ export function LessonPlayerScene({
                 <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.25rem" }}>
                   <span style={{ display: "block", width: "24px", height: "24px", borderRadius: "8px", background: "var(--lp-track-accent)", border: "1.5px solid color-mix(in srgb, var(--lp-track-primary) 22%, transparent)", flexShrink: 0 }} aria-hidden="true" />
                   <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "var(--lp-ink-soft)", margin: 0 }}>
-                    Thêm bằng chứng học tập (tuỳ chọn)
+                    Add learning evidence (optional)
                   </p>
                 </div>
                 <EvidenceUploadPanelInner childId={childId} lessonId={lessonId} />
@@ -736,7 +736,7 @@ export function LessonPlayerScene({
                   onClick={() => void markCompleted()}
                   disabled={loading}
                 >
-                  {loading ? "Đang hoàn thành..." : "Bỏ qua, hoàn thành bài"}
+                  {loading ? "Completing..." : "Skip, complete the lesson"}
                 </button>
               </div>
             </div>

@@ -19,9 +19,9 @@ export function DashboardHeroSection({ parentDisplayName, heroMessage, hasRecent
             Parent Dashboard
           </p>
           <h1 className="text-balance text-3xl font-black leading-[1.08] tracking-[-0.02em] text-white sm:text-[2.4rem]">
-            Bảng điều khiển gia đình
+            Home control panel
           </h1>
-          <p className="text-base font-semibold text-cyan-50 sm:text-lg">Xin chào, {parentDisplayName}</p>
+          <p className="text-base font-semibold text-cyan-50 sm:text-lg">Hello, {parentDisplayName}</p>
           <p className="text-sm leading-relaxed text-sky-50/95 sm:text-base">{heroMessage}</p>
         </div>
         <div className="relative mx-auto flex w-full max-w-[270px] justify-center lg:mx-0 lg:-mb-16 lg:-mt-10 lg:max-w-[290px]">

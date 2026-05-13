@@ -233,7 +233,7 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
     const recorded = await persistConsentAudit(nextConsent, source);
     if (!recorded && !restrictiveConsent) {
       setSaving(null);
-      setErrorMessage("Không thể lưu lựa chọn cookie lúc này. Vui lòng thử lại.");
+      setErrorMessage("Cookie selection cannot be saved at this time. Please try again.");
       return;
     }
 
@@ -256,7 +256,7 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
         savedAt: new Date().toISOString(),
       });
       setErrorMessage(
-        "Đã áp dụng chỉ cookie cần thiết trên thiết bị này; nhật ký pháp lý sẽ tự đồng bộ lại khi kết nối ổn định.",
+        "Only necessary cookies are applied on this device; The forensic log will automatically re-sync when the connection is stable.",
       );
     }
     setSaving(null);
@@ -271,13 +271,13 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
   return (
     <div className={className}>
       <p className="text-sm text-slate-700">
-        Trạng thái hiện tại:{" "}
+        Current status:{" "}
         <strong>
           {currentConsent
             ? currentConsent.analytics || currentConsent.marketing
-              ? "Đã cho phép cookie không thiết yếu"
-              : "Chỉ cookie cần thiết"
-            : "Chưa chọn"}
+              ? "Non-essential cookies are allowed"
+              : "Only necessary cookies"
+            : "Not selected yet"}
         </strong>
       </p>
       {errorMessage ? <p className="mt-2 text-sm text-rose-700">{errorMessage}</p> : null}
@@ -288,7 +288,7 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
           onClick={() => saveConsent({ analytics: false, marketing: false }, "necessary")}
           disabled={saving !== null}
         >
-          {saving === "necessary" ? "Đang lưu..." : "Chỉ cookie cần thiết"}
+          {saving === "necessary" ? "Saving..." : "Only necessary cookies"}
         </button>
         <button
           type="button"
@@ -296,7 +296,7 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
           onClick={() => saveConsent({ analytics: true, marketing: true }, "all")}
           disabled={saving !== null}
         >
-          {saving === "all" ? "Đang lưu..." : "Chấp nhận tất cả"}
+          {saving === "all" ? "Saving..." : "Accept all"}
         </button>
       </div>
     </div>

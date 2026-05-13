@@ -322,7 +322,7 @@ export function ActivityRenderer({
             onMouseLeave={onHoverOptionEnd}
             disabled={disabled}
           >
-            <strong>Đúng</strong>
+            <strong>Correct</strong>
           </button>
 
           <button
@@ -424,7 +424,7 @@ export function ActivityRenderer({
             onBlur={onHoverOptionEnd}
             maxLength={20}
             className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-teal-400"
-            placeholder="Nhập đáp án"
+            placeholder="Enter the answer"
             disabled={disabled}
           />
 
@@ -434,11 +434,11 @@ export function ActivityRenderer({
             onClick={handleFillBlankSubmit}
             disabled={disabled}
           >
-            Kiểm tra
+            Check
           </button>
         </m.div>
 
-        {fillHintVisible && fillSpec?.hint ? <p className="text-xs text-amber-300">Gợi ý: {fillSpec.hint}</p> : null}
+        {fillHintVisible && fillSpec?.hint ? <p className="text-xs text-amber-300">Hint: {fillSpec.hint}</p> : null}
       </div>
     );
   }
@@ -482,7 +482,7 @@ export function ActivityRenderer({
     );
   }
 
-  return <p className="lesson-wizard-quiz-copy">Loại hoạt động chưa được hỗ trợ.</p>;
+  return <p className="lesson-wizard-quiz-copy">This type of operation is not yet supported.</p>;
 }
 
 // Re-export sub-components for direct use if needed

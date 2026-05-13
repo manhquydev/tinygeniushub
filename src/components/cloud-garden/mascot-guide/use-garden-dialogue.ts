@@ -43,7 +43,7 @@ const DIALOGUES: Record<GardenContext, { text: string; state: MascotState }[]> =
     { text: "Ch\u00e0o bu\u1ed5i s\u00e1ng! B\u1eaft \u0111\u1ea7u h\u00e0nh tr\u00ecnh n\u00e0o! \u2600\ufe0f", state: "happy" },
     { text: "Ch\u1ecdn b\u00e0i h\u1ecdc m\u00e0 b\u1ea1n y\u00eau th\u00edch nh\u00e9! \ud83c\udf38", state: "playful" },
     { text: "H\u00f4m nay h\u1ecdc g\u00ec v\u00e0o n\u00e0o! \ud83d\udc49", state: "happy" },
-    { text: "K\u1ea1p tr\u1ee5c \u1edf d\u01b0\u1edbi c\u00e0ng nhi\u1ec1u th\u00ec c\u00e0ng giỏi! \ud83c\udf1f", state: "proud" },
+    { text: "I'm so good! \\ud83c\\udf1f", state: "proud" },
   ],
   "zone-math": [
     { text: "To\u00e1n h\u1ecdc r\u1ea5t th\u00fa v\u1ecb! C\u00f9ng kh\u00e1m ph\u00e1 nh\u00e9! \u2b50", state: "happy" },

@@ -121,28 +121,28 @@ export function CourseFilterSidebar({
   return (
     <div className="grid gap-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex items-center justify-between">
-        <p className="text-sm font-extrabold text-slate-900">Bộ lọc</p>
+        <p className="text-sm font-extrabold text-slate-900">Filter</p>
         {hasFilters ? (
           <button onClick={clearAll} className="text-xs font-semibold text-emerald-600 hover:text-emerald-800">
-            Xóa tất cả
+            Delete all
           </button>
         ) : null}
       </div>
 
       <div className="grid gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Tìm khóa nhanh</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Find keys quickly</p>
         <input
           type="search"
           value={keyword}
           onChange={(event) => setKeyword(event.target.value)}
-          placeholder="Tên khóa hoặc mục tiêu..."
+          placeholder="Key or target name..."
           className="w-full rounded-lg border border-slate-300 px-2.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
         />
       </div>
 
       {availableProgramKeys.length > 0 ? (
         <div className="grid gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Nhóm khóa</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Key group</p>
           {availableProgramKeys.map((key) => (
             <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
               <input
@@ -160,7 +160,7 @@ export function CourseFilterSidebar({
               onClick={() => updateParam("program", null)}
               className="text-left text-xs text-slate-400 hover:text-slate-600"
             >
-              Bỏ chọn
+              Deselect
             </button>
           ) : null}
         </div>
@@ -168,7 +168,7 @@ export function CourseFilterSidebar({
 
       {availablePhaseKeys.length > 0 ? (
         <div className="grid gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Giai đoạn</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Stage</p>
           {availablePhaseKeys.map((key) => (
             <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
               <input
@@ -186,7 +186,7 @@ export function CourseFilterSidebar({
               onClick={() => updateParam("phase", null)}
               className="text-left text-xs text-slate-400 hover:text-slate-600"
             >
-              Bỏ chọn
+              Deselect
             </button>
           ) : null}
         </div>
@@ -194,7 +194,7 @@ export function CourseFilterSidebar({
 
       {availableSubjectKeys.length > 0 ? (
         <div className="grid gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Môn học</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Subject</p>
           {availableSubjectKeys.map((key) => (
             <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
               <input
@@ -211,7 +211,7 @@ export function CourseFilterSidebar({
 
       {availableAgeGroupKeys.length > 0 ? (
         <div className="grid gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Độ tuổi</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Age</p>
           {availableAgeGroupKeys.map((key) => (
             <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
               <input
@@ -229,25 +229,25 @@ export function CourseFilterSidebar({
               onClick={() => updateParam("ageGroup", null)}
               className="text-left text-xs text-slate-400 hover:text-slate-600"
             >
-              Bỏ chọn
+              Deselect
             </button>
           ) : null}
         </div>
       ) : null}
 
       <div className="grid gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Giá (VND)</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Price (VND)</p>
         <div className="grid grid-cols-2 gap-2">
           <input
             type="number"
-            placeholder="Tối thiểu"
+            placeholder="Minimum"
             value={minPrice}
             onChange={(event) => setMinPrice(event.target.value)}
             className="w-full rounded-lg border border-slate-300 px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
           <input
             type="number"
-            placeholder="Tối đa"
+            placeholder="Max"
             value={maxPrice}
             onChange={(event) => setMaxPrice(event.target.value)}
             className="w-full rounded-lg border border-slate-300 px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -256,7 +256,7 @@ export function CourseFilterSidebar({
       </div>
 
       <div className="grid gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Thời lượng</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Duration</p>
         <div className="flex flex-wrap gap-2">
           {DURATION_KEYS.map((key) => (
             <button

@@ -30,7 +30,7 @@ export function AdminContentActivityModalForm(props: AdminContentActivityModalFo
       <form className="grid gap-3" onSubmit={(event) => void props.onSubmit(event)}>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="grid gap-1.5">
-            <Label>Loại activity</Label>
+            <Label>Activity type</Label>
             <Select
               value={props.form.type}
               onValueChange={(value) => props.onFormChange((current) => ({ ...current, type: value as ActivityType }))}
@@ -39,16 +39,16 @@ export function AdminContentActivityModalForm(props: AdminContentActivityModalFo
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="MCQ">Trắc nghiệm 4 lựa chọn (MCQ)</SelectItem>
-                <SelectItem value="TRUE_FALSE">Đúng / Sai</SelectItem>
-                <SelectItem value="WORD_MATCH">Nối từ</SelectItem>
-                <SelectItem value="FILL_BLANK">Điền chỗ trống</SelectItem>
+                <SelectItem value="MCQ">4-choice multiple choice (MCQ)</SelectItem>
+                <SelectItem value="TRUE_FALSE">True / False</SelectItem>
+                <SelectItem value="WORD_MATCH">Connect words</SelectItem>
+                <SelectItem value="FILL_BLANK">Fill in the blanks</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="grid gap-1.5">
-            <Label htmlFor="activity-pass">Ngưỡng đạt (%)</Label>
+            <Label htmlFor="activity-pass">Reach threshold (%)</Label>
             <Input
               id="activity-pass"
               value={props.form.passCriteria}
@@ -62,7 +62,7 @@ export function AdminContentActivityModalForm(props: AdminContentActivityModalFo
         </div>
 
         <div className="grid gap-1.5">
-          <Label htmlFor="activity-prompt">Câu hỏi / chủ đề</Label>
+          <Label htmlFor="activity-prompt">Question/topic</Label>
           <Textarea
             id="activity-prompt"
             value={props.form.prompt}
@@ -78,9 +78,9 @@ export function AdminContentActivityModalForm(props: AdminContentActivityModalFo
         {props.form.type === "FILL_BLANK" ? <AdminContentActivityFieldsFillBlank form={props.form} onFormChange={props.onFormChange} /> : null}
 
         <div className="flex justify-end gap-2">
-          <Button type="button" variant="outline" onClick={props.onClose}>Hủy</Button>
+          <Button type="button" variant="outline" onClick={props.onClose}>Cancel</Button>
           <Button type="submit" disabled={props.submitting} className="bg-teal-600 hover:bg-teal-700">
-            {props.submitting ? "Đang lưu..." : props.mode === "create" ? "Tạo câu hỏi" : "Lưu cập nhật"}
+            {props.submitting ? "Saving..." : props.mode === "create" ? "Create questions" : "Save updates"}
           </Button>
         </div>
       </form>

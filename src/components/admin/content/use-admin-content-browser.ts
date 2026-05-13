@@ -28,39 +28,39 @@ export function useAdminContentBrowser() {
   const fetchJson = useCallback(async <TData,>(url: string, init?: RequestInit) => {
     const response = await fetch(url, init);
     const body = (await response.json()) as ApiResponse<TData>;
-    if (!response.ok || !body.ok || !body.data) throw new Error(body.error?.message ?? "Không tải được dữ liệu.");
+    if (!response.ok || !body.ok || !body.data) throw new Error(body.error?.message ?? "Unable to download data.");
     return body.data;
   }, []);
 
   const loadTracks = useCallback(async () => {
     setLoadingTracks(true); setError(null);
     try { const data = await fetchJson<{ tracks: TrackRow[] }>("/api/admin/content/tracks", { method: "GET", cache: "no-store" }); setTracks(data.tracks); }
-    catch (e) { setError(e instanceof Error ? e.message : "Lỗi không xác định."); }
+    catch (e) { setError(e instanceof Error ? e.message : "Unknown error."); }
     finally { setLoadingTracks(false); }
   }, [fetchJson]);
 
   async function loadLevels(trackId: string) {
     setLoadingLevels(true); setError(null);
     try { const data = await fetchJson<{ levels: LevelRow[] }>(`/api/admin/content/levels?${new URLSearchParams({ trackId }).toString()}`, { method: "GET", cache: "no-store" }); setLevels(data.levels); }
-    catch (e) { setError(e instanceof Error ? e.message : "Lỗi không xác định."); setLevels([]); }
+    catch (e) { setError(e instanceof Error ? e.message : "Unknown error."); setLevels([]); }
     finally { setLoadingLevels(false); }
   }
   async function loadUnits(levelId: string) {
     setLoadingUnits(true); setError(null);
     try { const data = await fetchJson<{ units: UnitRow[] }>(`/api/admin/content/units?${new URLSearchParams({ levelId }).toString()}`, { method: "GET", cache: "no-store" }); setUnits(data.units); }
-    catch (e) { setError(e instanceof Error ? e.message : "Lỗi không xác định."); setUnits([]); }
+    catch (e) { setError(e instanceof Error ? e.message : "Unknown error."); setUnits([]); }
     finally { setLoadingUnits(false); }
   }
   async function loadLessons(unitId: string) {
     setLoadingLessons(true); setError(null);
     try { const data = await fetchJson<{ lessons: LessonRow[] }>(`/api/admin/content/lessons?${new URLSearchParams({ unitId }).toString()}`, { method: "GET", cache: "no-store" }); setLessons(data.lessons); }
-    catch (e) { setError(e instanceof Error ? e.message : "Lỗi không xác định."); setLessons([]); }
+    catch (e) { setError(e instanceof Error ? e.message : "Unknown error."); setLessons([]); }
     finally { setLoadingLessons(false); }
   }
   async function loadActivitiesForLesson(lessonId: string) {
     setLoadingActivitiesLessonId(lessonId); setError(null);
     try { const data = await fetchJson<{ activities: ActivityRow[] }>(`/api/admin/content/activities?${new URLSearchParams({ lessonId }).toString()}`, { method: "GET", cache: "no-store" }); setActivitiesByLessonId((current) => ({ ...current, [lessonId]: data.activities })); }
-    catch (e) { setError(e instanceof Error ? e.message : "Lỗi không xác định."); }
+    catch (e) { setError(e instanceof Error ? e.message : "Unknown error."); }
     finally { setLoadingActivitiesLessonId(null); }
   }
 

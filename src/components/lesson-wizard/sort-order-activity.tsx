@@ -111,7 +111,7 @@ export function SortOrderActivity({
   return (
     <div className="grid gap-3" onMouseEnter={() => onHoverOption("center")} onMouseLeave={onHoverOptionEnd}>
       <p className="lesson-wizard-quiz-copy">{prompt}</p>
-      <p style={{ fontSize: "0.8rem", color: "#64748b" }}>Kéo để sắp xếp đúng thứ tự</p>
+      <p style={{ fontSize: "0.8rem", color: "#64748b" }}>Drag to arrange in the correct order</p>
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={orderedItems} strategy={verticalListSortingStrategy}>
@@ -133,7 +133,7 @@ export function SortOrderActivity({
         initial={isCorrect !== null ? "idle" : undefined}
         animate={isCorrect === false ? "wobble" : isCorrect === true ? "bounceIn" : undefined}
       >
-        Kiểm tra
+        Check
       </m.button>
     </div>
   );

@@ -24,7 +24,7 @@ type UploadState =
 async function fetchTusToken(videoId: string): Promise<BunnyTusToken> {
   const res = await fetch(`/api/admin/videos/${videoId}/tus-token`);
   const json = (await res.json()) as { ok: boolean; data?: BunnyTusToken; error?: { message: string } };
-  if (!json.ok || !json.data) throw new Error(json.error?.message ?? "Không lấy được mã tải lên video.");
+  if (!json.ok || !json.data) throw new Error(json.error?.message ?? "Unable to get video upload code.");
   return json.data;
 }
 
@@ -46,7 +46,7 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
 
   function startPolling(count = 0) {
     if (count >= MAX_POLLS) {
-      setState({ phase: "error", message: "Xử lý video quá thời gian chờ. Vui lòng kiểm tra Bunny Stream." });
+      setState({ phase: "error", message: "Video processing timeout. Please check out Bunny Stream." });
       return;
     }
     pollRef.current = setTimeout(async () => {
@@ -55,7 +55,7 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
         setState({ phase: "ready" });
         onComplete();
       } else if (status === "failed") {
-        setState({ phase: "error", message: "Xử lý video thất bại trên Bunny Stream." });
+        setState({ phase: "error", message: "Video processing failed on Bunny Stream." });
       } else {
         startPolling(count + 1);
       }
@@ -67,11 +67,11 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
     if (!file) return;
 
     if (!file.type.startsWith("video/")) {
-      setState({ phase: "error", message: "Chỉ chấp nhận file video." });
+      setState({ phase: "error", message: "Only accept video files." });
       return;
     }
     if (file.size > MAX_FILE_BYTES) {
-      setState({ phase: "error", message: "File quá lớn. Tối đa 2GB." });
+      setState({ phase: "error", message: "File is too large. Maximum 2GB." });
       return;
     }
 
@@ -110,7 +110,7 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
       uploadRef.current = upload;
       upload.start();
     } catch (err) {
-      setState({ phase: "error", message: err instanceof Error ? err.message : "Tải video lên thất bại." });
+      setState({ phase: "error", message: err instanceof Error ? err.message : "Video upload failed." });
     }
   }
 
@@ -128,7 +128,7 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
   if (state.phase === "ready") {
     return (
       <p style={{ color: "var(--green-600, #16a34a)", fontSize: "0.85rem", fontWeight: 600 }}>
-        ✓ Video đã sẵn sàng
+        ✓ Video is ready
       </p>
     );
   }
@@ -136,7 +136,7 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
   if (state.phase === "processing") {
     return (
       <p style={{ color: "var(--ink-400, #64748b)", fontSize: "0.85rem" }}>
-        ⏳ Đang xử lý video trên Bunny CDN... (có thể mất vài phút)
+        ⏳ Processing video on Bunny CDN... (may take a few minutes)
       </p>
     );
   }
@@ -145,11 +145,11 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
     return (
       <div style={{ display: "grid", gap: "0.5rem" }}>
         <p style={{ fontSize: "0.82rem", color: "var(--ink-500, #64748b)" }}>
-          Đang upload... {state.percent}%
+          Uploading... {state.percent}%
         </p>
         <progress value={state.percent} max={100} style={{ width: "100%", height: "8px" }} />
         <button type="button" onClick={handleAbort} style={{ fontSize: "0.8rem", color: "#dc2626" }}>
-          Huỷ
+          Cancel
         </button>
       </div>
     );
@@ -158,9 +158,9 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
   if (state.phase === "error") {
     return (
       <div style={{ display: "grid", gap: "0.4rem" }}>
-        <p style={{ color: "#dc2626", fontSize: "0.82rem" }}>Lỗi: {state.message}</p>
+        <p style={{ color: "#dc2626", fontSize: "0.82rem" }}>Error: {state.message}</p>
         <button type="button" onClick={handleRetry} style={{ fontSize: "0.8rem" }}>
-          Thử lại
+          Retry
         </button>
       </div>
     );
@@ -183,7 +183,7 @@ export function VideoTusUploader({ videoId, lessonId, onComplete }: VideoTusUplo
           cursor: "pointer",
         }}
       >
-        ↑ Chọn file video (tối đa 2GB)
+        ↑ Choose video file (max 2GB)
       </span>
       <input type="file" accept="video/*" onChange={handleFileChange} style={{ display: "none" }} />
     </label>

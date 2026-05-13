@@ -13,10 +13,10 @@ type FunnelData = {
 
 export function AdminEnrollmentFunnelChart({ data }: { data: FunnelData }) {
   const chartData = [
-    { stage: "Phụ huynh", count: data.parents },
-    { stage: "Học sinh", count: data.children },
-    { stage: "Học 7 ngày", count: data.activeChildren7d },
-    { stage: "Bài/30 ngày", count: data.totalLessonsCompleted30d },
+    { stage: "Parents", count: data.parents },
+    { stage: "Pupil", count: data.children },
+    { stage: "Study 7 days", count: data.activeChildren7d },
+    { stage: "Article/30 days", count: data.totalLessonsCompleted30d },
   ];
 
   return (

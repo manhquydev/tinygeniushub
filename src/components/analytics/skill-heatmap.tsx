@@ -41,7 +41,7 @@ export function SkillHeatmap({ skills, students, classAverages }: Props) {
   if (skills.length === 0) {
     return (
       <div className="text-center py-10 text-gray-500">
-        Chưa đủ dữ liệu — học sinh chưa luyện tập kỹ năng nào trong lớp.
+        Not enough data — students haven't practiced any skills in class.
       </div>
     );
   }
@@ -54,7 +54,7 @@ export function SkillHeatmap({ skills, students, classAverages }: Props) {
         <thead>
           <tr>
             <th className="p-2 text-left font-medium text-gray-600 bg-gray-50 sticky left-0 z-10 border border-gray-200 min-w-[120px]">
-              Học sinh
+              Pupil
             </th>
             {skills.map((sk) => (
               <th
@@ -95,7 +95,7 @@ export function SkillHeatmap({ skills, students, classAverages }: Props) {
           {/* Class average row */}
           <tr className="bg-gray-50 font-semibold">
             <td className="p-2 text-gray-600 sticky left-0 bg-gray-50 border border-gray-200">
-              TB Lớp
+              Class TB
             </td>
             {skills.map((sk) => {
               const avg = avgMap.get(sk.id) ?? 0;
@@ -113,10 +113,10 @@ export function SkillHeatmap({ skills, students, classAverages }: Props) {
         </tbody>
       </table>
       <div className="mt-2 flex gap-4 text-xs text-gray-500">
-        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-green-100 inline-block" /> Thành thạo (&gt;70%)</span>
-        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-yellow-100 inline-block" /> Đang học (40-70%)</span>
-        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-100 inline-block" /> Cần hỗ trợ (&lt;40%)</span>
-        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-gray-100 inline-block" /> Chưa có dữ liệu</span>
+        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-green-100 inline-block" />Proficient (&gt;70%)</span>
+        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-yellow-100 inline-block" />Currently studying (40-70%)</span>
+        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-100 inline-block" />Need support (&lt;40%)</span>
+        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-gray-100 inline-block" />No data yet</span>
       </div>
     </div>
   );

@@ -52,7 +52,7 @@ export function AdminUserDetailPane(props: AdminUserDetailPaneProps) {
     <aside className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 overflow-y-auto">
       {!props.selectedParentId && (
         <p className="rounded-xl border border-dashed border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-4 text-sm text-[var(--admin-text-secondary)] text-center">
-          Chọn một phụ huynh để xem chi tiết.
+          Select a parent to view details.
         </p>
       )}
       {props.detailLoading && <AdminLoadingSkeleton variant="table" count={4} />}
@@ -65,8 +65,8 @@ export function AdminUserDetailPane(props: AdminUserDetailPaneProps) {
           <div>
             <h3 className="text-base font-bold text-[var(--admin-text-primary)]">{props.detail.parent.displayName ?? props.detail.parent.email}</h3>
             <p className="text-xs text-[var(--admin-text-secondary)]">{props.detail.parent.email}</p>
-            <p className="mt-1 text-xs text-[var(--admin-text-secondary)]">Ngày tham gia: {formatDate(props.detail.parent.createdAt)}</p>
-            {props.detail.parent.suspended && <p className="mt-1 text-xs font-semibold text-rose-700">Tài khoản đang bị tạm khóa</p>}
+            <p className="mt-1 text-xs text-[var(--admin-text-secondary)]">Joined: {formatDate(props.detail.parent.createdAt)}</p>
+            {props.detail.parent.suspended && <p className="mt-1 text-xs font-semibold text-rose-700">Account is temporarily locked</p>}
           </div>
 
           <Button
@@ -77,31 +77,31 @@ export function AdminUserDetailPane(props: AdminUserDetailPaneProps) {
             className="gap-1.5 border-amber-300 bg-amber-50 text-amber-800 hover:bg-amber-100"
           >
             <Eye size={14} />
-            {props.impersonateLoading ? "Đang chuyển..." : "Xem như người dùng này"}
+            {props.impersonateLoading ? "Moving..." : "View as this user"}
           </Button>
 
           <div className="grid grid-cols-2 gap-2 text-xs">
             <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-2">
-              <p className="text-[var(--admin-text-secondary)]">Thông báo</p>
+              <p className="text-[var(--admin-text-secondary)]">Notification</p>
               <p className="mt-1 text-lg font-bold text-[var(--admin-text-primary)]">{props.detail.parent.notificationCount}</p>
             </div>
             <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-2">
-              <p className="text-[var(--admin-text-secondary)]">Giao dịch thành công</p>
+              <p className="text-[var(--admin-text-secondary)]">Successful transaction</p>
               <p className="mt-1 text-lg font-bold text-[var(--admin-text-primary)]">{props.selectedUser?.successfulPaymentsCount ?? 0}</p>
             </div>
           </div>
 
           {/* Subscription */}
           <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3 space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-secondary)]">Gói đăng ký</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-secondary)]">Subscription package</p>
             {props.detail.currentSubscription ? (
               <div className="space-y-0.5 text-sm text-[var(--admin-text-secondary)]">
-                <p><span className="font-semibold">Gói:</span> {props.detail.currentSubscription.planCode}</p>
-                <p><span className="font-semibold">Trạng thái:</span> {props.detail.currentSubscription.status}</p>
-                <p><span className="font-semibold">Kỳ hạn:</span> {formatDate(props.detail.currentSubscription.currentPeriodStart)} - {formatDate(props.detail.currentSubscription.currentPeriodEnd)}</p>
+                <p><span className="font-semibold">Package:</span> {props.detail.currentSubscription.planCode}</p>
+                <p><span className="font-semibold">Status:</span> {props.detail.currentSubscription.status}</p>
+                <p><span className="font-semibold">Term:</span> {formatDate(props.detail.currentSubscription.currentPeriodStart)} - {formatDate(props.detail.currentSubscription.currentPeriodEnd)}</p>
               </div>
             ) : (
-              <p className="text-sm text-[var(--admin-text-secondary)]">Chưa có gói đăng ký.</p>
+              <p className="text-sm text-[var(--admin-text-secondary)]">No subscription yet.</p>
             )}
             <div className="flex flex-wrap items-center gap-2 border-t border-[var(--admin-card-border)] pt-2">
               <Input
@@ -112,46 +112,46 @@ export function AdminUserDetailPane(props: AdminUserDetailPaneProps) {
                 onChange={(e) => props.onExtendDaysChange(e.target.value)}
                 className="w-24 h-8 text-xs"
               />
-              <Button size="sm" onClick={() => void props.onSubscriptionAction("extend")} disabled={props.subscriptionActionLoading || !props.detail.currentSubscription} className="h-7 text-xs bg-teal-600 hover:bg-teal-700">Gia hạn</Button>
-              <Button variant="outline" size="sm" onClick={() => void props.onSubscriptionAction("cancel")} disabled={props.subscriptionActionLoading || !props.detail.currentSubscription} className="h-7 text-xs border-amber-300 text-amber-800">Hủy cuối kỳ</Button>
-              <Button variant="outline" size="sm" onClick={() => void props.onSubscriptionAction("activate")} disabled={props.subscriptionActionLoading || !props.detail.currentSubscription} className="h-7 text-xs border-emerald-300 text-emerald-800">Kích hoạt</Button>
+              <Button size="sm" onClick={() => void props.onSubscriptionAction("extend")} disabled={props.subscriptionActionLoading || !props.detail.currentSubscription} className="h-7 text-xs bg-teal-600 hover:bg-teal-700">Extend</Button>
+              <Button variant="outline" size="sm" onClick={() => void props.onSubscriptionAction("cancel")} disabled={props.subscriptionActionLoading || !props.detail.currentSubscription} className="h-7 text-xs border-amber-300 text-amber-800">Cancellation at the end of term</Button>
+              <Button variant="outline" size="sm" onClick={() => void props.onSubscriptionAction("activate")} disabled={props.subscriptionActionLoading || !props.detail.currentSubscription} className="h-7 text-xs border-emerald-300 text-emerald-800">Activate</Button>
             </div>
             {props.subscriptionActionFeedback && <p className="text-xs text-[var(--admin-text-secondary)]">{props.subscriptionActionFeedback}</p>}
           </div>
 
           {/* Email */}
           <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3 space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-secondary)]">Gửi email thủ công</p>
-            <Input value={props.manualEmailSubject} onChange={(e) => props.onManualEmailSubjectChange(e.target.value.slice(0, 200))} placeholder="Tiêu đề email" className="text-sm h-8" />
-            <Textarea value={props.manualEmailBody} onChange={(e) => props.onManualEmailBodyChange(e.target.value.slice(0, 5000))} rows={3} placeholder="Nội dung email..." className="text-sm" />
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-secondary)]">Send emails manually</p>
+            <Input value={props.manualEmailSubject} onChange={(e) => props.onManualEmailSubjectChange(e.target.value.slice(0, 200))} placeholder="Email subject" className="text-sm h-8" />
+            <Textarea value={props.manualEmailBody} onChange={(e) => props.onManualEmailBodyChange(e.target.value.slice(0, 5000))} rows={3} placeholder="Email content..." className="text-sm" />
             <div className="flex items-center justify-between gap-2">
-              <p className="text-xs text-[var(--admin-text-secondary)]">{5000 - props.manualEmailBody.length} ký tự còn lại</p>
+              <p className="text-xs text-[var(--admin-text-secondary)]">{5000 - props.manualEmailBody.length} characters remaining</p>
               <Button size="sm" onClick={() => void props.onSendManualEmail()} disabled={props.manualEmailLoading} className="h-7 text-xs bg-teal-600 hover:bg-teal-700">
-                {props.manualEmailLoading ? "Đang gửi..." : "Gửi email"}
+                {props.manualEmailLoading ? "Sending..." : "Send email"}
               </Button>
             </div>
             {props.manualEmailFeedback && <p className="text-xs text-[var(--admin-text-secondary)]">{props.manualEmailFeedback}</p>}
           </div>
 
           {/* Lists */}
-          <SimpleListBlock title="Lịch sử gói đăng ký" empty="Chưa có lịch sử.">
+          <SimpleListBlock title="Subscription history" empty="No history yet.">
             {props.detail.subscriptionHistory.slice(0, 8).map((item) => (
               <div key={item.id} className="mb-1.5 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-2.5 py-2 text-xs">
-                <p className="font-semibold text-[var(--admin-text-primary)]">{item.planCode ?? "Gói không xác định"} - {item.status}</p>
+                <p className="font-semibold text-[var(--admin-text-primary)]">{item.planCode ?? "Unknown package"} - {item.status}</p>
                 <p className="text-[var(--admin-text-secondary)]">{item.provider} / {item.providerTransactionId} - {formatDate(item.processedAt)}</p>
               </div>
             ))}
           </SimpleListBlock>
 
-          <SimpleListBlock title="Bé (hoạt động 30 ngày)" empty="Chưa có hồ sơ bé.">
+          <SimpleListBlock title="Baby (active 30 days)" empty="No baby profile yet.">
             {props.detail.children.map((child) => (
               <div key={child.id} className="mb-1.5 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-2.5 py-2 text-sm text-[var(--admin-text-secondary)]">
-                {child.nickname} - {child.lessonsCompleted30d} bài / 30 ngày
+                {child.nickname} - {child.lessonsCompleted30d} lessons / 30 days
               </div>
             ))}
           </SimpleListBlock>
 
-          <SimpleListBlock title="Lịch sử thanh toán (10 gần nhất)" empty="Chưa có giao dịch.">
+          <SimpleListBlock title="Payment history (latest 10)" empty="No transactions yet.">
             {props.detail.paymentHistory.map((payment) => (
               <div key={payment.id} className="mb-1.5 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-2.5 py-2 text-xs">
                 <p className="font-semibold text-[var(--admin-text-primary)]">{toCurrency(payment.amountVnd)} {payment.currency} - {payment.status}</p>
@@ -160,36 +160,36 @@ export function AdminUserDetailPane(props: AdminUserDetailPaneProps) {
             ))}
           </SimpleListBlock>
 
-          <SimpleListBlock title="Lời mời người chăm sóc" empty="Chưa có lời mời.">
+          <SimpleListBlock title="Invitation to caregiver" empty="No invitation yet.">
             {props.detail.caregiverInvites.map((invite) => (
               <div key={invite.id} className="mb-1.5 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-2.5 py-2 text-xs">
                 <p className="font-semibold text-[var(--admin-text-primary)]">{invite.email}</p>
-                <p className="text-[var(--admin-text-secondary)]">{invite.accepted ? "Đã chấp nhận" : "Đang chờ"} - hết hạn {formatDate(invite.expiresAt)}</p>
+                <p className="text-[var(--admin-text-secondary)]">{invite.accepted ? "Accepted" : "Waiting"} - expires {formatDate(invite.expiresAt)}</p>
               </div>
             ))}
           </SimpleListBlock>
 
           {/* Notes */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-secondary)] mb-2">Ghi chú nội bộ</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-secondary)] mb-2">Internal notes</p>
             <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3 space-y-2">
               <Textarea
                 value={props.noteDraft}
                 onChange={(e) => props.onNoteDraftChange(e.target.value.slice(0, 500))}
                 rows={3}
                 maxLength={500}
-                placeholder="Nhập ghi chú CRM nội bộ..."
+                placeholder="Import internal CRM notes..."
                 className="text-sm bg-[var(--admin-header-bg)]"
               />
               <div className="flex items-center justify-between gap-2">
-                <p className="text-xs text-[var(--admin-text-secondary)]">{500 - props.noteDraft.length} ký tự còn lại</p>
+                <p className="text-xs text-[var(--admin-text-secondary)]">{500 - props.noteDraft.length} characters remaining</p>
                 <Button size="sm" onClick={() => void props.onCreateNote()} disabled={props.noteSubmitting} className="h-7 text-xs bg-teal-600 hover:bg-teal-700">
-                  {props.noteSubmitting ? "Đang lưu..." : "Thêm ghi chú"}
+                  {props.noteSubmitting ? "Saving..." : "Add notes"}
                 </Button>
               </div>
               {props.notesError && <p className="text-xs text-rose-700">{props.notesError}</p>}
             </div>
-            {props.notesLoading && <p className="mt-2 text-xs text-[var(--admin-text-secondary)]">Đang tải ghi chú...</p>}
+            {props.notesLoading && <p className="mt-2 text-xs text-[var(--admin-text-secondary)]">Loading notes...</p>}
             <div className="mt-2 space-y-1.5">
               {props.notes.map((note) => (
                 <article key={note.id} className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-2.5 py-2 text-xs">
@@ -197,7 +197,7 @@ export function AdminUserDetailPane(props: AdminUserDetailPaneProps) {
                   <p className="mt-1 text-[var(--admin-text-muted)]">{note.createdBy} - {formatDate(note.createdAt)}</p>
                 </article>
               ))}
-              {!props.notesLoading && props.notes.length === 0 && <p className="text-xs text-[var(--admin-text-secondary)]">Chưa có ghi chú.</p>}
+              {!props.notesLoading && props.notes.length === 0 && <p className="text-xs text-[var(--admin-text-secondary)]">No notes yet.</p>}
             </div>
           </div>
         </div>

@@ -218,36 +218,36 @@ function generateKisuTip(context: {
 }): string | null {
   const tips: Record<string, string[]> = {
     morning: [
-      "Chào buổi sáng! Sẵn sàng học bài mới chưa?",
-      "Ngày mới, năng lượng mới! Cùng học thôi!",
-      "Kisu chào con! Hôm nay mình học gì nào?",
+      "Good morning! Ready to learn a new lesson?",
+      "New day, new energy! Let's study together!",
+      "Hello Kisu! What did I learn today?",
     ],
     streakRisk: [
-      "Hôm nay chưa học bài nào! Chuỗi ngày sắp mất rồi!",
-      "Chỉ 10 phút thôi là giữ được chuỗi đó!",
-      "Đừng để chuỗi học bị đứt nhé! Cố lên!",
+      "Haven't learned any lessons today! The days are about to disappear!",
+      "Just 10 minutes to keep that streak!",
+      "Don't let the learning chain break! Try your best!",
     ],
     progressGood: [
-      "Con đang làm rất tốt! Tiếp tục phát huy nhé!",
-      "Hôm nay con đã học được nhiều điều hay!",
-      "Tuyệt vời! Con là người học siêng năng!",
+      "You are doing great! Continue to improve!",
+      "Today I learned many good things!",
+      "Great! You are a diligent learner!",
     ],
     almostDone: [
-      "Chỉ còn một chút nữa thôi! Cố lên!",
-      "Sắp hoàn thành rồi! Con giỏi quá!",
+      "Just a little more left! Try your best!",
+      "Almost finished! You're so good!",
     ],
     newBadge: [
-      "Huy hiệu mới đang chờ con! Cố lên!",
-      "Sắp đủ điều kiện nhận huy hiệu rồi!",
+      "A new badge is waiting for you! Try your best!",
+      "Almost qualified to receive the badge!",
     ],
     evening: [
-      "Buổi tối rồi! Nghỉ ngơi thôi con nhé!",
-      "Hôm nay con đã cố gắng rất nhiều!",
+      "It's evening! Just rest, my child!",
+      "Today I tried very hard!",
     ],
     encouragement: [
-      "Không sao đâu, mai học tiếp nhé!",
-      "Nghỉ ngơi cũng quan trọng mà!",
-      "Mỗi ngày một chút, con sẽ giỏi thôi!",
+      "It's okay, let's continue studying tomorrow!",
+      "Rest is also important!",
+      "A little bit every day, you will get better!",
     ],
   };
 

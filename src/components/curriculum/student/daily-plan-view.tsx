@@ -123,8 +123,8 @@ export function DailyPlanView({
     return (
       <div className="flex h-64 items-center justify-center">
         <div className="text-center">
-          <p className="text-lg text-slate-600">Không thể tải kế hoạch hôm nay</p>
-          <p className="text-sm text-slate-400">Vui lòng thử lại sau</p>
+          <p className="text-lg text-slate-600">Unable to load plan today</p>
+          <p className="text-sm text-slate-400">Please try again later</p>
         </div>
       </div>
     );
@@ -141,7 +141,7 @@ export function DailyPlanView({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">
-            🌅 Chào{childName ? ` ${childName}` : ""}!
+            🌅 Hello{childName ? ` ${childName}` : ""}!
           </h1>
           <p className="text-slate-500">
             {format(today, "EEEE, d MMMM", { locale: vi })}
@@ -170,13 +170,13 @@ export function DailyPlanView({
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm opacity-90">Tiến độ hôm nay</p>
+              <p className="text-sm opacity-90">Progress today</p>
               <p className="text-2xl font-bold">
-                {completedCount}/{plan.assignments.length} môn học
+                {completedCount}/{plan.assignments.length} subjects
               </p>
             </div>
             <div className="text-right">
-              <p className="text-sm opacity-90">Thời gian</p>
+              <p className="text-sm opacity-90">Time</p>
               <p className="text-2xl font-bold">
                 {Math.round((plan.actualMinutes || 0) / 60 * 10) / 10}h
               </p>
@@ -219,10 +219,10 @@ export function DailyPlanView({
               </div>
               <div className="flex-1">
                 <p className="font-medium text-amber-900">
-                  🏆 Phần thưởng đang chờ!
+                  🏆 Rewards await!
                 </p>
                 <p className="text-sm text-amber-700">
-                  Hoàn thành tất cả để nhận huy hiệu &quot;Ngày Siêng Năng&quot;
+                  Complete all to earn the badge &quot;Diligent Day&quot;
                 </p>
               </div>
             </div>
@@ -238,9 +238,9 @@ export function DailyPlanView({
           className="rounded-2xl bg-green-50 p-4 text-center"
         >
           <p className="text-lg font-bold text-green-800">
-            🎉 Chúc mừng! Hôm nay con đã hoàn thành tất cả bài học!
+            🎉 Congratulations! Today I completed all the lessons!
           </p>
-          <p className="text-green-600">Nghỉ ngơi và tận hưởng thành tích này nhé!</p>
+          <p className="text-green-600">Rest and enjoy this achievement!</p>
         </motion.div>
       )}
       {/* Lesson Wizard Modal */}
@@ -314,7 +314,7 @@ function AssignmentCard({
               )}
             </div>
             <p className="text-sm text-slate-500">
-              Bài {assignment.lesson?.lessonNumber || "--"}
+              Lesson {assignment.lesson?.lessonNumber || "--"}
             </p>
 
             {/* Progress Bar - placeholder since AbekaAssignment doesn't have progressPercent */}
@@ -328,7 +328,7 @@ function AssignmentCard({
             {/* Time estimate */}
             <div className="mt-1 flex items-center gap-1 text-xs text-slate-400">
               <Clock className="h-3 w-3" />
-              <span>{estimatedMinutes} phút</span>
+              <span>{estimatedMinutes} minutes</span>
             </div>
           </div>
 
@@ -347,17 +347,17 @@ function AssignmentCard({
             {isCompleted ? (
               <>
                 <RotateCcw className="mr-2 h-4 w-4" />
-                Xem lại
+                Review
               </>
             ) : isInProgress ? (
               <>
                 <Play className="mr-2 h-4 w-4" />
-                Tiếp tục
+                Continue
               </>
             ) : (
               <>
                 <Play className="mr-2 h-4 w-4" />
-                Bắt đầu
+                Begin
               </>
             )}
           </Button>

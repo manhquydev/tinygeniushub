@@ -45,7 +45,7 @@ export function LessonDetailModal({
       <DialogContent className="max-w-3xl max-h-[85vh] p-0">
         <DialogHeader className="px-6 pt-6 pb-4 border-b">
           <div className="flex items-center gap-2 mb-2">
-            <Badge variant="outline">Bài {lesson.lessonNumber}</Badge>
+            <Badge variant="outline">Lesson {lesson.lessonNumber}</Badge>
             {lesson.bibleVerse && (
               <Badge variant="secondary" className="text-xs">
                 📖 {lesson.bibleVerse}
@@ -53,7 +53,7 @@ export function LessonDetailModal({
             )}
           </div>
           <DialogTitle className="text-xl">
-            {lesson.title || `Bài học ${lesson.lessonNumber}`}
+            {lesson.title || `Lesson${lesson.lessonNumber}`}
           </DialogTitle>
         </DialogHeader>
 
@@ -63,11 +63,11 @@ export function LessonDetailModal({
             <div className="flex items-center gap-4 text-sm text-slate-500">
               <div className="flex items-center gap-1">
                 <BookOpen className="h-4 w-4" />
-                <span>{lesson.packages.length} môn học</span>
+                <span>{lesson.packages.length} subjects</span>
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                <span>{totalDuration} phút</span>
+                <span>{totalDuration} minutes</span>
               </div>
               <div className="flex items-center gap-1">
                 <span>🎥 {videoCount} videos</span>
@@ -83,7 +83,7 @@ export function LessonDetailModal({
                     {getSubjectNameVi(pkg.subjectCode)}
                   </h3>
                   <span className="text-sm text-slate-500">
-                    ({pkg.durationMinutes} phút)
+                    ({pkg.durationMinutes} minutes)
                   </span>
                 </div>
 
@@ -109,7 +109,7 @@ export function LessonDetailModal({
             {lesson.memoryWork && (
               <div className="rounded-lg p-4 bg-amber-50 border border-amber-200">
                 <h4 className="font-semibold text-amber-900 mb-2 flex items-center gap-2">
-                  📝 Bài tập ghi nhớ
+                  📝 Memory exercises
                 </h4>
                 <p className="text-amber-800 text-sm leading-relaxed">
                   {lesson.memoryWork}
@@ -121,11 +121,11 @@ export function LessonDetailModal({
 
         <DialogFooter className="px-6 py-4 border-t gap-2">
           <Button variant="outline" onClick={onClose}>
-            Đóng
+            Close
           </Button>
           <Button onClick={onAddToPlan} className="gap-2">
             <Plus className="h-4 w-4" />
-            Thêm vào Kế hoạch
+            Add to Plan
           </Button>
         </DialogFooter>
       </DialogContent>

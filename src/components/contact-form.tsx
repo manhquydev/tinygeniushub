@@ -6,16 +6,16 @@ type ContactStatus = "idle" | "loading" | "success" | "error";
 const MAX_MESSAGE_LENGTH = 500;
 
 const SUBJECT_OPTIONS = [
-  "Hỗ trợ kỹ thuật",
-  "Hợp tác / B2B",
-  "Báo lỗi",
-  "Khác",
+  "Technical support",
+  "Collaboration / B2B",
+  "Report error",
+  "Other",
 ] as const;
 
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState<(typeof SUBJECT_OPTIONS)[number]>("Hỗ trợ kỹ thuật");
+  const [subject, setSubject] = useState<(typeof SUBJECT_OPTIONS)[number]>("Technical support");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<ContactStatus>("idle");
   const [feedback, setFeedback] = useState("");
@@ -53,22 +53,22 @@ export function ContactForm() {
 
       if (!response.ok) {
         const messageFromServer = "error" in body ? body.error?.message : undefined;
-        throw new Error(messageFromServer || "Không thể gửi biểu mẫu. Vui lòng thử lại.");
+        throw new Error(messageFromServer || "Cannot submit form. Please try again.");
       }
 
       setStatus("success");
-      setFeedback(body && "data" in body && body.data?.message ? body.data.message : "Cảm ơn! Chúng tôi sẽ phản hồi trong 24-48 giờ.");
+      setFeedback(body && "data" in body && body.data?.message ? body.data.message : "Thank! We will respond within 24-48 hours.");
       setMessage("");
     } catch (error) {
       setStatus("error");
-      setFeedback(error instanceof Error ? error.message : "Đã có lỗi xảy ra. Vui lòng thử lại.");
+      setFeedback(error instanceof Error ? error.message : "An error has occurred. Please try again.");
     }
   }
 
   return (
     <form className="contact-form-card" onSubmit={handleSubmit}>
       <div className="contact-form-field">
-        <label htmlFor="contact-name">Họ và tên</label>
+        <label htmlFor="contact-name">Full name</label>
         <input
           id="contact-name"
           name="name"
@@ -76,7 +76,7 @@ export function ContactForm() {
           autoComplete="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
-          placeholder="Nhập họ và tên của bạn"
+          placeholder="Enter your first and last name"
           required
         />
       </div>
@@ -96,7 +96,7 @@ export function ContactForm() {
       </div>
 
       <div className="contact-form-field">
-        <label htmlFor="contact-subject">Chủ đề</label>
+        <label htmlFor="contact-subject">Topic</label>
         <select id="contact-subject" name="subject" value={subject} onChange={(event) => setSubject(event.target.value as typeof subject)}>
           {SUBJECT_OPTIONS.map((option) => (
             <option key={option} value={option}>
@@ -107,13 +107,13 @@ export function ContactForm() {
       </div>
 
       <div className="contact-form-field">
-        <label htmlFor="contact-message">Nội dung</label>
+        <label htmlFor="contact-message">Content</label>
         <textarea
           id="contact-message"
           name="message"
           value={message}
           onChange={(event) => setMessage(event.target.value)}
-          placeholder="Vui lòng mô tả chi tiết để chúng tôi hỗ trợ nhanh hơn."
+          placeholder="Please describe in detail so we can support you faster."
           rows={6}
           minLength={10}
           maxLength={MAX_MESSAGE_LENGTH}
@@ -123,7 +123,7 @@ export function ContactForm() {
       </div>
 
       <button type="submit" className="contact-form-submit" disabled={submitDisabled}>
-        {status === "loading" ? "Đang gửi..." : "Gửi liên hệ"}
+        {status === "loading" ? "Sending..." : "Send contact"}
       </button>
 
       {feedback ? (

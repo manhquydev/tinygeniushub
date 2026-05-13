@@ -43,10 +43,10 @@ function severityBadge(severity: string) {
 
 function formatMetricName(metric: string): string {
   const names: Record<string, string> = {
-    churnRate: "Tỷ lệ rời bỏ (Churn Rate)",
-    retentionRate: "Tỷ lệ giữ chân (Retention Rate)",
-    mrr: "Doanh thu định kỳ (MRR)",
-    activeUsers: "Người dùng đang hoạt động",
+    churnRate: "Churn Rate",
+    retentionRate: "Retention Rate",
+    mrr: "Recurring Revenue (MRR)",
+    activeUsers: "Active user",
   };
   return names[metric] || metric;
 }
@@ -64,10 +64,10 @@ export function AlertDashboard() {
           const result = await response.json();
           setAlerts(result.data || []);
         } else {
-          setError("Không thể tải cảnh báo");
+          setError("Unable to load alert");
         }
       } catch {
-        setError("Lỗi kết nối");
+        setError("Connection error");
       } finally {
         setLoading(false);
       }
@@ -96,7 +96,7 @@ export function AlertDashboard() {
     }
   }
 
-  if (loading) return <div>Đang tải cảnh báo...</div>;
+  if (loading) return <div>Loading warning...</div>;
   if (error) return <div className="text-red-500">{error}</div>;
 
   const unacknowledged = alerts.filter((a) => !a.acknowledged);
@@ -106,15 +106,15 @@ export function AlertDashboard() {
       {unacknowledged.length > 0 && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
           <p className="font-semibold text-red-700">
-            {unacknowledged.length} cảnh báo chưa xác nhận
+            {unacknowledged.length} unacknowledged alerts
           </p>
         </div>
       )}
 
-      <AdminSectionCard title="Cảnh báo hoạt động" icon={<Bell size={16} />}>
+      <AdminSectionCard title="Active warning" icon={<Bell size={16} />}>
         <div className="space-y-3">
           {alerts.length === 0 ? (
-            <p className="text-muted-foreground">Không có cảnh báo nào</p>
+            <p className="text-muted-foreground">There are no warnings</p>
           ) : (
             alerts.map((alert) => (
               <div
@@ -128,7 +128,7 @@ export function AlertDashboard() {
                   <div>
                     <p className="font-medium">{formatMetricName(alert.metric)}</p>
                     <p className="text-sm text-muted-foreground">
-                      Giá trị hiện tại: {alert.currentValue} (ngưỡng: {alert.threshold})
+                      Current value: {alert.currentValue} (threshold: {alert.threshold})
                     </p>
                     <p className="text-xs text-muted-foreground">
                       {new Date(alert.triggeredAt).toLocaleString("vi-VN")}
@@ -142,7 +142,7 @@ export function AlertDashboard() {
                       variant="ghost"
                       size="sm"
                       onClick={() => acknowledge(alert.id)}
-                      title="Xác nhận đã đọc"
+                      title="Confirm read"
                     >
                       <CheckCircle size={16} />
                     </Button>

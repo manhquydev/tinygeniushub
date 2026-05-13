@@ -50,7 +50,7 @@ export function ChildProgressCard({
             <div className="text-lg font-bold text-slate-800">
               {Math.round(child.overallProgress)}%
             </div>
-            <div className="text-xs text-slate-500">hoàn thành</div>
+            <div className="text-xs text-slate-500">complete</div>
           </div>
         </div>
 
@@ -64,7 +64,7 @@ export function ChildProgressCard({
               className="w-2 h-2 rounded-full"
               style={{ backgroundColor: abekaColors.amberDiep }}
             />
-            <span>{child.streakDays} ngày streak</span>
+            <span>{child.streakDays} day streak</span>
           </div>
           <ChevronRight className="h-4 w-4 text-slate-400" />
         </div>
@@ -112,7 +112,7 @@ export function SubjectProgressBar({ subject }: SubjectProgressBarProps) {
           <span className="font-medium text-slate-700">{subject.subjectName}</span>
           {subject.masteryScore >= 80 && (
             <span className="text-xs px-2 py-0.5 bg-yellow-100 text-yellow-700 rounded-full">
-              ⭐ Xuất sắc
+              ⭐ Excellent
             </span>
           )}
         </div>
@@ -129,9 +129,9 @@ export function SubjectProgressBar({ subject }: SubjectProgressBarProps) {
 
       <div className="flex items-center justify-between text-xs text-slate-500">
         <span>
-          {subject.lessonsCompleted}/{subject.totalLessons} bài học
+          {subject.lessonsCompleted}/{subject.totalLessons}lessons
         </span>
-        <span>⏱️ {hoursSpent} giờ</span>
+        <span>⏱️ {hoursSpent} hours</span>
       </div>
     </div>
   );
@@ -166,30 +166,30 @@ export function StatsCards({ stats }: StatsCardsProps) {
   const cards = [
     {
       icon: <StreakDisplay streak={stats.currentStreak} showLabel={false} size="sm" />,
-      label: "Chuỗi ngày",
+      label: "Series of days",
       value: stats.currentStreak,
-      subtext: `Kỷ lục: ${stats.longestStreak}`,
+      subtext: `Record:${stats.longestStreak}`,
       color: abekaColors.amberDiep,
     },
     {
       icon: <BookOpen className="h-5 w-5" style={{ color: abekaColors.inkBlue }} />,
-      label: "Bài đã học",
+      label: "Lesson learned",
       value: stats.completedLessons,
-      subtext: `/${stats.totalLessons} bài`,
+      subtext: `/${stats.totalLessons}post`,
       color: abekaColors.inkBlue,
     },
     {
       icon: <Clock className="h-5 w-5" style={{ color: abekaColors.chamJade }} />,
-      label: "Tổng thời gian",
+      label: "Total time",
       value: `${(stats.totalMinutes / 60).toFixed(1)}h`,
-      subtext: "từ ngày bắt đầu",
+      subtext: "from the start date",
       color: abekaColors.chamJade,
     },
     {
       icon: <Target className="h-5 w-5" style={{ color: abekaColors.grades.G5 }} />,
-      label: "Tiến độ",
+      label: "Progress",
       value: `${Math.round(stats.overallProgress)}%`,
-      subtext: "tổng thể",
+      subtext: "overall",
       color: abekaColors.grades.G5,
       showProgress: true,
     },

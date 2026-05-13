@@ -9,7 +9,7 @@ interface MascotGuideProps {
   state?: KidMascotState;
   actionProp?: KidMascotActionProp;
   size?: number;
-  /** Compact mode: mascot nhỏ hơn, không float */
+  /** Compact mode: smaller mascot, no float */
   compact?: boolean;
 }
 
@@ -24,7 +24,7 @@ export function MascotGuide({
 
   return (
     <div className="lp-mascot-area">
-      {/* Speech bubble – xuất hiện trước mascot để tail chỉ xuống */}
+      {/* Speech bubble appears before mascot so the tail points down */}
       <m.div
         className="lp-mascot-bubble"
         key={message}

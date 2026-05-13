@@ -59,14 +59,14 @@ export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProp
                         <ShieldAlert size={28} className="text-brand-600" />
                     </div>
                     <div>
-                        <h2 id="gate-title" className="text-xl font-black text-brand-800 tracking-tight">Khu vực Phụ Huynh</h2>
-                        <p className="text-brand-600 text-sm font-medium">Vui lòng xác nhận để tiếp tục</p>
+                        <h2 id="gate-title" className="text-xl font-black text-brand-800 tracking-tight">Parent Area</h2>
+                        <p className="text-brand-600 text-sm font-medium">Please confirm to continue</p>
                     </div>
                     <button
                         type="button"
                         onClick={onCancel}
                         className="absolute top-4 right-4 p-2 text-ink-400 hover:text-ink-600 hover:bg-ink-100 rounded-full transition-colors"
-                        aria-label="Đóng"
+                        aria-label="Close"
                     >
                         <X size={24} strokeWidth={2.5} />
                     </button>
@@ -74,12 +74,12 @@ export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProp
 
                 <form onSubmit={handleSubmit} className="p-8">
                     <p className="text-center text-ink-600 font-medium mb-6">
-                        Trả lời câu hỏi toán học dưới đây để chứng minh bạn là phụ huynh:
+                        Answer the math question below to confirm you are a parent:
                     </p>
 
                     <div className="flex items-center justify-center gap-4 text-4xl font-black text-ink-800 mb-8 font-display">
                         <span>{num1}</span>
-                        <span className="text-brand-500">×</span>
+                        <span className="text-brand-500">x</span>
                         <span>{num2}</span>
                         <span className="text-brand-500">=</span>
                         <input
@@ -98,7 +98,7 @@ export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProp
                     {error && (
                         <div className="flex items-center justify-center gap-2 text-red-600 font-medium mb-4 animate-in slide-in-from-top-2">
                             <AlertCircle size={20} />
-                            <span>Chưa chính xác! Đang tạo câu hỏi mới...</span>
+                            <span>Not accurate! Creating a new question...</span>
                         </div>
                     )}
 
@@ -108,14 +108,14 @@ export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProp
                             onClick={onCancel}
                             className="flex-1 py-4 font-bold rounded-2xl bg-surface-100 text-ink-600 hover:bg-surface-200 transition-colors"
                         >
-                            Quay lại
+                            Come back
                         </button>
                         <button
                             type="submit"
                             disabled={!answer || error}
                             className="flex-1 py-4 font-bold rounded-2xl bg-brand-500 text-white shadow-lg hover:bg-brand-600 hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                         >
-                            <CheckCircle size={20} /> Xác nhận
+                            <CheckCircle size={20} /> Confirm
                         </button>
                     </div>
                 </form>

@@ -25,10 +25,10 @@ export function GiftCodeForm() {
       if (json.ok) {
         setSuccess(true);
       } else {
-        setError(json.error ?? "Mã không hợp lệ. Vui lòng kiểm tra lại.");
+        setError(json.error ?? "Invalid code. Please check again.");
       }
     } catch {
-      setError("Không thể kết nối. Vui lòng thử lại.");
+      setError("Unable to connect. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -46,7 +46,7 @@ export function GiftCodeForm() {
         }}
       >
         <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "#15803d" }}>
-          Đã kích hoạt! Chào mừng bạn đến TinyGenius Hub 🎉
+          Activated! Welcome to TinyGenius Hub 🎉
         </p>
       </div>
     );
@@ -55,14 +55,14 @@ export function GiftCodeForm() {
   return (
     <form onSubmit={handleSubmit} style={{ display: "grid", gap: "0.75rem" }}>
       <label htmlFor="gift-code" style={{ fontWeight: 600 }}>
-        Mã quà tặng
+        Gift code
       </label>
       <input
         id="gift-code"
         type="text"
         value={code}
         onChange={(e) => setCode(e.target.value.toUpperCase())}
-        placeholder="Nhập mã — ví dụ: ABCD-1234"
+        placeholder="Enter the code — for example, ABCD-1234"
         required
         disabled={loading}
         style={{
@@ -84,7 +84,7 @@ export function GiftCodeForm() {
         className="solid-button"
         style={{ width: "fit-content", opacity: loading ? 0.7 : 1 }}
       >
-        {loading ? "Đang kích hoạt..." : "Kích hoạt mã"}
+        {loading ? "Activating..." : "Activate code"}
       </button>
     </form>
   );

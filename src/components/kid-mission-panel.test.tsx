@@ -79,16 +79,16 @@ describe("KidMissionPanel", () => {
         initialLessons={[
           {
             id: "lesson-1",
-            title: "Học chữ A",
-            objective: "Nhận diện chữ A",
+            title: "Learn letter A",
+            objective: "Identify the letter A",
             estimatedMinutes: 10,
           },
         ]}
       />,
     );
 
-    expect(screen.getByText("Học chữ A")).toBeInTheDocument();
-    expect(screen.getByText("Nhận diện chữ A")).toBeInTheDocument();
+    expect(screen.getByText("Learn letter A")).toBeInTheDocument();
+    expect(screen.getByText("Identify the letter A")).toBeInTheDocument();
     expect(screen.getByText(/10\s*ph.u?t/i)).toBeInTheDocument();
     expect(screen.getByText("Be Na")).toBeInTheDocument();
   });
@@ -103,18 +103,18 @@ describe("KidMissionPanel", () => {
         initialLessons={[
           {
             id: "lesson-1",
-            title: "Học chữ A",
-            objective: "Nhận diện chữ A",
+            title: "Learn letter A",
+            objective: "Identify the letter A",
             estimatedMinutes: 10,
           },
         ]}
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /bat dau bai hoc|bắt đầu bài học/i }));
+    fireEvent.click(screen.getByRole("button", { name: /bat dau bai hoc|start lesson/i }));
 
     await waitFor(() => {
-      expect(screen.getByText(/bắt đầu học chữ a|bat dau hoc chu a/i)).toBeInTheDocument();
+      expect(screen.getByText(/start learning letter a|bat dau hoc chu a/i)).toBeInTheDocument();
     });
   });
 
@@ -131,15 +131,15 @@ describe("KidMissionPanel", () => {
         initialLessons={[
           {
             id: "lesson-1",
-            title: "Học chữ A",
-            objective: "Nhận diện chữ A",
+            title: "Learn letter A",
+            objective: "Identify the letter A",
             estimatedMinutes: 10,
           },
         ]}
       />,
     );
 
-    const mascotButton = screen.getByRole("button", { name: /mascot hướng dẫn/i });
+    const mascotButton = screen.getByRole("button", { name: /mascot guide/i });
     fireEvent.click(mascotButton);
     expect(playYayMock).toHaveBeenCalledTimes(1);
 

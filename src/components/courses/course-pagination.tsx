@@ -23,12 +23,12 @@ export function CoursePagination({ page, totalPages }: CoursePaginationProps) {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className="flex items-center justify-center gap-1" aria-label="Phân trang">
+    <div className="flex items-center justify-center gap-1" aria-label="Pagination">
       <button
         onClick={() => goToPage(page - 1)}
         disabled={page <= 1}
         className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-600 transition hover:border-slate-400 disabled:cursor-not-allowed disabled:opacity-40"
-        aria-label="Trang trước"
+        aria-label="Previous page"
       >
         <ChevronLeft className="h-4 w-4" />
       </button>

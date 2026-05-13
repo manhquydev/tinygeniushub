@@ -27,9 +27,9 @@ export function CourseSortSelect({ currentSort }: CourseSortSelectProps) {
       value={currentSort ?? ""}
       onChange={(e) => handleChange(e.target.value)}
       className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-      aria-label="Sắp xếp theo"
+      aria-label="Sort by"
     >
-      <option value="">Mặc định</option>
+      <option value="">Default</option>
       {SORT_OPTIONS.map((opt) => (
         <option key={opt.value} value={opt.value}>
           {opt.label}

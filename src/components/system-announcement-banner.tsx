@@ -61,7 +61,7 @@ export function SystemAnnouncementBanner() {
         const storedDismissed = window.localStorage.getItem(dismissedKey);
         setDismissed(storedDismissed === "1");
       } catch {
-        // Không chặn render trang khi API thông báo lỗi.
+        // Do not block page rendering when the API reports an error.
       }
     })();
 
@@ -96,7 +96,7 @@ export function SystemAnnouncementBanner() {
             window.localStorage.setItem(`dismissed_announcement_${announcement.id}`, "1");
             setDismissed(true);
           }}
-          aria-label="Đóng thông báo"
+          aria-label="Close notification"
         >
           <X size={14} />
         </button>

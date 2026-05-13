@@ -185,7 +185,7 @@ export function HybridLessonFlow({
             <button
               type="button"
               onClick={() => setExitGateOpen(true)}
-              aria-label="Thoát bài học"
+              aria-label="Exit lesson"
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center",
                 width: 36, height: 36, borderRadius: "50%",

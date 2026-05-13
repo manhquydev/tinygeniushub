@@ -31,7 +31,7 @@ export function AdminContentUnitsSection(props: AdminContentUnitsSectionProps) {
           <TableHeader>
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs w-10">#</TableHead>
-              <TableHead className="text-xs">Tên đơn vị</TableHead>
+              <TableHead className="text-xs">Unit name</TableHead>
               <TableHead className="text-xs">Lessons</TableHead>
             </TableRow>
           </TableHeader>
@@ -48,10 +48,10 @@ export function AdminContentUnitsSection(props: AdminContentUnitsSectionProps) {
               </TableRow>
             ))}
             {props.loadingUnits && (
-              <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">Đang tải units...</TableCell></TableRow>
+              <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">Loading units...</TableCell></TableRow>
             )}
             {!props.loadingUnits && props.units.length === 0 && (
-              <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">{props.selectedLevel ? "Chưa có đơn vị." : "Chọn cấp độ để xem đơn vị."}</TableCell></TableRow>
+              <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">{props.selectedLevel ? "No units yet." : "Select level to view units."}</TableCell></TableRow>
             )}
           </TableBody>
         </Table>

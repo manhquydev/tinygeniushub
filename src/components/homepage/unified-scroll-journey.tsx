@@ -19,16 +19,16 @@ import "./unified-scroll-journey.css";
 
 const FAQ_ITEMS = [
   {
-    q: "Nền tảng phù hợp với độ tuổi nào?",
-    a: "Nội dung được thiết kế cho bé 2-6 tuổi, chia theo mức độ phát triển để bé học đúng nhịp.",
+    q: "What ages is the platform suitable for?",
+    a: "The content is designed for children 2-6 years old, divided according to development level so that children learn at the right pace.",
   },
   {
-    q: "Thanh toán như thế nào?",
-    a: "Thanh toán bằng chuyển khoản hoặc QR theo hướng dẫn trên trang thanh toán. Không cần liên kết thẻ.",
+    q: "How to pay?",
+    a: "Pay by bank transfer or QR according to the instructions on the payment page. No need to link tags.",
   },
   {
-    q: "Phụ huynh theo dõi tiến độ bằng cách nào?",
-    a: "Bảng theo dõi hiển thị bài đã học, mức hoàn thành và báo cáo tuần gửi tự động qua email.",
+    q: "How do parents monitor progress?",
+    a: "The tracking panel displays lessons learned, level of completion, and weekly reports sent automatically via email.",
   },
 ] as const;
 
@@ -60,40 +60,40 @@ const COURSE_PROMOS = [
 const STAGES: Stage[] = [
   {
     id: "hero",
-    label: "Khởi Hành",
+    label: "Depart",
     left: (
       <article className="usj-card usj-card-hero">
-        <span className="usj-chip">Lộ trình học tại nhà cho bé 2-6 tuổi</span>
-        <h1>Khu vườn học tập hai bên, chừa trục giữa cho cây đậu leo</h1>
+        <span className="usj-chip">Home learning roadmap for children 2-6 years old</span>
+        <h1>The learning garden is on both sides, leaving the middle axis for climbing bean plants</h1>
         <p>
-          Mỗi khi cuộn xuống, bạn đi qua một tầng học mới. Các thành phần nằm ở hai mép màn hình để giữ đường leo
-          cây luôn rõ ràng ở trung tâm.
+          Every time you scroll down, you pass through a new classroom level. Components located on both edges of the screen to hold the climbing path
+          The tree is always clearly in the center.
         </p>
         <div className="usj-actions">
           <Link href="/courses" className="usj-btn usj-btn-solid">
-            Xem khóa học
+            View course
           </Link>
           <Link href="/pricing" className="usj-btn usj-btn-ghost">
-            Xem bảng giá
+            See price list
           </Link>
         </div>
       </article>
     ),
     right: (
       <article className="usj-card">
-        <h2>Điểm khác biệt</h2>
+        <h2>Difference</h2>
         <ul className="usj-list">
           <li>
             <Sprout size={18} aria-hidden />
-            Lộ trình từ dễ đến khó theo từng bé
+            The roadmap from easy to difficult depends on each child
           </li>
           <li>
             <Cloud size={18} aria-hidden />
-            Mở tầng nội dung theo tiến độ thực tế
+            Open content layers according to actual progress
           </li>
           <li>
             <Trophy size={18} aria-hidden />
-            Báo cáo tuần rõ ràng cho phụ huynh
+            Clear weekly reports for parents
           </li>
         </ul>
       </article>
@@ -101,19 +101,19 @@ const STAGES: Stage[] = [
   },
   {
     id: "method",
-    label: "Tầng 1",
+    label: "1st floor",
     left: (
       <article className="usj-card">
-        <h2>Toán tư duy + Tiếng Anh Phonics</h2>
+        <h2>Mental Math + English Phonics</h2>
         <p>
-          Nội dung được tổ chức thành các chặng ngắn, mỗi chặng 15 phút. Trẻ học đều mỗi ngày thay vì bị quá tải.
+          The content is organized into short stages, each lasting 15 minutes. Children learn regularly every day instead of being overloaded.
         </p>
-        <div className="usj-course-promos" aria-label="Bộ 3 khóa học nổi bật">
+        <div className="usj-course-promos" aria-label="Set of 3 outstanding courses">
           {COURSE_PROMOS.map((course) => (
             <figure key={course.id} className="usj-course-promo">
               <Image
                 src={course.src}
-                alt={`Ảnh quảng cáo khóa học ${course.title}`}
+                alt={`Course advertisement photo${course.title}`}
                 width={1376}
                 height={768}
                 className="usj-course-promo-image"
@@ -126,19 +126,19 @@ const STAGES: Stage[] = [
     ),
     right: (
       <article className="usj-card">
-        <h2>Thiết kế theo hành vi học</h2>
+        <h2>Design according to behavioral learning</h2>
         <ul className="usj-list">
           <li>
             <Brain size={18} aria-hidden />
-            Bài học ngắn, nhịp độ rõ ràng
+            Lessons are short, clearly paced
           </li>
           <li>
             <BookOpen size={18} aria-hidden />
-            Học online và có hoạt động offline
+            Study online and have offline activities
           </li>
           <li>
             <Sparkles size={18} aria-hidden />
-            Giữ hứng thú bằng cơ chế mở khóa
+            Keep the excitement going with unlocking mechanics
           </li>
         </ul>
       </article>
@@ -146,31 +146,31 @@ const STAGES: Stage[] = [
   },
   {
     id: "proof",
-    label: "Tầng 2",
+    label: "2nd floor",
     left: (
       <article className="usj-card">
-        <h2>Bằng chứng tiến bộ</h2>
+        <h2>Evidence of progress</h2>
         <p>
-          Không chỉ điểm số. Hệ thống lưu kết quả quiz, nhật ký học, và minh chứng hoạt động theo tuần để phụ huynh
-          thấy sự thay đổi cụ thể.
+          Not just scores. The system saves quiz results, school logs, and evidence of weekly activities for parents
+          see specific changes.
         </p>
       </article>
     ),
     right: (
       <article className="usj-card">
-        <h2>Phụ huynh luôn nắm được tình hình</h2>
+        <h2>Parents always know the situation</h2>
         <ul className="usj-list">
           <li>
             <BarChart3 size={18} aria-hidden />
-            Bảng theo dõi theo từng bé
+            Tracking table for each child
           </li>
           <li>
             <CheckCircle2 size={18} aria-hidden />
-            Báo cáo tuần gửi tự động
+            Weekly reports sent automatically
           </li>
           <li>
             <ShieldCheck size={18} aria-hidden />
-            Môi trường học an toàn, không quảng cáo
+            Safe learning environment, no advertising
           </li>
         </ul>
       </article>
@@ -178,24 +178,24 @@ const STAGES: Stage[] = [
   },
   {
     id: "pricing",
-    label: "Tầng 3",
+    label: "3rd floor",
     left: (
       <article className="usj-card usj-price">
-        <span className="usj-chip usj-chip-soft">Mua lẻ theo khóa</span>
-        <h2>Giá hiển thị theo từng khóa học</h2>
-        <p>Phụ huynh chọn đúng khóa cần học thay vì phải đăng ký gói thử.</p>
+        <span className="usj-chip usj-chip-soft">Buy retail by key</span>
+        <h2>Prices are displayed for each course</h2>
+        <p>Parents choose the right course to take instead of having to register for a trial package.</p>
         <Link href="/courses" className="usj-btn usj-btn-ghost">
-          Chọn khóa học
+          Select course
         </Link>
       </article>
     ),
     right: (
       <article className="usj-card usj-price usj-price-highlight">
-        <span className="usj-chip">Ưu đãi khóa học</span>
-        <h2>Có giá niêm yết và giá bán</h2>
-        <p>Giá được hiển thị minh bạch để phụ huynh so sánh nhanh và chọn đúng khóa học.</p>
+        <span className="usj-chip">Course offers</span>
+        <h2>There is a list price and a selling price</h2>
+        <p>Prices are displayed transparently for parents to quickly compare and choose the right course.</p>
         <Link href="/courses" className="usj-btn usj-btn-solid">
-          Mua khóa học
+          Buy the course
           <ArrowRight size={16} aria-hidden />
         </Link>
       </article>
@@ -203,10 +203,10 @@ const STAGES: Stage[] = [
   },
   {
     id: "faq",
-    label: "Gốc Cây",
+    label: "Tree Root",
     left: (
       <article className="usj-card">
-        <h2>Câu hỏi thường gặp</h2>
+        <h2>Frequently asked questions</h2>
         <div className="usj-faq-list">
           {FAQ_ITEMS.map((item) => (
             <details key={item.q} className="usj-faq-item">
@@ -219,10 +219,10 @@ const STAGES: Stage[] = [
     ),
     right: (
       <article className="usj-card usj-card-cta">
-        <h2>Sẵn sàng bắt đầu hành trình?</h2>
-        <p>Cho bé học đúng nhịp mỗi ngày, phụ huynh theo dõi được tiến bộ thật.</p>
+        <h2>Ready to start your journey?</h2>
+        <p>Let your baby learn at the right pace every day, so parents can monitor real progress.</p>
         <Link href="/courses" className="usj-btn usj-btn-solid">
-          Khám phá khóa học
+          Explore the course
           <ArrowRight size={16} aria-hidden />
         </Link>
       </article>
@@ -342,7 +342,7 @@ export function UnifiedScrollJourney() {
         ))}
       </ol>
 
-      <section className="usj-destination" aria-label="Điểm cuối của hành trình">
+      <section className="usj-destination" aria-label="End point of the journey">
         <div className="usj-cloud-platform" aria-hidden>
           <Image
             src="/assets/garden/cloud_platform.png"
@@ -356,7 +356,7 @@ export function UnifiedScrollJourney() {
         <div className="usj-island-wrap">
           <Image
             src="/assets/garden/ground.png"
-            alt="Đảo nổi ở cuối thân đậu"
+            alt="Floating island at the end of the bean stem"
             width={768}
             height={768}
             className="usj-island-image"
@@ -364,10 +364,10 @@ export function UnifiedScrollJourney() {
         </div>
 
         <div className="usj-marketing-cta">
-          <h3>Sẵn sàng cho bé bắt đầu hành trình?</h3>
-          <p>Xem bài học mẫu, chọn khóa phù hợp và hoàn tất thanh toán chỉ trong vài bước.</p>
+          <h3>Ready for your baby to start his journey?</h3>
+          <p>View sample lessons, choose the right course, and complete payment in just a few steps.</p>
           <Link href="/courses" className="usj-btn usj-btn-solid">
-            Xem khóa học ngay
+            View the course now
             <ArrowRight size={16} aria-hidden />
           </Link>
         </div>

@@ -69,7 +69,7 @@ export function LessonPlayerContent({
               background: "rgba(248,250,252,0.9)",
             }}
           >
-            <p className="muted-text">Đang tải video...</p>
+            <p className="muted-text">Loading video...</p>
           </div>
         )}
         {video.status === "ready" && video.embedUrl && video.renderMode === "iframe" && (
@@ -105,7 +105,7 @@ export function LessonPlayerContent({
             }}
           >
             <p style={{ fontWeight: 700, fontSize: "1.1rem" }}>{selected?.lesson.title}</p>
-            <p className="muted-text">Video sắp ra mắt</p>
+            <p className="muted-text">Video coming soon</p>
           </div>
         )}
       </div>
@@ -120,7 +120,7 @@ export function LessonPlayerContent({
             {selected.lesson.title}
           </h1>
           <p className="muted-text" style={{ fontSize: "0.85rem" }}>
-            {selected.lesson.estimatedMinutes} phút
+            {selected.lesson.estimatedMinutes} minutes
           </p>
 
           {/* Just completed banner */}
@@ -138,7 +138,7 @@ export function LessonPlayerContent({
               }}
             >
               <span style={{ color: "#065f46", fontWeight: 600, fontSize: "0.9rem" }}>
-                Giỏi lắm! Sẵn sàng bài tiếp theo?
+                Very good! Ready for the next lesson?
               </span>
               <button
                 type="button"
@@ -146,7 +146,7 @@ export function LessonPlayerContent({
                 onClick={onGoNext}
                 style={{ width: "fit-content", fontSize: "0.85rem", padding: "0.3rem 0.8rem" }}
               >
-                Bài tiếp theo
+                Next article
               </button>
             </div>
           )}
@@ -160,7 +160,7 @@ export function LessonPlayerContent({
                 disabled={marking}
                 style={{ width: "fit-content" }}
               >
-                {marking ? "Đang lưu..." : "✓ Đánh dấu đã học"}
+                {marking ? "Saving..." : "✓ Mark as learned"}
               </button>
             ) : (
               <span
@@ -172,7 +172,7 @@ export function LessonPlayerContent({
                   gap: "0.3rem",
                 }}
               >
-                ✓ Đã hoàn thành
+                ✓ Completed
               </span>
             )}
             {!isLast && (
@@ -182,12 +182,12 @@ export function LessonPlayerContent({
                 onClick={onGoNext}
                 style={{ width: "fit-content" }}
               >
-                Bài tiếp theo →
+                Next article →
               </button>
             )}
             {isLast && allComplete && (
               <a href="/parent/courses" className="ghost-button" style={{ width: "fit-content" }}>
-                🎉 Xem chứng chỉ
+                🎉 See certificate
               </a>
             )}
           </div>

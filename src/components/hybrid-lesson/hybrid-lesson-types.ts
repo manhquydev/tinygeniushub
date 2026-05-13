@@ -25,8 +25,8 @@ export interface HybridLessonData {
   title: string;
   /** Ordered array of segments: typically 1+ video then interactive segments */
   segments: HybridSegment[];
-  /** Audio cue URL for video->interactive transition ("Đến lượt con!") */
+  /** Audio cue URL for video->interactive transition ("It's your turn!") */
   transitionAudioUrl?: string;
-  /** Concept video URL for "Xem lại" replay button on activity screens */
+  /** Concept video URL for "Review" replay button on activity screens */
   conceptVideoUrl?: string;
 }

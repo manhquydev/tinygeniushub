@@ -38,14 +38,14 @@ export function ReaderLoginForm({ nextPath }: ReaderLoginFormProps) {
       };
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể đăng nhập.");
+        setError(body.error?.message ?? "Can't log in.");
         return;
       }
 
       router.push(safeNextPath);
       router.refresh();
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : "Không thể đăng nhập.");
+      setError(submitError instanceof Error ? submitError.message : "Can't log in.");
     } finally {
       setLoading(false);
     }
@@ -57,10 +57,10 @@ export function ReaderLoginForm({ nextPath }: ReaderLoginFormProps) {
       onSubmit={handleSubmit}
     >
       <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900">
-        Đăng nhập độc giả
+        Reader login
       </h1>
       <p className="text-sm text-slate-600">
-        Lưu bài viết yêu thích và nhận thông báo khi có nội dung mới.
+        Save your favorite articles and receive notifications when new content is available.
       </p>
 
       <label className="grid gap-1 text-sm font-semibold text-slate-700">
@@ -75,7 +75,7 @@ export function ReaderLoginForm({ nextPath }: ReaderLoginFormProps) {
       </label>
 
       <label className="grid gap-1 text-sm font-semibold text-slate-700">
-        Mật khẩu
+        Password
         <input
           type="password"
           className="h-11 rounded-xl border border-slate-300 bg-white px-3 text-sm"
@@ -93,16 +93,16 @@ export function ReaderLoginForm({ nextPath }: ReaderLoginFormProps) {
         disabled={loading}
         className="h-11 rounded-full bg-teal-600 text-sm font-bold text-white transition hover:bg-teal-700 disabled:opacity-60"
       >
-        {loading ? "Đang đăng nhập..." : "Đăng nhập"}
+        {loading ? "Signing in..." : "Log in"}
       </button>
 
       <p className="text-sm text-slate-600">
-        Chưa có tài khoản?{" "}
+        Don't have an account yet?{" "}
         <Link
           href={`/reader/signup${safeNextPath ? `?next=${encodeURIComponent(safeNextPath)}` : ""}`}
           className="font-bold text-teal-700 hover:text-teal-800"
         >
-          Đăng ký
+          Register
         </Link>
       </p>
     </form>

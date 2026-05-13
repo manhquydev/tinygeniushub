@@ -8,7 +8,7 @@
  *  - 3-star rating (SVG stars, animated fill)
  *  - Mascot in celebrating state
  *  - Stars earned counter
- *  - CTA buttons: "Bài tiếp" / "Về vườn"
+ *  - CTA buttons: "Next article" / "Back to the garden"
  */
 
 import { useEffect, useState } from "react";

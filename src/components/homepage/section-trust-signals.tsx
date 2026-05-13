@@ -1,10 +1,10 @@
 ﻿import { Lock, RotateCcw, ShieldOff, Users, Wallet, type LucideIcon } from "lucide-react";
 
 const BADGES: ReadonlyArray<{ icon: LucideIcon; label: string }> = [
-  { icon: Wallet, label: "Thanh toán nhanh bằng chuyển khoản hoặc QR" },
-  { icon: RotateCcw, label: "Có chính sách hoàn tiền rõ ràng" },
-  { icon: Lock, label: "Dữ liệu của trẻ được bảo vệ và mã hóa" },
-  { icon: ShieldOff, label: "Không quảng cáo, không liên kết ngoài kém an toàn" },
+  { icon: Wallet, label: "Fast payment by bank transfer or QR" },
+  { icon: RotateCcw, label: "Have a clear refund policy" },
+  { icon: Lock, label: "Your child's data is protected and encrypted" },
+  { icon: ShieldOff, label: "No ads, no unsafe external links" },
 ];
 
 export function SectionTrustSignals() {
@@ -15,15 +15,15 @@ export function SectionTrustSignals() {
           <div className="hp-trust-stat">
             <Users size={18} aria-hidden />
             <strong>1,200+</strong>
-            <span>phụ huynh tin tưởng</span>
+            <span>parents trust</span>
           </div>
           <div className="hp-trust-divider" aria-hidden />
           <div className="hp-trust-rating">
-            <span className="hp-trust-stars" aria-label="Đánh giá 4.9 trên 5 sao">
+            <span className="hp-trust-stars" aria-label="Rated 4.9 out of 5 stars">
               ★★★★★
             </span>
             <strong>4.9/5</strong>
-            <span>đánh giá</span>
+            <span>Evaluate</span>
           </div>
         </div>
 

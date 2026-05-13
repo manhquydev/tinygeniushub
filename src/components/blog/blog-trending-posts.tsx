@@ -9,7 +9,7 @@ export function BlogTrendingPosts({ posts }: BlogTrendingPostsProps) {
   return (
     <div className="space-y-3">
       {posts.length === 0 ? (
-        <p className="text-sm text-slate-500">Chưa có bài viết thịnh hành.</p>
+        <p className="text-sm text-slate-500">There are no trending posts yet.</p>
       ) : (
         <ol className="space-y-3">
           {posts.map((post, index) => (
@@ -27,7 +27,7 @@ export function BlogTrendingPosts({ posts }: BlogTrendingPostsProps) {
                 <div className="flex items-center gap-2 text-xs text-slate-500">
                   <span>{post.category.nameVi}</span>
                   <span>·</span>
-                  <span>{post.viewCount} lượt xem</span>
+                  <span>{post.viewCount} views</span>
                 </div>
               </div>
             </li>

@@ -50,7 +50,7 @@ export function SiteFooter({ hasParent = false, socialLinks }: SiteFooterProps) 
         <div className="footer-main">
           {/* ── Brand Column ── */}
           <div className="footer-brand">
-            <Link href="/" className="footer-brand-logo" aria-label="Trang chủ TinyGenius Hub">
+            <Link href="/" className="footer-brand-logo" aria-label="TinyGenius Hub home page">
               <Image
                 src="/logos/tinygeniushub_logo_stacked.png"
                 alt="TinyGeniusHub Logo"
@@ -61,9 +61,9 @@ export function SiteFooter({ hasParent = false, socialLinks }: SiteFooterProps) 
             </Link>
 
             <p className="footer-tagline">
-              Toán &amp; Tiếng Anh cho bé 2–6 tuổi.
+              Math &amp; English for children 2–6 years old.
               <br />
-              Mỗi ngày 15 phút, thấy rõ con tiến bộ.
+              15 minutes a day, you can clearly see your child's progress.
             </p>
 
             {/* Social links */}
@@ -101,35 +101,35 @@ export function SiteFooter({ hasParent = false, socialLinks }: SiteFooterProps) 
           </div>
 
           {/* ── Nav Columns ── */}
-          <nav className="footer-nav-grid" aria-label="Điều hướng chân trang">
+          <nav className="footer-nav-grid" aria-label="Footer navigation">
             <div className="footer-col">
-              <p className="footer-col-title">Sản phẩm</p>
-              <Link href="/#features">Tính năng</Link>
-              <Link href="/pricing">Bảng giá</Link>
-              <Link href="/courses">Khóa học</Link>
-              <Link href="/for-schools">Cho trường học</Link>
-              <Link href="/#faq">Câu hỏi thường gặp</Link>
+              <p className="footer-col-title">Product</p>
+              <Link href="/#features">Features</Link>
+              <Link href="/pricing">Price list</Link>
+              <Link href="/courses">Course</Link>
+              <Link href="/for-schools">For school</Link>
+              <Link href="/#faq">Frequently asked questions</Link>
             </div>
 
             <div className="footer-col">
-              <p className="footer-col-title">Công ty</p>
-              <Link href="/about">Giới thiệu</Link>
+              <p className="footer-col-title">Company</p>
+              <Link href="/about">Introduce</Link>
               <Link href="/blog">Blog</Link>
-              <Link href="/contact">Liên hệ</Link>
-              <Link href="/referral">Giới thiệu bạn</Link>
-              <Link href="/gift-code">Mã quà tặng</Link>
-              <Link href="/waitlist">Đặt chỗ sớm</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="/referral">Introducing you</Link>
+              <Link href="/gift-code">Gift code</Link>
+              <Link href="/waitlist">Book early</Link>
             </div>
 
             <div className="footer-col">
-              <p className="footer-col-title">Tài khoản</p>
-              <Link href="/auth/login">Đăng nhập</Link>
-              <Link href="/auth/signup">Đăng ký</Link>
-              <p className="footer-col-title" style={{ marginTop: "0.75rem" }}>Pháp lý</p>
-              <Link href="/privacy">Chính sách bảo mật</Link>
-              <Link href="/terms">Điều khoản sử dụng</Link>
-              <Link href="/cookie-policy">Chính sách cookie</Link>
-              <Link href="/refund-policy">Chính sách hoàn tiền</Link>
+              <p className="footer-col-title">Account</p>
+              <Link href="/auth/login">Log in</Link>
+              <Link href="/auth/signup">Register</Link>
+              <p className="footer-col-title" style={{ marginTop: "0.75rem" }}>Legal</p>
+              <Link href="/privacy">Privacy policy</Link>
+              <Link href="/terms">Terms of use</Link>
+              <Link href="/cookie-policy">Cookie policy</Link>
+              <Link href="/refund-policy">Refund policy</Link>
             </div>
           </nav>
         </div>
@@ -141,13 +141,13 @@ export function SiteFooter({ hasParent = false, socialLinks }: SiteFooterProps) 
         <div className="footer-bottom">
           <p className="footer-bottom-copy">
             <span className="footer-bottom-flag">🇻🇳</span>
-            <span>© {currentYear} TinyGenius Hub. Bảo lưu mọi quyền.</span>
+            <span>© {currentYear} TinyGenius Hub. All rights reserved.</span>
           </p>
           <div className="footer-bottom-links">
-            <Link href="/privacy">Bảo mật</Link>
-            <Link href="/terms">Điều khoản</Link>
+            <Link href="/privacy">Security</Link>
+            <Link href="/terms">Clause</Link>
             <Link href="/cookie-policy">Cookie</Link>
-            <Link href="/refund-policy">Hoàn tiền</Link>
+            <Link href="/refund-policy">Refund</Link>
           </div>
         </div>
       </div>

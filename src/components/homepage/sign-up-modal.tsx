@@ -11,11 +11,11 @@ interface SignUpModalProps {
 }
 
 const zoneDisplayNames: Record<string, string> = {
-  math: "Toán",
-  phonics: "Tiếng Anh Phonics",
-  art: "Mỹ thuật",
-  music: "Âm nhạc",
-  today: "Hôm nay",
+  math: "Maths",
+  phonics: "English Phonics",
+  art: "Art",
+  music: "Music",
+  today: "Today",
 };
 
 export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
@@ -39,7 +39,7 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
 
   if (!isOpen) return null;
 
-  const displayZone = zoneName ? zoneDisplayNames[zoneName] || zoneName : "một khu học tập";
+  const displayZone = zoneName ? zoneDisplayNames[zoneName] || zoneName : "a study area";
 
   return (
     <div
@@ -88,7 +88,7 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
             justifyContent: "center",
             transition: "background 0.2s",
           }}
-          aria-label="Đóng"
+          aria-label="Close"
         >
           <X size={24} color="var(--cgh-ink)" />
         </button>
@@ -119,7 +119,7 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
               color: "var(--cgh-ink)",
             }}
           >
-            Mở khóa toàn bộ khu học tập
+            Unlock the entire study area
           </h2>
 
           <p
@@ -131,8 +131,8 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
               opacity: 0.8,
             }}
           >
-            Bạn vừa chọn <strong>{displayZone}</strong>. Tạo tài khoản để mở toàn bộ khu học tập và chọn khóa phù hợp
-            cho bé.
+            You have just selected <strong>{displayZone}</strong>. Create an account to open the entire study area and choose the appropriate course
+            for baby.
           </p>
 
           <ul
@@ -145,10 +145,10 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
               color: "var(--cgh-ink)",
             }}
           >
-            <li>Mở toàn bộ khu học tập</li>
-            <li>Lộ trình học cá nhân hóa</li>
-            <li>Báo cáo tiến độ hàng tuần cho phụ huynh</li>
-            <li>Thanh toán nhanh bằng chuyển khoản hoặc QR</li>
+            <li>Open the entire learning area</li>
+            <li>Personalized learning path</li>
+            <li>Weekly progress reports to parents</li>
+            <li>Fast payment by bank transfer or QR</li>
           </ul>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
@@ -169,7 +169,7 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
                 transition: "all 0.2s",
               }}
             >
-              Tạo tài khoản
+              Create an account
             </Link>
 
             <button
@@ -187,7 +187,7 @@ export function SignUpModal({ isOpen, onClose, zoneName }: SignUpModalProps) {
                 transition: "all 0.2s",
               }}
             >
-              Tiếp tục xem thử
+              Continue to check it out
             </button>
           </div>
         </div>

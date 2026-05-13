@@ -56,12 +56,12 @@ describe("SiteFooter", () => {
   it("tracks internal footer links with parent state", () => {
     render(<SiteFooter hasParent={true} />);
 
-    fireEvent.click(screen.getByRole("link", { name: "Bảng giá" }));
+    fireEvent.click(screen.getByRole("link", { name: "Price list" }));
 
     expect(trackEvent).toHaveBeenCalledWith("nav_click", {
       state: "parent",
       location: "footer",
-      label: "Bảng giá",
+      label: "Price list",
       href: "/pricing",
     });
   });

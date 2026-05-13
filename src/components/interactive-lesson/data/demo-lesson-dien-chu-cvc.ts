@@ -1,15 +1,15 @@
 import type { InteractiveLessonData } from "../interactive-lesson-types";
 
-// Lesson 2: Điền chữ CVC — English phonics, mascot: sister, activity: FILL_BLANK
+// Lesson 2: Fill in CVC — English phonics, mascot: sister, activity: FILL_BLANK
 export const demoLessonDienChuCvc: InteractiveLessonData = {
   id: "dien-chu-cvc",
-  title: "Điền chữ CVC",
+  title: "Fill in the letters CVC",
   mascotVariant: "sister",
   steps: [
     {
       type: "hook",
       mascot: { variant: "sister", state: "happy", gesture: "waving" },
-      speech: "Chào con!",
+      speech: "Hello child!",
       audioUrl: "/audio/lessons/dien-chu-cvc/step-1-hook.mp3",
       autoAdvanceMs: 2500,
     },
@@ -17,8 +17,8 @@ export const demoLessonDienChuCvc: InteractiveLessonData = {
       type: "concept",
       mascot: { variant: "sister", state: "thinking", gesture: "pointing", actionProp: "pointing-stick" },
       keyword: "CVC",
-      speech: "Cấu trúc CVC",
-      subtext: "Phụ âm - Nguyên âm - Phụ âm",
+      speech: "CVC structure",
+      subtext: "Consonants - Vowels - Consonants",
       audioUrl: "/audio/lessons/dien-chu-cvc/step-2-concept.mp3",
     },
     {
@@ -30,22 +30,22 @@ export const demoLessonDienChuCvc: InteractiveLessonData = {
         { word: "bed", audioUrl: "/audio/lessons/dien-chu-cvc/kw-bed.mp3" },
         { word: "sit", audioUrl: "/audio/lessons/dien-chu-cvc/kw-sit.mp3" },
       ],
-      speech: "Ví dụ nào!",
+      speech: "What an example!",
       audioUrl: "/audio/lessons/dien-chu-cvc/step-3-demonstrate.mp3",
     },
     {
       type: "activity",
       mascot: { variant: "sister", state: "idle", actionProp: "writing" },
-      speech: "Con điền nhé!",
+      speech: "Please fill in!",
       audioUrl: "/audio/lessons/dien-chu-cvc/step-4-activity.mp3",
       activity: {
         type: "FILL_BLANK",
-        prompt: "Điền vào chỗ trống",
+        prompt: "Fill in the blanks",
         spec: {
           type: "FILL_BLANK",
           sentence: "c_t",
           answer: "a",
-          hint: "Nguyên âm giữa là /a/",
+          hint: "The middle vowel is /a/",
         },
         passCriteria: 1,
       },
@@ -54,14 +54,14 @@ export const demoLessonDienChuCvc: InteractiveLessonData = {
       type: "reinforce",
       mascot: { variant: "sister", state: "thinking", gesture: "thinking-scratch" },
       keyword: "CVC",
-      speech: "Nhớ lại nào!",
-      subtext: "Phụ âm - Nguyên âm - Phụ âm",
+      speech: "Remember!",
+      subtext: "Consonants - Vowels - Consonants",
       audioUrl: "/audio/lessons/dien-chu-cvc/step-5-reinforce.mp3",
     },
     {
       type: "celebrate",
       mascot: { variant: "sister", state: "celebrating", gesture: "clapping" },
-      speech: "Giỏi lắm!",
+      speech: "Very good!",
       audioUrl: "/audio/lessons/dien-chu-cvc/step-6-celebrate.mp3",
       autoAdvanceMs: 3000,
     },

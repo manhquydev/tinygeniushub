@@ -6,7 +6,7 @@ import type { AbVariant } from "@/lib/ab-test-constants";
 import { CourseCheckoutButton } from "./course-checkout-button";
 
 function formatCurrency(amount: number) {
-  return `${amount.toLocaleString("vi-VN")}đ`;
+  return `${amount.toLocaleString("vi-VN")}D`;
 }
 
 type Props = {
@@ -40,7 +40,7 @@ export function CourseDetailStickyHeader({
   const currentPriceVnd = Math.max(0, pricing.salePriceVnd);
   const showDiscount = pricing.listPriceVnd > currentPriceVnd && pricing.hasDiscount;
   const isFreeTemporary = pricing.statusLabel === "freeTemporary" && currentPriceVnd === 0;
-  const checkoutCtaLabel = isFreeTemporary ? "Nhận khóa miễn phí ngay" : checkoutLabel;
+  const checkoutCtaLabel = isFreeTemporary ? "Get your free key now" : checkoutLabel;
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
@@ -66,11 +66,11 @@ export function CourseDetailStickyHeader({
       </div>
       {isOwned ? (
         <Link href={childEntryHref} className="solid-button text-sm">
-          Vào học ngay
+          Go to school now
         </Link>
       ) : !pricing.isPurchasable ? (
         <Link href="/contact" className="solid-button text-sm">
-          Nhận tư vấn lộ trình
+          Get route advice
         </Link>
       ) : (
         <CourseCheckoutButton

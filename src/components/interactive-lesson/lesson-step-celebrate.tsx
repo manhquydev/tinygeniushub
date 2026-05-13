@@ -61,7 +61,7 @@ export function LessonStepCelebrate({ step, onNext }: StepProps) {
 
       {/* Speech bubble */}
       <InteractiveSpeechBubble
-        text={step.speech ?? "Giỏi lắm!"}
+        text={step.speech ?? "Very good!"}
         visible
         position="bottom"
       />
@@ -96,7 +96,7 @@ export function LessonStepCelebrate({ step, onNext }: StepProps) {
           fontFamily: "'Baloo 2', 'Nunito', system-ui, sans-serif",
         }}
       >
-        Tiếp tục ngay...
+        Continue now...
       </m.p>
     </div>
   );

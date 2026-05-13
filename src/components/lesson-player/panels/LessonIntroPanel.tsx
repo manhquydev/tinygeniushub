@@ -21,9 +21,9 @@ const TRACK_CLASS: Record<string, string> = {
 };
 
 const TRACK_LABEL: Record<string, string> = {
-  ENGLISH: "Tiếng Anh",
-  MATH: "Toán học",
-  HABIT: "Thói quen",
+  ENGLISH: "English",
+  MATH: "Mathematics",
+  HABIT: "Habit",
 };
 
 // Kisu mascot stickers for intro
@@ -51,7 +51,7 @@ export function LessonIntroPanel({
       >
         <Image
           src={KISU_INTRO}
-          alt="Kisu sẵn sàng"
+          alt="Kisu is ready"
           width={100}
           height={100}
           className="lp-mascot-float"
@@ -75,14 +75,14 @@ export function LessonIntroPanel({
         {tierLabel ? (
           <div style={{ textAlign: "center" }}>
             <span className="lp-tier-pill">
-              {TRACK_LABEL[trackCode] ?? "Bài học"}
+              {TRACK_LABEL[trackCode] ?? "Lesson"}
               {" · "}
               {tierLabel}
             </span>
           </div>
         ) : (
           <div style={{ textAlign: "center" }}>
-            <span className="lp-tier-pill">{TRACK_LABEL[trackCode] ?? "Bài học"}</span>
+            <span className="lp-tier-pill">{TRACK_LABEL[trackCode] ?? "Lesson"}</span>
           </div>
         )}
 
@@ -96,7 +96,7 @@ export function LessonIntroPanel({
         <div style={{ display: "flex", justifyContent: "center" }}>
           <span className="lp-intro-meta">
             <span className="lp-intro-meta-icon" aria-hidden="true" />
-            <strong>{estimatedMinutes}</strong>&nbsp;phút
+            <strong>{estimatedMinutes}</strong>&nbsp;minutes
           </span>
         </div>
 
@@ -108,15 +108,15 @@ export function LessonIntroPanel({
           onClick={onStart}
           whileHover={prefersReducedMotion || isLoading ? undefined : { scale: 1.03, y: -2 }}
           whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-          aria-label="Bắt đầu bài học"
+          aria-label="Start the lesson"
           style={{ position: "relative", overflow: "hidden", marginTop: "0.5rem" }}
         >
           {isLoading ? (
             <>
-              <span className="lp-hud-time-pill" style={{ color: "rgba(255,255,255,0.8)", border: "none", background: "none" }}>Đang chuẩn bị...</span>
+              <span className="lp-hud-time-pill" style={{ color: "rgba(255,255,255,0.8)", border: "none", background: "none" }}>Preparing...</span>
             </>
           ) : (
-            "Bắt đầu bài học"
+            "Start the lesson"
           )}
         </m.button>
       </m.div>

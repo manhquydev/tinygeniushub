@@ -1,15 +1,15 @@
 import type { InteractiveLessonData } from "../interactive-lesson-types";
 
-// Lesson 1: Âm /a/ và /m/ — English phonics, mascot: big, activity: MULTIPLE_CHOICE
+// Lesson 1: Sounds /a/ and /m/ — English phonics, mascot: big, activity: MULTIPLE_CHOICE
 export const demoLessonAmA: InteractiveLessonData = {
   id: "am-a",
-  title: "Âm /a/ và /m/",
+  title: "Sounds /a/ and /m/",
   mascotVariant: "big",
   steps: [
     {
       type: "hook",
       mascot: { variant: "big", state: "happy", gesture: "waving" },
-      speech: "Chào con!",
+      speech: "Hello child!",
       audioUrl: "/audio/lessons/am-a/step-1-hook.mp3",
       autoAdvanceMs: 2500,
     },
@@ -17,8 +17,8 @@ export const demoLessonAmA: InteractiveLessonData = {
       type: "concept",
       mascot: { variant: "big", state: "thinking", gesture: "pointing", actionProp: "pointing-stick" },
       keyword: "/a/",
-      speech: "Đây là âm A",
-      subtext: "Phát âm: 'a' như trong 'ant'",
+      speech: "This is the A sound",
+      subtext: "Pronunciation: 'a' as in 'ant'",
       audioUrl: "/audio/lessons/am-a/step-2-concept.mp3",
     },
     {
@@ -30,23 +30,23 @@ export const demoLessonAmA: InteractiveLessonData = {
         { word: "apple", audioUrl: "/audio/lessons/am-a/kw-apple.mp3" },
         { word: "map", audioUrl: "/audio/lessons/am-a/kw-map.mp3" },
       ],
-      speech: "Nghe nào!",
+      speech: "Listen!",
       audioUrl: "/audio/lessons/am-a/step-3-demonstrate.mp3",
     },
     {
       type: "activity",
       mascot: { variant: "big", state: "idle" },
-      speech: "Con thử nhé!",
+      speech: "Try it!",
       audioUrl: "/audio/lessons/am-a/step-4-activity.mp3",
       activity: {
         type: "MULTIPLE_CHOICE",
-        prompt: "Từ nào có âm /a/?",
+        prompt: "Which word has the /a/ sound?",
         spec: {
           type: "MULTIPLE_CHOICE",
-          question: "Từ nào có âm /a/?",
+          question: "Which word has the /a/ sound?",
           options: ["apple", "egg", "ice", "owl"],
           correctIndex: 0,
-          explanation: "'apple' có âm /a/ ở đầu từ",
+          explanation: "'apple' has the /a/ sound at the beginning of the word",
         },
         passCriteria: 1,
       },
@@ -55,14 +55,14 @@ export const demoLessonAmA: InteractiveLessonData = {
       type: "reinforce",
       mascot: { variant: "big", state: "thinking", gesture: "thinking-scratch" },
       keyword: "/a/",
-      speech: "Nhớ lại nào!",
-      subtext: "Âm /a/ như trong 'ant', 'apple'",
+      speech: "Remember!",
+      subtext: "Sound /a/ as in 'ant', 'apple'",
       audioUrl: "/audio/lessons/am-a/step-5-reinforce.mp3",
     },
     {
       type: "celebrate",
       mascot: { variant: "big", state: "celebrating", gesture: "clapping" },
-      speech: "Giỏi lắm!",
+      speech: "Very good!",
       audioUrl: "/audio/lessons/am-a/step-6-celebrate.mp3",
       autoAdvanceMs: 3000,
     },

@@ -61,7 +61,7 @@ export function AdminBlogCommentsModeration({ comments }: { comments: PendingCom
 
       router.refresh();
     } catch {
-      setActionError("Không thể cập nhật bình luận. Vui lòng thử lại.");
+      setActionError("Unable to update comments. Please try again.");
     } finally {
       setLoadingId(null);
     }
@@ -82,7 +82,7 @@ export function AdminBlogCommentsModeration({ comments }: { comments: PendingCom
     });
 
     if (!response.ok) {
-      setActionError("Không thể thực hiện thao tác hàng loạt. Vui lòng thử lại.");
+      setActionError("Cannot perform batch operation. Please try again.");
       return;
     }
 
@@ -95,9 +95,9 @@ export function AdminBlogCommentsModeration({ comments }: { comments: PendingCom
       <div className="flex items-center justify-between rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
         <label className="flex items-center gap-3 text-sm font-semibold text-[var(--admin-text-primary)]">
           <Checkbox checked={allSelected} onCheckedChange={(value) => toggleSelectAll(!!value)} />
-          Chọn tất cả bình luận đang hiển thị
+          Select all currently displayed comments
         </label>
-        <span className="text-xs text-[var(--admin-text-secondary)]">{comments.length} bình luận chờ xử lý</span>
+        <span className="text-xs text-[var(--admin-text-secondary)]">{comments.length} comments pending review</span>
       </div>
 
       {comments.map((comment) => (
@@ -128,7 +128,7 @@ export function AdminBlogCommentsModeration({ comments }: { comments: PendingCom
             <Checkbox
               checked={selectedIds.includes(comment.id)}
               onCheckedChange={(value) => toggleSelection(comment.id, !!value)}
-              aria-label={`Chọn bình luận của ${comment.authorName}`}
+              aria-label={`Select comment's${comment.authorName}`}
             />
           </div>
 
@@ -140,7 +140,7 @@ export function AdminBlogCommentsModeration({ comments }: { comments: PendingCom
               onClick={() => void moderate(comment.id, "APPROVED")}
               disabled={loadingId === comment.id}
             >
-              Duyệt
+              Browse
             </Button>
             <Button
               type="button"
@@ -149,7 +149,7 @@ export function AdminBlogCommentsModeration({ comments }: { comments: PendingCom
               onClick={() => void moderate(comment.id, "DELETED")}
               disabled={loadingId === comment.id}
             >
-              Từ chối
+              Refuse
             </Button>
             <Button
               type="button"
@@ -167,20 +167,20 @@ export function AdminBlogCommentsModeration({ comments }: { comments: PendingCom
       <AdminBlogBulkActionsBar
         selectedIds={selectedIds}
         actions={[
-          { value: "approve", label: "Duyệt" },
+          { value: "approve", label: "Browse" },
           {
             value: "reject",
-            label: "Từ chối",
+            label: "Refuse",
             variant: "outline",
             requiresConfirm: true,
-            confirmMessage: "Từ chối các bình luận đã chọn?",
+            confirmMessage: "Reject selected comments?",
           },
           {
             value: "spam",
-            label: "Đánh dấu spam",
+            label: "Mark spam",
             variant: "destructive",
             requiresConfirm: true,
-            confirmMessage: "Đánh dấu spam cho các bình luận đã chọn?",
+            confirmMessage: "Mark selected comments as spam?",
           },
         ]}
         onAction={runBulkAction}

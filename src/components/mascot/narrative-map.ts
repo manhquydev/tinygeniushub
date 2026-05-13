@@ -36,8 +36,8 @@ function resolveAuthDayPhase(hourOfDay: number): Pick<MascotNarrativeScene, "sta
     return {
       state: "sleepy",
       actionProp: "space",
-      title: "Canh Giữ Giấc Mơ",
-      description: "Khoảnh khắc đêm muộn: linh vật giữ nhịp êm để phụ huynh vẫn thấy an tâm.",
+      title: "Guarding the Dream",
+      description: "Late night moments: the mascot keeps a quiet beat so parents still feel secure.",
       badge: "Night Ritual",
     };
   }
@@ -45,8 +45,8 @@ function resolveAuthDayPhase(hourOfDay: number): Pick<MascotNarrativeScene, "sta
     return {
       state: "happy",
       actionProp: "music",
-      title: "Năng Lượng Buổi Sớm",
-      description: "Giai điệu nhẹ mở đầu ngày mới, giúp phiên học đầu tiên của bé đầy hứng thú.",
+      title: "Morning Energy",
+      description: "A light melody opens the new day, helping your baby's first learning session full of excitement.",
       badge: "Morning Spark",
     };
   }
@@ -54,16 +54,16 @@ function resolveAuthDayPhase(hourOfDay: number): Pick<MascotNarrativeScene, "sta
     return {
       state: "proud",
       actionProp: "magic",
-      title: "Nhịp Tiến Bộ Ban Ngày",
-      description: "Phong thái tự tin nhấn mạnh tinh thần chủ động và phát triển liên tục.",
+      title: "Daily Progress Rhythm",
+      description: "A confident demeanor emphasizes a spirit of initiative and continuous development.",
       badge: "Day Momentum",
     };
   }
   return {
     state: "love",
     actionProp: "heart",
-    title: "Khoảnh Khắc Gia Đình",
-    description: "Buổi tối là thời điểm kết nối: cảm xúc ấm áp giúp bé kết thúc ngày học trọn vẹn.",
+    title: "Family Moments",
+    description: "Evening is a time of connection: warm emotions help your child complete the school day.",
     badge: "Evening Bond",
   };
 }
@@ -83,8 +83,8 @@ function buildAuthNarrative(context: MascotNarrativeContext): MascotNarrativeSce
     },
     {
       id: "auth-family-trust",
-      title: "Cặp Cú Đồng Hành",
-      description: "Bố cục duo truyền tải thông điệp: bé và phụ huynh luôn đi cùng một nhịp học.",
+      title: "Pair of Companion Owls",
+      description: "The duo layout conveys the message: child and parent always go at the same learning pace.",
       badge: "Family Duo",
       variant: "duo",
       state: "happy",
@@ -99,8 +99,8 @@ function buildAuthNarrative(context: MascotNarrativeContext): MascotNarrativeSce
     },
     {
       id: "auth-focus",
-      title: "Chuẩn Bị Phiên Học",
-      description: "Sắc thái tập trung tạo cảm giác vào luồng rõ ràng trước khi phụ huynh đăng nhập.",
+      title: "Session Preparation",
+      description: "Focused nuance creates a clear sense of flow before parents log on.",
       badge: "Focus Gate",
       variant: "big",
       state: "thinking",
@@ -111,8 +111,8 @@ function buildAuthNarrative(context: MascotNarrativeContext): MascotNarrativeSce
     },
     {
       id: "auth-care",
-      title: "Tình Cảm Nuôi Dưỡng",
-      description: "Nốt cảm xúc mềm giúp trang auth không khô cứng, tăng tính gần gũi và đáng nhớ.",
+      title: "Nurturing Emotions",
+      description: "Soft emotional notes help keep the auth page from being dry and stiff, increasing intimacy and memorableness.",
       badge: "Care Layer",
       variant: "duo",
       state: "love",
@@ -140,8 +140,8 @@ function buildDashboardNarrative(context: MascotNarrativeContext): MascotNarrati
   const progressScene: MascotNarrativeScene = hasRecentCompletion
     ? {
         id: "dashboard-progress-celebrate",
-        title: "Ăn Mừng Thành Tựu Mới",
-        description: "Một bài học vừa hoàn thành sẽ kích hoạt duo ăn mừng để củng cố động lực cho cả nhà.",
+        title: "Celebrate New Achievements",
+        description: "A recently completed lesson will trigger a celebratory duo to reinforce motivation for the whole family.",
         badge: "Progress Pulse",
         variant: "duo",
         state: "celebrating",
@@ -156,8 +156,8 @@ function buildDashboardNarrative(context: MascotNarrativeContext): MascotNarrati
       }
     : {
         id: "dashboard-progress-steady",
-        title: "Tiến Độ Ổn Định",
-        description: "Khi chưa có mốc mới, mascot chuyển về nhịp đều để tạo cảm giác bền vững, không gấp gáp.",
+        title: "Steady Progress",
+        description: "When there is no new milestone, the mascot changes to a steady rhythm to create a feeling of sustainability and no urgency.",
         badge: "Steady Growth",
         variant: "duo",
         state: "happy",
@@ -175,8 +175,8 @@ function buildDashboardNarrative(context: MascotNarrativeContext): MascotNarrati
     childrenCount === 0
       ? {
           id: "dashboard-family-empty",
-          title: "Gợi Ý Khởi Tạo Hồ Sơ Bé",
-          description: "Khi chưa có hồ sơ bé, mascot dùng sắc thái định hướng để tránh cảm giác trống trải.",
+          title: "Suggestions for Creating Baby Profile",
+          description: "When there is no baby profile, the mascot uses directional tones to avoid the feeling of emptiness.",
           badge: "Onboarding Cue",
           variant: "big",
           state: "thinking",
@@ -188,8 +188,8 @@ function buildDashboardNarrative(context: MascotNarrativeContext): MascotNarrati
       : childrenCount === 1
         ? {
             id: "dashboard-family-single",
-            title: "Nhịp Kèm Cặp 1-1",
-            description: "Một bé - một nhịp đồng hành sâu: biểu cảm tập trung vào kết nối trực tiếp.",
+            title: "1-1 Mentoring Rhythm",
+            description: "One baby - one rhythm of deep companionship: expressiveness focused on direct connection.",
             badge: "1:1 Journey",
             variant: "duo",
             state: "love",
@@ -204,8 +204,8 @@ function buildDashboardNarrative(context: MascotNarrativeContext): MascotNarrati
           }
         : {
             id: "dashboard-family-multi",
-            title: "Điều Phối Nhiều Bé",
-            description: "Gia đình nhiều hồ sơ cần nhịp điều phối linh hoạt: mascot thể hiện tinh thần tổ chức và vui tươi.",
+            title: "Coordination of Multiple Children",
+            description: "Families with many files need a flexible coordination rhythm: the mascot shows a spirit of organization and playfulness.",
             badge: "Multi-Kid Flow",
             variant: "big",
             state: "proud",
@@ -219,8 +219,8 @@ function buildDashboardNarrative(context: MascotNarrativeContext): MascotNarrati
     reportsCount > 0
       ? {
           id: "dashboard-report-ready",
-          title: "Báo Cáo Đã Hình Thành",
-          description: "Khi dữ liệu báo cáo đã có, mascot giữ trạng thái tự tin để nhấn mạnh tiến trình có bằng chứng.",
+          title: "Report Formed",
+          description: "Once the reported data is available, the mascot maintains a confident stance to emphasize evidence-based progress.",
           badge: "Insight Ready",
           variant: "small",
           state: "proud",
@@ -231,8 +231,8 @@ function buildDashboardNarrative(context: MascotNarrativeContext): MascotNarrati
         }
       : {
           id: "dashboard-report-waiting",
-          title: "Đang Tích Lũy Dữ Liệu",
-          description: "Giai đoạn đầu chưa có báo cáo: mascot ở trạng thái suy nghĩ để truyền tín hiệu chờ đợi tích cực.",
+          title: "Accumulating Data",
+          description: "The first stage has not yet been reported: the mascot is in a thinking state to transmit an active waiting signal.",
           badge: "Insight Building",
           variant: "small",
           state: "thinking",
@@ -245,8 +245,8 @@ function buildDashboardNarrative(context: MascotNarrativeContext): MascotNarrati
   const referralScene: MascotNarrativeScene = hasReferralImpact
     ? {
         id: "dashboard-referral-active",
-        title: "Hiệu Ứng Lan Tỏa",
-        description: "Khi referral có kết quả, mascot chuyển sang sắc thái ấm áp để tôn vinh đóng góp của phụ huynh.",
+        title: "Spillover Effect",
+        description: "When the referral is successful, the mascot changes to a warm tone to honor the parent's contribution.",
         badge: "Community Impact",
         variant: "duo",
         state: "love",
@@ -261,10 +261,10 @@ function buildDashboardNarrative(context: MascotNarrativeContext): MascotNarrati
       }
     : {
         id: "dashboard-referral-seed",
-        title: isTrialing ? "Ươm Mầm Chia Sẻ" : "Nuôi Dưỡng Mạng Lưới",
+        title: isTrialing ? "Nurturing the Seeds of Sharing" : "Nurturing Networks",
         description: isTrialing
-          ? "Trong giai đoạn trial, mascot giữ sắc thái nhẹ nhàng để khuyến khích chia sẻ tự nhiên."
-          : "Khi đã ổn định gói dịch vụ, mascot nhấn vào nhịp phát triển cộng đồng bền vững.",
+          ? "During the trial phase, the mascot keeps its tones light to encourage natural sharing."
+          : "Once the service package has been stabilized, mascot clicks on the rhythm of sustainable community development.",
         badge: isTrialing ? "Trial Seed" : "Growth Network",
         variant: "small",
         state: "playful",

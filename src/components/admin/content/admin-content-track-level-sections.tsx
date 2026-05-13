@@ -38,19 +38,19 @@ export function AdminContentTrackLevelSections(props: AdminContentTrackLevelSect
                 <p className="text-xs font-semibold uppercase tracking-[0.06em] text-[var(--admin-text-secondary)]">{track.code}</p>
                 <p className="mt-1 text-sm font-bold text-[var(--admin-text-primary)]">{toTrackLabel(track.code)}</p>
                 <p className="mt-2 text-xs text-[var(--admin-text-secondary)]">
-                  {track._count.levels} cấp độ · {track._count.units} đơn vị · {track._count.lessons} bài
+                  {track._count.levels} levels · {track._count.units} units · {track._count.lessons} lessons
                 </p>
               </button>
             );
           })}
-          {props.loadingTracks ? <p className="text-sm text-[var(--admin-text-secondary)]">Đang tải tracks...</p> : null}
+          {props.loadingTracks ? <p className="text-sm text-[var(--admin-text-secondary)]">Loading tracks...</p> : null}
         </div>
       </article>
 
       <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-3">
         <h2 className="text-sm font-bold uppercase tracking-[0.08em] text-[var(--admin-text-secondary)]">Panel 2 · Levels</h2>
         <p className="mt-1 flex items-center gap-1 text-xs text-[var(--admin-text-secondary)]">
-          <span>{props.selectedTrack ? toTrackLabel(props.selectedTrack.code) : "Chưa chọn lộ trình"}</span>
+          <span>{props.selectedTrack ? toTrackLabel(props.selectedTrack.code) : "No route has been selected yet"}</span>
           <ChevronRight size={12} className="shrink-0" />
           <span>Levels</span>
         </p>
@@ -59,7 +59,7 @@ export function AdminContentTrackLevelSections(props: AdminContentTrackLevelSect
             <TableHeader>
               <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
                 <TableHead className="text-xs w-10">#</TableHead>
-                <TableHead className="text-xs">Tên cấp độ</TableHead>
+                <TableHead className="text-xs">Level name</TableHead>
                 <TableHead className="text-xs">Units</TableHead>
               </TableRow>
             </TableHeader>
@@ -76,10 +76,10 @@ export function AdminContentTrackLevelSections(props: AdminContentTrackLevelSect
                 </TableRow>
               ))}
               {props.loadingLevels && (
-                <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">Đang tải levels...</TableCell></TableRow>
+                <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">Loading levels...</TableCell></TableRow>
               )}
               {!props.loadingLevels && props.levels.length === 0 && (
-                <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">{props.selectedTrack ? "Chưa có cấp độ." : "Chọn lộ trình để xem cấp độ."}</TableCell></TableRow>
+                <TableRow><TableCell colSpan={3} className="text-xs text-[var(--admin-text-secondary)]">{props.selectedTrack ? "No level yet." : "Select the route to see the level."}</TableCell></TableRow>
               )}
             </TableBody>
           </Table>

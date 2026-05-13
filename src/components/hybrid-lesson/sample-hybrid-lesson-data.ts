@@ -6,7 +6,7 @@ import type { HybridLessonData } from "./hybrid-lesson-types";
  */
 export const SAMPLE_HYBRID_LESSON: HybridLessonData = {
   id: "hybrid-am-a",
-  title: "Âm /a/ và /m/ (Hybrid)",
+  title: "Sounds /a/ and /m/ (Hybrid)",
   conceptVideoUrl: "/video/lessons/am-a-teaching.mp4",
   transitionAudioUrl: "/audio/transition-den-luot-con.mp3",
   segments: [
@@ -23,17 +23,17 @@ export const SAMPLE_HYBRID_LESSON: HybridLessonData = {
       step: {
         type: "activity",
         mascot: { variant: "big", state: "idle" },
-        speech: "Con thử nhé!",
+        speech: "Try it!",
         audioUrl: "/audio/lessons/am-a/step-4-activity.mp3",
         activity: {
           type: "MULTIPLE_CHOICE",
-          prompt: "Từ nào có âm /a/?",
+          prompt: "Which word has the /a/ sound?",
           spec: {
             type: "MULTIPLE_CHOICE",
-            question: "Từ nào có âm /a/?",
+            question: "Which word has the /a/ sound?",
             options: ["apple", "egg", "ice", "owl"],
             correctIndex: 0,
-            explanation: "'apple' có âm /a/ ở đầu từ",
+            explanation: "'apple' has the /a/ sound at the beginning of the word",
           },
           passCriteria: 1,
         },
@@ -46,18 +46,18 @@ export const SAMPLE_HYBRID_LESSON: HybridLessonData = {
         type: "reinforce",
         mascot: { variant: "big", state: "thinking", gesture: "thinking-scratch" },
         keyword: "/a/",
-        speech: "Nhớ lại nào!",
-        subtext: "Âm /a/ như trong 'ant', 'apple'",
+        speech: "Remember!",
+        subtext: "Sound /a/ as in 'ant', 'apple'",
         audioUrl: "/audio/lessons/am-a/step-5-reinforce.mp3",
         activity: {
           type: "MULTIPLE_CHOICE",
-          prompt: "Từ nào có âm /a/?",
+          prompt: "Which word has the /a/ sound?",
           spec: {
             type: "MULTIPLE_CHOICE",
-            question: "Từ nào có âm /a/?",
+            question: "Which word has the /a/ sound?",
             options: ["apple", "egg", "ice", "owl"],
             correctIndex: 0,
-            explanation: "'apple' có âm /a/ ở đầu từ",
+            explanation: "'apple' has the /a/ sound at the beginning of the word",
           },
           passCriteria: 1,
         },
@@ -69,7 +69,7 @@ export const SAMPLE_HYBRID_LESSON: HybridLessonData = {
       step: {
         type: "celebrate",
         mascot: { variant: "big", state: "celebrating", gesture: "clapping" },
-        speech: "Giỏi lắm!",
+        speech: "Very good!",
         audioUrl: "/audio/lessons/am-a/step-6-celebrate.mp3",
         autoAdvanceMs: 3000,
       },

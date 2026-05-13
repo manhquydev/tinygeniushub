@@ -57,7 +57,7 @@ export function BlogCommentCard({ slug, comment, depth = 0, onReplySubmitted }: 
 
           {depth === 0 ? (
             <button type="button" onClick={() => setShowReply((prev) => !prev)} className="text-sm font-semibold text-teal-700 hover:text-teal-800">
-              Trả lời
+              Reply
             </button>
           ) : null}
         </div>

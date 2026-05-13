@@ -40,7 +40,7 @@ export function DashboardChildCard({
           <div className="min-w-0 flex-1">
             <p className="truncate text-lg font-black tracking-[-0.01em] text-slate-900">{child.nickname}</p>
             <p className="mt-0.5 text-sm leading-relaxed text-slate-600">
-              {minutesLearned} phút học • chuỗi {streakDays} ngày
+              {minutesLearned} minutes learned • streak {streakDays} days
             </p>
             {/* Weekly progress bar */}
             <div className="mt-2 flex items-center gap-2">
@@ -51,7 +51,7 @@ export function DashboardChildCard({
                 />
               </div>
               <span className="shrink-0 text-xs font-semibold text-slate-500">
-                {lessonsThisWeek}/{weeklyGoal} bài tuần này
+                {lessonsThisWeek}/{weeklyGoal} lessons this week
               </span>
             </div>
           </div>
@@ -64,14 +64,14 @@ export function DashboardChildCard({
               href={`/parent/dashboard/${encodeURIComponent(child.id)}/skills`}
               className="inline-flex min-h-11 items-center justify-center gap-1 rounded-full bg-indigo-50 px-4 text-sm font-bold text-indigo-700 ring-1 ring-indigo-200 transition hover:-translate-y-0.5"
             >
-              Xem bản đồ kỹ năng
+              View skill map
             </Link>
           ) : null}
           <Link
             href={`/kid/courses?childId=${encodeURIComponent(child.id)}`}
             className="inline-flex min-h-11 items-center justify-center gap-1 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 px-4 text-sm font-bold text-white shadow-[0_6px_16px_rgba(13,148,136,0.28)] transition hover:-translate-y-0.5"
           >
-            Học tiếp
+            Continue studying
             <ChevronRight size={16} />
           </Link>
         </div>
@@ -80,7 +80,7 @@ export function DashboardChildCard({
       {/* Recent completions */}
       {recentCompletions.length > 0 ? (
         <div className="border-t border-slate-200/80 pt-3">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Bài học gần đây</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Recent lessons</p>
           <ul className="space-y-1">
             {recentCompletions.map((item, idx) => (
               <li key={idx} className="flex items-center justify-between gap-2">

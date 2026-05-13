@@ -42,7 +42,7 @@ export function useAdminUsersListController() {
           const response = await fetch(`/api/admin/users?${params.toString()}`, { method: "GET", signal: controller.signal, cache: "no-store" });
           const body = (await response.json()) as ApiResponse<AdminUsersListResponse>;
           if (!response.ok || !body.ok) {
-            setSearchError(body.error?.message ?? "Không tải được danh sách người dùng."); setUsers([]); setTotalUsers(0); setSelectedParentId(null); return;
+            setSearchError(body.error?.message ?? "Unable to load user list."); setUsers([]); setTotalUsers(0); setSelectedParentId(null); return;
           }
           const rows = body.data?.users ?? [];
           setTotalUsers(body.data?.total ?? 0); setUsers(rows);
@@ -50,7 +50,7 @@ export function useAdminUsersListController() {
           setSelectedParentId((current) => (current && rows.some((r) => r.id === current) ? current : (rows[0]?.id ?? null)));
         } catch (e) {
           if (e instanceof Error && e.name === "AbortError") return;
-          setSearchError(e instanceof Error ? e.message : "Lỗi không xác định."); setUsers([]); setTotalUsers(0); setSelectedParentId(null);
+          setSearchError(e instanceof Error ? e.message : "Unknown error."); setUsers([]); setTotalUsers(0); setSelectedParentId(null);
         } finally { setSearchLoading(false); }
       })();
     }, 300);
@@ -67,7 +67,7 @@ export function useAdminUsersListController() {
 
   async function handleBulkAction() {
     if (selectedParentIds.length === 0) return;
-    if (!window.confirm(`Bạn có chắc muốn thực hiện ${bulkAction} cho ${selectedParentIds.length} người dùng?`)) return;
+    if (!window.confirm(`Are you sure you want to do this?${bulkAction} cho ${selectedParentIds.length}users?`)) return;
     setBulkLoading(true); setBulkResultMessage(null);
     try {
       const response = await fetch("/api/admin/users/bulk", {
@@ -76,14 +76,14 @@ export function useAdminUsersListController() {
         body: JSON.stringify({ parentIds: selectedParentIds, action: bulkAction, payload: bulkAction === "SEND_NOTIFICATION" ? { message: bulkMessage.trim() || undefined } : undefined }),
       });
       const body = (await response.json()) as ApiResponse<{ succeeded?: number; failed?: number }>;
-      if (!response.ok || !body.ok) { setBulkResultMessage(body.error?.message ?? "Không thực hiện được bulk action."); return; }
+      if (!response.ok || !body.ok) { setBulkResultMessage(body.error?.message ?? "Unable to perform bulk action."); return; }
       const succeeded = body.data?.succeeded ?? 0;
       const failed = body.data?.failed ?? 0;
-      setBulkResultMessage(`${succeeded} thành công, ${failed} thất bại.`);
+      setBulkResultMessage(`${succeeded}success,${failed}failure.`);
       setUsers((current) => current.map((user) => selectedParentIds.includes(user.id) ? { ...user, suspended: bulkAction === "SUSPEND" ? true : bulkAction === "ACTIVATE" ? false : user.suspended } : user));
       setUsersReloadToken((v) => v + 1);
     } catch (e) {
-      setBulkResultMessage(e instanceof Error ? e.message : "Lỗi không xác định.");
+      setBulkResultMessage(e instanceof Error ? e.message : "Unknown error.");
     } finally { setBulkLoading(false); }
   }
 

@@ -1,15 +1,15 @@
 import type { InteractiveLessonData } from "../interactive-lesson-types";
 
-// Lesson 7: Hình tròn và vuông — Math, mascot: dad, activity: MULTIPLE_CHOICE
+// Lesson 7: Circles and squares — Math, mascot: dad, activity: MULTIPLE_CHOICE
 export const demoLessonHinhTronVuong: InteractiveLessonData = {
   id: "hinh-tron-vuong",
-  title: "Hình tròn và vuông",
+  title: "Round and square",
   mascotVariant: "dad",
   steps: [
     {
       type: "hook",
       mascot: { variant: "dad", state: "happy", gesture: "waving" },
-      speech: "Chào con!",
+      speech: "Hello child!",
       audioUrl: "/audio/lessons/hinh-tron-vuong/step-1-hook.mp3",
       autoAdvanceMs: 2500,
     },
@@ -17,30 +17,30 @@ export const demoLessonHinhTronVuong: InteractiveLessonData = {
       type: "concept",
       mascot: { variant: "dad", state: "thinking", gesture: "pointing", actionProp: "pointing-stick" },
       keyword: "○ □",
-      speech: "Hai hình này!",
-      subtext: "Hình tròn và hình vuông",
+      speech: "These two pictures!",
+      subtext: "Round and square",
       audioUrl: "/audio/lessons/hinh-tron-vuong/step-2-concept.mp3",
     },
     {
       type: "demonstrate",
       mascot: { variant: "dad", state: "happy", gesture: "nodding" },
-      keywords: ["đồng hồ ○", "sách □", "bánh ○"],
-      speech: "Tìm xung quanh!",
+      keywords: ["clock ○", "books □", "cake ○"],
+      speech: "Look around!",
       audioUrl: "/audio/lessons/hinh-tron-vuong/step-3-demonstrate.mp3",
     },
     {
       type: "activity",
       mascot: { variant: "dad", state: "idle" },
-      speech: "Con chọn nhé!",
+      speech: "You choose!",
       activity: {
         type: "MULTIPLE_CHOICE",
-        prompt: "Cái nào có hình tròn?",
+        prompt: "Which one is round?",
         spec: {
           type: "MULTIPLE_CHOICE",
-          question: "Cái nào có hình tròn?",
-          options: ["quyển sách", "cái bảng", "quả bóng", "cái hộp"],
+          question: "Which one is round?",
+          options: ["book", "the board", "ball", "box"],
           correctIndex: 2,
-          explanation: "Quả bóng có hình tròn",
+          explanation: "The ball is round in shape",
         },
         passCriteria: 1,
       },
@@ -49,14 +49,14 @@ export const demoLessonHinhTronVuong: InteractiveLessonData = {
       type: "reinforce",
       mascot: { variant: "dad", state: "thinking", gesture: "thinking-scratch" },
       keyword: "○ □",
-      speech: "Nhớ lại nào!",
-      subtext: "Tròn = không có góc, vuông = 4 góc bằng nhau",
+      speech: "Remember!",
+      subtext: "Round = no corners, square = 4 equal corners",
       audioUrl: "/audio/lessons/hinh-tron-vuong/step-5-reinforce.mp3",
     },
     {
       type: "celebrate",
       mascot: { variant: "dad", state: "celebrating", gesture: "clapping" },
-      speech: "Giỏi lắm!",
+      speech: "Very good!",
       audioUrl: "/audio/lessons/hinh-tron-vuong/step-6-celebrate.mp3",
       autoAdvanceMs: 3000,
     },

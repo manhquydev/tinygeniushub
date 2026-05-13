@@ -11,11 +11,11 @@ interface MasteryBadgeProps {
 }
 
 const MASTERY_CONFIG: Record<MasteryLevel, { label: string; stars: number; colorClass: string; bgClass: string }> = {
-  NOT_STARTED: { label: "Chưa bắt đầu", stars: 0, colorClass: "text-slate-400", bgClass: "bg-slate-100" },
-  NOVICE:      { label: "Mới học",       stars: 1, colorClass: "text-orange-500", bgClass: "bg-orange-50" },
-  DEVELOPING:  { label: "Đang học",      stars: 2, colorClass: "text-yellow-500", bgClass: "bg-yellow-50" },
-  PROFICIENT:  { label: "Thành thạo",    stars: 4, colorClass: "text-green-500",  bgClass: "bg-green-50" },
-  MASTERED:    { label: "Xuất sắc",      stars: 5, colorClass: "text-purple-500", bgClass: "bg-purple-50" },
+  NOT_STARTED: { label: "Haven't started yet", stars: 0, colorClass: "text-slate-400", bgClass: "bg-slate-100" },
+  NOVICE:      { label: "Just learned",       stars: 1, colorClass: "text-orange-500", bgClass: "bg-orange-50" },
+  DEVELOPING:  { label: "Studying",      stars: 2, colorClass: "text-yellow-500", bgClass: "bg-yellow-50" },
+  PROFICIENT:  { label: "Proficient",    stars: 4, colorClass: "text-green-500",  bgClass: "bg-green-50" },
+  MASTERED:    { label: "Excellent",      stars: 5, colorClass: "text-purple-500", bgClass: "bg-purple-50" },
 };
 
 export function MasteryBadge({ level, showLabel = false, size = "sm" }: MasteryBadgeProps) {

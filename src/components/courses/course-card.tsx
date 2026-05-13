@@ -11,19 +11,19 @@ interface CourseCardProps {
 }
 
 function formatCurrency(amount: number) {
-  return `${amount.toLocaleString("vi-VN")}đ`;
+  return `${amount.toLocaleString("vi-VN")}D`;
 }
 
 function formatLessonCount(lessonCount: number) {
-  return `${lessonCount.toLocaleString("vi-VN")} bài`;
+  return `${lessonCount.toLocaleString("vi-VN")}post`;
 }
 
 function formatDuration(durationDays: number) {
   if (durationDays % 7 === 0) {
     const weeks = durationDays / 7;
-    return `${weeks.toLocaleString("vi-VN")} tuần`;
+    return `${weeks.toLocaleString("vi-VN")}week`;
   }
-  return `${durationDays.toLocaleString("vi-VN")} ngày`;
+  return `${durationDays.toLocaleString("vi-VN")}day`;
 }
 
 function formatPrice(course: StorefrontCourse) {
@@ -32,7 +32,7 @@ function formatPrice(course: StorefrontCourse) {
   const hasDiscount = listPrice > currentPrice;
 
   return {
-    currentPriceLabel: currentPrice === 0 ? "Miễn phí" : formatCurrency(currentPrice),
+    currentPriceLabel: currentPrice === 0 ? "Free of charge" : formatCurrency(currentPrice),
     listPriceLabel: hasDiscount ? formatCurrency(listPrice) : null,
   };
 }
@@ -71,7 +71,7 @@ export function CourseCard({ course, variant, index, detailCtaLabel }: CourseCar
         </div>
 
         <div className="mt-5">
-          <p className="text-xs text-slate-500">Giá hiện tại</p>
+          <p className="text-xs text-slate-500">Current price</p>
           <div className="mt-1 flex items-end gap-2">
             <p className="text-lg font-black tracking-[-0.02em] text-emerald-700">{price.currentPriceLabel}</p>
             {price.listPriceLabel ? <p className="text-xs text-slate-400 line-through">{price.listPriceLabel}</p> : null}

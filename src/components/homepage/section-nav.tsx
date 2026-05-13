@@ -4,8 +4,8 @@ import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
 
 const NAV_ITEMS = [
-  { id: "features", label: "Tính năng" },
-  { id: "pricing", label: "Gói học" },
+  { id: "features", label: "Features" },
+  { id: "pricing", label: "Study package" },
   { id: "faq", label: "FAQ" },
 ] as const;
 
@@ -52,7 +52,7 @@ export function SectionNav() {
   return (
     <nav
       className={`hp-section-nav${visible ? " is-visible" : ""}`}
-      aria-label="Điều hướng trang chủ"
+      aria-label="Home page navigation"
     >
       <div className="hp-section-nav-inner">
         {NAV_ITEMS.map((item) => (

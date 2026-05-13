@@ -97,29 +97,29 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
   const isKidUI = pathname.startsWith("/kid");
 
   const parentLinks: NavItemConfig[] = [
-    { href: "/parent/dashboard", label: "Tổng quan", matchMode: "prefix" },
-    { href: "/parent/children", label: "Hồ sơ bé", matchMode: "prefix" },
-    { href: "/parent/courses", label: "Khóa học", matchMode: "prefix" },
-    { href: "/parent/reports", label: "Báo cáo", matchMode: "prefix" },
-    { href: "/parent/billing", label: "Thanh toán", matchMode: "prefix" },
+    { href: "/parent/dashboard", label: "Overview", matchMode: "prefix" },
+    { href: "/parent/children", label: "Baby profile", matchMode: "prefix" },
+    { href: "/parent/courses", label: "Course", matchMode: "prefix" },
+    { href: "/parent/reports", label: "Report", matchMode: "prefix" },
+    { href: "/parent/billing", label: "Pay", matchMode: "prefix" },
     ...(isAdmin ? [{ href: "/admin", label: "Admin", matchMode: "prefix" as const }] : []),
   ];
 
   const guestLinks: NavItemConfig[] = [
-    { href: "/courses", label: "Khóa học", matchMode: "prefix" },
-    { href: "/pricing", label: "Bảng giá", matchMode: "prefix" },
-    { href: "/#features", label: "Cách hoạt động", matchMode: "exact" },
-    { href: "/for-schools", label: "Cho trường học", hideOnMobile: true, matchMode: "prefix" },
+    { href: "/courses", label: "Course", matchMode: "prefix" },
+    { href: "/pricing", label: "Price list", matchMode: "prefix" },
+    { href: "/#features", label: "How it works", matchMode: "exact" },
+    { href: "/for-schools", label: "For school", hideOnMobile: true, matchMode: "prefix" },
   ];
   const parentSupportLinks: NavItemConfig[] = [
     { href: "/blog", label: "Blog", matchMode: "prefix" },
-    { href: "/about", label: "Giới thiệu", matchMode: "prefix" },
-    { href: "/contact", label: "Trợ giúp", matchMode: "prefix" },
+    { href: "/about", label: "Introduce", matchMode: "prefix" },
+    { href: "/contact", label: "Help", matchMode: "prefix" },
   ];
   const currentLinks = hasParent ? parentLinks : guestLinks;
   const mobileLinks = currentLinks.map((item) => ({ ...item, hideOnMobile: false }));
-  const guestCtaLabelFull = guestCtaVariant === "B" ? "Xem khóa học" : "Bắt đầu miễn phí";
-  const guestCtaLabelShort = guestCtaVariant === "B" ? "Xem khóa" : "Bắt đầu";
+  const guestCtaLabelFull = guestCtaVariant === "B" ? "View course" : "Get started for free";
+  const guestCtaLabelShort = guestCtaVariant === "B" ? "See key" : "Begin";
 
   const trackNavClick = (item: NavItemConfig, location: NavTrackingLocation) => {
     trackEvent("nav_click", {
@@ -198,7 +198,7 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
           <Link
             href="/"
             className="brand brand-feature-logo"
-            aria-label="Trang chủ TinyGenius Hub"
+            aria-label="TinyGenius Hub home page"
             onClick={(event) => handleInterceptNavigation(event, "/")}
           >
             <Image
@@ -216,11 +216,11 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
             className="nav-mobile-toggle"
             aria-expanded={mobileMenuOpen}
             aria-controls="primary-nav-mobile"
-            aria-label={mobileMenuOpen ? "Đóng menu điều hướng" : "Mở menu điều hướng"}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open the navigation menu"}
             onClick={() => setMobileMenuOpen((current) => !current)}
           >
             {mobileMenuOpen ? <X size={18} aria-hidden /> : <Menu size={18} aria-hidden />}
-            <span>{mobileMenuOpen ? "Đóng menu" : "Mở menu"}</span>
+            <span>{mobileMenuOpen ? "Close the menu" : "Open the menu"}</span>
           </button>
 
           <nav className="nav-links nav-links-desktop">
@@ -248,13 +248,13 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
                     aria-controls="parent-support-menu"
                     onClick={() => setSupportMenuOpen((current) => !current)}
                   >
-                    Trợ giúp
+                    Help
                   </button>
                   {supportMenuOpen ? (
                     <div
                       id="parent-support-menu"
                       role="menu"
-                      aria-label="Menu trợ giúp"
+                      aria-label="Help menu"
                       className="absolute right-0 top-[calc(100%+0.55rem)] z-[120] grid min-w-[11rem] gap-1 rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_14px_32px_rgba(15,23,42,0.16)]"
                     >
                       {parentSupportLinks.map((item) => (
@@ -279,18 +279,18 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
                   type="button"
                   className="ghost-button"
                   onClick={(event) => {
-                    trackNavClick({ href: "/auth/logout", label: "Đăng xuất" }, "desktop_top");
+                    trackNavClick({ href: "/auth/logout", label: "Sign out" }, "desktop_top");
                     handleInterceptLogout(event);
                   }}
                   disabled={loggingOut}
                 >
-                    {loggingOut ? "Đang xuất..." : "Đăng xuất"}
+                    {loggingOut ? "Exporting..." : "Sign out"}
                   </button>
               </>
             ) : (
               <>
                 <NavTextLink
-                  item={{ href: "/auth/login", label: "Đăng nhập", hideOnMobile: true, matchMode: "prefix" }}
+                  item={{ href: "/auth/login", label: "Log in", hideOnMobile: true, matchMode: "prefix" }}
                   pathname={pathname}
                   onIntercept={handleInterceptNavigation}
                   onTrack={(item) => trackNavClick(item, "desktop_top")}
@@ -350,19 +350,19 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
                     type="button"
                     className="ghost-button nav-mobile-button"
                     onClick={(event) => {
-                      trackNavClick({ href: "/auth/logout", label: "Đăng xuất" }, "mobile_panel");
+                      trackNavClick({ href: "/auth/logout", label: "Sign out" }, "mobile_panel");
                       handleInterceptLogout(event);
                       setMobileMenuOpen(false);
                     }}
                     disabled={loggingOut}
                   >
-                    {loggingOut ? "Đang xuất..." : "Đăng xuất"}
+                    {loggingOut ? "Exporting..." : "Sign out"}
                   </button>
               </div>
             ) : (
               <div className="nav-mobile-actions">
                 <NavTextLink
-                  item={{ href: "/auth/login", label: "Đăng nhập", matchMode: "prefix" }}
+                  item={{ href: "/auth/login", label: "Log in", matchMode: "prefix" }}
                   pathname={pathname}
                   onIntercept={handleInterceptNavigation}
                   onTrack={(item) => trackNavClick(item, "mobile_panel")}

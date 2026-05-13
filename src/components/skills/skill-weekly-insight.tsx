@@ -23,11 +23,11 @@ export function SkillWeeklyInsight({ childName, summary }: SkillWeeklyInsightPro
 
   return (
     <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-indigo-50 to-white p-4 shadow-sm">
-      <h2 className="font-bold text-slate-800 text-base mb-3">Tuần này của {childName}</h2>
+      <h2 className="font-bold text-slate-800 text-base mb-3">This week for {childName}</h2>
 
       {!hasData && (
         <p className="text-sm text-slate-400 text-center py-3">
-          Chưa có hoạt động tuần này. Khuyến khích bé học mỗi ngày nhé!
+          No activities this week. Encourage your baby to learn every day!
         </p>
       )}
 
@@ -36,7 +36,7 @@ export function SkillWeeklyInsight({ childName, summary }: SkillWeeklyInsightPro
           <li className="flex items-start gap-2 text-sm text-slate-700">
             <span className="mt-0.5">✅</span>
             <span>
-              <strong>{summary.newProficient.length} kỹ năng</strong> mới đạt Thành thạo:&nbsp;
+              <strong>{summary.newProficient.length} skills</strong> newly reached proficiency:&nbsp;
               {summary.newProficient.map((s) => s.nameVi).join(", ")}
             </span>
           </li>
@@ -46,7 +46,7 @@ export function SkillWeeklyInsight({ childName, summary }: SkillWeeklyInsightPro
           <li className="flex items-start gap-2 text-sm text-slate-700">
             <span className="mt-0.5">📈</span>
             <span>
-              <strong>{summary.biggestImprovement.nameVi}</strong> đang tiến bộ tốt ({summary.biggestImprovement.delta}%)
+              <strong>{summary.biggestImprovement.nameVi}</strong> is improving well ({summary.biggestImprovement.delta}%)
             </span>
           </li>
         )}
@@ -54,7 +54,7 @@ export function SkillWeeklyInsight({ childName, summary }: SkillWeeklyInsightPro
         {summary.reviewsCompleted > 0 && (
           <li className="flex items-start gap-2 text-sm text-slate-700">
             <span className="mt-0.5">🔄</span>
-            <span><strong>{summary.reviewsCompleted}</strong> bài luyện tập đã hoàn thành</span>
+            <span><strong>{summary.reviewsCompleted}</strong>exercise completed</span>
           </li>
         )}
 
@@ -62,7 +62,7 @@ export function SkillWeeklyInsight({ childName, summary }: SkillWeeklyInsightPro
           <li className="flex items-start gap-2 text-sm text-slate-700">
             <span className="mt-0.5">⏰</span>
             <span>
-              Sắp đến hạn ôn tập:&nbsp;
+              Due for review soon:&nbsp;
               {summary.upcomingReviews.slice(0, 3).map((r) => r.nameVi).join(", ")}
             </span>
           </li>

@@ -60,7 +60,7 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
     event.preventDefault();
 
     if (!file) {
-      setError("Vui lòng chọn tệp trước khi upload.");
+      setError("Please select the file before uploading.");
       return;
     }
 
@@ -86,7 +86,7 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
       const sessionBody = await sessionResponse.json();
       const sessionCandidate = sessionBody?.data?.session as unknown;
       if (!sessionResponse.ok || sessionBody?.ok !== true || !isUploadSessionPayload(sessionCandidate)) {
-        setError(sessionBody?.error?.message ?? "Không tạo được signed upload session.");
+        setError(sessionBody?.error?.message ?? "Unable to create signed upload session.");
         return;
       }
 
@@ -103,7 +103,7 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
 
       if (!uploadResponse.ok) {
         const uploadText = await uploadResponse.text();
-        setError(uploadText || "Upload tệp thất bại.");
+        setError(uploadText || "File upload failed.");
         return;
       }
 
@@ -112,19 +112,19 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
       });
       const confirmBody = await confirmResponse.json();
       if (!confirmResponse.ok || confirmBody?.ok !== true) {
-        setError(confirmBody?.error?.message ?? "Upload thành công nhưng chưa thể xác nhận tệp.");
+        setError(confirmBody?.error?.message ?? "Upload was successful but the file could not be confirmed.");
         return;
       }
 
       setInfo(
-        `Upload thành công (${sessionCandidate.upload.provider}) - mediaId=${sessionCandidate.media.id} - path=${sessionCandidate.media.objectPath}`,
+        `Upload successful (${sessionCandidate.upload.provider}) - mediaId=${sessionCandidate.media.id} - path=${sessionCandidate.media.objectPath}`,
       );
       setFile(null);
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
     } catch (uploadError) {
-      setError(uploadError instanceof Error ? uploadError.message : "Lỗi không xác định khi upload.");
+      setError(uploadError instanceof Error ? uploadError.message : "Unknown error while uploading.");
     } finally {
       setLoading(false);
     }
@@ -133,8 +133,8 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
   return (
     <form className="evidence-upload-panel" onSubmit={handleSubmit}>
       <div className="evidence-upload-head">
-        <strong>Thêm bằng chứng (ảnh/audio)</strong>
-        <span className="muted-text">Signed upload URL, policy 90-365 ngày theo plan.</span>
+        <strong>More evidence (photo/audio)</strong>
+        <span className="muted-text">Signed upload URL, policy 90-365 days according to plan.</span>
       </div>
 
       <div className="inline-form">
@@ -142,16 +142,16 @@ export function EvidenceUploadPanel({ childId, lessonId }: EvidenceUploadPanelPr
           value={mediaType}
           onChange={(event) => setMediaType(event.target.value as MediaType)}
           disabled={loading}
-          aria-label="Loại media"
+          aria-label="Media type"
         >
-          <option value="PHOTO">Ảnh (PHOTO)</option>
+          <option value="PHOTO">Photo (PHOTO)</option>
           <option value="AUDIO">Audio (AUDIO)</option>
         </select>
 
         <input ref={fileInputRef} type="file" accept={accept} onChange={handleFileChange} disabled={loading} />
 
         <button type="submit" className="ghost-button" disabled={loading || !file}>
-          {loading ? "Đang upload..." : "Upload evidence"}
+          {loading ? "Uploading..." : "Upload evidence"}
         </button>
       </div>
 

@@ -50,7 +50,7 @@ export function BlogBookmarkButton({
       }
     } catch {
       setBookmarked(!nextBookmarked);
-      setError("Không thể lưu bài viết lúc này.");
+      setError("Posts cannot be saved at this time.");
     } finally {
       setLoading(false);
     }
@@ -67,7 +67,7 @@ export function BlogBookmarkButton({
         className="gap-2"
       >
         {bookmarked ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}
-        {bookmarked ? "Đã lưu" : "Lưu bài viết"}
+        {bookmarked ? "Saved" : "Save article"}
       </Button>
       {error ? <p className="text-xs text-rose-600">{error}</p> : null}
     </div>

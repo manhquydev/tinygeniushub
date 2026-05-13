@@ -35,13 +35,13 @@ export function AdminActionLogPanel() {
 
       const body = (await response.json()) as ApiResponse<{ logs?: AdminLogEntry[] }>;
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không tải được nhật ký quản trị.");
+        setError(body.error?.message ?? "Unable to load admin log.");
         return;
       }
 
       setLogs(body.data?.logs ?? []);
     } catch (fetchError) {
-      setError(fetchError instanceof Error ? fetchError.message : "Lỗi không xác định.");
+      setError(fetchError instanceof Error ? fetchError.message : "Unknown error.");
     } finally {
       setLoading(false);
     }
@@ -60,7 +60,7 @@ export function AdminActionLogPanel() {
 
   return (
     <div className="space-y-3">
-      <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Nhật ký quản trị</h2>
+      <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Administration log</h2>
 
       {error ? <p className="rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">{error}</p> : null}
 
@@ -68,11 +68,11 @@ export function AdminActionLogPanel() {
         <Table>
           <TableHeader>
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
-              <TableHead className="text-xs">Thời gian</TableHead>
-              <TableHead className="text-xs">Nguồn</TableHead>
-              <TableHead className="text-xs">Người thực hiện</TableHead>
-              <TableHead className="text-xs">Thao tác</TableHead>
-              <TableHead className="text-xs">Đối tượng</TableHead>
+              <TableHead className="text-xs">Time</TableHead>
+              <TableHead className="text-xs">Source</TableHead>
+              <TableHead className="text-xs">Implementer</TableHead>
+              <TableHead className="text-xs">Operation</TableHead>
+              <TableHead className="text-xs">Object</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -99,7 +99,7 @@ export function AdminActionLogPanel() {
               </TableRow>
             )) : null}
             {!loading && logs.length === 0 ? (
-              <TableRow><TableCell colSpan={5} className="text-xs text-[var(--admin-text-secondary)]">Chưa có nhật ký nào.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={5} className="text-xs text-[var(--admin-text-secondary)]">There are no logs yet.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>

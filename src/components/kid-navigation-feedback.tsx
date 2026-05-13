@@ -113,11 +113,11 @@ function KidNavigationFeedbackOverlay({
           className="kid-nav-feedback-overlay"
           role="status"
           aria-live="polite"
-          aria-label="Đang mở trang mới"
+          aria-label="Opening a new page"
         >
           <div className="kid-nav-feedback-card">
-            <p className="kid-nav-feedback-title">Đang mở trang mới...</p>
-            <p className="kid-nav-feedback-subtitle">Bé chờ một chút nhé.</p>
+            <p className="kid-nav-feedback-title">Opening a new page...</p>
+            <p className="kid-nav-feedback-subtitle">Please wait a moment.</p>
           </div>
         </div>
       ) : null}

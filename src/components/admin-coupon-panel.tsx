@@ -49,13 +49,13 @@ export function AdminCouponPanel() {
       });
       const body = await response.json();
       if (!response.ok || !body.ok || !Array.isArray(body.data?.coupons)) {
-        setError(body.error?.message ?? "Không tải được mã giảm giá.");
+        setError(body.error?.message ?? "Unable to download discount code.");
         return;
       }
 
       setCoupons(body.data.coupons as CouponRow[]);
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "Lỗi không xác định.");
+      setError(loadError instanceof Error ? loadError.message : "Unknown error.");
     } finally {
       setLoading(false);
     }
@@ -85,7 +85,7 @@ export function AdminCouponPanel() {
       });
       const body = await response.json();
       if (!response.ok || !body.ok || !body.data?.coupon) {
-        setError(body.error?.message ?? "Không tạo được mã giảm giá.");
+        setError(body.error?.message ?? "Unable to create discount code.");
         return;
       }
 
@@ -93,10 +93,10 @@ export function AdminCouponPanel() {
       setDiscountPercent("10");
       setMaxUses("");
       setExpiresAt("");
-      setInfo("Đã tạo mã giảm giá.");
+      setInfo("Discount code created.");
       await loadCoupons();
     } catch (createError) {
-      setError(createError instanceof Error ? createError.message : "Lỗi không xác định.");
+      setError(createError instanceof Error ? createError.message : "Unknown error.");
     } finally {
       setSubmitting(false);
     }
@@ -113,14 +113,14 @@ export function AdminCouponPanel() {
       });
       const body = await response.json();
       if (!response.ok || !body.ok || !body.data?.coupon) {
-        setError(body.error?.message ?? "Không cập nhật được trạng thái mã.");
+        setError(body.error?.message ?? "Unable to update code status.");
         return;
       }
 
-      setInfo("Đã cập nhật trạng thái mã giảm giá.");
+      setInfo("Updated discount code status.");
       await loadCoupons();
     } catch (toggleError) {
-      setError(toggleError instanceof Error ? toggleError.message : "Lỗi không xác định.");
+      setError(toggleError instanceof Error ? toggleError.message : "Unknown error.");
     } finally {
       setUpdatingId(null);
     }
@@ -129,64 +129,64 @@ export function AdminCouponPanel() {
   async function handleCopyCode(value: string) {
     try {
       await navigator.clipboard.writeText(value);
-      setInfo("Đã sao chép");
+      setInfo("Copied");
       setError(null);
     } catch (copyError) {
-      setError(copyError instanceof Error ? copyError.message : "Không sao chép được mã.");
+      setError(copyError instanceof Error ? copyError.message : "Code cannot be copied.");
     }
   }
 
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Mã giảm giá</h3>
+      <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Discount code</h3>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <div className="grid gap-1.5">
-          <Label htmlFor="coupon-code">Mã</Label>
+          <Label htmlFor="coupon-code">Code</Label>
           <Input id="coupon-code" value={code} onChange={(event) => setCode(event.target.value.toUpperCase())} type="text" placeholder="WELCOME20" />
         </div>
         <div className="grid gap-1.5">
-          <Label htmlFor="coupon-discount">Giảm (%)</Label>
+          <Label htmlFor="coupon-discount">Reduce (%)</Label>
           <Input id="coupon-discount" value={discountPercent} onChange={(event) => setDiscountPercent(event.target.value)} type="number" min={5} max={100} />
         </div>
         <div className="grid gap-1.5">
-          <Label htmlFor="coupon-max">Số lượt tối đa (tùy chọn)</Label>
+          <Label htmlFor="coupon-max">Maximum number of turns (optional)</Label>
           <Input id="coupon-max" value={maxUses} onChange={(event) => setMaxUses(event.target.value)} type="number" min={1} />
         </div>
         <div className="grid gap-1.5">
-          <Label htmlFor="coupon-expires">Hết hạn (tùy chọn)</Label>
+          <Label htmlFor="coupon-expires">Expiry (optional)</Label>
           <Input id="coupon-expires" type="date" min={toDateInputValue(new Date())} value={expiresAt} onChange={(event) => setExpiresAt(event.target.value)} />
         </div>
       </div>
       <Button type="button" className="bg-teal-600 hover:bg-teal-700" onClick={() => void handleCreateCoupon()} disabled={submitting}>
-        {submitting ? "Đang tạo..." : "Tạo mã"}
+        {submitting ? "Creating..." : "Code generation"}
       </Button>
 
       <div className="rounded-lg border border-[var(--admin-card-border)] overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
-              <TableHead className="text-xs">Mã</TableHead>
-              <TableHead className="text-xs">Giảm</TableHead>
-              <TableHead className="text-xs">Dùng / tối đa</TableHead>
-              <TableHead className="text-xs">Hết hạn</TableHead>
-              <TableHead className="text-xs">Trạng thái</TableHead>
-              <TableHead className="text-xs">Hành động</TableHead>
+              <TableHead className="text-xs">Code</TableHead>
+              <TableHead className="text-xs">Reduce</TableHead>
+              <TableHead className="text-xs">Use / max</TableHead>
+              <TableHead className="text-xs">Expired</TableHead>
+              <TableHead className="text-xs">Status</TableHead>
+              <TableHead className="text-xs">Act</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {loading ? Array.from({ length: 3 }).map((_, index) => (
               <TableRow key={`coupon-skeleton-${index}`}>
-                <TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Đang tải...</TableCell>
+                <TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Loading...</TableCell>
               </TableRow>
             )) : null}
             {!loading ? coupons.map((coupon) => (
               <TableRow key={coupon.id}>
                 <TableCell className="text-xs font-semibold">{coupon.code}</TableCell>
                 <TableCell className="text-xs">{coupon.discountPercent}%</TableCell>
-                <TableCell className="text-xs">{coupon.usedCount} / {coupon.maxUses ?? "Không giới hạn"}</TableCell>
-                <TableCell className="text-xs">{coupon.expiresAt ? new Date(coupon.expiresAt).toLocaleDateString("vi-VN") : "Không giới hạn"}</TableCell>
-                <TableCell className="text-xs">{coupon.active ? "Đang bật" : "Đang tắt"}</TableCell>
+                <TableCell className="text-xs">{coupon.usedCount} / {coupon.maxUses ?? "Unlimited"}</TableCell>
+                <TableCell className="text-xs">{coupon.expiresAt ? new Date(coupon.expiresAt).toLocaleDateString("vi-VN") : "Unlimited"}</TableCell>
+                <TableCell className="text-xs">{coupon.active ? "On" : "Turning off"}</TableCell>
                 <TableCell>
                   <div className="flex gap-1">
                     <Button type="button" variant="outline" size="sm" className="h-7 text-xs" onClick={() => void handleCopyCode(coupon.code)}>Copy</Button>
@@ -198,14 +198,14 @@ export function AdminCouponPanel() {
                       onClick={() => void handleToggleCoupon(coupon.id)}
                       disabled={updatingId === coupon.id}
                     >
-                      {updatingId === coupon.id ? "Đang cập nhật..." : coupon.active ? "Tắt" : "Bật"}
+                      {updatingId === coupon.id ? "Updating..." : coupon.active ? "Turn off" : "Turn on"}
                     </Button>
                   </div>
                 </TableCell>
               </TableRow>
             )) : null}
             {!loading && coupons.length === 0 ? (
-              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Chưa có mã giảm giá.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">No discount code yet.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>

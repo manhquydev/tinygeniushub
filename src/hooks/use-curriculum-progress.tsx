@@ -149,7 +149,7 @@ export function useCurriculumProgress(childId: string) {
       queryClient.invalidateQueries({ queryKey: ['progress', childId] });
 
       // Log success (toast notifications handled by caller)
-      console.log('🎉 Hoàn thành bài học!', { newBadges: result.newBadges });
+      console.log('🎉 Complete the lesson!', { newBadges: result.newBadges });
     },
     onError: (error, data, context) => {
       // Rollback optimistic update

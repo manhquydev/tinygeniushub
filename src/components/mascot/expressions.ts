@@ -135,7 +135,7 @@ export const SMALL_BEAK_PATHS: Record<BeakVariant, string> = {
   grimace: "M 196.5 170 L 198.5 168.5 L 200 170 L 201.5 168.5 L 203.5 170 L 200 173 Z",
 };
 
-// --- Dad Owl (Cú Bố) — 1.15x BigOwl, eyes at (163,105) and (237,105) ---
+// --- Dad Owl — 1.15x BigOwl, eyes at (163,105) and (237,105) ---
 
 export const DAD_EYE_PATHS = {
   smile: {
@@ -185,7 +185,7 @@ export const DAD_BEAK_PATHS: Record<BeakVariant, string> = {
   grimace: "M 192 124 L 195 122 L 200 124 L 205 122 L 208 124 C 206 131 194 131 192 124 Z",
 };
 
-// --- Sister Owl (Cú Chị) — 0.75x BigOwl, eyes at (184,152) and (216,152) ---
+// --- Sister Owl — 0.75x BigOwl, eyes at (184,152) and (216,152) ---
 
 export const SISTER_EYE_PATHS = {
   smile: {
@@ -235,7 +235,7 @@ export const SISTER_BEAK_PATHS: Record<BeakVariant, string> = {
   grimace: "M 196.5 164 L 198.5 162.5 L 200 164 L 201.5 162.5 L 203.5 164 L 200 167 Z",
 };
 
-// --- Baby Owl (Cú Em) — 0.45x BigOwl, chibi, eyes at (190,183) and (210,183) ---
+// --- Baby Owl — 0.45x BigOwl, chibi, eyes at (190,183) and (210,183) ---
 
 export const BABY_EYE_PATHS = {
   smile: {

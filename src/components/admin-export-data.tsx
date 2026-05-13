@@ -16,7 +16,7 @@ function getRangeValidation(from: string, to: string) {
   if (!from || !to) {
     return {
       valid: false,
-      message: "Vui lòng chọn đủ ngày bắt đầu và kết thúc.",
+      message: "Please select complete start and end dates.",
     };
   }
 
@@ -26,14 +26,14 @@ function getRangeValidation(from: string, to: string) {
   if (Number.isNaN(fromDate.getTime()) || Number.isNaN(toDate.getTime())) {
     return {
       valid: false,
-      message: "Khoảng ngày không hợp lệ.",
+      message: "Invalid date range.",
     };
   }
 
   if (fromDate >= toDate) {
     return {
       valid: false,
-      message: "Ngày bắt đầu phải nhỏ hơn ngày kết thúc.",
+      message: "The start date must be less than the end date.",
     };
   }
 
@@ -41,13 +41,13 @@ function getRangeValidation(from: string, to: string) {
   if (rangeDays > 90) {
     return {
       valid: false,
-      message: "Khoảng ngày tối đa là 90 ngày.",
+      message: "The maximum date range is 90 days.",
     };
   }
 
   return {
     valid: true,
-    message: "Khoảng ngày hợp lệ.",
+    message: "Valid date range.",
   };
 }
 
@@ -85,14 +85,14 @@ export function AdminExportData() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Xuất dữ liệu</h2>
+      <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Export data</h2>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
         <div className="grid gap-1.5">
-          <Label htmlFor="export-from">Từ ngày</Label>
+          <Label htmlFor="export-from">From date</Label>
           <Input id="export-from" type="date" value={from} onChange={(event) => setFrom(event.target.value)} />
         </div>
         <div className="grid gap-1.5">
-          <Label htmlFor="export-to">Đến ngày</Label>
+          <Label htmlFor="export-to">Come day</Label>
           <Input id="export-to" type="date" value={to} onChange={(event) => setTo(event.target.value)} />
         </div>
         <div className="flex items-end">
@@ -114,7 +114,7 @@ export function AdminExportData() {
               void logAction("EXPORT_CSV", { type: "payments", from, to });
             }}
           >
-            Xuất CSV thanh toán
+            Export payments CSV
           </a>
         </Button>
 
@@ -131,7 +131,7 @@ export function AdminExportData() {
               void logAction("EXPORT_CSV", { type: "users" });
             }}
           >
-            Xuất CSV người dùng
+            Export user CSV
           </a>
         </Button>
       </div>

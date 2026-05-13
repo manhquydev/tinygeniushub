@@ -49,7 +49,7 @@ export function AdminBlogAuthorCreateForm() {
       setBio("");
       router.refresh();
     } catch {
-      setError("Không thể tạo tác giả.");
+      setError("Unable to create author.");
     } finally {
       setSubmitting(false);
     }
@@ -57,12 +57,12 @@ export function AdminBlogAuthorCreateForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-3 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 sm:grid-cols-2">
-      <Input value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="Tên hiển thị" required />
-      <Input value={role} onChange={(event) => setRole(event.target.value)} placeholder="Vai trò" required />
+      <Input value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="Display name" required />
+      <Input value={role} onChange={(event) => setRole(event.target.value)} placeholder="Role" required />
       <Input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" />
-      <Input value={bio} onChange={(event) => setBio(event.target.value)} placeholder="Giới thiệu" />
+      <Input value={bio} onChange={(event) => setBio(event.target.value)} placeholder="Introduce" />
       <Button type="submit" disabled={submitting} className="bg-teal-600 hover:bg-teal-700 sm:col-span-2">
-        {submitting ? "Đang tạo..." : "Tạo tác giả"}
+        {submitting ? "Creating..." : "Create author"}
       </Button>
       {error ? <p className="text-sm text-rose-700 sm:col-span-2">{error}</p> : null}
     </form>

@@ -61,63 +61,63 @@ export function ContentPerformance() {
   })) || [];
 
   if (loading) {
-    return <div className="text-[var(--admin-text-secondary)]">Đang tải phân tích nội dung...</div>;
+    return <div className="text-[var(--admin-text-secondary)]">Loading content analysis...</div>;
   }
 
   if (!metrics) {
-    return <div className="text-[var(--admin-text-secondary)]">Không có dữ liệu nội dung</div>;
+    return <div className="text-[var(--admin-text-secondary)]">No content data available</div>;
   }
 
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <AdminStatCard
-          label="Tổng số bài học"
+          label="Total number of lessons"
           value={metrics.totalLessons}
           icon={<BookOpen size={16} />}
         />
         <AdminStatCard
-          label="Tổng số lộ trình"
+          label="Total number of routes"
           value={metrics.totalTracks}
           icon={<BookOpen size={16} />}
         />
         <AdminStatCard
-          label="Hoàn thành (30 ngày)"
+          label="Completed (30 days)"
           value={metrics.totalCompletions30d.toLocaleString()}
           icon={<Trophy size={16} />}
         />
         <AdminStatCard
-          label="Thời gian xem trung bình"
+          label="Average viewing time"
           value={formatTime(metrics.avgWatchTime)}
           icon={<Clock size={16} />}
         />
       </div>
 
-      <AdminSectionCard title="Bài học hiệu quả nhất" icon={<Trophy size={16} />}>
+      <AdminSectionCard title="The most effective lesson" icon={<Trophy size={16} />}>
         <AdminDataTable
           columns={[
-            { key: "title", label: "Bài học" },
-            { key: "completions", label: "Lượt hoàn thành" },
-            { key: "avgTime", label: "Thời gian TB" },
-            { key: "uniqueUsers", label: "Người dùng" },
+            { key: "title", label: "Lesson" },
+            { key: "completions", label: "Completed turn" },
+            { key: "avgTime", label: "Average time" },
+            { key: "uniqueUsers", label: "User" },
           ]}
           data={topLessonsData}
-          emptyMessage="Chưa có dữ liệu hoàn thành"
+          emptyMessage="No completed data yet"
         />
       </AdminSectionCard>
 
-      <AdminSectionCard title="Tổng quan tương tác nội dung" icon={<AlertCircle size={16} />}>
+      <AdminSectionCard title="Content interactive overview" icon={<AlertCircle size={16} />}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 bg-[var(--admin-sidebar-accent)] rounded-lg">
-            <p className="text-sm text-[var(--admin-text-secondary)]">Tổng thời gian xem (30 ngày)</p>
+            <p className="text-sm text-[var(--admin-text-secondary)]">Total watch time (30 days)</p>
             <p className="text-xl font-bold text-[var(--admin-text-primary)]">
               {formatTime(metrics.totalWatchTime30d)}
             </p>
           </div>
           <div className="p-4 bg-[var(--admin-sidebar-accent)] rounded-lg">
-            <p className="text-sm text-[var(--admin-text-secondary)]">Kích thước thư viện nội dung</p>
+            <p className="text-sm text-[var(--admin-text-secondary)]">Content library size</p>
             <p className="text-xl font-bold text-[var(--admin-text-primary)]">
-              {metrics.totalLessons} bài trong {metrics.totalTracks} lộ trình
+              {metrics.totalLessons} lessons in {metrics.totalTracks} tracks
             </p>
           </div>
         </div>

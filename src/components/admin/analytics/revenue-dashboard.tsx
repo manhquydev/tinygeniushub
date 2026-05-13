@@ -58,7 +58,7 @@ export function RevenueDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-[var(--admin-text-secondary)]">Đang tải dữ liệu doanh thu...</div>
+        <div className="text-[var(--admin-text-secondary)]">Loading revenue data...</div>
       </div>
     );
   }
@@ -66,7 +66,7 @@ export function RevenueDashboard() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-rose-500">Lỗi: {error}</div>
+        <div className="text-rose-500">Error: {error}</div>
       </div>
     );
   }
@@ -74,7 +74,7 @@ export function RevenueDashboard() {
   if (!data) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-[var(--admin-text-secondary)]">Không có dữ liệu doanh thu</div>
+        <div className="text-[var(--admin-text-secondary)]">No revenue data available</div>
       </div>
     );
   }
@@ -83,38 +83,38 @@ export function RevenueDashboard() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <AdminStatCard
-          label="Doanh thu khóa học 30 ngày"
+          label="30-day course revenue"
           value={formatVND(data.totalRevenue30d)}
           icon={<DollarSign size={16} />}
         />
         <AdminStatCard
-          label="Doanh thu khóa học 7 ngày"
+          label="7-day course revenue"
           value={formatVND(data.totalRevenue7d)}
           icon={<DollarSign size={16} />}
         />
         <AdminStatCard
-          label="Số đơn khóa học 30 ngày"
+          label="30-day course application number"
           value={data.courseOrderCount30d}
           icon={<ShoppingCart size={16} />}
         />
         <AdminStatCard
-          label="Giá trị đơn trung bình 30 ngày"
+          label="30-day average single value"
           value={formatVND(data.averageOrderValue30d)}
           icon={<DollarSign size={16} />}
         />
         <AdminStatCard
-          label="Phụ huynh mua khóa (30 ngày)"
+          label="Parents purchase key (30 days)"
           value={data.uniqueBuyers30d}
           icon={<Users size={16} />}
         />
         <AdminStatCard
-          label="Ghi danh thành công (30 ngày)"
+          label="Successful enrollment (30 days)"
           value={data.successfulEnrollments30d}
           icon={<BookOpen size={16} />}
         />
       </div>
 
-      <AdminSectionCard title="Doanh thu theo loại đơn" icon={<ShoppingCart size={16} />}>
+      <AdminSectionCard title="Revenue by order type" icon={<ShoppingCart size={16} />}>
         <div className="space-y-4">
           {Object.entries(data.revenueByProduct)
             .filter(([, revenue]) => revenue > 0)
@@ -123,29 +123,29 @@ export function RevenueDashboard() {
                 <div className="flex justify-between items-center">
                   <span className="font-medium text-[var(--admin-text-primary)]">
                     {product === "COURSE_SINGLE"
-                      ? "Mua lẻ từng khóa"
+                      ? "Buy each key individually"
                       : product === "COURSE_BUNDLE"
-                        ? "Mua theo bộ khóa học"
-                        : "Đơn hàng khác"}
+                        ? "Buy by course set"
+                        : "Other orders"}
                   </span>
                   <span className="text-[var(--admin-text-primary)] font-semibold">
                     {formatVND(revenue)}
                   </span>
                 </div>
                 <p className="text-xs text-[var(--admin-text-muted)]">
-                  {data.totalRevenue30d > 0 ? ((revenue / data.totalRevenue30d) * 100).toFixed(1) : 0}% tổng doanh thu
+                  {data.totalRevenue30d > 0 ? ((revenue / data.totalRevenue30d) * 100).toFixed(1) : 0}% total revenue
                 </p>
               </div>
             ))}
           {Object.values(data.revenueByProduct).every((revenue) => revenue <= 0) && (
             <p className="text-sm text-[var(--admin-text-muted)] italic">
-              Chưa có dữ liệu doanh thu theo loại đơn
+              There is no revenue data by order type yet
             </p>
           )}
         </div>
       </AdminSectionCard>
 
-      <AdminSectionCard title="Top khóa học theo doanh thu (30 ngày)" icon={<BookOpen size={16} />}>
+      <AdminSectionCard title="Top courses by revenue (30 days)" icon={<BookOpen size={16} />}>
         <div className="space-y-3">
           {data.topCourses30d.map((course, index) => (
             <div
@@ -157,7 +157,7 @@ export function RevenueDashboard() {
                   {index + 1}. {course.title}
                 </p>
                 <p className="text-xs text-[var(--admin-text-muted)] truncate">
-                  {course.enrollmentCount} lượt ghi danh
+                  {course.enrollmentCount} enrollments
                 </p>
               </div>
               <p className="text-sm font-bold text-[var(--admin-text-primary)]">
@@ -167,11 +167,11 @@ export function RevenueDashboard() {
           ))}
           {data.topCourses30d.length === 0 && (
             <p className="text-sm text-[var(--admin-text-muted)] italic">
-              Chưa có dữ liệu khóa học phát sinh doanh thu
+              There is no course data that generates revenue
             </p>
           )}
           <div className="rounded-lg bg-[var(--admin-sidebar-accent)] p-3 text-xs text-[var(--admin-text-secondary)]">
-            7 ngày gần nhất có {data.courseOrderCount7d} đơn khóa học.
+            The last 7 days have {data.courseOrderCount7d} course orders.
           </div>
         </div>
       </AdminSectionCard>

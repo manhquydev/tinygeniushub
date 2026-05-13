@@ -66,7 +66,7 @@ describe("Mascot", () => {
     const { container, getByAltText } = render(<Mascot variant="small" state="playful" motionLevel="minimal" />);
 
     const mascotRoot = getMascotRoot(container);
-    const image = getByAltText("Linh vật cáo TinyGeniusHub");
+    const image = getByAltText("Fox mascot TinyGeniusHub");
 
     expect(mascotRoot.tagName.toLowerCase()).toBe("div");
     expect(mascotRoot.getAttribute("data-motion-animate")).toContain('"y":0');

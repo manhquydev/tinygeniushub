@@ -1,15 +1,15 @@
 import type { InteractiveLessonData } from "../interactive-lesson-types";
 
-// Lesson 4: Vần -at — English phonics, mascot: small, activity: SORT_ORDER
+// Lesson 4: Rhyme -at — English phonics, mascot: small, activity: SORT_ORDER
 export const demoLessonVanAt: InteractiveLessonData = {
   id: "van-at",
-  title: "Vần -at",
+  title: "Rhyme -at",
   mascotVariant: "small",
   steps: [
     {
       type: "hook",
       mascot: { variant: "small", state: "happy", gesture: "waving" },
-      speech: "Chào con!",
+      speech: "Hello child!",
       audioUrl: "/audio/lessons/van-at/step-1-hook.mp3",
       autoAdvanceMs: 2500,
     },
@@ -17,8 +17,8 @@ export const demoLessonVanAt: InteractiveLessonData = {
       type: "concept",
       mascot: { variant: "small", state: "thinking", gesture: "pointing", actionProp: "pointing-stick" },
       keyword: "-at",
-      speech: "Đây là vần AT",
-      subtext: "Ghép phụ âm + at = từ mới",
+      speech: "This is the AT rhyme",
+      subtext: "Consonant combination + at = new word",
       audioUrl: "/audio/lessons/van-at/step-2-concept.mp3",
     },
     {
@@ -30,17 +30,17 @@ export const demoLessonVanAt: InteractiveLessonData = {
         { word: "bat", audioUrl: "/audio/lessons/van-at/kw-bat.mp3" },
         { word: "hat", audioUrl: "/audio/lessons/van-at/kw-hat.mp3" },
       ],
-      speech: "Xem nào!",
+      speech: "Let's see!",
       audioUrl: "/audio/lessons/van-at/step-3-demonstrate.mp3",
     },
     {
       type: "activity",
       mascot: { variant: "small", state: "idle" },
-      speech: "Sắp xếp nhé!",
+      speech: "Arrange it!",
       audioUrl: "/audio/lessons/van-at/step-4-activity.mp3",
       activity: {
         type: "SORT_ORDER",
-        prompt: "Sắp xếp từ ngắn đến dài",
+        prompt: "Sort from short to long",
         spec: {
           type: "SORT_ORDER",
           items: ["flat", "at", "cat", "that"],
@@ -53,14 +53,14 @@ export const demoLessonVanAt: InteractiveLessonData = {
       type: "reinforce",
       mascot: { variant: "small", state: "thinking", gesture: "thinking-scratch" },
       keyword: "-at",
-      speech: "Nhớ lại nào!",
-      subtext: "cat, bat, hat, flat đều có vần -at",
+      speech: "Remember!",
+      subtext: "cat, bat, hat, flat all rhyme -at",
       audioUrl: "/audio/lessons/van-at/step-5-reinforce.mp3",
     },
     {
       type: "celebrate",
       mascot: { variant: "small", state: "celebrating", gesture: "clapping" },
-      speech: "Giỏi lắm!",
+      speech: "Very good!",
       audioUrl: "/audio/lessons/van-at/step-6-celebrate.mp3",
       autoAdvanceMs: 3000,
     },

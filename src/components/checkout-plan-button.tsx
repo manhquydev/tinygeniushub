@@ -41,13 +41,13 @@ export function CheckoutPlanButton({ planCode, label, className }: CheckoutPlanB
 
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể tạo checkout session");
+        setError(body.error?.message ?? "Unable to create checkout session");
         return;
       }
 
       const checkoutUrl = body.data?.checkout?.checkoutUrl;
       if (typeof checkoutUrl !== "string" || checkoutUrl.length === 0) {
-        setError("Checkout URL không hợp lệ");
+        setError("Checkout URL is invalid");
         return;
       }
 
@@ -57,7 +57,7 @@ export function CheckoutPlanButton({ planCode, label, className }: CheckoutPlanB
       });
       window.location.assign(checkoutUrl);
     } catch (checkoutError) {
-      setError(checkoutError instanceof Error ? checkoutError.message : "Lỗi không xác định");
+      setError(checkoutError instanceof Error ? checkoutError.message : "Unknown error");
     } finally {
       setLoading(false);
     }
@@ -66,7 +66,7 @@ export function CheckoutPlanButton({ planCode, label, className }: CheckoutPlanB
   return (
     <div className="page-stack">
       <button type="button" onClick={startCheckout} disabled={loading} className={className ?? "solid-button"}>
-        {loading ? "Đang tạo checkout..." : label}
+        {loading ? "Creating checkout..." : label}
       </button>
       {error ? <p className="error-text">{error}</p> : null}
     </div>

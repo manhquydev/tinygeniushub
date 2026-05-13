@@ -4,9 +4,9 @@
  * ValuePropStrip - 3 visual benefit cards
  * 
  * Benefits:
- * 1. Lộ trình rõ ràng từ dễ đến khó (Seedling icon)
- * 2. Mở tầng mới theo tiến độ của bé (Cloud icon)
- * 3. Báo cáo tuần cho phụ huynh (Trophy icon)
+ * 1. Clear roadmap from easy to hard (Seedling icon)
+ * 2. Unlock new tiers based on child progress (Cloud icon)
+ * 3. Weekly report for parents (Trophy icon)
  * 
  * Responsive: 1 col mobile, 3 col desktop
  * Framer Motion entrance animations
@@ -18,18 +18,18 @@ import { Sprout, Cloud, Trophy } from "lucide-react";
 const benefits = [
   {
     icon: Sprout,
-    title: "Lộ trình rõ ràng",
-    description: "Từ dễ đến khó, phù hợp trình độ của bé",
+    title: "Clear roadmap",
+    description: "From easy to difficult, suitable for your child's level",
   },
   {
     icon: Cloud,
-    title: "Mở tầng theo tiến độ",
-    description: "Mỗi cột mốc đạt được mở khóa nội dung mới",
+    title: "Open floors according to progress",
+    description: "Each milestone reached unlocks new content",
   },
   {
     icon: Trophy,
-    title: "Báo cáo hàng tuần",
-    description: "Phụ huynh theo dõi tiến bộ của con",
+    title: "Weekly report",
+    description: "Parents monitor their children's progress",
   },
 ];
 

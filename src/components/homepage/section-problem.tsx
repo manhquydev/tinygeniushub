@@ -10,21 +10,21 @@ const PROBLEMS: ReadonlyArray<{
 }> = [
     {
       icon: MonitorPlay,
-      title: "Con chỉ xem cho vui, không học được gì",
+      title: "I just watch it for fun, I don't learn anything",
       description:
-        "Hầu hết app trẻ em chỉ là 'video giữ con ngồi yên' — không có lộ trình, không kiểm tra kiến thức. Sau 30 phút màn hình, con vẫn không nhớ gì.",
+        "Most children's apps are just 'keep your child still videos' — no roadmaps, no knowledge tests. After 30 minutes of screen time, I still don't remember anything.",
     },
     {
       icon: EyeOff,
-      title: "Ba mẹ không biết con có tiến bộ hay không",
+      title: "Parents do not know whether their children are progressing or not",
       description:
-        "Bạn cho con học mỗi ngày nhưng không có cách nào đo được con đã học được gì, học tới đâu, và tuần tới cần học gì tiếp theo.",
+        "You let your child study every day, but there is no way to measure what your child has learned, how much they have learned, and what they need to learn next week.",
     },
     {
       icon: Clock3,
-      title: "Muốn dạy con nhưng không có thời gian",
+      title: "Want to teach your children but don't have time",
       description:
-        "Công việc bận rộn, tối về mệt — ba mẹ cần một giải pháp gọn gàng, không đòi hỏi ngồi cạnh con suốt buổi. 15 phút có cấu trúc tốt hơn 1 giờ tự do.",
+        "Busy work, tired at night - parents need a neat solution that doesn't require sitting next to their child all day. 15 minutes of structure is better than 1 hour of free time.",
     },
   ];
 
@@ -34,9 +34,9 @@ export function SectionProblem() {
       <div className="hp-section-inner">
         <ScrollReveal>
           <div className="hp-section-heading">
-            <h2>Ba nỗi lo mà gần như mọi phụ huynh đều gặp</h2>
+            <h2>Three worries that nearly every parent has</h2>
             <p className="muted-text">
-              Bạn không đơn độc — đây là lý do nhiều ba mẹ vẫn chưa tìm được giải pháp học tại nhà thật sự hiệu quả.
+              You're not alone — this is why many parents still haven't found a truly effective homeschooling solution.
             </p>
           </div>
         </ScrollReveal>

@@ -39,7 +39,7 @@ export function DashboardMetricCards({ cards }: Props) {
               style={{ width: `${metric.progress}%` }}
             />
           </div>
-          <p className="mt-2 text-xs font-semibold text-slate-500">{metric.progress}% tiến độ mục tiêu</p>
+          <p className="mt-2 text-xs font-semibold text-slate-500">{metric.progress}% goal progress</p>
         </article>
       ))}
     </section>

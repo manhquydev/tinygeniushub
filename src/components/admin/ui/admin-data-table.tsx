@@ -34,7 +34,7 @@ type AdminDataTableProps<T> = {
 export function AdminDataTable<T extends Record<string, unknown>>({
   columns,
   data,
-  emptyMessage = "Không có dữ liệu",
+  emptyMessage = "No data available",
   pagination,
   className,
 }: AdminDataTableProps<T>) {
@@ -89,7 +89,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
               disabled={pagination.page <= 1}
               className="h-7 text-xs"
             >
-              Trước
+              Before
             </Button>
             <Button
               variant="outline"
@@ -98,7 +98,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
               disabled={pagination.page >= pagination.totalPages}
               className="h-7 text-xs"
             >
-              Tiếp
+              Next
             </Button>
           </div>
         </div>

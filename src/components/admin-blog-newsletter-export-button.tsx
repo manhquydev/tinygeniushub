@@ -17,7 +17,7 @@ export function AdminBlogNewsletterExportButton() {
 
     const payload = (await response.json()) as { subscribers: SubscriberRow[] };
     const csv =
-      "Email,Tên,Thời điểm đăng ký\n" +
+      "Email, Name, Registration time\\n" +
       payload.subscribers
         .map((subscriber) => `${subscriber.email},${subscriber.nameVi || ""},${subscriber.subscribedAt}`)
         .join("\n");
@@ -33,7 +33,7 @@ export function AdminBlogNewsletterExportButton() {
 
   return (
     <Button type="button" onClick={handleExport} className="bg-teal-600 hover:bg-teal-700">
-      Xuất CSV
+      Export CSV
     </Button>
   );
 }

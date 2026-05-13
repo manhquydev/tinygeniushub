@@ -12,7 +12,7 @@ interface HybridTransitionOverlayProps {
 
 /**
  * Crossfade overlay between video and interactive segments.
- * Shows "Đến lượt con!" text with bounce animation and optional audio cue.
+ * Shows "It's your turn!" text with bounce animation and optional audio cue.
  */
 export function HybridTransitionOverlay({ isActive, audioUrl, onComplete }: HybridTransitionOverlayProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
@@ -70,7 +70,7 @@ export function HybridTransitionOverlay({ isActive, audioUrl, onComplete }: Hybr
               lineHeight: 1.2,
             }}
           >
-            Đến lượt con! 🎯
+            It's your turn! 🎯
           </m.div>
         </m.div>
       )}

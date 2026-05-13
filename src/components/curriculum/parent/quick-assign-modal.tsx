@@ -115,18 +115,18 @@ export function QuickAssignModal({
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>📝 Thêm vào lịch học</DialogTitle>
+          <DialogTitle>📝 Add to class schedule</DialogTitle>
         </DialogHeader>
 
         {/* Step Indicator */}
         <div className="mb-4">
           <div className="flex justify-between text-xs text-slate-500 mb-2">
-            <span>Bước {stepProgress[step]}/4</span>
+            <span>Step {stepProgress[step]}/4</span>
             <span>
-              {step === "child" && "Chọn con"}
-              {step === "date" && "Chọn ngày"}
-              {step === "subjects" && "Chọn môn"}
-              {step === "confirm" && "Xác nhận"}
+              {step === "child" && "Choose your child"}
+              {step === "date" && "Select date"}
+              {step === "subjects" && "Choose a subject"}
+              {step === "confirm" && "Confirm"}
             </span>
           </div>
           <div className="flex gap-1">
@@ -148,7 +148,7 @@ export function QuickAssignModal({
         {/* Step: Select Child */}
         {step === "child" && (
           <div className="space-y-4">
-            <p className="text-sm text-slate-500">Chọn con để giao bài học:</p>
+            <p className="text-sm text-slate-500">Choose your child to give lessons to:</p>
             <div className="space-y-2">
               {children.map((child) => (
                 <button
@@ -175,7 +175,7 @@ export function QuickAssignModal({
               disabled={!selectedChildId}
               className="w-full"
             >
-              Tiếp theo
+              Next
             </Button>
           </div>
         )}
@@ -183,7 +183,7 @@ export function QuickAssignModal({
         {/* Step: Select Date */}
         {step === "date" && (
           <div className="space-y-4">
-            <p className="text-sm text-slate-500">Chọn ngày cho bài học:</p>
+            <p className="text-sm text-slate-500">Choose a date for the lesson:</p>
             <Calendar
               mode="single"
               selected={selectedDate}
@@ -194,10 +194,10 @@ export function QuickAssignModal({
             <div className="flex gap-2">
               <Button variant="outline" onClick={handleBack} className="flex-1">
                 <ChevronLeft className="h-4 w-4 mr-1" />
-                Quay lại
+                Come back
               </Button>
               <Button onClick={handleNext} className="flex-1">
-                Tiếp theo
+                Next
               </Button>
             </div>
           </div>
@@ -206,7 +206,7 @@ export function QuickAssignModal({
         {/* Step: Select Subjects */}
         {step === "subjects" && (
           <div className="space-y-4">
-            <p className="text-sm text-slate-500">Chọn môn học muốn giao:</p>
+            <p className="text-sm text-slate-500">Select the subject you want to assign:</p>
             <div className="grid grid-cols-2 gap-2">
               {lesson.packages.map((pkg) => (
                 <label
@@ -229,14 +229,14 @@ export function QuickAssignModal({
             <div className="flex gap-2">
               <Button variant="outline" onClick={handleBack} className="flex-1">
                 <ChevronLeft className="h-4 w-4 mr-1" />
-                Quay lại
+                Come back
               </Button>
               <Button
                 onClick={handleNext}
                 disabled={selectedSubjects.length === 0}
                 className="flex-1"
               >
-                Tiếp theo
+                Next
               </Button>
             </div>
           </div>
@@ -245,15 +245,15 @@ export function QuickAssignModal({
         {/* Step: Confirm */}
         {step === "confirm" && (
           <div className="space-y-4">
-            <p className="text-sm text-slate-500">Xác nhận giao việc:</p>
+            <p className="text-sm text-slate-500">Confirmation of job assignment:</p>
 
             <div className="rounded-lg bg-slate-50 p-4 space-y-3">
               <div className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4 text-slate-400" />
                 <div>
-                  <div className="text-xs text-slate-500">Bài học</div>
+                  <div className="text-xs text-slate-500">Lesson</div>
                   <div className="font-medium">
-                    Bài {lesson.lessonNumber}: {lesson.title || `Bài học ${lesson.lessonNumber}`}
+                    Lesson {lesson.lessonNumber}: {lesson.title || `Lesson ${lesson.lessonNumber}`}
                   </div>
                 </div>
               </div>
@@ -263,7 +263,7 @@ export function QuickAssignModal({
                   {selectedChild?.name.charAt(0)}
                 </div>
                 <div>
-                  <div className="text-xs text-slate-500">Học sinh</div>
+                  <div className="text-xs text-slate-500">Pupil</div>
                   <div className="font-medium">{selectedChild?.name}</div>
                 </div>
               </div>
@@ -271,7 +271,7 @@ export function QuickAssignModal({
               <div className="flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-slate-400" />
                 <div>
-                  <div className="text-xs text-slate-500">Ngày</div>
+                  <div className="text-xs text-slate-500">Day</div>
                   <div className="font-medium">
                     {format(selectedDate, "EEEE, dd/MM/yyyy", { locale: vi })}
                   </div>
@@ -279,7 +279,7 @@ export function QuickAssignModal({
               </div>
 
               <div>
-                <div className="text-xs text-slate-500 mb-1">Môn học</div>
+                <div className="text-xs text-slate-500 mb-1">Subject</div>
                 <div className="flex flex-wrap gap-1">
                   {selectedSubjects.map((code) => (
                     <Badge key={code} variant="secondary">
@@ -293,7 +293,7 @@ export function QuickAssignModal({
             <div className="flex gap-2">
               <Button variant="outline" onClick={handleBack} className="flex-1">
                 <ChevronLeft className="h-4 w-4 mr-1" />
-                Quay lại
+                Come back
               </Button>
               <Button
                 onClick={handleAssign}
@@ -301,11 +301,11 @@ export function QuickAssignModal({
                 className="flex-1"
               >
                 {isSubmitting ? (
-                  "Đang lưu..."
+                  "Saving..."
                 ) : (
                   <>
                     <Check className="mr-2 h-4 w-4" />
-                    Xác nhận
+                    Confirm
                   </>
                 )}
               </Button>

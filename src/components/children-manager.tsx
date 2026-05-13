@@ -80,7 +80,7 @@ function AvatarPicker({
               type="button"
               onClick={() => onSelectAvatar(avatar.id)}
               disabled={disabled}
-              aria-label={`Chọn nhân vật ${avatar.label}`}
+              aria-label={`Choose character${avatar.label}`}
               className={`rounded-2xl border bg-white p-2 text-left transition ${
                 selected
                   ? "border-teal-400 shadow-[0_10px_20px_rgba(13,148,136,0.18)] ring-2 ring-teal-300/70"
@@ -139,13 +139,14 @@ function ChildAvatar({
   const mascotVariant = resolveMascotVariant(resolvedAvatarId);
 
   return (
-    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-100 via-cyan-100 to-emerald-100 shadow-inner">      <Mascot
+    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-100 via-cyan-100 to-emerald-100 shadow-inner">
+      <Mascot
         variant={mascotVariant}
         state="happy"
         size={60}
         motionLevel={prefersReducedMotion ? "minimal" : "soft"}
         showBaseGlow={false}
-        title={`Nhân vật đại diện của ${nickname}`}
+        title={`Representative character of${nickname}`}
       />
     </div>
   );
@@ -314,13 +315,13 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
     event.preventDefault();
     const nicknameTrimmed = nickname.trim();
     if (!nicknameTrimmed) {
-      setError("Vui lòng nhập tên gọi thân mật của bé.");
+      setError("Please enter your baby's nickname.");
       setInfo(null);
       focusCreateSection();
       return;
     }
     if (reachedLimit) {
-      setError("Tài khoản đã có hồ sơ bé chính. Vui lòng chỉnh sửa hồ sơ hiện tại.");
+      setError("The account already has a primary baby profile. Please edit the current profile.");
       setInfo(null);
       focusCreateSection();
       return;
@@ -339,13 +340,13 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
 
       const body = (await response.json()) as ApiResponse<{ child: ChildSummary }>;
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể tạo hồ sơ bé.");
+        setError(body.error?.message ?? "Unable to create baby profile.");
         revealFeedback();
         return;
       }
 
       if (!body.data?.child) {
-        setError("Không thể tạo hồ sơ bé.");
+        setError("Unable to create baby profile.");
         revealFeedback();
         return;
       }
@@ -355,7 +356,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
       setNickname("");
       setAgeBand("3-4");
       setAvatarId(defaultAvatarId);
-      setInfo("Đã tạo hồ sơ bé thành công.");
+      setInfo("Baby profile created successfully.");
       spotlightChild(created.id);
       revealFeedback();
 
@@ -365,7 +366,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         });
       }
     } catch (createError) {
-      setError(createError instanceof Error ? createError.message : "Lỗi không xác định.");
+      setError(createError instanceof Error ? createError.message : "Unknown error.");
       revealFeedback();
     } finally {
       setLoading(false);
@@ -380,7 +381,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
 
     const editNicknameTrimmed = editNickname.trim();
     if (!editNicknameTrimmed) {
-      setError("Vui lòng nhập tên gọi thân mật của bé.");
+      setError("Please enter your baby's nickname.");
       setInfo(null);
       revealFeedback();
       return;
@@ -399,13 +400,13 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
 
       const body = (await response.json()) as ApiResponse<{ child: ChildSummary }>;
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể cập nhật hồ sơ bé.");
+        setError(body.error?.message ?? "Unable to update baby profile.");
         revealFeedback();
         return;
       }
 
       if (!body.data?.child) {
-        setError("Không thể cập nhật hồ sơ bé.");
+        setError("Unable to update baby profile.");
         revealFeedback();
         return;
       }
@@ -413,11 +414,11 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
       const updated = body.data.child as ChildSummary;
       setChildren((current) => current.map((child) => (child.id === updated.id ? updated : child)));
       cancelEdit();
-      setInfo("Đã cập nhật hồ sơ bé.");
+      setInfo("Baby profile updated.");
       spotlightChild(updated.id);
       revealFeedback();
     } catch (updateError) {
-      setError(updateError instanceof Error ? updateError.message : "Lỗi không xác định.");
+      setError(updateError instanceof Error ? updateError.message : "Unknown error.");
       revealFeedback();
     } finally {
       setLoading(false);
@@ -442,7 +443,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
 
       const body = (await response.json()) as ApiResponse<{ success: boolean }>;
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể xóa hồ sơ bé.");
+        setError(body.error?.message ?? "Baby profile cannot be deleted.");
         revealFeedback();
         return;
       }
@@ -452,7 +453,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         cancelEdit();
       }
       setPendingDeleteChild(null);
-      setInfo("Đã xóa hồ sơ bé.");
+      setInfo("Baby profile deleted.");
       revealFeedback();
 
       if (remainingCount === 0) {
@@ -463,7 +464,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         });
       }
     } catch (deleteError) {
-      setError(deleteError instanceof Error ? deleteError.message : "Lỗi không xác định.");
+      setError(deleteError instanceof Error ? deleteError.message : "Unknown error.");
       revealFeedback();
     } finally {
       setLoading(false);
@@ -475,14 +476,14 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
       <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
-            <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Quản lý hồ sơ bé</h2>
+            <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Manage baby records</h2>
             <p className="mt-1 text-sm leading-relaxed text-slate-500">
-              Mỗi tài khoản có {childLimit} hồ sơ bé chính, sử dụng xuyên suốt hành trình học tập.
+              Each account has a main {childLimit} child profile, used throughout the learning journey.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
-              {children.length}/{childLimit} hồ sơ
+              {children.length}/{childLimit} profiles
             </span>
             <button
               type="button"
@@ -490,7 +491,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
               className="inline-flex min-h-10 items-center justify-center gap-1 rounded-full border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:-translate-y-0.5"
             >
               <ChevronUp size={14} />
-              Đến form thêm hồ sơ
+              Go to the add profile form
             </button>
           </div>
         </div>
@@ -501,14 +502,14 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         className="rounded-3xl border border-slate-200/75 bg-gradient-to-br from-white via-slate-50 to-slate-100 p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]"
       >
         <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
-          <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">Thêm tài khoản con</h3>
+          <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">Add child accounts</h3>
           <p className="mt-1 text-sm text-slate-500">
-            Điền thông tin cơ bản để tạo hồ sơ học tập mới cho bé. Bước này đồng bộ với luồng thiết lập ban đầu.
+            Fill in basic information to create a new learning profile for your child. This step is in sync with the initial setup flow.
           </p>
 
           <form className="mt-4 space-y-4" onSubmit={handleCreate}>
             <AvatarPicker
-              label="Chọn nhân vật đại diện"
+              label="Choose an avatar"
               selectedAvatarId={avatarId}
               onSelectAvatar={setAvatarId}
               disabled={reachedLimit || loading}
@@ -517,14 +518,14 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
             />
 
             <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-600">
-              Nhân vật đã chọn: <span className="font-bold text-slate-900">{selectedCreateAvatar.label}</span>
+              Selected character: <span className="font-bold text-slate-900">{selectedCreateAvatar.label}</span>
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-[minmax(0,1fr)_180px]">
               <input
                 ref={createNicknameRef}
                 className={inputBaseClass}
-                placeholder="Tên gọi ở nhà"
+                placeholder="Name at home"
                 value={nickname}
                 onChange={(event) => setNickname(event.target.value)}
                 required
@@ -539,7 +540,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
               >
                 {ageBandOptions.map((option) => (
                   <option value={option} key={option}>
-                    {option} tuổi
+                    {option} years old
                   </option>
                 ))}
               </select>
@@ -548,8 +549,8 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="text-xs text-slate-500">
                 {reachedLimit
-                  ? "Bạn đã có hồ sơ chính. Có thể chỉnh sửa tên, độ tuổi và avatar ở danh sách bên dưới."
-                  : "Bạn có thể chỉnh sửa tên tuổi và avatar sau khi tạo hồ sơ."}
+                  ? "You already have your main profile. Name, age and avatar can be edited in the list below."
+                  : "You can edit your name and avatar after creating your profile."}
               </p>
               <button
                 type="submit"
@@ -557,7 +558,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 disabled={reachedLimit || loading}
               >
                 <PlusCircle size={18} />
-                {reachedLimit ? "Đã có hồ sơ chính" : loading ? "Đang tạo..." : "Thêm hồ sơ"}
+                {reachedLimit ? "Main profile is available" : loading ? "Creating..." : "Add profile"}
               </button>
             </div>
           </form>
@@ -581,14 +582,14 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         ref={listSectionRef}
         className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]"
       >
-        <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">Danh sách bé</h3>
+        <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">Baby list</h3>
         <p className="mt-1 text-sm leading-relaxed text-slate-500">
-          Bấm vào từng thẻ để chỉnh sửa nhanh, cập nhật nhân vật hoặc đưa bé vào bài học ngay.
+          Click on each card to quickly edit, update characters or take your child right into the lesson.
         </p>
 
         {children.length === 0 ? (
           <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm font-medium text-slate-500">
-            Chưa có hồ sơ bé nào. Hãy tạo hồ sơ đầu tiên ở phần trên.
+            There are no baby profiles yet. Let's create your first profile above.
           </div>
         ) : (
           <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -610,7 +611,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                   {isEditing ? (
                     <form className="space-y-3" onSubmit={handleUpdate}>
                       <AvatarPicker
-                        label="Đổi nhân vật đại diện"
+                        label="Change avatar"
                         selectedAvatarId={editAvatarId}
                         onSelectAvatar={setEditAvatarId}
                         disabled={loading}
@@ -619,7 +620,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                       />
 
                       <div className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-600">
-                        Đang chọn: <span className="font-semibold text-slate-900">{selectedEditAvatar.label}</span>
+                        Selecting: <span className="font-semibold text-slate-900">{selectedEditAvatar.label}</span>
                       </div>
 
                       <input
@@ -629,7 +630,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                         onChange={(event) => setEditNickname(event.target.value)}
                         required
                         disabled={loading}
-                        placeholder="Tên gọi ở nhà"
+                        placeholder="Name at home"
                       />
 
                       <select
@@ -640,7 +641,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                       >
                         {ageBandOptions.map((option) => (
                           <option value={option} key={option}>
-                            {option} tuổi
+                            {option} years old
                           </option>
                         ))}
                       </select>
@@ -652,7 +653,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                           disabled={loading}
                         >
                           <Check size={16} />
-                          {loading ? "Đang lưu..." : "Lưu"}
+                          {loading ? "Saving..." : "Save"}
                         </button>
                         <button
                           type="button"
@@ -661,7 +662,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                           disabled={loading}
                         >
                           <X size={16} />
-                          Hủy
+                          Cancel
                         </button>
                       </div>
                     </form>
@@ -672,7 +673,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                           <ChildAvatar avatarId={child.avatarId} nickname={child.nickname} prefersReducedMotion={prefersReducedMotion} />
                           <div className="min-w-0">
                             <p className="truncate text-lg font-black tracking-[-0.01em] text-slate-900">{child.nickname}</p>
-                            <p className="text-sm text-slate-500">Độ tuổi: {child.ageBand}</p>
+                            <p className="text-sm text-slate-500">Age: {child.ageBand}</p>
                           </div>
                         </div>
 
@@ -681,7 +682,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition hover:-translate-y-0.5"
                             onClick={() => beginEdit(child)}
                             disabled={loading}
-                            title="Sửa hồ sơ"
+                            title="Edit profile"
                           >
                             <Pencil size={15} />
                           </button>
@@ -689,7 +690,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-red-200 bg-red-50 text-red-600 transition hover:-translate-y-0.5"
                             onClick={() => askDelete(child)}
                             disabled={loading}
-                            title="Xóa hồ sơ"
+                            title="Delete profile"
                           >
                             <Trash2 size={15} />
                           </button>
@@ -701,7 +702,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                         className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
                       >
                         <PlayCircle size={16} />
-                        Vào bài học
+                        Go to the lesson
                       </Link>
                     </div>
                   )}
@@ -722,7 +723,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 setPendingDeleteChild(null);
               }
             }}
-            aria-label="Đóng xác nhận xóa"
+            aria-label="Close the deletion confirmation"
           />
           <div className="relative z-[1] w-full max-w-md rounded-3xl border border-slate-200 bg-white p-5 shadow-[0_24px_48px_rgba(15,23,42,0.28)]">
             <div className="flex items-start gap-3">
@@ -730,10 +731,10 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 <TriangleAlert size={18} />
               </span>
               <div>
-                <h4 className="text-lg font-black text-slate-900">Xác nhận xóa hồ sơ</h4>
+                <h4 className="text-lg font-black text-slate-900">Confirm profile deletion</h4>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                  Bạn sắp xóa hồ sơ của <span className="font-bold text-slate-900">{pendingDeleteChild.nickname}</span>.
-                  Hành động này không thể hoàn tác.
+                  You are about to delete the profile for <span className="font-bold text-slate-900">{pendingDeleteChild.nickname}</span>.
+                  This action cannot be undone.
                 </p>
               </div>
             </div>
@@ -745,7 +746,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 onClick={() => setPendingDeleteChild(null)}
                 disabled={loading}
               >
-                Hủy
+                Cancel
               </button>
               <button
                 type="button"
@@ -753,7 +754,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 onClick={handleDeleteConfirmed}
                 disabled={loading}
               >
-                {loading ? "Đang xóa..." : "Xóa hồ sơ"}
+                {loading ? "Deleting..." : "Delete profile"}
               </button>
             </div>
           </div>

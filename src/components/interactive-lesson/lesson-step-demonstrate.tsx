@@ -166,7 +166,7 @@ export function LessonStepDemonstrate({ step, onNext }: StepProps) {
             boxShadow: "0 4px 16px rgba(59,130,246,0.35)",
           }}
         >
-          Tiếp tục
+          Continue
         </button>
       ) : null}
     </div>

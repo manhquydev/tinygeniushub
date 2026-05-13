@@ -52,11 +52,11 @@ export function BlogToc({ headings }: { headings: Heading[] }) {
 
   return (
     <nav
-      aria-label="Mục lục bài viết"
+      aria-label="Table of contents of the article"
       className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
     >
       <h4 className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-500">
-        Mục lục
+        Index
       </h4>
       <ul className="space-y-2">
         {safeHeadings.map((heading) => {

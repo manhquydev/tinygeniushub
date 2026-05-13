@@ -62,12 +62,12 @@ export function ActivityPanel({
 
   const mascotMessage =
     result === "correct"
-      ? "Tuyệt vời, câu trả lời chính xác!"
+      ? "Great, correct answer!"
       : result === "wrong"
-      ? "Chưa đúng, con hãy thử lại nhé!"
+      ? "It's not right, please try again!"
       : activityLoading
-      ? "Đang chuẩn bị câu hỏi..."
-      : "Chọn câu trả lời đúng nhất bé nhé!";
+      ? "Preparing questions..."
+      : "Choose the most correct answer!";
 
   return (
     <div className="lp-main">
@@ -77,7 +77,7 @@ export function ActivityPanel({
         role="progressbar"
         aria-valuenow={activityIndex + 1}
         aria-valuemax={totalActivities}
-        aria-label={`Câu ${activityIndex + 1} trong ${totalActivities}`}
+        aria-label={`Sentence${activityIndex + 1} trong ${totalActivities}`}
       >
         {Array.from({ length: totalActivities }, (_, i) => (
           <span
@@ -117,7 +117,7 @@ export function ActivityPanel({
                 transition={{ repeat: Infinity, duration: 1.4, ease: "linear" }}
               />
             </div>
-            <span style={{ fontSize: "0.82rem", fontWeight: 600 }}>Đang tải câu hỏi...</span>
+            <span style={{ fontSize: "0.82rem", fontWeight: 600 }}>Loading questions...</span>
           </div>
         )}
 
@@ -126,7 +126,7 @@ export function ActivityPanel({
             {/* Question counter */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.65rem" }}>
               <span style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--lp-ink-muted)" }}>
-                Câu {activityIndex + 1}/{totalActivities}
+                Sentence {activityIndex + 1}/{totalActivities}
               </span>
               {/* Decorative track indicator dots */}
               <span style={{ display: "flex", gap: "3px" }} aria-hidden="true">
@@ -150,7 +150,7 @@ export function ActivityPanel({
 
         {!activityLoading && !currentActivity && (
           <p style={{ textAlign: "center", color: "var(--lp-ink-muted)", fontSize: "0.88rem", padding: "1rem 0" }}>
-            Bài học hoàn thành, không còn câu hỏi!
+            Lesson completed, no more questions!
           </p>
         )}
 
@@ -172,7 +172,7 @@ export function ActivityPanel({
                 transition={{ type: "spring", stiffness: 320, damping: 18 }}
               />
               <span className="lp-feedback-text">
-                {result === "correct" ? "Chính xác!" : "Thử lại nhé!"}
+                {result === "correct" ? "Exactly!" : "Try again!"}
               </span>
             </m.div>
           )}
@@ -191,7 +191,7 @@ export function ActivityPanel({
           >
             <Image
               src={STICKER_CORRECT}
-              alt="Tuyệt vời"
+              alt="Great"
               width={110}
               height={110}
               style={{ objectFit: "contain" }}
@@ -208,7 +208,7 @@ export function ActivityPanel({
           >
             <Image
               src={STICKER_WRONG}
-              alt="Thử lại"
+              alt="Retry"
               width={110}
               height={110}
               style={{ objectFit: "contain" }}

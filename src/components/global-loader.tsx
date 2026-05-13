@@ -12,7 +12,7 @@ export function GlobalLoader() {
       className="fixed inset-0 z-[220] grid place-items-center bg-slate-950/72 px-4 backdrop-blur-md"
       role="status"
       aria-live="polite"
-      aria-label="Đang tải nội dung"
+      aria-label="Loading content"
     >
       <div
         aria-hidden
@@ -31,7 +31,7 @@ export function GlobalLoader() {
         <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-slate-900/55">
           <Image
             src="/images/system/cloud-garden/system_loading_hero.png"
-            alt="Linh vật Cáo đang chạy trên đường cầu vồng để chuẩn bị bài học"
+            alt="The Fox mascot is running on the rainbow track to prepare for the lesson"
             width={1368}
             height={768}
             priority
@@ -40,9 +40,9 @@ export function GlobalLoader() {
         </div>
 
         <div className="grid gap-2">
-          <p className="text-sm font-semibold text-cyan-100 sm:text-base">Đang chuẩn bị hành trình học tập...</p>
+          <p className="text-sm font-semibold text-cyan-100 sm:text-base">Preparing for a learning journey...</p>
           <p className="text-xs text-slate-300/90 sm:text-sm">
-            Hệ thống đang nạp nội dung phù hợp cho bé, chỉ mất vài giây.
+            The system is loading appropriate content for your baby, it only takes a few seconds.
           </p>
         </div>
       </m.div>

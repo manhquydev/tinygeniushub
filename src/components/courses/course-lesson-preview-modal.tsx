@@ -316,21 +316,21 @@ export function CourseLessonPreviewModal({
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
-      aria-label={`Học thử: ${lessonTitle}`}
+      aria-label={`Try learning:${lessonTitle}`}
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => closeModal("backdrop")} />
 
       <div className="relative z-10 w-full max-w-2xl rounded-3xl bg-white shadow-2xl">
         <div className="flex items-start justify-between gap-3 p-5 pb-0">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700">Bài học thử</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700">Trial lesson</p>
             <h2 className="mt-1 text-lg font-extrabold text-slate-900">{lessonTitle}</h2>
           </div>
           <button
             type="button"
             onClick={() => closeModal("button")}
             className="rounded-full p-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
-            aria-label="Đóng"
+            aria-label="Close"
           >
             <X className="h-5 w-5" />
           </button>
@@ -340,7 +340,7 @@ export function CourseLessonPreviewModal({
           <div className="relative overflow-hidden rounded-2xl bg-slate-900" style={{ aspectRatio: "16/9" }}>
             {video.status === "loading" ? (
               <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-sm text-slate-400">Đang tải video...</p>
+                <p className="text-sm text-slate-400">Loading video...</p>
               </div>
             ) : null}
 
@@ -366,12 +366,12 @@ export function CourseLessonPreviewModal({
                 )
               ) : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
-                  <p className="font-bold text-white">Sẵn sàng xem thử</p>
+                  <p className="font-bold text-white">Ready to check it out</p>
                   <p className="text-sm leading-relaxed text-slate-300">
-                    Bấm bắt đầu để mở video học thử và kiểm tra mức phù hợp.
+                    Click start to open the trial video and check the appropriate level.
                   </p>
                   <button type="button" className="solid-button" onClick={() => void handleStartPreview()} disabled={startLoading}>
-                    {startLoading ? "Đang mở video..." : "Bắt đầu xem thử"}
+                    {startLoading ? "Opening video..." : "Start previewing"}
                   </button>
                 </div>
               )
@@ -380,25 +380,25 @@ export function CourseLessonPreviewModal({
             {video.status === "auth_required" ? (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
                 <p className="font-bold text-white">
-                  Cần đăng nhập để xem thử {COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu
+                  You need to log in to preview {COURSE_TRIAL_PREVIEW_LESSON_LIMIT} first lesson
                 </p>
                 <p className="text-sm leading-relaxed text-slate-300">
-                  Hãy đăng nhập để mở bài học thử và kiểm tra mức phù hợp trước khi mua.
+                  Please log in to open a trial lesson and check suitability before purchasing.
                 </p>
                 <Link href={loginHref} className="solid-button" onClick={() => closeModal("cta")}>
-                  Đăng nhập để xem thử
+                  Sign in to check it out
                 </Link>
               </div>
             ) : null}
 
             {video.status === "unavailable" ? (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-6 text-center">
-                <p className="font-bold text-white">Video tạm thời chưa sẵn sàng</p>
+                <p className="font-bold text-white">Video is temporarily not ready</p>
                 <p className="text-sm leading-relaxed text-slate-400">
-                  Bài học này chưa mở được video ngay lúc này. Hãy thử lại hoặc xem thông tin khóa để quyết định.
+                  This lesson cannot open the video right now. Please try again or view the lock information to decide.
                 </p>
                 <button type="button" className="solid-button text-sm" onClick={() => void handleReloadPreview()} disabled={startLoading}>
-                  {startLoading ? "Đang thử lại..." : "Tải lại video"}
+                  {startLoading ? "Trying again..." : "Reload the video"}
                 </button>
               </div>
             ) : null}
@@ -408,21 +408,21 @@ export function CourseLessonPreviewModal({
         <div className="grid gap-3 p-5">
           {lessonObjective ? (
             <p className="text-sm leading-relaxed text-slate-600">
-              <span className="font-semibold text-slate-900">Mục tiêu: </span>
+              <span className="font-semibold text-slate-900">Target:</span>
               {lessonObjective}
             </p>
           ) : null}
           <div className="flex flex-wrap items-center gap-3">
             <Link href={`/courses/${courseSlug}`} className="solid-button" onClick={() => closeModal("cta")}>
-              Xem trọn khóa để mua
+              View the full course to buy
             </Link>
             {video.status === "ready" ? (
               <button type="button" onClick={() => void handleReloadPreview()} className="ghost-button" disabled={startLoading}>
-                {startLoading ? "Đang tải lại..." : "Tải lại video"}
+                {startLoading ? "Reloading..." : "Reload the video"}
               </button>
             ) : null}
             <button type="button" onClick={() => closeModal("button")} className="ghost-button">
-              Đóng cửa sổ thử
+              Close the test window
             </button>
           </div>
         </div>

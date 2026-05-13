@@ -28,8 +28,8 @@ const DEFAULT_CONTEXT: MascotNarrativeContext = {
 
 export function MascotEcosystemShowcase({
   compact = false,
-  title = "Hệ Sinh Thái Linh Vật",
-  description = "Mỗi linh vật được gắn với một ngữ cảnh rõ ràng, tạo cảm xúc có chủ đích thay vì trang trí đại trà.",
+  title = "Mascot Ecosystem",
+  description = "Each mascot is associated with a clear context, creating intentional emotions instead of mass decoration.",
   context = DEFAULT_CONTEXT,
   scenes,
 }: MascotEcosystemShowcaseProps) {

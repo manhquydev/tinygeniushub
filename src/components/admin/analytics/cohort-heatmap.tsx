@@ -67,7 +67,7 @@ export function CohortHeatmap({ period = "weekly" }: CohortHeatmapProps) {
     return (
       <div className="flex items-center justify-center h-64 text-[var(--admin-text-secondary)]">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--admin-primary)] mr-3" />
-        Đang tải heatmap...
+        Loading heatmap...
       </div>
     );
   }
@@ -75,7 +75,7 @@ export function CohortHeatmap({ period = "weekly" }: CohortHeatmapProps) {
   if (cohorts.length === 0) {
     return (
       <div className="flex items-center justify-center h-64 text-[var(--admin-text-secondary)]">
-        Chưa có dữ liệu cohort
+        Cohort data are not available yet
       </div>
     );
   }
@@ -85,7 +85,7 @@ export function CohortHeatmap({ period = "weekly" }: CohortHeatmapProps) {
       {/* Header with period selector */}
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-[var(--admin-text-primary)]">
-          Phân tích Cohort
+          Cohort analysis
         </h3>
         <div className="flex gap-2">
           {(["daily", "weekly", "monthly"] as const).map((p) => (
@@ -99,9 +99,9 @@ export function CohortHeatmap({ period = "weekly" }: CohortHeatmapProps) {
                   : "bg-[var(--admin-sidebar-accent)] text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]"
               )}
             >
-              {p === "daily" && "Ngày"}
-              {p === "weekly" && "Tuần"}
-              {p === "monthly" && "Tháng"}
+              {p === "daily" && "Day"}
+              {p === "weekly" && "Week"}
+              {p === "monthly" && "Month"}
             </button>
           ))}
         </div>
@@ -114,7 +114,7 @@ export function CohortHeatmap({ period = "weekly" }: CohortHeatmapProps) {
           <div className="flex">
             {/* Empty corner cell */}
             <div className="w-28 flex-shrink-0 p-2 text-xs font-semibold text-[var(--admin-text-secondary)] border-b border-[var(--admin-card-border)]">
-              Cohort / Ngày
+              Cohort / Day
             </div>
             {/* Day headers */}
             {RETENTION_DAYS.map((day) => (
@@ -127,7 +127,7 @@ export function CohortHeatmap({ period = "weekly" }: CohortHeatmapProps) {
             ))}
             {/* Cohort size column */}
             <div className="w-20 flex-shrink-0 p-2 text-center text-xs font-semibold text-[var(--admin-text-secondary)] border-b border-[var(--admin-card-border)]">
-              Tổng
+              Total
             </div>
           </div>
 
@@ -169,29 +169,29 @@ export function CohortHeatmap({ period = "weekly" }: CohortHeatmapProps) {
       <div className="flex flex-wrap gap-3 text-xs text-[var(--admin-text-secondary)] mt-4">
         <div className="flex items-center gap-1">
           <span className="w-4 h-4 rounded bg-green-600" />
-          <span>≥ 80% (Rất tốt)</span>
+          <span>≥ 80% (Very good)</span>
         </div>
         <div className="flex items-center gap-1">
           <span className="w-4 h-4 rounded bg-green-500" />
-          <span>50-79% (Tốt)</span>
+          <span>50-79% (Good)</span>
         </div>
         <div className="flex items-center gap-1">
           <span className="w-4 h-4 rounded bg-yellow-400" />
-          <span>30-49% (Trung bình)</span>
+          <span>30-49% (Average)</span>
         </div>
         <div className="flex items-center gap-1">
           <span className="w-4 h-4 rounded bg-orange-400" />
-          <span>20-29% (Thấp)</span>
+          <span>20-29% (Low)</span>
         </div>
         <div className="flex items-center gap-1">
           <span className="w-4 h-4 rounded bg-red-600" />
-          <span>&lt; 20% (Cần cải thiện)</span>
+          <span>&lt; 20% (Needs improvement)</span>
         </div>
       </div>
 
       {/* Day 0 Note */}
       <p className="text-xs text-[var(--admin-text-secondary)] italic">
-        * Ngày 0 luôn hiển thị 100% vì đây là ngày đăng ký của cohort.
+        * Day 0 always shows 100% because it is the cohort signup day.
       </p>
     </div>
   );

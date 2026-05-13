@@ -4,7 +4,7 @@ import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 function formatDate(value: Date | null) {
   if (!value) {
-    return "Chưa xuất bản";
+    return "Unpublished";
   }
 
   return new Intl.DateTimeFormat("vi-VN", {
@@ -83,13 +83,13 @@ export function BlogCardFeatured({ post }: { post: BlogPostCardDTO }) {
               <span>·</span>
               <span>{formatDate(post.publishedAt)}</span>
               <span>·</span>
-              <span>{post.readingTimeMin} phút đọc</span>
+              <span>{post.readingTimeMin} min read</span>
             </div>
 
             <div className="flex items-center gap-4 text-sm text-slate-100">
-              <span>{post.viewCount} lượt xem</span>
+              <span>{post.viewCount} views</span>
               <span>·</span>
-              <span>{post.likeCount} lượt thích</span>
+              <span>{post.likeCount} likes</span>
             </div>
           </div>
         </div>

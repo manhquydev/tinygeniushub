@@ -29,7 +29,7 @@ function formatCohortDate(dateStr: string, period: string): string {
     case "daily":
       return date.toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit" });
     case "weekly":
-      return `Tuần ${date.toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit" })}`;
+      return `Week${date.toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit" })}`;
     case "monthly":
       return date.toLocaleDateString("vi-VN", { month: "2-digit", year: "numeric" });
     default:
@@ -69,17 +69,17 @@ export function CohortTable({ period = "weekly" }: CohortTableProps) {
     return (
       <div className="flex items-center justify-center h-40 text-[var(--admin-text-secondary)]">
         <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[var(--admin-primary)] mr-2" />
-        Đang tải dữ liệu cohorts...
+        Loading cohorts data...
       </div>
     );
   }
 
   const columns = [
     { key: "cohortDate", label: "Cohort" },
-    { key: "cohortSize", label: "Người dùng" },
+    { key: "cohortSize", label: "User" },
     ...RETENTION_DAYS.map((day) => ({
       key: `day${day}`,
-      label: `Ngày ${day}`,
+      label: `Day${day}`,
     })),
   ];
 
@@ -114,21 +114,21 @@ export function CohortTable({ period = "weekly" }: CohortTableProps) {
           size="sm"
           onClick={() => handlePeriodChange("daily")}
         >
-          Theo ngày
+          By date
         </Button>
         <Button
           variant={currentPeriod === "weekly" ? "default" : "outline"}
           size="sm"
           onClick={() => handlePeriodChange("weekly")}
         >
-          Theo tuần
+          By week
         </Button>
         <Button
           variant={currentPeriod === "monthly" ? "default" : "outline"}
           size="sm"
           onClick={() => handlePeriodChange("monthly")}
         >
-          Theo tháng
+          By month
         </Button>
       </div>
 
@@ -138,18 +138,18 @@ export function CohortTable({ period = "weekly" }: CohortTableProps) {
           render: (row: Record<string, string | number>) => renderCell(row, col.key),
         }))}
         data={data}
-        emptyMessage="Chưa có dữ liệu cohort"
+        emptyMessage="Cohort data are not available yet"
       />
 
       {/* Legend */}
       <div className="flex gap-4 text-xs text-[var(--admin-text-secondary)] mt-4">
         <div className="flex items-center gap-1">
           <span className="w-3 h-3 rounded-full bg-green-600" />
-          <span>&gt; 50% giữ chân</span>
+          <span>&gt; 50% retention</span>
         </div>
         <div className="flex items-center gap-1">
           <span className="w-3 h-3 rounded-full bg-red-600" />
-          <span>&lt; 20% giữ chân</span>
+          <span>&lt; 20% retention</span>
         </div>
       </div>
     </div>
