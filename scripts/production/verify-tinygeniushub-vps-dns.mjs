@@ -13,6 +13,7 @@ const NAMESERVERS = [
 ];
 
 const checks = [];
+const staleRecordFailures = [];
 
 function record(name, ok, detail) {
   checks.push({ name, ok, detail });
@@ -20,14 +21,36 @@ function record(name, ok, detail) {
   console.log(`[${mark}] ${name}: ${detail}`);
 }
 
-function hasOnlyExpectedIp(addresses) {
-  return addresses.length === 1 && addresses[0] === EXPECTED_IP;
+function hasOnlyExpectedIp(records) {
+  return records.length === 1 && records[0]?.address === EXPECTED_IP;
+}
+
+function formatAddressRecords(records) {
+  if (records.length === 0) {
+    return "no A records";
+  }
+
+  return records.map((record) => `${record.address} ttl=${record.ttl ?? "unknown"}`).join(", ");
+}
+
+function formatSoa(soa) {
+  if (!soa) {
+    return "SOA unavailable";
+  }
+
+  return `SOA serial=${soa.serial} ns=${soa.nsname}`;
 }
 
 async function resolveAFrom(nsAddress, host) {
   const resolver = new dns.Resolver();
   resolver.setServers([nsAddress]);
-  return (await resolver.resolve4(host)).sort();
+  return (await resolver.resolve4(host, { ttl: true })).sort((a, b) => a.address.localeCompare(b.address));
+}
+
+async function resolveSoaFrom(nsAddress) {
+  const resolver = new dns.Resolver();
+  resolver.setServers([nsAddress]);
+  return resolver.resolveSoa(DOMAIN);
 }
 
 async function checkAuthoritativeDns() {
@@ -41,10 +64,32 @@ async function checkAuthoritativeDns() {
     }
 
     for (const nsAddress of nsAddresses.sort()) {
+      let soa = null;
+      try {
+        soa = await resolveSoaFrom(nsAddress);
+      } catch {
+        // Keep A-record checks useful even when SOA lookup fails.
+      }
+
       for (const host of [DOMAIN, WWW_DOMAIN]) {
         try {
-          const addresses = await resolveAFrom(nsAddress, host);
-          record(`${host} @ ${ns} (${nsAddress})`, hasOnlyExpectedIp(addresses), addresses.join(", "));
+          const records = await resolveAFrom(nsAddress, host);
+          const ok = hasOnlyExpectedIp(records);
+          const staleAddresses = records
+            .map((item) => item.address)
+            .filter((address) => address !== EXPECTED_IP);
+          const detail = `${formatAddressRecords(records)}; ${formatSoa(soa)}`;
+          record(`${host} @ ${ns} (${nsAddress})`, ok, detail);
+
+          if (!ok && staleAddresses.length > 0) {
+            staleRecordFailures.push({
+              host,
+              ns,
+              nsAddress,
+              staleAddresses,
+              soa,
+            });
+          }
         } catch (error) {
           record(`${host} @ ${ns} (${nsAddress})`, false, error.message);
         }
@@ -76,7 +121,11 @@ async function checkHttp() {
       `${response.status} ${response.statusText} location=${response.headers.get("location") ?? ""}`,
     );
   } catch (error) {
-    record(`https://${DOMAIN}/`, false, error.message);
+    record(
+      `https://${DOMAIN}/`,
+      false,
+      `${error.message}; likely stale authoritative A records if DNS checks above failed`,
+    );
   }
 
   try {
@@ -111,6 +160,24 @@ await checkHttp();
 
 const failed = checks.filter((check) => !check.ok);
 if (failed.length > 0) {
+  if (staleRecordFailures.length > 0) {
+    console.error("\nDNS provider action required:");
+    console.error(`- Keep only A ${EXPECTED_IP} for ${DOMAIN} and ${WWW_DOMAIN}.`);
+
+    const stalePairs = new Set();
+    for (const failure of staleRecordFailures) {
+      for (const address of failure.staleAddresses) {
+        stalePairs.add(`${failure.host} A ${address}`);
+      }
+    }
+
+    for (const pair of [...stalePairs].sort()) {
+      console.error(`- Remove stale ${pair}`);
+    }
+
+    console.error("- Do not SSH into stale IPs; they are not the approved project VPS.");
+  }
+
   console.error(`\n${failed.length} production verification check(s) failed.`);
   process.exit(1);
 }
