@@ -56,6 +56,10 @@ Public resolver sample on 2026-05-14:
 - `208.67.222.222` returned `tinygeniushubvn.tech -> 165.22.211.19, 165.22.48.193`
 - `208.67.222.222` returned `www.tinygeniushubvn.tech -> 165.22.211.19`
 
+## DNS Automation Check
+
+No usable DNS automation credential was found in the local environment, GitHub-visible configuration, VPS environment files, or project scripts/docs. Local CLIs available include `wrangler`, `gh`, and `gcloud`, but the active authoritative nameservers are OrderBox (`tech-domains.*.orderbox-dns.com`), not Cloudflare or Google Cloud DNS. The project server cannot remove these records without OrderBox/registrar access.
+
 ## Required DNS Provider Action
 
 In OrderBox/DNS provider, remove all stale A records:
