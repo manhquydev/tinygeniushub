@@ -45,6 +45,34 @@ function formatSoa(soa) {
   return `SOA serial=${soa.serial} ns=${soa.nsname}`;
 }
 
+function formatLogicBoxesHost(host) {
+  if (host === DOMAIN) {
+    return "";
+  }
+
+  if (host === WWW_DOMAIN) {
+    return "www";
+  }
+
+  return host.endsWith(`.${DOMAIN}`) ? host.slice(0, -DOMAIN.length - 1) : host;
+}
+
+function formatDeleteIpv4RecordUrl(host, address) {
+  const params = new URLSearchParams({
+    "auth-userid": "ORDERBOX_AUTH_USERID",
+    "api-key": "ORDERBOX_API_KEY",
+    "domain-name": DOMAIN,
+    value: address,
+  });
+  const logicBoxesHost = formatLogicBoxesHost(host);
+
+  if (logicBoxesHost) {
+    params.set("host", logicBoxesHost);
+  }
+
+  return `https://test.httpapi.com/api/dns/manage/delete-ipv4-record.json?${params}`;
+}
+
 async function resolveAFrom(nsAddress, host) {
   const resolver = new dns.Resolver();
   resolver.setServers([nsAddress]);
@@ -177,6 +205,15 @@ if (failed.length > 0) {
 
     for (const pair of [...stalePairs].sort()) {
       console.error(`- Remove stale ${pair}`);
+    }
+
+    console.error("\nOrderBox/LogicBoxes cleanup hints:");
+    console.error("- Control Panel -> domain order -> DNS Service -> Manage DNS -> A Records.");
+    console.error(`- Search API: https://test.httpapi.com/api/dns/manage/search-records.json?auth-userid=ORDERBOX_AUTH_USERID&api-key=ORDERBOX_API_KEY&domain-name=${DOMAIN}&type=A&no-of-records=50&page-no=1`);
+
+    for (const pair of [...stalePairs].sort()) {
+      const [host, , address] = pair.split(" ");
+      console.error(`- Delete API (${pair}): POST ${formatDeleteIpv4RecordUrl(host, address)}`);
     }
 
     console.error("- Do not SSH into stale IPs; they are not the approved project VPS.");
