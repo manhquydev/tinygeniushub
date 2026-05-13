@@ -3,13 +3,13 @@ import { expect, test } from "@playwright/test";
 const MOCK_COURSE = {
   id: "course-e2e-1",
   slug: "toan-tu-duy-co-ban",
-  title: "Toán Tư Duy Cơ Bản",
-  description: "Khoá học Toán tư duy cho bé 2-4 tuổi",
+  title: "Basic Math Thinking",
+  description: "Mental Math course for 2-4 year olds",
   price: 299000,
   status: "PUBLISHED",
   lessons: [
-    { id: "cl-1", title: "Bài 1: Đếm số", isPreview: true, order: 1 },
-    { id: "cl-2", title: "Bài 2: So sánh", isPreview: false, order: 2 },
+    { id: "cl-1", title: "Lesson 1: Counting numbers", isPreview: true, order: 1 },
+    { id: "cl-2", title: "Lesson 2: Comparison", isPreview: false, order: 2 },
   ],
 };
 

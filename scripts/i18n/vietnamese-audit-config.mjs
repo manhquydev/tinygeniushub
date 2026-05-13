@@ -117,5 +117,4 @@ export const excludedNamePatterns = [
   /\.dump$/i,
 ];
 
-export const vietnameseRegex =
-  /[ăâđêôơưáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵĂÂĐÊÔƠƯÁÀẢÃẠẤẦẨẪẬẮẰẲẴẶÉÈẺẼẸẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌỐỒỔỖỘỚỜỞỠỢÚÙỦŨỤỨỪỬỮỰÝỲỶỸỴ]/u;
+export const vietnameseRegex = new RegExp("[\\u00c0-\\u024f\\u1e00-\\u1eff]", "u");

@@ -17,8 +17,8 @@
 SELECT slug, title, expected_level, expected_phase,
        (expected_level IS NULL OR title ILIKE '%' || expected_level || '%') AS level_ok,
        (expected_phase IS NULL OR (
-          (expected_phase = 'starter' AND (title ILIKE '%khởi động%' OR title ILIKE '%starter%' OR title ILIKE '%intro%')) OR
-          (expected_phase = 'builder' AND (title ILIKE '%xây nền%' OR title ILIKE '%nền tảng%' OR title ILIKE '%builder%' OR title ILIKE '%foundation%'))
+          (expected_phase = 'starter' AND (title ILIKE '%startup%' OR title ILIKE '%starter%' OR title ILIKE '%intro%')) OR
+          (expected_phase = 'builder' AND (title ILIKE '%foundation%' OR title ILIKE '%platform%' OR title ILIKE '%builder%' OR title ILIKE '%foundation%'))
        )) AS phase_ok
 FROM base
 ORDER BY slug;

@@ -23,16 +23,16 @@ export interface LessonVideoData {
 export const lessonVideoData: LessonVideoData[] = [
   {
     id: "lesson-01",
-    title: "Âm /a/ và /m/",
-    objective: "Nhận biết và phát âm đúng âm /a/ và /m/",
+    title: "Sounds /a/ and /m/",
+    objective: "Recognize and pronounce sounds /a/ and /m/ correctly",
     mascotVariant: "big",
     durationSeconds: 28,
     sections: [
       {
         type: "intro",
         durationMs: 3000,
-        label: "Bài 1: Âm /a/ và /m/",
-        sublabel: "Cùng học với Cú Mẹ nhé!",
+        label: "Lesson 1: Sounds /a/ and /m/",
+        sublabel: "Let's study with Mother Owl!",
         mascotSequence: [
           { state: "happy", gesture: "waving", duration: 3000 },
         ],
@@ -40,8 +40,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "teach",
         durationMs: 10000,
-        label: "Học âm /a/",
-        sublabel: "Miệng mở rộng, phát âm: A - A - A",
+        label: "Learn the /a/ sound",
+        sublabel: "Mouth wide open, pronunciation: A - A - A",
         mascotSequence: [
           { state: "idle", gesture: "pointing", actionProp: "flashcard", duration: 4000 },
           { state: "thinking", gesture: "nodding", actionProp: "flashcard", duration: 3000 },
@@ -51,8 +51,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "activity",
         durationMs: 9000,
-        label: "Thực hành",
-        sublabel: "Con hãy lặp lại theo Cú Mẹ: /a/ /m/ /am/",
+        label: "Practice",
+        sublabel: "Please repeat after Mother Owl: /a/ /m/ /am/",
         mascotSequence: [
           { state: "playful", gesture: "clapping", duration: 3000 },
           { state: "excited", gesture: "nodding", actionProp: "flashcard", duration: 3000 },
@@ -62,8 +62,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "celebrate",
         durationMs: 3000,
-        label: "Xuất sắc!",
-        sublabel: "Con đã học được âm /a/ và /m/",
+        label: "Excellent!",
+        sublabel: "I have learned the sounds /a/ and /m/",
         mascotSequence: [
           { state: "celebrating", gesture: "clapping", duration: 3000 },
         ],
@@ -71,7 +71,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "outro",
         durationMs: 3000,
-        label: "Hẹn gặp lại!",
+        label: "See you soon!",
         mascotSequence: [
           { state: "happy", gesture: "waving", duration: 3000 },
         ],
@@ -80,16 +80,16 @@ export const lessonVideoData: LessonVideoData[] = [
   },
   {
     id: "lesson-02",
-    title: "Điền chữ CVC",
-    objective: "Luyện tập điền chữ vào mẫu phụ âm - nguyên âm - phụ âm",
+    title: "Fill in the letters CVC",
+    objective: "Practice filling in letters in the consonant - vowel - consonant pattern",
     mascotVariant: "sister",
     durationSeconds: 30,
     sections: [
       {
         type: "intro",
         durationMs: 3000,
-        label: "Bài 2: Điền chữ CVC",
-        sublabel: "Cú Chị hướng dẫn con nhé!",
+        label: "Lesson 2: Fill in CVC",
+        sublabel: "Owl Please guide me!",
         mascotSequence: [
           { state: "happy", gesture: "waving", duration: 3000 },
         ],
@@ -97,8 +97,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "teach",
         durationMs: 11000,
-        label: "Cấu trúc CVC",
-        sublabel: "C - V - C: phụ âm + nguyên âm + phụ âm",
+        label: "CVC structure",
+        sublabel: "C - V - C: consonant + vowel + consonant",
         mascotSequence: [
           { state: "idle", gesture: "pointing", actionProp: "writing", duration: 4000 },
           { state: "thinking", gesture: "thinking-scratch", actionProp: "writing", duration: 4000 },
@@ -108,7 +108,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "activity",
         durationMs: 10000,
-        label: "Điền vào chỗ trống",
+        label: "Fill in the blanks",
         sublabel: "c_t → cat, d_g → dog, b_d → bed",
         mascotSequence: [
           { state: "playful", gesture: "pointing", actionProp: "writing", duration: 4000 },
@@ -119,8 +119,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "celebrate",
         durationMs: 3000,
-        label: "Giỏi lắm!",
-        sublabel: "Con đã biết điền chữ CVC rồi!",
+        label: "Very good!",
+        sublabel: "I already know how to fill in CVC!",
         mascotSequence: [
           { state: "celebrating", gesture: "clapping", duration: 3000 },
         ],
@@ -128,7 +128,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "outro",
         durationMs: 3000,
-        label: "Hẹn gặp lại!",
+        label: "See you soon!",
         mascotSequence: [
           { state: "love", gesture: "waving", duration: 3000 },
         ],
@@ -137,16 +137,16 @@ export const lessonVideoData: LessonVideoData[] = [
   },
   {
     id: "lesson-03",
-    title: "Nghe âm /b/",
-    objective: "Nhận biết âm /b/ trong các từ tiếng Anh",
+    title: "Listen to the sound /b/",
+    objective: "Recognize the /b/ sound in English words",
     mascotVariant: "dad",
     durationSeconds: 29,
     sections: [
       {
         type: "intro",
         durationMs: 3000,
-        label: "Bài 3: Nghe âm /b/",
-        sublabel: "Cú Bố cùng con luyện tai nhé!",
+        label: "Lesson 3: Listen to the sound /b/",
+        sublabel: "Owl Dad, let's practice your ears with me!",
         mascotSequence: [
           { state: "happy", gesture: "waving", duration: 3000 },
         ],
@@ -154,7 +154,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "teach",
         durationMs: 10000,
-        label: "Âm /b/ nghe như thế nào?",
+        label: "How does the /b/ sound sound?",
         sublabel: "Ball - Bus - Book - Baby",
         mascotSequence: [
           { state: "idle", gesture: "pointing", actionProp: "pointing-stick", duration: 4000 },
@@ -165,8 +165,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "activity",
         durationMs: 10000,
-        label: "Con nghe và chọn",
-        sublabel: "Từ nào bắt đầu bằng âm /b/?",
+        label: "I listen and choose",
+        sublabel: "Which word starts with the sound /b/?",
         mascotSequence: [
           { state: "playful", gesture: "pointing", duration: 3000 },
           { state: "surprised", gesture: "nodding", duration: 4000 },
@@ -176,8 +176,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "celebrate",
         durationMs: 3000,
-        label: "Tuyệt vời!",
-        sublabel: "Con đã nhận ra âm /b/ rồi!",
+        label: "Great!",
+        sublabel: "I recognized the /b/ sound!",
         mascotSequence: [
           { state: "celebrating", gesture: "clapping", duration: 3000 },
         ],
@@ -185,7 +185,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "outro",
         durationMs: 3000,
-        label: "Hẹn gặp lại!",
+        label: "See you soon!",
         mascotSequence: [
           { state: "proud", gesture: "waving", duration: 3000 },
         ],
@@ -194,16 +194,16 @@ export const lessonVideoData: LessonVideoData[] = [
   },
   {
     id: "lesson-04",
-    title: "Vần -at",
-    objective: "Đọc và viết các từ có vần -at",
+    title: "Rhyme -at",
+    objective: "Read and write words that rhyme -at",
     mascotVariant: "small",
     durationSeconds: 27,
     sections: [
       {
         type: "intro",
         durationMs: 3000,
-        label: "Bài 4: Vần -at",
-        sublabel: "Cú Con cùng học vần nhé!",
+        label: "Lesson 4: Rhyme -at",
+        sublabel: "Owl Let's learn rhymes together!",
         mascotSequence: [
           { state: "excited", gesture: "waving", duration: 3000 },
         ],
@@ -211,7 +211,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "teach",
         durationMs: 9000,
-        label: "Vần -at",
+        label: "Rhyme -at",
         sublabel: "cat - bat - hat - mat - rat",
         mascotSequence: [
           { state: "idle", gesture: "pointing", actionProp: "flashcard", duration: 3000 },
@@ -222,8 +222,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "activity",
         durationMs: 9000,
-        label: "Đọc to nào!",
-        sublabel: "Con đọc to từng từ: cat, bat, hat",
+        label: "Read it out loud!",
+        sublabel: "I read each word out loud: cat, bat, hat",
         mascotSequence: [
           { state: "excited", gesture: "pointing", duration: 3000 },
           { state: "happy", gesture: "clapping", duration: 3000 },
@@ -233,8 +233,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "celebrate",
         durationMs: 3000,
-        label: "Xuất sắc!",
-        sublabel: "Con đọc vần -at rất giỏi!",
+        label: "Excellent!",
+        sublabel: "You read the -at rhyme very well!",
         mascotSequence: [
           { state: "celebrating", gesture: "clapping", duration: 3000 },
         ],
@@ -242,7 +242,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "outro",
         durationMs: 3000,
-        label: "Hẹn gặp lại!",
+        label: "See you soon!",
         mascotSequence: [
           { state: "happy", gesture: "waving", duration: 3000 },
         ],
@@ -251,16 +251,16 @@ export const lessonVideoData: LessonVideoData[] = [
   },
   {
     id: "lesson-05",
-    title: "Âm ngắn /e/",
-    objective: "Nhận biết và phát âm chính xác nguyên âm ngắn /e/",
+    title: "Short sound /e/",
+    objective: "Recognize and pronounce the short vowel /e/ correctly",
     mascotVariant: "duo",
     durationSeconds: 32,
     sections: [
       {
         type: "intro",
         durationMs: 3000,
-        label: "Bài 5: Âm ngắn /e/",
-        sublabel: "Cú Mẹ và Cú Em dạy con nhé!",
+        label: "Lesson 5: Short sound /e/",
+        sublabel: "Mom Owl and Baby Owl, please teach me!",
         mascotSequence: [
           { state: "happy", gesture: "waving", duration: 3000 },
         ],
@@ -268,7 +268,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "teach",
         durationMs: 12000,
-        label: "Nguyên âm /e/",
+        label: "Vowel /e/",
         sublabel: "egg - bed - red - ten - hen",
         mascotSequence: [
           { state: "idle", gesture: "pointing", actionProp: "flashcard", duration: 4000 },
@@ -279,8 +279,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "activity",
         durationMs: 11000,
-        label: "Tìm từ có âm /e/",
-        sublabel: "egg, apple, bed, cat, ten → chọn từ có âm /e/",
+        label: "Find words with /e/ sound",
+        sublabel: "egg, apple, bed, cat, ten → choose the word with /e/ sound",
         mascotSequence: [
           { state: "playful", gesture: "thinking-scratch", duration: 4000 },
           { state: "surprised", gesture: "pointing", duration: 4000 },
@@ -290,8 +290,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "celebrate",
         durationMs: 3000,
-        label: "Tuyệt lắm!",
-        sublabel: "Con đã thuộc âm /e/ rồi đó!",
+        label: "Great!",
+        sublabel: "I already memorize the /e/ sound!",
         mascotSequence: [
           { state: "celebrating", gesture: "clapping", duration: 3000 },
         ],
@@ -299,7 +299,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "outro",
         durationMs: 3000,
-        label: "Hẹn gặp lại!",
+        label: "See you soon!",
         mascotSequence: [
           { state: "love", gesture: "waving", duration: 3000 },
         ],
@@ -308,16 +308,16 @@ export const lessonVideoData: LessonVideoData[] = [
   },
   {
     id: "lesson-06",
-    title: "Blends và Digraphs",
-    objective: "Phân biệt blends (ch, sh, th) và digraphs (bl, cl, fl)",
+    title: "Blends and Digraphs",
+    objective: "Distinguish between blends (ch, sh, th) and digraphs (bl, cl, fl)",
     mascotVariant: "dad",
     durationSeconds: 33,
     sections: [
       {
         type: "intro",
         durationMs: 3000,
-        label: "Bài 6: Blends và Digraphs",
-        sublabel: "Cú Bố giải thích sự khác biệt!",
+        label: "Lesson 6: Blends and Digraphs",
+        sublabel: "Owl Dad explains the difference!",
         mascotSequence: [
           { state: "proud", gesture: "waving", duration: 3000 },
         ],
@@ -325,7 +325,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "teach",
         durationMs: 12000,
-        label: "Blends: 2 âm ghép lại",
+        label: "Blends: 2 sounds combined",
         sublabel: "bl → black, cl → clock, fl → flag",
         mascotSequence: [
           { state: "idle", gesture: "pointing", actionProp: "magnifying-glass", duration: 4000 },
@@ -336,7 +336,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "activity",
         durationMs: 12000,
-        label: "Digraphs: 2 chữ = 1 âm mới",
+        label: "Digraphs: 2 words = 1 new sound",
         sublabel: "ch → chair, sh → ship, th → three",
         mascotSequence: [
           { state: "excited", gesture: "pointing", actionProp: "magnifying-glass", duration: 4000 },
@@ -347,8 +347,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "celebrate",
         durationMs: 3000,
-        label: "Thông minh quá!",
-        sublabel: "Con phân biệt được blends và digraphs!",
+        label: "So smart!",
+        sublabel: "I can distinguish between blends and digraphs!",
         mascotSequence: [
           { state: "celebrating", gesture: "clapping", duration: 3000 },
         ],
@@ -356,7 +356,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "outro",
         durationMs: 3000,
-        label: "Hẹn gặp lại!",
+        label: "See you soon!",
         mascotSequence: [
           { state: "proud", gesture: "waving", duration: 3000 },
         ],
@@ -366,15 +366,15 @@ export const lessonVideoData: LessonVideoData[] = [
   {
     id: "lesson-07",
     title: "Sight Words",
-    objective: "Nhận diện ngay lập tức các sight words phổ biến",
+    objective: "Instantly identify common sight words",
     mascotVariant: "big",
     durationSeconds: 34,
     sections: [
       {
         type: "intro",
         durationMs: 3000,
-        label: "Bài 7: Sight Words",
-        sublabel: "Cả nhà cùng ôn tổng kết!",
+        label: "Lesson 7: Sight Words",
+        sublabel: "Let's review the summary together!",
         mascotSequence: [
           { state: "excited", gesture: "waving", duration: 3000 },
         ],
@@ -382,7 +382,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "teach",
         durationMs: 12000,
-        label: "Sight Words là gì?",
+        label: "What are Sight Words?",
         sublabel: "the, a, and, is, it, in, on, at, to, of",
         mascotSequence: [
           { state: "idle", gesture: "pointing", actionProp: "trophy", duration: 4000 },
@@ -393,8 +393,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "activity",
         durationMs: 13000,
-        label: "Đọc nhanh như chớp!",
-        sublabel: "Nhìn và đọc ngay: the - is - and - to - a",
+        label: "Read lightning fast!",
+        sublabel: "Look and read now: the - is - and - to - a",
         mascotSequence: [
           { state: "excited", gesture: "clapping", duration: 4000 },
           { state: "playful", gesture: "pointing", actionProp: "trophy", duration: 5000 },
@@ -404,8 +404,8 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "celebrate",
         durationMs: 3000,
-        label: "Chúc mừng!",
-        sublabel: "Con đã hoàn thành khóa học!",
+        label: "Congratulations!",
+        sublabel: "I have completed the course!",
         mascotSequence: [
           { state: "celebrating", gesture: "clapping", actionProp: "trophy", duration: 3000 },
         ],
@@ -413,7 +413,7 @@ export const lessonVideoData: LessonVideoData[] = [
       {
         type: "outro",
         durationMs: 3000,
-        label: "Cảm ơn và hẹn gặp lại!",
+        label: "Thank you and see you again!",
         mascotSequence: [
           { state: "love", gesture: "waving", actionProp: "trophy", duration: 3000 },
         ],

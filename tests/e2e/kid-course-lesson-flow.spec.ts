@@ -207,7 +207,7 @@ test.describe("Kid Course Lesson Flow", () => {
     await page.waitForTimeout(6500);
     await expect(watchedPercent).toHaveText(/0%/);
 
-    const exitButton = scene.getByRole("button", { name: /thoát bài học|thoat bai hoc/i });
+    const exitButton = scene.getByRole("button", { name: /thoat bai hoc|thoat bai hoc/i });
     await expect(exitButton).toBeVisible();
     await exitButton.click();
 

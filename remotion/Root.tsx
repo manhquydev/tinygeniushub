@@ -28,7 +28,7 @@ export function RemotionRoot() {
         width={1920}
         height={1080}
         defaultProps={{
-          title: "Bài học số 1",
+          title: "Lesson number 1",
           variant: "big" as MascotVariant,
           sequence: [
             { state: "happy" as const, gesture: "waving" as const, duration: 3000 },

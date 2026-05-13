@@ -28,19 +28,19 @@ test("post-login parent nav shows activation links and support menu", async ({ p
   await expect(page).toHaveURL(/\/(parent\/dashboard|setup)(\?.*)?$/);
 
   const desktopNav = page.locator("header.app-nav .nav-links-desktop");
-  await expect(desktopNav.getByRole("link", { name: "Tổng quan" })).toBeVisible();
-  await expect(desktopNav.getByRole("link", { name: "Hồ sơ bé" })).toBeVisible();
-  await expect(desktopNav.getByRole("link", { name: "Khóa học" })).toBeVisible();
-  await expect(desktopNav.getByRole("link", { name: "Báo cáo" })).toBeVisible();
-  await expect(desktopNav.getByRole("link", { name: "Gói dịch vụ" })).toBeVisible();
-  await expect(desktopNav.getByRole("link", { name: "Giới thiệu" })).toHaveCount(0);
+  await expect(desktopNav.getByRole("link", { name: "Overview" })).toBeVisible();
+  await expect(desktopNav.getByRole("link", { name: "Baby profile" })).toBeVisible();
+  await expect(desktopNav.getByRole("link", { name: "Course" })).toBeVisible();
+  await expect(desktopNav.getByRole("link", { name: "Report" })).toBeVisible();
+  await expect(desktopNav.getByRole("link", { name: "Service pack" })).toBeVisible();
+  await expect(desktopNav.getByRole("link", { name: "Introduce" })).toHaveCount(0);
 
-  await desktopNav.getByRole("button", { name: "Trợ giúp" }).click();
-  const supportMenu = page.getByRole("menu", { name: "Menu trợ giúp" });
+  await desktopNav.getByRole("button", { name: "Help" }).click();
+  const supportMenu = page.getByRole("menu", { name: "Help menu" });
   await expect(supportMenu.getByRole("menuitem", { name: "Blog" })).toBeVisible();
-  await expect(supportMenu.getByRole("menuitem", { name: "Giới thiệu" })).toBeVisible();
-  await expect(supportMenu.getByRole("menuitem", { name: "Trợ giúp" })).toBeVisible();
+  await expect(supportMenu.getByRole("menuitem", { name: "Introduce" })).toBeVisible();
+  await expect(supportMenu.getByRole("menuitem", { name: "Help" })).toBeVisible();
 
-  await desktopNav.getByRole("button", { name: "Đăng xuất" }).click();
+  await desktopNav.getByRole("button", { name: "Sign out" }).click();
   await expect(page).toHaveURL(/\/$/);
 });

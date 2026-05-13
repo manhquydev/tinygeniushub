@@ -1,5 +1,5 @@
-const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, 
-        Header, Footer, AlignmentType, LevelFormat, TableOfContents, 
+﻿const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
+        Header, Footer, AlignmentType, LevelFormat, TableOfContents,
         HeadingLevel, BorderStyle, WidthType, ShadingType, VerticalAlign,
         PageNumber, PageBreak } = require('docx');
 const fs = require('fs');
@@ -7,7 +7,7 @@ const fs = require('fs');
 // Color scheme - professional blues and grays
 const COLORS = {
   primary: "1F4E79",      // Dark blue
-  secondary: "2E75B6",    // Medium blue  
+  secondary: "2E75B6",    // Medium blue
   accent: "5B9BD5",       // Light blue
   gray: "7F7F7F",         // Gray
   lightGray: "D9D9D9",    // Light gray
@@ -176,15 +176,15 @@ const doc = new Document({
       children: [
         // Spacer
         new Paragraph({ spacing: { before: 2000 }, children: [] }),
-        
+
         // Main Title
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { before: 400, after: 200 },
-          children: [new TextRun({ 
-            text: "ĐỀ XUẤT THIẾT KẾ", 
-            bold: true, 
-            size: 56, 
+          children: [new TextRun({
+            text: "DESIGN PROPOSAL",
+            bold: true,
+            size: 56,
             color: COLORS.primary,
             font: "Arial"
           })]
@@ -192,27 +192,27 @@ const doc = new Document({
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { before: 100, after: 400 },
-          children: [new TextRun({ 
-            text: "HỆ THỐNG HỌC TẬP THÔNG MINH", 
-            bold: true, 
-            size: 56, 
+          children: [new TextRun({
+            text: "SMART LEARNING SYSTEM",
+            bold: true,
+            size: 56,
             color: COLORS.primary,
             font: "Arial"
           })]
         }),
-        
+
         // Subtitle
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { before: 200, after: 600 },
-          children: [new TextRun({ 
-            text: "Tái cấu trúc nền tảng hoctienganh.xyz", 
-            size: 32, 
+          children: [new TextRun({
+            text: "Restructuring the hoctienganh.xyz platform",
+            size: 32,
             color: COLORS.secondary,
             font: "Arial"
           })]
         }),
-        
+
         // Horizontal line
         new Paragraph({
           alignment: AlignmentType.CENTER,
@@ -222,14 +222,14 @@ const doc = new Document({
           },
           children: []
         }),
-        
+
         // Version info
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { before: 600, after: 100 },
-          children: [new TextRun({ 
-            text: "Phiên bản: 1.0", 
-            size: 24, 
+          children: [new TextRun({
+            text: "Version: 1.0",
+            size: 24,
             color: COLORS.gray,
             font: "Arial"
           })]
@@ -237,9 +237,9 @@ const doc = new Document({
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { before: 100, after: 100 },
-          children: [new TextRun({ 
-            text: "Ngày: 31 tháng 3 năm 2026", 
-            size: 24, 
+          children: [new TextRun({
+            text: "Date: March 31, 2026",
+            size: 24,
             color: COLORS.gray,
             font: "Arial"
           })]
@@ -247,14 +247,14 @@ const doc = new Document({
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { before: 100, after: 800 },
-          children: [new TextRun({ 
-            text: "Chuẩn bị bởi: AI Research & Planning Team", 
-            size: 24, 
+          children: [new TextRun({
+            text: "Prepared by: AI Research & Planning Team",
+            size: 24,
             color: COLORS.gray,
             font: "Arial"
           })]
         }),
-        
+
         // Decorative box
         new Table({
           columnWidths: [6000],
@@ -274,10 +274,10 @@ const doc = new Document({
                     new Paragraph({
                       alignment: AlignmentType.CENTER,
                       spacing: { before: 200, after: 100 },
-                      children: [new TextRun({ 
-                        text: "TÀI LIỆU CHIẾN LƯỢC", 
-                        bold: true, 
-                        size: 28, 
+                      children: [new TextRun({
+                        text: "STRATEGIC DOCUMENT",
+                        bold: true,
+                        size: 28,
                         color: COLORS.primary,
                         font: "Arial"
                       })]
@@ -285,9 +285,9 @@ const doc = new Document({
                     new Paragraph({
                       alignment: AlignmentType.CENTER,
                       spacing: { before: 100, after: 200 },
-                      children: [new TextRun({ 
-                        text: "Từ video aggregation đến adaptive learning system", 
-                        size: 22, 
+                      children: [new TextRun({
+                        text: "From video aggregation to adaptive learning system",
+                        size: 22,
                         italics: true,
                         color: COLORS.gray,
                         font: "Arial"
@@ -299,12 +299,12 @@ const doc = new Document({
             })
           ]
         }),
-        
+
         // Page break after cover
         new Paragraph({ children: [new PageBreak()] })
       ]
     },
-    
+
     // ============ MAIN CONTENT SECTION ============
     {
       properties: {
@@ -316,9 +316,9 @@ const doc = new Document({
         default: new Header({
           children: [new Paragraph({
             alignment: AlignmentType.RIGHT,
-            children: [new TextRun({ 
-              text: "Đề Xuất Thiết Kế Hệ Thống Học Tập Thông Minh", 
-              size: 20, 
+            children: [new TextRun({
+              text: "Proposal for Smart Learning System Design",
+              size: 20,
               color: COLORS.gray,
               font: "Arial"
             })]
@@ -340,8 +340,8 @@ const doc = new Document({
       },
       children: [
         // Table of Contents
-        new TableOfContents("Mục Lục", { 
-          hyperlink: true, 
+        new TableOfContents("Table of Contents", {
+          hyperlink: true,
           headingStyleRange: "1-3",
           stylesWithLevels: [
             { styleId: "Heading1", level: 0 },
@@ -349,55 +349,55 @@ const doc = new Document({
             { styleId: "Heading3", level: 2 }
           ]
         }),
-        
+
         new Paragraph({ children: [new PageBreak()] }),
-        
-        // ============ SECTION 1: TỔNG QUAN DỰ ÁN ============
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_1, 
-          children: [new TextRun("1. TỔNG QUAN DỰ ÁN")] 
+
+        // ============ SECTION 1: PROJECT OVERVIEW ============
+        new Paragraph({
+          heading: HeadingLevel.HEADING_1,
+          children: [new TextRun("1. PROJECT OVERVIEW")]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
-          children: [new TextRun("1.1. Tầm nhìn và mục tiêu")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [new TextRun("1.1. Vision and goals")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 200, after: 200 },
-          children: [new TextRun({ 
-            text: "Chuyển đổi hoctienganh.xyz từ một nền tảng tổng hợp video thành hệ thống học tập thông minh, thích ứng (adaptive learning system) có khả năng hướng dẫn 36,360 video giáo dục thành các hành trình học tập cá nhân hóa cho học sinh Việt Nam từ 3-18 tuổi.", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Transform hoctienganh.xyz from a video aggregation platform into an intelligent, adaptive learning system capable of guiding 36,360 educational videos into personalized learning journeys for Vietnamese students from 3-18 years old.",
+            size: 22,
             font: "Arial"
           })]
         }),
-        
+
         new Paragraph({
           spacing: { before: 100, after: 100 },
           shading: { fill: "E8F4FD", type: ShadingType.CLEAR },
-          children: [new TextRun({ 
-            text: "Giá trị cốt lõi: \"Từ việc xem video thụ động đến học tập chủ động, có cấu trúc với kết quả đo lường được.\"", 
+          children: [new TextRun({
+            text: "Core values: \\\"From passive video viewing to active, structured learning with measurable results.\\\"",
             italics: true,
-            size: 24, 
+            size: 24,
             color: COLORS.secondary,
             font: "Arial"
           })]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
-          children: [new TextRun("1.2. Tình trạng hiện tại")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [new TextRun("1.2. Current status")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 200, after: 200 },
-          children: [new TextRun({ 
-            text: "Hiện tại, hệ thống đang lưu trữ 36,360 video giáo dục từ 6 nguồn nội dung khác nhau, được tổ chức theo cơ chế thư viện video với phân loại cơ bản.", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Currently, the system is storing 36,360 educational videos from 6 different content sources, organized according to a video library mechanism with basic classification.",
+            size: 22,
             font: "Arial"
           })]
         }),
-        
+
         // Current state table
         new Table({
           columnWidths: [3500, 5860],
@@ -405,34 +405,34 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Chỉ số", { header: true, width: 3500 }),
-                createCell("Giá trị", { header: true, width: 5860 })
+                createCell("Index", { header: true, width: 3500 }),
+                createCell("Value", { header: true, width: 5860 })
               ]
             }),
-            new TableRow({ children: [createCell("Tổng số video", { width: 3500 }), createCell("36,360", { width: 5860 })] }),
-            new TableRow({ children: [createCell("Nguồn nội dung", { width: 3500 }), createCell("6 nguồn (Abeka, Littlefox EN, Littlefox CN, PlayTT, PlayGG, Phim)", { width: 5860 })] }),
-            new TableRow({ children: [createCell("Bộ sưu tập", { width: 3500 }), createCell("2,659", { width: 5860 })] }),
-            new TableRow({ children: [createCell("Phạm vi lớp", { width: 3500 }), createCell("K4-G12 (14 lớp)", { width: 5860 })] }),
-            new TableRow({ children: [createCell("Ngôn ngữ", { width: 3500 }), createCell("Tiếng Anh, Tiếng Trung", { width: 5860 })] }),
-            new TableRow({ children: [createCell("Mô hình hiện tại", { width: 3500 }), createCell("Thư viện video với phân loại cơ bản", { width: 5860 })] })
+            new TableRow({ children: [createCell("Total number of videos", { width: 3500 }), createCell("36,360", { width: 5860 })] }),
+            new TableRow({ children: [createCell("Content source", { width: 3500 }), createCell("6 sources (Abeka, Littlefox EN, Littlefox CN, PlayTT, PlayGG, Movies)", { width: 5860 })] }),
+            new TableRow({ children: [createCell("Collection", { width: 3500 }), createCell("2,659", { width: 5860 })] }),
+            new TableRow({ children: [createCell("Class scope", { width: 3500 }), createCell("K4-G12 (14 classes)", { width: 5860 })] }),
+            new TableRow({ children: [createCell("Language", { width: 3500 }), createCell("English, Chinese", { width: 5860 })] }),
+            new TableRow({ children: [createCell("Current model", { width: 3500 }), createCell("Video library with basic classification", { width: 5860 })] })
           ]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
           spacing: { before: 300 },
-          children: [new TextRun("1.3. Trạng thái mục tiêu")] 
+          children: [new TextRun("1.3. Target state")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 200, after: 200 },
-          children: [new TextRun({ 
-            text: "Hệ thống adaptive learning với khả năng theo dõi tiến độ và cá nhân hóa lộ trình học tập:", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Adaptive learning system with the ability to track progress and personalize learning paths:",
+            size: 22,
             font: "Arial"
           })]
         }),
-        
+
         // Target state table
         new Table({
           columnWidths: [2800, 3280, 3280],
@@ -440,62 +440,62 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Khả năng", { header: true, width: 2800 }),
-                createCell("Hiện tại", { header: true, width: 3280 }),
-                createCell("Mục tiêu", { header: true, width: 3280 })
+                createCell("Possibility", { header: true, width: 2800 }),
+                createCell("Currently", { header: true, width: 3280 }),
+                createCell("Target", { header: true, width: 3280 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Tổ chức nội dung", { width: 2800 }), 
-                createCell("Theo nguồn", { width: 3280 }), 
+                createCell("Content organization", { width: 2800 }),
+                createCell("According to source", { width: 3280 }),
                 createCell("Theo learning path", { width: 3280, bold: true })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Tiến độ học viên", { width: 2800 }), 
-                createCell("Không có", { width: 3280 }), 
-                createCell("5 cấp độ phân cấp với tracking", { width: 3280, bold: true })
-              ] 
+                createCell("Student progress", { width: 2800 }),
+                createCell("None", { width: 3280 }),
+                createCell("5 levels of hierarchy with tracking", { width: 3280, bold: true })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Cá nhân hóa", { width: 2800 }), 
-                createCell("Không có", { width: 3280 }), 
-                createCell("Adaptive paths dựa trên năng lực", { width: 3280, bold: true })
-              ] 
+                createCell("Personalization", { width: 2800 }),
+                createCell("None", { width: 3280 }),
+                createCell("Adaptive paths are competency-based", { width: 3280, bold: true })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Đánh giá", { width: 2800 }), 
-                createCell("Không có", { width: 3280 }), 
-                createCell("Milestone-based với spaced repetition", { width: 3280, bold: true })
-              ] 
+                createCell("Review", { width: 2800 }),
+                createCell("None", { width: 3280 }),
+                createCell("Milestone-based with spaced repetition", { width: 3280, bold: true })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Khả năng hiển thị phụ huynh", { width: 2800 }), 
-                createCell("Hạn chế", { width: 3280 }), 
-                createCell("Dashboard tiến độ toàn diện", { width: 3280, bold: true })
-              ] 
+                createCell("Parent visibility", { width: 2800 }),
+                createCell("Limited", { width: 3280 }),
+                createCell("Comprehensive progress dashboard", { width: 3280, bold: true })
+              ]
             })
           ]
         }),
-        
+
         new Paragraph({ children: [new PageBreak()] }),
-        
-        // ============ SECTION 2: PHÂN TÍCH TÀI NGUYÊN ============
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_1, 
-          children: [new TextRun("2. PHÂN TÍCH TÀI NGUYÊN")] 
+
+        // ============ SECTION 2: RESOURCE ANALYSIS ============
+        new Paragraph({
+          heading: HeadingLevel.HEADING_1,
+          children: [new TextRun("2. RESOURCE ANALYSIS")]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
-          children: [new TextRun("2.1. Bảng thống kê 6 nguồn nội dung")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [new TextRun("2.1. Statistical table of 6 content sources")]
         }),
-        
+
         // Content sources table
         new Table({
           columnWidths: [1600, 1600, 1600, 1400, 1800, 1360],
@@ -503,102 +503,102 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Nguồn", { header: true, width: 1600 }),
-                createCell("Bộ sưu tập", { header: true, width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("Source", { header: true, width: 1600 }),
+                createCell("Collection", { header: true, width: 1600, alignment: AlignmentType.CENTER }),
                 createCell("Video", { header: true, width: 1600, alignment: AlignmentType.CENTER }),
-                createCell("% Tổng", { header: true, width: 1400, alignment: AlignmentType.CENTER }),
-                createCell("Mục đích chính", { header: true, width: 1800 }),
-                createCell("Trạng thái", { header: true, width: 1360 })
+                createCell("% Total", { header: true, width: 1400, alignment: AlignmentType.CENTER }),
+                createCell("Main purpose", { header: true, width: 1800 }),
+                createCell("Status", { header: true, width: 1360 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Abeka", { width: 1600, bold: true }), 
-                createCell("2,380", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("20,195", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("55.5%", { width: 1400, alignment: AlignmentType.CENTER }), 
+                createCell("Abeka", { width: 1600, bold: true }),
+                createCell("2,380", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("20,195", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("55.5%", { width: 1400, alignment: AlignmentType.CENTER }),
                 createCell("Core K-12 Curriculum", { width: 1800 }),
-                createCell("Hoạt động", { width: 1360 })
-              ] 
+                createCell("Work", { width: 1360 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Littlefox EN", { width: 1600, bold: true }), 
-                createCell("136", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("8,718", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("24.0%", { width: 1400, alignment: AlignmentType.CENTER }), 
-                createCell("Văn học/Truyện", { width: 1800 }),
-                createCell("Hoạt động", { width: 1360 })
-              ] 
+                createCell("Littlefox EN", { width: 1600, bold: true }),
+                createCell("136", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("8,718", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("24.0%", { width: 1400, alignment: AlignmentType.CENTER }),
+                createCell("Literature/Stories", { width: 1800 }),
+                createCell("Work", { width: 1360 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("PlayTT", { width: 1600, bold: true }), 
-                createCell("57", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("4,938", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("13.6%", { width: 1400, alignment: AlignmentType.CENTER }), 
-                createCell("Luyện thi (IELTS)", { width: 1800 }),
-                createCell("Hoạt động", { width: 1360 })
-              ] 
+                createCell("PlayTT", { width: 1600, bold: true }),
+                createCell("57", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("4,938", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("13.6%", { width: 1400, alignment: AlignmentType.CENTER }),
+                createCell("Test Preparation (IELTS)", { width: 1800 }),
+                createCell("Work", { width: 1360 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Littlefox CN", { width: 1600, bold: true }), 
-                createCell("48", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("1,983", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("5.5%", { width: 1400, alignment: AlignmentType.CENTER }), 
-                createCell("Tiếng Trung", { width: 1800 }),
-                createCell("Hoạt động", { width: 1360 })
-              ] 
+                createCell("Littlefox CN", { width: 1600, bold: true }),
+                createCell("48", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("1,983", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("5.5%", { width: 1400, alignment: AlignmentType.CENTER }),
+                createCell("Chinese", { width: 1800 }),
+                createCell("Work", { width: 1360 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("PlayGG", { width: 1600, bold: true }), 
-                createCell("26", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("514", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("1.4%", { width: 1400, alignment: AlignmentType.CENTER }), 
-                createCell("Bổ trợ", { width: 1800 }),
-                createCell("Hoạt động", { width: 1360 })
-              ] 
+                createCell("PlayGG", { width: 1600, bold: true }),
+                createCell("26", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("514", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("1.4%", { width: 1400, alignment: AlignmentType.CENTER }),
+                createCell("Support", { width: 1800 }),
+                createCell("Work", { width: 1360 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Phim", { width: 1600, bold: true }), 
-                createCell("12", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("12", { width: 1600, alignment: AlignmentType.CENTER }), 
-                createCell("0.03%", { width: 1400, alignment: AlignmentType.CENTER }), 
-                createCell("Giải trí", { width: 1800 }),
-                createCell("Không khả dụng", { width: 1360 })
-              ] 
+                createCell("Phim", { width: 1600, bold: true }),
+                createCell("12", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("12", { width: 1600, alignment: AlignmentType.CENTER }),
+                createCell("0.03%", { width: 1400, alignment: AlignmentType.CENTER }),
+                createCell("Entertainment", { width: 1800 }),
+                createCell("Not available", { width: 1360 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("TỔNG", { width: 1600, bold: true }), 
-                createCell("2,659", { width: 1600, alignment: AlignmentType.CENTER, bold: true }), 
-                createCell("36,360", { width: 1600, alignment: AlignmentType.CENTER, bold: true }), 
-                createCell("100%", { width: 1400, alignment: AlignmentType.CENTER, bold: true }), 
+                createCell("TOTAL", { width: 1600, bold: true }),
+                createCell("2,659", { width: 1600, alignment: AlignmentType.CENTER, bold: true }),
+                createCell("36,360", { width: 1600, alignment: AlignmentType.CENTER, bold: true }),
+                createCell("100%", { width: 1400, alignment: AlignmentType.CENTER, bold: true }),
                 createCell("", { width: 1800 }),
                 createCell("", { width: 1360 })
-              ] 
+              ]
             })
           ]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
           spacing: { before: 300 },
-          children: [new TextRun("2.2. Phân bổ theo độ tuổi/lớp")] 
+          children: [new TextRun("2.2. Distribution by age/grade")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 200, after: 200 },
-          children: [new TextRun({ 
-            text: "Nội dung được phân bổ rộng khắp các nhóm tuổi từ mầm non đến trung học phổ thông:", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Content is widely distributed across age groups from preschool to high school:",
+            size: 22,
             font: "Arial"
           })]
         }),
-        
+
         // Age/Grade distribution
         new Table({
           columnWidths: [2340, 2340, 2340, 2340],
@@ -606,62 +606,62 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Nhóm tuổi", { header: true, width: 2340 }),
-                createCell("Lớp/Cấp độ", { header: true, width: 2340 }),
-                createCell("Nguồn chính", { header: true, width: 2340 }),
-                createCell("Tập trung nội dung", { header: true, width: 2340 })
+                createCell("Age group", { header: true, width: 2340 }),
+                createCell("Class/Level", { header: true, width: 2340 }),
+                createCell("Primary source", { header: true, width: 2340 }),
+                createCell("Focus on content", { header: true, width: 2340 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("3-5 (Mầm non)", { width: 2340 }), 
-                createCell("K4-K5, Level 1", { width: 2340 }), 
+                createCell("3-5 (Preschool)", { width: 2340 }),
+                createCell("K4-K5, Level 1", { width: 2340 }),
                 createCell("Abeka, Littlefox", { width: 2340 }),
-                createCell("Phonics, cơ bản, truyện", { width: 2340 })
-              ] 
+                createCell("Phonics, basics, stories", { width: 2340 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("6-11 (Tiểu học)", { width: 2340 }), 
-                createCell("G1-G6, Level 2-4", { width: 2340 }), 
+                createCell("6-11 (Elementary school)", { width: 2340 }),
+                createCell("G1-G6, Level 2-4", { width: 2340 }),
                 createCell("Abeka, Littlefox", { width: 2340 }),
-                createCell("Môn học cốt lõi, văn học", { width: 2340 })
-              ] 
+                createCell("Core subject, literature", { width: 2340 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("12-14 (THCS)", { width: 2340 }), 
-                createCell("G7-G9, Level 5-6", { width: 2340 }), 
+                createCell("12-14 (THCS)", { width: 2340 }),
+                createCell("G7-G9, Level 5-6", { width: 2340 }),
                 createCell("Abeka, Littlefox", { width: 2340 }),
-                createCell("Môn nâng cao, kinh điển", { width: 2340 })
-              ] 
+                createCell("Advanced subjects, classics", { width: 2340 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("15-18 (THPT)", { width: 2340 }), 
-                createCell("G10-G12, Level 7-9", { width: 2340 }), 
+                createCell("15-18 (THPT)", { width: 2340 }),
+                createCell("G10-G12, Level 7-9", { width: 2340 }),
                 createCell("Abeka, PlayTT", { width: 2340 }),
-                createCell("Chuẩn bị đại học, IELTS", { width: 2340 })
-              ] 
+                createCell("College preparation, IELTS", { width: 2340 })
+              ]
             })
           ]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
           spacing: { before: 300 },
-          children: [new TextRun("2.3. Phân loại 9 lĩnh vực môn học")] 
+          children: [new TextRun("2.3. Classification of 9 subject areas")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 200, after: 200 },
-          children: [new TextRun({ 
-            text: "Toàn bộ nội dung được phân loại vào 9 lĩnh vực chính theo hệ thống phân loại thống nhất:", 
-            size: 22, 
+          children: [new TextRun({
+            text: "All content is classified into 9 main areas according to a unified classification system:",
+            size: 22,
             font: "Arial"
           })]
         }),
-        
+
         // Subject taxonomy table
         new Table({
           columnWidths: [2340, 3120, 3900],
@@ -669,99 +669,99 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Lĩnh vực", { header: true, width: 2340 }),
-                createCell("Môn thành phần", { header: true, width: 3120 }),
-                createCell("Nguồn chính", { header: true, width: 3900 })
+                createCell("Field", { header: true, width: 2340 }),
+                createCell("Subject composition", { header: true, width: 3120 }),
+                createCell("Primary source", { header: true, width: 3900 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Toán học (Math)", { width: 2340, bold: true }), 
-                createCell("Số học, Đại số, Hình học, Giải tích", { width: 3120 }), 
-                createCell("Abeka (chính), PlayTT Numberblocks (bổ trợ)", { width: 3900 })
-              ] 
+                createCell("Mathematics (Math)", { width: 2340, bold: true }),
+                createCell("Arithmetic, Algebra, Geometry, Calculus", { width: 3120 }),
+                createCell("Abeka (main), PlayTT Numberblocks (auxiliary)", { width: 3900 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Tiếng Anh (ELA)", { width: 2340, bold: true }), 
-                createCell("Đọc hiểu, Viết, Ngữ âm, Chính tả", { width: 3120 }), 
-                createCell("Abeka (chính), Littlefox EN (mở rộng)", { width: 3900 })
-              ] 
+                createCell("English (ELA)", { width: 2340, bold: true }),
+                createCell("Reading Comprehension, Writing, Phonetics, Spelling", { width: 3120 }),
+                createCell("Abeka (main), Littlefox EN (extended)", { width: 3900 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Khoa học (Science)", { width: 2340, bold: true }), 
-                createCell("Sinh học, Hóa học, Vật lý, Sức khỏe", { width: 3120 }), 
+                createCell("Science (Science)", { width: 2340, bold: true }),
+                createCell("Biology, Chemistry, Physics, Health", { width: 3120 }),
                 createCell("Abeka G6-G12", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Khoa học Xã hội", { width: 2340, bold: true }), 
-                createCell("Lịch sử, Địa lý, Công dân", { width: 3120 }), 
+                createCell("Social Sciences", { width: 2340, bold: true }),
+                createCell("History, Geography, Civics", { width: 3120 }),
                 createCell("Abeka G1-G12", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Ngôn ngữ (Language)", { width: 2340, bold: true }), 
-                createCell("Tiếng Anh, Tiếng Trung, Tiếng Tây Ban Nha", { width: 3120 }), 
+                createCell("Language (Language)", { width: 2340, bold: true }),
+                createCell("English, Chinese, Spanish", { width: 3120 }),
                 createCell("Abeka, Littlefox CN", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Luyện thi (Test Prep)", { width: 2340, bold: true }), 
-                createCell("IELTS, TOEFL, SAT/ACT", { width: 3120 }), 
+                createCell("Test Prep", { width: 2340, bold: true }),
+                createCell("IELTS, TOEFL, SAT/ACT", { width: 3120 }),
                 createCell("PlayTT (TEDed IELTS)", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Nghệ thuật & Âm nhạc", { width: 2340, bold: true }), 
-                createCell("Mỹ thuật, Âm nhạc, Thủ công", { width: 3120 }), 
+                createCell("Arts & Music", { width: 2340, bold: true }),
+                createCell("Arts, Music, Crafts", { width: 3120 }),
                 createCell("Abeka K4-G5", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Kỹ năng Sống", { width: 2340, bold: true }), 
-                createCell("Kinh Thánh, Chữ viết tay, Thói quen", { width: 3120 }), 
+                createCell("Life Skills", { width: 2340, bold: true }),
+                createCell("Bible, Handwriting, Habits", { width: 3120 }),
                 createCell("Abeka", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Truyện & Văn học", { width: 2340, bold: true }), 
-                createCell("Truyện cổ tích, Kinh điển, Dân gian", { width: 3120 }), 
+                createCell("Stories & Literature", { width: 2340, bold: true }),
+                createCell("Fairy tales, Classics, Folk tales", { width: 3120 }),
                 createCell("Littlefox EN & CN", { width: 3900 })
-              ] 
+              ]
             })
           ]
         }),
-        
+
         new Paragraph({ children: [new PageBreak()] }),
-        
-        // ============ SECTION 3: KIẾN TRÚC ĐỀ XUẤT ============
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_1, 
-          children: [new TextRun("3. KIẾN TRÚC ĐỀ XUẤT")] 
+
+        // ============ SECTION 3: PROPOSED ARCHITECTURE ============
+        new Paragraph({
+          heading: HeadingLevel.HEADING_1,
+          children: [new TextRun("3. PROPOSED ARCHITECTURE")]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
-          children: [new TextRun("3.1. 5 cấp độ phân cấp")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [new TextRun("3.1. 5 levels of hierarchy")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 200, after: 200 },
-          children: [new TextRun({ 
-            text: "Dựa trên nghiên cứu từ Duolingo, Coursera và Khan Academy, kiến trúc đề xuất gồm 5 cấp độ phân cấp từ nhỏ đến lớn:", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Based on research from Duolingo, Coursera and Khan Academy, the proposed architecture includes 5 hierarchical levels from small to large:",
+            size: 22,
             font: "Arial"
           })]
         }),
-        
+
         // Hierarchy table
         new Table({
           columnWidths: [1800, 2340, 1560, 1560, 2100],
@@ -769,82 +769,82 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Cấp độ", { header: true, width: 1800 }),
-                createCell("Đơn vị", { header: true, width: 2340 }),
-                createCell("Thời lượng", { header: true, width: 1560 }),
-                createCell("Số nội dung", { header: true, width: 1560 }),
-                createCell("Mục đích", { header: true, width: 2100 })
+                createCell("Level", { header: true, width: 1800 }),
+                createCell("Unit", { header: true, width: 2340 }),
+                createCell("Duration", { header: true, width: 1560 }),
+                createCell("Content number", { header: true, width: 1560 }),
+                createCell("Purpose", { header: true, width: 2100 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Level 5", { width: 1800, bold: true }), 
-                createCell("Learning Journey\n(Chương trình/Khóa học)", { width: 2340 }), 
-                createCell("4-52 tuần", { width: 1560 }), 
-                createCell("Nhiều weekly plans", { width: 1560 }),
-                createCell("Hoàn thành mục tiêu dài hạn", { width: 2100 })
-              ] 
+                createCell("Level 5", { width: 1800, bold: true }),
+                createCell("Learning Journey\\n(Program/Course)", { width: 2340 }),
+                createCell("4-52 weeks", { width: 1560 }),
+                createCell("Many weekly plans", { width: 1560 }),
+                createCell("Accomplish long-term goals", { width: 2100 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Level 4", { width: 1800, bold: true }), 
-                createCell("Weekly Plan\n(Tuần)", { width: 2340 }), 
-                createCell("5-15 giờ", { width: 1560 }), 
+                createCell("Level 4", { width: 1800, bold: true }),
+                createCell("Weekly Plan\\n(Week)", { width: 2340 }),
+                createCell("5-15 hours", { width: 1560 }),
                 createCell("5-7 daily plans", { width: 1560 }),
-                createCell("Kiểm soát tiến độ", { width: 2100 })
-              ] 
+                createCell("Progress control", { width: 2100 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Level 3", { width: 1800, bold: true }), 
-                createCell("Daily Plan\n(Ngày)", { width: 2340 }), 
-                createCell("10-45 phút", { width: 1560 }), 
+                createCell("Level 3", { width: 1800, bold: true }),
+                createCell("Daily Plan\\n(Date)", { width: 2340 }),
+                createCell("10-45 minutes", { width: 1560 }),
                 createCell("3-7 lessons", { width: 1560 }),
-                createCell("Tải nhận thức phù hợp", { width: 2100 })
-              ] 
+                createCell("Appropriate cognitive load", { width: 2100 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Level 2", { width: 1800, bold: true }), 
-                createCell("Lesson\n(Bài học)", { width: 2340 }), 
-                createCell("15-60 phút", { width: 1560 }), 
+                createCell("Level 2", { width: 1800, bold: true }),
+                createCell("Lesson\\n(Lesson)", { width: 2340 }),
+                createCell("15-60 minutes", { width: 1560 }),
                 createCell("3-7 videos", { width: 1560 }),
-                createCell("Bao phủ khái niệm đầy đủ", { width: 2100 })
-              ] 
+                createCell("Full concept coverage", { width: 2100 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Level 1", { width: 1800, bold: true }), 
-                createCell("Video\n(Đơn vị cơ bản)", { width: 2340 }), 
-                createCell("3-15 phút", { width: 1560 }), 
+                createCell("Level 1", { width: 1800, bold: true }),
+                createCell("Video\\n(Basic unit)", { width: 2340 }),
+                createCell("3-15 minutes", { width: 1560 }),
                 createCell("1", { width: 1560 }),
                 createCell("Streaming & tracking", { width: 2100 })
-              ] 
+              ]
             })
           ]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
           spacing: { before: 300 },
-          children: [new TextRun("3.2. Mô hình dữ liệu")] 
+          children: [new TextRun("3.2. Data model")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 200, after: 200 },
-          children: [new TextRun({ 
-            text: "Quan hệ thực thể chính (ER Diagram - Textual Representation):", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Main Entity Relationship (ER Diagram - Textual Representation):",
+            size: 22,
             font: "Arial"
           })]
         }),
-        
+
         new Paragraph({
           spacing: { before: 100, after: 100 },
           shading: { fill: "F5F5F5", type: ShadingType.CLEAR },
-          children: [new TextRun({ 
+          children: [new TextRun({
             text: `[LEARNING_JOURNEY] ||--o{ [WEEKLY_PLAN] : contains
-[WEEKLY_PLAN] ||--o{ [DAILY_PLAN] : contains  
+[WEEKLY_PLAN] ||--o{ [DAILY_PLAN] : contains
 [DAILY_PLAN] ||--o{ [LESSON] : contains
 [LESSON] ||--o{ [VIDEO] : contains
 
@@ -893,18 +893,18 @@ const doc = new Document({
   string video_url
   jsonb prerequisites
   int order_in_lesson
-}`, 
-            size: 18, 
+}`,
+            size: 18,
             font: "Consolas"
           })]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
           spacing: { before: 300 },
-          children: [new TextRun("3.3. Thành phần hệ thống")] 
+          children: [new TextRun("3.3. System components")]
         }),
-        
+
         // System components table
         new Table({
           columnWidths: [3120, 3120, 3120],
@@ -912,76 +912,76 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Thành phần", { header: true, width: 3120 }),
-                createCell("Công nghệ", { header: true, width: 3120 }),
-                createCell("Nhiệm vụ", { header: true, width: 3120 })
+                createCell("Ingredients", { header: true, width: 3120 }),
+                createCell("Technology", { header: true, width: 3120 }),
+                createCell("Mission", { header: true, width: 3120 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Content Service", { width: 3120, bold: true }), 
-                createCell("Node.js/FastAPI", { width: 3120 }), 
-                createCell("CRUD cho phân cấp nội dung", { width: 3120 })
-              ] 
+                createCell("Content Service", { width: 3120, bold: true }),
+                createCell("Node.js/FastAPI", { width: 3120 }),
+                createCell("CRUD for content hierarchy", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Progress Service", { width: 3120, bold: true }), 
-                createCell("Node.js", { width: 3120 }), 
-                createCell("Theo dõi hoàn thành, streaks, XP", { width: 3120 })
-              ] 
+                createCell("Progress Service", { width: 3120, bold: true }),
+                createCell("Node.js", { width: 3120 }),
+                createCell("Track completions, streaks, XP", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Sequencing Service", { width: 3120, bold: true }), 
-                createCell("Python", { width: 3120 }), 
-                createCell("Tạo learning paths thích ứng", { width: 3120 })
-              ] 
+                createCell("Sequencing Service", { width: 3120, bold: true }),
+                createCell("Python", { width: 3120 }),
+                createCell("Create adaptive learning paths", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Spaced Repetition", { width: 3120, bold: true }), 
-                createCell("Python", { width: 3120 }), 
-                createCell("Thuật toán HLR, lên lịch review", { width: 3120 })
-              ] 
+                createCell("Spaced Repetition", { width: 3120, bold: true }),
+                createCell("Python", { width: 3120 }),
+                createCell("HLR algorithm, schedule review", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Recommendation Engine", { width: 3120, bold: true }), 
-                createCell("ML/Python", { width: 3120 }), 
-                createCell("Đề xuất nội dung cross-source", { width: 3120 })
-              ] 
+                createCell("Recommendation Engine", { width: 3120, bold: true }),
+                createCell("ML/Python", { width: 3120 }),
+                createCell("Recommend cross-source content", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Parent Dashboard", { width: 3120, bold: true }), 
-                createCell("React/Next.js", { width: 3120 }), 
-                createCell("Hiển thị tiến độ, điều khiển", { width: 3120 })
-              ] 
+                createCell("Parent Dashboard", { width: 3120, bold: true }),
+                createCell("React/Next.js", { width: 3120 }),
+                createCell("Display progress and control", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Child Interface", { width: 3120, bold: true }), 
-                createCell("React/Expo", { width: 3120 }), 
-                createCell("Trải nghiệm học, gamification", { width: 3120 })
-              ] 
+                createCell("Child Interface", { width: 3120, bold: true }),
+                createCell("React/Expo", { width: 3120 }),
+                createCell("Learning experiences, gamification", { width: 3120 })
+              ]
             })
           ]
         }),
-        
+
         new Paragraph({ children: [new PageBreak()] }),
-        
-        // ============ SECTION 4: CHIẾN LƯỢC LEARNING PATH ============
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_1, 
-          children: [new TextRun("4. CHIẾN LƯỢC LEARNING PATH")] 
+
+        // ============ SECTION 4: LEARNING PATH STRATEGY ============
+        new Paragraph({
+          heading: HeadingLevel.HEADING_1,
+          children: [new TextRun("4. LEARNING PATH STRATEGY")]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
-          children: [new TextRun("4.1. 4 loại learning path chính")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [new TextRun("4.1. 4 main types of learning paths")]
         }),
-        
+
         // Path types table
         new Table({
           columnWidths: [2340, 2340, 1560, 1560, 1560],
@@ -989,206 +989,206 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Loại Path", { header: true, width: 2340 }),
-                createCell("Nguồn chính", { header: true, width: 2340 }),
-                createCell("Độ tuổi", { header: true, width: 1560 }),
-                createCell("Thời lượng", { header: true, width: 1560 }),
+                createCell("Type Path", { header: true, width: 2340 }),
+                createCell("Primary source", { header: true, width: 2340 }),
+                createCell("Age", { header: true, width: 1560 }),
+                createCell("Duration", { header: true, width: 1560 }),
                 createCell("Video", { header: true, width: 1560 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("K-12 Curriculum", { width: 2340, bold: true }), 
-                createCell("Abeka", { width: 2340 }), 
-                createCell("3-18", { width: 1560 }), 
-                createCell("14 năm", { width: 1560 }),
+                createCell("K-12 Curriculum", { width: 2340, bold: true }),
+                createCell("Abeka", { width: 2340 }),
+                createCell("3-18", { width: 1560 }),
+                createCell("14 years", { width: 1560 }),
                 createCell("20,195", { width: 1560 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("English Stories", { width: 2340, bold: true }), 
-                createCell("Littlefox EN", { width: 2340 }), 
-                createCell("3-15", { width: 1560 }), 
-                createCell("9 cấp", { width: 1560 }),
+                createCell("English Stories", { width: 2340, bold: true }),
+                createCell("Littlefox EN", { width: 2340 }),
+                createCell("3-15", { width: 1560 }),
+                createCell("9 levels", { width: 1560 }),
                 createCell("8,718", { width: 1560 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("IELTS Preparation", { width: 2340, bold: true }), 
-                createCell("PlayTT", { width: 2340 }), 
-                createCell("14+", { width: 1560 }), 
-                createCell("12-16 tuần", { width: 1560 }),
+                createCell("IELTS Preparation", { width: 2340, bold: true }),
+                createCell("PlayTT", { width: 2340 }),
+                createCell("14+", { width: 1560 }),
+                createCell("12-16 weeks", { width: 1560 }),
                 createCell("215+", { width: 1560 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Chinese Learning", { width: 2340, bold: true }), 
-                createCell("Littlefox CN", { width: 2340 }), 
-                createCell("6-18", { width: 1560 }), 
-                createCell("5 cấp", { width: 1560 }),
+                createCell("Chinese Learning", { width: 2340, bold: true }),
+                createCell("Littlefox CN", { width: 2340 }),
+                createCell("6-18", { width: 1560 }),
+                createCell("5 levels", { width: 1560 }),
                 createCell("1,983", { width: 1560 })
-              ] 
+              ]
             })
           ]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
           spacing: { before: 300 },
-          children: [new TextRun("4.2. 5 hành trình học tập mẫu chi tiết")] 
+          children: [new TextRun("4.2. 5 detailed sample learning journeys")]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_3, 
-          children: [new TextRun("Journey 1: Sẵn sàng Mẫu giáo (4-5 tuổi)")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_3,
+          children: [new TextRun("Journey 1: Kindergarten Readiness (4-5 years old)")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 100, after: 100 },
-          children: [new TextRun({ 
-            text: "Thời lượng: 36 tuần | Thời gian/ngày: 30-45 phút | Nguồn: Abeka K4-K5 + Littlefox L1", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Duration: 36 weeks | Time/day: 30-45 minutes | Source: Abeka K4-K5 + Littlefox L1",
+            size: 22,
             color: COLORS.secondary,
             font: "Arial"
           })]
         }),
-        
-        createBullet("Giai đoạn 1 (Tuần 1-12): Nền tảng - Abeka K4 + Littlefox L1", "bullet-section4"),
-        createBullet("Giai đoạn 2 (Tuần 13-24): Chuyển tiếp - K4→K5 + L1→L2", "bullet-section4"),
-        createBullet("Giai đoạn 3 (Tuần 25-36): Sẵn sàng - Abeka K5 + Littlefox L2", "bullet-section4"),
-        
+
+        createBullet("Phase 1 (Weeks 1-12): Foundation - Abeka K4 + Littlefox L1", "bullet-section4"),
+        createBullet("Phase 2 (Weeks 13-24): Transition - K4→K5 + L1→L2", "bullet-section4"),
+        createBullet("Phase 3 (Weeks 25-36): Ready - Abeka K5 + Littlefox L2", "bullet-section4"),
+
         new Paragraph({
           spacing: { before: 100, after: 200 },
-          children: [new TextRun({ 
-            text: "Kết quả: Sẵn sàng đọc viết, tính toán cơ bản, 200+ từ vựng", 
+          children: [new TextRun({
+            text: "Results: Ready to read and write, basic math, 200+ vocabulary",
             bold: true,
-            size: 22, 
+            size: 22,
             font: "Arial"
           })]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_3, 
-          children: [new TextRun("Journey 2: Người yêu Văn học Anh (8-12 tuổi)")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_3,
+          children: [new TextRun("Journey 2: English Literature Lover (8-12 years old)")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 100, after: 100 },
-          children: [new TextRun({ 
-            text: "Thời lượng: 52 tuần | Thời gian/ngày: 45-60 phút | Nguồn: Littlefox L3-L6 + Abeka ELA G3-G6", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Duration: 52 weeks | Time/day: 45-60 minutes | Source: Littlefox L3-L6 + Abeka ELA G3-G6",
+            size: 22,
             color: COLORS.secondary,
             font: "Arial"
           })]
         }),
-        
-        createBullet("Học kỳ 1: Truyện cổ tích & Ngụ ngôn - Cinderella, Snow White, Aesop", "bullet-section4"),
-        createBullet("Học kỳ 2: Văn học kinh điển - Shakespeare, Jane Eyre, Sherlock Holmes", "bullet-section4"),
-        
+
+        createBullet("Semester 1: Fairy Tales & Fables - Cinderella, Snow White, Aesop", "bullet-section4"),
+        createBullet("Semester 2: Classic literature - Shakespeare, Jane Eyre, Sherlock Holmes", "bullet-section4"),
+
         new Paragraph({
           spacing: { before: 100, after: 200 },
-          children: [new TextRun({ 
-            text: "Kết quả: 5,000+ từ vựng, kỹ năng phân tích văn học", 
+          children: [new TextRun({
+            text: "Result: 5,000+ vocabulary, literary analysis skills",
             bold: true,
-            size: 22, 
+            size: 22,
             font: "Arial"
           })]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_3, 
-          children: [new TextRun("Journey 3: Xây dựng nền tảng STEM (9-13 tuổi)")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_3,
+          children: [new TextRun("Journey 3: Building a STEM foundation (9-13 years old)")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 100, after: 100 },
-          children: [new TextRun({ 
-            text: "Thời lượng: 48 tuần | Thời gian/ngày: 60-75 phút | Nguồn: Abeka G4-G7 + PlayTT", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Duration: 48 weeks | Time/day: 60-75 minutes | Source: Abeka G4-G7 + PlayTT",
+            size: 22,
             color: COLORS.secondary,
             font: "Arial"
           })]
         }),
-        
-        createBullet("Năm 1: Toán nâng cao + Khoa học cơ bản - Phân số, hình học, sinh học", "bullet-section4"),
-        createBullet("Năm 2: Đại số + Khoa học chuyên sâu - Đại số I, tế bào, di truyền", "bullet-section4"),
-        
+
+        createBullet("Year 1: Advanced Math + Basic Science - Fractions, geometry, biology", "bullet-section4"),
+        createBullet("Year 2: Algebra + Intensive Science - Algebra I, cells, genetics", "bullet-section4"),
+
         new Paragraph({
           spacing: { before: 100, after: 200 },
-          children: [new TextRun({ 
-            text: "Kết quả: Qua Đại số I, nền tảng sinh học và khoa học trái đất", 
+          children: [new TextRun({
+            text: "Results: Passed Algebra I, biology and earth science foundation",
             bold: true,
-            size: 22, 
+            size: 22,
             font: "Arial"
           })]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_3, 
-          children: [new TextRun("Journey 4: Đạt IELTS Band 7.0 (16-18 tuổi)")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_3,
+          children: [new TextRun("Journey 4: Achieve IELTS Band 7.0 (16-18 years old)")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 100, after: 100 },
-          children: [new TextRun({ 
-            text: "Thời lượng: 16 tuần (cường độ cao) | Thời gian/ngày: 2-3 giờ | Nguồn: PlayTT IELTS + Littlefox L7-L9", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Duration: 16 weeks (high intensity) | Time/day: 2-3 hours | Source: PlayTT IELTS + Littlefox L7-L9",
+            size: 22,
             color: COLORS.secondary,
             font: "Arial"
           })]
         }),
-        
-        createBullet("Giai đoạn 1 (Tuần 1-4): Nền tảng - Nghe, đọc, viết Task 1, nói", "bullet-section4"),
-        createBullet("Giai đoạn 2 (Tuần 5-8): Phát triển kỹ năng - Chiến lược nâng cao", "bullet-section4"),
-        createBullet("Giai đoạn 3 (Tuần 9-12): Kỹ thuật nâng cao - Mock tests, viết tập trung", "bullet-section4"),
-        createBullet("Giai đoạn 4 (Tuần 13-16): Hoàn thiện - Luyện điểm yếu, mô phỏng thi", "bullet-section4"),
-        
+
+        createBullet("Phase 1 (Weeks 1-4): Foundation - Listening, reading, writing Task 1, speaking", "bullet-section4"),
+        createBullet("Phase 2 (Weeks 5-8): Skill Development - Advanced Strategies", "bullet-section4"),
+        createBullet("Phase 3 (Weeks 9-12): Advanced techniques - Mock tests, focused writing", "bullet-section4"),
+        createBullet("Phase 4 (Weeks 13-16): Perfection - Practice weak points, simulate exams", "bullet-section4"),
+
         new Paragraph({
           spacing: { before: 100, after: 200 },
-          children: [new TextRun({ 
-            text: "Kết quả: IELTS Band 7.0+, 2,000+ từ vựng học thuật", 
+          children: [new TextRun({
+            text: "Result: IELTS Band 7.0+, 2,000+ academic vocabulary",
             bold: true,
-            size: 22, 
+            size: 22,
             font: "Arial"
           })]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_3, 
-          children: [new TextRun("Journey 5: Học giả Song ngữ (10-14 tuổi)")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_3,
+          children: [new TextRun("Journey 5: Bilingual Scholar (10-14 years old)")]
         }),
-        
+
         new Paragraph({
           spacing: { before: 100, after: 100 },
-          children: [new TextRun({ 
-            text: "Thời lượng: 40 tuần | Thời gian/ngày: 90 phút (60 Anh + 30 Trung) | Nguồn: Abeka G5-G7 + Littlefox CN L2-L4", 
-            size: 22, 
+          children: [new TextRun({
+            text: "Duration: 40 weeks | Time/day: 90 minutes (60 English + 30 Chinese) | Source: Abeka G5-G7 + Littlefox CN L2-L4",
+            size: 22,
             color: COLORS.secondary,
             font: "Arial"
           })]
         }),
-        
-        createBullet("Học kỳ 1: Nền tảng - Song song Abeka G5 và Littlefox CN L2", "bullet-section4"),
-        createBullet("Học kỳ 2: Nâng cao - Abeka G6-G7 và Littlefox CN L3-L4", "bullet-section4"),
-        
+
+        createBullet("Semester 1: Foundation - Parallel Abeka G5 and Littlefox CN L2", "bullet-section4"),
+        createBullet("Semester 2: Advanced - Abeka G6-G7 and Littlefox CN L3-L4", "bullet-section4"),
+
         new Paragraph({
           spacing: { before: 100, after: 200 },
-          children: [new TextRun({ 
-            text: "Kết quả: 1,500+ chữ Hán, tương đương HSK 3-4, năng lực song ngữ", 
+          children: [new TextRun({
+            text: "Result: 1,500+ Chinese characters, equivalent to HSK 3-4, bilingual ability",
             bold: true,
-            size: 22, 
+            size: 22,
             font: "Arial"
           })]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
-          children: [new TextRun("4.3. Ma trận tích hợp nguồn")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [new TextRun("4.3. Power integration matrix")]
         }),
-        
+
         // Integration matrix table
         new Table({
           columnWidths: [3120, 3120, 3120],
@@ -1196,62 +1196,62 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Nguồn chính", { header: true, width: 3120 }),
-                createCell("Nguồn bổ trợ", { header: true, width: 3120 }),
-                createCell("Mục đích tích hợp", { header: true, width: 3120 })
+                createCell("Primary source", { header: true, width: 3120 }),
+                createCell("Additional resources", { header: true, width: 3120 }),
+                createCell("Integration purpose", { header: true, width: 3120 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Abeka Toán", { width: 3120 }), 
-                createCell("Numberblocks (PlayTT)", { width: 3120 }), 
-                createCell("Khái niệm toán trực quan", { width: 3120 })
-              ] 
+                createCell("Abeka Math", { width: 3120 }),
+                createCell("Numberblocks (PlayTT)", { width: 3120 }),
+                createCell("Intuitive math concepts", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Abeka Đọc hiểu", { width: 3120 }), 
-                createCell("Littlefox EN", { width: 3120 }), 
-                createCell("Luyện đọc mở rộng", { width: 3120 })
-              ] 
+                createCell("Abeka Reading comprehension", { width: 3120 }),
+                createCell("Littlefox EN", { width: 3120 }),
+                createCell("Extensive reading practice", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Abeka Khoa học", { width: 3120 }), 
-                createCell("Littlefox L3-L4", { width: 3120 }), 
-                createCell("Truyện chủ đề khoa học", { width: 3120 })
-              ] 
+                createCell("Abeka Science", { width: 3120 }),
+                createCell("Littlefox L3-L4", { width: 3120 }),
+                createCell("Science-themed stories", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("PlayTT IELTS", { width: 3120 }), 
-                createCell("Littlefox L6-L9", { width: 3120 }), 
-                createCell("Mở rộng từ vựng học thuật", { width: 3120 })
-              ] 
+                createCell("PlayTT IELTS", { width: 3120 }),
+                createCell("Littlefox L6-L9", { width: 3120 }),
+                createCell("Expand academic vocabulary", { width: 3120 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Littlefox CN", { width: 3120 }), 
-                createCell("Abeka Viết", { width: 3120 }), 
-                createCell("Luyện viết chữ Hán", { width: 3120 })
-              ] 
+                createCell("Littlefox CN", { width: 3120 }),
+                createCell("Abeka Writes", { width: 3120 }),
+                createCell("Practice writing Chinese characters", { width: 3120 })
+              ]
             })
           ]
         }),
-        
+
         new Paragraph({ children: [new PageBreak()] }),
-        
-        // ============ SECTION 5: KẾ HOẠCH TRIỂN KHAI ============
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_1, 
-          children: [new TextRun("5. KẾ HOẠCH TRIỂN KHAI")] 
+
+        // ============ SECTION 5: IMPLEMENTATION PLAN ============
+        new Paragraph({
+          heading: HeadingLevel.HEADING_1,
+          children: [new TextRun("5. IMPLEMENTATION PLAN")]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
-          children: [new TextRun("5.1. Lộ trình 4 phase (24 tuần)")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [new TextRun("5.1. 4 phase roadmap (24 weeks)")]
         }),
-        
+
         // Implementation phases table
         new Table({
           columnWidths: [1800, 2340, 2340, 2880],
@@ -1260,52 +1260,52 @@ const doc = new Document({
               tableHeader: true,
               children: [
                 createCell("Phase", { header: true, width: 1800 }),
-                createCell("Thời gian", { header: true, width: 2340 }),
-                createCell("Trọng tâm", { header: true, width: 2340 }),
+                createCell("Time", { header: true, width: 2340 }),
+                createCell("Focus", { header: true, width: 2340 }),
                 createCell("Deliverable", { header: true, width: 2880 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Phase 1", { width: 1800, bold: true }), 
-                createCell("Tuần 1-5", { width: 2340 }), 
-                createCell("Nền tảng - Schema DB, Content Mapping", { width: 2340 }),
-                createCell("Content hierarchy API hoạt động", { width: 2880 })
-              ] 
+                createCell("Phase 1", { width: 1800, bold: true }),
+                createCell("Weeks 1-5", { width: 2340 }),
+                createCell("Platform - Schema DB, Content Mapping", { width: 2340 }),
+                createCell("Content hierarchy API works", { width: 2880 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Phase 2", { width: 1800, bold: true }), 
-                createCell("Tuần 6-11", { width: 2340 }), 
-                createCell("Tính năng cốt lõi - Progress, Sequencing", { width: 2340 }),
-                createCell("Học sinh theo path, phụ huynh xem tiến độ", { width: 2880 })
-              ] 
+                createCell("Phase 2", { width: 1800, bold: true }),
+                createCell("Week 6-11", { width: 2340 }),
+                createCell("Core features - Progress, Sequencing", { width: 2340 }),
+                createCell("Students follow the path, parents see progress", { width: 2880 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Phase 3", { width: 1800, bold: true }), 
-                createCell("Tuần 12-18", { width: 2340 }), 
-                createCell("Thông minh - HLR, Recommendations", { width: 2340 }),
-                createCell("Hệ thống thích ứng theo nhu cầu học viên", { width: 2880 })
-              ] 
+                createCell("Phase 3", { width: 1800, bold: true }),
+                createCell("Week 12-18", { width: 2340 }),
+                createCell("Smart - HLR, Recommendations", { width: 2340 }),
+                createCell("The system adapts to student needs", { width: 2880 })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Phase 4", { width: 1800, bold: true }), 
-                createCell("Tuần 19-24", { width: 2340 }), 
-                createCell("Mở rộng - Mobile, Analytics", { width: 2340 }),
-                createCell("Nền tảng học tập toàn diện", { width: 2880 })
-              ] 
+                createCell("Phase 4", { width: 1800, bold: true }),
+                createCell("Week 19-24", { width: 2340 }),
+                createCell("Expand - Mobile, Analytics", { width: 2340 }),
+                createCell("Comprehensive learning platform", { width: 2880 })
+              ]
             })
           ]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
           spacing: { before: 300 },
-          children: [new TextRun("5.2. Công nghệ đề xuất")] 
+          children: [new TextRun("5.2. Recommended technology")]
         }),
-        
+
         // Technology stack table
         new Table({
           columnWidths: [2340, 3120, 3900],
@@ -1313,69 +1313,69 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Lớp", { header: true, width: 2340 }),
-                createCell("Công nghệ", { header: true, width: 3120 }),
-                createCell("Lý do lựa chọn", { header: true, width: 3900 })
+                createCell("Class", { header: true, width: 2340 }),
+                createCell("Technology", { header: true, width: 3120 }),
+                createCell("Reason for selection", { header: true, width: 3900 })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("API Backend", { width: 2340, bold: true }), 
-                createCell("FastAPI (Python)", { width: 3120 }), 
+                createCell("API Backend", { width: 2340, bold: true }),
+                createCell("FastAPI (Python)", { width: 3120 }),
                 createCell("Async support, type hints, auto-docs", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Database", { width: 2340, bold: true }), 
-                createCell("PostgreSQL + MongoDB", { width: 3120 }), 
+                createCell("Database", { width: 2340, bold: true }),
+                createCell("PostgreSQL + MongoDB", { width: 3120 }),
                 createCell("Relational cho analytics, document cho content", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Cache", { width: 2340, bold: true }), 
-                createCell("Redis", { width: 3120 }), 
+                createCell("Cache", { width: 2340, bold: true }),
+                createCell("Redis", { width: 3120 }),
                 createCell("Streak tracking, session management", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Search", { width: 2340, bold: true }), 
-                createCell("Elasticsearch", { width: 3120 }), 
+                createCell("Search", { width: 2340, bold: true }),
+                createCell("Elasticsearch", { width: 3120 }),
                 createCell("Content discovery, recommendations", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Frontend", { width: 2340, bold: true }), 
-                createCell("Next.js + React", { width: 3120 }), 
+                createCell("Frontend", { width: 2340, bold: true }),
+                createCell("Next.js + React", { width: 3120 }),
                 createCell("SSR cho SEO, SPA cho UX", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Mobile", { width: 2340, bold: true }), 
-                createCell("React Native", { width: 3120 }), 
+                createCell("Mobile", { width: 2340, bold: true }),
+                createCell("React Native", { width: 3120 }),
                 createCell("Cross-platform learning app", { width: 3900 })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("ML/AI", { width: 2340, bold: true }), 
-                createCell("Python + scikit-learn", { width: 3120 }), 
-                createCell("Thuật toán HLR, recommendations", { width: 3900 })
-              ] 
+                createCell("ML/AI", { width: 2340, bold: true }),
+                createCell("Python + scikit-learn", { width: 3120 }),
+                createCell("HLR algorithm, recommendations", { width: 3900 })
+              ]
             })
           ]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
           spacing: { before: 300 },
-          children: [new TextRun("5.3. KPI và metrics thành công")] 
+          children: [new TextRun("5.3. Successful KPIs and metrics")]
         }),
-        
+
         // KPI table
         new Table({
           columnWidths: [2340, 1560, 1560, 1560, 2340],
@@ -1383,131 +1383,131 @@ const doc = new Document({
             new TableRow({
               tableHeader: true,
               children: [
-                createCell("Chỉ số", { header: true, width: 2340 }),
+                createCell("Index", { header: true, width: 2340 }),
                 createCell("Baseline", { header: true, width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("MVP", { header: true, width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("Beta", { header: true, width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("Launch", { header: true, width: 2340, alignment: AlignmentType.CENTER })
               ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Video trong Paths", { width: 2340 }), 
-                createCell("0%", { width: 1560, alignment: AlignmentType.CENTER }), 
-                createCell("25%", { width: 1560, alignment: AlignmentType.CENTER }), 
+                createCell("Video trong Paths", { width: 2340 }),
+                createCell("0%", { width: 1560, alignment: AlignmentType.CENTER }),
+                createCell("25%", { width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("60%", { width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("100%", { width: 2340, alignment: AlignmentType.CENTER })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Học viên hoạt động", { width: 2340 }), 
-                createCell("0", { width: 1560, alignment: AlignmentType.CENTER }), 
-                createCell("100", { width: 1560, alignment: AlignmentType.CENTER }), 
+                createCell("Student activities", { width: 2340 }),
+                createCell("0", { width: 1560, alignment: AlignmentType.CENTER }),
+                createCell("100", { width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("500", { width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("5,000+", { width: 2340, alignment: AlignmentType.CENTER })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Thời gian/phiên (TB)", { width: 2340 }), 
-                createCell("N/A", { width: 1560, alignment: AlignmentType.CENTER }), 
-                createCell("15 phút", { width: 1560, alignment: AlignmentType.CENTER }), 
-                createCell("25 phút", { width: 1560, alignment: AlignmentType.CENTER }),
-                createCell("35 phút", { width: 2340, alignment: AlignmentType.CENTER })
-              ] 
+                createCell("Time/session (TB)", { width: 2340 }),
+                createCell("N/A", { width: 1560, alignment: AlignmentType.CENTER }),
+                createCell("15 minutes", { width: 1560, alignment: AlignmentType.CENTER }),
+                createCell("25 minutes", { width: 1560, alignment: AlignmentType.CENTER }),
+                createCell("35 minutes", { width: 2340, alignment: AlignmentType.CENTER })
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Tỷ lệ hoàn thành", { width: 2340 }), 
-                createCell("N/A", { width: 1560, alignment: AlignmentType.CENTER }), 
-                createCell("40%", { width: 1560, alignment: AlignmentType.CENTER }), 
+                createCell("Completion rate", { width: 2340 }),
+                createCell("N/A", { width: 1560, alignment: AlignmentType.CENTER }),
+                createCell("40%", { width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("55%", { width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("80%", { width: 2340, alignment: AlignmentType.CENTER })
-              ] 
+              ]
             }),
-            new TableRow({ 
+            new TableRow({
               children: [
-                createCell("Tương tác phụ huynh", { width: 2340 }), 
-                createCell("0%", { width: 1560, alignment: AlignmentType.CENTER }), 
-                createCell("30%", { width: 1560, alignment: AlignmentType.CENTER }), 
+                createCell("Parent interaction", { width: 2340 }),
+                createCell("0%", { width: 1560, alignment: AlignmentType.CENTER }),
+                createCell("30%", { width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("50%", { width: 1560, alignment: AlignmentType.CENTER }),
                 createCell("85%", { width: 2340, alignment: AlignmentType.CENTER })
-              ] 
+              ]
             })
           ]
         }),
-        
+
         new Paragraph({ children: [new PageBreak()] }),
-        
-        // ============ SECTION 6: KẾT LUẬN & ĐỀ XUẤT ============
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_1, 
-          children: [new TextRun("6. KẾT LUẬN & ĐỀ XUẤT")] 
+
+        // ============ SECTION 6: CONCLUSION & RECOMMENDATIONS ============
+        new Paragraph({
+          heading: HeadingLevel.HEADING_1,
+          children: [new TextRun("6. CONCLUSION & SUGGESTIONS")]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
-          children: [new TextRun("6.1. Tóm tắt giá trị cốt lõi")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [new TextRun("6.1. Summary of core values")]
         }),
-        
-        createBullet("Chuyển đổi 36,360 video từ thư viện tĩnh thành hệ thống học tập động", "bullet-section6"),
-        createBullet("5 cấp độ phân cấp (Video → Lesson → Daily → Weekly → Journey) với tracking đầy đủ", "bullet-section6"),
-        createBullet("4 loại learning path chính phục vụ đa dạng nhu cầu: K-12, Stories, IELTS, Chinese", "bullet-section6"),
-        createBullet("Cross-source integration tận dụng tối đa 6 nguồn nội dung hiện có", "bullet-section6"),
-        createBullet("Adaptive learning với HLR spaced repetition và recommendation engine", "bullet-section6"),
-        createBullet("Lộ trình 24 tuần từ MVP đến full launch với metrics rõ ràng", "bullet-section6"),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_2, 
+
+        createBullet("Convert 36,360 videos from static library into dynamic learning system", "bullet-section6"),
+        createBullet("5 levels of hierarchy (Video → Lesson → Daily → Weekly → Journey) with full tracking", "bullet-section6"),
+        createBullet("4 main types of learning paths serving diverse needs: K-12, Stories, IELTS, Chinese", "bullet-section6"),
+        createBullet("Cross-source integration takes full advantage of 6 existing content sources", "bullet-section6"),
+        createBullet("Adaptive learning with HLR spaced repetition and recommendation engine", "bullet-section6"),
+        createBullet("24-week roadmap from MVP to full launch with clear metrics", "bullet-section6"),
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
           spacing: { before: 300 },
-          children: [new TextRun("6.2. Các bước tiếp theo")] 
+          children: [new TextRun("6.2. Next steps")]
         }),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_3, 
-          children: [new TextRun("Ngay lập tức (Tuần 1)")] 
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_3,
+          children: [new TextRun("Immediately (Week 1)")]
         }),
-        
-        createBullet("Xác nhận và phê duyệt database schema designs", "bullet-section6"),
-        createBullet("Xây dựng proof of concept: map 100 Abeka lessons sang hierarchy mới", "bullet-section6"),
-        createBullet("Thiết lập môi trường development và CI/CD pipeline", "bullet-section6"),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_3, 
+
+        createBullet("Confirm and approve database schema designs", "bullet-section6"),
+        createBullet("Build proof of concept: map 100 Abeka lessons to new hierarchy", "bullet-section6"),
+        createBullet("Set up development environment and CI/CD pipeline", "bullet-section6"),
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_3,
           spacing: { before: 200 },
-          children: [new TextRun("Ngắn hạn (Tuần 2-5)")] 
+          children: [new TextRun("Short-term (Weeks 2-5)")]
         }),
-        
-        createBullet("Hoàn thiện Phase 1: Database Schema + Content Mapping Layer", "bullet-section6"),
-        createBullet("Triển khai CRUD APIs cho learning paths", "bullet-section6"),
-        createBullet("Testing với 1,000 videos đầu tiên", "bullet-section6"),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_3, 
+
+        createBullet("Complete Phase 1: Database Schema + Content Mapping Layer", "bullet-section6"),
+        createBullet("Implement CRUD APIs for learning paths", "bullet-section6"),
+        createBullet("Testing with the first 1,000 videos", "bullet-section6"),
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_3,
           spacing: { before: 200 },
-          children: [new TextRun("Trung hạn (Tuần 6-18)")] 
+          children: [new TextRun("Mid-term (Weeks 6-18)")]
         }),
-        
-        createBullet("Xây dựng Progress Tracking và Path Sequencing", "bullet-section6"),
-        createBullet("Phát triển Parent Dashboard v1", "bullet-section6"),
-        createBullet("Triển khai Spaced Repetition (HLR algorithm)", "bullet-section6"),
-        createBullet("Tích hợp Recommendation Engine", "bullet-section6"),
-        
-        new Paragraph({ 
-          heading: HeadingLevel.HEADING_3, 
+
+        createBullet("Build Progress Tracking and Path Sequencing", "bullet-section6"),
+        createBullet("Developing Parent Dashboard v1", "bullet-section6"),
+        createBullet("Implement Spaced Repetition (HLR algorithm)", "bullet-section6"),
+        createBullet("Recommendation Engine integration", "bullet-section6"),
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_3,
           spacing: { before: 200 },
-          children: [new TextRun("Dài hạn (Tuần 19-24+)")] 
+          children: [new TextRun("Long-term (Weeks 19-24+)")]
         }),
-        
-        createBullet("Tối ưu hiệu suất cho 36K+ videos", "bullet-section6"),
+
+        createBullet("Optimized performance for 36K+ videos", "bullet-section6"),
         createBullet("Launch mobile learning app", "bullet-section6"),
-        createBullet("Analytics và reporting toàn diện", "bullet-section6"),
-        createBullet("Mở rộng ra 5,000+ học viên hoạt động", "bullet-section6"),
-        
+        createBullet("Comprehensive analytics and reporting", "bullet-section6"),
+        createBullet("Expanded to 5,000+ active students", "bullet-section6"),
+
         // Closing box
         new Paragraph({ spacing: { before: 400 }, children: [] }),
-        
+
         new Table({
           columnWidths: [9360],
           alignment: AlignmentType.CENTER,
@@ -1526,10 +1526,10 @@ const doc = new Document({
                     new Paragraph({
                       alignment: AlignmentType.CENTER,
                       spacing: { before: 200, after: 100 },
-                      children: [new TextRun({ 
-                        text: "TÀI LIỆU CHIẾN LƯỢC", 
-                        bold: true, 
-                        size: 28, 
+                      children: [new TextRun({
+                        text: "STRATEGIC DOCUMENT",
+                        bold: true,
+                        size: 28,
                         color: COLORS.primary,
                         font: "Arial"
                       })]
@@ -1537,9 +1537,9 @@ const doc = new Document({
                     new Paragraph({
                       alignment: AlignmentType.CENTER,
                       spacing: { before: 100, after: 100 },
-                      children: [new TextRun({ 
-                        text: "Từ 36,360 videos đến hệ thống học tập thông minh", 
-                        size: 22, 
+                      children: [new TextRun({
+                        text: "From 36,360 videos to smart learning system",
+                        size: 22,
                         color: COLORS.gray,
                         font: "Arial"
                       })]
@@ -1547,9 +1547,9 @@ const doc = new Document({
                     new Paragraph({
                       alignment: AlignmentType.CENTER,
                       spacing: { before: 100, after: 200 },
-                      children: [new TextRun({ 
-                        text: "Chuẩn bị bởi: AI Research & Planning Team | Ngày: 31/03/2026", 
-                        size: 20, 
+                      children: [new TextRun({
+                        text: "Prepared by: AI Research & Planning Team | Date: March 31, 2026",
+                        size: 20,
                         italics: true,
                         color: COLORS.gray,
                         font: "Arial"

@@ -32,24 +32,24 @@ test.describe('Abeka Curriculum Integration', () => {
       await parentPage.waitForSelector('[data-testid="weekly-planner"]');
       
       // Create weekly plan if doesn't exist
-      const createButton = parentPage.getByText('Tạo kế hoạch mới');
+      const createButton = parentPage.getByText('Create new plan');
       if (await createButton.isVisible().catch(() => false)) {
         await createButton.click();
         await parentPage.selectOption('select[name="grade"]', '1');
-        await parentPage.click('text=Tạo');
+        await parentPage.click('text=Create');
       }
       
       // Drag lesson to day
       await parentPage.waitForSelector('[data-testid="lesson-card"]');
-      const lesson = parentPage.getByText('Bài 1').first();
+      const lesson = parentPage.getByText('Lesson 1').first();
       const dayColumn = parentPage.getByText('T2').first();
       
       // Perform drag and drop
       await lesson.dragTo(dayColumn);
-      await parentPage.click('text=Lưu kế hoạch');
+      await parentPage.click('text=Save plan');
       
       // Wait for save confirmation
-      await expect(parentPage.getByText('Đã lưu')).toBeVisible({ timeout: 5000 });
+      await expect(parentPage.getByText('Saved')).toBeVisible({ timeout: 5000 });
       
       // Create child context
       const childContext = await browser.newContext();
@@ -60,10 +60,10 @@ test.describe('Abeka Curriculum Integration', () => {
       await childPage.waitForSelector('[data-testid="daily-plan-view"]');
       
       // Should see assigned lesson
-      await expect(childPage.getByText('Phonics').or(childPage.getByText('Số học'))).toBeVisible();
+      await expect(childPage.getByText('Phonics').or(childPage.getByText('Arithmetic'))).toBeVisible();
       
       // Start lesson
-      await childPage.click('text=BẮT ĐẦU HỌC');
+      await childPage.click('text=START LEARNING');
       
       // Video player opens
       await expect(childPage.locator('[data-testid="lesson-wizard"]')).toBeVisible({ timeout: 5000 });
@@ -81,22 +81,22 @@ test.describe('Abeka Curriculum Integration', () => {
       });
       
       // Continue to quiz
-      await childPage.click('text=Tiếp tục thử thách');
+      await childPage.click('text=Continue the challenge');
       
       // Answer quiz correctly
       await childPage.waitForSelector('[data-testid="activity-renderer"]');
       await childPage.click('[data-testid="correct-option"]');
       
       // Should see completion celebration
-      await expect(childPage.getByText('Hoàn thành!')).toBeVisible({ timeout: 10000 });
+      await expect(childPage.getByText('Complete!')).toBeVisible({ timeout: 10000 });
       
       // Close lesson wizard
-      await childPage.click('text=Quay lại bản đồ');
+      await childPage.click('text=Return to map');
       
       // Check progress updated in parent view
       await parentPage.reload();
       await parentPage.goto('/abeka/progress');
-      await expect(parentPage.getByText('1 bài').or(parentPage.getByText('1/'))).toBeVisible({ timeout: 5000 });
+      await expect(parentPage.getByText('1 post').or(parentPage.getByText('1/'))).toBeVisible({ timeout: 5000 });
       
       await parentContext.close();
       await childContext.close();
@@ -121,7 +121,7 @@ test.describe('Abeka Curriculum Integration', () => {
       const incompleteAssignments = await page.locator('[data-testid="assignment-card"]:not([data-completed="true"])').all();
       
       for (const assignment of incompleteAssignments.slice(0, 2)) {
-        await assignment.locator('button:has-text("Bắt đầu")').click();
+        await assignment.locator('button:has-text("Start")').click();
         
         // Wait for lesson wizard
         await page.waitForSelector('[data-testid="lesson-wizard"]', { timeout: 10000 });
@@ -135,12 +135,12 @@ test.describe('Abeka Curriculum Integration', () => {
           }
         });
         
-        await page.click('text=Tiếp tục thử thách');
+        await page.click('text=Continue the challenge');
         await page.click('[data-testid="correct-option"]');
         
         // Wait for completion
-        await page.waitForSelector('text=Hoàn thành!', { timeout: 10000 });
-        await page.click('text=Quay lại bản đồ');
+        await page.waitForSelector('text=Done!', { timeout: 10000 });
+        await page.click('text=Return to map');
         
         // Wait for return to daily plan
         await page.waitForSelector('[data-testid="daily-plan-view"]', { timeout: 5000 });
@@ -170,7 +170,7 @@ test.describe('Abeka Curriculum Integration', () => {
       
       // Complete a lesson through the flow
       await page.goto('/abeka/today');
-      await page.click('text=BẮT ĐẦU HỌC');
+      await page.click('text=START LEARNING');
       await page.waitForSelector('[data-testid="lesson-wizard"]', { timeout: 10000 });
       
       // Complete lesson
@@ -182,12 +182,12 @@ test.describe('Abeka Curriculum Integration', () => {
         }
       });
       
-      await page.click('text=Tiếp tục thử thách');
+      await page.click('text=Continue the challenge');
       await page.click('[data-testid="correct-option"]');
-      await page.waitForSelector('text=Hoàn thành!', { timeout: 10000 });
+      await page.waitForSelector('text=Done!', { timeout: 10000 });
       
       // Check for badge notification
-      await expect(page.getByText('Huy hiệu mới!').or(page.getByText('badge'))).toBeVisible({ timeout: 5000 });
+      await expect(page.getByText('New badge!').or(page.getByText('badge'))).toBeVisible({ timeout: 5000 });
       
       // Verify badge was added
       await page.goto('/abeka/badges');
@@ -246,7 +246,7 @@ test.describe('Abeka Curriculum Integration', () => {
       await nextButton.click();
       
       // Should load next page within 1 second
-      await expect(page.getByText('Bài 21').or(page.locator('[data-testid="lesson-card"]'))).toBeVisible({ timeout: 1000 });
+      await expect(page.getByText('Lesson 21').or(page.locator('[data-testid="lesson-card"]'))).toBeVisible({ timeout: 1000 });
     });
 
     test('daily plan loads quickly', async ({ page }) => {
@@ -292,7 +292,7 @@ test.describe('Abeka Curriculum Integration', () => {
     test('video player has accessible controls', async ({ page }) => {
       // Start a lesson to get to video player
       await page.goto('/abeka/today');
-      await page.click('text=BẮT ĐẦU HỌC');
+      await page.click('text=START LEARNING');
       await page.waitForSelector('[data-testid="lesson-wizard"]', { timeout: 10000 });
       
       // Check video has controls
@@ -355,12 +355,12 @@ test.describe('Abeka Curriculum Integration', () => {
       await page.goto('/abeka/today');
       
       // Should show error state
-      await expect(page.getByText('Không thể tải').or(page.getByText('error'))).toBeVisible({ timeout: 5000 });
+      await expect(page.getByText('Unable to load').or(page.getByText('error'))).toBeVisible({ timeout: 5000 });
     });
 
     test('handles failed lesson completion gracefully', async ({ page }) => {
       await page.goto('/abeka/today');
-      await page.click('text=BẮT ĐẦU HỌC');
+      await page.click('text=START LEARNING');
       await page.waitForSelector('[data-testid="lesson-wizard"]', { timeout: 10000 });
       
       // Block completion API
@@ -380,11 +380,11 @@ test.describe('Abeka Curriculum Integration', () => {
         }
       });
       
-      await page.click('text=Tiếp tục thử thách');
+      await page.click('text=Continue the challenge');
       await page.click('[data-testid="correct-option"]');
       
       // Should show error toast
-      await expect(page.getByText('Không thể lưu').or(page.getByText('Thử lại'))).toBeVisible({ timeout: 5000 });
+      await expect(page.getByText('Unable to save').or(page.getByText('Retry'))).toBeVisible({ timeout: 5000 });
     });
   });
 
@@ -397,7 +397,7 @@ test.describe('Abeka Curriculum Integration', () => {
       const initialText = await page.locator('[data-testid="progress-text"]').textContent();
       
       // Complete a lesson
-      await page.click('text=BẮT ĐẦU HỌC');
+      await page.click('text=START LEARNING');
       await page.waitForSelector('[data-testid="lesson-wizard"]', { timeout: 10000 });
       
       await page.evaluate(() => {
@@ -408,10 +408,10 @@ test.describe('Abeka Curriculum Integration', () => {
         }
       });
       
-      await page.click('text=Tiếp tục thử thách');
+      await page.click('text=Continue the challenge');
       await page.click('[data-testid="correct-option"]');
-      await page.waitForSelector('text=Hoàn thành!', { timeout: 10000 });
-      await page.click('text=Quay lại bản đồ');
+      await page.waitForSelector('text=Done!', { timeout: 10000 });
+      await page.click('text=Return to map');
       
       // Refresh page
       await page.reload();

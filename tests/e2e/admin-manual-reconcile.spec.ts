@@ -89,10 +89,10 @@ test.describe("admin manual reconcile", () => {
 
       await page.goto("/admin/operations");
       await page.waitForURL("**/admin/operations", { timeout: 20_000 });
-      await expect(page.getByRole("heading", { name: /Vận hành hệ thống/i }).first()).toBeVisible();
+      await expect(page.getByRole("heading", { name: /Van hanh he thong/i }).first()).toBeVisible();
 
       await page.locator('input[type="number"]').first().fill("100");
-      await page.getByRole("button", { name: /giao dịch/i }).first().click();
+      await page.getByRole("button", { name: /giao dich/i }).first().click();
 
       const paymentRow = page
         .locator("tr", {
@@ -106,9 +106,9 @@ test.describe("admin manual reconcile", () => {
 
       await page.getByLabel("Action").selectOption("MARK_SUCCEEDED_AND_SYNC");
       await page.getByLabel("Webhook resolution").selectOption("PROCESSED");
-      await page.getByLabel(/Chọn webhook liên quan/i).selectOption(webhook.id);
+      await page.getByLabel(/Chon webhook lien quan/i).selectOption(webhook.id);
       await page.locator("textarea").first().fill("E2E reconcile payment + webhook + enrollment");
-      await page.getByRole("button", { name: /Thực hiện reconcile/i }).click();
+      await page.getByRole("button", { name: /Thuc hien reconcile/i }).click();
 
       await expect(paymentRow).toContainText("SUCCEEDED");
 

@@ -44,22 +44,22 @@ function getSubjectFromTitle(title: string): { code: string; name: string; nameV
   const lowerTitle = title.toLowerCase();
   
   if (lowerTitle.includes('phonics')) return { code: 'PHONICS', name: 'Phonics', nameVi: 'Phonics' };
-  if (lowerTitle.includes('arithmetic') || lowerTitle.includes('combination')) return { code: 'ARITHMETIC', name: 'Arithmetic', nameVi: 'Số học' };
-  if (lowerTitle.includes('activities')) return { code: 'ACTIVITIES', name: 'Activities', nameVi: 'Hoạt động' };
-  if (lowerTitle.includes('routines')) return { code: 'ROUTINES', name: 'Routines', nameVi: 'Thói quen' };
-  if (lowerTitle.includes('seatwork')) return { code: 'SEATWORK_C', name: 'Seatwork', nameVi: 'Bài tập' };
-  if (lowerTitle.includes('spelling')) return { code: 'SPELLING', name: 'Spelling', nameVi: 'Chính tả' };
-  if (lowerTitle.includes('writing') || lowerTitle.includes('cursive') || lowerTitle.includes('manuscript')) return { code: 'WRITING_C', name: 'Writing', nameVi: 'Viết' };
-  if (lowerTitle.includes('bible')) return { code: 'BIBLE', name: 'Bible', nameVi: 'Kinh thánh' };
-  if (lowerTitle.includes('reading')) return { code: 'READING', name: 'Reading', nameVi: 'Đọc hiểu' };
-  if (lowerTitle.includes('history')) return { code: 'HISTORY', name: 'History', nameVi: 'Lịch sử' };
-  if (lowerTitle.includes('science')) return { code: 'SCIENCE', name: 'Science', nameVi: 'Khoa học' };
-  if (lowerTitle.includes('health')) return { code: 'HEALTH', name: 'Health', nameVi: 'Sức khỏe' };
-  if (lowerTitle.includes('literature')) return { code: 'LITERATURE', name: 'Literature', nameVi: 'Văn học' };
-  if (lowerTitle.includes('composition')) return { code: 'COMPOSITION', name: 'Composition', nameVi: 'Viết văn' };
-  if (lowerTitle.includes('vocabulary')) return { code: 'VOCABULARY', name: 'Vocabulary', nameVi: 'Từ vựng' };
-  if (lowerTitle.includes('poetry')) return { code: 'POETRY', name: 'Poetry', nameVi: 'Thơ' };
-  if (lowerTitle.includes('grammar')) return { code: 'GRAMMAR', name: 'Grammar', nameVi: 'Ngữ pháp' };
+  if (lowerTitle.includes('arithmetic') || lowerTitle.includes('combination')) return { code: 'ARITHMETIC', name: 'Arithmetic', nameVi: 'Arithmetic' };
+  if (lowerTitle.includes('activities')) return { code: 'ACTIVITIES', name: 'Activities', nameVi: 'Work' };
+  if (lowerTitle.includes('routines')) return { code: 'ROUTINES', name: 'Routines', nameVi: 'Habit' };
+  if (lowerTitle.includes('seatwork')) return { code: 'SEATWORK_C', name: 'Seatwork', nameVi: 'Exercise' };
+  if (lowerTitle.includes('spelling')) return { code: 'SPELLING', name: 'Spelling', nameVi: 'Spelling' };
+  if (lowerTitle.includes('writing') || lowerTitle.includes('cursive') || lowerTitle.includes('manuscript')) return { code: 'WRITING_C', name: 'Writing', nameVi: 'Write' };
+  if (lowerTitle.includes('bible')) return { code: 'BIBLE', name: 'Bible', nameVi: 'Bible' };
+  if (lowerTitle.includes('reading')) return { code: 'READING', name: 'Reading', nameVi: 'Read comprehension' };
+  if (lowerTitle.includes('history')) return { code: 'HISTORY', name: 'History', nameVi: 'History' };
+  if (lowerTitle.includes('science')) return { code: 'SCIENCE', name: 'Science', nameVi: 'Science' };
+  if (lowerTitle.includes('health')) return { code: 'HEALTH', name: 'Health', nameVi: 'Health' };
+  if (lowerTitle.includes('literature')) return { code: 'LITERATURE', name: 'Literature', nameVi: 'Literature' };
+  if (lowerTitle.includes('composition')) return { code: 'COMPOSITION', name: 'Composition', nameVi: 'Writing' };
+  if (lowerTitle.includes('vocabulary')) return { code: 'VOCABULARY', name: 'Vocabulary', nameVi: 'Vocabulary' };
+  if (lowerTitle.includes('poetry')) return { code: 'POETRY', name: 'Poetry', nameVi: 'Verse' };
+  if (lowerTitle.includes('grammar')) return { code: 'GRAMMAR', name: 'Grammar', nameVi: 'Grammar' };
   
   return { code: 'ACTIVITIES', name: 'General', nameVi: 'Chung' };
 }
@@ -142,10 +142,10 @@ async function main() {
         ? 'K5'
         : `Grade ${gradeLevel - 1}`;
     const gradeNameVi = normalizedGrade === 'k4'
-      ? 'Mầm non K4'
+      ? 'Preschool K4'
       : normalizedGrade === 'k5'
-        ? 'Mầm non K5'
-        : `Lớp ${gradeLevel - 1}`;
+        ? 'Preschool K5'
+        : `Class${gradeLevel - 1}`;
     
     const grade = await prisma.abekaGrade.upsert({
       where: { level: gradeLevel },

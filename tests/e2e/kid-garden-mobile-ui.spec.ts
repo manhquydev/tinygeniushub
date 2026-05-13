@@ -91,7 +91,7 @@ test.describe("Kid Garden Mobile UI", () => {
       },
       update: {
         status: "ACTIVE",
-        seedName: "Mầm E2E",
+        seedName: "E2E Sprouts",
         currentTierNo: 1,
         currentTierProgress: 35,
         activatedAt: new Date(),
@@ -101,7 +101,7 @@ test.describe("Kid Garden Mobile UI", () => {
         courseId: enrollment.courseId,
         sourceEnrollmentId: enrollment.id,
         status: "ACTIVE",
-        seedName: "Mầm E2E",
+        seedName: "E2E Sprouts",
         currentTierNo: 1,
         currentTierProgress: 35,
         activatedAt: new Date(),

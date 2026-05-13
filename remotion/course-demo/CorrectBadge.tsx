@@ -1,6 +1,6 @@
 import { useCurrentFrame, spring } from "remotion";
 
-// Green badge "✓ Đúng rồi!" slides from top-right into view.
+// Green badge "✓ That's right!" slides from top-right into view.
 // Used in celebrate phase.
 export function CorrectBadge() {
   const frame = useCurrentFrame();
@@ -41,7 +41,7 @@ export function CorrectBadge() {
             fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
           }}
         >
-          ✓ Đúng rồi!
+          ✓ That's right!
         </span>
       </div>
     </div>

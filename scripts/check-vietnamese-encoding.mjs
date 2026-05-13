@@ -5,9 +5,8 @@ const SOURCE_ROOT = path.resolve(process.cwd(), "src");
 const FILE_EXTENSIONS = new Set([".ts", ".tsx"]);
 const EXCLUDED_PATH_SEGMENTS = ["src/modules/billing/"];
 const literalRegex = /(["'`])(?:\\.|(?!\1)[^\\])*\1/g;
-const suspectWordRegex = /\b(khong|tieu|muc|da|duoc|bao|hoc|moi|loi|thu hoi|het han)\b/i;
-const vietnameseDiacriticRegex =
-  /[ăâđêôơưáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ]/i;
+const suspectWordRegex = /\b(not|name|muc|da|duoc|cover|learning|new|loi|collection|het han)\b/i;
+const vietnameseDiacriticRegex = new RegExp("[\\u00c0-\\u024f\\u1e00-\\u1eff]", "u");
 
 async function collectSourceFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });

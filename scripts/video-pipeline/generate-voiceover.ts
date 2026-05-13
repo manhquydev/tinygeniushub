@@ -49,7 +49,7 @@ export async function generateVoiceover(script: string, outputPath: string) {
 
 // CLI entry point
 if (process.argv[1]?.includes("generate-voiceover")) {
-  const script = process.argv[2] || "Xin chào các bạn nhỏ! Hôm nay chúng ta sẽ học bài mới.";
+  const script = process.argv[2] || "Hello kids! Today we will learn a new lesson.";
   const output = process.argv[3] || "out/assets/voiceover.wav";
   generateVoiceover(script, output).catch(console.error);
 }

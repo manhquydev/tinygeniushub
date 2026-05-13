@@ -574,7 +574,7 @@ async function main() {
       headers: parentHeaders,
     });
     assert(parentReportsPage.response.status === 200, `Parent reports page failed: status=${parentReportsPage.response.status}`);
-    const reportMarkers = ["Báo cáo", "Bao cao", "Report", "Weekly"];
+    const reportMarkers = ["Report", "Bao cao", "Report", "Weekly"];
     assert(reportMarkers.some((marker) => parentReportsPage.text.includes(marker)), "Parent reports marker not found");
 
     const nonAdminOverview = await requestJson(baseUrl, "/api/admin/overview", {

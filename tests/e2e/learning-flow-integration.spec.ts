@@ -82,27 +82,27 @@ test.describe("Learning Flow Integration", () => {
     const displayName = `E2E Parent ${unique}`;
 
     await page.goto("/auth/signup");
-    await page.getByLabel("Tên hiển thị").fill(displayName);
+    await page.getByLabel("Display name").fill(displayName);
     await page.getByLabel("Email").fill(email);
-    await page.getByLabel("Mật khẩu").fill(password);
-    await page.getByRole("button", { name: /Bắt đầu dùng thử/i }).click();
+    await page.getByLabel("Password").fill(password);
+    await page.getByRole("button", { name: /Bat dau dung thu/i }).click();
 
     await expect(page).toHaveURL(/\/setup/);
 
     await page.locator("#setup-child-nickname").fill("Be Sao");
-    await page.getByRole("button", { name: /^Tiếp tục$/i }).click();
-    await page.getByRole("button", { name: /Hoàn tất thiết lập/i }).click();
-    await page.getByRole("button", { name: /Vào bảng điều khiển phụ huynh/i }).click();
+    await page.getByRole("button", { name: /^Tiep tuc$/i }).click();
+    await page.getByRole("button", { name: /Hoan tat thiet lap/i }).click();
+    await page.getByRole("button", { name: /Vao bang dieu khien phu huynh/i }).click();
 
     await expect(page).toHaveURL(/\/parent\/dashboard/);
 
     await page.goto(`/courses/${TARGET_COURSE_SLUG}`);
 
-    const learningNowLink = page.getByRole("link", { name: /Vào học ngay/i });
+    const learningNowLink = page.getByRole("link", { name: /Vao hoc ngay/i });
     if (await learningNowLink.count()) {
       await learningNowLink.first().click();
     } else {
-      const checkoutButton = page.getByRole("button", { name: /Mua khóa học/i });
+      const checkoutButton = page.getByRole("button", { name: /Mua khoa hoc/i });
       await expect(checkoutButton).toBeVisible();
       await checkoutButton.click();
     }

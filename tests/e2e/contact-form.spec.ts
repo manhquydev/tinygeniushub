@@ -11,7 +11,7 @@ test("contact form submits successfully with mocked API", async ({ page }) => {
       body: JSON.stringify({
         ok: true,
         data: {
-          message: "Đã nhận được tin nhắn của bạn",
+          message: "Your message has been received",
         },
       }),
     });
@@ -22,10 +22,10 @@ test("contact form submits successfully with mocked API", async ({ page }) => {
   await page.fill("#contact-name", "QA Tester");
   await page.fill("#contact-email", "qa@example.com");
   await page.selectOption("#contact-subject", { index: 3 });
-  await page.fill("#contact-message", "Đây là tin nhắn kiểm thử hợp lệ cho contact form.");
+  await page.fill("#contact-message", "This is a valid test message for the contact form.");
   await page.locator('button[type="submit"]').click();
 
   await expect.poll(() => contactRequestCount).toBe(1);
-  await expect(page.getByText("Đã nhận được tin nhắn của bạn")).toBeVisible();
+  await expect(page.getByText("Your message has been received")).toBeVisible();
 });
 

@@ -2,7 +2,7 @@
 
 ## Overview
 - Priority: high
-- Status: in progress
+- Status: complete
 - Replace Vietnamese hardcoded runtime strings module by module.
 
 ## Migration Modules
@@ -12,7 +12,7 @@
 4. `courses-and-kid-learning` - complete
 5. `admin-and-teacher` - complete
 6. `api-modules-workers-emails` - complete
-7. `prisma-seeds-scripts-tests`
+7. `prisma-seeds-scripts-tests` - complete
 
 ## Requirements
 - Each module gets one focused commit: `feat(i18n): migrate [module-name] to i18n keys`.

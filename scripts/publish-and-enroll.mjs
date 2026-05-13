@@ -45,7 +45,7 @@ async function main() {
 
   // 4. Create dummy child journey if needed, but enrollment might automatically do it or KidDashboard might handle empty journey. 
   // Wait, wait, kid dashboard requires a journey to show progress? Let's check `KidCoursesDashboard.tsx`
-  // Actually KidCoursesDashboard shows "Chưa bắt đầu" if journey is null.
+  // Actually KidCoursesDashboard shows "Haven't started yet" if journey is null.
 }
 
 main().catch(console.error).finally(() => prisma.$disconnect());
