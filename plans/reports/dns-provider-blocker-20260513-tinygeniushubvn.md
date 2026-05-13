@@ -1,7 +1,7 @@
 # DNS Provider Blocker - tinygeniushubvn.tech
 
 Date: 2026-05-13
-Last verified: 2026-05-14 00:33 ICT
+Last verified: 2026-05-14 00:49 ICT
 
 ## Status
 
@@ -9,7 +9,7 @@ VPS/app deploy is healthy on `152.42.246.218`, but domain verification is still 
 
 ## Verified Working
 
-- Deployed commit: verified with `git rev-parse HEAD` on `/var/www/cungcontuhoc` after each sync
+- Deployed commit: `17a0d6693b2280f5ceb522a59f1b7b722239b932`, verified with `git rev-parse HEAD` on `/var/www/cungcontuhoc`
 - VPS path: `/var/www/cungcontuhoc`
 - PM2 apps: `tinygeniushub-web`, `tinygeniushub-worker`
 - Health: `http://152.42.246.218/api/health/ready` returns ready
@@ -24,7 +24,7 @@ Command:
 pnpm prod:verify-vps-dns
 ```
 
-Latest result: still failing from local/public resolver paths. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:33 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because authoritative DNS and local resolver paths still return stale records.
+Latest result: still failing from local/public resolver paths and VPS authoritative checks. Multiple verifier and direct authoritative DNS attempts between 23:18 ICT on 2026-05-13 and 00:49 ICT on 2026-05-14 failed from local/public source networks. The VPS-side verifier can pass intermittently, but that does not prove public users are safe because authoritative DNS and local resolver paths still return stale records.
 
 Authoritative nameservers still return old A records:
 
@@ -37,35 +37,35 @@ Expected A record only:
 
 Examples from latest checks:
 
-- Local strict verifier on 2026-05-14: `21 production verification check(s) failed` after expanding coverage to both OrderBox nameserver families
-- VPS strict verifier on 2026-05-14: `3 production verification check(s) failed`
-- `tinygeniushubvn.tech @ 162.251.82.119` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
-- `www.tinygeniushubvn.tech @ 162.251.82.125` returned `165.22.211.19`
-- `tinygeniushubvn.tech @ 162.251.82.250` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
-- `www.tinygeniushubvn.tech @ 162.251.82.123` returned `165.22.211.19`
-- `https://tinygeniushubvn.tech/` public fetch failed from local resolver path after `ipconfig /flushdns`
+- Local strict verifier on 2026-05-14 after cleanup-hint patch: `22 production verification check(s) failed`
+- VPS strict verifier on 2026-05-14 after deploy of `17a0d669`: `5 production verification check(s) failed`
+- `tinygeniushubvn.tech @ tech-domains.earth.orderbox-dns.com (162.251.82.119)` returned `165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ tech-domains.mercury.orderbox-dns.com (162.251.82.250)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ tech-domains.venus.orderbox-dns.com (162.251.82.248)` returned `165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ cont603385.mercury.orderbox-dns.com (162.251.82.250)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
+- `tinygeniushubvn.tech @ cont603385.mercury.orderbox-dns.com (162.251.82.251)` returned `152.42.246.218, 165.22.211.19, 165.22.48.193`
+- `https://tinygeniushubvn.tech/` public fetch failed from local resolver path with TLS error
 - Forced apex check with `--resolve tinygeniushubvn.tech:443:152.42.246.218` returned `301` to `https://www.tinygeniushubvn.tech/`
-- `https://www.tinygeniushubvn.tech/` public fetch returned `200` on `152.42.246.218`
+- `https://www.tinygeniushubvn.tech/`, `/api/health/ready`, `/pricing`, and `/courses` public fetches returned `200` on `152.42.246.218`
 
 Public resolver sample on 2026-05-14:
 
 - `1.1.1.1` returned correct `152.42.246.218`
 - `8.8.8.8` returned correct `152.42.246.218`
 - `9.9.9.9` returned correct `152.42.246.218`
-- `208.67.222.222` returned correct `152.42.246.218`
+- `208.67.222.222` returned correct apex `152.42.246.218`, but `www` returned stale `165.22.211.19`
 
 Local resolver and curl sample on 2026-05-14:
 
-- Default `Resolve-DnsName tinygeniushubvn.tech` returned `152.42.246.218`
-- Default `Resolve-DnsName www.tinygeniushubvn.tech` returned stale `165.22.211.19`
-- `curl -v https://tinygeniushubvn.tech/` resolved `165.22.48.193, 152.42.246.218, 165.22.211.19` and failed TLS on the first stale IP
+- `curl https://tinygeniushubvn.tech/` failed with Schannel TLS error from the local resolver path
+- `curl https://www.tinygeniushubvn.tech/` returned `200` on `152.42.246.218`
 
 ## Completion Audit
 
 | Requirement | Evidence | Status |
 | --- | --- | --- |
 | SSH only to project VPS `152.42.246.218` | All server commands use direct `root@152.42.246.218`; stale IPs were never SSH targets | Pass |
-| Latest patch on VPS | `/var/www/cungcontuhoc` fast-forwarded after each pushed commit; latest checked via `git rev-parse HEAD` | Pass |
+| Latest patch on VPS | `/var/www/cungcontuhoc` fast-forwarded to `17a0d6693b2280f5ceb522a59f1b7b722239b932`; latest checked via `git rev-parse HEAD` | Pass |
 | App works on VPS | `http://127.0.0.1:3000/api/health/ready` returns ready on the VPS | Pass |
 | No basic 502/app outage | Direct VPS health and `www` public checks return 200; nginx/PM2 errors were previously empty after route probes | Pass |
 | Domain `www.tinygeniushubvn.tech` works | Public `www` checks return `200` on `152.42.246.218` | Pass |
@@ -87,7 +87,7 @@ Direct checks against both nameserver families still return stale records on som
 
 This rules out a verifier-only issue caused by querying the wrong OrderBox hostname family.
 
-The production verifier now checks both families directly.
+The production verifier now checks both families directly and prints OrderBox/LogicBoxes search/delete hints when stale records are found.
 
 Current live NS/SOA evidence:
 
@@ -139,13 +139,16 @@ Records to delete:
 If API credentials are available, the official record-search endpoint can list A records before deletion:
 
 ```text
-GET https://test.httpapi.com/api/dns/manage/search-records.json?auth-userid=<id>&api-key=<key>&domain-name=tinygeniushubvn.tech&type=A&no-of-records=50&page-no=1
+GET https://test.httpapi.com/api/dns/manage/search-records.json?auth-userid=ORDERBOX_AUTH_USERID&api-key=ORDERBOX_API_KEY&domain-name=tinygeniushubvn.tech&type=A&no-of-records=50&page-no=1
 ```
 
 The official IPv4 delete endpoint can remove each stale A record:
 
 ```text
-POST https://test.httpapi.com/api/dns/manage/delete-ipv4-record.json?auth-userid=<id>&api-key=<key>&domain-name=tinygeniushubvn.tech&host=<blank-or-www>&value=<stale-ip>
+POST https://test.httpapi.com/api/dns/manage/delete-ipv4-record.json?auth-userid=ORDERBOX_AUTH_USERID&api-key=ORDERBOX_API_KEY&domain-name=tinygeniushubvn.tech&value=165.22.211.19
+POST https://test.httpapi.com/api/dns/manage/delete-ipv4-record.json?auth-userid=ORDERBOX_AUTH_USERID&api-key=ORDERBOX_API_KEY&domain-name=tinygeniushubvn.tech&value=165.22.48.193
+POST https://test.httpapi.com/api/dns/manage/delete-ipv4-record.json?auth-userid=ORDERBOX_AUTH_USERID&api-key=ORDERBOX_API_KEY&domain-name=tinygeniushubvn.tech&host=www&value=165.22.211.19
+POST https://test.httpapi.com/api/dns/manage/delete-ipv4-record.json?auth-userid=ORDERBOX_AUTH_USERID&api-key=ORDERBOX_API_KEY&domain-name=tinygeniushubvn.tech&host=www&value=165.22.48.193
 ```
 
 Use no `host` value for apex/root records. Use `host=www` for the `www` record.
