@@ -1,34 +1,58 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
-const SOURCE_ROOT = path.resolve(process.cwd(), "src");
-const FILE_EXTENSIONS = new Set([".ts", ".tsx"]);
-const EXCLUDED_PATH_SEGMENTS = ["src/modules/billing/"];
-const literalRegex = /(["'`])(?:\\.|(?!\1)[^\\])*\1/g;
-const suspectWordRegex = /\b(not|name|muc|da|duoc|cover|learning|new|loi|collection|het han)\b/i;
+const SOURCE_TARGETS = [
+  "src",
+  "scripts",
+  "prisma",
+  "tests",
+  "__tests__",
+  "remotion",
+  "public",
+  ".github",
+  "docker",
+  "create-learning-doc.js",
+];
+const FILE_EXTENSIONS = new Set([
+  ".cjs",
+  ".css",
+  ".html",
+  ".js",
+  ".json",
+  ".jsx",
+  ".mjs",
+  ".mdx",
+  ".svg",
+  ".ts",
+  ".tsx",
+  ".yml",
+  ".yaml",
+]);
+const EXCLUDED_PATH_SEGMENTS = [
+  ".next/",
+  ".tmp/",
+  "coverage/",
+  "locales/",
+  "node_modules/",
+  "test-results/",
+];
 const vietnameseDiacriticRegex = new RegExp("[\\u00c0-\\u024f\\u1e00-\\u1eff]", "u");
 
 async function collectSourceFiles(directory) {
-  const entries = await readdir(directory, { withFileTypes: true });
+  let entries;
+  try {
+    entries = await readdir(directory, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code === "ENOENT") {
+      return [];
+    }
+    throw error;
+  }
+
   const files = [];
 
   for (const entry of entries) {
     const absolutePath = path.join(directory, entry.name);
-    if (entry.isDirectory()) {
-      const nested = await collectSourceFiles(absolutePath);
-      files.push(...nested);
-      continue;
-    }
-
-    if (!entry.isFile()) {
-      continue;
-    }
-
-    const extension = path.extname(entry.name).toLowerCase();
-    if (!FILE_EXTENSIONS.has(extension)) {
-      continue;
-    }
-
     const normalizedRelativePath = path
       .relative(process.cwd(), absolutePath)
       .replaceAll("\\", "/")
@@ -42,31 +66,40 @@ async function collectSourceFiles(directory) {
       continue;
     }
 
+    if (entry.isDirectory()) {
+      const nested = await collectSourceFiles(absolutePath);
+      files.push(...nested);
+      continue;
+    }
+
+    if (!entry.isFile()) {
+      continue;
+    }
+
+    const extension = path.extname(entry.name).toLowerCase();
+    if (!FILE_EXTENSIONS.has(extension) && extension !== "") {
+      continue;
+    }
+
     files.push(absolutePath);
   }
 
   return files;
 }
 
-function scanLineForUnaccentedVietnamese(line) {
-  const matches = line.matchAll(literalRegex);
-  for (const match of matches) {
-    const literal = match[0];
-    const value = literal.slice(1, -1);
-    if (!suspectWordRegex.test(value)) {
-      continue;
-    }
-    if (vietnameseDiacriticRegex.test(value)) {
-      continue;
-    }
-    return true;
-  }
-
-  return false;
-}
-
 async function main() {
-  const files = await collectSourceFiles(SOURCE_ROOT);
+  const files = (
+    await Promise.all(
+      SOURCE_TARGETS.map(async (target) => {
+        const absoluteTarget = path.resolve(process.cwd(), target);
+        const extension = path.extname(absoluteTarget);
+        if (extension) {
+          return [absoluteTarget];
+        }
+        return collectSourceFiles(absoluteTarget);
+      }),
+    )
+  ).flat();
   const warnings = [];
 
   for (const filePath of files) {
@@ -80,8 +113,8 @@ async function main() {
         continue;
       }
 
-      if (scanLineForUnaccentedVietnamese(line)) {
-        warnings.push(`WARN: ${relativePath}:${index + 1}  possible unaccented Vietnamese`);
+      if (vietnameseDiacriticRegex.test(line)) {
+        warnings.push(`WARN: ${relativePath}:${index + 1}  Vietnamese diacritic text remains`);
       }
     }
   }
