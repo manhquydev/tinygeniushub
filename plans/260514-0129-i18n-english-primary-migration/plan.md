@@ -23,8 +23,9 @@ Replace Vietnamese hardcoded runtime copy with an English-primary i18n/l10n syst
 
 ## Status
 - Phase 1: complete, audit generated.
-- Phase 2: next.
-- Phase 3-5: pending.
+- Phase 2: complete, i18n framework initialized.
+- Phase 3: next.
+- Phase 4-5: pending.
 
 ## Validation Gates
 - `pnpm lint` exits 0.

@@ -2,7 +2,7 @@
 
 ## Overview
 - Priority: high
-- Status: pending
+- Status: complete
 - Add English-primary i18n framework and locale file structure.
 
 ## Key Insights
@@ -31,6 +31,14 @@
 4. Add translation helper for non-React code.
 5. Seed locales with architecture-level keys.
 6. Commit `feat(i18n): initialize i18n framework and locale structure`.
+
+## Todo List
+- [x] Add `next-intl`.
+- [x] Configure Next plugin.
+- [x] Add request config and shared translator.
+- [x] Add `locales/en/translation.json` and `locales/vi/translation.json`.
+- [x] Wrap root app with `NextIntlClientProvider`.
+- [x] Run type-check and targeted ESLint.
 
 ## Success Criteria
 - App compiles with i18n provider.

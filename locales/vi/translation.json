@@ -1,0 +1,40 @@
+{
+  "common": {
+    "actions": {
+      "back": "Quay lại",
+      "cancel": "Hủy",
+      "close": "Đóng",
+      "continue": "Tiếp tục",
+      "loading": "Đang tải...",
+      "retry": "Thử lại",
+      "save": "Lưu",
+      "submit": "Gửi"
+    },
+    "brand": {
+      "name": "TinyGeniusHub"
+    },
+    "states": {
+      "empty": "Chưa có dữ liệu.",
+      "unknownError": "Đã có lỗi xảy ra."
+    }
+  },
+  "email": {
+    "footer": {
+      "sentBy": "Gửi bởi TinyGeniusHub"
+    }
+  },
+  "errors": {
+    "forbidden": "Bạn không có quyền thực hiện hành động này.",
+    "notFound": "Không tìm thấy tài nguyên được yêu cầu.",
+    "rateLimited": "Có quá nhiều yêu cầu. Vui lòng thử lại sau.",
+    "unauthorized": "Vui lòng đăng nhập để tiếp tục.",
+    "unknown": "Đã có lỗi xảy ra."
+  },
+  "metadata": {
+    "siteDescription": "Learning Journey OS cho phụ huynh có con 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ."
+  },
+  "validation": {
+    "email": "Nhập địa chỉ email hợp lệ.",
+    "required": "Trường này là bắt buộc."
+  }
+}
