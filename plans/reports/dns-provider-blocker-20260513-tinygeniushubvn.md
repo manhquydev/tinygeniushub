@@ -63,6 +63,13 @@ No usable DNS automation credential was found in the local environment, GitHub-v
 
 Registry RDAP for `tinygeniushubvn.tech` identifies the registrar as Namify Domains Inc (`IANA Registrar ID 1913`). RDAP nameservers are OrderBox-family hosts (`cont603385.*.orderbox-dns.com`), while live DNS currently delegates to `tech-domains.*.orderbox-dns.com`. This confirms the cleanup must happen in the registrar/OrderBox DNS control plane, not on the `152.42.246.218` VPS.
 
+Direct checks against both nameserver families still return stale records on some backing IPs:
+
+- `tech-domains.*.orderbox-dns.com`: stale apex answers include `165.22.211.19` and `165.22.48.193`
+- `cont603385.*.orderbox-dns.com`: stale apex answers include `165.22.211.19` and `165.22.48.193`; one `www` sample returned `165.22.211.19`
+
+This rules out a verifier-only issue caused by querying the wrong OrderBox hostname family.
+
 Current live NS/SOA evidence:
 
 - NS: `tech-domains.earth.orderbox-dns.com`
