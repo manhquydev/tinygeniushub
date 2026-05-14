@@ -1,5 +1,11 @@
 # Project Changelog
 
+## [0.5.3] - 2026-05-14
+
+### Fixed
+- Mitigated intermittent production `502 Bad Gateway` on `www.tinygeniushubvn.tech` by increasing Nginx upstream response-header buffers (`proxy_buffer_size`, `proxy_buffers`, `proxy_busy_buffers_size`) in deployment setup templates.
+- Applied the same buffering fix directly on VPS vhosts (`tinygeniushub-www-ssl`, `tinygeniushub-http`) and reloaded Nginx after config validation.
+
 ## [0.5.2] - 2026-05-14
 
 ### Added
