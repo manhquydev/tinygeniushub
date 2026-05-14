@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { localeCookieName, supportedLocales, type AppLocale } from "@/i18n/locales";
 
@@ -27,11 +28,20 @@ function setLocaleCookie(locale: AppLocale) {
 
 export function LanguageSwitcher({ currentLocale, labels, className }: LanguageSwitcherProps) {
   const router = useRouter();
+  const [activeLocale, setActiveLocale] = useState<AppLocale>(currentLocale);
+  const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    setActiveLocale(currentLocale);
+  }, [currentLocale]);
 
   const switchLocale = (locale: AppLocale) => {
-    if (locale === currentLocale) return;
+    if (locale === activeLocale) return;
     setLocaleCookie(locale);
-    router.refresh();
+    setActiveLocale(locale);
+    startTransition(() => {
+      router.refresh();
+    });
   };
 
   return (
@@ -41,7 +51,7 @@ export function LanguageSwitcher({ currentLocale, labels, className }: LanguageS
       aria-label={labels.ariaLabel}
     >
       {supportedLocales.map((locale) => {
-        const active = locale === currentLocale;
+        const active = locale === activeLocale;
         const label = locale === "en" ? labels.english : labels.vietnamese;
 
         return (
@@ -53,6 +63,7 @@ export function LanguageSwitcher({ currentLocale, labels, className }: LanguageS
               .join(" ")}
             aria-label={label}
             aria-pressed={active}
+            disabled={isPending}
             onClick={() => switchLocale(locale)}
           >
             {localeButtonText[locale]}
