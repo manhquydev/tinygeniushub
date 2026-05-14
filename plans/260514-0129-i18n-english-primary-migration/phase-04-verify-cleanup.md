@@ -2,8 +2,15 @@
 
 ## Overview
 - Priority: high
-- Status: pending
-- Prove English default mode and clean repository state.
+- Status: blocked on `phase-03b-rewire-ui-surfaces.md`
+- Prove English default mode AND VI locale switching, then clean repository state.
+- Outcome 2026-05-14: EN default mode PASSES; VI locale switching FAILS across cookie banner, auth, marketing, legal, parent, kid, admin, API. See `reports/verification-report.md`. Phase 03b is the remediation track; Phase 04 will re-run after each 03b subphase commits.
+
+## Re-verification trigger
+After each 03b subphase ships, re-run:
+- `node plans/260514-0129-i18n-english-primary-migration/reports/count-wired-files.mjs` — expect monotonic increase from 19 → ~150.
+- `curl --cookie "tgh_locale=vi" http://localhost:3000/<route>` for that subphase — body diff must show VI.
+- Playwright screenshot pair `<route>-en.png` vs `<route>-vi.png` for the surface.
 
 ## Requirements
 - Start full stack.

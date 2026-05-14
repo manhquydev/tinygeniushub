@@ -4545,5 +4545,636 @@
     "3_subject_analysis_3_1_list_of_all_bbb161a6": "## 3. Phân Tích Môn Học ### 3.1 List of all subjects | Subjects | Total videos | Appears in grades | Popularity | |---------|--------------|----------------------|-----------------|",
     "4_list_mapping_index_m_1_full_name_f7004e1b": "### 4.{list(mapping).index(m) + 1} {full_name} ({grade.upper()}) - **Số bài học:** {m['lessons']} - **Tổng số video:** {m['videos']:,} - **Trung bình video/bài:** {m['avg_videos_per_lesson']} **Các môn học:**",
     "1_1_g_const_suspectwordregex_b_not_name_b5e41d31": "])(?:\\\\.|(?!\\1)[^\\\\])*\\1/g; const suspectWordRegex = /\\b(khong|tieu|muc|da|duoc|bao|hoc|moi|loi|thu hoi|het han)\\b/i; const vietnameseDiacriticRegex = /[ăâđêôơưáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ]/i; async function collectSourceFiles(directory) { const entries = await readdir(directory, { withFileTypes: true }); const files = []; for (const entry of entries) { const absolutePath = path.join(directory, entry.name); if (entry.isDirectory()) { const nested = await collectSourceFiles(absolutePath); files.push(...nested); continue; } if (!entry.isFile()) { continue; } const extension = path.extname(entry.name).toLowerCase(); if (!FILE_EXTENSIONS.has(extension)) { continue; } const normalizedRelativePath = path .relative(process.cwd(), absolutePath) .replaceAll(\"\\\\\", \"/\") .toLowerCase(); const shouldExclude = EXCLUDED_PATH_SEGMENTS.some((segment) => normalizedRelativePath.startsWith(segment), ); if (shouldExclude) { continue; } files.push(absolutePath); } return files; } function scanLineForUnaccentedVietnamese(line) { const matches = line.matchAll(literalRegex); for (const match of matches) { const literal = match[0]; const value = literal.slice(1, -1); if (!suspectWordRegex.test(value)) { continue; } if (vietnameseDiacriticRegex.test(value)) { continue; } return true; } return false; } async function main() { const files = await collectSourceFiles(SOURCE_ROOT); const warnings = []; for (const filePath of files) { const content = await readFile(filePath, \"utf8\"); const lines = content.split(/\\r?\\n/u); const relativePath = path.relative(process.cwd(), filePath).replaceAll(\"\\\\\", \"/\"); for (let index = 0; index < lines.length; index += 1) { const line = lines[index]; if (!line) { continue; } if (scanLineForUnaccentedVietnamese(line)) { warnings.push("
+  },
+  "cookie": {
+    "banner": {
+      "heading": "Cài đặt cookie",
+      "body": "Chúng tôi luôn sử dụng cookie cần thiết cho đăng nhập và bảo mật. Cookie phân tích/tiếp thị chỉ được bật khi bạn đồng ý.",
+      "detailPrefix": "Xem chi tiết tại",
+      "policyLink": "Chính sách Cookie",
+      "closeAriaLabel": "Đóng thông báo cookie",
+      "close": "Đóng"
+    },
+    "actions": {
+      "currentStatus": "Trạng thái hiện tại:",
+      "allAllowed": "Cookie không cần thiết được cho phép",
+      "onlyNecessary": "Chỉ cookie cần thiết",
+      "notSelected": "Chưa chọn",
+      "onlyNecessaryButton": "Chỉ cookie cần thiết",
+      "acceptAll": "Chấp nhận tất cả",
+      "saving": "Đang lưu...",
+      "saveError": "Không thể lưu lựa chọn cookie lúc này. Vui lòng thử lại.",
+      "offlineFallback": "Chỉ cookie cần thiết được áp dụng; nhật ký sẽ tự động đồng bộ lại khi có kết nối."
+    }
+  },
+  "auth": {
+    "login": {
+      "badge": "Truy cập phụ huynh",
+      "title": "Phụ huynh, chào mừng trở lại hành trình tự học",
+      "description": "Đăng nhập để xem tiến độ học tập, mở bài học hôm nay và đồng hành cùng con mỗi ngày."
+    },
+    "signup": {
+      "badge": "Mở khóa hành trình học tập",
+      "title": "Tạo tài khoản để bắt đầu hành trình cùng con",
+      "description": "Tạo tài khoản phụ huynh, xem bài học thử và chọn khóa học phù hợp cho con chỉ vài bước."
+    },
+    "forgotPassword": {
+      "badge": "Khôi phục tài khoản",
+      "title": "Lấy lại mật khẩu để tiếp tục đồng hành cùng bé",
+      "description": "Đừng lo lắng, chỉ một bước xác minh email là bạn có thể trở lại bảng điều khiển và tiếp tục hành trình học."
+    },
+    "resetPassword": {
+      "badge": "Đặt lại mật khẩu",
+      "title": "Cập nhật mật khẩu mới để trở lại bảng điều khiển",
+      "description": "Sau khi hoàn tất, bạn có thể đăng nhập lại và tiếp tục theo dõi hành trình học của con."
+    },
+    "index": {
+      "badge": "Chào mừng",
+      "badgeCheckout": "Thanh toán",
+      "title": "Chọn cổng truy cập phụ huynh",
+      "titleCheckout": "Tiếp tục thanh toán khóa học",
+      "description": "Đăng nhập nếu đã có tài khoản hoặc tạo mới để quản lý hồ sơ con và mua khóa học.",
+      "descriptionCheckout": "Đăng nhập nếu đã có tài khoản, hoặc tạo tài khoản mới. Sau xác thực, hệ thống sẽ đưa bạn trở lại khóa học đã chọn.",
+      "heading": "Sẵn sàng bắt đầu chưa?",
+      "headingCheckout": "Hoàn tất đăng nhập để tiếp tục",
+      "bodyText": "Vào bảng điều khiển phụ huynh để quản lý hồ sơ con, theo dõi tiến độ và mở các khóa học đã mua.",
+      "bodyTextCheckout": "Sau khi đăng nhập hoặc đăng ký, bạn sẽ trở về đúng trang khóa học vừa chọn.",
+      "loginButton": "Đăng nhập",
+      "signupButton": "Tạo tài khoản",
+      "forgotPasswordLabel": "Quên mật khẩu?",
+      "forgotPasswordLink": "Khôi phục tại đây"
+    }
+  },
+  "setup": {
+    "badge": "Cài đặt phụ huynh",
+    "title": "Bắt đầu hành trình đầu tiên của bé",
+    "description": "Xin chào {name}. Hoàn thành 3 bước cài đặt để kích hoạt bảng điều khiển thông minh của bạn."
+  },
+  "mascot": {
+    "ecosystemShowcase": {
+      "title": "Hệ sinh thái nhân vật",
+      "description": "Nhân vật thay đổi theo thời gian trong ngày để hành trình học của con luôn sinh động."
+    }
+  },
+  "pricing": {
+    "metadata": {
+      "title": "Bảng giá khóa học",
+      "description": "Bảng giá minh bạch cho từng khóa học, xem bài học mẫu trước khi mua và chính sách hoàn tiền 30 ngày.",
+      "ogTitle": "Bảng Giá Khóa Học — TinyGenius Hub",
+      "ogDescription": "Mua theo khóa · Thanh toán nhanh · Hoàn tiền 30 ngày"
+    },
+    "hero": {
+      "title": "Bảng giá minh bạch cho từng khóa học",
+      "subtitle": "Chọn khóa học phù hợp với mục tiêu của con, thanh toán nhanh và bắt đầu học ngay sau khi giao dịch được xác nhận.",
+      "ctaCourseList": "Xem danh sách khóa học",
+      "ctaSampleLesson": "Xem bài học mẫu",
+      "proof": "Lộ trình rõ ràng: xem trước → chọn khóa → tự động kích hoạt."
+    },
+    "conversion": {
+      "sectionTitle": "Tại sao phụ huynh dễ dàng quyết định?",
+      "point1Title": "Mua nhanh, vận hành dễ",
+      "point1Desc": "Quy trình thanh toán ngắn gọn, phù hợp với phụ huynh bận rộn.",
+      "point2Title": "Chọn đúng khóa học bạn cần",
+      "point2Desc": "Mua từng khóa riêng lẻ thay vì cam kết gói lớn ngay từ đầu.",
+      "point3Title": "Giảm rủi ro quyết định",
+      "point3Desc": "Có bài học mẫu trước khi mua và chính sách hoàn tiền 30 ngày."
+    },
+    "trust": {
+      "fastCheckout": "Thanh toán nhanh",
+      "refund30": "Hoàn tiền 30 ngày",
+      "autoActivation": "Kích hoạt tự động"
+    },
+    "coursesOpen": {
+      "sectionTitle": "Các khóa học đang mở",
+      "subtitle": "Giá và ưu đãi được cập nhật trực tiếp trên từng trang chi tiết khóa học.",
+      "tip": "Giá niêm yết và giá khuyến mãi có thể thay đổi theo từng đợt chương trình.",
+      "cta": "Chọn khóa học ngay"
+    },
+    "faq": {
+      "sectionTitle": "Câu hỏi thường gặp",
+      "q1": "Thanh toán như thế nào?",
+      "a1": "Bạn có thể thanh toán qua chuyển khoản ngân hàng hoặc QR theo hướng dẫn trên trang thanh toán.",
+      "q2": "Khóa học được kích hoạt khi nào?",
+      "a2": "Khóa học được kích hoạt tự động ngay khi giao dịch được xác nhận thành công.",
+      "q3": "Chính sách hoàn tiền như thế nào?",
+      "a3": "Bạn có thể yêu cầu hoàn tiền trong 30 ngày đầu nếu khóa học không phù hợp với nhu cầu.",
+      "q4": "Tôi có thể thử trước khi mua không?",
+      "a4": "Có. Bạn có thể xem bài học mẫu trước, rồi mua khi đã sẵn sàng."
+    },
+    "finalCta": {
+      "title": "Sẵn sàng bắt đầu?",
+      "subtitle": "Xem bài học mẫu trước, rồi chọn khóa học phù hợp để con học đều và tiến bộ rõ ràng.",
+      "ctaCourse": "Xem khóa học",
+      "ctaBlog": "Đọc cẩm nang phụ huynh"
+    }
+  },
+  "about": {
+    "metadata": {
+      "title": "Giới thiệu",
+      "description": "Câu chuyện hình thành TinyGenius Hub và lý do chúng tôi xây dựng nền tảng học tập lấy trẻ em làm trung tâm cho gia đình Việt."
+    },
+    "hero": {
+      "title": "Câu chuyện của chúng tôi",
+      "lead": "TinyGenius Hub được xây dựng bởi những bậc phụ huynh hiểu rõ thách thức khi giúp con học đều mỗi ngày tại nhà."
+    },
+    "mission": {
+      "missionTitle": "Sứ mệnh",
+      "missionDesc": "Giúp trẻ hình thành thói quen tự học sớm với lộ trình rõ ràng, bài học thú vị và dữ liệu tiến độ dễ theo dõi cho phụ huynh.",
+      "visionTitle": "Tầm nhìn",
+      "visionDesc": "Trở thành người bạn đồng hành học tại nhà đáng tin cậy nhất cho gia đình Việt có con từ 2-6 tuổi."
+    },
+    "why": {
+      "title": "Tại sao chúng tôi xây dựng nền tảng này?",
+      "p1": "Phụ huynh thường băn khoăn liệu con có đang học đúng nhịp không, tiếp theo là gì, và làm sao thấy được tiến bộ thực sự thay vì chỉ đoán mò.",
+      "p2": "TinyGenius Hub được tạo ra để trả lời những câu hỏi đó bằng bài học có cấu trúc, chỉ số tiến độ đo lường được và báo cáo hàng tuần rõ ràng."
+    },
+    "values": {
+      "title": "Giá trị cốt lõi",
+      "evidence": {
+        "title": "Dựa trên bằng chứng",
+        "desc": "Các hoạt động được thiết kế theo đặc điểm phát triển và khả năng ghi nhớ của từng độ tuổi."
+      },
+      "childCentered": {
+        "title": "Lấy trẻ làm trung tâm",
+        "desc": "Bài học ngắn và lộ trình có hướng dẫn giúp giảm áp lực và duy trì động lực học của con."
+      },
+      "transparent": {
+        "title": "Minh bạch với phụ huynh",
+        "desc": "Phụ huynh có thể thấy rõ con đã học gì, đang tiến bộ ở đâu và nên làm gì tiếp theo."
+      }
+    },
+    "cta": {
+      "title": "Bắt đầu với TinyGenius Hub",
+      "subtitle": "Tạo tài khoản phụ huynh và khám phá khóa học phù hợp nhất với mục tiêu của con.",
+      "link": "Khám phá khóa học"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Liên hệ",
+      "description": "Liên hệ đội ngũ TinyGenius Hub để được hỗ trợ hoặc hợp tác."
+    },
+    "hero": {
+      "title": "Liên hệ với chúng tôi",
+      "subtitle": "Chúng tôi luôn sẵn sàng hỗ trợ phụ huynh, trường học và đối tác."
+    },
+    "info": {
+      "emailLabel": "Email hỗ trợ",
+      "responseLabel": "Thời gian phản hồi",
+      "responseValue": "Trong vòng 24-48 giờ làm việc",
+      "addressLabel": "Địa chỉ liên hệ",
+      "addressValue": "Việt Nam (làm việc từ xa)",
+      "faqHint": "Cần câu trả lời nhanh? Xem câu hỏi thường gặp tại"
+    }
+  },
+  "forSchools": {
+    "metadata": {
+      "title": "Giải pháp học tập cho trường mầm non — TinyGenius Hub",
+      "description": "Nền tảng Mental Math + English Phonics cho trường mầm non: bảng điều khiển giáo viên, báo cáo phụ huynh và nhập danh sách học sinh nhanh.",
+      "ogTitle": "Giải pháp học tập cho trường mầm non — TinyGenius Hub",
+      "ogDescription": "Bảng điều khiển giáo viên · Báo cáo phụ huynh · Khởi tạo nhanh"
+    },
+    "hero": {
+      "badge": "Dành cho trường mầm non",
+      "title": "Nền tảng học tập số cho vận hành trường mầm non —",
+      "titleAccent": "triển khai nhanh, dễ áp dụng",
+      "subtitle": "Mental Math + English Phonics, bảng điều khiển giáo viên và báo cáo phụ huynh hàng tuần.",
+      "cta": "Đặt lịch demo"
+    },
+    "benefits": {
+      "sectionTitle": "Lợi ích cho nhà trường",
+      "b1Title": "Không cần thiết bị chuyên dụng",
+      "b1Desc": "Học sinh học trên điện thoại hoặc máy tính bảng thông thường, không cần cài ứng dụng phức tạp.",
+      "b2Title": "Báo cáo tự động",
+      "b2Desc": "Phụ huynh nhận báo cáo hàng tuần, giáo viên theo dõi hoạt động theo lớp ngay trên hệ thống.",
+      "b3Title": "Triển khai nhanh",
+      "b3Desc": "Tạo trong thời gian ngắn và nhập danh sách học sinh theo file CSV."
+    },
+    "plans": {
+      "sectionTitle": "Gói triển khai",
+      "contactPrice": "Liên hệ",
+      "p1Name": "Gói trải nghiệm",
+      "p1Desc": "Thử nghiệm cho một lớp với hỗ trợ triển khai ban đầu.",
+      "p2Name": "Gói tiêu chuẩn",
+      "p2Desc": "Phù hợp cho trường dưới 200 học sinh, có hỗ trợ khởi đầu.",
+      "p3Name": "Gói mở rộng",
+      "p3Desc": "Phù hợp cho trường lớn, có báo cáo nâng cao và cam kết dịch vụ.",
+      "planCta": "Liên hệ tư vấn"
+    },
+    "demoCta": {
+      "title": "Xem sản phẩm qua demo trực tuyến",
+      "subtitle": "Đội ngũ của chúng tôi sẽ đồng hành cùng nhà trường từ thiết lập, vận hành lớp đến giao tiếp với phụ huynh.",
+      "cta": "Đăng ký demo"
+    }
+  },
+  "tryGarden": {
+    "metadata": {
+      "title": "Vườn Mây - Xem Trước Khóa Học | TinyGenius Hub",
+      "description": "Khám phá Vườn Mây với trải nghiệm xem trước bài học tương tác cho trẻ 2-6 tuổi trước khi mua khóa học.",
+      "ogTitle": "Vườn Mây - Xem trước khóa học",
+      "ogDescription": "Khám phá thế giới học tập và xem trước bài học trước khi mua.",
+      "ogImageAlt": "Vườn Mây - Xem thử",
+      "twitterTitle": "Vườn Mây - Xem trước khóa học",
+      "twitterDescription": "Xem bài học mẫu và chọn khóa học phù hợp cho con."
+    }
+  },
+  "waitlist": {
+    "metadata": {
+      "title": "Danh Sách Ưu Tiên — TinyGenius Hub",
+      "description": "Đăng ký danh sách ưu tiên để nhận thông báo mở đợt mới và ưu đãi sớm dành cho gia đình đăng ký trước."
+    },
+    "hero": {
+      "title": "Nhận thông báo mở đợt học mới",
+      "subtitle": "Chúng tôi ưu tiên {count} gia đình đăng ký sớm trong mỗi đợt mở mới để tối ưu trải nghiệm và hỗ trợ sát hơn.",
+      "countLabel": "50 gia đình đăng ký sớm"
+    },
+    "form": {
+      "sectionTitle": "Đăng ký nhận thông báo"
+    },
+    "earlyBenefits": {
+      "title": "Quyền lợi đăng ký sớm",
+      "desc": "Ưu tiên nhận ưu đãi cho từng đợt mở khóa và hỗ trợ nhanh từ đội ngũ vận hành."
+    },
+    "timing": {
+      "title": "Thời điểm nhận thông tin",
+      "desc": "Bạn sẽ nhận email ngay khi có đợt mở mới, lịch khởi tạo và ưu đãi kèm theo."
+    },
+    "alreadyAccount": {
+      "text": "Đã có tài khoản?",
+      "link": "Đăng nhập tại đây"
+    }
+  },
+  "referral": {
+    "metadata": {
+      "title": "Giới thiệu bạn bè",
+      "description": "Mời bạn bè tham gia TinyGenius Hub để cả hai cùng nhận ưu đãi cho khóa học."
+    },
+    "hero": {
+      "title": "Giới thiệu bạn bè, cả hai cùng nhận quà",
+      "subtitle": "Mỗi gia đình được mời sẽ nhận ưu đãi cho lần mua đầu tiên. Bạn cũng nhận thưởng khi người giới thiệu hoàn thành thanh toán thành công."
+    },
+    "youReceive": {
+      "title": "Bạn nhận được",
+      "desc": "Phần thưởng voucher dựa trên số lượt giới thiệu hợp lệ."
+    },
+    "friendReceives": {
+      "title": "Bạn bè của bạn nhận được",
+      "desc": "Ưu đãi chào mừng cho lần mua khóa học đầu tiên."
+    },
+    "tiers": {
+      "sectionTitle": "Mức thưởng theo số lượng giới thiệu",
+      "colReferrals": "Giới thiệu thành công",
+      "colReward": "Phần thưởng của bạn",
+      "familiesUnit": "{count} gia đình",
+      "tier1Reward": "Voucher giảm giá 50.000 VND",
+      "tier2Reward": "Voucher giảm giá 200.000 VND",
+      "tier3Reward": "Tặng 1 khóa học miễn phí"
+    },
+    "yourLink": {
+      "title": "Liên kết giới thiệu của bạn",
+      "sendHint": "Gửi liên kết này cho bạn bè:",
+      "ctaDashboard": "Mở bảng điều khiển phụ huynh",
+      "referred": "Đã giới thiệu:",
+      "paid": "Đã thanh toán:",
+      "rewarded": "Đã thưởng:",
+      "familiesUnit": "gia đình",
+      "generating": "Đang tạo mã giới thiệu..."
+    },
+    "getStarted": {
+      "title": "Bắt đầu ngay",
+      "desc": "Tạo tài khoản để nhận liên kết giới thiệu riêng của bạn.",
+      "cta": "Tạo tài khoản"
+    },
+    "terms": {
+      "title": "Điều khoản tóm tắt",
+      "term1": "Phần thưởng chỉ áp dụng cho các lượt giới thiệu hợp lệ theo chính sách chương trình.",
+      "term2": "Tài khoản trùng lặp hoặc gian lận có thể bị từ chối tích điểm.",
+      "term3": "Điều khoản chương trình có thể được cập nhật để đảm bảo công bằng cho tất cả người dùng."
+    }
+  },
+  "giftCode": {
+    "metadata": {
+      "title": "Nhập mã quà tặng — TinyGenius Hub",
+      "description": "Kích hoạt mã quà tặng để truy cập khóa học hoặc gói dịch vụ TinyGenius Hub."
+    },
+    "hero": {
+      "title": "Nhập mã quà tặng",
+      "subtitle": "Nhận được mã từ người thân hoặc chương trình khuyến mãi? Nhập mã bên dưới để kích hoạt ngay."
+    }
+  },
+  "specialPages": {
+    "maintenance": {
+      "metadata": {
+        "title": "Bảo trì hệ thống"
+      },
+      "badge": "Bảo trì hệ thống",
+      "imageAlt": "Linh vật Cáo đang chạy trên đường cầu vồng trong quá trình nâng cấp hệ thống",
+      "title": "Hệ thống đang được nâng cấp",
+      "subtitle": "Chúng tôi đang cập nhật nền tảng để mang lại trải nghiệm ổn định hơn cho phụ huynh và các bé. Vui lòng quay lại sau vài phút.",
+      "ctaHome": "Kiểm tra lại trang chủ",
+      "ctaContact": "Liên hệ hỗ trợ"
+    },
+    "offline": {
+      "metadata": {
+        "title": "Mất kết nối"
+      },
+      "badge": "Mất kết nối mạng",
+      "imageAlt": "Cảnh Vườn Mây khi hệ thống tạm thời mất kết nối mạng",
+      "title": "Không thể kết nối Internet",
+      "subtitle": "Vui lòng kiểm tra Wi-Fi hoặc dữ liệu di động, sau đó thử lại. Khi mạng ổn định, hệ thống sẽ tự tiếp tục buổi học của bé.",
+      "ctaRetry": "Thử lại ngay",
+      "ctaContact": "Liên hệ hỗ trợ"
+    },
+    "authFail": {
+      "metadata": {
+        "title": "Xác thực thất bại"
+      },
+      "badge": "Xác thực thất bại",
+      "imageAlt": "Linh vật Cáo đang kiểm tra vấn đề xác thực bằng kính lúp",
+      "title": "Không thể xác thực tài khoản",
+      "subtitle": "Phiên đăng nhập hiện tại không hợp lệ hoặc dịch vụ xác thực bị gián đoạn. Vui lòng thử đăng nhập lại.",
+      "ctaLogin": "Đăng nhập lại",
+      "ctaForgot": "Quên mật khẩu"
+    },
+    "sessionExpired": {
+      "metadata": {
+        "title": "Phiên đăng nhập đã hết hạn"
+      },
+      "badge": "Phiên hết hạn",
+      "imageAlt": "Cảnh Vườn Mây khi phiên đăng nhập cần được làm mới",
+      "title": "Phiên đăng nhập đã hết hạn",
+      "subtitle": "Vì lý do bảo mật, bạn cần đăng nhập lại để tiếp tục truy cập trang này.",
+      "ctaLogin": "Đăng nhập lại",
+      "ctaHome": "Quay về trang chủ"
+    },
+    "acceptInvite": {
+      "badge": "Lời Mời Người Chăm Sóc",
+      "title": "Xác nhận lời mời người chăm sóc",
+      "subtitle": "Hoàn thành bước xác nhận để theo dõi tiến trình học tập của con cùng phụ huynh.",
+      "successTitle": "Bạn đã được thêm làm người chăm sóc!",
+      "successDescWithName": "Lời mời từ {name} đã được xác nhận thành công.",
+      "successDescNoName": "Lời mời đã được xác nhận thành công.",
+      "errorTitle": "Không thể chấp nhận lời mời",
+      "fallbackError": "Không thể xử lý lời mời lúc này. Vui lòng thử lại sau.",
+      "ctaHome": "Quay về trang chủ"
+    }
+  },
+  "privacy": {
+    "metadata": {
+      "title": "Chính sách bảo mật — TinyGenius Hub",
+      "description": "Cam kết bảo vệ dữ liệu của phụ huynh và trẻ em trên nền tảng TinyGenius Hub."
+    },
+    "h1": "Chính sách bảo mật",
+    "intro": "Chính sách này giải thích cách TinyGenius Hub thu thập, xử lý, lưu trữ và bảo vệ dữ liệu cá nhân của phụ huynh và dữ liệu học tập của trẻ khi sử dụng nền tảng.",
+    "s1": {
+      "heading": "1. Cơ sở pháp lý tham chiếu",
+      "i1": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 (hiệu lực từ ngày 1 tháng 1 năm 2026).",
+      "i2": "Nghị định 356/2025/NĐ-CP (hiệu lực từ ngày 1 tháng 1 năm 2026; thay thế Nghị định 13/2023/NĐ-CP).",
+      "i3": "Luật Bảo vệ quyền lợi người tiêu dùng số 19/2023/QH15 và các văn bản hướng dẫn liên quan."
+    },
+    "s2": {
+      "heading": "2. Dữ liệu chúng tôi thu thập",
+      "i1": "Dữ liệu tài khoản phụ huynh: email, tên hiển thị, trạng thái đăng ký.",
+      "i2": "Dữ liệu học tập của trẻ: hồ sơ học tập, tiến độ bài học, lịch sử tương tác học tập.",
+      "i3": "Dữ liệu kỹ thuật: địa chỉ IP, thiết bị, nhật ký truy cập phục vụ an toàn hệ thống.",
+      "i4": "Dữ liệu thanh toán: thông tin giao dịch từ đối tác thanh toán (số thẻ đầy đủ không được lưu)."
+    },
+    "s3": {
+      "heading": "3. Mục đích xử lý dữ liệu",
+      "i1": "Chúng tôi xử lý dữ liệu trên một hoặc nhiều cơ sở pháp lý phù hợp, chẳng hạn như thực hiện hợp đồng, nghĩa vụ pháp lý, sự đồng ý hoặc lợi ích hợp pháp theo quy định pháp luật.",
+      "i2": "Vận hành tài khoản và các chức năng học tập cốt lõi.",
+      "i3": "Cá nhân hóa trải nghiệm học tập theo độ tuổi và trình độ của trẻ.",
+      "i4": "Gửi thông báo dịch vụ, báo cáo tiến độ, hỗ trợ kỹ thuật.",
+      "i5": "Phòng chống gian lận, lạm dụng và đáp ứng yêu cầu pháp lý."
+    },
+    "s4": {
+      "heading": "4. Dữ liệu của trẻ em",
+      "i1": "Tài khoản chính được tạo và quản lý bởi phụ huynh.",
+      "i2": "Chúng tôi không mua hoặc bán dữ liệu cá nhân của trẻ em cho mục đích thương mại độc lập.",
+      "i3": "Chúng tôi không chạy quảng cáo hành vi nhắm trực tiếp vào trẻ em.",
+      "i4": "Khi cần xử lý ngoài mục tiêu học tập cốt lõi, chúng tôi yêu cầu cơ sở pháp lý phù hợp."
+    },
+    "s5": {
+      "heading": "5. Chia sẻ dữ liệu với bên thứ ba",
+      "i1": "Chỉ chia sẻ ở mức độ cần thiết để cung cấp dịch vụ.",
+      "i2": "Các nhóm đối tác chính: cơ sở hạ tầng, email, thanh toán, bảo mật và phân tích.",
+      "i3": "Đối tác phải tuân thủ nghĩa vụ bảo mật dữ liệu theo hợp đồng hoặc quy định pháp luật."
+    },
+    "s6": {
+      "heading": "6. Lưu trữ và bảo vệ dữ liệu",
+      "i1": "Dữ liệu được bảo vệ bằng các biện pháp kỹ thuật và tổ chức phù hợp với mức độ rủi ro.",
+      "i2": "Áp dụng hạn chế truy cập theo vai trò.",
+      "i3": "Thời hạn lưu trữ được xác định theo mục đích xử lý và nghĩa vụ pháp lý liên quan."
+    },
+    "s7": {
+      "heading": "7. Quyền của chủ thể dữ liệu",
+      "i1": "Quyền được biết, truy cập và chỉnh sửa dữ liệu cá nhân.",
+      "i2": "Quyền yêu cầu hạn chế xử lý hoặc xóa dữ liệu trong phạm vi pháp luật cho phép.",
+      "i3": "Quyền rút lại sự đồng ý đối với các mục đích dựa trên sự đồng ý.",
+      "i4": "Chúng tôi phản hồi yêu cầu của chủ thể dữ liệu trong thời hạn quy định của pháp luật."
+    },
+    "s8": {
+      "heading": "8. Cookie và theo dõi",
+      "i1": "Cookie cần thiết luôn hoạt động để đảm bảo bảo mật đăng nhập.",
+      "i2": "Cookie phân tích/tiếp thị chỉ được bật khi có sự đồng ý rõ ràng.",
+      "i3prefix": "Để biết thêm chi tiết, xem trang",
+      "i3link": "Chính sách Cookie"
+    },
+    "s9": {
+      "heading": "9. Chuyển dữ liệu xuyên biên giới",
+      "body": "Khi có chuyển giao dữ liệu cá nhân xuyên biên giới, chúng tôi thực hiện ghi chép và kiểm soát theo khung pháp lý áp dụng tại thời điểm xử lý."
+    },
+    "s10": {
+      "heading": "10. Liên hệ để thực hiện quyền dữ liệu",
+      "i1": "Email: privacy@tinygeniushubvn.tech",
+      "i2": "Đơn vị vận hành: TinyGenius Hub"
+    },
+    "lastUpdated": "Cập nhật lần cuối:"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Điều khoản sử dụng — TinyGenius Hub",
+      "description": "Điều khoản và điều kiện sử dụng nền tảng TinyGenius Hub."
+    },
+    "h1": "Điều khoản sử dụng",
+    "intro": "Các điều khoản này quy định quyền và nghĩa vụ giữa người dùng và TinyGenius Hub khi sử dụng trang web, ứng dụng và các dịch vụ liên quan.",
+    "s1": {
+      "heading": "1. Chấp nhận điều khoản",
+      "i1": "Bằng cách tạo tài khoản hoặc tiếp tục sử dụng dịch vụ, bạn xác nhận rằng bạn đã đọc và đồng ý với các điều khoản này.",
+      "i2": "Nếu bạn không đồng ý, vui lòng ngừng truy cập và sử dụng dịch vụ."
+    },
+    "s2": {
+      "heading": "2. Đối tượng người dùng",
+      "i1": "Chủ tài khoản phải đủ 18 tuổi trở lên hoặc theo yêu cầu của pháp luật hiện hành.",
+      "i2": "Phụ huynh chịu trách nhiệm quản lý thông tin tài khoản và các hoạt động học tập của trẻ trên nền tảng."
+    },
+    "s3": {
+      "heading": "3. Mô tả dịch vụ",
+      "i1": "Nền tảng cung cấp nội dung học tập cho trẻ em, công cụ theo dõi tiến độ và báo cáo cho phụ huynh.",
+      "i2": "Một số tính năng có thể yêu cầu gói dịch vụ trả phí hoặc điều khoản sử dụng bổ sung."
+    },
+    "s4": {
+      "heading": "4. Tài khoản và bảo mật",
+      "i1": "Người dùng phải cung cấp thông tin đăng ký chính xác và cập nhật khi có thay đổi.",
+      "i2": "Người dùng tự bảo mật mật khẩu, thiết bị đăng nhập và thông tin xác thực.",
+      "i3": "Người dùng cần thông báo ngay khi phát hiện truy cập trái phép."
+    },
+    "s5": {
+      "heading": "5. Thanh toán và hoàn tiền",
+      "i1": "Phí dịch vụ, chu kỳ thanh toán và quyền lợi gói được công bố tại thời điểm giao dịch.",
+      "i2prefix": "Hoàn tiền được áp dụng theo",
+      "i2link": "Chính sách hoàn tiền"
+    },
+    "s6": {
+      "heading": "6. Quyền sở hữu trí tuệ",
+      "i1": "Nội dung học tập, thiết kế, mã nguồn và tài sản thương hiệu thuộc quyền sở hữu hợp pháp của nền tảng.",
+      "i2": "Việc sao chép, phân phối lại hoặc khai thác thương mại khi chưa có sự đồng ý bằng văn bản là nghiêm cấm."
+    },
+    "s7": {
+      "heading": "7. Hành vi bị cấm",
+      "i1": "Xâm nhập trái phép, can thiệp hệ thống, phát tán mã độc hoặc lạm dụng API.",
+      "i2": "Thu thập dữ liệu người dùng khi chưa được phép hoặc sử dụng dữ liệu cho mục đích khác.",
+      "i3": "Mạo danh tổ chức/cá nhân khác hoặc cung cấp thông tin sai lệch."
+    },
+    "s8": {
+      "heading": "8. Dữ liệu cá nhân và cookie",
+      "i1prefix": "Xử lý dữ liệu cá nhân theo",
+      "i1link": "Chính sách bảo mật",
+      "i2prefix": "Sử dụng cookie theo",
+      "i2link": "Chính sách Cookie"
+    },
+    "s9": {
+      "heading": "9. Giới hạn trách nhiệm",
+      "i1": "Không có điều khoản nào trong tài liệu này loại trừ hoặc hạn chế quyền bắt buộc của người tiêu dùng.",
+      "i2": "Giới hạn trách nhiệm chỉ áp dụng trong phạm vi pháp luật cho phép.",
+      "i3": "Dịch vụ được cung cấp trên cơ sở nỗ lực hợp lý trong điều kiện vận hành thực tế.",
+      "i4": "Chúng tôi không chịu trách nhiệm về thiệt hại gián tiếp/phát sinh ngoài phạm vi kiểm soát hợp lý theo quy định pháp luật."
+    },
+    "s10": {
+      "heading": "10. Tạm ngừng hoặc chấm dứt dịch vụ",
+      "i1": "Chúng tôi có thể tạm ngừng/chấm dứt tài khoản nếu phát hiện vi phạm điều khoản hoặc yêu cầu pháp lý.",
+      "i2": "Trừ trường hợp khẩn cấp về pháp lý/bảo mật, chúng tôi sẽ thông báo trước và cung cấp kênh khiếu nại phù hợp.",
+      "i3": "Người dùng có thể yêu cầu chấm dứt tài khoản theo chính sách hiện hành."
+    },
+    "s11": {
+      "heading": "11. Cập nhật điều khoản",
+      "body": "Điều khoản có thể được cập nhật để phản ánh thay đổi pháp lý hoặc sản phẩm. Những thay đổi quan trọng sẽ được thông báo trước khi áp dụng."
+    },
+    "s12": {
+      "heading": "12. Luật áp dụng và giải quyết tranh chấp",
+      "body": "Các điều khoản này được điều chỉnh bởi pháp luật Việt Nam. Trong trường hợp có tranh chấp, các bên ưu tiên thương lượng trước khi chuyển vụ việc cho cơ quan có thẩm quyền giải quyết theo pháp luật."
+    },
+    "s13": {
+      "heading": "13. Liên hệ",
+      "email": "Email hỗ trợ: support@tinygeniushubvn.tech"
+    },
+    "s14": {
+      "heading": "14. Cơ sở pháp lý tham chiếu",
+      "i1": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 (hiệu lực từ ngày 1 tháng 1 năm 2026).",
+      "i2": "Nghị định 356/2025/NĐ-CP (hiệu lực từ ngày 1 tháng 1 năm 2026; thay thế Nghị định 13/2023/NĐ-CP).",
+      "i3": "Luật Bảo vệ quyền lợi người tiêu dùng số 19/2023/QH15 (hiệu lực từ ngày 1 tháng 7 năm 2024) và Nghị định 55/2024/NĐ-CP.",
+      "i4": "Luật Giao dịch điện tử số 20/2023/QH15 (hiệu lực từ ngày 1 tháng 7 năm 2024).",
+      "i5": "Nghị định 52/2013/NĐ-CP và Nghị định 85/2021/NĐ-CP về thương mại điện tử."
+    },
+    "lastUpdated": "Cập nhật lần cuối:"
+  },
+  "cookiePolicy": {
+    "metadata": {
+      "title": "Chính sách Cookie — TinyGenius Hub",
+      "description": "Giải thích cách TinyGenius Hub sử dụng cookie cần thiết, phân tích và tiếp thị; cách phụ huynh quản lý hoặc rút lại sự đồng ý."
+    },
+    "h1": "Chính sách Cookie",
+    "intro": "Chính sách này mô tả cách TinyGenius Hub sử dụng cookie khi bạn truy cập trang web/ứng dụng. Chúng tôi chỉ bật cookie không thiết yếu sau khi có sự đồng ý rõ ràng từ phụ huynh.",
+    "s1": {
+      "heading": "1. Cookie là gì?",
+      "body": "Cookie là các tệp nhỏ được lưu trong trình duyệt của bạn để nhận dạng phiên, ghi nhớ lựa chọn và đo lường hiệu suất sản phẩm."
+    },
+    "s2": {
+      "heading": "2. Các nhóm cookie chúng tôi sử dụng",
+      "necessaryLabel": "Cookie cần thiết:",
+      "necessaryDesc": "bắt buộc để đăng nhập, duy trì phiên, ngăn chặn lạm dụng và bảo mật hệ thống.",
+      "analyticalLabel": "Cookie phân tích:",
+      "analyticalDesc": "đo lường hành vi sử dụng tổng hợp (ví dụ GA4) để cải thiện sản phẩm.",
+      "marketingLabel": "Cookie tiếp thị:",
+      "marketingDesc": "đo lường hiệu quả chiến dịch (ví dụ Meta Pixel) cho nội dung hướng đến phụ huynh."
+    },
+    "s3": {
+      "heading": "3. Nguyên tắc đồng ý",
+      "i1": "Chúng tôi không mặc định \"chấp nhận tất cả.\"",
+      "i2": "Sự im lặng/không hành động không được coi là sự đồng ý.",
+      "i3": "Bạn có thể rút lại hoặc thay đổi lựa chọn của mình bất kỳ lúc nào."
+    },
+    "s4": {
+      "heading": "4. Quản lý tùy chọn cookie",
+      "body": "Bảng cookie hiện hỗ trợ 2 lựa chọn: (i) chỉ cookie cần thiết hoặc (ii) chấp nhận tất cả cookie không thiết yếu."
+    },
+    "s5": {
+      "heading": "5. Các cookie chính theo nền tảng hiện tại",
+      "i1": "cookie cần thiết cho xác thực.",
+      "i2": "lưu lựa chọn cookie của bạn.",
+      "i3": "chỉ bật khi có sự đồng ý cho mục đích phân tích.",
+      "duration": "Thời hạn lưu trữ cookie được áp dụng theo nhóm và/hoặc phiên, tối đa theo cấu hình được công bố tại thời điểm xử lý."
+    },
+    "s6": {
+      "heading": "6. Cơ sở pháp lý tham chiếu",
+      "i1": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 (hiệu lực từ ngày 1 tháng 1 năm 2026).",
+      "i2": "Nghị định 356/2025/NĐ-CP (hiệu lực từ ngày 1 tháng 1 năm 2026; thay thế Nghị định 13/2023/NĐ-CP).",
+      "i3": "Luật Bảo vệ quyền lợi người tiêu dùng số 19/2023/QH15 và các văn bản hướng dẫn liên quan."
+    },
+    "s7": {
+      "heading": "7. Liên hệ",
+      "body": "Để được hỗ trợ về lựa chọn cookie hoặc quyền dữ liệu cá nhân, vui lòng liên hệ:",
+      "email": "privacy@tinygeniushubvn.tech"
+    },
+    "lastUpdated": "Cập nhật lần cuối:"
+  },
+  "refundPolicy": {
+    "metadata": {
+      "title": "Chính sách hoàn tiền — TinyGenius Hub",
+      "description": "Chính sách hoàn tiền cho các giao dịch mua khóa học tại TinyGenius Hub."
+    },
+    "h1": "Chính sách hoàn tiền",
+    "intro": "Chúng tôi áp dụng chính sách hoàn tiền minh bạch để bảo vệ quyền lợi của phụ huynh trong quá trình sử dụng dịch vụ học tập.",
+    "s1": {
+      "heading": "1. Phạm vi áp dụng",
+      "i1": "Áp dụng cho các giao dịch mua khóa học/gói dịch vụ trực tuyến trên nền tảng.",
+      "i2": "Các trường hợp từ chối hoàn tiền chỉ áp dụng trong phạm vi pháp luật cho phép."
+    },
+    "s2": {
+      "heading": "2. Điều kiện hoàn tiền",
+      "i1": "Yêu cầu được gửi trong vòng 30 ngày kể từ lần thanh toán thành công đầu tiên.",
+      "i2": "Yêu cầu gửi từ email đăng ký tài khoản hoặc kênh hỗ trợ đã xác minh.",
+      "i3": "Thông tin yêu cầu phải đầy đủ để xác thực giao dịch."
+    },
+    "s3": {
+      "heading": "3. Tài liệu yêu cầu",
+      "i1": "Email đăng ký tài khoản.",
+      "i2": "Mã giao dịch/biên lai thanh toán (nếu có).",
+      "i3": "Lý do yêu cầu hoàn tiền."
+    },
+    "s4": {
+      "heading": "4. Kênh tiếp nhận",
+      "i1": "Email: billing@tinygeniushubvn.tech",
+      "i2": "Tiêu đề đề xuất: \"Yêu cầu hoàn tiền - [Email tài khoản]\"."
+    },
+    "s5": {
+      "heading": "5. Thời gian xử lý",
+      "i1": "Chúng tôi sẽ phản hồi trạng thái tiếp nhận sớm nhất có thể.",
+      "i2": "Thời gian xử lý dự kiến là 5–10 ngày làm việc kể từ khi nhận đủ hồ sơ hợp lệ, tùy thuộc vào đối tác thanh toán."
+    },
+    "s6": {
+      "heading": "6. Lưu ý",
+      "i1": "Chính sách này không giới hạn quyền bắt buộc của người tiêu dùng theo quy định pháp luật.",
+      "i2": "Việc hoàn tiền có thể bị ảnh hưởng bởi chính sách của cổng thanh toán hoặc ngân hàng phát hành thẻ.",
+      "i3": "Chúng tôi bảo lưu quyền yêu cầu thêm thông tin để ngăn chặn gian lận giao dịch."
+    },
+    "s7": {
+      "heading": "7. Cơ sở pháp lý tham chiếu",
+      "i1": "Luật Bảo vệ quyền lợi người tiêu dùng số 19/2023/QH15 (hiệu lực từ ngày 1 tháng 7 năm 2024).",
+      "i2": "Nghị định 55/2024/NĐ-CP quy định chi tiết một số điều của Luật Bảo vệ quyền lợi người tiêu dùng.",
+      "i3": "Luật Giao dịch điện tử số 20/2023/QH15 (hiệu lực từ ngày 1 tháng 7 năm 2024).",
+      "i4": "Nghị định 52/2013/NĐ-CP và Nghị định 85/2021/NĐ-CP về thương mại điện tử."
+    },
+    "lastUpdated": "Cập nhật lần cuối:"
   }
 }

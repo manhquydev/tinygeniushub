@@ -4545,5 +4545,636 @@
     "3_subject_analysis_3_1_list_of_all_bbb161a6": "## 3. Subject Analysis\n\n### 3.1 List of all subjects\n\n| Subjects | Total videos | Appears in grades | Popularity |\n|--------|--------------|---------------------|-----------------|",
     "4_list_mapping_index_m_1_full_name_f7004e1b": "### 4.{list(mapping).index(m) + 1} {full_name} ({grade.upper()})\n\n- **Number of lessons:** {m['lessons']}\n- **Total videos:** {m['videos']:,}\n- **Average videos/post:** {m['avg_videos_per_lesson']}\n\n**Subjects:**",
     "1_1_g_const_suspectwordregex_b_not_name_b5e41d31": "])(?:\\\\.|(?!\\1)[^\\\\])*\\1/g;\nconst suspectWordRegex = /\\b(not|name|muc|da|duoc|cover|learning|new|loi|collection|het han)\\b/i;\nconst VietnameseDiacriticRegex =\n  /[a\\i;\n\nasync function collectSourceFiles(directory) {\n  const entries = await readdir(directory, { withFileTypes: true });\n  const files = [];\n\n  for (const entry of entries) {\n    const absolutePath = path.join(directory, entry.name);\n    if (entry.isDirectory()) {\n      const nested = await collectSourceFiles(absolutePath);\n      files.push(...nested);\n      continue; continue;\n    }\n\n    if (!entry.isFile()) {\n      continue; continue;\n    }\n\n    const extension = path.extname(entry.name).toLowerCase();\n    if (!FILE_EXTENSIONS.has(extension)) {\n      continue; continue;\n    }\n\n    const normalizedRelativePath = path\n      .relative(process.cwd(), absolutePath)\n      .replaceAll(\"\\\", \"/\")\n      .toLowerCase();\n\n    const shouldExclude = EXCLUDED_PATH_SEGMENTS.some((segment) =>\n      normalizedRelativePath.startsWith(segment),\n    );\n\n    if (shouldExclude) {\n      continue; continue;\n    }\n\n    files.push(absolutePath);\n  }\n\n  return files;\n}\n\nfunction scanLineForUnaccentedVietnamese(line) {\n  const matches = line.matchAll(literalRegex);\n  for (const match of matches) {\n    const literal = match[0];\n    const value = literal.slice(1, -1);\n    if (!suspectWordRegex.test(value)) {\n      continue; continue;\n    }\n    if (vietnameseDiacriticRegex.test(value)) {\n      continue; continue;\n    }\n    return true;\n  }\n\n  return false;\n}\n\nasync function main() {\n  const files = await collectSourceFiles(SOURCE_ROOT);\n  const warnings = [];\n\n  for (const filePath of files) {\n    const content = await readFile(filePath, \"utf8\");\n    const lines = content.split(/\\r?\\n/u);\n    const relativePath = path.relative(process.cwd(), filePath).replaceAll(\"\\\\\", \"/\");\n\n    for (let index = 0; index < lines.length; index += 1) {\n      const line = lines[index];\n      if (!line) {\n        continue; continue;\n      }\n\n      if (scanLineForUnaccentedVietnamese(line)) {\n        warnings.push("
+  },
+  "cookie": {
+    "banner": {
+      "heading": "Cookie settings",
+      "body": "We always use necessary cookies for login operations and security. Analytical/marketing cookies are enabled only when you agree.",
+      "detailPrefix": "See details at",
+      "policyLink": "Cookie Policy",
+      "closeAriaLabel": "Close cookie notification",
+      "close": "Close"
+    },
+    "actions": {
+      "currentStatus": "Current status:",
+      "allAllowed": "Non-essential cookies are allowed",
+      "onlyNecessary": "Only necessary cookies",
+      "notSelected": "Not selected yet",
+      "onlyNecessaryButton": "Only necessary cookies",
+      "acceptAll": "Accept all",
+      "saving": "Saving...",
+      "saveError": "Cookie selection cannot be saved at this time. Please try again.",
+      "offlineFallback": "Only necessary cookies are applied on this device; The forensic log will automatically re-sync when the connection is stable."
+    }
+  },
+  "auth": {
+    "login": {
+      "badge": "Parental access",
+      "title": "Parents, welcome back to your self-study journey",
+      "description": "Log in to view learning progress, open today's lesson and accompany your child every day."
+    },
+    "signup": {
+      "badge": "Unlock your learning journey",
+      "title": "Create an account to start your journey with your child",
+      "description": "Create a parent account, view sample lessons and choose the right course for your child in just a few steps."
+    },
+    "forgotPassword": {
+      "badge": "Account recovery",
+      "title": "Retrieve your password to continue accompanying your baby",
+      "description": "Don't worry, just one step to verify your email and you can return to the dashboard and continue your learning journey."
+    },
+    "resetPassword": {
+      "badge": "Reset password",
+      "title": "Update the new password to return to the dashboard",
+      "description": "Once completed, you can log back in and continue tracking your child's learning journey."
+    },
+    "index": {
+      "badge": "Welcome",
+      "badgeCheckout": "Pay",
+      "title": "Select the parent access portal",
+      "titleCheckout": "Continue paying for the course",
+      "description": "Log in if you already have an account or create a new one to manage your child's profile and buy courses.",
+      "descriptionCheckout": "Sign in if you already have an account, or create a new account. After authentication, the system will return you to the selected course.",
+      "heading": "Ready to get started?",
+      "headingCheckout": "Complete login to continue",
+      "bodyText": "Go to the parent dashboard to manage your child's profile, track progress and open purchased courses.",
+      "bodyTextCheckout": "After logging in or registering, you will return to the correct course page you just selected.",
+      "loginButton": "Log in",
+      "signupButton": "Create an account",
+      "forgotPasswordLabel": "Forgot password?",
+      "forgotPasswordLink": "Restore here"
+    }
+  },
+  "setup": {
+    "badge": "Parental settings",
+    "title": "Start your baby's first journey",
+    "description": "Hi {name}. Complete the 3 setup steps to activate your smart home control panel."
+  },
+  "mascot": {
+    "ecosystemShowcase": {
+      "title": "Mascot ecosystem",
+      "description": "The mascot changes according to the time of day so that your child's learning journey is always lively."
+    }
+  },
+  "pricing": {
+    "metadata": {
+      "title": "Course price list",
+      "description": "Transparent price list for each course, view sample lessons before buying and 30-day refund policy.",
+      "ogTitle": "Course Price List — TinyGenius Hub",
+      "ogDescription": "Buy by course · Fast payment · 30-day money back"
+    },
+    "hero": {
+      "title": "Transparent price list for each course",
+      "subtitle": "Choose the course that suits your child's goals, pay quickly and start learning right after the transaction is confirmed.",
+      "ctaCourseList": "See key list",
+      "ctaSampleLesson": "See sample lesson",
+      "proof": "Clear roadmap: preview → select key → automatic activation."
+    },
+    "conversion": {
+      "sectionTitle": "Why is it easy for parents to make decisions?",
+      "point1Title": "Buy quickly, operate easily",
+      "point1Desc": "The payment process is short, suitable for busy parents.",
+      "point2Title": "Choose the correct course you need",
+      "point2Desc": "Buy individual courses instead of committing to a large package from the start.",
+      "point3Title": "Reduce decision risks",
+      "point3Desc": "There are sample lessons before purchasing and a 30-day refund policy."
+    },
+    "trust": {
+      "fastCheckout": "Fast checkout",
+      "refund30": "30-day refund",
+      "autoActivation": "Automatic activation"
+    },
+    "coursesOpen": {
+      "sectionTitle": "Courses are open",
+      "subtitle": "Prices and incentives are updated directly on each course detail page.",
+      "tip": "Listed prices and promotional prices may change according to each program period.",
+      "cta": "Choose your course now"
+    },
+    "faq": {
+      "sectionTitle": "Frequently asked questions",
+      "q1": "How to pay?",
+      "a1": "You can pay by bank transfer or QR following the instructions on the payment page.",
+      "q2": "When is the course active?",
+      "a2": "The course is activated automatically as soon as the transaction is successfully confirmed.",
+      "q3": "What is the refund policy?",
+      "a3": "You can request a refund within the first 30 days if the course does not suit your needs.",
+      "q4": "Can I try it out before I buy?",
+      "a4": "Yes. You can watch sample lessons first, then buy them when you're ready."
+    },
+    "finalCta": {
+      "title": "Ready to get started?",
+      "subtitle": "Look at the sample lessons first, then choose the right course so your child can study regularly and make clear progress.",
+      "ctaCourse": "View course",
+      "ctaBlog": "Read the parent handbook"
+    }
+  },
+  "about": {
+    "metadata": {
+      "title": "About us",
+      "description": "The story of TinyGenius Hub's formation and why we built a child-centered learning platform for Vietnamese families."
+    },
+    "hero": {
+      "title": "Our story",
+      "lead": "TinyGenius Hub was built by parents who understand the challenge of helping their children learn consistently every day at home."
+    },
+    "mission": {
+      "missionTitle": "Mission",
+      "missionDesc": "Help children form self-study habits early with clear roadmaps, fun lessons, and easy progress data to follow for parents.",
+      "visionTitle": "Vision",
+      "visionDesc": "Become the most reliable home learning companion for Vietnamese families with children from 2-6 years old."
+    },
+    "why": {
+      "title": "Why did we build this platform?",
+      "p1": "Parents often wonder whether their child is learning at the right pace, what comes next, and how to see real progress instead of just guessing.",
+      "p2": "TinyGenius Hub was created to answer those questions with structured lessons, measurable progress indicators, and a clear weekly report."
+    },
+    "values": {
+      "title": "Core values",
+      "evidence": {
+        "title": "Based on evidence",
+        "desc": "Activities are designed according to the developmental characteristics and memory abilities of each age."
+      },
+      "childCentered": {
+        "title": "Child-centered",
+        "desc": "Short lessons and guided progression help reduce pressure and keep your child motivated to learn."
+      },
+      "transparent": {
+        "title": "Be transparent with parents",
+        "desc": "Parents can clearly see what their children have learned, where they are progressing and what they should do next."
+      }
+    },
+    "cta": {
+      "title": "Get started with TinyGenius Hub",
+      "subtitle": "Create a parent account and discover the course that best fits your child's goals.",
+      "link": "Explore the course"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contact",
+      "description": "Contact the TinyGenius Hub team for support or collaboration."
+    },
+    "hero": {
+      "title": "Contact us",
+      "subtitle": "We are always ready to support parents, schools and partners."
+    },
+    "info": {
+      "emailLabel": "Support email",
+      "responseLabel": "Response time",
+      "responseValue": "Within 24-48 working hours",
+      "addressLabel": "Contact address",
+      "addressValue": "Vietnam (working remotely)",
+      "faqHint": "Need quick answers? See frequently asked questions at"
+    }
+  },
+  "forSchools": {
+    "metadata": {
+      "title": "Learning solutions for preschools — TinyGenius Hub",
+      "description": "Mental Math + English Phonics platform for preschools: teacher dashboard, parent reports, and quick student list import.",
+      "ogTitle": "Learning solutions for preschools — TinyGenius Hub",
+      "ogDescription": "Teacher Dashboard · Parent Report · Quick Initialization"
+    },
+    "hero": {
+      "badge": "For preschool",
+      "title": "Digital learning platform for preschool operations —",
+      "titleAccent": "quick deployment, easy to apply",
+      "subtitle": "Mental Math + English Phonics, teacher dashboard and weekly parent reports.",
+      "cta": "Schedule a demo"
+    },
+    "benefits": {
+      "sectionTitle": "Benefits for the school",
+      "b1Title": "No specialized equipment required",
+      "b1Desc": "Students can study on popular phones or tablets, without needing to install complicated applications.",
+      "b2Title": "Automatic reporting",
+      "b2Desc": "Parents receive weekly reports, teachers track activities by class right on the system.",
+      "b3Title": "Fast deployment",
+      "b3Desc": "Create in a short time and import student list according to CSV file."
+    },
+    "plans": {
+      "sectionTitle": "Deployment package",
+      "contactPrice": "Contact",
+      "p1Name": "Experience package",
+      "p1Desc": "Tested for a class with initial implementation support.",
+      "p2Name": "Standard package",
+      "p2Desc": "Suitable for schools with less than 200 students, with initial initiation support.",
+      "p3Name": "Expansion pack",
+      "p3Desc": "Suitable for large schools, with advanced reporting and service commitment.",
+      "planCta": "Contact for consultation"
+    },
+    "demoCta": {
+      "title": "See the product through an online demo",
+      "subtitle": "Our team will accompany the school from setting up and operating the class to communicating with parents.",
+      "cta": "Sign up for a demo"
+    }
+  },
+  "tryGarden": {
+    "metadata": {
+      "title": "Cloud Garden - Course Preview | TinyGenius Hub",
+      "description": "Explore the Cloud Garden with the experience of previewing interactive lessons for children 2-6 years old before purchasing the course.",
+      "ogTitle": "Cloud Garden - Preview the course",
+      "ogDescription": "Explore the world of learning and preview lessons before you buy.",
+      "ogImageAlt": "Cloud Garden - Check it out",
+      "twitterTitle": "Cloud Garden - Preview the course",
+      "twitterDescription": "View sample lessons and choose the right course for your child."
+    }
+  },
+  "waitlist": {
+    "metadata": {
+      "title": "Priority List — TinyGenius Hub",
+      "description": "Register for the priority list to receive notifications of new openings and early incentives for families who register in advance."
+    },
+    "hero": {
+      "title": "Receive notification of new batch opening",
+      "subtitle": "We prioritize {count} early registered families in each new opening to optimize the experience and provide closer support.",
+      "countLabel": "50 early registered families"
+    },
+    "form": {
+      "sectionTitle": "Sign up to receive notifications"
+    },
+    "earlyBenefits": {
+      "title": "Early registration benefits",
+      "desc": "Priority to receive incentives for each unlock period and quick support from the operations team."
+    },
+    "timing": {
+      "title": "Time to receive information",
+      "desc": "You will receive an email as soon as there is a new opening, initialization schedule and accompanying incentives."
+    },
+    "alreadyAccount": {
+      "text": "Already have an account?",
+      "link": "Login here"
+    }
+  },
+  "referral": {
+    "metadata": {
+      "title": "Refer friends",
+      "description": "Invite friends to join TinyGenius Hub so you can both receive discounts on the course."
+    },
+    "hero": {
+      "title": "Introduce friends, both receive gifts",
+      "subtitle": "Each invited family will receive a discount for their first application. You also receive a reward when the referral completes a successful payment."
+    },
+    "youReceive": {
+      "title": "You receive",
+      "desc": "Voucher rewards based on number of valid referrals."
+    },
+    "friendReceives": {
+      "title": "Your friends receive",
+      "desc": "Welcome offer for first course purchase."
+    },
+    "tiers": {
+      "sectionTitle": "Bonus level based on number of referrals",
+      "colReferrals": "Successful referrals",
+      "colReward": "Your reward",
+      "familiesUnit": "{count} families",
+      "tier1Reward": "Discount voucher 50,000 VND",
+      "tier2Reward": "Discount voucher 200,000 VND",
+      "tier3Reward": "Give away 1 free course"
+    },
+    "yourLink": {
+      "title": "Your referral link",
+      "sendHint": "Send this link to your friends:",
+      "ctaDashboard": "Open the parent dashboard",
+      "referred": "Referred:",
+      "paid": "Paid:",
+      "rewarded": "Rewarded:",
+      "familiesUnit": "families",
+      "generating": "Generating referral code..."
+    },
+    "getStarted": {
+      "title": "Get started now",
+      "desc": "Create an account to receive your own referral link.",
+      "cta": "Create an account"
+    },
+    "terms": {
+      "title": "Short terms",
+      "term1": "Rewards are only applicable to valid referrals according to program policies.",
+      "term2": "Duplicate or fraudulent accounts may be denied credit.",
+      "term3": "Program terms may be updated to ensure fairness for all users."
+    }
+  },
+  "giftCode": {
+    "metadata": {
+      "title": "Enter gift code — TinyGenius Hub",
+      "description": "Activate the gift code to access the TinyGenius Hub course or service package."
+    },
+    "hero": {
+      "title": "Enter the gift code",
+      "subtitle": "Received a code from a relative or a promotion? Enter the code below to activate immediately."
+    }
+  },
+  "specialPages": {
+    "maintenance": {
+      "metadata": {
+        "title": "System maintenance"
+      },
+      "badge": "System maintenance",
+      "imageAlt": "The Fox mascot is running on the rainbow track during a system upgrade",
+      "title": "The system is being upgraded",
+      "subtitle": "We are updating the platform to give parents and children a more stable experience. Please come back in a few minutes.",
+      "ctaHome": "Check the home page again",
+      "ctaContact": "Contact support"
+    },
+    "offline": {
+      "metadata": {
+        "title": "Lost connection"
+      },
+      "badge": "Lost network connection",
+      "imageAlt": "Cloud Garden scene when the system temporarily loses network connection",
+      "title": "Cannot connect to the Internet",
+      "subtitle": "Please check your Wi-Fi or mobile data, then try again. Once the network is stable, the system will continue the baby's study session on its own.",
+      "ctaRetry": "Try again now",
+      "ctaContact": "Contact support"
+    },
+    "authFail": {
+      "metadata": {
+        "title": "Authentication failed"
+      },
+      "badge": "Auth fail",
+      "imageAlt": "The Fox mascot is examining the authenticity issue with a magnifying glass",
+      "title": "Unable to authenticate account",
+      "subtitle": "The current login session is invalid or the authentication service is interrupted. Please try logging in again.",
+      "ctaLogin": "Log in again",
+      "ctaForgot": "Forgot password"
+    },
+    "sessionExpired": {
+      "metadata": {
+        "title": "Login session has expired"
+      },
+      "badge": "Session expired",
+      "imageAlt": "Cloud Garden scene when the login session needs to be refreshed",
+      "title": "Login session has expired",
+      "subtitle": "For security reasons, you need to log in again to continue accessing this page.",
+      "ctaLogin": "Log in again",
+      "ctaHome": "Return to home page"
+    },
+    "acceptInvite": {
+      "badge": "Caregiver Invite",
+      "title": "Confirm caregiver invitation",
+      "subtitle": "Complete the confirmation step to monitor your child's learning progress with parents.",
+      "successTitle": "You have been added as a caregiver!",
+      "successDescWithName": "Invitation from {name} has been successfully confirmed.",
+      "successDescNoName": "The invitation has been successfully confirmed.",
+      "errorTitle": "Invitation cannot be accepted",
+      "fallbackError": "Invitations cannot be processed at this time. Please try again later.",
+      "ctaHome": "Return to home page"
+    }
+  },
+  "privacy": {
+    "metadata": {
+      "title": "Privacy policy — TinyGenius Hub",
+      "description": "Committed to protecting parent and child data on the TinyGenius Hub platform."
+    },
+    "h1": "Privacy policy",
+    "intro": "This policy explains how TinyGenius Hub collects, processes, stores and protects parents' personal data and children's learning data when using the platform.",
+    "s1": {
+      "heading": "1. Legal basis of reference",
+      "i1": "Law on Personal Data Protection No. 91/2025/QH15 (effective from January 1, 2026).",
+      "i2": "Decree 356/2025/ND-CP (effective from January 1, 2026; replacing Decree 13/2023/ND-CP).",
+      "i3": "Law on Consumer Rights Protection No. 19/2023/QH15 and related guiding documents."
+    },
+    "s2": {
+      "heading": "2. Data we collect",
+      "i1": "Parent account data: email, display name, registration status.",
+      "i2": "Children's learning data: learning records, lesson progress, learning interaction history.",
+      "i3": "Technical data: IP address, device, access log for system safety.",
+      "i4": "Payment data: transaction information from payment partners (full card number is not saved)."
+    },
+    "s3": {
+      "heading": "3. Purpose of data processing",
+      "i1": "We process data on one or more appropriate legal bases, such as performance of a contract or legal obligation, consent or legitimate interests under applicable law.",
+      "i2": "Account operations and core learning functions.",
+      "i3": "Personalize the learning experience according to the child's age and level.",
+      "i4": "Send service notifications, progress reports, technical support.",
+      "i5": "Prevent fraud and abuse and meet legal requirements."
+    },
+    "s4": {
+      "heading": "4. Children's data",
+      "i1": "Main account created and controlled by parents.",
+      "i2": "We do not purchase or sell children's personal data for independent commercial purposes.",
+      "i3": "We do not run behavioral ads aimed directly at children.",
+      "i4": "Where processing beyond the core learning objectives is required, we require an appropriate lawful basis."
+    },
+    "s5": {
+      "heading": "5. Share data with third parties",
+      "i1": "Share only to the extent necessary to provide the service.",
+      "i2": "Key partner groups: infrastructure, email, payments, security and analytics.",
+      "i3": "Partners must comply with data security obligations under contracts or applicable laws."
+    },
+    "s6": {
+      "heading": "6. Store and protect data",
+      "i1": "Data is protected using risk-appropriate technical and organizational measures.",
+      "i2": "Role-based access restriction applies.",
+      "i3": "The storage period is determined according to the purpose of processing and the legal obligations involved."
+    },
+    "s7": {
+      "heading": "7. Rights of data subjects",
+      "i1": "Right to know, access, and correct personal data.",
+      "i2": "The right to request restriction of processing or deletion of data to the extent permitted by law.",
+      "i3": "Right to withdraw consent for purposes based on consent.",
+      "i4": "We respond to data subject requests within the time limits prescribed by applicable law."
+    },
+    "s8": {
+      "heading": "8. Cookies and tracking",
+      "i1": "Necessary cookies are always active to ensure login security.",
+      "i2": "Analytical/marketing cookies are enabled only with explicit consent.",
+      "i3prefix": "For details see the page",
+      "i3link": "Cookie Policy"
+    },
+    "s9": {
+      "heading": "9. Cross-border data transfer",
+      "body": "When there are cross-border transfers of personal data, we implement records and controls according to the legal framework applicable at the time of processing."
+    },
+    "s10": {
+      "heading": "10. Contact to exercise data rights",
+      "i1": "Email: privacy@tinygeniushubvn.tech",
+      "i2": "Operating unit: TinyGenius Hub"
+    },
+    "lastUpdated": "Last updated:"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Terms of use — TinyGenius Hub",
+      "description": "Terms and conditions of use of the TinyGenius Hub platform."
+    },
+    "h1": "Terms of use",
+    "intro": "These terms stipulate the rights and obligations between users and TinyGenius Hub when using the website, application and related services.",
+    "s1": {
+      "heading": "1. Accept terms",
+      "i1": "By creating an account or continuing to use the service, you confirm that you have read and agree to these terms.",
+      "i2": "If you do not agree, please stop accessing and using the service."
+    },
+    "s2": {
+      "heading": "2. Target users",
+      "i1": "The account holder must be at least 18 years old or as required by applicable law.",
+      "i2": "Parents are responsible for managing their children's account information and learning activities on the platform."
+    },
+    "s3": {
+      "heading": "3. Service description",
+      "i1": "The platform provides learning content for children, progress tracking tools, and reporting for parents.",
+      "i2": "Some features may require a paid service plan or additional terms of use."
+    },
+    "s4": {
+      "heading": "4. Account and security",
+      "i1": "Users must provide accurate and updated registration information when there are changes.",
+      "i2": "Users themselves secure their passwords, login devices, and authentication information.",
+      "i3": "Users need to notify immediately when detecting unauthorized access."
+    },
+    "s5": {
+      "heading": "5. Payment and refund",
+      "i1": "Service fees, billing cycles and package benefits are announced at the time of transaction.",
+      "i2prefix": "Refunds are applicable accordingly",
+      "i2link": "Refund policy"
+    },
+    "s6": {
+      "heading": "6. Intellectual property rights",
+      "i1": "Learning content, design, source code and brand assets are legally owned by the platform.",
+      "i2": "Copying, redistribution or commercial exploitation without written consent is strictly prohibited."
+    },
+    "s7": {
+      "heading": "7. Prohibited acts",
+      "i1": "Unauthorized intrusion, system intervention, spreading malicious code or API abuse.",
+      "i2": "Collect user data without permission or use data for other purposes.",
+      "i3": "Impersonate another organization/individual or provide false information."
+    },
+    "s8": {
+      "heading": "8. Personal data and cookies",
+      "i1prefix": "Processing of personal data follows",
+      "i1link": "Privacy policy",
+      "i2prefix": "Cookie usage follows",
+      "i2link": "Cookie Policy"
+    },
+    "s9": {
+      "heading": "9. Limitation of liability",
+      "i1": "Nothing in this document shall exclude or limit the mandatory rights of consumers.",
+      "i2": "The limitation of liability only applies to the extent permitted by law.",
+      "i3": "The Services are provided on a reasonable efforts basis under actual operating conditions.",
+      "i4": "We are not responsible for indirect/arising damages beyond the scope of reasonable control according to applicable law."
+    },
+    "s10": {
+      "heading": "10. Suspension or termination of service",
+      "i1": "We may suspend/terminate accounts if we detect violations of terms or legal requirements.",
+      "i2": "Except in legal/security emergencies, we will notify in advance and provide appropriate complaint channels.",
+      "i3": "Users may request account termination in accordance with applicable policies."
+    },
+    "s11": {
+      "heading": "11. Update terms",
+      "body": "Terms may be updated to reflect legal or product changes. Important changes will be announced before applying."
+    },
+    "s12": {
+      "heading": "12. Applicable law and dispute resolution",
+      "body": "These terms are governed by Vietnamese law. In case of dispute, the parties prioritize negotiation before transferring the matter to the competent authority for resolution according to the law."
+    },
+    "s13": {
+      "heading": "13. Contact",
+      "email": "Support email: support@tinygeniushubvn.tech"
+    },
+    "s14": {
+      "heading": "14. Legal basis of reference",
+      "i1": "Law on Personal Data Protection No. 91/2025/QH15 (effective from January 1, 2026).",
+      "i2": "Decree 356/2025/ND-CP (effective from January 1, 2026; replacing Decree 13/2023/ND-CP).",
+      "i3": "Law on Consumer Rights Protection No. 19/2023/QH15 (effective from July 1, 2024) and Decree 55/2024/ND-CP.",
+      "i4": "Electronic Transaction Law No. 20/2023/QH15 (effective from July 1, 2024).",
+      "i5": "Decree 52/2013/ND-CP and Decree 85/2021/ND-CP on e-commerce."
+    },
+    "lastUpdated": "Last updated:"
+  },
+  "cookiePolicy": {
+    "metadata": {
+      "title": "Cookie Policy — TinyGenius Hub",
+      "description": "Explains how TinyGenius Hub uses necessary, analytical and marketing cookies; how parents manage or withdraw consent."
+    },
+    "h1": "Cookie Policy",
+    "intro": "This policy describes how TinyGenius Hub uses cookies when you visit the website/app. We only enable non-essential cookies after explicit consent from parents.",
+    "s1": {
+      "heading": "1. What are cookies?",
+      "body": "Cookies are small files saved in your browser to identify sessions, remember choices, and measure product performance."
+    },
+    "s2": {
+      "heading": "2. Groups of cookies we use",
+      "necessaryLabel": "Necessary cookies:",
+      "necessaryDesc": "required for sign-in, session continuity, abuse prevention, and system security.",
+      "analyticalLabel": "Analytical cookies:",
+      "analyticalDesc": "measure aggregate usage behavior (for example GA4) to improve the product.",
+      "marketingLabel": "Marketing cookies:",
+      "marketingDesc": "measure campaign effectiveness (for example Meta Pixel) for parent-facing content."
+    },
+    "s3": {
+      "heading": "3. Principle of consent",
+      "i1": "We do not default to \"all in.\"",
+      "i2": "Silence/inaction is not considered consent.",
+      "i3": "You can withdraw or change your selection at any time."
+    },
+    "s4": {
+      "heading": "4. Manage cookie preferences",
+      "body": "The cookie panel currently supports 2 choices: (i) necessary cookies only or (ii) accept all non-essential cookies."
+    },
+    "s5": {
+      "heading": "5. Main cookies according to the current platform",
+      "i1": "necessary cookies for authentication.",
+      "i2": "stores your cookie choice.",
+      "i3": "enabled only with consent for analysis.",
+      "duration": "Cookie storage duration is applied per group and/or session, up to the maximum according to the configuration announced at the time of processing."
+    },
+    "s6": {
+      "heading": "6. Legal basis of reference",
+      "i1": "Law on Personal Data Protection No. 91/2025/QH15 (effective from January 1, 2026).",
+      "i2": "Decree 356/2025/ND-CP (effective from January 1, 2026; replacing Decree 13/2023/ND-CP).",
+      "i3": "Law on Consumer Rights Protection No. 19/2023/QH15 and related guiding documents."
+    },
+    "s7": {
+      "heading": "7. Contact",
+      "body": "For support with cookie choices or personal data rights, please contact:",
+      "email": "privacy@tinygeniushubvn.tech"
+    },
+    "lastUpdated": "Last updated:"
+  },
+  "refundPolicy": {
+    "metadata": {
+      "title": "Refund policy — TinyGenius Hub",
+      "description": "Refund policy for course purchases at TinyGenius Hub."
+    },
+    "h1": "Refund policy",
+    "intro": "We apply a transparent refund policy to protect parents' rights during the process of using the learning service.",
+    "s1": {
+      "heading": "1. Scope of application",
+      "i1": "Applies to online course/package purchases on the platform.",
+      "i2": "Refund refusal cases only apply to the extent permitted by law."
+    },
+    "s2": {
+      "heading": "2. Refund conditions",
+      "i1": "Requests are submitted within 30 days of the first successful payment.",
+      "i2": "Request sent from account registered email or verified support channel.",
+      "i3": "The requested information must be complete to authenticate the transaction."
+    },
+    "s3": {
+      "heading": "3. Required documents",
+      "i1": "Registered account email.",
+      "i2": "Transaction code/payment receipt (if any).",
+      "i3": "Reason for requesting refund."
+    },
+    "s4": {
+      "heading": "4. Reception channel",
+      "i1": "Email: billing@tinygeniushubvn.tech",
+      "i2": "Suggested title: \"Request a refund - [Account email]\"."
+    },
+    "s5": {
+      "heading": "5. Processing time",
+      "i1": "We will respond to the reception status as soon as possible.",
+      "i2": "Expected processing time is 5–10 working days from receipt of complete valid documents, depending on the payment partner."
+    },
+    "s6": {
+      "heading": "6. Note",
+      "i1": "This policy does not limit consumers' mandatory rights under the law.",
+      "i2": "Refunds may be affected by the payment gateway or card issuing bank's policies.",
+      "i3": "We reserve the right to request additional information to prevent transaction fraud."
+    },
+    "s7": {
+      "heading": "7. Legal basis of reference",
+      "i1": "Law on Protection of Consumer Rights No. 19/2023/QH15 (effective from July 1, 2024).",
+      "i2": "Decree 55/2024/ND-CP details a number of articles of the Law on Consumer Rights Protection.",
+      "i3": "Electronic Transaction Law No. 20/2023/QH15 (effective from July 1, 2024).",
+      "i4": "Decree 52/2013/ND-CP and Decree 85/2021/ND-CP on e-commerce."
+    },
+    "lastUpdated": "Last updated:"
   }
 }

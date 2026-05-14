@@ -2,17 +2,18 @@
 
 ## Overview
 - Priority: high
-- Status: complete
-- Replace Vietnamese hardcoded runtime strings module by module.
+- Status: **partial** (prose rewrite complete; t() wiring deferred to `phase-03b-rewire-ui-surfaces.md`)
+- Original scope: replace Vietnamese hardcoded runtime strings module by module.
+- Actual delivery: VI prose removed from source (audit reports 31 lines in legitimate test fixtures), but only `layout-and-shared-ui` and the homepage scroll journey gained `useTranslations()` calls. Other modules ship hardcoded EN that does not respond to the locale cookie.
 
-## Migration Modules
-1. `layout-and-shared-ui` - complete
-2. `public-marketing-and-legal-pages` - complete
-3. `auth-parent-and-dashboard` - complete
-4. `courses-and-kid-learning` - complete
-5. `admin-and-teacher` - complete
-6. `api-modules-workers-emails` - complete
-7. `prisma-seeds-scripts-tests` - complete
+## Migration Modules (revised status, post-verification 2026-05-14)
+1. `layout-and-shared-ui` - DONE (nav, footer, language switcher wired)
+2. `public-marketing-and-legal-pages` - **partial** (prose rewritten EN, t() not wired) → 03b.3, 03b.4
+3. `auth-parent-and-dashboard` - **partial** → 03b.2, 03b.6
+4. `courses-and-kid-learning` - **partial** → 03b.7
+5. `admin-and-teacher` - **partial** → 03b.9 (header-only) + deferred
+6. `api-modules-workers-emails` - **partial** → 03b.8 + 03c (deferred)
+7. `prisma-seeds-scripts-tests` - DONE (no user-facing copy)
 
 ## Requirements
 - Each module gets one focused commit: `feat(i18n): migrate [module-name] to i18n keys`.

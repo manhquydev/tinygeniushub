@@ -1,12 +1,22 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
-export const metadata: Metadata = {
-  title: "System maintenance",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+  return {
+    title: translate("specialPages.maintenance.metadata.title", undefined, locale),
+  };
+}
 
-export default function MaintenancePage() {
+export default async function MaintenancePage() {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+
   return (
     <main className="relative isolate min-h-screen overflow-hidden bg-[#050d1a] px-4 py-8 text-slate-100 sm:px-6 sm:py-10">
       <div
@@ -27,14 +37,14 @@ export default function MaintenancePage() {
             className="h-8 w-auto object-contain sm:h-9"
           />
           <p className="inline-flex items-center rounded-full border border-cyan-200/35 bg-cyan-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-cyan-100/95">
-            System maintenance
+            {translate("specialPages.maintenance.badge", undefined, locale)}
           </p>
         </div>
 
         <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/50">
           <Image
             src="/images/system/cloud-garden/system_loading_hero.png"
-            alt="The Fox mascot is running on the rainbow track during a system upgrade"
+            alt={translate("specialPages.maintenance.imageAlt", undefined, locale)}
             width={1368}
             height={768}
             priority
@@ -44,10 +54,10 @@ export default function MaintenancePage() {
 
         <div className="grid gap-3 text-left">
           <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl">
-            The system is being upgraded
+            {translate("specialPages.maintenance.title", undefined, locale)}
           </h1>
           <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
-            We are updating the platform to give parents and children a more stable experience. Please come back in a few minutes.
+            {translate("specialPages.maintenance.subtitle", undefined, locale)}
           </p>
         </div>
 
@@ -61,7 +71,7 @@ export default function MaintenancePage() {
               animation: "notFoundShimmer 2.5s linear infinite",
             }}
           >
-            Check the home page again
+            {translate("specialPages.maintenance.ctaHome", undefined, locale)}
           </Link>
           <a
             href="/contact"
@@ -69,11 +79,10 @@ export default function MaintenancePage() {
             rel="noopener noreferrer"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
           >
-            Contact support
+            {translate("specialPages.maintenance.ctaContact", undefined, locale)}
           </a>
         </div>
       </section>
     </main>
   );
 }
-

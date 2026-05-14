@@ -1,24 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 import { getParentFromServerCookie } from "@/lib/auth/session";
 import { getReferralSummaryForParentReadOnly } from "@/modules/referral/service";
 import { buildReferralUrl } from "@/modules/sharing/share-link-builder";
 import { IconGift, IconUsers } from "@/components/icons";
 import "./referral.css";
 
-export const metadata: Metadata = {
-  title: "Refer friends",
-  description: "Invite friends to join TinyGenius Hub so you can both receive discounts on the course.",
-  alternates: { canonical: "https://www.tinygeniushubvn.tech/referral" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+  return {
+    title: translate("referral.metadata.title", undefined, locale),
+    description: translate("referral.metadata.description", undefined, locale),
+    alternates: { canonical: "https://www.tinygeniushubvn.tech/referral" },
+  };
+}
 
 const TIERS = [
-  { referrals: 1, reward: "Discount voucher 50,000 VND" },
-  { referrals: 3, reward: "Discount voucher 200,000 VND" },
-  { referrals: 10, reward: "Give away 1 free course" },
+  { referrals: 1, rewardKey: "referral.tiers.tier1Reward" },
+  { referrals: 3, rewardKey: "referral.tiers.tier2Reward" },
+  { referrals: 10, rewardKey: "referral.tiers.tier3Reward" },
 ] as const;
 
 export default async function ReferralPublicPage() {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+
   const parent = await getParentFromServerCookie();
   const summary = parent ? await getReferralSummaryForParentReadOnly(parent.id) : null;
 
@@ -27,40 +37,45 @@ export default async function ReferralPublicPage() {
   return (
     <div className="page-stack">
       <section className="hero">
-        <h1>Introduce friends, both receive gifts</h1>
-        <p>
-          Each invited family will receive a discount for their first application. You also receive a reward when the referral is completed
-          payment successful.
-        </p>
+        <h1>{translate("referral.hero.title", undefined, locale)}</h1>
+        <p>{translate("referral.hero.subtitle", undefined, locale)}</p>
       </section>
 
       <section className="card-grid">
         <article className="card referral-reward-card">
           <IconGift size={28} className="referral-card-icon" />
-          <h2>You receive</h2>
-          <p className="muted-text">Voucher rewards based on number of valid referrals.</p>
+          <h2>{translate("referral.youReceive.title", undefined, locale)}</h2>
+          <p className="muted-text">{translate("referral.youReceive.desc", undefined, locale)}</p>
         </article>
         <article className="card referral-reward-card">
           <IconUsers size={28} className="referral-card-icon" />
-          <h2>Your friends receive</h2>
-          <p className="muted-text">Welcome offer for first course purchase.</p>
+          <h2>{translate("referral.friendReceives.title", undefined, locale)}</h2>
+          <p className="muted-text">{translate("referral.friendReceives.desc", undefined, locale)}</p>
         </article>
       </section>
 
       <section className="card">
-        <h2>Bonus level based on number of referrals</h2>
+        <h2>{translate("referral.tiers.sectionTitle", undefined, locale)}</h2>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
-              <th style={{ textAlign: "left", padding: "8px 0", borderBottom: "1px solid var(--color-border)" }}>Successful referrals</th>
-              <th style={{ textAlign: "left", padding: "8px 0", borderBottom: "1px solid var(--color-border)" }}>Your reward</th>
+              <th style={{ textAlign: "left", padding: "8px 0", borderBottom: "1px solid var(--color-border)" }}>
+                {translate("referral.tiers.colReferrals", undefined, locale)}
+              </th>
+              <th style={{ textAlign: "left", padding: "8px 0", borderBottom: "1px solid var(--color-border)" }}>
+                {translate("referral.tiers.colReward", undefined, locale)}
+              </th>
             </tr>
           </thead>
           <tbody>
             {TIERS.map((tier) => (
               <tr key={tier.referrals}>
-                <td style={{ padding: "8px 0", borderBottom: "1px solid var(--color-border-subtle)" }}>{tier.referrals} families</td>
-                <td style={{ padding: "8px 0", borderBottom: "1px solid var(--color-border-subtle)" }}>{tier.reward}</td>
+                <td style={{ padding: "8px 0", borderBottom: "1px solid var(--color-border-subtle)" }}>
+                  {translate("referral.tiers.familiesUnit", { count: tier.referrals }, locale)}
+                </td>
+                <td style={{ padding: "8px 0", borderBottom: "1px solid var(--color-border-subtle)" }}>
+                  {translate(tier.rewardKey, undefined, locale)}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -69,10 +84,10 @@ export default async function ReferralPublicPage() {
 
       {parent && summary ? (
         <section className="card">
-          <h2>Your referral link</h2>
+          <h2>{translate("referral.yourLink.title", undefined, locale)}</h2>
           {referralUrl ? (
             <>
-              <p className="muted-text">Send this link to your friends:</p>
+              <p className="muted-text">{translate("referral.yourLink.sendHint", undefined, locale)}</p>
               <code
                 style={{
                   display: "block",
@@ -87,37 +102,39 @@ export default async function ReferralPublicPage() {
               </code>
               <div className="hero-actions">
                 <Link href="/parent/dashboard" className="solid-button">
-                  Open the parent dashboard
+                  {translate("referral.yourLink.ctaDashboard", undefined, locale)}
                 </Link>
               </div>
               <p className="muted-text" style={{ marginTop: "16px" }}>
-                Referred: <strong>{summary.totalReferrals}</strong> families &nbsp;·&nbsp; Paid:{" "}
-                <strong>{summary.paidReferrals}</strong>
-                &nbsp;·&nbsp; Rewarded: <strong>{summary.rewardedReferrals}</strong>
+                {translate("referral.yourLink.referred", undefined, locale)} <strong>{summary.totalReferrals}</strong>{" "}
+                {translate("referral.yourLink.familiesUnit", undefined, locale)} &nbsp;·&nbsp;{" "}
+                {translate("referral.yourLink.paid", undefined, locale)} <strong>{summary.paidReferrals}</strong>
+                &nbsp;·&nbsp; {translate("referral.yourLink.rewarded", undefined, locale)}{" "}
+                <strong>{summary.rewardedReferrals}</strong>
               </p>
             </>
           ) : (
-            <p className="muted-text">Generating referral code...</p>
+            <p className="muted-text">{translate("referral.yourLink.generating", undefined, locale)}</p>
           )}
         </section>
       ) : (
         <section className="card">
-          <h2>Get started now</h2>
-          <p className="muted-text">Create an account to receive your own referral link.</p>
+          <h2>{translate("referral.getStarted.title", undefined, locale)}</h2>
+          <p className="muted-text">{translate("referral.getStarted.desc", undefined, locale)}</p>
           <div className="hero-actions">
             <Link href="/auth/signup" className="solid-button">
-              Create an account
+              {translate("referral.getStarted.cta", undefined, locale)}
             </Link>
           </div>
         </section>
       )}
 
       <section className="card">
-        <h2>Short terms</h2>
+        <h2>{translate("referral.terms.title", undefined, locale)}</h2>
         <ul className="referral-terms-list">
-          <li>Rewards are only applicable to valid referrals according to program policies.</li>
-          <li>Duplicate or fraudulent accounts may be denied credit.</li>
-          <li>Program terms may be updated to ensure fairness for all users.</li>
+          <li>{translate("referral.terms.term1", undefined, locale)}</li>
+          <li>{translate("referral.terms.term2", undefined, locale)}</li>
+          <li>{translate("referral.terms.term3", undefined, locale)}</li>
         </ul>
       </section>
     </div>

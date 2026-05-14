@@ -1,6 +1,6 @@
 # Vietnamese Text Inventory
 
-Generated: 2026-05-14T04:38:55.301Z
+Generated: 2026-05-14T18:54:28.827Z
 
 ## Scope
 
@@ -10,17 +10,19 @@ Generated: 2026-05-14T04:38:55.301Z
 
 ## Summary
 
-- Files scanned: 17221
-- Vietnamese-containing lines: 6075
+- Files scanned: 17225
+- Vietnamese-containing lines: 6106
 
 ### By Area
 
 - docs-data-assets: 6075
+- runtime-source: 31
 
 ### By Top Directory
 
 - docs: 5985
 - assets: 76
+- src: 31
 - data: 14
 
 ### By Extension
@@ -29,6 +31,7 @@ Generated: 2026-05-14T04:38:55.301Z
 - .json: 644
 - .sql: 122
 - .svg: 36
+- .tsx: 31
 
 ### Top Files
 
@@ -89,6 +92,7 @@ Generated: 2026-05-14T04:38:55.301Z
 - docs/handover/packages/2026-03-19-parent-course-clarity-package/01-executive/parent-course-clarity-executive-summary.md: 37
 - docs/archive/03-learning-model-roadmap.md: 36
 - docs/marketing/blog-drafts/blog-01-dau-hieu-be-san-sang-hoc-tieng-anh.md: 31
+- src/components/site-footer.test.tsx: 31
 - docs/archive/10-technical-architecture-web.md: 26
 - docs/archive/11-roadmap-phases.md: 26
 - docs/DEPLOYMENT-READY.md: 26
@@ -131,7 +135,6 @@ Generated: 2026-05-14T04:38:55.301Z
 - docs/api/littlefox/FS0020/006.json: 3
 - docs/api/littlefox/FS0020/007.json: 3
 - docs/api/littlefox/FS0020/008.json: 3
-- docs/api/littlefox/FS0020/009.json: 3
 
 ## Findings
 
@@ -5829,15 +5832,15 @@ Generated: 2026-05-14T04:38:55.301Z
 
 ### docs/project-changelog.md
 
-- docs-data-assets:14: `- **Rebrand: "Cùng Con Tự Học" → "TinyGenius Hub"**`
-- docs-data-assets:51: `- Streamlined hero/sidebar copy and CTAs to focus on: 'Xem học thử' and 'Mua khóa'.`
-- docs-data-assets:54: `- Removed the entire hero block "Khóa học cho phụ huynh chọn nhanh".`
-- docs-data-assets:179: `- **Free Lesson Preview System** — Bypass authentication for lessons with 'isPreview' flag, enabling "học thử" (free trial) video playback`
-- docs-data-assets:182: `- **Parent Course Progress Page** — '/parent/courses' with per-course completion bars, "Học gần nhất" date, "Học tiếp" CTA`
-- docs-data-assets:214: `- **Admin-configurable footer social links** â€” New settings storage for Facebook/YouTube/TikTok/Zalo destinations in site footer.`
-- docs-data-assets:215: `- **Admin API for footer social links** â€” 'GET/PATCH /api/admin/site-settings/footer-social-links'.`
-- docs-data-assets:216: `- **Admin Operations tab: Footer social** â€” UI panel to update footer social URLs from admin without code change.`
-- docs-data-assets:217: `- **Site content settings service** â€” safe read fallback to defaults when DB row is missing/unavailable.`
+- docs-data-assets:32: `- **Rebrand: "Cùng Con Tự Học" → "TinyGenius Hub"**`
+- docs-data-assets:69: `- Streamlined hero/sidebar copy and CTAs to focus on: 'Xem học thử' and 'Mua khóa'.`
+- docs-data-assets:72: `- Removed the entire hero block "Khóa học cho phụ huynh chọn nhanh".`
+- docs-data-assets:197: `- **Free Lesson Preview System** — Bypass authentication for lessons with 'isPreview' flag, enabling "học thử" (free trial) video playback`
+- docs-data-assets:200: `- **Parent Course Progress Page** — '/parent/courses' with per-course completion bars, "Học gần nhất" date, "Học tiếp" CTA`
+- docs-data-assets:232: `- **Admin-configurable footer social links** â€” New settings storage for Facebook/YouTube/TikTok/Zalo destinations in site footer.`
+- docs-data-assets:233: `- **Admin API for footer social links** â€” 'GET/PATCH /api/admin/site-settings/footer-social-links'.`
+- docs-data-assets:234: `- **Admin Operations tab: Footer social** â€” UI panel to update footer social URLs from admin without code change.`
+- docs-data-assets:235: `- **Site content settings service** â€” safe read fallback to defaults when DB row is missing/unavailable.`
 
 ### docs/project-roadmap.md
 
@@ -6840,6 +6843,40 @@ Generated: 2026-05-14T04:38:55.301Z
 - docs-data-assets:23909: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_c7bd997d7715f18f', 'col_8c5999ad2228a1d6', 69, '69. Eva Perón', 'Superstars in History 33: Eva Perón', 'https://cdn.littlefox.com/contents_5/hls/1080/cb21265a88/1671165973cf79ae6addba60ad018347359bd144d2/stream.m3u8?_=1671166045', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0009155&cn=0', `
 - docs-data-assets:32105: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_897953091d85ee07', 'col_cdf55ae55f2eee62', 2, '2. Tone Change Rules 2: Tone Change Rules with Yī', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/784c88d828/15730041396c990b7aca7bc7058f5e98ea909e924b/stream.m3u8?_=1573004139', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0007100&cn`
 - docs-data-assets:32106: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_688c5b3a9c2b346e', 'col_cdf55ae55f2eee62', 3, '3. Tone Change Rules 3: Tone Change Rules with Bù', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/7c154d27c8/15730042668e930496927757aac0dbd2438cb3f4f6/stream.m3u8?_=1573004267', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0007101&cn`
+
+### src/components/site-footer.test.tsx
+
+- runtime-source:97: `brandAriaLabel: "Trang chủ TinyGenius Hub",`
+- runtime-source:99: `taglineLine1: "Toán & Tiếng Anh cho bé 2-6 tuổi.",`
+- runtime-source:100: `taglineLine2: "Mỗi ngày 15 phút, ba mẹ thấy rõ con tiến bộ.",`
+- runtime-source:103: `navAriaLabel: "Điều hướng chân trang",`
+- runtime-source:105: `product: "Sản phẩm",`
+- runtime-source:106: `company: "Công ty",`
+- runtime-source:107: `account: "Tài khoản",`
+- runtime-source:108: `legal: "Pháp lý",`
+- runtime-source:111: `features: "Tính năng",`
+- runtime-source:112: `pricing: "Bảng giá",`
+- runtime-source:113: `courses: "Khóa học",`
+- runtime-source:114: `forSchools: "Cho trường học",`
+- runtime-source:115: `faq: "Câu hỏi thường gặp",`
+- runtime-source:116: `about: "Giới thiệu",`
+- runtime-source:118: `contact: "Liên hệ",`
+- runtime-source:119: `referral: "Giới thiệu bạn",`
+- runtime-source:120: `giftCode: "Mã quà tặng",`
+- runtime-source:121: `waitlist: "Đặt chỗ sớm",`
+- runtime-source:122: `login: "Đăng nhập",`
+- runtime-source:123: `signup: "Đăng ký",`
+- runtime-source:124: `privacy: "Chính sách bảo mật",`
+- runtime-source:125: `terms: "Điều khoản sử dụng",`
+- runtime-source:126: `cookiePolicy: "Chính sách cookie",`
+- runtime-source:127: `refundPolicy: "Chính sách hoàn tiền",`
+- runtime-source:130: `rightsReserved: "Đã đăng ký bản quyền.",`
+- runtime-source:131: `security: "Bảo mật",`
+- runtime-source:132: `clause: "Điều khoản",`
+- runtime-source:134: `refund: "Hoàn tiền",`
+- runtime-source:140: `expect(screen.getByRole("link", { name: "Bảng giá" })).toBeInTheDocument();`
+- runtime-source:141: `expect(screen.getByRole("link", { name: "Điều khoản sử dụng" })).toBeInTheDocument();`
+- runtime-source:142: `expect(screen.getByText(/Đã đăng ký bản quyền\./)).toBeInTheDocument();`
 
 ## Unresolved Questions
 

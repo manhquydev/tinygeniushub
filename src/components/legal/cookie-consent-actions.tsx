@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   buildCookieConsentState,
   COOKIE_CONSENT_COOKIE_NAME,
@@ -201,6 +202,7 @@ function clearPendingCookieAuditPayload() {
 }
 
 export function CookieConsentActions({ reloadAfterSave = true, className }: CookieConsentActionsProps) {
+  const t = useTranslations("cookie.actions");
   const initialConsent = useMemo(() => parseCookieConsent(readCookie(COOKIE_CONSENT_COOKIE_NAME)), []);
   const [currentConsent, setCurrentConsent] = useState<CookieConsentState | null>(initialConsent);
   const [saving, setSaving] = useState<"necessary" | "all" | null>(null);
@@ -233,7 +235,7 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
     const recorded = await persistConsentAudit(nextConsent, source);
     if (!recorded && !restrictiveConsent) {
       setSaving(null);
-      setErrorMessage("Cookie selection cannot be saved at this time. Please try again.");
+      setErrorMessage(t("saveError"));
       return;
     }
 
@@ -255,9 +257,7 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
         source,
         savedAt: new Date().toISOString(),
       });
-      setErrorMessage(
-        "Only necessary cookies are applied on this device; The forensic log will automatically re-sync when the connection is stable.",
-      );
+      setErrorMessage(t("offlineFallback"));
     }
     setSaving(null);
 
@@ -271,13 +271,13 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
   return (
     <div className={className}>
       <p className="text-sm text-slate-700">
-        Current status:{" "}
+        {t("currentStatus")}{" "}
         <strong>
           {currentConsent
             ? currentConsent.analytics || currentConsent.marketing
-              ? "Non-essential cookies are allowed"
-              : "Only necessary cookies"
-            : "Not selected yet"}
+              ? t("allAllowed")
+              : t("onlyNecessary")
+            : t("notSelected")}
         </strong>
       </p>
       {errorMessage ? <p className="mt-2 text-sm text-rose-700">{errorMessage}</p> : null}
@@ -288,7 +288,7 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
           onClick={() => saveConsent({ analytics: false, marketing: false }, "necessary")}
           disabled={saving !== null}
         >
-          {saving === "necessary" ? "Saving..." : "Only necessary cookies"}
+          {saving === "necessary" ? t("saving") : t("onlyNecessaryButton")}
         </button>
         <button
           type="button"
@@ -296,7 +296,7 @@ export function CookieConsentActions({ reloadAfterSave = true, className }: Cook
           onClick={() => saveConsent({ analytics: true, marketing: true }, "all")}
           disabled={saving !== null}
         >
-          {saving === "all" ? "Saving..." : "Accept all"}
+          {saving === "all" ? t("saving") : t("acceptAll")}
         </button>
       </div>
     </div>

@@ -1,80 +1,89 @@
 import "./for-schools.css";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
-export const metadata: Metadata = {
-  title: "Learning solutions for preschools — TinyGenius Hub",
-  description:
-    "Mental Math + English Phonics platform for preschools: teacher dashboard, parent reports, and quick student list import.",
-  alternates: { canonical: "https://www.tinygeniushubvn.tech/for-schools" },
-  openGraph: {
-    title: "Learning solutions for preschools — TinyGenius Hub",
-    description: "Teacher Dashboard · Parent Report · Quick Initialization",
-    url: "https://www.tinygeniushubvn.tech/for-schools",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+  return {
+    title: translate("forSchools.metadata.title", undefined, locale),
+    description: translate("forSchools.metadata.description", undefined, locale),
+    alternates: { canonical: "https://www.tinygeniushubvn.tech/for-schools" },
+    openGraph: {
+      title: translate("forSchools.metadata.ogTitle", undefined, locale),
+      description: translate("forSchools.metadata.ogDescription", undefined, locale),
+      url: "https://www.tinygeniushubvn.tech/for-schools",
+      type: "website",
+    },
+  };
+}
 
-const BENEFITS = [
-  {
-    icon: "📱",
-    title: "No specialized equipment required",
-    desc: "Students can study on popular phones or tablets, without needing to install complicated applications.",
-  },
-  {
-    icon: "📊",
-    title: "Automatic reporting",
-    desc: "Parents receive weekly reports, teachers track activities by class right on the system.",
-  },
-  {
-    icon: "⚡",
-    title: "Fast deployment",
-    desc: "Create in a short time and import student list according to CSV file.",
-  },
-];
+export default async function ForSchoolsPage() {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
 
-const PLANS = [
-  {
-    name: "Experience package",
-    price: "Contact",
-    desc: "Tested for a class with initial implementation support.",
-    highlight: false,
-  },
-  {
-    name: "Standard package",
-    price: "Contact",
-    desc: "Suitable for schools with less than 200 students, with initial initiation support.",
-    highlight: true,
-  },
-  {
-    name: "Expansion pack",
-    price: "Contact",
-    desc: "Suitable for large schools, with advanced reporting and service commitment.",
-    highlight: false,
-  },
-];
+  const BENEFITS = [
+    {
+      icon: "📱",
+      title: translate("forSchools.benefits.b1Title", undefined, locale),
+      desc: translate("forSchools.benefits.b1Desc", undefined, locale),
+    },
+    {
+      icon: "📊",
+      title: translate("forSchools.benefits.b2Title", undefined, locale),
+      desc: translate("forSchools.benefits.b2Desc", undefined, locale),
+    },
+    {
+      icon: "⚡",
+      title: translate("forSchools.benefits.b3Title", undefined, locale),
+      desc: translate("forSchools.benefits.b3Desc", undefined, locale),
+    },
+  ];
 
-export default function ForSchoolsPage() {
+  const PLANS = [
+    {
+      name: translate("forSchools.plans.p1Name", undefined, locale),
+      price: translate("forSchools.plans.contactPrice", undefined, locale),
+      desc: translate("forSchools.plans.p1Desc", undefined, locale),
+      highlight: false,
+    },
+    {
+      name: translate("forSchools.plans.p2Name", undefined, locale),
+      price: translate("forSchools.plans.contactPrice", undefined, locale),
+      desc: translate("forSchools.plans.p2Desc", undefined, locale),
+      highlight: true,
+    },
+    {
+      name: translate("forSchools.plans.p3Name", undefined, locale),
+      price: translate("forSchools.plans.contactPrice", undefined, locale),
+      desc: translate("forSchools.plans.p3Desc", undefined, locale),
+      highlight: false,
+    },
+  ];
+
   return (
     <div className="page-stack">
       <section className="schools-hero">
         <div className="schools-hero-inner">
-          <div className="schools-hero-badge">For preschool</div>
+          <div className="schools-hero-badge">{translate("forSchools.hero.badge", undefined, locale)}</div>
           <h1 className="schools-hero-title">
-            Digital learning platform for preschool operations —<br />
-            <span className="schools-hero-accent">quick deployment, easy to apply</span>
+            {translate("forSchools.hero.title", undefined, locale)}<br />
+            <span className="schools-hero-accent">{translate("forSchools.hero.titleAccent", undefined, locale)}</span>
           </h1>
           <p className="schools-hero-sub">
-            Mental Math + English Phonics, teacher dashboard and weekly parent reports.
+            {translate("forSchools.hero.subtitle", undefined, locale)}
           </p>
           <Link href="/contact?subject=H%E1%BB%A3p+t%C3%A1c+%2F+B2B" className="solid-button schools-hero-cta">
-            Schedule a demo
+            {translate("forSchools.hero.cta", undefined, locale)}
           </Link>
         </div>
       </section>
 
       <section className="container">
-        <h2 className="schools-section-title">Benefits for the school</h2>
+        <h2 className="schools-section-title">{translate("forSchools.benefits.sectionTitle", undefined, locale)}</h2>
         <div className="card-grid">
           {BENEFITS.map((b) => (
             <article key={b.title} className="card schools-benefit-card">
@@ -89,7 +98,7 @@ export default function ForSchoolsPage() {
       </section>
 
       <section className="container">
-        <h2 className="schools-section-title">Deployment package</h2>
+        <h2 className="schools-section-title">{translate("forSchools.plans.sectionTitle", undefined, locale)}</h2>
         <div className="card-grid">
           {PLANS.map((p) => (
             <article key={p.name} className={`card schools-plan-card ${p.highlight ? "schools-plan-highlight" : ""}`}>
@@ -97,7 +106,7 @@ export default function ForSchoolsPage() {
               <div className="schools-plan-price">{p.price}</div>
               <p className="schools-plan-desc">{p.desc}</p>
               <Link href="/contact?subject=H%E1%BB%A3p+t%C3%A1c+%2F+B2B" className="ghost-button schools-plan-cta">
-                Contact for consultation
+                {translate("forSchools.plans.planCta", undefined, locale)}
               </Link>
             </article>
           ))}
@@ -106,10 +115,10 @@ export default function ForSchoolsPage() {
 
       <section className="schools-demo-cta container">
         <div className="page-card schools-demo-inner">
-          <h2>See the product through an online demo</h2>
-          <p>Our team will accompany the school from setting up and operating the class to communicating with parents.</p>
+          <h2>{translate("forSchools.demoCta.title", undefined, locale)}</h2>
+          <p>{translate("forSchools.demoCta.subtitle", undefined, locale)}</p>
           <Link href="/contact?subject=H%E1%BB%A3p+t%C3%A1c+%2F+B2B" className="solid-button">
-            Sign up for a demo
+            {translate("forSchools.demoCta.cta", undefined, locale)}
           </Link>
         </div>
       </section>

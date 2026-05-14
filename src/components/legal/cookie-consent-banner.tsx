@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { CookieConsentActions } from "@/components/legal/cookie-consent-actions";
 import {
   COOKIE_CONSENT_COOKIE_NAME,
@@ -22,6 +23,7 @@ function readCookie(name: string) {
 }
 
 export function CookieConsentBanner() {
+  const t = useTranslations("cookie.banner");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -37,26 +39,23 @@ export function CookieConsentBanner() {
     <aside className="fixed inset-x-3 bottom-3 z-[320] mx-auto w-full max-w-3xl rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_16px_38px_rgba(15,23,42,0.22)] sm:inset-x-6 sm:p-5">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 className="text-base font-bold text-slate-900">Cookie settings</h2>
-          <p className="mt-1 text-sm text-slate-700">
-            We always use necessary cookies for login operations and security. Analytical/marketing cookies are enabled only
-            when you agree.
-          </p>
+          <h2 className="text-base font-bold text-slate-900">{t("heading")}</h2>
+          <p className="mt-1 text-sm text-slate-700">{t("body")}</p>
           <p className="mt-2 text-sm text-slate-600">
-            See details at {" "}
+            {t("detailPrefix")}{" "}
             <Link href="/cookie-policy" className="font-semibold text-emerald-700 hover:text-emerald-800">
-              Cookie Policy
+              {t("policyLink")}
             </Link>
             .
           </p>
         </div>
         <button
           type="button"
-          aria-label="Close cookie notification"
+          aria-label={t("closeAriaLabel")}
           onClick={() => setVisible(false)}
           className="rounded-full px-2 py-1 text-xs font-semibold text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
         >
-          Close
+          {t("close")}
         </button>
       </div>
 
