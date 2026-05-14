@@ -1,5 +1,17 @@
 # Project Changelog
 
+## [0.5.2] - 2026-05-14
+
+### Added
+- Added guest language switcher with persistent `tgh_locale` cookie support for English and Vietnamese.
+- Added unit and Playwright coverage for English-default locale behavior and Vietnamese switching.
+
+### Changed
+- Navigation copy now resolves from locale catalogs instead of hardcoded runtime labels.
+- Public SEO/feed language metadata now prefers English while advertising Vietnamese support where relevant.
+- Docker image now installs pnpm and generates Prisma client during build so web/worker startup does not need package registry access.
+- Docker build context excludes local tooling and temp output directories.
+
 ## [0.5.1] - 2026-05-13
 
 ### Changed

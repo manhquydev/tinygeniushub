@@ -1,6 +1,6 @@
 # Vietnamese Text Inventory
 
-Generated: 2026-05-13T20:35:37.188Z
+Generated: 2026-05-14T04:38:55.301Z
 
 ## Scope
 
@@ -10,7 +10,7 @@ Generated: 2026-05-13T20:35:37.188Z
 
 ## Summary
 
-- Files scanned: 17220
+- Files scanned: 17221
 - Vietnamese-containing lines: 6075
 
 ### By Area

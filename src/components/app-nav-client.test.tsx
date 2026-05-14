@@ -73,17 +73,17 @@ describe("AppNavClient", () => {
   it("renders guest funnel-first links and tracks top-nav clicks", () => {
     render(<AppNavClient hasParent={false} isAdmin={false} guestCtaVariant="A" />);
 
-    expect(screen.getByRole("link", { name: "Course" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Price list" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Courses" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Pricing" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "How it works" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Log in" })).toBeInTheDocument();
     expect(screen.getByText("Get started for free")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("link", { name: "Price list" }));
+    fireEvent.click(screen.getByRole("link", { name: "Pricing" }));
     expect(trackEvent).toHaveBeenCalledWith("nav_click", {
       state: "guest",
       location: "desktop_top",
-      label: "Price list",
+      label: "Pricing",
       href: "/pricing",
     });
   });
@@ -94,19 +94,19 @@ describe("AppNavClient", () => {
     const { container } = render(<AppNavClient hasParent={true} isAdmin={true} guestCtaVariant="A" />);
 
     expect(container.firstChild).toBeNull();
-    expect(screen.queryByRole("link", { name: "Course" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Courses" })).not.toBeInTheDocument();
   });
 
   it("renders variant B CTA and tracks click label correctly", () => {
     render(<AppNavClient hasParent={false} isAdmin={false} guestCtaVariant="B" />);
 
-    const cta = screen.getByRole("link", { name: /View course/i });
+    const cta = screen.getByRole("link", { name: /View courses/i });
     fireEvent.click(cta);
 
     expect(trackEvent).toHaveBeenCalledWith("nav_click", {
       state: "guest",
       location: "desktop_top",
-      label: "View course",
+      label: "View courses",
       href: "/auth/signup",
     });
   });
@@ -115,15 +115,15 @@ describe("AppNavClient", () => {
     render(<AppNavClient hasParent={true} isAdmin={false} guestCtaVariant="A" />);
 
     expect(screen.getByRole("link", { name: "Overview" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Baby profile" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Course" })).toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "Introduce" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Children" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Courses" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "About" })).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Help" }));
+    fireEvent.click(screen.getByRole("button", { name: "Support" }));
 
     expect(screen.getByRole("menuitem", { name: "Blog" })).toBeInTheDocument();
-    expect(screen.getByRole("menuitem", { name: "Introduce" })).toBeInTheDocument();
-    expect(screen.getByRole("menuitem", { name: "Help" })).toBeInTheDocument();
+    expect(screen.getByRole("menuitem", { name: "About" })).toBeInTheDocument();
+    expect(screen.getByRole("menuitem", { name: "Contact" })).toBeInTheDocument();
   });
 
   it("tracks logout click for parent nav", () => {

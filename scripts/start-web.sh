@@ -17,9 +17,6 @@ until node -e "const net=require('net');const s=net.createConnection({host:proce
   sleep 2
 done
 
-echo "[web] Generating Prisma client..."
-pnpm db:generate
-
 echo "[web] Applying Prisma migrations..."
 retry=0
 until pnpm prisma migrate deploy; do
@@ -33,7 +30,7 @@ done
 
 if [ "${RUN_DB_SEED:-true}" = "true" ]; then
   echo "[web] Seeding database..."
-  pnpm db:seed
+  pnpm tsx prisma/seed.ts
 fi
 
 echo "[web] Starting Next.js dev server on port 3000..."

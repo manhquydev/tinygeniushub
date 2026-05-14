@@ -33,6 +33,44 @@
   "metadata": {
     "siteDescription": "Learning Journey OS cho phụ huynh có con 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ."
   },
+  "language": {
+    "ariaLabel": "Chọn ngôn ngữ hiển thị",
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt"
+  },
+  "navigation": {
+    "guest": {
+      "courses": "Khóa học",
+      "pricing": "Bảng giá",
+      "howItWorks": "Cách hoạt động",
+      "forSchools": "Cho trường học",
+      "login": "Đăng nhập",
+      "ctaDefaultFull": "Bắt đầu miễn phí",
+      "ctaDefaultShort": "Bắt đầu",
+      "ctaCourseFull": "Xem khóa học",
+      "ctaCourseShort": "Xem khóa"
+    },
+    "parent": {
+      "overview": "Tổng quan",
+      "childProfiles": "Hồ sơ bé",
+      "courses": "Khóa học",
+      "reports": "Báo cáo",
+      "billing": "Thanh toán",
+      "admin": "Quản trị",
+      "help": "Trợ giúp",
+      "blog": "Blog",
+      "about": "Giới thiệu",
+      "contact": "Hỗ trợ",
+      "logout": "Đăng xuất",
+      "loggingOut": "Đang đăng xuất..."
+    },
+    "mobile": {
+      "openMenu": "Mở menu điều hướng",
+      "closeMenu": "Đóng menu điều hướng",
+      "openMenuText": "Mở menu",
+      "closeMenuText": "Đóng menu"
+    }
+  },
   "validation": {
     "email": "Nhập địa chỉ email hợp lệ.",
     "required": "Trường này là bắt buộc."

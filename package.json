@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "node scripts/e2e-smoke.mjs",
+    "test:e2e:i18n": "pnpm exec playwright test tests/e2e/language-switching.spec.ts",
     "test:e2e:pw": "pnpm exec playwright test",
     "test:e2e:pw:nav": "pnpm exec playwright test tests/e2e/guest-navigation.spec.ts tests/e2e/guest-nav-cta-variant.spec.ts tests/e2e/parent-nav-post-login.spec.ts",
     "test:e2e:p0": "node scripts/e2e-p0-journey.mjs",

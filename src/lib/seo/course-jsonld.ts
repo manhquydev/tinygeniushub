@@ -44,7 +44,8 @@ export function buildCourseJsonLd(course: CourseJsonLdInput) {
       courseMode: "online",
       courseWorkload: `P${Math.ceil(course.durationDays / 7)}W`,
     },
-    inLanguage: "vi",
+    inLanguage: "en",
+    availableLanguage: ["en", "vi"],
   };
 
   if (course.reviewCount > 0 && course.reviewAverageRating !== null) {

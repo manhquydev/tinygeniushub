@@ -22,7 +22,8 @@ export const metadata: Metadata = {
     description: "View sample lessons, buy courses directly and track your child's progress through periodic reports.",
     url: "https://www.tinygeniushubvn.tech",
     type: "website",
-    locale: "vi_VN",
+    locale: "en_US",
+    alternateLocale: ["vi_VN"],
     images: [
       {
         url: "/opengraph-image",
@@ -44,7 +45,7 @@ const jsonLdWebsite = {
   "@type": "WebSite",
   name: "TinyGenius Hub",
   url: "https://www.tinygeniushubvn.tech",
-  inLanguage: "vi",
+  inLanguage: "en",
   description: "Interactive learning platform for children and parents.",
   potentialAction: {
     "@type": "SearchAction",
@@ -62,7 +63,7 @@ const jsonLdApp = {
   name: "TinyGenius Hub",
   applicationCategory: "EducationalApplication",
   operatingSystem: "Web",
-  inLanguage: "vi",
+  inLanguage: "en",
   url: "https://www.tinygeniushubvn.tech",
   aggregateRating: {
     "@type": "AggregateRating",
@@ -111,7 +112,7 @@ const jsonLdCourse = {
     educationalRole: "student",
     audienceType: "Children from 2-6 years old",
   },
-  availableLanguage: "vi",
+  availableLanguage: ["en", "vi"],
   isAccessibleForFree: false,
   hasCourseInstance: {
     "@type": "CourseInstance",

@@ -22,7 +22,8 @@ export const metadata: Metadata = {
         alt: "Cloud Garden - Check it out",
       },
     ],
-    locale: "vi_VN",
+    locale: "en_US",
+    alternateLocale: ["vi_VN"],
     type: "website",
   },
   twitter: {

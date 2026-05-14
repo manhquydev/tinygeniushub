@@ -1,8 +1,8 @@
 ﻿// @vitest-environment jsdom
 
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const playPopMock = vi.fn();
 const playTingMock = vi.fn();
@@ -29,9 +29,36 @@ vi.mock("motion/react", () => ({
   domAnimation: {},
 }));
 
-vi.mock("motion/react-m", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("motion/react-m")>();
-  return actual;
+const motionOnlyProps = new Set([
+  "animate",
+  "exit",
+  "initial",
+  "layout",
+  "onHoverStart",
+  "onTapStart",
+  "transition",
+  "variants",
+  "whileHover",
+  "whileTap",
+]);
+
+function createMotionElement(tag: keyof React.JSX.IntrinsicElements) {
+  function MotionElement({ children, ...props }: React.HTMLAttributes<HTMLElement> & { children?: React.ReactNode }) {
+    const domProps = Object.fromEntries(Object.entries(props).filter(([key]) => !motionOnlyProps.has(key)));
+    return React.createElement(tag, domProps, children);
+  }
+
+  MotionElement.displayName = `MockMotion.${tag}`;
+  return MotionElement;
+}
+
+vi.mock("motion/react-m", () => {
+  return {
+    button: createMotionElement("button"),
+    div: createMotionElement("div"),
+    header: createMotionElement("header"),
+    section: createMotionElement("section"),
+  };
 });
 
 vi.mock("@/lib/audio-utils", () => ({
@@ -43,6 +70,10 @@ vi.mock("@/lib/audio-utils", () => ({
 }));
 
 describe("KidMissionPanel", () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
     vi.stubGlobal(
