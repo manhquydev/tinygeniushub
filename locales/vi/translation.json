@@ -5331,5 +5331,224 @@
         "story": "Vườn Truyện"
       }
     }
+  },
+  "admin": {
+    "login": {
+      "metadataTitle": "Đăng nhập Admin"
+    },
+    "layout": {
+      "title": "Quản trị hệ thống",
+      "roleSuperAdmin": "Super admin",
+      "roleStaffAdmin": "Staff admin"
+    },
+    "overview": {
+      "title": "Trung tâm điều hành",
+      "description": "Bảng vận hành module theo cấp độ trưởng thành, tình trạng sức khỏe và chỉ số kinh doanh cốt lõi.",
+      "eyebrow": "Phiên đánh giá",
+      "moduleMap": "Bản đồ hoàn thiện module",
+      "moduleComplete": "{count} hoàn chỉnh",
+      "modulePartial": "{count} một phần",
+      "moduleGap": "{count} thiếu",
+      "subscriptionSection": "Trạng thái đăng ký",
+      "subscriptionEmpty": "Chưa có dữ liệu đăng ký.",
+      "webhookSection": "Trạng thái webhook",
+      "webhookEmpty": "Chưa có dữ liệu webhook.",
+      "referralSection": "Giới thiệu và liên kết",
+      "referralCode": "Mã giới thiệu",
+      "referralReturns": "Lượt quay lại",
+      "referralPaid": "Giới thiệu có trả phí",
+      "referralRewards": "Phần thưởng đã cấp"
+    },
+    "operations": {
+      "title": "Vận hành hệ thống",
+      "description": "Thanh toán, webhook, cờ thử nghiệm, thông báo và dữ liệu xuất.",
+      "eyebrow": "Commerce & Ops"
+    },
+    "security": {
+      "title": "Bảo mật hệ thống",
+      "description": "Chế độ DDoS, giới hạn tốc độ, danh sách chặn IP và cờ tính năng.",
+      "eyebrow": "Quản trị hệ thống",
+      "openEmailVerification": "Mở module xác minh email",
+      "superAdminOnly": "Chỉ SUPER_ADMIN"
+    },
+    "skills": {
+      "title": "Bản đồ kỹ năng",
+      "description": "Quản lý phân loại kỹ năng học tập và ánh xạ bài học.",
+      "eyebrow": "Quản trị"
+    },
+    "impersonation": {
+      "title": "Đăng nhập thay",
+      "description": "Mô phỏng phiên đăng nhập người dùng để hỗ trợ hoặc gỡ lỗi. Chỉ Super Admin.",
+      "eyebrow": "Hệ thống"
+    },
+    "siteSettings": {
+      "title": "Cài đặt trang",
+      "description": "Quản lý liên kết mạng xã hội và cài đặt nội dung hiển thị trên website.",
+      "eyebrow": "Cài đặt trang"
+    },
+    "analytics": {
+      "title": "Phân tích quản lý",
+      "description": "Tổng quan toàn diện về hoạt động học tập, doanh thu và chỉ số người dùng.",
+      "eyebrow": "Bảng phân tích thống nhất",
+      "filterLabel": "Lọc:",
+      "refreshButton": "Làm mới",
+      "loadingText": "Đang tải dữ liệu phân tích...",
+      "errorRetry": "Thử lại",
+      "noTrendData": "Không có dữ liệu xu hướng",
+      "trendsOverTime": "Xu hướng theo thời gian",
+      "exportCsv": "Xuất CSV",
+      "tabs": {
+        "overview": "Tổng quan",
+        "learning": "Học tập",
+        "revenue": "Doanh thu",
+        "retention": "Giữ chân",
+        "realtime": "Thời gian thực",
+        "content": "Nội dung"
+      },
+      "stats": {
+        "activeUser": "Người dùng hoạt động",
+        "activeSession": "Phiên đang hoạt động",
+        "revenue30d": "Tổng doanh thu 30 ngày",
+        "retentionRate": "Tỷ lệ giữ chân",
+        "parents": "Phụ huynh",
+        "children": "Tổng học sinh",
+        "referralCode": "Mã giới thiệu",
+        "coursesOrdered": "Khóa học lẻ (30 ngày)"
+      },
+      "recentPayments": "Thanh toán gần đây",
+      "recentWebhooks": "Sự kiện Webhook gần đây",
+      "colParent": "Phụ huynh",
+      "colAmount": "Số tiền",
+      "colStatus": "Trạng thái",
+      "colProvider": "Nhà cung cấp",
+      "colTime": "Thời gian",
+      "noPayments": "Chưa có thanh toán nào",
+      "noWebhooks": "Chưa có sự kiện webhook nào",
+      "activeStudents": "Học sinh hoạt động",
+      "last7Days": "7 ngày",
+      "last30Days": "30 ngày",
+      "lessonSummary": "Tóm tắt bài học (30 ngày)",
+      "lessonsCompleted": "Bài học hoàn thành",
+      "minutesPerDay": "Phút / bé / ngày",
+      "streakDistribution": "Phân phối ngày học liên tiếp",
+      "totalStudents": "Tổng: {total} học sinh",
+      "streak0": "0 ngày",
+      "streak1to3": "1-3 ngày",
+      "streak4to7": "4-7 ngày",
+      "streak7plus": "Trên 7 ngày",
+      "topLessons": "Bài học phổ biến nhất",
+      "colTitle": "Tiêu đề",
+      "colCompletions": "Lượt hoàn thành",
+      "noLessons": "Không có dữ liệu hoàn thành trong 30 ngày qua.",
+      "newParents7d": "Phụ huynh mới (7 ngày)",
+      "buyerParents30d": "Phụ huynh mua khóa học (30 ngày)",
+      "daysToFirstLesson": "Số ngày đến bài học đầu tiên",
+      "sotAnalytics": "Phân tích SoT",
+      "conversionRate": "Tỷ lệ chuyển đổi (7 ngày)",
+      "checkoutToPurchase": "Thanh toán → Mua hàng",
+      "videoCompleted": "Video hoàn thành",
+      "ga4Sessions": "Phiên GA4",
+      "lastUpdated": "Cập nhật lần cuối: {timestamp}"
+    },
+    "blog": {
+      "title": "Quản lý Blog",
+      "description": "Nội dung, bản tin và phân tích blog.",
+      "viewPublicBlog": "Xem blog công khai",
+      "writeNewPost": "Viết bài mới",
+      "writeNewPostDesc": "Tạo bài blog ngay",
+      "articleManagement": "Quản lý bài viết",
+      "articlesDesc": "{published} đã xuất bản, {draft} bản nháp",
+      "mostViewedArticle": "Bài viết xem nhiều nhất",
+      "viewArticle": "Xem bài →",
+      "quickManagement": "Quản lý nhanh",
+      "navCategories": "Danh mục",
+      "navAuthors": "Tác giả",
+      "navNewsletter": "Bản tin",
+      "navAnalytics": "Phân tích Blog",
+      "navComments": "Bình luận",
+      "statPublished": "Đã xuất bản",
+      "statDraft": "Bản nháp",
+      "statSubscribers": "Người đăng ký",
+      "statTotalViews": "Tổng lượt xem",
+      "posts": {
+        "title": "Quản lý bài viết",
+        "description": "Lọc theo trạng thái hoặc tiêu đề.",
+        "writeNewPost": "Viết bài mới",
+        "allStatuses": "Tất cả trạng thái",
+        "filterButton": "Lọc",
+        "searchPlaceholder": "Tìm tiêu đề",
+        "previousPage": "Trước",
+        "nextPage": "Sau",
+        "statusDraft": "Bản nháp",
+        "statusReview": "Chờ duyệt",
+        "statusPublished": "Đã xuất bản",
+        "statusScheduled": "Lên lịch",
+        "statusArchived": "Lưu trữ"
+      },
+      "authors": {
+        "title": "Quản lý tác giả blog",
+        "colName": "Tên",
+        "colRole": "Vai trò",
+        "colEmail": "Email",
+        "colActivate": "Kích hoạt",
+        "colPostCount": "Số bài viết",
+        "active": "Bật",
+        "inactive": "Tắt"
+      },
+      "categories": {
+        "title": "Quản lý danh mục blog",
+        "colEmoji": "Emoji",
+        "colName": "Tên",
+        "colSlug": "Slug",
+        "colColor": "Màu sắc",
+        "colOrder": "Thứ tự",
+        "colActivate": "Kích hoạt",
+        "colPostCount": "Số bài viết",
+        "active": "Bật",
+        "inactive": "Tắt"
+      },
+      "comments": {
+        "title": "Quản lý bình luận",
+        "description": "Duyệt hoặc đánh dấu bình luận đang chờ là spam.",
+        "empty": "Không có bình luận nào đang chờ duyệt."
+      },
+      "newsletter": {
+        "title": "Người đăng ký bản tin",
+        "description": "Quản lý danh sách đã xác thực để nhận bản tin.",
+        "statActive": "Đang nhận bản tin",
+        "statUnsubscribed": "Đã hủy đăng ký",
+        "colEmail": "Email",
+        "colName": "Tên",
+        "colDate": "Thời gian đăng ký",
+        "colVerified": "Xác thực",
+        "verifiedBadge": "Đã xác minh",
+        "empty": "Không có người đăng ký nào.",
+        "previousPage": "Trước",
+        "nextPage": "Sau",
+        "pageInfo": "Trang {current}/{total}"
+      },
+      "newPost": {
+        "title": "Tạo bài mới"
+      },
+      "editPost": {
+        "title": "Chỉnh sửa bài viết"
+      },
+      "analytics": {
+        "title": "Phân tích Blog",
+        "description": "Theo dõi lượt xem, tương tác và tăng trưởng người đăng ký.",
+        "statTotalViews": "Tổng lượt xem",
+        "statTotalLikes": "Tổng lượt thích",
+        "statSubscribers": "Người đăng ký hoạt động",
+        "statPublished": "Bài đã xuất bản",
+        "colPost": "Bài viết",
+        "colView": "Lượt xem",
+        "colLikes": "Thích",
+        "colReadingTime": "Thời gian đọc",
+        "readingTimeMin": "{min} phút",
+        "viewsByDay": "Lượt xem theo ngày",
+        "viewsPerCategory": "Phân bổ theo danh mục",
+        "errorLoadFailed": "Không thể tải dữ liệu phân tích blog."
+      }
+    }
   }
 }

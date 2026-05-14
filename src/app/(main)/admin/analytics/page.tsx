@@ -12,6 +12,7 @@ import {
   RefreshCw,
   Filter,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
@@ -179,6 +180,7 @@ function formatVND(amount: number): string {
 }
 
 export default function AdminAnalyticsPage() {
+  const t = useTranslations("admin.analytics");
   const [snapshot, setSnapshot] = useState<UnifiedSnapshot | null>(null);
   const [timeSeries, setTimeSeries] = useState<TimeSeriesData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -292,7 +294,7 @@ export default function AdminAnalyticsPage() {
       <div className="flex items-center justify-center h-96">
         <div className="text-[var(--admin-text-secondary)]">
           <RefreshCw className="animate-spin h-8 w-8 mx-auto mb-4" />
-          <p>Loading analysis data...</p>
+          <p>{t("loadingText")}</p>
         </div>
       </div>
     );
@@ -302,9 +304,9 @@ export default function AdminAnalyticsPage() {
     return (
       <div className="flex items-center justify-center h-96">
         <div className="text-rose-500">
-          <p>Error: {error || "Unable to download data"}</p>
+          <p>Error: {error || t("loadingText")}</p>
           <Button onClick={fetchData} variant="outline" className="mt-4">
-            Retry
+            {t("errorRetry")}
           </Button>
         </div>
       </div>
@@ -327,17 +329,17 @@ export default function AdminAnalyticsPage() {
     <div className="space-y-6">
       {/* Header */}
       <AdminPageHeader
-        title="Management analysis"
-        description="Comprehensive overview of learning activity, revenue, and user metrics."
+        title={t("title")}
+        description={t("description")}
         icon={<BarChart2 size={18} />}
-        eyebrow="Unified Analytics Dashboard"
+        eyebrow={t("eyebrow")}
       />
 
       {/* Controls */}
       <div className="flex flex-wrap items-center gap-4 bg-[var(--admin-card-bg)] p-4 rounded-lg border border-[var(--admin-card-border)]">
         <div className="flex items-center gap-2">
           <Filter size={16} className="text-[var(--admin-text-secondary)]" />
-          <span className="text-sm font-medium text-[var(--admin-text-primary)]">Filter:</span>
+          <span className="text-sm font-medium text-[var(--admin-text-primary)]">{t("filterLabel")}</span>
         </div>
         <DateRangePicker onChange={setDateRange} defaultValue={dateRange} />
         <Button
@@ -348,30 +350,30 @@ export default function AdminAnalyticsPage() {
           className="ml-auto"
         >
           <RefreshCw size={16} className={cn("mr-2", refreshing && "animate-spin")} />
-          Refresh
+          {t("refreshButton")}
         </Button>
       </div>
 
       {/* Realtime Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <AdminStatCard
-          label="Active user"
+          label={t("stats.activeUser")}
           value={snapshot.realtime.activeUsers}
           icon={<Activity size={16} />}
           trend={{ value: snapshot.realtime.activeUsers, label: "Real-time" }}
         />
         <AdminStatCard
-          label="Session is active"
+          label={t("stats.activeSession")}
           value={snapshot.realtime.activeSessions}
           icon={<Users size={16} />}
         />
         <AdminStatCard
-          label="Total revenue 30 days"
+          label={t("stats.revenue30d")}
           value={formatVND(snapshot.revenue.totalRevenue30d)}
           icon={<DollarSign size={16} />}
         />
         <AdminStatCard
-          label="Retention rate"
+          label={t("stats.retentionRate")}
           value={`${snapshot.retention.retentionRate}%`}
           icon={<TrendingUp size={16} />}
         />
@@ -379,12 +381,12 @@ export default function AdminAnalyticsPage() {
 
       {/* Time Series Chart */}
       <AdminSectionCard
-        title="Trends over time"
+        title={t("trendsOverTime")}
         icon={<TrendingUp size={16} />}
         headerActions={
           <Button variant="outline" size="sm" onClick={() => handleExport("timeseries")}>
             <Download size={16} className="mr-2" />
-            Export CSV
+            {t("exportCsv")}
           </Button>
         }
       >
@@ -395,7 +397,7 @@ export default function AdminAnalyticsPage() {
           />
         ) : (
           <div className="text-center py-8 text-[var(--admin-text-secondary)]">
-            No trend data available
+            {t("noTrendData")}
           </div>
         )}
       </AdminSectionCard>
@@ -403,12 +405,12 @@ export default function AdminAnalyticsPage() {
       {/* Tabs */}
       <Tabs defaultValue="overview" className="space-y-4">
         <TabsList className="bg-[var(--admin-card-bg)]">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="learning">Study</TabsTrigger>
-          <TabsTrigger value="revenue">Doanh thu</TabsTrigger>
-          <TabsTrigger value="retention">Keep your feet</TabsTrigger>
-          <TabsTrigger value="realtime">Real-time</TabsTrigger>
-          <TabsTrigger value="content">Content</TabsTrigger>
+          <TabsTrigger value="overview">{t("tabs.overview")}</TabsTrigger>
+          <TabsTrigger value="learning">{t("tabs.learning")}</TabsTrigger>
+          <TabsTrigger value="revenue">{t("tabs.revenue")}</TabsTrigger>
+          <TabsTrigger value="retention">{t("tabs.retention")}</TabsTrigger>
+          <TabsTrigger value="realtime">{t("tabs.realtime")}</TabsTrigger>
+          <TabsTrigger value="content">{t("tabs.content")}</TabsTrigger>
         </TabsList>
 
         {/* Overview Tab */}
@@ -422,61 +424,61 @@ export default function AdminAnalyticsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <AdminStatCard
-              label="General parents"
+              label={t("stats.parents")}
               value={snapshot.overview.counts.parents}
               icon={<Users size={16} />}
             />
             <AdminStatCard
-              label="Total students"
+              label={t("stats.children")}
               value={snapshot.overview.counts.children}
               icon={<BookOpen size={16} />}
             />
             <AdminStatCard
-              label="Referral code"
+              label={t("stats.referralCode")}
               value={snapshot.overview.counts.referralCodes}
               trend={{
                 value: snapshot.overview.counts.paidReferrals,
-                label: `${snapshot.overview.counts.paidReferrals}paid`,
+                label: String(snapshot.overview.counts.paidReferrals),
               }}
             />
             <AdminStatCard
-              label="Single course (30 days)"
+              label={t("stats.coursesOrdered")}
               value={snapshot.revenue.courseOrderCount30d}
               trend={{
                 value: snapshot.revenue.uniqueBuyers30d,
-                label: `${snapshot.revenue.uniqueBuyers30d}Parents buy keys`,
+                label: String(snapshot.revenue.uniqueBuyers30d),
               }}
             />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <AdminSectionCard title="Recent payment" icon={<DollarSign size={16} />}>
+            <AdminSectionCard title={t("recentPayments")} icon={<DollarSign size={16} />}>
               <AdminDataTable
                 columns={[
-                  { key: "parent.email", label: "Parents" },
-                  { key: "amountVnd", label: "Amount" },
-                  { key: "status", label: "Status" },
+                  { key: "parent.email", label: t("colParent") },
+                  { key: "amountVnd", label: t("colAmount") },
+                  { key: "status", label: t("colStatus") },
                 ]}
                 data={snapshot.overview.recentPayments.map((p) => ({
                   ...p,
                   amountVnd: formatVND(p.amountVnd),
                 }))}
-                emptyMessage="There are no payments yet"
+                emptyMessage={t("noPayments")}
               />
             </AdminSectionCard>
 
-            <AdminSectionCard title="Recent Webhook events" icon={<Activity size={16} />}>
+            <AdminSectionCard title={t("recentWebhooks")} icon={<Activity size={16} />}>
               <AdminDataTable
                 columns={[
-                  { key: "provider", label: "Provider" },
-                  { key: "status", label: "Status" },
-                  { key: "createdAt", label: "Time" },
+                  { key: "provider", label: t("colProvider") },
+                  { key: "status", label: t("colStatus") },
+                  { key: "createdAt", label: t("colTime") },
                 ]}
                 data={snapshot.overview.recentWebhookEvents.map((w) => ({
                   ...w,
-                  createdAt: new Date(w.createdAt).toLocaleString("vi-VN"),
+                  createdAt: new Date(w.createdAt).toLocaleString(),
                 }))}
-                emptyMessage="There are no webhook events yet"
+                emptyMessage={t("noWebhooks")}
               />
             </AdminSectionCard>
           </div>
@@ -492,41 +494,41 @@ export default function AdminAnalyticsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <AdminSectionCard title="Students in action" icon={<Users size={16} />}>
+            <AdminSectionCard title={t("activeStudents")} icon={<Users size={16} />}>
               <div className="grid grid-cols-2 gap-3 mt-2">
                 <AdminStatCard
-                  label="7 days"
+                  label={t("last7Days")}
                   value={snapshot.learning.activeChildrenLast7d}
                   trend={{
                     value: snapshot.learning.activeChildrenLast7d,
                     label: `${asPercent(
                       snapshot.learning.activeChildrenLast7d,
                       snapshot.overview.counts.children
-                    )}% total`,
+                    )}%`,
                   }}
                 />
                 <AdminStatCard
-                  label="30 days"
+                  label={t("last30Days")}
                   value={snapshot.learning.activeChildrenLast30d}
                   trend={{
                     value: snapshot.learning.activeChildrenLast30d,
                     label: `${asPercent(
                       snapshot.learning.activeChildrenLast30d,
                       snapshot.overview.counts.children
-                    )}% total`,
+                    )}%`,
                   }}
                 />
               </div>
             </AdminSectionCard>
 
-            <AdminSectionCard title="Lesson summary (30 days)" icon={<BookOpen size={16} />}>
+            <AdminSectionCard title={t("lessonSummary")} icon={<BookOpen size={16} />}>
               <div className="grid grid-cols-2 gap-3 mt-2">
                 <AdminStatCard
-                  label="Lesson completed"
+                  label={t("lessonsCompleted")}
                   value={snapshot.learning.totalLessonsCompleted30d.toLocaleString()}
                 />
                 <AdminStatCard
-                  label="Minutes / baby / day"
+                  label={t("minutesPerDay")}
                   value={snapshot.learning.avgMinutesPerChildPerDay}
                 />
               </div>
@@ -536,19 +538,19 @@ export default function AdminAnalyticsPage() {
           <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-sm font-semibold text-[var(--admin-text-secondary)]">
-                Distribution of school days
+                {t("streakDistribution")}
               </h3>
               <span className="text-xs text-[var(--admin-text-muted)]">
-                Total: {streakTotal} students
+                {t("totalStudents", { total: streakTotal })}
               </span>
             </div>
             <div className="space-y-3">
               {(
                 [
-                  ["zero", "0 days", snapshot.learning.streakDistribution.zero],
-                  ["low", "1-3 days", snapshot.learning.streakDistribution.low],
-                  ["medium", "4-7 days", snapshot.learning.streakDistribution.medium],
-                  ["high", "Over 7 days", snapshot.learning.streakDistribution.high],
+                  ["zero", t("streak0"), snapshot.learning.streakDistribution.zero],
+                  ["low", t("streak1to3"), snapshot.learning.streakDistribution.low],
+                  ["medium", t("streak4to7"), snapshot.learning.streakDistribution.medium],
+                  ["high", t("streak7plus"), snapshot.learning.streakDistribution.high],
                 ] as const
               ).map(([key, label, value]) => {
                 const percent = asPercent(value, streakTotal);
@@ -575,14 +577,14 @@ export default function AdminAnalyticsPage() {
             </div>
           </div>
 
-          <AdminSectionCard title="The most popular lesson" icon={<BookOpen size={16} />}>
+          <AdminSectionCard title={t("topLessons")} icon={<BookOpen size={16} />}>
             <AdminDataTable
               columns={[
-                { key: "title", label: "Title" },
-                { key: "completionCount", label: "Completed turn" },
+                { key: "title", label: t("colTitle") },
+                { key: "completionCount", label: t("colCompletions") },
               ]}
               data={topLessonsData as Record<string, unknown>[]}
-              emptyMessage="There is no completed data in the last 30 days."
+              emptyMessage={t("noLessons")}
             />
           </AdminSectionCard>
         </TabsContent>
@@ -602,16 +604,16 @@ export default function AdminAnalyticsPage() {
         <TabsContent value="retention" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <AdminStatCard
-              label="New Parents (7 days)"
+              label={t("newParents7d")}
               value={snapshot.retention.newParents7d}
-              trend={{ value: snapshot.retention.newParents30d, label: `${snapshot.retention.newParents30d}within 30 days` }}
+              trend={{ value: snapshot.retention.newParents30d, label: String(snapshot.retention.newParents30d) }}
             />
             <AdminStatCard
-              label="Parents purchase key (30 days)"
+              label={t("buyerParents30d")}
               value={snapshot.revenue.uniqueBuyers30d}
             />
             <AdminStatCard
-              label="Retention rate"
+              label={t("stats.retentionRate")}
               value={`${snapshot.retention.retentionRate}%`}
               className={cn(
                 getRetentionTone(snapshot.retention.retentionRate) === "text-emerald-700" &&
@@ -623,39 +625,39 @@ export default function AdminAnalyticsPage() {
               )}
             />
             <AdminStatCard
-              label="Number of days to first post"
+              label={t("daysToFirstLesson")}
               value={snapshot.retention.avgDaysToFirstLesson}
               trend={{
                 value: snapshot.retention.avgLessonsPerChildPerWeek,
-                label: `${snapshot.retention.avgLessonsPerChildPerWeek}post/baby/week`,
+                label: String(snapshot.retention.avgLessonsPerChildPerWeek),
               }}
             />
           </div>
 
-          <AdminSectionCard title="SoT Analytics" icon={<Activity size={16} />}>
+          <AdminSectionCard title={t("sotAnalytics")} icon={<Activity size={16} />}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-4 bg-[var(--admin-sidebar-accent)] rounded-lg">
-                <p className="text-sm text-[var(--admin-text-secondary)]">Conversion rate (7 days)</p>
+                <p className="text-sm text-[var(--admin-text-secondary)]">{t("conversionRate")}</p>
                 <p className="text-2xl font-bold text-[var(--admin-text-primary)]">
                   {snapshot.sot.sqlAudit.checkoutToPurchaseRate7d}%
                 </p>
                 <p className="text-xs text-[var(--admin-text-muted)] mt-1">
-                  Checkout → Purchase
+                  {t("checkoutToPurchase")}
                 </p>
               </div>
               <div className="p-4 bg-[var(--admin-sidebar-accent)] rounded-lg">
-                <p className="text-sm text-[var(--admin-text-secondary)]">Video completed</p>
+                <p className="text-sm text-[var(--admin-text-secondary)]">{t("videoCompleted")}</p>
                 <p className="text-2xl font-bold text-[var(--admin-text-primary)]">
                   {snapshot.sot.sqlAudit.counts7d["learning.lesson.video.watch.completed"] || 0}
                 </p>
-                <p className="text-xs text-[var(--admin-text-muted)] mt-1">Last 7 days</p>
+                <p className="text-xs text-[var(--admin-text-muted)] mt-1">{t("last7Days")}</p>
               </div>
               <div className="p-4 bg-[var(--admin-sidebar-accent)] rounded-lg">
-                <p className="text-sm text-[var(--admin-text-secondary)]">GA4 Sessions</p>
+                <p className="text-sm text-[var(--admin-text-secondary)]">{t("ga4Sessions")}</p>
                 <p className="text-2xl font-bold text-[var(--admin-text-primary)]">
                   {snapshot.sot.ga4.sessions7d.toLocaleString()}
                 </p>
-                <p className="text-xs text-[var(--admin-text-muted)] mt-1">Last 7 days</p>
+                <p className="text-xs text-[var(--admin-text-muted)] mt-1">{t("last7Days")}</p>
               </div>
             </div>
           </AdminSectionCard>
@@ -674,7 +676,7 @@ export default function AdminAnalyticsPage() {
 
       {/* Footer */}
       <div className="text-xs text-[var(--admin-text-muted)] text-right">
-        Last updated: {new Date(snapshot.timestamp).toLocaleString("vi-VN")}
+        {t("lastUpdated", { timestamp: new Date(snapshot.timestamp).toLocaleString() })}
       </div>
     </div>
   );

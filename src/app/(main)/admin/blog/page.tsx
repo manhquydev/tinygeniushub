@@ -1,10 +1,16 @@
 import Link from "next/link";
+import { getLocale } from "next-intl/server";
 import { requireAdminParent } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 import { BookOpen, Users, Eye, FileText, PenSquare, ExternalLink } from "lucide-react";
+import { translate, type TranslationValues } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 export default async function AdminBlogDashboardPage() {
   await requireAdminParent();
+  const locale = resolveAppLocale(await getLocale());
+  const t = (key: string, values?: TranslationValues) =>
+    translate(`admin.blog.${key}`, values, locale);
 
   const [publishedCount, draftCount, subscriberCount, topPost, viewsAggregate] =
     await Promise.all([
@@ -31,10 +37,8 @@ export default async function AdminBlogDashboardPage() {
           <PenSquare size={18} className="text-violet-600" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Blog Management</h1>
-          <p className="text-sm text-[var(--admin-text-muted)]">
-            Content, newsletter and blog analytics.
-          </p>
+          <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">{t("title")}</h1>
+          <p className="text-sm text-[var(--admin-text-muted)]">{t("description")}</p>
         </div>
         <div className="ml-auto flex items-center gap-2">
           <Link
@@ -43,14 +47,14 @@ export default async function AdminBlogDashboardPage() {
             className="inline-flex items-center gap-1.5 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-3 py-1.5 text-xs font-semibold text-[var(--admin-text-secondary)] shadow-sm hover:bg-[var(--admin-sidebar-accent)]"
           >
             <ExternalLink size={12} />
-            View public blog
+            {t("viewPublicBlog")}
           </Link>
           <Link
             href="/admin/blog/posts/new"
             className="inline-flex items-center gap-1.5 rounded-xl bg-teal-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-teal-700"
           >
             <PenSquare size={12} />
-            Write a new post
+            {t("writeNewPost")}
           </Link>
         </div>
       </div>
@@ -58,26 +62,26 @@ export default async function AdminBlogDashboardPage() {
       {/* KPI stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
-          label="Published"
+          label={t("statPublished")}
           value={publishedCount}
           icon={FileText}
           accent="emerald"
         />
         <StatCard
-          label="Draft"
+          label={t("statDraft")}
           value={draftCount}
           icon={BookOpen}
           accent="amber"
         />
         <StatCard
-          label="Subscriber"
-          value={subscriberCount.toLocaleString("vi-VN")}
+          label={t("statSubscribers")}
+          value={subscriberCount.toLocaleString()}
           icon={Users}
           accent="teal"
         />
         <StatCard
-          label="Total views"
-          value={totalViews.toLocaleString("vi-VN")}
+          label={t("statTotalViews")}
+          value={totalViews.toLocaleString()}
           icon={Eye}
           accent="violet"
         />
@@ -93,8 +97,8 @@ export default async function AdminBlogDashboardPage() {
             <PenSquare size={18} />
           </div>
           <div>
-            <p className="font-bold">Write a new post</p>
-            <p className="text-sm text-teal-100">Create a blog post now</p>
+            <p className="font-bold">{t("writeNewPost")}</p>
+            <p className="text-sm text-teal-100">{t("writeNewPostDesc")}</p>
           </div>
           <span className="ml-auto text-lg">→</span>
         </Link>
@@ -106,9 +110,9 @@ export default async function AdminBlogDashboardPage() {
             <FileText size={18} className="text-[var(--admin-text-secondary)]" />
           </div>
           <div>
-            <p className="font-bold text-[var(--admin-text-primary)]">Article management</p>
+            <p className="font-bold text-[var(--admin-text-primary)]">{t("articleManagement")}</p>
             <p className="text-sm text-[var(--admin-text-muted)]">
-              {publishedCount} published, {draftCount} drafts
+              {t("articlesDesc", { published: publishedCount, draft: draftCount })}
             </p>
           </div>
           <span className="ml-auto text-[var(--admin-text-muted)]">→</span>
@@ -119,7 +123,7 @@ export default async function AdminBlogDashboardPage() {
       {topPost ? (
         <div className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-sm">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
-            Most viewed articles
+            {t("mostViewedArticle")}
           </p>
           <p className="text-lg font-bold text-[var(--admin-text-primary)]">{topPost.titleVi}</p>
           <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-[var(--admin-text-muted)]">
@@ -144,7 +148,7 @@ export default async function AdminBlogDashboardPage() {
               href={`/admin/blog/posts/${topPost.id}`}
               className="inline-flex items-center gap-1.5 rounded-xl border border-teal-200 bg-teal-50 px-3 py-1.5 text-xs font-semibold text-teal-700 hover:bg-teal-100"
             >
-              View article →
+              {t("viewArticle")}
             </Link>
           </div>
         </div>
@@ -153,15 +157,15 @@ export default async function AdminBlogDashboardPage() {
       {/* Sub-section nav cards */}
       <div>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--admin-text-muted)]">
-          Quick management
+          {t("quickManagement")}
         </p>
         <div className="grid gap-2 sm:grid-cols-3">
           {[
-            { href: "/admin/blog/categories", label: "Category" },
-            { href: "/admin/blog/authors", label: "Author" },
-            { href: "/admin/blog/newsletter", label: "Newsletter" },
-            { href: "/admin/blog/analytics", label: "Blog Analysis" },
-            { href: "/admin/blog/comments", label: "Comment" },
+            { href: "/admin/blog/categories", label: t("navCategories") },
+            { href: "/admin/blog/authors", label: t("navAuthors") },
+            { href: "/admin/blog/newsletter", label: t("navNewsletter") },
+            { href: "/admin/blog/analytics", label: t("navAnalytics") },
+            { href: "/admin/blog/comments", label: t("navComments") },
           ].map((item) => (
             <Link
               key={item.href}

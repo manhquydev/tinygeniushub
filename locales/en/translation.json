@@ -5331,5 +5331,224 @@
         "story": "Storytelling Garden"
       }
     }
+  },
+  "admin": {
+    "login": {
+      "metadataTitle": "Admin Login"
+    },
+    "layout": {
+      "title": "Administration",
+      "roleSuperAdmin": "Super admin",
+      "roleStaffAdmin": "Staff admin"
+    },
+    "overview": {
+      "title": "Admin Command Center",
+      "description": "Module operating table according to maturity level, operational health and core business indicators.",
+      "eyebrow": "Reassessment Session",
+      "moduleMap": "Module completeness map",
+      "moduleComplete": "{count} complete",
+      "modulePartial": "{count} partial",
+      "moduleGap": "{count} gap",
+      "subscriptionSection": "Subscription status",
+      "subscriptionEmpty": "No subscription data available.",
+      "webhookSection": "Webhook state",
+      "webhookEmpty": "No webhook data yet.",
+      "referralSection": "Introduction and links",
+      "referralCode": "Referral code",
+      "referralReturns": "Returns",
+      "referralPaid": "Paid referrals",
+      "referralRewards": "Rewards granted"
+    },
+    "operations": {
+      "title": "Operate the system",
+      "description": "Payments, webhooks, trial-flags, notifications, and exported data.",
+      "eyebrow": "Commerce & Ops"
+    },
+    "security": {
+      "title": "System security",
+      "description": "DDoS mode, rate limits, IP blocklist and feature flags.",
+      "eyebrow": "System Governance",
+      "openEmailVerification": "Open the email verification module",
+      "superAdminOnly": "SUPER_ADMIN only"
+    },
+    "skills": {
+      "title": "Skills Mapping",
+      "description": "Manage learning skills classification and lesson mapping.",
+      "eyebrow": "Governance"
+    },
+    "impersonation": {
+      "title": "Log in instead",
+      "description": "Simulate a user login session for support or debugging. Super Admin only.",
+      "eyebrow": "System"
+    },
+    "siteSettings": {
+      "title": "Page settings",
+      "description": "Manage social network links and content settings displayed on the website.",
+      "eyebrow": "Site Settings"
+    },
+    "analytics": {
+      "title": "Management analysis",
+      "description": "Comprehensive overview of learning activity, revenue, and user metrics.",
+      "eyebrow": "Unified Analytics Dashboard",
+      "filterLabel": "Filter:",
+      "refreshButton": "Refresh",
+      "loadingText": "Loading analysis data...",
+      "errorRetry": "Retry",
+      "noTrendData": "No trend data available",
+      "trendsOverTime": "Trends over time",
+      "exportCsv": "Export CSV",
+      "tabs": {
+        "overview": "Overview",
+        "learning": "Study",
+        "revenue": "Revenue",
+        "retention": "Retention",
+        "realtime": "Real-time",
+        "content": "Content"
+      },
+      "stats": {
+        "activeUser": "Active user",
+        "activeSession": "Session is active",
+        "revenue30d": "Total revenue 30 days",
+        "retentionRate": "Retention rate",
+        "parents": "General parents",
+        "children": "Total students",
+        "referralCode": "Referral code",
+        "coursesOrdered": "Single course (30 days)"
+      },
+      "recentPayments": "Recent payment",
+      "recentWebhooks": "Recent Webhook events",
+      "colParent": "Parents",
+      "colAmount": "Amount",
+      "colStatus": "Status",
+      "colProvider": "Provider",
+      "colTime": "Time",
+      "noPayments": "There are no payments yet",
+      "noWebhooks": "There are no webhook events yet",
+      "activeStudents": "Students in action",
+      "last7Days": "7 days",
+      "last30Days": "30 days",
+      "lessonSummary": "Lesson summary (30 days)",
+      "lessonsCompleted": "Lesson completed",
+      "minutesPerDay": "Minutes / baby / day",
+      "streakDistribution": "Distribution of school days",
+      "totalStudents": "Total: {total} students",
+      "streak0": "0 days",
+      "streak1to3": "1-3 days",
+      "streak4to7": "4-7 days",
+      "streak7plus": "Over 7 days",
+      "topLessons": "The most popular lesson",
+      "colTitle": "Title",
+      "colCompletions": "Completed turn",
+      "noLessons": "There is no completed data in the last 30 days.",
+      "newParents7d": "New Parents (7 days)",
+      "buyerParents30d": "Parents purchase key (30 days)",
+      "daysToFirstLesson": "Number of days to first post",
+      "sotAnalytics": "SoT Analytics",
+      "conversionRate": "Conversion rate (7 days)",
+      "checkoutToPurchase": "Checkout → Purchase",
+      "videoCompleted": "Video completed",
+      "ga4Sessions": "GA4 Sessions",
+      "lastUpdated": "Last updated: {timestamp}"
+    },
+    "blog": {
+      "title": "Blog Management",
+      "description": "Content, newsletter and blog analytics.",
+      "viewPublicBlog": "View public blog",
+      "writeNewPost": "Write a new post",
+      "writeNewPostDesc": "Create a blog post now",
+      "articleManagement": "Article management",
+      "articlesDesc": "{published} published, {draft} drafts",
+      "mostViewedArticle": "Most viewed articles",
+      "viewArticle": "View article →",
+      "quickManagement": "Quick management",
+      "navCategories": "Category",
+      "navAuthors": "Author",
+      "navNewsletter": "Newsletter",
+      "navAnalytics": "Blog Analysis",
+      "navComments": "Comment",
+      "statPublished": "Published",
+      "statDraft": "Draft",
+      "statSubscribers": "Subscriber",
+      "statTotalViews": "Total views",
+      "posts": {
+        "title": "Article management",
+        "description": "Filter by status or title.",
+        "writeNewPost": "Write a new post",
+        "allStatuses": "All statuses",
+        "filterButton": "Filter",
+        "searchPlaceholder": "Find title",
+        "previousPage": "Before",
+        "nextPage": "After",
+        "statusDraft": "Draft",
+        "statusReview": "Waiting for approval",
+        "statusPublished": "Published",
+        "statusScheduled": "Schedule",
+        "statusArchived": "Storage"
+      },
+      "authors": {
+        "title": "Manage blog authors",
+        "colName": "Name",
+        "colRole": "Role",
+        "colEmail": "Email",
+        "colActivate": "Activate",
+        "colPostCount": "Number of articles",
+        "active": "Turn on",
+        "inactive": "Turn off"
+      },
+      "categories": {
+        "title": "Manage blog portfolio",
+        "colEmoji": "Emoji",
+        "colName": "Name",
+        "colSlug": "Slug",
+        "colColor": "Color",
+        "colOrder": "Order",
+        "colActivate": "Activate",
+        "colPostCount": "Number of articles",
+        "active": "Turn on",
+        "inactive": "Turn off"
+      },
+      "comments": {
+        "title": "Manage comments",
+        "description": "Browse or mark pending comments as spam.",
+        "empty": "There are no comments pending approval."
+      },
+      "newsletter": {
+        "title": "Newsletter subscribers",
+        "description": "Manage the list that has been authenticated to receive the newsletter.",
+        "statActive": "Receiving newsletter",
+        "statUnsubscribed": "Unsubscribed",
+        "colEmail": "Email",
+        "colName": "Name",
+        "colDate": "Registration time",
+        "colVerified": "Authentic",
+        "verifiedBadge": "Verified",
+        "empty": "There are no subscribers.",
+        "previousPage": "Before",
+        "nextPage": "After",
+        "pageInfo": "Page {current}/{total}"
+      },
+      "newPost": {
+        "title": "Create new post"
+      },
+      "editPost": {
+        "title": "Edit article"
+      },
+      "analytics": {
+        "title": "Blog analysis",
+        "description": "Track view, engagement, and subscriber growth.",
+        "statTotalViews": "Total views",
+        "statTotalLikes": "Total likes",
+        "statSubscribers": "Active subscriber",
+        "statPublished": "Article published",
+        "colPost": "Article",
+        "colView": "View",
+        "colLikes": "Likes",
+        "colReadingTime": "Reading time",
+        "readingTimeMin": "{min} minutes",
+        "viewsByDay": "Views by day",
+        "viewsPerCategory": "Allocation by category",
+        "errorLoadFailed": "Unable to load blog analytics data."
+      }
+    }
   }
 }
