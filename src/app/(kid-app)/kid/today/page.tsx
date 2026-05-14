@@ -1,5 +1,6 @@
 import { addDays, startOfDay } from "date-fns";
 import { fromZonedTime, toZonedTime } from "date-fns-tz";
+import { getLocale } from "next-intl/server";
 import { KidSkyGardenScene } from "@/components/kid-sky-garden/KidSkyGardenScene";
 import { mapLessonLikeToSkyGardenLesson } from "@/components/kid-sky-garden/mappers";
 import { KidMissionPanel } from "@/components/kid-mission-panel";
@@ -9,6 +10,8 @@ import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
 import { isKidSkyGardenMvpEnabled } from "@/lib/feature-flags";
 import { getRealKidGardenMission } from "@/modules/content/service";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 interface KidTodayPageProps {
   searchParams?:
@@ -46,6 +49,7 @@ function readSingleQueryParam(value?: string | string[]) {
 
 export default async function KidTodayPage({ searchParams }: KidTodayPageProps) {
   const parent = await requireParent();
+  const locale = resolveAppLocale(await getLocale());
   const useSkyGardenMvp = await isKidSkyGardenMvpEnabled();
 
   const children = await prisma.childProfile.findMany({
@@ -62,9 +66,9 @@ export default async function KidTodayPage({ searchParams }: KidTodayPageProps) 
     return (
       <section className="kid-empty-state">
         <Mascot variant="duo" state="thinking" actionProp="reading" size={210} motionLevel="soft" pauseWhenOffscreen />
-        <h2>Nothing here yet...</h2>
-        <h1>Learning mode is not ready</h1>
-        <p>Create at least one child profile in the parent area before starting the journey.</p>
+        <h2>{translate("kid.today.emptyState.subheading", undefined, locale)}</h2>
+        <h1>{translate("kid.today.emptyState.heading", undefined, locale)}</h1>
+        <p>{translate("kid.today.emptyState.body", undefined, locale)}</p>
       </section>
     );
   }

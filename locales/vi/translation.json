@@ -5310,5 +5310,26 @@
         "sendRequest": "Gửi yêu cầu đối soát"
       }
     }
+  },
+  "kid": {
+    "layout": {
+      "ariaLabel": "Khu vực học của bé"
+    },
+    "today": {
+      "emptyState": {
+        "subheading": "Chưa có gì ở đây...",
+        "heading": "Chế độ học chưa sẵn sàng",
+        "body": "Tạo ít nhất một hồ sơ bé trong khu vực phụ huynh trước khi bắt đầu hành trình."
+      }
+    },
+    "garden": {
+      "zones": {
+        "math": "Vườn Toán",
+        "phonics": "Vườn Tiếng Anh",
+        "art": "Vườn Nghệ Thuật",
+        "music": "Vườn Âm Nhạc",
+        "story": "Vườn Truyện"
+      }
+    }
   }
 }

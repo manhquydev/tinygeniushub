@@ -5310,5 +5310,26 @@
         "sendRequest": "Submit reconciliation request"
       }
     }
+  },
+  "kid": {
+    "layout": {
+      "ariaLabel": "Child learning area"
+    },
+    "today": {
+      "emptyState": {
+        "subheading": "Nothing here yet...",
+        "heading": "Learning mode is not ready",
+        "body": "Create at least one child profile in the parent area before starting the journey."
+      }
+    },
+    "garden": {
+      "zones": {
+        "math": "Math Garden",
+        "phonics": "English Garden",
+        "art": "Art Garden",
+        "music": "Music Garden",
+        "story": "Storytelling Garden"
+      }
+    }
   }
 }

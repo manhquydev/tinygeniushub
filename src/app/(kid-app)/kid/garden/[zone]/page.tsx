@@ -1,10 +1,13 @@
 import { redirect } from "next/navigation";
+import { getLocale } from "next-intl/server";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
 import { getGardenLessons, filterLessonsBySubject } from "@/components/cloud-garden/use-garden-lessons";
 import { GardenMascotGuide } from "@/components/cloud-garden/mascot-guide/GardenMascotGuide";
 import { LessonBranch } from "@/components/cloud-garden/lesson-zone/LessonBranch";
 import type { LessonSubject } from "@/components/cloud-garden/lesson-zone/LessonCard";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 /**
  * /kid/garden/[zone] — Lesson Zone (Branch View)
@@ -18,20 +21,15 @@ import type { LessonSubject } from "@/components/cloud-garden/lesson-zone/Lesson
 
 const VALID_ZONES: LessonSubject[] = ["math", "phonics", "art", "music", "story"];
 
-const ZONE_TITLES: Record<LessonSubject, string> = {
-  math:    "Math Garden",
-  phonics: "English Garden",
-  art:     "Art Garden",
-  music:   "Music Garden",
-  story:   "Storytelling Garden",
-};
-
 interface ZonePageProps {
   params: Promise<{ zone: string }>;
 }
 
 export default async function KidGardenZonePage({ params }: ZonePageProps) {
   const { zone } = await params;
+  const locale = resolveAppLocale(await getLocale());
+  const zoneKey = zone as LessonSubject;
+  const zoneTitle = translate(`kid.garden.zones.${zoneKey}`, undefined, locale);
 
   // Validate zone param
   if (!VALID_ZONES.includes(zone as LessonSubject)) {
@@ -74,7 +72,7 @@ export default async function KidGardenZonePage({ params }: ZonePageProps) {
     >
       <LessonBranch
         subject={subject}
-        zoneTitle={ZONE_TITLES[subject]}
+        zoneTitle={zoneTitle}
         lessons={zoneLessons}
         streak={0}
         onSelectLesson={undefined}  // client navigation handled via router in client wrapper
