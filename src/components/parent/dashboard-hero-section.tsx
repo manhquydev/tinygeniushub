@@ -1,12 +1,13 @@
+import { useTranslations } from "next-intl";
 import { Mascot } from "@/components/mascot";
 
 type Props = {
   parentDisplayName: string;
-  heroMessage: string;
   hasRecentCompletion: boolean;
 };
 
-export function DashboardHeroSection({ parentDisplayName, heroMessage, hasRecentCompletion }: Props) {
+export function DashboardHeroSection({ parentDisplayName, hasRecentCompletion }: Props) {
+  const t = useTranslations("parent.dashboard.hero");
   return (
     <section className="relative isolate overflow-visible rounded-3xl border border-white/45 bg-gradient-to-br from-cyan-400 via-sky-500 to-indigo-600 p-6 shadow-[0_30px_64px_rgba(14,116,144,0.35)] sm:p-8 lg:p-10">
       <div
@@ -16,13 +17,15 @@ export function DashboardHeroSection({ parentDisplayName, heroMessage, hasRecent
       <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="grid max-w-[62ch] gap-3">
           <p className="inline-flex w-fit rounded-full border border-white/35 bg-white/15 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
-            Parent Dashboard
+            {t("badge")}
           </p>
           <h1 className="text-balance text-3xl font-black leading-[1.08] tracking-[-0.02em] text-white sm:text-[2.4rem]">
-            Home control panel
+            {t("heading")}
           </h1>
-          <p className="text-base font-semibold text-cyan-50 sm:text-lg">Hello, {parentDisplayName}</p>
-          <p className="text-sm leading-relaxed text-sky-50/95 sm:text-base">{heroMessage}</p>
+          <p className="text-base font-semibold text-cyan-50 sm:text-lg">{t("greeting", { name: parentDisplayName })}</p>
+          <p className="text-sm leading-relaxed text-sky-50/95 sm:text-base">
+            {t(hasRecentCompletion ? "recentCompletionMessage" : "defaultMessage")}
+          </p>
         </div>
         <div className="relative mx-auto flex w-full max-w-[270px] justify-center lg:mx-0 lg:-mb-16 lg:-mt-10 lg:max-w-[290px]">
           <div

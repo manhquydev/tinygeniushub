@@ -1,4 +1,5 @@
 import { Award, BookOpenCheck, Users } from "lucide-react";
+import { getLocale } from "next-intl/server";
 import { DailyActivityFeed } from "@/components/daily-activity-feed";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
@@ -9,11 +10,14 @@ import { DashboardChildrenSection } from "@/components/parent/dashboard-children
 import { DashboardShortcutsSection } from "@/components/parent/dashboard-shortcuts-section";
 import { DashboardReferralSection } from "@/components/parent/dashboard-referral-section";
 import { DashboardReportsSection } from "@/components/parent/dashboard-reports-section";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 function clampPercent(v: number) { return Math.max(0, Math.min(100, Math.round(v))); }
 
 export default async function ParentDashboardPage() {
   const parent = await requireParent();
+  const locale = resolveAppLocale(await getLocale());
 
   const [children, reports, completionCount, referral, latestCompletion, recentCompletions] =
     await Promise.all([
@@ -41,9 +45,36 @@ export default async function ParentDashboardPage() {
   const latestReportByChild = reports.reduce<Map<string, (typeof reports)[number]>>((acc, r) => { if (!acc.has(r.child.id)) acc.set(r.child.id, r); return acc; }, new Map());
 
   const metricCards: DashboardMetric[] = [
-    { id: "children", label: "Baby file number", value: String(children.length), hint: `${children.length}/${childLimit}file`, progress: clampPercent((children.length / childLimit) * 100), toneClass: "bg-teal-500/12 text-teal-700", progressClass: "from-teal-500 to-cyan-500", icon: Users },
-    { id: "lessons", label: "Lesson completed", value: String(completionCount), hint: `Target:${completionGoal}post`, progress: clampPercent((completionCount / completionGoal) * 100), toneClass: "bg-amber-500/12 text-amber-700", progressClass: "from-amber-400 to-orange-500", icon: Award },
-    { id: "reports", label: "Weekly report", value: String(reports.length), hint: `Target:${reportsGoal}report`, progress: clampPercent((reports.length / reportsGoal) * 100), toneClass: "bg-sky-500/12 text-sky-700", progressClass: "from-sky-500 to-blue-500", icon: BookOpenCheck },
+    {
+      id: "children",
+      label: translate("parent.dashboard.metrics.children.label", undefined, locale),
+      value: String(children.length),
+      hint: translate("parent.dashboard.metrics.children.hint", { count: children.length, limit: childLimit }, locale),
+      progress: clampPercent((children.length / childLimit) * 100),
+      toneClass: "bg-teal-500/12 text-teal-700",
+      progressClass: "from-teal-500 to-cyan-500",
+      icon: Users,
+    },
+    {
+      id: "lessons",
+      label: translate("parent.dashboard.metrics.lessons.label", undefined, locale),
+      value: String(completionCount),
+      hint: translate("parent.dashboard.metrics.lessons.hint", { goal: completionGoal }, locale),
+      progress: clampPercent((completionCount / completionGoal) * 100),
+      toneClass: "bg-amber-500/12 text-amber-700",
+      progressClass: "from-amber-400 to-orange-500",
+      icon: Award,
+    },
+    {
+      id: "reports",
+      label: translate("parent.dashboard.metrics.reports.label", undefined, locale),
+      value: String(reports.length),
+      hint: translate("parent.dashboard.metrics.reports.hint", { goal: reportsGoal }, locale),
+      progress: clampPercent((reports.length / reportsGoal) * 100),
+      toneClass: "bg-sky-500/12 text-sky-700",
+      progressClass: "from-sky-500 to-blue-500",
+      icon: BookOpenCheck,
+    },
   ];
 
   const childrenData = children.map((child) => {
@@ -55,7 +86,6 @@ export default async function ParentDashboardPage() {
     <div className="page-stack">
       <DashboardHeroSection
         parentDisplayName={parent.displayName ?? parent.email}
-        heroMessage={hasRecentCompletion ? "Congratulations! The child has just completed a new stage of learning." : "Hello Mom and Dad! The children are learning very well every day."}
         hasRecentCompletion={hasRecentCompletion}
       />
 

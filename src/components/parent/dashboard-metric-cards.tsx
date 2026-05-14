@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import type { LucideIcon } from "lucide-react";
 
 export type DashboardMetric = {
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export function DashboardMetricCards({ cards }: Props) {
+  const t = useTranslations("parent.dashboard.metrics");
   return (
     <section className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
       {cards.map((metric) => (
@@ -39,7 +41,7 @@ export function DashboardMetricCards({ cards }: Props) {
               style={{ width: `${metric.progress}%` }}
             />
           </div>
-          <p className="mt-2 text-xs font-semibold text-slate-500">{metric.progress}% goal progress</p>
+          <p className="mt-2 text-xs font-semibold text-slate-500">{t("progressLabel", { percent: metric.progress })}</p>
         </article>
       ))}
     </section>

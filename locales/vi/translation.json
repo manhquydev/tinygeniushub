@@ -5176,5 +5176,139 @@
       "i4": "Nghị định 52/2013/NĐ-CP và Nghị định 85/2021/NĐ-CP về thương mại điện tử."
     },
     "lastUpdated": "Cập nhật lần cuối:"
+  },
+  "parent": {
+    "dashboard": {
+      "hero": {
+        "badge": "Bảng Điều Khiển",
+        "heading": "Trung tâm quản lý",
+        "greeting": "Xin chào, {name}",
+        "recentCompletionMessage": "Chúc mừng! Bé vừa hoàn thành một bài học mới.",
+        "defaultMessage": "Xin chào ba mẹ! Các bé đang học rất tốt mỗi ngày."
+      },
+      "metrics": {
+        "children": {
+          "label": "Hồ sơ bé",
+          "hint": "{count}/{limit} hồ sơ"
+        },
+        "lessons": {
+          "label": "Bài học hoàn thành",
+          "hint": "Mục tiêu: {goal} bài"
+        },
+        "reports": {
+          "label": "Báo cáo tuần",
+          "hint": "Mục tiêu: {goal} báo cáo"
+        },
+        "progressLabel": "{percent}% mục tiêu"
+      },
+      "children": {
+        "heading": "Hồ sơ bé",
+        "description": "Tổng quan tiến độ học tập trong tuần và truy cập nhanh vào bài học.",
+        "activeProfiles": "{count} hồ sơ đang hoạt động",
+        "noProfiles": "Chưa có hồ sơ bé nào. Thêm hồ sơ để bắt đầu hành trình học tập."
+      },
+      "shortcuts": {
+        "heading": "Lối tắt nhanh",
+        "manageChildren": "Quản lý hồ sơ bé",
+        "enterKidApp": "Vào khu vực học của bé",
+        "premiumCourses": "Khóa học cao cấp",
+        "weeklyReports": "Xem báo cáo tuần",
+        "enterGiftCode": "Nhập mã quà tặng"
+      },
+      "referral": {
+        "heading": "Giới thiệu bạn bè — cùng nhận thưởng",
+        "description": "Mỗi gia đình bạn giới thiệu nhận được {welcomeOffer}. Bạn nhận {rewardVouchers} sau khi họ thanh toán.",
+        "welcomeOffer": "ưu đãi chào mừng",
+        "rewardVouchers": "phiếu thưởng",
+        "shareNow": "Chia sẻ ngay",
+        "sectionHeading": "Chương trình giới thiệu",
+        "code": "Mã giới thiệu",
+        "notCreated": "Chưa tạo",
+        "totalReferrals": "Tổng giới thiệu",
+        "paidReferrals": "Đã thanh toán",
+        "receivedReward": "Đã nhận thưởng"
+      },
+      "reports": {
+        "heading": "Báo cáo mới nhất",
+        "noReports": "Chưa có báo cáo tuần nào.",
+        "lessonsSummary": "{lessons} bài • {minutes} phút • {streak} ngày liên tiếp"
+      },
+      "childCard": {
+        "minutesStreak": "{minutes} phút học • {streak} ngày liên tiếp",
+        "lessonsProgress": "{lessons}/{goal} bài trong tuần",
+        "viewSkillMap": "Xem bản đồ kỹ năng",
+        "continueStudying": "Tiếp tục học",
+        "recentLessons": "Bài học gần đây"
+      },
+      "skills": {
+        "overview": "Tổng quan",
+        "skillMap": "Bản đồ kỹ năng",
+        "practicePrompt": "Sẵn sàng luyện tập thêm?",
+        "goToSchool": "Vào khu vực học"
+      }
+    },
+    "children": {
+      "badge": "Quản Lý Bé",
+      "heading": "Quản lý hồ sơ bé",
+      "description": "Mỗi tài khoản hỗ trợ một hồ sơ học tập chính. Cập nhật thông tin bé và truy cập nhanh vào bài học hàng ngày."
+    },
+    "reports": {
+      "badge": "Báo Cáo Học Tập",
+      "heading": "Trung tâm phân tích học tập",
+      "description": "Theo dõi hiệu suất học tập hàng tuần của mỗi bé: thời gian học, kết quả kỹ năng và gợi ý hành động cụ thể để ba mẹ hỗ trợ hiệu quả hơn."
+    },
+    "billing": {
+      "metadataTitle": "Thanh Toán & Hóa Đơn - TinyGenius Hub",
+      "heading": "Thanh toán và hóa đơn",
+      "description": "Trang này quản lý việc mua khóa học. Thanh toán qua chuyển khoản PayOS.",
+      "totalPaid": "Tổng đã trả",
+      "successfulTransaction": "Thành công",
+      "processing": "Đang xử lý",
+      "failure": "Thất bại",
+      "paymentStatus": {
+        "SUCCEEDED": "Thành công",
+        "PENDING": "Đang xử lý",
+        "FAILED": "Thất bại",
+        "REFUNDED": "Đã hoàn tiền"
+      },
+      "providerSimulation": "Mô phỏng",
+      "servicePayment": "Thanh toán dịch vụ",
+      "buyBundle": "Mua gói khóa học",
+      "buyCourse": "Mua khóa học",
+      "recentHistory": {
+        "heading": "Lịch sử giao dịch gần đây",
+        "description": "Theo dõi chi tiết và trạng thái từng giao dịch.",
+        "empty": "Chưa có giao dịch nào. Truy cập trang khóa học để bắt đầu."
+      },
+      "accountInfo": {
+        "heading": "Thông tin tài khoản",
+        "paymentModel": {
+          "label": "Hình thức thanh toán",
+          "value": "Mua theo khóa học"
+        },
+        "currentMethod": {
+          "label": "Phương thức hiện tại",
+          "value": "PayOS - chuyển khoản ngân hàng"
+        },
+        "autoRenewal": {
+          "label": "Tự động gia hạn",
+          "value": "Không áp dụng cho hình thức mua theo khóa"
+        }
+      },
+      "paymentNote": {
+        "heading": "Lưu ý khi thanh toán qua chuyển khoản",
+        "autoRecord": "Sau khi chuyển khoản thành công, hệ thống tự động ghi nhận và mở khóa học.",
+        "pendingWait": "Nếu trạng thái vẫn là \"Đang xử lý\", vui lòng chờ thêm vài phút để webhook đồng bộ.",
+        "contactSupport": "Cần hỗ trợ thanh toán? Gửi mã đơn hàng qua trang liên hệ để được xử lý nhanh.",
+        "buyCourses": "Mua thêm khóa học",
+        "contactSupportBtn": "Liên hệ hỗ trợ",
+        "purchasedKey": "Đến khóa học đã mua"
+      },
+      "invoice": {
+        "heading": "Cần xuất hóa đơn hoặc đối soát giao dịch?",
+        "description": "Vui lòng gửi thời gian giao dịch, số tiền và nhà cung cấp để chúng tôi hỗ trợ nhanh chóng.",
+        "sendRequest": "Gửi yêu cầu đối soát"
+      }
+    }
   }
 }

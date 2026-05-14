@@ -5,10 +5,13 @@
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getLocale } from "next-intl/server";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
 import { getSkillDetail } from "@/modules/adaptive/skill-map-service";
 import { SkillDetailCard } from "@/components/skills/skill-detail-card";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 interface PageProps {
   params: Promise<{ childId: string; skillId: string }>;
@@ -16,6 +19,8 @@ interface PageProps {
 
 export default async function SkillDetailPage({ params }: PageProps) {
   const parent = await requireParent();
+  const locale = resolveAppLocale(await getLocale());
+  const t = (key: string) => translate(`parent.dashboard.skills.${key}`, undefined, locale);
   const { childId, skillId } = await params;
 
   const child = await prisma.childProfile.findFirst({
@@ -35,12 +40,11 @@ export default async function SkillDetailPage({ params }: PageProps) {
 
   return (
     <div className="page-stack">
-      {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-xs text-slate-400 px-1">
-        <Link href="/parent/dashboard" className="hover:text-slate-600 transition-colors">Overview</Link>
+        <Link href="/parent/dashboard" className="hover:text-slate-600 transition-colors">{t("overview")}</Link>
         <span className="text-slate-300">/</span>
         <Link href={`/parent/dashboard/${childId}/skills`} className="hover:text-slate-600 transition-colors">
-          Skill map
+          {t("skillMap")}
         </Link>
         <span className="text-slate-300">/</span>
         <span className="text-slate-500 font-medium truncate max-w-[120px]">{detail.skill.nameVi}</span>
@@ -55,14 +59,13 @@ export default async function SkillDetailPage({ params }: PageProps) {
         prerequisites={serializedDetail.prerequisites}
       />
 
-      {/* CTA */}
       <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-center">
-        <p className="text-sm text-indigo-700 font-medium mb-2">Ready for more practice?</p>
+        <p className="text-sm text-indigo-700 font-medium mb-2">{t("practicePrompt")}</p>
         <Link
-          href={`/parent/dashboard`}
+          href="/parent/dashboard"
           className="inline-block rounded-xl bg-indigo-600 px-5 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
         >
-          Go to school now
+          {t("goToSchool")}
         </Link>
       </div>
     </div>

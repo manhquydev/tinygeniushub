@@ -5176,5 +5176,139 @@
       "i4": "Decree 52/2013/ND-CP and Decree 85/2021/ND-CP on e-commerce."
     },
     "lastUpdated": "Last updated:"
+  },
+  "parent": {
+    "dashboard": {
+      "hero": {
+        "badge": "Parent Dashboard",
+        "heading": "Home control panel",
+        "greeting": "Hello, {name}",
+        "recentCompletionMessage": "Congratulations! The child has just completed a new lesson.",
+        "defaultMessage": "Hello Mom and Dad! The children are learning great every day."
+      },
+      "metrics": {
+        "children": {
+          "label": "Child profiles",
+          "hint": "{count}/{limit} profiles"
+        },
+        "lessons": {
+          "label": "Lessons completed",
+          "hint": "Target: {goal} lessons"
+        },
+        "reports": {
+          "label": "Weekly reports",
+          "hint": "Target: {goal} reports"
+        },
+        "progressLabel": "{percent}% of goal"
+      },
+      "children": {
+        "heading": "Child profiles",
+        "description": "Overview of study progress this week and quick access to lessons.",
+        "activeProfiles": "{count} active profiles",
+        "noProfiles": "No child profiles yet. Add a profile to start the learning journey."
+      },
+      "shortcuts": {
+        "heading": "Quick shortcuts",
+        "manageChildren": "Manage child records",
+        "enterKidApp": "Enter child's learning area",
+        "premiumCourses": "Premium Courses",
+        "weeklyReports": "View weekly reports",
+        "enterGiftCode": "Enter gift code"
+      },
+      "referral": {
+        "heading": "Refer friends — get rewarded together",
+        "description": "Each family you refer receives a {welcomeOffer}. You receive {rewardVouchers} after they complete payment.",
+        "welcomeOffer": "welcome offer",
+        "rewardVouchers": "reward vouchers",
+        "shareNow": "Share now",
+        "sectionHeading": "Referral program",
+        "code": "Referral code",
+        "notCreated": "Not created yet",
+        "totalReferrals": "Total referrals",
+        "paidReferrals": "Paid",
+        "receivedReward": "Rewards earned"
+      },
+      "reports": {
+        "heading": "Latest reports",
+        "noReports": "No weekly reports yet.",
+        "lessonsSummary": "{lessons} lessons • {minutes} minutes • {streak}-day streak"
+      },
+      "childCard": {
+        "minutesStreak": "{minutes} minutes learned • {streak}-day streak",
+        "lessonsProgress": "{lessons}/{goal} lessons this week",
+        "viewSkillMap": "View skill map",
+        "continueStudying": "Continue studying",
+        "recentLessons": "Recent lessons"
+      },
+      "skills": {
+        "overview": "Overview",
+        "skillMap": "Skill map",
+        "practicePrompt": "Ready for more practice?",
+        "goToSchool": "Go to learning area"
+      }
+    },
+    "children": {
+      "badge": "Manage Children",
+      "heading": "Manage child records",
+      "description": "Each account supports one main learning profile. Update your child's information and quickly access daily lessons here."
+    },
+    "reports": {
+      "badge": "Learning Reports",
+      "heading": "Learning analytics center",
+      "description": "Track each child's weekly learning performance: study time, skill outcomes, and concrete suggestions to help parents support more effectively."
+    },
+    "billing": {
+      "metadataTitle": "Payments & Invoices - TinyGenius Hub",
+      "heading": "Payments and invoices",
+      "description": "This page covers course purchases. Payments are processed via PayOS bank transfer.",
+      "totalPaid": "Total paid",
+      "successfulTransaction": "Successful",
+      "processing": "Processing",
+      "failure": "Failed",
+      "paymentStatus": {
+        "SUCCEEDED": "Success",
+        "PENDING": "Processing",
+        "FAILED": "Failed",
+        "REFUNDED": "Refunded"
+      },
+      "providerSimulation": "Simulation",
+      "servicePayment": "Service payment",
+      "buyBundle": "Buy course bundle",
+      "buyCourse": "Buy course",
+      "recentHistory": {
+        "heading": "Recent transaction history",
+        "description": "Track details and status of each transaction.",
+        "empty": "No transactions yet. Head to the courses page to get started."
+      },
+      "accountInfo": {
+        "heading": "Account information",
+        "paymentModel": {
+          "label": "Payment model",
+          "value": "Per-course purchase"
+        },
+        "currentMethod": {
+          "label": "Current method",
+          "value": "PayOS - bank transfer"
+        },
+        "autoRenewal": {
+          "label": "Auto-renewal",
+          "value": "Not applicable for per-course purchase model"
+        }
+      },
+      "paymentNote": {
+        "heading": "Notes for bank transfer payments",
+        "autoRecord": "After a successful transfer, the system automatically records and unlocks the course.",
+        "pendingWait": "If status shows \"Processing\", please wait a few minutes for webhook sync.",
+        "contactSupport": "Need payment support? Send your order code via the contact page for quick assistance.",
+        "buyCourses": "Buy more courses",
+        "contactSupportBtn": "Contact support",
+        "purchasedKey": "Go to purchased courses"
+      },
+      "invoice": {
+        "heading": "Need an invoice or transaction reconciliation?",
+        "description": "Please send the transaction time, amount, and payment provider so we can assist quickly.",
+        "sendRequest": "Submit reconciliation request"
+      }
+    }
   }
 }
