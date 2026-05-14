@@ -89,6 +89,59 @@ describe("SiteFooter", () => {
     expect(screen.getByLabelText(/youtube/i)).toHaveAttribute("href", "https://youtube.com/@new-channel");
   });
 
+  it("renders translated copy when provided", () => {
+    render(
+      <SiteFooter
+        hasParent={false}
+        copy={{
+          brandAriaLabel: "Trang chủ TinyGenius Hub",
+          logoAlt: "Logo TinyGeniusHub",
+          taglineLine1: "Toán & Tiếng Anh cho bé 2-6 tuổi.",
+          taglineLine2: "Mỗi ngày 15 phút, ba mẹ thấy rõ con tiến bộ.",
+          socialFacebookAriaLabel: "Facebook TinyGenius Hub",
+          socialYoutubeAriaLabel: "YouTube TinyGenius Hub",
+          navAriaLabel: "Điều hướng chân trang",
+          columns: {
+            product: "Sản phẩm",
+            company: "Công ty",
+            account: "Tài khoản",
+            legal: "Pháp lý",
+          },
+          links: {
+            features: "Tính năng",
+            pricing: "Bảng giá",
+            courses: "Khóa học",
+            forSchools: "Cho trường học",
+            faq: "Câu hỏi thường gặp",
+            about: "Giới thiệu",
+            blog: "Blog",
+            contact: "Liên hệ",
+            referral: "Giới thiệu bạn",
+            giftCode: "Mã quà tặng",
+            waitlist: "Đặt chỗ sớm",
+            login: "Đăng nhập",
+            signup: "Đăng ký",
+            privacy: "Chính sách bảo mật",
+            terms: "Điều khoản sử dụng",
+            cookiePolicy: "Chính sách cookie",
+            refundPolicy: "Chính sách hoàn tiền",
+          },
+          bottom: {
+            rightsReserved: "Đã đăng ký bản quyền.",
+            security: "Bảo mật",
+            clause: "Điều khoản",
+            cookie: "Cookie",
+            refund: "Hoàn tiền",
+          },
+        }}
+      />,
+    );
+
+    expect(screen.getByRole("link", { name: "Bảng giá" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Điều khoản sử dụng" })).toBeInTheDocument();
+    expect(screen.getByText(/Đã đăng ký bản quyền\./)).toBeInTheDocument();
+  });
+
   it("does not render on admin routes", () => {
     pathnameValue = "/admin/overview";
 

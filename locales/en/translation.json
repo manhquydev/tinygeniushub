@@ -71,6 +71,47 @@
       "closeMenuText": "Close the menu"
     }
   },
+  "footer": {
+    "brandAriaLabel": "TinyGenius Hub home page",
+    "logoAlt": "TinyGeniusHub Logo",
+    "taglineLine1": "Math & English for children 2-6 years old.",
+    "taglineLine2": "15 minutes a day, you can clearly see your child's progress.",
+    "socialFacebookAriaLabel": "Facebook TinyGenius Hub",
+    "socialYoutubeAriaLabel": "YouTube TinyGenius Hub",
+    "navAriaLabel": "Footer navigation",
+    "columns": {
+      "product": "Product",
+      "company": "Company",
+      "account": "Account",
+      "legal": "Legal"
+    },
+    "links": {
+      "features": "Features",
+      "pricing": "Price list",
+      "courses": "Course",
+      "forSchools": "For school",
+      "faq": "Frequently asked questions",
+      "about": "Introduce",
+      "blog": "Blog",
+      "contact": "Contact",
+      "referral": "Introducing you",
+      "giftCode": "Gift code",
+      "waitlist": "Book early",
+      "login": "Log in",
+      "signup": "Register",
+      "privacy": "Privacy policy",
+      "terms": "Terms of use",
+      "cookiePolicy": "Cookie policy",
+      "refundPolicy": "Refund policy"
+    },
+    "bottom": {
+      "rightsReserved": "All rights reserved.",
+      "security": "Security",
+      "clause": "Clause",
+      "cookie": "Cookie",
+      "refund": "Refund"
+    }
+  },
   "validation": {
     "email": "Enter a valid email address.",
     "required": "This field is required."

@@ -312,8 +312,6 @@ export function AppNavClient({
           </button>
 
           <nav className="nav-links nav-links-desktop">
-            <LanguageSwitcher currentLocale={currentLocale} labels={copy.language} />
-
             {currentLinks.map((item) => (
               <NavTextLink
                 key={item.href}
@@ -403,6 +401,8 @@ export function AppNavClient({
                 </Link>
               </>
             )}
+
+            <LanguageSwitcher currentLocale={currentLocale} labels={copy.language} className="nav-desktop-language" />
           </nav>
         </div>
 

@@ -449,7 +449,10 @@ p {
 .language-switcher {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.18rem;
+  inline-size: 84px;
+  flex: 0 0 84px;
   min-height: 38px;
   padding: 0.18rem;
   border-radius: 999px;
@@ -485,6 +488,14 @@ p {
   background: color-mix(in srgb, var(--brand-600) 92%, #0f766e);
   color: white;
   box-shadow: 0 8px 16px rgba(15, 118, 110, 0.18);
+}
+
+.language-switcher-option:disabled {
+  cursor: wait;
+}
+
+.nav-desktop-language {
+  margin-inline-start: 0.25rem;
 }
 
 .nav-mobile-language {
@@ -780,6 +791,10 @@ p {
     font-size: 0.93rem;
   }
 
+  .nav-desktop-language {
+    margin-inline-start: 0.35rem;
+  }
+
   .nav-mobile-toggle,
   .nav-mobile-panel {
     display: none !important;
@@ -850,6 +865,10 @@ p {
   .nav-links {
     gap: 1rem;
     font-size: 0.95rem;
+  }
+
+  .nav-desktop-language {
+    margin-inline-start: 0.45rem;
   }
 
   .nav-link-item {

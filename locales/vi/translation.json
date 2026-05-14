@@ -71,6 +71,47 @@
       "closeMenuText": "Đóng menu"
     }
   },
+  "footer": {
+    "brandAriaLabel": "Trang chủ TinyGenius Hub",
+    "logoAlt": "Logo TinyGeniusHub",
+    "taglineLine1": "Toán & Tiếng Anh cho bé 2-6 tuổi.",
+    "taglineLine2": "Mỗi ngày 15 phút, ba mẹ thấy rõ con tiến bộ.",
+    "socialFacebookAriaLabel": "Facebook TinyGenius Hub",
+    "socialYoutubeAriaLabel": "YouTube TinyGenius Hub",
+    "navAriaLabel": "Điều hướng chân trang",
+    "columns": {
+      "product": "Sản phẩm",
+      "company": "Công ty",
+      "account": "Tài khoản",
+      "legal": "Pháp lý"
+    },
+    "links": {
+      "features": "Tính năng",
+      "pricing": "Bảng giá",
+      "courses": "Khóa học",
+      "forSchools": "Cho trường học",
+      "faq": "Câu hỏi thường gặp",
+      "about": "Giới thiệu",
+      "blog": "Blog",
+      "contact": "Liên hệ",
+      "referral": "Giới thiệu bạn",
+      "giftCode": "Mã quà tặng",
+      "waitlist": "Đặt chỗ sớm",
+      "login": "Đăng nhập",
+      "signup": "Đăng ký",
+      "privacy": "Chính sách bảo mật",
+      "terms": "Điều khoản sử dụng",
+      "cookiePolicy": "Chính sách cookie",
+      "refundPolicy": "Chính sách hoàn tiền"
+    },
+    "bottom": {
+      "rightsReserved": "Đã đăng ký bản quyền.",
+      "security": "Bảo mật",
+      "clause": "Điều khoản",
+      "cookie": "Cookie",
+      "refund": "Hoàn tiền"
+    }
+  },
   "validation": {
     "email": "Nhập địa chỉ email hợp lệ.",
     "required": "Trường này là bắt buộc."
