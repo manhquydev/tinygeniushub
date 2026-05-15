@@ -35,7 +35,7 @@ export function CheckoutPlanButton({ planCode, label, className }: CheckoutPlanB
         body: JSON.stringify({
           planCode,
           successPath: "/parent/dashboard",
-          cancelPath: "/pricing",
+          cancelPath: "/courses",
         }),
       });
 

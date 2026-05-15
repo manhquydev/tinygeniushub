@@ -47,7 +47,7 @@ export function HeroGarden() {
               </Link>
 
               <Link
-                href="/pricing"
+                href="/courses"
                 className="cgh-btn-secondary"
                 style={{
                   display: "inline-flex",
@@ -64,7 +64,7 @@ export function HeroGarden() {
                   transition: "all 0.2s",
                 }}
               >
-                View pricing
+                View courses
               </Link>
             </div>
 

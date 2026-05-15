@@ -5,10 +5,14 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
 const refreshMock = vi.fn();
+const pushMock = vi.fn();
+const replaceMock = vi.fn();
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({
     refresh: refreshMock,
+    push: pushMock,
+    replace: replaceMock,
   }),
 }));
 
@@ -20,6 +24,7 @@ const labels = {
 
 describe("LanguageSwitcher", () => {
   beforeEach(() => {
+    window.history.replaceState({}, "", "/");
     document.cookie = "tgh_locale=; Max-Age=0; path=/";
     vi.clearAllMocks();
   });
@@ -41,6 +46,20 @@ describe("LanguageSwitcher", () => {
     fireEvent.click(screen.getByRole("button", { name: "Vietnamese" }));
 
     expect(document.cookie).toContain("tgh_locale=vi");
+    expect(refreshMock).toHaveBeenCalledTimes(1);
+  });
+
+  it.each(["/courses?topic=math", "/auth/login?next=%2Fcourses"])("keeps current URL when switching locale on %s", (url) => {
+    const target = new URL(url, "http://localhost");
+    window.history.replaceState({}, "", target.pathname + target.search);
+
+    render(<LanguageSwitcher currentLocale="en" labels={labels} />);
+    fireEvent.click(screen.getByRole("button", { name: "Vietnamese" }));
+
+    expect(window.location.pathname).toBe(target.pathname);
+    expect(window.location.search).toBe(target.search);
+    expect(pushMock).not.toHaveBeenCalled();
+    expect(replaceMock).not.toHaveBeenCalled();
     expect(refreshMock).toHaveBeenCalledTimes(1);
   });
 });

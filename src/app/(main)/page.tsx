@@ -170,7 +170,6 @@ export default function HomePage() {
     <>
       <Link href="/try-garden" prefetch={true} style={{ display: "none" }} aria-hidden="true" />
       <Link href="/auth/signup" prefetch={true} style={{ display: "none" }} aria-hidden="true" />
-      <Link href="/pricing" prefetch={true} style={{ display: "none" }} aria-hidden="true" />
       <Link href="/courses" prefetch={true} style={{ display: "none" }} aria-hidden="true" />
 
       <script

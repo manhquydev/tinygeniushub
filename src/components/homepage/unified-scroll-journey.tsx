@@ -105,7 +105,7 @@ export function UnifiedScrollJourney() {
             <Link href="/courses" className="usj-btn usj-btn-solid">
               {t("view_course_ea9d1512")}
             </Link>
-            <Link href="/pricing" className="usj-btn usj-btn-ghost">
+            <Link href="/courses" className="usj-btn usj-btn-ghost">
               {t("see_price_list_ab5a04d8")}
             </Link>
           </div>

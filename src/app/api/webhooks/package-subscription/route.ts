@@ -440,7 +440,7 @@ async function queueFailureNotification(parentId: string, paymentRecordId: strin
 
     const name = parent.displayName?.trim() || "parents";
     const appBaseUrl = resolveEmailPublicBaseUrl();
-    const retryUrl = `${appBaseUrl}/pricing?utm_source=email&utm_medium=transactional&utm_campaign=package_subscription_failed`;
+    const retryUrl = `${appBaseUrl}/courses?utm_source=email&utm_medium=transactional&utm_campaign=package_subscription_failed`;
     const supportEmail = env.REPORT_EMAIL_REPLY_TO ?? "support@tinygeniushubvn.tech";
     const text = [
       `Hello${name},`,

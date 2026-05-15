@@ -114,8 +114,8 @@ export function proxy(request: NextRequest) {
 
   if (shouldManageAnalyticsCookies(request, pathname)) {
     if (analyticsAllowed) {
-      // Assign A/B pricing variant on first visit to pricing or homepage.
-      if (pathname === "/" || pathname === "/pricing") {
+      // Assign A/B pricing variant on first homepage visit.
+      if (pathname === "/") {
         assignAbVariantCookie(request, response, AB_PRICING_COOKIE);
       }
 

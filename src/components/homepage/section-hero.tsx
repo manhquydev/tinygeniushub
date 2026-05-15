@@ -24,8 +24,8 @@ export function SectionHero() {
                 Browse courses
                 <ArrowRight size={16} aria-hidden />
               </Link>
-              <Link href="/pricing" className="ghost-button hp-ghost-on-dark">
-                View pricing
+              <Link href="/courses" className="ghost-button hp-ghost-on-dark">
+                Explore courses
               </Link>
             </div>
 

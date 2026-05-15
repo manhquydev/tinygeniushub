@@ -9,7 +9,7 @@ import { DomainError } from "@/modules/platform/errors";
 export const createCheckoutSchema = z.object({
   planCode: payablePlanCodeSchema,
   successPath: z.string().min(1).optional().default("/parent/dashboard"),
-  cancelPath: z.string().min(1).optional().default("/pricing"),
+  cancelPath: z.string().min(1).optional().default("/courses"),
 });
 
 function ensureSafePath(path: string) {

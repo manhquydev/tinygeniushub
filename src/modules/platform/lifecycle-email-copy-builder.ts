@@ -110,7 +110,7 @@ function buildTrialD5Email(displayName: string | null): LifecycleEmailContent {
 
 function buildTrialD7Email(displayName: string | null): LifecycleEmailContent {
   const name = parentName(displayName);
-  const pricingUrl = lifecycleLink("/pricing", "trial_d7_convert");
+  const coursesUrl = lifecycleLink("/courses", "trial_d7_convert");
   return {
     subject: "Trial is about to end — keep your child's learning path today",
     text: [
@@ -123,7 +123,7 @@ function buildTrialD7Email(displayName: string | null): LifecycleEmailContent {
       "• Standard: 799,000 VND/year",
       "• Family+: 1,199,000 VND/year",
       "",
-      `Choose the right package:${pricingUrl}`,
+      `Choose the right package:${coursesUrl}`,
       "",
       "Close,",
       "TinyGenius Hub Team",
@@ -154,7 +154,7 @@ function buildWinbackD30Email(displayName: string | null): LifecycleEmailContent
 
 function buildRenewal14dEmail(displayName: string | null, renewalEndDate?: Date | null): LifecycleEmailContent {
   const name = parentName(displayName);
-  const pricingUrl = lifecycleLink("/pricing", "renewal_14d");
+  const coursesUrl = lifecycleLink("/courses", "renewal_14d");
   const renewalDateLine = renewalEndDate
     ? `The current package will expire on${formatDateVi(renewalEndDate)}.`
     : "Your current plan is due for renewal.";
@@ -167,7 +167,7 @@ function buildRenewal14dEmail(displayName: string | null, renewalEndDate?: Date 
       renewalDateLine,
       "Renewing early helps keep your child's learning rhythm continuous.",
       "",
-      `Renew here:${pricingUrl}`,
+      `Renew here:${coursesUrl}`,
       "",
       "Close,",
       "TinyGenius Hub Team",

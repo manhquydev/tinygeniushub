@@ -23,7 +23,7 @@ export const upgradePackageSchema = z.object({
   childId: z.string().optional(),
   prorate: z.boolean().default(true),
   successPath: z.string().min(1).optional().default("/parent/dashboard"),
-  cancelPath: z.string().min(1).optional().default("/pricing"),
+  cancelPath: z.string().min(1).optional().default("/courses"),
 });
 
 // Types

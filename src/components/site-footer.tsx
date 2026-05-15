@@ -182,9 +182,7 @@ export function SiteFooter({ hasParent = false, socialLinks, copy }: SiteFooterP
             <div className="footer-col">
               <p className="footer-col-title">{resolvedCopy.columns.product}</p>
               <Link href="/#features">{resolvedCopy.links.features}</Link>
-              <Link href="/pricing">{resolvedCopy.links.pricing}</Link>
               <Link href="/courses">{resolvedCopy.links.courses}</Link>
-              <Link href="/for-schools">{resolvedCopy.links.forSchools}</Link>
               <Link href="/#faq">{resolvedCopy.links.faq}</Link>
             </div>
 

@@ -56,13 +56,13 @@ describe("SiteFooter", () => {
   it("tracks internal footer links with parent state", () => {
     render(<SiteFooter hasParent={true} />);
 
-    fireEvent.click(screen.getByRole("link", { name: "Price list" }));
+    fireEvent.click(screen.getByRole("link", { name: "Course" }));
 
     expect(trackEvent).toHaveBeenCalledWith("nav_click", {
       state: "parent",
       location: "footer",
-      label: "Price list",
-      href: "/pricing",
+      label: "Course",
+      href: "/courses",
     });
   });
 
@@ -137,7 +137,8 @@ describe("SiteFooter", () => {
       />,
     );
 
-    expect(screen.getByRole("link", { name: "Bảng giá" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Khóa học" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Bảng giá" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Điều khoản sử dụng" })).toBeInTheDocument();
     expect(screen.getByText(/Đã đăng ký bản quyền\./)).toBeInTheDocument();
   });

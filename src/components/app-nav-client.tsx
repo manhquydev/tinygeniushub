@@ -195,9 +195,7 @@ export function AppNavClient({
 
   const guestLinks: NavItemConfig[] = [
     { href: "/courses", label: copy.guest.courses, matchMode: "prefix" },
-    { href: "/pricing", label: copy.guest.pricing, matchMode: "prefix" },
     { href: "/#features", label: copy.guest.howItWorks, matchMode: "exact" },
-    { href: "/for-schools", label: copy.guest.forSchools, hideOnMobile: true, matchMode: "prefix" },
   ];
   const parentSupportLinks: NavItemConfig[] = [
     { href: "/blog", label: copy.parent.blog, matchMode: "prefix" },

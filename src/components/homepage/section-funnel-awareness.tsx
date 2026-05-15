@@ -30,9 +30,9 @@ const FUNNEL_STAGES = [
     title: "Purchase with low risk",
     description:
       "Clear pricing + PayOS transfer/QR + 30-day refund policy reduce friction and increase confidence.",
-    channels: ["Pricing page", "Courses page", "Purchase CTA"],
-    ctaHref: "/pricing",
-    ctaLabel: "View pricing and payment options",
+    channels: ["Course catalog", "Sample lessons", "Purchase CTA"],
+    ctaHref: "/courses",
+    ctaLabel: "View course and payment options",
     icon: CheckCircle2,
   },
 ] as const;
