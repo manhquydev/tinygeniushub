@@ -19,7 +19,7 @@ interface StepProps {
 }
 
 // Concept step: mascot + keyword display + speech bubble + audio + speaker replay button
-// Auto-advances after audio ends + autoAdvanceMs delay, or shows "Tiếp tục" button
+// Auto-advances after audio ends + autoAdvanceMs delay, or shows "Continue" button
 export function LessonStepConcept({ step, onNext }: StepProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
   const [audioEnded, setAudioEnded] = useState(false);
@@ -99,7 +99,7 @@ export function LessonStepConcept({ step, onNext }: StepProps) {
                   : { scale: 1 }
               }
               transition={{ duration: 0.6, repeat: speakerPulsing ? Infinity : 0 }}
-              title="Nghe lại"
+              title="Listen again"
               style={{
                 width: 48,
                 height: 48,
@@ -159,7 +159,7 @@ export function LessonStepConcept({ step, onNext }: StepProps) {
             boxShadow: "0 4px 16px rgba(59,130,246,0.35)",
           }}
         >
-          Tiếp tục
+          Continue
         </button>
       ) : null}
     </div>

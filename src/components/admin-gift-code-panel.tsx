@@ -47,9 +47,9 @@ function formatDate(dateStr: string | null) {
 }
 
 function getStatus(code: GiftCode): { label: string; variant: "default" | "destructive" | "secondary" | "outline" } {
-  if (code.usedAt) return { label: "Đã dùng", variant: "secondary" };
-  if (new Date(code.expiresAt) < new Date()) return { label: "Hết hạn", variant: "destructive" };
-  return { label: "Còn hạn", variant: "default" };
+  if (code.usedAt) return { label: "Used", variant: "secondary" };
+  if (new Date(code.expiresAt) < new Date()) return { label: "Expired", variant: "destructive" };
+  return { label: "Still valid", variant: "default" };
 }
 
 function GenerateFormPanel({
@@ -74,10 +74,10 @@ function GenerateFormPanel({
         body: JSON.stringify(form),
       });
       const json = (await res.json()) as { data?: { codes: GiftCode[] }; error?: { message?: string } };
-      if (!res.ok) throw new Error(json.error?.message ?? "Lỗi tạo mã");
+      if (!res.ok) throw new Error(json.error?.message ?? "Code generation error");
       onGenerated(json.data!.codes);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Lỗi không xác định");
+      setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setLoading(false);
     }
@@ -85,16 +85,16 @@ function GenerateFormPanel({
 
   return (
     <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-4 space-y-3">
-      <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Tạo mã quà tặng</h2>
+      <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Generate gift code</h2>
       {error && <p className="text-xs text-rose-600">{error}</p>}
       <form onSubmit={(e) => void handleSubmit(e)} className="space-y-3">
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="grid gap-1.5">
-            <Label htmlFor="gc-count">Số lượng (1–100)</Label>
+            <Label htmlFor="gc-count">Quantity (1–100)</Label>
             <Input id="gc-count" type="number" min={1} max={100} required value={form.count} onChange={(e) => setForm((p) => ({ ...p, count: Number(e.target.value) }))} />
           </div>
           <div className="grid gap-1.5">
-            <Label>Gói</Label>
+            <Label>Package</Label>
             <Select value={form.planCode} onValueChange={(value) => setForm((p) => ({ ...p, planCode: value }))}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
@@ -107,19 +107,19 @@ function GenerateFormPanel({
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="grid gap-1.5">
-            <Label htmlFor="gc-duration">Thời hạn (ngày)</Label>
+            <Label htmlFor="gc-duration">Term (days)</Label>
             <Input id="gc-duration" type="number" min={1} required value={form.durationDays} onChange={(e) => setForm((p) => ({ ...p, durationDays: Number(e.target.value) }))} />
           </div>
           <div className="grid gap-1.5">
-            <Label htmlFor="gc-expires">Hết hạn lúc</Label>
+            <Label htmlFor="gc-expires">Expires at</Label>
             <Input id="gc-expires" type="date" required value={form.expiresAt} onChange={(e) => setForm((p) => ({ ...p, expiresAt: e.target.value }))} />
           </div>
         </div>
         <div className="flex gap-2">
           <Button type="submit" disabled={loading} className="bg-teal-600 hover:bg-teal-700">
-            {loading ? "Đang tạo..." : "Tạo mã"}
+            {loading ? "Creating..." : "Code generation"}
           </Button>
-          <Button type="button" variant="outline" onClick={onCancel}>Hủy</Button>
+          <Button type="button" variant="outline" onClick={onCancel}>Cancel</Button>
         </div>
       </form>
     </div>
@@ -145,7 +145,7 @@ export function AdminGiftCodePanel({ initialCodes }: { initialCodes: GiftCode[] 
         </div>
         <Button size="sm" className="h-8 text-xs gap-1 bg-teal-600 hover:bg-teal-700" onClick={() => setShowForm(true)}>
           <Plus size={13} />
-          Tạo mã
+          Code generation
         </Button>
       </div>
 
@@ -159,14 +159,14 @@ export function AdminGiftCodePanel({ initialCodes }: { initialCodes: GiftCode[] 
               <TableHead className="text-xs">Plan</TableHead>
               <TableHead className="text-xs">Duration</TableHead>
               <TableHead className="text-xs">Expires</TableHead>
-              <TableHead className="text-xs">Trạng thái</TableHead>
+              <TableHead className="text-xs">Status</TableHead>
               <TableHead className="text-xs">Created by</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {codes.length === 0 && (
               <TableRow>
-                <TableCell colSpan={6} className="text-xs text-center text-[var(--admin-text-secondary)] py-8">Chưa có mã nào.</TableCell>
+                <TableCell colSpan={6} className="text-xs text-center text-[var(--admin-text-secondary)] py-8">There are no codes yet.</TableCell>
               </TableRow>
             )}
             {codes.map((c) => {

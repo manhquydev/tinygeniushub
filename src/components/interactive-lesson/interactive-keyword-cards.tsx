@@ -19,7 +19,7 @@ const CARD_COLORS = ["#FFE8E8", "#E8F0FF", "#E8FFF0", "#FFF8E8", "#F0E8FF"];
 const CARD_BORDER_COLORS = ["#FF6B6B", "#4D96FF", "#34D399", "#FBBF24", "#A78BFA"];
 
 /** Simple heuristic: contains Vietnamese diacritics or CJK → vi-VN */
-const VI_PATTERN = /[àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ○□●]/i;
+const VI_PATTERN = new RegExp("[\u00c0-\u024f\u1e00-\u1eff\u25cb\u25a1\u25cf]", "i");
 
 /** Speak a word using browser SpeechSynthesis as fallback when no MP3 available */
 function speakWord(word: string) {

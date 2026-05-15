@@ -40,10 +40,10 @@ export function LessonCard({
         <div className="flex items-start justify-between">
           <div>
             <Badge variant="outline" className="mb-2 text-xs">
-              Bài {lesson.lessonNumber}
+              Lesson {lesson.lessonNumber}
             </Badge>
             <CardTitle className="text-lg leading-tight">
-              {lesson.title || `Bài học ${lesson.lessonNumber}`}
+              {lesson.title || `Lesson${lesson.lessonNumber}`}
             </CardTitle>
           </div>
           {showAddButton && (
@@ -92,7 +92,7 @@ export function LessonCard({
           </div>
           <div className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
-            <span>{totalDuration} phút</span>
+            <span>{totalDuration} minutes</span>
           </div>
         </div>
       </CardContent>
@@ -202,7 +202,7 @@ export function VideoRow({
         <p className="font-medium truncate">{title}</p>
         <p className="text-sm text-slate-500">
           {teacher && `${teacher} • `}
-          {duration} phút
+          {duration} minutes
         </p>
       </div>
 

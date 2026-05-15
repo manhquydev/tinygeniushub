@@ -20,10 +20,10 @@ const STREAK_COLORS = {
 
 export function AdminStreakDistributionChart({ data }: { data: StreakDistribution }) {
   const chartData = [
-    { label: "0 ngày", key: "zero", value: data.zero },
-    { label: "1-3 ngày", key: "low", value: data.low },
-    { label: "4-7 ngày", key: "medium", value: data.medium },
-    { label: "Trên 7 ngày", key: "high", value: data.high },
+    { label: "0 days", key: "zero", value: data.zero },
+    { label: "1-3 days", key: "low", value: data.low },
+    { label: "4-7 days", key: "medium", value: data.medium },
+    { label: "Over 7 days", key: "high", value: data.high },
   ];
 
   return (

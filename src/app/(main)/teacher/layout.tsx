@@ -43,7 +43,7 @@ export default async function TeacherLayout({ children }: { children: ReactNode 
             <img src={org.logoUrl} alt={org.name} style={{ height: 24, objectFit: "contain" }} />
           )}
           <span>{org.name}</span>
-          <span style={{ opacity: 0.7, fontWeight: 400 }}>· Bảng điều khiển giáo viên</span>
+          <span style={{ opacity: 0.7, fontWeight: 400 }}>· Teacher Dashboard</span>
         </div>
       )}
 

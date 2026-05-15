@@ -42,7 +42,7 @@ describe("commentService.submitComment", () => {
         parentId: "missing_parent",
         authorName: "Parent User",
         authorEmail: "parent@example.com",
-        content: "Nội dung bình luận hợp lệ với hơn mười ký tự.",
+        content: "Valid comment content of more than ten characters.",
       }),
     ).rejects.toMatchObject({
       code: "PARENT_COMMENT_NOT_FOUND",
@@ -64,7 +64,7 @@ describe("commentService.submitComment", () => {
         parentId: "comment_parent",
         authorName: "Parent User",
         authorEmail: "parent@example.com",
-        content: "Nội dung bình luận hợp lệ với hơn mười ký tự.",
+        content: "Valid comment content of more than ten characters.",
       }),
     ).rejects.toMatchObject({
       code: "PARENT_COMMENT_POST_MISMATCH",
@@ -85,7 +85,7 @@ describe("commentService.submitComment", () => {
       parentId: "comment_parent",
       authorName: "Parent User",
       authorEmail: "parent@example.com",
-      content: "Nội dung bình luận hợp lệ với hơn mười ký tự.",
+      content: "Valid comment content of more than ten characters.",
       ipHash: "hash_1",
     });
 

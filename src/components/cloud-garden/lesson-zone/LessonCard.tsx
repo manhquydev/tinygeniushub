@@ -24,11 +24,11 @@ export type LessonCardState = "available" | "today" | "in-progress" | "completed
 export type LessonSubject = "math" | "phonics" | "art" | "music" | "story";
 
 const SUBJECT_META: Record<LessonSubject, { accent: string; bg: string; name: string }> = {
-  math:    { accent: "var(--garden-math-gold)",    bg: "var(--garden-math-gold-bg)",  name: "To\u00e1n" },
+  math:    { accent: "var(--garden-math-gold)",    bg: "var(--garden-math-gold-bg)",  name: "Math" },
   phonics: { accent: "var(--garden-phonics-teal)", bg: "var(--garden-phonics-bg)",    name: "Phonics" },
-  art:     { accent: "var(--garden-art-coral)",    bg: "var(--garden-art-bg)",        name: "K\u1ef9 n\u0103ng" },
-  music:   { accent: "var(--garden-music-rose)",   bg: "var(--garden-music-bg)",      name: "\u00c2m nh\u1ea1c" },
-  story:   { accent: "var(--garden-story-green)",  bg: "var(--garden-story-bg)",      name: "K\u1ec3 chuy\u1ec7n" },
+  art:     { accent: "var(--garden-art-coral)",    bg: "var(--garden-art-bg)",        name: "Skills" },
+  music:   { accent: "var(--garden-music-rose)",   bg: "var(--garden-music-bg)",      name: "Music" },
+  story:   { accent: "var(--garden-story-green)",  bg: "var(--garden-story-bg)",      name: "Story" },
 };
 
 interface LessonCardProps {
@@ -87,7 +87,7 @@ export function LessonCard({
       }
       role="button"
       tabIndex={state === "locked" ? -1 : 0}
-      aria-label={`${title}${state === "locked" ? " (kh\u00f3a)" : ""}${state === "today" ? " - H\u00f4m nay!" : ""}`}
+      aria-label={`${title}${state === "locked" ? " (locked)" : ""}${state === "today" ? " - Today!" : ""}`}
       aria-disabled={state === "locked"}
       onClick={handleClick}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && handleClick()}
@@ -180,7 +180,7 @@ export function LessonCard({
             <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
             <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
-          {`${estimatedMinutes} ph\u00fat`}
+          {`${estimatedMinutes} min`}
         </div>
       )}
     </m.div>

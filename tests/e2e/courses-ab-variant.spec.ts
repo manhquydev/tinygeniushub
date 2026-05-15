@@ -19,10 +19,10 @@ test.describe("courses storefront A/B variants", () => {
 
     await expect(
       page.getByRole("heading", {
-        name: "Chọn đúng khóa để con tiến bộ ngay từ những tuần đầu",
+        name: "Choose the right course so your child can progress right from the first weeks",
       }),
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: /Xem khóa và bắt đầu/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /Xem khoa va bat dau/i }).first()).toBeVisible();
   });
 
   test("renders variant A hero and CTA copy when ab_courses_v=A", async ({
@@ -43,9 +43,9 @@ test.describe("courses storefront A/B variants", () => {
 
     await expect(
       page.getByRole("heading", {
-        name: "Mỗi khóa là một mục tiêu học rõ ràng, dễ theo dõi",
+        name: "Each course has a clear, easy-to-follow learning goal",
       }),
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: /Xem chi tiết khóa/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /Xem chi tiet khoa/i }).first()).toBeVisible();
   });
 });

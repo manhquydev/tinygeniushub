@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
 Abeka Video Content Analysis Script
-Phân tích chi tiết cấu trúc dữ liệu video Abeka
+Detailed analysis of Abeka video data structure
 """
 
 import json
 from collections import defaultdict, Counter
 from pathlib import Path
 
-# Đường dẫn đến dữ liệu
+# Path to data
 ABEKA_PATH = Path("C:/Users/manhquy/.gemini/antigravity/scratch/abeka_tools/api/abeka")
 OUTPUT_PATH = Path("docs/research/abeka-content-mapping-analysis.md")
 
@@ -25,7 +25,7 @@ def load_index_data():
         return json.load(f)
 
 def analyze_structure(data):
-    """Phân tích cấu trúc dữ liệu"""
+    """Analyze data structure"""
     analysis = {
         'total_pages': len(data['pages']),
         'total_videos': data['meta']['video_count'],
@@ -43,10 +43,10 @@ def analyze_structure(data):
         analysis['providers'][provider]['lessons'] += 1
         analysis['providers'][provider]['videos'] += video_count
         
-        # Phân tích subjects từ videos
+        # Analyze subjects from videos
         for video in page['videos']:
             title = video['title']
-            # Trích xuất subject từ title (phần trước dấu ":" hoặc số)
+            # Trich xuat subject tu title (phan truoc dau ":" hoac so)
             subject = extract_subject(title)
             analysis['providers'][provider]['subjects'].add(subject)
             analysis['subject_stats'][subject]['count'] += 1
@@ -55,15 +55,15 @@ def analyze_structure(data):
     return analysis
 
 def extract_subject(title):
-    """Trích xuất tên môn học từ title video"""
-    # Các patterns phổ biến
+    """Extract the subject name from the video title"""
+    # Popular patterns
     if ':' in title:
         return title.split(':')[0].strip()
     
-    # Xử lý các trường hợp đặc biệt
+    # Handle special cases
     words = title.split()
     if len(words) >= 2:
-        # Lấy các từ trước số (nếu có)
+        # Lay cac tu truoc so (neu co)
         subject_words = []
         for word in words:
             if word.isdigit():
@@ -75,7 +75,7 @@ def extract_subject(title):
     return title
 
 def create_grade_mapping(analysis):
-    """Tạo mapping chi tiết cho mỗi grade"""
+    """Create detailed mapping for each grade"""
     grade_order = ['k4', 'k5', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9', 'g10', 'g11', 'g12']
     
     mapping = []
@@ -99,51 +99,48 @@ def generate_report(data, analysis, mapping):
 
 ## Executive Summary
 
-**Tổng quan dữ liệu Abeka Video:**
+**Abeka Video data overview:**
 
-| Metric | Value |
+| Metrics | Value |
 |--------|-------|
-| **Tổng số bài học (Lessons)** | {total_pages:,} |
-| **Tổng số video** | {total_videos:,} |
-| **Số lớp/grade** | {grade_count} |
-| **Số môn học khác nhau** | {subject_count} |
-| **Trung bình video/bài học** | {avg_videos_per_lesson:.1f} |
+| **Total number of lessons (Lessons)** | {total_pages:,} |
+| **Total videos** | {total_videos:,} |
+| **Class/grade number** | {grade_count} |
+| **Different number of subjects** | {subject_count} |
+| **Average videos/lessons** | {avg_videos_per_lesson:.1f} |
 
-## 1. Cấu Trúc Thư Mục
+## 1. Directory Structure
 
-```
-api/abeka/
-├── index.json          # Index chính
-├── all.json            # Tất cả dữ liệu (20,195 videos)
-├── all_raw.json        # Dữ liệu raw
-├── providers/          # Provider indexes
-│   ├── k4/index.json
-│   ├── k5/index.json
-│   ├── g1/index.json
-│   ├── g2/index.json
-│   ├── ...
-│   └── g12/index.json
-├── 1/                  # Grade 1 lessons
-│   ├── 001.json
-│   ├── 002.json
-│   ├── ...
-│   └── 170.json
-├── 2/                  # Grade 2 lessons
-│   ├── 001.json
-│   └── ...
+```api/abeka/
+├── index.json # Main index
+├── all.json # All data (20,195 videos)
+├── all_raw.json # Raw data
+├── providers/ # Provider indexes
+│ ├── k4/index.json
+│ ├── k5/index.json
+│ ├── g1/index.json
+│ ├── g2/index.json
+│ ├── ...
+│ └── g12/index.json
+├── 1/ # Grade 1 lessons
+│ ├── 001.json
+│ ├── 002.json
+│ ├── ...
+│ └── 170.json
+├── 2/ # Grade 2 lessons
+│ ├── 001.json
+│ └── ...
 ├── ...
-└── 14/                 # Grade K5 (mapped as 14)
+└── 14/ # Grade K5 (mapped as 14)
     ├── 001.json
-    └── ...
-```
+    └── ...```
 
-## 2. Phân Tích Theo Grade
+## 2. Analyze by Grade
 
-### 2.1 Tổng quan các Grade
+### 2.1 Overview of Grades
 
-| Grade | Tên đầy đủ | Số bài học | Số video | Video/bài học (TB) |
-|-------|----------|-----------|----------|-------------------|
-""".format(
+| Grade | Full name | Number of lessons | Number of videos | Video/lesson (TB) |
+|-------|----------|-----------|----------|-------------------|""".format(
         total_pages=analysis['total_pages'],
         total_videos=analysis['total_videos'],
         grade_count=len(analysis['providers']),
@@ -153,20 +150,20 @@ api/abeka/
     
     # Grade full names mapping
     grade_names = {
-        'k4': 'Kindergarten 4 (4 tuổi)',
-        'k5': 'Kindergarten 5 (5 tuổi)',
-        'g1': 'Grade 1 (Lớp 1)',
-        'g2': 'Grade 2 (Lớp 2)',
-        'g3': 'Grade 3 (Lớp 3)',
-        'g4': 'Grade 4 (Lớp 4)',
-        'g5': 'Grade 5 (Lớp 5)',
-        'g6': 'Grade 6 (Lớp 6)',
-        'g7': 'Grade 7 (Lớp 7)',
-        'g8': 'Grade 8 (Lớp 8)',
-        'g9': 'Grade 9 (Lớp 9)',
-        'g10': 'Grade 10 (Lớp 10)',
-        'g11': 'Grade 11 (Lớp 11)',
-        'g12': 'Grade 12 (Lớp 12)'
+        'k4': 'Kindergarten 4 (4 years old)',
+        'k5': 'Kindergarten 5 (5 years old)',
+        'g1': 'Grade 1 (Grade 1)',
+        'g2': 'Grade 2 (Grade 2)',
+        'g3': 'Grade 3 (Grade 3)',
+        'g4': 'Grade 4 (Grade 4)',
+        'g5': 'Grade 5 (Grade 5)',
+        'g6': 'Grade 6 (Grade 6)',
+        'g7': 'Grade 7 (Grade 7)',
+        'g8': 'Grade 8 (Grade 8)',
+        'g9': 'Grade 9 (Grade 9)',
+        'g10': 'Grade 10 (Grade 10)',
+        'g11': 'Grade 11 (Grade 11)',
+        'g12': 'Grade 12 (Grade 12)'
     }
     
     # Add grade details
@@ -176,7 +173,7 @@ api/abeka/
         report += f"| {grade.upper()} | {full_name} | {m['lessons']} | {m['videos']:,} | {m['avg_videos_per_lesson']} |\n"
     
     report += """
-### 2.2 Phân bố video theo Grade
+### 2.2 Video distribution by Grade
 
 ```
 """
@@ -193,14 +190,13 @@ api/abeka/
     report += f"     └{'─' * chart_width}┘\n"
     report += "```\n\n"
     
-    # 3. Phân tích môn học
-    report += """## 3. Phân Tích Môn Học
+    # 3. Subject analysis
+    report += """## 3. Subject Analysis
 
-### 3.1 Danh sách tất cả môn học
+### 3.1 List of all subjects
 
-| Môn học | Tổng số video | Xuất hiện ở các grade | Mức độ phổ biến |
-|---------|--------------|----------------------|-----------------|
-"""
+| Subjects | Total videos | Appears in grades | Popularity |
+|--------|--------------|---------------------|-----------------|"""
     
     # Sort subjects by count
     sorted_subjects = sorted(analysis['subject_stats'].items(), key=lambda x: x[1]['count'], reverse=True)
@@ -210,9 +206,9 @@ api/abeka/
         popularity = '⭐⭐⭐' if info['count'] > 5000 else '⭐⭐' if info['count'] > 1000 else '⭐'
         report += f"| {subject} | {info['count']:,} | {grades} | {popularity} |\n"
     
-    # 4. Chi tiết từng grade
+    # 4. Details of each grade
     report += """
-## 4. Chi Tiết Từng Grade
+## 4. Details of Each Grade
 
 """
     
@@ -221,60 +217,56 @@ api/abeka/
         full_name = grade_names.get(grade, grade)
         report += f"""### 4.{list(mapping).index(m) + 1} {full_name} ({grade.upper()})
 
-- **Số bài học:** {m['lessons']}
-- **Tổng số video:** {m['videos']:,}
-- **Trung bình video/bài:** {m['avg_videos_per_lesson']}
+- **Number of lessons:** {m['lessons']}
+- **Total videos:** {m['videos']:,}
+- **Average videos/post:** {m['avg_videos_per_lesson']}
 
-**Các môn học:**
-
-"""
+**Subjects:**"""
         # Group subjects
         core_subjects = [s for s in m['subjects'] if any(x in s.lower() for x in ['phonics', 'math', 'arithmetic', 'bible', 'reading', 'writing', 'science', 'history', 'english', 'literature'])]
         other_subjects = [s for s in m['subjects'] if s not in core_subjects]
         
         if core_subjects:
-            report += "- **Môn chính:** " + ", ".join(sorted(core_subjects)) + "\n"
+            report += "- **Main subject:**" + ", ".join(sorted(core_subjects)) + "\n"
         if other_subjects:
-            report += "- **Môn phụ:** " + ", ".join(sorted(other_subjects)) + "\n"
+            report += "- **Sub-subject:**" + ", ".join(sorted(other_subjects)) + "\n"
         
         report += "\n"
     
-    # 5. Đề xuất nhóm bán hàng
+    #5. Sales team recommendation
     k4_videos = next((m['videos'] for m in mapping if m['grade'] == 'k4'), 0)
     k5_videos = next((m['videos'] for m in mapping if m['grade'] == 'k5'), 0)
     g1_to_g5_videos = sum(m['videos'] for m in mapping if m['grade'] in ['g1', 'g2', 'g3', 'g4', 'g5'])
     g6_to_g8_videos = sum(m['videos'] for m in mapping if m['grade'] in ['g6', 'g7', 'g8'])
     g9_to_g12_videos = sum(m['videos'] for m in mapping if m['grade'] in ['g9', 'g10', 'g11', 'g12'])
     
-    report += """
-## 5. Đề Xuất Phân Nhóm Bán Hàng
+    report += """## 5. Suggested Sales Grouping
 
-### 5.1 Phân nhóm theo cấp học
+### 5.1 Grouping by educational level
 
-| Nhóm | Mô tả | Grades | Tổng video | Đề xuất giá |
-|------|-------|--------|-----------|-------------|
-| **Preschool** | Mầm non | K4, K5 | {preschool_videos:,} | $XX - $YY |
-| **Elementary** | Tiểu học | G1-G5 | {elementary_videos:,} | $XX - $YY |
-| **Middle School** | Trung học cơ sở | G6-G8 | {middle_videos:,} | $XX - $YY |
-| **High School** | Trung học phổ thông | G9-G12 | {high_videos:,} | $XX - $YY |
-| **Full K-12** | Toàn bộ chương trình | K4-G12 | {total_videos:,} | $XX - $YY |
+| Group | Description | Grades | Total videos | Price proposal |
+|-------|-------|--------|-----------|-------------|
+| **Preschool** | Preschool | K4, K5 | {preschool_videos:,} | $XX - $YY |
+| **Elementary** | Primary school | G1-G5 | {elementary_videos:,} | $XX - $YY |
+| **Middle School** | Middle School | G6-G8 | {middle_videos:,} | $XX - $YY |
+| **High School** | High school | G9-G12 | {high_videos:,} | $XX - $YY |
+| **Full K-12** | Full program | K4-G12 | {total_videos:,} | $XX - $YY |
 
-### 5.2 Phân nhóm theo môn học chuyên sâu
+### 5.2 Grouping by specialized subjects
 
-| Gói | Môn học | Grades | Video ước tính | Giá đề xuất |
-|-----|---------|--------|---------------|-------------|
+| Packages | Subjects | Grades | Estimated Video | Recommended price |
+|-----|---------|--------|-----------|-------------|
 | **Phonics Foundation** | Phonics + Reading + Spelling | K4-G2 | ~X,XXX | $XX |
-| **Math Mastery** | Arithmetic/Math tất cả grades | K4-G12 | ~X,XXX | $XX |
-| **Bible Studies** | Bible tất cả grades | K4-G12 | ~X,XXX | $XX |
+| **Math Mastery** | Arithmetic/Math all grades | K4-G12 | ~X,XXX | $XX |
+| **Bible Studies** | Bible all grades | K4-G12 | ~X,XXX | $XX |
 | **Language Arts** | Writing, Literature, English | G3-G12 | ~X,XXX | $XX |
 | **STEM Bundle** | Math + Science | G3-G12 | ~X,XXX | $XX |
 | **Social Studies** | History, Geography, Economics | G4-G12 | ~X,XXX | $XX |
 
-### 5.3 Gói theo năm học (Annual Packages)
+### 5.3 Annual Packages
 
-| Gói | Grade | Số video | Giá đề xuất |
-|-----|-------|---------|-------------|
-""".format(
+| Packages | Grade | Number of videos | Recommended price |
+|-----|-------|---------|-------------|""".format(
         preschool_videos=k4_videos + k5_videos,
         elementary_videos=g1_to_g5_videos,
         middle_videos=g6_to_g8_videos,
@@ -285,11 +277,11 @@ api/abeka/
     for m in mapping:
         report += f"| {m['grade'].upper()} Complete | {grade_names.get(m['grade'], m['grade'])} | {m['videos']:,} videos | $XX |\n"
     
-    # 6. Thống kê chi tiết
+    # 6. Detailed statistics
     report += """
-## 6. Thống Kê Chi Tiết
+## 6. Detailed Statistics
 
-### 6.1 Phân bố video theo số lượng/bài học
+### 6.1 Distribute videos by number/lesson
 
 """
     
@@ -298,7 +290,7 @@ api/abeka/
     for page in data['pages']:
         video_count_dist[page['video_count']] += 1
     
-    report += "| Số video/bài | Số bài học | Tỷ lệ |\n"
+    report += "| Number of videos/articles | Number of lessons | Rate |\\n"
     report += "|-------------|-----------|-------|\n"
     
     for vc in sorted(video_count_dist.keys()):
@@ -307,10 +299,9 @@ api/abeka/
         report += f"| {vc} | {count} | {percentage:.1f}% |\n"
     
     # 7. Appendix
-    report += """
-## 7. Appendix: Sample Data Structure
+    report += """## 7. Appendix: Sample Data Structure
 
-### Cấu trúc JSON cho mỗi bài học
+### JSON structure for each lesson
 
 ```json
 {{
@@ -335,10 +326,10 @@ api/abeka/
 }}
 ```
 
-### Mã môn học trong tên file
+### Course code in file name
 
-| Mã | Môn học | Ví dụ |
-|----|---------|-------|
+| Code | Subjects | Example |
+|----|--------|-------|
 | AC | Activities | 01AC001F |
 | AT | Arithmetic | 01AT001F |
 | AB | Arithmetic Combination | 01AB001F |
@@ -358,18 +349,17 @@ api/abeka/
 
 ---
 
-## Tóm tắt
+## Summary
 
-Báo cáo này phân tích **{total_videos:,} video** từ **{total_pages:,} bài học** trong chương trình Abeka K-12.
+This report analyzes **{total_videos:,} videos** from **{total_pages:,} lessons** in the Abeka K-12 program.
 
-**Các điểm chính:**
-- 14 grades từ K4 đến G12
-- Trung bình {avg_videos:.1f} video/bài học
-- {subject_count} môn học khác nhau
-- Phù hợp để chia thành các gói: Preschool, Elementary, Middle School, High School
+**Key points:**
+- 14 grades from K4 to G12
+- Average {avg_videos:.1f} videos/lessons
+- {subject_count} different subjects
+- Suitable for dividing into packages: Preschool, Elementary, Middle School, High School
 
-*Generated: {timestamp}*
-""".format(
+*Generated: {timestamp}*""".format(
         total_videos=analysis['total_videos'],
         total_pages=analysis['total_pages'],
         avg_videos=analysis['total_videos'] / analysis['total_pages'] if analysis['total_pages'] > 0 else 0,
@@ -380,17 +370,17 @@ Báo cáo này phân tích **{total_videos:,} video** từ **{total_pages:,} bà
     return report
 
 def main():
-    print("Đang tải dữ liệu...")
+    print("Loading data...")
     data = load_all_data()
     index = load_index_data()
     
-    print("Đang phân tích cấu trúc...")
+    print("Analyzing the structure...")
     analysis = analyze_structure(data)
     
-    print("Đang tạo mapping...")
+    print("Creating mapping...")
     mapping = create_grade_mapping(analysis)
     
-    print("Đang tạo báo cáo...")
+    print("Creating report...")
     report = generate_report(data, analysis, mapping)
     
     # Ensure output directory exists
@@ -400,12 +390,12 @@ def main():
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print(f"✅ Báo cáo đã được lưu tại: {OUTPUT_PATH}")
-    print(f"\nTóm tắt:")
-    print(f"- Tổng số video: {analysis['total_videos']:,}")
-    print(f"- Tổng số bài học: {analysis['total_pages']:,}")
-    print(f"- Số grade: {len(analysis['providers'])}")
-    print(f"- Số môn học: {len(analysis['subject_stats'])}")
+    print(f"✅ The report has been saved at: {OUTPUT_PATH}")
+    print(f"\\nSummary:")
+    print(f"- Total videos: {analysis['total_videos']:,}")
+    print(f"- Total number of lessons: {analysis['total_pages']:,}")
+    print(f"- Grade number: {len(analysis['providers'])}")
+    print(f"- Number of subjects: {len(analysis['subject_stats'])}")
 
 if __name__ == "__main__":
     main()

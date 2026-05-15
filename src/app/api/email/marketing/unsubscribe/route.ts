@@ -19,14 +19,14 @@ function renderHtmlMessage(requestUrl: string, message: string) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hủy nhận email marketing</title>
+    <title>Cancel receiving marketing emails</title>
   </head>
   <body style="font-family: system-ui, sans-serif; margin: 0; background: #f8fafc; color: #0f172a;">
     <main style="max-width: 560px; margin: 64px auto; padding: 24px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px;">
       <h1 style="font-size: 20px; margin: 0 0 12px;">TinyGenius Hub</h1>
       <p style="font-size: 16px; margin: 0; line-height: 1.6;">${message}</p>
       <p style="margin: 16px 0 0;">
-        <a href="${homeUrl}" style="color: #0369a1; text-decoration: underline;">Quay về trang chủ</a>
+        <a href="${homeUrl}" style="color: #0369a1; text-decoration: underline;">Return to home page</a>
       </p>
     </main>
   </body>
@@ -48,7 +48,7 @@ export async function GET(request: Request) {
 
     const parsedToken = parseMarketingEmailUnsubscribeToken(token);
     if (!parsedToken) {
-      return renderHtmlMessage(request.url, "Liên kết hủy đăng ký không hợp lệ.");
+      return renderHtmlMessage(request.url, "The unsubscribe link is not valid.");
     }
 
     const parent = await prisma.parentAccount.findUnique({
@@ -56,7 +56,7 @@ export async function GET(request: Request) {
       select: { id: true, email: true },
     });
     if (!parent) {
-      return renderHtmlMessage(request.url, "Không tìm thấy tài khoản tương ứng với liên kết này.");
+      return renderHtmlMessage(request.url, "No account found corresponding to this link.");
     }
 
     const verifiedParentId = verifyMarketingEmailUnsubscribeToken({
@@ -64,7 +64,7 @@ export async function GET(request: Request) {
       parentEmail: parent.email,
     });
     if (!verifiedParentId || verifiedParentId !== parent.id) {
-      return renderHtmlMessage(request.url, "Liên kết hủy đăng ký không hợp lệ hoặc đã hết hạn.");
+      return renderHtmlMessage(request.url, "The unsubscribe link is invalid or has expired.");
     }
 
     await prisma.parentPreferences.upsert({
@@ -81,7 +81,7 @@ export async function GET(request: Request) {
       },
     });
 
-    return renderHtmlMessage(request.url, "Bạn đã hủy nhận email marketing thành công.");
+    return renderHtmlMessage(request.url, "You have successfully unsubscribed from marketing emails.");
   } catch (error) {
     return handleRouteError(error, {
       routeId: "email.marketing.unsubscribe",

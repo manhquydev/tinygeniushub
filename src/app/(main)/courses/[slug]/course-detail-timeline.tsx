@@ -18,15 +18,15 @@ export function CourseDetailTimeline({ outcomeTimeline, courseSlug, variant, cla
       <section id="outcome-timeline" className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <h2 className="inline-flex items-center gap-2 text-lg font-extrabold text-slate-900">
           <BookOpen className="h-5 w-5 text-sky-600" />
-          Lộ trình kết quả sau khi mua
+          Post-purchase results roadmap
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          Trình bày theo mốc thời gian để phụ huynh hình dung rõ giá trị nhận được, không còn cảm giác mơ hồ.
+          Presented according to a timeline so that parents can clearly visualize the value received, no longer feeling vague.
         </p>
         {claritySnapshot ? (
           <div className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-4">
             <p className="text-xs font-bold uppercase tracking-[0.08em] text-sky-700">
-              Checkpoint cụ thể cho {claritySnapshot.scopeLabel}
+              Checkpoint specific to {claritySnapshot.scopeLabel}
             </p>
             <ul className="mt-2 space-y-1.5 text-sm text-sky-900">
               {claritySnapshot.detailOutcomeLines.map((line) => (

@@ -9,9 +9,9 @@ export const COURSE_LEVEL_CHANGE_REASON_CODES = [
 export type CourseLevelChangeReasonCode = (typeof COURSE_LEVEL_CHANGE_REASON_CODES)[number];
 
 export const COURSE_LEVEL_CHANGE_REASON_LABELS: Record<CourseLevelChangeReasonCode, string> = {
-  too_easy: "Bài học quá dễ",
-  too_hard: "Bài học quá khó",
-  pace_mismatch: "Nhịp học chưa phù hợp",
-  wrong_track: "Cần chuyển sang lộ trình khác",
-  other: "Lý do khác",
+  too_easy: "The lesson is too easy",
+  too_hard: "The lesson is too difficult",
+  pace_mismatch: "The learning rhythm is not appropriate",
+  wrong_track: "Need to switch to another route",
+  other: "Other reasons",
 };

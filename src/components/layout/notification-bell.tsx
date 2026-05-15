@@ -137,7 +137,7 @@ export function NotificationBell() {
       <button
         type="button"
         className="relative rounded-full border border-slate-200 p-2 text-slate-600 transition hover:bg-slate-100"
-        aria-label="Thông báo"
+        aria-label="Notification"
         onClick={() => void openDropdown()}
       >
         <Bell size={16} />
@@ -151,23 +151,23 @@ export function NotificationBell() {
       {open ? (
         <div className="absolute right-0 top-[calc(100%+0.5rem)] z-[150] w-80 rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_16px_30px_rgba(15,23,42,0.16)]">
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-sm font-bold text-slate-900">Thông báo</p>
+            <p className="text-sm font-bold text-slate-900">Notification</p>
             <button
               type="button"
               className="text-xs font-semibold text-teal-700 hover:text-teal-800"
               onClick={() => void markAllRead()}
             >
-              Đánh dấu đã đọc hết
+              Mark all read
             </button>
           </div>
 
           {loading ? (
-            <p className="py-4 text-center text-sm text-slate-500">Đang tải...</p>
+            <p className="py-4 text-center text-sm text-slate-500">Loading...</p>
           ) : null}
 
           {!loading && notifications.length === 0 ? (
             <p className="py-4 text-center text-sm text-slate-500">
-              Chưa có thông báo mới.
+              There are no new announcements yet.
             </p>
           ) : null}
 

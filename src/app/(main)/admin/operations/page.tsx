@@ -4,8 +4,13 @@ import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { getAdminOverview } from "@/modules/admin/service";
 import { prisma } from "@/lib/db";
 import { Settings2 } from "lucide-react";
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 export default async function AdminOperationsPage() {
+  const locale = resolveAppLocale(await getLocale());
+  const t = (key: string) => translate(`admin.operations.${key}`, undefined, locale);
   const overview = await getAdminOverview();
 
   const lessonTrialRows = await prisma.lesson.findMany({
@@ -72,11 +77,11 @@ export default async function AdminOperationsPage() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        title="Vận hành hệ thống"
-        description="Thanh toán, webhook, trial-flag, thông báo và dữ liệu xuất."
+        title={t("title")}
+        description={t("description")}
         icon={<Settings2 size={18} />}
         actions={<AdminExportData />}
-        eyebrow="Commerce & Ops"
+        eyebrow={t("eyebrow")}
       />
 
       <AdminOperationsTabs

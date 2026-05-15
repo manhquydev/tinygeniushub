@@ -13,18 +13,18 @@ export function AdminContentActivityFieldsFillBlank(props: AdminContentActivityF
   return (
     <div className="grid gap-2 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3">
       <div className="grid gap-1.5">
-        <Label htmlFor="fill-sentence">Câu có chỗ trống (dùng ___)</Label>
+        <Label htmlFor="fill-sentence">Sentences with blank spaces (use ___)</Label>
         <Input
           id="fill-sentence"
           value={props.form.fillSentence}
           onChange={(event) => props.onFormChange((current) => ({ ...current, fillSentence: event.target.value }))}
           type="text"
-          placeholder="Con mèo có ___ chân"
+          placeholder="The cat has ___ legs"
           required
         />
       </div>
       <div className="grid gap-1.5">
-        <Label htmlFor="fill-answer">Đáp án</Label>
+        <Label htmlFor="fill-answer">Answer</Label>
         <Input
           id="fill-answer"
           value={props.form.fillAnswer}
@@ -34,7 +34,7 @@ export function AdminContentActivityFieldsFillBlank(props: AdminContentActivityF
         />
       </div>
       <div className="grid gap-1.5">
-        <Label htmlFor="fill-hint">Gợi ý</Label>
+        <Label htmlFor="fill-hint">Suggest</Label>
         <Input
           id="fill-hint"
           value={props.form.fillHint}

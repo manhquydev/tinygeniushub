@@ -41,7 +41,7 @@ function normalizeCouponCode(code: string) {
 function assertCouponCodeFormat(code: string) {
   if (!/^[A-Z0-9_-]{3,64}$/.test(code)) {
     throw new DomainError(
-      "Mã giảm giá chỉ gồm chữ in hoa, số, dấu gạch ngang hoặc gạch dưới.",
+      "Discount codes can only contain capital letters, numbers, dashes or underlines.",
       400,
       "INVALID_COUPON_CODE",
     );
@@ -83,7 +83,7 @@ export async function createCoupon(
   assertCouponCodeFormat(normalizedCode);
 
   if (payload.expiresAt && payload.expiresAt <= new Date()) {
-    throw new DomainError("Thời gian hết hạn phải ở tương lai.", 400, "INVALID_COUPON_EXPIRES_AT");
+    throw new DomainError("The expiration time must be in the future.", 400, "INVALID_COUPON_EXPIRES_AT");
   }
 
   return prisma.couponCode.create({
@@ -121,7 +121,7 @@ export async function toggleCoupon(id: string) {
   });
 
   if (!existing) {
-    throw new DomainError("Không tìm thấy mã giảm giá.", 404, "COUPON_NOT_FOUND");
+    throw new DomainError("No discount code found.", 404, "COUPON_NOT_FOUND");
   }
 
   return prisma.couponCode.update({
@@ -167,19 +167,19 @@ export async function validateCoupon(codeInput: string) {
   });
 
   if (!coupon) {
-    return { valid: false, message: "Mã giảm giá không tồn tại." };
+    return { valid: false, message: "Discount code does not exist." };
   }
 
   if (!coupon.active) {
-    return { valid: false, message: "Mã giảm giá đã tạm ngưng." };
+    return { valid: false, message: "Discount code has been suspended." };
   }
 
   if (coupon.expiresAt && coupon.expiresAt <= now) {
-    return { valid: false, message: "Mã giảm giá đã hết hạn." };
+    return { valid: false, message: "Discount code has expired." };
   }
 
   if (coupon.maxUses !== null && coupon.usedCount >= coupon.maxUses) {
-    return { valid: false, message: "Mã giảm giá đã hết lượt sử dụng." };
+    return { valid: false, message: "The discount code has expired." };
   }
 
   return {

@@ -16,7 +16,7 @@ interface StepProps {
   onActivityResult?: (correct: boolean) => void;
 }
 
-// Greeting step: mascot slides in, speech bubble with greeting, big pulsing "Bắt đầu" button
+// Greeting step: mascot slides in, speech bubble with greeting, big pulsing "Begin" button
 export function LessonStepHook({ step, onNext }: StepProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
   const [bubbleVisible, setBubbleVisible] = useState(false);
@@ -56,7 +56,7 @@ export function LessonStepHook({ step, onNext }: StepProps) {
     >
       {/* Speech bubble above mascot */}
       <InteractiveSpeechBubble
-        text={step.speech ?? "Xin chào!"}
+        text={step.speech ?? "Hello!"}
         visible={bubbleVisible}
         position="bottom"
       />
@@ -82,7 +82,7 @@ export function LessonStepHook({ step, onNext }: StepProps) {
       {/* Audio narration */}
       <AudioPlayer src={step.audioUrl} autoPlay onEnd={() => setAudioEnded(true)} />
 
-      {/* Pulsing "Bắt đầu" button */}
+      {/* Pulsing "Begin" button */}
       <m.button
         onClick={handleStart}
         animate={prefersReducedMotion ? {} : { scale: [1, 1.05, 1] }}
@@ -100,7 +100,7 @@ export function LessonStepHook({ step, onNext }: StepProps) {
           boxShadow: "0 4px 16px rgba(59,130,246,0.35)",
         }}
       >
-        Bắt đầu
+        Begin
       </m.button>
     </div>
   );

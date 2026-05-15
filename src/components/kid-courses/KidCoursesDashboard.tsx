@@ -20,30 +20,30 @@ interface KidCourseDashboardProps {
 function getStatusLabel(status: string | null | undefined): string {
   switch (status) {
     case "ACTIVE":
-      return "Tiếp tục học";
+      return "Continue studying";
     case "COMPLETED":
-      return "Xem lại";
+      return "Review";
     case "SEEDED":
-      return "Bắt đầu ngay";
+      return "Get started now";
     case "PAUSED":
-      return "Tiếp tục";
+      return "Continue";
     default:
-      return "Vào học";
+      return "Go to school";
   }
 }
 
 function getPhaseLabel(status: string | null | undefined): string {
   switch (status) {
     case "ACTIVE":
-      return "Giai đoạn 3: Leo thân cây";
+      return "Stage 3: Climb the tree trunk";
     case "COMPLETED":
-      return "Giai đoạn 4: Chạm tầng mây";
+      return "Stage 4: Touching the clouds";
     case "SEEDED":
-      return "Giai đoạn 2: Hạt giống bùng nổ";
+      return "Stage 2: Seeds explode";
     case "PAUSED":
-      return "Tạm dừng hành trình";
+      return "Pause your journey";
     default:
-      return "Giai đoạn 1: Ươm mầm";
+      return "Stage 1: Incubation";
   }
 }
 
@@ -140,7 +140,7 @@ export function KidCoursesDashboard({
   }, [childId, firstCourseSlug, isNavigating, startNavigation]);
 
   return (
-    <div className="kcd-scene" aria-label="Trang học tập của bé" aria-busy={isNavigating}>
+    <div className="kcd-scene" aria-label="Baby's learning page" aria-busy={isNavigating}>
       <GroundGardenCanvas className="kcd-three-layer" />
 
       <span className="kcd-cloud kcd-cloud-a" aria-hidden="true" />
@@ -161,7 +161,7 @@ export function KidCoursesDashboard({
             className="kcd-btn-back"
             onClick={() => startNavigation("go-parent-dashboard", "/parent/dashboard")}
             disabled={isNavigating}
-            aria-label="Quay lại bảng điều khiển"
+            aria-label="Return to the dashboard"
           >
             <ArrowLeft size={20} />
           </button>
@@ -170,13 +170,13 @@ export function KidCoursesDashboard({
             <span className="kcd-child-avatar" aria-hidden="true">
               {avatarLabel}
             </span>
-            <span className="kcd-child-name">{activeChild?.nickname ?? "Bé"}</span>
+            <span className="kcd-child-name">{activeChild?.nickname ?? "Little"}</span>
             {childrenProfiles.length > 1 ? (
               <select
                 value={childId}
                 onChange={(event) => handleChildChange(event.target.value)}
                 className="kcd-child-select"
-                aria-label="Chọn hồ sơ bé"
+                aria-label="Select baby profile"
                 disabled={isNavigating}
               >
                 {childrenProfiles.map((child) => (
@@ -193,33 +193,33 @@ export function KidCoursesDashboard({
             className="kcd-garden-link"
             onClick={handleGoSharedGarden}
             disabled={isNavigating}
-            aria-label="Mở khu vườn chung"
+            aria-label="Open a communal garden"
           >
             <Trees size={16} />
-            {pendingAction === "go-shared-garden" ? "Đang mở..." : "Khu vườn chung"}
+            {pendingAction === "go-shared-garden" ? "Open..." : "Communal garden"}
           </button>
         </div>
 
         <div className="kcd-hud-title-row">
           <h1 className="kcd-title">
             <Sparkles size={22} />
-            Trang Học Tập Của Bé
+            Baby's Learning Page
           </h1>
           <p className="kcd-subtitle">
-            Bé học theo lộ trình khóa đã mua: chọn một mầm cây để bắt đầu khám phá.
+            Children follow purchased learning paths: choose a seedling to start exploring.
           </p>
           <p className="kcd-flow-note">
-            Luồng chuẩn: <strong>1) Trang học tập</strong> → <strong>2) Khu vườn chung</strong> →{" "}
-            <strong>3) Vườn khóa học chi tiết</strong>.
+            Standard flow: <strong>1) Study page</strong> → <strong>2) Communal garden</strong> →{" "}
+            <strong>3) Garden detailed course</strong>.
           </p>
         </div>
 
-        <div className="kcd-flow-nav" role="navigation" aria-label="Điều hướng chức năng bé">
+        <div className="kcd-flow-nav" role="navigation" aria-label="Navigate baby functions">
           <button type="button" className="kcd-flow-chip is-active" aria-current="page">
-            Trang học tập
+            Learning page
           </button>
           <button type="button" className="kcd-flow-chip" onClick={handleGoSharedGarden} disabled={isNavigating}>
-            {pendingAction === "go-shared-garden" ? "Đang mở..." : "Khu vườn chung"}
+            {pendingAction === "go-shared-garden" ? "Open..." : "Communal garden"}
           </button>
           <button
             type="button"
@@ -227,15 +227,15 @@ export function KidCoursesDashboard({
             onClick={handleGoCourseGarden}
             disabled={!firstCourseSlug || isNavigating}
           >
-            {pendingAction === "go-course-garden" ? "Đang mở..." : "Vườn khóa học"}
+            {pendingAction === "go-course-garden" ? "Open..." : "Garden course"}
           </button>
         </div>
 
-        <div className="kcd-stage-strip" aria-label="Các giai đoạn học tập">
-          <span>1. Ươm mầm khóa học</span>
-          <span>2. Cú click phép thuật</span>
-          <span>3. Leo thân cây đậu</span>
-          <span>4. Đột phá tầng mây</span>
+        <div className="kcd-stage-strip" aria-label="Learning stages">
+          <span>1. Incubate the course</span>
+          <span>2. Magic click</span>
+          <span>3. Climb the bean stalk</span>
+          <span>4. Break through the clouds</span>
         </div>
       </header>
 
@@ -245,9 +245,9 @@ export function KidCoursesDashboard({
             <span className="kcd-empty-emoji" aria-hidden="true">
               🌱
             </span>
-            <h2 className="kcd-empty-title">Chưa có khóa học nào</h2>
+            <h2 className="kcd-empty-title">There are no courses yet</h2>
             <p className="kcd-empty-desc">
-              Ba mẹ hãy mua khóa học để bé bắt đầu hành trình trong khu vườn mây.
+              Parents, please buy a course for your child to start their journey in the rattan garden.
             </p>
             <button
               type="button"
@@ -255,7 +255,7 @@ export function KidCoursesDashboard({
               onClick={() => startNavigation("go-parent-courses", "/parent/courses")}
               disabled={isNavigating}
             >
-              {pendingAction === "go-parent-courses" ? "Đang mở..." : "Xem khóa học Premium"}
+              {pendingAction === "go-parent-courses" ? "Open..." : "View Premium courses"}
             </button>
           </div>
         ) : (
@@ -278,7 +278,7 @@ export function KidCoursesDashboard({
                   onClick={() => handleCourseClick(course.slug, focusTierNo)}
                   role="button"
                   tabIndex={0}
-                  aria-label={`Vào khóa ${course.title}`}
+                  aria-label={`Enter the lock${course.title}`}
                   aria-disabled={isNavigating}
                   onKeyDown={(event) => {
                     if (isNavigating) {
@@ -310,17 +310,17 @@ export function KidCoursesDashboard({
                       {isCompleted ? (
                         <>
                           <CheckCircle2 size={12} />
-                          Hoàn thành
+                          Complete
                         </>
                       ) : journey ? (
                         <>
                           <Sprout size={12} />
-                          Đang học
+                          Studying
                         </>
                       ) : (
                         <>
                           <Lock size={12} />
-                          Chưa bắt đầu
+                          Haven't started yet
                         </>
                       )}
                     </span>
@@ -328,10 +328,10 @@ export function KidCoursesDashboard({
 
                   <div className="kcd-card-body">
                     <h2 className="kcd-card-title">{course.title}</h2>
-                    <p className="kcd-card-desc">{course.description || "Khóa học sẵn sàng cho bé."}</p>
+                    <p className="kcd-card-desc">{course.description || "The course is ready for children."}</p>
 
                     {course.bundleCourseCount ? (
-                      <p className="kcd-phase-label">{`Trọn bộ ${course.bundleCourseCount} cấp độ`}</p>
+                      <p className="kcd-phase-label">{`Complete set${course.bundleCourseCount}level`}</p>
                     ) : null}
 
                     <p className="kcd-phase-label">{phaseLabel}</p>
@@ -340,7 +340,7 @@ export function KidCoursesDashboard({
                       <div className="kcd-progress-info">
                         <span className="kcd-progress-label">
                           <BookOpen size={12} />
-                          {journey?.completedLessons ?? 0}/{course.totalLessons} bài
+                          {journey?.completedLessons ?? 0}/{course.totalLessons} lessons
                         </span>
                         <span className="kcd-progress-percent">{percent}%</span>
                       </div>
@@ -352,7 +352,7 @@ export function KidCoursesDashboard({
                           aria-valuenow={percent}
                           aria-valuemin={0}
                           aria-valuemax={100}
-                          aria-label={`${percent}% hoàn thành`}
+                          aria-label={`${percent}% complete`}
                         />
                       </div>
                     </div>
@@ -365,9 +365,9 @@ export function KidCoursesDashboard({
                         handleCourseClick(course.slug, focusTierNo);
                       }}
                       disabled={isNavigating}
-                      aria-label={`${statusLabel} khóa ${course.title}`}
+                      aria-label={`${statusLabel}lock${course.title}`}
                     >
-                      {pendingAction === "open-course" ? "Đang mở..." : statusLabel}
+                      {pendingAction === "open-course" ? "Open..." : statusLabel}
                     </button>
                   </div>
                 </article>

@@ -305,7 +305,7 @@ describe("getAdminLearningAnalytics", () => {
     vi.clearAllMocks();
   });
 
-  it("trả về zeros khi không có data", async () => {
+  it("returns zeros when there is no data", async () => {
     prismaMock.childProfile.count.mockResolvedValue(0);
     prismaMock.lessonCompletion.groupBy
       .mockResolvedValueOnce([])
@@ -335,7 +335,7 @@ describe("getAdminLearningAnalytics", () => {
     expect(prismaMock.lesson.findMany).not.toHaveBeenCalled();
   });
 
-  it("tính đúng activeChildrenLast7d từ distinct childId count", async () => {
+  it("correctly calculates activeChildrenLast7d from distinct childId count", async () => {
     prismaMock.childProfile.count.mockResolvedValue(4);
     prismaMock.lessonCompletion.groupBy
       .mockResolvedValueOnce([{ childId: "child-1" }, { childId: "child-2" }])
@@ -353,7 +353,7 @@ describe("getAdminLearningAnalytics", () => {
     expect(result.activeChildrenLast30d).toBe(3);
   });
 
-  it("tính đúng streakDistribution: zero=streak0, low=1-3, medium=4-7, high>7", async () => {
+  it("correctly calculated streakDistribution: zero=streak0, low=1-3, medium=4-7, high>7", async () => {
     prismaMock.childProfile.count.mockResolvedValue(6);
     prismaMock.lessonCompletion.groupBy
       .mockResolvedValueOnce([])
@@ -381,7 +381,7 @@ describe("getAdminLearningAnalytics", () => {
     });
   });
 
-  it("topLessons sắp xếp giảm dần theo completionCount, max 10 items", async () => {
+  it("topLessons sorted descending by completionCount, max 10 items", async () => {
     prismaMock.childProfile.count.mockResolvedValue(10);
     prismaMock.lessonCompletion.groupBy
       .mockResolvedValueOnce([])
@@ -444,7 +444,7 @@ describe("getAdminRetentionAnalytics", () => {
     vi.clearAllMocks();
   });
 
-  it("retentionRate = 0 khi totalHistoricalSubscriptions = 0 (tránh chia cho 0)", async () => {
+  it("retentionRate = 0 when totalHistoricalSubscriptions = 0 (avoid dividing by 0)", async () => {
     prismaMock.parentAccount.count.mockResolvedValue(0);
     prismaMock.subscription.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0).mockResolvedValueOnce(0);
     prismaMock.childProfile.count.mockResolvedValue(0);
@@ -456,7 +456,7 @@ describe("getAdminRetentionAnalytics", () => {
     expect(result.retentionRate).toBe(0);
   });
 
-  it("tính đúng retentionRate = (active/total)*100 làm tròn 1 chữ số", async () => {
+  it("correctly calculated retentionRate = (active/total)*100 rounded to 1 digit", async () => {
     prismaMock.parentAccount.count.mockResolvedValue(2);
     prismaMock.subscription.count.mockResolvedValueOnce(1).mockResolvedValueOnce(7).mockResolvedValueOnce(13);
     prismaMock.childProfile.count.mockResolvedValue(5);
@@ -468,7 +468,7 @@ describe("getAdminRetentionAnalytics", () => {
     expect(result.retentionRate).toBe(53.8);
   });
 
-  it("churned30d đếm đúng subscription CANCELED trong 30 ngày qua", async () => {
+  it("churned30d correctly counted CANCELED subscriptions in the last 30 days", async () => {
     prismaMock.parentAccount.count.mockResolvedValue(1);
     prismaMock.subscription.count.mockResolvedValueOnce(4).mockResolvedValueOnce(6).mockResolvedValueOnce(10);
     prismaMock.childProfile.count.mockResolvedValue(3);
@@ -497,7 +497,7 @@ describe("getAdminActionLogs", () => {
     vi.clearAllMocks();
   });
 
-  it("gọi findMany với orderBy createdAt desc và đúng limit", async () => {
+  it("calls findMany with orderBy createdAt desc and the correct limit", async () => {
     prismaMock.adminActionLog.findMany.mockResolvedValue([{ id: "log-1" }]);
 
     const result = await getAdminActionLogs(12);
@@ -519,7 +519,7 @@ describe("getAdminActionLogs", () => {
     });
   });
 
-  it("default limit = 50 khi không truyền", async () => {
+  it("default limit = 50 when not transmitting", async () => {
     prismaMock.adminActionLog.findMany.mockResolvedValue([]);
 
     await getAdminActionLogs();
@@ -610,7 +610,7 @@ describe("createAdminActionLog", () => {
     vi.clearAllMocks();
   });
 
-  it("lưu đúng adminEmail + action + target + detail vào DB", async () => {
+  it("correctly save adminEmail + action + target + detail to DB", async () => {
     prismaMock.adminActionLog.create.mockResolvedValue({
       id: "log-1",
       adminEmail: "admin@example.com",
@@ -649,7 +649,7 @@ describe("createAdminActionLog", () => {
     );
   });
 
-  it("target và detail là optional (undefined ok)", async () => {
+  it("target and detail are optional (undefined ok)", async () => {
     prismaMock.adminActionLog.create.mockResolvedValue({
       id: "log-2",
       adminEmail: "admin@example.com",
@@ -682,7 +682,7 @@ describe("executeBulkAdminAction", () => {
     vi.clearAllMocks();
   });
 
-  it("SUSPEND: updateMany suspended=true cho đúng parentIds", async () => {
+  it("SUSPEND: update suspendedMany=true for correct parentIds", async () => {
     prismaMock.parentAccount.findMany.mockResolvedValue([
       { id: "parent-1", email: "one@example.com", displayName: "One" },
       { id: "parent-2", email: "two@example.com", displayName: "Two" },
@@ -728,7 +728,7 @@ describe("executeBulkAdminAction", () => {
     expect(result).toEqual({ succeeded: 1, failed: 0 });
   });
 
-  it("SEND_NOTIFICATION: tạo notification cho mỗi parentId", async () => {
+  it("SEND_NOTIFICATION: create notification for each parentId", async () => {
     prismaMock.parentAccount.findMany.mockResolvedValue([
       { id: "parent-1", email: "one@example.com", displayName: "One" },
       { id: "parent-2", email: "two@example.com", displayName: "Two" },
@@ -739,7 +739,7 @@ describe("executeBulkAdminAction", () => {
       parentIds: ["parent-1", "parent-2"],
       action: "SEND_NOTIFICATION",
       payload: {
-        message: "Lời nhắc từ admin",
+        message: "Reminder from admin",
       },
     });
 
@@ -749,14 +749,14 @@ describe("executeBulkAdminAction", () => {
         parentId: "parent-1",
         notification: expect.objectContaining({
           type: "TIP",
-          message: "Lời nhắc từ admin",
+          message: "Reminder from admin",
         }),
       }),
     );
     expect(result).toEqual({ succeeded: 2, failed: 0 });
   });
 
-  it("throws khi parentIds rỗng", async () => {
+  it("throws when parentIds is empty", async () => {
     await expect(
       executeAdminBulkUsersAction({
         parentIds: [],

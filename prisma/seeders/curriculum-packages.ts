@@ -3,12 +3,12 @@
  * Curriculum Package Database Seeder
  *
  * This script seeds the database with 8 curriculum packages:
- * 1. Mầm Non PREMIUM (K4-K5) - 199K
- * 2. Tiểu Học PRO (G1-G5) - 349K
- * 3. Trung Học ADVANCED (G6-G9) - 349K
+ * 1. PREMIUM Preschool (K4-K5) - 199K
+ * 2. Primary School PRO (G1-G5) - 349K
+ * 3. ADVANCED High School (G6-G9) - 349K
  * 4. THPT ELITE (G10-G12) - 449K
- * 5. Tiếng Anh MASTER (K4-G5) - 249K
- * 6. Toán Tư Duy MATH (K4-G8) - 199K
+ * 5. English MASTER (K4-G5) - 249K
+ * 6. Mental Math MATH (K4-G8) - 199K
  * 7. STEM INNOVATOR (G3-G8) - 299K
  * 8. ULTIMATE (K4-G12) - 699K
  *
@@ -34,8 +34,8 @@ interface PackageSeed {
 const CURRICULUM_PACKAGES: PackageSeed[] = [
   {
     code: 'PRESCHOOL_PREMIUM',
-    name: 'Mầm Non PREMIUM',
-    description: 'Chương trình mầm non toàn diện cho bé K4-K5 (4-5 tuổi). Bao gồm Phonics, Arithmetic, Bible, và các hoạt động phát triển kỹ năng.',
+    name: 'PREMIUM Preschool',
+    description: 'Comprehensive preschool program for children K4-K5 (4-5 years old). Includes Phonics, Arithmetic, Bible, and skill development activities.',
     grades: ['k4', 'k5'],
     subjects: [], // All subjects
     videoCount: 680, // ~170 lessons x 2 grades x 2 subjects avg
@@ -45,8 +45,8 @@ const CURRICULUM_PACKAGES: PackageSeed[] = [
   },
   {
     code: 'ELEMENTARY_PRO',
-    name: 'Tiểu Học PRO',
-    description: 'Chương trình tiểu học đầy đủ từ lớp 1 đến lớp 5. Bao gồm Phonics, Arithmetic, Bible, History, Science và các môn phụ trợ.',
+    name: 'Primary School PRO',
+    description: 'Full elementary school program from grades 1 to 5. Includes Phonics, Arithmetic, Bible, History, Science and auxiliary subjects.',
     grades: ['g1', 'g2', 'g3', 'g4', 'g5'],
     subjects: [], // All subjects
     videoCount: 2550, // ~170 lessons x 5 grades x 3 subjects avg
@@ -56,8 +56,8 @@ const CURRICULUM_PACKAGES: PackageSeed[] = [
   },
   {
     code: 'MIDDLE_ADVANCED',
-    name: 'Trung Học ADVANCED',
-    description: 'Chương trình trung học chuyên sâu từ lớp 6 đến lớp 9. Tập trung vào tư duy phản biện và kiến thức nền tảng vững chắc.',
+    name: 'ADVANCED High School',
+    description: 'Intensive high school program from grades 6 to 9. Focuses on critical thinking and solid foundational knowledge.',
     grades: ['g6', 'g7', 'g8', 'g9'],
     subjects: [], // All subjects
     videoCount: 2040, // ~170 lessons x 4 grades x 3 subjects avg
@@ -68,7 +68,7 @@ const CURRICULUM_PACKAGES: PackageSeed[] = [
   {
     code: 'HIGH_ELITE',
     name: 'THPT ELITE',
-    description: 'Chương trình THPT chuẩn bị cho đại học từ lớp 10 đến lớp 12. Nâng cao tư duy phản biện và kỹ năng nghiên cứu.',
+    description: 'High school program to prepare for college from grades 10 to 12. Improve critical thinking and research skills.',
     grades: ['g10', 'g11', 'g12'],
     subjects: [], // All subjects
     videoCount: 1530, // ~170 lessons x 3 grades x 3 subjects avg
@@ -78,8 +78,8 @@ const CURRICULUM_PACKAGES: PackageSeed[] = [
   },
   {
     code: 'ENGLISH_MASTER',
-    name: 'Tiếng Anh MASTER',
-    description: 'Chuyên sâu Tiếng Anh từ K4 đến lớp 5. Bao gồm Phonics, Reading, Literature, Grammar và Vocabulary.',
+    name: 'English MASTER',
+    description: 'Intensive English from K4 to grade 5. Including Phonics, Reading, Literature, Grammar and Vocabulary.',
     grades: ['k4', 'k5', 'g1', 'g2', 'g3', 'g4', 'g5'],
     subjects: ['PHONICS', 'READING', 'LITERATURE', 'GRAMMAR', 'VOCABULARY', 'COMPOSITION', 'SPELLING'],
     videoCount: 1190, // ~170 lessons x 7 grades x 1 subject
@@ -89,8 +89,8 @@ const CURRICULUM_PACKAGES: PackageSeed[] = [
   },
   {
     code: 'MATH_THINKING',
-    name: 'Toán Tư Duy MATH',
-    description: 'Phát triển tư duy toán học từ K4 đến lớp 8. Tập trung vào Arithmetic, tư duy logic và giải quyết vấn đề.',
+    name: 'Mental Math MATH',
+    description: 'Develop mathematical thinking from K4 to grade 8. Focus on Arithmetic, logical thinking and problem solving.',
     grades: ['k4', 'k5', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8'],
     subjects: ['ARITHMETIC', 'COMBINATION'],
     videoCount: 1700, // ~170 lessons x 10 grades x 1 subject
@@ -101,7 +101,7 @@ const CURRICULUM_PACKAGES: PackageSeed[] = [
   {
     code: 'STEM_INNOVATOR',
     name: 'STEM INNOVATOR',
-    description: 'Chương trình STEM từ lớp 3 đến lớp 8. Kết hợp Science, Arithmetic và các dự án sáng tạo.',
+    description: 'STEM program for grades 3 to 8. Combining Science, Arithmetic and creative projects.',
     grades: ['g3', 'g4', 'g5', 'g6', 'g7', 'g8'],
     subjects: ['SCIENCE', 'ARITHMETIC', 'HISTORY', 'HEALTH'],
     videoCount: 2040, // ~170 lessons x 6 grades x 2 subjects
@@ -112,7 +112,7 @@ const CURRICULUM_PACKAGES: PackageSeed[] = [
   {
     code: 'ULTIMATE',
     name: 'ULTIMATE',
-    description: 'Gói toàn diện nhất từ K4 đến lớp 12. Truy cập không giới hạn tất cả các môn học và lớp.',
+    description: 'The most comprehensive package from K4 to grade 12. Unlimited access to all subjects and grades.',
     grades: ['k4', 'k5', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9', 'g10', 'g11', 'g12'],
     subjects: [], // All subjects
     videoCount: 8500, // ~170 lessons x 14 grades x 3.5 subjects avg

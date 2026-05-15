@@ -101,12 +101,12 @@ function buildSeedCinematicStorageKey(childId: string, courseId: string) {
 function resolveTrackLabel(trackCode: SkyGardenLesson["trackCode"]) {
   switch (trackCode) {
     case "MATH":
-      return "Toán";
+      return "Maths";
     case "HABIT":
-      return "Thói quen";
+      return "Habit";
     case "ENGLISH":
     default:
-      return "Tiếng Anh";
+      return "English";
   }
 }
 
@@ -126,14 +126,14 @@ function resolveTrackIcon(trackCode: SkyGardenLesson["trackCode"]) {
 function formatKidDisplayName(nickname: string) {
   const cleaned = nickname.trim();
   if (!cleaned) {
-    return "Bé yêu";
+    return "Baby";
   }
 
   if (cleaned.includes("@")) {
     const localPart = cleaned.split("@")[0]?.trim() ?? "";
     const readable = localPart.replace(/[._-]+/g, " ").trim();
     if (!readable) {
-      return "Bé yêu";
+      return "Baby";
     }
     return readable.slice(0, 24);
   }
@@ -157,26 +157,26 @@ function readJourneyVisual(params: {
   switch (fallbackStatus) {
     case "COMPLETED":
       return {
-        label: "Đã nở hoa",
+        label: "Has bloomed",
         tone: "completed" as const,
         fxSrc: "/images/cloud-garden/vfx/vfx_tier_unlocked_badge.png",
       };
     case "PAUSED":
       return {
-        label: "Tạm nghỉ",
+        label: "Take a break",
         tone: "paused" as const,
         fxSrc: "/images/cloud-garden/vfx/vfx_seed_sprout.png",
       };
     case "ACTIVE":
       return {
-        label: "Đang lớn lên",
+        label: "Growing up",
         tone: "active" as const,
         fxSrc: "/images/cloud-garden/vfx/vfx_tap_star_pop.png",
       };
     case "SEEDED":
     default:
       return {
-        label: "Mầm mới",
+        label: "New sprouts",
         tone: "seeded" as const,
         fxSrc: "/images/cloud-garden/vfx/vfx_seed_sprout.png",
       };
@@ -376,7 +376,7 @@ export function KidSkyGardenScene({
       return {
         trackCode: trackCode as SkyGardenLesson["trackCode"],
         title: trackLessons[0]?.journeyTitle ?? resolveTrackLabel(trackCode),
-        unitTitle: trackLessons[0]?.unitTitle ?? "Mở đầu",
+        unitTitle: trackLessons[0]?.unitTitle ?? "Opening",
         accent: trackLessons[0]?.journeyAccent ?? "#2563eb",
         totalLessons: trackLessons.length,
         completedLessons,
@@ -465,14 +465,14 @@ export function KidSkyGardenScene({
   const nextLessonTitle = activeNode?.title ?? null;
   const remainingGoalMinutes = Math.max(progress.dailyGoalMinutes - progress.totalMinutesToday, 0);
   const heroTierLabel =
-    activeNode?.tierIndex != null ? `Tầng mây ${activeNode.tierIndex}` : "Mây đầu tiên";
+    activeNode?.tierIndex != null ? `Cloud layer${activeNode.tierIndex}` : "First clouds";
   const heroProgressLabel =
-    completedCount > 0 ? `${completedPercent}% khu vườn đã nở` : "Chạm mây để bắt đầu";
+    completedCount > 0 ? `${completedPercent}% of gardens have bloomed` : "Touch the clouds to start";
   const heroJourneyHint = nextLessonTitle
-    ? `Nhiệm vụ tiếp theo: ${nextLessonTitle}`
+    ? `Next mission:${nextLessonTitle}`
     : courseDescription?.trim()
       ? courseDescription.trim()
-      : "Chạm vào đám mây đầu tiên để bắt đầu hành trình.";
+      : "Tap on the first cloud to start the journey.";
   const tierSpacing = isCompact ? 330 : 390;
   const baseTierBottom = isCompact ? 150 : 180;
   const mapHeight = Math.max(
@@ -558,7 +558,7 @@ export function KidSkyGardenScene({
 
         if (!lessonsResponse.ok || !lessonsBody.ok) {
           setStatusMessage(
-            lessonsBody.error?.message ?? "Không tải được dữ liệu hành trình.",
+            lessonsBody.error?.message ?? "Unable to download trip data.",
           );
           return;
         }
@@ -604,7 +604,7 @@ export function KidSkyGardenScene({
         setStatusMessage(
           error instanceof Error
             ? error.message
-            : "Không thể đồng bộ dữ liệu hành trình.",
+            : "Cannot synchronize trip data.",
         );
       } finally {
         if (!options?.silent) {
@@ -628,7 +628,7 @@ export function KidSkyGardenScene({
 
   const guardBeforeStart = useCallback(() => {
     if (progress.reached) {
-      setStatusMessage("Hôm nay đã đạt mục tiêu phút học, nhưng bé vẫn có thể tiếp tục nhé!");
+      setStatusMessage("Today's goal of learning minutes has been reached, but you can still continue!");
       // Allow them to continue anyway, don't block logic
     }
     return true;
@@ -667,7 +667,7 @@ export function KidSkyGardenScene({
       }
 
       setLessons(updatedLessons);
-      setStatusMessage("Tuyệt vời! Bé vừa mở thêm một tầng mây mới.");
+      setStatusMessage("Great! Baby has just opened a new layer of clouds.");
       void syncChildData(activeChildId, { silent: true });
     },
     [activeChildId, lessons, selectedTrack, syncChildData],
@@ -752,7 +752,7 @@ export function KidSkyGardenScene({
 
     if (!hasSeen) {
       setSeedCinematicCourse(initialSeedCourse);
-      setStatusMessage(`Hạt giống mới cho khóa "${initialSeedCourse.title}" đã sẵn sàng.`);
+      setStatusMessage(`New seed for key"${initialSeedCourse.title}" is ready.`);
     }
   }, [activeChildId, initialSeedCourse]);
 
@@ -942,18 +942,18 @@ export function KidSkyGardenScene({
     }
 
     setSeedCinematicCourse(null);
-    setStatusMessage(`Đã gieo mầm cho khóa "${seedCinematicCourse.title}". Bắt đầu leo mây thôi!`);
+    setStatusMessage(`Seeds have been planted for the course"${seedCinematicCourse.title}". Let's start climbing the clouds!`);
   }, [activeChildId, seedCinematicCourse]);
 
   const mascotMessage =
     statusMessage ??
     (showCloudClimbMap
       ? !hasHiddenBelow
-        ? "Bắt đầu từ khu vườn nhé. Hoàn thành bài để leo lên tầng mây."
+        ? "Let's start with the garden. Complete the lesson to climb to the clouds."
         : activeNode
-          ? "Chinh phục cụm bài hiện tại để mở khóa vùng mây phía trên."
-          : "Tiếp tục hành trình trên mây nào."
-      : "Chọn hành trình yêu thích để khởi động khu vườn học tập.");
+          ? "Conquer the current cluster of cards to unlock the cloud area above."
+          : "Let's continue our journey in the clouds."
+      : "Choose your favorite journey to start your learning garden.");
 
   return (
     <section
@@ -961,7 +961,7 @@ export function KidSkyGardenScene({
       style={sceneStyle}
       data-testid={mode === "course" ? "kid-course-scene" : "kid-today-scene"}
       data-performance-profile={performanceProfile}
-      aria-label="Khu vườn mây học tập"
+      aria-label="Cloud learning garden"
       aria-busy={isNavigating || loading}
     >
       {shouldRenderWebGlFx ? <SkyGardenFxCanvas className="ksg2-three-layer" quality={fxQuality} /> : null}
@@ -999,7 +999,7 @@ export function KidSkyGardenScene({
               }
             }}
             disabled={isNavigating}
-            aria-label={mode === "course" ? "Quay lại trang học tập" : "Quay lại phụ huynh"}
+            aria-label={mode === "course" ? "Return to the learning page" : "Back to parents"}
           >
             <ArrowLeft size={18} />
           </button>
@@ -1008,13 +1008,13 @@ export function KidSkyGardenScene({
             <span className="ksg2-child-avatar" aria-hidden="true">
               {avatarLabel}
             </span>
-            <span className="ksg2-child-prefix">Bé:</span>
+            <span className="ksg2-child-prefix">Little:</span>
             <select
               value={activeChildId}
               onChange={(event) => {
                 void handleChildChange(event.target.value);
               }}
-              aria-label="Chọn hồ sơ bé"
+              aria-label="Select baby profile"
               disabled={isNavigating}
             >
               {childrenProfiles.map((child) => (
@@ -1026,7 +1026,7 @@ export function KidSkyGardenScene({
           </label>
         </div>
 
-        <div className="ksg2-flow-nav" role="navigation" aria-label="Điều hướng hành trình">
+        <div className="ksg2-flow-nav" role="navigation" aria-label="Navigate the journey">
           <button type="button" className="ksg2-flow-chip" onClick={goToLearningHub} disabled={isNavigating}>
             <Image
               src="/kisu-assets/stickers/sticker_tap_here_smile.png"
@@ -1035,7 +1035,7 @@ export function KidSkyGardenScene({
               height={22}
               className="ksg2-flow-chip-icon"
             />
-            {pendingNavigationAction === "go-learning-hub" ? "Đang mở..." : "Sân học"}
+            {pendingNavigationAction === "go-learning-hub" ? "Open..." : "School yard"}
           </button>
           <button type="button" className="ksg2-flow-chip" onClick={goToSharedGarden} disabled={isNavigating}>
             <Image
@@ -1045,7 +1045,7 @@ export function KidSkyGardenScene({
               height={22}
               className="ksg2-flow-chip-icon"
             />
-            {pendingNavigationAction === "go-shared-garden" ? "Đang mở..." : "Vườn chung"}
+            {pendingNavigationAction === "go-shared-garden" ? "Open..." : "Shared garden"}
           </button>
           <span className="ksg2-flow-chip is-active">
             <Image
@@ -1055,7 +1055,7 @@ export function KidSkyGardenScene({
               height={22}
               className="ksg2-flow-chip-icon"
             />
-            Vườn mây
+            Cloud garden
           </span>
         </div>
 
@@ -1065,18 +1065,18 @@ export function KidSkyGardenScene({
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={courseCoverImageUrl ?? "/images/courses/course_cover_littlefox.png"}
-                alt={courseTitle ?? "Khóa học"}
+                alt={courseTitle ?? "Course"}
               />
             </div>
 
             <div className="ksg2-course-content">
-              <p className="ksg2-course-tag">{`Vườn mây của ${activeChildName}`}</p>
-              <h1>{courseTitle ?? "Hành trình học của bé"}</h1>
+              <p className="ksg2-course-tag">{`Cloud garden's${activeChildName}`}</p>
+              <h1>{courseTitle ?? "Baby's learning journey"}</h1>
               <p className="ksg2-course-story">{heroJourneyHint}</p>
               <div className="ksg2-course-stats">
                 <span>{heroTierLabel}</span>
                 <span>{heroProgressLabel}</span>
-                {isCompact ? null : <span>{`Mục tiêu ${progress.dailyGoalMinutes} phút/ngày`}</span>}
+                {isCompact ? null : <span>{`Target${progress.dailyGoalMinutes}minutes/day`}</span>}
               </div>
               <span
                 className={`ksg2-journey-state is-${journeyVisual.tone}`}
@@ -1104,16 +1104,16 @@ export function KidSkyGardenScene({
         ) : null}
 
         <div className="ksg2-progress-bar">
-          <span>{`Hôm nay bé học ${progress.totalMinutesToday} phút`}</span>
+          <span>{`Today the baby learns${progress.totalMinutesToday}minute`}</span>
           <strong>
             {remainingGoalMinutes > 0
-              ? `Còn ${remainingGoalMinutes} phút nữa`
-              : "Bé đạt mục tiêu rồi!"}
+              ? `${remainingGoalMinutes} minutes left`
+              : "Baby reached his goal!"}
           </strong>
         </div>
       </header>
 
-      {loading ? <p className="ksg2-status">Đang đồng bộ dữ liệu khu vườn...</p> : null}
+      {loading ? <p className="ksg2-status">Synchronizing garden data...</p> : null}
       {!loading && statusMessage ? <p className="ksg2-status">{statusMessage}</p> : null}
 
       <main className="ksg2-main">
@@ -1126,7 +1126,7 @@ export function KidSkyGardenScene({
                 className="ksg2-journey-card"
                 onClick={() => {
                   setSelectedTrack(journey.trackCode);
-                  setStatusMessage(`Mình vào ${journey.title} nhé!`);
+                  setStatusMessage(`I come in${journey.title}okay!`);
                 }}
                 style={{ "--ksg2-accent": journey.accent } as CSSProperties}
               >
@@ -1134,11 +1134,11 @@ export function KidSkyGardenScene({
                 <div className="ksg2-journey-content">
                   <strong>{journey.title}</strong>
                   <span>{journey.unitTitle}</span>
-                  <span>{`${journey.completedLessons}/${journey.totalLessons} bài`}</span>
+                  <span>{`${journey.completedLessons}/${journey.totalLessons}post`}</span>
                   <span>
                     {journey.nextLessonTitle
-                      ? `Tiếp theo: ${journey.nextLessonTitle}`
-                      : "Sẵn sàng bắt đầu"}
+                      ? `Next:${journey.nextLessonTitle}`
+                      : "Ready to start"}
                   </span>
                 </div>
               </button>
@@ -1147,14 +1147,14 @@ export function KidSkyGardenScene({
         ) : (
           <section
             className="ksg2-map-wrap"
-            aria-label="Bản đồ leo tầng mây"
+            aria-label="Cloud climbing map"
             ref={mapWrapRef}
             data-testid={mode === "course" ? "kid-course-map" : "kid-today-map"}
           >
             <div className="ksg2-map" style={{ minHeight: `${mapHeight}px` }}>
               {hasHiddenAbove ? (
                 <div className="ksg2-fog-cap" aria-hidden="true">
-                  <span>Mây phủ phía trên, tiếp tục học để khám phá</span>
+                  <span>Clouds above, continue learning to explore</span>
                 </div>
               ) : null}
 
@@ -1168,7 +1168,7 @@ export function KidSkyGardenScene({
 
               <div className="ksg2-ground-entry" aria-hidden="true">
                 {hasHiddenBelow ? (
-                  <span className="ksg2-ground-anchor">{`Đã vượt ${visibleWindowStart} tầng`}</span>
+                  <span className="ksg2-ground-anchor">{`Passed${visibleWindowStart}floor`}</span>
                 ) : (
                   <>
                     <Image
@@ -1246,7 +1246,7 @@ export function KidSkyGardenScene({
                           />
                         </>
                       ) : null}
-                      <span className="ksg2-tier-label">{`Tầng mây ${tierNo}`}</span>
+                      <span className="ksg2-tier-label">{`Cloud layer${tierNo}`}</span>
                     </div>
 
                     <div className={`ksg2-node-card state-${node.state}`}>
@@ -1272,7 +1272,7 @@ export function KidSkyGardenScene({
                           objective={node.objective}
                           estimatedMinutes={node.estimatedMinutes}
                           trackCode={(node.trackCode === "MATH" || node.trackCode === "HABIT" || node.trackCode === "ENGLISH") ? node.trackCode : "ENGLISH"}
-                          tierLabel={node.tierIndex != null ? `Tầng ${node.tierIndex}` : null}
+                          tierLabel={node.tierIndex != null ? `Floor${node.tierIndex}` : null}
                           videoSource={node.videoSource}
                           bunnyVideoId={node.bunnyVideoId}
                           videoStatus={node.videoStatus}
@@ -1282,9 +1282,9 @@ export function KidSkyGardenScene({
                       ) : (
                         <div className="ksg2-node-meta">
                           <h3>{node.title}</h3>
-                          <p>{`${node.estimatedMinutes} phút • ${node.objective}`}</p>
+                          <p>{`${node.estimatedMinutes}minute •${node.objective}`}</p>
                           {node.state === "completed" ? (
-                            <span className="ksg2-node-chip">Đã hoàn thành</span>
+                            <span className="ksg2-node-chip">Completed</span>
                           ) : (
                             <button
                               type="button"
@@ -1292,11 +1292,11 @@ export function KidSkyGardenScene({
                               data-testid={`kid-course-tier-lock-${tierNo}`}
                               onClick={() =>
                                 setStatusMessage(
-                                  "Hoàn thành tầng hiện tại để mở khóa tầng mới nhé!",
+                                  "Complete the current floor to unlock a new floor!",
                                 )
                               }
                             >
-                              Chưa mở tầng này
+                              This floor has not been opened yet
                             </button>
                           )}
                         </div>

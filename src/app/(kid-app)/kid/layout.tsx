@@ -1,6 +1,9 @@
 import { headers } from "next/headers";
 import type { ReactNode } from "react";
+import { getLocale } from "next-intl/server";
 import { KidNavigationFeedbackProvider } from "@/components/kid-navigation-feedback";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 /**
  * Kid App Layout
@@ -13,11 +16,12 @@ export default async function KidAppLayout({ children }: { children: ReactNode }
   const headerList = await headers();
   const pathname = headerList.get("x-next-pathname") ?? "";
   const isGarden = pathname.startsWith("/kid/garden") || /^\/kid\/courses\/[^/]+/.test(pathname);
+  const locale = resolveAppLocale(await getLocale());
 
   return (
     <main
       className="kid-app-shell"
-      aria-label={"Khu v\u1ef1c h\u1ecdc t\u1eadp cho b\u00e9"}
+      aria-label={translate("kid.layout.ariaLabel", undefined, locale)}
       data-route={isGarden ? "garden" : "default"}
       style={
         isGarden

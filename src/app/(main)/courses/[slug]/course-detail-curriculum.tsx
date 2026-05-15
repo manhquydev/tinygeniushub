@@ -38,25 +38,25 @@ export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, 
   return (
     <section id="curriculum-preview" className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       <h2 className="text-lg font-extrabold text-slate-900">
-        {isOwned ? `${totalLessonCount} bài học trong khóa` : `Xem học thử ${previewLessonCount} bài đầu`}
+        {isOwned ? `${totalLessonCount}lessons in the course` : `Watch trial lesson${previewLessonCount}first post`}
       </h2>
 
       {!isOwned ? (
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          Chạm vào từng bài để xem thử nhanh nội dung trước khi quyết định mua.
+          Tap on each article to quickly preview the content before deciding to buy.
         </p>
       ) : null}
 
       {showTrialBlock ? (
         <div className="mt-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4">
-          <p className="text-xs font-bold uppercase tracking-[0.08em] text-emerald-700">Trial cố định</p>
+          <p className="text-xs font-bold uppercase tracking-[0.08em] text-emerald-700">Fixed trial</p>
           <p className="mt-1 text-sm font-semibold leading-relaxed text-emerald-900">
-            Bạn xem trước {previewLessonCount} bài đầu để kiểm tra độ phù hợp trước khi mua.
+            Please preview {previewLessonCount} the first article to check its suitability before purchasing.
           </p>
           <p className="mt-2 text-xs leading-relaxed text-emerald-800/90">
             {lockedCount > 0
-              ? `Sau bài thứ ${previewLessonCount}, ${lockedCount} bài còn lại sẽ mở khi mua.`
-              : "Khóa này hiện mở trọn vẹn trong phạm vi học thử."}
+              ? `After the second lesson${previewLessonCount}, ${lockedCount}The remaining cards will be opened upon purchase.`
+              : "This course is currently fully open for trial purposes."}
           </p>
         </div>
       ) : null}
@@ -91,11 +91,11 @@ export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, 
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Bài {item.orderNo}</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Lesson {item.orderNo}</p>
                       {canPreview ? (
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
                           <PlayCircle className="h-3 w-3" />
-                          Học thử
+                          Try learning
                         </span>
                       ) : null}
                     </div>
@@ -104,8 +104,8 @@ export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, 
                   </div>
                 </div>
                 <div className="shrink-0 rounded-xl bg-white px-3 py-2 text-right ring-1 ring-slate-200">
-                  <p className="text-xs text-slate-500">Thời lượng</p>
-                  <p className="text-sm font-bold text-slate-900">{item.lesson.estimatedMinutes} phút</p>
+                  <p className="text-xs text-slate-500">Duration</p>
+                  <p className="text-sm font-bold text-slate-900">{item.lesson.estimatedMinutes} minutes</p>
                 </div>
               </div>
             </article>
@@ -113,7 +113,7 @@ export function CourseDetailCurriculum({ lessons, totalLessonCount, courseSlug, 
         })}
 
         {!isOwned && lockedCount > 0 ? (
-          <p className="text-xs font-semibold text-slate-500">+{lockedCount} bài tiếp theo sẽ mở sau khi mua khóa.</p>
+          <p className="text-xs font-semibold text-slate-500">+{lockedCount} next lessons unlock after purchase.</p>
         ) : null}
       </div>
 

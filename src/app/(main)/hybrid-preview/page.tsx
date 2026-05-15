@@ -11,7 +11,7 @@ export default function HybridPreviewPage() {
     <div style={{ padding: "2rem", maxWidth: 800, margin: "0 auto" }}>
       <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>Hybrid Lesson Preview</h1>
       <p style={{ color: "#64748b", marginBottom: 24 }}>
-        Video teaching + Interactive practice. Nhấn &quot;Bắt đầu&quot; để xem demo.
+        Video teaching + interactive practice. Press &quot;Start&quot; to view the demo.
       </p>
 
       <div
@@ -59,7 +59,7 @@ export default function HybridPreviewPage() {
           boxShadow: "0 4px 16px rgba(239,68,68,0.3)",
         }}
       >
-        Bắt đầu Hybrid Lesson
+        Start Hybrid Lesson
       </button>
 
       {showLesson && (
@@ -68,7 +68,7 @@ export default function HybridPreviewPage() {
           childId="preview-child"
           lessonId={SAMPLE_HYBRID_LESSON.id}
           previewMode
-          onCompleted={() => { setShowLesson(false); alert("Hoàn thành!"); }}
+          onCompleted={() => { setShowLesson(false); alert("Complete!"); }}
           onClose={() => setShowLesson(false)}
         />
       )}

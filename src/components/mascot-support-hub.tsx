@@ -8,7 +8,7 @@ import { AnimatePresence, LayoutGroup, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { Headset, Info, MessageCircle, Phone, PhoneCall } from "lucide-react";
 
-const TOOLTIP_MESSAGE = "Ba mẹ cần hỗ trợ ạ?";
+const TOOLTIP_MESSAGE = "Parents need support?";
 const HOTLINE_LABEL = "Hotline: 1900 xxxx";
 const HUB_FRAME_SIZE = 116;
 const MENU_ITEM_SPRING = { type: "spring" as const, stiffness: 320, damping: 24 };
@@ -20,19 +20,19 @@ interface SupportPersona {
 
 const SUPPORT_PERSONAS: SupportPersona[] = [
   {
-    message: "Linh vật cáo đang lắng nghe câu hỏi của ba mẹ.",
+    message: "The fox mascot is listening to parents' questions.",
     label: "Listening Mode",
   },
   {
-    message: "Ba mẹ cần hỗ trợ ạ?",
+    message: "Parents need support?",
     label: "Care Mode",
   },
   {
-    message: "Linh vật cáo có sẵn hướng dẫn chi tiết cho ba mẹ.",
+    message: "The fox mascot has detailed instructions available for parents.",
     label: "Guide Mode",
   },
   {
-    message: "Kết nối nhanh qua hotline hoặc Zalo ngay nhé!",
+    message: "Connect quickly via hotline or Zalo now!",
     label: "Connect Mode",
   },
 ];
@@ -222,7 +222,7 @@ export function MascotSupportHub() {
               >
                 <div className="mb-3 grid gap-1 text-slate-900">
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700/90">Mascot Support Hub</p>
-                  <p className="text-sm font-semibold leading-relaxed">Chào ba mẹ, linh vật cáo có thể giúp gì được ạ?</p>
+                  <p className="text-sm font-semibold leading-relaxed">Hello parents, how can the fox mascot help?</p>
                 </div>
 
                 <m.div
@@ -303,14 +303,14 @@ export function MascotSupportHub() {
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-violet-500 text-white shadow-[0_8px_16px_rgba(139,92,246,0.32)]">
                       <Info className="h-4 w-4" />
                     </span>
-                    <span className="text-left">Hướng dẫn sử dụng</span>
+                    <span className="text-left">Instructions for use</span>
                     </Link>
                   </m.div>
                 </m.div>
 
                 <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/70 px-3 py-1.5 text-[0.72rem] font-semibold text-emerald-700">
                   <Headset className="h-3.5 w-3.5" />
-                  Đội ngũ CS luôn sẵn sàng hỗ trợ • {activePersona?.label}
+                  CS team is always ready to support • {activePersona?.label}
                 </div>
               </m.div>
             ) : null}
@@ -320,7 +320,7 @@ export function MascotSupportHub() {
             layout
             type="button"
             aria-expanded={open}
-            aria-label="Mở kênh liên lạc hỗ trợ"
+            aria-label="Open support communication channel"
             onClick={handleHubPress}
             className="relative grid place-items-center overflow-visible rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             style={{

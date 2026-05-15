@@ -75,10 +75,10 @@ export async function listAdminStaff() {
 
   const data = await parseApiResponse<{ users?: AdminUserRow[] }>(
     response,
-    "Không tải được danh sách nhân sự. Kiểm tra quyền SUPER_ADMIN.",
+    "Unable to download personnel list. Check SUPER_ADMIN permissions.",
   );
 
-  return requireUsers(data, "Không tải được danh sách nhân sự. Kiểm tra quyền SUPER_ADMIN.");
+  return requireUsers(data, "Unable to download personnel list. Check SUPER_ADMIN permissions.");
 }
 
 export async function createAdminStaff(input: CreateAdminStaffInput) {
@@ -93,10 +93,10 @@ export async function createAdminStaff(input: CreateAdminStaffInput) {
 
   const data = await parseApiResponse<{ user?: AdminUserRow }>(
     response,
-    "Có lỗi xảy ra khi tạo tài khoản.",
+    "An error occurred while creating the account.",
   );
 
-  return requireUser(data, "Có lỗi xảy ra khi tạo tài khoản.");
+  return requireUser(data, "An error occurred while creating the account.");
 }
 
 export async function updateAdminStaff(input: UpdateAdminStaffInput) {
@@ -115,8 +115,8 @@ export async function updateAdminStaff(input: UpdateAdminStaffInput) {
 
   const data = await parseApiResponse<{ user?: AdminUserRow }>(
     response,
-    "Có lỗi xảy ra khi cập nhật.",
+    "An error occurred while updating.",
   );
 
-  return requireUser(data, "Có lỗi xảy ra khi cập nhật.");
+  return requireUser(data, "An error occurred while updating.");
 }

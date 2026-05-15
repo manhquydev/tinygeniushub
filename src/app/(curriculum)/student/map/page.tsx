@@ -31,7 +31,7 @@ function SkillTreeSkeleton() {
     <div className="flex h-screen items-center justify-center">
       <div className="space-y-4 text-center">
         <div className="mx-auto h-16 w-16 animate-spin rounded-full border-4 border-slate-200 border-t-sky-500"></div>
-        <p className="text-slate-500">Đang tải bản đồ kỹ năng...</p>
+        <p className="text-slate-500">Loading skill map...</p>
       </div>
     </div>
   );
@@ -66,12 +66,12 @@ function SkillTreePageContent() {
               {gradeId}
             </div>
             <div>
-              <h1 className="font-bold text-slate-900">Bản Đồ Kỹ Năng</h1>
-              <p className="text-sm text-slate-500">Chạm vào các node để học</p>
+              <h1 className="font-bold text-slate-900">Skill Map</h1>
+              <p className="text-sm text-slate-500">Touch the nodes to learn</p>
             </div>
           </div>
           <Button variant="ghost" size="sm" asChild>
-            <a href="/curriculum/student/daily">📅 Hôm nay</a>
+            <a href="/curriculum/student/daily">📅 Today</a>
           </Button>
         </div>
       </header>
@@ -133,7 +133,7 @@ function NodeDetailModal({ node, gradeColor, onClose }: NodeDetailModalProps) {
           </div>
           <div>
             <DialogTitle className="text-2xl font-bold text-white">
-              Bài {node.lessonNumber}
+              Post {node.lessonNumber}
             </DialogTitle>
             <p className="text-white/80">
               {getSubjectNameVi(node.subjectCode as any)}
@@ -147,13 +147,13 @@ function NodeDetailModal({ node, gradeColor, onClose }: NodeDetailModalProps) {
           <div className="text-center py-8">
             <Lock className="mx-auto h-16 w-16 text-slate-300" />
             <p className="mt-4 text-lg text-slate-600">
-              Hoàn thành bài trước để mở khóa!
+              Complete the previous lesson to unlock!
             </p>
             {node.prerequisites && node.prerequisites.length > 0 && (
               <div className="mt-4 flex justify-center gap-2">
                 {node.prerequisites.map((prereq) => (
                   <Badge key={prereq} variant="secondary">
-                    Bài {prereq}
+                    Post {prereq}
                   </Badge>
                 ))}
               </div>
@@ -176,7 +176,7 @@ function NodeDetailModal({ node, gradeColor, onClose }: NodeDetailModalProps) {
               <div className="flex-1">
                 <p className="font-medium">{getSubjectNameVi(node.subjectCode as any)}</p>
                 <p className="text-sm text-slate-500">
-                  {isCompleted ? "Đã hoàn thành" : isInProgress ? "Đang học" : "Sẵn sàng học"}
+                  {isCompleted ? "Completed" : isInProgress ? "Studying" : "Ready to learn"}
                 </p>
               </div>
               <Button
@@ -188,12 +188,12 @@ function NodeDetailModal({ node, gradeColor, onClose }: NodeDetailModalProps) {
                 {isCompleted ? (
                   <>
                     <Check className="mr-2 h-5 w-5" />
-                    Đã xong
+                    Done
                   </>
                 ) : (
                   <>
                     <Play className="mr-2 h-5 w-5" />
-                    Học ngay
+                    Learn now
                   </>
                 )}
               </Button>
@@ -202,7 +202,7 @@ function NodeDetailModal({ node, gradeColor, onClose }: NodeDetailModalProps) {
             {/* Additional info */}
             {node.progress !== undefined && node.progress > 0 && (
               <div className="rounded-xl bg-slate-50 p-4">
-                <p className="text-sm font-medium text-slate-700">Tiến độ</p>
+                <p className="text-sm font-medium text-slate-700">Progress</p>
                 <div className="mt-2 h-2 rounded-full bg-slate-200">
                   <div
                     className="h-full rounded-full transition-all"

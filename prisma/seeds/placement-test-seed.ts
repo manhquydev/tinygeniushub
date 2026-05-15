@@ -18,7 +18,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 1,
     activitySpec: {
-      question: "Có bao nhiêu quả táo? 🍎🍎🍎",
+      question: "How many apples are there? 🍎🍎🍎",
       options: ["2", "3", "4", "5"],
       correctAnswer: "3",
     },
@@ -29,7 +29,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 2,
     activitySpec: {
-      question: "Số nào đứng sau số 5?",
+      question: "Which number comes after 5?",
       options: ["4", "6", "7", "8"],
       correctAnswer: "6",
     },
@@ -84,8 +84,8 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 7,
     activitySpec: {
-      question: "Số nào lớn hơn? 3 hay 7?",
-      options: ["3", "7", "Bằng nhau", "Không biết"],
+      question: "Which number is bigger? 3 or 7?",
+      options: ["3", "7", "Equal", "Don't know"],
       correctAnswer: "7",
     },
   },
@@ -117,7 +117,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 10,
     activitySpec: {
-      question: "Đếm: 1, 2, 3, _, 5. Số còn thiếu là?",
+      question: "Count: 1, 2, 3, _, 5. What is the missing number?",
       options: ["3", "4", "5", "6"],
       correctAnswer: "4",
     },
@@ -163,7 +163,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 14,
     activitySpec: {
-      question: "3 × 4 = ?",
+      question: "3 x 4 = ?",
       options: ["10", "11", "12", "13"],
       correctAnswer: "12",
     },
@@ -174,7 +174,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 15,
     activitySpec: {
-      question: "5 × 6 = ?",
+      question: "5 x 6 = ?",
       options: ["28", "30", "32", "35"],
       correctAnswer: "30",
     },
@@ -185,7 +185,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 16,
     activitySpec: {
-      question: "Hình chữ nhật có bao nhiêu cạnh?",
+      question: "How many sides does a rectangle have?",
       options: ["2", "3", "4", "5"],
       correctAnswer: "4",
     },
@@ -196,7 +196,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 17,
     activitySpec: {
-      question: "1 giờ = ? phút",
+      question: "1 hour = ? minutes",
       options: ["30", "60", "100", "120"],
       correctAnswer: "60",
     },
@@ -218,7 +218,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 19,
     activitySpec: {
-      question: "7 × 8 = ?",
+      question: "7 x 8 = ?",
       options: ["54", "56", "58", "60"],
       correctAnswer: "56",
     },
@@ -229,7 +229,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 20,
     activitySpec: {
-      question: "Tam giác có bao nhiêu góc?",
+      question: "How many angles does a triangle have?",
       options: ["2", "3", "4", "6"],
       correctAnswer: "3",
     },
@@ -242,7 +242,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 21,
     activitySpec: {
-      question: "24 ÷ 6 = ?",
+      question: "24 / 6 = ?",
       options: ["3", "4", "5", "6"],
       correctAnswer: "4",
     },
@@ -253,7 +253,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 22,
     activitySpec: {
-      question: "56 ÷ 7 = ?",
+      question: "56 / 7 = ?",
       options: ["6", "7", "8", "9"],
       correctAnswer: "8",
     },
@@ -264,9 +264,9 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 23,
     activitySpec: {
-      question: "Mua 4 quyển sách, mỗi quyển 15.000đ. Tổng tiền là bao nhiêu?",
-      options: ["50.000đ", "55.000đ", "60.000đ", "65.000đ"],
-      correctAnswer: "60.000đ",
+      question: "Buy 4 books, each book is 15,000 VND. How much is the total amount?",
+      options: ["50,000 VND", "55,000 VND", "60,000 VND", "65,000 VND"],
+      correctAnswer: "60,000 VND",
     },
   },
   {
@@ -275,7 +275,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 24,
     activitySpec: {
-      question: "Chia 72 kẹo cho 9 bạn. Mỗi bạn được bao nhiêu?",
+      question: "Divide 72 candies among 9 people. How much does each of you get?",
       options: ["6", "7", "8", "9"],
       correctAnswer: "8",
     },
@@ -319,7 +319,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 28,
     activitySpec: {
-      question: "Chu vi hình vuông cạnh 5cm là bao nhiêu?",
+      question: "What is the perimeter of a square with side 5cm?",
       options: ["15cm", "20cm", "25cm", "30cm"],
       correctAnswer: "20cm",
     },
@@ -330,7 +330,7 @@ const MATH_ITEMS = [
     activityType: "MULTIPLE_CHOICE",
     orderHint: 29,
     activitySpec: {
-      question: "100 ÷ 4 = ?",
+      question: "100 / 4 = ?",
       options: ["20", "25", "30", "40"],
       correctAnswer: "25",
     },
@@ -748,11 +748,11 @@ async function main() {
   // ─── Math Placement Test ──────────────────────────────────────────────────
   const mathTest = await prisma.placementTest.upsert({
     where: { domain_isActive: { domain: "MATH", isActive: true } },
-    update: { title: "Kiểm tra đầu vào Toán", description: "Xác định trình độ Toán lớp 1-3" },
+    update: { title: "Math entrance test", description: "Determine Math level for grades 1-3" },
     create: {
       domain: "MATH",
-      title: "Kiểm tra đầu vào Toán",
-      description: "Xác định trình độ Toán lớp 1-3",
+      title: "Math entrance test",
+      description: "Determine Math level for grades 1-3",
       minItems: 10,
       maxItems: 15,
     },
@@ -792,11 +792,11 @@ async function main() {
   // ─── Phonics Placement Test ───────────────────────────────────────────────
   const phonicsTest = await prisma.placementTest.upsert({
     where: { domain_isActive: { domain: "ENGLISH_PHONICS", isActive: true } },
-    update: { title: "Kiểm tra đầu vào Phonics", description: "Xác định trình độ Phonics K-3" },
+    update: { title: "Check Phonics input", description: "Determine K-3 Phonics level" },
     create: {
       domain: "ENGLISH_PHONICS",
-      title: "Kiểm tra đầu vào Phonics",
-      description: "Xác định trình độ Phonics K-3",
+      title: "Check Phonics input",
+      description: "Determine K-3 Phonics level",
       minItems: 10,
       maxItems: 15,
     },

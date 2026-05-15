@@ -1,0 +1,6883 @@
+# Vietnamese Text Inventory
+
+Generated: 2026-05-14T18:54:28.827Z
+
+## Scope
+
+- Scanned runtime source/code roots plus docs, data, public, and asset text files.
+- Excluded secrets, build outputs, logs, binary media, databases, lockfiles, and generated manifests.
+- Detection uses Vietnamese diacritic characters. Unaccented Vietnamese requires manual review.
+
+## Summary
+
+- Files scanned: 17225
+- Vietnamese-containing lines: 6106
+
+### By Area
+
+- docs-data-assets: 6075
+- runtime-source: 31
+
+### By Top Directory
+
+- docs: 5985
+- assets: 76
+- src: 31
+- data: 14
+
+### By Extension
+
+- .md: 5273
+- .json: 644
+- .sql: 122
+- .svg: 36
+- .tsx: 31
+
+### Top Files
+
+- docs/business/vietnam-competitor-analysis-2025.md: 280
+- docs/MASTER-ABEKA-CURRICULUM-BUSINESS-PLAN.md: 237
+- docs/business/abeka-course-package-design.md: 226
+- docs/research/vietnam-parent-persona-research.md: 222
+- docs/business/resource-optimization-strategy.md: 214
+- docs/GenAI/KISU_Character_Bible.md: 191
+- docs/interactive-lesson-production-workflow.md: 190
+- docs/api/littlefox/FS0076.json: 180
+- docs/business/free-tools-strategy-vietnam.md: 178
+- docs/research/abeka-content-mapping-analysis.md: 171
+- docs/research/vietnam-market-phase2-synthesis-report.md: 161
+- docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/uiux-parent-course-clarity-audit.md: 154
+- docs/review/package-design-review.md: 133
+- docs/review/REVIEW-SUMMARY-MASTER.md: 128
+- docs/api/littlefox/FS0020.json: 116
+- docs/sql/unified_content_seed_postgres.sql: 108
+- docs/business/abeka-monetization-master-plan.md: 106
+- docs/marketing/email-sequences.md: 100
+- docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/copywriting-parent-course-differentiation.md: 97
+- docs/GenAI/KISU_Prompt_Dictionary.md: 95
+- docs/business/go-to-market-sales-playbook.md: 92
+- docs/handover/packages/2026-03-19-parent-course-clarity-package/03-implementation-brief/courses-ui-content-blueprint.md: 84
+- docs/marketing/blog-drafts/blog-02-so-sanh-app-hoc-tieng-anh-cho-be.md: 81
+- docs/PRODUCTION-SETUP-SUMMARY.md: 79
+- docs/DOCUMENTATION-ASSESSMENT-FINAL.md: 77
+- docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/planner-parent-course-clarity-plan.md: 75
+- docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/research-parent-decision-friction.md: 75
+- docs/marketing/content-calendar-30day.md: 74
+- docs/grapuco-mcp-analysis-report-2026-04-05.md: 69
+- docs/business/monetization-strategy-vietnam-playbook.md: 68
+- docs/archive/07-subscription-funnel-pricing.md: 66
+- docs/handover/2026-03-18-course-split-education-rationale-handover.md: 66
+- docs/handover/packages/2026-03-18-course-split-executive-package/01-executive/full-handover.md: 66
+- docs/handover/packages/2026-03-18-course-split-executive-package/02-assessment/curriculum-split-validation.md: 61
+- docs/archive/06-ux-flows-information-architecture.md: 59
+- docs/GenAI/KISU_Cloud_Garden_Prompts.md: 58
+- docs/marketing/kol-outreach-template.md: 58
+- docs/archive/13-pricing-page-prd.md: 55
+- docs/handover/packages/2026-03-18-course-split-executive-package/02-assessment/education-rationale-audit.md: 55
+- docs/marketing/gtm-playbook.md: 55
+- docs/archive/12-risks-open-questions.md: 53
+- docs/IMPLEMENTATION-FIXES-SUMMARY.md: 50
+- docs/archive/01-vision-scope.md: 49
+- docs/archive/02-user-personas-vn-parent-insights.md: 49
+- docs/design/curriculum-ui-ux-design.md: 49
+- docs/archive/04-lesson-blueprints-templates.md: 44
+- docs/deployment/vps-production-full-courses.md: 41
+- docs/GenAI/KISU_Cloud_Garden_UIUX_Ideas.md: 41
+- assets/logos/cungcontuhoc-2026-02-21/README.md: 40
+- docs/handover/packages/2026-03-18-course-split-executive-package/02-assessment/executive-structure-draft.md: 40
+- docs/marketing/blog-content-plan.md: 40
+- docs/QUICK-START.md: 40
+- docs/handover/2026-03-18-executive-memo-course-split.md: 38
+- docs/handover/packages/2026-03-18-course-split-executive-package/01-executive/executive-memo.md: 38
+- docs/handover/packages/2026-03-19-parent-course-clarity-package/01-executive/parent-course-clarity-executive-summary.md: 37
+- docs/archive/03-learning-model-roadmap.md: 36
+- docs/marketing/blog-drafts/blog-01-dau-hieu-be-san-sang-hoc-tieng-anh.md: 31
+- src/components/site-footer.test.tsx: 31
+- docs/archive/10-technical-architecture-web.md: 26
+- docs/archive/11-roadmap-phases.md: 26
+- docs/DEPLOYMENT-READY.md: 26
+- docs/archive/08-affiliate-program.md: 25
+- docs/archive/05-content-taxonomy-cms-data-model.md: 23
+- docs/business/roi-profit-analysis-by-package.md: 22
+- docs/review/plan-implementation-gap-analysis.md: 21
+- docs/handover/packages/2026-03-18-course-split-executive-package/00-index.md: 17
+- data/yc2-course-system-handoff-20260413/databases/topic-courses-yc2.sql: 14
+- docs/archive/09-analytics-event-tracking.md: 14
+- docs/codebase-summary.md: 12
+- docs/marketing/2026-03-12-homepage-cloud-garden-brainstorm.md: 12
+- docs/deployment/PRODUCTION-MIGRATION-COMMANDS.md: 10
+- assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-horizontal.svg: 9
+- docs/project-changelog.md: 9
+- docs/resource-to-learning-path-mapping.md: 8
+- assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-monochrome-black.svg: 7
+- assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-vertical.svg: 7
+- docs/api/littlefox/FS0109.json: 6
+- docs/api/littlefox/FS0148.json: 6
+- docs/business/vietnam-b2b-opportunity-analysis.md: 6
+- docs/handover/packages/2026-03-19-parent-course-clarity-package/00-index.md: 6
+- assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-icon.svg: 5
+- assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-monochrome-white.svg: 5
+- docs/DEPLOYMENT-EXECUTION-PLAN.md: 5
+- docs/research/vietnam-market-deep-dive-2025.md: 5
+- docs/api/littlefox/FS0020/001.json: 4
+- docs/api/littlefox/FS0020/002.json: 4
+- docs/api/littlefox/FS0020/003.json: 4
+- docs/api/littlefox/FS0020/004.json: 4
+- docs/api/littlefox/FS0020/019.json: 4
+- docs/api/littlefox/FS0020/020.json: 4
+- docs/api/littlefox/FS0020/021.json: 4
+- docs/api/littlefox/FS0020/022.json: 4
+- docs/api/littlefoxcn/DP000781.json: 4
+- docs/project-roadmap.md: 4
+- docs/research/learning-system-architecture-report-2026-03-31.md: 4
+- assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-wordmark.svg: 3
+- docs/api/littlefox/FS0020/005.json: 3
+- docs/api/littlefox/FS0020/006.json: 3
+- docs/api/littlefox/FS0020/007.json: 3
+- docs/api/littlefox/FS0020/008.json: 3
+
+## Findings
+
+
+### assets/logos/cungcontuhoc-2026-02-21/README.md
+
+- docs-data-assets:1: `# Bộ Nhận Diện Thương Hiệu (Brand Identity) - Cùng Con Tự Học`
+- docs-data-assets:2: `*Phiên bản: 2026-02-21*`
+- docs-data-assets:4: `Bộ logo được thiết kế dựa trên tiêu chuẩn Brand Identity Guidelines chuyên nghiệp, bao gồm 6 biến thể (variations) để đáp ứng mọi nhu cầu hiển thị trên các nền tảng kỹ thuật số và in ấn công nghiệp.`
+- docs-data-assets:6: `Dưới đây là hướng dẫn sử dụng chi tiết cho từng file:`
+- docs-data-assets:8: `### 1. Bản Đầy Đủ Biểu Tượng & Chữ - Bố Cục Dọc (Primary Logo)`
+- docs-data-assets:9: `- **Tên file:** 'logo-cungcontuhoc-vertical.svg'`
+- docs-data-assets:10: `- **Mô tả:** Là phiên bản gốc, hoàn chỉnh nhất với biểu tượng (Icon) nằm trên và Tên thương hiệu + Slogan nằm dưới, căn giữa.`
+- docs-data-assets:11: `- **Mục đích sử dụng:**`
+- docs-data-assets:12: `- Sử dụng làm logo chính (Master Logo) trên các ấn phẩm có không gian vuông hoặc dọc.`
+- docs-data-assets:13: `- Phù hợp đặt trên bìa sách, áo thun (mockup đồng phục), avatar mạng xã hội, poster khổ lớn, hoặc trang giới thiệu chính (About Us).`
+- docs-data-assets:15: `### 2. Bản Đầy Đủ Biểu Tượng & Chữ - Bố Cục Ngang (Secondary / Horizontal Logo)`
+- docs-data-assets:16: `- **Tên file:** 'logo-cungcontuhoc-horizontal.svg'`
+- docs-data-assets:17: `- **Mô tả:** Biểu tượng (Icon) nằm bên trái, Tên thương hiệu + Slogan nằm bên phải.`
+- docs-data-assets:18: `- **Mục đích sử dụng:**`
+- docs-data-assets:19: `- Sử dụng lý tưởng nhất cho **Thanh Điều Hướng (Navbar / Header)** của Website hoặc App vì thiết kế tỷ lệ chữ nhật ngang tiết kiệm chiều cao hiển thị.`
+- docs-data-assets:20: `- Phù hợp đặt trong Chữ ký Email (Email Signature), Banner quảng cáo khung ngang, bảng hiệu.`
+- docs-data-assets:22: `### 3. Bản Chỉ Có Biểu Tượng (Submark / Icon Logo)`
+- docs-data-assets:23: `- **Tên file:** 'logo-cungcontuhoc-icon.svg'`
+- docs-data-assets:24: `- **Mô tả:** Phiên bản tối giản lược bỏ hoàn toàn phần chữ, chỉ giữ lại biểu tượng "Gia đình cú trên cuốn sách".`
+- docs-data-assets:25: `- **Mục đích sử dụng:**`
+- docs-data-assets:26: `- Dùng cho các không gian hiển thị cực kỳ hạn chế: **Favicon** (icon nhỏ xíu xíu trên tab trình duyệt web), App Icon trên điện thoại iOS/Android.`
+- docs-data-assets:27: `- Dùng làm mộc nhận diện cách điệu, đóng dấu chìm (watermark) trên hình ảnh, hoặc biểu tượng avatar khi tên thương hiệu đã được hiển thị bằng text kế bên.`
+- docs-data-assets:29: `### 4. Bản Chỉ Có Chữ (Wordmark / Logotype)`
+- docs-data-assets:30: `- **Tên file:** 'logo-cungcontuhoc-wordmark.svg'`
+- docs-data-assets:31: `- **Mô tả:** Phiên bản chỉ sử dụng Typography chữ "CÙNG CON TỰ HỌC" & "KHÁM PHÁ TIỀM NĂNG", hoàn toàn lược bỏ biểu tượng đồ họa.`
+- docs-data-assets:32: `- **Mục đích sử dụng:**`
+- docs-data-assets:33: `- Dùng cho các không gian rất hẹp không thể nhét biểu tượng vào, hoặc khi đặt cạnh các logo đối tác khác (Sponsorship logos) để tránh bị rối mắt.`
+- docs-data-assets:34: `- Dùng khi in lên các vật phẩm nhỏ xíu như bút bi, đuôi móc khóa.`
+- docs-data-assets:36: `### 5. Bản Đơn Sắc Đen (Monochrome Black)`
+- docs-data-assets:37: `- **Tên file:** 'logo-cungcontuhoc-monochrome-black.svg'`
+- docs-data-assets:38: `- **Mô tả:** Phiên bản đã được chuyển hoàn toàn thành mảng màu đen (Solid Black) và loại bỏ mọi hiệu ứng ánh sáng / gradient. Đảm bảo hiển thị tuyệt đối với tỷ lệ tương phản cao nhất.`
+- docs-data-assets:39: `- **Mục đích sử dụng:**`
+- docs-data-assets:40: `- **Dành riêng cho máy in Laser đen trắng**, in hóa đơn, in mã vạch, giấy tờ hành chính đen trắng của dự án.`
+- docs-data-assets:41: `- Thích hợp để khắc Laser lên bề mặt gỗ, kim loại hoặc làm dấu mộc (stamp).`
+- docs-data-assets:43: `### 6. Bản Đơn Sắc Trắng (Monochrome White / Reverse Logo)`
+- docs-data-assets:44: `- **Tên file:** 'logo-cungcontuhoc-monochrome-white.svg'`
+- docs-data-assets:45: `- **Mô tả:** Ngược lại với bản đen, đây là phiên bản màu trắng tinh được làm rỗng các khoảng trắng.`
+- docs-data-assets:46: `- **Mục đích sử dụng:**`
+- docs-data-assets:47: `- Bắt buộc dùng khi **ép logo (overlay) lên trên các phông nền có màu tối**, hoặc đè lên trên ảnh chụp / video có độ chi tiết phức tạp, giúp logo không bị "chìm" hoặc "chói màu" (color clashing) với hình nền.`
+- docs-data-assets:50: `**Lưu ý kỹ thuật:** Tất cả các SVG đều sử dụng Flat Vector thay vì Blur Filter để bảo toàn chất lượng (Scalability) VÔ CỰC, đồng nghĩa việc bạn có thể phóng to in Billboard ngoài trời hay thu nhỏ làm tem bưu chính mà không hề bị méo hay vỡ pixel.`
+
+### assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-horizontal.svg
+
+- docs-data-assets:2: `<!-- HORIZONTAL - Dành cho Header Navbar, Top Bar -->`
+- docs-data-assets:11: `<!-- ICON BÊN TRÁI -->`
+- docs-data-assets:13: `<!-- Hào quang tri thức -->`
+- docs-data-assets:16: `<!-- Cuốn sách -->`
+- docs-data-assets:27: `<!-- Cú Mẹ -->`
+- docs-data-assets:43: `<!-- Cú Con -->`
+- docs-data-assets:58: `<!-- TYPOGRAPHY BÊN PHẢI (Căn giữa theo chiều dọc) -->`
+- docs-data-assets:60: `<text x="0" y="0" font-family="'Nunito', 'Segoe UI', Quicksand, sans-serif" font-size="34" font-weight="900" fill="#1e3a8a" letter-spacing="1">CÙNG CON TỰ HỌC</text>`
+- docs-data-assets:61: `<text x="4" y="28" font-family="'Inter', 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#b45309" letter-spacing="4">KHÁM PHÁ TIỀM NĂNG</text>`
+
+### assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-icon.svg
+
+- docs-data-assets:2: `<!-- ICON ONLY - Dành cho Favicon Web, Avatar Social Media -->`
+- docs-data-assets:11: `<!-- Hào quang tri thức -->`
+- docs-data-assets:14: `<!-- Cuốn sách -->`
+- docs-data-assets:25: `<!-- Cú Mẹ -->`
+- docs-data-assets:41: `<!-- Cú Con -->`
+
+### assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-monochrome-black.svg
+
+- docs-data-assets:2: `<!-- MONOCHROME BLACK (TRẮNG KHUYẾT VÀ ĐEN ĐẬM) Dành cho in laser/in đen trắng mộc dấu -->`
+- docs-data-assets:4: `<!-- Không có glow màu -->`
+- docs-data-assets:6: `<!-- Cuốn sách -->`
+- docs-data-assets:14: `<!-- Cú Mẹ -->`
+- docs-data-assets:29: `<!-- Cú Con -->`
+- docs-data-assets:42: `<text x="200" y="260" font-family="'Nunito', 'Segoe UI', Quicksand, sans-serif" font-size="28" font-weight="900" text-anchor="middle" fill="#0f172a" letter-spacing="1">CÙNG CON TỰ HỌC</text>`
+- docs-data-assets:43: `<text x="200" y="285" font-family="'Inter', 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155" letter-spacing="5">KHÁM PHÁ TIỀM NĂNG</text>`
+
+### assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-monochrome-white.svg
+
+- docs-data-assets:2: `<!-- MONOCHROME WHITE (Toàn bộ là màu Trắng/Sáng) - Dùng để in đè lên nền Web màu tối -->`
+- docs-data-assets:11: `<!-- Cú Mẹ -->`
+- docs-data-assets:26: `<!-- Cú Con -->`
+- docs-data-assets:39: `<text x="200" y="260" font-family="'Nunito', 'Segoe UI', Quicksand, sans-serif" font-size="28" font-weight="900" text-anchor="middle" fill="#ffffff" letter-spacing="1">CÙNG CON TỰ HỌC</text>`
+- docs-data-assets:40: `<text x="200" y="285" font-family="'Inter', 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#cbd5e1" letter-spacing="5">KHÁM PHÁ TIỀM NĂNG</text>`
+
+### assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-vertical.svg
+
+- docs-data-assets:2: `<!-- FULL COLOR / VERTICAL - Bản Tiêu Chuẩn (Dành cho avata, in áo, mockup) -->`
+- docs-data-assets:16: `<!-- Hào quang tri thức -->`
+- docs-data-assets:19: `<!-- Cuốn sách -->`
+- docs-data-assets:30: `<!-- Cú Mẹ -->`
+- docs-data-assets:46: `<!-- Cú Con -->`
+- docs-data-assets:61: `<text x="200" y="260" font-family="'Nunito', 'Segoe UI', Quicksand, sans-serif" font-size="28" font-weight="900" text-anchor="middle" fill="#1e3a8a" letter-spacing="1">CÙNG CON TỰ HỌC</text>`
+- docs-data-assets:62: `<text x="200" y="285" font-family="'Inter', 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#b45309" letter-spacing="5">KHÁM PHÁ TIỀM NĂNG</text>`
+
+### assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-wordmark.svg
+
+- docs-data-assets:2: `<!-- WORDMARK ONLY - Dành cho không gian hẹp, chỉ cần hiển thị tên thương hiệu (Không dùng Icon) -->`
+- docs-data-assets:3: `<text x="175" y="40" font-family="'Nunito', 'Segoe UI', Quicksand, sans-serif" font-size="34" font-weight="900" text-anchor="middle" fill="#1e3a8a" letter-spacing="1">CÙNG CON TỰ HỌC</text>`
+- docs-data-assets:4: `<text x="175" y="68" font-family="'Inter', 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#b45309" letter-spacing="4">KHÁM PHÁ TIỀM NĂNG</text>`
+
+### data/yc2-course-system-handoff-20260413/databases/topic-courses-yc2.sql
+
+- docs-data-assets:130830: `INSERT INTO "course_items" VALUES(172950,261,16267,'littlefox','col_445eff95f40edc3d','vid_ac5f5fe012983eda','1. The Arrest of Arsène Lupin 1','https://cdn.littlefox.com/contents_5/hls/1080/b41f514096/15731863408e489b4966fe8f703b5be647f1cbae63/stream.m3u8?_=1573186341',4,NULL,1,'2026-04-11 18:59:39');`
+- docs-data-assets:130840: `INSERT INTO "course_items" VALUES(172960,261,16267,'littlefox','col_445eff95f40edc3d','vid_91fe59b1543e2a65','19. The Arrest of Arsène Lupin 1','https://cdn.littlefox.com/contents_5/hls/1080/b41f514096/15731863408e489b4966fe8f703b5be647f1cbae63/stream.m3u8?_=1573186341',4,NULL,11,'2026-04-11 18:59:39');`
+- docs-data-assets:130841: `INSERT INTO "course_items" VALUES(172961,261,16267,'littlefox','col_445eff95f40edc3d','vid_2caf60c7be1bf5bb','2. The Arrest of Arsène Lupin 2','https://cdn.littlefox.com/contents_5/hls/1080/91529ca21d/15731867405da713a690c067105aeb2fae32403405/stream.m3u8?_=1573186741',4,NULL,12,'2026-04-11 18:59:39');`
+- docs-data-assets:130842: `INSERT INTO "course_items" VALUES(172962,261,16267,'littlefox','col_445eff95f40edc3d','vid_f8049f4a89f670c5','20. The Arrest of Arsène Lupin 2','https://cdn.littlefox.com/contents_5/hls/1080/91529ca21d/15731867405da713a690c067105aeb2fae32403405/stream.m3u8?_=1573186741',4,NULL,13,'2026-04-11 18:59:39');`
+- docs-data-assets:130843: `INSERT INTO "course_items" VALUES(172963,261,16267,'littlefox','col_445eff95f40edc3d','vid_73b69a559cf03e3a','21. Arsène Lupin in Prison 1','https://cdn.littlefox.com/contents_5/hls/720/149209f9f8/p098217452/5da9178d047c73a9a1b763d14d4ccd31.m3u8?1201105209',4,NULL,14,'2026-04-11 18:59:39');`
+- docs-data-assets:130844: `INSERT INTO "course_items" VALUES(172964,261,16267,'littlefox','col_445eff95f40edc3d','vid_36719c82f469f6de','22. Arsène Lupin in Prison 2','https://cdn.littlefox.com/contents_5/hls/720/69b4bec728/p3d52ae955/62ee8ed86d562f1c02d954c85ef7d4c6.m3u8?1201105542',4,NULL,15,'2026-04-11 18:59:39');`
+- docs-data-assets:130852: `INSERT INTO "course_items" VALUES(172972,261,16268,'littlefox','col_445eff95f40edc3d','vid_849cbb46d924aa31','3. Arsène Lupin in Prison 1','https://cdn.littlefox.com/contents_5/hls/720/149209f9f8/p098217452/5da9178d047c73a9a1b763d14d4ccd31.m3u8?1201105209',4,NULL,3,'2026-04-11 18:59:39');`
+- docs-data-assets:130860: `INSERT INTO "course_items" VALUES(172980,261,16268,'littlefox','col_445eff95f40edc3d','vid_377ef5e60fda8fcc','4. Arsène Lupin in Prison 2','https://cdn.littlefox.com/contents_5/hls/720/69b4bec728/p3d52ae955/62ee8ed86d562f1c02d954c85ef7d4c6.m3u8?1201105542',4,NULL,11,'2026-04-11 18:59:39');`
+- docs-data-assets:131040: `INSERT INTO "course_items" VALUES(173160,261,16278,'littlefox','col_8c5999ad2228a1d6','vid_a14fcdc92916e165','33. Eva Perón','https://cdn.littlefox.com/contents_5/hls/1080/cb21265a88/1671165973cf79ae6addba60ad018347359bd144d2/stream.m3u8?_=1671166045',4,NULL,7,'2026-04-11 18:59:39');`
+- docs-data-assets:131079: `INSERT INTO "course_items" VALUES(173199,261,16280,'littlefox','col_8c5999ad2228a1d6','vid_c7bd997d7715f18f','69. Eva Perón','https://cdn.littlefox.com/contents_5/hls/1080/cb21265a88/1671165973cf79ae6addba60ad018347359bd144d2/stream.m3u8?_=1671166045',4,NULL,6,'2026-04-11 18:59:39');`
+- docs-data-assets:131421: `INSERT INTO "course_items" VALUES(173541,262,16301,'littlefox','col_219e3dbb11a82b86','vid_5953e21f0bcc8ef8','48. Eva Perón: First Lady of Argentina','https://cdn.littlefox.com/contents_5/hls/720/ac6778a97b/pe4ab2e538/e54b1c4c6c4e35374efb442e47c2a013.m3u8?1202063854',4,NULL,3,'2026-04-11 18:59:39');`
+- docs-data-assets:131456: `INSERT INTO "course_items" VALUES(173576,262,16302,'littlefox','col_219e3dbb11a82b86','vid_37566dcaa35a8500','9. Eva Perón: First Lady of Argentina','https://cdn.littlefox.com/contents_5/hls/720/ac6778a97b/pe4ab2e538/e54b1c4c6c4e35374efb442e47c2a013.m3u8?1202063854',4,NULL,18,'2026-04-11 18:59:39');`
+- docs-data-assets:136227: `INSERT INTO "course_items" VALUES(178347,265,16552,'playtt','col_4c4ec24600d6e1f2','vid_aad2d113c6b7c640','0011 Why is it so hard to escape poverty- - Ann-Helén Bay','https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0011%20Why%20is%20it%20so%20hard%20to%20escape%20poverty-%20-%20Ann-Hel%C3%A9n%20Bay.tiktok.m3u8',5,NULL,3,'2026-04-11 18:59:39');`
+- docs-data-assets:138634: `INSERT INTO "course_items" VALUES(180754,290,16723,'playgg','col_d2ef7f627294b883','vid_ac0d02d22b2586f4','011 Why is it so hard to escape poverty- - Ann-Helén Bay','https://rclone2.2tech.vn/TED%20Ed/011%20Why%20is%20it%20so%20hard%20to%20escape%20poverty-%20-%20Ann-Hel%C3%A9n%20Bay.mp4',5,NULL,11,'2026-04-11 18:59:39');`
+
+### docs/DATABASE-MIGRATION-PLAN.md
+
+- docs-data-assets:343: `PRESCHOOL_PREMIUM     | Mầm Non PREMIUM   | 680`
+- docs-data-assets:344: `ELEMENTARY_PRO        | Tiểu Học PRO      | 2550`
+- docs-data-assets:345: `MIDDLE_ADVANCED       | Trung Học ADVANCED| 2040`
+
+### docs/DEPLOYMENT-CHECKLIST.md
+
+- docs-data-assets:299: `2380  # ~170 lessons × 14 grades`
+
+### docs/DEPLOYMENT-EXECUTION-PLAN.md
+
+- docs-data-assets:437: `✓ PRESCHOOL_PREMIUM (Mầm Non PREMIUM) - 680 videos`
+- docs-data-assets:438: `✓ ELEMENTARY_PRO (Tiểu Học PRO) - 2,550 videos`
+- docs-data-assets:439: `✓ MIDDLE_ADVANCED (Trung Học ADVANCED) - 2,040 videos`
+- docs-data-assets:441: `✓ ENGLISH_MASTER (Tiếng Anh MASTER) - 1,190 videos`
+- docs-data-assets:442: `✓ MATH_THINKING (Toán Tư Duy MATH) - 1,700 videos`
+
+### docs/DEPLOYMENT-READY.md
+
+- docs-data-assets:3: `**Ngày:** 04/04/2026`
+- docs-data-assets:9: `## ✅ THÀNH TỰU HOÀN THÀNH`
+- docs-data-assets:13: `- Tất cả changes đã commit với conventional commits`
+- docs-data-assets:19: `- Tất cả scripts syntax verified`
+- docs-data-assets:23: `- Migration script với backup/restore`
+- docs-data-assets:36: `## 📦 FILES ĐÃ TẠO (Mới)`
+- docs-data-assets:67: `└── DEPLOYMENT-READY.md          (file này)`
+- docs-data-assets:70: `**Tổng:** 18 files mới | ~5,000 dòng`
+- docs-data-assets:76: `### Local (trước khi deploy)`
+- docs-data-assets:106: `# Từ local machine`
+- docs-data-assets:109: `# Hoặc với options`
+- docs-data-assets:145: `**Sau khi deploy, PHẢI chạy:**`
+- docs-data-assets:147: `# SSH vào server`
+- docs-data-assets:158: `**Lý do:** Fix LSP errors với 'CurriculumPackage' và 'PackageSubscription' models.`
+- docs-data-assets:171: `- [ ] '.env.production' created với secrets`
+- docs-data-assets:179: `# SSH vào server`
+- docs-data-assets:198: `## 🚨 ROLLBACK (Nếu cần)`
+- docs-data-assets:232: `## 🎉 TÓM TẮT`
+- docs-data-assets:234: `### ✅ Hoàn Thành`
+- docs-data-assets:241: `### ⚠️ Cần Làm Trước Deploy`
+- docs-data-assets:243: `2. Trỏ domain về VPS`
+- docs-data-assets:244: `3. Tạo '.env.production'`
+- docs-data-assets:245: `4. Test trên staging (nếu có)`
+- docs-data-assets:247: `### 🚀 Sẵn Sàng Deploy`
+- docs-data-assets:248: `**Tất cả tài liệu và scripts đã sẵn sàng!**`
+- docs-data-assets:250: `Chỉ cần:`
+
+### docs/DOCUMENTATION-ASSESSMENT-FINAL.md
+
+- docs-data-assets:1: `# 📚 BÁO CÁO ĐÁNH GIÁ TÀI LIỆU - TỔNG HỢP`
+- docs-data-assets:3: `**Ngày đánh giá:** 04/04/2026`
+- docs-data-assets:4: `**Scope:** Toàn bộ tài liệu triển khai`
+- docs-data-assets:9: `## 📊 TỔNG QUAN ĐIỂM SỐ`
+- docs-data-assets:11: `| File | Điểm | Xếp Loại | Trạng Thái |`
+- docs-data-assets:13: `| **VPS-DEPLOYMENT-GUIDE.md** | 92/100 | A- | Xuất sắc |`
+- docs-data-assets:14: `| **ABEKA-IMPORT-SETUP-GUIDE.md** | 88/100 | B+ | Rất tốt |`
+- docs-data-assets:15: `| **IMPLEMENTATION-FIXES-SUMMARY.md** | 85/100 | B+ | Tốt |`
+- docs-data-assets:16: `| **PRODUCTION-SETUP-SUMMARY.md** | 87/100 | B+ | Rất tốt |`
+- docs-data-assets:17: `| **QUICK-START.md** | 90/100 | A- | Tốt (mới tạo) |`
+- docs-data-assets:18: `| **DEPLOYMENT-CHECKLIST.md** | 95/100 | A | Xuất sắc (mới tạo) |`
+- docs-data-assets:19: `| **TỔNG TRUNG BÌNH** | **89.5/100** | **B+/A-** | **Sẵn sàng production** |`
+- docs-data-assets:23: `## ✅ ĐIỂM MẠNH`
+- docs-data-assets:27: `- **Backup & migration đầy đủ**: daily-backup.sh, migrate-server.sh`
+- docs-data-assets:28: `- **1,113 dòng** comprehensive coverage`
+- docs-data-assets:32: `- **100+ checkboxes** với priority markers (🔴🟡🟢)`
+- docs-data-assets:33: `- **Time estimates** cho từng step (6-8 hours total)`
+- docs-data-assets:35: `- **Rollback plan** đầy đủ (code, database, infrastructure)`
+- docs-data-assets:39: `- **5 phút** get started`
+- docs-data-assets:41: `- **Docker option** cho nhanh gọn`
+- docs-data-assets:42: `- **Troubleshooting table** phổ biến issues`
+- docs-data-assets:46: `- **3-layer validation** diagram rõ ràng`
+- docs-data-assets:48: `- **Resume capability** từ checkpoint`
+- docs-data-assets:52: `## 🚨 VẤN ĐỀ CRITICAL PHÁT HIỆN`
+- docs-data-assets:56: `**Mô tả:** VPS guide reference 13 scripts nhưng **không tồn tại** trong repo`
+- docs-data-assets:58: `**Scripts cần tạo:**`
+- docs-data-assets:75: `**Impact:** Deployment **WILL FAIL** nếu user theo guide`
+- docs-data-assets:76: `**Fix effort:** 6-8 giờ`
+- docs-data-assets:83: `**Mô tả:** 'ecosystem.config.js' được reference nhưng không tồn tại`
+- docs-data-assets:85: `**Impact:** PM2 deployment không chạy được`
+- docs-data-assets:86: `**Fix effort:** 30 phút`
+- docs-data-assets:93: `**Mô tả:** ~25 biến trong '.env.example' không có explanation`
+- docs-data-assets:103: `**Fix effort:** 2-3 giờ`
+- docs-data-assets:108: `### Issue #4: Rollback Plan Missing (Đã fix) ✅`
+- docs-data-assets:110: `**Trạng thái:** Đã thêm vào 'DEPLOYMENT-CHECKLIST.md'`
+- docs-data-assets:111: `**Bao gồm:**`
+- docs-data-assets:121: `### Phase 1: Critical Fixes (Cần làm ngay)`
+- docs-data-assets:125: `| 1 | Tạo 13 bash scripts từ VPS guide | 6-8 giờ | 'scripts/*.sh' |`
+- docs-data-assets:126: `| 2 | Tạo ecosystem.config.js | 30 phút | 'ecosystem.config.js' |`
+- docs-data-assets:127: `| 3 | Test tất cả scripts | 2 giờ | Verification |`
+- docs-data-assets:129: `**Total:** 8-10 giờ | **Deadline:** Trước production deploy`
+- docs-data-assets:131: `### Phase 2: Improvements (Nên làm)`
+- docs-data-assets:135: `| 4 | Environment Variables Guide | 2-3 giờ | 🟡 Medium |`
+- docs-data-assets:136: `| 5 | Document 78 package.json scripts | 3-4 giờ | 🟡 Medium |`
+- docs-data-assets:137: `| 6 | API request/response examples | 4-6 giờ | 🟡 Medium |`
+- docs-data-assets:138: `| 7 | Fix typo 'test:e2e:nav' | 5 phút | 🟢 Low |`
+- docs-data-assets:142: `## 📁 TÀI LIỆU ĐÃ TẠO (Mới)`
+- docs-data-assets:144: `### Từ Review Agents`
+- docs-data-assets:145: `1. ✅ 'docs/review/deployment-docs-assessment.md' - Đánh giá chi tiết`
+- docs-data-assets:147: `3. ✅ 'docs/QUICK-START.md' - 5 phút get started`
+- docs-data-assets:150: `### Từ Implementation`
+- docs-data-assets:159: `### Tài Liệu Đã Có`
+- docs-data-assets:165: `- [x] Deployment checklist (mới)`
+- docs-data-assets:166: `- [x] Quick start guide (mới)`
+- docs-data-assets:169: `### Tài Liệu Cần Tạo`
+- docs-data-assets:175: `### Scripts Cần Tạo`
+- docs-data-assets:194: `1. ✅ **Create 13 bash scripts** (6-8 giờ) - CRITICAL`
+- docs-data-assets:195: `2. ✅ **Test scripts on staging VPS** (2 giờ) - HIGH`
+- docs-data-assets:196: `3. ✅ **Create ecosystem.config.js** (30 phút) - HIGH`
+- docs-data-assets:197: `4. ⏳ Document environment variables (2-3 giờ) - MEDIUM`
+- docs-data-assets:200: `1. **Version control docs** với code`
+- docs-data-assets:207: `## 🎉 KẾT LUẬN`
+- docs-data-assets:209: `### Trạng Thái Hiện Tại`
+- docs-data-assets:210: `- **Tài liệu quality:** 89.5/100 (B+/A-) - **Rất tốt**`
+- docs-data-assets:211: `- **Sẵn sàng deploy:** 75% (thiếu scripts)`
+- docs-data-assets:212: `- **Completeness:** 85% (thiếu ecosystem.config.js)`
+- docs-data-assets:214: `### Có Thể Deploy?`
+- docs-data-assets:215: `**YES, với điều kiện:**`
+- docs-data-assets:216: `1. Tạo 13 bash scripts trước deploy`
+- docs-data-assets:217: `2. Tạo ecosystem.config.js`
+- docs-data-assets:218: `3. Test trên staging VPS`
+- docs-data-assets:220: `### Không Thể Deploy Nếu`
+- docs-data-assets:221: `- Deploy mà không có scripts = **FAILURE**`
+- docs-data-assets:222: `- PM2 không có config = **FAILURE**`
+- docs-data-assets:229: `### Tài Liệu Quan Trọng Nhất`
+- docs-data-assets:231: `2. 'docs/QUICK-START.md' - **Developer mới**`
+- docs-data-assets:249: `**Đánh giá hoàn tất!** Tài liệu đạt chất lượng tốt (89.5/100) nhưng **cần tạo 13 scripts trước khi production deploy**. 🚀`
+
+### docs/GenAI/KISU_Character_Bible.md
+
+- docs-data-assets:2: `> Linh vật chính thức cho dự án EdTech`
+- docs-data-assets:3: `> Phiên bản: 1.0 | Ngày: 13/03/2026`
+- docs-data-assets:4: `> Trạng thái: ✅ Đã chốt phương án`
+- docs-data-assets:8: `## 📌 Tổng Quan Nhân Vật`
+- docs-data-assets:10: `| Thuộc tính | Thông tin |`
+- docs-data-assets:12: `| **Tên** | Kisu |`
+- docs-data-assets:13: `| **Loài** | Cáo nhân học hóa (Anthropomorphic Fox) |`
+- docs-data-assets:14: `| **Di chuyển** | Đi bằng 2 chân, hoạt động như người |`
+- docs-data-assets:15: `| **Phong cách** | 3D Chibi · Micro-Fluff texture |`
+- docs-data-assets:16: `| **Style tham khảo** | Zootopia + Studio Ghibli + Tranh Đông Hồ |`
+- docs-data-assets:17: `| **Đối tượng** | Học viên EdTech, mọi lứa tuổi |`
+- docs-data-assets:18: `| **Cảm xúc cốt lõi** | Ấm áp · Tinh anh · Đáng tin cậy |`
+- docs-data-assets:22: `## 🎨 Hệ Thống Màu Sắc`
+- docs-data-assets:25: `Amber Điệp     #C97A2F  → Lông chính (màu cáo Á Đông + giấy điệp Đông Hồ)`
+- docs-data-assets:26: `Ivory Ấm       #F5EDD6  → Bụng, mặt trong tai (lụa tơ tằm Hà Đông)`
+- docs-data-assets:27: `Soil Brown     #7A3B2E  → Mũi, paw pads`
+- docs-data-assets:28: `Ink Blue       #1B4F8A  → Mắt (điểm phá cách độc nhất)`
+- docs-data-assets:29: `Chàm Jade      #4ECDC4  → Điểm nhấn tech, viền áo, ear mark`
+- docs-data-assets:30: `Chàm Đêm      #1A2744  → Nền áo bà ba (vải nhuộm chàm VN)`
+- docs-data-assets:31: `Gold Star      #FFD700  → Ngôi sao thêu (cờ VN)`
+- docs-data-assets:32: `Bronze Gold    #B8860B  → Họa tiết trống đồng lưng áo`
+- docs-data-assets:37: `## 🐾 Giải Phẫu Nhân Vật`
+- docs-data-assets:39: `### Tỷ Lệ Cơ Thể`
+- docs-data-assets:40: `- Đầu : Thân : Chân = **1.2 : 1 : 0.8** (chibi hợp lý)`
+- docs-data-assets:41: `- Dáng đứng thẳng bipedal, plantigrade (bàn chân phẳng như người)`
+- docs-data-assets:42: `- Nghiêng tự nhiên 5° về phía trước — tư thế chú ý`
+- docs-data-assets:44: `### Đầu & Mặt`
+- docs-data-assets:45: `- Tai nhọn lớn, dựng thẳng — tai trái có **Chàm Jade ear mark** (vệt sóng âm)`
+- docs-data-assets:46: `- Mõm ngắn vừa phải — không quá dài như cáo thật, không quá flat như chibi`
+- docs-data-assets:47: `- Mũi tam giác nhỏ màu Soil Brown`
+- docs-data-assets:48: `- Miệng nhỏ, biểu cảm linh hoạt`
+- docs-data-assets:50: `### Đôi Mắt — "Inkwell Eyes"`
+- docs-data-assets:51: `- Hình almond, hơi xếch ngoài 10°`
+- docs-data-assets:52: `- Tròng xanh mực '#1B4F8A', to, chiếm 60% diện tích mắt`
+- docs-data-assets:53: `- **2 highlight points**: 1 lớn + 1 nhỏ bên dưới → ánh mắt ướt, có hồn`
+- docs-data-assets:54: `- Micro hexagonal grid cực mờ trong đồng tử (AI layer)`
+- docs-data-assets:57: `- Vệt lông trắng tự nhiên từ đỉnh đầu → giữa trán, **lệch nhẹ sang trái**`
+- docs-data-assets:58: `- Không phải vẽ lên — là fur marking tự nhiên`
+- docs-data-assets:59: `- Ngầm gợi liên tưởng khăn đóng học trò Việt xưa`
+- docs-data-assets:61: `### Thân & Chi`
+- docs-data-assets:62: `- 5 ngón tay mảnh, có thể cầm nắm đồ vật`
+- docs-data-assets:63: `- Paw pads tròn nhỏ màu Soil Brown`
+- docs-data-assets:64: `- Ngón trỏ phải **luôn hơi duỗi ra** — signature gesture`
+- docs-data-assets:65: `- Chân tỷ lệ người, lông phủ đến mắt cá`
+- docs-data-assets:67: `### Đuôi — "Living Tail"`
+- docs-data-assets:68: `- To, bồng, lông dài nhất toàn thân (8-10mm)`
+- docs-data-assets:69: `- Gradient: Amber Điệp → Ivory Ấm → tip Chàm Jade mờ`
+- docs-data-assets:70: `- **Phản ứng cảm xúc**: vút cao khi vui, cụp thấp khi buồn, xòe khi tự hào`
+- docs-data-assets:74: `## 🫧 Chất Liệu Bề Mặt — "Micro-Fluff 3D"`
+- docs-data-assets:76: `| Vùng | Loại lông | Đặc điểm |`
+- docs-data-assets:78: `| Thân chính | Micro-fluff 2-3mm, hướng theo chiều cơ thể | Ánh nhung nhẹ, thấy từng sợi |`
+- docs-data-assets:79: `| Bụng & tai trong | Ngắn hơn, dày hơn, cotton-soft | Mịn hơn lông ngoài |`
+- docs-data-assets:80: `| Đuôi | Dài 8-10mm, xù tối đa | Bồng như quạt lông |`
+- docs-data-assets:81: `| Viền tai, mặt | Gradient mềm sang vùng trắng | Không ranh giới cứng |`
+- docs-data-assets:82: `| Render key | Rim light tạo fur halo silhouette | Đây là khoảnh khắc đẹp nhất |`
+- docs-data-assets:86: `## 👘 Trang Phục — "Áo Bà Ba Tech Edition"`
+- docs-data-assets:88: `### Thiết Kế Cơ Bản`
+- docs-data-assets:89: `- **Kiểu:** Áo bà ba cách tân, không tay, cổ V thấp 8cm`
+- docs-data-assets:90: `- **Màu nền:** Chàm đêm '#1A2744'`
+- docs-data-assets:91: `- **Độ dài:** Ngang hông`
+- docs-data-assets:92: `- **Xẻ tà:** Hai bên, cao 8cm — đuôi lọt ra tự nhiên`
+- docs-data-assets:93: `- **Viền:** Chỉ Chàm Jade toàn bộ viền, cổ, xẻ tà`
+- docs-data-assets:95: `### Họa Tiết Mặt Trước`
+- docs-data-assets:97: `**① Ngực trái — Ngôi sao vàng 5 cánh**`
+- docs-data-assets:98: `- Kích thước bằng ngón cái`
+- docs-data-assets:99: `- Thêu chỉ vàng kim '#FFD700', satin stitch dày, nổi`
+- docs-data-assets:100: `- Đặt ngang tim — "đất nước trong tim"`
+- docs-data-assets:101: `- Tham chiếu cờ đỏ sao vàng Việt Nam`
+- docs-data-assets:103: `**② Giữa thân — Hoa sen nhìn từ trên**`
+- docs-data-assets:104: `- 8 cánh xòe đều, nhụy tròn French knot`
+- docs-data-assets:105: `- Chỉ Ivory Ấm '#F5EDD6' viền Chàm Jade`
+- docs-data-assets:106: `- Quốc hoa Việt Nam = trí tuệ vươn lên`
+- docs-data-assets:108: `### Họa Tiết Mặt Sau`
+- docs-data-assets:110: `**③ Toàn lưng — Mặt trống đồng Đông Sơn**`
+- docs-data-assets:111: `- Chiếm 60% lưng áo`
+- docs-data-assets:112: `- Chỉ vàng đồng '#B8860B' + Chàm Jade accent`
+- docs-data-assets:113: `- Cấu trúc: **Sao 12 cánh** (tâm) → **3 vòng đồng tâm** → **4 chim Lạc** bay ngược chiều kim đồng hồ → **họa tiết sóng nước** viền ngoài`
+- docs-data-assets:114: `- Khi Kisu quay lưng = nhìn thấy văn minh 3000 năm`
+- docs-data-assets:118: `## 😊 Hệ Thống Biểu Cảm`
+- docs-data-assets:120: `| # | Trạng thái | Mắt | Miệng | Tai | Đuôi |`
+- docs-data-assets:122: `| 1 | **Default** | 60% mở, ấm | Half-knowing smile | Dựng thẳng | Cong nhẹ lên |`
+- docs-data-assets:123: `| 2 | **Happy** | Curved ∪ | Cười rộng | Dựng, rung | Vút thẳng cao |`
+- docs-data-assets:124: `| 3 | **Thinking** | Một mắt 40%, nhìn góc trái | Miệng mím | Một tai hướng trước | Quấn quanh chân |`
+- docs-data-assets:125: `| 4 | **Eureka** | Mở tối đa, pupils to | Chữ O | Cả hai dựng thẳng | Bắn thẳng lên |`
+- docs-data-assets:126: `| 5 | **Focused** | Narrow 40%, sắc | Đóng, xác định | Hướng về phía trước | Thẳng ngang |`
+- docs-data-assets:127: `| 6 | **Sad** | Drooping, nhỏ | Chữ ∪ lộn | Cụp xuống | Thấp sát đất |`
+- docs-data-assets:128: `| 7 | **Wink** | Một nhắm hoàn toàn | Nhếch khóe phải | Bình thường | Xòe ra |`
+- docs-data-assets:129: `| 8 | **Proud** | Nhắm nhẹ mãn nguyện | Cười nhẹ | Dựng thẳng | Giơ thẳng đứng |`
+- docs-data-assets:135: `Ngón trỏ tay phải **luôn hơi duỗi ra** trong mọi pose mặc định — như đang chỉ về phía điều thú vị sắp xảy ra. Đây là chi tiết nhỏ nhất nhưng nhận diện mạnh nhất.`
+- docs-data-assets:139: `## 🎒 Prop System (Đồ Vật Theo Ngữ Cảnh)`
+- docs-data-assets:141: `| Prop | Ngữ cảnh xuất hiện |`
+- docs-data-assets:143: `| 📚 Sách phát sáng | Bắt đầu bài học mới |`
+- docs-data-assets:144: `| 💻 Laptop trong suốt | Học online, tech feature |`
+- docs-data-assets:145: `| 🔦 Kính lúp | Nghiên cứu, khám phá |`
+- docs-data-assets:146: `| 🏮 Đèn lồng Amber | Hướng dẫn, onboarding |`
+- docs-data-assets:147: `| 🌸 Hoa sen trắng | Achievement, hoàn thành |`
+- docs-data-assets:148: `| 🎓 Chứng chỉ cuộn | Tốt nghiệp, milestone |`
+- docs-data-assets:149: `| 💡 Bóng đèn | Ý tưởng, eureka moment |`
+- docs-data-assets:150: `| 🗺️ Bản đồ cuộn | Lộ trình học tập |`
+- docs-data-assets:152: `### Phụ Kiện Theo Mùa`
+- docs-data-assets:154: `| Phụ kiện | Dịp | Mô tả |`
+- docs-data-assets:156: `| 🎋 Nón lá mini | Tết, sự kiện VN | Lá tươi bóng, viền Chàm Jade, nghiêng nhẹ |`
+- docs-data-assets:157: `| 👜 Túi thổ cẩm | Back to school | Họa tiết dân tộc, màu Chàm + đỏ son |`
+- docs-data-assets:158: `| 🏮 Đèn lồng Hội An | Graduation | Đỏ-vàng, phát ánh Amber Điệp |`
+- docs-data-assets:162: `## 🔑 5 Brand Identifiers (Không Thể Bỏ)`
+- docs-data-assets:164: `Dù gen ở style nào, Kisu **phải có đủ 5 dấu hiệu này**:`
+- docs-data-assets:166: `1. **Inkwell Eyes** — Mắt xanh mực '#1B4F8A'`
+- docs-data-assets:167: `2. **Scholar's Stripe** — Vệt trắng trán lệch trái`
+- docs-data-assets:168: `3. **Chàm Jade Ear Mark** — Vệt sóng âm tai trái`
+- docs-data-assets:169: `4. **Living Tail** — Đuôi to bồng phản ứng cảm xúc`
+- docs-data-assets:170: `5. **Áo bà ba** — Ngôi sao vàng ngực trái + trống đồng lưng`
+- docs-data-assets:176: `> **Dán toàn bộ đoạn này làm nền cho MỌI prompt gen ảnh Kisu**`
+- docs-data-assets:188: `large pointed ears (left ear has subtle sage Chàm Jade`
+- docs-data-assets:215: `[COSTUME — Vietnamese Áo Bà Ba Tech Edition]`
+- docs-data-assets:216: `Sleeveless Vietnamese Áo Bà Ba style jacket:`
+- docs-data-assets:220: `- All edges: fine Chàm Jade thread trim (#4ECDC4)`
+- docs-data-assets:227: `ivory thread (#F5EDD6) with Chàm Jade outline,`
+- docs-data-assets:234: `gold and Chàm Jade, 4 stylized Lac birds flying`
+- docs-data-assets:241: `## 📸 PROMPT LIST — Bộ Gen Nhân Vật Đầy Đủ`
+- docs-data-assets:243: `> **Cách dùng:** Copy System Prompt ở trên → paste vào đầu → thêm prompt tương ứng bên dưới vào cuối`
+- docs-data-assets:247: `### 📐 NHÓM 1 — Character Reference Sheet`
+- docs-data-assets:249: `**[REF-01] Front View — Chính Diện**`
+- docs-data-assets:259: `**[REF-02] Back View — Sau Lưng**`
+- docs-data-assets:271: `Full body left side profile view. Left ear's Chàm Jade`
+- docs-data-assets:287: `**[REF-05] 3/4 Hero Shot — Góc Đẹp Nhất**`
+- docs-data-assets:305: `left ear Chàm Jade marking, dark triangular nose,`
+- docs-data-assets:311: `### 😄 NHÓM 2 — Expression Sheet`
+- docs-data-assets:313: `**[EXP-01] Default — Bình Thường**`
+- docs-data-assets:322: `**[EXP-02] Happy — Vui Vẻ**`
+- docs-data-assets:331: `**[EXP-03] Thinking — Suy Nghĩ**`
+- docs-data-assets:340: `**[EXP-04] Eureka — Ý Tưởng**`
+- docs-data-assets:349: `**[EXP-05] Focused — Tập Trung**`
+- docs-data-assets:357: `**[EXP-06] Sad — Buồn**`
+- docs-data-assets:366: `**[EXP-07] Proud — Tự Hào**`
+- docs-data-assets:374: `**[EXP-08] Wink — Khuyến Khích**`
+- docs-data-assets:385: `### 🎭 NHÓM 3 — Action Poses`
+- docs-data-assets:387: `**[ACT-01] Chào / Welcome Wave**`
+- docs-data-assets:396: `**[ACT-02] Đọc Sách / Reading**`
+- docs-data-assets:406: `**[ACT-03] Giảng Dạy / Teaching**`
+- docs-data-assets:415: `**[ACT-04] Chiến Thắng / Victory**`
+- docs-data-assets:421: `Chàm Jade and amber colors around.`
+- docs-data-assets:425: `**[ACT-05] Chạy / Running Forward**`
+- docs-data-assets:434: `**[ACT-06] Giơ Tay / Hand Raising**`
+- docs-data-assets:442: `**[ACT-07] Ngủ / Sleeping**`
+- docs-data-assets:448: `up in Chàm Jade color. Serene and adorable.`
+- docs-data-assets:451: `**[ACT-08] Khám Phá / Exploring**`
+- docs-data-assets:460: `**[ACT-09] Viết / Writing**`
+- docs-data-assets:469: `**[ACT-10] Hướng Dẫn với Đèn Lồng / Guiding**`
+- docs-data-assets:476: `Vietnamese Hội An night market energy.`
+- docs-data-assets:481: `### 🎒 NHÓM 4 — Props`
+- docs-data-assets:483: `**[PROP-01] Cầm Laptop**`
+- docs-data-assets:492: `**[PROP-02] Cầm Chứng Chỉ**`
+- docs-data-assets:495: `tied with Chàm Jade ribbon, held up in both paws.`
+- docs-data-assets:500: `**[PROP-03] Bóng Đèn Ý Tưởng**`
+- docs-data-assets:508: `**[PROP-04] Nón Lá Đặc Biệt**`
+- docs-data-assets:512: `with visible leaf vein texture, thin Chàm Jade thread`
+- docs-data-assets:515: `Consistent micro-fluff fur and Áo Bà Ba costume.`
+- docs-data-assets:520: `### 🖼️ NHÓM 5 — Brand & UI Assets`
+- docs-data-assets:536: `ink-blue eyes, Scholar's Stripe, navy Áo Bà Ba with`
+- docs-data-assets:564: `Confetti in Chàm Jade and amber gold falling around.`
+- docs-data-assets:582: `### 🌏 NHÓM 6 — Phiên Bản Đặc Biệt`
+- docs-data-assets:584: `**[SPECIAL-01] Tết Nguyên Đán**`
+- docs-data-assets:587: `Áo Bà Ba but with festive red ribbon sash added,`
+- docs-data-assets:589: `red envelope in left. Chàm Jade embroidery on jacket`
+- docs-data-assets:607: `large floating milestone number in Chàm Jade glow.`
+- docs-data-assets:611: `Confetti in amber and Chàm Jade. Pure white background.`
+- docs-data-assets:616: `## 💡 Hướng Dẫn Sử Dụng Prompt`
+- docs-data-assets:618: `### Quy Trình Chuẩn`
+- docs-data-assets:621: `Bước 1 → Copy toàn bộ SYSTEM PROMPT`
+- docs-data-assets:622: `Bước 2 → Paste vào đầu`
+- docs-data-assets:623: `Bước 3 → Thêm prompt cụ thể vào cuối`
+- docs-data-assets:624: `Bước 4 → Gen [REF-05] TRƯỚC TIÊN — đây là ảnh chuẩn gốc`
+- docs-data-assets:625: `Bước 5 → Upload REF-05 làm reference image cho tất cả gen tiếp theo`
+- docs-data-assets:626: `Bước 6 → Kiểm tra 5 Brand Identifiers trước khi lưu ảnh`
+- docs-data-assets:632: `□ Mắt xanh mực (Inkwell Blue #1B4F8A)`
+- docs-data-assets:633: `□ Scholar's Stripe (vệt trắng trán lệch trái)`
+- docs-data-assets:634: `□ Chàm Jade Ear Mark (tai trái)`
+- docs-data-assets:635: `□ Living Tail (đuôi to bồng)`
+- docs-data-assets:636: `□ Áo bà ba navy + ngôi sao vàng ngực trái`
+- docs-data-assets:639: `### Tips Giữ Nhất Quán`
+- docs-data-assets:641: `- **Tool hỗ trợ reference image:** Luôn upload REF-05 làm anchor`
+- docs-data-assets:642: `- **Không đổi màu mắt:** Ink Blue là điểm độc nhất mạnh nhất, không thay thế`
+- docs-data-assets:643: `- **Đuôi phải to:** Nếu gen ra đuôi nhỏ, thêm '"extremely large fluffy fox tail, very voluminous"'`
+- docs-data-assets:644: `- **Áo bà ba không phải áo dài:** Nếu gen sai, nhấn mạnh '"sleeveless V-neck Áo Bà Ba, NOT Áo Dài, NOT Chinese collar"'`
+- docs-data-assets:645: `- **Bipedal stance:** Nếu gen ra 4 chân, thêm '"strictly bipedal, standing upright on two legs only"'`
+- docs-data-assets:649: `## 📁 Cấu Trúc Tài Nguyên Đề Xuất`
+- docs-data-assets:658: `kisu-ref-05-hero.png      ← FILE GỐC QUAN TRỌNG NHẤT`
+- docs-data-assets:675: `KISU_Character_Bible.md   ← FILE NÀY`
+- docs-data-assets:680: `*Tài liệu này là nguồn sự thật duy nhất (Single Source of Truth) cho nhân vật Kisu.*`
+- docs-data-assets:681: `*Mọi quyết định thiết kế tương lai đều tham chiếu từ tài liệu này.*`
+- docs-data-assets:684: `**Version:** 1.0 | **Ngày tạo:** 13/03/2026 | **Trạng thái:** Production Ready`
+
+### docs/GenAI/KISU_Cloud_Garden_Prompts.md
+
+- docs-data-assets:1: `# ☁️ Từ Điển Prompt Giao Diện Cloud Garden (Khu Vườn Trên Mây)`
+- docs-data-assets:3: `Tài liệu này tổng hợp các Prompt dùng để tạo tài nguyên đồ hoạ cho giao diện học tập "Cloud Garden" của học viên. Bao gồm cảnh quan mặt đất, cây đậu thần (Beanstalk), và các hiệu ứng chuyển tầng.`
+- docs-data-assets:5: `> **QUY TẮC CỐT LÕI MỌI PROMPT LIÊN QUAN ĐẾN KISU (Nếu có Kisu trong hình):**`
+- docs-data-assets:6: `> 'MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep ink-blue irises (#1B4F8A). Left ear has a Chàm Jade sound-wave marking. Scholar's Stripe: a distinct white fur mark on the forehead, slightly left of center. Huge fluffy fox tail passing naturally through the side slit o`
+- docs-data-assets:10: `## Phần 1: Khu Vườn Bắt Đầu (Ground Level / Khu vườn chung)`
+- docs-data-assets:12: `Đây là giao diện chính khi bé vừa vào trang học tập, nơi hiển thị các khoá học bé đang sở hữu dưới dạng các mầm cây hoặc chậu cây. Bối cảnh ở mặt đất, tươi sáng, mang lại cảm giác bắt đầu một hành trình.`
+- docs-data-assets:14: `📂 **Vị trí lưu trữ tổng hợp:** Thư mục 'public/images/cloud-garden/ground/'`
+- docs-data-assets:16: `### 1. Hình Nền Khu Vườn Mặt Đất (Ground Garden Background)`
+- docs-data-assets:17: `Dùng làm background toàn màn hình cho trang Dashboard. Bối cảnh không gian mở phía dưới mặt đất, nơi hội tụ các khóa học.`
+- docs-data-assets:18: `💾 **Tên file đề xuất:** 'bg_ground_garden.jpg'`
+- docs-data-assets:23: `### 2. Chậu Cây / Đất Trồng Khoá Học (Course Planter Base)`
+- docs-data-assets:24: `Dùng làm bệ đỡ (base) cho mỗi khoá học bé sở hữu, để từ đó mọc lên mầm cây.`
+- docs-data-assets:25: `💾 **Tên file đề xuất:** 'course_planter_base.png'`
+- docs-data-assets:27: `3D Pixar style digital art. A single, stylized magical wooden planter box filled with rich, glowing magical soil. Tiny glowing sparkles (amber gold and chàm jade colors) are floating up from the soil. The planter has beautiful, soft rounded edges and cute decorative carvings of stars and math symbols. Front isometric view. Solid pure white background, no ground shadows. High end mobile game art style, vibrant and colorful.`
+- docs-data-assets:30: `### 3. Mầm Cây Đại Diện Khoá Học Mới (Course Sapling - 2D/3D Asset)`
+- docs-data-assets:31: `Mầm cây nhỏ đại diện cho một khoá học bé vừa sở hữu, đang ở nấc đầu tiên.`
+- docs-data-assets:32: `💾 **Tên file đề xuất:** 'course_sapling_level0.png'`
+- docs-data-assets:34: `3D Pixar style digital art. A super cute, plump glowing magical sapling with just two or three vibrant green leaves. The leaves are soft and rounded. The stem is glowing slightly with a Chàm Jade aura. Solid pure white background, no ground shadows. Isometric view. High end mobile game asset style, colorful and inviting.`
+- docs-data-assets:39: `## Phần 2: Hiệu Ứng Nảy Mầm & Leo Cây Đậu (Sprouting & Climbing Beanstalk)`
+- docs-data-assets:41: `Khi bé click vào một khoá học, mầm cây sẽ nảy mọc lên thành một cây đậu khổng lồ vươn lên các tầng mây (tượng trưng cho các bài học).`
+- docs-data-assets:43: `📂 **Vị trí lưu trữ tổng hợp:** Thư mục 'public/images/cloud-garden/vfx/' (khuyến nghị dùng sinh ảnh đen rồi phối blend mode, hoặc tách nền tạo sprite sheet).`
+- docs-data-assets:45: `### 1. Hiệu Ứng Ánh Sáng Nảy Mầm (Seed Sprouting Magic VFX)`
+- docs-data-assets:46: `Hiệu ứng ánh sáng phép thuật lúc hạt giống nứt ra và mọc lên mạnh mẽ.`
+- docs-data-assets:47: `💾 **Tên file đề xuất:** 'vfx_seed_sprout.png'`
+- docs-data-assets:49: `3D Pixar style VFX effect on a solid black background. A magical glowing green botanical sprout bursting upwards with intense stylized light rays. Glowing particles, sparkles, and tiny magical leaves swirling in a joyful, energetic upward motion. Colors consist of vibrant spring green, neon chàm jade (#4ECDC4), and glowing amber gold. High-end casual mobile game UI effect, clean magical energy burst.`
+- docs-data-assets:52: `### 2. Thân Cây Đậu Khổng Lồ (Giant Beanstalk Trunk Loop)`
+- docs-data-assets:53: `Đoạn thân cây trải dài, có thể được lặp lại (tileable) để tạo cảm giác cây mọc cao vô tận lên các tầng mây.`
+- docs-data-assets:54: `💾 **Tên file đề xuất:** 'beanstalk_trunk_loop.png'`
+- docs-data-assets:61: `## Phần 3: Hiệu Ứng Lên Tầng Mây Mới (Level Up / New Cloud Tier)`
+- docs-data-assets:63: `Khi bé hoàn thành một cụm bài học, cây đậu xuyên qua mây để lên tầng tiếp theo. Các tài nguyên này dùng làm hiệu ứng điểm nhấn chúc mừng chặng đường mới.`
+- docs-data-assets:65: `📂 **Vị trí lưu trữ tổng hợp:** Thư mục 'public/images/cloud-garden/vfx/'`
+- docs-data-assets:67: `### 1. Đám Mây Nền Tảng (Cloud Platform)`
+- docs-data-assets:68: `Nơi đặt các bài học ở mỗi tầng trên cao, làm bệ đỡ trên ngọn cây đậu.`
+- docs-data-assets:69: `💾 **Tên file đề xuất:** 'platform_cloud_fluffy.png'`
+- docs-data-assets:74: `### 2. Hiệu Ứng Xé Mây Lên Tầng Mới (Cloud Burst / Level Up VFX)`
+- docs-data-assets:75: `Cảnh ánh sáng rực rỡ khi vượt qua một lớp mây để lên tầng mới.`
+- docs-data-assets:76: `💾 **Tên file đề xuất:** 'vfx_cloud_burst_levelup.png'`
+- docs-data-assets:78: `3D Pixar style VFX effect on a solid black background. An explosive, joyful burst of soft, fluffy pastel clouds splitting open outwards. From the center bursts an intense upward pillar of magical golden and Chàm Jade light, surrounded by confetti, glowing stars, and swirling magical sparkles. Triumphant, highly energetic "level up" celebratory effect. High end mobile game UI VFX.`
+- docs-data-assets:81: `### 3. Huy Hiệu Chúc Mừng Hoàn Thành Tầng (Tier Complete Badge có Kisu)`
+- docs-data-assets:82: `Huy hiệu nhận được khi lên mây mới, kèm theo linh vật Kisu chúc mừng ấn tượng.`
+- docs-data-assets:83: `💾 **Tên file đề xuất:** 'vfx_tier_unlocked_badge.png'`
+- docs-data-assets:85: `3D Pixar style digital art. A majestic, glowing 3D golden badge in the shape of a winged glowing star. The badge is radiating warm magical energy and sparkling particles. The mascot Kisu is peeking from behind the badge, winking and giving a thumbs up. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, amber-gold fur, ivory belly, ink-blue eyes. Left ear Chàm Jade marking, distinct white Scholar's stripe on forehead. Wearing a sleeveless dark navy-indigo fabric jack`
+- docs-data-assets:90: `## Phần 4: Các Tài Nguyên Bổ Sung Cho Trải Nghiệm Hoàn Hảo (UI/UX Nodes)`
+- docs-data-assets:92: `Sau khi phân tích kịch bản tương tác (Three.js & Parallax), dưới đây là các tài nguyên còn thiếu để hoàn thiện các trạm tĩnh (Node) và đa dạng hoá trạng thái bài học dọc theo nhánh cây.`
+- docs-data-assets:94: `📂 **Vị trí lưu trữ tổng hợp:** Thư mục 'public/images/cloud-garden/nodes/'`
+- docs-data-assets:96: `### 1. Lá Cây Đậu Khổng Lồ Nối Từ Thân (Giant Leaf Platform)`
+- docs-data-assets:97: `Lá cây khổng lồ vươn ra từ thân chính, dùng làm bệ đỡ đặt các nút/chương bài học trên dọc đường đi.`
+- docs-data-assets:98: `💾 **Tên file đề xuất:** 'node_giant_leaf_platform.png'`
+- docs-data-assets:103: `### 2. Nụ Hoa Thần Kỳ Đang Ngủ (Locked Lesson / Bài học chưa mở)`
+- docs-data-assets:104: `Đại diện cho các bài học ở tương lai, trạng thái đóng khóa. Bé chưa học tới đây.`
+- docs-data-assets:105: `💾 **Tên file đề xuất:** 'node_flower_bud_locked.png'`
+- docs-data-assets:110: `### 3. Hoa Nở Rực Rỡ Bừng Sáng (Completed Lesson / Bài học đã xong)`
+- docs-data-assets:111: `Trạng thái hoa nở hoàn toàn thành đài, khoe sắc ấn tượng. Tương đương với chiến thắng hoàn hảo 3 sao.`
+- docs-data-assets:112: `💾 **Tên file đề xuất:** 'node_flower_bloomed_done.png'`
+- docs-data-assets:117: `### 4. Kisu Cầm Dù Nhảy Mây / Bay Khinh Khí Cầu (Scroll Companion)`
+- docs-data-assets:118: `Hình ảnh Kisu đu lơ lửng, tạo thành vật chạy dọc theo thanh cuộn màn hình của bé làm bạn đồng hành.`
+- docs-data-assets:119: `💾 **Tên file đề xuất:** 'kisu_companion_balloon.png'`
+- docs-data-assets:121: `3D Pixar style digital art. The mascot Kisu is holding onto the strings of a small, cute, colorful hot air balloon, floating happily in the air. Looking upwards with an excited smile. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, amber-gold fur, ivory belly, ink-blue eyes. Left ear Chàm Jade marking, distinct white Scholar's stripe on forehead. Wearing a sleeveless dark navy-indigo fabric jacket with Chàm Jade thread edges, a gold star on the left chest, and an`
+
+### docs/GenAI/KISU_Cloud_Garden_UIUX_Ideas.md
+
+- docs-data-assets:1: `# 🌍 Ý Tưởng Kết Hợp UI/UX Cloud Garden Bằng Three.js`
+- docs-data-assets:3: `Tài liệu này trình bày các ý tưởng sử dụng tài nguyên 2D/3D (được sinh ra từ tệp Prompt) kết hợp với **Three.js** để tạo ra một trải nghiệm UI/UX sống động, tạo cảm giác "Học tập như một cuộc thám hiểm" cho các bé, thay vì là một trang tĩnh thông thường.`
+- docs-data-assets:7: `## 1. Hành Trình Trải Nghiệm & Kịch Bản Three.js`
+- docs-data-assets:9: `### Giai đoạn 1: Ươm Mầm Khóa Học (Mặt đất - Ground Level)`
+- docs-data-assets:10: `Khu vườn mặt đất là nơi khởi đầu, chứa các khóa học bé đang theo học.`
+- docs-data-assets:11: `- **Tài nguyên sử dụng**: 'bg_ground_garden.jpg', 'course_planter_base.png', 'course_sapling_level0.png'.`
+- docs-data-assets:12: `- **Three.js Effects (Môi trường & Hoạt ảnh tĩnh)**:`
+- docs-data-assets:13: `- Render hình nền dưới dạng Plane 3D ở khoảng cách rất xa để làm nền không gian mở.`
+- docs-data-assets:14: `- Sử dụng **Particle System (Three.js Points)** để rải các hạt đom đóm (Fireflies) màu vàng / chàm ngọc bích bay lơ lửng, lập loè mượt mà quanh các chậu cây khóa học.`
+- docs-data-assets:15: `- Dùng shader (GLSL) tạo một gợn sóng (distortion) rất mỏng lên mầm cây để giả lập lá cây rung rinh trong gió nhẹ.`
+- docs-data-assets:16: `- **Tương tác (Hover/Click UX)**:`
+- docs-data-assets:17: `- Khi bé rà chuột vào mầm cây, mầm cây sẽ "hít thở" (Scale to ra và nhỏ lại thành nhịp đều đặn bằng Sine Wave).`
+- docs-data-assets:18: `- Có một vầng sáng chớp nhẹ (Aura) phát ra quanh chậu cây, đi kèm tiếng "Bling" trong trẻo vẫy gọi bé click.`
+- docs-data-assets:20: `### Giai đoạn 2: Cú Click Phép Thuật & Hạt Giống Bùng Nổ`
+- docs-data-assets:21: `Thay vì chuyển trang bình thường, việc ấn vào nụ mầm sẽ mở ra hiệu ứng tăng rần sinh lực.`
+- docs-data-assets:22: `- **Tài nguyên sử dụng**: 'vfx_seed_sprout.png', 'beanstalk_trunk_loop.png'.`
+- docs-data-assets:23: `- **Three.js Effects (Zoom & Chuyển cảnh Parallax)**:`
+- docs-data-assets:24: `- Kích hoạt Camera trong Three.js bắt đầu **Zoom mượt mà thẳng vào tâm** của mầm cây.`
+- docs-data-assets:25: `- Tại tiêu điểm, mầm cây thu lại và nổ ra thành hàng ngàn Particle (Sử dụng texture 'vfx_seed_sprout.png' làm material cho các điểm phát sáng) phun trào lên trên.`
+- docs-data-assets:26: `- Màn hình giả lập một phương tiện đang bay vút lên cao (Bằng cách trượt trục Y của Scene xuống dưới cực nhanh, làm các đám mây 2D mờ ảo - Foreground Layers lướt nhanh che khuất góc nhìn).`
+- docs-data-assets:28: `### Giai đoạn 3: Cuộc Phiêu Lưu Dọc Thân Cây Đậu (Vertical Climbing)`
+- docs-data-assets:29: `Màn hình chuyển sang giao diện cuộn dọc để hiển thị các Module bài học.`
+- docs-data-assets:30: `- **Tài nguyên sử dụng**: Thân cây đậu lặp lại ('beanstalk_trunk_loop.png'), và các tài nguyên bổ sung (Lá đỡ bài học, Nụ hoa).`
+- docs-data-assets:32: `- Ghép chồng liên tiếp texture thân cây đậu trên một khối trụ 3D (CylinderGeometry) để tạo cảm giác thân cây tròn.`
+- docs-data-assets:33: `- Mỗi khi bé vuốt (Scroll) lên trên để xem tiến độ, thân cây di chuyển xuống dưới.`
+- docs-data-assets:34: `- **Dynamic Background Coloring**: Màu nền đằng sau bầu trời sẽ nội suy (Lerp) tự động tuỳ vào độ chênh lệch cuộn: Mặt đất sáng sớm ➡️ Tầng 1: Mây trưa ➡️ Tầng 2: Hoàng hôn màu cam ➡️ Tầng 3: Tím hoàng hôn ➡️ Tầng 4: Đêm đầy sao. Three.js tự động phối màu bầu trời (Color Blending) cực kỳ mượt mà.`
+- docs-data-assets:36: `### Giai đoạn 4: Đột Phá Lớp Mây Đạt Cấp Độ Mới (Level Up Effect)`
+- docs-data-assets:37: `Mỗi khi kết thúc 1 Section bài giảng, cây đậu vươn dài chọc thủng 1 tầng mây.`
+- docs-data-assets:38: `- **Tài nguyên sử dụng**: Mây nền tảng ('platform_cloud_fluffy.png'), Hiệu ứng xé mây ('vfx_cloud_burst_levelup.png'), Huy hiệu chúc mừng ('vfx_tier_unlocked_badge.png').`
+- docs-data-assets:40: `- Kích hoạt **Camera Shake** gằn nhẹ, tạo tiếng uỳnh xé mây cực ngầu nhưng không loá mắt bé. Hai lớp mây che màn hình sẽ tách qua 2 bên.`
+- docs-data-assets:41: `- Pháo hoa Particle (Confetti) bắn tung loé lên cao và rớt dần xuống (Sử dụng Physics nhẹ dạng trọng lực).`
+- docs-data-assets:42: `- Huy hiệu (Linh vật Kisu vươn ngón tay cái) bay bật ra từ giữa tầng mây dưới dạng Mesh 2.5D có viền Kim Loại/Phát sáng (StandardMaterial), lộn nhào và xoay 1 vòng quanh trục Y tự quay để chúc mừng bé.`
+- docs-data-assets:46: `## 2. Phân Tích Sự Chặt Chẽ & Danh Sách Prompt Bổ Sung Để Hoàn Thiện`
+- docs-data-assets:48: `Sau khi rà soát chéo các tài nguyên ban đầu từ file 'KISU_Cloud_Garden_Prompts.md' và ý tưởng vận hành giao diện bên trên, phát hiện ra bộ tài nguyên hiện tại **VẪN CÒN BỊ THIẾU SÓT** để dựng nên một quy trình UX thực sự thoả mãn.`
+- docs-data-assets:50: `Thân cây lặp chỉ là một cái ống, chúng ta chưa có **Gờ Đỡ** (Platform) để đặt các bài học. Chúng ta cũng chưa có hình thể đại diện cho các trạng thái của Bài Học trên cây (Bài chưa học, đã học, bị khoá) và thiếu mất tương tác với Linh Vật Kisu đi theo cuộn cảnh.`
+- docs-data-assets:52: `**=> LẬP TỨC TIẾN HÀNH BỔ SUNG CÁC PROMPT SAU VÀO TÀI LIỆU CHÍNH:**`
+- docs-data-assets:54: `1. **Lá Cây Đậu Khổng Lồ (Gian Bước / Nền Tảng Bài Học)**: Đóng vai trò làm đĩa hứng mọc ra từ thân. Các nút Level sẽ rải lên các lá này.`
+- docs-data-assets:55: `2. **Nụ Hoa Chưa Nở / Đang Ngủ (Bài Học Tương Lai/Bị Khoá)**: Nếu bé chưa chạm tới bài đó, nó chỉ là một nụ hoa e ấp sương sớm.`
+- docs-data-assets:56: `3. **Hoa Đã Nở Rực Rỡ (Bài Học Hoàn Thành)**: Dùng để thay thế nụ hoa, có vầng hào quang báo hiệu module này hoàn thành 100%. Mức độ nở tương đương điểm tuyệt đối.`
+- docs-data-assets:57: `4. **Kisu Đi Cùng Bé (Companion)**: Quá trình bé kéo chuột/màn che sẽ có mặt Kisu bay khinh khí cầu hoặc cầm dù kế bên để dẫn đường. Kisu là thứ phản hồi lại tốc độ scroll chuột.`
+- docs-data-assets:59: `> *(Hệ thống AI đã tự động ghi các prompt bổ sung này vào cuối file 'KISU_Cloud_Garden_Prompts.md' trong Phần 4).*`
+
+### docs/GenAI/KISU_Prompt_Dictionary.md
+
+- docs-data-assets:1: `# 🦊 Từ Điển Prompt Hệ Sinh Thái Kisu (TinyGeniusHub)`
+- docs-data-assets:3: `Tài liệu này tổng hợp toàn bộ các Prompt gốc đã dùng để xây dựng linh vật Kisu. Bạn chỉ cần **COPY TOÀN BỘ TEXT TRONG TỪNG Ô** và đưa cho các AI như Midjourney, DALL-E, Copilot, đẻ ra tài nguyên đồng nhất tuyệt đối cho dự án.`
+- docs-data-assets:5: `> **QUY TẮC CỐT LÕI MỌI PROMPT ĐỀU CÓ:**`
+- docs-data-assets:6: `> 'MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep ink-blue irises (#1B4F8A). Left ear has a Chàm Jade sound-wave marking. Scholar's Stripe: a distinct white fur mark on the forehead, slightly left of center. Huge fluffy fox tail passing naturally through the side slit o`
+- docs-data-assets:10: `## Phần 1: Bộ 15+ Biểu Cảm Sticker Đa Dạng (Kids UI)`
+- docs-data-assets:12: `Các sticker nền trắng thuần tuý, dùng để thưởng cho bé, báo lỗi, hoặc các trạng thái trong game.`
+- docs-data-assets:13: `📂 **Vị trí lưu trữ tổng hợp:** Thư mục 'public/kisu-assets/stickers/' của dự án.`
+- docs-data-assets:14: `💡 **Lưu ý:** Chạy qua tool tách nền hoặc 'perfect_split.py' để ra ảnh PNG trong suốt trước khi đưa vào dự án.`
+- docs-data-assets:16: `### 1. Khen ngợi / Chúc mừng (Kisu vui sướng nhảy lên)`
+- docs-data-assets:17: `💾 **Tên file đề xuất:** 'sticker_cheer.png'`
+- docs-data-assets:19: `The mascot Kisu is jumping happily with both hands giving a "thumbs up". Big joyful smile with eyes closed in crescent moon shapes, showing tiny cute fangs. Dynamic and energetic pose. Solid pure white background, no ground shadows. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm iv`
+- docs-data-assets:22: `### 2. Gợi ý / Đang suy nghĩ (Nút Hint/Trợ giúp)`
+- docs-data-assets:23: `💾 **Tên file đề xuất:** 'sticker_hint.png'`
+- docs-data-assets:25: `The mascot Kisu is tapping its chin with one finger, looking up at a glowing digital question mark floating above its head. The other hand is behind its back. Curious and thoughtful expression, eyes wide open. Solid pure white background, no ground shadows. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Bell`
+- docs-data-assets:28: `### 3. Cầm đồng xu sao vàng (Phần thưởng)`
+- docs-data-assets:29: `💾 **Tên file đề xuất:** 'sticker_reward_coin.png'`
+- docs-data-assets:31: `The mascot Kisu is hugging a giant, glowing gold coin with a star cutout in the middle. Looking directly at the camera with sparkling, excited eyes. Solid pure white background. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep ink-blue irises (#1B4F8A). Left ear has a Chà`
+- docs-data-assets:34: `### 4. Báo lỗi / Thất vọng nhẹ (Try again)`
+- docs-data-assets:35: `💾 **Tên file đề xuất:** 'sticker_try_again.png'`
+- docs-data-assets:37: `The mascot Kisu is sitting on the floor with a tiny sweat drop on its forehead, holding a small wooden "Try Again" sign. Fur drooping slightly, offering a comforting, sympathetic small smile. Solid pure white background. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep in`
+- docs-data-assets:40: `### 5. Cầm bảng trắng (Để dev chèn Text)`
+- docs-data-assets:41: `💾 **Tên file đề xuất:** 'sticker_signboard_empty.png'`
+- docs-data-assets:43: `The mascot Kisu is standing and holding up a large, empty white signboard with both hands. Friendly smile, looking forward. The sign is perfect for adding text later. Solid pure white background. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep ink-blue irises (#1B4F8A). `
+- docs-data-assets:46: `### 6. Ngủ gật (Trạng thái Loading / Idle)`
+- docs-data-assets:47: `💾 **Tên file đề xuất:** 'sticker_sleeping.png'`
+- docs-data-assets:49: `The mascot Kisu is curled up, peacefully sleeping wrapped in its giant fluffy tail. A small animated "Zzz" bubble is floating above its head. Soft, adorable expression. Solid pure white background. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep ink-blue irises (#1B4F8A)`
+- docs-data-assets:52: `### 7. Tức giận dễ thương / Quyết tâm (Boss battle)`
+- docs-data-assets:53: `💾 **Tên file đề xuất:** 'sticker_combat_ready.png'`
+- docs-data-assets:55: `The mascot Kisu is standing with hands on its hips, leaning forward with a determined, slightly fiery expression (cute angry pout). Fur slightly bristled up. Solid pure white background. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep ink-blue irises (#1B4F8A). Left ear `
+- docs-data-assets:58: `### 8. Lái đĩa bay UFO / Tàu vũ trụ (Học bài không gian)`
+- docs-data-assets:59: `💾 **Tên file đề xuất:** 'sticker_ufo_pilot.png'`
+- docs-data-assets:61: `The mascot Kisu is sitting inside a small, cute, futuristic flying saucer. Only its upper body is visible, holding steering glowing rings. Excited expression. Solid pure white background. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep ink-blue irises (#1B4F8A). Left ear`
+- docs-data-assets:64: `### 9. Thổi kèn / Đánh trống kỉ niệm (Chiến thắng chặng)`
+- docs-data-assets:65: `💾 **Tên file đề xuất:** 'sticker_party_celebration.png'`
+- docs-data-assets:67: `The mascot Kisu is blowing a colorful party horn and throwing confetti in the air. One eye winking playfully. Solid pure white background. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep ink-blue irises (#1B4F8A). Left ear has a Chàm Jade sound-wave marking. Scholar's St`
+- docs-data-assets:70: `### 10. Bay với chong chóng tre trên đầu (Load trang mới)`
+- docs-data-assets:71: `💾 **Tên file đề xuất:** 'sticker_helicopter_flying.png'`
+- docs-data-assets:73: `The mascot Kisu is hovering in the air with a small bamboo copter spinning on its head. Legs are dangling freely. Joyful flying posture. Solid pure white background. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, short muzzle, dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly and inner ears: warm ivory. Deep ink-blue irises (#1B4F8A). Left ear has a Chàm Jade sound`
+- docs-data-assets:76: `### 11. Biểu tượng Liên Hệ / Hỗ Trợ (Floating Action Button)`
+- docs-data-assets:77: `💾 **Tên file đề xuất:** 'sticker_support_contact.png'`
+- docs-data-assets:79: `The mascot Kisu is wearing a sleek, modern customer support headset with a glowing microphone. Kisu is waving one hand enthusiastically and pointing to a floating, glowing mail envelope with the other hand. Very friendly, helpful, and welcoming expression. Excellent for a contact floating action button. Solid pure white background. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, standing on two legs. Head larger than body (1.2:1 proportion). Natural fox ears, sho`
+- docs-data-assets:84: `## Phần 2: Bộ Prompt Khởi Tạo Hệ Thống Logo`
+- docs-data-assets:85: `Bộ prompt thiết lập vị trí chữ và cấu trúc logo cho từng giao diện chuyên biệt của ứng dụng.`
+- docs-data-assets:86: `📂 **Vị trí lưu trữ tổng hợp:** Thư mục 'public/logos/' của dự án.`
+- docs-data-assets:87: `💡 **Lưu ý:** Chữ sinh bởi AI thường bị lỗi một chút, hãy dùng Photoshop xoá chữ hỏng và chèn chữ font xịn vào (giữ lại cấu trúc và bé Kisu 3D).`
+- docs-data-assets:89: `### 1. Stacked Logo (Logo bố cục nằm đè 3D - Màn hình Splash)`
+- docs-data-assets:90: `💾 **Tên file đề xuất:** 'tinygeniushub_logo_stacked.png'`
+- docs-data-assets:92: `A professional, high-end 3D web application logo for an EdTech platform. Solid pure white background. COMPOSITION: Stacked layout. The 3D text "TinyGeniusHub" is at the bottom, split into two lines playfully. Colorful, thick, rounded sans-serif typography ("Tiny" in Amber Gold #C97A2F, "Genius" in Ink Blue #1B4F8A, "Hub" in Chàm Jade #4ECDC4). Above the text, sitting playfully on top of the letters, is the mascot Kisu. Kisu is looking down at the letters with a big cheerful smile. MASCOT KISU EX`
+- docs-data-assets:95: `### 2. Horizontal Navbar Logo (Logo cho thanh điều hướng ngang)`
+- docs-data-assets:96: `💾 **Tên file đề xuất:** 'tinygeniushub_logo_horizon.png'`
+- docs-data-assets:98: `A professional, high-end 3D web application logo for an EdTech platform named "TinyGeniusHub". Solid pure white background. COMPOSITION: Horizontal layout (for website navbar). The mascot Kisu is positioned on the far left. Kisu is shown FULL BODY (including legs and shoes/paws), standing naturally next to the text. To the right of Kisu is the text "TinyGeniusHub" in one continuous line. Colorful, thick, rounded sans-serif 3D typography ("Tiny" in Amber Gold #C97A2F, "Genius" in Ink Blue #1B4F8A`
+- docs-data-assets:101: `### 3. App Icon / Tỉ lệ vuông 1:1`
+- docs-data-assets:102: `💾 **Tên file đề xuất:** 'tinygeniushub_app_icon.png' (dùng làm favicon)`
+- docs-data-assets:104: `A professional, high-end 3D app icon design for an EdTech platform. Perfectly square 1:1 ratio. White background. COMPOSITION: A prominent, glossy, colorful 3D tech-ring (incorporating Amber Gold, Ink Blue, and Chàm Jade colors) framing the center. Emerging from the inside of the ring, popping out slightly into 3D space, is the mascot Kisu (head and upper torso only). Kisu is beaming with a joyful, welcoming smile, looking directly at the viewer. MASCOT KISU EXACT DETAILS: A 3D chibi anthropomor`
+- docs-data-assets:109: `## Phần 3: Tài Nguyên Background & Illustration Có Kisu`
+- docs-data-assets:111: `Dùng để tạo banner quảng cáo, hình nền app hoặc thẻ khoá học. Đối với background, Midjourney là lựa chọn cực tốt (nhớ dùng tham số '--ar 16:9' hoặc tỉ lệ ngang khác của Midjourney).`
+- docs-data-assets:112: `📂 **Vị trí lưu trữ tổng hợp:** Trong các thư mục tĩnh của trang tương ứng, phổ biến là 'public/images/backgrounds/' hoặc 'public/kisu-assets/detailed/'.`
+- docs-data-assets:114: `### 1. Banner Đăng Nhập / Hero Section (Kisu ngồi trên đám mây học thuật)`
+- docs-data-assets:115: `💾 **Tên file đề xuất:** 'bg_hero_cloud_learning.jpg' (Lưu ý: Cover lớn nên lưu dạng JPG để nén dung lượng, WebP trên code).`
+- docs-data-assets:117: `3D Pixar style illustration. The mascot Kisu is sitting on a fluffy, stylized low-poly white cloud. Kisu is reading a floating holographic book. The background is a soft, dreamy sky with floating geometric math symbols (plus, minus, multiplication, division) and glowing ABC letters. Colors are pastel and vibrant: sky blue, soft amber, and mint green. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal. Natural fox ears, dark triangular nose. Micro-fluff body fur: warm`
+- docs-data-assets:120: `### 2. Hành trình Đảo Toán Học (Math Island Adventure - Map Game)`
+- docs-data-assets:121: `💾 **Tên file đề xuất:** 'bg_map_math_island.jpg'`
+- docs-data-assets:123: `3D environment concept art, isometric view. A floating magical island dedicated to learning Mathematics. There are giant colorful geometric shapes, a river of numbers, and an abacus structure. In the center of the island, the mascot Kisu is leading a group of cute, tiny generic animal students, pointing excitedly at a giant glowing equation. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, warm amber-gold fur, ink-blue irises. Left ear Chàm Jade marking, Scholar's Stripe on forehe`
+- docs-data-assets:126: `### 3. Kisu Khám Phá Vũ Trụ (Khoa học - Khoá học Tiếng Anh)`
+- docs-data-assets:127: `💾 **Tên file đề xuất:** 'bg_course_space_exploration.jpg'`
+- docs-data-assets:129: `3D Pixar style digital art. The mascot Kisu is floating in zero gravity inside a colorful, stylized spaceship cabin, looking out a large circular window at a cartoonish galaxy with smiling planets and glowing stars. Kisu is holding a glowing "ABC" star map. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal, amber-gold fur, ivory belly, ink-blue eyes. Left ear Chàm Jade marking, distinct white Scholar's stripe on forehead. Wearing a sleeveless dark navy-indigo fabric`
+- docs-data-assets:134: `## Phần 4: Ảnh Bìa Các Khoá Học / Lộ Trình (Course Covers)`
+- docs-data-assets:136: `Dự án có 3 thư viện/khóa học chính: Abeka, Little Fox (Tiếng Anh), và Little Fox CN (Tiếng Trung). Đây là bộ prompt thiết kế ảnh thumbnail cho các khoá học đó.`
+- docs-data-assets:137: `📂 **Vị trí lưu trữ tổng hợp:** Thư mục 'public/images/courses/' của dự án.`
+- docs-data-assets:138: `💡 **Lưu ý:** Ảnh bìa khoá học thường dùng tỉ lệ ngang 16:9 ('--ar 16:9').`
+- docs-data-assets:140: `### 1. Khóa Học Abeka (Tiếng Anh truyền thống)`
+- docs-data-assets:141: `💾 **Tên file đề xuất:** 'course_cover_abeka.jpg'`
+- docs-data-assets:143: `3D Pixar style digital art, highly detailed. A cozy, traditional educational thumbnail illustration. The mascot Kisu is sitting in a warm, classic wooden library filled with old books, reading from a large glowing phonics storybook. Kisu is holding a vintage magnifying glass. The environment feels structured and academic but welcoming. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal. Natural fox ears (left ear has Chàm Jade marking), short muzzle, dark triangular `
+- docs-data-assets:146: `### 2. Khóa Học Little Fox (Tiếng Anh Hoạt Hình)`
+- docs-data-assets:147: `💾 **Tên file đề xuất:** 'course_cover_littlefox.jpg'`
+- docs-data-assets:149: `3D Pixar style digital art, highly detailed. A vibrant, modern, animated educational thumbnail illustration. The mascot Kisu is interacting with a giant magical floating tablet screen showing colorful alphabet letters and cute cartoon animals (a bat, a cat, a dog). Joyful and highly energetic atmosphere. The background is a vibrant digital park with floating shiny musical notes. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal. Natural fox ears (left ear has Chàm J`
+- docs-data-assets:152: `### 3. Khóa Học Little Fox CN (Tiếng Trung Hoạt Hình)`
+- docs-data-assets:153: `💾 **Tên file đề xuất:** 'course_cover_littlefox_cn.jpg'`
+- docs-data-assets:155: `3D Pixar style digital art, highly detailed. A vibrant educational thumbnail illustration for a Chinese language learning course. The mascot Kisu is cheerfully painting glowing magical Chinese characters (Hanzi) in the air using a large traditional brush. The background features subtle, beautiful Asian elements like a softly glowing paper lantern, bamboo leaves, and a digital holographic scroll. East-meets-West tech aesthetic. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, uprig`
+- docs-data-assets:160: `## Phần 5: Illustrations cho Các Trang Hệ Thống / Trạng Thái Lỗi (System Pages)`
+- docs-data-assets:162: `Bao gồm các hình ảnh minh hoạ khổ ngang cho các trang Loading, 404 Not Found, Mất kết nối mạng, và Lỗi Server.`
+- docs-data-assets:163: `📂 **Vị trí lưu trữ tổng hợp:** Thư mục 'public/images/system/' của dự án.`
+- docs-data-assets:164: `💡 **Lưu ý:** Các màn hình hệ thống thường dùng tỉ lệ ngang 16:9 ('--ar 16:9').`
+- docs-data-assets:166: `### 1. Màn Hình Đang Tải (Loading Screen)`
+- docs-data-assets:167: `💾 **Tên file đề xuất:** 'system_loading_hero.jpg'`
+- docs-data-assets:169: `3D Pixar style digital art. The mascot Kisu is cheerfully running on a brightly glowing, colorful holographic loading bar that stretches across a soft, fluffy cloudscape. Floating around Kisu are magical, spinning hourglasses, clock gears, and loading spinner shapes. Soft, dreamy, pastel atmosphere. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal. Natural fox ears (left ear has Chàm Jade marking), dark triangular nose. Micro-fluff body fur: warm amber-gold. Belly/`
+- docs-data-assets:172: `### 2. Trang 404 Không Tồn Tại (404 Not Found Screen)`
+- docs-data-assets:173: `💾 **Tên file đề xuất:** 'system_404_error.jpg'`
+- docs-data-assets:175: `3D Pixar style digital art. The mascot Kisu is looking at a giant, tangled pile of glowing digital yarn or a broken giant compass in the middle of a whimsical, softly lit mystical forest. Kisu is holding a large glowing magnifying glass, looking confused but cute, scratching its head. Floating neon numbers "4" "0" "4" are hidden playfully in the glowing bushes. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal. Natural fox ears (left ear has Chàm Jade marking), dark`
+- docs-data-assets:178: `### 3. Trang Mất Kết Nối Mạng (Offline / No Internet Connection)`
+- docs-data-assets:179: `💾 **Tên file đề xuất:** 'system_offline_error.jpg'`
+- docs-data-assets:181: `3D Pixar style digital art. The mascot Kisu is sitting on a floating island holding two disconnected ends of a giant glowing blue and pink digital cable. The Wi-Fi symbol above Kisu's head is broken into pieces, floating away like puzzle blocks. Kisu has a slightly sad, apologetic pout. The background is a calm, dark starry night sky with gentle clouds. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal. Natural fox ears (left ear has Chàm Jade marking), dark triangu`
+- docs-data-assets:184: `### 4. Lỗi Hệ Thống / Server (500 Server Error)`
+- docs-data-assets:185: `💾 **Tên file đề xuất:** 'system_500_error.jpg'`
+- docs-data-assets:187: `3D Pixar style digital art. The mascot Kisu is wearing an oversized, cute construction hard hat. Kisu is holding a glowing wrench and playfully trying to tighten a giant, smoking, and sparking metallic gear. Fluffy clouds of glittery smoke surround the scene. Kisu has a determined, hard-working expression with a tiny sweat drop. MASCOT KISU EXACT DETAILS: A cute 3D chibi anthropomorphic fox, upright bipedal. Natural fox ears (left ear has Chàm Jade marking), dark triangular nose. Micro-fluff bod`
+
+### docs/IMPLEMENTATION-FIXES-SUMMARY.md
+
+- docs-data-assets:1: `# ✅ BÁO CÁO TRIỂN KHAI HOÀN THÀNH - FIX CRITICAL ISSUES`
+- docs-data-assets:3: `**Ngày triển khai:** 04/04/2026`
+- docs-data-assets:4: `**Scope:** Fix 4 critical issues từ review`
+- docs-data-assets:9: `## 🎯 TÓM TẮT TRIỂN KHAI`
+- docs-data-assets:13: `| **Prisma client LSP errors** | ✅ Fixed | 2 giờ | 'a3411525' |`
+- docs-data-assets:14: `| **CurriculumPackage model** | ✅ Created | 4 giờ | '7aecd345' |`
+- docs-data-assets:15: `| **Package access control** | ✅ Implemented | 8 giờ | 'b01cb684' |`
+- docs-data-assets:16: `| **Pricing & API** | ✅ Fixed | 6 giờ | 'c9c62cf9' |`
+- docs-data-assets:18: `**Total:** 20 giờ | **4 agents** | **9 files** | **~1,600 dòng code**`
+- docs-data-assets:22: `## 📊 CHI TIẾT TỪNG FIX`
+- docs-data-assets:26: `**Issue:** LSP errors với 'AbekaSubjectCode' và 'abekaVideo'`
+- docs-data-assets:34: `- ✅ Xác nhận 'AbekaSubjectCode' enum tồn tại (schema.prisma lines 691-712)`
+- docs-data-assets:35: `- ✅ Xác nhận 'AbekaVideo' model tồn tại (lines 729-758)`
+- docs-data-assets:36: `- ✅ Remove '(prisma as any)' casting từ:`
+- docs-data-assets:50: `**Issue:** Plan định nghĩa 8 gói nhưng schema chỉ có 4 generic tiers`
+- docs-data-assets:54: `**Schema thêm vào:**`
+- docs-data-assets:105: `| 1 | Mầm Non PREMIUM | K4-K5 | 199K | 1,790K | 2,800 |`
+- docs-data-assets:106: `| 2 | Tiểu Học PRO | G1-G5 | 349K | 2,990K | 7,250 |`
+- docs-data-assets:107: `| 3 | Trung Học ADVANCED | G6-G9 | **349K** ✅ | 3,190K | 5,800 |`
+- docs-data-assets:109: `| 5 | Tiếng Anh MASTER | K4-G5 | 249K | 2,190K | 1,500 |`
+- docs-data-assets:110: `| 6 | Toán Tư Duy MATH | K4-G8 | 199K | 1,790K | 1,200 |`
+- docs-data-assets:132: `**Issue:** Không có logic kiểm tra user có quyền xem video nào`
+- docs-data-assets:139: `// Kiểm tra user có quyền xem video`
+- docs-data-assets:147: `// Lấy danh sách grades được phép xem`
+- docs-data-assets:150: `// Lấy videos với pagination`
+- docs-data-assets:169: `| MONTHLY_STANDARD | K4-G5 (levels 0-5) | Tiểu Học PRO |`
+- docs-data-assets:170: `| YEARLY_STANDARD | K4-G5 (levels 0-5) | Tiểu Học PRO (Năm) |`
+- docs-data-assets:171: `| YEARLY_FAMILY_PLUS | K4-G12 (levels 0-13) | Toàn Khóa PRO |`
+- docs-data-assets:180: `"Package chỉ được xem đến lớp G5. Video này thuộc lớp G6 yêu cầu nâng cấp gói."`
+- docs-data-assets:203: `1. Lite tier 99K margin chỉ 3%`
+- docs-data-assets:204: `2. Trung Học 399K đắt hơn Tiểu Học`
+- docs-data-assets:205: `3. Thiếu API endpoints cho packages`
+- docs-data-assets:222: `| Trung Học | Cost 3x Tiểu Học | Ngang giá Tiểu Học ✅ |`
+- docs-data-assets:239: `"name": "Tiểu Học PRO",`
+- docs-data-assets:240: `"description": "Truy cập đầy đủ chương trình Tiểu Học",`
+- docs-data-assets:247: `"features": ["Tất cả môn học", "Báo cáo tiến độ", "Hỗ trợ 24/7"]`
+- docs-data-assets:287: `- Xử lý payment success/failure`
+- docs-data-assets:337: `- [x] Trung Học: 399K → 349K`
+- docs-data-assets:411: `**Total: 21 files | ~1,600 dòng code**`
+- docs-data-assets:415: `## 🎉 KẾT LUẬN`
+- docs-data-assets:417: `### Trạng Thái Trước`
+- docs-data-assets:418: `- ❌ LSP errors với Prisma client`
+- docs-data-assets:419: `- ❌ Chỉ có 4 generic subscription tiers`
+- docs-data-assets:420: `- ❌ Không có package access control`
+- docs-data-assets:421: `- ❌ Lite tier margin chỉ 3%`
+- docs-data-assets:423: `### Trạng Thái Sau`
+- docs-data-assets:425: `- ✅ 8 CurriculumPackage đầy đủ trong database`
+- docs-data-assets:434: `**Còn lại trước production:**`
+- docs-data-assets:440: `**Est. remaining: 16-24 giờ**`
+- docs-data-assets:444: `**Tất cả critical issues đã được giải quyết triệt để!** 🚀`
+
+### docs/MASTER-ABEKA-CURRICULUM-BUSINESS-PLAN.md
+
+- docs-data-assets:3: `**Tài liệu tổng hợp chiến lược kinh doanh toàn diện**`
+- docs-data-assets:4: `**Ngày tạo:** 04/04/2026`
+- docs-data-assets:5: `**Tổng số nguồn:** 20 báo cáo nghiên cứu`
+- docs-data-assets:6: `**Tài nguyên cốt lõi:** 20,195 video | 14 cấp lớp | 2,380 bài học`
+- docs-data-assets:10: `## 📋 MỤC LỤC`
+- docs-data-assets:13: `2. [Tổng Quan Tài Nguyên Abeka](#2-tổng-quan-tài-nguyên-abeka)`
+- docs-data-assets:14: `3. [Thiết Kế 8 Gói Khóa Học](#3-thiết-kế-8-gói-khóa-học)`
+- docs-data-assets:15: `4. [Chiến Lược Giá & ROI](#4-chiến-lược-giá--roi)`
+- docs-data-assets:16: `5. [Phân Tích Thị Trường Việt Nam](#5-phân-tích-thị-trường-việt-nam)`
+- docs-data-assets:18: `7. [Kế Hoạch Triển Khai 90 Ngày](#7-kế-hoạch-triển-khai-90-ngày)`
+- docs-data-assets:19: `8. [Danh Mục File Đính Kèm](#8-danh-mục-file-đính-kèm)`
+- docs-data-assets:25: `### 🚀 Tóm Tắt Chiến Lược`
+- docs-data-assets:27: `Dự án Abeka Curriculum Platform nhằm xây dựng nền tảng học tập trực tuyến dựa trên **20,195 video giáo dục chuẩn Mỹ** từ K4 đến G12, phục vụ thị trường Việt Nam và quốc tế.`
+- docs-data-assets:31: `| Metric | Giá Trị |`
+- docs-data-assets:33: `| **Tổng video** | 20,195 |`
+- docs-data-assets:34: `| **Tổng bài học** | 2,380 |`
+- docs-data-assets:35: `| **Số cấp lớp** | 14 (K4-G12) |`
+- docs-data-assets:36: `| **Số môn học** | 206+ |`
+- docs-data-assets:37: `| **Bài học/cấp** | 170 |`
+- docs-data-assets:38: `| **Trung bình video/bài** | 8.5 |`
+- docs-data-assets:40: `### 💰 Mục Tiêu Tài Chính`
+- docs-data-assets:42: `| Scenario | Subscribers | Doanh Thu/Tháng | Lợi Nhuận Ròng |`
+- docs-data-assets:48: `**Điểm hòa vốn:** 223 subscribers`
+- docs-data-assets:49: `**Biên lợi nhuận gộp:** 81-92%`
+- docs-data-assets:53: `## 2. TỔNG QUAN TÀI NGUYÊN ABEKA`
+- docs-data-assets:55: `### 2.1 Phân Bổ Video Theo Cấp Lớp`
+- docs-data-assets:57: `| Grade | Tên | Video | Bài Học | Video/Bài |`
+- docs-data-assets:74: `### 2.2 Cấu Trúc Metadata`
+- docs-data-assets:84: `**Mã Môn Học Chính:**`
+- docs-data-assets:94: `### 2.3 Phân Nhóm Theo Cấp Học`
+- docs-data-assets:96: `| Nhóm | Grades | Tổng Video | Đặc Điểm |`
+- docs-data-assets:99: `| **Elementary** | G1-G5 | 9,111 | Nền tảng đọc viết |`
+- docs-data-assets:100: `| **Middle School** | G6-G8 | 3,148 | Chuyển cấp |`
+- docs-data-assets:101: `| **High School** | G9-G12 | 4,631 | Chuẩn bị đại học |`
+- docs-data-assets:105: `## 3. THIẾT KẾ 8 GÓI KHÓA HỌC`
+- docs-data-assets:107: `### 3.1 Tổng Quan 8 Gói`
+- docs-data-assets:109: `| # | Gói | Video | Giá Tháng | Giá Năm | Mục Tiêu |`
+- docs-data-assets:111: `| 1 | **Mầm Non PREMIUM** | 2,800 | 199K | 1,790K | Phụ huynh trẻ 2-6 tuổi |`
+- docs-data-assets:112: `| 2 | **Tiểu Học PRO** | 7,250 | 349K | 2,990K | Học sinh 6-11 tuổi |`
+- docs-data-assets:113: `| 3 | **Trung Học ADVANCED** | 5,800 | 399K | 3,490K | Học sinh 11-15 tuổi |`
+- docs-data-assets:114: `| 4 | **THPT ELITE** | 4,350 | 449K | 3,990K | Học sinh 15-18 tuổi |`
+- docs-data-assets:115: `| 5 | **Tiếng Anh MASTER** | 1,500 | 249K | 2,190K | Chuyên sâu tiếng Anh |`
+- docs-data-assets:116: `| 6 | **Toán Tư Duy MATH** | 1,200 | 199K | 1,790K | Chuyên sâu Toán |`
+- docs-data-assets:117: `| 7 | **STEM INNOVATOR** | 1,500 | 299K | 2,690K | Yêu thích khoa học |`
+- docs-data-assets:118: `| 8 | **ULTIMATE** | 20,195 | 699K | 6,990K | Truy cập toàn bộ |`
+- docs-data-assets:120: `### 3.2 Chi Tiết Từng Gói`
+- docs-data-assets:122: `#### Gói 1: Mầm Non PREMIUM (K4-K5)`
+- docs-data-assets:123: `**Target:** Phụ huynh trẻ 2-6 tuổi`
+- docs-data-assets:124: `**Môn học:** Phonics, Math cơ bản, Bible, Activities, Writing`
+- docs-data-assets:126: `| Kế hoạch | Giá | Tiết kiệm |`
+- docs-data-assets:128: `| Tháng | 199,000₫ | - |`
+- docs-data-assets:129: `| Năm | 1,790,000₫ | 25% |`
+- docs-data-assets:130: `| 2 Năm | 2,990,000₫ | 37% |`
+- docs-data-assets:132: `**Value Proposition:** *"Nền tảng vàng cho con yêu - Từ chưa biết chữ đến đọc thông viết thạo"*`
+- docs-data-assets:136: `#### Gói 2: Tiểu Học PRO (G1-G5)`
+- docs-data-assets:137: `**Target:** Học sinh tiểu học 6-11 tuổi`
+- docs-data-assets:138: `**Môn học:** Reading, Math, Science, History, Phonics, Writing, Bible`
+- docs-data-assets:140: `| Kế hoạch | Giá | Tiết kiệm |`
+- docs-data-assets:142: `| Tháng | 349,000₫ | - |`
+- docs-data-assets:143: `| Năm | 2,990,000₫ | 29% |`
+- docs-data-assets:144: `| 2 Năm | 4,990,000₫ | 40% |`
+- docs-data-assets:146: `**Value Proposition:** *"5 năm vàng - Xây dựng nền tảng vững chắc cho tương lai"*`
+- docs-data-assets:150: `#### Gói 3: Trung Học ADVANCED (G6-G9)`
+- docs-data-assets:151: `**Target:** Học sinh THCS 11-15 tuổi`
+- docs-data-assets:152: `**Môn học:** Math nâng cao, Science, History, Literature, Bible`
+- docs-data-assets:154: `| Kế hoạch | Giá | Tiết kiệm |`
+- docs-data-assets:156: `| Tháng | 399,000₫ | - |`
+- docs-data-assets:157: `| Năm | 3,490,000₫ | 27% |`
+- docs-data-assets:158: `| 2 Năm | 5,990,000₫ | 37% |`
+- docs-data-assets:160: `**Value Proposition:** *"Chinh phục THCS - Từ học sinh giỏi đến xuất sắc"*`
+- docs-data-assets:164: `#### Gói 4: THPT ELITE (G10-G12)`
+- docs-data-assets:165: `**Target:** Học sinh THPT 15-18 tuổi`
+- docs-data-assets:166: `**Môn học:** Calculus, Chemistry/Physics, History/Govt, Literature`
+- docs-data-assets:168: `| Kế hoạch | Giá | Tiết kiệm |`
+- docs-data-assets:170: `| Tháng | 449,000₫ | - |`
+- docs-data-assets:171: `| Năm | 3,990,000₫ | 26% |`
+- docs-data-assets:172: `| 2 Năm | 6,990,000₫ | 35% |`
+- docs-data-assets:174: `**Value Proposition:** *"Vào đại học top - Chuẩn bị vượt trội cho tương lai"*`
+- docs-data-assets:178: `#### Gói 5: Tiếng Anh MASTER (K4-G5)`
+- docs-data-assets:179: `**Target:** Phụ huynh muốn con thành thạo tiếng Anh`
+- docs-data-assets:180: `**Môn học:** Phonics + Reading + Writing (1,500 video)`
+- docs-data-assets:182: `| Kế hoạch | Giá | Tiết kiệm |`
+- docs-data-assets:184: `| Tháng | 249,000₫ | - |`
+- docs-data-assets:185: `| Năm | 2,190,000₫ | 27% |`
+- docs-data-assets:186: `| 3 Năm | 5,490,000₫ | 38% |`
+- docs-data-assets:188: `**Value Proposition:** *"Song ngữ từ nhỏ - Tiếng Anh như người bản xứ"*`
+- docs-data-assets:192: `#### Gói 6: Toán Tư Duy MATH (K4-G8)`
+- docs-data-assets:193: `**Target:** Học sinh cần củng cố/nâng cao Toán`
+- docs-data-assets:194: `**Môn học:** Arithmetic + Algebra + Geometry (1,200 video)`
+- docs-data-assets:196: `| Kế hoạch | Giá | Tiết kiệm |`
+- docs-data-assets:198: `| Tháng | 199,000₫ | - |`
+- docs-data-assets:199: `| Năm | 1,790,000₫ | 25% |`
+- docs-data-assets:200: `| 5 Năm | 6,990,000₫ | 41% |`
+- docs-data-assets:202: `**Value Proposition:** *"Tư duy Toán học - Con giỏi logic, không số đề"*`
+- docs-data-assets:206: `#### Gói 7: STEM INNOVATOR (G3-G8)`
+- docs-data-assets:207: `**Target:** Phụ huynh muốn con theo STEM`
+- docs-data-assets:208: `**Môn học:** Science + Math + History of Science (1,500 video)`
+- docs-data-assets:210: `| Kế hoạch | Giá | Tiết kiệm |`
+- docs-data-assets:212: `| Tháng | 299,000₫ | - |`
+- docs-data-assets:213: `| Năm | 2,690,000₫ | 25% |`
+- docs-data-assets:214: `| 3 Năm | 6,990,000₫ | 35% |`
+- docs-data-assets:216: `**Value Proposition:** *"Nhà khoa học nhí - Khám phá thế giới tự nhiên"*`
+- docs-data-assets:220: `#### Gói 8: ULTIMATE Full Access (K4-G12)`
+- docs-data-assets:221: `**Target:** Gia đình có nhiều con, homeschoolers`
+- docs-data-assets:222: `**Môn học:** Tất cả 8 môn, 14 cấp lớp (20,195 video)`
+- docs-data-assets:224: `| Kế hoạch | Giá | Tiết kiệm |`
+- docs-data-assets:226: `| Tháng | 699,000₫ | - |`
+- docs-data-assets:227: `| Năm | 6,990,000₫ | 17% |`
+- docs-data-assets:228: `| 2 Năm | 11,990,000₫ | 29% |`
+- docs-data-assets:229: `| **TRỌN ĐỜI** | **29,990,000₫** | **86%** |`
+- docs-data-assets:231: `**Value Proposition:** *"Kho báu tri thức - Một lần đầu tư, trọn đời thụ hưởng"*`
+- docs-data-assets:236: `Free Trial (7 ngày)`
+- docs-data-assets:238: `Lite Tier (99K/tháng) → Early upsell to Standard`
+- docs-data-assets:240: `Standard Tier (199K/tháng) → Primary target`
+- docs-data-assets:242: `Premium Tier (399K/tháng) → High-value segment`
+- docs-data-assets:244: `ULTIMATE (699K/tháng) → Power users, families`
+- docs-data-assets:249: `## 4. CHIẾN LƯỢC GIÁ & ROI`
+- docs-data-assets:255: `| **Giá/Tháng** | 99K | 199K | 349K | 499K |`
+- docs-data-assets:256: `| **Chi phí biến đổi** | 18K | 23K | 29K | 41K |`
+- docs-data-assets:257: `| **Đóng góp** | 81K | 176K | 320K | 458K |`
+- docs-data-assets:258: `| **Biên ròng (500 subs)** | 3% | 49% | 69% | 76% |`
+- docs-data-assets:259: `| **Lợi nhuận/user** | 3K | 98K | 242K | 381K |`
+- docs-data-assets:261: `### 4.2 Chi Phí Cố Định (Fixed Costs)`
+- docs-data-assets:263: `| Hạng mục | Chi Phí/Tháng |`
+- docs-data-assets:266: `| Nhân sự (giả định) | 20,000,000 VND |`
+- docs-data-assets:269: `| **Tổng Fixed** | **~60M VND** |`
+- docs-data-assets:273: `| Tier | LTV | CAC | LTV:CAC | Thời gian hoàn vốn |`
+- docs-data-assets:275: `| Lite | 297K | 75K | 4:1 | 2-3 tháng |`
+- docs-data-assets:276: `| Standard | 1,194K | 150K | 8:1 | 1-2 tháng |`
+- docs-data-assets:277: `| Premium | 4,188K | 300K | 14:1 | 1 tháng |`
+- docs-data-assets:278: `| Family | 5,988K | 400K | 15:1 | <1 tháng |`
+- docs-data-assets:280: `**Churn Rate Target:** <10%/tháng`
+- docs-data-assets:282: `### 4.4 Khuyến Nghị`
+- docs-data-assets:284: `#### ✅ NÊN LÀM:`
+- docs-data-assets:285: `1. Focus vào **Standard & Premium tiers** - Tối ưu cân bằng biên lợi nhuận và khối lượng`
+- docs-data-assets:286: `2. **Upsell từ Lite** - Đẩy người dùng lên gói cao nhanh chóng`
+- docs-data-assets:287: `3. **Xây dựng TikTok presence** - CAC thấp ($5-10)`
+- docs-data-assets:288: `4. **Annual plans** - Giảm 20% để cải thiện cash flow`
+- docs-data-assets:289: `5. **Target families/homeschool groups** - Lợi nhuận cao nhất`
+- docs-data-assets:291: `#### ❌ KHÔNG NÊN:`
+- docs-data-assets:292: `1. Đừng cạnh tranh ở Lite tier - Biên lợi nhuận quá mỏng (3%)`
+- docs-data-assets:293: `2. Đừng bỏ qua churn - Phải giữ <10%/tháng`
+- docs-data-assets:294: `3. Đừng chi quá nhiều cho Facebook Ads - CAC cao ($8-15)`
+- docs-data-assets:298: `## 5. PHÂN TÍCH THỊ TRƯỜNG VIỆT NAM`
+- docs-data-assets:300: `### 5.1 Tổng Quan Thị Trường EdTech`
+- docs-data-assets:302: `| Chỉ số | Giá trị |`
+- docs-data-assets:304: `| Tổng thị trường EdTech VN 2025 | **$3.9 tỷ** |`
+- docs-data-assets:305: `| Xếp hạng toàn cầu | **Top 10** |`
+- docs-data-assets:306: `| Tăng trưởng CAGR | **17.1%** |`
+- docs-data-assets:307: `| Học sinh tiểu học | ~8.5 triệu |`
+- docs-data-assets:308: `| Phụ huynh tìm kiếm "học tiếng Anh online" | 60,000+/tháng |`
+- docs-data-assets:310: `### 5.2 Phân Tích Đối Thủ Chính`
+- docs-data-assets:312: `| Đối thủ | Mô hình | Phân khúc | Giá | Điểm mạnh | Điểm yếu |`
+- docs-data-assets:314: `| **VUIHOC** | Subscription | Lớp 1-12 | 199K-599K/tháng | AI tiên tiến nhất | Giá cao hơn 30-50% |`
+- docs-data-assets:315: `| **Loigiaihay** | Freemium | Lớp 1-12 | Miễn phí | Nội dung phong phú | Quảng cáo nhiều |`
+- docs-data-assets:316: `| **Hoc10** | Code kích hoạt | Lớp 1-12 | 50K-150K/môn | Bám sát SGK | Traffic thấp |`
+- docs-data-assets:317: `| **Cánh Diều** | Bán code | Lớp 1-12 | 15K-35K/sách | Chuẩn Bộ GD | Chỉ có sách |`
+- docs-data-assets:321: `**Strengths (Điểm mạnh):**`
+- docs-data-assets:322: `- Dân số trẻ, nhu cầu giáo dục cao`
+- docs-data-assets:323: `- Chính phủ đẩy mạnh chuyển đổi số`
+- docs-data-assets:324: `- Smartphone/internet phổ cập`
+- docs-data-assets:325: `- Phụ huynh sẵn sàng chi trả cho giáo dục`
+- docs-data-assets:327: `**Weaknesses (Điểm yếu):**`
+- docs-data-assets:328: `- Phân khúc phổ thông bão hòa (>50% sản phẩm)`
+- docs-data-assets:329: `- Nhiều nội dung miễn phí chất lượng thấp`
+- docs-data-assets:330: `- Thiếu chuẩn chất lượng chung`
+- docs-data-assets:332: `**Opportunities (Cơ hội):**`
+- docs-data-assets:333: `- Luyện thi chuyên sâu (chưa bão hòa)`
+- docs-data-assets:334: `- IELTS/TOEIC đang tăng nhanh`
+- docs-data-assets:336: `- Thị trường tỉnh/thành phố nhỏ`
+- docs-data-assets:338: `**Threats (Thách thức):**`
+- docs-data-assets:339: `- AI có thể thay thế nhiều nền tảng truyền thống`
+- docs-data-assets:340: `- Content miễn phí trên YouTube, TikTok`
+- docs-data-assets:341: `- Sách PDF miễn phí lan tràn`
+- docs-data-assets:345: `| Segment | Số lượng | Tiềm năng/năm |`
+- docs-data-assets:351: `| **TỔNG SAM** | **~26,200** | **~$143.5M** |`
+- docs-data-assets:360: `AWARENESS (Thu hút)`
+- docs-data-assets:366: `INTEREST (Quan tâm)`
+- docs-data-assets:372: `DESIRE (Mong muốn)`
+- docs-data-assets:373: `├── Free Trial (7 ngày)`
+- docs-data-assets:378: `ACTION (Hành động)`
+- docs-data-assets:389: `| **TikTok Organic** | Low | $5-10 | 🔥 Cao nhất |`
+- docs-data-assets:391: `| **Facebook Ads** | Medium | $8-15 | Trung bình |`
+- docs-data-assets:392: `| **Google Ads** | Medium | $15-25 | Trung bình |`
+- docs-data-assets:393: `| **KOL/Influencer** | High | $20-40 | Thấp |`
+- docs-data-assets:394: `| **B2B Direct Sales** | High | $100-200 | Đặc biệt |`
+- docs-data-assets:396: `### 6.3 3 Free Tools Ưu Tiên (Engineering as Marketing)`
+- docs-data-assets:398: `| # | Công cụ | Mục tiêu | Thời gian |`
+- docs-data-assets:400: `| 1 | **Đánh giá trình độ Cambridge YLE** | Lead generation | 3-4 tuần |`
+- docs-data-assets:401: `| 2 | **Máy tính chi phí học tập** | Conversion, viral | 2-3 tuần |`
+- docs-data-assets:402: `| 3 | **Generator worksheet tiếng Anh/Toán** | SEO, repeat visits | 4-5 tuần |`
+- docs-data-assets:404: `**Dự báo tác động:** 5,000+ leads/tháng trong 6 tháng đầu`
+- docs-data-assets:408: `## 7. KẾ HOẠCH TRIỂN KHAI 90 NGÀY`
+- docs-data-assets:410: `### 7.1 Checklist 90 Ngày`
+- docs-data-assets:412: `#### Tháng 1: Foundation (Ngày 1-30)`
+- docs-data-assets:414: `| Ngày | Task | Owner | Status |`
+- docs-data-assets:425: `#### Tháng 2: Launch Preparation (Ngày 31-60)`
+- docs-data-assets:427: `| Ngày | Task | Owner | Status |`
+- docs-data-assets:436: `#### Tháng 3: Public Launch (Ngày 61-90)`
+- docs-data-assets:438: `| Ngày | Task | Owner | Status |`
+- docs-data-assets:460: `| Role | Số lượng | Thời gian | Chi phí |`
+- docs-data-assets:462: `| Full-stack Developer | 2 | 3 tháng | High |`
+- docs-data-assets:463: `| Frontend Developer | 1 | 3 tháng | Medium |`
+- docs-data-assets:464: `| DevOps Engineer | 1 | 2 tháng | Medium |`
+- docs-data-assets:465: `| Product Manager | 1 | 3 tháng | Medium |`
+- docs-data-assets:466: `| Growth/Marketing | 1 | 3 tháng | Medium |`
+- docs-data-assets:471: `## 8. DANH MỤC FILE ĐÍNH KÈM`
+- docs-data-assets:473: `### 8.1 Research Reports (Nghiên cứu)`
+- docs-data-assets:475: `| # | File | Mô tả |`
+- docs-data-assets:477: `| 1 | 'docs/research/abeka-metadata-structure-report.md' | Cấu trúc metadata 20,195 video |`
+- docs-data-assets:478: `| 2 | 'docs/research/abeka-content-mapping-analysis.md' | Phân tích mapping nội dung |`
+- docs-data-assets:479: `| 3 | 'docs/research/vietnam-market-deep-dive-2025.md' | Nghiên cứu sâu thị trường VN |`
+- docs-data-assets:480: `| 4 | 'docs/research/vietnam-parent-persona-research.md' | Nghiên cứu persona phụ huynh |`
+- docs-data-assets:481: `| 5 | 'docs/research/monetization-trends-2025-report.md' | Xu hướng monetization 2025 |`
+- docs-data-assets:482: `| 6 | 'docs/research/vietnam-market-phase2-synthesis-report.md' | Tổng hợp pha 2 thị trường VN |`
+- docs-data-assets:483: `| 7 | 'docs/abeka-curriculum-system.md' | Tài liệu hệ thống curriculum |`
+- docs-data-assets:485: `### 8.2 Business Strategy (Chiến lược)`
+- docs-data-assets:487: `| # | File | Mô tả |`
+- docs-data-assets:489: `| 8 | 'docs/business/abeka-course-package-design.md' | Thiết kế 8 gói khóa học |`
+- docs-data-assets:490: `| 9 | 'docs/business/abeka-monetization-master-plan.md' | Kế hoạch monetization tổng thể |`
+- docs-data-assets:491: `| 10 | 'docs/business/resource-optimization-strategy.md' | Chiến lược tối ưu tài nguyên |`
+- docs-data-assets:492: `| 11 | 'docs/business/go-to-market-sales-playbook.md' | Playbook bán hàng GTM |`
+- docs-data-assets:493: `| 12 | 'docs/business/roi-profit-analysis-by-package.md' | Phân tích ROI từng gói |`
+- docs-data-assets:494: `| 13 | 'docs/business/roi-profit-summary.md' | Tổng hợp ROI & Profit |`
+- docs-data-assets:496: `| 15 | 'docs/business/vietnam-competitor-analysis-2025.md' | Phân tích đối thủ 2025 |`
+- docs-data-assets:497: `| 16 | 'docs/business/free-tools-strategy-vietnam.md' | Chiến lược công cụ miễn phí |`
+- docs-data-assets:498: `| 17 | 'docs/business/vietnam-b2b-opportunity-analysis.md' | Phân tích cơ hội B2B |`
+- docs-data-assets:499: `| 18 | 'docs/business/competitor-monetization-analysis.md' | Phân tích monetization đối thủ |`
+- docs-data-assets:500: `| 19 | 'docs/business/profitable-directions-recommendation.md' | Khuyến nghị hướng phát triển |`
+- docs-data-assets:501: `| 20 | 'docs/business/asset-inventory-for-monetization.md' | Danh mục tài sản monetization |`
+- docs-data-assets:503: `### 8.3 Design & Architecture (Thiết kế)`
+- docs-data-assets:505: `| # | File | Mô tả |`
+- docs-data-assets:507: `| 21 | 'docs/design/curriculum-hierarchy-system-design.md' | Thiết kế hệ thống phân cấp |`
+- docs-data-assets:508: `| 22 | 'docs/design/curriculum-ui-ux-design.md' | Thiết kế UI/UX |`
+- docs-data-assets:510: `| 24 | 'docs/learning-system-architecture-design.md' | Kiến trúc hệ thống học tập |`
+- docs-data-assets:511: `| 25 | 'docs/learning-system-executive-summary.md' | Tóm tắt hệ thống học tập |`
+- docs-data-assets:517: `### A. Tài Nguyên Kỹ Thuật`
+
+### docs/PRODUCTION-SETUP-SUMMARY.md
+
+- docs-data-assets:1: `# ✅ HOÀN THÀNH: BÁO CÁO TỔNG HỢP & SETUP PRODUCTION`
+- docs-data-assets:3: `## 📊 TỔNG KẾT TRIỂN KHAI`
+- docs-data-assets:5: `**4 Agent teams** hoàn thành song song, tạo ra **hệ thống production-ready** cho Abeka curriculum.`
+- docs-data-assets:9: `## 📁 FILE BÁO CÁO MASTER`
+- docs-data-assets:11: `### 'docs/MASTER-ABEKA-CURRICULUM-BUSINESS-PLAN.md' (19KB, 556 dòng)`
+- docs-data-assets:13: `**File tổng hợp duy nhất** từ 20 báo cáo nghiên cứu, bao gồm:`
+- docs-data-assets:15: `| Phần | Nội Dung |`
+- docs-data-assets:17: `| Executive Summary | Key metrics, mục tiêu tài chính |`
+- docs-data-assets:18: `| Tài Nguyên Abeka | 20,195 video, 14 cấp lớp, phân bổ chi tiết |`
+- docs-data-assets:19: `| 8 Gói Khóa Học | Thiết kế gói, giá, value proposition |`
+- docs-data-assets:20: `| Chiến Lược Giá & ROI | Unit economics, LTV:CAC, margin analysis |`
+- docs-data-assets:21: `| Thị Trường VN | $3.9B market, SWOT, đối thủ, B2B |`
+- docs-data-assets:23: `| Kế Hoạch 90 Ngày | Checklist triển khai, milestones |`
+- docs-data-assets:24: `| Danh Mục File | 25 file đính kèm được tham chiếu |`
+- docs-data-assets:27: `- 🎥 20,195 video | 📚 14 cấp lớp | 💰 Break-even: 223 subscribers`
+- docs-data-assets:28: `- 📈 Target: 2,000 subscribers = 500M VND/tháng | Margin: 79-85%`
+- docs-data-assets:32: `## 🔧 HỆ THỐNG IMPORT PRODUCTION-READY`
+- docs-data-assets:34: `### Files Đã Tạo`
+- docs-data-assets:36: `| File | Mục Đích | Status |`
+- docs-data-assets:38: `| 'scripts/abeka/production-import.ts' | Import chính thức với transactions, checkpoint | ✅ |`
+- docs-data-assets:40: `| 'scripts/abeka/pre-import-check.ts' | Pre-flight checks trước import | ✅ |`
+- docs-data-assets:42: `| 'docker/docker-compose.abeka.yml' | Full stack với PostgreSQL | ✅ |`
+- docs-data-assets:43: `| 'docs/ABEKA-IMPORT-SETUP-GUIDE.md' | Hướng dẫn chi tiết | ✅ |`
+- docs-data-assets:45: `### Tính Năng Production`
+- docs-data-assets:47: `✅ **Transaction Safety:** Batch processing với rollback`
+- docs-data-assets:48: `✅ **Checkpoint System:** Resume nếu fail giữa chừng`
+- docs-data-assets:49: `✅ **Rate Limiting:** 10ms delay giữa batches (không quá tải DB)`
+- docs-data-assets:55: `### Commands Sẵn Sàng`
+- docs-data-assets:58: `# Validation trước import`
+- docs-data-assets:61: `# Import production với checkpoint`
+- docs-data-assets:64: `# Resume nếu fail`
+- docs-data-assets:78: `### 'docs/deployment/VPS-DEPLOYMENT-GUIDE.md' (25KB, 1,113 dòng)`
+- docs-data-assets:80: `**Complete production deployment guide** với 13 scripts ready-to-use:`
+- docs-data-assets:84: `| Script | Chức Năng |`
+- docs-data-assets:91: `| 'redis-setup.sh' | Redis với AOF persistence |`
+- docs-data-assets:128: `# Chạy via cron: 0 2 * * *`
+- docs-data-assets:143: `# Từ server cũ`
+- docs-data-assets:146: `# Sang server mới`
+- docs-data-assets:161: `✅ **Environment Config:** '.env' dễ thay đổi`
+- docs-data-assets:162: `✅ **Docker Compose:** One file chạy mọi nơi`
+- docs-data-assets:164: `✅ **CDN Independent:** Dễ đổi CDN provider`
+- docs-data-assets:165: `✅ **Checkpoint Resume:** Không mất dữ liệu khi migrate`
+- docs-data-assets:211: `## 📋 CHECKLIST TRIỂN KHAI PRODUCTION`
+- docs-data-assets:213: `### Phase 1: VPS Setup (Ngày 1)`
+- docs-data-assets:216: `- [ ] Trỏ domain về VPS`
+- docs-data-assets:217: `- [ ] Chạy 'vps-setup.sh' (security hardening)`
+- docs-data-assets:218: `- [ ] Chạy 'nodejs-install.sh'`
+- docs-data-assets:219: `- [ ] Chạy 'nginx-ssl-setup.sh'`
+- docs-data-assets:221: `### Phase 2: Database (Ngày 2)`
+- docs-data-assets:223: `- [ ] Chạy 'postgres-setup.sh'`
+- docs-data-assets:224: `- [ ] Chạy 'pgbouncer-setup.sh'`
+- docs-data-assets:225: `- [ ] Chạy 'redis-setup.sh'`
+- docs-data-assets:227: `- [ ] Chạy 'deploy-initial.sh'`
+- docs-data-assets:229: `### Phase 3: Import Abeka (Ngày 3-4)`
+- docs-data-assets:231: `- [ ] Upload 'abeka_tools' lên VPS`
+- docs-data-assets:232: `- [ ] Chạy 'pnpm abeka:validate' (pre-check)`
+- docs-data-assets:233: `- [ ] Chạy 'pnpm abeka:import:prod' (import)`
+- docs-data-assets:234: `- [ ] Chạy 'pnpm abeka:validate:db' (post-verify)`
+- docs-data-assets:235: `- [ ] Kiểm tra count: 20,195 videos`
+- docs-data-assets:237: `### Phase 4: Testing (Ngày 5)`
+- docs-data-assets:240: `- [ ] Test 1 gói khóa học`
+- docs-data-assets:245: `### Phase 5: Go-Live (Ngày 6-7)`
+- docs-data-assets:254: `## 🎯 DANH MỤC FILE ĐÃ TẠO`
+- docs-data-assets:256: `### Báo Cáo & Documentation`
+- docs-data-assets:261: `4. ✅ 'docs/ABEKA-VALIDATION-CHECKLIST.md' (sắp tạo)`
+- docs-data-assets:274: `3. ✅ 'scripts/vps-setup.sh' (từ VPS guide)`
+- docs-data-assets:275: `4. ✅ 'scripts/abeka-import.sh' (từ VPS guide)`
+- docs-data-assets:276: `5. ✅ 'scripts/daily-backup.sh' (từ VPS guide)`
+- docs-data-assets:277: `6. ✅ 'scripts/migrate-server.sh' (từ VPS guide)`
+- docs-data-assets:291: `### Ngay Lập Tức`
+- docs-data-assets:294: `2. **Chuẩn bị VPS:** Theo 'docs/deployment/VPS-DEPLOYMENT-GUIDE.md'`
+- docs-data-assets:297: `### Tuần 1`
+- docs-data-assets:299: `1. **Deploy VPS:** Chạy scripts theo guide`
+- docs-data-assets:304: `### Tuần 2`
+- docs-data-assets:307: `2. **Beta launch:** 50 users thử nghiệm`
+- docs-data-assets:312: `## 💡 TÓM TẮT`
+- docs-data-assets:314: `✅ **Báo cáo Master:** 1 file tổng hợp toàn bộ chiến lược`
+- docs-data-assets:315: `✅ **Import System:** Production-ready với checkpoint, validation`
+- docs-data-assets:320: `**Hệ thống sẵn sàng deploy production!** 🎉`
+
+### docs/QUICK-START.md
+
+- docs-data-assets:3: `> **Mục tiêu:** Developer mới chạy project trong **5 phút**.`
+- docs-data-assets:7: `## 📋 Prerequisites (1 phút)`
+- docs-data-assets:9: `### Kiểm tra và cài đặt nếu thiếu:`
+- docs-data-assets:11: `| Yêu cầu | Version | Kiểm tra |`
+- docs-data-assets:18: `### Cài đặt nhanh:`
+- docs-data-assets:21: `# Node.js 22 (nếu chưa có)`
+- docs-data-assets:26: `# Windows - download tại https://nodejs.org/`
+- docs-data-assets:28: `# pnpm (nếu chưa có)`
+- docs-data-assets:31: `# PostgreSQL (nếu chưa có)`
+- docs-data-assets:41: `## 📥 Clone & Install (1 phút)`
+- docs-data-assets:62: `## ⚙️ Environment Setup (1 phút)`
+- docs-data-assets:69: `### Edit '.env' - chỉ cần thay đổi các dòng sau:`
+- docs-data-assets:72: `# Database (nếu PostgreSQL đã có sẵn, dùng URL của bạn)`
+- docs-data-assets:75: `# Secrets - generate ngẫu nhiên 32+ ký tự`
+- docs-data-assets:97: `## 🗄️ Database Setup (1 phút)`
+- docs-data-assets:99: `### Option A: Sử dụng Docker (khuyến nghị cho development):`
+- docs-data-assets:102: `# Start PostgreSQL và Redis`
+- docs-data-assets:105: `# Đợi database ready (5-10s)`
+- docs-data-assets:108: `# Chạy migration`
+- docs-data-assets:111: `# Seed dữ liệu demo`
+- docs-data-assets:118: `# Tạo database`
+- docs-data-assets:121: `# Chạy migration`
+- docs-data-assets:124: `# Seed dữ liệu`
+- docs-data-assets:138: `## 🚀 Run (1 phút)`
+- docs-data-assets:143: `# Start tất cả services`
+- docs-data-assets:174: `### Import dữ liệu Abeka curriculum:`
+- docs-data-assets:177: `# 1. Validate data trước khi import`
+- docs-data-assets:180: `# 2. Import toàn bộ (có checkpoint để resume)`
+- docs-data-assets:183: `# 3. Hoặc import một grade cụ thể`
+- docs-data-assets:190: `**Chi tiết:** [docs/ABEKA-IMPORT-SETUP-GUIDE.md](./ABEKA-IMPORT-SETUP-GUIDE.md)`
+- docs-data-assets:194: `## 🧪 Bonus: Chạy Tests`
+- docs-data-assets:200: `# E2E tests (yêu cầu server đang chạy)`
+- docs-data-assets:230: `# Sau đó mở Chrome DevTools → chrome://inspect`
+- docs-data-assets:236: `# Worker với inspect`
+- docs-data-assets:245: `| Database connection failed | Kiểm tra 'DATABASE_URL' và PostgreSQL đã chạy |`
+- docs-data-assets:246: `| Redis connection failed | Kiểm tra 'REDIS_URL' và Redis đã chạy |`
+- docs-data-assets:247: `| Migration lỗi | 'pnpm db:migrate -- --reset' (cẩn thận!) |`
+- docs-data-assets:248: `| Module not found | 'pnpm install' lại |`
+- docs-data-assets:257: `# Clean và rebuild`
+- docs-data-assets:291: `**🎉 Happy coding! Nếu gặp vấn đề, check logs và [troubleshooting](#-bonus-debug) section.**`
+
+### docs/SERVER-DEPLOYMENT-PLAN.md
+
+- docs-data-assets:90: `### Step 1: SSH vào server`
+
+### docs/api/littlefox/FS0020.json
+
+- docs-data-assets:6: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"episode_title": "1. The Arrest of Arsène Lupin 1",`
+- docs-data-assets:12: `"cont_title": "Arsène Lupin 1: The Arrest of Arsène Lupin 1",`
+- docs-data-assets:35: `"cont_title": "Arsène Lupin 1: The Arrest of Arsène Lupin 1",`
+- docs-data-assets:66: `"series_title": "Arsène Lupin",`
+- docs-data-assets:71: `"episode_title": "2. The Arrest of Arsène Lupin 2",`
+- docs-data-assets:72: `"cont_title": "Arsène Lupin 2: The Arrest of Arsène Lupin 2",`
+- docs-data-assets:95: `"cont_title": "Arsène Lupin 2: The Arrest of Arsène Lupin 2",`
+- docs-data-assets:126: `"series_title": "Arsène Lupin",`
+- docs-data-assets:131: `"episode_title": "3. Arsène Lupin in Prison 1",`
+- docs-data-assets:132: `"cont_title": "Arsène Lupin 3: Arsène Lupin in Prison 1",`
+- docs-data-assets:155: `"cont_title": "Arsène Lupin 3: Arsène Lupin in Prison 1",`
+- docs-data-assets:186: `"series_title": "Arsène Lupin",`
+- docs-data-assets:191: `"episode_title": "4. Arsène Lupin in Prison 2",`
+- docs-data-assets:192: `"cont_title": "Arsène Lupin 4: Arsène Lupin in Prison 2",`
+- docs-data-assets:215: `"cont_title": "Arsène Lupin 4: Arsène Lupin in Prison 2",`
+- docs-data-assets:246: `"series_title": "Arsène Lupin",`
+- docs-data-assets:252: `"cont_title": "Arsène Lupin 5: Escape from Prison 1",`
+- docs-data-assets:275: `"cont_title": "Arsène Lupin 5: Escape from Prison 1",`
+- docs-data-assets:306: `"series_title": "Arsène Lupin",`
+- docs-data-assets:312: `"cont_title": "Arsène Lupin 6: Escape from Prison 2",`
+- docs-data-assets:335: `"cont_title": "Arsène Lupin 6: Escape from Prison 2",`
+- docs-data-assets:366: `"series_title": "Arsène Lupin",`
+- docs-data-assets:372: `"cont_title": "Arsène Lupin 7: Escape from Prison 3",`
+- docs-data-assets:395: `"cont_title": "Arsène Lupin 7: Escape from Prison 3",`
+- docs-data-assets:426: `"series_title": "Arsène Lupin",`
+- docs-data-assets:432: `"cont_title": "Arsène Lupin 8: The Mysterious Traveler 1",`
+- docs-data-assets:455: `"cont_title": "Arsène Lupin 8: The Mysterious Traveler 1",`
+- docs-data-assets:486: `"series_title": "Arsène Lupin",`
+- docs-data-assets:492: `"cont_title": "Arsène Lupin 9: The Mysterious Traveler 2",`
+- docs-data-assets:515: `"cont_title": "Arsène Lupin 9: The Mysterious Traveler 2",`
+- docs-data-assets:546: `"series_title": "Arsène Lupin",`
+- docs-data-assets:552: `"cont_title": "Arsène Lupin 10: The Queen's Necklace 1",`
+- docs-data-assets:575: `"cont_title": "Arsène Lupin 10: The Queen's Necklace 1",`
+- docs-data-assets:606: `"series_title": "Arsène Lupin",`
+- docs-data-assets:612: `"cont_title": "Arsène Lupin 11: The Queen's Necklace 2",`
+- docs-data-assets:635: `"cont_title": "Arsène Lupin 11: The Queen's Necklace 2",`
+- docs-data-assets:666: `"series_title": "Arsène Lupin",`
+- docs-data-assets:672: `"cont_title": "Arsène Lupin 12: The Seven of Hearts 1",`
+- docs-data-assets:695: `"cont_title": "Arsène Lupin 12: The Seven of Hearts 1",`
+- docs-data-assets:726: `"series_title": "Arsène Lupin",`
+- docs-data-assets:732: `"cont_title": "Arsène Lupin 13: The Seven of Hearts 2",`
+- docs-data-assets:755: `"cont_title": "Arsène Lupin 13: The Seven of Hearts 2",`
+- docs-data-assets:786: `"series_title": "Arsène Lupin",`
+- docs-data-assets:792: `"cont_title": "Arsène Lupin 14: The Seven of Hearts 3",`
+- docs-data-assets:815: `"cont_title": "Arsène Lupin 14: The Seven of Hearts 3",`
+- docs-data-assets:846: `"series_title": "Arsène Lupin",`
+- docs-data-assets:852: `"cont_title": "Arsène Lupin 15: Madame Imbert's Safe",`
+- docs-data-assets:875: `"cont_title": "Arsène Lupin 15: Madame Imbert's Safe",`
+- docs-data-assets:906: `"series_title": "Arsène Lupin",`
+- docs-data-assets:912: `"cont_title": "Arsène Lupin 16: The Black Pearl",`
+- docs-data-assets:935: `"cont_title": "Arsène Lupin 16: The Black Pearl",`
+- docs-data-assets:966: `"series_title": "Arsène Lupin",`
+- docs-data-assets:972: `"cont_title": "Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1",`
+- docs-data-assets:995: `"cont_title": "Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1",`
+- docs-data-assets:1026: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1032: `"cont_title": "Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2",`
+- docs-data-assets:1055: `"cont_title": "Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2",`
+- docs-data-assets:1086: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1091: `"episode_title": "19. The Arrest of Arsène Lupin 1",`
+- docs-data-assets:1092: `"cont_title": "Arsène Lupin 1: The Arrest of Arsène Lupin 1",`
+- docs-data-assets:1115: `"cont_title": "Arsène Lupin 1: The Arrest of Arsène Lupin 1",`
+- docs-data-assets:1146: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1151: `"episode_title": "20. The Arrest of Arsène Lupin 2",`
+- docs-data-assets:1152: `"cont_title": "Arsène Lupin 2: The Arrest of Arsène Lupin 2",`
+- docs-data-assets:1175: `"cont_title": "Arsène Lupin 2: The Arrest of Arsène Lupin 2",`
+- docs-data-assets:1206: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1211: `"episode_title": "21. Arsène Lupin in Prison 1",`
+- docs-data-assets:1212: `"cont_title": "Arsène Lupin 3: Arsène Lupin in Prison 1",`
+- docs-data-assets:1235: `"cont_title": "Arsène Lupin 3: Arsène Lupin in Prison 1",`
+- docs-data-assets:1266: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1271: `"episode_title": "22. Arsène Lupin in Prison 2",`
+- docs-data-assets:1272: `"cont_title": "Arsène Lupin 4: Arsène Lupin in Prison 2",`
+- docs-data-assets:1295: `"cont_title": "Arsène Lupin 4: Arsène Lupin in Prison 2",`
+- docs-data-assets:1326: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1332: `"cont_title": "Arsène Lupin 5: Escape from Prison 1",`
+- docs-data-assets:1355: `"cont_title": "Arsène Lupin 5: Escape from Prison 1",`
+- docs-data-assets:1386: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1392: `"cont_title": "Arsène Lupin 6: Escape from Prison 2",`
+- docs-data-assets:1415: `"cont_title": "Arsène Lupin 6: Escape from Prison 2",`
+- docs-data-assets:1446: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1452: `"cont_title": "Arsène Lupin 7: Escape from Prison 3",`
+- docs-data-assets:1475: `"cont_title": "Arsène Lupin 7: Escape from Prison 3",`
+- docs-data-assets:1506: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1512: `"cont_title": "Arsène Lupin 8: The Mysterious Traveler 1",`
+- docs-data-assets:1535: `"cont_title": "Arsène Lupin 8: The Mysterious Traveler 1",`
+- docs-data-assets:1566: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1572: `"cont_title": "Arsène Lupin 9: The Mysterious Traveler 2",`
+- docs-data-assets:1595: `"cont_title": "Arsène Lupin 9: The Mysterious Traveler 2",`
+- docs-data-assets:1626: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1632: `"cont_title": "Arsène Lupin 10: The Queen's Necklace 1",`
+- docs-data-assets:1655: `"cont_title": "Arsène Lupin 10: The Queen's Necklace 1",`
+- docs-data-assets:1686: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1692: `"cont_title": "Arsène Lupin 11: The Queen's Necklace 2",`
+- docs-data-assets:1715: `"cont_title": "Arsène Lupin 11: The Queen's Necklace 2",`
+- docs-data-assets:1746: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1752: `"cont_title": "Arsène Lupin 12: The Seven of Hearts 1",`
+- docs-data-assets:1775: `"cont_title": "Arsène Lupin 12: The Seven of Hearts 1",`
+- docs-data-assets:1806: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1812: `"cont_title": "Arsène Lupin 13: The Seven of Hearts 2",`
+- docs-data-assets:1835: `"cont_title": "Arsène Lupin 13: The Seven of Hearts 2",`
+- docs-data-assets:1866: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1872: `"cont_title": "Arsène Lupin 14: The Seven of Hearts 3",`
+- docs-data-assets:1895: `"cont_title": "Arsène Lupin 14: The Seven of Hearts 3",`
+- docs-data-assets:1926: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1932: `"cont_title": "Arsène Lupin 15: Madame Imbert's Safe",`
+- docs-data-assets:1955: `"cont_title": "Arsène Lupin 15: Madame Imbert's Safe",`
+- docs-data-assets:1986: `"series_title": "Arsène Lupin",`
+- docs-data-assets:1992: `"cont_title": "Arsène Lupin 16: The Black Pearl",`
+- docs-data-assets:2015: `"cont_title": "Arsène Lupin 16: The Black Pearl",`
+- docs-data-assets:2046: `"series_title": "Arsène Lupin",`
+- docs-data-assets:2052: `"cont_title": "Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1",`
+- docs-data-assets:2075: `"cont_title": "Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1",`
+- docs-data-assets:2106: `"series_title": "Arsène Lupin",`
+- docs-data-assets:2112: `"cont_title": "Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2",`
+- docs-data-assets:2135: `"cont_title": "Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2",`
+
+### docs/api/littlefox/FS0020/001.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:10: `"episode_title": "1. The Arrest of Arsène Lupin 1",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 1: The Arrest of Arsène Lupin 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 1: The Arrest of Arsène Lupin 1",`
+
+### docs/api/littlefox/FS0020/002.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:10: `"episode_title": "2. The Arrest of Arsène Lupin 2",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 2: The Arrest of Arsène Lupin 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 2: The Arrest of Arsène Lupin 2",`
+
+### docs/api/littlefox/FS0020/003.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:10: `"episode_title": "3. Arsène Lupin in Prison 1",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 3: Arsène Lupin in Prison 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 3: Arsène Lupin in Prison 1",`
+
+### docs/api/littlefox/FS0020/004.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:10: `"episode_title": "4. Arsène Lupin in Prison 2",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 4: Arsène Lupin in Prison 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 4: Arsène Lupin in Prison 2",`
+
+### docs/api/littlefox/FS0020/005.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 5: Escape from Prison 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 5: Escape from Prison 1",`
+
+### docs/api/littlefox/FS0020/006.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 6: Escape from Prison 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 6: Escape from Prison 2",`
+
+### docs/api/littlefox/FS0020/007.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 7: Escape from Prison 3",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 7: Escape from Prison 3",`
+
+### docs/api/littlefox/FS0020/008.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 8: The Mysterious Traveler 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 8: The Mysterious Traveler 1",`
+
+### docs/api/littlefox/FS0020/009.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 9: The Mysterious Traveler 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 9: The Mysterious Traveler 2",`
+
+### docs/api/littlefox/FS0020/010.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 10: The Queen's Necklace 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 10: The Queen's Necklace 1",`
+
+### docs/api/littlefox/FS0020/011.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 11: The Queen's Necklace 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 11: The Queen's Necklace 2",`
+
+### docs/api/littlefox/FS0020/012.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 12: The Seven of Hearts 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 12: The Seven of Hearts 1",`
+
+### docs/api/littlefox/FS0020/013.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 13: The Seven of Hearts 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 13: The Seven of Hearts 2",`
+
+### docs/api/littlefox/FS0020/014.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 14: The Seven of Hearts 3",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 14: The Seven of Hearts 3",`
+
+### docs/api/littlefox/FS0020/015.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 15: Madame Imbert's Safe",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 15: Madame Imbert's Safe",`
+
+### docs/api/littlefox/FS0020/016.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 16: The Black Pearl",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 16: The Black Pearl",`
+
+### docs/api/littlefox/FS0020/017.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1",`
+
+### docs/api/littlefox/FS0020/018.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2",`
+
+### docs/api/littlefox/FS0020/019.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:10: `"episode_title": "19. The Arrest of Arsène Lupin 1",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 1: The Arrest of Arsène Lupin 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 1: The Arrest of Arsène Lupin 1",`
+
+### docs/api/littlefox/FS0020/020.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:10: `"episode_title": "20. The Arrest of Arsène Lupin 2",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 2: The Arrest of Arsène Lupin 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 2: The Arrest of Arsène Lupin 2",`
+
+### docs/api/littlefox/FS0020/021.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:10: `"episode_title": "21. Arsène Lupin in Prison 1",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 3: Arsène Lupin in Prison 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 3: Arsène Lupin in Prison 1",`
+
+### docs/api/littlefox/FS0020/022.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:10: `"episode_title": "22. Arsène Lupin in Prison 2",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 4: Arsène Lupin in Prison 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 4: Arsène Lupin in Prison 2",`
+
+### docs/api/littlefox/FS0020/023.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 5: Escape from Prison 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 5: Escape from Prison 1",`
+
+### docs/api/littlefox/FS0020/024.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 6: Escape from Prison 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 6: Escape from Prison 2",`
+
+### docs/api/littlefox/FS0020/025.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 7: Escape from Prison 3",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 7: Escape from Prison 3",`
+
+### docs/api/littlefox/FS0020/026.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 8: The Mysterious Traveler 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 8: The Mysterious Traveler 1",`
+
+### docs/api/littlefox/FS0020/027.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 9: The Mysterious Traveler 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 9: The Mysterious Traveler 2",`
+
+### docs/api/littlefox/FS0020/028.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 10: The Queen's Necklace 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 10: The Queen's Necklace 1",`
+
+### docs/api/littlefox/FS0020/029.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 11: The Queen's Necklace 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 11: The Queen's Necklace 2",`
+
+### docs/api/littlefox/FS0020/030.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 12: The Seven of Hearts 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 12: The Seven of Hearts 1",`
+
+### docs/api/littlefox/FS0020/031.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 13: The Seven of Hearts 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 13: The Seven of Hearts 2",`
+
+### docs/api/littlefox/FS0020/032.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 14: The Seven of Hearts 3",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 14: The Seven of Hearts 3",`
+
+### docs/api/littlefox/FS0020/033.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 15: Madame Imbert's Safe",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 15: Madame Imbert's Safe",`
+
+### docs/api/littlefox/FS0020/034.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 16: The Black Pearl",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 16: The Black Pearl",`
+
+### docs/api/littlefox/FS0020/035.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1",`
+
+### docs/api/littlefox/FS0020/036.json
+
+- docs-data-assets:5: `"series_title": "Arsène Lupin",`
+- docs-data-assets:11: `"cont_title": "Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2",`
+- docs-data-assets:34: `"cont_title": "Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2",`
+
+### docs/api/littlefox/FS0076.json
+
+- docs-data-assets:6: `"series_title": "Les Misérables",`
+- docs-data-assets:12: `"cont_title": "Les Misérables 1: A Suspicious Man",`
+- docs-data-assets:35: `"cont_title": "Les Misérables 1: A Suspicious Man",`
+- docs-data-assets:66: `"series_title": "Les Misérables",`
+- docs-data-assets:72: `"cont_title": "Les Misérables 2: The Thief",`
+- docs-data-assets:95: `"cont_title": "Les Misérables 2: The Thief",`
+- docs-data-assets:126: `"series_title": "Les Misérables",`
+- docs-data-assets:132: `"cont_title": "Les Misérables 3: A Respectable Man",`
+- docs-data-assets:155: `"cont_title": "Les Misérables 3: A Respectable Man",`
+- docs-data-assets:186: `"series_title": "Les Misérables",`
+- docs-data-assets:192: `"cont_title": "Les Misérables 4: A New Life",`
+- docs-data-assets:215: `"cont_title": "Les Misérables 4: A New Life",`
+- docs-data-assets:246: `"series_title": "Les Misérables",`
+- docs-data-assets:252: `"cont_title": "Les Misérables 5: Poverty and Illness",`
+- docs-data-assets:275: `"cont_title": "Les Misérables 5: Poverty and Illness",`
+- docs-data-assets:306: `"series_title": "Les Misérables",`
+- docs-data-assets:312: `"cont_title": "Les Misérables 6: Arrested and Rescued",`
+- docs-data-assets:335: `"cont_title": "Les Misérables 6: Arrested and Rescued",`
+- docs-data-assets:366: `"series_title": "Les Misérables",`
+- docs-data-assets:372: `"cont_title": "Les Misérables 7: Recognized",`
+- docs-data-assets:395: `"cont_title": "Les Misérables 7: Recognized",`
+- docs-data-assets:426: `"series_title": "Les Misérables",`
+- docs-data-assets:432: `"cont_title": "Les Misérables 8: The Trial",`
+- docs-data-assets:455: `"cont_title": "Les Misérables 8: The Trial",`
+- docs-data-assets:486: `"series_title": "Les Misérables",`
+- docs-data-assets:492: `"cont_title": "Les Misérables 9: An Ending",`
+- docs-data-assets:515: `"cont_title": "Les Misérables 9: An Ending",`
+- docs-data-assets:546: `"series_title": "Les Misérables",`
+- docs-data-assets:552: `"cont_title": "Les Misérables 10: A Sailor in Danger",`
+- docs-data-assets:575: `"cont_title": "Les Misérables 10: A Sailor in Danger",`
+- docs-data-assets:606: `"series_title": "Les Misérables",`
+- docs-data-assets:612: `"cont_title": "Les Misérables 11: A Bucket of Water",`
+- docs-data-assets:635: `"cont_title": "Les Misérables 11: A Bucket of Water",`
+- docs-data-assets:666: `"series_title": "Les Misérables",`
+- docs-data-assets:672: `"cont_title": "Les Misérables 12: The Stranger",`
+- docs-data-assets:695: `"cont_title": "Les Misérables 12: The Stranger",`
+- docs-data-assets:726: `"series_title": "Les Misérables",`
+- docs-data-assets:732: `"cont_title": "Les Misérables 13: Striking a Bargain",`
+- docs-data-assets:755: `"cont_title": "Les Misérables 13: Striking a Bargain",`
+- docs-data-assets:786: `"series_title": "Les Misérables",`
+- docs-data-assets:792: `"cont_title": "Les Misérables 14: The Generous Beggar",`
+- docs-data-assets:815: `"cont_title": "Les Misérables 14: The Generous Beggar",`
+- docs-data-assets:846: `"series_title": "Les Misérables",`
+- docs-data-assets:852: `"cont_title": "Les Misérables 15: On the Run",`
+- docs-data-assets:875: `"cont_title": "Les Misérables 15: On the Run",`
+- docs-data-assets:906: `"series_title": "Les Misérables",`
+- docs-data-assets:912: `"cont_title": "Les Misérables 16: Marius’ Story",`
+- docs-data-assets:935: `"cont_title": "Les Misérables 16: Marius’ Story",`
+- docs-data-assets:966: `"series_title": "Les Misérables",`
+- docs-data-assets:972: `"cont_title": "Les Misérables 17: New Friends",`
+- docs-data-assets:995: `"cont_title": "Les Misérables 17: New Friends",`
+- docs-data-assets:1026: `"series_title": "Les Misérables",`
+- docs-data-assets:1032: `"cont_title": "Les Misérables 18: The Girl in the Park",`
+- docs-data-assets:1055: `"cont_title": "Les Misérables 18: The Girl in the Park",`
+- docs-data-assets:1086: `"series_title": "Les Misérables",`
+- docs-data-assets:1092: `"cont_title": "Les Misérables 19: A Visitor",`
+- docs-data-assets:1115: `"cont_title": "Les Misérables 19: A Visitor",`
+- docs-data-assets:1146: `"series_title": "Les Misérables",`
+- docs-data-assets:1152: `"cont_title": "Les Misérables 20: The Family Next Door",`
+- docs-data-assets:1175: `"cont_title": "Les Misérables 20: The Family Next Door",`
+- docs-data-assets:1206: `"series_title": "Les Misérables",`
+- docs-data-assets:1212: `"cont_title": "Les Misérables 21: Making Preparations",`
+- docs-data-assets:1235: `"cont_title": "Les Misérables 21: Making Preparations",`
+- docs-data-assets:1266: `"series_title": "Les Misérables",`
+- docs-data-assets:1272: `"cont_title": "Les Misérables 22: The Ambush",`
+- docs-data-assets:1295: `"cont_title": "Les Misérables 22: The Ambush",`
+- docs-data-assets:1326: `"series_title": "Les Misérables",`
+- docs-data-assets:1332: `"cont_title": "Les Misérables 23: The Lark",`
+- docs-data-assets:1355: `"cont_title": "Les Misérables 23: The Lark",`
+- docs-data-assets:1386: `"series_title": "Les Misérables",`
+- docs-data-assets:1392: `"cont_title": "Les Misérables 24: Thwarted Plans",`
+- docs-data-assets:1415: `"cont_title": "Les Misérables 24: Thwarted Plans",`
+- docs-data-assets:1446: `"series_title": "Les Misérables",`
+- docs-data-assets:1452: `"cont_title": "Les Misérables 25: To the Barricade!",`
+- docs-data-assets:1475: `"cont_title": "Les Misérables 25: To the Barricade!",`
+- docs-data-assets:1506: `"series_title": "Les Misérables",`
+- docs-data-assets:1512: `"cont_title": "Les Misérables 26: Two Letters",`
+- docs-data-assets:1535: `"cont_title": "Les Misérables 26: Two Letters",`
+- docs-data-assets:1566: `"series_title": "Les Misérables",`
+- docs-data-assets:1572: `"cont_title": "Les Misérables 27: The Battle",`
+- docs-data-assets:1595: `"cont_title": "Les Misérables 27: The Battle",`
+- docs-data-assets:1626: `"series_title": "Les Misérables",`
+- docs-data-assets:1632: `"cont_title": "Les Misérables 28: In the Sewers",`
+- docs-data-assets:1655: `"cont_title": "Les Misérables 28: In the Sewers",`
+- docs-data-assets:1686: `"series_title": "Les Misérables",`
+- docs-data-assets:1692: `"cont_title": "Les Misérables 29: Reunited",`
+- docs-data-assets:1715: `"cont_title": "Les Misérables 29: Reunited",`
+- docs-data-assets:1746: `"series_title": "Les Misérables",`
+- docs-data-assets:1752: `"cont_title": "Les Misérables 30: Reconciliation",`
+- docs-data-assets:1775: `"cont_title": "Les Misérables 30: Reconciliation",`
+- docs-data-assets:1806: `"series_title": "Les Misérables",`
+- docs-data-assets:1812: `"cont_title": "Les Misérables 1: A Suspicious Man",`
+- docs-data-assets:1835: `"cont_title": "Les Misérables 1: A Suspicious Man",`
+- docs-data-assets:1866: `"series_title": "Les Misérables",`
+- docs-data-assets:1872: `"cont_title": "Les Misérables 2: The Thief",`
+- docs-data-assets:1895: `"cont_title": "Les Misérables 2: The Thief",`
+- docs-data-assets:1926: `"series_title": "Les Misérables",`
+- docs-data-assets:1932: `"cont_title": "Les Misérables 3: A Respectable Man",`
+- docs-data-assets:1955: `"cont_title": "Les Misérables 3: A Respectable Man",`
+- docs-data-assets:1986: `"series_title": "Les Misérables",`
+- docs-data-assets:1992: `"cont_title": "Les Misérables 4: A New Life",`
+- docs-data-assets:2015: `"cont_title": "Les Misérables 4: A New Life",`
+- docs-data-assets:2046: `"series_title": "Les Misérables",`
+- docs-data-assets:2052: `"cont_title": "Les Misérables 5: Poverty and Illness",`
+- docs-data-assets:2075: `"cont_title": "Les Misérables 5: Poverty and Illness",`
+- docs-data-assets:2106: `"series_title": "Les Misérables",`
+- docs-data-assets:2112: `"cont_title": "Les Misérables 6: Arrested and Rescued",`
+- docs-data-assets:2135: `"cont_title": "Les Misérables 6: Arrested and Rescued",`
+- docs-data-assets:2166: `"series_title": "Les Misérables",`
+- docs-data-assets:2172: `"cont_title": "Les Misérables 7: Recognized",`
+- docs-data-assets:2195: `"cont_title": "Les Misérables 7: Recognized",`
+- docs-data-assets:2226: `"series_title": "Les Misérables",`
+- docs-data-assets:2232: `"cont_title": "Les Misérables 8: The Trial",`
+- docs-data-assets:2255: `"cont_title": "Les Misérables 8: The Trial",`
+- docs-data-assets:2286: `"series_title": "Les Misérables",`
+- docs-data-assets:2292: `"cont_title": "Les Misérables 9: An Ending",`
+- docs-data-assets:2315: `"cont_title": "Les Misérables 9: An Ending",`
+- docs-data-assets:2346: `"series_title": "Les Misérables",`
+- docs-data-assets:2352: `"cont_title": "Les Misérables 10: A Sailor in Danger",`
+- docs-data-assets:2375: `"cont_title": "Les Misérables 10: A Sailor in Danger",`
+- docs-data-assets:2406: `"series_title": "Les Misérables",`
+- docs-data-assets:2412: `"cont_title": "Les Misérables 11: A Bucket of Water",`
+- docs-data-assets:2435: `"cont_title": "Les Misérables 11: A Bucket of Water",`
+- docs-data-assets:2466: `"series_title": "Les Misérables",`
+- docs-data-assets:2472: `"cont_title": "Les Misérables 12: The Stranger",`
+- docs-data-assets:2495: `"cont_title": "Les Misérables 12: The Stranger",`
+- docs-data-assets:2526: `"series_title": "Les Misérables",`
+- docs-data-assets:2532: `"cont_title": "Les Misérables 13: Striking a Bargain",`
+- docs-data-assets:2555: `"cont_title": "Les Misérables 13: Striking a Bargain",`
+- docs-data-assets:2586: `"series_title": "Les Misérables",`
+- docs-data-assets:2592: `"cont_title": "Les Misérables 14: The Generous Beggar",`
+- docs-data-assets:2615: `"cont_title": "Les Misérables 14: The Generous Beggar",`
+- docs-data-assets:2646: `"series_title": "Les Misérables",`
+- docs-data-assets:2652: `"cont_title": "Les Misérables 15: On the Run",`
+- docs-data-assets:2675: `"cont_title": "Les Misérables 15: On the Run",`
+- docs-data-assets:2706: `"series_title": "Les Misérables",`
+- docs-data-assets:2712: `"cont_title": "Les Misérables 16: Marius’ Story",`
+- docs-data-assets:2735: `"cont_title": "Les Misérables 16: Marius’ Story",`
+- docs-data-assets:2766: `"series_title": "Les Misérables",`
+- docs-data-assets:2772: `"cont_title": "Les Misérables 17: New Friends",`
+- docs-data-assets:2795: `"cont_title": "Les Misérables 17: New Friends",`
+- docs-data-assets:2826: `"series_title": "Les Misérables",`
+- docs-data-assets:2832: `"cont_title": "Les Misérables 18: The Girl in the Park",`
+- docs-data-assets:2855: `"cont_title": "Les Misérables 18: The Girl in the Park",`
+- docs-data-assets:2886: `"series_title": "Les Misérables",`
+- docs-data-assets:2892: `"cont_title": "Les Misérables 19: A Visitor",`
+- docs-data-assets:2915: `"cont_title": "Les Misérables 19: A Visitor",`
+- docs-data-assets:2946: `"series_title": "Les Misérables",`
+- docs-data-assets:2952: `"cont_title": "Les Misérables 20: The Family Next Door",`
+- docs-data-assets:2975: `"cont_title": "Les Misérables 20: The Family Next Door",`
+- docs-data-assets:3006: `"series_title": "Les Misérables",`
+- docs-data-assets:3012: `"cont_title": "Les Misérables 21: Making Preparations",`
+- docs-data-assets:3035: `"cont_title": "Les Misérables 21: Making Preparations",`
+- docs-data-assets:3066: `"series_title": "Les Misérables",`
+- docs-data-assets:3072: `"cont_title": "Les Misérables 22: The Ambush",`
+- docs-data-assets:3095: `"cont_title": "Les Misérables 22: The Ambush",`
+- docs-data-assets:3126: `"series_title": "Les Misérables",`
+- docs-data-assets:3132: `"cont_title": "Les Misérables 23: The Lark",`
+- docs-data-assets:3155: `"cont_title": "Les Misérables 23: The Lark",`
+- docs-data-assets:3186: `"series_title": "Les Misérables",`
+- docs-data-assets:3192: `"cont_title": "Les Misérables 24: Thwarted Plans",`
+- docs-data-assets:3215: `"cont_title": "Les Misérables 24: Thwarted Plans",`
+- docs-data-assets:3246: `"series_title": "Les Misérables",`
+- docs-data-assets:3252: `"cont_title": "Les Misérables 25: To the Barricade!",`
+- docs-data-assets:3275: `"cont_title": "Les Misérables 25: To the Barricade!",`
+- docs-data-assets:3306: `"series_title": "Les Misérables",`
+- docs-data-assets:3312: `"cont_title": "Les Misérables 26: Two Letters",`
+- docs-data-assets:3335: `"cont_title": "Les Misérables 26: Two Letters",`
+- docs-data-assets:3366: `"series_title": "Les Misérables",`
+- docs-data-assets:3372: `"cont_title": "Les Misérables 27: The Battle",`
+- docs-data-assets:3395: `"cont_title": "Les Misérables 27: The Battle",`
+- docs-data-assets:3426: `"series_title": "Les Misérables",`
+- docs-data-assets:3432: `"cont_title": "Les Misérables 28: In the Sewers",`
+- docs-data-assets:3455: `"cont_title": "Les Misérables 28: In the Sewers",`
+- docs-data-assets:3486: `"series_title": "Les Misérables",`
+- docs-data-assets:3492: `"cont_title": "Les Misérables 29: Reunited",`
+- docs-data-assets:3515: `"cont_title": "Les Misérables 29: Reunited",`
+- docs-data-assets:3546: `"series_title": "Les Misérables",`
+- docs-data-assets:3552: `"cont_title": "Les Misérables 30: Reconciliation",`
+- docs-data-assets:3575: `"cont_title": "Les Misérables 30: Reconciliation",`
+
+### docs/api/littlefox/FS0076/001.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 1: A Suspicious Man",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 1: A Suspicious Man",`
+
+### docs/api/littlefox/FS0076/002.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 2: The Thief",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 2: The Thief",`
+
+### docs/api/littlefox/FS0076/003.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 3: A Respectable Man",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 3: A Respectable Man",`
+
+### docs/api/littlefox/FS0076/004.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 4: A New Life",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 4: A New Life",`
+
+### docs/api/littlefox/FS0076/005.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 5: Poverty and Illness",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 5: Poverty and Illness",`
+
+### docs/api/littlefox/FS0076/006.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 6: Arrested and Rescued",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 6: Arrested and Rescued",`
+
+### docs/api/littlefox/FS0076/007.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 7: Recognized",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 7: Recognized",`
+
+### docs/api/littlefox/FS0076/008.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 8: The Trial",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 8: The Trial",`
+
+### docs/api/littlefox/FS0076/009.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 9: An Ending",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 9: An Ending",`
+
+### docs/api/littlefox/FS0076/010.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 10: A Sailor in Danger",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 10: A Sailor in Danger",`
+
+### docs/api/littlefox/FS0076/011.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 11: A Bucket of Water",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 11: A Bucket of Water",`
+
+### docs/api/littlefox/FS0076/012.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 12: The Stranger",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 12: The Stranger",`
+
+### docs/api/littlefox/FS0076/013.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 13: Striking a Bargain",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 13: Striking a Bargain",`
+
+### docs/api/littlefox/FS0076/014.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 14: The Generous Beggar",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 14: The Generous Beggar",`
+
+### docs/api/littlefox/FS0076/015.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 15: On the Run",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 15: On the Run",`
+
+### docs/api/littlefox/FS0076/016.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 16: Marius’ Story",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 16: Marius’ Story",`
+
+### docs/api/littlefox/FS0076/017.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 17: New Friends",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 17: New Friends",`
+
+### docs/api/littlefox/FS0076/018.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 18: The Girl in the Park",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 18: The Girl in the Park",`
+
+### docs/api/littlefox/FS0076/019.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 19: A Visitor",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 19: A Visitor",`
+
+### docs/api/littlefox/FS0076/020.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 20: The Family Next Door",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 20: The Family Next Door",`
+
+### docs/api/littlefox/FS0076/021.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 21: Making Preparations",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 21: Making Preparations",`
+
+### docs/api/littlefox/FS0076/022.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 22: The Ambush",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 22: The Ambush",`
+
+### docs/api/littlefox/FS0076/023.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 23: The Lark",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 23: The Lark",`
+
+### docs/api/littlefox/FS0076/024.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 24: Thwarted Plans",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 24: Thwarted Plans",`
+
+### docs/api/littlefox/FS0076/025.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 25: To the Barricade!",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 25: To the Barricade!",`
+
+### docs/api/littlefox/FS0076/026.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 26: Two Letters",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 26: Two Letters",`
+
+### docs/api/littlefox/FS0076/027.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 27: The Battle",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 27: The Battle",`
+
+### docs/api/littlefox/FS0076/028.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 28: In the Sewers",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 28: In the Sewers",`
+
+### docs/api/littlefox/FS0076/029.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 29: Reunited",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 29: Reunited",`
+
+### docs/api/littlefox/FS0076/030.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 30: Reconciliation",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 30: Reconciliation",`
+
+### docs/api/littlefox/FS0076/031.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 1: A Suspicious Man",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 1: A Suspicious Man",`
+
+### docs/api/littlefox/FS0076/032.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 2: The Thief",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 2: The Thief",`
+
+### docs/api/littlefox/FS0076/033.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 3: A Respectable Man",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 3: A Respectable Man",`
+
+### docs/api/littlefox/FS0076/034.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 4: A New Life",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 4: A New Life",`
+
+### docs/api/littlefox/FS0076/035.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 5: Poverty and Illness",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 5: Poverty and Illness",`
+
+### docs/api/littlefox/FS0076/036.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 6: Arrested and Rescued",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 6: Arrested and Rescued",`
+
+### docs/api/littlefox/FS0076/037.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 7: Recognized",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 7: Recognized",`
+
+### docs/api/littlefox/FS0076/038.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 8: The Trial",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 8: The Trial",`
+
+### docs/api/littlefox/FS0076/039.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 9: An Ending",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 9: An Ending",`
+
+### docs/api/littlefox/FS0076/040.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 10: A Sailor in Danger",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 10: A Sailor in Danger",`
+
+### docs/api/littlefox/FS0076/041.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 11: A Bucket of Water",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 11: A Bucket of Water",`
+
+### docs/api/littlefox/FS0076/042.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 12: The Stranger",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 12: The Stranger",`
+
+### docs/api/littlefox/FS0076/043.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 13: Striking a Bargain",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 13: Striking a Bargain",`
+
+### docs/api/littlefox/FS0076/044.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 14: The Generous Beggar",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 14: The Generous Beggar",`
+
+### docs/api/littlefox/FS0076/045.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 15: On the Run",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 15: On the Run",`
+
+### docs/api/littlefox/FS0076/046.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 16: Marius’ Story",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 16: Marius’ Story",`
+
+### docs/api/littlefox/FS0076/047.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 17: New Friends",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 17: New Friends",`
+
+### docs/api/littlefox/FS0076/048.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 18: The Girl in the Park",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 18: The Girl in the Park",`
+
+### docs/api/littlefox/FS0076/049.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 19: A Visitor",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 19: A Visitor",`
+
+### docs/api/littlefox/FS0076/050.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 20: The Family Next Door",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 20: The Family Next Door",`
+
+### docs/api/littlefox/FS0076/051.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 21: Making Preparations",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 21: Making Preparations",`
+
+### docs/api/littlefox/FS0076/052.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 22: The Ambush",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 22: The Ambush",`
+
+### docs/api/littlefox/FS0076/053.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 23: The Lark",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 23: The Lark",`
+
+### docs/api/littlefox/FS0076/054.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 24: Thwarted Plans",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 24: Thwarted Plans",`
+
+### docs/api/littlefox/FS0076/055.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 25: To the Barricade!",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 25: To the Barricade!",`
+
+### docs/api/littlefox/FS0076/056.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 26: Two Letters",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 26: Two Letters",`
+
+### docs/api/littlefox/FS0076/057.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 27: The Battle",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 27: The Battle",`
+
+### docs/api/littlefox/FS0076/058.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 28: In the Sewers",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 28: In the Sewers",`
+
+### docs/api/littlefox/FS0076/059.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 29: Reunited",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 29: Reunited",`
+
+### docs/api/littlefox/FS0076/060.json
+
+- docs-data-assets:5: `"series_title": "Les Misérables",`
+- docs-data-assets:11: `"cont_title": "Les Misérables 30: Reconciliation",`
+- docs-data-assets:34: `"cont_title": "Les Misérables 30: Reconciliation",`
+
+### docs/api/littlefox/FS0109.json
+
+- docs-data-assets:1931: `"episode_title": "33. Eva Perón",`
+- docs-data-assets:1932: `"cont_title": "Superstars in History 33: Eva Perón",`
+- docs-data-assets:1955: `"cont_title": "Superstars in History 33: Eva Perón",`
+- docs-data-assets:4091: `"episode_title": "69. Eva Perón",`
+- docs-data-assets:4092: `"cont_title": "Superstars in History 33: Eva Perón",`
+- docs-data-assets:4115: `"cont_title": "Superstars in History 33: Eva Perón",`
+
+### docs/api/littlefox/FS0109/033.json
+
+- docs-data-assets:10: `"episode_title": "33. Eva Perón",`
+- docs-data-assets:11: `"cont_title": "Superstars in History 33: Eva Perón",`
+- docs-data-assets:34: `"cont_title": "Superstars in History 33: Eva Perón",`
+
+### docs/api/littlefox/FS0109/069.json
+
+- docs-data-assets:10: `"episode_title": "69. Eva Perón",`
+- docs-data-assets:11: `"cont_title": "Superstars in History 33: Eva Perón",`
+- docs-data-assets:34: `"cont_title": "Superstars in History 33: Eva Perón",`
+
+### docs/api/littlefox/FS0148.json
+
+- docs-data-assets:491: `"episode_title": "9. Eva Perón: First Lady of Argentina",`
+- docs-data-assets:492: `"cont_title": "People & History 4, Eva Perón: First Lady of Argentina",`
+- docs-data-assets:515: `"cont_title": "People & History 4, Eva Perón: First Lady of Argentina",`
+- docs-data-assets:2831: `"episode_title": "48. Eva Perón: First Lady of Argentina",`
+- docs-data-assets:2832: `"cont_title": "People & History 4, Eva Perón: First Lady of Argentina",`
+- docs-data-assets:2855: `"cont_title": "People & History 4, Eva Perón: First Lady of Argentina",`
+
+### docs/api/littlefox/FS0148/009.json
+
+- docs-data-assets:10: `"episode_title": "9. Eva Perón: First Lady of Argentina",`
+- docs-data-assets:11: `"cont_title": "People & History 4, Eva Perón: First Lady of Argentina",`
+- docs-data-assets:34: `"cont_title": "People & History 4, Eva Perón: First Lady of Argentina",`
+
+### docs/api/littlefox/FS0148/048.json
+
+- docs-data-assets:10: `"episode_title": "48. Eva Perón: First Lady of Argentina",`
+- docs-data-assets:11: `"cont_title": "People & History 4, Eva Perón: First Lady of Argentina",`
+- docs-data-assets:34: `"cont_title": "People & History 4, Eva Perón: First Lady of Argentina",`
+
+### docs/api/littlefox/index.json
+
+- docs-data-assets:1111: `"title": "Arsène Lupin",`
+- docs-data-assets:1156: `"title": "Les Misérables",`
+
+### docs/api/littlefoxcn/DP000764.json
+
+- docs-data-assets:1635: `"episode_title": "30. 柳树溪双胞胎 30: B-ù 是 “不”",`
+- docs-data-assets:1656: `"cont_sub_name": "B-ù 是 “不” ",`
+
+### docs/api/littlefoxcn/DP000764/030.json
+
+- docs-data-assets:10: `"episode_title": "30. 柳树溪双胞胎 30: B-ù 是 “不”",`
+- docs-data-assets:31: `"cont_sub_name": "B-ù 是 “不” ",`
+
+### docs/api/littlefoxcn/DP000779.json
+
+- docs-data-assets:291: `"episode_title": "6. Introduction to Simple Finals 6: The Simple Final ü",`
+- docs-data-assets:312: `"cont_sub_name": "The Simple Final ü",`
+
+### docs/api/littlefoxcn/DP000779/006.json
+
+- docs-data-assets:10: `"episode_title": "6. Introduction to Simple Finals 6: The Simple Final ü",`
+- docs-data-assets:31: `"cont_sub_name": "The Simple Final ü",`
+
+### docs/api/littlefoxcn/DP000781.json
+
+- docs-data-assets:67: `"episode_title": "2. Tone Change Rules 2: Tone Change Rules with Yī",`
+- docs-data-assets:88: `"cont_sub_name": "Tone Change Rules with Yī",`
+- docs-data-assets:123: `"episode_title": "3. Tone Change Rules 3: Tone Change Rules with Bù",`
+- docs-data-assets:144: `"cont_sub_name": "Tone Change Rules with Bù",`
+
+### docs/api/littlefoxcn/DP000781/002.json
+
+- docs-data-assets:10: `"episode_title": "2. Tone Change Rules 2: Tone Change Rules with Yī",`
+- docs-data-assets:31: `"cont_sub_name": "Tone Change Rules with Yī",`
+
+### docs/api/littlefoxcn/DP000781/003.json
+
+- docs-data-assets:10: `"episode_title": "3. Tone Change Rules 3: Tone Change Rules with Bù",`
+- docs-data-assets:31: `"cont_sub_name": "Tone Change Rules with Bù",`
+
+### docs/api/littlefoxcn/DP000782.json
+
+- docs-data-assets:459: `"episode_title": "9. Introduction to Compound Finals 9: The Compound Finals with the Main Vowel ü",`
+- docs-data-assets:480: `"cont_sub_name": "The Compound Finals with the Main Vowel ü",`
+
+### docs/api/littlefoxcn/DP000782/009.json
+
+- docs-data-assets:10: `"episode_title": "9. Introduction to Compound Finals 9: The Compound Finals with the Main Vowel ü",`
+- docs-data-assets:31: `"cont_sub_name": "The Compound Finals with the Main Vowel ü",`
+
+### docs/api/playtt/all.json
+
+- docs-data-assets:33015: `"title": "0011 Why is it so hard to escape poverty- - Ann-Helén Bay",`
+- docs-data-assets:95355: `"title": "0011 Why is it so hard to escape poverty- - Ann-Helén Bay",`
+
+### docs/api/playtt/providers/teded/courses/insight-ielts-1.json
+
+- docs-data-assets:97: `"title": "0011 Why is it so hard to escape poverty- - Ann-Helén Bay",`
+- docs-data-assets:394: `"title": "0011 Why is it so hard to escape poverty- - Ann-Helén Bay",`
+
+### docs/api/program-bootstrap/three-courses-program.json
+
+- docs-data-assets:18686: `"title": "Arsène Lupin",`
+- docs-data-assets:19483: `"title": "Les Misérables",`
+
+### docs/archive/01-vision-scope.md
+
+- docs-data-assets:1: `# 01 — Vision & Scope (Tầm nhìn và phạm vi)`
+- docs-data-assets:3: `## 1) Problem statement (vấn đề)`
+- docs-data-assets:4: `Video thuần **không đủ** để phụ huynh Việt “xuống tiền lâu dài”, vì họ cần:`
+- docs-data-assets:5: `- **Lộ trình rõ ràng**: con đang ở đâu → tuần này học gì → khi nào đạt mốc.`
+- docs-data-assets:6: `- **Bằng chứng tiến bộ**: không chỉ “xem video”, mà “làm được gì”.`
+- docs-data-assets:7: `- **Công cụ kiểm soát**: môi trường số an toàn, học chứ không phải giải trí.`
+- docs-data-assets:9: `Theo khảo sát/insight thị trường của Cimigo, mẹ Việt vừa **ambitious** vừa **protective**, muốn “safe, controlled digital tools” và tin vào các “trust signals” hơn là quảng cáo suông. (xem file 02)`
+- docs-data-assets:10: `Ngoài ra, WHO khuyến nghị trẻ nhỏ hạn chế thời gian màn hình và ưu tiên hoạt động tương tác/đọc kể chuyện với người chăm sóc — vì vậy hệ cần thiết kế theo hướng **học ngắn + nhiều offline + đồng hành**.`
+- docs-data-assets:13: `“TinyGenius Hub” là **Learning Journey OS** cho phụ huynh:`
+- docs-data-assets:14: `- Tạo **hành trình học tại nhà** (Daily Journey) từ tài nguyên video`
+- docs-data-assets:15: `- Chuẩn hoá “mỗi ngày 15–25 phút” thành *thói quen* + *tiến bộ đo được*`
+- docs-data-assets:16: `- Phụ huynh nhìn dashboard là biết: “con đang đi đúng đường”`
+- docs-data-assets:18: `## 3) North Star Value Proposition (câu định vị)`
+- docs-data-assets:19: `> “Mỗi ngày 15 phút — phụ huynh thấy rõ con tiến bộ theo lộ trình.”`
+- docs-data-assets:21: `## 4) Scope giai đoạn 1 (website-first)`
+- docs-data-assets:24: `- Parent account + nhiều child profile`
+- docs-data-assets:25: `- Track học: English + Math (mở rộng dần)`
+- docs-data-assets:31: `### Out of scope (giai đoạn 1)`
+- docs-data-assets:32: `- Live class / giáo viên / 1-1 coaching`
+- docs-data-assets:33: `- Mạng xã hội trẻ em / chat giữa trẻ`
+- docs-data-assets:34: `- Bài tập chấm điểm thủ công bởi giáo viên`
+- docs-data-assets:35: `- Marketplace nhiều người bán`
+- docs-data-assets:37: `## 5) Nguyên tắc thiết kế (Design principles)`
+- docs-data-assets:38: `1. **Video chỉ là 1 bước**: lesson phải có “interactive + offline + evidence”.`
+- docs-data-assets:39: `2. **Thấy tiến bộ sớm**: trong trial phải có “weekly report mini”.`
+- docs-data-assets:40: `3. **Parent-led, kid-friendly**: trẻ thao tác đơn giản, phụ huynh điều hướng.`
+- docs-data-assets:41: `4. **An toàn & kiểm soát**: ưu tiên “education-first” và hạn chế các pattern gây nghiện.`
+- docs-data-assets:42: `5. **Configurable**: trial 3/7 ngày, paywall, lộ trình… phải cấu hình được.`
+- docs-data-assets:44: `## 5) Quyết định sản phẩm đã chốt (v1.2)`
+- docs-data-assets:45: `- **Website-first** (mobile-first) — app để sau.`
+- docs-data-assets:46: `- **Gói tài khoản**: mặc định **3 hồ sơ bé/tài khoản**, upsell lên **Family+ = 5 hồ sơ** (không bán “mua thêm slot” ở v1 để đơn giản hoá checkout).`
+- docs-data-assets:47: `- **Weekly Report**: có **2 kênh**`
+- docs-data-assets:48: `- **In-app** (Reports/Parent Dashboard) = nguồn sự thật (source of truth)`
+- docs-data-assets:49: `- **Email digest** = nhắc và kéo phụ huynh quay lại (link vào dashboard)`
+- docs-data-assets:50: `- **Portfolio media (ảnh/audio)**:`
+- docs-data-assets:51: `- Mặc định **lưu 90 ngày** (rolling) để giảm rủi ro & chi phí lưu trữ`
+- docs-data-assets:52: `- Cho phép phụ huynh **opt-in nâng lên tối đa 365 ngày** (đặc biệt cho gói Family+ hoặc Paid)`
+- docs-data-assets:53: `- Luôn có nút **Export/Download** và **Delete** theo yêu cầu phụ huynh.`
+- docs-data-assets:56: `## 6) Tiêu chí thành công (Success criteria)`
+- docs-data-assets:57: `### Activation (kích hoạt)`
+- docs-data-assets:58: `- Hoàn thành onboarding + tạo child profile`
+- docs-data-assets:59: `- Làm xong lesson ngày 1 và tạo ít nhất 1 evidence`
+- docs-data-assets:61: `### Retention (giữ chân)`
+- docs-data-assets:62: `- Streak 3/7 ngày`
+- docs-data-assets:63: `- Tỷ lệ hoàn thành lesson theo tuần`
+- docs-data-assets:67: `- Renewal rate năm`
+- docs-data-assets:71: `- Tỷ lệ phụ huynh mở weekly report`
+- docs-data-assets:73: `## 7) References (nguồn)`
+- docs-data-assets:75: `- WHO — Guidelines: screen time ≤ 1h (2–4 tuổi), khuyến khích đọc/kể chuyện cùng caregiver`
+
+### docs/archive/02-user-personas-vn-parent-insights.md
+
+- docs-data-assets:1: `# 02 — Personas & Insight phụ huynh Việt`
+- docs-data-assets:3: `## 1) Nhóm người dùng chính (Primary users)`
+- docs-data-assets:4: `### 1. Parent (Phụ huynh) — người trả tiền`
+- docs-data-assets:5: `- Thường là mẹ 25–44, quyết định mua, chịu ảnh hưởng cộng đồng/KOL, ưu tiên “an toàn – hiệu quả – đo được”.`
+- docs-data-assets:6: `- Pain: sợ “học không hiệu quả”, sợ con “xem màn hình như giải trí”, thiếu thời gian đồng hành dài.`
+- docs-data-assets:8: `### 2. Child (Trẻ) — người học (<6 tuổi)`
+- docs-data-assets:9: `- Attention span ngắn; thích phản hồi tức thì; đọc chữ hạn chế.`
+- docs-data-assets:10: `- Cần UI: ít chữ, nút lớn, thao tác 1–2 bước, phản hồi hình/âm thanh.`
+- docs-data-assets:12: `### 3. Affiliate/Referrer (người giới thiệu)`
+- docs-data-assets:13: `- Phụ huynh / KOL nhỏ / chủ nhóm / người bán đồ mẹ & bé.`
+- docs-data-assets:14: `- Cần công cụ: link, mã, dashboard hoa hồng, “content share” kiểu khoe tiến bộ.`
+- docs-data-assets:16: `### 4. Admin/Content operator (bạn / team)`
+- docs-data-assets:17: `- Upload/nhập liệu nội dung, gắn metadata, tạo lộ trình, tạo report template, điều chỉnh paywall.`
+- docs-data-assets:21: `## 2) Insight phụ huynh Việt (dựa trên nghiên cứu/nguồn tham khảo)`
+- docs-data-assets:22: `### 2.1. “Ambitious nhưng chia nhóm mindset”`
+- docs-data-assets:23: `Cimigo mô tả phụ huynh (mẹ) Việt “ambitious but divided” và chia phong cách:`
+- docs-data-assets:24: `- **Tiger mums**: kỷ luật, đo lường, thành tích, enrichment có cấu trúc.`
+- docs-data-assets:25: `- **Caring mums**: coi trọng “prestige”, chuẩn bị cho trường tốt, tiếng Anh.`
+- docs-data-assets:26: `- **Discovery mums**: ưu tiên sáng tạo, trải nghiệm, cảm xúc.`
+- docs-data-assets:28: `=> Hệ thống cần **2 lớp thông điệp**:`
+- docs-data-assets:29: `- Lớp A (Tiger/Caring): roadmap rõ + đo tiến bộ + chứng nhận + cam kết “sẵn sàng lớp 1”.`
+- docs-data-assets:30: `- Lớp B (Discovery): vui, khám phá, gắn kết, hoạt động offline.`
+- docs-data-assets:32: `### 2.2. Tiếng Anh = “passport to opportunity”`
+- docs-data-assets:33: `Cimigo nhấn mạnh tiếng Anh là ưu tiên lớn khi phụ huynh chuẩn bị cho cơ hội toàn cầu.`
+- docs-data-assets:34: `=> Trên website, “English track” phải được đóng gói như **một hành trình có cấp độ** và có proof.`
+- docs-data-assets:36: `### 2.3. Phụ huynh muốn “safe, controlled digital tools”`
+- docs-data-assets:37: `Cimigo: mẹ muốn môi trường số kiểm soát, “education-first apps” tạo trust hơn entertainment.`
+- docs-data-assets:38: `=> Tính năng bắt buộc: parent gate, giới hạn autoplay, báo cáo thời lượng, gợi ý hoạt động offline.`
+- docs-data-assets:40: `### 2.4. Xu hướng đầu tư mạnh cho giáo dục + học thêm phổ biến`
+- docs-data-assets:41: `Các nghiên cứu/nguồn cho thấy “học thêm / tutoring” là hiện tượng rộng, chiếm phần đáng kể ngân sách hộ gia đình (có hộ lên tới 20% tổng ngân sách cho tutoring).`
+- docs-data-assets:42: `=> Điều này không có nghĩa phụ huynh thích “học nặng”, mà nghĩa là họ **sẵn sàng trả tiền nếu thấy ROI rõ**.`
+- docs-data-assets:47: `### JTBD của phụ huynh`
+- docs-data-assets:48: `- “Tôi muốn con học đều, có lộ trình, mà tôi không phải kèm quá nhiều.”`
+- docs-data-assets:49: `- “Tôi muốn biết con đã tiến bộ thật chưa, chứ không chỉ xem video.”`
+- docs-data-assets:50: `- “Tôi muốn yên tâm: nội dung phù hợp tuổi, không làm con nghiện màn hình.”`
+- docs-data-assets:52: `### JTBD của trẻ`
+- docs-data-assets:53: `- “Con muốn được chơi và được khen khi làm đúng.”`
+- docs-data-assets:54: `- “Con muốn thứ dễ thao tác và thay đổi liên tục (chống chán).”`
+- docs-data-assets:56: `### JTBD của affiliate`
+- docs-data-assets:57: `- “Tôi muốn chia sẻ thứ có ích, dễ thuyết phục (có proof), và nhận hoa hồng rõ ràng.”`
+- docs-data-assets:61: `## 4) “Bằng chứng” phụ huynh Việt tin nhất (Trust stack)`
+- docs-data-assets:62: `Sắp xếp theo thứ tự hiệu lực (đề xuất):`
+- docs-data-assets:63: `1. **Weekly report** (có số liệu, milestone, đề xuất tuần sau)`
+- docs-data-assets:64: `2. **Roadmap + mốc (certificate)**: “hoàn thành Level/Unit”`
+- docs-data-assets:65: `3. **Evidence**: ảnh hoạt động, audio trẻ đọc/kể`
+- docs-data-assets:66: `4. **Review từ phụ huynh giống mình** (cùng tuổi con, cùng vấn đề)`
+- docs-data-assets:67: `5. KOL/nhóm (nếu đúng tệp)`
+- docs-data-assets:74: `- IIAS (Leiden/IIAS Newsletter) — tutoring ở Việt Nam và tỷ lệ chi tiêu`
+- docs-data-assets:75: `- World Bank working paper — private tutoring là thước đo đầu tư “child quality”`
+
+### docs/archive/03-learning-model-roadmap.md
+
+- docs-data-assets:1: `# 03 — Learning Model & Roadmap (Lộ trình và phương pháp)`
+- docs-data-assets:3: `## 1) Triết lý: biến “video thuần” thành “lesson có đầu ra”`
+- docs-data-assets:4: `Video là “input”. Hệ thống phải tạo ra:`
+- docs-data-assets:5: `- **Processing**: tương tác (quiz/game), nhắc lại (review), áp dụng (offline)`
+- docs-data-assets:8: `> Mục tiêu: phụ huynh không còn hỏi “con xem gì?”, mà thấy “con làm được gì?”.`
+- docs-data-assets:12: `## 2) Learning Loop chuẩn cho trẻ <6 (không cần giáo viên)`
+- docs-data-assets:13: `Mỗi lesson (10–20 phút) theo 5 bước:`
+- docs-data-assets:15: `1) **Goal (1 câu)**`
+- docs-data-assets:16: `- Parent sees: mục tiêu + liên quan roadmap`
+- docs-data-assets:17: `- Kid sees: icon + 1 câu rất ngắn`
+- docs-data-assets:19: `2) **Watch (3–7 phút)**`
+- docs-data-assets:20: `- Video ngắn + 1 checkpoint (pause & choose)`
+- docs-data-assets:22: `3) **Active practice (2–5 phút)**`
+- docs-data-assets:23: `- Mini-game / mini-quiz: tap, kéo thả, nối cặp, nghe-chọn`
+- docs-data-assets:25: `4) **Offline (5–10 phút)**`
+- docs-data-assets:26: `- Activity card: trò chơi/đếm đồ vật/cắt dán/tô màu/role-play`
+- docs-data-assets:35: `- D+1: ôn nhanh 60–120 giây (1 mini-game)`
+- docs-data-assets:36: `- D+3: ôn 2 phút (1 câu + 1 game)`
+- docs-data-assets:37: `- D+7: ôn 3–5 phút (review mission)`
+- docs-data-assets:38: `- Mỗi tuần có 1 ngày “Review Day” thay vì lesson mới`
+- docs-data-assets:42: `## 4) Evidence ladder (✅ chốt v1)`
+- docs-data-assets:44: `- Tick checklist + quiz score (tự động)`
+- docs-data-assets:47: `- 0–1 ảnh/buổi hoặc 1–3 ảnh/tuần`
+- docs-data-assets:48: `- Khuyến nghị: chụp **học liệu/hoạt động**, hạn chế/không chụp mặt bé`
+- docs-data-assets:51: `- 10–30s đọc/nhắc lại`
+- docs-data-assets:52: `- Có lựa chọn: “không lưu” / “lưu & tự xoá sau N ngày”`
+- docs-data-assets:54: `> Lý do: evidence càng mạnh → trust càng cao, nhưng chi phí UX + privacy + storage cũng tăng.`
+- docs-data-assets:58: `## 5) Roadmap theo 2 track chính (giai đoạn đầu)`
+- docs-data-assets:61: `- Mỗi level có milestone + certificate`
+- docs-data-assets:62: `- Mỗi story đi kèm: quiz + parent script + optional audio`
+- docs-data-assets:66: `- Mỗi episode → 1 lesson + 1 activity card (đếm/xếp/so sánh)`
+- docs-data-assets:70: `## 6) Weekly Report (tạo “giá trị nhìn thấy”)`
+- docs-data-assets:71: `- Sau **7 ngày** trial: hệ thống tạo “Trial Weekly Report”:`
+- docs-data-assets:73: `- milestone nhỏ`
+- docs-data-assets:74: `- gợi ý tuần tiếp theo`
+- docs-data-assets:75: `- Paid: báo cáo tuần tự động + export PDF (optional)`
+
+### docs/archive/04-lesson-blueprints-templates.md
+
+- docs-data-assets:1: `# 04 — Templates chuẩn hoá (Lesson/Activity/Report)`
+- docs-data-assets:3: `Mục tiêu: để bạn (và dev) tạo lesson theo cùng format, giảm “mỗi bài một kiểu”.`
+- docs-data-assets:8: `> Mỗi lesson nên có phiên bản .md để team vận hành + QA.`
+- docs-data-assets:17: `- Outcome (1 câu): ...`
+- docs-data-assets:25: `- t=01:20 hỏi: ...`
+- docs-data-assets:32: `- Remediate rule: nếu sai 2 lần → gợi ý xem lại đoạn t=...`
+- docs-data-assets:35: `- Materials: (đồ trong nhà)`
+- docs-data-assets:36: `- Steps (3–5 bước):`
+- docs-data-assets:39: `- Parent tip: 1 câu`
+- docs-data-assets:40: `- Safety note (nếu có): ...`
+- docs-data-assets:45: `- Evidence prompt: “Chụp ảnh con xếp ...” hoặc “Ghi âm con đọc ...”`
+- docs-data-assets:59: `prompt: "Nghe và chọn hình đúng"`
+- docs-data-assets:68: `correct: "Đúng rồi!"`
+- docs-data-assets:69: `wrong: "Thử lại nhé!"`
+- docs-data-assets:79: `# Báo cáo tuần [WEEK_NUMBER] — [CHILD_NAME]`
+- docs-data-assets:81: `## 1) Tóm tắt (1 phút đọc)`
+- docs-data-assets:82: `- Con học: X buổi | tổng Y phút`
+- docs-data-assets:83: `- Streak cao nhất: Z ngày`
+- docs-data-assets:84: `- Milestone đạt: ...`
+- docs-data-assets:85: `- Điểm nổi bật: ...`
+- docs-data-assets:87: `## 2) Tiến bộ theo kỹ năng`
+- docs-data-assets:99: `- Ảnh hoạt động: ...`
+- docs-data-assets:102: `## 4) Gợi ý tuần tới (kế hoạch 5 ngày)`
+- docs-data-assets:106: `## 5) Parent script (3 câu hỏi)`
+- docs-data-assets:107: `- “Hôm nay con thích nhất đoạn nào?”`
+- docs-data-assets:108: `- “Con chỉ cho mẹ số ... ở đâu?”`
+- docs-data-assets:109: `- “Nếu làm lại, con sẽ làm thế nào?”`
+- docs-data-assets:115: `### Badge (nhanh – tạo dopamine)`
+- docs-data-assets:116: `- Trigger: hoàn thành lesson / streak / quiz “Good”…`
+- docs-data-assets:117: `- Hiển thị: icon + tên ngắn + 1 câu khen`
+- docs-data-assets:119: `### Certificate (mốc – tạo trust & share)`
+- docs-data-assets:120: `- Trigger: hoàn thành Unit/Level hoặc 7-day trial`
+- docs-data-assets:121: `- PDF auto-generated có:`
+- docs-data-assets:122: `- Tên con (nickname)`
+- docs-data-assets:124: `- Ngày đạt`
+- docs-data-assets:125: `- QR/link về roadmap để share`
+- docs-data-assets:129: `## 5) Quy tắc thiết kế cho trẻ <6 (UI checklist)`
+- docs-data-assets:130: `- Nút >= 44px`
+- docs-data-assets:131: `- 1 màn hình 1 nhiệm vụ`
+- docs-data-assets:132: `- Ít chữ, ưu tiên icon/voice`
+- docs-data-assets:133: `- Không hiển thị nội dung “đề xuất vô hạn” kiểu YouTube`
+- docs-data-assets:134: `- Có parent gate khi vào khu thanh toán / dashboard`
+- docs-data-assets:139: `- Little Fox user features: Learning Log, Attendance, Badges (gợi ý cơ chế badge/attendance)`
+- docs-data-assets:140: `- WHO/AAP: định hướng giảm passive screen time → tăng hoạt động tương tác/offline`
+
+### docs/archive/05-content-taxonomy-cms-data-model.md
+
+- docs-data-assets:3: `Mục tiêu: chốt cách tổ chức nội dung để:`
+- docs-data-assets:4: `- Dev build DB/API đúng ngay từ đầu`
+- docs-data-assets:5: `- Bạn nhập liệu dễ, mở rộng thêm grade lớn không vỡ cấu trúc`
+- docs-data-assets:9: `## 1) Taxonomy nội dung (từ lớn → nhỏ)`
+- docs-data-assets:11: `- Ví dụ: “TinyGenius Hub — Giai đoạn mầm non”`
+- docs-data-assets:17: `- Ví dụ:`
+- docs-data-assets:23: `- 1 unit = 1 chủ đề/1 chặng (2–4 tuần)`
+- docs-data-assets:26: `- Mỗi unit có 2–4 week plans`
+- docs-data-assets:29: `- Mỗi week có 5–7 day plans (có ngày review)`
+- docs-data-assets:33: `- objective (1 câu)`
+- docs-data-assets:50: `## 2) Data model người dùng`
+- docs-data-assets:57: `### ChildProfile (✅ chốt v1)`
+- docs-data-assets:59: `- nickname (không bắt buộc tên thật)`
+- docs-data-assets:60: `- age_band (ví dụ: 2–3 / 3–4 / 4–5 / 5–6)`
+- docs-data-assets:66: `> Constraint: **mặc định tối đa 3 child profiles / 1 parent account**.`
+- docs-data-assets:67: `> Mở rộng: add-on slot hoặc Family+ (tối đa 5).`
+- docs-data-assets:78: `### Evidence (✅ chốt v1.2)`
+- docs-data-assets:80: `- checklist (json: các mục tick)`
+- docs-data-assets:81: `- quiz_score (0–100 hoặc correct/total)`
+- docs-data-assets:88: `- expires_at (datetime) — thời điểm auto-delete media (ảnh/audio)`
+- docs-data-assets:94: `> Checklist + quiz_score là “bằng chứng tối thiểu” (không cần media). Ảnh/audio chỉ là lớp tăng trust.`
+- docs-data-assets:105: `- email_status (queued/sent/bounced/open/click) — nếu tracking`
+- docs-data-assets:107: `- deep_link_token (time-bound) — dùng trong email để mở đúng dashboard`
+
+### docs/archive/06-ux-flows-information-architecture.md
+
+- docs-data-assets:3: `## 1) IA (cấu trúc trang) tối thiểu`
+- docs-data-assets:5: `- Home (định vị + lợi ích + lộ trình mẫu)`
+- docs-data-assets:7: `- Pricing (trial 7 ngày + yearly + family+)`
+- docs-data-assets:8: `- Affiliate/Referral (giới thiệu)`
+- docs-data-assets:9: `- FAQ / HDSD (đồng hành)`
+- docs-data-assets:14: `- Child Profiles (add/switch) — **tối đa 3** (mở rộng 5 theo plan)`
+- docs-data-assets:16: `- Portfolio (ảnh/audio) — opt-in`
+- docs-data-assets:33: `## 2) Core flows (luồng cốt lõi)`
+- docs-data-assets:39: `3) Placement nhẹ (2–5 phút)`
+- docs-data-assets:40: `4) Show “Roadmap preview” (đang ở level nào + mốc 4 tuần tới)`
+- docs-data-assets:44: `- Màn hình 1: “Hôm nay học gì?” (2 track: English + Math)`
+- docs-data-assets:45: `- Màn hình 2: Player + checkpoint`
+- docs-data-assets:46: `- Màn hình 3: Mini-game (2–5 phút)`
+- docs-data-assets:47: `- Màn hình 4: Offline Activity Card (5–10 phút)`
+- docs-data-assets:48: `- Màn hình 5: “Con đã xong!” (badge)`
+- docs-data-assets:49: `→ chuyển sang Parent Check-in (tick checklist)`
+- docs-data-assets:51: `### 2.3 Parent Check-in (Evidence tối thiểu)`
+- docs-data-assets:52: `- **Bắt buộc**: tick checklist (10–30s) + xem quiz score`
+- docs-data-assets:53: `- **Tuỳ chọn (opt-in)**:`
+- docs-data-assets:54: `- chụp ảnh hoạt động (khuyến nghị không chụp mặt bé)`
+- docs-data-assets:55: `- ghi âm 10–30s (English)`
+- docs-data-assets:56: `- **Parent gate** trước khi bật camera/mic`
+- docs-data-assets:57: `- **Retention UX** (khi upload ảnh/audio):`
+- docs-data-assets:58: `- hiển thị “sẽ tự xoá sau 90 ngày” (mặc định)`
+- docs-data-assets:59: `- cho phép phụ huynh đổi sang “giữ tối đa 365 ngày” (opt-in, theo plan)`
+- docs-data-assets:62: `- Reports page + dashboard card (tuần hiện tại)`
+- docs-data-assets:64: `- **Email digest (kéo phụ huynh quay lại)**:`
+- docs-data-assets:65: `- gửi 1 email/tuần/child (hoặc gộp theo parent nếu nhiều bé)`
+- docs-data-assets:66: `- nút “Xem chi tiết” → deep link vào Parent Dashboard`
+- docs-data-assets:67: `- cho phụ huynh tuỳ chọn bật/tắt email cho từng bé`
+- docs-data-assets:69: `- Day 6/7: hiển thị preview report + milestone + CTA mua năm`
+- docs-data-assets:71: `- report tuần tự động + gợi ý tuần sau`
+- docs-data-assets:72: `- “Report archive” theo tuần`
+- docs-data-assets:74: `### 2.5 Multiple children & giới hạn hồ sơ (3 → 5)`
+- docs-data-assets:75: `- Parent dashboard có “switcher” rõ ràng`
+- docs-data-assets:76: `- Kid mode luôn vào đúng child profile (từ shortcut/QR/URL)`
+- docs-data-assets:77: `- Khi chạm **trần 3 hồ sơ**:`
+- docs-data-assets:78: `- khoá nút “Add child”`
+- docs-data-assets:79: `- hiển thị modal giải thích + CTA “Nâng cấp Family+ (5 hồ sơ)”`
+- docs-data-assets:80: `- Không cho 2 bé học cùng lúc trên 1 profile (tránh lẫn progress)`
+- docs-data-assets:82: `### 2.6 Portfolio (ảnh/audio) — opt-in`
+- docs-data-assets:83: `- Mặc định lưu **90 ngày** (rolling)`
+- docs-data-assets:84: `- Tuỳ chọn “giữ tối đa 365 ngày” (opt-in, theo plan)`
+- docs-data-assets:85: `- Có nút:`
+- docs-data-assets:86: `- Export/Download theo tuần/tháng`
+- docs-data-assets:87: `- Delete (từng item / toàn bộ)`
+- docs-data-assets:89: `- mặc định OFF`
+- docs-data-assets:90: `- chỉ share “chỉ số tiến bộ” (không share ảnh/audio nếu phụ huynh không chọn)`
+- docs-data-assets:91: `## 3) Nguyên tắc UX cho trẻ <6 (web)`
+- docs-data-assets:92: `- **Kid mode**: full-screen, không lộ menu phức tạp`
+- docs-data-assets:93: `- **Parent gate**: thao tác trả tiền, đổi plan, bật camera/mic, xem dashboard phải có gate (giữ nút 2s / phép toán đơn giản)`
+- docs-data-assets:94: `- **Không infinite scroll**: library có “trần”, ưu tiên Today’s Mission`
+- docs-data-assets:95: `- **Voice-first**: prompt bằng audio (nếu có) hoặc icon lớn`
+- docs-data-assets:96: `- **Latency low**: prefetch video/asset cho lesson hôm nay`
+- docs-data-assets:100: `## 4) Nút “đánh trúng phụ huynh Việt” trong UX`
+- docs-data-assets:101: `- Roadmap progress bar (1 trang là hiểu)`
+- docs-data-assets:102: `- Weekly report (1 phút đọc) + milestone/certificate`
+- docs-data-assets:103: `- Screen time report theo tuần`
+- docs-data-assets:104: `- “Hướng dẫn 60s cho người lớn” trước mỗi unit/week (để ông/bà cũng làm được)`
+
+### docs/archive/07-subscription-funnel-pricing.md
+
+- docs-data-assets:3: `> **Chốt v1.2 (website-first, trẻ <6, không có giáo viên):** Bán **gói năm** là chính (đơn giản quyết định, giảm churn). Trial dùng để tạo **thói quen 1 tuần + bằng chứng tiến bộ + báo cáo tuần**.`
+- docs-data-assets:7: `## 1) Mục tiêu funnel`
+- docs-data-assets:8: `- Entry “dễ thử” (neo giá **~10k/tháng**, **thanh toán theo năm**).`
+- docs-data-assets:9: `- Trial phải tạo được:`
+- docs-data-assets:10: `1) **Thói quen** (quay lại ≥ 3 ngày)`
+- docs-data-assets:11: `2) **Bằng chứng** (tick checklist + quiz score)`
+- docs-data-assets:12: `3) **Weekly Report** (một bản tóm tắt tuần)`
+- docs-data-assets:13: `- Monetization chính: **Yearly Standard / Yearly Family+**.`
+- docs-data-assets:17: `## 2) Plan & entitlement (để gắn vào hệ thống kỹ thuật)`
+- docs-data-assets:20: `- Tối đa **3** hồ sơ trẻ`
+- docs-data-assets:21: `- Tối đa **2** caregiver accounts (bố/mẹ/ông/bà) ở mức **view-only** dashboard`
+- docs-data-assets:22: `- Mở toàn bộ 2 track: **English + Math**`
+- docs-data-assets:23: `- Báo cáo: Weekly report (in-app + email)`
+- docs-data-assets:24: `- Portfolio retention: **90 ngày** (rolling)`
+- docs-data-assets:27: `- Tối đa **5** hồ sơ trẻ`
+- docs-data-assets:28: `- Tối đa **4** caregiver accounts (view-only)`
+- docs-data-assets:29: `- Mở toàn bộ 2 track: **English + Math**`
+- docs-data-assets:30: `- Báo cáo: Weekly report (in-app + email) + báo cáo gộp theo gia đình`
+- docs-data-assets:31: `- Portfolio retention: **365 ngày** (opt-in), mặc định vẫn 90 ngày nếu phụ huynh không bật`
+- docs-data-assets:33: `> **Không bán add-on slot ở v1** để tránh phức tạp billing/support. Khi scale có thể thêm “mua thêm slot” như option nâng cao.`
+- docs-data-assets:38: `- **Trial mặc định: 7 ngày**`
+- docs-data-assets:39: `- **Không yêu cầu phương thức thanh toán khi bắt đầu trial** (ưu tiên trust/ít rào cản).`
+- docs-data-assets:40: `- Trial mở **cả 2 track**, nhưng theo “Daily Journey” để không ngợp:`
+- docs-data-assets:41: `- Mỗi ngày: 1 lesson English + 1 lesson Math (hoặc “chế độ nhẹ”: chọn 1 track/ngày)`
+- docs-data-assets:42: `- Explore/Library bị giới hạn level (chỉ 1–2 level đầu)`
+- docs-data-assets:44: `- Khi hết trial: khóa nội dung premium, chỉ xem dashboard + “tiến độ đã có” + CTA nâng cấp.`
+- docs-data-assets:51: `- Mặc định: **auto-renew ON** (Yearly).`
+- docs-data-assets:52: `- Gửi nhắc gia hạn:`
+- docs-data-assets:53: `- **7 ngày trước** ngày gia hạn`
+- docs-data-assets:54: `- **1 ngày trước** ngày gia hạn`
+- docs-data-assets:55: `- Nếu thay đổi giá: thông báo **≥30 ngày trước** kỳ gia hạn tiếp theo (áp dụng cho renewal).`
+- docs-data-assets:58: `- Cancel bất kỳ lúc nào.`
+- docs-data-assets:59: `- Quyền truy cập premium **giữ đến hết kỳ** đã thanh toán (không cắt ngay).`
+- docs-data-assets:60: `- Nếu cancel trong trial: không bị trừ tiền.`
+- docs-data-assets:62: `### 4.3 Refund (để tăng trust)`
+- docs-data-assets:63: `- **Money-back guarantee 7 ngày** kể từ thời điểm thanh toán **lần đầu** (Standard hoặc Family+).`
+- docs-data-assets:64: `- Điều kiện vận hành (đề xuất để chống abuse, có thể bật/tắt):`
+- docs-data-assets:65: `- Mỗi account chỉ 1 lần refund trong 12 tháng.`
+- docs-data-assets:66: `- Refund không áp dụng cho gói mua qua chương trình hỗ trợ đặc biệt (nếu có).`
+- docs-data-assets:69: `- Upgrade có hiệu lực **ngay lập tức** (mở thêm hồ sơ + tăng caregiver limit + retention).`
+- docs-data-assets:70: `- Tính phí: **pro-rated** theo thời gian còn lại của kỳ hiện tại.`
+- docs-data-assets:72: `- Nếu đang trial: upgrade sẽ kết thúc trial và bắt đầu kỳ trả phí ngay.`
+- docs-data-assets:75: `- Downgrade có hiệu lực **từ kỳ gia hạn tiếp theo** (không hoàn tiền phần còn lại).`
+- docs-data-assets:76: `- Nếu tài khoản đang có >3 hồ sơ trẻ:`
+- docs-data-assets:77: `- Yêu cầu “archive/lock” hồ sơ vượt quá 3 trước ngày gia hạn (UX mềm: cho chọn 3 hồ sơ giữ active).`
+- docs-data-assets:80: `- Khi renewal charge thất bại:`
+- docs-data-assets:81: `- Grace **7 ngày** (giữ quyền truy cập), gửi nhắc ngày 1/3/6.`
+- docs-data-assets:82: `- Hết grace: chuyển về trạng thái “Expired” (khóa học) nhưng giữ dữ liệu tiến độ.`
+- docs-data-assets:87: `- Coupon mặc định chỉ áp dụng cho **năm đầu**.`
+- docs-data-assets:88: `- Không cho stack nhiều coupon.`
+- docs-data-assets:89: `- Referral (share) có thể thưởng:`
+- docs-data-assets:90: `- giảm giá năm đầu **hoặc** tặng thêm ngày dùng (không thay đổi kỳ gia hạn năm).`
+- docs-data-assets:94: `## 6) Pricing page content principles (tóm tắt)`
+- docs-data-assets:95: `- Luôn hiển thị:`
+- docs-data-assets:96: `- “Chỉ từ **10k/tháng** (thanh toán theo năm)”`
+- docs-data-assets:97: `- “Trial 7 ngày”`
+- docs-data-assets:98: `- “Báo cáo tiến bộ mỗi tuần”`
+- docs-data-assets:99: `- “Giới hạn thời gian màn hình + hoạt động offline”`
+- docs-data-assets:100: `- “Money-back 7 ngày”`
+- docs-data-assets:101: `- Tránh:`
+- docs-data-assets:102: `- Copy dài, thuật ngữ kỹ thuật`
+- docs-data-assets:103: `- Nhiều tuỳ chọn giá (chỉ 2 plan)`
+- docs-data-assets:107: `## 7) Pricing variables (để dev cấu hình)`
+- docs-data-assets:116: `## 8) Analytics & experiments (tối thiểu)`
+- docs-data-assets:119: `- Conversion theo mode học: 1 track/day vs 2 track/day`
+- docs-data-assets:120: `- A/B sau khi có traffic:`
+
+### docs/archive/08-affiliate-program.md
+
+- docs-data-assets:3: `## 1) Mục tiêu`
+- docs-data-assets:4: `- Tăng user acquisition thông qua phụ huynh/nhóm/KOL nhỏ`
+- docs-data-assets:5: `- Tạo cơ chế chia sẻ “có ích” (progress proof) thay vì spam link`
+- docs-data-assets:7: `## 2) 2 mô hình nên có (có thể chạy song song)`
+- docs-data-assets:8: `### A) Referral cho phụ huynh (member-get-member)`
+- docs-data-assets:9: `- Ai cũng có mã giới thiệu`
+- docs-data-assets:10: `- Reward: giảm giá gói năm / tặng tháng / tặng printable`
+- docs-data-assets:12: `### B) Affiliate cho đối tác (KOL nhỏ, chủ nhóm)`
+- docs-data-assets:13: `- Hoa hồng tiền (% theo gói năm)`
+- docs-data-assets:14: `- Có dashboard, payout định kỳ`
+- docs-data-assets:18: `- Cookie window (ví dụ 30 ngày)`
+- docs-data-assets:19: `- Last-click (đơn giản) hoặc hybrid`
+- docs-data-assets:21: `## 4) Anti-fraud (tối thiểu)`
+- docs-data-assets:22: `- Không trả hoa hồng cho self-referral`
+- docs-data-assets:23: `- Delay payout đến khi hết refund window`
+- docs-data-assets:24: `- Flag pattern bất thường (nhiều signup cùng IP/device)`
+- docs-data-assets:26: `## 5) “Share asset” quan trọng nhất: Progress Card`
+- docs-data-assets:27: `- Tự động tạo ảnh share:`
+- docs-data-assets:28: `- “Con hoàn thành 5/5 buổi tuần này”`
+- docs-data-assets:29: `- “Đạt milestone Numbers up to 5”`
+- docs-data-assets:30: `- + CTA “Dùng thử 7 ngày”`
+- docs-data-assets:31: `- Vì Cimigo cho thấy trust + social influence/KOL có sức nặng với mẹ Việt.`
+- docs-data-assets:33: `## 6) Affiliate dashboard (yêu cầu)`
+- docs-data-assets:34: `- Link/mã`
+- docs-data-assets:37: `- Xuất CSV`
+
+### docs/archive/09-analytics-event-tracking.md
+
+- docs-data-assets:3: `## 1) Vì sao analytics là “xương sống”`
+- docs-data-assets:4: `Bạn bán theo năm => sống còn ở:`
+- docs-data-assets:6: `- Retention tuần 1–4`
+- docs-data-assets:7: `- Evidence creation (phụ huynh có “proof” thì mới renew)`
+- docs-data-assets:9: `## 2) North Star Metric (đề xuất)`
+- docs-data-assets:11: `= số child profile hoàn thành >= 3 lesson/tuần *và* có >= 1 evidence.`
+- docs-data-assets:19: `- % tạo child profile`
+- docs-data-assets:20: `- % hoàn thành Day 1`
+- docs-data-assets:21: `- % tạo evidence Day 1`
+- docs-data-assets:37: `## 4) Event taxonomy (đặt tên chuẩn)`
+- docs-data-assets:57: `## 5) Dashboard tối thiểu`
+- docs-data-assets:65: `- Trial 3 vs 7 ngày`
+- docs-data-assets:66: `- Report format: “1 phút đọc” vs chi tiết`
+- docs-data-assets:70: `- (Cognitive science) retrieval + spacing: thiết kế review & quiz có cơ sở`
+
+### docs/archive/10-technical-architecture-web.md
+
+- docs-data-assets:3: `## 1) Kiến trúc module (khuyến nghị)`
+- docs-data-assets:24: `## 2) Service boundaries (để dev dễ scale)`
+- docs-data-assets:25: `- Web frontend (Next.js/React hoặc tương đương)`
+- docs-data-assets:39: `## 4) Evidence handling (✅ theo quyết định v1.2)`
+- docs-data-assets:41: `- checklist + quiz score lưu trong DB (nhẹ, realtime)`
+- docs-data-assets:44: `- Upload chỉ qua **parent gate**`
+- docs-data-assets:47: `- giới hạn kích thước (ảnh nén; audio tối đa 30s)`
+- docs-data-assets:49: `- configurable (30/90/365 ngày)`
+- docs-data-assets:50: `- phụ huynh có nút xoá portfolio/evidence`
+- docs-data-assets:56: `- **Generate**: batch job mỗi tuần (theo timezone Asia/Bangkok), tạo WeeklyReport cho từng child`
+- docs-data-assets:57: `- **Deliver in-app**: report hiển thị trong Reports page + dashboard card`
+- docs-data-assets:58: `- **Deliver email** (nếu opt-in):`
+- docs-data-assets:60: `- gắn deep link token để mở đúng child dashboard`
+- docs-data-assets:61: `- tracking tối thiểu: sent/bounced (open/click là optional)`
+- docs-data-assets:64: `- **Default**: media retention 90 ngày (rolling)`
+- docs-data-assets:65: `- **Extended**: tối đa 365 ngày (opt-in/plan)`
+- docs-data-assets:66: `- Job hàng ngày:`
+- docs-data-assets:67: `- tìm media 'expires_at <= now' → xoá object storage + update DB (deleted_at)`
+- docs-data-assets:68: `- ghi log/audit để support khi phụ huynh hỏi`
+- docs-data-assets:71: `- Per-parent và per-child opt-in (vì nhiều bé)`
+- docs-data-assets:72: `- Rate limiting để không spam (1 email/tuần/child, hoặc gộp 1 email/tuần/parent)`
+- docs-data-assets:80: `- Per-child access control (không lẫn progress giữa profiles)`
+- docs-data-assets:85: `- Event tracking chuẩn (activation, lesson_complete, report_view, trial_to_paid)`
+- docs-data-assets:86: `- Synthetic monitoring cho player latency (vì trẻ bỏ nhanh nếu lag)`
+- docs-data-assets:91: `- (Market) Kids learning products thường hỗ trợ nhiều child profiles (ví dụ 3 child profiles)`
+- docs-data-assets:92: `- (Growth) Trial length benchmark và randomized experiment (3 vs 7) để tối ưu conversion`
+
+### docs/archive/11-roadmap-phases.md
+
+- docs-data-assets:1: `# 11 — Roadmap theo giai đoạn (Deliverables)`
+- docs-data-assets:3: `> Bạn nói rõ: chưa build vội, cần làm rõ hệ thống + kế hoạch cụ thể.`
+- docs-data-assets:4: `Roadmap này ưu tiên **“rõ trước – build sau”**.`
+- docs-data-assets:6: `## Phase 0 — Alignment (tài liệu hoá & chốt quyết định)`
+- docs-data-assets:8: `- Chốt 3 track, cấu trúc level/unit/lesson (file 03 + 05)`
+- docs-data-assets:9: `- Chốt lesson blueprint + report blueprint (file 04)`
+- docs-data-assets:10: `- Chốt **plan & limit hồ sơ**: Standard (3) / Family+ (5) (file 07 + 06 + 05)`
+- docs-data-assets:11: `- Chốt **portfolio retention**: default 90 ngày, opt-in tối đa 365 ngày (file 06 + 05 + 10)`
+- docs-data-assets:12: `- Chốt **Weekly Report delivery**: in-app + email, có opt-in per child (file 06 + 05 + 10)`
+- docs-data-assets:13: `- Chốt pricing/funnel/affiliate rules (file 07 + 08)`
+- docs-data-assets:14: `- Chốt event taxonomy + success metrics (file 09)`
+- docs-data-assets:15: `- Chốt IA + flows (file 06)`
+- docs-data-assets:16: `- Chốt “non-functional”: performance, security baseline, observability (file 10)`
+- docs-data-assets:18: `## Phase 1 — Content system build (nhập liệu & QA)`
+- docs-data-assets:20: `- CMS schema chạy được (level/unit/lesson/activity/offline card)`
+- docs-data-assets:21: `- Bộ template nội dung (file 04) được “đóng khung” thành form nhập liệu`
+- docs-data-assets:23: `- Tối thiểu 20 lesson hoàn chỉnh + 2 weekly report mẫu`
+- docs-data-assets:29: `- Evidence: checklist + quiz (bắt buộc), photo/audio (opt-in) + portfolio view`
+- docs-data-assets:31: `- Email pipeline: gửi weekly digest + deep link vào dashboard`
+- docs-data-assets:40: `- Nâng chất “trust stack”: landing proof, case studies, onboarding scripts`
+- docs-data-assets:45: `- [ ] Data model được dev review (file 05)`
+- docs-data-assets:46: `- [ ] IA + flows được design review (file 06)`
+- docs-data-assets:47: `- [ ] Có 20 lesson hoàn chỉnh theo template (file 04)`
+- docs-data-assets:48: `- [ ] Có 2 báo cáo tuần mẫu (file 04)`
+- docs-data-assets:49: `- [ ] Có 1 landing page + 1 roadmap page mock (Figma/whimsical)`
+- docs-data-assets:50: `- [ ] Chốt email provider + domain + DKIM/SPF (file 10)`
+
+### docs/archive/12-risks-open-questions.md
+
+- docs-data-assets:3: `## 1) Assumptions (giả định đang dùng)`
+- docs-data-assets:5: `- Nội dung video đã sẵn sàng và có thể phát streaming`
+- docs-data-assets:6: `- Không có giáo viên; phụ huynh là người “kích hoạt” lesson`
+- docs-data-assets:7: `- Có thể tạo learning tools (quiz, offline card, report) độc lập với video`
+- docs-data-assets:9: `## 2) Rủi ro lớn nhất & cách giảm`
+- docs-data-assets:10: `### R1: Trẻ xem như giải trí → không tạo tiến bộ`
+- docs-data-assets:12: `- Daily Journey ưu tiên, Library có trần`
+- docs-data-assets:13: `- Evidence tối thiểu bắt buộc (tick checklist + quiz)`
+- docs-data-assets:16: `### R2: Phụ huynh không thấy giá trị để mua năm`
+- docs-data-assets:18: `- Roadmap 1 trang + mốc theo tuần/tháng`
+- docs-data-assets:19: `- Weekly Report tự động + certificate theo milestone`
+- docs-data-assets:20: `- “Parent script” (3 câu hỏi + 1 hoạt động offline) giúp phụ huynh đồng hành dễ`
+- docs-data-assets:22: `### R3: Trải nghiệm web cho trẻ nhỏ bị “khó dùng”`
+- docs-data-assets:24: `- Kid mode full-screen, icon lớn, hạn chế chữ`
+- docs-data-assets:25: `- Parent gate cho thao tác nhạy cảm (thanh toán/cài đặt)`
+- docs-data-assets:26: `- Tối ưu tốc độ tải (prefetch + CDN)`
+- docs-data-assets:28: `## 3) Quyết định đã chốt (v1)`
+- docs-data-assets:30: `### 3.1 Mỗi tài khoản tối đa bao nhiêu hồ sơ trẻ?`
+- docs-data-assets:31: `- **Mặc định: 3 Child Profiles / 1 Parent Account.**`
+- docs-data-assets:32: `- Lý do:`
+- docs-data-assets:33: `- “3 hồ sơ trẻ” là mức rất phổ biến trong các sản phẩm học cho trẻ (ví dụ ABCmouse: 1 Parent + 3 Child).`
+- docs-data-assets:34: `- Phù hợp thực tế Việt Nam: gia đình có 1–2 con + có thể thêm 1 hồ sơ cho anh/chị/em hoặc bé do người chăm khác quản (mà không khuyến khích share giữa nhiều gia đình).`
+- docs-data-assets:35: `- Mở rộng:`
+- docs-data-assets:36: `- Cho phép **mua thêm slot** hoặc **gói Family+ (tối đa 5)** khi đã có traction, hoặc mở theo cơ chế “yêu cầu thêm” (support).`
+- docs-data-assets:38: `### 3.2 Trial: 3 hay 7 ngày? mở 1 track hay 2 track?`
+- docs-data-assets:39: `- **Chốt: Trial 7 ngày (1 week) là mặc định.**`
+- docs-data-assets:40: `- Trial **mở cả 2 track (English + Math)** nhưng **theo Daily Journey** (mỗi ngày chỉ 1 lesson/track + review ngắn), Library bị giới hạn level.`
+- docs-data-assets:41: `- Lý do:`
+- docs-data-assets:42: `- Các phân tích benchmark cho thấy trial ngắn (≤4 ngày) thường có median conversion thấp hơn trial dài hơn; nhóm 5–9 ngày thường “ổn định” hơn.`
+- docs-data-assets:43: `- 7 ngày đủ tạo “thói quen tuần” + tạo **Weekly Report** có dữ liệu thật để phụ huynh tin và trả năm.`
+- docs-data-assets:44: `- Ghi chú vận hành:`
+- docs-data-assets:45: `- Vẫn nên chạy **A/B test 3 vs 7** sau khi có traffic để tối ưu theo phễu thật.`
+- docs-data-assets:47: `### 3.3 Evidence bắt buộc tới mức nào?`
+- docs-data-assets:48: `- **Bắt buộc: tick checklist + (tự động) mini-quiz score** sau mỗi lesson.`
+- docs-data-assets:49: `- **Tuỳ chọn (opt-in, có parental gate):**`
+- docs-data-assets:50: `- Ảnh: ưu tiên ảnh học liệu/hoạt động (khuyến nghị không chụp mặt bé).`
+- docs-data-assets:51: `- Audio: chỉ bật cho các nhiệm vụ “con đọc/nhắc lại” (English), và có tuỳ chọn “lưu” hoặc “tự xoá sau N ngày”.`
+- docs-data-assets:52: `- Lý do:`
+- docs-data-assets:53: `- Checklist bắt buộc đủ nhẹ để không tạo friction nhưng vẫn tạo “bằng chứng tiến bộ”.`
+- docs-data-assets:54: `- Ảnh/audio làm tăng niềm tin, nhưng kéo theo UX + lưu trữ + nhạy cảm dữ liệu ⇒ nên để phụ huynh chủ động bật khi thấy cần.`
+- docs-data-assets:58: `## 4) Các quyết định đã chốt (để vào PRD kỹ thuật)`
+- docs-data-assets:59: `1) **Mở rộng hồ sơ**: chọn **Family+ plan** (Standard=3, Family+=5). V1 không bán add-on slot để giảm phức tạp checkout.`
+- docs-data-assets:60: `2) **Portfolio retention**: mặc định **90 ngày**, cho phép phụ huynh **opt-in tối đa 365 ngày** (theo plan) + luôn có Export/Delete.`
+- docs-data-assets:61: `3) **Weekly Report**: triển khai **cả in-app + email** (email có link vào dashboard), có opt-in per child.`
+- docs-data-assets:63: `### Open questions mới (đã chốt trong PRD kỹ thuật)`
+- docs-data-assets:65: `1) **Email weekly report**: mặc định **gộp 1 email/parent/tuần** (nếu nhiều bé sẽ có section theo từng bé).`
+- docs-data-assets:66: `- Lý do: giảm spam, phù hợp thói quen “một email tóm tắt”, vẫn đủ proof.`
+- docs-data-assets:67: `- Cho phép tuỳ chọn nâng cao: bật “1 email/child” nếu phụ huynh muốn.`
+- docs-data-assets:72: `- Chỉ “Primary Parent” được thay đổi thanh toán/quyền riêng tư/xoá dữ liệu.`
+- docs-data-assets:75: `- V1: export theo **tháng** (ZIP) / theo từng bé (tối ưu UX + chi phí).`
+- docs-data-assets:76: `- “Export toàn bộ” chỉ là tuỳ chọn nâng cao (có cảnh báo thời gian + gửi link tải về email).`
+- docs-data-assets:80: `## 5) References (để tham chiếu khi viết policy/PRD)`
+- docs-data-assets:81: `- WHO & AAP: định hướng screen time + co-view/co-play`
+
+### docs/archive/13-pricing-page-prd.md
+
+- docs-data-assets:5: `**Audience:** Phụ huynh VN (mẹ/bố; có thể ông/bà caregiver)`
+- docs-data-assets:11: `Phụ huynh xem giá nhưng không mua vì:`
+- docs-data-assets:12: `- Không thấy **lộ trình** / không tin “con tiến bộ thật”`
+- docs-data-assets:13: `- Sợ “tốn tiền vô ích”, sợ “bị trừ tiền tự động”`
+- docs-data-assets:14: `- Không rõ mình cần gói nào cho 1–2 bé`
+- docs-data-assets:15: `- Khó hình dung “mỗi ngày học ra sao”`
+- docs-data-assets:17: `Pricing page phải giải quyết 4 rào cản trên bằng: **clarity + trust + proof + low-friction trial**.`
+- docs-data-assets:23: `1) Tăng tỷ lệ **Start trial**`
+- docs-data-assets:24: `2) Tăng tỷ lệ **Purchase yearly** (Standard/Family+)`
+- docs-data-assets:25: `3) Giảm support tickets về “billing, cancel, renewal”`
+- docs-data-assets:38: `- Headline: “Lộ trình học 10–20 phút/ngày cho bé (không cần giáo viên)”`
+- docs-data-assets:39: `- Sub: “Báo cáo tiến bộ mỗi tuần • Hoạt động offline • Kiểm soát thời gian màn hình”`
+- docs-data-assets:40: `- CTA1: “Dùng thử 7 ngày”`
+- docs-data-assets:41: `- CTA2 (secondary): “Xem lộ trình & báo cáo mẫu”`
+- docs-data-assets:44: `- 2–3 testimonial ngắn (ưu tiên phụ huynh Việt, không cần dài)`
+- docs-data-assets:45: `- “Cam kết hoàn tiền 7 ngày”`
+- docs-data-assets:49: `- “3 hồ sơ bé • 2 caregiver”`
+- docs-data-assets:51: `- “Báo cáo tuần (in-app + email)”`
+- docs-data-assets:52: `- Giá: hiển thị **giá năm** + “~10k/tháng” (monthly equivalent)`
+- docs-data-assets:53: `- CTA: “Chọn Standard”`
+- docs-data-assets:56: `- “5 hồ sơ bé • 4 caregiver”`
+- docs-data-assets:57: `- “Portfolio giữ tới 365 ngày (opt-in)”`
+- docs-data-assets:58: `- Giá: hiển thị giá năm + monthly equivalent`
+- docs-data-assets:59: `- CTA: “Chọn Family+”`
+- docs-data-assets:62: `- “Hôm nay học gì?” (Daily Journey)`
+- docs-data-assets:63: `- “Báo cáo tuần” (ảnh minh hoạ)`
+- docs-data-assets:65: `- “Giới hạn màn hình + hoạt động offline”`
+- docs-data-assets:68: `- 3 bước:`
+- docs-data-assets:69: `1) Tạo hồ sơ bé`
+- docs-data-assets:70: `2) Học theo Daily Journey`
+- docs-data-assets:71: `3) Hết 7 ngày: nâng cấp để tiếp tục`
+- docs-data-assets:72: `- Copy rõ: “Không cần nhập thanh toán khi bắt đầu trial” (nếu áp dụng)`
+- docs-data-assets:75: `- Trial có tự trừ tiền không?`
+- docs-data-assets:76: `- Nâng cấp/huỷ gói thế nào?`
+- docs-data-assets:77: `- Nhà có 2 bé nên chọn gói nào?`
+- docs-data-assets:78: `- Ông/bà có xem báo cáo được không?`
+- docs-data-assets:79: `- Hoàn tiền 7 ngày ra sao?`
+- docs-data-assets:80: `- Hết hạn gói có mất dữ liệu không?`
+- docs-data-assets:83: `- CTA: “Bắt đầu dùng thử 7 ngày”`
+- docs-data-assets:88: `## 4) Subscription UX rules (để dev implement)`
+- docs-data-assets:90: `- 'TRIALING' → 'ACTIVE_STANDARD|ACTIVE_FAMILYPLUS' → 'CANCELED_AT_PERIOD_END' → 'EXPIRED' → 'GRACE' (nếu payment fail)`
+- docs-data-assets:94: `- Confirm modal: “Bạn vẫn dùng đến ngày …”`
+- docs-data-assets:100: `- Khi tạo hồ sơ thứ 4`
+- docs-data-assets:106: `- Nếu >3 hồ sơ: yêu cầu chọn 3 hồ sơ active trước ngày renewal`
+- docs-data-assets:111: `- grace 7 ngày`
+- docs-data-assets:112: `- notify ngày 1/3/6`
+- docs-data-assets:113: `- hết grace: expired (khóa học), giữ dữ liệu`
+- docs-data-assets:116: `- Support form: “Yêu cầu hoàn tiền”`
+- docs-data-assets:117: `- Auto check: within 7 ngày + not refunded in 12 tháng`
+- docs-data-assets:123: `- Ngắn, cụ thể, tránh jargon`
+- docs-data-assets:124: `- Tập trung: “lộ trình – báo cáo – thói quen – kiểm soát màn hình – hoàn tiền”`
+- docs-data-assets:125: `- “Không có giáo viên” nói theo hướng tích cực:`
+- docs-data-assets:126: `- “Bé học theo lộ trình được thiết kế sẵn • phụ huynh chỉ cần 3 phút đồng hành”`
+- docs-data-assets:131: `- 1 parent có nhiều bé: weekly report mặc định **gộp 1 email/parent** (mỗi bé 1 section)`
+- docs-data-assets:133: `- Session: Kid mode không cho truy cập pricing/billing (parent gate)`
+
+### docs/business/abeka-course-package-design.md
+
+- docs-data-assets:1: `# Thiết Kế Cấu Trúc Gói Khóa Học Abeka`
+- docs-data-assets:3: `**Tài nguyên:** 20,195 video | 14 grade levels (K4-G12) | 170 lessons/grade | 8 môn học`
+- docs-data-assets:4: `**Mục tiêu:** Tối đa hóa doanh thu thông qua packaging strategy và pricing psychology`
+- docs-data-assets:10: `**Nguồn chuẩn duy nhất:** 'prisma/seeders/curriculum-packages.ts'`
+- docs-data-assets:11: `**Quy tắc:** Nếu doc và seeder lệch nhau, luôn sửa doc theo seeder.`
+- docs-data-assets:15: `| 1 | 'PRESCHOOL_PREMIUM' | Mầm Non PREMIUM | 680 | 199000 | 1990000 |`
+- docs-data-assets:16: `| 2 | 'ELEMENTARY_PRO' | Tiểu Học PRO | 2550 | 349000 | 3490000 |`
+- docs-data-assets:17: `| 3 | 'MIDDLE_ADVANCED' | Trung Học ADVANCED | 2040 | 349000 | 3490000 |`
+- docs-data-assets:19: `| 5 | 'ENGLISH_MASTER' | Tiếng Anh MASTER | 1190 | 249000 | 2490000 |`
+- docs-data-assets:20: `| 6 | 'MATH_THINKING' | Toán Tư Duy MATH | 1700 | 199000 | 1990000 |`
+- docs-data-assets:24: `**Lưu ý triển khai:**`
+- docs-data-assets:25: `- Không dùng lại bộ mã cũ: 'PRESCHOOL_BASIC', 'ELEMENTARY_STARTER', 'ELEMENTARY_CORE', 'MIDDLE_SCHOOL', 'HIGH_SCHOOL_BASE', 'HIGH_SCHOOL_PRO', 'ALL_ACCESS'.`
+- docs-data-assets:26: `- 'videoCount' ở package là metadata thương mại của gói; không đại diện cho tổng unique 'AbekaVideo' trong DB.`
+- docs-data-assets:30: `Chuẩn chính thức để tránh drift importer ở các lần import sau:`
+- docs-data-assets:48: `- Không dùng level '-1' cho 'K4'.`
+- docs-data-assets:49: `- Code importer ('scripts/import-abeka-videos.ts') là chuẩn thực thi; docs phải đồng bộ theo code.`
+- docs-data-assets:53: `## 📊 Tổng Quan Tài Nguyên`
+- docs-data-assets:55: `### Phân Bổ Video Theo Cấp Lớp`
+- docs-data-assets:57: `| Cấp Lớp | Số Video Ước Tính | Môn Chính | Đặc Điểm |`
+- docs-data-assets:59: `| **K4** | ~1,400 | Phonics, Activities, Bible | Mầm non nhỏ tuổi |`
+- docs-data-assets:60: `| **K5** | ~1,400 | Phonics, Math, Activities | Mầm non lớn tuổi |`
+- docs-data-assets:61: `| **G1** | ~1,450 | Phonics, Math, Reading, Writing | Bắt đầu đọc viết |`
+- docs-data-assets:62: `| **G2** | ~1,450 | Phonics, Math, Reading, Science | Phát triển nền tảng |`
+- docs-data-assets:63: `| **G3** | ~1,450 | Reading, Math, Science, History | Chuyển sang đọc hiểu |`
+- docs-data-assets:64: `| **G4** | ~1,450 | Reading, Math, Science, History | Đọc hiểu nâng cao |`
+- docs-data-assets:65: `| **G5** | ~1,450 | Reading, Math, Science, History | Chuẩn bị cấp 2 |`
+- docs-data-assets:66: `| **G6** | ~1,450 | Math, Science, History, Reading | Bắt đầu cấp 2 |`
+- docs-data-assets:67: `| **G7** | ~1,450 | Math, Science, History, Bible | Cấp 2 nâng cao |`
+- docs-data-assets:68: `| **G8** | ~1,450 | Algebra, Science, History, Literature | Chuẩn bị cấp 3 |`
+- docs-data-assets:69: `| **G9** | ~1,450 | Algebra, Biology, History, Literature | THCS cuối |`
+- docs-data-assets:70: `| **G10** | ~1,450 | Geometry, Chemistry, History, Literature | THPT bắt đầu |`
+- docs-data-assets:71: `| **G11** | ~1,450 | Algebra II, Physics, History, Literature | THPT nâng cao |`
+- docs-data-assets:72: `| **G12** | ~1,450 | Calculus, Govt/Econ, Literature, Bible | Tốt nghiệp |`
+- docs-data-assets:74: `**Tổng: 20,195 video**`
+- docs-data-assets:76: `### Phân Bổ Theo Môn Học`
+- docs-data-assets:78: `| Môn Học | Mã | Video/Grade | Tổng Video |`
+- docs-data-assets:91: `## 🎯 Cấu Trúc Gói Theo Cấp Lớp (Grade-Based Packages)`
+- docs-data-assets:93: `### 1. Gói Mầm Non PREMIUM (K4-K5)`
+- docs-data-assets:94: `**Target:** Phụ huynh trẻ 2-6 tuổi | **Pain Point:** Con chưa biết đọc, cần nền tảng vững`
+- docs-data-assets:96: `| Thành phần | Chi tiết |`
+- docs-data-assets:99: `| **Môn học** | Phonics (360), Math cơ bản (240), Bible (120), Activities (160), Writing cơ bản (120) |`
+- docs-data-assets:100: `| **Lessons** | 340 lessons (170×2) |`
+- docs-data-assets:101: `| **Đặc điểm** | Phonics cơ bản, nhận biết chữ cái, kỹ năng sống, nền tảng đạo đức |`
+- docs-data-assets:104: `- **Tháng:** 199,000₫/tháng`
+- docs-data-assets:105: `- **Năm:** 1,790,000₫/năm (25% OFF, tiết kiệm 598,000₫)`
+- docs-data-assets:106: `- **2 Năm:** 2,990,000₫ (37% OFF)`
+- docs-data-assets:108: `**Giá trị truyền thông:**`
+- docs-data-assets:109: `> "Nền tảng vàng cho con yêu - Từ chưa biết chữ đến đọc thông viết thạo"`
+- docs-data-assets:113: `### 2. Gói Tiểu Học PRO (G1-G5)`
+- docs-data-assets:114: `**Target:** Học sinh tiểu học 6-11 tuổi | **Pain Point:** Cần nền tảng vững cho THCS`
+- docs-data-assets:116: `| Thành phần | Chi tiết |`
+- docs-data-assets:118: `| **Video** | 7,250 video (G1-G5: ~1,450 mỗi cấp) |`
+- docs-data-assets:119: `| **Môn học** | Reading (600), Math (600), Science (400), History (240), Phonics nâng cao (G1-G2: 240), Writing (300), Bible (300) |`
+- docs-data-assets:120: `| **Lessons** | 850 lessons (170×5) |`
+- docs-data-assets:121: `| **Đặc điểm** | Phonics nâng cao, Toán tư duy, Khoa học cơ bản, Lịch sử thế giới |`
+- docs-data-assets:124: `- **Tháng:** 349,000₫/tháng`
+- docs-data-assets:125: `- **Năm:** 2,990,000₫/năm (29% OFF, tiết kiệm 1,198,000₫)`
+- docs-data-assets:126: `- **2 Năm:** 4,990,000₫ (40% OFF)`
+- docs-data-assets:128: `**Giá trị truyền thông:**`
+- docs-data-assets:129: `> "5 năm vàng - Xây dựng nền tảng vững chắc cho tương lai"`
+- docs-data-assets:133: `### 3. Gói Trung Học ADVANCED (G6-G9)`
+- docs-data-assets:134: `**Target:** Học sinh THCS 11-15 tuổi | **Pain Point:** Chuyển cấp, môn học khó hơn`
+- docs-data-assets:136: `| Thành phần | Chi tiết |`
+- docs-data-assets:138: `| **Video** | 5,800 video (G6-G9: ~1,450 mỗi cấp) |`
+- docs-data-assets:139: `| **Môn học** | Math nâng cao (560), Science (480), History (480), Literature (480), Bible (240), Writing (240) |`
+- docs-data-assets:140: `| **Lessons** | 680 lessons (170×4) |`
+- docs-data-assets:141: `| **Đặc điểm** | Toán đại số, Khoa học tự nhiên, Lịch sử Mỹ, Văn học Anh, tư duy phản biện |`
+- docs-data-assets:144: `- **Tháng:** 399,000₫/tháng`
+- docs-data-assets:145: `- **Năm:** 3,490,000₫/năm (27% OFF, tiết kiệm 1,298,000₫)`
+- docs-data-assets:146: `- **2 Năm:** 5,990,000₫ (37% OFF)`
+- docs-data-assets:148: `**Giá trị truyền thông:**`
+- docs-data-assets:149: `> "Chinh phục THCS - Từ học sinh giỏi đến xuất sắc"`
+- docs-data-assets:153: `### 4. Gói THPT ELITE (G10-G12)`
+- docs-data-assets:154: `**Target:** Học sinh THPT 15-18 tuổi | **Pain Point:** Chuẩn bị đại học, thi tốt nghiệp`
+- docs-data-assets:156: `| Thành phần | Chi tiết |`
+- docs-data-assets:158: `| **Video** | 4,350 video (G10-G12: ~1,450 mỗi cấp) |`
+- docs-data-assets:159: `| **Môn học** | Calculus/Geometry (420), Chemistry/Physics (360), History/Govt (360), Literature (360), Bible (180), Writing (180) |`
+- docs-data-assets:160: `| **Lessons** | 510 lessons (170×3) |`
+- docs-data-assets:161: `| **Đặc điểm** | Toán nâng cao, Khoa học chuyên sâu, Văn học phân tích, chuẩn bị SAT/ĐH |`
+- docs-data-assets:164: `- **Tháng:** 449,000₫/tháng`
+- docs-data-assets:165: `- **Năm:** 3,990,000₫/năm (26% OFF, tiết kiệm 1,398,000₫)`
+- docs-data-assets:166: `- **2 Năm:** 6,990,000₫ (35% OFF)`
+- docs-data-assets:168: `**Giá trị truyền thông:**`
+- docs-data-assets:169: `> "Vào đại học top - Chuẩn bị vượt trội cho tương lai"`
+- docs-data-assets:173: `## 📚 Cấu Trúc Gói Theo Môn Học (Subject-Based Packages)`
+- docs-data-assets:175: `### 5. Gói Tiếng Anh MASTER (K4-G5)`
+- docs-data-assets:176: `**Target:** Phụ huynh muốn con thành thạo tiếng Anh | **Pain Point:** Con học tiếng Anh chậm, không tự tin`
+- docs-data-assets:178: `| Thành phần | Chi tiết |`
+- docs-data-assets:181: `| **Môn học** | Phonics (K4-G2: 360), Reading (K4-G5: 600), Writing (K4-G5: 540) |`
+- docs-data-assets:182: `| **Lessons** | 1,020 lessons (170×6 cấp) |`
+- docs-data-assets:183: `| **Đặc điểm** | Từ ABC đến đọc hiểu, viết luận cơ bản, phát âm chuẩn Mỹ |`
+- docs-data-assets:186: `- **Tháng:** 249,000₫/tháng`
+- docs-data-assets:187: `- **Năm:** 2,190,000₫/năm (27% OFF)`
+- docs-data-assets:188: `- **3 Năm:** 5,490,000₫ (38% OFF - toàn bộ K4-G5)`
+- docs-data-assets:190: `**Giá trị truyền thông:**`
+- docs-data-assets:191: `> "Song ngữ từ nhỏ - Tiếng Anh như người bản xứ"`
+- docs-data-assets:195: `### 6. Gói Toán Tư Duy MATH (K4-G8)`
+- docs-data-assets:196: `**Target:** Học sinh cần củng cố/nâng cao Toán | **Pain Point:** Toán yếu, sợ Toán, cần tư duy logic`
+- docs-data-assets:198: `| Thành phần | Chi tiết |`
+- docs-data-assets:201: `| **Môn học** | Arithmetic (K4-G5: 720), Algebra (G6-G8: 420), Geometry basics (G8: 60) |`
+- docs-data-assets:202: `| **Lessons** | 1,190 lessons (170×7 cấp) |`
+- docs-data-assets:203: `| **Đặc điểm** | Từ đếm số đến đại số, tư duy logic, giải bài toán thực tế |`
+- docs-data-assets:206: `- **Tháng:** 199,000₫/tháng`
+- docs-data-assets:207: `- **Năm:** 1,790,000₫/năm (25% OFF)`
+- docs-data-assets:208: `- **3 Năm:** 4,490,000₫ (37% OFF - K4-G5)`
+- docs-data-assets:209: `- **5 Năm:** 6,990,000₫ (41% OFF - K4-G8)`
+- docs-data-assets:211: `**Giá trị truyền thông:**`
+- docs-data-assets:212: `> "Tư duy Toán học - Con giỏi logic, không số đề"`
+- docs-data-assets:216: `### 7. Gói STEM INNOVATOR (G3-G8)`
+- docs-data-assets:217: `**Target:** Phụ huynh muốn con theo STEM | **Pain Point:** Con thích khoa học, cần nền tảng STEM`
+- docs-data-assets:219: `| Thành phần | Chi tiết |`
+- docs-data-assets:222: `| **Môn học** | Science (G3-G8: 720), Math (G3-G8: 720), History of Science (60) |`
+- docs-data-assets:223: `| **Lessons** | 1,020 lessons (170×6 cấp) |`
+- docs-data-assets:224: `| **Đặc điểm** | Khoa học từ cơ bản đến nâng cao, thí nghiệm ảo, tư duy khoa học |`
+- docs-data-assets:227: `- **Tháng:** 299,000₫/tháng`
+- docs-data-assets:228: `- **Năm:** 2,690,000₫/năm (25% OFF)`
+- docs-data-assets:229: `- **3 Năm:** 6,990,000₫ (35% OFF)`
+- docs-data-assets:231: `**Giá trị truyền thông:**`
+- docs-data-assets:232: `> "Nhà khoa học nhí - Khám phá thế giới tự nhiên"`
+- docs-data-assets:236: `### 8. Gói Toàn Diện ULTIMATE (K4-G12 - Full Access)`
+- docs-data-assets:237: `**Target:** Gia đình có nhiều con, homeschoolers | **Pain Point:** Muốn truy cập toàn bộ, tiết kiệm nhất`
+- docs-data-assets:239: `| Thành phần | Chi tiết |`
+- docs-data-assets:241: `| **Video** | 20,195 video (toàn bộ) |`
+- docs-data-assets:242: `| **Môn học** | Tất cả 8 môn, 14 cấp lớp |`
+- docs-data-assets:243: `| **Lessons** | 2,380 lessons (170×14) |`
+- docs-data-assets:244: `| **Đặc điểm** | Full access, đa người dùng, dashboard gia đình, báo cáo tiến độ |`
+- docs-data-assets:247: `- **Tháng:** 699,000₫/tháng`
+- docs-data-assets:248: `- **Năm:** 6,990,000₫/năm (17% OFF, tiết kiệm 1,398,000₫)`
+- docs-data-assets:249: `- **2 Năm:** 11,990,000₫ (29% OFF)`
+- docs-data-assets:250: `- **TRỌN ĐỜI:** 29,990,000₫ (86% OFF so với tháng × 36)`
+- docs-data-assets:252: `**Giá trị truyền thông:**`
+- docs-data-assets:253: `> "Kho báu tri thức - Một lần đầu tư, trọn đời thụ hưởng"`
+- docs-data-assets:257: `## 💰 Bảng So Sánh Giá Trị (Value Comparison Matrix)`
+- docs-data-assets:259: `### So Sánh Theo Cấp Lớp`
+- docs-data-assets:261: `| Gói | Video | Tháng | Năm | Giá/Video/Năm | Tiết kiệm vs mua lẻ |`
+- docs-data-assets:263: `| **Mầm Non** | 2,800 | 199K | 1,790K | 639₫ | 70% |`
+- docs-data-assets:264: `| **Tiểu Học** | 7,250 | 349K | 2,990K | 412₫ | 75% |`
+- docs-data-assets:265: `| **Trung Học** | 5,800 | 399K | 3,490K | 601₫ | 72% |`
+- docs-data-assets:269: `### So Sánh Theo Môn Học`
+- docs-data-assets:271: `| Gói | Video | Tháng | Năm | Đối tượng |`
+- docs-data-assets:273: `| **Tiếng Anh** | 1,500 | 249K | 2,190K | K4-G5 (6 năm) |`
+- docs-data-assets:274: `| **Toán Tư Duy** | 1,200 | 199K | 1,790K | K4-G8 (9 năm) |`
+- docs-data-assets:275: `| **STEM** | 1,500 | 299K | 2,690K | G3-G8 (6 năm) |`
+- docs-data-assets:276: `| **ULTIMATE** | 20,195 | 699K | 6,990K | K4-G12 (14 năm) |`
+- docs-data-assets:282: `### 1. Free Trial Funnel (Thu hút)`
+- docs-data-assets:283: `**Entry Point:** 7 ngày miễn phí - Gói Tiểu Học (G1-G2)`
+- docs-data-assets:285: `| Ngày | Hành động |`
+- docs-data-assets:287: `| **0** | Đăng ký, truy cập 50 video miễn phí |`
+- docs-data-assets:288: `| **2** | Email: "Con bạn đã học 3 bài! Xem tiến độ" |`
+- docs-data-assets:289: `| **5** | Email: "Chỉ còn 2 ngày - Mở khóa toàn bộ" |`
+- docs-data-assets:290: `| **6** | Push: "Ưu đãi đặc biệt nếu nâng cấp hôm nay" |`
+- docs-data-assets:291: `| **7** | Chuyển đổi: Nâng cấp hoặc hạn chế tính năng |`
+- docs-data-assets:297: `### 2. Grade-Based Upsell Path (Nâng cấp theo cấp)`
+- docs-data-assets:304: `│                    GÓI MẦM NON (K4-K5)                                                │`
+- docs-data-assets:307: `│                    GÓI TIỂU HỌC (G1-G5)                                               │`
+- docs-data-assets:310: `│                    GÓI TRUNG HỌC (G6-G9)                                              │`
+- docs-data-assets:313: `│                    GÓI THPT (G10-G12)                                                 │`
+- docs-data-assets:316: `│                    GÓI TOÀN DIỆN (K4-G12)                                             │`
+- docs-data-assets:321: `- **Cross-grade upgrade:** Ưu đãi 30% khi nâng cấp lên gói cao hơn`
+- docs-data-assets:322: `- **Retention offer:** Giảm 50% tháng đầu nếu gia hạn trước khi hết hạn`
+- docs-data-assets:323: `- **Annual push:** Tiết kiệm 25-30% với gói năm`
+- docs-data-assets:327: `### 3. Subject-Based Upsell Path (Nâng cấp theo môn)`
+- docs-data-assets:331: `│  Bắt đầu với    │`
+- docs-data-assets:332: `│   GÓI TIẾNG ANH │`
+- docs-data-assets:340: `│  + GÓI TOÁN   │ │  + GÓI STEM   │ │  ULTIMATE     │`
+- docs-data-assets:341: `│  TƯ DUY       │ │               │ │  (Tất cả)     │`
+- docs-data-assets:350: `| Combo | Gói | Giá Gốc | Giá Combo | Tiết Kiệm |`
+- docs-data-assets:352: `| **Starter** | Mầm Non (1 năm) | 1,790K | 1,490K | 17% |`
+- docs-data-assets:353: `| **Elementary** | Tiểu Học (1 năm) + Tiếng Anh (1 năm) | 5,180K | 3,990K | 23% |`
+- docs-data-assets:354: `| **STEM Bundle** | Toán Tư Duy + STEM | 4,480K | 3,490K | 22% |`
+- docs-data-assets:355: `| **Family Pack** | Tiểu Học + Trung Học | 6,480K | 4,990K | 23% |`
+- docs-data-assets:356: `| **Complete K12** | Tất cả gói cấp lớp | 12,260K | 8,990K | 27% |`
+- docs-data-assets:360: `## 🎁 Chương Trình Khuyến Mãi & Retention`
+- docs-data-assets:364: `| Chương trình | Chi tiết | Thời hạn |`
+- docs-data-assets:366: `| **First Month 50%** | Giảm 50% tháng đầu tiên | Luôn áp dụng |`
+- docs-data-assets:367: `| **3 Months Bundle** | 3 tháng giá 2 tháng | Khách mới |`
+- docs-data-assets:368: `| **Referral Bonus** | Giới thiệu bạn bè, cả 2 được 1 tháng miễn phí | Không giới hạn |`
+- docs-data-assets:372: `| Trigger | Offer | Mục đích |`
+- docs-data-assets:374: `| **Renewal Reminder** | Giảm 20% nếu gia hạn trước 7 ngày | Tăng retention |`
+- docs-data-assets:375: `| **Churn Prevention** | 1 tháng miễn phí nếu muốn hủy | Win-back |`
+- docs-data-assets:376: `| **Upgrade Incentive** | 40% OFF khi nâng cấp gói | Tăng ARPU |`
+- docs-data-assets:377: `| **Annual Push** | Tặng 2 tháng khi mua gói năm | Giảm churn |`
+- docs-data-assets:378: `| **Lifetime Deal** | Flash sale 19,990K (thay vì 29,990K) | Cash flow |`
+- docs-data-assets:382: `| Dịp | Khuyến mãi | Thời gian |`
+- docs-data-assets:384: `| **Back to School** | 30% OFF tất cả gói | Tháng 8-9 |`
+- docs-data-assets:385: `| **Tết Nguyên Đán** | Mua 1 năm tặng 3 tháng | Tháng 1-2 |`
+- docs-data-assets:386: `| **Mid-Year Sale** | 25% OFF gói năm | Tháng 5-6 |`
+- docs-data-assets:387: `| **Black Friday** | 40% OFF toàn bộ | Tháng 11 |`
+- docs-data-assets:388: `| **Flash Sale** | Gói TRỌN ĐỜI 14,990K (50% OFF) | Random |`
+- docs-data-assets:396: `| Kỹ thuật | Áp dụng | Mục đích |`
+- docs-data-assets:398: `| **Charm Pricing** | 199K, 349K, 699K | Giá có vẻ rẻ hơn |`
+- docs-data-assets:399: `| **Anchoring** | Hiển thị 699K trước khi giảm xuống 449K | Giá trung bình hấp dẫn |`
+- docs-data-assets:400: `| **Decoy Effect** | Gói tháng đắt hơn để đẩy gói năm | Tăng annual conversion |`
+- docs-data-assets:401: `| **Loss Aversion** | "Đừng để con bỏ lỡ nền tảng vàng" | Tăng urgency |`
+- docs-data-assets:402: `| **Mental Accounting** | "Chỉ 6,600₫/ngày" cho gói năm 199K | Dễ chấp nhận |`
+- docs-data-assets:406: `| Tier | Gói | Giá/Năm | Mục tiêu |`
+- docs-data-assets:408: `| **Good** | Gói Mầm Non | 1,790K | Entry point, dễ mua |`
+- docs-data-assets:409: `| **Better** | Gói Tiểu Học | 2,990K | Target tier (recommended) |`
+- docs-data-assets:410: `| **Best** | Gói ULTIMATE | 6,990K | Capture high-value customers |`
+- docs-data-assets:414: `| Gói | Avg. Customers/Month | ARPU | Monthly Revenue |`
+- docs-data-assets:416: `| Mầm Non | 50 | 149K | 7,450K |`
+- docs-data-assets:417: `| Tiểu Học | 100 | 249K | 24,900K |`
+- docs-data-assets:418: `| Trung Học | 40 | 299K | 11,960K |`
+- docs-data-assets:420: `| Tiếng Anh | 60 | 182K | 10,920K |`
+- docs-data-assets:421: `| Toán Tư Duy | 40 | 149K | 5,960K |`
+- docs-data-assets:424: `| **TOTAL** | **365** | **~256K** | **~88,900K/tháng** |`
+- docs-data-assets:435: `Day 1: "Hoàn thành profile con" - 10% OFF nếu hoàn thành`
+- docs-data-assets:437: `Day 3: "Xem video đầu tiên" tutorial`
+- docs-data-assets:439: `Day 7: Progress check + "Bạn đã học X video!"`
+- docs-data-assets:450: `| 10 videos | Badge "Khởi đầu tốt" | Achievement |`
+- docs-data-assets:452: `| 100 videos | 1 tháng miễn phí | Reciprocity |`
+- docs-data-assets:462: `- [ ] Tạo 4 gói cấp lớp (Mầm Non, Tiểu Học, Trung Học, THPT)`
+- docs-data-assets:463: `- [ ] Cấu hình SePay cho từng gói`
+- docs-data-assets:464: `- [ ] Tạo pricing page với bảng so sánh`
+- docs-data-assets:465: `- [ ] Thiết lập free trial flow`
+- docs-data-assets:468: `- [ ] Tạo 3 gói môn học (Tiếng Anh, Toán, STEM)`
+- docs-data-assets:469: `- [ ] Tích hợp vào hệ thống gợi ý`
+- docs-data-assets:470: `- [ ] Tạo landing page riêng cho từng môn`
+- docs-data-assets:473: `- [ ] Launch Gói ULTIMATE`
+- docs-data-assets:474: `- [ ] Cấu hình combo discount logic`
+- docs-data-assets:475: `- [ ] Tạo upsell prompts trong app`
+- docs-data-assets:509: `1. **8 Gói Chính:** 4 theo cấp lớp + 3 theo môn + 1 ULTIMATE`
+- docs-data-assets:510: `2. **Pricing Range:** 199K-699K/tháng | 1.79M-6.99M/năm`
+- docs-data-assets:511: `3. **Upsell Strategy:** Grade-based (tự nhiên theo tuổi) + Subject-based (nhu cầu đặc thù)`
+- docs-data-assets:512: `4. **Combo Discount:** 17-27% để tăng basket size`
+- docs-data-assets:514: `6. **Target ARPU:** ~250K₫/tháng | ~88M₫/tháng tổng revenue`
+
+### docs/business/abeka-monetization-master-plan.md
+
+- docs-data-assets:1: `# BÁO CÁO TỔNG HỢP: PHÂN TÍCH TÀI NGUYÊN ABEKA & CHIẾN LƯỢC MONETIZATION`
+- docs-data-assets:3: `**Ngày tổng hợp:** 04/04/2026`
+- docs-data-assets:4: `**Tài nguyên phân tích:** 20,195 video Abeka (K4-G12)`
+- docs-data-assets:5: `**Hệ thống:** Database đã import, Thanh toán SePay sẵn sàng`
+- docs-data-assets:9: `## 📊 TỔNG QUAN TÀI NGUYÊN ABEKA`
+- docs-data-assets:11: `### Số Liệu Core`
+- docs-data-assets:13: `| Metric | Value | Ghi chú |`
+- docs-data-assets:15: `| **Tổng video** | 20,195 | Đã import vào database |`
+- docs-data-assets:16: `| **Số bài học** | 2,380 | 170 lessons/grade × 14 grades |`
+- docs-data-assets:17: `| **Số môn học** | 206 | Khác nhau across all grades |`
+- docs-data-assets:18: `| **Trung bình video/bài** | 8.5 | Biến động 4-16 video |`
+- docs-data-assets:20: `| **Host** | fileta.hoctienganh.xyz | CDN sẵn sàng |`
+- docs-data-assets:22: `### Phân Bố Theo Grade`
+- docs-data-assets:24: `| Grade | Videos | Video/Bài | Chiến lược |`
+- docs-data-assets:26: `| **G1** | 2,699 | 15.9 | Entry tier, nội dung phong phú |`
+- docs-data-assets:34: `| **G7-G9** | ~880 | 5.1 | THCS, ít video nhất |`
+- docs-data-assets:37: `### Top Môn Học (Có thể tách riêng bán)`
+- docs-data-assets:39: `| Môn | Videos | Grades | Giá đề xuất |`
+- docs-data-assets:41: `| **Bible** | 1,360 | G1-G8 | Không bán riêng (culture mismatch) |`
+- docs-data-assets:42: `| **English** | 1,020 | G7-G12 | 249K/tháng |`
+- docs-data-assets:43: `| **Spelling** | 1,019 | G1-G6 | Bundle với Reading |`
+- docs-data-assets:45: `| **History** | 849 | G3-G8 | 199K/tháng |`
+- docs-data-assets:46: `| **Arithmetic** | 680 | G3-G6 | Bundle với Math |`
+- docs-data-assets:50: `## 💰 CHIẾN LƯỢC GÓI KHÓA HỌC (ĐỀ XUẤT)`
+- docs-data-assets:52: `### 8 Gói Chính Thức`
+- docs-data-assets:54: `| Loại | Gói | Tháng | Năm | Video | Margin |`
+- docs-data-assets:56: `| **Preschool** | Mầm Non (K4-K5) | 199K | 1,790K | 3,305 | 45% |`
+- docs-data-assets:57: `| **Elementary** | Tiểu Học (G1-G5) | 349K | 2,990K | 9,111 | 55% |`
+- docs-data-assets:58: `| **Middle** | Trung Học (G6-G9) | 399K | 3,490K | 5,800 | 58% |`
+- docs-data-assets:60: `| **Subject** | Tiếng Anh (K4-G5) | 249K | 2,190K | 1,500 | 62% |`
+- docs-data-assets:61: `| **Subject** | Toán Tư Duy (K4-G8) | 199K | 1,790K | 1,200 | 64% |`
+- docs-data-assets:63: `| **Ultimate** | Toàn Diện (K4-G12) | 699K | 6,990K | 20,195 | 70% |`
+- docs-data-assets:65: `### Chiến Lược Giá Psychology`
+- docs-data-assets:67: `1. **Charm Pricing:** 199K, 349K, 699K (kết thúc bằng 9)`
+- docs-data-assets:68: `2. **Decoy Effect:** Gói tháng đắt hơn để đẩy gói năm`
+- docs-data-assets:69: `3. **Annual Emphasis:** Tiết kiệm 17-30% với gói năm`
+- docs-data-assets:75: `Free Trial (7 ngày)`
+- docs-data-assets:77: `Mầm Non (199K) → Tiểu Học (349K) → Trung Học (399K) → THPT (449K)`
+- docs-data-assets:79: `Tiếng Anh (249K) → +Toán Tư Duy (199K) → +STEM (299K)`
+- docs-data-assets:86: `## 📈 PHÂN TÍCH ROI & PROFIT MARGIN`
+- docs-data-assets:90: `| Cost Item | Amount | Ghi chú |`
+- docs-data-assets:95: `| **Server/VPS** | ~$100/tháng | 2M VND |`
+- docs-data-assets:96: `| **Support staff** | 3 người | ~30M VND/tháng |`
+- docs-data-assets:98: `### Profit Margin Theo Gói (tại 500 subscribers)`
+- docs-data-assets:100: `| Gói | Giá | Cost | Net Margin | Profit/User |`
+- docs-data-assets:109: `- **Hòa vốn:** 223 subscribers (tổng hợp)`
+- docs-data-assets:110: `- **Chỉ Standard:** 220 subscribers`
+- docs-data-assets:111: `- **Chỉ Premium:** 121 subscribers`
+- docs-data-assets:112: `- **Chỉ Family:** 84 subscribers`
+- docs-data-assets:116: `| Scenario | Subscribers | Revenue/Tháng | Profit/Tháng | Margin |`
+- docs-data-assets:124: `## 🎯 CHIẾN LƯỢC TẬN DỤNG TÀI NGUYÊN`
+- docs-data-assets:128: `**Chia nhỏ để bán:**`
+- docs-data-assets:131: `- **Mini-Modules:** 10-20 bài học chủ đề cụ thể`
+- docs-data-assets:132: `- **Bundle Strategy:** Mua 1 grade tặng worksheet`
+- docs-data-assets:135: `- User G1 → Upsell G2 khi hoàn thành`
+- docs-data-assets:136: `- Subject-specific: "Hoàn thành Reading? Thử Spelling"`
+- docs-data-assets:137: `- Combo: Tiếng Anh + Toán = Giảm 20%`
+- docs-data-assets:139: `### 2. Gamification Monetization (Schema sẵn sàng)`
+- docs-data-assets:141: `| Feature | Giá | Revenue/Tháng |`
+- docs-data-assets:143: `| **Streak Freeze** | 15K-29K/3 lượt | 60M VND |`
+- docs-data-assets:159: `| Tài nguyên gốc | Chuyển đổi thành | Số lượng |`
+- docs-data-assets:170: `### Kênh Phân Phối`
+- docs-data-assets:172: `| Kênh | Model | % Revenue |`
+- docs-data-assets:185: `Trial Signup (7 ngày)`
+- docs-data-assets:196: `### Launch Timeline 90 Ngày`
+- docs-data-assets:198: `| Giai đoạn | Ngày | Mục tiêu | Ngân sách |`
+- docs-data-assets:200: `| **Day 30** | Mở bán Lite + Standard | 500 subscribers, 50K Zalo followers | 50M VND |`
+- docs-data-assets:206: `| Event | Thời gian | Discount | Mục tiêu |`
+- docs-data-assets:208: `| **Launch** | Tháng 1 | 50% | 500 early birds |`
+- docs-data-assets:209: `| **Back to School** | Tháng 5 | 30% | 1,000 new users |`
+- docs-data-assets:210: `| **Mid-year** | Tháng 8 | 40% | 800 conversions |`
+- docs-data-assets:211: `| **Black Friday** | Tháng 11 | 50% | 1,500 sales |`
+- docs-data-assets:215: `## 💡 RECOMMENDATIONS TỔNG HỢP`
+- docs-data-assets:217: `### Immediate Actions (Tuần 1-2)`
+- docs-data-assets:219: `1. **Tối ưu pricing:**`
+- docs-data-assets:220: `- Tăng Lite lên 149K (margin hiện tại quá thấp 3%)`
+- docs-data-assets:221: `- Focus marketing vào Standard (199K) - Sweet spot`
+- docs-data-assets:225: `- Launch streak freeze (29K/3 lượt)`
+- docs-data-assets:227: `- Referral program "Cùng Con Học Tốt"`
+- docs-data-assets:229: `3. **Kênh marketing:**`
+- docs-data-assets:233: `- Tránh Facebook Ads (CAC $8-15) - Expensive`
+- docs-data-assets:235: `### Short-term (Tháng 1-3)`
+- docs-data-assets:249: `### Medium-term (Tháng 4-12)`
+- docs-data-assets:258: `- Negotiate CDN rates (giảm 20-30%)`
+- docs-data-assets:259: `- Implement caching (giảm 15-25% bandwidth)`
+- docs-data-assets:260: `- A/B test pricing liên tục`
+- docs-data-assets:264: `## 📊 DỰ BÁO DOANH THU 12 THÁNG`
+- docs-data-assets:278: `**Tổng năm đầu:** ~2.8-3.5 tỷ VND profit (Target scenario)`
+- docs-data-assets:282: `## 📁 DANH MỤC BÁO CÁO CHI TIẾT`
+- docs-data-assets:284: `1. 'docs/research/abeka-content-mapping-analysis.md' - Phân tích chi tiết 20,195 video`
+- docs-data-assets:285: `2. 'docs/business/abeka-course-package-design.md' - Thiết kế 8 gói khóa học`
+- docs-data-assets:286: `3. 'docs/business/resource-optimization-strategy.md' - Chiến lược tận dụng tài nguyên`
+- docs-data-assets:287: `4. 'docs/business/go-to-market-sales-playbook.md' - Kế hoạch bán hàng 90 ngày`
+- docs-data-assets:288: `5. 'docs/business/roi-profit-analysis-by-package.md' - Phân tích ROI từng gói`
+- docs-data-assets:289: `6. 'docs/business/roi-profit-summary.md' - Tóm tắt số liệu`
+- docs-data-assets:293: `## ✅ CHECKLIST TRIỂN KHAI`
+- docs-data-assets:295: `### Tuần 1`
+- docs-data-assets:299: `- [ ] Tạo landing page cho 3 gói chính`
+- docs-data-assets:301: `### Tuần 2-4`
+- docs-data-assets:302: `- [ ] Launch với Standard tier làm primary`
+- docs-data-assets:303: `- [ ] Bắt đầu content TikTok (1 video/ngày)`
+- docs-data-assets:305: `- [ ] Tạo Facebook community group`
+- docs-data-assets:307: `### Tháng 2-3`
+- docs-data-assets:308: `- [ ] Đạt 500 subscribers (breakeven)`
+- docs-data-assets:311: `- [ ] Outreach 20 trường mầm non (B2B)`
+- docs-data-assets:315: `**Kết luận:** Với 20,195 video Abeka đã import và hệ thống thanh toán sẵn sàng, platform có thể đạt **2.8-3.5 tỷ VND profit** trong năm đầu với chiến lược tập trung vào Standard/Premium tiers, gamification microtransactions, và TikTok/KOL marketing.`
+
+### docs/business/competitor-monetization-analysis.md
+
+- docs-data-assets:277: `| Free | 0đ | $0 | Limited videos, ads |`
+- docs-data-assets:305: `| Free | 0đ | $0 |`
+
+### docs/business/free-tools-strategy-vietnam.md
+
+- docs-data-assets:1: `# Chiến lược "Engineering as Marketing" - Công Cụ Miễn Phí`
+- docs-data-assets:2: `## Nền Tảng Học Tập Abeka (K4-12) - Thị Trường Việt Nam`
+- docs-data-assets:4: `**Tài liệu:** docs/business/free-tools-strategy-vietnam.md`
+- docs-data-assets:5: `**Ngày:** 04/04/2026`
+- docs-data-assets:6: `**Phiên bản:** 1.0`
+- docs-data-assets:12: `Báo cáo này đánh giá 6 ý tưởng công cụ miễn phí cho chiến lược Engineering as Marketing của nền tảng học tập Abeka tại Việt Nam. Dựa trên nghiên cứu thị trường, phân tích nhu cầu tìm kiếm, và đánh giá khả thi kỹ thuật, chúng tôi đề xuất **3 công cụ ưu tiên**:`
+- docs-data-assets:14: `| Ưu tiên | Công cụ | Mục tiêu chính | Thời gian xây dựng |`
+- docs-data-assets:16: `| #1 | Đánh giá trình độ tiếng Anh (Cambridge YLE) | Lead generation, SEO | 3-4 tuần |`
+- docs-data-assets:17: `| #2 | Máy tính chi phí học tập | Conversion, viral | 2-3 tuần |`
+- docs-data-assets:18: `| #3 | Generator worksheet tiếng Anh/Toán | SEO, repeat visits | 4-5 tuần |`
+- docs-data-assets:20: `**Dự báo tác động:** 5,000+ leads/tháng trong 6 tháng đầu, 40-60% là đối tượng K4-12 phù hợp với sản phẩm Abeka.`
+- docs-data-assets:24: `## Bối Cảnh Thị Trường`
+- docs-data-assets:26: `### Thị Trường Giáo Dục Online Việt Nam`
+- docs-data-assets:28: `| Chỉ số | Giá trị | Nguồn |`
+- docs-data-assets:30: `| Học sinh tiểu học | ~8.5 triệu | Bộ GD&ĐT 2024 |`
+- docs-data-assets:31: `| Phụ huynh tìm kiếm "học tiếng Anh online" | 60,000+/tháng | Ước tính từ K12Online data |`
+- docs-data-assets:32: `| Thị trường edtech VN | ~$2B (2024) | Báo cáo ngành |`
+- docs-data-assets:33: `| Tỷ lệ phụ huynh quan tâm nội dung nước ngoài | ~15-20% | Xu hướng urban |`
+- docs-data-assets:35: `### Insight Chính`
+- docs-data-assets:37: `1. **Nhu cầu Cambridge YLE rất cao:** Các công cụ như Flyer.vn, Luyện thi Cambridge Online thu hút hàng ngàn người dùng/tháng với bài test miễn phí`
+- docs-data-assets:38: `2. **Chi phí là pain point lớn:** So sánh chi phí học truyền thống (trung tâm 3-5 triệu/tháng) vs online (500k-1.5 triệu/tháng) là chủ đề được quan tâm`
+- docs-data-assets:39: `3. **Worksheet miễn phí viral trên Facebook:** Các group phụ huynh chia sẻ nhiều link Drive tải worksheet - chứng tỏ demand cao`
+- docs-data-assets:40: `4. **Thị trường K12 Online đã được giáo dục:** K12Online của Viettel đạt 382 triệu lượt truy cập, tạo thói quen học online`
+- docs-data-assets:44: `## Đánh Giá 6 Ý Tưởng Công Cụ`
+- docs-data-assets:46: `### 1. Máy Tính Chi Phí Học Tập`
+- docs-data-assets:48: `**Mô tả:** So sánh chi phí học truyền thống (trung tâm, gia sư) vs học online với Abeka`
+- docs-data-assets:50: `| Tiêu chí | Điểm | Phân tích |`
+- docs-data-assets:52: `| Nhu cầu tìm kiếm (VN) | ⭐⭐⭐⭐⭐ | "chi phí học tiếng Anh", "học online tiết kiệm" - high volume |`
+- docs-data-assets:53: `| Khả thi kỹ thuật | ⭐⭐⭐⭐⭐ | Next.js form + Prisma lưu kết quả - đơn giản |`
+- docs-data-assets:54: `| Khả năng convert | ⭐⭐⭐⭐⭐ | Kết quả cá nhân hóa → CTA "Tiết kiệm 50% với Abeka" |`
+- docs-data-assets:55: `| Tiềm năng viral | ⭐⭐⭐⭐ | Share kết quả "Tôi tiết kiệm 15 triệu/năm" |`
+- docs-data-assets:56: `| Độc đáo vs đối thủ | ⭐⭐⭐ | Có nhiều calculator generic, cần angle Abeka-specific |`
+- docs-data-assets:57: `| **Tổng** | **24/30** | **RẤT TỐT** |`
+- docs-data-assets:59: `**Chi tiết nghiên cứu:**`
+- docs-data-assets:60: `- Phụ huynh VN thường so sánh chi phí trung tâm (Apollo, ILA: 3-5 triệu/tháng) với học online`
+- docs-data-assets:61: `- Pain point: Chi phí gia sư 1-1 cao (200-400k/giờ) + đi lại mệt mỏi`
+- docs-data-assets:62: `- Angle viral: "Máy tính tiết kiệm học phí cho con" - emotional trigger mạnh`
+- docs-data-assets:66: `### 2. Đánh Giá Trình Độ Tiếng Anh (Cambridge YLE)`
+- docs-data-assets:68: `**Mô tả:** Bài test 20-30 phút đánh giá trình độ Starters/Movers/Flyers theo chuẩn Cambridge`
+- docs-data-assets:70: `| Tiêu chí | Điểm | Phân tích |`
+- docs-data-assets:72: `| Nhu cầu tìm kiếm (VN) | ⭐⭐⭐⭐⭐ | "test tiếng Anh đầu vào", "kiểm tra trình độ trẻ em" - rất cao |`
+- docs-data-assets:73: `| Khả thi kỹ thuật | ⭐⭐⭐⭐ | Next.js quiz + Prisma lưu kết quả + email report - medium complexity |`
+- docs-data-assets:74: `| Khả năng convert | ⭐⭐⭐⭐⭐ | Test xong → "Học tiếng Anh chuẩn Mỹ với Abeka" - natural fit |`
+- docs-data-assets:75: `| Tiềm năng viral | ⭐⭐⭐⭐⭐ | Phụ huynh share "Con tôi đạt Movers level" trên Facebook |`
+- docs-data-assets:76: `| Độc đáo vs đối thủ | ⭐⭐⭐⭐ | Flyer.vn, Alokiddy đã có - cần UX tốt hơn + branding Abeka |`
+- docs-data-assets:77: `| **Tổng** | **28/30** | **XUẤT SẮC** |`
+- docs-data-assets:79: `**Chi tiết nghiên cứu:**`
+- docs-data-assets:80: `- Flyer.vn có bài kiểm tra 30 câu với 15,118 lượt xem bài blog`
+- docs-data-assets:81: `- Alokiddy có test đầu vào được đánh giá cao`
+- docs-data-assets:82: `- Thị trường Cambridge YLE ở VN rất hot: Starters (Pre-A1), Movers (A1), Flyers (A2)`
+- docs-data-assets:83: `- Phụ huynh thường không biết con ở level nào để chọn khóa học phù hợp`
+- docs-data-assets:84: `- **Gap:** Chưa có công cụ kết hợp đánh giá + đề xuất lộ trình học cụ thể với Abeka`
+- docs-data-assets:88: `### 3. Lập Lịch Học Tập Thông Minh`
+- docs-data-assets:90: `**Mô tả:** Tạo thời khóa biểu cá nhân hóa dựa trên lớp học, môn học, thời gian rảnh`
+- docs-data-assets:92: `| Tiêu chí | Điểm | Phân tích |`
+- docs-data-assets:94: `| Nhu cầu tìm kiếm (VN) | ⭐⭐⭐ | "thời khóa biểu học tập" - moderate volume |`
+- docs-data-assets:95: `| Khả thi kỹ thuật | ⭐⭐⭐⭐ | Next.js drag-drop + Prisma - medium complexity |`
+- docs-data-assets:96: `| Khả năng convert | ⭐⭐⭐ | CTA weaker - chủ yếu là utility tool |`
+- docs-data-assets:97: `| Tiềm năng viral | ⭐⭐ | Ít share-worthy |`
+- docs-data-assets:98: `| Độc đáo vs đối thủ | ⭐⭐⭐ | K12Online đã có tính năng này |`
+- docs-data-assets:99: `| **Tổng** | **18/30** | **TRUNG BÌNH** |`
+- docs-data-assets:103: `### 4. Tính Điểm GPA Tiểu Học`
+- docs-data-assets:105: `**Mô tả:** Tính toán điểm trung bình, phân loại học lực, dự báo kết quả`
+- docs-data-assets:107: `| Tiêu chí | Điểm | Phân tích |`
+- docs-data-assets:109: `| Nhu cầu tìm kiếm (VN) | ⭐⭐⭐⭐ | "cách tính điểm trung bình" - seasonal (cuối kỳ) |`
+- docs-data-assets:110: `| Khả thi kỹ thuật | ⭐⭐⭐⭐⭐ | Simple calculator - dễ làm |`
+- docs-data-assets:111: `| Khả năng convert | ⭐⭐ | Không liên quan trực tiếp đến sản phẩm Abeka |`
+- docs-data-assets:112: `| Tiềm năng viral | ⭐⭐⭐ | Phụ huynh share thành tích con |`
+- docs-data-assets:113: `| Độc đáo vs đối thủ | ⭐⭐ | Nhiều công cụ tính GPA đã tồn tại |`
+- docs-data-assets:114: `| **Tổng** | **19/30** | **TRUNG BÌNH** |`
+- docs-data-assets:118: `### 5. Tạo Bài Tập Về Nhà (Worksheet Generator)`
+- docs-data-assets:120: `**Mô tả:** Generator worksheet tiếng Anh và Toán có thể in/tải về, phân theo độ tuổi`
+- docs-data-assets:122: `| Tiêu chí | Điểm | Phân tích |`
+- docs-data-assets:124: `| Nhu cầu tìm kiếm (VN) | ⭐⭐⭐⭐⭐ | "bài tập tiếng Anh miễn phí", "worksheet cho bé" - very high |`
+- docs-data-assets:125: `| Khả thi kỹ thuật | ⭐⭐⭐ | Cần PDF generation, template system, content database - complex |`
+- docs-data-assets:126: `| Khả năng convert | ⭐⭐⭐⭐ | "Cần thêm worksheet? Đăng ký Abeka có 1000+ bài tập" |`
+- docs-data-assets:127: `| Tiềm năng viral | ⭐⭐⭐⭐⭐ | Worksheet được share rất nhiều trong group phụ huynh |`
+- docs-data-assets:128: `| Độc đáo vs đối thủ | ⭐⭐⭐⭐ | Canva có templates nhưng không có generator dynamic |`
+- docs-data-assets:129: `| **Tổng** | **24/30** | **RẤT TỐT** |`
+- docs-data-assets:131: `**Chi tiết nghiên cứu:**`
+- docs-data-assets:132: `- Facebook group "Cộng đồng giáo viên truyền cảm hứng" có post tổng hợp 30+ link worksheet được 72 shares`
+- docs-data-assets:133: `- Canva có mẫu worksheet cho trẻ mầm non nhưng cần design thủ công`
+- docs-data-assets:134: `- **Gap:** Chưa có công cụ tự động generate worksheet theo topic/level`
+- docs-data-assets:138: `### 6. Bộ Lọc Nội Dung Phù Hợp Tuổi`
+- docs-data-assets:140: `**Mô tả:** Kiểm tra độ tuổi phù hợp của nội dung video (dựa trên rating/metadata)`
+- docs-data-assets:142: `| Tiêu chí | Điểm | Phân tích |`
+- docs-data-assets:144: `| Nhu cầu tìm kiếm (VN) | ⭐⭐ | "kiểm tra nội dung video", "phân loại độ tuổi" - low volume |`
+- docs-data-assets:145: `| Khả thi kỹ thuật | ⭐⭐⭐ | Cần integration với YouTube API hoặc AI analysis - medium |`
+- docs-data-assets:146: `| Khả năng convert | ⭐⭐⭐⭐ | Liên quan đến pain point "nội dung Abeka có phù hợp không" |`
+- docs-data-assets:147: `| Tiềm năng viral | ⭐⭐ | Không share-worthy |`
+- docs-data-assets:148: `| Độc đáo vs đối thủ | ⭐⭐⭐⭐ | Common Sense Media chưa có tiếng Việt |`
+- docs-data-assets:149: `| **Tổng** | **16/30** | **THẤP** |`
+- docs-data-assets:153: `## 3 Công Cụ Ưu Tiên`
+- docs-data-assets:155: `### Công Cụ #1: Đánh Giá Trình Độ Tiếng Anh Cambridge YLE`
+- docs-data-assets:157: `**Tại sao ưu tiên #1:**`
+- docs-data-assets:159: `- Natural bridge từ free tool → paid product (Abeka)`
+- docs-data-assets:160: `- Có sẵn thư viện câu hỏi Cambridge-style`
+- docs-data-assets:161: `- Flyer.vn đã validate demand với 15K+ views`
+- docs-data-assets:165: `✓ 30 câu hỏi trắc nghiệm (Listening, Reading, Grammar)`
+- docs-data-assets:166: `✓ Phân loại: Starters (0-10 điểm), Movers (11-20), Flyers (21-30)`
+- docs-data-assets:167: `✓ Kết quả: Level + đề xuất lộ trình học Abeka phù hợp`
+- docs-data-assets:168: `✓ Email capture trước khi xem kết quả chi tiết`
+- docs-data-assets:174: `- **Email required:** Để nhận "Lộ trình học tiếng Anh cá nhân hóa cho bé"`
+- docs-data-assets:176: `- Email 1 (immediate): Kết quả + lộ trình đề xuất`
+- docs-data-assets:177: `- Email 2 (day 3): "Tại sao phụ huynh chọn Abeka cho level X"`
+- docs-data-assets:181: `- Target keywords: "test tiếng Anh đầu vào", "kiểm tra trình độ trẻ em", "bài test Cambridge Starters"`
+- docs-data-assets:182: `- Supporting content: "Cambridge YLE là gì?", "Starters vs Movers vs Flyers"`
+- docs-data-assets:192: `### Công Cụ #2: Máy Tính Chi Phí Học Tập`
+- docs-data-assets:194: `**Tại sao ưu tiên #2:**`
+- docs-data-assets:195: `- Emotional trigger mạnh (tiết kiệm tiền)`
+- docs-data-assets:196: `- Dễ xây dựng (2-3 tuần)`
+- docs-data-assets:197: `- Viral potential với kết quả share-worthy`
+- docs-data-assets:198: `- Có thể A/B test nhiều angle`
+- docs-data-assets:202: `✓ Input: Lớp học, số giờ/tuần, loại hình (trung tâm/gia sư/online)`
+- docs-data-assets:204: `- Chi phí truyền thống: 3-5 triệu/tháng (trung tâm), 200-400k/giờ (gia sư)`
+- docs-data-assets:205: `- Chi phí Abeka: Fixed subscription model`
+- docs-data-assets:206: `✓ Output: Tiết kiệm/năm + thời gian đi lại tiết kiệm được`
+- docs-data-assets:207: `✓ CTA: "Bắt đầu tiết kiệm ngay" → Landing page Abeka`
+- docs-data-assets:211: `- Shareable result card: "Tôi có thể tiết kiệm 45 triệu/năm cho con"`
+- docs-data-assets:212: `- Comparison feature: "So sánh với hàng xóm" (nhập zip code)`
+- docs-data-assets:213: `- Regional insights: "Phụ huynh Hà Nội tiết kiệm trung bình X triệu"`
+- docs-data-assets:217: `- **Soft capture:** "Nhận báo cáo chi tiết qua email" (optional)`
+- docs-data-assets:218: `- **Retargeting:** Pixel tracking để chạy ads người dùng đã tính`
+- docs-data-assets:221: `- Target: "chi phí học tiếng Anh", "học tiếng Anh bao nhiêu tiền", "so sánh học online"`
+- docs-data-assets:222: `- Landing page: "Học tiếng Anh chuẩn Mỹ tiết kiệm 50%"`
+- docs-data-assets:232: `### Công Cụ #3: Worksheet Generator`
+- docs-data-assets:234: `**Tại sao ưu tiên #3:**`
+- docs-data-assets:235: `- SEO value cao (worksheet rất được tìm kiếm)`
+- docs-data-assets:236: `- Repeat usage (phụ huynh quay lại mỗi tuần)`
+- docs-data-assets:238: `- Có thể mở rộng thành library lớn`
+- docs-data-assets:242: `✓ 3 subjects: Tiếng Anh (từ vựng, ngữ pháp), Toán (số học, hình học)`
+- docs-data-assets:244: `✓ Topics: 20+ topics mỗi môn`
+- docs-data-assets:250: `- **Batch generation:** Upload 100+ worksheets sẵn trước launch`
+- docs-data-assets:251: `- **Seasonal:** Worksheets theo chủ đề (Tết, Trung thu, Giáng sinh)`
+- docs-data-assets:252: `- **Trending:** "Worksheet tiếng Anh chủ đề [phim/trend hiện tại]"`
+- docs-data-assets:255: `- **Freemium:** 3 miễn phí, sau đó yêu cầu email`
+- docs-data-assets:256: `- **Upsell:** "Có 1000+ worksheet trong Abeka Premium"`
+- docs-data-assets:257: `- **Newsletter:** "Worksheet mới mỗi tuần" drip`
+- docs-data-assets:261: `- Target: "bài tập tiếng Anh lớp 3", "worksheet toán tiểu học"`
+- docs-data-assets:262: `- Link building outreach đến blog phụ huynh, teacher communities`
+- docs-data-assets:272: `## Roadmap Xây Dựng`
+- docs-data-assets:274: `### Phase 1: Foundation (Tuần 1-2)`
+- docs-data-assets:276: `| Tuần | Hoạt động | Deliverable |`
+- docs-data-assets:281: `### Phase 2: Tool #1 Launch (Tuần 3-5)`
+- docs-data-assets:283: `| Tuần | Hoạt động | Deliverable |`
+- docs-data-assets:289: `### Phase 3: Tool #2 (Tuần 6-8)`
+- docs-data-assets:291: `| Tuần | Hoạt động | Deliverable |`
+- docs-data-assets:297: `### Phase 4: Tool #3 (Tuần 9-13)`
+- docs-data-assets:299: `| Tuần | Hoạt động | Deliverable |`
+- docs-data-assets:307: `### Phase 5: Optimization (Tuần 14+)`
+- docs-data-assets:310: `- Add more tools dựa trên data`
+- docs-data-assets:312: `- Integrate với main product onboarding`
+- docs-data-assets:316: `## KPI Đo Lường`
+- docs-data-assets:320: `| Metric | Month 1 | Month 3 | Month 6 | Tool liên quan |`
+- docs-data-assets:357: `- Customers: 120 (10% of leads × 10% conversion)`
+- docs-data-assets:364: `## Kỹ Thuật Triển Khai`
+- docs-data-assets:429: `- Blog posts: "Ra mắt bộ công cụ miễn phí cho phụ huynh"`
+- docs-data-assets:434: `- Press release: "Startup edtech VN ra mắt công cụ đánh giá Cambridge"`
+- docs-data-assets:435: `- Guest posts trên blog giáo dục`
+- docs-data-assets:439: `- Facebook ads: Target phụ huynh 25-45, quan tâm giáo dục`
+- docs-data-assets:440: `- Google Ads: "test tiếng Anh đầu vào", "worksheet tiếng Anh"`
+- docs-data-assets:441: `- Influencer: Phụ huynh bloggers, mom influencers`
+- docs-data-assets:446: `- 2 blog posts/week liên quan đến công cụ`
+- docs-data-assets:447: `- Link building: Outreach đến resource pages`
+- docs-data-assets:451: `- Weekly worksheet drops trên Facebook`
+- docs-data-assets:452: `- "Kết quả của tuần" - share anonymized quiz results`
+- docs-data-assets:457: `- Link từ main product dashboard`
+- docs-data-assets:488: `| Công cụ | Đối thủ | Điểm mạnh | Điểm yếu | Cơ hội |`
+- docs-data-assets:490: `| Test tiếng Anh | Flyer.vn, Alokiddy | UX tốt | Không link đến sản phẩm cụ thể | Abeka integration |`
+- docs-data-assets:491: `| Cost calculator | Generic calculators | N/A | Không education-specific | Abeka-specific savings |`
+- docs-data-assets:492: `| Worksheet | Canva templates | Templates đẹp | Cần design tay | Auto-generation |`
+- docs-data-assets:498: `| test tiếng anh đầu vào | 2,400 | Medium |`
+- docs-data-assets:499: `| kiểm tra trình độ tiếng anh | 1,800 | Medium |`
+- docs-data-assets:500: `| bài tập tiếng anh lớp 3 | 3,600 | Low |`
+- docs-data-assets:501: `| worksheet tiếng anh | 1,200 | Low |`
+- docs-data-assets:502: `| chi phí học tiếng anh | 880 | Low |`
+- docs-data-assets:503: `| thời khóa biểu học tập | 590 | Low |`
+- docs-data-assets:509: `| Tháng | Blog Posts | Worksheets | Social Posts |`
+
+### docs/business/go-to-market-sales-playbook.md
+
+- docs-data-assets:3: `**Project:** Cùng Con Học Tốt - Abeka Video Platform`
+- docs-data-assets:14: `Vietnam EdTech market đạt **$3.9B USD (2025)** với CAGR ~15%. Thị trường tiếng Anh online tăng trưởng >10%/năm. Phụ huynh Việt sẵn sàng chi trả 500K-2M VND/tháng cho giáo dục online chất lượng cao.`
+- docs-data-assets:17: `- Abeka: Curriculum Mỹ từ 1973, đã đào tạo >1M học sinh`
+- docs-data-assets:18: `- 20,195 video chuẩn bản quyền, chất lượng HD`
+- docs-data-assets:19: `- K4-12 full curriculum (13 năm học)`
+- docs-data-assets:20: `- Tiếng Anh chuẩn Mỹ + kiến thức academic`
+- docs-data-assets:24: `## 1. PHÂN PHỐI THEO KÊNH`
+- docs-data-assets:26: `### 1.1 Website Trực Tiếp (Owned Channel)`
+- docs-data-assets:41: `├── 1 grade level (K4-12 chọn 1)`
+- docs-data-assets:68: `- **Hero Section:** "Giáo dục Mỹ chuẩn Abeka - Ngay tại nhà bạn"`
+- docs-data-assets:71: `- **Trial CTA:** "Dùng thử 7 ngày miễn phí - Không cần thẻ"`
+- docs-data-assets:72: `- **Social Proof:** "12,000+ gia đình Việt Nam tin dùng"`
+- docs-data-assets:73: `- **Urgency:** "Giá ưu đãi chỉ còn 3 ngày"`
+- docs-data-assets:96: `- **Keywords:** "học tiếng anh online", "giáo dục Mỹ", "video học tập", "bé học tiếng anh"`
+- docs-data-assets:98: `- **Bundles:** "Mua 3 tháng tặng 1 tháng"`
+- docs-data-assets:106: `- "Shop của tôi" loyalty program`
+- docs-data-assets:129: `User follows → "Chào mừng bạn đến với Cùng Con Học Tốt!"`
+- docs-data-assets:130: `→ "Bé nhà bạn bao nhiêu tuổi?"`
+- docs-data-assets:133: `→ "Dùng thử 7 ngày miễn phí?"`
+- docs-data-assets:162: `| **Hội Homeschool Việt Nam** | 85K | Organic | Value-first content |`
+- docs-data-assets:163: `| **Phụ Huynh Con Học Tiếng Anh** | 120K | Organic | Study tips, resources |`
+- docs-data-assets:164: `| **Mẹ Bỉm Sữa 4.0** | 200K | Paid | Sponsored posts |`
+- docs-data-assets:165: `| **Hội Nuôi Dạy Con Khôn Ngoan** | 150K | Organic | Parenting + education |`
+- docs-data-assets:171: `- "Con mình học Abeka được 3 tháng, tiến bộ rõ rệt..."`
+- docs-data-assets:176: `- Live Q&A: "Giáo dục Mỹ tại nhà - Có khó không?"`
+- docs-data-assets:182: `- "Chỉ dành cho 50 phụ huynh đầu tiên"`
+- docs-data-assets:199: `### 1.5 Schools / Trung Tâm (B2B Channel)`
+- docs-data-assets:270: `## 2. CHIẾN LƯỢC GIÁ THỰC TẾ`
+- docs-data-assets:290: `- Scarcity: "Chỉ còn 127 suất giá ưu đãi"`
+- docs-data-assets:305: `| Tết Sale | Jan 15-28 | 40% off | 14 days | All |`
+- docs-data-assets:309: `- **Limited Quantity:** "Chỉ 100 voucher mỗi đợt"`
+- docs-data-assets:310: `- **Time-Based:** "Còn 4 giờ để mua"`
+- docs-data-assets:312: `- **Stacking Rules:** Flash sale không stack với referral`
+- docs-data-assets:316: `### 2.3 Referral Program: "Cùng Con Học Tốt"`
+- docs-data-assets:323: `Referrer (Người giới thiệu):`
+- docs-data-assets:329: `Referee (Người được giới thiệu):`
+- docs-data-assets:356: `### 2.4 Combo Gia Đình (Family Packs)`
+- docs-data-assets:375: `"Một tài khoản cho cả nhà - Tiết kiệm đến 40%"`
+- docs-data-assets:383: `**Free Assessment Tool: "Phong Cách Học Của Bé"**`
+- docs-data-assets:388: `Q1: Bé nhà bạn bao nhiêu tuổi?`
+- docs-data-assets:391: `Q2: Bé thích học theo cách nào nhất?`
+- docs-data-assets:392: `[Xem video] [Đọc sách] [Làm thí nghiệm] [Chơi game học tập]`
+- docs-data-assets:394: `Q3: Bé tập trung tốt nhất khi nào?`
+- docs-data-assets:395: `[Buổi sáng] [Buổi chiều] [Buổi tối] [Không cố định]`
+- docs-data-assets:397: `Q4: Mục tiêu học tập của bạn cho bé?`
+- docs-data-assets:398: `[Tiếng Anh giao tiếp] [Kiến thức academic] [Cả hai] [Chuẩn bị du học]`
+- docs-data-assets:400: `Q5: Bạn muốn bé học bao nhiêu giờ/tuần?`
+- docs-data-assets:401: `[1-2 giờ] [3-5 giờ] [5-10 giờ] [Học full-time]`
+- docs-data-assets:415: `4. "10 Apps học tập cho trẻ" (ebook)`
+- docs-data-assets:432: `### 3.2 Trial Strategy (7-14 ngày)`
+- docs-data-assets:446: `├── Push notification: "Bé đã sẵn sàng học bài đầu tiên?"`
+- docs-data-assets:448: `└── Parent tip: "Cách tạo thói quen học tập"`
+- docs-data-assets:451: `├── Email: "Xem bé đã học được gì"`
+- docs-data-assets:456: `├── "Unlock 10 videos miễn phí thêm"`
+- docs-data-assets:461: `├── "Chỉ còn 24 giờ để nhận ưu đãi đặc biệt"`
+- docs-data-assets:467: `├── "Trial của bạn sắp hết hạn"`
+- docs-data-assets:469: `├── "Pause thay vì hủy" option`
+- docs-data-assets:500: `├── Email: "Bé đã học được X videos!"`
+- docs-data-assets:600: `"Chúc mừng bé [Name] đã hoàn thành Grade 3! 🎉`
+- docs-data-assets:602: `Bé đã sẵn sàng cho Grade 4 chưa?`
+- docs-data-assets:603: `→ 1,542 videos đang chờ`
+- docs-data-assets:604: `→ Chủ đề mới: Science experiments, History adventures`
+- docs-data-assets:605: `→ Giảm 20% khi nâng cấp hôm nay`
+- docs-data-assets:607: `[Nâng cấp ngay - Chỉ 319K/tháng]"`
+- docs-data-assets:616: `## 4. LAUNCH PLAN: 30-60-90 NGÀY`
+- docs-data-assets:666: `| W5 | Referral | "Cùng Con Học Tốt" program activation | Growth |`
+- docs-data-assets:782: `## 6. NGÂN SÁCH ĐỀ XUẤT`
+- docs-data-assets:869: `| **Our Position** | **199-699K** | **Full K4-12** | **Chuẩn Mỹ, comprehensive** |`
+- docs-data-assets:905: `Subject: 🎉 Chào mừng bạn đến với Cùng Con Học Tốt!`
+- docs-data-assets:907: `Chào [Parent Name],`
+- docs-data-assets:909: `Tài khoản của bạn đã sẵn sàng! Bé [Child Name] có thể bắt đầu học ngay hôm nay.`
+- docs-data-assets:911: `👉 Bước 1: Đăng nhập tại [link]`
+- docs-data-assets:912: `👉 Bước 2: Thiết lập hồ sơ cho bé`
+- docs-data-assets:913: `👉 Bước 3: Chọn bài học đầu tiên`
+- docs-data-assets:915: `[CTA Button: BẮT ĐẦU HỌC NGAY]`
+- docs-data-assets:917: `Cần hỗ trợ? Trả lời email này hoặc gọi 1900-xxxx.`
+- docs-data-assets:919: `Thân mến,`
+- docs-data-assets:920: `Team Cùng Con Học Tốt`
+- docs-data-assets:925: `Subject: ⏰ Trial của bạn hết hạn sau 24 giờ`
+- docs-data-assets:927: `[Parent Name] thân mến,`
+- docs-data-assets:929: `Bé [Child Name] đã học được [X] videos trong 7 ngày qua - Thật tuyệt vời!`
+- docs-data-assets:931: `Để tiếp tục hành trình học tập:`
+- docs-data-assets:932: `→ Giữ nguyên tiến độ đã học`
+- docs-data-assets:933: `→ Truy cập đầy đủ 20,195 videos`
+- docs-data-assets:934: `→ Nhận hỗ trợ từ đội ngũ giáo dục`
+- docs-data-assets:936: `ƯU ĐÃI ĐẶC BIỆT: 30% off tháng đầu tiên`
+- docs-data-assets:937: `Code: TRIAL30 (hết hạn sau 24 giờ)`
+- docs-data-assets:939: `[CTA: TIẾP TỤC HỌC - GIẢM 30%]`
+- docs-data-assets:941: `Hoặc [Pause account instead of canceling]`
+- docs-data-assets:943: `Thân mến,`
+- docs-data-assets:944: `Team Cùng Con Học Tốt`
+- docs-data-assets:980: `*"Cùng con học tốt - Mỗi ngày một bước tiến"*`
+
+### docs/business/monetization-strategy-vietnam-playbook.md
+
+- docs-data-assets:20: `**Strategic Position:** Positioned as "Giáo dục Mỹ chuẩn quốc tế giá Việt Nam" (International US-standard education at Vietnamese prices)`
+- docs-data-assets:33: `│             │  (0đ)        │  (99k/月)    │ (199k/月)    │  (349k/月)          │`
+- docs-data-assets:70: `| **Lite** | 99,000đ | 949,000đ | **20%** | ~79,000đ |`
+- docs-data-assets:71: `| **Standard** | 199,000đ | 1,899,000đ | **20%** | ~158,000đ |`
+- docs-data-assets:72: `| **Premium** | 349,000đ | 3,349,000đ | **20%** | ~279,000đ |`
+- docs-data-assets:80: `| **Extra Child Slot** | +49,000đ/child/month | Lite/Standard |`
+- docs-data-assets:81: `| **Streak Freeze Pack** | 29,000đ (3 freezes) | All tiers |`
+- docs-data-assets:82: `| **Offline Download Bundle** | 99,000đ (30 videos) | Lite users |`
+- docs-data-assets:83: `| **IXL Math Integration** | +79,000đ/month | Standard upgrade |`
+- docs-data-assets:84: `| **Parent Coaching Session** | 199,000đ/30min | Premium families |`
+- docs-data-assets:85: `| **Summer Intensive Access** | 299,000đ (2 months) | All tiers (seasonal) |`
+- docs-data-assets:128: `2. Offer: "Unlock 10x more videos for less than 1 bánh mì/day"`
+- docs-data-assets:185: `| Child hits grade 6-7 (K6-7 content locked) | Curriculum progression | "Tiếp tục hành trình K6-12 - Nâng cấp ngay" |`
+- docs-data-assets:186: `| 2nd child added to profile | Multi-child family identified | "Tiết kiệm 30% với gói Standard cho 2 con" |`
+- docs-data-assets:187: `| Download attempt | Offline feature gated | "Học mọi lúc mọi nơi - Thêm 100k/tháng" |`
+- docs-data-assets:188: `| 7-day streak achieved | Engagement milestone | "Nâng cấp để bảo vệ streak" |`
+- docs-data-assets:189: `| Lite for 60 days | Power user identification | "Bạn là phụ huynh tuyệt vời - Ưu đãi đặc biệt" |`
+- docs-data-assets:195: `| IXL Math interest shown | Advanced learning needs | "Toán Mỹ chuẩn IXL - Trọn bộ Premium" |`
+- docs-data-assets:196: `| 3rd child added | Large family | "Gia đình 3+ con - Premium tiết kiệm nhất" |`
+- docs-data-assets:197: `| Support ticket submitted | Support needs | "Support ưu tiên với Premium" |`
+- docs-data-assets:198: `| 30-day streak achieved | Super engaged user | "Badge Vàng + Streak Freeze miễn phí" |`
+- docs-data-assets:199: `| Annual Standard renewal | Upsell timing | "Chỉ thêm 120k/tháng cho trải nghiệm cao cấp" |`
+- docs-data-assets:210: `│  ├── Offer: "Mua Streak Freeze để giữ 15 ngày liên tiếp!"      │`
+- docs-data-assets:222: `│  ├── Offer: "Tải 30 video - Chỉ 99k cho cả tháng học mọi nơi"   │`
+- docs-data-assets:227: `│  ├── Offer: "Toán Mỹ chuẩn IXL - Luyện tập 5 cấp độ"            │`
+- docs-data-assets:246: `│  └── Action: Streak alert notification + Kisu "nhớ bạn"          │`
+- docs-data-assets:283: `│              REFERRAL PROGRAM: "CÙNG CON HỌC TỐT"               │`
+- docs-data-assets:289: `│  • "Con nhà người ta" comparison motivates parents               │`
+- docs-data-assets:294: `│  │ REFERRER (Người giới thiệu)                                 ││`
+- docs-data-assets:297: `│  │ • 5 referrals → 6 months free + "Phụ huynh Vàng" badge       ││`
+- docs-data-assets:300: `│  │ REFEREE (Người được giới thiệu)                             ││`
+- docs-data-assets:303: `│  │ • Exclusive "Bạn cùng lớp" badge                             ││`
+- docs-data-assets:308: `│  • Use "Chia sẻ cơ hội" not "Kiếm tiền"                        │`
+- docs-data-assets:309: `│  • Social proof: "1,200+ phụ huynh đã giới thiệu thành công"   │`
+- docs-data-assets:310: `│  • Community angle: "Xây dựng cộng đồng học tập chất lượng"     │`
+- docs-data-assets:346: `│  "Giáo dục    "20k+       "Học thử        "Chào mừng!  "Hoàn thành    │`
+- docs-data-assets:347: `│   Mỹ chuẩn     videos"    miễn phí"        Khởi động"   bài học 1"     │`
+- docs-data-assets:348: `│   giá VN"                                                   ↓                  │`
+- docs-data-assets:403: `| **P2** | Upsell messaging | "Giá rẻ" vs "Giá trị" vs "Con bạn xứng đáng" | Click-through | Week 15-16 |`
+- docs-data-assets:442: `| | CAC (Customer Acquisition Cost) | <150,000đ | Total marketing spend / new paid |`
+- docs-data-assets:444: `| **Revenue** | ARPU (Monthly) | 180,000đ | Total MRR / paying users |`
+- docs-data-assets:445: `| | ARPPU (Paid user only) | 220,000đ | MRR / active paid users |`
+- docs-data-assets:460: `| **Lite** | 15% | 99,000đ | 35% → Standard in 60 days |`
+- docs-data-assets:461: `| **Standard** | 55% | 199,000đ | 15% → Premium in 90 days |`
+- docs-data-assets:462: `| **Premium** | 30% | 349,000đ | N/A (top tier) |`
+- docs-data-assets:500: `| **Aug-Sep** | "Năm học mới" (New School Year) | 30% off 3 months | New signups |`
+- docs-data-assets:502: `| **Dec-Jan** | "Tết Sớm" (Early Tet) | Gift subscriptions | Gifting |`
+- docs-data-assets:503: `| **Jan-Feb** | "Tăng tốc học Tết" | Streak freeze bundle | Retention |`
+- docs-data-assets:504: `| **May-Jun** | "Ôn thi cuối năm" | Summer intensive access | All tiers |`
+- docs-data-assets:505: `| **Jun-Aug** | "Hè không ngừng học" | 50% off summer months | Churn prevention |`
+- docs-data-assets:540: `- [ ] Implement referral program "Cùng con học tốt"`
+- docs-data-assets:577: `- Add-on ARPU: +20,000đ average`
+- docs-data-assets:580: `Lite:       75 users × 99k    = 7,425,000đ`
+- docs-data-assets:581: `Standard:  300 users × 199k   = 59,700,000đ`
+- docs-data-assets:582: `Premium:   125 users × 349k   = 43,625,000đ`
+- docs-data-assets:583: `Add-ons:   500 users × 20k    = 10,000,000đ`
+- docs-data-assets:585: `Monthly Revenue:                 120,750,000đ`
+- docs-data-assets:586: `Annual Run Rate:              1,449,000,000đ`
+- docs-data-assets:601: `**Positioning:** Giá cạnh tranh, chất lượng Mỹ (Competitive price, US quality)`
+- docs-data-assets:609: `- **Aspirational:** "Con bạn xứng đáng" (Your child deserves)`
+- docs-data-assets:610: `- **Community-oriented:** "Cùng nhau" (Together)`
+- docs-data-assets:611: `- **Value-focused:** "Đầu tư" (Investment) not "Chi phí" (Cost)`
+- docs-data-assets:616: `| Upgrade | Nâng cấp | Upsell CTAs |`
+- docs-data-assets:617: `| Save | Tiết kiệm | Discount messaging |`
+- docs-data-assets:618: `| Unlock | Mở khóa | Feature gating |`
+- docs-data-assets:619: `| Protect streak | Bảo vệ chuỗi | Gamification |`
+- docs-data-assets:620: `| Less than coffee | Chỉ bằng 1 ly cà phê | Price anchoring |`
+- docs-data-assets:621: `| Your amazing child | Con bạn tuyệt vời | Parent motivation |`
+
+### docs/business/resource-optimization-strategy.md
+
+- docs-data-assets:1: `# Chiến lược Tận dụng Triệt để 20,195 Video Abeka`
+- docs-data-assets:3: `**Ngày tạo:** 04/04/2026`
+- docs-data-assets:4: `**Tổng video:** 20,195 videos Abeka`
+- docs-data-assets:5: `**Hệ thống:** TinyGenius Hub - Curriculum 5 cấp độ + SePay Payment + Gamification`
+- docs-data-assets:9: `## Tóm tắt Điều kiện Hiện tại`
+- docs-data-assets:11: `### Tài nguyên Video đã có`
+- docs-data-assets:12: `| Cấp độ | Tên | Số video ước tính | Môn chính |`
+- docs-data-assets:14: `| K4 | Mầm non nhỏ | ~2,500 | Phonics cơ bản, Numbers |`
+- docs-data-assets:15: `| K5 | Mầm non lớn | ~3,000 | Phonics, Arithmetic, Activities |`
+- docs-data-assets:16: `| Grade 1 | Lớp 1 | ~4,500 | Phonics, Arithmetic, Bible, Science |`
+- docs-data-assets:17: `| Grade 2 | Lớp 2 | ~5,000 | Phonics, Arithmetic, History, Literature |`
+- docs-data-assets:18: `| Grade 3 | Lớp 3 | ~5,195 | Phonics, Arithmetic, Science, Grammar |`
+- docs-data-assets:20: `### Hệ thống đã xây dựng (theo schema)`
+- docs-data-assets:30: `## 1. Tối ưu hóa Nội dung Video`
+- docs-data-assets:32: `### 1.1 Chia nhỏ thành Module bán được`
+- docs-data-assets:34: `#### Cấu trúc Module đề xuất`
+- docs-data-assets:36: `Video gốc (20,195)`
+- docs-data-assets:39: `│   ├── K4 Full Year (170 lessons × 5-6 subjects)`
+- docs-data-assets:45: `├── Subject Package (16 subjects × 5 grades = 80 packages)`
+- docs-data-assets:51: `├── Mini-Module (4-8 tuần)`
+- docs-data-assets:52: `│   ├── "Phonics for Beginners" - 8 tuần`
+- docs-data-assets:53: `│   ├── "Addition Mastery" - 4 tuần`
+- docs-data-assets:54: `│   └── "Bible Stories Collection" - 12 tuần`
+- docs-data-assets:61: `├── "Full K4-K5" (2 năm mầm non)`
+- docs-data-assets:66: `#### Bảng Giá đề xuất`
+- docs-data-assets:68: `| Loại Package | Nội dung | Giá VND | So vnh gốc |`
+- docs-data-assets:71: `| **Weekly Bundle** | 5 lessons, 2 subjects | 19,000 | Tiết kiệm 24% |`
+- docs-data-assets:72: `| **Subject Semester** | 85 lessons, 1 subject | 149,000 | Tiết kiệm 35% |`
+- docs-data-assets:73: `| **Grade Full Year** | 170 lessons, 5 subjects | 599,000 | Tiết kiệm 45% |`
+- docs-data-assets:74: `| **Cross-Grade 2yr** | 340 lessons | 999,000 | Tiết kiệm 50% |`
+- docs-data-assets:75: `| **Complete K4-G3** | 1,000+ lessons | 2,499,000 | Tiết kiệm 60% |`
+- docs-data-assets:77: `#### Tận dụng Schema hiện có`
+- docs-data-assets:78: `Sử dụng 'AbekaLessonPackage' để tạo các bundle linh hoạt:`
+- docs-data-assets:81: `// Ví dụ: Tạo Mini-Module từ lesson packages`
+- docs-data-assets:85: `// Tự động lấy từ grade.lessons[0-7]`
+- docs-data-assets:88: `// ... 8 tuần`
+- docs-data-assets:91: `originalValue: 136000, // 17 lessons × 5 subjects × 1.6k`
+- docs-data-assets:101: `↓ 70% upgrade (tự nhiên)`
+- docs-data-assets:103: `↓ 85% upgrade (tự nhiên)`
+- docs-data-assets:112: `| Đang học | Đề xuất Cross-sell | Lý do |`
+- docs-data-assets:114: `| Phonics | + Writing | "Học đọc xong, học viết" |`
+- docs-data-assets:115: `| Arithmetic | + Activities | "Thực hành qua trò chơi" |`
+- docs-data-assets:116: `| Bible | + History | "Hiểu bối cảnh lịch sử" |`
+- docs-data-assets:117: `| Science | + Health | "Kiến thức khoa học toàn diện" |`
+- docs-data-assets:118: `| Literature | + Vocabulary | "Mở rộng vốn từ qua đọc sách" |`
+- docs-data-assets:120: `**Triển khai:** Dùng 'AbekaSkillNode' prerequisites để suggest learning path.`
+- docs-data-assets:124: `#### "Mua 1 Tặng" Templates`
+- docs-data-assets:126: `| Mua | Tặng | Giá trị | Áp dụng |`
+- docs-data-assets:128: `| Grade Package | Worksheets (PDF) | +50,000đ | Tất cả grades |`
+- docs-data-assets:129: `| 2 Subjects | 1 Subject nhỏ | +149,000đ | Phonics + Arithmetic → Activities |`
+- docs-data-assets:130: `| Full Year | Parent Guide | +99,000đ | Lesson plans cho phụ huynh |`
+- docs-data-assets:131: `| 2 Grades | Streak Freeze × 3 | +45,000đ | Gamification boost |`
+- docs-data-assets:132: `| All Subjects 1 Grade | 1 Month Subscription | +99,000đ | Platform access |`
+- docs-data-assets:136: `Tết Bundle (Jan-Feb)`
+- docs-data-assets:137: `├── Grade 1-2 Core Subjects (3 tháng)`
+- docs-data-assets:139: `└── Parent Guide: "Dạy con trong kỳ nghỉ"`
+- docs-data-assets:140: `Giá: 299,000đ (tiết kiệm 40%)`
+- docs-data-assets:143: `├── Phonics Acceleration (6 tuần)`
+- docs-data-assets:144: `├── Math Drills (4 tuần)`
+- docs-data-assets:145: `└── Bible Camp Videos (8 tuần)`
+- docs-data-assets:146: `Giá: 399,000đ (tiết kiệm 35%)`
+- docs-data-assets:152: `Giá: 499,000đ (tiết kiệm 30%)`
+- docs-data-assets:157: `## 2. Tận dụng Hệ thống Gamification`
+- docs-data-assets:161: `#### Schema hiện có`
+- docs-data-assets:173: `| Freeze Package | Giá | Use Case | ARPU Impact |`
+- docs-data-assets:175: `| **Single Freeze** | 15,000đ | Emergency 1 lần | +15k/user/year |`
+- docs-data-assets:176: `| **Freeze Pack (3)** | 39,000đ | Tiết kiệm 13% | +39k/user/year |`
+- docs-data-assets:177: `| **Monthly Freeze** | 49,000đ | 5 freezes/tháng | +49k/user/month |`
+- docs-data-assets:178: `| **Annual Pass** | 199,000đ | Unlimited freezes | +199k/user/year |`
+- docs-data-assets:191: `| 3 days | Bronze badge | +50 points | 9,000đ |`
+- docs-data-assets:192: `| 7 days | Silver badge | +200 points + avatar frame | 29,000đ |`
+- docs-data-assets:193: `| 14 days | Gold badge | +500 points + special pet | 49,000đ |`
+- docs-data-assets:194: `| 30 days | Diamond badge | +1000 points + exclusive skin | 99,000đ |`
+- docs-data-assets:195: `| 100 days | Legend badge | +5000 points + physical reward | 199,000đ |`
+- docs-data-assets:199: `#### Schema hiện có`
+- docs-data-assets:220: `**Tier 2: Silver (Unlock: 29,000đ)**`
+- docs-data-assets:225: `**Tier 3: Gold (Unlock: 79,000đ)**`
+- docs-data-assets:230: `**Tier 4: Diamond (Unlock: 149,000đ)**`
+- docs-data-assets:235: `**Tier 5: Legendary (Unlock: 299,000đ)**`
+- docs-data-assets:242: `Giả sử: 1,000 active users`
+- docs-data-assets:243: `- 40% mua ít nhất 1 badge tier = 400 users`
+- docs-data-assets:244: `- Trung bình 2 tiers/user = 800 unlocks`
+- docs-data-assets:245: `- Giá trung bình 75,000đ/unlock`
+- docs-data-assets:246: `= 800 × 75,000đ = 60,000,000đ/month`
+- docs-data-assets:254: `| Item | Giá | Mô tả |`
+- docs-data-assets:256: `| Kisu Hats | 9,000-29,000đ | Mũ học sinh, mũ giáng sinh |`
+- docs-data-assets:257: `| Kisu Outfits | 19,000-49,000đ | Đồng phục, đồ thể thao |`
+- docs-data-assets:258: `| Backgrounds | 15,000-39,000đ | Classroom, park, space |`
+- docs-data-assets:259: `| Accessories | 5,000-19,000đ | Kính, cặp sách, bút |`
+- docs-data-assets:260: `| Animations | 49,000-99,000đ | Dance, celebration moves |`
+- docs-data-assets:263: `| Item | Giá | Mô tả |`
+- docs-data-assets:265: `| Study Desk | 29,000đ | Bàn học tùy chỉnh |`
+- docs-data-assets:266: `| Bookshelf | 39,000đ | Hiển thị sách đã học |`
+- docs-data-assets:267: `| Trophy Case | 49,000đ | Khoe badges, achievements |`
+- docs-data-assets:268: `| Wall Art | 15,000đ | Posters theo subject |`
+- docs-data-assets:269: `| Pets | 99,000đ | Pet đồng hành học tập |`
+- docs-data-assets:272: `| Item | Giá | Effect |`
+- docs-data-assets:274: `| XP Booster (2× 24h) | 29,000đ | Double points 1 day |`
+- docs-data-assets:275: `| Time Warp | 19,000đ | Redo yesterday's lesson |`
+- docs-data-assets:276: `| Mystery Box | 15,000đ | Random reward |`
+- docs-data-assets:277: `| Golden Ticket | 99,000đ | Skip any lesson requirement |`
+- docs-data-assets:281: `Giả sử: 500 monthly active kids`
+- docs-data-assets:282: `- 30% mua ít nhất 1 item = 150 users`
+- docs-data-assets:283: `- Trung bình 3 items/user = 450 purchases`
+- docs-data-assets:284: `- Giá trung bình 25,000đ/item`
+- docs-data-assets:285: `= 450 × 25,000đ = 11,250,000đ/month`
+- docs-data-assets:290: `## 3. Tận dụng Curriculum System`
+- docs-data-assets:294: `#### Schema hiện có`
+- docs-data-assets:307: `| Feature | Free | Premium (49k/tháng) | Pro (99k/tháng) |`
+- docs-data-assets:328: `"Em bé học Phonics tốt nhất vào 9h sáng,`
+- docs-data-assets:329: `Arithmetic vào 2h chiều.`
+- docs-data-assets:330: `Giảm 10 phút/bài nếu completion <80%"`
+- docs-data-assets:335: `#### Schema hiện có`
+- docs-data-assets:355: `| Tier | Giá | Features |`
+- docs-data-assets:358: `| **Plus** | 49k/tháng | 5 assignments, auto-tracking, reminders |`
+- docs-data-assets:359: `| **Pro** | 99k/tháng | Unlimited, AI suggestions, video bookmarks |`
+- docs-data-assets:360: `| **Teacher** | 199k/tháng | Class management, bulk assignments, reports |`
+- docs-data-assets:364: `// Tự động tạo assignments dựa trên progress`
+- docs-data-assets:385: `#### Schema hiện có`
+- docs-data-assets:409: `**Premium Analytics (79k/tháng):**`
+- docs-data-assets:419: `**Pro Analytics (149k/tháng):**`
+- docs-data-assets:431: `Giả sử: 1,000 paying parents`
+- docs-data-assets:433: `- 30% Premium (300) × 79k = 23,700,000đ`
+- docs-data-assets:434: `- 10% Pro (100) × 149k = 14,900,000đ`
+- docs-data-assets:435: `= 38,600,000đ/month từ analytics`
+- docs-data-assets:444: `#### Tự động tạo Worksheets từ Video`
+- docs-data-assets:446: `**Công nghệ:**`
+- docs-data-assets:447: `- Speech-to-text từ audio`
+- docs-data-assets:448: `- NLP để trích xuất key concepts`
+- docs-data-assets:452: `| Type | Nội dung | Giá |`
+- docs-data-assets:454: `| **Comprehension** | Câu hỏi về nội dung video | Free (bonus) |`
+- docs-data-assets:455: `| **Practice** | Bài tập thực hành | 5,000đ/lesson |`
+- docs-data-assets:456: `| **Quiz** | 5-10 câu hỏi trắc nghiệm | Bundle in package |`
+- docs-data-assets:457: `| **Project** | Extended activity | 15,000đ/lesson |`
+- docs-data-assets:458: `| **Parent Guide** | Hướng dẫn dạy kèm | 29,000đ/subject |`
+- docs-data-assets:462: `20,195 videos × 3 worksheet types = 60,585 worksheets`
+- docs-data-assets:463: `→ Bundle thành:`
+- docs-data-assets:473: `| Format | Nội dung | Use Case | Giá |`
+- docs-data-assets:475: `| **Lesson Audio** | Giọng giáo viên | Nghe lại, ôn tập | Bundle |`
+- docs-data-assets:476: `| **Bible Stories** | Kể chuyện Kinh Thánh | Trước giờ ngủ | 49,000đ/50 stories |`
+- docs-data-assets:477: `| **Phonics Drills** | Phát âm lặp lại | Luyện nói | 79,000đ/full set |`
+- docs-data-assets:478: `| **Memory Verses** | Thuộc lòng | Nghe mỗi ngày | Free (bonus) |`
+- docs-data-assets:479: `| **Songs & Poems** | Nhạc và thơ | Giải trí | 29,000đ/collection |`
+- docs-data-assets:491: `| Guide | Nội dung | Trang | Giá |`
+- docs-data-assets:494: `| **Grade Overview** | Yearly roadmap | 30 | 49,000đ |`
+- docs-data-assets:495: `| **Subject Deep Dive** | Teaching strategies | 50 | 79,000đ |`
+- docs-data-assets:496: `| **Weekly Planner** | Templates, checklists | 15 | 29,000đ |`
+- docs-data-assets:497: `| **Troubleshooting** | Common issues | 25 | 39,000đ |`
+- docs-data-assets:498: `| **Advanced Methods** | Montessori integration | 40 | 99,000đ |`
+- docs-data-assets:509: `80 subject guides × 79,000đ = 6,320,000đ catalog value`
+- docs-data-assets:510: `5 grade guides × 49,000đ = 245,000đ`
+- docs-data-assets:511: `Bundles: Complete Parent Library = 499,000đ (tiết kiệm 50%)`
+- docs-data-assets:513: `Giả sử 20% users mua 1 guide = 40k revenue/month potential`
+- docs-data-assets:518: `## 5. Tổng hợp Revenue Projection`
+- docs-data-assets:520: `### 5.1 Bảng Tất cả Tài nguyên Monetizable`
+- docs-data-assets:522: `| # | Tài nguyên | Trạng thái | Cách Monetize | Revenue/Tháng |`
+- docs-data-assets:524: `| 1 | **Videos (20,195)** | ✅ Có sẵn | Grade/Subject/Mini packages | 150,000,000đ |`
+- docs-data-assets:525: `| 2 | **Streak Freeze** | ✅ Schema sẵn | Microtransactions | 25,000,000đ |`
+- docs-data-assets:526: `| 3 | **Premium Badges** | ✅ Schema sẵn | Badge unlocks | 60,000,000đ |`
+- docs-data-assets:527: `| 4 | **Kisu Virtual Goods** | ⏳ Cần build | Avatar store | 11,250,000đ |`
+- docs-data-assets:528: `| 5 | **Weekly Plans** | ✅ Schema sẵn | Premium tiers | 49,000,000đ |`
+- docs-data-assets:529: `| 6 | **Daily Assignments** | ✅ Schema sẵn | Assignment tiers | 25,000,000đ |`
+- docs-data-assets:530: `| 7 | **Progress Analytics** | ✅ Schema sẵn | Analytics tiers | 38,600,000đ |`
+- docs-data-assets:531: `| 8 | **Worksheets** | ⏳ Cần generate | Digital downloads | 15,000,000đ |`
+- docs-data-assets:532: `| 9 | **Audio Content** | ⏳ Cần extract | Audio products | 10,000,000đ |`
+- docs-data-assets:533: `| 10 | **Parent Guides** | ⏳ Cần create | PDF sales | 5,000,000đ |`
+- docs-data-assets:534: `| 11 | **Cross-sell Bundles** | ⏳ Cần setup | Grade combinations | 30,000,000đ |`
+- docs-data-assets:535: `| 12 | **B2B School Licenses** | ✅ Partial | Organization bulk | 50,000,000đ |`
+- docs-data-assets:536: `| | **TỔNG** | | | **468,850,000đ/tháng** |`
+- docs-data-assets:537: `| | | | | **~5.6 tỷ/năm** |`
+- docs-data-assets:539: `### 5.2 Phân tích theo Hệ thống`
+- docs-data-assets:548: `Tổng Video:           310M (66%)`
+- docs-data-assets:557: `Tổng Gamification:      96M (21%)`
+- docs-data-assets:566: `Tổng Curriculum:       113M (24%)`
+- docs-data-assets:575: `Tổng Repurposing:       30M (6%)`
+- docs-data-assets:583: `Tổng B2B:              55M (12%)`
+- docs-data-assets:586: `### 5.3 Lộ trình Triển khai`
+- docs-data-assets:588: `#### Phase 1: Quick Wins (Tháng 1-2)`
+- docs-data-assets:591: `| Setup Grade/Subject packages | 1 tuần | +80M/tháng |`
+- docs-data-assets:592: `| Enable Streak Freeze purchase | 3 ngày | +25M/tháng |`
+- docs-data-assets:593: `| Launch Premium Badges | 1 tuần | +60M/tháng |`
+- docs-data-assets:594: `| **Subtotal Phase 1** | | **+165M/tháng** |`
+- docs-data-assets:596: `#### Phase 2: Core Features (Tháng 3-4)`
+- docs-data-assets:599: `| Weekly Plans Premium | 2 tuần | +49M/tháng |`
+- docs-data-assets:600: `| Assignment Tiers | 1 tuần | +25M/tháng |`
+- docs-data-assets:601: `| Analytics Tiers | 2 tuần | +39M/tháng |`
+- docs-data-assets:602: `| **Subtotal Phase 2** | | **+113M/tháng** |`
+- docs-data-assets:604: `#### Phase 3: Content Expansion (Tháng 5-6)`
+- docs-data-assets:607: `| Generate Worksheets | 2 tuần | +15M/tháng |`
+- docs-data-assets:608: `| Extract Audio | 1 tuần | +10M/tháng |`
+- docs-data-assets:609: `| Create Parent Guides | 2 tuần | +5M/tháng |`
+- docs-data-assets:610: `| **Subtotal Phase 3** | | **+30M/tháng** |`
+- docs-data-assets:612: `#### Phase 4: Gamification Deep (Tháng 7-8)`
+- docs-data-assets:615: `| Kisu Virtual Store | 3 tuần | +11M/tháng |`
+- docs-data-assets:616: `| Advanced Gamification | 2 tuần | +20M/tháng |`
+- docs-data-assets:617: `| **Subtotal Phase 4** | | **+31M/tháng** |`
+- docs-data-assets:619: `#### Phase 5: Scale B2B (Tháng 9-12)`
+- docs-data-assets:622: `| School Sales | Ongoing | +50M/tháng |`
+- docs-data-assets:623: `| Bulk Features | 2 tuần | +5M/tháng |`
+- docs-data-assets:624: `| **Subtotal Phase 5** | | **+55M/tháng** |`
+- docs-data-assets:628: `## 6. Checklist Triển khai`
+- docs-data-assets:630: `### Immediate Actions (Tuần này)`
+- docs-data-assets:631: `- [ ] Tạo bảng giá Grade/Subject packages`
+- docs-data-assets:632: `- [ ] Thêm trường 'priceVnd' vào 'AbekaGrade' và 'AbekaSubject'`
+- docs-data-assets:633: `- [ ] Tích hợp Stripe/SePay cho Streak Freeze`
+- docs-data-assets:634: `- [ ] Thiết kế UI freeze purchase`
+- docs-data-assets:635: `- [ ] Tạo 10 Premium badge templates`
+- docs-data-assets:637: `### Short-term (Tháng 1)`
+- docs-data-assets:644: `### Medium-term (Tháng 2-3)`
+- docs-data-assets:651: `### Long-term (Tháng 4-6)`
+- docs-data-assets:672: `## Kết luận`
+- docs-data-assets:674: `Với 20,195 video Abeka và hệ thống đã xây dựng, tiềm năng monetization là **~5.6 tỷ VND/năm** với các kênh:`
+- docs-data-assets:676: `1. **Video Packages** (66%) - Nền tảng chính`
+- docs-data-assets:682: `**Chiến lược:** Bắt đầu với Quick Wins (Package + Freeze + Badges), sau đó mở rộng sang Premium Features và Content Repurposing.`
+
+### docs/business/roi-profit-analysis-by-package.md
+
+- docs-data-assets:52: `Total Storage: 20,195 × 0.4 GB = ~8,078 GB (~8 TB)`
+- docs-data-assets:55: `- If 1,000 users × 12 GB = 12,000 GB`
+- docs-data-assets:56: `- Cost: 12,000 × $0.02 = $240/month`
+- docs-data-assets:68: `| **Cost per video viewed** | 0.4 GB × $0.02 | **$0.008 (160 VND)** |`
+- docs-data-assets:69: `| **Cost per user/month** | 12 GB × $0.02 | **$0.24 (6,000 VND)** |`
+- docs-data-assets:348: `├── Lite (100 users × $4)      = $400`
+- docs-data-assets:349: `├── Standard (250 users × $8)   = $2,000`
+- docs-data-assets:350: `├── Premium (100 users × $14)   = $1,400`
+- docs-data-assets:351: `├── Family (50 users × $20)     = $1,000`
+- docs-data-assets:366: `├── Lite (300 users × $4)       = $1,200`
+- docs-data-assets:367: `├── Standard (900 users × $8)   = $7,200`
+- docs-data-assets:368: `├── Premium (500 users × $14)   = $7,000`
+- docs-data-assets:369: `├── Family (300 users × $20)    = $6,000`
+- docs-data-assets:384: `├── Lite (500 users × $4)       = $2,000`
+- docs-data-assets:385: `├── Standard (2,000 users × $8) = $16,000`
+- docs-data-assets:386: `├── Premium (1,500 users × $14) = $21,000`
+- docs-data-assets:387: `├── Family (1,000 users × $20) = $20,000`
+- docs-data-assets:508: `| **Unit Economics** | ✅ Healthy | LTV > 3× CAC |`
+- docs-data-assets:591: `- 20,195 videos × 400 MB = ~8 TB`
+- docs-data-assets:603: `At 5,000 users × 12 GB = 60,000 GB/month:`
+- docs-data-assets:604: `- First 10 TB: 10,000 × $0.02 = $200`
+- docs-data-assets:605: `- Next 50 TB: 50,000 × $0.015 = $750`
+
+### docs/business/vietnam-b2b-opportunity-analysis.md
+
+- docs-data-assets:87: `### 2.1 Private Kindergartens (Mầm Non Tư Thục)`
+- docs-data-assets:150: `### 2.3 Private Primary Schools (Tiểu Học Tư Thục)`
+- docs-data-assets:181: `### 2.4 Test Preparation Centers (Luyện Thi)`
+- docs-data-assets:218: `| TN EDU (Trí Nghĩa) | Perpetual + AMC | 50M-200M VND setup |`
+- docs-data-assets:316: `| **TN EDU (Trí Nghĩa)** | Established, full ERP | Limited content focus, high setup cost |`
+- docs-data-assets:469: `3. Tuổi Trẻ Online - English Market Growth (Mar 2026)`
+
+### docs/business/vietnam-competitor-analysis-2025.md
+
+- docs-data-assets:1: `# Phân Tích Đối Thủ EdTech Việt Nam 2025`
+- docs-data-assets:3: `**Ngày cập nhật:** 04/04/2026`
+- docs-data-assets:4: `**Nguồn dữ liệu:** Real-time web crawling, app store analytics, public financial reports`
+- docs-data-assets:8: `## Tóm Tắt Thị Trường`
+- docs-data-assets:10: `### Tình Hình EdTech Việt Nam 2024-2025`
+- docs-data-assets:12: `- **Tổng quan:** Thị trường EdTech Việt Nam đang ở giai đoạn bão hòa phân khúc phổ thông (theo Tạp chí Doanh Nghiệp, 08/2025)`
+- docs-data-assets:13: `- **Xu hướng:** Chuyển đổi số mạnh mẽ sau COVID-19, AI được tích hợp ngày càng nhiều vào giáo dục`
+- docs-data-assets:14: `- **Phân khúc bão hòa:** Phổ thông chiếm >50% tổng số sản phẩm EdTech`
+- docs-data-assets:15: `- **Cơ hội:** Luyện thi chuyên sâu, IELTS, đào tạo kỹ năng`
+- docs-data-assets:19: `## Bảng So Sánh Đối Thủ`
+- docs-data-assets:21: `| Tiêu chí | **VUIHOC** | **Loigiaihay** | **Hoc10** | **Cánh Diều** | **Cung học** | **Trần Hưng Đạo** |`
+- docs-data-assets:24: `| **Mô hình** | Freemium + Subscription | Freemium | Freemium + Code kích hoạt | Bán code sách điện tử | Miễn phí | Subscription |`
+- docs-data-assets:25: `| **Phân khúc** | Lớp 1-12 | Lớp 1-12 | Lớp 1-12 | Lớp 1-12 (SGK) | Lớp 1-5 | Luyện thi chuyên |`
+- docs-data-assets:26: `| **Người dùng** | 300K+ HS, 2.5M+ tải app | 10M+ visit/tháng | 534 visit/ngày | Hàng triệu HS | Không rõ | Không rõ |`
+- docs-data-assets:27: `| **Giá gói** | 199K-599K/tháng | Miễn phí | 50K-150K/môn/năm | 15K-30K/sách | Miễn phí | 300K-1M/tháng |`
+- docs-data-assets:28: `| **Tính năng nổi bật** | AI Tutor, đo tập trung | Giải bài tập chi tiết | Sách điện tử SGK | SGK chuẩn Bộ GD | Video bài giảng | Luyện thi chuyên |`
+- docs-data-assets:29: `| **Điểm mạnh** | Công nghệ AI tiên tiến | Nội dung miễn phí phong phú | Bám sát chương trình | Chuẩn Bộ GD | Miễn phí | Chuyên sâu |`
+- docs-data-assets:30: `| **Điểm yếu** | Giá cao | Quảng cáo nhiều | Traffic thấp | Chỉ SGK | Nội dung hạn chế | Phân khúc hẹp |`
+- docs-data-assets:31: `| **Monetization** | Subscription, gia sư online | Quảng cáo | Bán code sách | Bán code sách | Chưa rõ | Khóa học |`
+- docs-data-assets:32: `| **Đánh giá** | 4.4★ (16K reviews) | 4.2★ (web) | N/A | N/A | N/A | N/A |`
+- docs-data-assets:36: `## Phân Tích Chi Tiết Từng Đối Thủ`
+- docs-data-assets:38: `### 1. VUIHOC (vuihoc.vn) ⭐ NGUY HIỂM NHẤT`
+- docs-data-assets:40: `**Tổng quan:**`
+- docs-data-assets:41: `- Nền tảng học tập số tiên phong tại Việt Nam`
+- docs-data-assets:42: `- Top 3 "Ngôi sao đang lên" EdTech thế giới 2024 (đại diện duy nhất Đông Nam Á)`
+- docs-data-assets:43: `- Hơn 300,000 học sinh đang theo học`
+- docs-data-assets:44: `- 2,500,000+ lượt tải ứng dụng`
+- docs-data-assets:46: `**Mô hình giá:**`
+- docs-data-assets:47: `| Sản phẩm | Giá | Mô tả |`
+- docs-data-assets:49: `| VUIHOC DUO | 299K-499K/tháng | Lớp học nhóm trực tuyến |`
+- docs-data-assets:50: `| VUIHOC THPT | 399K-599K/tháng | Luyện thi Đại học |`
+- docs-data-assets:51: `| VUIHOC TUTOR | 500K-1M/tháng | Gia sư trực tuyến 1-1 |`
+- docs-data-assets:52: `| IELTSPEED | 999K-2M/khóa | Luyện thi IELTS với AI |`
+- docs-data-assets:53: `| VUIHOC STATION | Tại chỗ | Lớp học trực tiếp + tech |`
+- docs-data-assets:55: `**Tính năng AI nổi bật:**`
+- docs-data-assets:56: `- ✅ Đo độ tập trung trong lớp học (nhận diện khuôn mặt)`
+- docs-data-assets:57: `- ✅ Gia sư AI "best friend" tương tác 24/7`
+- docs-data-assets:58: `- ✅ Lộ trình học cá nhân hóa`
+- docs-data-assets:59: `- ✅ Chấm chữa bài tự động (độ chính xác 95%)`
+- docs-data-assets:60: `- ✅ Phòng Speaking ảo với AI native speaker`
+- docs-data-assets:61: `- ✅ Chấm Writing IELTS trong 3 phút`
+- docs-data-assets:63: `**Điểm mạnh:**`
+- docs-data-assets:64: `- Công nghệ AI tiên tiến nhất thị trường`
+- docs-data-assets:65: `- Hệ sinh thái 5 sản phẩm đa dạng`
+- docs-data-assets:66: `- Hợp tác chiến lược với The IELTS Workshop (thầy Đặng Trần Tùng)`
+- docs-data-assets:67: `- 70% học viên IELTSPEED đạt 7.0+`
+- docs-data-assets:69: `**Điểm yếu:**`
+- docs-data-assets:70: `- Giá cao hơn trung bình 30-50%`
+- docs-data-assets:71: `- Phụ thuộc vào công nghệ, cần thiết bị tốt`
+- docs-data-assets:75: `### 2. Loigiaihay.com (Lời Giải Hay) ⭐ FREEMIUM KING`
+- docs-data-assets:77: `**Tổng quan:**`
+- docs-data-assets:78: `- Website giải bài tập lớn nhất Việt Nam`
+- docs-data-assets:79: `- 10+ triệu lượt truy cập/tháng`
+- docs-data-assets:80: `- Bám sát chương trình SGK từ lớp 1-12`
+- docs-data-assets:82: `**Mô hình giá:**`
+- docs-data-assets:83: `| Tính năng | Giá | Ghi chú |`
+- docs-data-assets:85: `| Giải bài tập SGK | Miễn phí | Đầy đủ 12 lớp |`
+- docs-data-assets:86: `| Đề thi, đề kiểm tra | Miễn phí | Có đáp án chi tiết |`
+- docs-data-assets:87: `| Văn mẫu nghị luận | Miễn phí | 1000+ bài |`
+- docs-data-assets:88: `| Bài tập trắc nghiệm | Miễn phí | Theo dạng bài |`
+- docs-data-assets:89: `| Premium (nếu có) | N/A | Chưa có thông tin |`
+- docs-data-assets:91: `**Tính năng chính:**`
+- docs-data-assets:92: `- ✅ Giải chi tiết SGK, SBT, VBT từ lớp 1-12`
+- docs-data-assets:93: `- ✅ Kho bài tập trắc nghiệm bám sát dạng bài`
+- docs-data-assets:94: `- ✅ Hệ thống đề thi phong phú`
+- docs-data-assets:95: `- ✅ Lý thuyết dạng sơ đồ tư duy`
+- docs-data-assets:96: `- ✅ 150,000+ từ điển tiếng Việt`
+- docs-data-assets:97: `- ✅ 4,000+ ca dao, tục ngữ`
+- docs-data-assets:98: `- ✅ 1,000+ thành ngữ Việt Nam`
+- docs-data-assets:99: `- ✅ 800+ phrasal verbs tiếng Anh`
+- docs-data-assets:101: `**Điểm mạnh:**`
+- docs-data-assets:102: `- Hoàn toàn miễn phí`
+- docs-data-assets:103: `- Nội dung phong phú, đa dạng`
+- docs-data-assets:104: `- SEO cực mạnh, top Google mọi từ khóa bài tập`
+- docs-data-assets:105: `- Cộng đồng người dùng lớn`
+- docs-data-assets:107: `**Điểm yếu:**`
+- docs-data-assets:108: `- Nhiều quảng cáo gây phiền`
+- docs-data-assets:109: `- Chất lượng nội dung không đồng đều`
+- docs-data-assets:110: `- Thiếu tương tác, không có AI`
+- docs-data-assets:111: `- Giao diện lỗi thời`
+- docs-data-assets:113: `**Chiến lược monetization:**`
+- docs-data-assets:114: `- Quảng cáo Google AdSense`
+- docs-data-assets:115: `- Affiliate marketing (sách, khóa học)`
+- docs-data-assets:116: `- Bán dữ liệu người dùng (nếu có)`
+- docs-data-assets:120: `### 3. Hoc10.vn ⭐ HỌC LIỆU SỐ`
+- docs-data-assets:122: `**Tổng quan:**`
+- docs-data-assets:123: `- Nền tảng học liệu số theo chương trình GDPT 2018`
+- docs-data-assets:124: `- Traffic: ~534 visit/ngày (theo website.informer.com)`
+- docs-data-assets:125: `- Tập trung sách điện tử và tài liệu học tập`
+- docs-data-assets:127: `**Mô hình giá:**`
+- docs-data-assets:128: `| Sản phẩm | Giá | Ghi chú |`
+- docs-data-assets:130: `| Sách điện tử Cánh Diều | 15K-25K/sách | Code kích hoạt |`
+- docs-data-assets:131: `| Sách điện tử Kết nối tri thức | 15K-25K/sách | Code kích hoạt |`
+- docs-data-assets:132: `| Sách điện tử Chân trời sáng tạo | 15K-25K/sách | Code kích hoạt |`
+- docs-data-assets:133: `| Bộ sách lớp | 150K-300K/năm | Tùy theo bộ |`
+- docs-data-assets:135: `**Tính năng chính:**`
+- docs-data-assets:136: `- ✅ Sách giáo khoa điện tử chuẩn Bộ GD`
+- docs-data-assets:137: `- ✅ Kích hoạt code xem online/offline`
+- docs-data-assets:138: `- ✅ Hỗ trợ đa nền tảng (Web, iOS, Android)`
+- docs-data-assets:139: `- ✅ Nội dung bám sát chương trình`
+- docs-data-assets:141: `**Điểm mạnh:**`
+- docs-data-assets:142: `- Giá rẻ so với sách giấy`
+- docs-data-assets:143: `- Nội dung chuẩn Bộ GD`
+- docs-data-assets:144: `- Tiện lợi, xem mọi lúc mọi nơi`
+- docs-data-assets:146: `**Điểm yếu:**`
+- docs-data-assets:147: `- Traffic rất thấp (~16K/tháng)`
+- docs-data-assets:148: `- Giao diện cũ`
+- docs-data-assets:149: `- Chỉ có sách, không có video bài giảng`
+- docs-data-assets:150: `- Cạnh tranh gay gắt từ sách PDF miễn phí`
+- docs-data-assets:154: `### 4. Cánh Diều (Bộ SGK Điện Tử) ⭐ SÁCH CHUẨN`
+- docs-data-assets:156: `**Tổng quan:**`
+- docs-data-assets:157: `- Bộ sách giáo khoa theo Chương trình GDPT 2018`
+- docs-data-assets:158: `- Do NXB Đại học Sư phạm TP.HCM và NXB Đại học Sư phạm Hà Nội phát hành`
+- docs-data-assets:159: `- Phổ biến nhất hiện nay (thay thế dần SGK cũ)`
+- docs-data-assets:161: `**Mô hình giá:**`
+- docs-data-assets:162: `| Sản phẩm | Giá giấy | Giá điện tử |`
+- docs-data-assets:164: `| Sách Cánh Diều lớp 1-5 | 15K-35K/quyển | 15K-25K/code |`
+- docs-data-assets:165: `| Sách Cánh Diều lớp 6-9 | 20K-45K/quyển | 20K-30K/code |`
+- docs-data-assets:166: `| Sách Cánh Diều lớp 10-12 | 25K-55K/quyển | 25K-35K/code |`
+- docs-data-assets:167: `| Bộ sách 1 năm | 200K-500K | 150K-350K |`
+- docs-data-assets:169: `**Điểm mạnh:**`
+- docs-data-assets:170: `- Chuẩn Bộ GD, được sử dụng trong trường học`
+- docs-data-assets:171: `- Nội dung cập nhật, hiện đại`
+- docs-data-assets:172: `- Hệ thống bài tập đa dạng`
+- docs-data-assets:173: `- Được giáo viên tin chọn`
+- docs-data-assets:175: `**Điểm yếu:**`
+- docs-data-assets:176: `- Chỉ là sách, không có hỗ trợ học tập khác`
+- docs-data-assets:177: `- Phải mua code riêng cho bản điện tử`
+- docs-data-assets:178: `- Nhiều nơi chia sẻ PDF miễn phí`
+- docs-data-assets:180: `**9 ưu điểm theo Tiki:**`
+- docs-data-assets:181: `1. Nội dung cập nhật theo chương trình mới`
+- docs-data-assets:182: `2. Hình ảnh minh họa sinh động`
+- docs-data-assets:183: `3. Bài tập đa dạng, thực tiễn`
+- docs-data-assets:184: `4. Tích hợp kỹ năng sống`
+- docs-data-assets:185: `5. Phát triển tư duy phản biện`
+- docs-data-assets:186: `6. Hệ thống kiến thức liên môn`
+- docs-data-assets:187: `7. Đánh giá đa chiều`
+- docs-data-assets:188: `8. Hỗ trợ giáo viên và phụ huynh`
+- docs-data-assets:189: `9. Phù hợp với học sinh Việt Nam`
+- docs-data-assets:193: `### 5. Cung học (cunghoc.vn) ⭐ MIỄN PHÍ`
+- docs-data-assets:195: `**Tổng quan:**`
+- docs-data-assets:196: `- Nền tảng học tập trực tuyến của Schoolnet`
+- docs-data-assets:197: `- Website học tập theo chuẩn SGK`
+- docs-data-assets:198: `- Tập trung lớp 1-5 (Tiểu học)`
+- docs-data-assets:200: `**Mô hình giá:**`
+- docs-data-assets:201: `- Hoàn toàn miễn phí`
+- docs-data-assets:202: `- Không có gói premium`
+- docs-data-assets:204: `**Tính năng:**`
+- docs-data-assets:205: `- ✅ Học Toán, Tiếng Việt, Tập viết, Tô màu`
+- docs-data-assets:206: `- ✅ Video bài giảng`
+- docs-data-assets:207: `- ✅ Bài tập tương tác`
+- docs-data-assets:208: `- ✅ Theo chuẩn SGK`
+- docs-data-assets:210: `**Điểm mạnh:**`
+- docs-data-assets:211: `- Miễn phí hoàn toàn`
+- docs-data-assets:212: `- Phù hợp học sinh tiểu học`
+- docs-data-assets:213: `- Nội dung dễ hiểu`
+- docs-data-assets:215: `**Điểm yếu:**`
+- docs-data-assets:216: `- Chỉ có lớp 1-5`
+- docs-data-assets:217: `- Không có AI, không cá nhân hóa`
+- docs-data-assets:218: `- Nội dung cơ bản, không chuyên sâu`
+- docs-data-assets:219: `- Thiếu tính năng tương tác hiện đại`
+- docs-data-assets:223: `### 6. Trần Hưng Đạo (Nền tảng luyện thi chuyên)`
+- docs-data-assets:225: `**Tổng quan:**`
+- docs-data-assets:226: `- Nền tảng học và luyện thi vào lớp 6 chuyên`
+- docs-data-assets:227: `- Ra mắt tháng 11/2025`
+- docs-data-assets:228: `- Do Hệ thống Giáo dục Kiến Trẻ phát triển`
+- docs-data-assets:230: `**Mô hình giá:**`
+- docs-data-assets:231: `| Gói | Giá | Nội dung |`
+- docs-data-assets:233: `| Cơ bản | 300K-500K/tháng | Luyện thi chuyên |`
+- docs-data-assets:234: `| Nâng cao | 500K-800K/tháng | Chuyên sâu |`
+- docs-data-assets:235: `| VIP | 800K-1M/tháng | 1-1 với giáo viên giỏi |`
+- docs-data-assets:237: `**Tính năng:**`
+- docs-data-assets:238: `- ✅ Luyện thi vào lớp 6 chuyên`
+- docs-data-assets:239: `- ✅ Đề thi thử chuẩn cấu trúc`
+- docs-data-assets:240: `- ✅ Chấm điểm chi tiết`
+- docs-data-assets:241: `- ✅ Phân tích điểm mạnh/yếu`
+- docs-data-assets:243: `**Điểm mạnh:**`
+- docs-data-assets:244: `- Phân khúc niche (luyện thi chuyên)`
+- docs-data-assets:245: `- Nội dung chuyên sâu`
+- docs-data-assets:246: `- Phụ huynh có khả năng chi trả cao`
+- docs-data-assets:248: `**Điểm yếu:**`
+- docs-data-assets:249: `- Thị trường nhỏ (chỉ lớp 5)`
+- docs-data-assets:250: `- Cạnh tranh từ luyện thi trực tiếp`
+- docs-data-assets:251: `- Mới ra mắt, chưa có thương hiệu`
+- docs-data-assets:255: `## SWOT Analysis Tổng Hợp`
+- docs-data-assets:257: `### STRENGTHS (Điểm mạnh thị trường)`
+- docs-data-assets:258: `1. Dân số trẻ, nhu cầu giáo dục cao`
+- docs-data-assets:259: `2. Chính phủ đẩy mạnh chuyển đổi số giáo dục`
+- docs-data-assets:260: `3. Smartphone/internet phổ cập`
+- docs-data-assets:261: `4. Phụ huynh sẵn sàng chi trả cho giáo dục`
+- docs-data-assets:262: `5. AI đang tạo cơ hội disrupt thị trường`
+- docs-data-assets:264: `### WEAKNESSES (Điểm yếu thị trường)`
+- docs-data-assets:265: `1. Phân khúc phổ thông bão hòa (>50% sản phẩm)`
+- docs-data-assets:266: `2. Nhiều nội dung miễn phí chất lượng thấp`
+- docs-data-assets:267: `3. Quảng cáo quá nhiều gây phiền nhiễu`
+- docs-data-assets:268: `4. Thiếu chuẩn chất lượng chung`
+- docs-data-assets:269: `5. Học sinh dễ phân tán bởi mạng xã hội`
+- docs-data-assets:271: `### OPPORTUNITIES (Cơ hội)`
+- docs-data-assets:272: `1. Luyện thi chuyên sâu (chưa bão hòa)`
+- docs-data-assets:273: `2. IELTS/TOEIC đang tăng nhanh`
+- docs-data-assets:274: `3. Giáo dục kỹ năng mềm`
+- docs-data-assets:275: `4. EdTech cho người đi làm (reskill/upskill)`
+- docs-data-assets:277: `6. Thị trường tỉnh/thành phố nhỏ`
+- docs-data-assets:279: `### THREATS (Thách thức)`
+- docs-data-assets:280: `1. AI có thể thay thế nhiều nền tảng truyền thống`
+- docs-data-assets:281: `2. Content miễn phí trên YouTube, TikTok`
+- docs-data-assets:282: `3. Sách PDF miễn phí lan tràn`
+- docs-data-assets:283: `4. Suy thoái kinh tế ảnh hưởng chi tiêu giáo dục`
+- docs-data-assets:284: `5. Quy định mới từ Bộ GD&ĐT`
+- docs-data-assets:288: `## Chiến Lược Đối Đầu Đề Xuất`
+- docs-data-assets:290: `### 1. Chiến lược giá (Pricing Strategy)`
+- docs-data-assets:292: `| Đối thủ | Chiến lược đối đầu |`
+- docs-data-assets:294: `| VUIHOC | Cạnh tranh giá thấp hơn 20-30%, tập trung vào ROI |`
+- docs-data-assets:295: `| Loigiaihay | Cung cấp premium quality với giá freemium |`
+- docs-data-assets:296: `| Hoc10/Cánh Diều | Bundle sách + video + bài tập |`
+- docs-data-assets:297: `| Cung học | Nâng cấp chất lượng, giữ miễn phí cơ bản |`
+- docs-data-assets:299: `**Gói giá đề xuất:**`
+- docs-data-assets:300: `- **Freemium:** Video bài giảng cơ bản + bài tập`
+- docs-data-assets:301: `- **Basic (99K/tháng):** Đầy đủ video + đề thi`
+- docs-data-assets:302: `- **Pro (199K/tháng):** + AI tutor + lộ trình cá nhân hóa`
+- docs-data-assets:303: `- **Premium (399K/tháng):** + Gia sư 1-1`
+- docs-data-assets:305: `### 2. Chiến lược sản phẩm`
+- docs-data-assets:308: `- AI cá nhân hóa (học theo tốc độ riêng)`
+- docs-data-assets:309: `- Gamification (học qua chơi game)`
+- docs-data-assets:310: `- Cộng đồng học tập (peer learning)`
+- docs-data-assets:311: `- Tích hợp thực tế ảo (AR/VR cho môn khoa học)`
+- docs-data-assets:313: `**Tính năng must-have:**`
+- docs-data-assets:314: `- ✅ Video bài giảng chất lượng cao (4K)`
+- docs-data-assets:315: `- ✅ AI chấm bài tự động`
+- docs-data-assets:316: `- ✅ Lộ trình học cá nhân hóa`
+- docs-data-assets:317: `- ✅ Đồng bộ tiến độ trên mọi thiết bị`
+- docs-data-assets:319: `- ✅ Thông báo tiến độ cho phụ huynh`
+- docs-data-assets:321: `### 3. Chiến lược marketing`
+- docs-data-assets:324: `- Primary: Học sinh lớp 6-12 (THCS, THPT)`
+- docs-data-assets:325: `- Secondary: Phụ huynh có con lớp 1-5`
+- docs-data-assets:326: `- Tertiary: Sinh viên, người đi làm`
+- docs-data-assets:329: `1. SEO (đánh bại Loigiaihay)`
+- docs-data-assets:330: `2. TikTok (quảng cáo ngắn, viral)`
+- docs-data-assets:331: `3. Zalo OA (kết nối phụ huynh)`
+- docs-data-assets:332: `4. Shopee/Lazada (bán gói học)`
+- docs-data-assets:333: `5. Trường học (B2B partnership)`
+- docs-data-assets:336: `- Học thử 7 ngày miễn phí`
+- docs-data-assets:337: `- Referral: Giới thiệu bạn được 1 tháng free`
+- docs-data-assets:338: `- Combo: Mua 6 tháng tặng 1 tháng`
+- docs-data-assets:339: `- Scholarship: Miễn phí cho HS giỏi vượt khó`
+- docs-data-assets:341: `### 4. Chiến lược công nghệ`
+- docs-data-assets:343: `**Stack đề xuất:**`
+- docs-data-assets:352: `- Chatbot giải đáp 24/7`
+- docs-data-assets:353: `- Nhận diện giọng nói (Speaking practice)`
+- docs-data-assets:354: `- OCR chấm bài viết`
+- docs-data-assets:356: `- Predictive analytics (dự đoán điểm số)`
+- docs-data-assets:360: `## Khuyến Nghị Hành Động`
+- docs-data-assets:362: `### Ngắn hạn (3 tháng)`
+- docs-data-assets:363: `1. Nghiên cứu chi tiết user journey của VUIHOC và Loigiaihay`
+- docs-data-assets:364: `2. Xây dựng MVP với 3 tính năng core: Video + AI tutor + Bài tập`
+- docs-data-assets:365: `3. Thu thập 100 feedback từ phụ huynh và học sinh`
+- docs-data-assets:366: `4. Đăng ký bản quyền nội dung sớm`
+- docs-data-assets:368: `### Trung hạn (6 tháng)`
+- docs-data-assets:369: `1. Ra mắt beta với 1,000 người dùng`
+- docs-data-assets:370: `2. Tối ưu SEO để top 10 từ khóa chính`
+- docs-data-assets:371: `3. Xây dựng cộng đồng 10,000 người dùng`
+- docs-data-assets:372: `4. Hợp tác với 10 trường học thí điểm`
+- docs-data-assets:374: `### Dài hạn (12 tháng)`
+- docs-data-assets:375: `1. Đạt 50,000 người dùng active`
+- docs-data-assets:376: `2. Doanh thu 500M VND/tháng`
+- docs-data-assets:377: `3. Ra mắt tính năng AI đột phá (vượt VUIHOC)`
+- docs-data-assets:378: `4. Mở rộng sang thị trường Lào, Campuchia`
+- docs-data-assets:382: `## Câu Hỏi Chưa Giải Đáp`
+- docs-data-assets:384: `1. **Chính xác số người dùng của Cung học?** - Không tìm thấy dữ liệu công khai`
+- docs-data-assets:385: `2. **Doanh thu thực tế của các nền tảng?** - Hầu hết là công ty tư nhân, không công khai tài chính`
+- docs-data-assets:386: `3. **Churn rate của VUIHOC?** - Không có dữ liệu public`
+- docs-data-assets:387: `4. **Chi phí thu hút khách hàng (CAC)?** - Cần nghiên cứu thêm qua interview`
+- docs-data-assets:388: `5. **Tỷ lệ chuyển đổi từ free sang paid?** - Cần data từ insider hoặc khảo sát`
+- docs-data-assets:392: `## Tài Liệu Tham Khảo`
+- docs-data-assets:394: `1. Tạp chí Doanh Nghiệp (08/2025) - "Thị trường công nghệ giáo dục: Phân khúc phổ thông sắp tới ngưỡng bão hòa"`
+- docs-data-assets:398: `5. Trường Tốt Nhất (09/2025) - "VUIHOC: Nền tảng học tập số tiên phong"`
+- docs-data-assets:399: `6. 1900.com.vn (03/2026) - "Top 8 nền tảng học trực tuyến có học phí hợp lý"`
+- docs-data-assets:400: `7. Tiki Blog (08/2025) - "9 ưu điểm của bộ sách Cánh Diều"`
+- docs-data-assets:401: `8. Viblo (03/2026) - Case study nền tảng giáo dục 0 đồng vốn`
+- docs-data-assets:409: `*Lưu ý: Dữ liệu dựa trên nguồn công khai. Một số thông tin về tài chính, số người dùng chính xác có thể khác với thực tế do các công ty không công khai.*`
+
+### docs/codebase-summary.md
+
+- docs-data-assets:22: `- Enables "học thử" (free trial) video playback without login requirement`
+- docs-data-assets:40: `- "Học gần nhất" date and "Học tiếp" CTA with childId parameter`
+- docs-data-assets:101: `- 'guestLinks' in 'app-nav-client.tsx' includes "Cho trường học" → '/for-schools'`
+- docs-data-assets:141: `- Admin nav updated: "Khoá học" entry with 'GraduationCap' icon`
+- docs-data-assets:160: `- 'plan-config.ts': 'YEARLY_STANDARD' = 799,000đ, 'YEARLY_FAMILY_PLUS' = 1,199,000đ`
+- docs-data-assets:164: `- Math-first hero ('section-hero.tsx'): "15 phút/ngày", "hoàn tiền 100% trong 30 ngày"`
+- docs-data-assets:165: `- 'section-features.tsx' — Brain icon + Toán tư duy as first feature`
+- docs-data-assets:167: `- 'section-pricing-preview.tsx' — 799,000đ/năm, 2,189đ/ngày`
+- docs-data-assets:168: `- 'section-faq.tsx' — 799,000đ, 30-day refund`
+- docs-data-assets:195: `- "Khoá học Premium" shortcut link added to quick-links section`
+- docs-data-assets:201: `**TinyGenius Hub** — Vietnamese EdTech platform for children ages 2–6 (Toán tư duy + Tiếng Anh Phonics).`
+- docs-data-assets:218: `- **Growth**: Referral program (7-day bonus both sides), gift codes (Shopee/Tết)`
+
+### docs/courses-storefront-api-contract.md
+
+- docs-data-assets:22: `- Fallback: '"Lộ trình học"'.`
+- docs-data-assets:36: `- If 'listPriceVnd > salePriceVnd', show strikethrough list price ('giá gốc') and promotion context.`
+
+### docs/deployment/PRODUCTION-MIGRATION-COMMANDS.md
+
+- docs-data-assets:654: `✅ Created package: PRESCHOOL_PREMIUM (Mầm Non PREMIUM)`
+- docs-data-assets:655: `✅ Created package: ELEMENTARY_PRO (Tiểu Học PRO)`
+- docs-data-assets:656: `✅ Created package: MIDDLE_ADVANCED (Trung Học ADVANCED)`
+- docs-data-assets:658: `✅ Created package: ENGLISH_MASTER (Tiếng Anh MASTER)`
+- docs-data-assets:659: `✅ Created package: MATH_THINKING (Toán Tư Duy MATH)`
+- docs-data-assets:698: `PRESCHOOL_PREMIUM     | Mầm Non PREMIUM    |    680 |   1990.00 | 19900.00 | t`
+- docs-data-assets:699: `ELEMENTARY_PRO        | Tiểu Học PRO       |   2550 |   3490.00 | 34900.00 | t`
+- docs-data-assets:700: `MIDDLE_ADVANCED       | Trung Học ADVANCED |   2040 |   3490.00 | 34900.00 | t`
+- docs-data-assets:702: `ENGLISH_MASTER        | Tiếng Anh MASTER   |   1190 |   2490.00 | 24900.00 | t`
+- docs-data-assets:703: `MATH_THINKING         | Toán Tư Duy MATH   |   1700 |   1990.00 | 19900.00 | t`
+
+### docs/deployment/vps-production-full-courses.md
+
+- docs-data-assets:3: `Tài liệu này hướng dẫn deploy production cho toàn bộ khóa học ('abeka', 'littlefox', 'littlefoxcn') và đảm bảo video phát được ổn định.`
+- docs-data-assets:5: `## 1) Mục tiêu`
+- docs-data-assets:7: `- Deploy bản build mới lên VPS production.`
+- docs-data-assets:8: `- Đồng bộ đầy đủ dữ liệu khóa học từ nguồn 'abeka_tools/api'.`
+- docs-data-assets:9: `- Import video source vào DB theo cơ chế bảo mật ('Lesson.videoSource' mã hóa).`
+- docs-data-assets:10: `- Xác nhận giao diện học mở được video và metadata bài học đúng.`
+- docs-data-assets:12: `## 2) Điều kiện bắt buộc`
+- docs-data-assets:14: `- VPS đã có:`
+- docs-data-assets:18: `- File '.env' production trên VPS có tối thiểu:`
+- docs-data-assets:27: `Quan trọng:`
+- docs-data-assets:28: `- 'SESSION_SECRET' dùng lúc import dữ liệu phải giống 'SESSION_SECRET' runtime production.`
+- docs-data-assets:29: `- Nếu đổi 'SESSION_SECRET' sau khi import, API video-token sẽ không giải mã được link video đã mã hóa.`
+- docs-data-assets:31: `## 3) Chuẩn bị nguồn dữ liệu khóa học`
+- docs-data-assets:33: `Nguồn chuẩn:`
+- docs-data-assets:36: `Trên VPS, đảm bảo có thư mục tương đương chứa:`
+- docs-data-assets:40: `- mỗi source có 'index.json' và các file course/lesson tương ứng.`
+- docs-data-assets:42: `Ví dụ copy dữ liệu lên VPS:`
+- docs-data-assets:49: `Nếu dùng workflow SSH có sẵn:`
+- docs-data-assets:53: `Manual trên VPS:`
+- docs-data-assets:65: `## 5) Import full course catalog vào production DB`
+- docs-data-assets:67: `Chạy trên VPS sau khi deploy code:`
+- docs-data-assets:76: `Kết quả mong đợi:`
+- docs-data-assets:77: `- 'rowsBuilt' lớn (khoảng 13081 theo snapshot hiện tại).`
+- docs-data-assets:81: `## 6) Khởi động service production`
+- docs-data-assets:83: `Ví dụ PM2:`
+- docs-data-assets:91: `## 7) Checklist xác nhận sau deploy`
+- docs-data-assets:97: `2. API lessons trả về 'videoStatus=ready' và 'videoSource' có dữ liệu với course đã import.`
+- docs-data-assets:98: `3. Vào UI kid course:`
+- docs-data-assets:99: `- mở bài học đầu tiên`
+- docs-data-assets:100: `- video load được (không lỗi media, không treo scene)`
+- docs-data-assets:101: `- nút tiếp tục hoạt động đúng theo watch gate.`
+- docs-data-assets:103: `## 8) Lỗi thường gặp và cách xử lý nhanh`
+- docs-data-assets:105: `- 'video-token' trả 404 với lesson có video:`
+- docs-data-assets:106: `- kiểm tra 'SESSION_SECRET' runtime có khớp lúc import không.`
+- docs-data-assets:107: `- Video không phát dù token 200:`
+- docs-data-assets:108: `- kiểm tra 'embedUrl' phải là path nội bộ '/api/lessons/.../secure-playback?...' cùng origin.`
+- docs-data-assets:109: `- Import bị chặn host:`
+- docs-data-assets:110: `- bổ sung host vào 'VIDEO_SOURCE_ALLOWED_HOSTS'.`
+- docs-data-assets:112: `## 9) Script reset progress để test lại từ bài 1`
+- docs-data-assets:114: `Script đã có trong repo:`
+- docs-data-assets:125: `Thực thi reset:`
+
+### docs/design/curriculum-database-schema.md
+
+- docs-data-assets:20: `displayName String    // "Lớp Mầm 4 tuổi", "Lớp 1"`
+- docs-data-assets:46: `displayName String    // "Phonics - Học vần"`
+
+### docs/design/curriculum-hierarchy-system-design.md
+
+- docs-data-assets:874: `Academic Year: 34 weeks × 5 days = 170 days`
+
+### docs/design/curriculum-ui-ux-design.md
+
+- docs-data-assets:60: `├── Amber Điệp       #C97A2F  → Primary actions, highlights, warmth`
+- docs-data-assets:62: `├── Chàm Jade        #4ECDC4  → Success states, accents, gamification`
+- docs-data-assets:63: `├── Navy Đêm         #1A2744  → Text, dark mode backgrounds`
+- docs-data-assets:64: `├── Ivory Ấm         #F5EDD6  → Cards, content backgrounds`
+- docs-data-assets:119: `Primary:    bg-Amber-Điệp #C97A2F, text-white, rounded-xl, shadow-md`
+- docs-data-assets:120: `Secondary:  bg-Ivory, border-Soil-Brown, text-Navy-Đêm, rounded-xl`
+- docs-data-assets:121: `Ghost:      bg-transparent, hover:bg-slate-100, text-Navy-Đêm`
+- docs-data-assets:122: `Kid Primary: bg-Chàm-Jade #4ECDC4, text-white, rounded-2xl, shadow-lg, scale-on-press`
+- docs-data-assets:258: `│  [← Back]  🦊 Kisu    "Chào bé [Name]! Cùng khám phá nhé!"           │`
+- docs-data-assets:317: `├── Badge: "Xuất sắc" banner`
+- docs-data-assets:321: `├── Background: Chàm Jade gradient`
+- docs-data-assets:322: `├── Border: 3px dashed Chàm Jade`
+- docs-data-assets:433: `│ [←]  📅 Hôm nay, 3 Tháng 4     [🔔]│`
+- docs-data-assets:437: `│  │  🔥 Streak: 7 ngày            │  │`
+- docs-data-assets:438: `│  │  ████████░░ 7/10 → Phần thưởng │  │`
+- docs-data-assets:441: `│  ⏰ Còn lại: ~45 phút              │`
+- docs-data-assets:444: `│  │  📖 Tiếng Anh                  │  │`
+- docs-data-assets:447: `│  │     ▶️ Đang xem...            │  │`
+- docs-data-assets:448: `│  │  [📝] Từ vựng: Động vật       │  │`
+- docs-data-assets:449: `│  │     ✏️ Chưa làm               │  │`
+- docs-data-assets:453: `│  │  🔢 Toán Tư Duy                │  │`
+- docs-data-assets:455: `│  │  [🎬] Đếm số 1-20 (08:45)     │  │`
+- docs-data-assets:456: `│  │     ▶️ Bắt đầu                │  │`
+- docs-data-assets:457: `│  │  [🎯] Trò chơi: Sắp xếp số    │  │`
+- docs-data-assets:458: `│  │     🔒 Khóa                   │  │`
+- docs-data-assets:462: `│  │  🎨 Mỹ Thuật                   │  │`
+- docs-data-assets:464: `│  │  [🎬] Tô màu cầu vồng (15:20) │  │`
+- docs-data-assets:465: `│  │     ▶️ Bắt đầu                │  │`
+- docs-data-assets:469: `│  │  🦊 Kisu nói:                 │  │`
+- docs-data-assets:470: `│  │  "Con đang làm rất tốt!       │  │`
+- docs-data-assets:471: `│  │   Cố lên hoàn thành bài       │  │`
+- docs-data-assets:472: `│  │   Tiếng Anh nhé!"             │  │`
+- docs-data-assets:483: `├── Status: "Bắt đầu" button`
+- docs-data-assets:488: `├── Icon: Subject icon (filled, Chàm Jade)`
+- docs-data-assets:489: `├── Status: Progress bar + "Đang xem..."`
+- docs-data-assets:495: `├── Status: "Hoàn thành!" badge`
+- docs-data-assets:496: `├── Time: "Đã xem 12:34"`
+- docs-data-assets:501: `├── Status: "Hoàn thành [prerequisite] để mở"`
+- docs-data-assets:512: `├── Reward preview: "Còn 3 ngày → Huy hiệu Vàng"`
+- docs-data-assets:1048: `├── Subject Mastery: "Bậc Thầy Toán Học" (Math Master)`
+- docs-data-assets:1049: `├── Streak: "Người Kiên Trì" (7 days), "Huyền Thoại" (100 days)`
+- docs-data-assets:1050: `├── Exploration: "Nhà Thám Hiểm" (try all subjects)`
+- docs-data-assets:1051: `├── Speed: "Tia Chớp" (complete 3 lessons in one day)`
+- docs-data-assets:1052: `└── Social: "Người Truyền Lửa" (help sibling complete lesson)`
+- docs-data-assets:1110: `title: 'Người Kiên Trì',`
+- docs-data-assets:1111: `description: 'Học liên tục 7 ngày',`
+- docs-data-assets:1118: `title: 'Bậc Thầy Toán Học',`
+- docs-data-assets:1119: `description: 'Hoàn thành 50 bài Toán',`
+- docs-data-assets:1143: `├── High contrast focus color (Chàm Jade)`
+
+### docs/educational-content-structure-analysis.md
+
+- docs-data-assets:165: `| 9 | Classics | 9 | ~400 | Les Misérables, Phantom of the Opera |`
+
+### docs/grapuco-mcp-analysis-report-2026-04-05.md
+
+- docs-data-assets:3: `## Grapuco lÃ  gÃ¬`
+- docs-data-assets:5: `Grapuco lÃ  ná»n táº£ng láº­p chá»‰ má»¥c kiáº¿n trÃºc codebase (AST local parse + cloud graph metadata), expose qua MCP Ä‘á»ƒ agent truy váº¥n:`
+- docs-data-assets:6: `- 'search_code': tÃ¬m symbol theo tÃªn`
+- docs-data-assets:7: `- 'get_dependencies': call/import/dependency cá»§a symbol`
+- docs-data-assets:8: `- 'get_data_flows': luá»“ng endpoint -> service -> db`
+- docs-data-assets:10: `- 'get_architecture': toÃ n cáº£nh graph`
+- docs-data-assets:11: `- 'semantic_search', 'get_context': truy váº¥n ngá»¯ nghÄ©a/ngá»¯ cáº£nh`
+- docs-data-assets:13: `Äiá»ƒm máº¡nh: nhanh khi cáº§n nhÃ¬n graph-level trÆ°á»›c khi sá»­a code, Ä‘áº·c biá»‡t cho refactor vÃ  risk assessment.`
+- docs-data-assets:15: `## CÃ¡ch dÃ¹ng chuáº©n trong dá»± Ã¡n nÃ y`
+- docs-data-assets:17: `1. Äá»“ng bá»™ graph:`
+- docs-data-assets:22: `2. TrÆ°á»›c khi sá»­a file:`
+- docs-data-assets:26: `3. Náº¿u Ä‘á»•i stack agent:`
+- docs-data-assets:30: `Checklist chi tiáº¿t: 'docs/grapuco-mcp-daily-workflow-checklist.md'.`
+- docs-data-assets:32: `## Findings: Ä‘iá»ƒm Ä‘á»©t gÃ£y logic/observability`
+- docs-data-assets:34: `## 1) Data flow coverage tháº¥p so vá»›i API surface`
+- docs-data-assets:36: `- Sá»‘ route handlers trong 'src/app/api': **265**`
+- docs-data-assets:37: `- Sá»‘ flow tráº£ vá» tá»« Grapuco ('get_data_flows'): **50**`
+- docs-data-assets:38: `- Tá»· lá»‡ coverage flow theo endpoint ~**18.9%**`
+- docs-data-assets:40: `Rá»§i ro:`
+- docs-data-assets:41: `- Dá»… miss regression khi dá»±a hoÃ n toÃ n vÃ o data flow cá»§a Grapuco.`
+- docs-data-assets:42: `- Blast radius cÃ³ thá»ƒ thiáº¿u endpoint thá»±c táº¿ bá»‹ áº£nh hÆ°á»Ÿng.`
+- docs-data-assets:44: `## 2) 'httpPath' trong flow metadata Ä‘ang thiáº¿u toÃ n bá»™`
+- docs-data-assets:46: `Quan sÃ¡t:`
+- docs-data-assets:48: `- 'get_data_flows' vá»›i filter 'httpPath' tráº£ vá» '0' cho cÃ¡c path tháº­t:`
+- docs-data-assets:53: `Rá»§i ro:`
+- docs-data-assets:54: `- KhÃ´ng thá»ƒ Ä‘iá»u hÆ°á»›ng theo endpoint path.`
+- docs-data-assets:55: `- Truy váº¥n flow theo API path gáº§n nhÆ° khÃ´ng sá»­ dá»¥ng Ä‘Æ°á»£c hiá»‡n táº¡i.`
+- docs-data-assets:57: `## 3) Blast radius lá»‡ch á»Ÿ service business-critical`
+- docs-data-assets:62: `- NhÆ°ng 'get_dependencies' cho 'createCourseCheckoutSession' cÃ³ incoming call tá»« 'src/app/api/courses/[slug]/checkout/route.ts:POST'.`
+- docs-data-assets:64: `Rá»§i ro:`
+- docs-data-assets:65: `- Dá»… Ä‘Ã¡nh giÃ¡ tháº¥p impact khi sá»­a checkout flow.`
+- docs-data-assets:66: `- CÃ³ thá»ƒ gÃ¢y false-safe trong refactor/payment release.`
+- docs-data-assets:68: `## 4) Flow terminal nghiÃªng vá» utility thay vÃ¬ business outcome`
+- docs-data-assets:70: `Nhiá»u flow cÃ³ terminal kiá»ƒu:`
+- docs-data-assets:76: `Rá»§i ro:`
+- docs-data-assets:77: `- Khi debug business logic (checkout, auth, lesson completion), graph signal bá»‹ â€œnhiá»…u háº¡ táº§ngâ€.`
+- docs-data-assets:79: `## 5) Guard/rate-limit dÃ¹ng rá»™ng, nhÆ°ng flow reflect chÆ°a tÆ°Æ¡ng xá»©ng`
+- docs-data-assets:81: `'assertRequestAllowedBySecurityControls' xuáº¥t hiá»‡n á»Ÿ ráº¥t nhiá»u API routes (hÃ ng chá»¥c Ä‘iá»ƒm gá»i), nhÆ°ng impact tá»« flow tool cho file guard chá»‰ pháº£n Ã¡nh Ã­t flow.`
+- docs-data-assets:83: `Rá»§i ro:`
+- docs-data-assets:84: `- Security control change cÃ³ blast radius thá»±c táº¿ lá»›n hÆ¡n sá»‘ flow hiá»ƒn thá»‹.`
+- docs-data-assets:86: `## Äiá»ƒm cáº§n tá»‘i Æ°u (Æ°u tiÃªn)`
+- docs-data-assets:88: `## P0 â€” DÃ¹ng Grapuco theo cháº¿ Ä‘á»™ â€œassistâ€, khÃ´ng pháº£i â€œsource of truthâ€`
+- docs-data-assets:90: `Ãp dá»¥ng ngay:`
+- docs-data-assets:91: `- TrÆ°á»›c edit: cháº¡y 'grapuco:pre-edit'`
+- docs-data-assets:92: `- NhÆ°ng quyáº¿t Ä‘á»‹nh cuá»‘i cÃ¹ng luÃ´n Ä‘á»‘i chiáº¿u thÃªm:`
+- docs-data-assets:95: `- kiá»ƒm tra route handlers liÃªn quan`
+- docs-data-assets:97: `## P0 â€” Bá»• sung gate ná»™i bá»™ cho file critical`
+- docs-data-assets:99: `Cho cÃ¡c file sau, báº¯t buá»™c cháº¡y thÃªm 'rg' + manual path trace ngoÃ i Grapuco:`
+- docs-data-assets:105: `## P1 â€” TÄƒng quality index cho flow endpoint`
+- docs-data-assets:107: `Äá» xuáº¥t váº­n hÃ nh:`
+- docs-data-assets:108: `1. Re-ingest Ä‘á»‹nh ká»³ sau batch lá»›n ('pnpm grapuco:push' sau má»—i cá»¥m thay Ä‘á»•i).`
+- docs-data-assets:109: `2. Audit Ä‘á»‹nh ká»³:`
+- docs-data-assets:110: `- so sá»‘ lÆ°á»£ng route handlers vs flow count`
+- docs-data-assets:111: `- kiá»ƒm tra tá»· lá»‡ flow cÃ³ 'httpPath'`
+- docs-data-assets:112: `3. Náº¿u váº«n thiáº¿u: má»Ÿ issue vá»›i Grapuco (flow extraction cho Next.js App Router dynamic segments).`
+- docs-data-assets:114: `## P1 â€” Giáº£m duplication rate-limit/security trong route layer`
+- docs-data-assets:116: `Hiá»‡n nhiá»u route láº·p pattern:`
+- docs-data-assets:121: `Äá» xuáº¥t:`
+- docs-data-assets:123: `- má»¥c tiÃªu: giáº£m drift logic giá»¯a cÃ¡c endpoint vÃ  tÄƒng cháº¥t lÆ°á»£ng flow graph`
+- docs-data-assets:125: `## P2 â€” Chuáº©n hÃ³a policy key taxonomy theo domain`
+- docs-data-assets:127: `Äá»ƒ flow/business trace rÃµ hÆ¡n:`
+- docs-data-assets:128: `- nhÃ³m key theo domain ('auth.*', 'billing.*', 'learning.*', 'reports.*', 'admin.*')`
+- docs-data-assets:129: `- enforce naming convention nháº¥t quÃ¡n cho endpoint-level policies`
+- docs-data-assets:131: `## Káº¿t luáº­n`
+- docs-data-assets:133: `Grapuco há»¯u Ã­ch rÃµ á»Ÿ:`
+- docs-data-assets:134: `- tÃ¬m dependency nhanh`
+- docs-data-assets:135: `- Æ°á»›c lÆ°á»£ng blast radius ban Ä‘áº§u`
+- docs-data-assets:136: `- map kiáº¿n trÃºc tá»•ng quan`
+- docs-data-assets:138: `NhÆ°ng á»Ÿ codebase hiá»‡n táº¡i, lá»›p 'data flow by http path' vÃ  'impact completeness' chÆ°a Ä‘á»§ tin cáº­y Ä‘á»ƒ dÃ¹ng Ä‘á»™c láº­p. NÃªn dÃ¹ng theo mÃ´ hÃ¬nh hybrid: Grapuco + grep + test gates.`
+
+### docs/handover/2026-03-18-course-split-education-rationale-handover.md
+
+- docs-data-assets:1: `# Bàn giao cấp cao: Lý do chia khóa học hiện tại và ý nghĩa giáo dục`
+- docs-data-assets:5: `Scope: Kiểm tra lại cấu trúc khóa học đang chạy trong DB + storefront + pilot split`
+- docs-data-assets:8: `- Hệ hiện tại đang chạy mô hình 3 tầng: '3 khóa gốc' + '28 khóa tách chính thức' + '12 SKU pilot micro-course'.`
+- docs-data-assets:9: `- Split catalog đã active và có adoption rõ: enrollments ở nhánh split ('153') cao hơn root monolith ('7').`
+- docs-data-assets:10: `- Tính toàn vẹn kỹ thuật của pilot split đang sạch ('issues=0'), storefront sync giữa dữ liệu học liệu và trang bán hàng đang 'PASS 3/3 bundle'.`
+- docs-data-assets:11: `- Cách chia hiện tại hợp lý cho giáo dục: giữ progression theo grade/level, giảm tải nhận thức cho phụ huynh, tạo milestone ngắn để đo tiến bộ.`
+- docs-data-assets:12: `- Điểm cần xử lý ngay: tracking biến thể A/B đang ghi 'unknown', làm giảm giá trị đọc kết quả thực nghiệm thông điệp.`
+- docs-data-assets:14: `## 2) Hiện trạng course split (đã verify)`
+- docs-data-assets:16: `### 2.1 Snapshot DB hiện tại`
+- docs-data-assets:24: `- Pilot micro-course draft: '12' SKU, chưa publish ('published=0')`
+- docs-data-assets:26: `### 2.2 Quy mô học liệu`
+- docs-data-assets:34: `- Enrollments pilot: '0' (đúng vì chưa publish)`
+- docs-data-assets:36: `## 3) Vì sao chia như vậy (business + pedagogy)`
+- docs-data-assets:38: `### 3.1 Giảm ma sát quyết định cho phụ huynh`
+- docs-data-assets:39: `- Monolith quá lớn (mua 1 lần, phạm vi rất rộng) khó chọn điểm bắt đầu.`
+- docs-data-assets:40: `- Chia theo grade/level giúp phụ huynh trả lời nhanh 3 câu: học gì, học bao lâu, đang ở mức nào.`
+- docs-data-assets:42: `### 3.2 Giữ trục tiến bộ giáo dục, không chia tùy tiện`
+- docs-data-assets:43: `- Trục Abeka: grade progression (K4 -> G12), phù hợp logic readiness học thuật tăng dần.`
+- docs-data-assets:44: `- Trục Little Fox EN/CN: level progression, phù hợp logic phát triển năng lực ngôn ngữ theo độ khó.`
+- docs-data-assets:45: `- Không phá cấu trúc nguồn: split là tái đóng gói phạm vi học, không đảo curriculum order.`
+- docs-data-assets:47: `### 3.3 Chuyển từ "khóa dài" sang "mốc ngắn đo được"`
+- docs-data-assets:48: `- Framework phase ('foundation/core/mastery') cho từng scope giữ được mục tiêu dài hạn.`
+- docs-data-assets:49: `- Pilot SKU 4-8 tuần tạo kết quả sớm, dễ quan sát tiến bộ tuần và giảm drop-off đầu kỳ.`
+- docs-data-assets:51: `### 3.4 Vận hành an toàn`
+- docs-data-assets:52: `- Giữ song song root + split để không đứt compatibility và không làm gián đoạn funnel cũ.`
+- docs-data-assets:53: `- Storefront đang map đúng dữ liệu split ('PASS') nên scale không cần đổi kiến trúc lớn.`
+- docs-data-assets:55: `## 4) Ý nghĩa giáo dục theo từng track`
+- docs-data-assets:58: `- Ý nghĩa: xây nền đọc hiểu/từ vựng/tư duy học thuật theo cấp lớp.`
+- docs-data-assets:59: `- Lợi ích giáo dục: tránh học vượt hoặc học hụt so với mức sẵn sàng của trẻ.`
+- docs-data-assets:60: `- Ý nghĩa cho phụ huynh: theo dõi tiến độ rất rõ theo grade, dễ set mục tiêu tuần.`
+- docs-data-assets:63: `- Ý nghĩa: phát triển năng lực nghe hiểu và phản xạ tiếng Anh qua chuỗi truyện tăng dần.`
+- docs-data-assets:64: `- Lợi ích giáo dục: học đều bằng unit ngắn, dễ duy trì thói quen dài hạn.`
+- docs-data-assets:65: `- Ý nghĩa cho phụ huynh: thấy rõ level hiện tại, điểm chuyển level, số tập còn lại.`
+- docs-data-assets:68: `- Ý nghĩa: lộ trình nhập môn tiếng Trung có kiểm soát nhịp độ.`
+- docs-data-assets:69: `- Lợi ích giáo dục: giảm quá tải đầu vào, giữ nhịp lặp đều cho trẻ mới bắt đầu.`
+- docs-data-assets:70: `- Ý nghĩa cho phụ huynh: minh bạch trạng thái học theo level và milestone ngắn.`
+- docs-data-assets:72: `## 5) Bằng chứng kỹ thuật và vận hành`
+- docs-data-assets:74: `| Claim | Evidence | Kết luận |`
+- docs-data-assets:76: `| Split đang sync đúng storefront | 'course-storefront-sync-report.md' => PASS 3/3 | Đạt |`
+- docs-data-assets:77: `| Pilot split không sai lệch lesson mapping/order | 'pilot-db-integrity.json' => issues=0 | Đạt |`
+- docs-data-assets:78: `| Pilot scope đủ lớn để test | 'course-baseline-metrics.json' => coverage ~21-23% lessons/episodes | Đạt cho pilot |`
+- docs-data-assets:79: `| Early checkout funnel có tín hiệu | 'courses-ab-cvr-report.md' => 8 start, 6 success (75%) | Có tín hiệu, mẫu nhỏ |`
+- docs-data-assets:80: `| Tracking variant cho A/B chưa usable | 'courses-ab-cvr-report.md' => variant=unknown | Cần fix ngay |`
+- docs-data-assets:82: `## 6) Rủi ro hiện tại`
+- docs-data-assets:83: `- Rủi ro đo lường: A/B variant chưa capture đúng -> khó kết luận copy nào tốt.`
+- docs-data-assets:84: `- Rủi ro vận hành catalog: song song root + split có thể gây nhiễu nếu governance title/price không chặt.`
+- docs-data-assets:85: `- Rủi ro học thuật khi scale: nếu publish ồ ạt SKU ngắn mà không thêm checkpoint/mastery gate, có thể tăng completion ngắn hạn nhưng giảm retention học thật.`
+- docs-data-assets:87: `## 7) Quyết định cần cấp trên duyệt`
+- docs-data-assets:88: `1. Giữ mô hình dual-catalog (root + split) thêm 1-2 chu kỳ hay chuyển hẳn split-only ở storefront.`
+- docs-data-assets:89: `2. Go-live 12 pilot SKU theo phase hay tiếp tục để draft thêm 1 vòng QA giáo dục.`
+- docs-data-assets:90: `3. Ưu tiên fix tracking ('ab_courses_v') trong sprint gần nhất trước khi chạy A/B copy mới.`
+- docs-data-assets:91: `4. Duyệt ngưỡng scale cho pilot (ví dụ completion, conversion, week-2 retention) để tránh scale cảm tính.`
+- docs-data-assets:93: `## 8) Kế hoạch đề xuất 30/60/90 ngày`
+- docs-data-assets:94: `- 30 ngày:`
+- docs-data-assets:96: `- Publish pilot có chọn lọc (nhóm demand cao).`
+- docs-data-assets:97: `- Đặt dashboard tuần cho completion + checkout + return learning.`
+- docs-data-assets:98: `- 60 ngày:`
+- docs-data-assets:99: `- Review hiệu quả theo track (Abeka / LFEN / LFCN).`
+- docs-data-assets:100: `- Chuẩn hóa rubric checkpoint theo phase foundation/core/mastery.`
+- docs-data-assets:101: `- 90 ngày:`
+- docs-data-assets:102: `- Quyết định catalog strategy dài hạn (dual vs split-only).`
+- docs-data-assets:103: `- Nhân rộng SKU nếu đạt threshold đã duyệt.`
+- docs-data-assets:105: `## 9) File evidence đã dùng`
+- docs-data-assets:117: `- Cấp trên muốn chốt luôn split-only catalog ngoài storefront, hay giữ dual thêm 1 quý để giảm migration risk?`
+- docs-data-assets:118: `- Có cần mở pilot publish cho LFEN L2 và LFCN L1 cùng lúc, hay chạy tuần tự để dễ đọc hiệu ứng?`
+- docs-data-assets:119: `- Mốc ưu tiên của ban điều hành là conversion ngắn hạn hay retention học tập sau tuần 4?`
+
+### docs/handover/2026-03-18-executive-memo-course-split.md
+
+- docs-data-assets:1: `# Executive Memo - Quyết định chia khóa học (gửi cấp cao)`
+- docs-data-assets:5: `Purpose: xin phê duyệt hướng vận hành catalog và scale pilot dựa trên dữ liệu đã kiểm chứng.`
+- docs-data-assets:7: `## 1) Tóm tắt điều hành`
+- docs-data-assets:8: `- Mô hình hiện tại đã chạy ổn định theo 3 tầng: '3 khóa gốc' + '28 khóa split chính thức' + '12 pilot SKU' (draft).`
+- docs-data-assets:9: `- Cách chia hiện tại phù hợp cả thương mại và giáo dục: phụ huynh chọn dễ hơn, trẻ học đúng mức hơn, đội vận hành kiểm soát tốt hơn.`
+- docs-data-assets:10: `- Hệ thống kiểm soát kỹ thuật đạt chuẩn: storefront sync 'PASS 3/3', pilot split integrity 'issues=0'.`
+- docs-data-assets:11: `- Tín hiệu thương mại có sớm: 30 ngày gần nhất '8' checkout start, '6' purchase success, CVR '75%'.`
+- docs-data-assets:12: `- Điểm nghẽn cần xử lý trước khi scale: biến thể A/B đang ghi 'unknown', làm giảm chất lượng kết luận thử nghiệm thông điệp.`
+- docs-data-assets:14: `## 2) Vì sao chia như vậy`
+- docs-data-assets:16: `- Giảm ma sát mua hàng: tách theo 'Abeka / LF English / LF Chinese' giúp phụ huynh hiểu nhanh hướng học.`
+- docs-data-assets:17: `- Giảm rủi ro catalog quá rộng: giữ bundle lớn ổn định, thử nghiệm tăng trưởng qua SKU ngắn hạn.`
+- docs-data-assets:18: `- Dễ kiểm soát pricing/packaging: lớp thương mại và lớp học thuật tách vai rõ ràng.`
+- docs-data-assets:21: `- Grade/level split giảm lệch trình và giảm quá tải nhận thức cho trẻ.`
+- docs-data-assets:22: `- Phase 'foundation -> core -> mastery' giữ logic tiến bộ từ làm quen đến thành thạo.`
+- docs-data-assets:23: `- Micro-SKU 4-8 tuần tạo mốc ngắn để phụ huynh thấy tiến bộ sớm, hỗ trợ thói quen học đều.`
+- docs-data-assets:25: `## 3) Snapshot đã verify`
+- docs-data-assets:27: `- Published gồm '3' root + '28' split:`
+- docs-data-assets:31: `- Pilot '12' SKU: đã map đúng phạm vi lesson, không overlap/out-of-range.`
+- docs-data-assets:32: `- Adoption hiện tại nghiêng về split catalog: enrollments split cao hơn root.`
+- docs-data-assets:34: `## 4) Rủi ro và kiểm soát`
+- docs-data-assets:35: `- Rủi ro đo lường: variant attribution 'unknown'.`
+- docs-data-assets:36: `- Kiểm soát: fix capture 'ab_courses_v' trong sprint gần nhất, chỉ chạy A/B mới sau khi fix.`
+- docs-data-assets:37: `- Rủi ro vận hành: song song root + split gây nhiễu nếu governance tên/giá không chặt.`
+- docs-data-assets:38: `- Kiểm soát: chốt một policy nguồn giá và naming policy thống nhất mặt ngoài.`
+- docs-data-assets:39: `- Rủi ro sư phạm khi scale nhanh: tăng completion ngắn hạn nhưng giảm retention thật.`
+- docs-data-assets:40: `- Kiểm soát: giữ gate scale theo completion + week-4 retention + progression quality.`
+- docs-data-assets:42: `## 5) Quyết định cần phê duyệt ngay`
+- docs-data-assets:43: `1. Duy trì mô hình 'dual catalog' thêm 1-2 chu kỳ cohort hay chuyển 'split-only' ở storefront.`
+- docs-data-assets:44: `2. Cho phép go-live 12 pilot SKU theo phase hay chờ thêm 1 vòng QA giáo dục.`
+- docs-data-assets:45: `3. Ưu tiên fix tracking attribution trước mọi A/B message mới.`
+- docs-data-assets:46: `4. Chốt bộ ngưỡng scale bắt buộc (đề xuất: completion >= 55%, tripwire->core >= 18%, CAC payback <= 2.5 tháng).`
+- docs-data-assets:48: `## 6) Kế hoạch thực thi 30/60/90 ngày`
+- docs-data-assets:49: `- 30 ngày: fix attribution, publish pilot có kiểm soát, bật dashboard tuần cho conversion + learning.`
+- docs-data-assets:50: `- 60 ngày: review theo từng track (Abeka/LFEN/LFCN), chuẩn hóa checkpoint theo phase.`
+- docs-data-assets:51: `- 90 ngày: quyết định chiến lược catalog dài hạn và chỉ scale SKU đạt ngưỡng.`
+- docs-data-assets:54: `- Có chốt split-only storefront trong Q2/2026 không?`
+- docs-data-assets:55: `- Scale pilot theo kiểu tuần tự từng track hay mở đồng thời nhiều track?`
+- docs-data-assets:56: `- Ưu tiên điều hành là conversion ngắn hạn hay retention học tập sau tuần 4?`
+
+### docs/handover/packages/2026-03-18-course-split-executive-package/00-index.md
+
+- docs-data-assets:4: `Use case: trình cấp cao, mở nhanh theo thứ tự ưu tiên.`
+- docs-data-assets:6: `## Cấu trúc`
+- docs-data-assets:12: `## Thứ tự đọc đề xuất (5-10 phút)`
+- docs-data-assets:20: `## Nội dung từng thư mục`
+- docs-data-assets:23: `- 'executive-memo.md': bản 1 trang gửi lãnh đạo.`
+- docs-data-assets:24: `- 'full-handover.md': bản đầy đủ (lý do chia, ý nghĩa giáo dục, risk, decision requests).`
+- docs-data-assets:27: `- 'agent-team-snapshot.md': snapshot các agent và kết quả chính.`
+- docs-data-assets:28: `- 'education-rationale-audit.md': audit góc chuyên gia giáo dục.`
+- docs-data-assets:29: `- 'curriculum-split-validation.md': audit kiến trúc chia khóa và bất nhất cần lưu ý.`
+- docs-data-assets:30: `- 'executive-structure-draft.md': khung trình bày cấp điều hành.`
+- docs-data-assets:33: `- 'course-storefront-sync-report.md': xác nhận sync storefront PASS 3/3.`
+- docs-data-assets:34: `- 'pilot-db-integrity.json': xác nhận pilot split integrity issues=0.`
+- docs-data-assets:35: `- 'courses-ab-cvr-report.md': snapshot conversion 30 ngày.`
+- docs-data-assets:36: `- 'course-baseline-metrics.json': baseline coverage và pilot metrics.`
+- docs-data-assets:39: `- Có chốt split-only storefront trong Q2/2026 không?`
+- docs-data-assets:40: `- Scale pilot theo tuần tự từng track hay mở đồng thời?`
+- docs-data-assets:41: `- Trọng số quyết định: conversion ngắn hạn hay retention sau tuần 4?`
+
+### docs/handover/packages/2026-03-18-course-split-executive-package/01-executive/executive-memo.md
+
+- docs-data-assets:1: `# Executive Memo - Quyết định chia khóa học (gửi cấp cao)`
+- docs-data-assets:5: `Purpose: xin phê duyệt hướng vận hành catalog và scale pilot dựa trên dữ liệu đã kiểm chứng.`
+- docs-data-assets:7: `## 1) Tóm tắt điều hành`
+- docs-data-assets:8: `- Mô hình hiện tại đã chạy ổn định theo 3 tầng: '3 khóa gốc' + '28 khóa split chính thức' + '12 pilot SKU' (draft).`
+- docs-data-assets:9: `- Cách chia hiện tại phù hợp cả thương mại và giáo dục: phụ huynh chọn dễ hơn, trẻ học đúng mức hơn, đội vận hành kiểm soát tốt hơn.`
+- docs-data-assets:10: `- Hệ thống kiểm soát kỹ thuật đạt chuẩn: storefront sync 'PASS 3/3', pilot split integrity 'issues=0'.`
+- docs-data-assets:11: `- Tín hiệu thương mại có sớm: 30 ngày gần nhất '8' checkout start, '6' purchase success, CVR '75%'.`
+- docs-data-assets:12: `- Điểm nghẽn cần xử lý trước khi scale: biến thể A/B đang ghi 'unknown', làm giảm chất lượng kết luận thử nghiệm thông điệp.`
+- docs-data-assets:14: `## 2) Vì sao chia như vậy`
+- docs-data-assets:16: `- Giảm ma sát mua hàng: tách theo 'Abeka / LF English / LF Chinese' giúp phụ huynh hiểu nhanh hướng học.`
+- docs-data-assets:17: `- Giảm rủi ro catalog quá rộng: giữ bundle lớn ổn định, thử nghiệm tăng trưởng qua SKU ngắn hạn.`
+- docs-data-assets:18: `- Dễ kiểm soát pricing/packaging: lớp thương mại và lớp học thuật tách vai rõ ràng.`
+- docs-data-assets:21: `- Grade/level split giảm lệch trình và giảm quá tải nhận thức cho trẻ.`
+- docs-data-assets:22: `- Phase 'foundation -> core -> mastery' giữ logic tiến bộ từ làm quen đến thành thạo.`
+- docs-data-assets:23: `- Micro-SKU 4-8 tuần tạo mốc ngắn để phụ huynh thấy tiến bộ sớm, hỗ trợ thói quen học đều.`
+- docs-data-assets:25: `## 3) Snapshot đã verify`
+- docs-data-assets:27: `- Published gồm '3' root + '28' split:`
+- docs-data-assets:31: `- Pilot '12' SKU: đã map đúng phạm vi lesson, không overlap/out-of-range.`
+- docs-data-assets:32: `- Adoption hiện tại nghiêng về split catalog: enrollments split cao hơn root.`
+- docs-data-assets:34: `## 4) Rủi ro và kiểm soát`
+- docs-data-assets:35: `- Rủi ro đo lường: variant attribution 'unknown'.`
+- docs-data-assets:36: `- Kiểm soát: fix capture 'ab_courses_v' trong sprint gần nhất, chỉ chạy A/B mới sau khi fix.`
+- docs-data-assets:37: `- Rủi ro vận hành: song song root + split gây nhiễu nếu governance tên/giá không chặt.`
+- docs-data-assets:38: `- Kiểm soát: chốt một policy nguồn giá và naming policy thống nhất mặt ngoài.`
+- docs-data-assets:39: `- Rủi ro sư phạm khi scale nhanh: tăng completion ngắn hạn nhưng giảm retention thật.`
+- docs-data-assets:40: `- Kiểm soát: giữ gate scale theo completion + week-4 retention + progression quality.`
+- docs-data-assets:42: `## 5) Quyết định cần phê duyệt ngay`
+- docs-data-assets:43: `1. Duy trì mô hình 'dual catalog' thêm 1-2 chu kỳ cohort hay chuyển 'split-only' ở storefront.`
+- docs-data-assets:44: `2. Cho phép go-live 12 pilot SKU theo phase hay chờ thêm 1 vòng QA giáo dục.`
+- docs-data-assets:45: `3. Ưu tiên fix tracking attribution trước mọi A/B message mới.`
+- docs-data-assets:46: `4. Chốt bộ ngưỡng scale bắt buộc (đề xuất: completion >= 55%, tripwire->core >= 18%, CAC payback <= 2.5 tháng).`
+- docs-data-assets:48: `## 6) Kế hoạch thực thi 30/60/90 ngày`
+- docs-data-assets:49: `- 30 ngày: fix attribution, publish pilot có kiểm soát, bật dashboard tuần cho conversion + learning.`
+- docs-data-assets:50: `- 60 ngày: review theo từng track (Abeka/LFEN/LFCN), chuẩn hóa checkpoint theo phase.`
+- docs-data-assets:51: `- 90 ngày: quyết định chiến lược catalog dài hạn và chỉ scale SKU đạt ngưỡng.`
+- docs-data-assets:54: `- Có chốt split-only storefront trong Q2/2026 không?`
+- docs-data-assets:55: `- Scale pilot theo kiểu tuần tự từng track hay mở đồng thời nhiều track?`
+- docs-data-assets:56: `- Ưu tiên điều hành là conversion ngắn hạn hay retention học tập sau tuần 4?`
+
+### docs/handover/packages/2026-03-18-course-split-executive-package/01-executive/full-handover.md
+
+- docs-data-assets:1: `# Bàn giao cấp cao: Lý do chia khóa học hiện tại và ý nghĩa giáo dục`
+- docs-data-assets:5: `Scope: Kiểm tra lại cấu trúc khóa học đang chạy trong DB + storefront + pilot split`
+- docs-data-assets:8: `- Hệ hiện tại đang chạy mô hình 3 tầng: '3 khóa gốc' + '28 khóa tách chính thức' + '12 SKU pilot micro-course'.`
+- docs-data-assets:9: `- Split catalog đã active và có adoption rõ: enrollments ở nhánh split ('153') cao hơn root monolith ('7').`
+- docs-data-assets:10: `- Tính toàn vẹn kỹ thuật của pilot split đang sạch ('issues=0'), storefront sync giữa dữ liệu học liệu và trang bán hàng đang 'PASS 3/3 bundle'.`
+- docs-data-assets:11: `- Cách chia hiện tại hợp lý cho giáo dục: giữ progression theo grade/level, giảm tải nhận thức cho phụ huynh, tạo milestone ngắn để đo tiến bộ.`
+- docs-data-assets:12: `- Điểm cần xử lý ngay: tracking biến thể A/B đang ghi 'unknown', làm giảm giá trị đọc kết quả thực nghiệm thông điệp.`
+- docs-data-assets:14: `## 2) Hiện trạng course split (đã verify)`
+- docs-data-assets:16: `### 2.1 Snapshot DB hiện tại`
+- docs-data-assets:24: `- Pilot micro-course draft: '12' SKU, chưa publish ('published=0')`
+- docs-data-assets:26: `### 2.2 Quy mô học liệu`
+- docs-data-assets:34: `- Enrollments pilot: '0' (đúng vì chưa publish)`
+- docs-data-assets:36: `## 3) Vì sao chia như vậy (business + pedagogy)`
+- docs-data-assets:38: `### 3.1 Giảm ma sát quyết định cho phụ huynh`
+- docs-data-assets:39: `- Monolith quá lớn (mua 1 lần, phạm vi rất rộng) khó chọn điểm bắt đầu.`
+- docs-data-assets:40: `- Chia theo grade/level giúp phụ huynh trả lời nhanh 3 câu: học gì, học bao lâu, đang ở mức nào.`
+- docs-data-assets:42: `### 3.2 Giữ trục tiến bộ giáo dục, không chia tùy tiện`
+- docs-data-assets:43: `- Trục Abeka: grade progression (K4 -> G12), phù hợp logic readiness học thuật tăng dần.`
+- docs-data-assets:44: `- Trục Little Fox EN/CN: level progression, phù hợp logic phát triển năng lực ngôn ngữ theo độ khó.`
+- docs-data-assets:45: `- Không phá cấu trúc nguồn: split là tái đóng gói phạm vi học, không đảo curriculum order.`
+- docs-data-assets:47: `### 3.3 Chuyển từ "khóa dài" sang "mốc ngắn đo được"`
+- docs-data-assets:48: `- Framework phase ('foundation/core/mastery') cho từng scope giữ được mục tiêu dài hạn.`
+- docs-data-assets:49: `- Pilot SKU 4-8 tuần tạo kết quả sớm, dễ quan sát tiến bộ tuần và giảm drop-off đầu kỳ.`
+- docs-data-assets:51: `### 3.4 Vận hành an toàn`
+- docs-data-assets:52: `- Giữ song song root + split để không đứt compatibility và không làm gián đoạn funnel cũ.`
+- docs-data-assets:53: `- Storefront đang map đúng dữ liệu split ('PASS') nên scale không cần đổi kiến trúc lớn.`
+- docs-data-assets:55: `## 4) Ý nghĩa giáo dục theo từng track`
+- docs-data-assets:58: `- Ý nghĩa: xây nền đọc hiểu/từ vựng/tư duy học thuật theo cấp lớp.`
+- docs-data-assets:59: `- Lợi ích giáo dục: tránh học vượt hoặc học hụt so với mức sẵn sàng của trẻ.`
+- docs-data-assets:60: `- Ý nghĩa cho phụ huynh: theo dõi tiến độ rất rõ theo grade, dễ set mục tiêu tuần.`
+- docs-data-assets:63: `- Ý nghĩa: phát triển năng lực nghe hiểu và phản xạ tiếng Anh qua chuỗi truyện tăng dần.`
+- docs-data-assets:64: `- Lợi ích giáo dục: học đều bằng unit ngắn, dễ duy trì thói quen dài hạn.`
+- docs-data-assets:65: `- Ý nghĩa cho phụ huynh: thấy rõ level hiện tại, điểm chuyển level, số tập còn lại.`
+- docs-data-assets:68: `- Ý nghĩa: lộ trình nhập môn tiếng Trung có kiểm soát nhịp độ.`
+- docs-data-assets:69: `- Lợi ích giáo dục: giảm quá tải đầu vào, giữ nhịp lặp đều cho trẻ mới bắt đầu.`
+- docs-data-assets:70: `- Ý nghĩa cho phụ huynh: minh bạch trạng thái học theo level và milestone ngắn.`
+- docs-data-assets:72: `## 5) Bằng chứng kỹ thuật và vận hành`
+- docs-data-assets:74: `| Claim | Evidence | Kết luận |`
+- docs-data-assets:76: `| Split đang sync đúng storefront | 'course-storefront-sync-report.md' => PASS 3/3 | Đạt |`
+- docs-data-assets:77: `| Pilot split không sai lệch lesson mapping/order | 'pilot-db-integrity.json' => issues=0 | Đạt |`
+- docs-data-assets:78: `| Pilot scope đủ lớn để test | 'course-baseline-metrics.json' => coverage ~21-23% lessons/episodes | Đạt cho pilot |`
+- docs-data-assets:79: `| Early checkout funnel có tín hiệu | 'courses-ab-cvr-report.md' => 8 start, 6 success (75%) | Có tín hiệu, mẫu nhỏ |`
+- docs-data-assets:80: `| Tracking variant cho A/B chưa usable | 'courses-ab-cvr-report.md' => variant=unknown | Cần fix ngay |`
+- docs-data-assets:82: `## 6) Rủi ro hiện tại`
+- docs-data-assets:83: `- Rủi ro đo lường: A/B variant chưa capture đúng -> khó kết luận copy nào tốt.`
+- docs-data-assets:84: `- Rủi ro vận hành catalog: song song root + split có thể gây nhiễu nếu governance title/price không chặt.`
+- docs-data-assets:85: `- Rủi ro học thuật khi scale: nếu publish ồ ạt SKU ngắn mà không thêm checkpoint/mastery gate, có thể tăng completion ngắn hạn nhưng giảm retention học thật.`
+- docs-data-assets:87: `## 7) Quyết định cần cấp trên duyệt`
+- docs-data-assets:88: `1. Giữ mô hình dual-catalog (root + split) thêm 1-2 chu kỳ hay chuyển hẳn split-only ở storefront.`
+- docs-data-assets:89: `2. Go-live 12 pilot SKU theo phase hay tiếp tục để draft thêm 1 vòng QA giáo dục.`
+- docs-data-assets:90: `3. Ưu tiên fix tracking ('ab_courses_v') trong sprint gần nhất trước khi chạy A/B copy mới.`
+- docs-data-assets:91: `4. Duyệt ngưỡng scale cho pilot (ví dụ completion, conversion, week-2 retention) để tránh scale cảm tính.`
+- docs-data-assets:93: `## 8) Kế hoạch đề xuất 30/60/90 ngày`
+- docs-data-assets:94: `- 30 ngày:`
+- docs-data-assets:96: `- Publish pilot có chọn lọc (nhóm demand cao).`
+- docs-data-assets:97: `- Đặt dashboard tuần cho completion + checkout + return learning.`
+- docs-data-assets:98: `- 60 ngày:`
+- docs-data-assets:99: `- Review hiệu quả theo track (Abeka / LFEN / LFCN).`
+- docs-data-assets:100: `- Chuẩn hóa rubric checkpoint theo phase foundation/core/mastery.`
+- docs-data-assets:101: `- 90 ngày:`
+- docs-data-assets:102: `- Quyết định catalog strategy dài hạn (dual vs split-only).`
+- docs-data-assets:103: `- Nhân rộng SKU nếu đạt threshold đã duyệt.`
+- docs-data-assets:105: `## 9) File evidence đã dùng`
+- docs-data-assets:117: `- Cấp trên muốn chốt luôn split-only catalog ngoài storefront, hay giữ dual thêm 1 quý để giảm migration risk?`
+- docs-data-assets:118: `- Có cần mở pilot publish cho LFEN L2 và LFCN L1 cùng lúc, hay chạy tuần tự để dễ đọc hiệu ứng?`
+- docs-data-assets:119: `- Mốc ưu tiên của ban điều hành là conversion ngắn hạn hay retention học tập sau tuần 4?`
+
+### docs/handover/packages/2026-03-18-course-split-executive-package/02-assessment/agent-team-snapshot.md
+
+- docs-data-assets:4: `Scope: Recheck khóa học đã chia + chuẩn bị handover cấp cao`
+- docs-data-assets:24: `- Khi nào chuyển split-only storefront strategy?`
+- docs-data-assets:25: `- Pilot publish cadence muốn tuần tự hay đồng thời nhiều track?`
+
+### docs/handover/packages/2026-03-18-course-split-executive-package/02-assessment/curriculum-split-validation.md
+
+- docs-data-assets:3: `Scope: kiểm tra thực trạng course split mức triển khai sản phẩm, đối chiếu bundle/canonical split/pilot SKU.`
+- docs-data-assets:6: `- Hiện tại hệ thống đang chạy mô hình 2 lớp: 'bundle lớn' (3 nhóm) + 'split nhỏ' (grade/level + pilot SKU theo tuần).`
+- docs-data-assets:7: `- Lớp phân loại kỹ thuật đã ổn định: storefront sync PASS 3/3 bundle, split integrity PASS cho cả full decomposition (28 scopes) và pilot decomposition (6 scopes).`
+- docs-data-assets:8: `- Lớp ý nghĩa giáo dục đã có khung tốt (foundation/core/mastery + nhịp tuần + tên hiển thị theo outcome), nhưng còn phụ thuộc nhiều vào heuristic cố định và rule đặt tên slug.`
+- docs-data-assets:9: `- Cần bàn giao rõ cho cấp quản lý: đây là kiến trúc "an toàn vận hành" đã chạy được, chưa phải kiến trúc "tối ưu sư phạm" cuối cùng.`
+- docs-data-assets:11: `## 1) Hiện đang chia theo những trục nào?`
+- docs-data-assets:13: `### Trục A - Danh mục sản phẩm cấp cao (bundle)`
+- docs-data-assets:14: `- 3 bundle chính: 'abeka', 'little-fox-en', 'little-fox-cn'.`
+- docs-data-assets:15: `- Mỗi bundle có 'entryCourseSlug', 'courseSlugRules', 'canonicalSplitCourseSlugPrefixes' để map nội dung con.`
+- docs-data-assets:16: `- Căn cứ: 'src/modules/courses/course-bundles.ts:33', 'src/modules/courses/course-bundles.ts:49', 'src/modules/courses/course-bundles.ts:66', 'src/modules/courses/course-bundles.ts:56', 'src/modules/courses/course-bundles.ts:73'.`
+- docs-data-assets:18: `### Trục B - Canonical split vs legacy monolith`
+- docs-data-assets:19: `- Engine ưu tiên split-course canonical (prefix match). Nếu không có thì fallback non-legacy, cuối cùng mới dùng legacy monolith.`
+- docs-data-assets:20: `- Căn cứ: 'src/modules/courses/course-bundle-service.ts:146', 'src/modules/courses/course-bundle-service.ts:151', 'src/modules/courses/course-bundle-service.ts:163', 'src/modules/courses/course-bundle-service.ts:194'.`
+- docs-data-assets:22: `### Trục C - Trục học tập trong bootstrap (academic progression)`
+- docs-data-assets:23: `- Pacing theo cấp độ: Abeka K4/K5 4 bài/tuần, G1+ 5 bài/tuần; LittleFox L1-2 5 tập/tuần, L3-5 4, L6+ 3.`
+- docs-data-assets:24: `- Phase logic full catalog đang dùng tỷ lệ cố định 30% foundation, 50% core, 20% mastery.`
+- docs-data-assets:25: `- Căn cứ: 'docs/api/program-bootstrap/three-courses-program-summary.md:14', 'docs/api/program-bootstrap/three-courses-program-summary.md:15', 'docs/api/program-bootstrap/three-courses-program-summary.md:16', 'scripts/bootstrap-three-courses-program.mjs:34', 'scripts/bootstrap-three-courses-program.mjs:35'.`
+- docs-data-assets:27: `### Trục D - Pilot micro-SKU theo thời lượng và outcome`
+- docs-data-assets:28: `- Pilot 12 SKU (3 grade Abeka + 2 level LittleFox EN + 1 level LittleFox CN, mỗi scope tách starter/builder hoặc intro/foundation).`
+- docs-data-assets:29: `- Tách theo khoảng bài rõ ràng ('from/to') và pace theo tuần, không overlap/out-of-range.`
+- docs-data-assets:30: `- Căn cứ: 'src/modules/courses/pilot-sku-catalog.ts:9', 'src/modules/courses/pilot-sku-catalog.ts:10', 'src/modules/courses/pilot-sku-catalog.ts:34', 'src/modules/courses/pilot-sku-catalog.ts:39', 'plans/2026-03-17-education-agent-team/reports/split-integrity-summary.md:6', 'plans/2026-03-17-education-agent-team/reports/split-integrity-summary.md:12'.`
+- docs-data-assets:32: `### Trục E - Trục truyền thông phụ huynh (UX meaning layer)`
+- docs-data-assets:33: `- Bundle content đã có 'parentProblem', 'promise', 'parentVisibleValue', 'courseUnitLabel'.`
+- docs-data-assets:34: `- Pilot naming map giữ nguyên dữ liệu học ('scopeId/from/to') và chỉ đổi lớp hiển thị ('publicTitle/publicShortDescription').`
+- docs-data-assets:35: `- Căn cứ: 'src/modules/courses/course-storefront-content.ts:16', 'src/modules/courses/course-storefront-content.ts:18', 'src/modules/courses/course-storefront-content.ts:26', 'src/modules/courses/course-storefront-content.ts:31', 'plans/2026-03-17-education-agent-team/reports/pilot-public-naming-map.json:5', 'plans/2026-03-17-education-agent-team/reports/pilot-public-naming-map.json:12'.`
+- docs-data-assets:37: `## 2) Điểm mạnh / điểm yếu cho vận hành + UX phụ huynh`
+- docs-data-assets:39: `### Điểm mạnh`
+- docs-data-assets:40: `- Rule map bundle rõ, deterministic, hỗ trợ đồng thời split mới và legacy cũ.`
+- docs-data-assets:41: `- Storefront đã sync pass 3/3 bundle với tổng course/lesson đúng (Abeka 14/2380, LF EN 9/8718, LF CN 5/1983).`
+- docs-data-assets:42: `- Integrity automation đã chứng minh không hở/đè range trong decomposition và pilot.`
+- docs-data-assets:43: `- Có lớp ngôn ngữ phụ huynh (outcome-based copy) giúp giảm nhiễu kỹ thuật từ slug nội bộ.`
+- docs-data-assets:45: `Căn cứ: 'plans/2026-03-17-education-agent-team/reports/course-storefront-sync-report.md:6', 'plans/2026-03-17-education-agent-team/reports/course-storefront-sync-report.md:13', 'plans/2026-03-17-education-agent-team/reports/course-storefront-sync-report.md:14', 'plans/2026-03-17-education-agent-team/reports/course-storefront-sync-report.md:15', 'plans/2026-03-17-education-agent-team/reports/split-integrity-summary.md:9', 'plans/2026-03-17-education-agent-team/reports/split-integrity-summary.md:1`
+- docs-data-assets:47: `### Điểm yếu`
+- docs-data-assets:48: `- Kiến trúc split đang phụ thuộc mạnh vào convention đặt slug/prefix. Sai naming có thể làm map sai bundle.`
+- docs-data-assets:49: `- Phase foundation/core/mastery đang là heuristic tỷ lệ cứng (30/50/20), chưa dựa trực tiếp vào mastery signal theo kỹ năng.`
+- docs-data-assets:50: `- Pilot mới phủ một phần catalog; UX hiện tại có nguy cơ song song hai ngôn ngữ định vị (catalog full-source vs micro-outcome) nếu không thống nhất tầng hiển thị.`
+- docs-data-assets:51: `- Giá hiển thị có thể lệch kỳ vọng nếu root-course price khác default bundle config.`
+- docs-data-assets:53: `Căn cứ: 'src/modules/courses/course-bundle-service.ts:146', 'scripts/bootstrap-three-courses-program.mjs:34', 'scripts/bootstrap-three-courses-program.mjs:35', 'src/modules/courses/course-bundles.ts:40', 'src/modules/courses/course-bundles.ts:57', 'src/modules/courses/course-bundles.ts:74', 'src/modules/courses/course-bundle-service.ts:133'.`
+- docs-data-assets:55: `## 3) Bất nhất cần nêu trong tài liệu bàn giao`
+- docs-data-assets:57: `1. **Định vị giá**`
+- docs-data-assets:58: `- Config bundle đặt mặc định 500,000 VND, nhưng storefront sync report đang lấy expected price từ root courses và hiện thể hiện 0.`
+- docs-data-assets:59: `- Cần ghi rõ chính sách: nguồn giá chuẩn là đâu (bundle config hay root course DB).`
+- docs-data-assets:60: `- Căn cứ: 'src/modules/courses/course-bundles.ts:40', 'src/modules/courses/course-bundles.ts:57', 'src/modules/courses/course-bundles.ts:74', 'plans/2026-03-17-education-agent-team/reports/course-storefront-sync-report.json:21', 'plans/2026-03-17-education-agent-team/reports/course-storefront-sync-report.json:44', 'plans/2026-03-17-education-agent-team/reports/course-storefront-sync-report.json:67', 'src/modules/courses/course-bundle-service.ts:133'.`
+- docs-data-assets:62: `2. **Định vị sản phẩm**`
+- docs-data-assets:63: `- Báo cáo decomposition đề xuất chiến lược micro-course rộng (tripwire/core/premium/subscription), nhưng triển khai sản phẩm hiện tại mới thể hiện rõ pilot SKU + 3 bundle.`
+- docs-data-assets:64: `- Cần chốt thông điệp cho cấp cao: đang ở giai đoạn pilot/productization, chưa rollout toàn catalog theo outcome.`
+- docs-data-assets:65: `- Căn cứ: 'plans/2026-03-17-education-agent-team/reports/three-course-decomposition-and-product-matrix.md:81', 'plans/2026-03-17-education-agent-team/reports/three-course-decomposition-and-product-matrix.md:82', 'plans/2026-03-17-education-agent-team/reports/three-course-decomposition-and-product-matrix.md:83', 'plans/2026-03-17-education-agent-team/reports/three-course-decomposition-and-product-matrix.md:84', 'src/modules/courses/pilot-sku-catalog.ts:9'.`
+- docs-data-assets:67: `3. **Ngôn ngữ hiển thị**`
+- docs-data-assets:68: `- Có chênh giữa naming kỹ thuật/source-centric (Abeka, Little Fox EN/CN) và naming outcome-centric cho phụ huynh ở pilot.`
+- docs-data-assets:69: `- Cần một policy UX duy nhất: mọi mặt ngoài theo outcome, mặt trong giữ SKU/slug kỹ thuật.`
+- docs-data-assets:70: `- Căn cứ: 'plans/2026-03-17-education-agent-team/reports/pilot-public-naming-map.json:12', 'plans/2026-03-17-education-agent-team/reports/pilot-public-naming-map.json:27', 'plans/2026-03-17-education-agent-team/reports/pilot-public-naming-map.json:123'.`
+- docs-data-assets:72: `## Kết luận bàn giao (đề xuất cho cấp cao)`
+- docs-data-assets:73: `- Quyết định chia hiện tại là hợp lý ở pha vận hành: an toàn dữ liệu, đo được, mở rộng được.`
+- docs-data-assets:74: `- Ý nghĩa giáo dục hiện tại: giảm tải nhận thức cho phụ huynh, tạo nhịp học tuần rõ, giữ được lộ trình dài hạn theo cấp độ.`
+- docs-data-assets:75: `- Điểm cần phê duyệt tiếp theo ở cấp cao:`
+- docs-data-assets:76: `- chuẩn hóa policy giá,`
+- docs-data-assets:77: `- chuẩn hóa policy naming theo outcome,`
+- docs-data-assets:78: `- roadmap chuyển phase heuristic sang mastery-based sequencing.`
+- docs-data-assets:81: `1. Nguồn giá chính thức cho storefront production là bundle config hay root course DB?`
+- docs-data-assets:82: `2. Trong 1-2 release tới, mặt ngoài sẽ ưu tiên hiển thị bundle full-source hay pilot micro-course theo outcome?`
+- docs-data-assets:83: `3. Khi nào chuyển phase split từ tỷ lệ cứng (30/50/20) sang rule dựa trên dữ liệu học thật (completion/mastery/retention)?`
+
+### docs/handover/packages/2026-03-18-course-split-executive-package/02-assessment/education-rationale-audit.md
+
+- docs-data-assets:9: `- Cách chia khóa hiện tại đang đi theo 4 tầng rõ ràng: 'nguồn học liệu -> grade/level -> phase học -> pilot SKU'.`
+- docs-data-assets:10: `- Về sư phạm, cấu trúc này hợp lý vì giảm quá tải nhận thức, giữ lộ trình tăng dần độ khó, và tạo checkpoint để củng cố nhớ dài hạn.`
+- docs-data-assets:11: `- Về phía phụ huynh, cấu trúc hiện tại cho điểm bắt đầu rõ hơn, dễ theo dõi tiến độ tuần, và dễ quyết định mua thử trước khi mở rộng.`
+- docs-data-assets:12: `- Rủi ro lớn nhất hiện tại không nằm ở logic chia, mà nằm ở thiếu dữ liệu outcome thực tế của pilot (funnel/learning events đang 0 trong cửa sổ gần nhất).`
+- docs-data-assets:14: `## Findings (có dẫn file nội bộ)`
+- docs-data-assets:16: `### 1) Split ở mức sản phẩm đã nhất quán, đang publish theo 3 bundle lớn`
+- docs-data-assets:18: `- 'src/modules/courses/course-bundles.ts:1' định nghĩa 3 bundle: 'abeka', 'little-fox-en', 'little-fox-cn'.`
+- docs-data-assets:19: `- 'src/modules/courses/course-bundles.ts:34'-'37', '50'-'54', '67'-'71' cho rule mapping slug theo exact/prefix để gom đúng course con vào đúng bundle.`
+- docs-data-assets:20: `- 'plans/2026-03-17-education-agent-team/reports/course-storefront-sync-report.md:6'-'7' xác nhận '3/3 bundle PASS'.`
+- docs-data-assets:23: `- Split theo domain ngôn ngữ/nội dung lớn giúp phụ huynh ra quyết định nhanh theo mục tiêu học chính của con, thay vì bị nhiễu bởi catalog quá sâu.`
+- docs-data-assets:25: `### 2) Quy mô nội dung lớn, cần chia theo cấp để kiểm soát cognitive load`
+- docs-data-assets:33: `- Với quy mô như trên, nếu không chia tầng sẽ gây overload cho cả phụ huynh (khó chọn) và trẻ (khó duy trì nhịp học).`
+- docs-data-assets:35: `### 3) Trục chia grade/level + nhịp tuần có chủ đích sư phạm`
+- docs-data-assets:37: `- 'docs/api/program-bootstrap/three-courses-program-summary.md:13'-'24' nêu rollout theo phase pilot -> scale -> full.`
+- docs-data-assets:39: `- Abeka: kindergarten 4 lesson/tuần; g1+ 5 lesson/tuần.`
+- docs-data-assets:40: `- Little Fox: level 1-2 = 5 episode/tuần; level 3-5 = 4; level 6+ = 3.`
+- docs-data-assets:43: `- Nhịp tuần giảm dần theo độ phức tạp nội dung và độ dài chương trình, giúp tăng khả năng hoàn thành thay vì ép tải quá sớm.`
+- docs-data-assets:45: `### 4) Trục chia phase (foundation/core/mastery) đúng logic học tăng dần`
+- docs-data-assets:47: `- Abeka sample trong 'three-courses-program.json': mỗi grade 170 bài, tách '51/85/34' (foundation/core/mastery).`
+- docs-data-assets:48: `- Little Fox EN/CN cũng tách cùng pattern tỷ lệ ~'30%/50%/20%' theo level.`
+- docs-data-assets:51: `- 'Foundation' tạo an toàn tâm lý và nền kỹ năng.`
+- docs-data-assets:52: `- 'Core' là vùng luyện tập khối lượng lớn để hình thành độ trôi chảy.`
+- docs-data-assets:53: `- 'Mastery' khóa chuẩn đầu ra trước khi lên level/grade tiếp theo.`
+- docs-data-assets:55: `### 5) Pilot SKU đang bám đúng mục tiêu “học ngắn hạn có thể thấy tiến bộ”`
+- docs-data-assets:57: `- 'src/modules/courses/pilot-sku-catalog.ts:9'-'52' có 12 pilot SKU:`
+- docs-data-assets:58: `- Abeka: K4/K5/G1, mỗi grade 2 SKU.`
+- docs-data-assets:59: `- LFEN: L1/L2, mỗi level 2 SKU.`
+- docs-data-assets:62: `- Pilot coverage khoảng 21%-23% lesson/episode (đủ rộng để test, chưa quá rộng để vận hành khó).`
+- docs-data-assets:65: `- SKU ngắn (4-8 tuần) phù hợp phụ huynh mới bắt đầu: giảm cam kết ban đầu nhưng vẫn đủ dài để quan sát thay đổi hành vi học.`
+- docs-data-assets:67: `### 6) Parent-facing narrative đã map đúng intent sư phạm`
+- docs-data-assets:69: `- 'src/modules/courses/course-storefront-content.ts:13'-'71' mô tả rõ:`
+- docs-data-assets:70: `- pain point của phụ huynh,`
+- docs-data-assets:72: `- outcomes và 'parentVisibleValue'.`
+- docs-data-assets:75: `- Nội dung storefront không chỉ “bán khóa”, mà chuyển ngôn ngữ kỹ thuật sang ngôn ngữ tiến bộ quan sát được bởi phụ huynh.`
+- docs-data-assets:77: `### 7) Cơ sở learning science nội bộ đã có, nhưng chưa đóng vòng bằng dữ liệu pilot`
+- docs-data-assets:79: `- 'plans/2026-03-17-education-agent-team/reports/learning-science-and-market-evidence.md' nêu các trụ cột: active learning, spacing/retrieval, tutoring có mục tiêu.`
+- docs-data-assets:80: `- 'plans/2026-03-17-education-agent-team/reports/pilot-funnel-report.md' hiện đang 0 checkout/purchase/active learner trong cửa sổ 14 ngày.`
+- docs-data-assets:83: `- Rationale sư phạm tốt ở tầng thiết kế, nhưng chưa đủ bằng chứng outcome ở tầng thực thi để kết luận hiệu quả thương mại-học tập.`
+- docs-data-assets:85: `## Recommendation cho tài liệu bàn giao cấp cao`
+- docs-data-assets:86: `1. Chốt thông điệp điều hành:`
+- docs-data-assets:87: `- “Chia khóa theo 4 tầng để kiểm soát độ khó, tăng completion, và giúp phụ huynh ra quyết định nhanh.”`
+- docs-data-assets:88: `2. Đưa một bảng “Decision Rationale Matrix” vào tài liệu bàn giao:`
+- docs-data-assets:89: `- Cột 'Trục chia' | 'Vấn đề giải quyết' | 'Ý nghĩa giáo dục' | 'KPI xác thực'.`
+- docs-data-assets:90: `3. Giữ nguyên kiến trúc split hiện tại ở pilot:`
+- docs-data-assets:91: `- Không đổi slug kỹ thuật; chỉ tối ưu cách trình bày và đo lường.`
+- docs-data-assets:92: `4. Bổ sung 3 guardrail bắt buộc trước scale:`
+- docs-data-assets:93: `- placement/entry diagnostic rõ cho điểm bắt đầu,`
+- docs-data-assets:94: `- mastery gate trước khi lên cấp,`
+- docs-data-assets:95: `- weekly parent-facing progress signal (không chỉ completion thô).`
+- docs-data-assets:96: `5. Điều kiện chuyển từ pilot sang scale:`
+- docs-data-assets:97: `- Có dữ liệu thật cho funnel và learning outcomes theo từng SKU (không dùng aggregate chung toàn catalog).`
+- docs-data-assets:100: `1. Placement diagnostic hiện đã đủ mạnh để xếp đúng điểm vào grade/level cho trẻ mới chưa?`
+- docs-data-assets:101: `2. Mastery gate đang đo theo completion hay theo chất lượng hoàn thành (accuracy/retention)?`
+- docs-data-assets:102: `3. Bộ KPI “học thật” nào sẽ là chuẩn bắt buộc trước khi scale toàn bộ g2+ và level 3+?`
+- docs-data-assets:103: `4. Có cần thêm nhánh “fast-track/remedial” cho trẻ lệch nhịp so với baseline của grade/level hiện tại không?`
+
+### docs/handover/packages/2026-03-18-course-split-executive-package/02-assessment/executive-structure-draft.md
+
+- docs-data-assets:9: `- Chốt lý do vì sao hệ thống đang chia khóa học theo 3 lớp: bundle thương mại, lộ trình học thuật, SKU pilot.`
+- docs-data-assets:10: `- Tạo format chuẩn để báo cáo nhanh: business intent + educational intent + risk + decision asks.`
+- docs-data-assets:11: `- Tránh tranh luận cảm tính; mọi luận điểm phải map về dữ liệu repo hiện tại.`
+- docs-data-assets:16: `- 3 bundle chính:`
+- docs-data-assets:20: `- Giá niêm yết hiện tại theo bundle: '500,000 VND', thời hạn '365 days'.`
+- docs-data-assets:21: `- Nguồn: 'src/modules/courses/course-bundles.ts'.`
+- docs-data-assets:27: `- Có phase decomposition (foundation/core/mastery) + weekly pacing assumptions.`
+- docs-data-assets:28: `- Nguồn: 'docs/api/program-bootstrap/three-courses-program.json', 'docs/api/program-bootstrap/three-courses-program-summary.md'.`
+- docs-data-assets:31: `- Pilot micro-course hiện có: 12 SKU (Abeka K4/K5/G1, LittleFox EN L1/L2, LittleFox CN L1).`
+- docs-data-assets:32: `- Nguồn: 'src/modules/courses/pilot-sku-catalog.ts'.`
+- docs-data-assets:35: `- Giảm ma sát mua hàng: phụ huynh chọn theo nhu cầu rõ (EN/CN/Academic), không bị ngợp bởi catalog thô.`
+- docs-data-assets:36: `- Tăng conversion theo tầng phễu: bundle lớn cho trust, SKU nhỏ cho thử nhanh.`
+- docs-data-assets:37: `- Dễ pricing/packaging: giữ 3 "product lines" ổn định, linh hoạt test micro-offer ở lớp SKU.`
+- docs-data-assets:38: `- Giảm rủi ro vận hành: storefront chỉ quản 3 nhóm chính; curriculum chi tiết nằm backend.`
+- docs-data-assets:41: `- Học theo năng lực hiện tại: grade/level split giúp đặt đúng điểm bắt đầu.`
+- docs-data-assets:42: `- Học bền: phase 'foundation -> core -> mastery' tạo tiến trình từ làm quen đến củng cố.`
+- docs-data-assets:43: `- Học đều theo tuần: pacing assumptions tránh dồn tải, hỗ trợ habit learning.`
+- docs-data-assets:44: `- Dễ theo dõi với phụ huynh: bundle nói ngôn ngữ nhu cầu, lộ trình giữ logic học thuật.`
+- docs-data-assets:50: `| Duy trì 3 bundle gốc | Giữ storefront đơn giản, dễ bán | Nhóm mục tiêu học rõ ràng | 'src/modules/courses/course-bundles.ts' | Catalog CTR, Checkout start rate |`
+- docs-data-assets:51: `| Dữ liệu học tách grade/level | Scale nội dung mà không vỡ UX | Placement chính xác, tránh lệch trình | 'docs/api/program-bootstrap/three-courses-program.json' | Lesson completion rate, Week-4 retention |`
+- docs-data-assets:52: `| Giữ phase foundation/core/mastery | Dễ đóng gói thành offer theo giai đoạn | Đảm bảo học từ nền tới thành thạo | 'three-courses-program.json' | Progression rate phase-to-phase |`
+- docs-data-assets:53: `| Pilot micro-SKU 12 gói | Test willingness-to-pay nhanh, CAC thấp hơn | Time-to-value ngắn, phụ huynh thấy tiến bộ sớm | 'src/modules/courses/pilot-sku-catalog.ts' | Tripwire->Core CVR, Refund rate |`
+- docs-data-assets:54: `| Tách catalog view và canonical split | Tránh technical slug lộ ra UI | Phụ huynh nhìn outcome, backend giữ chuẩn dữ liệu | 'src/modules/courses/course-bundle-service.ts', 'src/modules/courses/course-storefront-content.ts' | Detail page dwell time, Purchase CVR |`
+- docs-data-assets:60: `| SKU proliferation quá nhanh | Vận hành phức tạp, khó QA | Medium | Giới hạn wave rollout theo gate KPI | Product + Learning Ops |`
+- docs-data-assets:61: `| Thông điệp marketing lệch learning path | Kỳ vọng sai, churn sớm | Medium | Copy governance: promise phải map phase/scope thật | Marketing + Curriculum |`
+- docs-data-assets:62: `| Parent không hiểu khác biệt bundle vs SKU | Drop ở detail/checkout | High | Chuẩn hóa card: "cho ai, bao lâu, đo gì" | Growth + UX |`
+- docs-data-assets:63: `| Split logic không đồng bộ catalog/data | Sai báo cáo, sai entitlement | Low-Med | Sync checks trước release + audit định kỳ | Engineering |`
+- docs-data-assets:64: `| Thiếu bằng chứng outcome thực nghiệm | Khó scale ngân sách | Medium | Áp KPI theo cohort + A/B message | Data + Product |`
+- docs-data-assets:69: `- Approve giữ nguyên 3 bundle gốc làm "stable commercial frame" đến hết pilot wave.`
+- docs-data-assets:70: `- Guardrail: không thêm bundle mới trước khi đủ dữ liệu 2 chu kỳ cohort.`
+- docs-data-assets:73: `- Approve scale từ 12 SKU lên wave-2 chỉ khi đạt đồng thời:`
+- docs-data-assets:79: `- Approve nguyên tắc: frontend dùng outcome-language; backend giữ technical slug và canonical mapping.`
+- docs-data-assets:80: `- Cấm đổi tên public nếu chưa có tracking mapping update.`
+- docs-data-assets:83: `- Approve nhịp review 2 tuần/lần với bảng điều khiển chung: conversion, retention, learning outcomes.`
+- docs-data-assets:86: `- "Chúng ta không chia khóa để bán nhiều SKU hơn; chúng ta chia để phụ huynh chọn đúng điểm bắt đầu, thấy tiến bộ sớm, và mở rộng lộ trình an toàn."`
+- docs-data-assets:87: `- "Lớp bundle giữ đơn giản cho quyết định mua; lớp curriculum giữ đúng logic học tập; lớp SKU dùng để thử nhanh và tối ưu unit economics."`
+- docs-data-assets:88: `- "Mọi bước scale gắn gate KPI; không scale theo cảm giác."`
+- docs-data-assets:101: `- Có cần tách riêng bundle "preschool" và "primary" ở mặt storefront, hay giữ 3 line hiện tại đến hết Q2/2026?`
+- docs-data-assets:102: `- Ngưỡng KPI scale có cần khác nhau theo từng line (Abeka vs LFEN vs LFCN) thay vì 1 bộ ngưỡng chung?`
+- docs-data-assets:103: `- Ownership cuối cùng cho governance copy (Product hay Marketing) sẽ chốt ở cấp nào?`
+
+### docs/handover/packages/2026-03-19-parent-course-clarity-package/00-index.md
+
+- docs-data-assets:4: `Mục tiêu: làm rõ giao diện khóa học để phụ huynh hiểu nhanh, phân biệt rõ từng khóa, chọn đúng và mua tự tin.`
+- docs-data-assets:6: `## Cấu trúc`
+- docs-data-assets:12: `## Thứ tự đọc nhanh (10 phút)`
+- docs-data-assets:22: `- Sprint tới ưu tiên KPI nào: 'checkout start', 'purchase CVR', hay 'giảm mua sai level'?`
+- docs-data-assets:23: `- Có triển khai quiz/placement nhẹ ngay sprint này không, hay để phase 2?`
+- docs-data-assets:24: `- Có policy rõ cho trường hợp phụ huynh mua nhầm level chưa?`
+
+### docs/handover/packages/2026-03-19-parent-course-clarity-package/01-executive/parent-course-clarity-executive-summary.md
+
+- docs-data-assets:6: `## Bài toán`
+- docs-data-assets:8: `- Phụ huynh đang thấy khóa học “na ná nhau”, thiếu khung để trả lời nhanh:`
+- docs-data-assets:9: `- Khóa này là gì?`
+- docs-data-assets:10: `- Khác khóa kia ở đâu?`
+- docs-data-assets:11: `- Dành cho ai?`
+- docs-data-assets:12: `- Khi nào nên mua?`
+- docs-data-assets:14: `## Kết luận chính`
+- docs-data-assets:16: `- Friction hiện tại nằm ở 'decision scaffolding', không phải thiếu nội dung.`
+- docs-data-assets:17: `- Trang '/courses' đang mạnh về số liệu tổng, yếu về so sánh và định hướng chọn khóa.`
+- docs-data-assets:18: `- Trang '/courses/[slug]' đã có CTA mua, nhưng thiếu khối 'phù hợp/không phù hợp' và 'khác khóa liền kề'.`
+- docs-data-assets:19: `- Dữ liệu nội bộ đã có đủ nền để làm rõ hơn (parentProblem, outcomes, parentVisibleValue), nhưng chưa render hết trên UI.`
+- docs-data-assets:21: `## Khung phân biệt 3 khóa (để hiển thị rõ ngay trên UI)`
+- docs-data-assets:23: `| Khóa | Dành cho ai | Khác biệt chính | Trigger nên mua |`
+- docs-data-assets:25: `| Abeka | Phụ huynh muốn nền học thuật theo cấp lớp | Trục tiến bộ theo grade K4-G12 | Con cần lộ trình bài bản theo lớp, cần mốc theo tuần rõ |`
+- docs-data-assets:26: `| Little Fox EN | Phụ huynh muốn tăng nghe-đọc tiếng Anh qua truyện | Trục level 1-9, nhịp unit ngắn dễ duy trì | Con hợp học qua truyện, cần duy trì đều hàng ngày |`
+- docs-data-assets:27: `| Little Fox CN | Phụ huynh muốn nhập môn tiếng Trung có lộ trình | Trục level 1-5, ưu tiên giảm quá tải đầu vào | Con mới bắt đầu tiếng Trung, cần tiến dần từng bước |`
+- docs-data-assets:29: `## Quyết định đề xuất`
+- docs-data-assets:31: `1. Chuyển UI từ “catalog summary-first” sang “decision-first” ngay sprint tới.`
+- docs-data-assets:32: `2. Bắt buộc thêm 3 block P1:`
+- docs-data-assets:33: `- 'Khóa này dành cho ai / không dành cho ai'`
+- docs-data-assets:34: `- 'Khác gì khóa bên cạnh'`
+- docs-data-assets:35: `- 'Sau 4 tuần phụ huynh thấy gì'`
+- docs-data-assets:36: `3. Đổi CTA discovery từ “mua ngay” sang “xem có hợp con không” ở list và upper detail.`
+- docs-data-assets:37: `4. Fix tracking variant trước khi chạy A/B message mới.`
+- docs-data-assets:39: `## Scope triển khai nhanh (1 sprint)`
+- docs-data-assets:42: `- thêm compare strip 3 track`
+- docs-data-assets:43: `- thêm quick-fit filters (mục tiêu, mức hiện tại, thời gian/tuần)`
+- docs-data-assets:44: `- chuẩn hóa card copy theo template phân biệt`
+- docs-data-assets:46: `- thêm fit checklist (phù hợp/không phù hợp)`
+- docs-data-assets:47: `- thêm khối so sánh với khóa trước/sau`
+- docs-data-assets:48: `- thêm outcome timeline tuần 1-2 / tuần 3-4 / sau hoàn thành`
+- docs-data-assets:50: `## KPI đo sau rollout`
+- docs-data-assets:52: `- '% phụ huynh chọn đúng track trong <= 90 giây' (test task-based)`
+- docs-data-assets:55: `- '% case mua sai level' (hoặc yêu cầu đổi level sau mua)`
+- docs-data-assets:59: `- Triển khai quiz/placement nhẹ ngay sprint này hay để phase 2?`
+- docs-data-assets:60: `- KPI ưu tiên điều hành trong 2 tuần đầu là conversion hay giảm mua sai level?`
+- docs-data-assets:61: `- Chính sách xử lý mua nhầm level đã đủ rõ để hiển thị công khai chưa?`
+
+### docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/copywriting-parent-course-differentiation.md
+
+- docs-data-assets:12: `## 1) "Khóa nào cho con tôi?" decision matrix`
+- docs-data-assets:14: `### Quick decision (30 giây)`
+- docs-data-assets:15: `- Nếu mục tiêu chính là **nền học thuật theo lớp** (đọc hiểu, từ vựng, tư duy học bài bản) -> **Abeka**.`
+- docs-data-assets:16: `- Nếu mục tiêu chính là **nghe - đọc tiếng Anh qua truyện** -> **Little Fox EN**.`
+- docs-data-assets:17: `- Nếu mục tiêu chính là **nhập môn tiếng Trung có lộ trình** -> **Little Fox CN**.`
+- docs-data-assets:21: `| Tình huống phụ huynh | Dấu hiệu nhận biết | Khóa nên chọn trước | Vì sao chọn khóa này | Không nên chọn nếu... |`
+- docs-data-assets:23: `| Muốn con học đúng năng lực theo lớp, có lộ trình dài hơi | Ba mẹ hỏi: “Con đang học lớp nào, còn bao nhiêu bài, khi nào lên mức kế?” | **Abeka** | Trục tiến bộ theo **grade K4-G12** (14 course split), rõ mốc theo lớp, phù hợp theo dõi học thuật | Bạn chỉ cần luyện ngôn ngữ giao tiếp ngắn hạn, chưa ưu tiên nền học thuật theo lớp |`
+- docs-data-assets:24: `| Muốn con tăng nghe hiểu tiếng Anh, học đều mỗi ngày bằng bài ngắn | Con hợp học qua truyện/video, dễ chán khi bài quá dài | **Little Fox EN** | Trục tiến bộ theo **level 1-9** (9 course split), tổng **8,718 episodes**, học theo unit ngắn, giữ nhịp đều | Bạn đang tìm chương trình chính về tư duy học thuật theo lớp |`
+- docs-data-assets:25: `| Muốn con bắt đầu tiếng Trung từ mức cơ bản, tránh quá tải | Con mới làm quen tiếng Trung, ba mẹ cần lộ trình dễ theo dõi từng bước | **Little Fox CN** | Trục tiến bộ theo **level 1-5** (5 course split), tổng **1,983 episodes**, ưu tiên nhịp học ổn định cho người mới bắt đầu | Con đã ở mức tiếng Trung trung-cao và cần chương trình tăng tốc chuyên sâu |`
+- docs-data-assets:26: `| Chưa rõ nên bắt đầu từ đâu | Ba mẹ chưa có baseline rõ | Chọn track theo mục tiêu chính ở 3 dòng trên, rồi bắt đầu ở **mức đầu tiên** của track | Catalog split đang đi đúng hướng: enrollments split **153** vs root **7** -> phụ huynh đang dễ quyết định hơn khi có tách cấp | Không nên mua khóa quá rộng ngay từ đầu nếu chưa rõ mục tiêu 4-8 tuần đầu |`
+- docs-data-assets:28: `### Decision copy snippet (dùng ngay trên storefront)`
+- docs-data-assets:30: `**Headline:** Khóa nào cho con tôi? Chọn theo mục tiêu trước, không chọn theo cảm tính.`
+- docs-data-assets:31: `**Subheadline:** 3 track, 3 mục tiêu khác nhau: học thuật theo lớp (Abeka), nghe-đọc tiếng Anh (Little Fox EN), nhập môn tiếng Trung (Little Fox CN).`
+- docs-data-assets:39: `**Headline:** Học đúng lớp, tiến bộ có mốc rõ từng tuần.`
+- docs-data-assets:40: `**For whom:** Phụ huynh muốn xây nền đọc hiểu - từ vựng - tư duy học thuật theo cấp lớp, không muốn con học dàn trải.`
+- docs-data-assets:42: `- Bắt đầu đúng grade trong hệ **K4-G12**, theo dõi rõ đang học mức nào.`
+- docs-data-assets:43: `- Có checkpoint theo phase 'foundation/core/mastery', dễ review tiến độ thật.`
+- docs-data-assets:44: `- Thấy được “còn bao nhiêu bài để hoàn thành mốc hiện tại”, không mơ hồ về đích đến.`
+- docs-data-assets:46: `**Anti-fit:** Không phù hợp nếu mục tiêu chính hiện tại chỉ là luyện phản xạ nghe-nói ngôn ngữ ngắn hạn.`
+- docs-data-assets:47: `**CTA:** Xem lộ trình Abeka theo cấp lớp`
+- docs-data-assets:51: `**Headline:** Tăng nghe hiểu tiếng Anh bằng nhịp học ngắn, đều, dễ duy trì.`
+- docs-data-assets:52: `**For whom:** Phụ huynh muốn con học tiếng Anh qua truyện, cần lộ trình tăng độ khó rõ ràng thay vì học video rời rạc.`
+- docs-data-assets:54: `- Đi theo **level 1-9**, biết rõ level hiện tại và điểm chuyển level.`
+- docs-data-assets:55: `- Học qua hệ nội dung lớn (**8,718 episodes**) nhưng vẫn chia nhỏ theo mục tiêu tuần.`
+- docs-data-assets:56: `- Với pilot, có nhịp tham chiếu rõ: **5 episodes/tuần** để giữ thói quen học đều.`
+- docs-data-assets:58: `**Anti-fit:** Không phù hợp nếu ưu tiên số 1 là chương trình học thuật theo grade kiểu trường lớp.`
+- docs-data-assets:59: `**CTA:** Xem level Little Fox EN phù hợp cho con`
+- docs-data-assets:63: `**Headline:** Bắt đầu tiếng Trung đúng nhịp, không quá tải từ tuần đầu.`
+- docs-data-assets:64: `**For whom:** Phụ huynh có con mới làm quen tiếng Trung, cần lộ trình nhập môn có kiểm soát tốc độ học.`
+- docs-data-assets:66: `- Theo **level 1-5**, minh bạch tiến độ theo từng level.`
+- docs-data-assets:67: `- Học theo cụm ngắn để giữ nhịp ổn định, giảm bỏ dở giai đoạn đầu.`
+- docs-data-assets:68: `- Có chỉ số học cụ thể để ba mẹ theo dõi: số bài, thời lượng truy cập, trạng thái hoàn thành.`
+- docs-data-assets:70: `**Anti-fit:** Không phù hợp nếu con đã có nền tiếng Trung vững và cần chương trình luyện nâng cao chuyên sâu.`
+- docs-data-assets:71: `**CTA:** Chọn điểm bắt đầu Little Fox CN cho con`
+- docs-data-assets:80: `- Headline: Lộ trình học thuật theo lớp, rõ điểm bắt đầu và điểm lên cấp.`
+- docs-data-assets:81: `- Subheadline: Abeka được tách thành track theo grade (K4-G12) để ba mẹ chọn đúng mức sẵn sàng của con, theo dõi tiến bộ theo mốc ngắn thay vì “khóa dài mơ hồ”.`
+- docs-data-assets:82: `- Primary CTA: Chọn grade Abeka cho con`
+- docs-data-assets:83: `- Secondary CTA: Xem cách theo dõi checkpoint tuần`
+- docs-data-assets:86: `- Khác với track ngôn ngữ, Abeka đi theo logic **readiness học thuật theo lớp**.`
+- docs-data-assets:87: `- Không đảo curriculum: split là tái đóng gói phạm vi học, giữ thứ tự tiến bộ.`
+- docs-data-assets:88: `- Parent-facing rõ: đang học lớp nào, còn bao nhiêu bài, khi nào đủ điều kiện lên mức kế.`
+- docs-data-assets:91: `- Track Abeka trong hệ hiện tại: **14 course split**, tổng **2,380 lessons / 20,195 videos**.`
+- docs-data-assets:92: `- Pilot coverage đủ lớn để test thực tế: lessons coverage khoảng **21.43%** (metrics 2026-03-18).`
+- docs-data-assets:93: `- Hạ tầng storefront sync đã pass cho split catalog (PASS 3/3 bundle ở gói bàn giao).`
+- docs-data-assets:96: `- Objection: “Con tôi không có nhiều thời gian mỗi ngày.”`
+- docs-data-assets:97: `- Response: Lộ trình chia theo mốc ngắn và phase rõ; phụ huynh có thể đặt mục tiêu tuần thay vì ép lịch dày mỗi ngày.`
+- docs-data-assets:99: `- Objection: “Sợ học sai mức, quá khó hoặc quá dễ.”`
+- docs-data-assets:100: `- Response: Track thiết kế theo grade progression; điểm bắt đầu được chốt theo mức sẵn sàng hiện tại, không cần mua 1 khóa quá rộng ngay từ đầu.`
+- docs-data-assets:102: `- Objection: “Sợ mua xong không theo dõi được.”`
+- docs-data-assets:103: `- Response: Course split được thiết kế để phụ huynh nhìn rõ trạng thái hoàn thành theo mốc, không chỉ “đã mua/đang học”.`
+- docs-data-assets:106: `- Headline: Chốt đúng grade ngay từ đầu để con học vừa sức và đi xa hơn.`
+- docs-data-assets:107: `- CTA: Bắt đầu với Abeka phù hợp`
+- docs-data-assets:112: `- Headline: Con nghe hiểu tốt hơn khi học tiếng Anh theo level, không học rời rạc.`
+- docs-data-assets:113: `- Subheadline: Little Fox EN tách theo level 1-9 để phụ huynh biết chính xác con đang ở đâu, còn bao nhiêu tập và khi nào nên chuyển level.`
+- docs-data-assets:114: `- Primary CTA: Xem level EN nên bắt đầu`
+- docs-data-assets:115: `- Secondary CTA: Xem mục tiêu 5 episodes/tuần`
+- docs-data-assets:118: `- Tập trung năng lực **listening + reading fluency** qua chuỗi truyện tăng dần.`
+- docs-data-assets:119: `- Học theo unit ngắn, phù hợp duy trì thói quen hàng ngày.`
+- docs-data-assets:120: `- Decision-friendly cho phụ huynh: theo level thay vì một kho nội dung quá lớn khó định hướng.`
+- docs-data-assets:123: `- Quy mô nội dung EN: **8,718 episodes** toàn track.`
+- docs-data-assets:124: `- Split catalog đã có adoption thực tế (toàn hệ split 153 enrollments vs root 7).`
+- docs-data-assets:125: `- Pilot level có dữ liệu vận hành cụ thể: level 1 (**790 episodes**), level 2 (**1,238 episodes**), gợi ý nhịp **5 episodes/tuần**.`
+- docs-data-assets:128: `- Objection: “Kho tập nhiều quá, sợ con ngợp.”`
+- docs-data-assets:129: `- Response: Phụ huynh không cần “học hết kho”; chỉ cần đi đúng level hiện tại và bám mục tiêu tuần nhỏ.`
+- docs-data-assets:131: `- Objection: “Con học tiếng Anh rồi, có cần bắt đầu lại?”`
+- docs-data-assets:132: `- Response: Track theo level giúp bắt đầu đúng mức hiện tại; không cần quay về từ đầu nếu đã có nền.`
+- docs-data-assets:134: `- Objection: “Sợ học vài tuần rồi bỏ.”`
+- docs-data-assets:135: `- Response: Thiết kế unit ngắn + checkpoint theo phase giúp dễ duy trì hơn mô hình khóa dài một cục.`
+- docs-data-assets:138: `- Headline: Chọn đúng level ngay bây giờ, đỡ mất 4 tuần thử-sai.`
+- docs-data-assets:139: `- CTA: Chọn Little Fox EN cho con`
+- docs-data-assets:144: `- Headline: Nhập môn tiếng Trung theo lộ trình rõ, để con không bị quá tải.`
+- docs-data-assets:145: `- Subheadline: Little Fox CN tách level 1-5 cho trẻ mới bắt đầu, giúp ba mẹ theo dõi tiến độ từng bước bằng mốc học ngắn và dễ kiểm tra.`
+- docs-data-assets:146: `- Primary CTA: Chọn level CN phù hợp`
+- docs-data-assets:147: `- Secondary CTA: Xem cách theo dõi tiến độ tuần`
+- docs-data-assets:150: `- Tập trung bài toán khó nhất của tiếng Trung đầu vào: giữ nhịp đều, không dồn tải.`
+- docs-data-assets:151: `- Lộ trình level rõ, không học dàn trải.`
+- docs-data-assets:152: `- Parent visibility tốt: thấy ngay tổng số bài, mức hoàn thành, tiến trình theo level.`
+- docs-data-assets:155: `- Quy mô track CN: **1,983 episodes**, split chính thức **5 levels**.`
+- docs-data-assets:156: `- Pilot level 1 có **459 episodes**, khung nhịp tham chiếu **5 episodes/tuần**.`
+- docs-data-assets:157: `- Split storefront hiện đã được verify sync đúng dữ liệu (PASS 3/3 bundle ở package bàn giao).`
+- docs-data-assets:160: `- Objection: “Tiếng Trung khó, con dễ nản từ đầu.”`
+- docs-data-assets:161: `- Response: Track ưu tiên nhịp nhập môn ổn định bằng cụm bài ngắn; mục tiêu tuần nhỏ giúp con có cảm giác hoàn thành sớm.`
+- docs-data-assets:163: `- Objection: “Nhà không biết tiếng Trung, khó đồng hành.”`
+- docs-data-assets:164: `- Response: Trang tiến độ tập trung vào chỉ số phụ huynh nhìn được (bài đã học, mốc hoàn thành), không yêu cầu ba mẹ phải dạy thay giáo trình.`
+- docs-data-assets:166: `- Objection: “Sợ chọn sai level.”`
+- docs-data-assets:167: `- Response: Bắt đầu từ level phù hợp hiện tại, theo dõi 2-4 tuần đầu rồi quyết định nâng level theo dữ liệu học thực.`
+- docs-data-assets:170: `- Headline: Bắt đầu tiếng Trung đúng nhịp để con theo được lâu.`
+- docs-data-assets:171: `- CTA: Bắt đầu Little Fox CN`
+- docs-data-assets:175: `## Messaging guardrails (để giữ copy cụ thể)`
+- docs-data-assets:177: `- Luôn ghi rõ trục chọn khóa: **grade** (Abeka) vs **level ngôn ngữ** (LF EN/CN).`
+- docs-data-assets:178: `- Ưu tiên câu có số liệu thực: K4-G12, level 1-9, level 1-5, 2,380 lessons, 8,718 episodes, 1,983 episodes.`
+- docs-data-assets:179: `- Tránh claim mơ hồ kiểu “toàn diện”, “đột phá”, “chuẩn quốc tế” nếu không có bằng chứng đi kèm.`
+- docs-data-assets:180: `- CTA phải là hành động cụ thể: “Chọn grade”, “Chọn level”, “Xem mục tiêu tuần”.`
+- docs-data-assets:184: `1. Có guideline chính thức để map **độ tuổi/lớp hiện tại -> level EN/CN** không? Nếu có, nên thêm ngay vào decision matrix để phụ huynh tự chọn nhanh hơn.`
+- docs-data-assets:185: `2. Có được public các số liệu vận hành như 'split enrollments 153 vs root 7' trực tiếp trên trang bán hàng không, hay chỉ dùng nội bộ?`
+- docs-data-assets:186: `3. CTA chính cho từng detail page sẽ đẩy về đâu: trang chọn gói, form tư vấn, hay checkout thẳng?`
+- docs-data-assets:187: `4. Có chính sách trial/hoàn tiền theo từng track không? Nếu có, nên đưa vào objection handling để giảm do dự khi mua.`
+
+### docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/planner-parent-course-clarity-plan.md
+
+- docs-data-assets:8: `## 1) Kế hoạch nghiên cứu (1 trang)`
+- docs-data-assets:10: `### Mục tiêu`
+- docs-data-assets:11: `- Giảm mơ hồ khi phụ huynh chọn khóa: biết khác nhau ở đâu, dành cho ai, nên mua gì.`
+- docs-data-assets:12: `- Tăng tốc độ quyết định mua đúng khóa (không cần chat hỏi thêm).`
+- docs-data-assets:14: `### Câu hỏi nghiên cứu chính`
+- docs-data-assets:15: `1. Phụ huynh đang thiếu thông tin nào để so sánh khóa?`
+- docs-data-assets:16: `2. Dấu hiệu nào giúp họ nhận ra “khóa này dành cho con mình” trong 10-20 giây?`
+- docs-data-assets:17: `3. Cấu trúc thông tin nào giúp chọn nhanh: theo độ tuổi, trình độ, mục tiêu, ngân sách?`
+- docs-data-assets:19: `### Giả thuyết ưu tiên`
+- docs-data-assets:20: `- H1: Nếu có block “Khóa này phù hợp với ai / không phù hợp với ai”, tỷ lệ click vào CTA tăng.`
+- docs-data-assets:21: `- H2: Nếu có bảng so sánh khóa ngay trang list, thời gian do dự giảm.`
+- docs-data-assets:22: `- H3: Nếu CTA kèm “Gợi ý khóa theo mục tiêu của con”, tỷ lệ mua nhầm giảm.`
+- docs-data-assets:24: `### Phương pháp nghiên cứu nhanh (5 ngày)`
+- docs-data-assets:25: `- D1: Desk audit trang hiện tại ('/courses', '/courses/[slug]', checkout) + map điểm mơ hồ.`
+- docs-data-assets:26: `- D2: 6-8 interview nhanh phụ huynh (15-20 phút/cuộc), tập trung câu hỏi quyết định mua.`
+- docs-data-assets:27: `- D3: First-click test (5 nhiệm vụ) với 8 người: tìm khóa phù hợp theo tình huống cụ thể.`
+- docs-data-assets:28: `- D4: Tổng hợp insight thành decision gaps + ưu tiên theo impact/effort.`
+- docs-data-assets:29: `- D5: Chốt IA + messaging + UI blocks + copy mẫu để vào sprint.`
+- docs-data-assets:31: `### Tiêu chí thành công (decision-focused)`
+- docs-data-assets:32: `- >=80% phụ huynh chọn đúng nhóm khóa trong <=90 giây ở bài test.`
+- docs-data-assets:33: `- >=70% trả lời đúng sự khác nhau giữa 2 khóa chính sau khi xem trang.`
+- docs-data-assets:34: `- Giảm câu hỏi inbox kiểu “khóa nào hợp con em?” trong tuần đầu sau rollout.`
+- docs-data-assets:36: `## Checklist triển khai nhanh`
+- docs-data-assets:37: `- [ ] Audit toàn bộ thông tin khóa hiện có, gom tất cả field đang hiển thị.`
+- docs-data-assets:38: `- [ ] Viết script phỏng vấn 8 câu hỏi ngắn, tập trung pain quyết định mua.`
+- docs-data-assets:39: `- [ ] Chạy 6-8 interview + 8 first-click test (ưu tiên phụ huynh mới).`
+- docs-data-assets:40: `- [ ] Tổng hợp thành 3-5 decision gaps lớn nhất.`
+- docs-data-assets:41: `- [ ] Vẽ lại IA cho trang list + detail + compare.`
+- docs-data-assets:42: `- [ ] Soạn messaging matrix theo phân khúc phụ huynh.`
+- docs-data-assets:43: `- [ ] Chốt danh sách UI blocks cần có + thứ tự ưu tiên P1/P2.`
+- docs-data-assets:44: `- [ ] Viết copy mẫu cho 3 block quan trọng nhất.`
+- docs-data-assets:45: `- [ ] Handoff cho design/dev với acceptance criteria rõ ràng.`
+- docs-data-assets:47: `## 2) Khung output cuối`
+- docs-data-assets:51: `#### Trang danh sách khóa ('/courses')`
+- docs-data-assets:52: `1. Hero ngắn: mục tiêu học + niềm tin (1 dòng value).`
+- docs-data-assets:53: `2. Bộ lọc quyết định: Độ tuổi, trình độ hiện tại, mục tiêu, ngân sách, thời lượng.`
+- docs-data-assets:54: `3. Khối “So sánh nhanh” (sticky mini table): 3-4 khóa nổi bật theo nhu cầu phổ biến.`
+- docs-data-assets:55: `4. Course cards chuẩn hóa field:`
+- docs-data-assets:56: `- Dành cho ai (độ tuổi + điều kiện đầu vào)`
+- docs-data-assets:57: `- Kết quả sau khóa (3 outcomes cụ thể)`
+- docs-data-assets:58: `- Thời lượng + lịch học`
+- docs-data-assets:59: `- Học phí + hình thức thanh toán`
+- docs-data-assets:60: `- Mức độ hỗ trợ phụ huynh`
+- docs-data-assets:61: `- CTA: “Xem chi tiết” + “So sánh”`
+- docs-data-assets:62: `5. Block “Chưa biết chọn khóa nào?” -> quiz gợi ý khóa.`
+- docs-data-assets:64: `#### Trang chi tiết khóa ('/courses/[slug]')`
+- docs-data-assets:65: `1. Above-the-fold: tên khóa + dành cho ai + outcome chính + học phí + CTA.`
+- docs-data-assets:66: `2. Khối “Phù hợp / Không phù hợp” (bắt buộc).`
+- docs-data-assets:67: `3. Lộ trình học theo tuần/tháng (timeline ngắn, dễ quét).`
+- docs-data-assets:68: `4. Bằng chứng hiệu quả: ví dụ tiến bộ, review phụ huynh, FAQ xử lý phản đối.`
+- docs-data-assets:69: `5. So sánh với khóa liền kề (up/down-sell rõ).`
+- docs-data-assets:70: `6. CTA cố định theo ngữ cảnh: mua ngay / học thử / tư vấn nhanh.`
+- docs-data-assets:72: `### B. Messaging Matrix (khung điền nội dung)`
+- docs-data-assets:73: `| Segment phụ huynh | Bối cảnh con | Pain chính | Thông điệp chính | Proof cần hiển thị | CTA |`
+- docs-data-assets:75: `| Mới bắt đầu | Con chưa có nền tảng | Sợ chọn sai level | “Bắt đầu đúng mức, không quá tải” | Điều kiện đầu vào + bài test level | Làm test level |`
+- docs-data-assets:76: `| Cần cải thiện điểm | Con đang hụt kiến thức | Muốn thấy kết quả đo được | “Lộ trình bù hổng theo tuần” | Mốc tiến bộ + bài kiểm tra định kỳ | Xem lộ trình |`
+- docs-data-assets:77: `| Muốn học dài hạn | Con có động lực tốt | Cần roadmap rõ + tiết kiệm | “Lộ trình 6-12 tháng, tối ưu chi phí” | So sánh gói + outcome theo giai đoạn | Chọn gói phù hợp |`
+- docs-data-assets:78: `| Bận rộn | Ít thời gian kèm con | Sợ không theo sát được | “Theo dõi tiến bộ nhanh, ít tốn thời gian” | Báo cáo tự động + tần suất cập nhật | Xem demo báo cáo |`
+- docs-data-assets:80: `### C. UI Blocks (ưu tiên thực thi)`
+- docs-data-assets:82: `#### P1 (phải có để giảm mơ hồ)`
+- docs-data-assets:83: `1. **Fit Block**: “Khóa này dành cho ai / không dành cho ai”.`
+- docs-data-assets:84: `2. **Quick Compare Block**: bảng so sánh 3-4 khóa theo tiêu chí quyết định mua.`
+- docs-data-assets:85: `3. **Outcome Block**: “Sau 4-8 tuần con đạt gì” (đo được).`
+- docs-data-assets:87: `#### P2 (tăng tốc quyết định)`
+- docs-data-assets:88: `4. **Pathway Block**: gợi ý khóa tiếp theo sau khi hoàn thành.`
+- docs-data-assets:89: `5. **Parent Effort Block**: phụ huynh cần tham gia bao nhiêu phút/tuần.`
+- docs-data-assets:90: `6. **Objection FAQ Block**: xử lý phản đối phổ biến (giá, thời gian, phù hợp level).`
+- docs-data-assets:92: `#### Acceptance criteria ngắn`
+- docs-data-assets:93: `- Mỗi block trả lời được 1 câu hỏi quyết định mua cụ thể.`
+- docs-data-assets:94: `- Không block nào vượt quá 5 ý chính, ưu tiên scan trong 10-20 giây.`
+- docs-data-assets:95: `- Toàn bộ trang detail trả lời đủ 5 câu: cho ai, khác gì, đạt gì, mất bao lâu, bao nhiêu tiền.`
+- docs-data-assets:98: `- Hiện tại team có dữ liệu phân khúc phụ huynh nào sẵn (CRM, chat tags, purchase history)?`
+- docs-data-assets:99: `- Có thể triển khai quiz gợi ý khóa ở phase 1 hay chỉ dừng ở bảng so sánh?`
+- docs-data-assets:100: `- KPI chính khi rollout là CVR checkout, add-to-cart, hay lead tư vấn?`
+- docs-data-assets:101: `- Có ràng buộc pháp lý/compliance nào khi hiển thị “kết quả sau khóa” không?`
+
+### docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/research-parent-decision-friction.md
+
+- docs-data-assets:9: `- Friction lớn nhất hiện tại không phải thiếu khóa, mà là thiếu 'decision scaffolding' cho phụ huynh: chưa có bước xác định điểm bắt đầu, chưa có bộ tiêu chí so sánh chuẩn, chưa có map readiness -> khóa.`
+- docs-data-assets:10: `- Trang '/courses' hiện đưa mạnh số liệu tổng ('tổng bài', 'tổng thời lượng') nhưng thiếu thông tin đầu vào quan trọng để chọn đúng khóa (entry level, prerequisite, expected weekly effort theo từng khóa).`
+- docs-data-assets:11: `- Trang chi tiết có CTA mua rõ, nhưng "nhịp gợi ý" đang hardcode '4-5 bài/tuần' cho mọi khóa, dễ lệch thực tế pacing theo level/grade.`
+- docs-data-assets:12: `- Tracking A/B checkout đang chưa đủ tin cậy cho quyết định tối ưu UI: CVR chỉ có variant 'unknown' (75%), nên chưa thể kết luận A vs B.`
+- docs-data-assets:16: `### 1) Parent decision friction hiện tại trên trang khóa học`
+- docs-data-assets:18: `1. Choice overload, thiếu cơ chế thu hẹp lựa chọn ngay đầu funnel.`
+- docs-data-assets:19: `- Evidence: '/courses' hiển thị KPI tổng catalog ('Số khóa', 'Tổng bài học', 'Tổng thời lượng') tại [src/app/(main)/courses/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/page.tsx:63), [src/app/(main)/courses/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/page.tsx:67), [src/app/(main)/courses/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/page.tsx:71).`
+- docs-data-assets:20: `- Evidence: không có UI filter/placement thực sự (không có select/input/filter control) trong [src/app/(main)/courses/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/page.tsx).`
+- docs-data-assets:21: `- Impact: phụ huynh phải tự suy luận "con thuộc khóa nào" từ title/description.`
+- docs-data-assets:23: `2. Thiếu thông tin "điểm bắt đầu đúng" (entry readiness) ở cả list và detail.`
+- docs-data-assets:24: `- Evidence: data render ra storefront chủ yếu gồm 'slug/title/description/duration/lessonCount/pricing' từ [src/modules/courses/course-service.ts](D:/project/cungcontuhoc/src/modules/courses/course-service.ts:75).`
+- docs-data-assets:25: `- Evidence: detail page cũng chưa có trường entry-level/prerequisite/placement signal tại [src/app/(main)/courses/[slug]/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/[slug]/page.tsx:22).`
+- docs-data-assets:26: `- Evidence chiến lược: audit đã nêu cần guardrail placement + mastery trước scale tại [plans/reports/education-expert-2026-03-18-rationale-audit.md](D:/project/cungcontuhoc/plans/reports/education-expert-2026-03-18-rationale-audit.md:92).`
+- docs-data-assets:28: `3. Decision copy có nhưng chưa dùng hết asset nội dung sư phạm đã chuẩn bị.`
+- docs-data-assets:29: `- Evidence: content model có 'parentProblem', 'outcomes', 'parentVisibleValue' tại [src/modules/courses/course-storefront-content.ts](D:/project/cungcontuhoc/src/modules/courses/course-storefront-content.ts:5), [src/modules/courses/course-storefront-content.ts](D:/project/cungcontuhoc/src/modules/courses/course-storefront-content.ts:8), [src/modules/courses/course-storefront-content.ts](D:/project/cungcontuhoc/src/modules/courses/course-storefront-content.ts:9).`
+- docs-data-assets:30: `- Evidence: UI list hiện mới render 'shortLabel' + 'bestFor'; detail chủ yếu render 'promise' tại [src/app/(main)/courses/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/page.tsx:114), [src/app/(main)/courses/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/page.tsx:123), [src/app/(main)/courses/[slug]/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/[slug]/page.tsx:176).`
+- docs-data-assets:31: `- Impact: phụ huynh chưa thấy rõ "kết quả quan sát được theo tuần" ngay trước khi ra quyết định.`
+- docs-data-assets:33: `4. Pacing signal đang generic, có rủi ro mismatch kỳ vọng.`
+- docs-data-assets:34: `- Evidence: detail page hardcode 'Nhịp gợi ý: 4-5 bài/tuần' tại [src/app/(main)/courses/[slug]/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/[slug]/page.tsx:163).`
+- docs-data-assets:35: `- Evidence chiến lược: curriculum validation ghi nhận pacing theo level/grade khác nhau + phase heuristic 30/50/20 tại [plans/reports/curriculum-architect-2026-03-18-split-validation.md](D:/project/cungcontuhoc/plans/reports/curriculum-architect-2026-03-18-split-validation.md:24), [plans/reports/curriculum-architect-2026-03-18-split-validation.md](D:/project/cungcontuhoc/plans/reports/curriculum-architect-2026-03-18-split-validation.md:49).`
+- docs-data-assets:37: `5. Friction đo lường: chưa đọc được hiệu quả A/B thật.`
+- docs-data-assets:38: `- Evidence: report CVR 30 ngày: toàn bộ variant là 'unknown' tại [docs/handover/packages/2026-03-18-course-split-executive-package/03-evidence/courses-ab-cvr-report.md](D:/project/cungcontuhoc/docs/handover/packages/2026-03-18-course-split-executive-package/03-evidence/courses-ab-cvr-report.md:14), [docs/handover/packages/2026-03-18-course-split-executive-package/03-evidence/courses-ab-cvr-report.md](D:/project/cungcontuhoc/docs/handover/packages/2026-03-18-course-split-executive-package/03-evid`
+- docs-data-assets:39: `- Impact: khó ưu tiên copy/layout nào thực sự giảm friction.`
+- docs-data-assets:41: `### 2) Thông tin tối thiểu phải có để phụ huynh chọn đúng khóa`
+- docs-data-assets:43: `'Minimum decision card' nên có đúng 7 trường (hiển thị ở list + detail, cùng cấu trúc):`
+- docs-data-assets:45: `1. 'Mục tiêu chính của khóa' (1 dòng outcome).`
+- docs-data-assets:46: `2. 'Ai phù hợp' (độ tuổi/grade/level hiện tại).`
+- docs-data-assets:47: `3. 'Điểm bắt đầu' (entry requirement đơn giản: biết/chưa biết gì).`
+- docs-data-assets:48: `4. 'Cam kết tuần' (bài/tuần + phút/ngày).`
+- docs-data-assets:49: `5. 'Mốc thấy tiến bộ' (tuần 1-2 thấy gì; tuần 4 thấy gì).`
+- docs-data-assets:50: `6. 'Khối lượng + thời hạn' (số bài, thời gian truy cập).`
+- docs-data-assets:51: `7. 'Giá + chính sách rủi ro' (giá cuối cùng, điều kiện hỗ trợ trước mua).`
+- docs-data-assets:53: `Mapping với dữ liệu hiện có:`
+- docs-data-assets:54: `- Đã có một phần: 'bestFor/promise/outcomes/parentVisibleValue' trong content model [src/modules/courses/course-storefront-content.ts](D:/project/cungcontuhoc/src/modules/courses/course-storefront-content.ts:4).`
+- docs-data-assets:55: `- Chưa hiển thị đủ trên UI: list/detail chưa render outcomes + parentVisibleValue đầy đủ [src/app/(main)/courses/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/page.tsx:114), [src/app/(main)/courses/[slug]/page.tsx](D:/project/cungcontuhoc/src/app/(main)/courses/[slug]/page.tsx:176).`
+- docs-data-assets:57: `### 3) Framework phân loại "mức sẵn sàng" để map phụ huynh vào đúng khóa`
+- docs-data-assets:59: `Đề xuất framework 2 chiều, đủ nhẹ để triển khai ngay ở UI:`
+- docs-data-assets:60: `- Trục 1 'Goal clarity' (phụ huynh có rõ mục tiêu học không).`
+- docs-data-assets:61: `- Trục 2 'Placement clarity' (phụ huynh có rõ trình độ hiện tại của con không).`
+- docs-data-assets:63: `Phân loại 4 mức readiness:`
+- docs-data-assets:65: `1. 'R0 - Mơ hồ cả mục tiêu lẫn trình độ'`
+- docs-data-assets:66: `- Dấu hiệu: vào trang list, lướt nhiều card, chưa vào detail sâu.`
+- docs-data-assets:67: `- UI action: mở "quick chooser" 3 câu hỏi (môn học, độ tuổi/lớp, thời gian học/tuần).`
+- docs-data-assets:68: `- Default mapping: đẩy về SKU nhập môn/pilot ngắn hạn trước.`
+- docs-data-assets:70: `2. 'R1 - Rõ mục tiêu, mơ hồ trình độ'`
+- docs-data-assets:71: `- Dấu hiệu: chọn được track (EN/CN/Abeka) nhưng phân vân level.`
+- docs-data-assets:72: `- UI action: mini placement (3-5 câu, <2 phút) ngay trong detail.`
+- docs-data-assets:73: `- Mapping: trả về 'start level + lý do' + 1 phương án dự phòng thấp hơn 1 bậc.`
+- docs-data-assets:75: `3. 'R2 - Rõ trình độ, mơ hồ cam kết'`
+- docs-data-assets:76: `- Dấu hiệu: biết level nhưng do dự mua vì sợ quá tải.`
+- docs-data-assets:77: `- UI action: hiển thị workload forecast cá nhân hóa (bài/tuần, phút/ngày, mốc tuần 2/4).`
+- docs-data-assets:78: `- Mapping: nếu quỹ thời gian thấp -> SKU ngắn + pace thấp; nếu đủ -> khóa chuẩn.`
+- docs-data-assets:80: `4. 'R3 - Sẵn sàng mua'`
+- docs-data-assets:81: `- Dấu hiệu: xem detail sâu, đọc lesson preview, click CTA.`
+- docs-data-assets:82: `- UI action: checkout lane rút gọn + reassurance block (hỗ trợ sau mua, tiến độ theo tuần).`
+- docs-data-assets:83: `- Mapping: vào checkout khóa đề xuất chính; giữ 1 CTA phụ "cần tư vấn chọn level".`
+- docs-data-assets:85: `Rule map khóa (đơn giản, triển khai được ngay):`
+- docs-data-assets:86: `- Nếu chưa xác định level chắc chắn -> ưu tiên khóa/scope có nhãn 'starter/intro/foundation'.`
+- docs-data-assets:87: `- Nếu đã có bằng chứng hoàn thành level trước -> đề xuất 'builder/core' cùng track.`
+- docs-data-assets:88: `- Nếu thời gian tuần < ngưỡng của khóa chuẩn -> auto đề xuất phương án pace thấp hơn.`
+- docs-data-assets:92: `### A) Quick wins (1 sprint, không đổi kiến trúc dữ liệu)`
+- docs-data-assets:93: `1. Trên '/courses', thay KPI tổng catalog bằng 'decision helper bar': mục tiêu học, độ tuổi/lớp, thời gian/tuần.`
+- docs-data-assets:94: `2. Chuẩn hóa card thông tin theo "minimum decision card" 7 trường; ưu tiên render thêm 'outcomes' và 'parentVisibleValue' đã có sẵn.`
+- docs-data-assets:95: `3. Ở detail, thay hardcode '4-5 bài/tuần' bằng pacing theo course scope thực tế.`
+- docs-data-assets:96: `4. Trên CTA detail, thêm nhánh phụ cạnh mua: 'Chưa chắc level? Làm bài xác định nhanh'.`
+- docs-data-assets:99: `1. Thêm mini placement widget (3-5 câu) và trả kết quả 'đề xuất level + độ tin cậy'.`
+- docs-data-assets:100: `2. Xây 'readiness state' (R0-R3) trong analytics event để đo conversion theo trạng thái, không chỉ theo pageview.`
+- docs-data-assets:101: `3. Chuẩn hóa naming ngoài UI theo outcome-centric policy nhất quán (điểm này đã được cảnh báo trong validation report).`
+- docs-data-assets:103: `### C) Measurement fixes (ưu tiên trước A/B copy mới)`
+- docs-data-assets:104: `1. Fix end-to-end capture 'ab_courses_v' để không còn 'unknown' trong checkout/purchase logs.`
+- docs-data-assets:105: `2. Chỉ chạy A/B copy/layout mới sau khi sample có phân tách variant hợp lệ.`
+- docs-data-assets:108: `1. Trong production hiện tại, nguồn "entry level" tin cậy nhất đang nằm ở đâu (nếu chưa có placement chính thức)?`
+- docs-data-assets:109: `2. Có thể expose field nào ngay từ DB/API để hiển thị 'độ tuổi/lớp phù hợp' mà không cần chờ migration schema?`
+- docs-data-assets:110: `3. Team muốn ưu tiên optimize conversion của 'pilot SKU' hay của 'bundle/full track' trong 1-2 sprint tới?`
+- docs-data-assets:111: `4. Ngưỡng workload nào (phút/ngày, bài/tuần) được chấp nhận làm chuẩn để auto-map R2 -> đề xuất pace thấp?`
+
+### docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/uiux-parent-course-clarity-audit.md
+
+- docs-data-assets:15: `## 1) Audit hiện trạng: điểm gây mơ hồ cho phụ huynh`
+- docs-data-assets:18: `1. Thiếu “khung so sánh trước khi vào card”`
+- docs-data-assets:19: `- Hiện tại vào thẳng grid card, chưa có block trả lời nhanh: '3 nhóm khóa khác nhau ở đâu'.`
+- docs-data-assets:20: `- Hậu quả: phụ huynh phải tự đọc từng card rồi tự suy luận khác biệt.`
+- docs-data-assets:22: `2. Hero metrics gây nhiễu quyết định mua`
+- docs-data-assets:23: `- 'Số khóa / Tổng bài / Tổng thời lượng' là số tổng catalog, không giúp chọn khóa đúng cho con.`
+- docs-data-assets:24: `- Hậu quả: nhiều thông tin nhưng không trả lời câu hỏi “khóa nào hợp con tôi bây giờ”.`
+- docs-data-assets:26: `3. Card chưa trả lời rõ “khác khóa kia ở đâu”`
+- docs-data-assets:27: `- Card có 'shortLabel', 'description', 'bestFor', 'duration', 'lessonCount', 'price'.`
+- docs-data-assets:28: `- Nhưng thiếu block so sánh chuẩn hóa giữa các card ('mục tiêu đầu ra', 'điểm bắt đầu', 'không phù hợp nếu...', 'khi nên mua').`
+- docs-data-assets:30: `4. CTA card còn generic`
+- docs-data-assets:31: `- 'Xem khóa và bắt đầu' hoặc 'Xem chi tiết khóa' chưa phản ánh intent của phụ huynh chưa chắc level.`
+- docs-data-assets:32: `- Với catalog split nhiều SKU (memo: 3 root + 28 split + pilot), CTA hiện tại chưa dẫn hướng chọn đúng mức trước khi mua.`
+- docs-data-assets:34: `5. Nội dung có dữ liệu mạnh nhưng chưa dùng hết`
+- docs-data-assets:35: `- 'course-storefront-content.ts' có 'parentProblem', 'outcomes', 'parentVisibleValue', nhưng listing chưa khai thác rõ để tăng clarity.`
+- docs-data-assets:38: `1. Hero mạnh về mô tả, yếu về định vị tương đối`
+- docs-data-assets:39: `- Có 'title', 'description', 'promise', 'lesson/duration', giá.`
+- docs-data-assets:40: `- Thiếu block “khóa này đứng ở đâu trong lộ trình” và “khác khóa liền trước/liền sau thế nào”.`
+- docs-data-assets:42: `2. Chưa có checklist readiness (“khi nào nên mua”)`
+- docs-data-assets:43: `- Chưa có tiêu chí để phụ huynh tự xác định 'mua ngay' vs 'chưa nên mua'.`
+- docs-data-assets:44: `- Hậu quả: tăng do dự, hoặc mua sai level.`
+- docs-data-assets:46: `3. “Dành cho ai” có nhưng “không dành cho ai” chưa rõ`
+- docs-data-assets:47: `- Có 'bestFor', nhưng thiếu “chưa phù hợp nếu...”, làm phụ huynh khó loại trừ nhanh.`
+- docs-data-assets:49: `4. Bài học hiển thị nhiều nhưng chưa translate thành giá trị phụ huynh quan sát được`
+- docs-data-assets:50: `- Có lesson list khá chi tiết.`
+- docs-data-assets:51: `- Thiếu lớp diễn giải: sau 2-4 tuần phụ huynh sẽ nhìn thấy tiến bộ gì cụ thể.`
+- docs-data-assets:53: `5. CTA detail thiên về checkout, thiếu nhánh tư vấn nhanh`
+- docs-data-assets:54: `- Có 'Mua khóa...' + 'Liên hệ tư vấn' (ở dưới).`
+- docs-data-assets:55: `- Thiếu secondary CTA gần hero kiểu 'Kiểm tra phù hợp 60s' hoặc 'So sánh với khóa gần nhất' để giảm sai mua.`
+- docs-data-assets:57: `## 2) Bố cục mới đề xuất`
+- docs-data-assets:60: `Mục tiêu: phụ huynh vào trang 5-10 giây hiểu ngay 4 câu:`
+- docs-data-assets:61: `- Khóa này là gì?`
+- docs-data-assets:62: `- Khác khóa kia ở đâu?`
+- docs-data-assets:63: `- Dành cho ai?`
+- docs-data-assets:64: `- Khi nào nên mua?`
+- docs-data-assets:66: `### Display order (đề xuất)`
+- docs-data-assets:67: `1. 'Decision Hero' (1 câu định vị + 1 câu hướng dẫn chọn)`
+- docs-data-assets:68: `2. '3-track Compare Strip' (Abeka vs LF English vs LF Chinese, dạng bảng ngắn)`
+- docs-data-assets:69: `3. 'Quick Fit Filters' (Mục tiêu, độ tuổi/lớp, trình độ hiện tại, thời lượng học/tuần)`
+- docs-data-assets:70: `4. 'Course Cards' (chuẩn hóa theo cùng khung thông tin)`
+- docs-data-assets:71: `5. 'How to choose in 60s' (3 bước)`
+- docs-data-assets:72: `6. 'Trust + outcomes' (kết quả phụ huynh quan sát được)`
+- docs-data-assets:75: `### Course card structure mới (text-first)`
+- docs-data-assets:76: `- Dòng 1: 'Track + Level/Grade badge'`
+- docs-data-assets:77: `- Dòng 2: 'Khóa này là gì' (1 câu plain language)`
+- docs-data-assets:78: `- Dòng 3: 'Khác khóa bên cạnh ở đâu' (1 bullet duy nhất, cụ thể)`
+- docs-data-assets:79: `- Dòng 4: 'Dành cho ai' (1 bullet)`
+- docs-data-assets:80: `- Dòng 5: 'Khi nên mua' (trigger ngắn)`
+- docs-data-assets:81: `- Dòng 6: 'Output sau 4 tuần' (1-2 bullet)`
+- docs-data-assets:82: `- Dòng 7: 'Giá + thời hạn + số bài'`
+- docs-data-assets:83: `- CTA chính: 'Xem có hợp con không'`
+- docs-data-assets:84: `- CTA phụ: 'So sánh với khóa cùng track'`
+- docs-data-assets:87: `Mục tiêu: trước khi bấm mua, phụ huynh phải tự tin rằng khóa đúng nhu cầu hiện tại.`
+- docs-data-assets:89: `### Display order (đề xuất)`
+- docs-data-assets:91: `- Tên khóa`
+- docs-data-assets:92: `- 1 câu “khóa này là gì”`
+- docs-data-assets:93: `- 1 câu “dành cho ai”`
+- docs-data-assets:94: `- Giá + CTA cụm`
+- docs-data-assets:96: `2. 'Fit & timing panel' (ngay dưới hero, above the fold)`
+- docs-data-assets:97: `- 'Phù hợp khi...' (3 check)`
+- docs-data-assets:98: `- 'Chưa phù hợp khi...' (2-3 cảnh báo)`
+- docs-data-assets:99: `- 'Nên mua ngay khi...' (trigger ngắn)`
+- docs-data-assets:102: `- So sánh nhanh với 2 khóa gần nhất:`
+- docs-data-assets:103: `- khóa trước (dễ hơn)`
+- docs-data-assets:104: `- khóa sau (khó hơn)`
+- docs-data-assets:105: `- Cột so sánh: đầu vào, mục tiêu, khối lượng, kết quả kỳ vọng.`
+- docs-data-assets:108: `- Tuần 1-2: phụ huynh thấy gì`
+- docs-data-assets:109: `- Tuần 3-4: phụ huynh thấy gì`
+- docs-data-assets:110: `- Sau hoàn thành: con đạt gì`
+- docs-data-assets:113: `- Lesson list giữ lại, nhưng thêm nhãn 'core skill' cho từng cụm bài.`
+- docs-data-assets:116: `- Hỗ trợ chọn level, FAQ ngắn trước checkout.`
+- docs-data-assets:119: `- Giá`
+- docs-data-assets:120: `- CTA chính`
+- docs-data-assets:121: `- CTA phụ tư vấn`
+- docs-data-assets:128: `- Heading: 'Chọn đúng khóa để con tiến bộ sớm, không học sai mức'`
+- docs-data-assets:129: `- Subcopy: 'Bắt đầu từ mục tiêu của con hôm nay, không cần đoán level.'`
+- docs-data-assets:130: `- Microcopy: 'Mỗi khóa đều ghi rõ: dành cho ai, khác gì, khi nào nên mua.'`
+- docs-data-assets:135: `- 'Mục tiêu chính'`
+- docs-data-assets:136: `- 'Dành cho ai'`
+- docs-data-assets:137: `- 'Đơn vị tiến trình (cấp lớp/cấp độ)'`
+- docs-data-assets:138: `- 'Khi nên bắt đầu'`
+- docs-data-assets:139: `- CTA row: 'Xem tất cả khóa trong track'`
+- docs-data-assets:143: `- 'Con đang cần gì nhất?' (đọc hiểu / nghe nói / bắt đầu tiếng Trung...)`
+- docs-data-assets:144: `- 'Mức hiện tại' (mới bắt đầu / đang học dở / cần tăng tốc)`
+- docs-data-assets:145: `- 'Thời gian học mỗi tuần' (<60p / 60-120p / >120p)`
+- docs-data-assets:146: `- Output text: 'Gợi ý 3 khóa phù hợp nhất'`
+- docs-data-assets:150: `- 'Khóa này là: ...'`
+- docs-data-assets:151: `- 'Khác với [khóa gần nhất]: ...'`
+- docs-data-assets:152: `- 'Dành cho: ...'`
+- docs-data-assets:153: `- 'Nên mua khi: ...'`
+- docs-data-assets:154: `- 'Sau 4 tuần phụ huynh thường thấy: ...'`
+- docs-data-assets:155: `- CTA primary: 'Xem có hợp con không'`
+- docs-data-assets:156: `- CTA secondary: 'So sánh nhanh'`
+- docs-data-assets:159: `- Step 1: 'Chọn mục tiêu'`
+- docs-data-assets:160: `- Step 2: 'Đối chiếu dấu hiệu hiện tại của con'`
+- docs-data-assets:161: `- Step 3: 'Chốt khóa theo trigger nên mua'`
+- docs-data-assets:164: `- 3-4 bullets từ 'parentVisibleValue' theo từng track`
+- docs-data-assets:165: `- Một note rõ: 'Nếu chưa chắc level, ưu tiên tư vấn trước khi thanh toán.'`
+- docs-data-assets:168: `- Primary: 'Nhận đề xuất khóa trong 60s'`
+- docs-data-assets:169: `- Secondary: 'Liên hệ tư vấn chọn level'`
+- docs-data-assets:175: `- 'Khóa này là gì:' 1 câu`
+- docs-data-assets:176: `- 'Dành cho ai:' 1 câu`
+- docs-data-assets:177: `- Pricing + urgency nhẹ (không gây áp lực)`
+- docs-data-assets:178: `- CTA primary: 'Mua khóa này'`
+- docs-data-assets:179: `- CTA secondary: 'Kiểm tra độ phù hợp 60s'`
+- docs-data-assets:182: `- 'Phù hợp nếu:'`
+- docs-data-assets:186: `- 'Chưa phù hợp nếu:'`
+- docs-data-assets:189: `- 'Khi nào nên mua:'`
+- docs-data-assets:195: `- 'Khóa hiện tại'`
+- docs-data-assets:196: `- 'Khóa trước'`
+- docs-data-assets:197: `- 'Khóa sau'`
+- docs-data-assets:199: `- đầu vào`
+- docs-data-assets:200: `- mục tiêu đầu ra`
+- docs-data-assets:201: `- độ khó`
+- docs-data-assets:202: `- nhịp học khuyến nghị`
+- docs-data-assets:205: `- 'Tuần 1-2:' ...`
+- docs-data-assets:206: `- 'Tuần 3-4:' ...`
+- docs-data-assets:207: `- 'Sau hoàn thành:' ...`
+- docs-data-assets:211: `- mỗi group ghi 'kỹ năng chính' + 'time budget'`
+- docs-data-assets:214: `- 'Sau thanh toán nhận gì ngay'`
+- docs-data-assets:215: `- 'Nếu sai mức xử lý thế nào'`
+- docs-data-assets:216: `- 'Kênh hỗ trợ nhanh'`
+- docs-data-assets:219: `- Primary: 'Mua khóa này'`
+- docs-data-assets:220: `- Secondary: 'Nhờ tư vấn chọn level'`
+- docs-data-assets:221: `- Context note: 'Bạn đang xem cấp độ X của track Y'`
+- docs-data-assets:223: `## 4) CTA strategy (theo trạng thái phụ huynh)`
+- docs-data-assets:225: `### Stage A - Chưa rõ nhu cầu`
+- docs-data-assets:226: `- Primary CTA: 'Nhận đề xuất khóa trong 60s'`
+- docs-data-assets:227: `- Secondary CTA: 'So sánh 3 lộ trình'`
+- docs-data-assets:230: `### Stage B - Đã shortlist nhưng chưa chắc level`
+- docs-data-assets:231: `- Primary CTA: 'Xem có hợp con không'`
+- docs-data-assets:232: `- Secondary CTA: 'Nhờ tư vấn chọn level'`
+- docs-data-assets:235: `### Stage C - Đủ tự tin mua`
+- docs-data-assets:236: `- Primary CTA: 'Mua khóa này'`
+- docs-data-assets:237: `- Secondary CTA: 'Xem chính sách hỗ trợ sau mua'`
+- docs-data-assets:242: `- top: discovery CTA ('đề xuất trong 60s')`
+- docs-data-assets:243: `- card: evaluation CTA ('xem có hợp con không')`
+- docs-data-assets:244: `- bottom: support CTA ('tư vấn')`
+- docs-data-assets:248: `- sticky bottom: purchase CTA luôn hiển thị`
+- docs-data-assets:250: `## 5) Nội dung nên tận dụng ngay từ data hiện có`
+- docs-data-assets:251: `- Từ 'course-storefront-content.ts':`
+- docs-data-assets:252: `- Đưa 'parentProblem' lên listing/detail để phụ huynh nhận diện đúng pain point.`
+- docs-data-assets:253: `- Đưa 'outcomes' thành timeline kỳ vọng.`
+- docs-data-assets:254: `- Đưa 'parentVisibleValue' thành block “phụ huynh sẽ thấy gì”.`
+- docs-data-assets:255: `- Từ memo 2026-03-18:`
+- docs-data-assets:256: `- Catalog đã split sâu -> UI bắt buộc có compare chuẩn hóa, không thể chỉ dùng mô tả tự do từng card.`
+- docs-data-assets:259: `1. Thêm compare strip + standardized card template ở '/courses'.`
+- docs-data-assets:260: `2. Thêm fit checklist + difference block ở '/courses/[slug]'.`
+- docs-data-assets:261: `3. Đổi CTA label theo intent ('xem có hợp con không' trước 'mua') ở stage khám phá.`
+- docs-data-assets:262: `4. Đưa 'parentProblem/outcomes/parentVisibleValue' vào render thay vì chỉ dùng 'bestFor/promise'.`
+- docs-data-assets:265: `- Có muốn chuẩn hóa một taxonomy duy nhất cho 'đầu vào/đầu ra' giữa tất cả track để render bảng so sánh tự động không?`
+- docs-data-assets:266: `- Priority KPI sprint này là tăng 'checkout start' hay giảm 'mua sai level' (để cân CTA buy vs CTA fit-check)?`
+- docs-data-assets:267: `- Có policy rõ cho xử lý trường hợp phụ huynh mua nhầm level chưa (đổi level/chuyển khóa), để viết block “purchase confidence” chính xác?`
+- docs-data-assets:268: `- Có giữ song song root + split catalog trên UI công khai trong Q2/2026 hay chuyển hẳn split-first?`
+
+### docs/handover/packages/2026-03-19-parent-course-clarity-package/03-implementation-brief/courses-ui-content-blueprint.md
+
+- docs-data-assets:4: `Goal: biến trang khóa học thành giao diện “quyết định mua”, không còn mơ hồ.`
+- docs-data-assets:6: `## 1) Nguyên tắc hiển thị`
+- docs-data-assets:8: `1. Mỗi màn hình phải trả lời được 4 câu:`
+- docs-data-assets:9: `- Khóa này là gì?`
+- docs-data-assets:10: `- Khác khóa kia ở đâu?`
+- docs-data-assets:11: `- Dành cho ai?`
+- docs-data-assets:12: `- Khi nào nên mua?`
+- docs-data-assets:13: `2. Mỗi block chỉ 1 mục tiêu quyết định, tối đa 3-5 ý quét nhanh.`
+- docs-data-assets:14: `3. Ưu tiên ngôn ngữ outcome (thấy được sau 2-4 tuần), tránh mô tả chung chung.`
+- docs-data-assets:19: `- Heading: 'Chọn đúng khóa để con tiến bộ sớm, không học sai mức'`
+- docs-data-assets:20: `- Subcopy: 'Bắt đầu từ mục tiêu hiện tại của con, không cần đoán level.'`
+- docs-data-assets:23: `- Cột: 'Abeka', 'Little Fox EN', 'Little Fox CN'`
+- docs-data-assets:24: `- Dòng:`
+- docs-data-assets:25: `- Mục tiêu chính`
+- docs-data-assets:26: `- Dành cho ai`
+- docs-data-assets:27: `- Đơn vị tiến trình (grade/level)`
+- docs-data-assets:28: `- Trigger nên bắt đầu`
+- docs-data-assets:29: `- CTA nhỏ: 'Xem track này'`
+- docs-data-assets:33: `- Mục tiêu chính của con`
+- docs-data-assets:34: `- Mức hiện tại (mới bắt đầu/đang học/cần tăng tốc)`
+- docs-data-assets:35: `- Quỹ thời gian mỗi tuần`
+- docs-data-assets:36: `- Output: 'Gợi ý 3 khóa phù hợp'`
+- docs-data-assets:39: `- Trường bắt buộc:`
+- docs-data-assets:40: `- Khóa này là gì (1 câu)`
+- docs-data-assets:41: `- Khác khóa lân cận ở đâu (1 bullet)`
+- docs-data-assets:42: `- Dành cho ai (1 bullet)`
+- docs-data-assets:43: `- Nên mua khi nào (1 bullet)`
+- docs-data-assets:44: `- Sau 4 tuần thấy gì (1-2 bullet)`
+- docs-data-assets:45: `- Số bài, thời hạn, giá`
+- docs-data-assets:46: `- CTA chính: 'Xem có hợp con không'`
+- docs-data-assets:47: `- CTA phụ: 'So sánh nhanh'`
+- docs-data-assets:50: `- Step 1: Chọn mục tiêu`
+- docs-data-assets:51: `- Step 2: Đối chiếu dấu hiệu hiện tại`
+- docs-data-assets:52: `- Step 3: Chốt khóa theo trigger mua`
+- docs-data-assets:57: `- Tên khóa`
+- docs-data-assets:58: `- 'Khóa này là gì' (1 câu)`
+- docs-data-assets:59: `- 'Dành cho ai' (1 câu)`
+- docs-data-assets:60: `- Giá + CTA cụm`
+- docs-data-assets:63: `- 'Phù hợp nếu...' (3 ý)`
+- docs-data-assets:64: `- 'Chưa phù hợp nếu...' (2-3 ý)`
+- docs-data-assets:65: `- 'Nên mua ngay khi...' (2 ý)`
+- docs-data-assets:68: `- So sánh với khóa trước/sau trong cùng track:`
+- docs-data-assets:69: `- đầu vào`
+- docs-data-assets:70: `- mục tiêu đầu ra`
+- docs-data-assets:71: `- độ khó`
+- docs-data-assets:72: `- nhịp học`
+- docs-data-assets:75: `- Tuần 1-2: phụ huynh thấy gì`
+- docs-data-assets:76: `- Tuần 3-4: phụ huynh thấy gì`
+- docs-data-assets:77: `- Sau hoàn thành: con đạt gì`
+- docs-data-assets:80: `- Nhóm bài + kỹ năng chính + time budget`
+- docs-data-assets:83: `- Mua xong nhận gì ngay`
+- docs-data-assets:84: `- Nếu chưa chắc level thì làm gì`
+- docs-data-assets:85: `- Kênh hỗ trợ nhanh`
+- docs-data-assets:88: `- CTA chính: 'Mua khóa này'`
+- docs-data-assets:89: `- CTA phụ: 'Chưa chắc level? Nhờ tư vấn'`
+- docs-data-assets:91: `## 4) Copy differentiation (dùng trực tiếp)`
+- docs-data-assets:94: `- 'Khóa này là': Lộ trình học thuật theo cấp lớp.`
+- docs-data-assets:95: `- 'Khác biệt': Đi theo grade K4-G12, ưu tiên nền đọc hiểu-từ vựng-tư duy.`
+- docs-data-assets:96: `- 'Dành cho': phụ huynh muốn lộ trình bài bản theo lớp.`
+- docs-data-assets:97: `- 'Nên mua khi': con cần đi đúng nhịp học thuật theo cấp lớp.`
+- docs-data-assets:100: `- 'Khóa này là': Luyện nghe-đọc tiếng Anh qua truyện theo level.`
+- docs-data-assets:101: `- 'Khác biệt': Đi theo level 1-9, nhịp bài ngắn, tăng đều độ khó.`
+- docs-data-assets:102: `- 'Dành cho': phụ huynh muốn tăng nghe hiểu và phản xạ tiếng Anh.`
+- docs-data-assets:103: `- 'Nên mua khi': con học tốt bằng truyện/video và cần lộ trình rõ.`
+- docs-data-assets:106: `- 'Khóa này là': Lộ trình nhập môn tiếng Trung theo level.`
+- docs-data-assets:107: `- 'Khác biệt': Đi theo level 1-5, ưu tiên giảm quá tải đầu vào.`
+- docs-data-assets:108: `- 'Dành cho': phụ huynh muốn con bắt đầu tiếng Trung có kiểm soát nhịp.`
+- docs-data-assets:109: `- 'Nên mua khi': con mới làm quen tiếng Trung và cần tiến dần từng bước.`
+- docs-data-assets:111: `## 5) CTA strategy theo trạng thái phụ huynh`
+- docs-data-assets:113: `1. Chưa rõ nhu cầu:`
+- docs-data-assets:114: `- CTA chính: 'Nhận đề xuất khóa trong 60s'`
+- docs-data-assets:115: `2. Đã shortlist nhưng chưa chắc level:`
+- docs-data-assets:116: `- CTA chính: 'Xem có hợp con không'`
+- docs-data-assets:117: `3. Đã sẵn sàng mua:`
+- docs-data-assets:118: `- CTA chính: 'Mua khóa này'`
+- docs-data-assets:119: `- CTA phụ: 'Nhờ tư vấn chọn level'`
+- docs-data-assets:123: `1. Trang list có compare strip + quick-fit + standardized card.`
+- docs-data-assets:124: `2. Trang detail có fit checklist + difference block + outcome timeline.`
+- docs-data-assets:125: `3. Mỗi khóa hiển thị rõ “dành cho ai/không dành cho ai”.`
+- docs-data-assets:126: `4. CTA discovery được đổi sang ngữ cảnh đánh giá phù hợp trước mua.`
+- docs-data-assets:127: `5. Sự khác biệt giữa 3 khóa đọc hiểu được trong <=20 giây quét mắt.`
+- docs-data-assets:131: `- Có đủ dữ liệu để hiển thị entry-level tự động ngay sprint này không?`
+- docs-data-assets:132: `- KPI ưu tiên để chốt A/B là conversion hay giảm mua sai level?`
+- docs-data-assets:133: `- Có cần public policy đổi level sau mua trên detail page không?`
+
+### docs/interactive-lesson-production-workflow.md
+
+- docs-data-assets:3: `> Quy trình chuẩn hóa sản xuất bài giảng tương tác cho hệ thống TinyGenius Hub.`
+- docs-data-assets:4: `> Mỗi bài giảng = 6 bước tương tác + TTS audio + mascot animation.`
+- docs-data-assets:6: `## Tổng quan hệ thống`
+- docs-data-assets:8: `### Kiến trúc bài giảng`
+- docs-data-assets:12: `├── id: string (kebab-case, unique, trùng với tên thư mục audio)`
+- docs-data-assets:14: `├── mascotVariant: MascotVariant (mặc định cho bài, step-level ghi đè)`
+- docs-data-assets:15: `└── steps: InteractiveLessonStep[] (convention: 6 steps, không bắt buộc bởi TypeScript)`
+- docs-data-assets:16: `├── [0] hook       — Chào hỏi, kéo sự chú ý`
+- docs-data-assets:17: `├── [1] concept    — Giới thiệu kiến thức mới`
+- docs-data-assets:18: `├── [2] demonstrate — Minh họa bằng ví dụ (keyword cards)`
+- docs-data-assets:19: `├── [3] activity   — Trắc nghiệm / tương tác`
+- docs-data-assets:20: `├── [4] reinforce  — Ôn tập (chỉ hiện khi trả lời sai, bị skip trong flow bình thường)`
+- docs-data-assets:21: `└── [5] celebrate  — Chúc mừng hoàn thành`
+- docs-data-assets:24: `> **Lưu ý:** 'mascotVariant' ở cấp lesson là giá trị mặc định/gợi ý. Giá trị thực sự render đến từ 'step.mascot.variant' trong mỗi step. Nếu hai giá trị khác nhau, step-level thắng.`
+- docs-data-assets:26: `### Flow tương tác của trẻ`
+- docs-data-assets:33: `Đúng              Sai (retry < 3)`
+- docs-data-assets:36: `│         reinforce (ôn lại + thử lại)`
+- docs-data-assets:39: `│        Đúng        Sai (lặp lại, tối đa 3 lần)`
+- docs-data-assets:42: `celebrate ◄──────┘     celebrate (sau 3 lần sai,`
+- docs-data-assets:43: `│                  tự chuyển dù chưa đúng)`
+- docs-data-assets:45: `Hoàn thành`
+- docs-data-assets:49: `- 'retryCount' tăng mỗi lần sai, reset về 0 khi đúng hoặc khi 'advanceStep'`
+- docs-data-assets:50: `- 'needsReinforce = retryCount < 3' → sau 3 lần sai, trẻ tự chuyển celebrate`
+- docs-data-assets:51: `- 'advanceStep' tự động skip step có 'type === "reinforce"' trong flow bình thường`
+- docs-data-assets:52: `- Reinforce step tái sử dụng 'activity' từ step 4 nếu reinforce step không có 'activity' riêng`
+- docs-data-assets:53: `- Nếu cả reinforce lẫn activity step đều không có 'activity' spec → reinforce render 'null' (cần tránh)`
+- docs-data-assets:55: `### Chế độ Preview vs Production`
+- docs-data-assets:59: `| API completion | Không gọi | POST '/api/lessons/{id}/complete' |`
+- docs-data-assets:61: `| Lưu ý | Dùng ở '/interactive-lesson-preview' | 'minutesLearned' hardcoded = 3, chưa đo thời gian thực |`
+- docs-data-assets:63: `### Hệ thống âm thanh`
+- docs-data-assets:65: `**TTS Audio** (từ MP3 files):`
+- docs-data-assets:67: `- Nếu 'audioUrl' trống/undefined → 'onEnd' fire sau 100ms (step không bị block)`
+- docs-data-assets:68: `- Nếu MP3 load lỗi (404) → fallback timer 2s rồi 'onEnd' (lesson vẫn tiến, không block)`
+- docs-data-assets:70: `**Sound effects** ('synth' từ 'src/lib/audio-utils.ts', dùng Web Audio API):`
+- docs-data-assets:76: `**Keyword card fallback** (khi không có MP3):`
+- docs-data-assets:77: `- Dùng 'window.speechSynthesis' (Web Speech API)`
+- docs-data-assets:78: `- Tự detect ngôn ngữ: Vietnamese diacritics → 'vi-VN', else → 'en-US'`
+- docs-data-assets:79: `- 'rate: 0.7' (chậm cho trẻ), 'pitch: 1.1'`
+- docs-data-assets:83: `Nút X (thoát lesson) mở 'ParentGateDialog' — trẻ không thể tự thoát. Phụ huynh phải xác nhận qua dialog trước khi đóng lesson. Đây là tính năng child-proofing có chủ đích.`
+- docs-data-assets:91: `│   └── demo-lesson-{id}.ts        # Data file cho mỗi bài`
+- docs-data-assets:127: `## Quy trình sản xuất (Step-by-step)`
+- docs-data-assets:129: `### Phase 1: Thiết kế nội dung bài giảng`
+- docs-data-assets:131: `**Input:** Chủ đề bài học, nhóm tuổi, môn học`
+- docs-data-assets:134: `#### 1.1 Xác định thông tin bài`
+- docs-data-assets:136: `| Field | Mô tả | Ví dụ |`
+- docs-data-assets:138: `| 'id' | Kebab-case, unique, trùng tên thư mục audio | 'am-a', 'so-1-5', 'hinh-tron-vuong' |`
+- docs-data-assets:139: `| 'title' | Tên bài (tiếng Việt) | '"Âm /a/ và /m/"' |`
+- docs-data-assets:140: `| 'mascotVariant' | Nhân vật mascot mặc định | '"big"', '"dad"', '"sister"' |`
+- docs-data-assets:142: `#### 1.2 Soạn nội dung 6 bước`
+- docs-data-assets:144: `Mỗi bước cần:`
+- docs-data-assets:146: `**Step 1 — Hook (Chào hỏi)**`
+- docs-data-assets:151: `speech: "Chào con!",               // Max 4 từ, hiện speech bubble`
+- docs-data-assets:153: `autoAdvanceMs: 2500,                // Tự chuyển sau 2.5s (sau khi audio kết thúc)`
+- docs-data-assets:156: `- 'speech': Ngắn gọn, thân thiện`
+- docs-data-assets:157: `- 'autoAdvanceMs': Nên 2000–3000ms`
+- docs-data-assets:159: `**Step 2 — Concept (Giới thiệu)**`
+- docs-data-assets:164: `keyword: "/a/",                     // Từ khóa chính, hiện lớn giữa màn`
+- docs-data-assets:165: `speech: "Đây là âm A",             // Speech bubble`
+- docs-data-assets:166: `subtext: "Phát âm: 'a' như trong 'ant'",  // Dòng phụ dưới keyword`
+- docs-data-assets:170: `- 'keyword': 1–3 từ, font lớn`
+- docs-data-assets:171: `- 'subtext': Giải thích ngắn`
+- docs-data-assets:172: `- Có nút speaker replay (phát lại audio)`
+- docs-data-assets:174: `**Step 3 — Demonstrate (Minh họa)**`
+- docs-data-assets:179: `keywords: ["ant", "apple", "map"],  // Các keyword card sẽ hiện lần lượt`
+- docs-data-assets:180: `keywordsWithAudio: [                // Audio sync cho từng card`
+- docs-data-assets:185: `speech: "Nghe nào!",`
+- docs-data-assets:190: `- Flow: intro audio → card-by-card (card hiện khi audio keyword phát) → done`
+- docs-data-assets:191: `- Card taps bị disable khi audio đang phát (tránh chèn âm)`
+- docs-data-assets:192: `- Sau khi tất cả card hiện (phase "done"), trẻ có thể click replay từng card`
+- docs-data-assets:193: `- Nếu không có 'keywordsWithAudio', fallback timer 1.5s/card`
+- docs-data-assets:195: `**Step 4 — Activity (Bài tập)**`
+- docs-data-assets:200: `speech: "Con thử nhé!",`
+- docs-data-assets:203: `type: "MULTIPLE_CHOICE",          // Loại activity (xem bảng đầy đủ ở phần Tham chiếu)`
+- docs-data-assets:204: `prompt: "Từ nào có âm /a/?",`
+- docs-data-assets:207: `question: "Từ nào có âm /a/?",`
+- docs-data-assets:209: `correctIndex: 0,                // Index đáp án đúng (0-based)`
+- docs-data-assets:210: `explanation: "'apple' có âm /a/ ở đầu từ",`
+- docs-data-assets:212: `passCriteria: 1,                  // 0–1 (hiện tại chưa dùng bởi state machine)`
+- docs-data-assets:217: `- Options bị disable khi audio narration chưa xong`
+- docs-data-assets:218: `- Đúng: mascot 'celebrating', sound 'playYay()', chuyển celebrate sau 1.2s`
+- docs-data-assets:219: `- Sai: mascot 'sad', sound 'playBzz()', chờ 1.2s → mở lại options`
+- docs-data-assets:220: `- Tối đa 3 lần sai → tự chuyển celebrate (không loop vô hạn)`
+- docs-data-assets:222: `**Step 5 — Reinforce (Ôn tập)**`
+- docs-data-assets:228: `speech: "Nhớ lại nào!",`
+- docs-data-assets:229: `subtext: "Âm /a/ như trong 'ant', 'apple'",`
+- docs-data-assets:231: `// activity: { ... }  // Optional: nếu không có, tự lấy từ step 4`
+- docs-data-assets:234: `- Chỉ hiện khi trẻ trả lời sai ở step 4 (tối đa 3 lần)`
+- docs-data-assets:235: `- Hiện keyword 1.5s → hiện activity (tái sử dụng từ step 4 nếu không định nghĩa riêng)`
+- docs-data-assets:236: `- **Quan trọng:** Nếu reinforce step KHÔNG có 'activity' và step 4 cũng không có → component render 'null'. Luôn đảm bảo ít nhất step 4 có 'activity'.`
+- docs-data-assets:238: `**Step 6 — Celebrate (Chúc mừng)**`
+- docs-data-assets:243: `speech: "Giỏi lắm!",`
+- docs-data-assets:249: `- Tự chuyển sau 'autoAdvanceMs' (mặc định 3000ms)`
+- docs-data-assets:251: `#### 1.3 Tạo data file`
+- docs-data-assets:253: `Tạo file: 'src/components/interactive-lesson/data/demo-lesson-{id}.ts'`
+- docs-data-assets:263: `// ... 6 steps như trên`
+- docs-data-assets:268: `#### 1.4 Đăng ký vào danh sách`
+- docs-data-assets:270: `Thêm vào 'src/components/interactive-lesson/data/index.ts':`
+- docs-data-assets:277: `demoLesson{PascalCase},  // ← thêm`
+- docs-data-assets:283: `### Phase 2: Soạn TTS script`
+- docs-data-assets:285: `**Input:** Lesson data file từ Phase 1`
+- docs-data-assets:288: `#### 2.1 Thêm lesson vào 'scripts/generate-lesson-audio.py'`
+- docs-data-assets:290: `Thêm entry vào mảng 'LESSONS':`
+- docs-data-assets:297: `(1, "hook", "Chào con! Hôm nay mình học {chủ đề} nhé!", "greet warmly"),`
+- docs-data-assets:298: `(2, "concept", "{Nội dung giảng dạy chi tiết...}", "slow clear teaching"),`
+- docs-data-assets:299: `(3, "demonstrate", "{Ví dụ minh họa...}", "demonstrate clearly"),`
+- docs-data-assets:300: `(4, "activity", "{Hướng dẫn làm bài...}", "encouraging prompt"),`
+- docs-data-assets:301: `(5, "reinforce", "{Ôn tập kiến thức...}", "gentle review"),`
+- docs-data-assets:302: `(6, "celebrate", "{Lời khen ngợi...}", "enthusiastic celebration"),`
+- docs-data-assets:307: `**Nguyên tắc viết TTS script:**`
+- docs-data-assets:308: `- Nói chậm, rõ ràng, thân thiện`
+- docs-data-assets:309: `- Giọng cô giáo mầm non Việt Nam`
+- docs-data-assets:310: `- Speech trong Python dài hơn 'speech' field trong TS data (speech bubble chỉ hiện 3–4 từ, TTS nói đầy đủ hơn)`
+- docs-data-assets:311: `- Step context (cột 4) hướng dẫn giọng đọc cho AI`
+- docs-data-assets:313: `#### 2.2 Thêm keywords vào 'scripts/generate-keyword-audio.py'`
+- docs-data-assets:315: `Nếu bài có demonstrate step với keyword cards:`
+- docs-data-assets:324: `> **Lưu ý:** Nếu bài không có entry trong 'KEYWORD_AUDIO' (ví dụ 'so-1-5', 'hinh-tron-vuong'), keyword cards sẽ fallback sang Web Speech API khi trẻ click. Nên thêm entry cho tất cả bài có 'keywordsWithAudio'.`
+- docs-data-assets:330: `**Input:** Python scripts đã cập nhật`
+- docs-data-assets:336: `# Python packages (dùng venv của skills)`
+- docs-data-assets:339: `# ffmpeg (để convert WAV → MP3)`
+- docs-data-assets:342: `# Script fallback: nếu FFMPEG_PATH hardcoded không tồn tại, dùng "ffmpeg" từ PATH`
+- docs-data-assets:344: `# Authenticate với Google Cloud`
+- docs-data-assets:351: `# Lấy access token (hết hạn sau ~1h)`
+- docs-data-assets:361: `**Xử lý lỗi và retry:**`
+- docs-data-assets:362: `- Script tự skip file đã tồn tại (idempotent, chạy lại an toàn)`
+- docs-data-assets:363: `- **429 Rate limit (~10 RPM):** Script KHÔNG tự retry — in '[ERR]' rồi tiếp tục. Chờ 60s rồi chạy lại script (file đã có sẽ skip).`
+- docs-data-assets:364: `- **401 Token expired:** Chạy lại 'export GCLOUD_TOKEN=$(gcloud auth print-access-token)' rồi re-run script.`
+- docs-data-assets:365: `- **Workflow khuyến nghị cho batch lớn:** Chạy script → kiểm tra '[ERR]' → chờ 60s → chạy lại → lặp cho đến hết '[ERR]'.`
+- docs-data-assets:367: `**Thông số kỹ thuật:**`
+- docs-data-assets:371: `- File size trung bình: 30–90 KB/file`
+- docs-data-assets:376: `# Kiểm tra tất cả file đã tạo`
+- docs-data-assets:386: `# kw-{word1}.mp3  (nếu có keywordsWithAudio)`
+- docs-data-assets:393: `### Phase 4: Kiểm tra & QA`
+- docs-data-assets:399: `# Phải 0 errors`
+- docs-data-assets:402: `#### 4.2 Preview trên local`
+- docs-data-assets:406: `# Mở http://localhost:3000/interactive-lesson-preview`
+- docs-data-assets:407: `# Chọn bài mới, click "Bắt đầu"`
+- docs-data-assets:412: `| # | Kiểm tra | Pass |`
+- docs-data-assets:414: `| 1 | Hook: Audio phát, speech bubble hiện, tự chuyển sau autoAdvanceMs | ☐ |`
+- docs-data-assets:415: `| 2 | Concept: Keyword hiện lớn, subtext rõ, có nút replay audio (speaker icon) | ☐ |`
+- docs-data-assets:416: `| 3 | Demonstrate: Cards hiện lần lượt sync với audio, card taps disabled khi audio đang phát | ☐ |`
+- docs-data-assets:417: `| 4 | Demonstrate done: Click card phát lại đúng keyword audio | ☐ |`
+- docs-data-assets:418: `| 5 | Activity: Options bị disable khi audio đang phát, chọn đáp án đúng → celebrate | ☐ |`
+- docs-data-assets:419: `| 6 | Activity sai: Mascot buồn, sound bzz, chờ 1.2s → mở lại options | ☐ |`
+- docs-data-assets:420: `| 7 | Activity sai 3 lần: Tự chuyển celebrate (không loop vô hạn) | ☐ |`
+- docs-data-assets:421: `| 8 | Reinforce: Hiện keyword 1.5s → activity lại sau khi sai | ☐ |`
+- docs-data-assets:422: `| 9 | Celebrate: Confetti, sound yay, audio chúc mừng, tự hoàn thành sau autoAdvanceMs | ☐ |`
+- docs-data-assets:423: `| 10 | Audio không bị chèn nhau giữa các step | ☐ |`
+- docs-data-assets:424: `| 11 | Thoát lesson: Parent gate dialog hoạt động (trẻ không tự thoát được) | ☐ |`
+- docs-data-assets:425: `| 12 | Nếu MP3 file thiếu: lesson vẫn tiến (fallback 2s auto-advance) | ☐ |`
+- docs-data-assets:446: `# Nếu build bị OOM (4GB RAM server):`
+- docs-data-assets:454: `## Quy trình sản xuất hàng loạt`
+- docs-data-assets:462: `1. Soạn nội dung          3. Generate TTS           5. Type check`
+- docs-data-assets:463: `(chủ đề, keywords,        audio batch               + E2E test`
+- docs-data-assets:464: `activity, speech)      (chạy lại nếu 429)`
+- docs-data-assets:467: `files (có thể tự`
+- docs-data-assets:468: `động hóa)`
+- docs-data-assets:471: `### Khi scale lên, cần tự động hóa:`
+- docs-data-assets:473: `| Bước | Hiện tại (manual) | Tự động hóa (tương lai) |`
+- docs-data-assets:475: `| Soạn nội dung | Viết TS file thủ công | CMS/Spreadsheet → JSON → TS codegen |`
+- docs-data-assets:476: `| TTS script | Thêm vào Python array | Đọc trực tiếp từ data files |`
+- docs-data-assets:477: `| Generate audio | Chạy script CLI + retry | CI/CD pipeline + queue + auto-retry |`
+- docs-data-assets:481: `### Ước lượng thời gian sản xuất`
+- docs-data-assets:483: `| Task | Thời gian/bài | Batch 10 bài |`
+- docs-data-assets:485: `| Soạn nội dung | 15–30 phút | 3–5 giờ |`
+- docs-data-assets:486: `| Cập nhật scripts | 5 phút | 50 phút |`
+- docs-data-assets:487: `| Generate TTS | 2–3 phút (auto) | 20–30 phút |`
+- docs-data-assets:488: `| QA + fix | 10–15 phút | 2–3 giờ |`
+- docs-data-assets:489: `| **Tổng** | **~45–60 phút** | **~6–9 giờ** |`
+- docs-data-assets:493: `## Tham chiếu kỹ thuật`
+- docs-data-assets:497: `| Variant | Mô tả | Dùng cho |`
+- docs-data-assets:499: `| 'big' | Cú lớn (chính) | Phonics, toán cơ bản |`
+- docs-data-assets:500: `| 'small' | Cú nhỏ | Bài nhẹ nhàng |`
+- docs-data-assets:501: `| 'dad' | Cú bố | Toán, khoa học |`
+- docs-data-assets:502: `| 'sister' | Cú chị | Nghệ thuật, sáng tạo |`
+- docs-data-assets:503: `| 'baby' | Cú bé | Bài cho trẻ nhỏ nhất |`
+- docs-data-assets:504: `| 'duo' | Cú lớn + cú nhỏ | Bài tương tác đôi (cần thêm 'parentState', 'childState') |`
+- docs-data-assets:505: `| 'family' | Cả gia đình cú | Bài đặc biệt (cần thêm 'dadState', 'sisterState', 'babyState') |`
+- docs-data-assets:521: `| Type | Mô tả | Spec fields |`
+- docs-data-assets:523: `| 'MULTIPLE_CHOICE' | Chọn 1 đáp án đúng | 'question', 'options: string[]', 'correctIndex: number', 'explanation?: string' |`
+- docs-data-assets:524: `| 'TRUE_FALSE' | Đúng/Sai | 'statement', 'isTrue: boolean', 'explanation?: string' |`
+- docs-data-assets:525: `| 'FILL_BLANK' | Điền vào chỗ trống | 'sentence', 'answer: string', 'hint?: string' |`
+- docs-data-assets:526: `| 'MATCH_PAIRS' | Nối cặp | 'pairs: { left, right }[]' |`
+- docs-data-assets:527: `| 'SORT_ORDER' | Sắp xếp thứ tự | 'items: string[]', 'correctOrder: number[]' |`
+- docs-data-assets:528: `| 'LISTEN_IDENTIFY' | Nghe và nhận diện | (spec tùy implementation) |`
+- docs-data-assets:529: `| 'DRAG_DROP' | Kéo thả | (spec tùy implementation) |`
+- docs-data-assets:530: `| 'DRAWING' | Vẽ | (spec tùy implementation) |`
+- docs-data-assets:540: `| Rate limit | ~10 RPM (Vertex AI), script không tự retry |`
+- docs-data-assets:541: `| Auth | 'gcloud auth print-access-token' → 'GCLOUD_TOKEN' env (hết hạn ~1h) |`
+- docs-data-assets:547: `| Asset | Pattern | Ví dụ |`
+- docs-data-assets:555: `> **Cẩn thận:** Audio filename dùng numbering 1-based ('step-1'), trong khi 'steps[]' array trong TypeScript là 0-indexed. Không nhầm lẫn khi mapping.`
+
+### docs/journals/260508-completed-rebrand-to-tinygeniushub.md
+
+- docs-data-assets:1: `# Rebrand Complete: Cùng Con Tự Học → TinyGenius Hub`
+- docs-data-assets:10: `Rebranded entire codebase, infrastructure, and public surface from "Cùng Con Tự Học" / 'cungcontuhoc' to "TinyGenius Hub" / 'tinygeniushub'. Executed across 167 files (2,534 insertions, 835 deletions) in 10 phases via commit '29e8029b'. All 635 tests across 106 test files pass.`
+- docs-data-assets:36: `- **Commit**: '29e8029b' — 'refactor: rebrand Cùng Con Tự Học to TinyGenius Hub'`
+
+### docs/marketing/2026-03-12-homepage-cloud-garden-brainstorm.md
+
+- docs-data-assets:1: `# Brainstorm: Nâng Cấp Giao Diện Trang Chủ "Khu Vườn Trên Mây"`
+- docs-data-assets:44: `- SEO Critical: Must rank for "giáo dục trẻ em" keywords`
+- docs-data-assets:80: `<h1>Khu Vườn Trên Mây – Học Toán & Tiếng Anh cho bé 2-6 tuổi</h1>`
+- docs-data-assets:81: `<p>Gieo hạt giống tri thức, theo dõi tiến độ trên từng tầng mây</p>`
+- docs-data-assets:82: `<CloudButton href="/auth/signup">Bắt đầu miễn phí 7 ngày</CloudButton>`
+- docs-data-assets:87: `- 3 benefit cards: Lộ trình rõ ràng | Mở tầng theo tiến độ | Báo cáo tuần`
+- docs-data-assets:92: `<SpeechBubble>👋 Chào con! Chọn vùng mây để khám phá</SpeechBubble>`
+- docs-data-assets:94: `<CloudButton>Đăng ký ngay để con học thử</CloudButton>`
+- docs-data-assets:142: `- H1: "Khu Vườn Trên Mây – Học Toán & Tiếng Anh cho bé 2-6 tuổi"`
+- docs-data-assets:143: `- Primary CTA: "Bắt đầu miễn phí 7 ngày"`
+- docs-data-assets:181: `- Modal: "Mở khóa tất cả khu vườn" + form`
+- docs-data-assets:322: `- Target: Improve rank for "giáo dục trẻ em", "toán tư duy"`
+
+### docs/marketing/blog-content-plan.md
+
+- docs-data-assets:7: `## 1. Cách Dạy Tiếng Anh Cho Trẻ 2 Tuổi Tại Nhà`
+- docs-data-assets:9: `**Target keyword:** dạy tiếng Anh cho trẻ 2 tuổi`
+- docs-data-assets:10: `**Meta description:** Bé 2 tuổi đã có thể học tiếng Anh chưa? Khám phá 5 phương pháp đơn giản giúp bé làm quen với tiếng Anh qua âm nhạc, trò chơi và hội thoại hàng ngày.`
+- docs-data-assets:11: `**Outline:** Tại sao 2 tuổi là thời điểm vàng • Phương pháp TPR (phản xạ toàn thân) • Bài hát và flashcard • Thói quen 10 phút mỗi ngày • Sai lầm phổ biến cần tránh`
+- docs-data-assets:15: `## 2. Học Tiếng Anh Cho Bé 3 Tuổi: Lộ Trình 3 Tháng`
+- docs-data-assets:17: `**Target keyword:** học tiếng Anh cho bé 3 tuổi`
+- docs-data-assets:18: `**Meta description:** Lộ trình học tiếng Anh 3 tháng cho bé 3 tuổi — từ 0 đến biết 100 từ vựng cơ bản. Phù hợp học tại nhà không cần gia sư.`
+- docs-data-assets:19: `**Outline:** Mục tiêu theo tháng • Danh sách 100 từ vựng ưu tiên • Hoạt động vui theo ngày • Cách theo dõi tiến độ của bé • Tài nguyên miễn phí và trả phí`
+- docs-data-assets:23: `## 3. Ứng Dụng Học Tiếng Anh Tốt Nhất Cho Trẻ Em 2025`
+- docs-data-assets:25: `**Target keyword:** ứng dụng học tiếng Anh cho trẻ em`
+- docs-data-assets:26: `**Meta description:** So sánh 7 ứng dụng học tiếng Anh hàng đầu cho trẻ em Việt Nam năm 2025 — ưu nhược điểm, độ tuổi phù hợp và chi phí thực tế.`
+- docs-data-assets:27: `**Outline:** Tiêu chí đánh giá ứng dụng • Top 7 ứng dụng (bao gồm tinygeniushubvn.tech) • So sánh bảng tính năng • Khuyến nghị theo độ tuổi • Mẹo kết hợp nhiều ứng dụng`
+- docs-data-assets:31: `## 4. Tiếng Anh Trẻ Em: Bắt Đầu Từ Đâu Khi Bé Chưa Biết Gì?`
+- docs-data-assets:33: `**Target keyword:** tiếng Anh trẻ em bắt đầu từ đâu`
+- docs-data-assets:34: `**Meta description:** Ba mẹ không biết bắt đầu dạy tiếng Anh cho con từ đâu? Bài viết này giải đáp từng bước, phù hợp cả với gia đình không có nền tảng ngoại ngữ.`
+- docs-data-assets:35: `**Outline:** Đánh giá trình độ hiện tại của bé • 3 giai đoạn nền tảng • Thiết lập môi trường tiếng Anh tại nhà • Không cần native speaker • Câu hỏi thường gặp`
+- docs-data-assets:39: `## 5. Bé 4-5 Tuổi Học Tiếng Anh: Phương Pháp Phonics Là Gì?`
+- docs-data-assets:41: `**Target keyword:** dạy phonics cho trẻ 4 5 tuổi`
+- docs-data-assets:42: `**Meta description:** Phonics là nền tảng để bé đọc tiếng Anh tự nhiên. Hướng dẫn chi tiết cách dạy phonics cho trẻ 4–5 tuổi tại nhà trong 15 phút mỗi ngày.`
+- docs-data-assets:43: `**Outline:** Phonics là gì và tại sao quan trọng • 44 âm cơ bản cần dạy • Trình tự học phonics chuẩn • Bài tập thực hành tại nhà • Dấu hiệu bé đã thành thạo`
+- docs-data-assets:47: `## 6. Trẻ Xem Cartoon Tiếng Anh Có Học Được Không?`
+- docs-data-assets:49: `**Target keyword:** trẻ em xem cartoon tiếng Anh học được không`
+- docs-data-assets:50: `**Meta description:** Xem hoạt hình tiếng Anh đúng cách có thể giúp bé tiếp thu từ vựng và ngữ điệu tự nhiên. Tìm hiểu cách chọn nội dung và thời lượng phù hợp.`
+- docs-data-assets:51: `**Outline:** Nghiên cứu khoa học về học qua screen • Hoạt hình phù hợp theo độ tuổi • Kỹ thuật "xem cùng con" • Thời lượng khuyến nghị • Danh sách kênh YouTube chất lượng`
+- docs-data-assets:55: `## 7. So Sánh Học Tiếng Anh Online Và Offline Cho Trẻ Em`
+- docs-data-assets:57: `**Target keyword:** học tiếng Anh online cho trẻ em có tốt không`
+- docs-data-assets:58: `**Meta description:** Online hay offline — phương pháp nào phù hợp hơn cho con bạn? Phân tích chi tiết chi phí, hiệu quả và sự linh hoạt cho gia đình Việt.`
+- docs-data-assets:59: `**Outline:** Ưu nhược điểm từng hình thức • Chi phí thực tế 2025 • Tiêu chí chọn lớp online • Dấu hiệu bé phù hợp với online learning • Kết hợp cả hai hiệu quả`
+- docs-data-assets:63: `## 8. Làm Thế Nào Để Bé Không Sợ Nói Tiếng Anh?`
+- docs-data-assets:65: `**Target keyword:** trẻ sợ nói tiếng Anh phải làm sao`
+- docs-data-assets:66: `**Meta description:** Nhiều bé hiểu tiếng Anh nhưng không dám nói. Khám phá nguyên nhân và 6 cách đơn giản giúp bé tự tin nói tiếng Anh mỗi ngày.`
+- docs-data-assets:67: `**Outline:** Tâm lý sợ nói ở trẻ nhỏ • 6 hoạt động tăng sự tự tin • Vai trò của ba mẹ • Tránh phê bình phát âm sớm • Cột mốc tự nhiên cần chờ đợi`
+- docs-data-assets:71: `## 9. Học Tiếng Anh Cho Bé Qua Bài Hát: 20 Bài Hay Nhất`
+- docs-data-assets:73: `**Target keyword:** bài hát tiếng Anh cho bé học từ vựng`
+- docs-data-assets:74: `**Meta description:** 20 bài hát tiếng Anh thiếu nhi giúp bé học từ vựng, màu sắc, số đếm và các chủ đề cơ bản — kèm gợi ý hoạt động đi kèm cho ba mẹ.`
+- docs-data-assets:75: `**Outline:** Tại sao âm nhạc giúp nhớ từ vựng • 20 bài theo chủ đề (màu sắc, động vật, cơ thể...) • Cách dùng bài hát hiệu quả • Tạo playlist theo tuổi • Hoạt động vận động kết hợp`
+- docs-data-assets:79: `## 10. Khi Nào Trẻ Sẵn Sàng Học Đọc Tiếng Anh?`
+- docs-data-assets:81: `**Target keyword:** khi nào bé học đọc tiếng Anh được`
+- docs-data-assets:82: `**Meta description:** Độ tuổi nào phù hợp để bắt đầu dạy bé đọc tiếng Anh? Các dấu hiệu sẵn sàng và lộ trình từ nhận biết chữ cái đến đọc câu đơn giản.`
+- docs-data-assets:83: `**Outline:** Dấu hiệu bé sẵn sàng học đọc • Giai đoạn pre-reading (3–4 tuổi) • Bắt đầu đọc chính thức (5–6 tuổi) • Sách tiếng Anh phù hợp theo cấp độ • Lỗi thường gặp khi dạy đọc sớm`
+
+### docs/marketing/blog-drafts/blog-01-dau-hieu-be-san-sang-hoc-tieng-anh.md
+
+- docs-data-assets:2: `title: "5 Dấu Hiệu Bé Sẵn Sàng Học Tiếng Anh (3–5 Tuổi)"`
+- docs-data-assets:5: `targetKeyword: "học tiếng Anh cho trẻ 3 tuổi"`
+- docs-data-assets:6: `metaDesc: "Bé nhà bạn đã sẵn sàng học tiếng Anh chưa? 5 dấu hiệu phụ huynh cần chú ý để bắt đầu đúng thời điểm cho trẻ 3–5 tuổi."`
+- docs-data-assets:10: `# 5 Dấu Hiệu Bé Sẵn Sàng Học Tiếng Anh (3–5 Tuổi)`
+- docs-data-assets:12: `Nhiều phụ huynh tự hỏi: *"Con mình có quá nhỏ để học tiếng Anh không?"* hay *"Bắt đầu từ 3 tuổi có muộn không?"*`
+- docs-data-assets:14: `Câu trả lời không phải ở tuổi — mà ở **sự sẵn sàng của bé**.`
+- docs-data-assets:16: `Dưới đây là 5 dấu hiệu cho thấy bé đã sẵn sàng và bạn không cần chờ thêm nữa.`
+- docs-data-assets:20: `## 1. Bé hay bắt chước âm thanh và từ ngữ xung quanh`
+- docs-data-assets:22: `Nếu bé thường xuyên lặp lại những từ nghe được từ TV, từ bố mẹ, hay từ bạn bè — đó là dấu hiệu não bộ đang hoạt động rất tích cực trong giai đoạn "hấp thụ ngôn ngữ" (language absorption window).`
+- docs-data-assets:24: `Trẻ 3–5 tuổi có khả năng phân biệt âm thanh ngôn ngữ mới tốt hơn người lớn nhiều lần. Nghiên cứu về phonological sensitivity cho thấy khả năng này giảm dần sau 7–8 tuổi (Johnson & Newport, 1989; Kuhl, 2004).`
+- docs-data-assets:26: `**→ Bắt đầu càng sớm, bé càng có lợi thế.**`
+- docs-data-assets:30: `## 2. Bé thích nhạc, bài hát, và vần điệu`
+- docs-data-assets:32: `Nursery rhymes tiếng Anh như "Twinkle Twinkle", "Old MacDonald" không chỉ là trò chơi — chúng là **bộ nhớ âm vị học** (phonological memory) đầu tiên của bé.`
+- docs-data-assets:34: `Bé nào thích hát, thích vỗ tay theo nhạc, thích hoàn thành vần bài hát — là bé có nền tảng ngôn ngữ tốt và dễ học tiếng Anh hơn.`
+- docs-data-assets:38: `## 3. Bé có khả năng tập trung ít nhất 5–10 phút vào một hoạt động`
+- docs-data-assets:40: `Học tiếng Anh hiệu quả không đòi hỏi bé ngồi học như học sinh tiểu học. Chỉ cần **5–10 phút tập trung có định hướng** mỗi ngày là đủ ở độ tuổi 3–4.`
+- docs-data-assets:42: `Nếu bé có thể hoàn thành một trò chơi đơn giản, nghe hết một câu chuyện ngắn, hay xem hết một video 3 phút — bé đã sẵn sàng.`
+- docs-data-assets:46: `## 4. Bé tò mò và đặt câu hỏi về thế giới xung quanh`
+- docs-data-assets:48: `*"Cái này tiếng Anh gọi là gì hả mẹ?"*`
+- docs-data-assets:50: `Sự tò mò tự nhiên là động lực học ngôn ngữ mạnh nhất. Bé nào hay hỏi, hay muốn biết tên gọi của mọi thứ — là bé đang ở trạng thái "học máy" tự nhiên.`
+- docs-data-assets:52: `Khai thác sự tò mò này bằng cách giới thiệu từ vựng tiếng Anh lồng ghép vào cuộc sống hàng ngày.`
+- docs-data-assets:56: `## 5. Bé phản ứng tích cực khi được khen ngợi và ghi nhận`
+- docs-data-assets:58: `Học ngôn ngữ cần **vòng lặp phản hồi tích cực** (positive feedback loop). Bé nào thích được khen, thích thấy mình "làm được" — sẽ tự tìm cách tiến bộ hơn.`
+- docs-data-assets:60: `Đây là lý do vì sao các app học tốt đều có hệ thống badge, streak, và điểm số — không phải để ganh đua, mà để kích hoạt **dopamine phần thưởng** khi bé hoàn thành bài.`
+- docs-data-assets:64: `## Bắt đầu như thế nào khi bé đã sẵn sàng?`
+- docs-data-assets:66: `Nguyên tắc vàng cho trẻ 3–5 tuổi:`
+- docs-data-assets:68: `1. **Ngắn và đều đặn** — 10–15 phút mỗi ngày tốt hơn 1 tiếng cuối tuần`
+- docs-data-assets:69: `2. **Kết hợp audio + visual** — não bộ trẻ nhỏ xử lý hình ảnh và âm thanh cùng lúc hiệu quả hơn chỉ đọc`
+- docs-data-assets:70: `3. **Theo dõi tiến độ** — bé (và bố mẹ) cần thấy sự tiến bộ để duy trì động lực`
+- docs-data-assets:72: `Nếu bạn muốn bắt đầu với lộ trình có cấu trúc, báo cáo tiến độ hàng tuần, và nội dung phù hợp từng độ tuổi — [dùng thử TinyGenius Hub 7 ngày miễn phí](/auth/signup), không cần nhập thẻ.`
+- docs-data-assets:76: `*Bài viết được biên soạn dựa trên nghiên cứu về phát triển ngôn ngữ trẻ em và kinh nghiệm thực tế từ các phụ huynh Việt Nam.*`
+
+### docs/marketing/blog-drafts/blog-02-so-sanh-app-hoc-tieng-anh-cho-be.md
+
+- docs-data-assets:2: `title: "So Sánh 5 App Học Tiếng Anh Cho Bé Tốt Nhất 2026 (Review Thật)"`
+- docs-data-assets:5: `targetKeyword: "app học tiếng Anh cho trẻ em"`
+- docs-data-assets:6: `metaDesc: "Review thật 5 app học tiếng Anh cho bé phổ biến nhất năm 2026: Monkey Junior, Khan Academy Kids, IXL, và TinyGenius Hub — ưu nhược điểm thực tế."`
+- docs-data-assets:10: `> **Công khai minh bạch:** Bài viết này được biên soạn bởi đội ngũ TinyGenius Hub. Chúng tôi cố gắng đánh giá khách quan dựa trên thông tin công khai và phản hồi từ phụ huynh, nhưng bạn nên cân nhắc nguồn gốc. Xem thêm review độc lập từ cộng đồng phụ huynh trên các hội nhóm Facebook.`
+- docs-data-assets:12: `# So Sánh 5 App Học Tiếng Anh Cho Bé Tốt Nhất 2026`
+- docs-data-assets:14: `Có quá nhiều app học tiếng Anh cho trẻ em trên thị trường — từ app ngoại nhập đến app Việt, từ miễn phí đến trả phí. Làm sao chọn đúng?`
+- docs-data-assets:16: `Bài này tổng hợp thông tin công khai và phản hồi từ phụ huynh Việt, không phải quảng cáo thuần túy.`
+- docs-data-assets:20: `## Tiêu chí đánh giá`
+- docs-data-assets:22: `1. **Phù hợp độ tuổi** — nội dung có thực sự dành cho trẻ 2–6 tuổi không?`
+- docs-data-assets:23: `2. **Ngôn ngữ** — có tiếng Việt hoặc phù hợp với bé chưa biết đọc không?`
+- docs-data-assets:24: `3. **Cấu trúc học** — có lộ trình rõ ràng hay chỉ là tập hợp video rời?`
+- docs-data-assets:25: `4. **Báo cáo cho phụ huynh** — bố mẹ có theo dõi được tiến độ không?`
+- docs-data-assets:26: `5. **Giá cả** — phù hợp với thu nhập phụ huynh Việt?`
+- docs-data-assets:27: `6. **Quảng cáo** — có làm phiền bé trong lúc học không?`
+- docs-data-assets:33: `**Phù hợp:** 0–10 tuổi | **Giá:** ~$59.99/năm (~1.5M VND)`
+- docs-data-assets:35: `**Ưu điểm:**`
+- docs-data-assets:36: `- Thương hiệu Việt, phụ huynh tin tưởng`
+- docs-data-assets:37: `- 40+ ngôn ngữ, nội dung phong phú`
+- docs-data-assets:39: `- Có offline mode`
+- docs-data-assets:41: `**Nhược điểm:**`
+- docs-data-assets:42: `- Giá cao so với thu nhập trung bình VN (~$5/tháng)`
+- docs-data-assets:43: `- Tập trung vào tiếng Anh đa quốc gia — không align với chương trình MOET`
+- docs-data-assets:44: `- Nhiều phụ huynh phàn nàn về auto-renewal không rõ ràng`
+- docs-data-assets:45: `- Không có báo cáo chi tiết cho phụ huynh`
+- docs-data-assets:47: `**Phù hợp nhất cho:** Gia đình muốn đầu tư bài bản, cần nhiều ngôn ngữ`
+- docs-data-assets:53: `**Phù hợp:** 2–8 tuổi | **Giá:** Hoàn toàn miễn phí`
+- docs-data-assets:55: `**Ưu điểm:**`
+- docs-data-assets:56: `- Miễn phí 100%, không quảng cáo`
+- docs-data-assets:57: `- Nội dung chất lượng cao (Gates Foundation-backed)`
+- docs-data-assets:58: `- Bao gồm đọc, toán, kỹ năng sống`
+- docs-data-assets:59: `- Giao diện thân thiện, bé tự dùng được`
+- docs-data-assets:61: `**Nhược điểm:**`
+- docs-data-assets:62: `- Giao diện tiếng Anh hoàn toàn — bé chưa biết tiếng Anh khó dùng`
+- docs-data-assets:63: `- Không có phiên bản tiếng Việt`
+- docs-data-assets:64: `- Không có báo cáo tiến độ chi tiết cho phụ huynh`
+- docs-data-assets:65: `- Không align với chương trình học VN`
+- docs-data-assets:67: `**Phù hợp nhất cho:** Bé đã có nền tiếng Anh cơ bản, gia đình bilingual`
+- docs-data-assets:73: `**Phù hợp:** 4–18 tuổi | **Giá:** $9.95–19.95/tháng (~250–500K VND)`
+- docs-data-assets:75: `**Ưu điểm:**`
+- docs-data-assets:76: `- Adaptive learning algorithm rất tốt`
+- docs-data-assets:77: `- Analytics chi tiết cho phụ huynh và giáo viên`
+- docs-data-assets:78: `- Bao gồm toán, tiếng Anh, khoa học`
+- docs-data-assets:80: `**Nhược điểm:**`
+- docs-data-assets:81: `- **Giá quá cao** cho thị trường VN đại chúng`
+- docs-data-assets:82: `- Giao diện tiếng Anh, không có bản VN`
+- docs-data-assets:83: `- Dành cho school-age (4+), không có cho trẻ 2–3 tuổi`
+- docs-data-assets:84: `- Phổ biến chủ yếu ở trường quốc tế`
+- docs-data-assets:86: `**Phù hợp nhất cho:** Gia đình con học trường quốc tế, ngân sách cao`
+- docs-data-assets:92: `**Phù hợp:** 2–6 tuổi | **Giá:** Freemium (chưa rõ)`
+- docs-data-assets:94: `**Ưu điểm:**`
+- docs-data-assets:95: `- Startup Việt, nội dung Việt`
+- docs-data-assets:96: `- Giao diện phù hợp trẻ nhỏ`
+- docs-data-assets:97: `- Đang phát triển thêm tính năng`
+- docs-data-assets:99: `**Nhược điểm:**`
+- docs-data-assets:100: `- Mới, ít review từ phụ huynh`
+- docs-data-assets:101: `- Tính năng chưa đầy đủ`
+- docs-data-assets:102: `- Chưa có báo cáo tuần`
+- docs-data-assets:108: `**Phù hợp:** 2–6 tuổi | **Giá:** 120,000 VND/năm (~$5)`
+- docs-data-assets:110: `**Ưu điểm:**`
+- docs-data-assets:111: `- **Giá thấp nhất** trong các app có cấu trúc (~$5/năm)`
+- docs-data-assets:112: `- **Báo cáo tuần chi tiết** — phụ huynh thấy được bé học gì, streak bao nhiêu ngày, điểm quiz`
+- docs-data-assets:113: `- Lộ trình theo độ tuổi rõ ràng (English + Math)`
+- docs-data-assets:114: `- Không có quảng cáo`
+- docs-data-assets:115: `- Dùng thử 7 ngày miễn phí, không cần thẻ`
+- docs-data-assets:117: `**Nhược điểm:**`
+- docs-data-assets:118: `- Mới ra mắt — ít testimonial hơn app lâu đời`
+- docs-data-assets:119: `- Nội dung đang được bổ sung (video bài giảng sắp có)`
+- docs-data-assets:120: `- Chưa có app native (web-based)`
+- docs-data-assets:122: `**Phù hợp nhất cho:** Phụ huynh Việt muốn theo dõi tiến độ con bài bản với chi phí thấp`
+- docs-data-assets:126: `## Bảng so sánh tổng hợp`
+- docs-data-assets:128: `| App | Tuổi | Giá/năm | Báo cáo PH | Tiếng Việt | Quảng cáo |`
+- docs-data-assets:130: `| Monkey Junior | 0–10 | ~1.5M VND | Có (cơ bản) | Có | Không |`
+- docs-data-assets:131: `| Khan Academy Kids | 2–8 | Miễn phí | Có (cơ bản) | Không | Không |`
+- docs-data-assets:132: `| IXL | 4–18 | ~3–6M VND | Chi tiết | Không | Không |`
+- docs-data-assets:133: `| Kira Kids | 2–6 | Freemium | Chưa rõ | Có | ? |`
+- docs-data-assets:134: `| **TinyGenius Hub** | **2–6** | **120K VND** | **Chi tiết** | **Có** | **Không** |`
+- docs-data-assets:138: `## Lời khuyên chọn app`
+- docs-data-assets:140: `**Nếu ngân sách eo hẹp:** Khan Academy Kids (miễn phí) + TinyGenius Hub (120K/năm) là combo tốt nhất.`
+- docs-data-assets:142: `**Nếu muốn theo dõi tiến độ chi tiết:** TinyGenius Hub có báo cáo tuần chi tiết nhất ở tầm giá này.`
+- docs-data-assets:144: `**Nếu bé đã học khá, cần nâng cao:** IXL (nếu ngân sách cho phép).`
+- docs-data-assets:148: `*Bạn muốn thử TinyGenius Hub? [Dùng thử 7 ngày miễn phí](/auth/signup) — không cần thẻ tín dụng.*`
+
+### docs/marketing/content-calendar-30day.md
+
+- docs-data-assets:2: `**Launch Sprint:** Tháng đầu tiên sau khi ra mắt chính thức`
+- docs-data-assets:7: `## Tuần 1 — Foundation & Awareness`
+- docs-data-assets:9: `### Thứ 2 (D1) — Blog Post #1`
+- docs-data-assets:10: `**Title:** "5 dấu hiệu bé sẵn sàng học tiếng Anh (3–5 tuổi)"`
+- docs-data-assets:11: `**Target keyword:** học tiếng Anh cho trẻ 3 tuổi`
+- docs-data-assets:13: `**CTA:** Dùng thử 7 ngày miễn phí`
+- docs-data-assets:15: `### Thứ 3 (D2) — TikTok #1 (Format B: Educational)`
+- docs-data-assets:16: `**Script:** "1 phút — 5 từ tiếng Anh mà bé 3 tuổi nào cũng thích"`
+- docs-data-assets:17: `**Hook:** "Bé nhà bạn đã biết 5 từ này chưa?"`
+- docs-data-assets:19: `**CTA:** Link in bio → dùng thử miễn phí`
+- docs-data-assets:21: `### Thứ 4 (D3) — Facebook Group Post #1`
+- docs-data-assets:22: `**Group target:** Hội Phụ Huynh Trẻ (1M+), Nuôi Dạy Con Khoa Học`
+- docs-data-assets:23: `**Content:** "Chia sẻ kinh nghiệm: con nhà mình bắt đầu học tiếng Anh năm mấy tuổi?"`
+- docs-data-assets:26: `### Thứ 5 (D4) — TikTok #2 (Format A: Before/After)`
+- docs-data-assets:27: `**Script:** [⚠️ PLACEHOLDER — chỉ quay khi có real user story. KHÔNG dùng kịch bản chế.]`
+- docs-data-assets:28: `**Format:** Phụ huynh kể trải nghiệm thật của con sau 30 ngày học`
+- docs-data-assets:29: `**Hook:** Reaction moment thật từ bé, không dàn dựng`
+- docs-data-assets:30: `**CTA:** Comment "MUỐN" để nhận link dùng thử`
+- docs-data-assets:31: `**Note:** Liên hệ KOL onboarded sau D30 để có footage thật trước khi quay clip này`
+- docs-data-assets:33: `### Thứ 6 (D5) — Facebook Group Post #2`
+- docs-data-assets:34: `**Content:** Tip: "3 thói quen nhỏ giúp bé học tiếng Anh mỗi ngày không biết chán"`
+- docs-data-assets:35: `**Type:** Value-first tip — brand mention subtle cuối post`
+- docs-data-assets:37: `### Thứ 7 (D6) — TikTok #3 (Format C: Social Proof)`
+- docs-data-assets:38: `**Script:** "Phụ huynh phản ứng khi nhận báo cáo tuần đầu tiên của con 😍"`
+- docs-data-assets:39: `**Content:** Screen recording báo cáo tuần + parent reaction`
+- docs-data-assets:40: `**CTA:** "Bé nhà bạn cũng xứng đáng có báo cáo như thế này"`
+- docs-data-assets:44: `## Tuần 2 — Product Intro & Comparison`
+- docs-data-assets:46: `### Thứ 2 (D8) — Blog Post #2`
+- docs-data-assets:47: `**Title:** "So sánh 5 app học tiếng Anh cho bé tốt nhất 2026 (review thật)"`
+- docs-data-assets:48: `**Target keyword:** app học tiếng Anh cho trẻ em`
+- docs-data-assets:51: `### Thứ 3 (D9) — TikTok #4 (Format B)`
+- docs-data-assets:52: `**Script:** "Cách dạy bé nhớ từ mới tiếng Anh mà không cần flashcard"`
+- docs-data-assets:55: `### Thứ 4 (D10) — Facebook Group Post #3`
+- docs-data-assets:56: `**Content:** Soft intro: "Mình đang dùng app này cho con — báo cáo tuần chi tiết hơn mình nghĩ 👇"`
+- docs-data-assets:59: `### Thứ 5 (D11) — TikTok #5 (Format A)`
+- docs-data-assets:60: `**Script:** "Bé 2.5 tuổi: 'apple' sau 1 tuần học mỗi ngày 15 phút"`
+- docs-data-assets:61: `**Hook:** Close-up bé nói từ đầu tiên`
+- docs-data-assets:63: `### Thứ 6 (D12) — Facebook Group Post #4`
+- docs-data-assets:64: `**Content:** "Review thật sau 2 tuần dùng TinyGenius Hub cho con 4 tuổi"`
+- docs-data-assets:67: `### Thứ 7 (D13) — TikTok #6 (Format C)`
+- docs-data-assets:68: `**Script:** "Dashboard phụ huynh trông như thế này — con học được gì trong 1 tuần"`
+- docs-data-assets:69: `**Content:** Screen recording app với data thật`
+- docs-data-assets:73: `## Tuần 3 — Trust & Value Deepening`
+- docs-data-assets:75: `### Thứ 2 (D15) — Blog Post #3`
+- docs-data-assets:76: `**Title:** "Làm sao để bé học 15 phút mỗi ngày mà không chán?"`
+- docs-data-assets:77: `**Target keyword:** dạy con học tại nhà`
+- docs-data-assets:78: `**Tone:** Practical guide, không mention app quá nhiều`
+- docs-data-assets:80: `### Thứ 3 (D16) — TikTok #7 (Format B)`
+- docs-data-assets:81: `**Script:** "Lộ trình học tiếng Anh cho trẻ 2–6 tuổi: từng bước cụ thể"`
+- docs-data-assets:84: `### Thứ 4 (D17) — Facebook Group Post #5`
+- docs-data-assets:85: `**Content:** "Hỏi các mẹ: con nhà mình hay nản khi học tiếng Anh vì lý do gì?"`
+- docs-data-assets:88: `### Thứ 5 (D18) — TikTok #8 (Format A)`
+- docs-data-assets:89: `**Script:** "3 tháng học cùng con — điều bất ngờ nhất là..."`
+- docs-data-assets:92: `### Thứ 6 (D19) — Facebook Group Post #6`
+- docs-data-assets:93: `**Content:** Answer to W3 Q&A — "Tổng hợp lý do bé nản khi học + cách xử lý cho từng tình huống"`
+- docs-data-assets:96: `### Thứ 7 (D20) — TikTok #9 (Format C)`
+- docs-data-assets:97: `**Script:** "So sánh: bé xem YouTube vs bé học app có cấu trúc — sự khác biệt sau 1 tháng"`
+- docs-data-assets:98: `**Note:** Dùng data từ weekly report để so sánh`
+- docs-data-assets:102: `## Tuần 4 — Conversion Push`
+- docs-data-assets:104: `### Thứ 2 (D22) — Blog Post #4`
+- docs-data-assets:105: `**Title:** "Báo cáo tiến độ con — tại sao phụ huynh cần theo dõi từ nhỏ?"`
+- docs-data-assets:106: `**Target keyword:** theo dõi tiến độ học tập của con`
+- docs-data-assets:109: `### Thứ 3 (D23) — TikTok #10 (Format A)`
+- docs-data-assets:110: `**Script:** "Bé 5 tuổi đọc được câu tiếng Anh đầu tiên 😭"`
+- docs-data-assets:113: `### Thứ 4 (D24) — Facebook Group Post #7`
+- docs-data-assets:114: `**Content:** "TẶNG: 7 ngày học cùng con miễn phí — link dùng thử không cần thẻ"`
+- docs-data-assets:117: `### Thứ 5 (D25) — TikTok #11 (Format B)`
+- docs-data-assets:118: `**Script:** "Bí quyết: sắp xếp 15 phút học mỗi ngày vào lịch gia đình bận rộn"`
+- docs-data-assets:121: `### Thứ 6 (D26) — Facebook Group Post #8`
+- docs-data-assets:122: `**Content:** "Q&A: mọi câu hỏi về TinyGenius Hub — mình trả lời thật hết"`
+- docs-data-assets:125: `### Thứ 7 (D27) — TikTok #12 (Format C)`
+- docs-data-assets:126: `**Script:** "Tháng 1 kết thúc — 12 clip, X ngàn views — cảm ơn các phụ huynh!"`
+- docs-data-assets:128: `**CTA:** "Tag 1 mẹ bạn nghĩ cũng cần cái này 👇"`
+- docs-data-assets:144: `## KPIs Tuần 1–4`
+
+### docs/marketing/email-sequences.md
+
+- docs-data-assets:3: `Lifecycle email sequences cho trial conversion, retention và upsell.`
+- docs-data-assets:4: `Toàn bộ copy dùng tiếng Việt, đồng bộ giá hiện tại:`
+- docs-data-assets:5: `- Standard: 799,000 VND/năm`
+- docs-data-assets:6: `- Family+: 1,199,000 VND/năm`
+- docs-data-assets:7: `- Trial: 7 ngày miễn phí`
+- docs-data-assets:8: `- Hoàn tiền: 100% trong 30 ngày`
+- docs-data-assets:12: `## 1) Mapping với Content Calendar 30 ngày`
+- docs-data-assets:14: `| Ngày | Funnel stage | Trigger email | Mục tiêu | Gắn với lịch content |`
+- docs-data-assets:16: `| D0 | MOFU | Trial Welcome | Đưa phụ huynh vào bài học đầu tiên trong 24h | Đi kèm CTA xem dashboard |`
+- docs-data-assets:17: `| D1 | MOFU | Activation Nudge | Kích hoạt nếu chưa học bài nào | Nhắc thói quen 15 phút/ngày |`
+- docs-data-assets:18: `| D3 | MOFU → BOFU | Mini Progress | Tạo cảm giác tiến bộ sớm và niềm tin | Đồng bộ insight từ TikTok/FB social proof tuần 1 |`
+- docs-data-assets:19: `| D5 | BOFU + Referral | Referral Prompt | Kéo chia sẻ link thử + củng cố giá trị | Tận dụng momentum social proof tuần 1-2 |`
+- docs-data-assets:20: `| D7 | BOFU | Trial Expiry Offer | Chốt chuyển đổi sang gói năm | Gắn thông điệp pricing CTA |`
+- docs-data-assets:21: `| Chủ nhật hàng tuần | Retention | Weekly Digest | Duy trì học đều, giảm churn | Đồng bộ nội dung “báo cáo tuần” trong funnel |`
+- docs-data-assets:22: `| Inactive 30 ngày | Winback | Re-activation | Kéo user quay lại học | Tận dụng nội dung tips tuần 3 |`
+- docs-data-assets:23: `| Gần chạm limit hồ sơ | Upsell | Family+ Upgrade | Chuyển Standard -> Family+ | Gắn use-case gia đình nhiều bé |`
+- docs-data-assets:24: `| Trước hạn 14 ngày | Renewal | Gia hạn năm | Giữ doanh thu và continuity | Nhấn mạnh kết quả đã đạt |`
+- docs-data-assets:32: `**Subject:** Chào mừng đến TinyGenius Hub! Bắt đầu trong 2 phút 🎉`
+- docs-data-assets:35: `Xin chào [Tên phụ huynh],`
+- docs-data-assets:37: `Cảm ơn bạn đã đăng ký TinyGenius Hub.`
+- docs-data-assets:38: `Hành trình của bé [Tên bé] bắt đầu từ hôm nay với Toán tư duy + Tiếng Anh Phonics.`
+- docs-data-assets:40: `Bước tiếp theo (2 phút):`
+- docs-data-assets:41: `1) Tạo hồ sơ cho bé`
+- docs-data-assets:42: `2) Mở bài học đầu tiên`
+- docs-data-assets:43: `3) Duy trì 15 phút mỗi ngày`
+- docs-data-assets:45: `Bắt đầu ngay:`
+- docs-data-assets:48: `Không cần thẻ tín dụng · Trial 7 ngày miễn phí.`
+- docs-data-assets:53: `### D1 — Activation Nudge (trigger: chưa hoàn thành bài đầu)`
+- docs-data-assets:55: `**Subject:** [Tên bé] chưa hoàn thành bài đầu tiên — bắt đầu ngay hôm nay?`
+- docs-data-assets:58: `Xin chào [Tên phụ huynh],`
+- docs-data-assets:60: `Chúng tôi thấy [Tên bé] chưa hoàn thành bài học đầu tiên.`
+- docs-data-assets:61: `Chỉ cần 15 phút hôm nay để tạo thói quen học đều.`
+- docs-data-assets:63: `Mở bài học đầu tiên:`
+- docs-data-assets:66: `Mẹo nhanh: Học cùng khung giờ cố định giúp bé vào nếp nhanh hơn.`
+- docs-data-assets:71: `### D3 — Mini Progress Report (trigger: đã học >= 1 bài)`
+- docs-data-assets:73: `**Subject:** Báo cáo mini 3 ngày đầu của [Tên bé] 📊`
+- docs-data-assets:76: `Xin chào [Tên phụ huynh],`
+- docs-data-assets:78: `[Tên bé] đã có tiến bộ trong 3 ngày đầu:`
+- docs-data-assets:79: `- Bài hoàn thành: [N]`
+- docs-data-assets:80: `- Điểm quiz trung bình: [score]%`
+- docs-data-assets:81: `- Chuỗi học: [streak] ngày`
+- docs-data-assets:83: `Xem báo cáo chi tiết:`
+- docs-data-assets:86: `Còn 4 ngày trial. Đây là thời điểm tốt để giữ đà học của bé.`
+- docs-data-assets:93: `**Subject:** [Tên bé] vừa mở khóa thành tựu đầu tiên! 🏆`
+- docs-data-assets:96: `Xin chào [Tên phụ huynh],`
+- docs-data-assets:98: `[Tên bé] vừa đạt mốc: [thành tựu].`
+- docs-data-assets:99: `Nếu bạn thấy hành trình này hữu ích, hãy chia sẻ cho một phụ huynh khác:`
+- docs-data-assets:103: `Mỗi lượt giới thiệu thành công: cả hai gia đình nhận thêm 7 ngày premium miễn phí.`
+- docs-data-assets:108: `### D7 — Trial Expiry + Annual CTA (trigger: trial sắp kết thúc)`
+- docs-data-assets:110: `**Subject:** Trial của bé [Tên bé] kết thúc ngày mai — giữ lại lộ trình học`
+- docs-data-assets:113: `Xin chào [Tên phụ huynh],`
+- docs-data-assets:115: `7 ngày trial của [Tên bé] sẽ kết thúc vào ngày mai.`
+- docs-data-assets:117: `Tóm tắt trial:`
+- docs-data-assets:118: `- Bài hoàn thành: [N]`
+- docs-data-assets:119: `- Chuỗi học: [streak] ngày`
+- docs-data-assets:120: `- Tiến độ lộ trình: [%]`
+- docs-data-assets:122: `Để giữ nhịp học không gián đoạn:`
+- docs-data-assets:123: `- Standard: 799,000 VND/năm`
+- docs-data-assets:124: `- Family+: 1,199,000 VND/năm`
+- docs-data-assets:126: `Chọn gói phù hợp:`
+- docs-data-assets:129: `Cam kết: Hoàn tiền 100% trong 30 ngày đầu.`
+- docs-data-assets:136: `## 3) Sequence Weekly Digest (trigger: mỗi Chủ nhật, user đang hoạt động)`
+- docs-data-assets:138: `**Subject:** Báo cáo tuần của [Tên bé] — tuần [N] 📋`
+- docs-data-assets:141: `Xin chào [Tên phụ huynh],`
+- docs-data-assets:143: `Tóm tắt tuần này của [Tên bé]:`
+- docs-data-assets:144: `- Chuỗi học: [streak] ngày`
+- docs-data-assets:145: `- Bài hoàn thành: [N]`
+- docs-data-assets:146: `- Điểm trung bình: [score]%`
+- docs-data-assets:147: `- So với tuần trước: [+N / -N bài]`
+- docs-data-assets:149: `Xem đầy đủ:`
+- docs-data-assets:157: `## 4) Sequence Winback D30 (trigger: inactive 30 ngày)`
+- docs-data-assets:159: `**Subject:** [Tên bé] nhớ bạn rồi 💙`
+- docs-data-assets:162: `Xin chào [Tên phụ huynh],`
+- docs-data-assets:164: `Đã 30 ngày kể từ lần học cuối của [Tên bé].`
+- docs-data-assets:165: `Lộ trình vẫn sẵn sàng — chỉ cần 15 phút hôm nay để bắt đầu lại.`
+- docs-data-assets:167: `Quay lại dashboard:`
+- docs-data-assets:170: `Nếu bạn cần hỗ trợ, chỉ cần reply email này.`
+- docs-data-assets:177: `## 5) Sequence Upsell Family+ (trigger: gần chạm giới hạn profile)`
+- docs-data-assets:179: `**Subject:** Thêm bé vào lộ trình học — nâng cấp Family+`
+- docs-data-assets:182: `Xin chào [Tên phụ huynh],`
+- docs-data-assets:184: `Gói Standard đang hỗ trợ tối đa 3 hồ sơ bé.`
+- docs-data-assets:185: `Nếu gia đình muốn thêm hồ sơ, Family+ cho phép đến 5 bé và 4 caregiver.`
+- docs-data-assets:187: `Nâng cấp Family+:`
+- docs-data-assets:190: `Family+ phù hợp khi gia đình cần báo cáo gộp và theo dõi nhiều bé cùng lúc.`
+- docs-data-assets:197: `## 6) Sequence Renewal (trigger: trước hạn 14 ngày)`
+- docs-data-assets:199: `**Subject:** Gói của bé [Tên bé] sắp hết hạn — gia hạn để tiếp tục`
+- docs-data-assets:202: `Xin chào [Tên phụ huynh],`
+- docs-data-assets:204: `Gói hiện tại sẽ hết hạn vào [ngày hết hạn].`
+- docs-data-assets:205: `Gia hạn sớm để không làm gián đoạn lộ trình học của bé.`
+- docs-data-assets:207: `Gia hạn tại:`
+- docs-data-assets:210: `Tổng kết năm vừa qua:`
+- docs-data-assets:211: `- Bài đã hoàn thành: [N]`
+- docs-data-assets:212: `- Chuỗi học dài nhất: [N] ngày`
+- docs-data-assets:213: `- Tiến độ lộ trình: [%]`
+- docs-data-assets:220: `## 7) Ghi chú triển khai`
+- docs-data-assets:222: `- Trigger qua BullMQ jobs (đã có nền tảng).`
+- docs-data-assets:223: `- Biến cá nhân hóa: '[Tên phụ huynh]', '[Tên bé]', '[N]', '[streak]', '[score]', '[%]'.`
+- docs-data-assets:224: `- Tất cả link lifecycle dùng UTM chuẩn:`
+- docs-data-assets:228: `- Bắt buộc có cơ chế unsubscribe/manage preferences khi gửi production.`
+- docs-data-assets:231: `- Ưu tiên ESP: Resend hoặc Brevo.`
+
+### docs/marketing/gtm-playbook.md
+
+- docs-data-assets:2: `**Phiên bản:** 1.0 · **Cập nhật:** 2026-02-25`
+- docs-data-assets:3: `**Mục tiêu:** 100 paying users Day 30 · 700 paying users Day 90`
+- docs-data-assets:7: `## Tổng quan chiến lược`
+- docs-data-assets:9: `Bootstrap-first, organic-led. Phát triển qua 3 động lực chính:`
+- docs-data-assets:10: `1. **KOL nano/micro** — 20-30 phụ huynh có ảnh hưởng chia sẻ trải nghiệm thật`
+- docs-data-assets:11: `2. **SEO content** — 10 bài blog targeting từ khóa low-competition, high-intent`
+- docs-data-assets:12: `3. **Viral loop** — báo cáo tuần → chia sẻ → referral → signup mới`
+- docs-data-assets:16: `## Pre-Launch (Tuần -4 đến -1)`
+- docs-data-assets:18: `### Tuần -4: Nền tảng`
+- docs-data-assets:21: `- [ ] Share link builder integrated vào weekly report`
+- docs-data-assets:22: `- [ ] Waitlist page live tại '/waitlist'`
+- docs-data-assets:23: `- [ ] Post trong 5 Facebook groups phụ huynh lớn: "Đang tìm 50 gia đình thử nghiệm miễn phí"`
+- docs-data-assets:25: `### Tuần -3: Tuyển beta`
+- docs-data-assets:26: `- [ ] Chọn 50 gia đình beta từ waitlist (mix tuổi 2-6)`
+- docs-data-assets:27: `- [ ] Gửi email onboarding beta với expectations rõ ràng`
+- docs-data-assets:28: `- [ ] Tạo Facebook group riêng cho beta families`
+- docs-data-assets:29: `- [ ] Thu thập feedback hàng ngày (check-in form đơn giản)`
+- docs-data-assets:31: `### Tuần -2: Sản xuất nội dung`
+- docs-data-assets:33: `- [ ] Viết + schedule 2 blog posts (#1 dấu hiệu sẵn sàng, #2 so sánh app)`
+- docs-data-assets:34: `- [ ] Chuẩn bị 4 Facebook group posts`
+- docs-data-assets:35: `- [ ] Brief 5 KOLs: gửi referral code + onboarding brief + timing coordination`
+- docs-data-assets:37: `### Tuần -1: Kiểm tra cuối`
+- docs-data-assets:38: `- [ ] Thu thập 10+ testimonials từ beta (text + screenshot báo cáo tuần)`
+- docs-data-assets:39: `- [ ] Fix top 3 feedback items từ beta`
+- docs-data-assets:40: `- [ ] Test toàn bộ email sequences (D0/D3/D6/D30)`
+- docs-data-assets:41: `- [ ] Draft tất cả social posts cho launch week`
+- docs-data-assets:45: `## Launch Week — Kế hoạch 7 ngày`
+- docs-data-assets:47: `| Ngày | Kênh | Hành động |`
+- docs-data-assets:49: `| Thứ 2 | Facebook | Announce trong 10 groups + cá nhân share |`
+- docs-data-assets:50: `| Thứ 2 | Zalo OA | Broadcast waitlist: "Đã mở đăng ký!" |`
+- docs-data-assets:51: `| Thứ 3 | TikTok | Video 1: "App tiếng Anh cho bé — made in Vietnam" |`
+- docs-data-assets:52: `| Thứ 4 | Blog | Publish "So sánh 5 app học tiếng Anh cho bé 2026" |`
+- docs-data-assets:53: `| Thứ 5 | KOLs | 5 KOLs post đồng loạt (coordinated timing 8-9pm) |`
+- docs-data-assets:54: `| Thứ 5 | TikTok | Video 2: Before/after 30 ngày (dùng real user story từ beta) |`
+- docs-data-assets:55: `| Thứ 6 | Facebook | Share testimonials beta (3-5 posts với screenshots) |`
+- docs-data-assets:56: `| Thứ 7 | TikTok | Video 3: "Phụ huynh react khi xem báo cáo tuần đầu" |`
+- docs-data-assets:57: `| CN | Email | Week 1 summary + weekly report đầu tiên cho signups |`
+- docs-data-assets:77: `Track trong Google Sheets tuần đầu, migrate sang dashboard khi có data:`
+- docs-data-assets:93: `- **Theme:** "Chuẩn bị cho bé vào lớp — bắt đầu từ hôm nay"`
+- docs-data-assets:94: `- **Offer:** Giảm 20% gói năm cho signups mới trong period`
+- docs-data-assets:95: `- **Content:** 4 TikTok + 2 blog về school readiness`
+- docs-data-assets:96: `- **KOL push:** 10 KOLs đồng loạt tuần 1/9`
+- docs-data-assets:97: `- **Paid test:** $100 Facebook ads targeting parents 3-6 tuổi HCMC + HN`
+- docs-data-assets:99: `### Tết (10/1 – 10/2)`
+- docs-data-assets:100: `- **Theme:** "Quà Tết ý nghĩa — tặng con hành trình học tập"`
+- docs-data-assets:101: `- **Offer:** Gift subscription (mua cho gia đình khác)`
+- docs-data-assets:102: `- **Special:** Red envelope badge giới hạn thời gian`
+- docs-data-assets:103: `- **Zalo ZNS:** Lời chúc Tết + gift subscription CTA`
+- docs-data-assets:107: `## Budget (Bootstrap — $400/tháng)`
+- docs-data-assets:109: `| Danh mục | Tháng | Ghi chú |`
+- docs-data-assets:111: `| KOL (nano/micro) | $200 | 10-15 KOLs, mix tài khoản free + cash nhỏ |`
+- docs-data-assets:115: `| Sản xuất nội dung | $0 | Founder-led |`
+- docs-data-assets:116: `| **Tổng** | **$400** | Tăng lên $800/tháng khi đạt 500+ paying users |`
+- docs-data-assets:128: `| CAC < $1 trên 1 channel | Scale that channel aggressively |`
+- docs-data-assets:132: `*Cập nhật lần tiếp theo: sau khi hoàn thành launch week, review Day 7 metrics.*`
+
+### docs/marketing/kol-outreach-template.md
+
+- docs-data-assets:9: `- Mẹ/bố có con 2–6 tuổi, đang chia sẻ nội dung nuôi dạy con`
+- docs-data-assets:11: `- Engagement rate > 3% (check: likes+comments / followers × 100)`
+- docs-data-assets:12: `- Content vibe: học cùng con, song ngữ, phát triển trẻ, đời sống gia đình`
+- docs-data-assets:15: `- Đã hợp tác với Monkey Junior hoặc đối thủ trực tiếp (conflict of interest)`
+- docs-data-assets:16: `- Engagement thấp (< 1%) hoặc có dấu hiệu mua follow`
+- docs-data-assets:17: `- Tài khoản dưới 6 tháng tuổi`
+- docs-data-assets:24: `Chào [Tên],`
+- docs-data-assets:26: `Mình là [Tên bạn] từ TinyGenius Hub — ứng dụng học tiếng Anh + toán cho bé 2–6 tuổi.`
+- docs-data-assets:27: `Mình xem qua content của bạn và thấy rất phù hợp với phụ huynh mà mình đang hướng tới.`
+- docs-data-assets:29: `Bạn có muốn thử dùng app miễn phí 1 tháng cho bé và chia sẻ trải nghiệm thật của gia đình không?`
+- docs-data-assets:31: `Không có script cứng nhắc — mình chỉ muốn bạn dùng thật và kể thật cho cộng đồng.`
+- docs-data-assets:33: `Phụ huynh được giới thiệu qua bạn cũng sẽ nhận 7 ngày thử miễn phí.`
+- docs-data-assets:35: `Reply đây để mình gửi thêm thông tin nhé!`
+- docs-data-assets:37: `[Tên bạn] — TinyGenius Hub`
+- docs-data-assets:45: `Chào chị/anh [Tên],`
+- docs-data-assets:47: `Em đang xây dựng TinyGenius Hub — ứng dụng lộ trình học tiếng Anh + toán cho trẻ 2–6 tuổi,`
+- docs-data-assets:48: `với báo cáo tiến độ chi tiết mỗi tuần để phụ huynh theo dõi được bé tiến bộ như thế nào.`
+- docs-data-assets:50: `Em thấy nội dung của chị/anh rất gần gũi với phụ huynh có con nhỏ — đúng đối tượng mình muốn tiếp cận.`
+- docs-data-assets:52: `Mình đang tìm 10–15 phụ huynh dùng thật và chia sẻ thật trải nghiệm. Không yêu cầu nói tốt nếu không thật.`
+- docs-data-assets:54: `Nếu hợp tác, chị/anh sẽ nhận:`
+- docs-data-assets:55: `✅ Tài khoản Premium miễn phí 3 tháng cho bé`
+- docs-data-assets:56: `✅ Hỗ trợ tạo content nếu cần (script, ý tưởng)`
+- docs-data-assets:57: `✅ Mã giới thiệu riêng — mỗi gia đình đăng ký qua link = thêm 1 tháng free cho chị/anh`
+- docs-data-assets:59: `Chị/anh có muốn mình share thêm thông tin không?`
+- docs-data-assets:61: `[Tên] — TinyGenius Hub`
+- docs-data-assets:66: `## Template 3: Follow-up (nếu không phản hồi sau 5 ngày)`
+- docs-data-assets:69: `Chào [Tên],`
+- docs-data-assets:71: `Mình follow up lần này về đề xuất hợp tác với TinyGenius Hub.`
+- docs-data-assets:73: `Nếu timing chưa phù hợp thì hoàn toàn no problem — mình vẫn muốn tặng bạn`
+- docs-data-assets:74: `1 tháng dùng app miễn phí cho bé, không có điều kiện gì cả.`
+- docs-data-assets:76: `Link đăng ký: [referral link]`
+- docs-data-assets:78: `Bất cứ khi nào bạn muốn chia sẻ về trải nghiệm, mình vẫn mở cửa.`
+- docs-data-assets:80: `[Tên] — CCTH`
+- docs-data-assets:85: `## Template 4: Onboarding Brief (sau khi KOL đồng ý)`
+- docs-data-assets:88: `Chào [Tên],`
+- docs-data-assets:90: `Cảm ơn bạn đã nhận lời! Đây là tóm tắt nhanh để bắt đầu:`
+- docs-data-assets:93: `→ Mình sẽ gửi link đặt mật khẩu riêng qua email: [email của KOL]`
+- docs-data-assets:94: `→ Đăng nhập tại: https://www.tinygeniushubvn.tech/auth/login`
+- docs-data-assets:96: `📱 MÃ GIỚI THIỆU CỦA BẠN: [CODE]`
+- docs-data-assets:98: `→ Mỗi phụ huynh đăng ký = +7 ngày free cho bạn`
+- docs-data-assets:100: `📋 KHÔNG CÓ QUY ĐỊNH GÌ CỨNG NHẮC`
+- docs-data-assets:101: `- Dùng thật, cảm nhận thật`
+- docs-data-assets:102: `- Chia sẻ khi bạn thấy bé có kết quả thú vị`
+- docs-data-assets:103: `- Không cần post theo lịch hoặc dùng hashtag cụ thể`
+- docs-data-assets:104: `- Gắn thẻ @tinygeniushub hoặc để link trong bio/caption — tuỳ bạn`
+- docs-data-assets:106: `💬 CÓ CẦU HỎI GÌ?`
+- docs-data-assets:107: `Reply Messenger này hoặc email: support@tinygeniushubvn.tech`
+- docs-data-assets:109: `Chúc bé học vui! 🎉`
+- docs-data-assets:111: `[Tên] — TinyGenius Hub`
+- docs-data-assets:118: `| # | Tên KOL | Platform | Followers | Engagement% | Ngày outreach | Status | Code | Signups |`
+- docs-data-assets:129: `**Q: Mình có phải nói tốt về app không?**`
+- docs-data-assets:130: `A: Không. Chúng tôi muốn trải nghiệm thật. Nếu có điểm chưa tốt, phản hồi để mình cải thiện.`
+- docs-data-assets:132: `**Q: Mình có thể hợp tác với app khác không?**`
+- docs-data-assets:133: `A: Được, miễn không phải đối thủ trực tiếp (Monkey Junior, Kira Kids).`
+- docs-data-assets:135: `**Q: Payment / thù lao?**`
+- docs-data-assets:136: `A: Giai đoạn đầu: tài khoản Premium miễn phí + referral bonus. Khi app đạt quy mô, sẽ có bảng giá cash.`
+- docs-data-assets:138: `**Q: Cần post bao nhiêu lần?**`
+- docs-data-assets:139: `A: Không bắt buộc số lượng. Post khi có cảm hứng thật, hiệu quả hơn post gượng ép.`
+
+### docs/project-changelog.md
+
+- docs-data-assets:32: `- **Rebrand: "Cùng Con Tự Học" → "TinyGenius Hub"**`
+- docs-data-assets:69: `- Streamlined hero/sidebar copy and CTAs to focus on: 'Xem học thử' and 'Mua khóa'.`
+- docs-data-assets:72: `- Removed the entire hero block "Khóa học cho phụ huynh chọn nhanh".`
+- docs-data-assets:197: `- **Free Lesson Preview System** — Bypass authentication for lessons with 'isPreview' flag, enabling "học thử" (free trial) video playback`
+- docs-data-assets:200: `- **Parent Course Progress Page** — '/parent/courses' with per-course completion bars, "Học gần nhất" date, "Học tiếp" CTA`
+- docs-data-assets:232: `- **Admin-configurable footer social links** â€” New settings storage for Facebook/YouTube/TikTok/Zalo destinations in site footer.`
+- docs-data-assets:233: `- **Admin API for footer social links** â€” 'GET/PATCH /api/admin/site-settings/footer-social-links'.`
+- docs-data-assets:234: `- **Admin Operations tab: Footer social** â€” UI panel to update footer social URLs from admin without code change.`
+- docs-data-assets:235: `- **Site content settings service** â€” safe read fallback to defaults when DB row is missing/unavailable.`
+
+### docs/project-roadmap.md
+
+- docs-data-assets:12: `- Parent course progress page with completion bars and "Học tiếp" CTA`
+- docs-data-assets:107: `| Monthly | 99,000đ/month | 7-day free trial |`
+- docs-data-assets:108: `| Yearly Standard | 799,000đ/year | ~2,189đ/day |`
+- docs-data-assets:109: `| Yearly Family+ | 1,199,000đ/year | Multi-child |`
+
+### docs/research/abeka-content-mapping-analysis.md
+
+- docs-data-assets:5: `**Tổng quan dữ liệu Abeka Video:**`
+- docs-data-assets:9: `| **Tổng số bài học (Lessons)** | 2,380 |`
+- docs-data-assets:10: `| **Tổng số video** | 20,195 |`
+- docs-data-assets:11: `| **Số lớp/grade** | 14 |`
+- docs-data-assets:12: `| **Số môn học khác nhau** | 206 |`
+- docs-data-assets:13: `| **Trung bình video/bài học** | 8.5 |`
+- docs-data-assets:15: `## 1. Cấu Trúc Thư Mục`
+- docs-data-assets:19: `├── index.json          # Index chính`
+- docs-data-assets:20: `├── all.json            # Tất cả dữ liệu (20,195 videos)`
+- docs-data-assets:21: `├── all_raw.json        # Dữ liệu raw`
+- docs-data-assets:43: `## 2. Phân Tích Theo Grade`
+- docs-data-assets:45: `### 2.1 Tổng quan các Grade`
+- docs-data-assets:47: `| Grade | Tên đầy đủ | Số bài học | Số video | Video/bài học (TB) |`
+- docs-data-assets:49: `| K4 | Kindergarten 4 (4 tuổi) | 170 | 1,595 | 9.4 |`
+- docs-data-assets:50: `| K5 | Kindergarten 5 (5 tuổi) | 170 | 1,710 | 10.1 |`
+- docs-data-assets:51: `| G1 | Grade 1 (Lớp 1) | 170 | 2,699 | 15.9 |`
+- docs-data-assets:52: `| G2 | Grade 2 (Lớp 2) | 170 | 2,063 | 12.1 |`
+- docs-data-assets:53: `| G3 | Grade 3 (Lớp 3) | 170 | 1,564 | 9.2 |`
+- docs-data-assets:54: `| G4 | Grade 4 (Lớp 4) | 170 | 1,394 | 8.2 |`
+- docs-data-assets:55: `| G5 | Grade 5 (Lớp 5) | 170 | 1,391 | 8.2 |`
+- docs-data-assets:56: `| G6 | Grade 6 (Lớp 6) | 170 | 1,394 | 8.2 |`
+- docs-data-assets:57: `| G7 | Grade 7 (Lớp 7) | 170 | 872 | 5.1 |`
+- docs-data-assets:58: `| G8 | Grade 8 (Lớp 8) | 170 | 882 | 5.2 |`
+- docs-data-assets:59: `| G9 | Grade 9 (Lớp 9) | 170 | 891 | 5.2 |`
+- docs-data-assets:60: `| G10 | Grade 10 (Lớp 10) | 170 | 1,061 | 6.2 |`
+- docs-data-assets:61: `| G11 | Grade 11 (Lớp 11) | 170 | 1,404 | 8.3 |`
+- docs-data-assets:62: `| G12 | Grade 12 (Lớp 12) | 170 | 1,275 | 7.5 |`
+- docs-data-assets:64: `### 2.2 Phân bố video theo Grade`
+- docs-data-assets:84: `## 3. Phân Tích Môn Học`
+- docs-data-assets:86: `### 3.1 Danh sách tất cả môn học`
+- docs-data-assets:88: `| Môn học | Tổng số video | Xuất hiện ở các grade | Mức độ phổ biến |`
+- docs-data-assets:297: `## 4. Chi Tiết Từng Grade`
+- docs-data-assets:299: `### 4.1 Kindergarten 4 (4 tuổi) (K4)`
+- docs-data-assets:301: `- **Số bài học:** 170`
+- docs-data-assets:302: `- **Tổng số video:** 1,595`
+- docs-data-assets:303: `- **Trung bình video/bài:** 9.4`
+- docs-data-assets:305: `**Các môn học:**`
+- docs-data-assets:307: `- **Môn chính:** K4 Arithmetic, K4 Bible, K4 Phonics, K4 Reading, K4 Writing`
+- docs-data-assets:308: `- **Môn phụ:** K4 Activities`
+- docs-data-assets:310: `### 4.2 Kindergarten 5 (5 tuổi) (K5)`
+- docs-data-assets:312: `- **Số bài học:** 170`
+- docs-data-assets:313: `- **Tổng số video:** 1,710`
+- docs-data-assets:314: `- **Trung bình video/bài:** 10.1`
+- docs-data-assets:316: `**Các môn học:**`
+- docs-data-assets:318: `- **Môn chính:** K5 Bible, K5 Phonics, K5 Reading, K5 Writing`
+- docs-data-assets:319: `- **Môn phụ:** Elementary Spanish A, K5 Activities, K5 Numbers`
+- docs-data-assets:321: `### 4.3 Grade 1 (Lớp 1) (G1)`
+- docs-data-assets:323: `- **Số bài học:** 170`
+- docs-data-assets:324: `- **Tổng số video:** 2,699`
+- docs-data-assets:325: `- **Trung bình video/bài:** 15.9`
+- docs-data-assets:327: `**Các môn học:**`
+- docs-data-assets:329: `- **Môn chính:** Arithmetic 1, Bible, Phonics, Reading 1, Writing 1`
+- docs-data-assets:330: `- **Môn phụ:** Activities, Classroom Routines, Seatwork 1, Spelling`
+- docs-data-assets:332: `### 4.4 Grade 2 (Lớp 2) (G2)`
+- docs-data-assets:334: `- **Số bài học:** 170`
+- docs-data-assets:335: `- **Tổng số video:** 2,063`
+- docs-data-assets:336: `- **Trung bình video/bài:** 12.1`
+- docs-data-assets:338: `**Các môn học:**`
+- docs-data-assets:340: `- **Môn chính:** Arithmetic 2, Bible, Phonics and Language, Reading 2, Writing`
+- docs-data-assets:341: `- **Môn phụ:** Activities, Classroom Routines, Seatwork, Spelling`
+- docs-data-assets:343: `### 4.5 Grade 3 (Lớp 3) (G3)`
+- docs-data-assets:345: `- **Số bài học:** 170`
+- docs-data-assets:346: `- **Tổng số video:** 1,564`
+- docs-data-assets:347: `- **Trung bình video/bài:** 9.2`
+- docs-data-assets:349: `**Các môn học:**`
+- docs-data-assets:351: `- **Môn chính:** Arithmetic, Bible, History, Reading, Science/Health, Writing`
+- docs-data-assets:352: `- **Môn phụ:** Activities, Language, Seatwork, Spelling`
+- docs-data-assets:354: `### 4.6 Grade 4 (Lớp 4) (G4)`
+- docs-data-assets:356: `- **Số bài học:** 170`
+- docs-data-assets:357: `- **Tổng số video:** 1,394`
+- docs-data-assets:358: `- **Trung bình video/bài:** 8.2`
+- docs-data-assets:360: `**Các môn học:**`
+- docs-data-assets:362: `- **Môn chính:** Arithmetic, Bible, History, Reading, Science/Health, Writing`
+- docs-data-assets:363: `- **Môn phụ:** Activities, Language, Spelling`
+- docs-data-assets:365: `### 4.7 Grade 5 (Lớp 5) (G5)`
+- docs-data-assets:367: `- **Số bài học:** 170`
+- docs-data-assets:368: `- **Tổng số video:** 1,391`
+- docs-data-assets:369: `- **Trung bình video/bài:** 8.2`
+- docs-data-assets:371: `**Các môn học:**`
+- docs-data-assets:373: `- **Môn chính:** Arithmetic, Bible, History, Reading, Science/Health, Writing`
+- docs-data-assets:374: `- **Môn phụ:** Activities, Language, Spelling`
+- docs-data-assets:376: `### 4.8 Grade 6 (Lớp 6) (G6)`
+- docs-data-assets:378: `- **Số bài học:** 170`
+- docs-data-assets:379: `- **Tổng số video:** 1,394`
+- docs-data-assets:380: `- **Trung bình video/bài:** 8.2`
+- docs-data-assets:382: `**Các môn học:**`
+- docs-data-assets:384: `- **Môn chính:** Arithmetic, Bible, History, Reading, Science`
+- docs-data-assets:385: `- **Môn phụ:** Activities, Health, Language, Penmanship, Spelling`
+- docs-data-assets:387: `### 4.9 Grade 7 (Lớp 7) (G7)`
+- docs-data-assets:389: `- **Số bài học:** 170`
+- docs-data-assets:390: `- **Tổng số video:** 872`
+- docs-data-assets:391: `- **Trung bình video/bài:** 5.1`
+- docs-data-assets:393: `**Các môn học:**`
+- docs-data-assets:395: `- **Môn chính:** Bible, English, Fast Facts 6.1 - Length in the Bible, Fast Facts 6.1 - Weight and Money in the Bible, Intermediate Mathematics, Science, World History`
+- docs-data-assets:396: `- **Môn phụ:** Fast Facts 1.1 - Estimation, Fast Facts 1.3a - Numbers Prime to Each Other, Fast Facts 1.3b - Factor Tree, Fast Facts 1.4 - Factorial, Fast Facts 2.2 - Equivalent Fraction Method, Fast Facts 2.3 - Simple Interest, Fast Facts 2.5 - Discount vs Coupon, Fast Facts 3.6 - Visual Sequences, Fast Facts 5.4 - Subtraction and Complex Figures, Fast Facts 5.5 - Surface Area of Square Pyramids, Fast Facts 6.5 - Converting Square Measures, Fast Facts 7.2 - Probability of the Complement, Fast F`
+- docs-data-assets:398: `### 4.10 Grade 8 (Lớp 8) (G8)`
+- docs-data-assets:400: `- **Số bài học:** 170`
+- docs-data-assets:401: `- **Tổng số video:** 882`
+- docs-data-assets:402: `- **Trung bình video/bài:** 5.2`
+- docs-data-assets:404: `**Các môn học:**`
+- docs-data-assets:406: `- **Môn chính:** Bible, English, History, Science`
+- docs-data-assets:407: `- **Môn phụ:** Level Up 1.9, Level Up 10.1, Level Up 10.2, Level Up 10.3, Level Up 10.5, Level Up 11.2, Level Up 11.4, Level Up 12.1, Level Up 12.3, Level Up 2.2, Level Up 2.4, Level Up 2.5, Level Up 2.6, Level Up 3.2, Level Up 3.5, Level Up 3.6, Level Up 4.2, Level Up 4.3, Level Up 4.4, Level Up 4.5, Level Up 5.1, Level Up 5.4, Level Up 5.5, Level Up 6.3, Level Up 6.6, Level Up 7.2, Level Up 7.4, Level Up 7.5, Level Up 7.9, Level Up 8.4, Level Up 9.2, Level Up 9.5, Pre-Algebra`
+- docs-data-assets:409: `### 4.11 Grade 9 (Lớp 9) (G9)`
+- docs-data-assets:411: `- **Số bài học:** 170`
+- docs-data-assets:412: `- **Tổng số video:** 891`
+- docs-data-assets:413: `- **Trung bình video/bài:** 5.2`
+- docs-data-assets:415: `**Các môn học:**`
+- docs-data-assets:417: `- **Môn chính:** English, Hebrew History, Physical Science`
+- docs-data-assets:418: `- **Môn phụ:** Additional Review 1.3, Additional Review 1.5, Additional Review 10.4, Additional Review 11.1-11.3, Additional Review 12.2-12.3, Additional Review 2.2, Additional Review 2.8, Additional Review 3.6, Additional Review 3.7, Additional Review 4.5, Additional Review 5.5, Additional Review 5.6, Additional Review 6.1, Additional Review 6.6, Additional Review 7.6, Additional Review 8.6, Additional Review 9.1-9.2, Additional Review Ch.1-2, Additional Review _CH1-16, Additional Review _CH1-4`
+- docs-data-assets:420: `### 4.12 Grade 10 (Lớp 10) (G10)`
+- docs-data-assets:422: `- **Số bài học:** 170`
+- docs-data-assets:423: `- **Tổng số video:** 1,061`
+- docs-data-assets:424: `- **Trung bình video/bài:** 6.2`
+- docs-data-assets:426: `**Các môn học:**`
+- docs-data-assets:428: `- **Môn chính:** Bible Doctrines, Consumer Mathematics, English, World History`
+- docs-data-assets:429: `- **Môn phụ:** Additional Review 1.1, Additional Review 1.2, Additional Review 1.3, Additional Review 1.4, Additional Review 1.7, Additional Review 1.8, Additional Review 10.6, Additional Review 10.7, Additional Review 11.3, Additional Review 11.4, Additional Review 11.5, Additional Review 12.3, Additional Review 12.4, Additional Review 2.4, Additional Review 2.5, Additional Review 2.6, Additional Review 3.1, Additional Review 3.2, Additional Review 4.2, Additional Review 4.6-4.7, Additional Rev`
+- docs-data-assets:431: `### 4.13 Grade 11 (Lớp 11) (G11)`
+- docs-data-assets:433: `- **Số bài học:** 170`
+- docs-data-assets:434: `- **Tổng số video:** 1,404`
+- docs-data-assets:435: `- **Trung bình video/bài:** 8.3`
+- docs-data-assets:437: `**Các môn học:**`
+- docs-data-assets:439: `- **Môn chính:** Business Mathematics, English, U. S. History`
+- docs-data-assets:440: `- **Môn phụ:** Additional Practice, Additional Practice 153a, Additional Practice 153b, Additional Practice 21a, Additional Practice 21b, Additional Review A, Additional Review B, Additional Review C, Additional Review D, Chemistry, Keyboarding, Life Management, New Testament, Plane Geometry, Spanish`
+- docs-data-assets:442: `### 4.14 Grade 12 (Lớp 12) (G12)`
+- docs-data-assets:444: `- **Số bài học:** 170`
+- docs-data-assets:445: `- **Tổng số video:** 1,275`
+- docs-data-assets:446: `- **Trung bình video/bài:** 7.5`
+- docs-data-assets:448: `**Các môn học:**`
+- docs-data-assets:450: `- **Môn chính:** English`
+- docs-data-assets:451: `- **Môn phụ:** American Government, Culinary Life Skills, Document Processing, Economics, Old Testament, Physics, Precalculus, Revelation, Spanish, Speech`
+- docs-data-assets:454: `## 5. Đề Xuất Phân Nhóm Bán Hàng`
+- docs-data-assets:456: `### 5.1 Phân nhóm theo cấp học`
+- docs-data-assets:458: `| Nhóm | Mô tả | Grades | Tổng video | Đề xuất giá |`
+- docs-data-assets:460: `| **Preschool** | Mầm non | K4, K5 | 3,305 | $XX - $YY |`
+- docs-data-assets:461: `| **Elementary** | Tiểu học | G1-G5 | 9,111 | $XX - $YY |`
+- docs-data-assets:462: `| **Middle School** | Trung học cơ sở | G6-G8 | 3,148 | $XX - $YY |`
+- docs-data-assets:463: `| **High School** | Trung học phổ thông | G9-G12 | 4,631 | $XX - $YY |`
+- docs-data-assets:464: `| **Full K-12** | Toàn bộ chương trình | K4-G12 | 20,195 | $XX - $YY |`
+- docs-data-assets:466: `### 5.2 Phân nhóm theo môn học chuyên sâu`
+- docs-data-assets:468: `| Gói | Môn học | Grades | Video ước tính | Giá đề xuất |`
+- docs-data-assets:471: `| **Math Mastery** | Arithmetic/Math tất cả grades | K4-G12 | ~X,XXX | $XX |`
+- docs-data-assets:472: `| **Bible Studies** | Bible tất cả grades | K4-G12 | ~X,XXX | $XX |`
+- docs-data-assets:477: `### 5.3 Gói theo năm học (Annual Packages)`
+- docs-data-assets:479: `| Gói | Grade | Số video | Giá đề xuất |`
+- docs-data-assets:481: `| K4 Complete | Kindergarten 4 (4 tuổi) | 1,595 videos | $XX |`
+- docs-data-assets:482: `| K5 Complete | Kindergarten 5 (5 tuổi) | 1,710 videos | $XX |`
+- docs-data-assets:483: `| G1 Complete | Grade 1 (Lớp 1) | 2,699 videos | $XX |`
+- docs-data-assets:484: `| G2 Complete | Grade 2 (Lớp 2) | 2,063 videos | $XX |`
+- docs-data-assets:485: `| G3 Complete | Grade 3 (Lớp 3) | 1,564 videos | $XX |`
+- docs-data-assets:486: `| G4 Complete | Grade 4 (Lớp 4) | 1,394 videos | $XX |`
+- docs-data-assets:487: `| G5 Complete | Grade 5 (Lớp 5) | 1,391 videos | $XX |`
+- docs-data-assets:488: `| G6 Complete | Grade 6 (Lớp 6) | 1,394 videos | $XX |`
+- docs-data-assets:489: `| G7 Complete | Grade 7 (Lớp 7) | 872 videos | $XX |`
+- docs-data-assets:490: `| G8 Complete | Grade 8 (Lớp 8) | 882 videos | $XX |`
+- docs-data-assets:491: `| G9 Complete | Grade 9 (Lớp 9) | 891 videos | $XX |`
+- docs-data-assets:492: `| G10 Complete | Grade 10 (Lớp 10) | 1,061 videos | $XX |`
+- docs-data-assets:493: `| G11 Complete | Grade 11 (Lớp 11) | 1,404 videos | $XX |`
+- docs-data-assets:494: `| G12 Complete | Grade 12 (Lớp 12) | 1,275 videos | $XX |`
+- docs-data-assets:496: `## 6. Thống Kê Chi Tiết`
+- docs-data-assets:498: `### 6.1 Phân bố video theo số lượng/bài học`
+- docs-data-assets:500: `| Số video/bài | Số bài học | Tỷ lệ |`
+- docs-data-assets:517: `### Cấu trúc JSON cho mỗi bài học`
+- docs-data-assets:542: `### Mã môn học trong tên file`
+- docs-data-assets:544: `| Mã | Môn học | Ví dụ |`
+- docs-data-assets:565: `## Tóm tắt`
+- docs-data-assets:567: `Báo cáo này phân tích **20,195 video** từ **2,380 bài học** trong chương trình Abeka K-12.`
+- docs-data-assets:569: `**Các điểm chính:**`
+- docs-data-assets:570: `- 14 grades từ K4 đến G12`
+- docs-data-assets:571: `- Trung bình 8.5 video/bài học`
+- docs-data-assets:572: `- 206 môn học khác nhau`
+- docs-data-assets:573: `- Phù hợp để chia thành các gói: Preschool, Elementary, Middle School, High School`
+
+### docs/research/learning-system-architecture-report-2026-03-31.md
+
+- docs-data-assets:841: `| Storage (videos) | 20-50 TB | 10k × 2GB avg (compressed) |`
+- docs-data-assets:842: `| Storage (thumbnails) | 100 GB | 10k × 10MB |`
+- docs-data-assets:844: `| Daily API calls | 10M+ | 100k users × 100 calls |`
+- docs-data-assets:845: `| Progress records | 1B+ rows | 100k users × 10k videos × updates |`
+
+### docs/research/vietnam-market-deep-dive-2025.md
+
+- docs-data-assets:224: `### 5.2 Exam Prep Centers (Trung Tâm Luyện Thi)`
+- docs-data-assets:237: `### 5.3 Preschool Market (Mầm Non)`
+- docs-data-assets:331: `9. Znews.vn - "Thu nhập 125 triệu/tháng, gia đình TP.HCM chi 55 triệu cho con đi học" (April 2025)`
+- docs-data-assets:334: `12. VnEconomy - "Vuihoc gọi vốn thành công vòng Series A+" (September 2025)`
+- docs-data-assets:340: `16. JAYbranding - "So Sánh Các Cổng Thanh Toán 2026" (January 2026)`
+
+### docs/research/vietnam-market-phase2-synthesis-report.md
+
+- docs-data-assets:1: `# BÁO CÁO TỔNG HỢP NGHIÊN CỨU GIAI ĐOẠN 2`
+- docs-data-assets:2: `## Thị Trường Giáo Dục Việt Nam - Real-time Analysis 2025`
+- docs-data-assets:4: `**Ngày tổng hợp:** 04/04/2026`
+- docs-data-assets:5: `**Tài nguyên nền tảng:** 20,195 video Abeka (K4-12), Hệ thống curriculum 5 cấp, Gamification`
+- docs-data-assets:6: `**Thị trường mục tiêu:** Việt Nam (mở rộng ASEAN)`
+- docs-data-assets:10: `## 📊 TÓM TẮT EXECUTIVE`
+- docs-data-assets:12: `### Quy Mô Thị Trường`
+- docs-data-assets:13: `| Chỉ Số | Giá Trị | Nguồn |`
+- docs-data-assets:15: `| **Tổng thị trường EdTech VN 2024** | USD 249.95 triệu | Spicemart Research |`
+- docs-data-assets:16: `| **Dự báo 2033** | USD 1.46 tỷ | CAGR 19.30% |`
+- docs-data-assets:17: `| **Chi tiêu giáo dục/tháng (đô thị)** | 47% thu nhập hộ gia đình | Báo cáo 2025 |`
+- docs-data-assets:18: `| **Gia đình thu nhập cao (125tr/tháng)** | Chi 55 triệu/tháng (45%) | Báo cáo 2025 |`
+- docs-data-assets:22: `1. **Thị trường tăng trưởng nóng**: CAGR 19.3%, top Đông Nam Á`
+- docs-data-assets:23: `2. **Phụ huynh VN sẵn sàng đầu tư**: Giáo dục là ưu tiên #1, sẵn sàng vay tiền cho con học`
+- docs-data-assets:24: `3. **Thanh toán số phổ biến**: 60%+ dùng QR, MoMo (40M users), ZaloPay (12,000+ cửa hàng)`
+- docs-data-assets:25: `4. **Thiếu giáo viên**: Thiếu 120,000 giáo viên → cơ hội EdTech thay thế`
+- docs-data-assets:26: `5. **Đối thủ chưa khai thác**: Phân khúc THCS/THPT còn trống, AI personalization còn yếu`
+- docs-data-assets:30: `## 🎯 PHÂN TÍCH ĐỐI THỦ CẠNH TRANH`
+- docs-data-assets:32: `### Bảng So Sánh Top 6`
+- docs-data-assets:34: `| Đối Thủ | Mô Hình | Giá/Tháng | USP | Điểm Yếu |`
+- docs-data-assets:36: `| **VUIHOC** | Subscription | 199K-599K | AI tiên tiến, Top 3 thế giới | Giá cao |`
+- docs-data-assets:37: `| **Loigiaihay** | Freemium (Ads) | Free | SEO mạnh, 10M+ visit | Không có video |`
+- docs-data-assets:38: `| **Hoc10** | Freemium | 15K-35K/sách | Chuẩn Bộ GD | Nội dung tĩnh |`
+- docs-data-assets:39: `| **Cánh Diều** | Sách điện tử | 15K-35K/code | SGK chính thống | Không tương tác |`
+- docs-data-assets:40: `| **Cung học** | Freemium | Unknown | Nội dung miễn phí | Thiếu dữ liệu |`
+- docs-data-assets:41: `| **Trần Hưng Đạo** | Freemium | Free | Lịch sử Việt Nam | Phân khúc hẹp |`
+- docs-data-assets:43: `### SWOT Thị Trường`
+- docs-data-assets:45: `**Điểm Mạnh (S):**`
+- docs-data-assets:46: `- Thị trường tăng trưởng 19.3%/năm`
+- docs-data-assets:47: `- Phụ huynh sẵn sàng chi trả cao`
+- docs-data-assets:48: `- Chính sách chuyển đổi số từ Bộ GD`
+- docs-data-assets:50: `**Điểm Yếu (W):**`
+- docs-data-assets:51: `- Bão hòa phân khúc tiểu học (>50% sản phẩm)`
+- docs-data-assets:52: `- Chất lượng nội dung không đồng đều`
+- docs-data-assets:53: `- Thiếu cá nhân hóa học tập`
+- docs-data-assets:55: `**Cơ Hội (O):**`
+- docs-data-assets:56: `- Phân khúc THCS/THPT còn trống`
+- docs-data-assets:57: `- 707 dự án FDI trong giáo dục (USD 4.64 tỷ)`
+- docs-data-assets:58: `- Thiếu 120,000 giáo viên`
+- docs-data-assets:59: `- Thanh toán số tăng trưởng 40.5 tỷ USD (2024)`
+- docs-data-assets:61: `**Thách Thức (T):**`
+- docs-data-assets:62: `- VUIHOC đã có AI tiên tiến`
+- docs-data-assets:63: `- Loigiaihay độc quyền SEO`
+- docs-data-assets:64: `- Giáo dục truyền thống vẫn được ưa chuộng`
+- docs-data-assets:68: `## 👥 PERSONA PHỤ HUYNH VIỆT NAM`
+- docs-data-assets:70: `### 5 Personas Chính`
+- docs-data-assets:72: `#### 1. Bà Mẹ Bận Rộn Thành Đạt (35-45 tuổi)`
+- docs-data-assets:73: `- **Thu nhập:** 40-80 triệu/tháng`
+- docs-data-assets:74: `- **Chi tiêu EdTech:** 300-800K/tháng`
+- docs-data-assets:75: `- **Pain points:** Không có thời gian dạy con, cần tiện lợi`
+- docs-data-assets:76: `- **Value proposition:** Báo cáo tiến độ tự động, học mọi lúc mọi nơi`
+- docs-data-assets:79: `#### 2. Ông Bố Kỹ Thuật Cẩn Thận (38-48 tuổi)`
+- docs-data-assets:80: `- **Thu nhập:** 50-100 triệu/tháng`
+- docs-data-assets:81: `- **Chi tiêu EdTech:** 500K-1.5M/tháng`
+- docs-data-assets:82: `- **Pain points:** Lo ngại nghiện màn hình, thiếu giao tiếp`
+- docs-data-assets:83: `- **Value proposition:** Parental controls, offline mode, giới hạn thời gian`
+- docs-data-assets:86: `#### 3. Bà Mẹ Nội Trợ Tận Tâm (30-40 tuổi)`
+- docs-data-assets:87: `- **Thu nhập:** 20-40 triệu/tháng`
+- docs-data-assets:88: `- **Chi tiêu EdTech:** 100-300K/tháng`
+- docs-data-assets:89: `- **Pain points:** Không tự tin phát âm tiếng Anh`
+- docs-data-assets:90: `- **Value proposition:** Hướng dẫn rõ ràng, phát âm chuẩn native`
+- docs-data-assets:93: `#### 4. Phụ Huynh Tham Vọng (35-50 tuổi)`
+- docs-data-assets:94: `- **Thu nhập:** >100 triệu/tháng`
+- docs-data-assets:95: `- **Chi tiêu EdTech:** Không giới hạn`
+- docs-data-assets:96: `- **Pain points:** Con phải vào đại học top, du học`
+- docs-data-assets:97: `- **Value proposition:** Chứng chỉ Cambridge, chuẩn quốc tế`
+- docs-data-assets:100: `#### 5. Gia Đình Tỉnh Lẻ Thực Tế (30-45 tuổi)`
+- docs-data-assets:101: `- **Thu nhập:** 15-30 triệu/tháng`
+- docs-data-assets:102: `- **Chi tiêu EdTech:** 100-200K/tháng`
+- docs-data-assets:103: `- **Pain points:** Mạng internet yếu, không có trung tâm tiếng Anh tốt`
+- docs-data-assets:104: `- **Value proposition:** Offline mode, giá rẻ, nội dung chuẩn`
+- docs-data-assets:105: `- **Preferred tier:** Lite (99K) hoặc gói trọn đời`
+- docs-data-assets:109: `## 💰 CHIẾN LƯỢC MONETIZATION`
+- docs-data-assets:113: `| Tier | Tháng | Năm (Tiết kiệm 20%) | Tính năng |`
+- docs-data-assets:115: `| **Free** | 0đ | - | Trial 7 ngày, 50 video, Level 1-2 |`
+- docs-data-assets:116: `| **Lite** | 99,000đ | 949,000đ | 500 video K4-G5, 1 con |`
+- docs-data-assets:117: `| **Standard** | 199,000đ | 1,899,000đ | **Chủ lực**, Full 20K video, 2 con |`
+- docs-data-assets:118: `| **Premium** | 349,000đ | 3,349,000đ | 4 con, offline download, IXL Math |`
+- docs-data-assets:119: `| **Pro** | 499,000đ | 4,799,000đ | Unlimited, coaching, priority support |`
+- docs-data-assets:121: `### Chiến Lược Thanh Toán`
+- docs-data-assets:123: `**Thứ tự ưu tiên:**`
+- docs-data-assets:125: `2. **ZaloPay (30%)** - Tích hợp Zalo`
+- docs-data-assets:127: `4. **Thẻ/ATM (4%)** - Fallback`
+- docs-data-assets:128: `5. **Chuyển khoản (1%)** - B2B`
+- docs-data-assets:132: `| Hành Trình | Trigger | Offer |`
+- docs-data-assets:134: `| Free → Lite | 5 video watched | "Chỉ bằng 1 ly cà phê/ngày" |`
+- docs-data-assets:135: `| Lite → Standard | Child hits Grade 6 | "Tiếp tục hành trình K6-12" |`
+- docs-data-assets:136: `| Standard → Premium | 3rd child added | "Gia đình 3+ con tiết kiệm" |`
+- docs-data-assets:137: `| All → Annual | Day 20 | "Tiết kiệm 20% với gói năm" |`
+- docs-data-assets:141: `- **Streak freeze:** 29K/3 lượt (loss aversion)`
+- docs-data-assets:143: `- **Extra child seat:** 99K/tháng`
+- docs-data-assets:147: `## 🏢 CƠ HỘI B2B`
+- docs-data-assets:157: `### Phân Khúc Ưu Tiên`
+- docs-data-assets:162: `- Sales cycle: 2-4 tháng`
+- docs-data-assets:167: `- Sales cycle: 1-3 tháng`
+- docs-data-assets:172: `- Sales cycle: 3-6 tháng`
+- docs-data-assets:177: `- Sales cycle: 1-2 tháng`
+- docs-data-assets:187: `Alternative: **$4-8/student/year** với $200/month minimum`
+- docs-data-assets:191: `## 🚀 CHIẾN LƯỢC "ENGINEERING AS MARKETING"`
+- docs-data-assets:193: `### 3 Công Cụ Ưu Tiên`
+- docs-data-assets:195: `#### #1: Đánh Giá Trình Độ Tiếng Anh (YLE Test)`
+- docs-data-assets:196: `- **Mục tiêu:** Lead generation chính`
+- docs-data-assets:197: `- **Thời gian xây dựng:** 3-4 tuần`
+- docs-data-assets:198: `- **Dự báo M6:** 10,000 tests/tháng, 6,000 emails captured`
+- docs-data-assets:199: `- **Score:** 28/30 (cao nhất)`
+- docs-data-assets:201: `#### #2: Máy Tính Chi Phí Học Tập`
+- docs-data-assets:202: `- **Mục tiêu:** Conversion + viral`
+- docs-data-assets:203: `- **Thời gian xây dựng:** 2-3 tuần`
+- docs-data-assets:204: `- **Dự báo M6:** 15,000 calculations/tháng`
+- docs-data-assets:208: `- **Mục tiêu:** SEO + repeat visits`
+- docs-data-assets:209: `- **Thời gian xây dựng:** 4-5 tuần`
+- docs-data-assets:210: `- **Dự báo M6:** 8,000 downloads/tháng`
+- docs-data-assets:213: `### Roadmap 13 Tuần`
+- docs-data-assets:215: `| Giai đoạn | Tuần | Hoạt động |`
+- docs-data-assets:223: `### KPI Mục Tiêu (Month 6)`
+- docs-data-assets:227: `| Tổng leads captured | 12,000 |`
+- docs-data-assets:230: `| Doanh thu dự kiến | 288 triệu VND/tháng |`
+- docs-data-assets:234: `## 📈 TOP 5 HƯỚNG MONETIZATION ƯU TIÊN`
+- docs-data-assets:238: `- **Thực hiện:** Medium`
+- docs-data-assets:239: `- **Timeline:** 6-12 tháng`
+- docs-data-assets:240: `- **Potential:** 15B-50B VND/năm`
+- docs-data-assets:244: `- **Thực hiện:** Easy`
+- docs-data-assets:245: `- **Timeline:** 2-4 tuần`
+- docs-data-assets:246: `- **Potential:** +29% ARPU, +350M VND/tháng (10K users)`
+- docs-data-assets:250: `- **Thực hiện:** Easy`
+- docs-data-assets:251: `- **Timeline:** 1-2 tuần`
+- docs-data-assets:256: `- **Thực hiện:** Hard`
+- docs-data-assets:257: `- **Timeline:** 6-12 tháng`
+- docs-data-assets:262: `- **Thực hiện:** Medium`
+- docs-data-assets:263: `- **Timeline:** 3-6 tháng`
+- docs-data-assets:268: `## 🎯 ACTION PLAN 90 NGÀY`
+- docs-data-assets:270: `### Tháng 1: Quick Wins`
+- docs-data-assets:272: `- [ ] Enable streak freeze (29K/3 lượt)`
+- docs-data-assets:273: `- [ ] Tích hợp MoMo/ZaloPay UI optimization`
+- docs-data-assets:274: `- [ ] Survey 10 phụ huynh hiện tại`
+- docs-data-assets:276: `### Tháng 2: B2B Foundation`
+- docs-data-assets:277: `- [ ] Xây dựng institution onboarding flow`
+- docs-data-assets:278: `- [ ] Tạo B2B pricing page`
+- docs-data-assets:279: `- [ ] Outreach 20 trường mầm non`
+- docs-data-assets:280: `- [ ] Pilot với 3 trường`
+- docs-data-assets:282: `### Tháng 3: Tool Launch`
+- docs-data-assets:290: `## 📚 DANH MỤC BÁO CÁO CHI TIẾT`
+- docs-data-assets:292: `### Nghiên Cứu Thị Trường`
+- docs-data-assets:297: `### Phân Tích Kinh Doanh`
+- docs-data-assets:302: `### Chiến Lược Thực Thi`
+- docs-data-assets:311: `1. Giá subscription chính xác của CungHocVui, Hoc10 (không public)`
+- docs-data-assets:312: `2. Conversion rate freemium cụ thể tại VN`
+- docs-data-assets:313: `3. Deal size B2B trung bình thực tế`
+- docs-data-assets:314: `4. Ngân sách chuyển đổi số Bộ GD&ĐT`
+- docs-data-assets:315: `5. Tỷ lệ chuyển đổi free → paid trong EdTech VN`
+- docs-data-assets:319: `## 💡 KẾT LUẬN`
+- docs-data-assets:321: `**Cơ hội:** Thị trường EdTech Việt Nam đang tăng trưởng 19.3%/năm, phụ huynh sẵn sàng chi trả cao (47% thu nhập), thanh toán số phổ biến (60%+ QR), và đối thủ chưa khai thác phân khúc THCS/THPT cũng như AI personalization.`
+- docs-data-assets:323: `**Chiến lược đề xuất:**`
+- docs-data-assets:324: `1. **Short-term:** Optimize pricing + Enable gamification microtransactions (2-4 tuần)`
+- docs-data-assets:325: `2. **Mid-term:** Launch free tools for lead gen + B2B pilot (2-3 tháng)`
+- docs-data-assets:326: `3. **Long-term:** Scale B2B + White-label platform (6-12 tháng)`
+- docs-data-assets:328: `**Tiềm năng doanh thu:**`
+- docs-data-assets:329: `- Conservative: 15B VND/năm ($600K)`
+- docs-data-assets:330: `- Target: 25B VND/năm ($1M)`
+- docs-data-assets:331: `- Optimistic: 40B VND/năm ($1.6M)`
+- docs-data-assets:335: `*Báo cáo được tổng hợp từ 6 nghiên cứu song song với dữ liệu real-time thị trường Việt Nam 2024-2025.*`
+
+### docs/research/vietnam-parent-persona-research.md
+
+- docs-data-assets:1: `# Nghiên cứu Nhu cầu và Hành vi Phụ huynh Việt Nam trong Giáo dục Trực tuyến`
+- docs-data-assets:3: `**Ngày nghiên cứu:** 04/04/2026`
+- docs-data-assets:4: `**Phạm vi:** Phụ huynh có con từ 3-15 tuổi tại Việt Nam`
+- docs-data-assets:5: `**Phương pháp:** Phân tích báo cáo thị trường, khảo sát xu hướng tìm kiếm, review ứng dụng, diễn đàn phụ huynh`
+- docs-data-assets:11: `Giáo dục là khoản đầu tư không thể cắt giảm của phụ huynh Việt - ngay cả trong khủng hoảng kinh tế. Thị trường EdTech Việt Nam đang tăng trưởng mạnh với nhu cầu học tiếng Anh online dẫn đầu.`
+- docs-data-assets:14: `- Chi tiêu giáo dục VN tăng từ $23.6B (2017) → $32.8B (2022), CAGR ~7%`
+- docs-data-assets:15: `- 64% phụ huynh đã lập kế hoạch giáo dục trước khi con vào mầm non`
+- docs-data-assets:16: `- Thị trường tiếng Anh trẻ em: 5-20 triệu VNĐ/khóa (trung tâm offline), 200-500K VNĐ/tháng (online)`
+- docs-data-assets:17: `- 3 nỗi lo lớn nhất: nghiện màn hình, giảm tương tác xã hội, lo âu về chất lượng`
+- docs-data-assets:21: `## 1. Pain Points - Vấn đề phụ huynh gặp phải`
+- docs-data-assets:23: `### 1.1 Áp lực thời gian và kiên nhẫn`
+- docs-data-assets:24: `- Phụ huynh phải đóng 3 vai: cha mẹ + giáo viên + quản lý học tập`
+- docs-data-assets:25: `- Homeschooling đòi hỏi 4-6 giờ/ngày dạy trực tiếp vs 1-2 giờ khi học ở trường`
+- docs-data-assets:26: `- Căng thẳng tâm lý khi ranh giới "nhà" và "trường" biến mất`
+- docs-data-assets:27: `- Burnout cho cả phụ huynh và trẻ khi duy trì động lực dài hạn`
+- docs-data-assets:29: `### 1.2 Thiếu kỹ năng sư phạm`
+- docs-data-assets:30: `- Không phải phụ huynh nào cũng giỏi toàn diện các môn`
+- docs-data-assets:31: `- Thiếu phương pháp giảng dạy chuyên nghiệp (phân tích lỗi, câu hỏi gợi mở)`
+- docs-data-assets:32: `- Kiến thức cấp THCS/THPT vượt khả năng của phụ huynh (Hóa học, Toán cao cấp)`
+- docs-data-assets:34: `### 1.3 Nỗi lo công nghệ - "dao hai lưỡi"`
+- docs-data-assets:35: `| Vấn đề | Tỷ lệ/Mức độ | Tác động |`
+- docs-data-assets:37: `| Nghiện màn hình | 89% trẻ 12-17 tuổi dùng Internet hàng ngày | Trẻ từ chối đến trường, chỉ muốn dùng điện thoại |`
+- docs-data-assets:38: `| Chậm nói | Tiếp xúc màn hình sớm | Trẻ thu mình trong thế giới ảo |`
+- docs-data-assets:39: `| Rối loạn giấc ngủ | Ánh sáng xanh từ thiết bị | Mệt mỏi kéo dài, giảm tập trung |`
+- docs-data-assets:40: `| Lơ là học tập | Mê game/video ngắn | Trẻ không muốn học bài |`
+- docs-data-assets:42: `### 1.4 Vấn đề xã hội hóa`
+- docs-data-assets:43: `- Trẻ homeschooling thiếu tương tác với bạn đồng trang lứa`
+- docs-data-assets:44: `- Phụ huynh phải chủ động tạo cơ hội giao tiếp (nhóm học, câu lạc bộ)`
+- docs-data-assets:45: `- Lo lắng về kỹ năng xã hội và tự lập của con`
+- docs-data-assets:47: `### 1.5 Gánh nặng tài chính tăng`
+- docs-data-assets:48: `- Thông tư 29/2024 siết dạy thêm trong trường → phụ huynh chuyển ra trung tâm`
+- docs-data-assets:49: `- Chi phí tăng 2-5 lần khi học ngoài (ILA: 14-19 triệu/khóa, VUS: 5-7 triệu/khóa)`
+- docs-data-assets:50: `- Mất thu nhập 1 người nếu chọn homeschooling (opportunity cost lớn)`
+- docs-data-assets:54: `## 2. Motivations - Động lực đầu tư giáo dục`
+- docs-data-assets:56: `### 2.1 Tư duy đầu tư dài hạn`
+- docs-data-assets:57: `- Giáo dục = khoản đầu tư không thể cắt giảm, ngay cả khi thu nhập giảm (2020-2021)`
+- docs-data-assets:58: `- 64% phụ huynh lập kế hoạch giáo dục từ trước khi con vào mầm non`
+- docs-data-assets:59: `- Tầm nhìn: chuẩn bị cho đại học hàng đầu thế giới, du học`
+- docs-data-assets:61: `### 2.2 Độ tuổi vàng học ngoại ngữ`
+- docs-data-assets:62: `- Giai đoạn 4-10 tuổi: khả năng bắt chước và tiếp thu ngôn ngữ tự nhiên nhất`
+- docs-data-assets:63: `- Nhiều phụ huynh bắt đầu cho con học tiếng Anh từ 1-3 tuổi`
+- docs-data-assets:64: `- Mục tiêu: phát triển 4 kỹ năng nghe-nói-đọc-viết toàn diện`
+- docs-data-assets:66: `### 2.3 Nhu cầu chuẩn hóa quốc tế`
+- docs-data-assets:67: `- Chứng chỉ Cambridge (Starters, Movers, Flyers, KET, PET)`
+- docs-data-assets:68: `- Chuẩn bị du học sớm (Mỹ, Úc, Anh, Canada)`
+- docs-data-assets:69: `- Cạnh tranh vào trường chuyên, trường quốc tế`
+- docs-data-assets:71: `### 2.4 Thúc đẩy từ chuyển đổi số`
+- docs-data-assets:72: `- AI và công nghệ đang thay đổi cách học (Google Trends 2025: AI dominate)`
+- docs-data-assets:73: `- Phụ huynh hiện đại chấp nhận công nghệ trong giáo dục`
+- docs-data-assets:74: `- Linh hoạt thời gian, không cần đưa đón`
+- docs-data-assets:78: `## 3. Barriers - Rào cản sử dụng nền tảng học trực tuyến`
+- docs-data-assets:80: `### 3.1 Rào cản kỹ thuật`
+- docs-data-assets:81: `- Không phải gia đình nào cũng có thiết bị phù hợp`
+- docs-data-assets:82: `- Kết nối Internet không ổn định (đặc biệt ngày mưa, ngập)`
+- docs-data-assets:83: `- Phụ huynh không rành công nghệ để hỗ trợ con`
+- docs-data-assets:85: `### 3.2 Rào cản về niềm tin`
+- docs-data-assets:86: `- Nghi ngờ chất lượng học online vs offline truyền thống`
+- docs-data-assets:87: `- Lo lắng về sự tương tác và kết nối cảm xúc`
+- docs-data-assets:88: `- Khó kiểm soát việc con thực sự học hay "vừa học vừa chơi"`
+- docs-data-assets:90: `### 3.3 Rào cản tâm lý`
+- docs-data-assets:91: `| Rào cản | Mô tả |`
+- docs-data-assets:93: `| Sợ con nghiện màn hình | Lo ngại #1 của phụ huynh thời đại số |`
+- docs-data-assets:94: `| Cô lập xã hội | Thiếu giao tiếp trực tiếp với bạn bè |`
+- docs-data-assets:95: `| Thiếu kỷ luật | Không có giáo viên giám sát trực tiếp |`
+- docs-data-assets:96: `| Khó đánh giá tiến bộ | Không có bài kiểm tra, điểm số rõ ràng |`
+- docs-data-assets:98: `### 3.4 Rào cản tài chính`
+- docs-data-assets:99: `- Giá gói trọn đời EdTech (Monkey Stories: 2-3 triệu VNĐ) là rào cản với nhiều gia đình`
+- docs-data-assets:100: `- Nỗi sợ "mua rồi con không học" - lãng phí tiền bạc`
+- docs-data-assets:101: `- Chi phí ẩn: tài liệu, thiết bị bổ sung`
+- docs-data-assets:105: `## 4. Preferences - Ưu tiên nội dung`
+- docs-data-assets:107: `### 4.1 Phân khúc nội dung theo độ tuổi`
+- docs-data-assets:108: `| Độ tuổi | Ưu tiên #1 | Ưu tiên #2 | Ưu tiên #3 |`
+- docs-data-assets:110: `| 3-6 tuổi | Tiếng Anh mầm non (Phonics) | Kỹ năng sống cơ bản | Phát triển kỹ năng vận động |`
+- docs-data-assets:111: `| 6-11 tuổi | Tiếng Anh tiểu học | Toán tư duy | STEM/Khoa học |`
+- docs-data-assets:112: `| 12-15 tuổi | Luyện thi chứng chỉ | Tiếng Anh học thuật | Lập trình/Công nghệ |`
+- docs-data-assets:114: `### 4.2 Ưu tiên phương pháp học`
+- docs-data-assets:115: `- **Gamification:** Học qua trò chơi, video tương tác (Monkey Stories model)`
+- docs-data-assets:116: `- **Phương pháp TPR (Total Physical Response):** Vận động kết hợp học`
+- docs-data-assets:117: `- **Học qua trải nghiệm (ELC):** Thực hành, dự án thực tế`
+- docs-data-assets:118: `- **AI cá nhân hóa:** Lộ trình học riêng cho từng trẻ`
+- docs-data-assets:120: `### 4.3 Yêu cầu về chất lượng`
+- docs-data-assets:121: `- Giáo viên/giọng đọc bản ngữ chuẩn`
+- docs-data-assets:122: `- Giáo trình kết hợp chuẩn quốc tế (Cambridge) + SGK Việt Nam`
+- docs-data-assets:123: `- Công nghệ AI chấm phát âm (M-Speak, speech recognition)`
+- docs-data-assets:124: `- Báo cáo tiến độ học tập rõ ràng cho phụ huynh`
+- docs-data-assets:128: `## 5. Spending Patterns - Khả năng chi trả`
+- docs-data-assets:130: `### 5.1 Mức chi tiêu giáo dục`
+- docs-data-assets:131: `- **Trung tâm offline:** 5-20 triệu VNĐ/khóa (3-6 tháng)`
+- docs-data-assets:132: `- ILA: 14.3-19.3 triệu/khóa`
+- docs-data-assets:133: `- VUS: 5.2-7.6 triệu/khóa`
+- docs-data-assets:134: `- Apollo: 7.9-20.5 triệu/khóa`
+- docs-data-assets:135: `- **Online 1-1:** 200.000-500.000 VNĐ/buổi`
+- docs-data-assets:136: `- **App EdTech:** 100.000-500.000 VNĐ/tháng hoặc gói trọn đời 1-3 triệu`
+- docs-data-assets:138: `### 5.2 Đặc điểm chi tiêu`
+- docs-data-assets:139: `- Gia đình trung lưu chi 40-50% thu nhập cho giáo dục con`
+- docs-data-assets:140: `- Thu nhập bình quân từ lương chiếm 55-57% tổng thu nhập`
+- docs-data-assets:141: `- Chi tiêu giáo dục tăng ngay cả khi thu nhập giảm (2020-2021)`
+- docs-data-assets:143: `### 5.3 Ngưỡng giá nhạy cảm`
+- docs-data-assets:144: `| Phân khúc | Ngưỡng giá/tháng | Đặc điểm |`
+- docs-data-assets:146: `| Giá rẻ | <200K VNĐ | Chấp nhận chất lượng cơ bản |`
+- docs-data-assets:147: `| Trung bình | 200-500K VNĐ | Cân bằng giá-chất lượng |`
+- docs-data-assets:148: `| Cao cấp | >500K VNĐ | Đòi hỏi chất lượng xuất sắc, AI, giáo viên bản ngữ |`
+- docs-data-assets:150: `### 5.4 Tâm lý thanh toán`
+- docs-data-assets:151: `- Ưu tiên gói trọn đời nếu giá hợp lý (tiết kiệm dài hạn)`
+- docs-data-assets:152: `- Cần học thử miễn phí trước khi quyết định`
+- docs-data-assets:153: `- Ưu đãi giảm 10-25% học phí là động lực mạnh`
+- docs-data-assets:154: `- Sẵn sàng trả premium cho chất lượng giáo viên tốt`
+- docs-data-assets:158: `## 6. Customer Personas - 5 Nhóm phụ huynh chính`
+- docs-data-assets:160: `### Persona 1: "Bà Mẹ Bận Rộn Thành Đạt" (Working Mom)`
+- docs-data-assets:161: `- **Đặc điểm:** 30-40 tuổi, làm việc full-time, thu nhập 20-50 triệu/tháng, sống tại TP lớn`
+- docs-data-assets:162: `- **Pain points:** Không có thời gian đưa đón con, cảm giác tội lỗi vì thiếu thời gian bên con`
+- docs-data-assets:163: `- **Motivations:** Con học giỏi tiếng Anh mà không cần mẹ kèm, tiết kiệm thời gian đi lại`
+- docs-data-assets:164: `- **Spending:** 300-800K VNĐ/tháng cho EdTech, sẵn sàng trả premium cho tiện lợi`
+- docs-data-assets:165: `- **Preferences:** App có AI chấm phát âm, báo cáo tiến độ, học mọi lúc mọi nơi`
+- docs-data-assets:166: `- **Tech-savvy:** Cao - sử dụng smartphone, mạng xã hội thành thạo`
+- docs-data-assets:168: `### Persona 2: "Ông Bố Kỹ Thuật Cẩn Thận" (Tech-Savvy Dad)`
+- docs-data-assets:169: `- **Đặc điểm:** 35-45 tuổi, làm IT/kỹ thuật, thu nhập 30-60 triệu, logic, phân tích kỹ`
+- docs-data-assets:170: `- **Pain points:** Sợ con nghiện màn hình, nghi ngờ chất lượng app miễn phí`
+- docs-data-assets:171: `- **Motivations:** Tìm giải pháp công nghệ giáo dục thông minh, có kiểm soát thời gian`
+- docs-data-assets:172: `- **Spending:** Cần giá hợp lý nhưng chấp nhận trả cho tính năng parental control`
+- docs-data-assets:173: `- **Preferences:** App có giới hạn thời gian, nội dung được kiểm duyệt, AI adaptive learning`
+- docs-data-assets:174: `- **Tech-savvy:** Rất cao - đánh giá kỹ technical specs trước khi mua`
+- docs-data-assets:176: `### Persona 3: "Bà Mẹ Nội Trợ Tận Tâm" (Homemaker Mom)`
+- docs-data-assets:177: `- **Đặc điểm:** 28-38 tuổi, ở nhà chăm con, chồng làm kinh tế chính, thu nhập gia đình 25-40 triệu`
+- docs-data-assets:178: `- **Pain points:** Không tự tin dạy con tiếng Anh (phát âm không chuẩn), không biết phương pháp`
+- docs-data-assets:179: `- **Motivations:** Con không thua bạn bè, có nền tảng tiếng Anh sớm, tự tin giao tiếp`
+- docs-data-assets:180: `- **Spending:** 100-300K VNĐ/tháng, tìm kiếm nhiều so sánh giá, dùng trial kỹ`
+- docs-data-assets:181: `- **Preferences:** Giáo trình bài bản, có giáo viên hướng dẫn, dễ sử dụng`
+- docs-data-assets:182: `- **Tech-savvy:** Trung bình - cần hướng dẫn rõ ràng, giao diện đơn giản`
+- docs-data-assets:184: `### Persona 4: "Phụ Huynh Tham Vọng" (Tiger Parent)`
+- docs-data-assets:185: `- **Đặc điểm:** 32-42 tuổi, thu nhập cao (>50 triệu), định hướng du học sớm cho con`
+- docs-data-assets:186: `- **Pain points:** Lo con tụt hậu so với chuẩn quốc tế, cạnh tranh vào trường top`
+- docs-data-assets:187: `- **Motivations:** Con đạt chứng chỉ Cambridge, chuẩn bị IELTS từ sớm, portfolio du học`
+- docs-data-assets:188: `- **Spending:** Không giới hạn cho chất lượng - 1-2 triệu/tháng, kết hợp nhiều nguồn`
+- docs-data-assets:189: `- **Preferences:** Chương trình chuẩn Cambridge, lộ trình cá nhân hóa, mentor 1-1`
+- docs-data-assets:190: `- **Tech-savvy:** Cao - sẵn sàng đầu tư công nghệ AI mới nhất`
+- docs-data-assets:192: `### Persona 5: "Gia đình Tỉnh Lẻ Thực Tế" (Provincial Family)`
+- docs-data-assets:193: `- **Đặc điểm:** 30-45 tuổi, sống tại tỉnh/thành nhỏ, thu nhập 15-30 triệu, ít trung tâm tiếng Anh chất lượng`
+- docs-data-assets:194: `- **Pain points:** Không có trung tâm tiếng Anh tốt gần nhà, giáo viên địa phương phát âm không chuẩn`
+- docs-data-assets:195: `- **Motivations:** Con được học với giáo viên/giọng bản ngữ, tiếp cận chương trình chuẩn như ở thành phố`
+- docs-data-assets:196: `- **Spending:** 100-200K VNĐ/tháng, ưu tiên giá rẻ nhưng chất lượng chấp nhận được`
+- docs-data-assets:197: `- **Preferences:** App có thể dùng offline, giọng đọc chuẩn, nội dung phù hợp SGK Việt Nam`
+- docs-data-assets:198: `- **Tech-savvy:** Thấp-trung bình - cần hỗ trợ kỹ thuật, ưa thích nội dung đơn giản`
+- docs-data-assets:204: `### Giai đoạn 1: Nhận thức (Awareness)`
+- docs-data-assets:205: `- **Trigger:** Con 3-4 tuổi, bắt đầu nói chuyện về tiếng Anh; Bạn bè cùng lứa đã học`
+- docs-data-assets:206: `- **Hành động:** Tìm kiếm "có nên cho con học tiếng Anh sớm", đọc review trên Facebook, Webtretho`
+- docs-data-assets:207: `- **Nội dung tiếp cận:** Blog "lộ trình học tiếng Anh cho bé 3 tuổi", video TikTok phụ huynh chia sẻ`
+- docs-data-assets:208: `- **Quan ngại:** "Liệu có quá sớm không? Con có bị áp lực không?"`
+- docs-data-assets:210: `### Giai đoạn 2: Cân nhắc (Consideration)`
+- docs-data-assets:211: `- **So sánh:** Monkey Stories vs Monkey Junior vs trung tâm offline (VUS, ILA)`
+- docs-data-assets:212: `- **Đánh giá:** Học phí, phương pháp, chất lượng giáo viên, review từ phụ huynh khác`
+- docs-data-assets:213: `- **Hành động:** Tải app học thử miễn phí, hỏi ý kiến trong nhóm Facebook "Hội phụ huynh cho con học tiếng Anh"`
+- docs-data-assets:214: `- **Quan ngại:** "App miễn phí có đủ tốt không? Hay phải mua gói trả phí?"`
+- docs-data-assets:216: `### Giai đoạn 3: Quyết định (Decision)`
+- docs-data-assets:217: `- **Trigger:** Con thích app học thử, nhìn thấy kết quả sau 1 tuần; Hoặc giảm giá flash sale`
+- docs-data-assets:218: `- **Rào cản cuối:** Giá gói trọn đời, lo con học vài ngày rồi bỏ`
+- docs-data-assets:219: `- **Hành động:** Tìm mã giảm giá, đọc review chi tiết "Monkey Stories có tốt không"`
+- docs-data-assets:220: `- **Quyết định:** Mua gói 1 năm thử trước, hoặc gói trọn đời nếu giá tốt`
+- docs-data-assets:222: `### Giai đoạn 4: Sử dụng (Usage)`
+- docs-data-assets:223: `- **Kỳ vọng:** Con học 15-30 phút/ngày, tiến bộ rõ rệt sau 3 tháng`
+- docs-data-assets:224: `-**Thực tế:** Con học không đều, cần nhắc nhở; Phụ huynh kiểm tra tiến độ qua app`
+- docs-data-assets:225: `- **Tương tác:** Nhận notification "Con đã hoàn thành bài học hôm nay"`
+- docs-data-assets:226: `- **Vấn đề:** Con chán sau vài tuần, phụ huynh không biết cách khuyến khích`
+- docs-data-assets:228: `### Giai đoạn 5: Trung thành/Churn (Loyalty/Churn)`
+- docs-data-assets:229: `- **Trung thành:** Con tiến bộ, đạt chứng chỉ; Gia hạn hoặc nâng cấp gói`
+- docs-data-assets:230: `- **Giới thiệu:** Chia sẻ app cho bạn bè, đăng bài review trên mạng xã hội`
+- docs-data-assets:231: `- **Churn:** Con không hứng thú, chuyển sang trung tâm offline; Hoặc chuyển sang app khác`
+- docs-data-assets:232: `- **Phản hồi:** Để lại review 1-5 sao trên App Store`
+- docs-data-assets:238: `### 8.1 Value Proposition cho từng Persona`
+- docs-data-assets:242: `| Working Mom | Cho con học tiếng Anh mà không cần kèm | Không có thời gian, cảm giác tội lỗi | Con tự học, báo cáo tiến độ | "Học tiếng Anh mọi lúc mọi nơi - Mẹ yên tâm làm việc" |`
+- docs-data-assets:243: `| Tech-Savvy Dad | Tìm giải pháp EdTech chất lượng | Sợ con nghiện màn hình | Kiểm soát được thời gian học | "Công nghệ AI chuẩn quốc tế - Kiểm soát giờ giấc thông minh" |`
+- docs-data-assets:244: `| Homemaker Mom | Dạy con tiếng Anh đúng cách | Không tự tin phát âm | Con nói chuẩn, tự tin | "Dạy con tiếng Anh chuẩn bản ngữ - Dù mẹ không giỏi" |`
+- docs-data-assets:245: `| Tiger Parent | Con đạt chuẩn quốc tế | Lo con tụt hậu | Chứng chỉ Cambridge, IELTS | "Lộ trình Cambridge chuẩn - Bước đệm du học vững chắc" |`
+- docs-data-assets:246: `| Provincial Family | Con học tiếng Anh chất lượng | Không có trung tâm tốt | Tiếp cận chương trình thành phố | "Tiếng Anh chuẩn quốc tế - Ngay tại nhà, không cần đến thành phố" |`
+- docs-data-assets:248: `### 8.2 Key Differentiators cần có`
+- docs-data-assets:251: `1. Giọng đọc/giáo viên bản ngữ chuẩn`
+- docs-data-assets:252: `2. Giáo trình kết hợp SGK Việt Nam + chuẩn quốc tế`
+- docs-data-assets:253: `3. Học thử miễn phí (freemium model)`
+- docs-data-assets:254: `4. Báo cáo tiến độ cho phụ huynh`
+- docs-data-assets:257: `1. AI chấm phát âm (speech recognition)`
+- docs-data-assets:258: `2. Parental control (giới hạn thời gian)`
+- docs-data-assets:259: `3. Offline mode cho vùng mạng yếu`
+- docs-data-assets:260: `4. Hỗ trợ tiếng Việt cho phụ huynh`
+- docs-data-assets:263: `1. Cộng đồng phụ huynh tương tác`
+- docs-data-assets:264: `2. Giáo viên live hỗ trợ 1-1`
+- docs-data-assets:265: `3. Chứng chỉ sau khóa học`
+- docs-data-assets:266: `4. Tích hợp với các app học tập khác`
+- docs-data-assets:272: `### 9.1 Chiến lược sản phẩm`
+- docs-data-assets:273: `1. **Freemium + Trial:** Cho học thử 7-14 ngày miễn phí để giảm rào cản`
+- docs-data-assets:274: `2. **AI Personalization:** Lộ trình học cá nhân hóa cho từng trẻ`
+- docs-data-assets:275: `3. **Parent Dashboard:** Báo cáo chi tiết tiến độ, thời gian học`
+- docs-data-assets:276: `4. **Offline Mode:** Download bài học cho khu vực mạng yếu`
+- docs-data-assets:278: `### 9.2 Chiến lược giá`
+- docs-data-assets:279: `1. **3-tier pricing:** Free → Premium (199K/tháng) → Pro (399K/tháng)`
+- docs-data-assets:280: `2. **Gói trọn đời:** 2-3 triệu (ROI sau 1 năm so với gói tháng)`
+- docs-data-assets:281: `3. **Flash sales:** Giảm 30-50% các dịp khai giảng, Tết Nguyên đán`
+- docs-data-assets:282: `4. **Referral program:** Giảm giá khi giới thiệu bạn bè`
+- docs-data-assets:284: `### 9.3 Chiến lược marketing`
+- docs-data-assets:285: `1. **KOL/KOC Marketing:** Hợp tác phụ huynh influencer trên TikTok, Facebook`
+- docs-data-assets:286: `2. **Content Marketing:** Blog lộ trình học, case study con tiến bộ`
+- docs-data-assets:287: `3. **Community:** Group Facebook "Hội phụ huynh dùng [App]"`
+- docs-data-assets:288: `4. **Trust signals:** Review trên App Store, chứng nhận giáo dục`
+- docs-data-assets:290: `### 9.4 Chiến lược giải quyết rào cản`
+- docs-data-assets:291: `1. **Screen time control:** Tính năng giới hạn thời gian học`
+- docs-data-assets:292: `2. **Progress tracking:** Chứng minh ROI qua bảng điểm, chứng chỉ`
+- docs-data-assets:293: `3. **Parent education:** Webinar "Cách cho con học online hiệu quả"`
+- docs-data-assets:294: `4. **Hybrid model:** Kết hợp online + offline events, câu lạc bộ`
+- docs-data-assets:300: `1. Tỷ lệ chuyển đổi từ free trial sang paid user trong thị trường Việt Nam là bao nhiêu?`
+- docs-data-assets:301: `2. Mức độ sẵn sàng chi trả của phụ huynh tỉnh lẻ cho EdTech so với thành phố có khác biệt đáng kể không?`
+- docs-data-assets:302: `3. Ảnh hưởng của chính sách siết dạy thêm (Thông tư 29) đến thị trường EdTech dài hạn ra sao?`
+- docs-data-assets:303: `4. Phụ huynh có sẵn sàng trả thêm cho giáo viên live 1-1 trong app không?`
+- docs-data-assets:304: `5. Mức độ phổ biến của các phương thức thanh toán (Ví điện tử, trả góp) cho EdTech?`
+- docs-data-assets:310: `1. **FiinGroup Report** - "Giáo dục Việt Nam: Nhu cầu giáo dục tư nhân gia tăng" (2017-2022)`
+- docs-data-assets:311: `2. **Decision Lab Survey** - 64% phụ huynh lập kế hoạch giáo dục từ mầm non`
+- docs-data-assets:312: `3. **EY Vietnam** - "Thị trường đào tạo tiếng Anh tại Việt Nam" (2025)`
+- docs-data-assets:313: `4. **Times Edu** - "Thách thức khi homeschooling 2026"`
+- docs-data-assets:314: `5. **Langmaster.edu.vn** - Bảng giá trung tâm tiếng Anh 2026`
+- docs-data-assets:315: `6. **Green Daddy** - Review Monkey Stories, phân tích giá gói trọn đời`
+- docs-data-assets:316: `7. **VnExpress/Dân Trí** - Phân tích Thông tư 29 siết dạy thêm`
+- docs-data-assets:317: `8. **TEKY.edu.vn** - "Ba nỗi lo lớn nhất của phụ huynh thời đại số"`
+- docs-data-assets:318: `9. **Tổng cục Thống kê** - Khảo sát mức sống dân cư 2023`
+- docs-data-assets:319: `10. **Google Trends 2025 Vietnam** - Xu hướng tìm kiếm giáo dục, AI`
+
+### docs/resource-to-learning-path-mapping.md
+
+- docs-data-assets:351: `Level 1: 12 series × avg 59 episodes = ~708 episodes`
+- docs-data-assets:356: `Level 2: 13 series × avg 82 episodes = ~1,060 episodes`
+- docs-data-assets:361: `Level 3: 17 series × avg 84 episodes = ~1,422 episodes`
+- docs-data-assets:972: `│  - Time: 540-810 hours (30-45 min × 36 weeks)                               │`
+- docs-data-assets:1060: `│  - Time: 234-312 hours (45-60 min × 52 weeks)                               │`
+- docs-data-assets:1146: `│  - Time: 288-360 hours (60-75 min × 48 weeks)                                │`
+- docs-data-assets:1281: `│  - Time: 480-720 hours (2-3 hours × 16 weeks)                              │`
+- docs-data-assets:1366: `│  - Time: 360 hours (90 min × 40 weeks)                                       │`
+
+### docs/review/REVIEW-SUMMARY-MASTER.md
+
+- docs-data-assets:1: `# 🔍 BÁO CÁO REVIEW TỔNG HỢP - ABEKA CURRICULUM SYSTEM`
+- docs-data-assets:3: `**Ngày review:** 04/04/2026`
+- docs-data-assets:4: `**Scope:** Kế hoạch phân chia, trạng thái kỹ thuật, setup tools`
+- docs-data-assets:5: `**Nguồn:** 4 independent review agents`
+- docs-data-assets:9: `## 🎯 TÓM TẮT EXECUTIVE`
+- docs-data-assets:11: `### Điểm Sẵn Sàng Tổng Quan: **62%**`
+- docs-data-assets:13: `| Category | Score | Trạng Thái |`
+- docs-data-assets:15: `| **Kế hoạch & Chiến lược** | 85% | ✅ Tốt |`
+- docs-data-assets:16: `| **Technical Implementation** | 78% | ✅ Infrastructure tốt |`
+- docs-data-assets:17: `| **Business Plan Alignment** | 45% | ❌ Còn thiếu nhiều |`
+- docs-data-assets:18: `| **Production Readiness** | 65% | ⚠️ Cần hoàn thiện |`
+- docs-data-assets:20: `### 🚨 Critical Issues Phát Hiện`
+- docs-data-assets:22: `1. **Gap nghiêm trọng:** Plan định nghĩa 8 gói nhưng code chỉ có 4 subscription tiers`
+- docs-data-assets:23: `2. **LSP Errors:** Prisma models tồn tại nhưng client chưa được regenerate`
+- docs-data-assets:24: `3. **Pricing mismatch:** Lite 99K margin chỉ 3%, Trung Học 399K đắt hơn Tiểu Học 3x`
+- docs-data-assets:25: `4. **Missing Access Control:** Chưa có logic kiểm tra user có quyền xem video nào`
+- docs-data-assets:29: `## 📊 CHI TIẾT REVIEW TỪNG PHẦN`
+- docs-data-assets:31: `### 1. KẾ HOẠCH PHÂN CHIA GÓI (Package Design Review)`
+- docs-data-assets:35: `#### ✅ Điểm Tốt`
+- docs-data-assets:37: `| Gói | Giá | Video | Đánh Giá |`
+- docs-data-assets:39: `| **Mầm Non (K4-K5)** | 199K/tháng | 3,305 | ✅ Không có đối thủ trực tiếp |`
+- docs-data-assets:40: `| **Tiểu Học (G1-G5)** | 349K/tháng | 9,111 | ✅ **Best value** - 328₫/video |`
+- docs-data-assets:41: `| **THPT (~4,600)** | 449K/tháng | 4,350 | ✅ Hợp lý cho đầu tư ĐH |`
+- docs-data-assets:42: `| **ULTIMATE** | 699K/tháng | 20,195 | ✅ Rẻ hơn 87% vs mua lẻ |`
+- docs-data-assets:44: `#### 🔴 Issues Phát Hiện`
+- docs-data-assets:46: `| Issue | Mức Độ | Chi Tiết | Recommendation |`
+- docs-data-assets:48: `| **Lite 99K margin** | 🔴 Cao | Chỉ 3% profit margin | **Tăng lên 149K** → margin 36% |`
+- docs-data-assets:49: `| **Trung Học 399K** | 🔴 Cao | Cost/video cao gấp 3x Tiểu Học | **Giảm xuống 349K** |`
+- docs-data-assets:50: `| **Số video không nhất quán** | 🟡 Trung bình | MASTER doc: 3,305 / Package doc: 2,800 | Chuẩn hóa dùng MASTER doc |`
+- docs-data-assets:51: `| **G9 classification** | 🟡 Trung bình | Thuộc Middle hay High School? | Quyết định: Middle (G6-G9) |`
+- docs-data-assets:53: `#### 📈 So Sánh Đối Thủ`
+- docs-data-assets:55: `- **VUIHOC:** 199K-599K/tháng → Abeka cạnh tranh trực tiếp`
+- docs-data-assets:56: `- **Monkey Junior:** 200K+/tháng (chỉ tiếng Anh) → Abeka có lợi thế nội dung đa dạng`
+- docs-data-assets:57: `- **Differentiation:** Curriculum chuẩn Mỹ + tiếng Anh bản xứ + Bible (có thể loại bỏ)`
+- docs-data-assets:59: `#### 💡 3 Đề Xuất Chính`
+- docs-data-assets:62: `2. **Trung Học 399K → 349K** (ngang giá Tiểu Học)`
+- docs-data-assets:63: `3. **Chuẩn hóa video counts** dùng MASTER doc làm source of truth`
+- docs-data-assets:67: `### 2. TRẠNG THÁI KỸ THUẬT TÍCH HỢP (Import Integration Status)`
+- docs-data-assets:75: `#### ✅ Components Đã Sẵn Sàng`
+- docs-data-assets:88: `**Issue #1: LSP Errors trên Abeka Models**`
+- docs-data-assets:94: `**Nguyên nhân:** Prisma client chưa được regenerate sau khi schema thay đổi`
+- docs-data-assets:99: `# Sau đó remove (prisma as any) casting trong scripts`
+- docs-data-assets:103: `- Một số types trong 'types.ts' không match 100% với Prisma schema`
+- docs-data-assets:104: `- Cần review lại 'AbekaImportConfig' vs actual database schema`
+- docs-data-assets:106: `#### 🟡 Cải Thiện Đề Xuất`
+- docs-data-assets:108: `| Cải Thiện | Lý Do | Effort |`
+- docs-data-assets:110: `| Stricter typing | Loại bỏ 'any' types | 2-3 giờ |`
+- docs-data-assets:111: `| Error logging | Thêm structured logging | 2 giờ |`
+- docs-data-assets:112: `| Validation middleware | Pre-import validation layer | 4 giờ |`
+- docs-data-assets:116: `### 3. CÔNG CỤ SETUP KỸ THUẬT (Setup Tools Status)`
+- docs-data-assets:128: `| Script | Status | Đánh Giá |`
+- docs-data-assets:130: `| **pre-import-check.ts** | ✅ | 8 validation checks, exit codes đúng |`
+- docs-data-assets:136: `| Component | Status | Ghi Chú |`
+- docs-data-assets:145: `| Issue | Mức Độ | Fix |`
+- docs-data-assets:147: `| Chạy as root | 🟡 | Thêm 'USER node' |`
+- docs-data-assets:148: `| No restart policies | 🟡 | Thêm 'restart: unless-stopped' |`
+- docs-data-assets:149: `| Database URL visible | 🟡 | Dùng Docker secrets |`
+- docs-data-assets:153: `| Document | Quality | Độ Dài |`
+- docs-data-assets:155: `| **VPS-DEPLOYMENT-GUIDE.md** | ⭐⭐⭐⭐⭐ | 1,113 dòng, 13 scripts |`
+- docs-data-assets:156: `| **ABEKA-IMPORT-SETUP-GUIDE.md** | ⭐⭐⭐⭐⭐ | 365 dòng, commands rõ ràng |`
+- docs-data-assets:157: `| **MASTER-BUSINESS-PLAN.md** | ⭐⭐⭐⭐⭐ | 556 dòng, comprehensive |`
+- docs-data-assets:161: `File '.env.example' đã có đầy đủ:`
+- docs-data-assets:172: `**Critical Discovery:** Plan và Implementation không khớp!`
+- docs-data-assets:178: `| **8 gói khóa học** | 4 subscription tiers | ❌ **Missing 4 packages** |`
+- docs-data-assets:179: `| **Package access control** | Không có | ❌ **No content gating** |`
+- docs-data-assets:180: `| **Upsell flows** | Không có API | ❌ **No upgrade logic** |`
+- docs-data-assets:181: `| **SePay integration** | PayOS, Stripe có, SePay thiếu | 🟡 **Payment method** |`
+- docs-data-assets:183: `#### Chi Tiết Gap`
+- docs-data-assets:187: `Plan: Mầm Non | Tiểu Học | Trung Học | THPT | Tiếng Anh | Toán | STEM | Ultimate`
+- docs-data-assets:191: `**Vấn đề:** Không có mapping giữa subscription tier và curriculum content`
+- docs-data-assets:193: `**Impact:** User mua Standard nhưng không biết được xem video nào`
+- docs-data-assets:196: `- 'AbekaVideo' model không có 'packageId' hoặc 'accessibleInTiers[]'`
+- docs-data-assets:197: `- API routes không validate: "User có gói nào? Được xem video này không?"`
+- docs-data-assets:200: `- Không có 'CurriculumPackage' model`
+- docs-data-assets:201: `- Không có 'PackageSubscription' model`
+- docs-data-assets:202: `- Không có logic kiểm tra package expiration`
+- docs-data-assets:204: `#### ✅ Đã Implement Tốt`
+- docs-data-assets:215: `#### ❌ Chưa Implement`
+- docs-data-assets:219: `| 'CurriculumPackage' model | 🔴 CRITICAL | 4-6 giờ |`
+- docs-data-assets:220: `| 'PackageSubscription' model | 🔴 CRITICAL | 4-6 giờ |`
+- docs-data-assets:221: `| Package access control | 🔴 CRITICAL | 8-12 giờ |`
+- docs-data-assets:222: `| SePay payment gateway | 🟡 HIGH | 4-6 giờ |`
+- docs-data-assets:223: `| 8 package landing pages | 🟡 HIGH | 16-24 giờ |`
+- docs-data-assets:224: `| Upgrade/proration API | 🟡 HIGH | 8-12 giờ |`
+- docs-data-assets:228: `## 🎯 ACTION PLAN - CÁC BƯỚC CẦN THỰC HIỆN`
+- docs-data-assets:230: `### 🔴 Priority 1: Launch Blockers (Cần xong trước launch)`
+- docs-data-assets:234: `| 1 | Regenerate Prisma client | 15 phút | Dev |`
+- docs-data-assets:235: `| 2 | Fix LSP errors (remove 'any' casting) | 1-2 giờ | Dev |`
+- docs-data-assets:236: `| 3 | Tạo 'CurriculumPackage' model | 4 giờ | Dev |`
+- docs-data-assets:237: `| 4 | Tạo 'PackageSubscription' model | 4 giờ | Dev |`
+- docs-data-assets:238: `| 5 | Implement package access control | 8 giờ | Dev |`
+- docs-data-assets:239: `| 6 | Mapping 8 packages → subscription tiers | 4 giờ | Dev |`
+- docs-data-assets:241: `**Tổng:** ~22 giờ (3 ngày làm việc)`
+- docs-data-assets:243: `### 🟡 Priority 2: Pre-Launch (Nên có trước launch)`
+- docs-data-assets:247: `| 7 | Adjust pricing: Lite 99K → 149K | 1 giờ | Product |`
+- docs-data-assets:248: `| 8 | Adjust pricing: Trung Học 399K → 349K | 1 giờ | Product |`
+- docs-data-assets:249: `| 9 | Chuẩn hóa video counts | 2 giờ | Data |`
+- docs-data-assets:250: `| 10 | Tạo 8 package landing pages | 16 giờ | Dev + Design |`
+- docs-data-assets:251: `| 11 | Implement upgrade/proration API | 8 giờ | Dev |`
+- docs-data-assets:252: `| 12 | Thêm Docker security improvements | 2 giờ | DevOps |`
+- docs-data-assets:254: `**Tổng:** ~30 giờ (4-5 ngày)`
+- docs-data-assets:260: `| 13 | SePay payment integration | 4 giờ | Dev |`
+- docs-data-assets:261: `| 14 | TikTok/Zalo marketing integration | 8 giờ | Marketing |`
+- docs-data-assets:262: `| 15 | B2B school licensing portal | 16 giờ | Dev |`
+- docs-data-assets:263: `| 16 | Advanced analytics dashboard | 12 giờ | Dev |`
+- docs-data-assets:264: `| 17 | Mobile app | 80+ giờ | Dev (separate project) |`
+- docs-data-assets:270: `### Original Plan (90 ngày)`
+- docs-data-assets:275: `### Revised Plan (120 ngày) - Phù hợp với gap analysis`
+- docs-data-assets:286: `**New Launch Date:** Week 9 (thay vì Day 30)`
+- docs-data-assets:290: `## 🎬 KẾT LUẬN`
+- docs-data-assets:292: `### Trạng Thái Hiện Tại`
+- docs-data-assets:297: `⚠️ **Production Readiness:** 62% - cần hoàn thiện package system`
+- docs-data-assets:301: `**Đề xuất:** Delay launch 2-3 tuần để hoàn thiện critical gaps`
+- docs-data-assets:303: `**Lý do:**`
+- docs-data-assets:304: `1. Launch với hệ thống package chưa sẵn sàng = user confusion`
+- docs-data-assets:305: `2. Không có access control = security risk`
+- docs-data-assets:306: `3. Sửa lỗi sau launch expensive hơn trước launch`
+- docs-data-assets:310: `**Phase 1 Launch:** Chỉ 4 gói grade-based`
+- docs-data-assets:311: `- Mầm Non (K4-K5)`
+- docs-data-assets:312: `- Tiểu Học (G1-G5)`
+- docs-data-assets:313: `- Trung Học (G6-G9)`
+- docs-data-assets:316: `**Phase 2 (Month 2):** Thêm subject packages`
+- docs-data-assets:322: `## 📁 FILES REVIEW ĐÃ TẠO`
+- docs-data-assets:324: `1. ✅ 'docs/review/package-design-review.md' - Phân tích 8 gói`
+- docs-data-assets:325: `2. ✅ 'docs/review/import-integration-status.md' - Trạng thái import`
+- docs-data-assets:326: `3. ✅ 'docs/review/setup-tools-status.md' - Công cụ setup`
+- docs-data-assets:328: `5. ✅ 'docs/review/REVIEW-SUMMARY-MASTER.md' (file này)`
+- docs-data-assets:340: `**Recommendation:** Hoãn launch 2-3 tuần, hoàn thiện package subscription system trước khi go-live.`
+
+### docs/review/deployment-docs-assessment.md
+
+- docs-data-assets:234: `- 'docs/ABEKA-VALIDATION-CHECKLIST.md' - marked "sắp tạo" (will create)`
+
+### docs/review/package-design-review.md
+
+- docs-data-assets:18: `| **Mầm Non (K4-K5)** | 2,800 videos | 3,305 videos | **+505** |`
+- docs-data-assets:19: `| **Tiểu Học (G1-G5)** | 7,250 videos | 9,111 videos | **+1,861** |`
+- docs-data-assets:20: `| **Trung Học (G6-G9)** | 5,800 videos | 3,148 videos* | **-2,652** |`
+- docs-data-assets:29: `## 📊 LOGIC PHÂN CHIA THEO CẤP LỚP`
+- docs-data-assets:31: `### 1. Gói Mầm Non (K4-K5): 3,305 video - Giá 199K/tháng`
+- docs-data-assets:41: `**Verdict:** ✅ **HỢP LÝ**`
+- docs-data-assets:42: `- 199K là mức giá tâm lý tốt cho phân khúc mầm non`
+- docs-data-assets:43: `- Tương đương 6,600₫/ngày - dễ chấp nhận`
+- docs-data-assets:44: `- Rẻ hơn Monkey Junior (200K+/tháng chỉ cho tiếng Anh)`
+- docs-data-assets:46: `**Concern:** Số video ở K4 (1,595) và K5 (1,710) chênh lệch đáng kể - cần verify nếu K4 đã đầy đủ.`
+- docs-data-assets:50: `### 2. Gói Tiểu Học (G1-G5): 9,111 video - Giá 349K/tháng`
+- docs-data-assets:60: `**Verdict:** ✅ **RẤT PHÙ HỢP**`
+- docs-data-assets:61: `- Giá/video thấp nhất trong tất cả các gói (328₫/video/năm)`
+- docs-data-assets:62: `- Nhiều video nhất (9,111) với giá trung bình`
+- docs-data-assets:63: `- Sweet spot cho phụ huynh có con tiểu học`
+- docs-data-assets:65: `**Upsell Opportunity:** Sau G5, nâng cấp lên G6-G9 với giá ưu đãi 30%`
+- docs-data-assets:69: `### 3. Gói Trung Học (G6-G9): ~3,300 video - Giá 399K/tháng`
+- docs-data-assets:73: `| **Video count** | ~3,300 (G6-G8: 3,148 + G9: ~891) | Cần xác nhận |`
+- docs-data-assets:76: `| **Cost per video/year** | ~1,057₫ | **Cao hơn Elementary 3x** |`
+- docs-data-assets:79: `**Verdict:** ⚠️ **CẦN XEM XÉT**`
+- docs-data-assets:82: `1. **Giá cao hơn Elementary** (399K vs 349K) nhưng video ít hơn (3,300 vs 9,111)`
+- docs-data-assets:83: `2. **Cost/video gấp 3 lần** Elementary - khó giải thích với khách hàng`
+- docs-data-assets:84: `3. **G6-G8 chỉ có 3,148 video** - thấp nhất trong các cấp (do video/bài học ít hơn)`
+- docs-data-assets:87: `- **Option A:** Giảm giá xuống 299K-349K/tháng`
+- docs-data-assets:88: `- **Option B:** Gộp G6-G9 vào gói lớn hơn với THPT`
+- docs-data-assets:89: `- **Option C:** Thêm nội dung bổ sung để justify giá 399K`
+- docs-data-assets:93: `### 4. Gói THPT (G10-G12): 4,631 video - Giá 449K/tháng`
+- docs-data-assets:103: `**Verdict:** ⚠️ **CHẤP NHẬN ĐƯỢC NHƯNG CẦN GIẢI THÍCH**`
+- docs-data-assets:106: `- Chuẩn bị đại học là pain point lớn - phụ huynh sẵn sàng chi`
+- docs-data-assets:107: `- Nội dung nâng cao (Calculus, Physics, Chemistry) có giá trị cao hơn`
+- docs-data-assets:110: `- Giá 449K gần gấp đôi Elementary (349K) nhưng ít video hơn`
+- docs-data-assets:111: `- Cạnh tranh với luyện thi đại học truyền thống (1-2 triệu/tháng)`
+- docs-data-assets:114: `- Thêm features đặc biệt: lộ trình SAT/IELTS, mentor support`
+- docs-data-assets:115: `- Position là "đầu tư cho đại học" thay vì "học thêm"`
+- docs-data-assets:119: `## 🆚 PHÂN TÍCH ĐỐI THỦ`
+- docs-data-assets:121: `### So Sánh Giá Thị Trường`
+- docs-data-assets:123: `| Đối Thủ | Mô Hình | Phân Khúc | Giá/Tháng | So với Abeka |`
+- docs-data-assets:125: `| **VUIHOC** | Subscription | Lớp 1-12 | 199K-599K | Cạnh tranh trực tiếp |`
+- docs-data-assets:126: `| **Monkey Junior** | Subscription | Mầm non | 200K+ | Abeka rẻ hơn hoặc ngang |`
+- docs-data-assets:127: `| **Loigiaihay** | Freemium | Lớp 1-12 | Free | Khác phân khúc |`
+- docs-data-assets:128: `| **Hoc10** | Code kích hoạt | Lớp 1-12 | 50K-150K/môn | Rẻ hơn nhưng không full curriculum |`
+- docs-data-assets:130: `### Đánh Giá Cạnh Tranh`
+- docs-data-assets:132: `| Gói Abeka | Giá | VUIHOC Tương Đương | Đánh Giá |`
+- docs-data-assets:134: `| **Mầm Non (199K)** | 199K | N/A (VUIHOC từ lớp 1) | ✅ **Không có đối thủ trực tiếp** |`
+- docs-data-assets:135: `| **Tiểu Học (349K)** | 349K | 199K-399K | ⚠️ **Cao hơn 75%** so với VUIHOC entry |`
+- docs-data-assets:136: `| **Trung Học (399K)** | 399K | 399K-599K | ✅ **Cạnh tranh trực tiếp** |`
+- docs-data-assets:137: `| **THPT (449K)** | 449K | 499K-599K | ✅ **Rẻ hơn 10-25%** |`
+- docs-data-assets:141: `1. ✅ **THPT rẻ hơn VUIHOC** 10-25% - lợi thế cạnh tranh`
+- docs-data-assets:142: `2. ⚠️ **Tiểu Học cao hơn VUIHOC entry** 75% - cần justify value`
+- docs-data-assets:143: `3. ✅ **Mầm Non không có đối thủ** - cơ hội độc quyền`
+- docs-data-assets:144: `4. ✅ **ULTIMATE là differentiation** - không có đối thủ tương đương`
+- docs-data-assets:146: `**Value Justification cho Tiểu Học:**`
+- docs-data-assets:147: `- Abeka: 9,111 video curriculum chuẩn Mỹ`
+- docs-data-assets:148: `- VUIHOC: AI-powered nhưng nội dung Việt Nam`
+- docs-data-assets:149: `- **Differentiation:** Nền tảng tiếng Anh bản xứ + curriculum Mỹ`
+- docs-data-assets:153: `## 💰 PHÂN TÍCH MARGIN`
+- docs-data-assets:155: `### Margin Theo Tier (Từ ROI Analysis)`
+- docs-data-assets:157: `| Tier | Giá | Biên Ròng (500 subs) | Đánh Giá |`
+- docs-data-assets:159: `| **Lite (99K)** | 99K | **3%** | ❌ **QUÁ MỎNG** |`
+- docs-data-assets:164: `### Khuyến Nghị Margin`
+- docs-data-assets:166: `#### 1. Lite 99K → **TĂNG LÊN 149K** ✅`
+- docs-data-assets:168: `**Lý do:**`
+- docs-data-assets:169: `- Margin 3% quá mỏng, dễ lỗ nếu churn cao`
+- docs-data-assets:170: `- Cần 500+ subscribers mới có lãi`
+- docs-data-assets:171: `- 149K vẫn là "charm pricing" (<150K)`
+- docs-data-assets:173: `**Dự phóng 149K:**`
+- docs-data-assets:174: `| Metric | 99K | 149K (đề xuất) |`
+- docs-data-assets:182: `**Verdict:** ✅ **NÊN TĂNG LÊN 149K**`
+- docs-data-assets:186: `#### 2. Standard 199K - **GIỮ NGUYÊN** ✅`
+- docs-data-assets:188: `**Lý do:**`
+- docs-data-assets:189: `- Margin 49% là sweet spot giữa volume và profit`
+- docs-data-assets:190: `- 199K là charm pricing phổ biến`
+- docs-data-assets:191: `- Đối thủ VUIHOC cũng có tier 199K`
+- docs-data-assets:193: `**Verdict:** ✅ **GIỮ NGUYÊN 199K**`
+- docs-data-assets:197: `#### 3. Premium 349K - **CÓ THỂ TĂNG LÊN 399K** ⚠️`
+- docs-data-assets:199: `**Lý do:**`
+- docs-data-assets:200: `- Margin 69% đã tốt nhưng có thể tốt hơn`
+- docs-data-assets:201: `- 399K vẫn thấp hơn VUIHOC premium tier`
+- docs-data-assets:202: `- Psychology: 349K vs 399K không khác biệt nhiều`
+- docs-data-assets:204: `**Tuy nhiên:**`
+- docs-data-assets:205: `- Nếu tăng, Premium sẽ gần giá gói Trung Học`
+- docs-data-assets:206: `- Cần differentiate rõ ràng giữa subject-based và grade-based`
+- docs-data-assets:208: `**Verdict:** ⚠️ **CÓ THỂ TĂNG, KHÔNG BẮT BUỘC**`
+- docs-data-assets:212: `## 🎯 ĐỀ XUẤT ĐIỀU CHỈNH`
+- docs-data-assets:216: `| # | Thay Đổi | Từ | Sang | Lý Do | Ưu Tiên |`
+- docs-data-assets:218: `| 1 | **Lite giá** | 99K | **149K** | Margin quá mỏng (3%) | 🔴 Cao |`
+- docs-data-assets:219: `| 2 | **Trung Học giá** | 399K | **349K** | Cost/video cao gấp 3x Elementary | 🔴 Cao |`
+- docs-data-assets:220: `| 3 | **Video count** | Inconsistent | **Chuẩn hóa** | MASTER doc là source of truth | 🔴 Cao |`
+- docs-data-assets:221: `| 4 | **THPT features** | Standard | **+SAT/IELTS path** | Justify giá cao hơn | 🟡 Trung bình |`
+- docs-data-assets:222: `| 5 | **Gói combo** | 4 gói grade | **+2 gói mini** | K4-K5 split, G10-G12 split | 🟡 Trung bình |`
+- docs-data-assets:233: `### Đánh Giá`
+- docs-data-assets:235: `| Transition | Logic | Mức Độ Tự Nhiên |`
+- docs-data-assets:237: `| **Free → Lite** | Dễ dàng | ✅ Tốt |`
+- docs-data-assets:238: `| **Lite → Standard** | 2x giá | ⚠️ Cần incentive |`
+- docs-data-assets:239: `| **Standard → Premium** | 1.75x giá | ✅ Hợp lý |`
+- docs-data-assets:240: `| **Premium → Ultimate** | 2x giá | ⚠️ Big jump |`
+- docs-data-assets:242: `### Đề Xuất Upsell Path Mới`
+- docs-data-assets:245: `Free Trial (7 ngày)`
+- docs-data-assets:247: `Starter (K4-K5 hoặc 1 grade) - 149K`
+- docs-data-assets:251: `Middle (G6-G9) - 349K  ← Giảm từ 399K`
+- docs-data-assets:258: `**Logic mới:**`
+- docs-data-assets:259: `1. **Lite → Starter:** Đổi tên, tăng giá 99K→149K`
+- docs-data-assets:260: `2. **Trung Học giảm giá:** 399K→349K để ngang Elementary`
+- docs-data-assets:261: `3. **Subject packages:** Tiếng Anh/Toán/STEM là upsell sideways`
+- docs-data-assets:269: `- [ ] Reconcile video counts giữa các documents`
+- docs-data-assets:270: `- [ ] Cập nhật giá Lite: 99K → 149K`
+- docs-data-assets:271: `- [ ] Điều chỉnh giá Trung Học: 399K → 349K`
+- docs-data-assets:272: `- [ ] Cập nhật tất cả tài liệu với số liệu chuẩn`
+- docs-data-assets:275: `- [ ] Thêm SAT/IELTS path cho gói THPT`
+- docs-data-assets:276: `- [ ] Tạo landing page so sánh với VUIHOC`
+- docs-data-assets:281: `- [ ] Xem xét gói K4-K5 split (K4 riêng, K5 riêng)`
+- docs-data-assets:282: `- [ ] Xem xét gói G1-G3, G4-G5 nhỏ hơn`
+- docs-data-assets:287: `## 🎬 KẾT LUẬN`
+- docs-data-assets:289: `### Tổng Quan`
+- docs-data-assets:291: `| Khía Cạnh | Đánh Giá | Điểm |`
+- docs-data-assets:293: `| **Logic phân chia** | Cần điều chỉnh giá Trung Học | 7/10 |`
+- docs-data-assets:294: `| **Cạnh tranh đối thủ** | Tốt, đặc biệt THPT và Mầm Non | 8/10 |`
+- docs-data-assets:295: `| **Margin** | Lite quá mỏng, cần tăng giá | 6/10 |`
+- docs-data-assets:296: `| **Upsell path** | Logic nhưng cần smoothing | 7/10 |`
+- docs-data-assets:297: `| **Tổng thể** | Khá tốt, cần minor adjustments | 7/10 |`
+- docs-data-assets:299: `### 3 Thay Đổi Cần Thiết Nhất`
+- docs-data-assets:301: `1. **🔴 Tăng Lite 99K → 149K** - Margin 3% không bền vững`
+- docs-data-assets:302: `2. **🔴 Giảm Trung Học 399K → 349K** - Cost/video không cân xứng`
+- docs-data-assets:303: `3. **🔴 Chuẩn hóa video counts** - Tránh confusion cho khách hàng`
+- docs-data-assets:305: `### Dự Báo Sau Điều Chỉnh`
+- docs-data-assets:307: `| Scenario | Revenue/Tháng (2K subs) | Net Margin |`
+- docs-data-assets:309: `| **Trước điều chỉnh** | ~500M VND | 79% |`
+- docs-data-assets:310: `| **Sau điều chỉnh** | ~520M VND | **82%** |`
+- docs-data-assets:312: `**Expected improvement:** +20M VND/tháng từ Lite price increase, + retention từ Trung Học pricing hợp lý hơn.`
+- docs-data-assets:318: `1. **G9 thuộc gói nào?** MASTER doc gộp G9 vào High School, nhưng Package Design cho vào Middle School`
+- docs-data-assets:319: `2. **Actual video usage patterns?** Cần data thực tế để validate cost/user assumptions`
+- docs-data-assets:320: `3. **Churn rate theo package?** Giả định 12.5% có chính xác không?`
+- docs-data-assets:321: `4. **Abeka license cost?** $500/tháng là estimate hay confirmed?`
+
+### docs/review/plan-implementation-gap-analysis.md
+
+- docs-data-assets:24: `### 1.1 Curriculum Packages (8 Gói Khóa Học)`
+- docs-data-assets:30: `| 1 | **Mầm Non PREMIUM** (K4-K5) | 2,800 | 199K | 1,790K | Ages 2-6 |`
+- docs-data-assets:31: `| 2 | **Tiểu Học PRO** (G1-G5) | 7,250 | 349K | 2,990K | Ages 6-11 |`
+- docs-data-assets:32: `| 3 | **Trung Học ADVANCED** (G6-G9) | 5,800 | 399K | 3,490K | Ages 11-15 |`
+- docs-data-assets:34: `| 5 | **Tiếng Anh MASTER** (K4-G5) | 1,500 | 249K | 2,190K | English focus |`
+- docs-data-assets:35: `| 6 | **Toán Tư Duy MATH** (K4-G8) | 1,200 | 199K | 1,790K | Math focus |`
+- docs-data-assets:70: `Free Trial (7 ngày)`
+- docs-data-assets:72: `Lite Tier (99K/tháng) → Early upsell to Standard`
+- docs-data-assets:74: `Standard Tier (199K/tháng) → Primary target`
+- docs-data-assets:76: `Premium Tier (399K/tháng) → High-value segment`
+- docs-data-assets:78: `ULTIMATE (699K/tháng) → Power users, families`
+- docs-data-assets:142: `| Streak Freeze | 15K-29K/3 lượt | 60M VND |`
+- docs-data-assets:296: `1. Đánh giá trình độ Cambridge YLE`
+- docs-data-assets:297: `2. Máy tính chi phí học tập`
+- docs-data-assets:471: `3. **Simplify** initial launch to 4 packages (Mầm Non, Tiểu Học, Trung Học, THPT)`
+- docs-data-assets:472: `4. **Defer** subject-specific packages (Tiếng Anh, Toán, STEM) to Phase 2`
+- docs-data-assets:575: `| Mầm Non | K4-K5 | 5 | 2,800 | ❌ No package model |`
+- docs-data-assets:576: `| Tiểu Học | G1-G5 | 7 | 7,250 | ❌ No package model |`
+- docs-data-assets:577: `| Trung Học | G6-G9 | 6 | 5,800 | ❌ No package model |`
+- docs-data-assets:579: `| Tiếng Anh | K4-G5 | 3 | 1,500 | ❌ No package model |`
+- docs-data-assets:580: `| Toán Tư Duy | K4-G8 | 1 | 1,200 | ❌ No package model |`
+
+### docs/sql/unified_content_seed_postgres.sql
+
+- docs-data-assets:2405: `INSERT INTO content_collection (collection_key, source_key, provider, provider_slug, course, course_slug, topic, grade, lesson, series_id, series_title, page_key, page_url, language, metadata_json) VALUES ('col_445eff95f40edc3d', 'littlefox', 'Arsène Lupin', 'arsène-lupin', 'FS0020', 'fs0020', NULL, NULL, NULL, 'FS0020', 'Arsène Lupin', 'FS0020', 'https://hoctienganh.xyz/littlefox/play2?lfid=FS0020', 'en', '{"level": 8, "featured_image": "https://img.littlefox.com/static/contents/series/FS0020/f`
+- docs-data-assets:2442: `INSERT INTO content_collection (collection_key, source_key, provider, provider_slug, course, course_slug, topic, grade, lesson, series_id, series_title, page_key, page_url, language, metadata_json) VALUES ('col_659a00e80bb87a76', 'littlefox', 'Les Misérables', 'les-misérables', 'FS0076', 'fs0076', NULL, NULL, NULL, 'FS0076', 'Les Misérables', 'FS0076', 'https://hoctienganh.xyz/littlefox/play2?lfid=FS0076', 'en', '{"level": 9, "featured_image": "https://img.littlefox.com/static/contents/series/FS`
+- docs-data-assets:3686: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_99ee8925b41f621a', 'col_0639053ba7b3624d', 9, '9. Introduction to Compound Finals 9: The Compound Finals with the Main Vowel ü', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/e25d1fd1c3/15730024389087b0efc7c7acd1ef7e153678809c77/stream.m3u8?_=1573002439', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh`
+- docs-data-assets:4877: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_9d2b3b4333681461', 'col_0f145b98463ec02e', 30, '30. 柳树溪双胞胎 30: B-ù 是 “不”', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/5a3e6abad3/1616737948a3a3e8b30dd6eadfc78c77bb2b8e6b60/stream.m3u8?_=1616737950', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003736&cn=1', 'https://cdn.little`
+- docs-data-assets:7961: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_37566dcaa35a8500', 'col_219e3dbb11a82b86', 9, '9. Eva Perón: First Lady of Argentina', 'People & History 4, Eva Perón: First Lady of Argentina', 'https://cdn.littlefox.com/contents_5/hls/720/ac6778a97b/pe4ab2e538/e54b1c4c6c4e35374efb442e47c2a013.m3u8?1202063854', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.x`
+- docs-data-assets:8000: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_5953e21f0bcc8ef8', 'col_219e3dbb11a82b86', 48, '48. Eva Perón: First Lady of Argentina', 'People & History 4, Eva Perón: First Lady of Argentina', 'https://cdn.littlefox.com/contents_5/hls/720/ac6778a97b/pe4ab2e538/e54b1c4c6c4e35374efb442e47c2a013.m3u8?1202063854', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh`
+- docs-data-assets:13573: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_ac5f5fe012983eda', 'col_445eff95f40edc3d', 1, '1. The Arrest of Arsène Lupin 1', 'Arsène Lupin 1: The Arrest of Arsène Lupin 1', 'https://cdn.littlefox.com/contents_5/hls/1080/b41f514096/15731863408e489b4966fe8f703b5be647f1cbae63/stream.m3u8?_=1573186341', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/`
+- docs-data-assets:13574: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_2caf60c7be1bf5bb', 'col_445eff95f40edc3d', 2, '2. The Arrest of Arsène Lupin 2', 'Arsène Lupin 2: The Arrest of Arsène Lupin 2', 'https://cdn.littlefox.com/contents_5/hls/1080/91529ca21d/15731867405da713a690c067105aeb2fae32403405/stream.m3u8?_=1573186741', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/`
+- docs-data-assets:13575: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_849cbb46d924aa31', 'col_445eff95f40edc3d', 3, '3. Arsène Lupin in Prison 1', 'Arsène Lupin 3: Arsène Lupin in Prison 1', 'https://cdn.littlefox.com/contents_5/hls/720/149209f9f8/p098217452/5da9178d047c73a9a1b763d14d4ccd31.m3u8?1201105209', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C000330`
+- docs-data-assets:13576: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_377ef5e60fda8fcc', 'col_445eff95f40edc3d', 4, '4. Arsène Lupin in Prison 2', 'Arsène Lupin 4: Arsène Lupin in Prison 2', 'https://cdn.littlefox.com/contents_5/hls/720/69b4bec728/p3d52ae955/62ee8ed86d562f1c02d954c85ef7d4c6.m3u8?1201105542', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C000339`
+- docs-data-assets:13577: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_d94fa5b1506ec666', 'col_445eff95f40edc3d', 5, '5. Escape from Prison 1', 'Arsène Lupin 5: Escape from Prison 1', 'https://cdn.littlefox.com/contents_5/hls/1080/a634db2228/15731898174fa177df22864518b2d7818d4db5db2d/stream.m3u8?_=1573189818', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00033`
+- docs-data-assets:13578: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_d145a5907420f170', 'col_445eff95f40edc3d', 6, '6. Escape from Prison 2', 'Arsène Lupin 6: Escape from Prison 2', 'https://cdn.littlefox.com/contents_5/hls/1080/9aca9c89f6/1573190256ef72d53990bc4805684c9b61fa64a102/stream.m3u8?_=1573190257', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00033`
+- docs-data-assets:13579: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_ee7f3d4496df5b46', 'col_445eff95f40edc3d', 7, '7. Escape from Prison 3', 'Arsène Lupin 7: Escape from Prison 3', 'https://cdn.littlefox.com/contents_5/hls/720/404b83f259/p4d5f18606/b6bbeee761ff88c7d061ecff69aa5a14.m3u8?1201110655', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003343&cn=0',`
+- docs-data-assets:13580: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_1e0a42b5af0b2a97', 'col_445eff95f40edc3d', 8, '8. The Mysterious Traveler 1', 'Arsène Lupin 8: The Mysterious Traveler 1', 'https://cdn.littlefox.com/contents_5/hls/720/da33c80311/p6498ea510/6d57219cd54f705ffefdf9d66071eeb3.m3u8?1201111039', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003`
+- docs-data-assets:13581: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_a8ca115f07d1ff6e', 'col_445eff95f40edc3d', 9, '9. The Mysterious Traveler 2', 'Arsène Lupin 9: The Mysterious Traveler 2', 'https://cdn.littlefox.com/contents_5/hls/720/84bd97f307/pcfe8b0b14/76ec1aaa22b19d194472bbd01df6627a.m3u8?1201111428', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003`
+- docs-data-assets:13582: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_9fb0a96a34861ab7', 'col_445eff95f40edc3d', 10, '10. The Queen''s Necklace 1', 'Arsène Lupin 10: The Queen''s Necklace 1', 'https://cdn.littlefox.com/contents_5/hls/720/cf2462e02b/p21bf51d18/82857ac394f05bff2fdb9931fcaf1f82.m3u8?1201111819', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00033`
+- docs-data-assets:13583: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_e5ff9afa0cb7b834', 'col_445eff95f40edc3d', 11, '11. The Queen''s Necklace 2', 'Arsène Lupin 11: The Queen''s Necklace 2', 'https://cdn.littlefox.com/contents_5/hls/720/917828022f/p00b363b22/fb7e52b73d29b72d5f8339eb85235d19.m3u8?1201112204', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00033`
+- docs-data-assets:13584: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_5ac269d9a12f3d3d', 'col_445eff95f40edc3d', 12, '12. The Seven of Hearts 1', 'Arsène Lupin 12: The Seven of Hearts 1', 'https://cdn.littlefox.com/contents_5/hls/720/4aab7231ab/p2392b7a25/825ec2dad31d8fbea7b592706b6606e7.m3u8?1201112521', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003513&c`
+- docs-data-assets:13585: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_cc4a065dac1a8ce2', 'col_445eff95f40edc3d', 13, '13. The Seven of Hearts 2', 'Arsène Lupin 13: The Seven of Hearts 2', 'https://cdn.littlefox.com/contents_5/hls/720/98fa0ab713/p112eb6829/fddc597f1521cc465facaf0d5f7e83b6.m3u8?1201112901', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003515&c`
+- docs-data-assets:13586: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_59975a87c60b466b', 'col_445eff95f40edc3d', 14, '14. The Seven of Hearts 3', 'Arsène Lupin 14: The Seven of Hearts 3', 'https://cdn.littlefox.com/contents_5/hls/720/87fd9115bc/pde0f1b532/9cda3201471937c91f7ed082e44d92bc.m3u8?1201113300', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003516&c`
+- docs-data-assets:13587: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_e8e1aedab12c7369', 'col_445eff95f40edc3d', 15, '15. Madame Imbert''s Safe', 'Arsène Lupin 15: Madame Imbert''s Safe', 'https://cdn.littlefox.com/contents_5/hls/1080/93600a5a25/1573190667f0b1d5879866f2c2eba77f39993d1184/stream.m3u8?_=1573190668', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C`
+- docs-data-assets:13588: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_1f8d9927c8f19989', 'col_445eff95f40edc3d', 16, '16. The Black Pearl', 'Arsène Lupin 16: The Black Pearl', 'https://cdn.littlefox.com/contents_5/hls/1080/98a689d006/1573191081c1b70d965ca504aa751ddb62ad69c63f/stream.m3u8?_=1573191082', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003830&cn=0`
+- docs-data-assets:13589: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_5f3e2a1ffe47ce0f', 'col_445eff95f40edc3d', 17, '17. Sherlock Holmes Arrives Too Late 1', 'Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1', 'https://cdn.littlefox.com/contents_5/hls/1080/554486b024/1573437818fedf67d6f3d7341c1c1e8a54774987d3/stream.m3u8?_=1573437820', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hocti`
+- docs-data-assets:13590: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_603d78e2da2833da', 'col_445eff95f40edc3d', 18, '18. Sherlock Holmes Arrives Too Late 2', 'Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2', 'https://cdn.littlefox.com/contents_5/hls/1080/88905b007b/1582091945a4d8e2a7e0d0c102339f97716d2fdfb6/stream.m3u8?_=1582091947', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hocti`
+- docs-data-assets:13591: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_91fe59b1543e2a65', 'col_445eff95f40edc3d', 19, '19. The Arrest of Arsène Lupin 1', 'Arsène Lupin 1: The Arrest of Arsène Lupin 1', 'https://cdn.littlefox.com/contents_5/hls/1080/b41f514096/15731863408e489b4966fe8f703b5be647f1cbae63/stream.m3u8?_=1573186341', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/ap`
+- docs-data-assets:13592: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_f8049f4a89f670c5', 'col_445eff95f40edc3d', 20, '20. The Arrest of Arsène Lupin 2', 'Arsène Lupin 2: The Arrest of Arsène Lupin 2', 'https://cdn.littlefox.com/contents_5/hls/1080/91529ca21d/15731867405da713a690c067105aeb2fae32403405/stream.m3u8?_=1573186741', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/ap`
+- docs-data-assets:13593: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_73b69a559cf03e3a', 'col_445eff95f40edc3d', 21, '21. Arsène Lupin in Prison 1', 'Arsène Lupin 3: Arsène Lupin in Prison 1', 'https://cdn.littlefox.com/contents_5/hls/720/149209f9f8/p098217452/5da9178d047c73a9a1b763d14d4ccd31.m3u8?1201105209', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003`
+- docs-data-assets:13594: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_36719c82f469f6de', 'col_445eff95f40edc3d', 22, '22. Arsène Lupin in Prison 2', 'Arsène Lupin 4: Arsène Lupin in Prison 2', 'https://cdn.littlefox.com/contents_5/hls/720/69b4bec728/p3d52ae955/62ee8ed86d562f1c02d954c85ef7d4c6.m3u8?1201105542', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003`
+- docs-data-assets:13595: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_02f4b21d662eccce', 'col_445eff95f40edc3d', 23, '23. Escape from Prison 1', 'Arsène Lupin 5: Escape from Prison 1', 'https://cdn.littlefox.com/contents_5/hls/1080/a634db2228/15731898174fa177df22864518b2d7818d4db5db2d/stream.m3u8?_=1573189818', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C000`
+- docs-data-assets:13596: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_c9f038ba86de54b3', 'col_445eff95f40edc3d', 24, '24. Escape from Prison 2', 'Arsène Lupin 6: Escape from Prison 2', 'https://cdn.littlefox.com/contents_5/hls/1080/9aca9c89f6/1573190256ef72d53990bc4805684c9b61fa64a102/stream.m3u8?_=1573190257', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C000`
+- docs-data-assets:13597: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_23bc71b68630995d', 'col_445eff95f40edc3d', 25, '25. Escape from Prison 3', 'Arsène Lupin 7: Escape from Prison 3', 'https://cdn.littlefox.com/contents_5/hls/720/404b83f259/p4d5f18606/b6bbeee761ff88c7d061ecff69aa5a14.m3u8?1201110655', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003343&cn=0`
+- docs-data-assets:13598: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_49538e8c6e262336', 'col_445eff95f40edc3d', 26, '26. The Mysterious Traveler 1', 'Arsène Lupin 8: The Mysterious Traveler 1', 'https://cdn.littlefox.com/contents_5/hls/720/da33c80311/p6498ea510/6d57219cd54f705ffefdf9d66071eeb3.m3u8?1201111039', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00`
+- docs-data-assets:13599: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_2bfa1dbe4b879c4e', 'col_445eff95f40edc3d', 27, '27. The Mysterious Traveler 2', 'Arsène Lupin 9: The Mysterious Traveler 2', 'https://cdn.littlefox.com/contents_5/hls/720/84bd97f307/pcfe8b0b14/76ec1aaa22b19d194472bbd01df6627a.m3u8?1201111428', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00`
+- docs-data-assets:13600: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_f8830552881af8f0', 'col_445eff95f40edc3d', 28, '28. The Queen''s Necklace 1', 'Arsène Lupin 10: The Queen''s Necklace 1', 'https://cdn.littlefox.com/contents_5/hls/720/cf2462e02b/p21bf51d18/82857ac394f05bff2fdb9931fcaf1f82.m3u8?1201111819', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00033`
+- docs-data-assets:13601: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_1abae37dbaa2e414', 'col_445eff95f40edc3d', 29, '29. The Queen''s Necklace 2', 'Arsène Lupin 11: The Queen''s Necklace 2', 'https://cdn.littlefox.com/contents_5/hls/720/917828022f/p00b363b22/fb7e52b73d29b72d5f8339eb85235d19.m3u8?1201112204', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00033`
+- docs-data-assets:13602: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_ccd3d0bcb6d3800d', 'col_445eff95f40edc3d', 30, '30. The Seven of Hearts 1', 'Arsène Lupin 12: The Seven of Hearts 1', 'https://cdn.littlefox.com/contents_5/hls/720/4aab7231ab/p2392b7a25/825ec2dad31d8fbea7b592706b6606e7.m3u8?1201112521', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003513&c`
+- docs-data-assets:13603: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_38bc29d05313ab22', 'col_445eff95f40edc3d', 31, '31. The Seven of Hearts 2', 'Arsène Lupin 13: The Seven of Hearts 2', 'https://cdn.littlefox.com/contents_5/hls/720/98fa0ab713/p112eb6829/fddc597f1521cc465facaf0d5f7e83b6.m3u8?1201112901', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003515&c`
+- docs-data-assets:13604: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_807f0845a0bc7d72', 'col_445eff95f40edc3d', 32, '32. The Seven of Hearts 3', 'Arsène Lupin 14: The Seven of Hearts 3', 'https://cdn.littlefox.com/contents_5/hls/720/87fd9115bc/pde0f1b532/9cda3201471937c91f7ed082e44d92bc.m3u8?1201113300', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003516&c`
+- docs-data-assets:13605: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_912ae0a4dac1cc65', 'col_445eff95f40edc3d', 33, '33. Madame Imbert''s Safe', 'Arsène Lupin 15: Madame Imbert''s Safe', 'https://cdn.littlefox.com/contents_5/hls/1080/93600a5a25/1573190667f0b1d5879866f2c2eba77f39993d1184/stream.m3u8?_=1573190668', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C`
+- docs-data-assets:13606: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_0743bfc445f80ec2', 'col_445eff95f40edc3d', 34, '34. The Black Pearl', 'Arsène Lupin 16: The Black Pearl', 'https://cdn.littlefox.com/contents_5/hls/1080/98a689d006/1573191081c1b70d965ca504aa751ddb62ad69c63f/stream.m3u8?_=1573191082', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0003830&cn=0`
+- docs-data-assets:13607: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_4cdf1b997c8c1933', 'col_445eff95f40edc3d', 35, '35. Sherlock Holmes Arrives Too Late 1', 'Arsène Lupin 17: Sherlock Holmes Arrives Too Late 1', 'https://cdn.littlefox.com/contents_5/hls/1080/554486b024/1573437818fedf67d6f3d7341c1c1e8a54774987d3/stream.m3u8?_=1573437820', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hocti`
+- docs-data-assets:13608: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_9ab1876b90287a59', 'col_445eff95f40edc3d', 36, '36. Sherlock Holmes Arrives Too Late 2', 'Arsène Lupin 18: Sherlock Holmes Arrives Too Late 2', 'https://cdn.littlefox.com/contents_5/hls/1080/88905b007b/1582091945a4d8e2a7e0d0c102339f97716d2fdfb6/stream.m3u8?_=1582091947', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hocti`
+- docs-data-assets:14631: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_aad2d113c6b7c640', 'col_4c4ec24600d6e1f2', 11, '0011 Why is it so hard to escape poverty- - Ann-Helén Bay', NULL, 'https://fileta.hoctienganh.xyz/TEDed/INSIGHT%20IELTS%201/0011%20Why%20is%20it%20so%20hard%20to%20escape%20poverty-%20-%20Ann-Hel%C3%A9n%20Bay.tiktok.m3u8', 'hls', 'fileta.hoctienganh.xyz', 'm3u8', NULL, NULL`
+- docs-data-assets:18374: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_6065b742900b9e4c', 'col_659a00e80bb87a76', 1, '1. A Suspicious Man', 'Les Misérables 1: A Suspicious Man', 'https://cdn.littlefox.com/contents_5/hls/720/34dc6766c9/p02b063e51/dc0f3299a6cff15c97206f221d20f898.m3u8?0222095113', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006341&cn=0', 'http`
+- docs-data-assets:18375: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_9d96ae5b7180a9f0', 'col_659a00e80bb87a76', 2, '2. The Thief', 'Les Misérables 2: The Thief', 'https://cdn.littlefox.com/contents_5/hls/1080/58f523a514/1605509393885b2c7a6deb4fea10f319c4ce993e02/stream.m3u8?_=1605509395', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006342&cn=0', 'https://c`
+- docs-data-assets:18376: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_7a89e16ac8000616', 'col_659a00e80bb87a76', 3, '3. A Respectable Man', 'Les Misérables 3: A Respectable Man', 'https://cdn.littlefox.com/contents_5/hls/1080/c420b5c9f3/157794677283ddfbd1c4f871159c148d7a010e69be/stream.m3u8?_=1577946773', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006343&c`
+- docs-data-assets:18377: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_0882010e428ff32c', 'col_659a00e80bb87a76', 4, '4. A New Life', 'Les Misérables 4: A New Life', 'https://cdn.littlefox.com/contents_5/hls/720/001b6e97f7/p6316bbc38/f92ffeb1df2d073c82dbc230c3b64957.m3u8?1201043851', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006344&cn=0', 'https://cdn.litt`
+- docs-data-assets:18378: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_d23773ac9f942d4e', 'col_659a00e80bb87a76', 5, '5. Poverty and Illness', 'Les Misérables 5: Poverty and Illness', 'https://cdn.littlefox.com/contents_5/hls/1080/b6ca286453/1605601189fa3dade3a49305f27f64203452ac954c/stream.m3u8?_=1605601191', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00063`
+- docs-data-assets:18379: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_8501f5c6fc7b7559', 'col_659a00e80bb87a76', 6, '6. Arrested and Rescued', 'Les Misérables 6: Arrested and Rescued', 'https://cdn.littlefox.com/contents_5/hls/720/c1ea0c6908/pab99c3446/89a5a1284f74ff30f44c2aa07ac749e7.m3u8?1201044631', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006346&cn=0`
+- docs-data-assets:18380: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_0302be74275107ff', 'col_659a00e80bb87a76', 7, '7. Recognized', 'Les Misérables 7: Recognized', 'https://cdn.littlefox.com/contents_5/hls/720/f6db08fc61/p6815f2e50/3d5e8b1da6123dbc5552f09e8329b9f1.m3u8?1201045026', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006347&cn=0', 'https://cdn.litt`
+- docs-data-assets:18381: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_dfc6693055bacf61', 'col_659a00e80bb87a76', 8, '8. The Trial', 'Les Misérables 8: The Trial', 'https://cdn.littlefox.com/contents_5/hls/720/3fa765bf33/p83828cb54/7400504287408368362614ac7816edac.m3u8?1201045427', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006348&cn=0', 'https://cdn.little`
+- docs-data-assets:18382: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_f8c232f9cf09d779', 'col_659a00e80bb87a76', 9, '9. An Ending', 'Les Misérables 9: An Ending', 'https://cdn.littlefox.com/contents_5/hls/720/a7fb2a48a0/p8d7915f58/8e3b2241aadc53bae00857a0a97122f3.m3u8?1201045815', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006349&cn=0', 'https://cdn.little`
+- docs-data-assets:18383: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_d240a4df42ebb29c', 'col_659a00e80bb87a76', 10, '10. A Sailor in Danger', 'Les Misérables 10: A Sailor in Danger', 'https://cdn.littlefox.com/contents_5/hls/720/062b78f0cd/p24fe22c01/c3c5ef2d700c9c9902778a57b923ed91.m3u8?1201050151', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006350&cn=0'`
+- docs-data-assets:18384: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_970a2bcfbf815857', 'col_659a00e80bb87a76', 11, '11. A Bucket of Water', 'Les Misérables 11: A Bucket of Water', 'https://cdn.littlefox.com/contents_5/hls/720/ae655103c9/p9c6720805/f18506bcc1d85f50de00b4a94a4a34dd.m3u8?1201050545', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006351&cn=0', `
+- docs-data-assets:18385: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_4a4eea6174b142bc', 'col_659a00e80bb87a76', 12, '12. The Stranger', 'Les Misérables 12: The Stranger', 'https://cdn.littlefox.com/contents_5/hls/1080/af98d14432/1573183393fc325d4b598aaede18b53dca4ecfcb9c/stream.m3u8?_=1573183395', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006352&cn=0', '`
+- docs-data-assets:18386: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_c14e01aaf3e93953', 'col_659a00e80bb87a76', 13, '13. Striking a Bargain', 'Les Misérables 13: Striking a Bargain', 'https://cdn.littlefox.com/contents_5/hls/1080/f7a041c5e7/16371095416a83c731660fcc9f14e1ce0b62d45eb9/stream.m3u8?_=1637109543', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006`
+- docs-data-assets:18387: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_e740e959757f8940', 'col_659a00e80bb87a76', 14, '14. The Generous Beggar', 'Les Misérables 14: The Generous Beggar', 'https://cdn.littlefox.com/contents_5/hls/1080/795d64ea94/160100245077d2afcb31f6493e350fca61764efb9a/stream.m3u8?_=1601002451', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00`
+- docs-data-assets:18388: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_41b4a63fbeca988e', 'col_659a00e80bb87a76', 15, '15. On the Run', 'Les Misérables 15: On the Run', 'https://cdn.littlefox.com/contents_5/hls/720/b6202939db/pa61898a22/2789001e363573894c24b1ab439aac6e.m3u8?1201052206', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006355&cn=0', 'https://cdn.l`
+- docs-data-assets:18389: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_5346de7d98910deb', 'col_659a00e80bb87a76', 16, '16. Marius’ Story', 'Les Misérables 16: Marius’ Story', 'https://cdn.littlefox.com/contents_5/hls/1080/faa2feef7e/1605510618aab11087c24981eb0e03846792ff5718/stream.m3u8?_=1605510620', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006356&cn=0',`
+- docs-data-assets:18390: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_c1a0a49b97ce76cb', 'col_659a00e80bb87a76', 17, '17. New Friends', 'Les Misérables 17: New Friends', 'https://cdn.littlefox.com/contents_5/hls/1080/47ecb7d570/15731826173fd60983292458bf7dee75f12d5e9e05/stream.m3u8?_=1573182619', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006357&cn=0', 'ht`
+- docs-data-assets:18391: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_fa5dae318f40bb94', 'col_659a00e80bb87a76', 18, '18. The Girl in the Park', 'Les Misérables 18: The Girl in the Park', 'https://cdn.littlefox.com/contents_5/hls/720/252fd431f0/p954627e34/eccd1a79e7ec09aa42e772c4cf58b3d1.m3u8?1201053427', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006358&c`
+- docs-data-assets:18392: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_63e5c0de8ff17b89', 'col_659a00e80bb87a76', 19, '19. A Visitor', 'Les Misérables 19: A Visitor', 'https://cdn.littlefox.com/contents_5/hls/720/78cc8c6592/pd34a6ae38/5868f9acbf2bcd04fabfd373c4d8011a.m3u8?1201053815', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006359&cn=0', 'https://cdn.lit`
+- docs-data-assets:18393: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_97ae4a39fc4f1eb4', 'col_659a00e80bb87a76', 20, '20. The Family Next Door', 'Les Misérables 20: The Family Next Door', 'https://cdn.littlefox.com/contents_5/hls/720/e855834f7a/p649e15542/eabd0e4c291f16ef172abb41e7e4066b.m3u8?1201054218', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006360&c`
+- docs-data-assets:18394: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_b424ee8a37879a12', 'col_659a00e80bb87a76', 21, '21. Making Preparations', 'Les Misérables 21: Making Preparations', 'https://cdn.littlefox.com/contents_5/hls/720/f2d97237a2/p466251246/0447eb4158f4250055f42294cfeb824b.m3u8?1201054619', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006361&cn=`
+- docs-data-assets:18395: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_ea370471eb08a9a6', 'col_659a00e80bb87a76', 22, '22. The Ambush', 'Les Misérables 22: The Ambush', 'https://cdn.littlefox.com/contents_5/hls/720/b267058699/p129054b50/d34ccc45425481c5118f05ced3529cd2.m3u8?1201055035', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006362&cn=0', 'https://cdn.l`
+- docs-data-assets:18396: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_7795a40eb1a90638', 'col_659a00e80bb87a76', 23, '23. The Lark', 'Les Misérables 23: The Lark', 'https://cdn.littlefox.com/contents_5/hls/720/85156dd752/p27fe1bc54/690f71d5e4ee8e6038f32fa1725f32e6.m3u8?1201055438', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006363&cn=0', 'https://cdn.littl`
+- docs-data-assets:18397: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_c7a7f930b12797c4', 'col_659a00e80bb87a76', 24, '24. Thwarted Plans', 'Les Misérables 24: Thwarted Plans', 'https://cdn.littlefox.com/contents_5/hls/1080/6b896cd686/1637111002c7b03782920d35145eb4c97556d194a3/stream.m3u8?_=1637111003', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006364&cn=0`
+- docs-data-assets:18398: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_dc27daf8bde0ec05', 'col_659a00e80bb87a76', 25, '25. To the Barricade!', 'Les Misérables 25: To the Barricade!', 'https://cdn.littlefox.com/contents_5/hls/1080/7a195f1f62/1606353175cc384c68ad503482fb24e6d1e3b512ae/stream.m3u8?_=1606353176', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C000636`
+- docs-data-assets:18399: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_14ae5ee23a922eda', 'col_659a00e80bb87a76', 26, '26. Two Letters', 'Les Misérables 26: Two Letters', 'https://cdn.littlefox.com/contents_5/hls/720/6a82609918/peac89da07/40b497a2ddf9d2a6706e979235bce313.m3u8?1201060705', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006366&cn=0', 'https://cdn`
+- docs-data-assets:18400: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_ffe5c22fc9427d36', 'col_659a00e80bb87a76', 27, '27. The Battle', 'Les Misérables 27: The Battle', 'https://cdn.littlefox.com/contents_5/hls/1080/430818a496/16530201485982e32d2cd58d7f3e71f90600b59267/stream.m3u8?_=1653020150', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006367&cn=0', 'http`
+- docs-data-assets:18401: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_45242099e9eead4c', 'col_659a00e80bb87a76', 28, '28. In the Sewers', 'Les Misérables 28: In the Sewers', 'https://cdn.littlefox.com/contents_5/hls/720/d85aa9a55a/p321231915/927c846f03a34b3c9a71f7579bb56e60.m3u8?1201061517', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006368&cn=0', 'https:/`
+- docs-data-assets:18402: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_9731a22fce36942f', 'col_659a00e80bb87a76', 29, '29. Reunited', 'Les Misérables 29: Reunited', 'https://cdn.littlefox.com/contents_5/hls/720/54babca72e/pcd60f6519/2743f5654cbe738979ce3496cf27ff53.m3u8?1201061928', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006369&cn=0', 'https://cdn.littl`
+- docs-data-assets:18403: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_41c727b85c8942ec', 'col_659a00e80bb87a76', 30, '30. Reconciliation', 'Les Misérables 30: Reconciliation', 'https://cdn.littlefox.com/contents_5/hls/720/896b082f7d/p80c90dd23/1e22e0df9b5d18bf980154dad21138fb.m3u8?1201062330', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006370&cn=0', 'https`
+- docs-data-assets:18404: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_dde959eebc25f495', 'col_659a00e80bb87a76', 31, '31. A Suspicious Man', 'Les Misérables 1: A Suspicious Man', 'https://cdn.littlefox.com/contents_5/hls/720/34dc6766c9/p02b063e51/dc0f3299a6cff15c97206f221d20f898.m3u8?0222095113', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006341&cn=0', 'ht`
+- docs-data-assets:18405: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_822b34db8a4bbb82', 'col_659a00e80bb87a76', 32, '32. The Thief', 'Les Misérables 2: The Thief', 'https://cdn.littlefox.com/contents_5/hls/1080/58f523a514/1605509393885b2c7a6deb4fea10f319c4ce993e02/stream.m3u8?_=1605509395', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006342&cn=0', 'https:/`
+- docs-data-assets:18406: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_bd5cfadfc18044a0', 'col_659a00e80bb87a76', 33, '33. A Respectable Man', 'Les Misérables 3: A Respectable Man', 'https://cdn.littlefox.com/contents_5/hls/1080/c420b5c9f3/157794677283ddfbd1c4f871159c148d7a010e69be/stream.m3u8?_=1577946773', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006343`
+- docs-data-assets:18407: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_63b93b3b42efafbf', 'col_659a00e80bb87a76', 34, '34. A New Life', 'Les Misérables 4: A New Life', 'https://cdn.littlefox.com/contents_5/hls/720/001b6e97f7/p6316bbc38/f92ffeb1df2d073c82dbc230c3b64957.m3u8?1201043851', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006344&cn=0', 'https://cdn.li`
+- docs-data-assets:18408: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_d2e24782222aaa19', 'col_659a00e80bb87a76', 35, '35. Poverty and Illness', 'Les Misérables 5: Poverty and Illness', 'https://cdn.littlefox.com/contents_5/hls/1080/b6ca286453/1605601189fa3dade3a49305f27f64203452ac954c/stream.m3u8?_=1605601191', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C000`
+- docs-data-assets:18409: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_5dd49a6d6c9c0703', 'col_659a00e80bb87a76', 36, '36. Arrested and Rescued', 'Les Misérables 6: Arrested and Rescued', 'https://cdn.littlefox.com/contents_5/hls/720/c1ea0c6908/pab99c3446/89a5a1284f74ff30f44c2aa07ac749e7.m3u8?1201044631', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006346&cn`
+- docs-data-assets:18410: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_bf90df1d83f94383', 'col_659a00e80bb87a76', 37, '37. Recognized', 'Les Misérables 7: Recognized', 'https://cdn.littlefox.com/contents_5/hls/720/f6db08fc61/p6815f2e50/3d5e8b1da6123dbc5552f09e8329b9f1.m3u8?1201045026', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006347&cn=0', 'https://cdn.li`
+- docs-data-assets:18411: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_52e167ebedfd7963', 'col_659a00e80bb87a76', 38, '38. The Trial', 'Les Misérables 8: The Trial', 'https://cdn.littlefox.com/contents_5/hls/720/3fa765bf33/p83828cb54/7400504287408368362614ac7816edac.m3u8?1201045427', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006348&cn=0', 'https://cdn.litt`
+- docs-data-assets:18412: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_06e23023f76d8d6d', 'col_659a00e80bb87a76', 39, '39. An Ending', 'Les Misérables 9: An Ending', 'https://cdn.littlefox.com/contents_5/hls/720/a7fb2a48a0/p8d7915f58/8e3b2241aadc53bae00857a0a97122f3.m3u8?1201045815', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006349&cn=0', 'https://cdn.litt`
+- docs-data-assets:18413: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_f5d5632f0b2a5511', 'col_659a00e80bb87a76', 40, '40. A Sailor in Danger', 'Les Misérables 10: A Sailor in Danger', 'https://cdn.littlefox.com/contents_5/hls/720/062b78f0cd/p24fe22c01/c3c5ef2d700c9c9902778a57b923ed91.m3u8?1201050151', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006350&cn=0'`
+- docs-data-assets:18414: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_f12e1fd4898a8b05', 'col_659a00e80bb87a76', 41, '41. A Bucket of Water', 'Les Misérables 11: A Bucket of Water', 'https://cdn.littlefox.com/contents_5/hls/720/ae655103c9/p9c6720805/f18506bcc1d85f50de00b4a94a4a34dd.m3u8?1201050545', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006351&cn=0', `
+- docs-data-assets:18415: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_bcc0ebf1d66f877a', 'col_659a00e80bb87a76', 42, '42. The Stranger', 'Les Misérables 12: The Stranger', 'https://cdn.littlefox.com/contents_5/hls/1080/af98d14432/1573183393fc325d4b598aaede18b53dca4ecfcb9c/stream.m3u8?_=1573183395', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006352&cn=0', '`
+- docs-data-assets:18416: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_aacc5b6c8a15b2de', 'col_659a00e80bb87a76', 43, '43. Striking a Bargain', 'Les Misérables 13: Striking a Bargain', 'https://cdn.littlefox.com/contents_5/hls/1080/f7a041c5e7/16371095416a83c731660fcc9f14e1ce0b62d45eb9/stream.m3u8?_=1637109543', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006`
+- docs-data-assets:18417: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_211991529dda209d', 'col_659a00e80bb87a76', 44, '44. The Generous Beggar', 'Les Misérables 14: The Generous Beggar', 'https://cdn.littlefox.com/contents_5/hls/1080/795d64ea94/160100245077d2afcb31f6493e350fca61764efb9a/stream.m3u8?_=1601002451', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00`
+- docs-data-assets:18418: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_71e2bb50a93903f6', 'col_659a00e80bb87a76', 45, '45. On the Run', 'Les Misérables 15: On the Run', 'https://cdn.littlefox.com/contents_5/hls/720/b6202939db/pa61898a22/2789001e363573894c24b1ab439aac6e.m3u8?1201052206', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006355&cn=0', 'https://cdn.l`
+- docs-data-assets:18419: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_db8dfc6576a73d3d', 'col_659a00e80bb87a76', 46, '46. Marius’ Story', 'Les Misérables 16: Marius’ Story', 'https://cdn.littlefox.com/contents_5/hls/1080/faa2feef7e/1605510618aab11087c24981eb0e03846792ff5718/stream.m3u8?_=1605510620', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006356&cn=0',`
+- docs-data-assets:18420: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_1f7d04edd7610010', 'col_659a00e80bb87a76', 47, '47. New Friends', 'Les Misérables 17: New Friends', 'https://cdn.littlefox.com/contents_5/hls/1080/47ecb7d570/15731826173fd60983292458bf7dee75f12d5e9e05/stream.m3u8?_=1573182619', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006357&cn=0', 'ht`
+- docs-data-assets:18421: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_481e7f6da275274f', 'col_659a00e80bb87a76', 48, '48. The Girl in the Park', 'Les Misérables 18: The Girl in the Park', 'https://cdn.littlefox.com/contents_5/hls/720/252fd431f0/p954627e34/eccd1a79e7ec09aa42e772c4cf58b3d1.m3u8?1201053427', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006358&c`
+- docs-data-assets:18422: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_3d8b51454d4723b2', 'col_659a00e80bb87a76', 49, '49. A Visitor', 'Les Misérables 19: A Visitor', 'https://cdn.littlefox.com/contents_5/hls/720/78cc8c6592/pd34a6ae38/5868f9acbf2bcd04fabfd373c4d8011a.m3u8?1201053815', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006359&cn=0', 'https://cdn.lit`
+- docs-data-assets:18423: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_5f4097505c1a4871', 'col_659a00e80bb87a76', 50, '50. The Family Next Door', 'Les Misérables 20: The Family Next Door', 'https://cdn.littlefox.com/contents_5/hls/720/e855834f7a/p649e15542/eabd0e4c291f16ef172abb41e7e4066b.m3u8?1201054218', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006360&c`
+- docs-data-assets:18424: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_2cdcc9919875ccb1', 'col_659a00e80bb87a76', 51, '51. Making Preparations', 'Les Misérables 21: Making Preparations', 'https://cdn.littlefox.com/contents_5/hls/720/f2d97237a2/p466251246/0447eb4158f4250055f42294cfeb824b.m3u8?1201054619', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006361&cn=`
+- docs-data-assets:18425: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_55221ccf7ecf6f7b', 'col_659a00e80bb87a76', 52, '52. The Ambush', 'Les Misérables 22: The Ambush', 'https://cdn.littlefox.com/contents_5/hls/720/b267058699/p129054b50/d34ccc45425481c5118f05ced3529cd2.m3u8?1201055035', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006362&cn=0', 'https://cdn.l`
+- docs-data-assets:18426: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_5819ae28028b44ad', 'col_659a00e80bb87a76', 53, '53. The Lark', 'Les Misérables 23: The Lark', 'https://cdn.littlefox.com/contents_5/hls/720/85156dd752/p27fe1bc54/690f71d5e4ee8e6038f32fa1725f32e6.m3u8?1201055438', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006363&cn=0', 'https://cdn.littl`
+- docs-data-assets:18427: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_99075fef2d474b90', 'col_659a00e80bb87a76', 54, '54. Thwarted Plans', 'Les Misérables 24: Thwarted Plans', 'https://cdn.littlefox.com/contents_5/hls/1080/6b896cd686/1637111002c7b03782920d35145eb4c97556d194a3/stream.m3u8?_=1637111003', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006364&cn=0`
+- docs-data-assets:18428: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_c7d74a7cc527126e', 'col_659a00e80bb87a76', 55, '55. To the Barricade!', 'Les Misérables 25: To the Barricade!', 'https://cdn.littlefox.com/contents_5/hls/1080/7a195f1f62/1606353175cc384c68ad503482fb24e6d1e3b512ae/stream.m3u8?_=1606353176', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C000636`
+- docs-data-assets:18429: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_5cb2025b3312f204', 'col_659a00e80bb87a76', 56, '56. Two Letters', 'Les Misérables 26: Two Letters', 'https://cdn.littlefox.com/contents_5/hls/720/6a82609918/peac89da07/40b497a2ddf9d2a6706e979235bce313.m3u8?1201060705', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006366&cn=0', 'https://cdn`
+- docs-data-assets:18430: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_8e96b74367473028', 'col_659a00e80bb87a76', 57, '57. The Battle', 'Les Misérables 27: The Battle', 'https://cdn.littlefox.com/contents_5/hls/1080/430818a496/16530201485982e32d2cd58d7f3e71f90600b59267/stream.m3u8?_=1653020150', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006367&cn=0', 'http`
+- docs-data-assets:18431: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_27829b2ab4edee0b', 'col_659a00e80bb87a76', 58, '58. In the Sewers', 'Les Misérables 28: In the Sewers', 'https://cdn.littlefox.com/contents_5/hls/720/d85aa9a55a/p321231915/927c846f03a34b3c9a71f7579bb56e60.m3u8?1201061517', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006368&cn=0', 'https:/`
+- docs-data-assets:18432: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_8d5c76c2269384f0', 'col_659a00e80bb87a76', 59, '59. Reunited', 'Les Misérables 29: Reunited', 'https://cdn.littlefox.com/contents_5/hls/720/54babca72e/pcd60f6519/2743f5654cbe738979ce3496cf27ff53.m3u8?1201061928', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006369&cn=0', 'https://cdn.littl`
+- docs-data-assets:18433: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_fd7bcd28a4b498a2', 'col_659a00e80bb87a76', 60, '60. Reconciliation', 'Les Misérables 30: Reconciliation', 'https://cdn.littlefox.com/contents_5/hls/720/896b082f7d/p80c90dd23/1e22e0df9b5d18bf980154dad21138fb.m3u8?1201062330', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0006370&cn=0', 'https`
+- docs-data-assets:22018: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_79142961badc0b23', 'col_7f26535390146050', 6, '6. Introduction to Simple Finals 6: The Simple Final ü', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/c4bef53f80/1573016779b44afe91b8a427a6be2078cc89bd6f9b/stream.m3u8?_=1573016780', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C00070`
+- docs-data-assets:23873: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_a14fcdc92916e165', 'col_8c5999ad2228a1d6', 33, '33. Eva Perón', 'Superstars in History 33: Eva Perón', 'https://cdn.littlefox.com/contents_5/hls/1080/cb21265a88/1671165973cf79ae6addba60ad018347359bd144d2/stream.m3u8?_=1671166045', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0009155&cn=0', `
+- docs-data-assets:23909: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_c7bd997d7715f18f', 'col_8c5999ad2228a1d6', 69, '69. Eva Perón', 'Superstars in History 33: Eva Perón', 'https://cdn.littlefox.com/contents_5/hls/1080/cb21265a88/1671165973cf79ae6addba60ad018347359bd144d2/stream.m3u8?_=1671166045', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0009155&cn=0', `
+- docs-data-assets:32105: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_897953091d85ee07', 'col_cdf55ae55f2eee62', 2, '2. Tone Change Rules 2: Tone Change Rules with Yī', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/784c88d828/15730041396c990b7aca7bc7058f5e98ea909e924b/stream.m3u8?_=1573004139', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0007100&cn`
+- docs-data-assets:32106: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_688c5b3a9c2b346e', 'col_cdf55ae55f2eee62', 3, '3. Tone Change Rules 3: Tone Change Rules with Bù', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/7c154d27c8/15730042668e930496927757aac0dbd2438cb3f4f6/stream.m3u8?_=1573004267', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0007101&cn`
+
+### src/components/site-footer.test.tsx
+
+- runtime-source:97: `brandAriaLabel: "Trang chủ TinyGenius Hub",`
+- runtime-source:99: `taglineLine1: "Toán & Tiếng Anh cho bé 2-6 tuổi.",`
+- runtime-source:100: `taglineLine2: "Mỗi ngày 15 phút, ba mẹ thấy rõ con tiến bộ.",`
+- runtime-source:103: `navAriaLabel: "Điều hướng chân trang",`
+- runtime-source:105: `product: "Sản phẩm",`
+- runtime-source:106: `company: "Công ty",`
+- runtime-source:107: `account: "Tài khoản",`
+- runtime-source:108: `legal: "Pháp lý",`
+- runtime-source:111: `features: "Tính năng",`
+- runtime-source:112: `pricing: "Bảng giá",`
+- runtime-source:113: `courses: "Khóa học",`
+- runtime-source:114: `forSchools: "Cho trường học",`
+- runtime-source:115: `faq: "Câu hỏi thường gặp",`
+- runtime-source:116: `about: "Giới thiệu",`
+- runtime-source:118: `contact: "Liên hệ",`
+- runtime-source:119: `referral: "Giới thiệu bạn",`
+- runtime-source:120: `giftCode: "Mã quà tặng",`
+- runtime-source:121: `waitlist: "Đặt chỗ sớm",`
+- runtime-source:122: `login: "Đăng nhập",`
+- runtime-source:123: `signup: "Đăng ký",`
+- runtime-source:124: `privacy: "Chính sách bảo mật",`
+- runtime-source:125: `terms: "Điều khoản sử dụng",`
+- runtime-source:126: `cookiePolicy: "Chính sách cookie",`
+- runtime-source:127: `refundPolicy: "Chính sách hoàn tiền",`
+- runtime-source:130: `rightsReserved: "Đã đăng ký bản quyền.",`
+- runtime-source:131: `security: "Bảo mật",`
+- runtime-source:132: `clause: "Điều khoản",`
+- runtime-source:134: `refund: "Hoàn tiền",`
+- runtime-source:140: `expect(screen.getByRole("link", { name: "Bảng giá" })).toBeInTheDocument();`
+- runtime-source:141: `expect(screen.getByRole("link", { name: "Điều khoản sử dụng" })).toBeInTheDocument();`
+- runtime-source:142: `expect(screen.getByText(/Đã đăng ký bản quyền\./)).toBeInTheDocument();`
+
+## Unresolved Questions
+
+- None.

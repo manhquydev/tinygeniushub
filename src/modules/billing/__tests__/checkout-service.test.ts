@@ -8,7 +8,7 @@ describe("createCheckoutSchema", () => {
     const parsed = createCheckoutSchema.parse({
       planCode: "YEARLY_STANDARD",
       successPath: "/parent/dashboard",
-      cancelPath: "/pricing",
+      cancelPath: "/courses",
     });
 
     expect(parsed.planCode).toBe("YEARLY_STANDARD");

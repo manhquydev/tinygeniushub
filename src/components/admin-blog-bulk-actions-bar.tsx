@@ -29,7 +29,7 @@ export function AdminBlogBulkActionsBar({ selectedIds, actions, onAction }: Admi
   async function triggerAction(action: AdminBlogBulkAction) {
     if (action.requiresConfirm) {
       const approved = window.confirm(
-        action.confirmMessage ?? "Bạn có chắc muốn thực hiện thao tác này cho các mục đã chọn?",
+        action.confirmMessage ?? "Are you sure you want to do this for the selected items?",
       );
       if (!approved) {
         return;
@@ -47,7 +47,7 @@ export function AdminBlogBulkActionsBar({ selectedIds, actions, onAction }: Admi
   return (
     <div className="sticky bottom-4 z-20 rounded-xl border border-teal-200 bg-teal-50 p-3 shadow-lg">
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <p className="text-sm font-semibold text-teal-800">Đã chọn {selectedIds.length} mục</p>
+        <p className="text-sm font-semibold text-teal-800">Selected {selectedIds.length} items</p>
         <div className="flex flex-wrap gap-2">
           {actions.map((action) => (
             <Button
@@ -59,7 +59,7 @@ export function AdminBlogBulkActionsBar({ selectedIds, actions, onAction }: Admi
               onClick={() => void triggerAction(action)}
               disabled={runningAction !== null}
             >
-              {runningAction === action.value ? "Đang xử lý..." : action.label}
+              {runningAction === action.value ? "Processing..." : action.label}
             </Button>
           ))}
         </div>

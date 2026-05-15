@@ -11,7 +11,7 @@ const lessonCreateSchema = z.object({
     .trim()
     .min(2)
     .max(120)
-    .regex(/^[a-z0-9-]+$/, "Slug chỉ gồm chữ thường, số và dấu gạch ngang."),
+    .regex(/^[a-z0-9-]+$/, "Slug only includes lowercase letters, numbers and hyphens."),
   title: z.string().trim().min(1).max(200),
   objective: z.string().trim().min(1).max(500),
   estimatedMinutes: z.coerce.number().int().min(1).max(180),
@@ -31,7 +31,7 @@ const lessonUpdateSchema = z
     offlineCardMarkdown: z.string().trim().max(5000).optional().nullable(),
     parentScriptMarkdown: z.string().trim().max(5000).optional().nullable(),
   })
-  .refine((value) => Object.keys(value).length > 0, "Không có trường nào để cập nhật.");
+  .refine((value) => Object.keys(value).length > 0, "There are no fields to update.");
 
 const activityTypeSchema = z.enum(["MCQ", "TRUE_FALSE", "WORD_MATCH", "FILL_BLANK"]);
 
@@ -49,7 +49,7 @@ const mcqSpecSchema = z
   })
   .refine(
     (value) => value.choices.filter((choice) => choice.isCorrect).length === 1,
-    "MCQ phải có đúng 1 đáp án đúng.",
+    "MCQ must have exactly 1 correct answer.",
   );
 
 const trueFalseSpecSchema = z.object({
@@ -113,7 +113,7 @@ function parseSpecByType(type: z.infer<typeof activityTypeSchema>, spec: Record<
 
   const parsed = fillBlankSpecSchema.parse(spec);
   if (!parsed.sentence.includes("___")) {
-    throw new DomainError("Câu điền khuyết phải có ký hiệu ___ cho chỗ trống.", 400, "INVALID_FILL_BLANK_SENTENCE");
+    throw new DomainError("Fill-in sentences must have a ___ symbol for the blank.", 400, "INVALID_FILL_BLANK_SENTENCE");
   }
 
   return parsed as Prisma.JsonObject;
@@ -432,7 +432,7 @@ export async function deleteLesson(lessonId: string) {
   });
 
   if (completionCount > 0) {
-    throw new DomainError("Không thể xóa bài đã có học sinh hoàn thành.", 409, "LESSON_HAS_COMPLETIONS");
+    throw new DomainError("Lessons that have been completed by students cannot be deleted.", 409, "LESSON_HAS_COMPLETIONS");
   }
 
   await prisma.lesson.delete({
@@ -454,7 +454,7 @@ export async function toggleLessonTrial(lessonId: string) {
   });
 
   if (!existing) {
-    throw new DomainError("Không tìm thấy bài học.", 404, "LESSON_NOT_FOUND");
+    throw new DomainError("No lessons found.", 404, "LESSON_NOT_FOUND");
   }
 
   return prisma.lesson.update({
@@ -525,7 +525,7 @@ export async function updateActivity(
   });
 
   if (!existing) {
-    throw new DomainError("Không tìm thấy câu hỏi.", 404, "ACTIVITY_NOT_FOUND");
+    throw new DomainError("No question found.", 404, "ACTIVITY_NOT_FOUND");
   }
 
   const payload = activityUpdateSchema.parse({

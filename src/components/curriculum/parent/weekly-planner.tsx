@@ -57,13 +57,13 @@ interface WeeklyPlannerProps {
 }
 
 const DAYS = [
-  { key: "mon", label: "T2", fullLabel: "Thứ 2" },
-  { key: "tue", label: "T3", fullLabel: "Thứ 3" },
-  { key: "wed", label: "T4", fullLabel: "Thứ 4" },
-  { key: "thu", label: "T5", fullLabel: "Thứ 5" },
-  { key: "fri", label: "T6", fullLabel: "Thứ 6" },
-  { key: "sat", label: "T7", fullLabel: "Thứ 7" },
-  { key: "sun", label: "CN", fullLabel: "Chủ nhật" },
+  { key: "mon", label: "T2", fullLabel: "Monday" },
+  { key: "tue", label: "T3", fullLabel: "Tuesday" },
+  { key: "wed", label: "T4", fullLabel: "Wednesday" },
+  { key: "thu", label: "T5", fullLabel: "Thursday" },
+  { key: "fri", label: "T6", fullLabel: "Friday" },
+  { key: "sat", label: "T7", fullLabel: "Saturday" },
+  { key: "sun", label: "CN", fullLabel: "Sunday" },
 ];
 
 interface SortableAssignmentProps {
@@ -94,10 +94,10 @@ function SortableAssignment({ assignment, onRemove }: SortableAssignmentProps) {
   };
 
   const statusLabels = {
-    NOT_STARTED: "Chưa bắt đầu",
-    IN_PROGRESS: "Đang học",
-    COMPLETED: "Hoàn thành",
-    OVERDUE: "Quá hạn",
+    NOT_STARTED: "Haven't started yet",
+    IN_PROGRESS: "Studying",
+    COMPLETED: "Complete",
+    OVERDUE: "Overdue",
   };
 
   return (
@@ -124,11 +124,11 @@ function SortableAssignment({ assignment, onRemove }: SortableAssignmentProps) {
 
         <div className="flex-1 min-w-0">
           <div className="text-sm font-medium truncate">
-            Bài {assignment.lesson?.lessonNumber || "--"}
+            Lesson {assignment.lesson?.lessonNumber || "--"}
           </div>
           <div className="flex items-center gap-1 text-xs text-slate-500">
             <Clock className="h-3 w-3" />
-            <span>{assignment.lessonPackage?.durationMinutes || "--"} phút</span>
+            <span>{assignment.lessonPackage?.durationMinutes || "--"} minutes</span>
           </div>
         </div>
 
@@ -206,7 +206,7 @@ function DayColumn({ day, dayIndex, date, assignments, onRemove }: DayColumnProp
 
         {assignments.length === 0 && (
           <div className="flex h-20 items-center justify-center rounded-lg border border-dashed border-slate-200">
-            <span className="text-xs text-slate-400">Kéo bài học vào đây</span>
+            <span className="text-xs text-slate-400">Drag the lesson here</span>
           </div>
         )}
       </div>
@@ -238,7 +238,7 @@ function LessonPool({ lessons, usedLessonIds }: LessonPoolProps) {
   return (
     <Card className="w-72 flex-shrink-0">
       <CardHeader className="pb-3">
-        <CardTitle className="text-base">📚 Kho Bài Học</CardTitle>
+        <CardTitle className="text-base">📚 Lesson Store</CardTitle>
       </CardHeader>
       <CardContent className="p-3 pt-0">
         <div className="space-y-3 max-h-[calc(100vh-300px)] overflow-y-auto pr-1">
@@ -256,7 +256,7 @@ function LessonPool({ lessons, usedLessonIds }: LessonPoolProps) {
             ))
           ) : (
             <div className="text-center py-8 text-slate-500">
-              <p className="text-sm">Tất cả bài học đã được thêm vào lịch</p>
+              <p className="text-sm">All lessons have been added to the calendar</p>
             </div>
           )}
         </div>
@@ -357,7 +357,7 @@ export function WeeklyPlanner({
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-slate-800">
-            📅 Tuần {weeklyPlan.weekNumber}
+            📅 Week {weeklyPlan.weekNumber}
           </h2>
           <p className="text-sm text-slate-500">
             {format(weekStart, "dd/MM/yyyy")} -{" "}
@@ -368,7 +368,7 @@ export function WeeklyPlanner({
         <div className="flex items-center gap-2">
           <Button variant="outline" onClick={onAutoGenerate} className="gap-2">
             <Wand2 className="h-4 w-4" />
-            Tự động tạo
+            Automatically generated
           </Button>
           <Button
             onClick={handleSave}
@@ -376,7 +376,7 @@ export function WeeklyPlanner({
             className="gap-2"
           >
             <Save className="h-4 w-4" />
-            {isSaving ? "Đang lưu..." : "Lưu kế hoạch"}
+            {isSaving ? "Saving..." : "Save the plan"}
           </Button>
         </div>
       </div>
@@ -385,15 +385,15 @@ export function WeeklyPlanner({
       <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
         <div className="flex items-center gap-4 text-sm">
           <span className="text-slate-600">
-            Tổng: <strong>{actualHours.toFixed(1)} giờ/tuần</strong>
+            Total: <strong>{actualHours.toFixed(1)} hours/week</strong>
           </span>
           <span className="text-slate-400">|</span>
           <span className="text-slate-600">
-            Mục tiêu: <strong>{targetHours} giờ/tuần</strong>
+            Goal: <strong>{targetHours} hours/week</strong>
           </span>
         </div>
         <Badge variant={isOnTarget ? "default" : "secondary"}>
-          {isOnTarget ? "✅ Đạt mục tiêu" : `Cần thêm ${(targetHours - actualHours).toFixed(1)} giờ`}
+          {isOnTarget ? "✅ Achieve goals" : `Need more${(targetHours - actualHours).toFixed(1)}hour`}
         </Badge>
       </div>
 

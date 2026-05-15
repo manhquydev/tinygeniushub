@@ -38,12 +38,12 @@ export function AdminImpersonationPanel() {
     setResults([]);
     try {
       const res = await fetch(`/api/admin/users?q=${encodeURIComponent(query)}&limit=10`);
-      if (!res.ok) throw new Error("Tìm kiếm thất bại");
+      if (!res.ok) throw new Error("Search failed");
       const json = await res.json() as SearchResponse;
       const users = json.data?.users ?? [];
       setResults(users);
     } catch (err) {
-      setSearchError(err instanceof Error ? err.message : "Lỗi không xác định");
+      setSearchError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setSearching(false);
     }
@@ -61,14 +61,14 @@ export function AdminImpersonationPanel() {
       });
       if (!res.ok) {
         const json = await res.json() as { error?: { message?: string } };
-        throw new Error(json.error?.message ?? "Không thể đăng nhập thay");
+        throw new Error(json.error?.message ?? "Unable to log in instead");
       }
       const json = await res.json() as { data?: { redirectTo?: string } };
       if (json.data?.redirectTo) {
         window.location.href = json.data.redirectTo;
       }
     } catch (err) {
-      setActionError(err instanceof Error ? err.message : "Lỗi không xác định");
+      setActionError(err instanceof Error ? err.message : "Unknown error");
       setImpersonatingId(null);
     }
   }
@@ -78,11 +78,11 @@ export function AdminImpersonationPanel() {
       <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 space-y-3">
         <div className="flex items-center gap-2">
           <Search size={14} className="text-[var(--admin-text-secondary)]" />
-          <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Tìm người dùng</h2>
+          <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Find users</h2>
         </div>
         <form onSubmit={(e) => void handleSearch(e)} className="flex gap-2">
           <div className="flex-1 grid gap-1">
-            <Label htmlFor="search-query" className="text-xs">Email hoặc tên</Label>
+            <Label htmlFor="search-query" className="text-xs">Email or name</Label>
             <Input
               id="search-query"
               value={query}
@@ -92,7 +92,7 @@ export function AdminImpersonationPanel() {
             />
           </div>
           <Button type="submit" disabled={searching} className="self-end h-8 text-xs bg-teal-600 hover:bg-teal-700">
-            {searching ? "Đang tìm..." : "Tìm"}
+            {searching ? "Looking for..." : "Find"}
           </Button>
         </form>
         {searchError && <p className="text-xs text-rose-600">{searchError}</p>}
@@ -112,7 +112,7 @@ export function AdminImpersonationPanel() {
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 <Badge variant="outline" className={!user.suspended ? "text-emerald-600 border-emerald-200" : "text-rose-600 border-rose-200"}>
-                  {!user.suspended ? "Hoạt động" : "Đã khóa"}
+                  {!user.suspended ? "Work" : "Locked"}
                 </Badge>
                 <Button
                   size="sm"
@@ -122,7 +122,7 @@ export function AdminImpersonationPanel() {
                   disabled={impersonatingId === user.id}
                 >
                   <ShieldUser size={12} />
-                  Đăng nhập thay
+                  Log in instead
                 </Button>
               </div>
             </div>
@@ -132,7 +132,7 @@ export function AdminImpersonationPanel() {
 
       {results.length === 0 && !searching && query && !searchError && (
         <p className="text-xs text-[var(--admin-text-secondary)] text-center py-4">
-          Không tìm thấy người dùng nào.
+          No users found.
         </p>
       )}
 
@@ -141,15 +141,15 @@ export function AdminImpersonationPanel() {
           <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-6 shadow-xl max-w-sm w-full space-y-4">
             <div className="flex items-center gap-2">
               <LogIn size={18} className="text-amber-500" />
-              <h3 className="font-semibold text-[var(--admin-text-primary)]">Xác nhận đăng nhập thay</h3>
+              <h3 className="font-semibold text-[var(--admin-text-primary)]">Confirm login instead</h3>
             </div>
             <p className="text-sm text-[var(--admin-text-secondary)]">
-              Bạn sẽ đăng nhập vào hệ thống với tư cách của{" "}
-              <strong>{confirming.email}</strong>. Thao tác này được ghi nhật ký.
+              You will log in to the system as {" "}
+              <strong>{confirming.email}</strong>. This action is logged.
             </p>
             <div className="flex gap-2 justify-end">
               <Button variant="outline" size="sm" onClick={() => setConfirming(null)}>
-                Hủy
+                Cancel
               </Button>
               <Button
                 size="sm"
@@ -157,7 +157,7 @@ export function AdminImpersonationPanel() {
                 disabled={impersonatingId === confirming.id}
                 onClick={() => void handleImpersonate(confirming)}
               >
-                {impersonatingId === confirming.id ? "Đang chuyển..." : "Xác nhận"}
+                {impersonatingId === confirming.id ? "Moving..." : "Confirm"}
               </Button>
             </div>
           </div>

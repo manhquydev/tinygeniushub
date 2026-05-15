@@ -43,7 +43,7 @@ export async function generateCertificate(params: {
   });
 
   // Title
-  const title = "CHỨNG CHỈ HOÀN THÀNH KHÓA HỌC";
+  const title = "COURSE COMPLETION CERTIFICATE";
   const titleSize = 26;
   const titleWidth = boldFont.widthOfTextAtSize(title, titleSize);
   page.drawText(title, {
@@ -55,7 +55,7 @@ export async function generateCertificate(params: {
   });
 
   // Subtitle
-  const subtitle = "Được cấp cho phụ huynh của bé nhà bạn";
+  const subtitle = "Issued to your child's parents";
   const subtitleSize = 14;
   const subtitleWidth = regularFont.widthOfTextAtSize(subtitle, subtitleSize);
   page.drawText(subtitle, {
@@ -75,7 +75,7 @@ export async function generateCertificate(params: {
   });
 
   // Course name label
-  const courseLabel = "đã hoàn thành khóa học";
+  const courseLabel = "has completed the course";
   const courseLabelSize = 13;
   const courseLabelWidth = regularFont.widthOfTextAtSize(courseLabel, courseLabelSize);
   page.drawText(courseLabel, {
@@ -103,7 +103,7 @@ export async function generateCertificate(params: {
     month: "2-digit",
     year: "numeric",
   });
-  const dateLabel = `Ngày hoàn thành: ${dateStr}`;
+  const dateLabel = `Completion date:${dateStr}`;
   const dateLabelSize = 12;
   const dateLabelWidth = regularFont.widthOfTextAtSize(dateLabel, dateLabelSize);
   page.drawText(dateLabel, {

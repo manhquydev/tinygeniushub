@@ -14,7 +14,7 @@ export function AdminContentActivityFieldsWordMatch(props: AdminContentActivityF
   return (
     <div className="grid gap-2 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3">
       <div className="flex items-center justify-between">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--admin-text-secondary)]">Các cặp từ</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--admin-text-secondary)]">Word pairs</p>
         <Button
           type="button"
           variant="outline"
@@ -33,7 +33,7 @@ export function AdminContentActivityFieldsWordMatch(props: AdminContentActivityF
             })
           }
         >
-          + Thêm cặp
+          + Add pairs
         </Button>
       </div>
 
@@ -50,7 +50,7 @@ export function AdminContentActivityFieldsWordMatch(props: AdminContentActivityF
               }))
             }
             type="text"
-            placeholder="Từ"
+            placeholder="From"
             required
           />
           <Input
@@ -64,7 +64,7 @@ export function AdminContentActivityFieldsWordMatch(props: AdminContentActivityF
               }))
             }
             type="text"
-            placeholder="Nghĩa"
+            placeholder="Meaning"
             required
           />
           <Button

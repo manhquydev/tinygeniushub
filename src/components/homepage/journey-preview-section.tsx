@@ -65,7 +65,7 @@ export function JourneyPreviewSection() {
             pointerEvents: "none",
           }}
         >
-          🌱 Đây là hành trình học tập của con bạn
+          🌱 This is your child's learning journey
         </div>
 
         {/* BeanstalkJourney Demo */}
@@ -81,7 +81,7 @@ export function JourneyPreviewSection() {
                 color: "#0f9f86",
               }}
             >
-              Đang tải hành trình...
+              Loading itinerary...
             </div>
           }
         >
@@ -114,7 +114,7 @@ export function JourneyPreviewSection() {
               textShadow: "0 1px 3px rgba(0, 0, 0, 0.3)",
             }}
           >
-            ☝️ Con bạn sẽ leo lên từng tầng mây khi hoàn thành bài học
+            ☝️ Your child will climb to the clouds when completing the lesson
           </p>
 
           <a
@@ -138,7 +138,7 @@ export function JourneyPreviewSection() {
               setIsModalOpen(true);
             }}
           >
-            Đăng ký để con bắt đầu hành trình
+            Sign up to start your child's journey
           </a>
         </div>
       </section>

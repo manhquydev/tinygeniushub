@@ -1,4 +1,5 @@
 import { Activity, CreditCard, Gift, Layers3 } from "lucide-react";
+import { getLocale } from "next-intl/server";
 import { AdminModuleHealthGrid } from "@/components/admin/admin-module-health-grid";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { AdminSectionCard } from "@/components/admin/ui/admin-section-card";
@@ -13,6 +14,8 @@ import {
   getAdminOverview,
   getAdminRetentionAnalytics,
 } from "@/modules/admin/service";
+import { translate, type TranslationValues } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 export default async function AdminOverviewPage() {
   const [overview, learningAnalytics, retention, adminSession] = await Promise.all([
@@ -21,6 +24,10 @@ export default async function AdminOverviewPage() {
     getAdminRetentionAnalytics(),
     getAdminSession(),
   ]);
+
+  const locale = resolveAppLocale(await getLocale());
+  const t = (key: string, values?: TranslationValues) =>
+    translate(`admin.overview.${key}`, values, locale);
 
   const role = adminSession?.user.role ?? "STAFF_ADMIN";
   const visibleModules = getVisibleAdminModules(role);
@@ -36,10 +43,10 @@ export default async function AdminOverviewPage() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        title="Admin Command Center"
-        description="Bảng điều hành module theo mức hoàn thiện, sức khỏe vận hành và các chỉ số kinh doanh cốt lõi."
+        title={t("title")}
+        description={t("description")}
         icon={<Layers3 size={18} />}
-        eyebrow="Reassessment Session"
+        eyebrow={t("eyebrow")}
       />
 
       <AdminStatsHeader
@@ -55,22 +62,22 @@ export default async function AdminOverviewPage() {
       />
 
       <AdminSectionCard
-        title="Module completeness map"
+        title={t("moduleMap")}
         icon={<Layers3 size={16} />}
         headerActions={
           <div className="flex items-center gap-3 text-xs text-[var(--admin-text-muted)]">
-            <span className="text-emerald-600 font-medium">{moduleHealth.complete} complete</span>
-            <span className="text-amber-600 font-medium">{moduleHealth.partial} partial</span>
-            <span className="text-rose-600 font-medium">{moduleHealth.gap} gap</span>
+            <span className="text-emerald-600 font-medium">{t("moduleComplete", { count: moduleHealth.complete })}</span>
+            <span className="text-amber-600 font-medium">{t("modulePartial", { count: moduleHealth.partial })}</span>
+            <span className="text-rose-600 font-medium">{t("moduleGap", { count: moduleHealth.gap })}</span>
           </div>
         }
       >
         <AdminModuleHealthGrid modules={visibleModules} />
       </AdminSectionCard>
 
-      <AdminSectionCard title="Trạng thái gói đăng ký" icon={<CreditCard size={16} />}>
+      <AdminSectionCard title={t("subscriptionSection")} icon={<CreditCard size={16} />}>
         {subscriptionsByStatus.length === 0 ? (
-          <AdminEmptyState message="Chưa có dữ liệu gói đăng ký." />
+          <AdminEmptyState message={t("subscriptionEmpty")} />
         ) : (
           <div className="flex flex-wrap gap-2">
             {subscriptionsByStatus.map(([status, count]) => (
@@ -83,9 +90,9 @@ export default async function AdminOverviewPage() {
         )}
       </AdminSectionCard>
 
-      <AdminSectionCard title="Trạng thái webhook" icon={<Activity size={16} />}>
+      <AdminSectionCard title={t("webhookSection")} icon={<Activity size={16} />}>
         {webhooksByStatus.length === 0 ? (
-          <AdminEmptyState message="Chưa có dữ liệu webhook." />
+          <AdminEmptyState message={t("webhookEmpty")} />
         ) : (
           <div className="flex flex-wrap gap-2">
             {webhooksByStatus.map(([status, count]) => (
@@ -98,12 +105,12 @@ export default async function AdminOverviewPage() {
         )}
       </AdminSectionCard>
 
-      <AdminSectionCard title="Giới thiệu và liên kết" icon={<Gift size={16} />}>
+      <AdminSectionCard title={t("referralSection")} icon={<Gift size={16} />}>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <AdminStatCard label="Mã giới thiệu" value={overview.counts.referralCodes} />
-          <AdminStatCard label="Lượt quy về" value={overview.counts.referralAttributions} />
-          <AdminStatCard label="Giới thiệu đã thanh toán" value={overview.counts.paidReferrals} />
-          <AdminStatCard label="Phần thưởng đã cấp" value={overview.counts.rewardedReferrals} />
+          <AdminStatCard label={t("referralCode")} value={overview.counts.referralCodes} />
+          <AdminStatCard label={t("referralReturns")} value={overview.counts.referralAttributions} />
+          <AdminStatCard label={t("referralPaid")} value={overview.counts.paidReferrals} />
+          <AdminStatCard label={t("referralRewards")} value={overview.counts.rewardedReferrals} />
         </div>
       </AdminSectionCard>
     </div>

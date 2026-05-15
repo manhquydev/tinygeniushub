@@ -33,13 +33,13 @@ export function AdminFeatureFlagsPanel() {
       });
       const body = await response.json();
       if (!response.ok || !body.ok || !Array.isArray(body.data?.featureFlags)) {
-        setError(body.error?.message ?? "Không tải được danh sách feature flags.");
+        setError(body.error?.message ?? "Unable to load feature flags list.");
         return;
       }
 
       setFlags(body.data.featureFlags as FeatureFlagRow[]);
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "Lỗi không xác định.");
+      setError(loadError instanceof Error ? loadError.message : "Unknown error.");
     } finally {
       setLoading(false);
     }
@@ -51,7 +51,7 @@ export function AdminFeatureFlagsPanel() {
 
   async function toggleFlag(flag: FeatureFlagRow) {
     const nextEnabled = !flag.enabled;
-    const confirmMessage = `Bạn có chắc muốn ${nextEnabled ? "bật" : "tắt"} feature flag ${flag.key}?`;
+    const confirmMessage = `Are you sure you want to${nextEnabled ? "turn on" : "turn off"} feature flag ${flag.key}?`;
     if (!window.confirm(confirmMessage)) {
       return;
     }
@@ -72,14 +72,14 @@ export function AdminFeatureFlagsPanel() {
       });
       const body = await response.json();
       if (!response.ok || !body.ok || !body.data?.featureFlag) {
-        setError(body.error?.message ?? "Không cập nhật được feature flag.");
+        setError(body.error?.message ?? "Unable to update feature flag.");
         return;
       }
 
-      setInfo(`Đã ${nextEnabled ? "bật" : "tắt"} ${flag.key}.`);
+      setInfo(`Already${nextEnabled ? "turn on" : "turn off"} ${flag.key}.`);
       await loadFlags();
     } catch (toggleError) {
-      setError(toggleError instanceof Error ? toggleError.message : "Lỗi không xác định.");
+      setError(toggleError instanceof Error ? toggleError.message : "Unknown error.");
     } finally {
       setUpdatingKey(null);
     }
@@ -99,18 +99,18 @@ export function AdminFeatureFlagsPanel() {
             <TableHeader>
               <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
                 <TableHead className="text-xs">Key</TableHead>
-                <TableHead className="text-xs">Mô tả</TableHead>
-                <TableHead className="text-xs">Trạng thái</TableHead>
-                <TableHead className="text-xs">Cập nhật lúc</TableHead>
-                <TableHead className="text-xs">Người cập nhật</TableHead>
-                <TableHead className="text-xs">Hành động</TableHead>
+                <TableHead className="text-xs">Describe</TableHead>
+                <TableHead className="text-xs">Status</TableHead>
+                <TableHead className="text-xs">Updated at</TableHead>
+                <TableHead className="text-xs">Updater</TableHead>
+                <TableHead className="text-xs">Act</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {loading
                 ? Array.from({ length: input.loadingRows }).map((_, index) => (
                     <TableRow key={`${input.title}-skeleton-${index}`}>
-                      <TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Đang tải...</TableCell>
+                      <TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Loading...</TableCell>
                     </TableRow>
                   ))
                 : null}
@@ -119,7 +119,7 @@ export function AdminFeatureFlagsPanel() {
                     <TableRow key={flag.key}>
                       <TableCell className="text-xs font-semibold text-[var(--admin-text-primary)]">{flag.key}</TableCell>
                       <TableCell className="text-xs text-[var(--admin-text-secondary)]">{flag.description ?? "-"}</TableCell>
-                      <TableCell className="text-xs">{flag.enabled ? "Đang bật" : "Đang tắt"}</TableCell>
+                      <TableCell className="text-xs">{flag.enabled ? "On" : "Turning off"}</TableCell>
                       <TableCell className="text-xs">{new Date(flag.updatedAt).toLocaleString("vi-VN")}</TableCell>
                       <TableCell className="text-xs">{flag.updatedBy ?? "-"}</TableCell>
                       <TableCell>
@@ -131,7 +131,7 @@ export function AdminFeatureFlagsPanel() {
                           onClick={() => void toggleFlag(flag)}
                           disabled={updatingKey === flag.key}
                         >
-                          {updatingKey === flag.key ? "Đang cập nhật..." : flag.enabled ? "Tắt" : "Bật"}
+                          {updatingKey === flag.key ? "Updating..." : flag.enabled ? "Turn off" : "Turn on"}
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -155,15 +155,15 @@ export function AdminFeatureFlagsPanel() {
       <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Feature Flags</h3>
 
       {renderFlagTable({
-        title: "Điều khiển email hệ thống",
-        emptyText: "Chưa có email flag.",
+        title: "Control system email",
+        emptyText: "No email flag yet.",
         rows: emailFlags,
         loadingRows: 5,
       })}
 
       {renderFlagTable({
-        title: "Tính năng thử nghiệm khác",
-        emptyText: "Chưa có feature flag ngoài email.",
+        title: "Other experimental features",
+        emptyText: "There are no feature flags other than email.",
         rows: otherFlags,
         loadingRows: 3,
       })}

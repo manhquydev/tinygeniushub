@@ -22,12 +22,12 @@ export function AdminContentLessonActivitiesList(props: AdminContentLessonActivi
         <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--admin-text-secondary)]">Activities</p>
         <Button size="sm" onClick={() => props.onCreateActivity(props.lessonId)} className="h-7 text-xs gap-1 bg-teal-600 hover:bg-teal-700">
           <Plus size={12} />
-          Thêm câu hỏi
+          More questions
         </Button>
       </div>
 
       {props.loadingActivitiesLessonId === props.lessonId ? (
-        <p className="text-xs text-[var(--admin-text-secondary)]">Đang tải activities...</p>
+        <p className="text-xs text-[var(--admin-text-secondary)]">Loading activities...</p>
       ) : null}
 
       <ul className="space-y-1.5 p-0">
@@ -56,7 +56,7 @@ export function AdminContentLessonActivitiesList(props: AdminContentLessonActivi
       </ul>
 
       {props.activities.length === 0 && props.loadingActivitiesLessonId !== props.lessonId ? (
-        <p className="text-xs text-[var(--admin-text-secondary)]">Chưa có hoạt động.</p>
+        <p className="text-xs text-[var(--admin-text-secondary)]">There are no activities yet.</p>
       ) : null}
     </div>
   );

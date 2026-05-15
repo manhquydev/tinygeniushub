@@ -328,8 +328,8 @@ async function main() {
     await waitForReady(baseUrl);
 
     await assertRoute(baseUrl, "/", 200, "TinyGenius Hub");
-    await assertRoute(baseUrl, "/pricing", 200, "Bảng giá minh bạch theo từng khóa");
-    await assertRoute(baseUrl, "/auth/login", 200, "Đăng nhập phụ huynh");
+    await assertRoute(baseUrl, "/pricing", 200, "Transparent price list for each course");
+    await assertRoute(baseUrl, "/auth/login", 200, "Parent login");
     await assertRoute(baseUrl, "/api/health", 200, "\"status\":\"ok\"");
     await assertRouteStatusIn(baseUrl, "/api/health/ready", [200, 503]);
     await assertUnauthorizedApi(baseUrl);

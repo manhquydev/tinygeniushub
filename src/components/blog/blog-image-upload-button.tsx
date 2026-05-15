@@ -63,7 +63,7 @@ export function BlogImageUploadButton({ onInsert, onUpload }: Props) {
       const sessionBody = (await sessionResponse.json()) as UploadUrlResponse;
       if (!sessionResponse.ok || !sessionBody.data) {
         setState("error");
-        setError(sessionBody.error ?? "Không lấy được upload URL.");
+        setError(sessionBody.error ?? "Unable to get upload URL.");
         return;
       }
 
@@ -78,7 +78,7 @@ export function BlogImageUploadButton({ onInsert, onUpload }: Props) {
 
       if (!uploadResponse.ok) {
         setState("error");
-        setError("Upload thất bại. Vui lòng thử lại.");
+        setError("Upload failed. Please try again.");
         return;
       }
 
@@ -89,7 +89,7 @@ export function BlogImageUploadButton({ onInsert, onUpload }: Props) {
       setState("success");
     } catch {
       setState("error");
-      setError("Có lỗi trong quá trình upload.");
+      setError("There was an error during the upload process.");
     }
   }
 
@@ -111,7 +111,7 @@ export function BlogImageUploadButton({ onInsert, onUpload }: Props) {
 
       <button
         type="button"
-        title="Upload ảnh"
+        title="Upload photos"
         disabled={state === "uploading"}
         onClick={() => fileInputRef.current?.click()}
         style={{
@@ -128,7 +128,7 @@ export function BlogImageUploadButton({ onInsert, onUpload }: Props) {
       >
         {state === "uploading" ? <Loader2 size={14} className="animate-spin" /> : <ImageIcon size={14} />}
         <span style={{ fontSize: 13 }}>
-          {state === "uploading" ? "Đang tải..." : state === "success" ? "✓" : "Thêm ảnh"}
+          {state === "uploading" ? "Loading..." : state === "success" ? "✓" : "Add photos"}
         </span>
       </button>
 

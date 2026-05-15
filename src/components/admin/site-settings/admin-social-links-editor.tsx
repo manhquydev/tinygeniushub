@@ -62,12 +62,12 @@ export function AdminSocialLinksEditor({ initialLinks }: Props) {
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data?.error?.message ?? "Lưu thất bại. Vui lòng thử lại.");
+        setError(data?.error?.message ?? "Save failed. Please try again.");
         return;
       }
       setSuccess(true);
     } catch {
-      setError("Lỗi kết nối. Vui lòng thử lại.");
+      setError("Connection error. Please try again.");
     } finally {
       setSaving(false);
     }
@@ -75,8 +75,8 @@ export function AdminSocialLinksEditor({ initialLinks }: Props) {
 
   return (
     <AdminSectionCard
-      title="Liên kết mạng xã hội"
-      description="Cập nhật URL hiển thị ở phần icon mạng xã hội trong footer website."
+      title="Social network links"
+      description="Update the URL displayed in the social network icons section of the website footer."
       icon={<MessageCircle size={16} />}
     >
       <div className="space-y-4">
@@ -104,7 +104,7 @@ export function AdminSocialLinksEditor({ initialLinks }: Props) {
           <p className="text-sm text-rose-500">{error}</p>
         )}
         {success && (
-          <p className="text-sm text-emerald-500">Đã lưu liên kết mạng xã hội thành công.</p>
+          <p className="text-sm text-emerald-500">Social network link saved successfully.</p>
         )}
 
         <div className="flex items-center gap-2 pt-2">
@@ -115,7 +115,7 @@ export function AdminSocialLinksEditor({ initialLinks }: Props) {
             className="bg-teal-600 hover:bg-teal-700 text-white"
           >
             <Save size={14} className="mr-1.5" />
-            {saving ? "Đang lưu..." : "Lưu thay đổi"}
+            {saving ? "Saving..." : "Save changes"}
           </Button>
           <Button
             onClick={handleReset}
@@ -125,7 +125,7 @@ export function AdminSocialLinksEditor({ initialLinks }: Props) {
             className="border-[var(--admin-card-border)] text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]"
           >
             <RotateCcw size={14} className="mr-1.5" />
-            Đặt lại
+            Reset
           </Button>
         </div>
       </div>

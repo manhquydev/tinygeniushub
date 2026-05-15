@@ -56,17 +56,17 @@ describe("admin-revenue-service", () => {
       {
         paymentId: "pay-bundle",
         courseId: "course-a",
-        course: { slug: "khoa-a", title: "Khóa A" },
+        course: { slug: "khoa-a", title: "Course A" },
       },
       {
         paymentId: "pay-bundle",
         courseId: "course-b",
-        course: { slug: "khoa-b", title: "Khóa B" },
+        course: { slug: "khoa-b", title: "Course B" },
       },
       {
         paymentId: "pay-course",
         courseId: "course-a",
-        course: { slug: "khoa-a", title: "Khóa A" },
+        course: { slug: "khoa-a", title: "Course A" },
       },
     ]);
 
@@ -88,14 +88,14 @@ describe("admin-revenue-service", () => {
       {
         courseId: "course-a",
         courseSlug: "khoa-a",
-        title: "Khóa A",
+        title: "Course A",
         enrollmentCount: 2,
         revenueVnd: 250_000,
       },
       {
         courseId: "course-b",
         courseSlug: "khoa-b",
-        title: "Khóa B",
+        title: "Course B",
         enrollmentCount: 1,
         revenueVnd: 150_000,
       },

@@ -19,11 +19,11 @@ const ACTION_PROPS: MascotActionProp[] = [
 ];
 
 const CHARACTERS: { variant: MascotVariant; name: string; color: string }[] = [
-  { variant: "dad", name: "Cáo Bố", color: "#065f46" },
-  { variant: "big", name: "Cáo Mẹ", color: "#1e3a8a" },
-  { variant: "sister", name: "Cáo Chị", color: "#7c3aed" },
-  { variant: "small", name: "Cáo Con", color: "#0ea5e9" },
-  { variant: "baby", name: "Cáo Em", color: "#ea580c" },
+  { variant: "dad", name: "Fox Dad", color: "#065f46" },
+  { variant: "big", name: "Mother Fox", color: "#1e3a8a" },
+  { variant: "sister", name: "Fox Sister", color: "#7c3aed" },
+  { variant: "small", name: "Little Fox", color: "#0ea5e9" },
+  { variant: "baby", name: "Fox Em", color: "#ea580c" },
 ];
 
 const NEW_STATES: MascotState[] = ["surprised", "angry", "nervous", "bored"];
@@ -36,22 +36,22 @@ export default function MascotPreviewPage() {
   return (
     <div style={{ padding: "2rem", fontFamily: "system-ui", background: "#f8fafc", minHeight: "100vh" }}>
       <h1 style={{ fontSize: "1.75rem", fontWeight: 800, color: "#0f172a", marginBottom: "0.25rem" }}>
-        Gia Đình Linh Vật Cáo — Full Preview
+        Fox Mascot Family — Full Preview
       </h1>
       <p style={{ color: "#64748b", marginBottom: "1.5rem" }}>
-        5 nhân vật · 14 trạng thái · 7 cử chỉ · 11 đạo cụ · Tương tác thử
+        5 characters · 14 states · 7 gestures · 11 props · Test interaction
       </p>
 
       {/* Controls */}
       <div style={{ marginBottom: "2rem" }}>
-        <SelectorRow label="Trạng thái" items={STATES} active={activeState} onSelect={setActiveState} highlight={NEW_STATES} />
-        <SelectorRow label="Cử chỉ" items={GESTURES} active={activeGesture} onSelect={setActiveGesture} />
-        <SelectorRow label="Đạo cụ" items={ACTION_PROPS} active={activeProp} onSelect={setActiveProp} />
+        <SelectorRow label="Status" items={STATES} active={activeState} onSelect={setActiveState} highlight={NEW_STATES} />
+        <SelectorRow label="Gesture" items={GESTURES} active={activeGesture} onSelect={setActiveGesture} />
+        <SelectorRow label="Props" items={ACTION_PROPS} active={activeProp} onSelect={setActiveProp} />
       </div>
 
       {/* Characters with selected state+gesture+prop */}
       <h2 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#1e293b", marginBottom: "0.75rem" }}>
-        Nhân vật — <span style={{ color: "#10b981" }}>{activeState}</span>
+        Character - <span style={{ color: "#10b981" }}>{activeState}</span>
         {activeGesture !== "none" && <span style={{ color: "#8b5cf6" }}> + {activeGesture}</span>}
         {activeProp !== "none" && <span style={{ color: "#f59e0b" }}> + {activeProp}</span>}
       </h2>
@@ -68,7 +68,7 @@ export default function MascotPreviewPage() {
 
       {/* NEW: Expressions highlight — the 4 fixed duplicates */}
       <h2 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#1e293b", marginBottom: "0.75rem" }}>
-        Biểu cảm mới (đã sửa trùng lặp)
+        New expressions (duplicates fixed)
       </h2>
       <p style={{ color: "#64748b", fontSize: "0.8rem", marginBottom: "1rem" }}>
         surprised→wide eyes · angry→angry brows · nervous→sweat drop · bored→drowsy lids
@@ -91,7 +91,7 @@ export default function MascotPreviewPage() {
 
       {/* NEW: Gestures showcase */}
       <h2 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#1e293b", marginBottom: "0.75rem" }}>
-        Cử chỉ (Gestures)
+        Gesture (Gestures)
       </h2>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginBottom: "3rem" }}>
         {GESTURES.filter((g) => g !== "none").map((g) => (
@@ -106,7 +106,7 @@ export default function MascotPreviewPage() {
 
       {/* NEW: Action Props showcase */}
       <h2 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#1e293b", marginBottom: "0.75rem" }}>
-        Đạo cụ giáo dục (Action Props)
+        Educational props (Action Props)
       </h2>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginBottom: "3rem" }}>
         {ACTION_PROPS.filter((p) => p !== "none").map((p) => (
@@ -121,7 +121,7 @@ export default function MascotPreviewPage() {
 
       {/* Family variant */}
       <h2 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#1e293b", marginBottom: "0.75rem" }}>
-        Gia đình (Family)
+        Family
       </h2>
       <div style={{ background: "#fff", borderRadius: "1rem", padding: "2rem", boxShadow: "0 1px 3px rgba(0,0,0,0.08)", border: "1px solid #e2e8f0", display: "inline-block", marginBottom: "3rem" }}>
         <Mascot variant="family" state="happy" size={400} motionLevel="full"
@@ -130,7 +130,7 @@ export default function MascotPreviewPage() {
 
       {/* Full state grid for all characters */}
       <h2 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#1e293b", marginBottom: "0.75rem" }}>
-        Tất cả 14 trạng thái × 5 nhân vật
+        All 14 states x 5 characters
       </h2>
       {CHARACTERS.map((c) => (
         <div key={c.variant} style={{ marginBottom: "1.5rem" }}>

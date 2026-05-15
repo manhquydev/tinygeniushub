@@ -1,12 +1,16 @@
+import { getLocale } from "next-intl/server";
 import { CaregiverManager } from "@/components/caregiver-manager";
 import { ChildrenManager } from "@/components/children-manager";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 type CaregiverInviteStatus = "pending" | "accepted" | "expired";
 
 export default async function ParentChildrenPage() {
   const parent = await requireParent();
+  const locale = resolveAppLocale(await getLocale());
 
   const [children, caregiverInvites, caregiversCount] = await Promise.all([
     prisma.childProfile.findMany({
@@ -65,11 +69,11 @@ export default async function ParentChildrenPage() {
     <div className="page-stack">
       <section className="rounded-3xl border border-slate-200/75 bg-gradient-to-br from-white via-slate-50 to-slate-100 p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
         <p className="inline-flex w-fit rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-          Parent Children
+          {translate("parent.children.badge", undefined, locale)}
         </p>
-        <h1 className="mt-3 text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">Quản lý hồ sơ bé</h1>
+        <h1 className="mt-3 text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">{translate("parent.children.heading", undefined, locale)}</h1>
         <p className="mt-2 max-w-[70ch] text-sm leading-relaxed text-slate-600 sm:text-base">
-          Mỗi tài khoản có một hồ sơ chính xuyên suốt. Chỉnh thông tin bé và truy cập nhanh bài học hằng ngày tại đây.
+          {translate("parent.children.description", undefined, locale)}
         </p>
       </section>
 

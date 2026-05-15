@@ -17,8 +17,5 @@ until node -e "const net=require('net');const s=net.createConnection({host:proce
   sleep 2
 done
 
-echo "[worker] Generating Prisma client..."
-pnpm db:generate
-
 echo "[worker] Starting background worker..."
 exec pnpm worker:dev

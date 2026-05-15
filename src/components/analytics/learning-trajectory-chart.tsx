@@ -35,7 +35,7 @@ export function LearningTrajectoryChart({ weeks, childNickname }: Props) {
   if (weeks.length < 2) {
     return (
       <div className="text-center py-10 text-gray-500 text-sm">
-        Chưa đủ dữ liệu — cần ít nhất 2 tuần để hiển thị xu hướng học tập.
+        Not enough data — at least 2 weeks needed to show learning trends.
       </div>
     );
   }
@@ -60,13 +60,13 @@ export function LearningTrajectoryChart({ weeks, childNickname }: Props) {
     <div className="w-full">
       {childNickname && (
         <p className="text-sm font-medium text-gray-600 mb-1">
-          Tiến trình học tập — {childNickname}
+          Learning progression — {childNickname}
         </p>
       )}
       <svg
         viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
         className="w-full"
-        aria-label="Biểu đồ tiến trình học tập"
+        aria-label="Learning progress chart"
       >
         {/* Grid lines */}
         {yTicks.map((t) => {
@@ -115,7 +115,7 @@ export function LearningTrajectoryChart({ weeks, childNickname }: Props) {
         ))}
       </svg>
       <p className="text-xs text-gray-400 mt-1">
-        Điểm xanh = thành thạo · Điểm vàng = đang học · Điểm đỏ = cần hỗ trợ · +N = kỹ năng mới thành thạo tuần đó
+        Green dots = proficient · Yellow dots = learning · Red dots = needs support · +N = newly mastered skills that week
       </p>
     </div>
   );

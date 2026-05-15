@@ -20,7 +20,7 @@ export function CourseReviewForm({ courseSlug, existingRating, existingComment }
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (rating < 1) {
-      setErrorMessage("Vui lòng chọn số sao đánh giá.");
+      setErrorMessage("Please select the number of rating stars.");
       return;
     }
 
@@ -36,12 +36,12 @@ export function CourseReviewForm({ courseSlug, existingRating, existingComment }
 
       if (!res.ok) {
         const data = (await res.json()) as { error?: string };
-        throw new Error(data.error ?? "Không thể gửi đánh giá.");
+        throw new Error(data.error ?? "Unable to submit review.");
       }
 
       setStatus("success");
     } catch (err) {
-      setErrorMessage(err instanceof Error ? err.message : "Đã xảy ra lỗi.");
+      setErrorMessage(err instanceof Error ? err.message : "An error has occurred.");
       setStatus("error");
     }
   }
@@ -49,7 +49,7 @@ export function CourseReviewForm({ courseSlug, existingRating, existingComment }
   if (status === "success") {
     return (
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
-        Đánh giá đã gửi, đang chờ duyệt.
+        Review sent, awaiting approval.
       </div>
     );
   }
@@ -59,7 +59,7 @@ export function CourseReviewForm({ courseSlug, existingRating, existingComment }
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <p className="mb-2 text-sm font-semibold text-slate-700">Chọn số sao</p>
+        <p className="mb-2 text-sm font-semibold text-slate-700">Choose number of stars</p>
         <div className="flex gap-1" onMouseLeave={() => setHovered(0)}>
           {[1, 2, 3, 4, 5].map((star) => (
             <button
@@ -79,13 +79,13 @@ export function CourseReviewForm({ courseSlug, existingRating, existingComment }
 
       <div>
         <label htmlFor="review-comment" className="mb-1 block text-sm font-semibold text-slate-700">
-          Nhận xét <span className="font-normal text-slate-400">(tùy chọn)</span>
+          Review <span className="font-normal text-slate-400">(optional)</span>
         </label>
         <textarea
           id="review-comment"
           value={comment}
           onChange={(e) => setComment(e.target.value.slice(0, MAX_COMMENT_LENGTH))}
-          placeholder="Chia sẻ trải nghiệm học của bé..."
+          placeholder="Share your child's learning experience..."
           rows={4}
           className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
         />
@@ -103,7 +103,7 @@ export function CourseReviewForm({ courseSlug, existingRating, existingComment }
         disabled={status === "loading"}
         className="rounded-xl bg-emerald-600 px-5 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:opacity-60"
       >
-        {status === "loading" ? "Đang gửi..." : "Gửi đánh giá"}
+        {status === "loading" ? "Sending..." : "Submit a review"}
       </button>
     </form>
   );

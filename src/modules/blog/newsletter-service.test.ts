@@ -31,11 +31,11 @@ describe("newsletterService.subscribe", () => {
     prismaMock.blogNewsletterSubscriber.create.mockResolvedValueOnce({
       id: "sub-1",
       email: "parent@example.com",
-      nameVi: "Phụ huynh",
+      nameVi: "Parents",
     });
 
     const result = await newsletterService.subscribe("Parent@example.com", {
-      nameVi: "Phụ huynh",
+      nameVi: "Parents",
     });
 
     expect(result.token).toMatch(/^[a-z0-9]+$/i);
@@ -44,7 +44,7 @@ describe("newsletterService.subscribe", () => {
       expect.objectContaining({
         subscriberId: "sub-1",
         email: "parent@example.com",
-        nameVi: "Phụ huynh",
+        nameVi: "Parents",
       }),
     );
   });

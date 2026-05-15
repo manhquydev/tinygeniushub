@@ -114,7 +114,7 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
           const body = (await response.json()) as ActivityResponse;
 
           if (!response.ok || !body.ok) {
-            throw new Error(body.error?.message ?? "Không thể tải hoạt động hôm nay");
+            throw new Error(body.error?.message ?? "Unable to load today's activity");
           }
 
           if (!active) {
@@ -140,7 +140,7 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
             ...current,
             [child.id]: {
               loading: false,
-              error: error instanceof Error ? error.message : "Lỗi không xác định",
+              error: error instanceof Error ? error.message : "Unknown error",
               activities: [],
               dailyGoalMinutes: 20,
               totalMinutesToday: 0,
@@ -163,9 +163,9 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
   if (orderedChildren.length === 0) {
     return (
       <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
-        <h2 className="text-xl font-black tracking-[-0.02em] text-slate-900">Hoạt động học hôm nay</h2>
+        <h2 className="text-xl font-black tracking-[-0.02em] text-slate-900">Today's learning activities</h2>
         <p className="mt-3 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
-          Chưa có hồ sơ bé nào để hiển thị hoạt động hôm nay.
+          There are no baby profiles to show today's activity.
         </p>
       </section>
     );
@@ -175,11 +175,11 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
     <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="text-xl font-black tracking-[-0.02em] text-slate-900">Hoạt động học hôm nay</h2>
-          <p className="mt-1 text-sm text-slate-500">Timeline bài học trong ngày theo giờ hoàn thành mới nhất.</p>
+          <h2 className="text-xl font-black tracking-[-0.02em] text-slate-900">Today's learning activities</h2>
+          <p className="mt-1 text-sm text-slate-500">Timeline of the day's lessons according to the latest completion time.</p>
         </div>
         <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
-          Múi giờ: UTC+7
+          Time zone: UTC+7
         </span>
       </div>
 
@@ -197,7 +197,7 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
             <article key={child.id} className="rounded-2xl border border-slate-200/90 bg-slate-50/60 p-4">
               <div className="flex items-center justify-between gap-2">
                 <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">{child.nickname}</h3>
-                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">Hôm nay</span>
+                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">Today</span>
               </div>
 
               <div className="mt-3">
@@ -228,8 +228,8 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
                     <div className="mx-auto mb-2 w-fit">
                       <Mascot variant="small" state="sleepy" size={120} actionProp="none" motionLevel="minimal" pauseWhenOffscreen />
                     </div>
-                    <p className="text-sm font-semibold text-slate-700">Chưa có bài học nào hôm nay</p>
-                    <p className="mt-1 text-xs text-slate-500">Bé nghỉ ngơi hơi lâu rồi, thử bắt đầu 5 phút nhé.</p>
+                    <p className="text-sm font-semibold text-slate-700">There are no lessons today</p>
+                    <p className="mt-1 text-xs text-slate-500">Your baby has rested for a while, try starting with 5 minutes.</p>
                   </div>
                 ) : null}
 
@@ -248,10 +248,10 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
                                 <Clock3 size={13} />
                                 {formatTime(activity.completedAt)}
                               </span>
-                              <span>• {activity.minutesLearned} phút học</span>
+                              <span>• {activity.minutesLearned} minutes learned</span>
                               <span>• Quiz: {activity.quizScore}%</span>
                             </div>
-                            <p className="mt-1 text-xs text-slate-500">Hoàn thành lúc {formatTimestamp(activity.completedAt)}</p>
+                            <p className="mt-1 text-xs text-slate-500">Completed at {formatTimestamp(activity.completedAt)}</p>
                           </div>
                         </div>
                       </li>

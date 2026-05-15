@@ -17,9 +17,9 @@ interface DateRangePickerProps {
 }
 
 const PRESETS = [
-  { label: "7 ngày", days: 7 },
-  { label: "30 ngày", days: 30 },
-  { label: "90 ngày", days: 90 },
+  { label: "7 days", days: 7 },
+  { label: "30 days", days: 30 },
+  { label: "90 days", days: 90 },
 ];
 
 export function DateRangePicker({ onChange, defaultValue }: DateRangePickerProps) {
@@ -48,7 +48,7 @@ export function DateRangePicker({ onChange, defaultValue }: DateRangePickerProps
   };
 
   const displayValue = () => {
-    if (!range?.from) return "Chọn khoảng thời gian";
+    if (!range?.from) return "Choose a time period";
     if (!range.to || range.from.getTime() === range.to.getTime()) {
       return format(range.from, "dd/MM/yyyy", { locale: vi });
     }
@@ -74,7 +74,7 @@ export function DateRangePicker({ onChange, defaultValue }: DateRangePickerProps
         <div className="absolute top-full left-0 mt-2 z-50 w-[320px] bg-white border border-gray-200 rounded-lg shadow-lg p-4">
           {/* Presets */}
           <div className="mb-4">
-            <p className="text-sm font-medium text-gray-700 mb-2">Chọn nhanh</p>
+            <p className="text-sm font-medium text-gray-700 mb-2">Quick select</p>
             <div className="flex gap-2">
               {PRESETS.map((preset) => (
                 <button
@@ -90,10 +90,10 @@ export function DateRangePicker({ onChange, defaultValue }: DateRangePickerProps
 
           {/* Custom dates */}
           <div className="space-y-3">
-            <p className="text-sm font-medium text-gray-700">Hoặc chọn ngày cụ thể</p>
+            <p className="text-sm font-medium text-gray-700">Or select a specific date</p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Từ ngày</label>
+                <label className="block text-xs text-gray-500 mb-1">From date</label>
                 <input
                   type="date"
                   value={range?.from ? format(range.from, "yyyy-MM-dd") : ""}
@@ -102,7 +102,7 @@ export function DateRangePicker({ onChange, defaultValue }: DateRangePickerProps
                 />
               </div>
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Đến ngày</label>
+                <label className="block text-xs text-gray-500 mb-1">Come day</label>
                 <input
                   type="date"
                   value={range?.to ? format(range.to, "yyyy-MM-dd") : ""}
@@ -120,7 +120,7 @@ export function DateRangePicker({ onChange, defaultValue }: DateRangePickerProps
               size="sm"
               onClick={() => setIsOpen(false)}
             >
-              Đóng
+              Close
             </Button>
           </div>
         </div>

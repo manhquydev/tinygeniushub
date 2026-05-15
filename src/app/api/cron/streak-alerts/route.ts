@@ -109,8 +109,8 @@ export async function GET(request: NextRequest) {
 
       await createNotification(userId, {
         type: NotificationType.TIP,
-        title: `\u0110\u1eebng \u0111\u1ec3 ${child.nickname} m\u1ea5t chu\u1ed7i ${streakDays} ng\u00e0y! \u{1F525}`,
-        message: `B\u00e9 ch\u01b0a h\u1ecdc h\u00f4m nay. Ch\u1ec9 c\u1ea7n 5 ph\u00fat l\u00e0 gi\u1eef \u0111\u01b0\u1ee3c chu\u1ed7i ${streakDays} ng\u00e0y li\u00ean ti\u1ebfp r\u1ed3i!`,
+        title: `Help ${child.nickname} keep a ${streakDays}-day streak! \u{1F525}`,
+        message: `${child.nickname} has not studied today. Five minutes is enough to keep the streak going.`,
         href,
       });
       alertsCreated += 1;

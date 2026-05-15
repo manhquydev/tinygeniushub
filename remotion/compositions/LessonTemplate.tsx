@@ -39,7 +39,7 @@ export function LessonTemplate({ title, variant, sequence }: LessonTemplateProps
       {/* Outro farewell card */}
       <Sequence from={introFrames + contentFrames} durationInFrames={outroFrames}>
         <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div style={{ fontSize: 36, color: "#1e3a8a" }}>Hẹn gặp lại!</div>
+          <div style={{ fontSize: 36, color: "#1e3a8a" }}>See you soon!</div>
         </AbsoluteFill>
       </Sequence>
     </AbsoluteFill>

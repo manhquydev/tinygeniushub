@@ -1,12 +1,18 @@
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 import { AuthSplitShell } from "@/components/auth-split-shell";
 import { ResetPasswordForm } from "@/components/reset-password-form";
 
-export default function ResetPasswordPage() {
+export default async function ResetPasswordPage() {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+
   return (
     <AuthSplitShell
-      badge="Đặt lại mật khẩu"
-      title="Cập nhật mật khẩu mới để quay lại bảng điều khiển"
-      description="Sau khi hoàn tất, bạn có thể đăng nhập lại và tiếp tục theo dõi lộ trình học tập của bé."
+      badge={translate("auth.resetPassword.badge", undefined, locale)}
+      title={translate("auth.resetPassword.title", undefined, locale)}
+      description={translate("auth.resetPassword.description", undefined, locale)}
       actionProp="magic"
       backgroundImageSrc="/images/bg/bg_course_space_exploration.png"
       stickerSrc="/kisu-assets/stickers/sticker_book.png"

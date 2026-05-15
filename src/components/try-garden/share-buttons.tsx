@@ -70,7 +70,7 @@ export function ShareButtons() {
         gap: "0.75rem",
         zIndex: 100,
       }}
-      aria-label="Chia sẻ"
+      aria-label="Share"
     >
       {/* Facebook Share */}
       <button
@@ -89,8 +89,8 @@ export function ShareButtons() {
           boxShadow: "0 4px 12px rgba(24, 119, 242, 0.4)",
           transition: "transform 0.2s, box-shadow 0.2s",
         }}
-        aria-label="Chia sẻ lên Facebook"
-        title="Chia sẻ lên Facebook"
+        aria-label="Share on Facebook"
+        title="Share on Facebook"
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = "scale(1.1)";
           e.currentTarget.style.boxShadow = "0 6px 16px rgba(24, 119, 242, 0.6)";
@@ -122,8 +122,8 @@ export function ShareButtons() {
             : "0 4px 12px rgba(107, 114, 128, 0.4)",
           transition: "all 0.2s",
         }}
-        aria-label={copied ? "Đã sao chép" : "Sao chép liên kết"}
-        title={copied ? "Đã sao chép!" : "Sao chép liên kết"}
+        aria-label={copied ? "Copied" : "Copy link"}
+        title={copied ? "Copied!" : "Copy link"}
         onMouseEnter={(e) => {
           if (!copied) {
             e.currentTarget.style.transform = "scale(1.1)";

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Nunito } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import { AnalyticsByConsent } from "@/components/legal/analytics-by-consent";
 import { CookieConsentBanner } from "@/components/legal/cookie-consent-banner";
 import "./globals.css";
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | TinyGeniusHub",
   },
   description:
-    "Learning Journey OS cho phụ huynh có con 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ.",
+    "Learning Journey OS for parents of children ages 2-6. Fifteen minutes a day, with visible progress parents can trust.",
   metadataBase: new URL("https://www.tinygeniushubvn.tech"),
   robots: {
     index: true,
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     siteName: "TinyGeniusHub",
-    locale: "vi_VN",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
@@ -56,10 +58,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="vi">
+    <html lang={locale}>
       <body className={`${mainFont.variable} ${headingFont.variable}`}>
-        {children}
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+          <AnalyticsByConsent ga4Id={GA4_ID} fbPixelId={FB_PIXEL_ID} clarityProjectId={CLARITY_PROJECT_ID} />
+          <CookieConsentBanner />
+        </NextIntlClientProvider>
 
         {/* Service Worker */}
         <script
@@ -68,8 +77,6 @@ export default async function RootLayout({
           }}
         />
 
-        <AnalyticsByConsent ga4Id={GA4_ID} fbPixelId={FB_PIXEL_ID} clarityProjectId={CLARITY_PROJECT_ID} />
-        <CookieConsentBanner />
       </body>
     </html>
   );

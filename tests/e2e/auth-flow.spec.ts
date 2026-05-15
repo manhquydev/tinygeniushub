@@ -34,7 +34,7 @@ test("user can login to parent dashboard and logout successfully", async ({ page
     <main>
       <h1>Parent Dashboard Mock</h1>
       <form action="/api/auth/logout" method="post">
-        <button type="submit">Đăng xuất</button>
+        <button type="submit">Sign out</button>
       </form>
     </main>
   </body>
@@ -62,7 +62,7 @@ test("user can login to parent dashboard and logout successfully", async ({ page
 
   await expect.poll(() => loginRequestCount).toBe(1);
   await expect.poll(() => dashboardNavigationCount).toBeGreaterThan(0);
-  await expect(page.locator("text=Email hoặc mật khẩu chưa đúng.")).toHaveCount(0);
+  await expect(page.locator("text=Email or password is incorrect.")).toHaveCount(0);
 
   const logoutApiResponse = await page.request.post("/api/auth/logout", {
     headers: {

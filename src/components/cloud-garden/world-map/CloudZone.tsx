@@ -10,7 +10,7 @@
  *
  * Props:
  *  - zone      : subject identifier
- *  - label     : Vietnamese display name
+ *  - label     : English display name
  *  - isToday   : highlights with golden glow (today's recommended zone)
  *  - progress  : 0–1 for the SVG progress ring around the bubble
  *  - isLocked  : disables interaction
@@ -29,12 +29,12 @@ const ZONE_META: Record<
   GardenZone,
   { accent: string; bg: string; bubbleFrom: string; bubbleTo: string; label: string; floatDur: string; floatDelay: string }
 > = {
-  math:    { accent: "#F59E0B", bg: "#FFFBEB", bubbleFrom: "#FEF9C3", bubbleTo: "#FDE68A",  label: "Toán",     floatDur: "4.2s", floatDelay: "0s" },
-  phonics: { accent: "#0EA5E9", bg: "#EFF6FF", bubbleFrom: "#BAE6FD", bubbleTo: "#7DD3FC",  label: "Tiếng Anh", floatDur: "4.8s", floatDelay: "-1.5s" },
-  art:     { accent: "#F97316", bg: "#FFF7ED", bubbleFrom: "#FED7AA", bubbleTo: "#FDBA74",  label: "Kỹ năng",  floatDur: "5.1s", floatDelay: "-0.8s" },
-  music:   { accent: "#EC4899", bg: "#FDF2F8", bubbleFrom: "#FBCFE8", bubbleTo: "#F9A8D4",  label: "Âm nhạc",  floatDur: "4.6s", floatDelay: "-2.1s" },
-  story:   { accent: "#10B981", bg: "#F0FDF4", bubbleFrom: "#A7F3D0", bubbleTo: "#6EE7B7",  label: "Kể chuyện",floatDur: "5.4s", floatDelay: "-3s" },
-  today:   { accent: "#F59E0B", bg: "#fffbeb", bubbleFrom: "#FEF08A", bubbleTo: "#FDE047",  label: "Hôm nay!",  floatDur: "3.8s", floatDelay: "-0.4s" },
+  math:    { accent: "#F59E0B", bg: "#FFFBEB", bubbleFrom: "#FEF9C3", bubbleTo: "#FDE68A",  label: "Maths",     floatDur: "4.2s", floatDelay: "0s" },
+  phonics: { accent: "#0EA5E9", bg: "#EFF6FF", bubbleFrom: "#BAE6FD", bubbleTo: "#7DD3FC",  label: "English", floatDur: "4.8s", floatDelay: "-1.5s" },
+  art:     { accent: "#F97316", bg: "#FFF7ED", bubbleFrom: "#FED7AA", bubbleTo: "#FDBA74",  label: "Skill",  floatDur: "5.1s", floatDelay: "-0.8s" },
+  music:   { accent: "#EC4899", bg: "#FDF2F8", bubbleFrom: "#FBCFE8", bubbleTo: "#F9A8D4",  label: "Music",  floatDur: "4.6s", floatDelay: "-2.1s" },
+  story:   { accent: "#10B981", bg: "#F0FDF4", bubbleFrom: "#A7F3D0", bubbleTo: "#6EE7B7",  label: "Tell stories",floatDur: "5.4s", floatDelay: "-3s" },
+  today:   { accent: "#F59E0B", bg: "#fffbeb", bubbleFrom: "#FEF08A", bubbleTo: "#FDE047",  label: "Today!",  floatDur: "3.8s", floatDelay: "-0.4s" },
 };
 
 /** Custom SVG glyph per zone — hand-crafted, monochrome, on colored background */
@@ -197,7 +197,7 @@ export function CloudZone({
       }
       role="button"
       tabIndex={isLocked ? -1 : 0}
-      aria-label={`${displayLabel}${isLocked ? " (kh\u00f3a)" : ""}${isHighlighted ? " - H\u00f4m nay!" : ""}`}
+      aria-label={`${displayLabel}${isLocked ? " (locked)" : ""}${isHighlighted ? " - Today!" : ""}`}
       aria-disabled={isLocked}
       onClick={handleClick}
       onKeyDown={(e) => e.key === "Enter" || e.key === " " ? handleClick() : undefined}

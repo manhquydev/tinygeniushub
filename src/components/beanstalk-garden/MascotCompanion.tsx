@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 export function MascotCompanion() {
-  const [message, setMessage] = useState("Cùng leo lên Mây nào!");
+  const [message, setMessage] = useState("Let's climb to the Clouds!");
 
   useEffect(() => {
     // Randomly change message every 10 seconds to keep it lively
     const messages = [
-      "Bạn giỏi quá!",
-      "Nhấn vào ngôi sao để học nhé!",
-      "Cố lên, sắp lên tới đỉnh rồi!",
-      "Khu vườn trên mây thật đẹp!",
+      "You are so good!",
+      "Click on the star to learn!",
+      "Come on, you're almost to the top!",
+      "The cloud garden is beautiful!",
     ];
     let i = 0;
     const interval = setInterval(() => {
@@ -36,7 +36,7 @@ export function MascotCompanion() {
         }}
         className="w-20 h-20 bg-indigo-100 rounded-full border-4 border-indigo-400 shadow-xl flex items-center justify-center text-5xl pointer-events-auto cursor-pointer"
         whileHover={{ scale: 1.1, rotate: [0, -10, 10, 0] }}
-        onClick={() => setMessage("Cáooo! Bạn gọi mình à?")}
+        onClick={() => setMessage("Coooo! Are you calling me?")}
       >
         🦉
       </motion.div>

@@ -367,29 +367,29 @@ async function queueConfirmationEmail(parentId: string, packageId: string, subsc
       return;
     }
 
-    const name = parent.displayName?.trim() || "phụ huynh";
+    const name = parent.displayName?.trim() || "parents";
     const appBaseUrl = resolveEmailPublicBaseUrl();
     const manageUrl = `${appBaseUrl}/parent/dashboard?utm_source=email&utm_medium=transactional&utm_campaign=package_subscription_success`;
     const text = [
-      `Xin chào ${name},`,
+      `Hello${name},`,
       "",
-      "Thanh toán gói học đã được xác nhận thành công.",
-      `Gói đã kích hoạt: ${packageInfo.name}`,
-      `Giá gói năm: ${formatVnd(packageInfo.yearlyPrice)} VND`,
-      `Hiệu lực đến: ${formatDateVi(subscription.endDate)}`,
-      `Mã đăng ký: ${subscriptionId}`,
+      "Payment for the course package has been confirmed successfully.",
+      `Activated package:${packageInfo.name}`,
+      `Yearly package price:${formatVnd(packageInfo.yearlyPrice)} VND`,
+      `Valid until:${formatDateVi(subscription.endDate)}`,
+      `Registration code:${subscriptionId}`,
       "",
-      `Xem lộ trình và quản lý gói: ${manageUrl}`,
+      `View roadmap and package management:${manageUrl}`,
       "",
-      "Nếu cần hỗ trợ, bạn có thể phản hồi email này.",
+      "If you need support, you can respond to this email.",
       "",
-      "Trân trọng,",
-      "Đội ngũ TinyGenius Hub",
+      "Best regards,",
+      "TinyGenius Hub Team",
     ].join("\n");
 
     await enqueueTransactionalEmail({
       to: parent.email,
-      subject: `[TinyGenius Hub] Thanh toán thành công: ${packageInfo.name}`,
+      subject: `[TinyGenius Hub] Payment successful:${packageInfo.name}`,
       text,
       tags: [
         { name: "feature", value: "package_subscription_success" },
@@ -438,27 +438,27 @@ async function queueFailureNotification(parentId: string, paymentRecordId: strin
       return;
     }
 
-    const name = parent.displayName?.trim() || "phụ huynh";
+    const name = parent.displayName?.trim() || "parents";
     const appBaseUrl = resolveEmailPublicBaseUrl();
-    const retryUrl = `${appBaseUrl}/pricing?utm_source=email&utm_medium=transactional&utm_campaign=package_subscription_failed`;
+    const retryUrl = `${appBaseUrl}/courses?utm_source=email&utm_medium=transactional&utm_campaign=package_subscription_failed`;
     const supportEmail = env.REPORT_EMAIL_REPLY_TO ?? "support@tinygeniushubvn.tech";
     const text = [
-      `Xin chào ${name},`,
+      `Hello${name},`,
       "",
-      "Chúng tôi chưa thể xác nhận thanh toán gói học của bạn.",
-      `Số tiền: ${formatVnd(payment.amountVnd)} ${payment.currency}`,
-      `Mã giao dịch: ${payment.providerTransactionId}`,
+      "We cannot confirm payment for your package yet.",
+      `Amount:${formatVnd(payment.amountVnd)} ${payment.currency}`,
+      `Transaction code:${payment.providerTransactionId}`,
       "",
-      `Bạn có thể thử thanh toán lại tại: ${retryUrl}`,
-      `Nếu cần hỗ trợ, vui lòng liên hệ: ${supportEmail}`,
+      `You can try payment again at:${retryUrl}`,
+      `If you need support, please contact:${supportEmail}`,
       "",
-      "Trân trọng,",
-      "Đội ngũ TinyGenius Hub",
+      "Best regards,",
+      "TinyGenius Hub Team",
     ].join("\n");
 
     await enqueueTransactionalEmail({
       to: parent.email,
-      subject: "[TinyGenius Hub] Thanh toán chưa thành công",
+      subject: "[TinyGenius Hub] Payment has not been successful",
       text,
       tags: [
         { name: "feature", value: "package_subscription_failed" },

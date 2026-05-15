@@ -1,8 +1,8 @@
 ﻿// @vitest-environment jsdom
 
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const playPopMock = vi.fn();
 const playTingMock = vi.fn();
@@ -29,9 +29,36 @@ vi.mock("motion/react", () => ({
   domAnimation: {},
 }));
 
-vi.mock("motion/react-m", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("motion/react-m")>();
-  return actual;
+const motionOnlyProps = new Set([
+  "animate",
+  "exit",
+  "initial",
+  "layout",
+  "onHoverStart",
+  "onTapStart",
+  "transition",
+  "variants",
+  "whileHover",
+  "whileTap",
+]);
+
+function createMotionElement(tag: keyof React.JSX.IntrinsicElements) {
+  function MotionElement({ children, ...props }: React.HTMLAttributes<HTMLElement> & { children?: React.ReactNode }) {
+    const domProps = Object.fromEntries(Object.entries(props).filter(([key]) => !motionOnlyProps.has(key)));
+    return React.createElement(tag, domProps, children);
+  }
+
+  MotionElement.displayName = `MockMotion.${tag}`;
+  return MotionElement;
+}
+
+vi.mock("motion/react-m", () => {
+  return {
+    button: createMotionElement("button"),
+    div: createMotionElement("div"),
+    header: createMotionElement("header"),
+    section: createMotionElement("section"),
+  };
 });
 
 vi.mock("@/lib/audio-utils", () => ({
@@ -43,6 +70,10 @@ vi.mock("@/lib/audio-utils", () => ({
 }));
 
 describe("KidMissionPanel", () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
     vi.stubGlobal(
@@ -55,8 +86,8 @@ describe("KidMissionPanel", () => {
             lessons: [
               {
                 id: "lesson-2",
-                title: "To mau chu cai",
-                objective: "Luyen tap nhan dien chu cai",
+                title: "Color the alphabet",
+                objective: "Practice letter recognition",
                 estimatedMinutes: 12,
               },
             ],
@@ -72,25 +103,25 @@ describe("KidMissionPanel", () => {
     render(
       <KidMissionPanel
         childrenProfiles={[
-          { id: "child-1", nickname: "Be Na" },
-          { id: "child-2", nickname: "Be Bin" },
+          { id: "child-1", nickname: "Nina" },
+          { id: "child-2", nickname: "Ben" },
         ]}
         initialChildId="child-1"
         initialLessons={[
           {
             id: "lesson-1",
-            title: "Học chữ A",
-            objective: "Nhận diện chữ A",
+            title: "Learn letter A",
+            objective: "Identify the letter A",
             estimatedMinutes: 10,
           },
         ]}
       />,
     );
 
-    expect(screen.getByText("Học chữ A")).toBeInTheDocument();
-    expect(screen.getByText("Nhận diện chữ A")).toBeInTheDocument();
-    expect(screen.getByText(/10\s*ph.u?t/i)).toBeInTheDocument();
-    expect(screen.getByText("Be Na")).toBeInTheDocument();
+    expect(screen.getByText("Learn letter A")).toBeInTheDocument();
+    expect(screen.getByText("Identify the letter A")).toBeInTheDocument();
+    expect(screen.getByText(/10\s*minutes/i)).toBeInTheDocument();
+    expect(screen.getByText("Nina")).toBeInTheDocument();
   });
 
   it("starts lesson when start button is clicked", async () => {
@@ -98,23 +129,23 @@ describe("KidMissionPanel", () => {
 
     render(
       <KidMissionPanel
-        childrenProfiles={[{ id: "child-1", nickname: "Be Na" }]}
+        childrenProfiles={[{ id: "child-1", nickname: "Nina" }]}
         initialChildId="child-1"
         initialLessons={[
           {
             id: "lesson-1",
-            title: "Học chữ A",
-            objective: "Nhận diện chữ A",
+            title: "Learn letter A",
+            objective: "Identify the letter A",
             estimatedMinutes: 10,
           },
         ]}
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /bat dau bai hoc|bắt đầu bài học/i }));
+    fireEvent.click(screen.getByRole("button", { name: /start the lesson/i }));
 
     await waitFor(() => {
-      expect(screen.getByText(/bắt đầu học chữ a|bat dau hoc chu a/i)).toBeInTheDocument();
+      expect(screen.getByText(/starting learn letter a/i)).toBeInTheDocument();
     });
   });
 
@@ -124,33 +155,33 @@ describe("KidMissionPanel", () => {
     render(
       <KidMissionPanel
         childrenProfiles={[
-          { id: "child-1", nickname: "Be Na" },
-          { id: "child-2", nickname: "Be Bin" },
+          { id: "child-1", nickname: "Nina" },
+          { id: "child-2", nickname: "Ben" },
         ]}
         initialChildId="child-1"
         initialLessons={[
           {
             id: "lesson-1",
-            title: "Học chữ A",
-            objective: "Nhận diện chữ A",
+            title: "Learn letter A",
+            objective: "Identify the letter A",
             estimatedMinutes: 10,
           },
         ]}
       />,
     );
 
-    const mascotButton = screen.getByRole("button", { name: /mascot hướng dẫn/i });
+    const mascotButton = screen.getByRole("button", { name: /guide mascot/i });
     fireEvent.click(mascotButton);
     expect(playYayMock).toHaveBeenCalledTimes(1);
 
-    fireEvent.click(screen.getByRole("button", { name: "Be Na" }));
-    const childBinEntry = await screen.findByText("Be Bin");
+    fireEvent.click(screen.getByRole("button", { name: "Nina" }));
+    const childBinEntry = await screen.findByText("Ben");
     const childBinWrapper = childBinEntry.closest("div");
     const childBinButton = childBinWrapper?.querySelector("button");
     expect(childBinButton).not.toBeNull();
 
     if (!childBinButton) {
-      throw new Error("Expected child switch button for Be Bin");
+      throw new Error("Expected child switch button for Ben");
     }
 
     fireEvent.click(childBinButton);

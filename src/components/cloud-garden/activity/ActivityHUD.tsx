@@ -54,12 +54,12 @@ export function ActivityHUD({
       </div>
 
       {/* Level badge */}
-      <span className="cg-hud__level" aria-label={`C\u1ea5p \u0111\u1ed9 ${level}`}>
+      <span className="cg-hud__level" aria-label={`Level ${level}`}>
         {`Lv.${level}`}
       </span>
 
       {/* Stars */}
-      <div className="cg-hud__stars" aria-label={`${starsTotal} sao`}>
+      <div className="cg-hud__stars" aria-label={`${starsTotal} stars`}>
         {/* Inline star SVG */}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <polygon
@@ -79,7 +79,7 @@ export function ActivityHUD({
         <CloudProgressBar
           total={stepTotal}
           filled={stepCurrent}
-          ariaLabel={`B\u01b0\u1edbc ${stepCurrent} / ${stepTotal}`}
+          ariaLabel={`Step ${stepCurrent} / ${stepTotal}`}
         />
       </div>
 

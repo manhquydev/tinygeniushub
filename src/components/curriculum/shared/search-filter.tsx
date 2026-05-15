@@ -19,7 +19,7 @@ interface SearchBarProps {
 export function SearchBar({
   value,
   onChange,
-  placeholder = "Tìm bài học...",
+  placeholder = "Find lessons...",
   className,
 }: SearchBarProps) {
   return (
@@ -102,10 +102,10 @@ export function FilterChips({
           onClick={() => onRemoveFilter("status", "all")}
         >
           {filters.status === "completed"
-            ? "Hoàn thành"
+            ? "Complete"
             : filters.status === "not_started"
-            ? "Chưa bắt đầu"
-            : "Đang học"}
+            ? "Haven't started yet"
+            : "Studying"}
           <X className="ml-1 h-3 w-3" />
         </Badge>
       )}
@@ -127,7 +127,7 @@ export function FilterChips({
         className="h-7 text-slate-500 hover:text-slate-700"
         onClick={onClearAll}
       >
-        Xóa tất cả
+        Delete all
       </Button>
     </div>
   );
@@ -163,7 +163,7 @@ export function FilterPanel({
   return (
     <div className="space-y-4 p-4 bg-slate-50 rounded-xl">
       <div>
-        <h4 className="text-sm font-semibold mb-2 text-slate-700">Lớp</h4>
+        <h4 className="text-sm font-semibold mb-2 text-slate-700">Class</h4>
         <div className="flex flex-wrap gap-2">
           {availableGrades.map((grade) => (
             <Button
@@ -180,7 +180,7 @@ export function FilterPanel({
       </div>
 
       <div>
-        <h4 className="text-sm font-semibold mb-2 text-slate-700">Môn học</h4>
+        <h4 className="text-sm font-semibold mb-2 text-slate-700">Subject</h4>
         <div className="flex flex-wrap gap-2">
           {availableSubjects.map((subject) => (
             <Button
@@ -207,7 +207,7 @@ export function FilterPanel({
       </div>
 
       <div>
-        <h4 className="text-sm font-semibold mb-2 text-slate-700">Trạng thái</h4>
+        <h4 className="text-sm font-semibold mb-2 text-slate-700">Status</h4>
         <select
           value={filters.status}
           onChange={(e) =>
@@ -218,10 +218,10 @@ export function FilterPanel({
           }
           className="w-full px-3 py-2 rounded-md border border-slate-200 text-sm"
         >
-          <option value="all">Tất cả</option>
-          <option value="not_started">Chưa bắt đầu</option>
-          <option value="in_progress">Đang học</option>
-          <option value="completed">Hoàn thành</option>
+          <option value="all">All</option>
+          <option value="not_started">Haven't started yet</option>
+          <option value="in_progress">Studying</option>
+          <option value="completed">Complete</option>
         </select>
       </div>
     </div>

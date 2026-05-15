@@ -34,7 +34,7 @@ export function AdaptiveLearningToggle({ childId, initialEnabled }: AdaptiveLear
 
       const payload = (await response.json()) as PatchResponse;
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.error?.message ?? "Không thể cập nhật trạng thái học thích nghi.");
+        throw new Error(payload.error?.message ?? "Unable to update adaptive learning status.");
       }
 
       setEnabled(nextEnabled);
@@ -42,7 +42,7 @@ export function AdaptiveLearningToggle({ childId, initialEnabled }: AdaptiveLear
       setError(
         requestError instanceof Error
           ? requestError.message
-          : "Có lỗi xảy ra khi cập nhật chế độ học.",
+          : "An error occurred while updating study mode.",
       );
     } finally {
       setLoading(false);
@@ -54,12 +54,12 @@ export function AdaptiveLearningToggle({ childId, initialEnabled }: AdaptiveLear
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-1">
           <h2 className="text-sm font-bold uppercase tracking-[0.08em] text-slate-800">
-            Học thích nghi
+            Learn to adapt
           </h2>
           <p className="text-sm text-slate-600">
             {enabled
-              ? "Đang bật: hệ thống ưu tiên bài học theo năng lực thực tế của bé."
-              : "Đang tắt: bé học theo lộ trình tuần tự mặc định."}
+              ? "On: the system prioritizes lessons according to the child's actual ability."
+              : "Off: baby learns according to the default sequential route."}
           </p>
           {error && <p className="text-xs font-medium text-rose-600">{error}</p>}
         </div>
@@ -76,7 +76,7 @@ export function AdaptiveLearningToggle({ childId, initialEnabled }: AdaptiveLear
           } ${loading ? "cursor-not-allowed opacity-70" : "cursor-pointer"}`}
         >
           <span className="sr-only">
-            {enabled ? "Tắt học thích nghi" : "Bật học thích nghi"}
+            {enabled ? "Turn off adaptive learning" : "Enable adaptive learning"}
           </span>
           <span
             className={`inline-flex h-5 w-5 items-center justify-center rounded-full bg-white shadow transition-transform duration-200 ${

@@ -14,7 +14,7 @@ type ForgotPasswordResponse = {
 };
 
 const DEFAULT_SUCCESS_MESSAGE =
-  "Nếu email tồn tại trong hệ thống, chúng tôi sẽ gửi hướng dẫn đặt lại mật khẩu trong vài phút.";
+  "If the email exists in the system, we'll send password reset instructions within minutes.";
 
 export function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
@@ -43,7 +43,7 @@ export function ForgotPasswordForm() {
 
       const body = (await response.json()) as ForgotPasswordResponse;
       if (!response.ok || !body.ok) {
-        const fallback = "Không thể xử lý yêu cầu đặt lại mật khẩu.";
+        const fallback = "The password reset request could not be processed.";
         const apiMessage = body.error?.message;
         setError(apiMessage && isLikelyEnglishOnlyMessage(apiMessage) ? fallback : apiMessage ?? fallback);
         return;
@@ -54,11 +54,11 @@ export function ForgotPasswordForm() {
       if (submitError instanceof Error) {
         setError(
           isLikelyEnglishOnlyMessage(submitError.message)
-            ? "Không thể xử lý yêu cầu đặt lại mật khẩu."
+            ? "The password reset request could not be processed."
             : submitError.message,
         );
       } else {
-        setError("Không thể xử lý yêu cầu đặt lại mật khẩu.");
+        setError("The password reset request could not be processed.");
       }
     } finally {
       setLoading(false);
@@ -71,14 +71,14 @@ export function ForgotPasswordForm() {
       onSubmit={handleSubmit}
     >
       <header className="grid gap-2">
-        <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-[2rem]">Quên mật khẩu</h2>
+        <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-[2rem]">Forgot password</h2>
         <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-          Nhập email đã đăng ký của phụ huynh. Chúng tôi sẽ gửi liên kết đặt lại mật khẩu tới hộp thư của bạn.
+          Enter parent's registered email. We will send a password reset link to your inbox.
         </p>
       </header>
 
       <label className="grid gap-2 text-sm font-semibold text-slate-700">
-        Email tài khoản
+        Account email
         <input
           className="h-12 rounded-xl border border-slate-300/90 bg-white px-3 text-[0.96rem] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
           type="email"
@@ -97,17 +97,17 @@ export function ForgotPasswordForm() {
         disabled={loading}
         className="solid-button full-width min-h-12 rounded-full text-sm font-bold shadow-[0_14px_28px_rgba(5,150,105,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {loading ? "Đang gửi..." : "Gửi liên kết đặt lại"}
+        {loading ? "Sending..." : "Send reset link"}
       </button>
 
       <div className="flex flex-col gap-3 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
         <Link href="/auth/login" className="font-semibold text-emerald-700 hover:text-emerald-800">
-          Quay lại đăng nhập
+          Return to login
         </Link>
         <p>
-          Chưa có tài khoản?{" "}
+          Don't have an account yet?{" "}
           <Link href="/auth/signup" className="font-bold text-emerald-700 hover:text-emerald-800">
-            Tạo tài khoản
+            Create an account
           </Link>
         </p>
       </div>

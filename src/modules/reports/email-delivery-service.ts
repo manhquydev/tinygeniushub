@@ -24,27 +24,27 @@ export type WeeklyReportEmailPayload = {
 };
 
 function formatDomainName(domain: string): string {
-  if (domain === "MATH") return "Toán";
-  if (domain === "ENGLISH_PHONICS") return "Tiếng Anh Phonics";
+  if (domain === "MATH") return "Maths";
+  if (domain === "ENGLISH_PHONICS") return "English Phonics";
   return domain;
 }
 
 function formatSkillProgressSection(progress: SkillProgressByDomain): string {
   const lines: string[] = [];
   lines.push(`  ${formatDomainName(progress.domain)}:`);
-  lines.push(`    Tổng kỹ năng: ${progress.totalSkills}`);
-  lines.push(`    Thành thạo: ${progress.masteredCount} | Khá: ${progress.proficientCount} | Đang học: ${progress.developingCount}`);
-  lines.push(`    Mức độ chung: ${Math.round(progress.overallMastery * 100)}%`);
+  lines.push(`Total skills: ${progress.totalSkills}`);
+  lines.push(`Proficiency: ${progress.masteredCount} | Rather: ${progress.proficientCount} | Currently studying: ${progress.developingCount}`);
+  lines.push(`General level: ${Math.round(progress.overallMastery * 100)}%`);
 
   if (progress.topImprovements.length > 0) {
-    lines.push("    Tiến bộ nổi bật:");
+    lines.push("Outstanding progress:");
     for (const imp of progress.topImprovements) {
       lines.push(`      - ${imp.skillNameVi}: ${Math.round(imp.masteryBefore * 100)}% → ${Math.round(imp.masteryAfter * 100)}%`);
     }
   }
 
   if (progress.needsAttention.length > 0) {
-    lines.push("    Cần lưu ý:");
+    lines.push("It should be noted:");
     for (const att of progress.needsAttention) {
       lines.push(`      - ${att.skillNameVi} (${Math.round(att.mastery * 100)}%): ${att.reason}`);
     }
@@ -56,8 +56,8 @@ function formatSkillProgressSection(progress: SkillProgressByDomain): string {
 /** Build email text body including adaptive skill data when available. */
 export function buildWeeklyReportEmailText(report: WeeklyReportEmailPayload): string {
   const lines: string[] = [
-    `Báo cáo tuần đã sẵn sàng cho bé ${report.child.nickname}.`,
-    `Mã báo cáo: ${report.id}`,
+    `Weekly report is ready for your baby ${report.child.nickname}.`,
+    `Report code: ${report.id}`,
   ];
 
   const summary = report.skillsSummary as Record<string, unknown> | null | undefined;
@@ -65,7 +65,7 @@ export function buildWeeklyReportEmailText(report: WeeklyReportEmailPayload): st
 
   if (adaptive && adaptive.skillsProgress?.length > 0) {
     lines.push("");
-    lines.push("--- Tiến độ kỹ năng ---");
+    lines.push("--- Skill progress ---");
     for (const progress of adaptive.skillsProgress) {
       lines.push(formatSkillProgressSection(progress));
     }
@@ -73,12 +73,12 @@ export function buildWeeklyReportEmailText(report: WeeklyReportEmailPayload): st
     if (adaptive.reviewStats) {
       const { scheduled, completed, accuracy } = adaptive.reviewStats;
       lines.push("");
-      lines.push(`Ôn tập: ${completed}/${scheduled} bài | Độ chính xác: ${Math.round(accuracy * 100)}%`);
+      lines.push(`Review: ${completed}/${scheduled} articles | Accuracy: ${Math.round(accuracy * 100)}%`);
     }
   }
 
   lines.push("");
-  lines.push("Đăng nhập hệ thống để xem chi tiết tiến độ học tập.");
+  lines.push("Log in to the system to view detailed study progress.");
 
   return lines.join("\n");
 }
@@ -105,7 +105,7 @@ export function canSendWeeklyEmail(input: EmailEligibilityInput) {
 
 async function sendWeeklyReportEmail(report: WeeklyReportEmailPayload) {
   const to = env.REPORT_EMAIL_TO_OVERRIDE ?? report.child.parent.email;
-  const subject = `Báo cáo tuần của ${report.child.nickname}`;
+  const subject = `Weekly report of ${report.child.nickname}`;
   const text = buildWeeklyReportEmailText(report);
 
   return sendTransactionalEmail({

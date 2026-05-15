@@ -239,6 +239,11 @@ server {
     add_header X-XSS-Protection "1; mode=block" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 
+    # Prevent sporadic 502s when upstream response headers are large.
+    proxy_buffer_size 16k;
+    proxy_buffers 8 16k;
+    proxy_busy_buffers_size 32k;
+
     # Gzip compression
     gzip on;
     gzip_vary on;

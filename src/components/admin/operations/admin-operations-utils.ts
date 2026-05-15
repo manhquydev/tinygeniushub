@@ -27,15 +27,15 @@ export function getPaymentStatusPillClass(status: string) {
 export function getPaymentStatusLabel(status: string) {
   switch (status) {
     case "ALL":
-      return "Tất cả";
+      return "All";
     case "PENDING":
-      return "Chờ xử lý";
+      return "Waiting for processing";
     case "SUCCEEDED":
-      return "Thành công";
+      return "Success";
     case "FAILED":
-      return "Thất bại";
+      return "Failure";
     case "REFUNDED":
-      return "Hoàn tiền";
+      return "Refund";
     default:
       return status;
   }
@@ -68,15 +68,15 @@ export function normalizeLimit(limitRaw: string) {
 export function getWebhookStatusLabel(status: string) {
   switch (status) {
     case "ALL":
-      return "Tất cả";
+      return "All";
     case "RECEIVED":
-      return "Đã nhận";
+      return "Received";
     case "PROCESSED":
-      return "Đã xử lý";
+      return "Processed";
     case "IGNORED":
-      return "Bỏ qua";
+      return "Skip";
     case "FAILED":
-      return "Thất bại";
+      return "Failure";
     default:
       return status;
   }
@@ -85,21 +85,21 @@ export function getWebhookStatusLabel(status: string) {
 export function getReconcileActionLabel(action: ReconcileAction) {
   switch (action) {
     case "MARK_SUCCEEDED_AND_SYNC":
-      return "Đánh dấu thành công + đồng bộ ghi danh";
+      return "Mark success + sync registration";
     case "SYNC_ENROLLMENTS":
-      return "Đồng bộ ghi danh (giữ trạng thái hiện tại)";
+      return "Enrollment sync (keep current status)";
     case "MARK_FAILED":
-      return "Đánh dấu thất bại";
+      return "Mark failure";
     case "MARK_PENDING":
-      return "Đánh dấu chờ xử lý";
+      return "Mark pending";
     default:
       return action;
   }
 }
 
 export function getWebhookResolutionLabel(value: Exclude<ReconcileWebhookResolution, "NONE">) {
-  if (value === "PROCESSED") return "Đã xử lý";
-  return "Bỏ qua";
+  if (value === "PROCESSED") return "Processed";
+  return "Skip";
 }
 
 export function matchWebhookToPayment(payment: PaymentRow, webhook: WebhookRow) {

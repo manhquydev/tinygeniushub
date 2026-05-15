@@ -14,7 +14,7 @@ function resolveUserLabel(name: string | null | undefined, email: string) {
     return trimmedName;
   }
   const [localPart] = email.split("@");
-  return localPart || "bạn";
+  return localPart || "you";
 }
 
 function sanitizeUrlForEmail(rawUrl: string) {
@@ -56,19 +56,19 @@ export const auth = betterAuth({
       const resetPasswordUrl = resolveResetPasswordPageUrl(url);
       const userLabel = resolveUserLabel(user.name, user.email);
       const text = [
-        `Xin chào ${userLabel},`,
+        `Hello${userLabel},`,
         "",
-        "Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản TinyGenius Hub của bạn.",
-        "Để tiếp tục, vui lòng truy cập liên kết sau:",
+        "We've received a request to reset your password for your TinyGenius Hub account.",
+        "To continue, please visit the following link:",
         resetPasswordUrl,
         "",
-        "Nếu bạn không yêu cầu đặt lại mật khẩu, bạn có thể bỏ qua email này.",
-        "Vì lý do bảo mật, liên kết có thời hạn sử dụng ngắn.",
+        "If you did not request a password reset, you can ignore this email.",
+        "For security reasons, links have a short expiration date.",
       ].join("\n");
 
       await enqueueTransactionalEmail({
         to: user.email,
-        subject: "Đặt lại mật khẩu tài khoản TinyGenius Hub",
+        subject: "Reset TinyGenius Hub account password",
         text,
         tags: [{ name: "feature", value: "forgot_password" }],
       });

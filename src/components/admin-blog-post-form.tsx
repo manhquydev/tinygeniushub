@@ -69,17 +69,17 @@ function toDatetimeLocal(dateValue?: Date | string | null) {
 function getPostTypeLabel(type: BlogPostFormValues["type"]) {
   switch (type) {
     case "ARTICLE":
-      return "Bài viết";
+      return "Article";
     case "TIP":
-      return "Mẹo ngắn";
+      return "Short tip";
     case "NEWS":
-      return "Tin tức";
+      return "News";
     case "GUIDE":
-      return "Hướng dẫn";
+      return "Instruct";
     case "RESEARCH":
-      return "Nghiên cứu";
+      return "Study";
     case "STORY":
-      return "Câu chuyện";
+      return "Story";
     default:
       return type;
   }
@@ -88,15 +88,15 @@ function getPostTypeLabel(type: BlogPostFormValues["type"]) {
 function getAgeGroupLabel(ageGroup: BlogPostFormValues["ageGroup"]) {
   switch (ageGroup) {
     case "UNDER_3":
-      return "Dưới 3 tuổi";
+      return "Under 3 years old";
     case "AGE_3_5":
-      return "3 - 5 tuổi";
+      return "3 - 5 years old";
     case "AGE_6_8":
-      return "6 - 8 tuổi";
+      return "6 - 8 years old";
     case "AGE_9_12":
-      return "9 - 12 tuổi";
+      return "9 - 12 years old";
     case "ALL_AGES":
-      return "Mọi độ tuổi";
+      return "All ages";
     default:
       return ageGroup;
   }
@@ -105,15 +105,15 @@ function getAgeGroupLabel(ageGroup: BlogPostFormValues["ageGroup"]) {
 function getPostStatusLabel(status: BlogPostFormValues["status"]) {
   switch (status) {
     case "DRAFT":
-      return "Nháp";
+      return "Draft";
     case "REVIEW":
-      return "Chờ duyệt";
+      return "Waiting for approval";
     case "PUBLISHED":
-      return "Đã xuất bản";
+      return "Published";
     case "SCHEDULED":
-      return "Lên lịch";
+      return "Schedule";
     case "ARCHIVED":
-      return "Lưu trữ";
+      return "Storage";
     default:
       return status;
   }
@@ -176,7 +176,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
         setAuthorId((current) => current || authorsPayload.authors[0]?.id || "");
       } catch {
         if (active) {
-          setFormError("Không thể tải danh mục hoặc tác giả.");
+          setFormError("Unable to load categories or authors.");
         }
       } finally {
         if (active) {
@@ -250,7 +250,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
       router.push("/admin/blog/posts");
       router.refresh();
     } catch {
-      setFormError("Không thể lưu bài viết. Vui lòng kiểm tra dữ liệu và thử lại.");
+      setFormError("Unable to save post. Please check your data and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -274,10 +274,10 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
         throw new Error("PUBLISH_FAILED");
       }
 
-      setPublishMessage("Đã xuất bản bài viết.");
+      setPublishMessage("Article published.");
       router.refresh();
     } catch {
-      setFormError("Không thể xuất bản ngay lúc này.");
+      setFormError("Unable to publish at this time.");
     } finally {
       setSubmitting(false);
     }
@@ -291,7 +291,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
     setMetaDescVi(snapshot.metaDescVi ?? "");
     setCoverImageUrl(snapshot.coverImageUrl ?? "");
     setStatus(snapshot.status);
-    setPublishMessage("Đã nạp nội dung từ phiên bản đã chọn. Hãy kiểm tra rồi bấm lưu.");
+    setPublishMessage("Loaded content from the selected instance. Check it out and then click save.");
   }
 
   return (
@@ -304,24 +304,24 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
     >
       <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-5 shadow-sm sm:p-6">
         <section className="space-y-3">
-          <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Thông tin cơ bản</h2>
+          <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Basic information</h2>
           <div className="grid gap-3 md:grid-cols-2">
             <div className="grid gap-1.5">
-              <Label htmlFor="post-title">Tiêu đề</Label>
+              <Label htmlFor="post-title">Title</Label>
               <Input id="post-title" value={titleVi} onChange={(e) => setTitleVi(e.target.value)} onBlur={handleTitleBlur} required />
             </div>
             <div className="grid gap-1.5">
               <Label htmlFor="post-slug">Slug</Label>
               <Input id="post-slug" value={slug} onChange={(e) => setSlug(e.target.value)} required />
-              <p className="text-xs text-[var(--admin-text-secondary)]">Tự tạo từ tiêu đề</p>
+              <p className="text-xs text-[var(--admin-text-secondary)]">Create your own from the title</p>
             </div>
             <div className="grid gap-1.5 md:col-span-2">
-              <Label htmlFor="post-excerpt">Mô tả ngắn</Label>
+              <Label htmlFor="post-excerpt">Short description</Label>
               <Textarea id="post-excerpt" value={excerptVi} onChange={(e) => setExcerptVi(e.target.value)} maxLength={160} required className="min-h-24" />
-              <p className="text-xs text-[var(--admin-text-secondary)]">Còn lại: {excerptRemaining} ký tự</p>
+              <p className="text-xs text-[var(--admin-text-secondary)]">Remaining: {excerptRemaining} characters</p>
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="post-type">Loại bài viết</Label>
+              <Label htmlFor="post-type">Post type</Label>
               <Select value={type} onValueChange={(v) => setType(v as BlogPostFormValues["type"])}>
                 <SelectTrigger id="post-type"><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -332,7 +332,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
               </Select>
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="post-age">Độ tuổi</Label>
+              <Label htmlFor="post-age">Age</Label>
               <Select value={ageGroup} onValueChange={(v) => setAgeGroup(v as BlogPostFormValues["ageGroup"])}>
                 <SelectTrigger id="post-age"><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -346,10 +346,10 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Phân loại</h2>
+          <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Classify</h2>
           <div className="grid gap-3 md:grid-cols-2">
             <div className="grid gap-1.5">
-              <Label htmlFor="post-category">Danh mục</Label>
+              <Label htmlFor="post-category">Category</Label>
               <Select value={categoryId} onValueChange={setCategoryId} disabled={loadingOptions}>
                 <SelectTrigger id="post-category"><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -358,7 +358,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
               </Select>
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="post-author">Tác giả</Label>
+              <Label htmlFor="post-author">Author</Label>
               <Select value={authorId} onValueChange={setAuthorId} disabled={loadingOptions}>
                 <SelectTrigger id="post-author"><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -367,21 +367,21 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
               </Select>
             </div>
             <div className="grid gap-1.5 md:col-span-2">
-              <Label htmlFor="post-cover">URL ảnh bìa</Label>
+              <Label htmlFor="post-cover">Cover image URL</Label>
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-                <Input id="post-cover" type="url" value={coverImageUrl} onChange={(e) => setCoverImageUrl(e.target.value)} placeholder="URL ảnh bìa (tự nhập hoặc upload)" />
+                <Input id="post-cover" type="url" value={coverImageUrl} onChange={(e) => setCoverImageUrl(e.target.value)} placeholder="Cover image URL (enter or upload)" />
                 <BlogImageUploadButton onUpload={(publicUrl) => setCoverImageUrl(publicUrl)} />
               </div>
             </div>
             <div className="grid gap-1.5 md:col-span-2">
-              <Label htmlFor="post-tags">Thẻ (phân tách bằng dấu phẩy)</Label>
+              <Label htmlFor="post-tags">Tags (separated by commas)</Label>
               <Textarea id="post-tags" value={tagsInput} onChange={(e) => setTagsInput(e.target.value)} className="min-h-20" />
             </div>
           </div>
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Nội dung</h2>
+          <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Content</h2>
           <div className="space-y-1 text-sm font-semibold text-[var(--admin-text-secondary)]">
             <span>Markdown</span>
             <BlogEditorSplit value={contentMarkdown} onChange={setContentMarkdown} />
@@ -392,23 +392,23 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
           <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">SEO</h2>
           <div className="grid gap-3 md:grid-cols-2">
             <div className="grid gap-1.5">
-              <Label htmlFor="post-meta-title">Tiêu đề SEO</Label>
+              <Label htmlFor="post-meta-title">SEO title</Label>
               <Input id="post-meta-title" value={metaTitleVi} onChange={(e) => setMetaTitleVi(e.target.value)} />
-              <p className="text-xs text-[var(--admin-text-secondary)]">60 ký tự</p>
+              <p className="text-xs text-[var(--admin-text-secondary)]">60 characters</p>
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="post-meta-desc">Mô tả SEO</Label>
+              <Label htmlFor="post-meta-desc">SEO Description</Label>
               <Textarea id="post-meta-desc" value={metaDescVi} onChange={(e) => setMetaDescVi(e.target.value)} className="min-h-20" />
-              <p className="text-xs text-[var(--admin-text-secondary)]">160 ký tự</p>
+              <p className="text-xs text-[var(--admin-text-secondary)]">160 characters</p>
             </div>
           </div>
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Xuất bản</h2>
+          <h2 className="text-lg font-bold text-[var(--admin-text-primary)]">Publish</h2>
           <div className="grid gap-3 md:grid-cols-2">
             <div className="grid gap-1.5">
-              <Label htmlFor="post-status">Trạng thái</Label>
+              <Label htmlFor="post-status">Status</Label>
               <Select value={status} onValueChange={(v) => setStatus(v as BlogPostFormValues["status"])}>
                 <SelectTrigger id="post-status"><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -422,7 +422,7 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
             </div>
             {status === "SCHEDULED" ? (
               <div className="grid gap-1.5">
-                <Label htmlFor="post-scheduled">Thời gian đăng</Label>
+                <Label htmlFor="post-scheduled">Posting time</Label>
                 <Input id="post-scheduled" type="datetime-local" value={scheduledAt} onChange={(e) => setScheduledAt(e.target.value)} />
               </div>
             ) : null}
@@ -434,13 +434,13 @@ export function AdminBlogPostForm({ mode, submitUrl, postId, viewSlug, defaultVa
 
         <div className="flex flex-wrap items-center gap-3">
           <Button type="submit" disabled={submitting || loadingOptions} className="bg-teal-600 hover:bg-teal-700">
-            {submitting ? "Đang lưu..." : mode === "create" ? "Tạo bài viết" : "Lưu thay đổi"}
+            {submitting ? "Saving..." : mode === "create" ? "Create articles" : "Save changes"}
           </Button>
           {mode === "edit" && postId ? (
-            <Button type="button" variant="outline" onClick={publishNow} disabled={submitting}>Xuất bản ngay</Button>
+            <Button type="button" variant="outline" onClick={publishNow} disabled={submitting}>Publish now</Button>
           ) : null}
           {mode === "edit" && viewSlug ? (
-            <Button asChild variant="outline"><Link href={`/blog/${viewSlug}`} target="_blank" rel="noreferrer">Xem bài viết</Link></Button>
+            <Button asChild variant="outline"><Link href={`/blog/${viewSlug}`} target="_blank" rel="noreferrer">View article</Link></Button>
           ) : null}
         </div>
       </form>

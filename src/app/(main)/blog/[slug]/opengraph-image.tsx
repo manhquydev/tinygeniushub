@@ -67,7 +67,7 @@ export default async function Image({ params }: OpenGraphProps) {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 64, fontWeight: 900, lineHeight: 1.1, maxWidth: 1000 }}>{title}</div>
-          <div style={{ fontSize: 30, opacity: 0.9 }}>Tác giả: {author}</div>
+          <div style={{ fontSize: 30, opacity: 0.9 }}>Author: {author}</div>
         </div>
       </div>
     ),

@@ -66,7 +66,7 @@ export function StreakDisplay({
           <Flame className="h-5 w-5" />
         </motion.div>
         <span className="font-bold">{streak.currentStreak}</span>
-        <span className="text-sm opacity-90">ngày</span>
+        <span className="text-sm opacity-90">day</span>
       </motion.div>
     );
   }
@@ -77,7 +77,7 @@ export function StreakDisplay({
       <div className="bg-gradient-to-br from-orange-400 via-red-500 to-purple-600 p-6 text-white">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm opacity-90">Chuỗi ngày học liên tiếp</p>
+            <p className="text-sm opacity-90">A series of consecutive school days</p>
             <div className="flex items-baseline gap-2">
               <motion.span
                 className="text-5xl font-bold"
@@ -87,10 +87,10 @@ export function StreakDisplay({
               >
                 {streak.currentStreak}
               </motion.span>
-              <span className="text-xl">ngày</span>
+              <span className="text-xl">day</span>
             </div>
             <p className="mt-2 text-sm opacity-90">
-              Kỷ lục: {streak.longestStreak} ngày
+              Record: {streak.longestStreak} day
             </p>
           </div>
 
@@ -143,7 +143,7 @@ export function StreakDisplay({
         <div className="mt-4 flex items-center gap-2">
           <Snowflake className="h-5 w-5 text-sky-500" />
           <span className="text-sm text-slate-600">
-            Token đóng băng: {streak.freezeCount}
+            Freeze tokens: {streak.freezeCount}
           </span>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -152,7 +152,7 @@ export function StreakDisplay({
               </button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Dùng để giữ chuỗi khi không học 1 ngày</p>
+              <p>Used to keep the chain when not studying for a day</p>
             </TooltipContent>
           </Tooltip>
         </div>
@@ -165,7 +165,7 @@ export function StreakDisplay({
             className="mt-4 rounded-xl bg-red-50 p-3 text-red-700"
           >
             <p className="text-sm font-medium">
-              ⚠️ Chuỗi sắp bị mất! Học ngay để giữ chuỗi.
+              ⚠️ The chain is about to be lost! Learn now to keep the chain.
             </p>
           </motion.div>
         )}

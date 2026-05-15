@@ -58,7 +58,7 @@ export function VideoPlayerPanel({
           <span className="lp-video-head-pip" />
         </div>
         <h3>{title}</h3>
-        <p>Xem video để tiếp tục bài học</p>
+        <p>Watch the video to continue the lesson</p>
       </div>
 
       {/* Video panel */}
@@ -76,7 +76,7 @@ export function VideoPlayerPanel({
             <div className="lp-video-fallback">
               <div className="lp-video-fallback-icon" aria-hidden="true" />
               <span style={{ fontSize: "0.8rem", textAlign: "center", maxWidth: "26ch" }}>
-                Bài này chưa có video. Con có thể bấm tiếp tục để sang phần luyện tập.
+                This article does not have a video yet. You can click continue to move to the practice section.
               </span>
             </div>
           ) : isIframe ? (
@@ -104,14 +104,14 @@ export function VideoPlayerPanel({
                       <WatchProgressRing percentage={watchProgress} size={62} isReady={canContinue} />
           </div>
           <div className="lp-watch-progress-info">
-            <p className="lp-watch-progress-label">Đã xem</p>
+            <p className="lp-watch-progress-label">Viewed</p>
             <p className="lp-watch-progress-value">{Math.round(watchProgress)}%</p>
             <p className={`lp-watch-progress-hint ${canContinue ? "is-ready" : ""}`}>
               {!hasVideo
-                ? "Không cần xem video cho bài này"
+                ? "No need to watch the video for this lesson"
                 : canContinue
-                ? "Sẵn sàng tiếp tục"
-                : "Hãy xem thêm để mở khóa"}
+                ? "Ready to continue"
+                : "Please see more to unlock"}
             </p>
           </div>
 
@@ -124,9 +124,9 @@ export function VideoPlayerPanel({
             onClick={onContinue}
             whileHover={prefersReducedMotion || !canContinue ? undefined : { scale: 1.04 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
-            aria-label="Tiếp tục sau khi xem video"
+            aria-label="Continue after watching the video"
           >
-            {hasVideo ? "Tiếp tục" : "Tiếp tục không cần video"}
+            {hasVideo ? "Continue" : "Continue without video"}
           </m.button>
         </div>
       </div>

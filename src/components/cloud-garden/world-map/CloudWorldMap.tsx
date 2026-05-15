@@ -7,7 +7,7 @@
  *  - SkyBackground (gradient + stars + shooting star)
  *  - GroundCloudLayer (3-layer SVG wave at bottom)
  *  - MagicTree (center SVG)
- *  - 5× CloudZone (positioned around the tree)
+ *  - 5x CloudZone (positioned around the tree)
  *  - GardenMascotGuide (bottom-left)
  *  - CloudProgressBar (bottom-center)
  *  - Parent Zone button (bottom-right)
@@ -162,7 +162,7 @@ export function CloudWorldMap({
           <CloudProgressBar
             total={progressTotal}
             filled={progressFilled}
-            ariaLabel={`${progressFilled} trong ${progressTotal} b\u00e0i h\u00f4m nay`}
+            ariaLabel={`${progressFilled} of ${progressTotal} lessons today`}
           />
         </div>
 
@@ -171,7 +171,7 @@ export function CloudWorldMap({
           className="cg-parent-btn"
           style={{ pointerEvents: "auto", position: "static" }}
           onClick={onParentZoneClick}
-          aria-label="V\u00e0o khu v\u1ef1c ph\u1ee5 huynh"
+          aria-label="Open parent area"
         >
           {/* Feather moon icon — inline SVG path, no import */}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -183,7 +183,7 @@ export function CloudWorldMap({
               strokeLinejoin="round"
             />
           </svg>
-          <span>{"Ph\u1ee5 huynh"}</span>
+          <span>Parents</span>
         </button>
       </div>
     </div>

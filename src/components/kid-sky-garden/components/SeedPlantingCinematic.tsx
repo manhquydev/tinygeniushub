@@ -12,10 +12,10 @@ export function SeedPlantingCinematic({
   prefersReducedMotion,
 }: SeedPlantingCinematicProps) {
   return (
-    <div className="ksg2-seed-overlay" role="dialog" aria-modal="true" aria-label="Gieo hạt cho khóa học mới">
+    <div className="ksg2-seed-overlay" role="dialog" aria-modal="true" aria-label="Sow the seeds for a new course">
       <div className="ksg2-seed-card">
-        <p className="ksg2-seed-kicker">Khóa học mới</p>
-        <h2 className="ksg2-seed-title">Gieo hạt đậu, mở hành trình trên mây</h2>
+        <p className="ksg2-seed-kicker">New course</p>
+        <h2 className="ksg2-seed-title">Sow beans, start a journey in the clouds</h2>
         <p className="ksg2-seed-course">{courseTitle}</p>
 
         <div
@@ -36,10 +36,10 @@ export function SeedPlantingCinematic({
 
         <div className="ksg2-seed-actions">
           <button type="button" className="ksg2-seed-cta" onClick={onFinish}>
-            Bắt đầu leo mây
+            Start climbing the clouds
           </button>
           <button type="button" className="ksg2-seed-skip" onClick={onFinish}>
-            Để sau
+            Later
           </button>
         </div>
       </div>

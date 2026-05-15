@@ -2,10 +2,13 @@ import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { ShieldCheck } from "lucide-react";
+import { getLocale } from "next-intl/server";
 import { AdminShellNav } from "@/components/admin-shell-nav";
 import { getAdminSession } from "@/modules/admin/admin-auth-service";
 import { SIDEBAR_COOKIE_NAME, SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 export const dynamic = "force-dynamic";
 
@@ -19,13 +22,17 @@ export default async function AdminLayout({ children }: { children: ReactNode })
   const sidebarOpen = cookieStore.get(SIDEBAR_COOKIE_NAME)?.value !== "false";
 
   const role = session.user.role;
-  const todayLabel = new Intl.DateTimeFormat("vi-VN", {
+  const locale = resolveAppLocale(await getLocale());
+  const todayLabel = new Intl.DateTimeFormat(locale, {
     weekday: "short",
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   }).format(new Date());
-  const roleLabel = role === "SUPER_ADMIN" ? "Super admin" : "Staff admin";
+  const roleLabel =
+    role === "SUPER_ADMIN"
+      ? translate("admin.layout.roleSuperAdmin", undefined, locale)
+      : translate("admin.layout.roleStaffAdmin", undefined, locale);
 
   return (
     <SidebarProvider defaultOpen={sidebarOpen} className="admin-shell">
@@ -38,7 +45,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
           <div className="flex min-w-0 items-center gap-2">
             <ShieldCheck size={14} className="shrink-0 text-teal-600" />
             <p className="truncate text-sm font-medium text-[var(--admin-text-primary)]">
-              Quản trị
+              {translate("admin.layout.title", undefined, locale)}
             </p>
           </div>
 

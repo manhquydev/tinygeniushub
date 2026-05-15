@@ -36,10 +36,10 @@ export function TimeSeriesChart({ data, metrics }: TimeSeriesChartProps) {
 
   const labels: Record<string, string> = {
     revenue: "Doanh thu (VND)",
-    users: "Người dùng hoạt động",
-    completions: "Bài học hoàn thành",
-    newCustomers: "Khách hàng mới",
-    churnedCustomers: "Khách hàng rời bỏ",
+    users: "Active users",
+    completions: "Lesson completed",
+    newCustomers: "New customer",
+    churnedCustomers: "Customers leave",
   };
 
   const formatValue = (value: number, name: string): string => {

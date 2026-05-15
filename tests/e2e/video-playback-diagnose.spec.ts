@@ -15,10 +15,10 @@ async function signupAndFinishSetup(page: Page) {
   await page.locator('button[type="submit"]').first().click();
 
   await expect(page).toHaveURL(/\/setup/);
-  await page.locator("#setup-child-nickname").fill("Be Sao");
-  await page.getByRole("button", { name: /^Tiếp tục$/i }).click();
-  await page.getByRole("button", { name: /Hoàn tất thiết lập/i }).click();
-  await page.getByRole("button", { name: /Vào bảng điều khiển phụ huynh/i }).click();
+  await page.locator("#setup-child-nickname").fill("Star");
+  await page.getByRole("button", { name: /^Continue$/i }).click();
+  await page.getByRole("button", { name: /Complete setup/i }).click();
+  await page.getByRole("button", { name: /Go to the parent dashboard/i }).click();
 
   await expect(page).toHaveURL(/\/parent\/dashboard/);
 }
@@ -43,11 +43,11 @@ test("diagnose real video playback on abeka lessons", async ({ page, baseURL }) 
   }
 
   await page.goto("/courses/abeka");
-  const learningNowLink = page.getByRole("link", { name: /Vào học ngay/i });
+  const learningNowLink = page.getByRole("link", { name: /Learn now/i });
   if (await learningNowLink.count()) {
     await learningNowLink.first().click();
   } else {
-    const checkoutButton = page.getByRole("button", { name: /Mua khóa học/i });
+    const checkoutButton = page.getByRole("button", { name: /Buy the course/i });
     await expect(checkoutButton).toBeVisible();
     await checkoutButton.click();
   }

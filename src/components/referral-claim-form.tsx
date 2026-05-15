@@ -27,21 +27,21 @@ export function ReferralClaimForm({ ownCode }: ReferralClaimFormProps) {
       });
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể tạo mã giới thiệu.");
+        setError(body.error?.message ?? "Unable to generate referral code.");
         return;
       }
 
       const nextCode = body.data?.summary?.code as string | null | undefined;
       if (!nextCode) {
-        setError("Không thể tạo mã referral.");
+        setError("Unable to create referral code.");
         return;
       }
 
       setResolvedOwnCode(nextCode);
-      setInfo("Đã tạo mã giới thiệu thành công.");
+      setInfo("Referral code successfully generated.");
       router.refresh();
     } catch (provisionError) {
-      setError(provisionError instanceof Error ? provisionError.message : "Lỗi không xác định.");
+      setError(provisionError instanceof Error ? provisionError.message : "Unknown error.");
     } finally {
       setProvisioning(false);
     }
@@ -65,18 +65,18 @@ export function ReferralClaimForm({ ownCode }: ReferralClaimFormProps) {
 
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể nhận mã giới thiệu.");
+        setError(body.error?.message ?? "Unable to receive referral code.");
         return;
       }
 
       if (body.data?.result?.idempotent) {
-        setInfo("Tài khoản này đã được gán mã giới thiệu trước đó.");
+        setInfo("This account has been assigned a referral code previously.");
       } else {
-        setInfo("Nhận mã giới thiệu thành công.");
+        setInfo("Received referral code successfully.");
       }
       setCode("");
     } catch (claimError) {
-      setError(claimError instanceof Error ? claimError.message : "Lỗi không xác định.");
+      setError(claimError instanceof Error ? claimError.message : "Unknown error.");
     } finally {
       setLoading(false);
     }
@@ -84,12 +84,12 @@ export function ReferralClaimForm({ ownCode }: ReferralClaimFormProps) {
 
   return (
     <div className="card">
-      <h2>Nhập mã giới thiệu</h2>
-      <p className="muted-text">Mã của bạn: {resolvedOwnCode ?? "Chưa tạo"}</p>
+      <h2>Enter referral code</h2>
+      <p className="muted-text">Your code: {resolvedOwnCode ?? "Not created yet"}</p>
       {!resolvedOwnCode ? (
         <div className="hero-actions">
           <button type="button" className="solid-button" onClick={handleProvisionOwnCode} disabled={provisioning}>
-            {provisioning ? "Đang tạo..." : "Tạo mã giới thiệu"}
+            {provisioning ? "Creating..." : "Generate referral code"}
           </button>
         </div>
       ) : null}
@@ -97,14 +97,14 @@ export function ReferralClaimForm({ ownCode }: ReferralClaimFormProps) {
         <input
           value={code}
           onChange={(event) => setCode(event.target.value)}
-          placeholder="Nhập mã giới thiệu (VD: ABCD1234)"
+          placeholder="Enter referral code (Example: ABCD1234)"
           minLength={4}
           maxLength={32}
           required
           disabled={loading}
         />
         <button type="submit" className="ghost-button" disabled={loading}>
-          {loading ? "Đang xử lý..." : "Nhận mã"}
+          {loading ? "Processing..." : "Get code"}
         </button>
       </form>
       {error ? <p className="error-text">{error}</p> : null}

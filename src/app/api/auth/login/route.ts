@@ -124,14 +124,14 @@ export async function POST(request: Request) {
             message: challengeError instanceof Error ? challengeError.message : "unknown_error",
           });
           throw new DomainError(
-            "Email chưa được xác minh và hệ thống chưa gửi lại được email xác minh. Vui lòng thử lại sau.",
+            "The email has not been verified and the system has not yet sent the verification email back. Please try again later.",
             403,
             "EMAIL_NOT_VERIFIED_DELIVERY_FAILED",
           );
         }
 
         throw new DomainError(
-          "Email chưa được xác minh. Chúng tôi đã gửi lại email xác minh, vui lòng kiểm tra hộp thư.",
+          "Email has not been verified. We have sent you a verification email again, please check your inbox.",
           403,
           "EMAIL_NOT_VERIFIED",
         );

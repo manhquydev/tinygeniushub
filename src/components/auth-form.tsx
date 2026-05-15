@@ -27,16 +27,16 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
   const postAuthPath = safeNextPath ?? "/parent/dashboard";
   const verifyState = searchParams.get("verify");
   const loginInfoMessage = getLoginInfoMessageFromVerifyState(verifyState);
-  const formTitle = isSignup ? "Tạo tài khoản phụ huynh" : "Đăng nhập phụ huynh";
+  const formTitle = isSignup ? "Create a parent account" : "Parent login";
   const formSubtitle = isSignup
-    ? "Tạo tài khoản để quản lý hồ sơ của bé, xem bài học mẫu và mua khóa học phù hợp."
-    : "Tiếp tục theo dõi tiến độ học tập, báo cáo và các cột mốc quan trọng của bé.";
+    ? "Create an account to manage your child's profile, view sample lessons and purchase appropriate courses."
+    : "Continue tracking your baby's learning progress, reports, and milestones.";
 
   const inputClassName =
     "h-12 rounded-xl border border-slate-300/90 bg-white px-3 text-[0.96rem] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100";
 
   function getDefaultErrorMessage() {
-    return mode === "signup" ? "Không thể tạo tài khoản" : "Không thể đăng nhập";
+    return mode === "signup" ? "Unable to create account" : "Can't log in";
   }
 
   function isLikelyEnglishOnlyMessage(message: string) {
@@ -49,27 +49,27 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
     }
 
     if (state === "pending") {
-      return "Tài khoản đã tạo. Vui lòng mở email để xác minh trước khi đăng nhập.";
+      return "Account created. Please open your email for verification before logging in.";
     }
 
     if (state === "delivery-issue") {
-      return "Tài khoản đã tạo nhưng hệ thống chưa gửi được email xác minh. Vui lòng thử đăng nhập lại để gửi lại email hoặc liên hệ hỗ trợ.";
+      return "The account has been created but the system has not sent a verification email. Please try logging in again to resend your email or contact support.";
     }
 
     if (state === "success") {
-      return "Email đã xác minh thành công. Bạn có thể đăng nhập.";
+      return "Email verified successfully. You can log in.";
     }
 
     if (state === "expired") {
-      return "Liên kết xác minh đã hết hạn. Vui lòng đăng nhập để hệ thống gửi lại email xác minh.";
+      return "The verification link has expired. Please log in so the system can resend a verification email.";
     }
 
     if (state === "invalid" || state === "missing") {
-      return "Liên kết xác minh không hợp lệ. Vui lòng đăng nhập để nhận lại email xác minh.";
+      return "The verification link is not valid. Please log in to receive the verification email again.";
     }
 
     if (state === "signup-success") {
-      return "Tài khoản đã tạo thành công. Bạn có thể đăng nhập.";
+      return "Account created successfully. You can log in.";
     }
 
     return null;
@@ -93,7 +93,7 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
     const apiMessage = body?.error?.message;
 
     if (response.status === 401) {
-      return "Email hoặc mật khẩu chưa đúng.";
+      return "Email or password is incorrect.";
     }
 
     if (
@@ -101,32 +101,32 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
       (code === "EMAIL_NOT_VERIFIED" || code === "EMAIL_NOT_VERIFIED_DELIVERY_FAILED")
     ) {
       if (code === "EMAIL_NOT_VERIFIED_DELIVERY_FAILED") {
-        return "Email chưa được xác minh và hệ thống chưa gửi lại được email xác minh. Vui lòng thử lại sau.";
+        return "The email has not been verified and the system has not yet sent the verification email back. Please try again later.";
       }
-      return "Email chưa được xác minh. Hệ thống đã gửi lại email xác minh, vui lòng kiểm tra hộp thư.";
+      return "Email has not been verified. The system has sent back a verification email, please check your inbox.";
     }
 
     if (response.status === 409 && code === "EMAIL_EXISTS") {
-      return "Email này đã được đăng ký. Vui lòng đăng nhập hoặc dùng email khác.";
+      return "This email has been registered. Please log in or use another email.";
     }
 
     if (response.status === 400 && apiMessage === "Invalid request payload") {
       const issue = body?.error?.details?.issues?.[0];
       const issuePath = String(issue?.path?.[0] ?? "");
       if (issuePath === "email") {
-        return "Định dạng email không hợp lệ.";
+        return "Invalid email format.";
       }
       if (issuePath === "password") {
-        return "Mật khẩu cần từ 8-120 ký tự.";
+        return "Password needs to be between 8-120 characters.";
       }
       if (issuePath === "displayName") {
-        return "Tên hiển thị không hợp lệ.";
+        return "Invalid display name.";
       }
       if (issuePath === "legalAccepted") {
-        return "Bạn cần đồng ý Điều khoản, Chính sách bảo mật và Chính sách Cookie để đăng ký.";
+        return "You need to agree to the Terms, Privacy Policy and Cookie Policy to register.";
       }
 
-      return "Dữ liệu gửi lên không hợp lệ.";
+      return "The data submitted is invalid.";
     }
 
     if (response.status === 429) {
@@ -136,13 +136,13 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
         : Math.ceil((body?.error?.details?.retryAfterMs ?? 0) / 1000);
 
       if (retryAfterSeconds > 0) {
-        return `Bạn thao tác quá nhanh. Vui lòng thử lại sau ${retryAfterSeconds} giây.`;
+        return `You act too fast. Please try again later${retryAfterSeconds}second.`;
       }
-      return "Bạn thao tác quá nhanh. Vui lòng thử lại sau.";
+      return "You act too fast. Please try again later.";
     }
 
     if (response.status >= 500) {
-      return "Hệ thống đang bận. Vui lòng thử lại sau.";
+      return "The system is busy. Please try again later.";
     }
 
     if (apiMessage) {
@@ -233,12 +233,12 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
 
       {isSignup ? (
         <label className="grid gap-2 text-sm font-semibold text-slate-700">
-          Tên hiển thị
+          Display name
           <input
             className={inputClassName}
             value={displayName}
             onChange={(event) => setDisplayName(event.target.value)}
-            placeholder="Ví dụ: Mẹ của Bông"
+            placeholder="Example: Bong's mother"
           />
         </label>
       ) : null}
@@ -256,7 +256,7 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
       </label>
 
       <label className="grid gap-2 text-sm font-semibold text-slate-700">
-        Mật khẩu
+        Password
         <input
           className={inputClassName}
           type="password"
@@ -264,7 +264,7 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
           onChange={(event) => setPassword(event.target.value)}
           required
           minLength={8}
-          placeholder="Tối thiểu 8 ký tự"
+          placeholder="Minimum 8 characters"
         />
       </label>
 
@@ -277,17 +277,17 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
             required
           />
           <span>
-            Tôi đồng ý{" "}
+            I agree{" "}
             <Link href="/terms" className="font-semibold text-emerald-700 hover:text-emerald-800">
-              Điều khoản sử dụng
+              Terms of use
             </Link>
             ,{" "}
             <Link href="/privacy" className="font-semibold text-emerald-700 hover:text-emerald-800">
-              Chính sách bảo mật
+              Privacy policy
             </Link>{" "}
-            và{" "}
+            and{" "}
             <Link href="/cookie-policy" className="font-semibold text-emerald-700 hover:text-emerald-800">
-              Chính sách Cookie
+              Cookie Policy
             </Link>
             .
           </span>
@@ -306,25 +306,25 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
         disabled={loading || (isSignup && !legalAccepted)}
         className="solid-button full-width min-h-12 rounded-full text-sm font-bold shadow-[0_14px_28px_rgba(5,150,105,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {loading ? "Đang xử lý..." : isSignup ? "Tạo tài khoản" : "Vào bảng điều khiển"}
+        {loading ? "Processing..." : isSignup ? "Create an account" : "Go to the control panel"}
       </button>
 
       {isSignup ? (
           <p className="text-center text-sm text-slate-600">
-            Đã có tài khoản?{" "}
+            Already have an account?{" "}
             <Link href={`/auth/login${nextQuery}`} className="font-bold text-emerald-700 hover:text-emerald-800">
-              Đăng nhập
+              Log in
             </Link>
           </p>
       ) : (
         <div className="flex flex-col gap-3 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
           <Link href="/auth/forgot-password" className="font-semibold text-emerald-700 hover:text-emerald-800">
-            Quên mật khẩu?
+            Forgot password?
           </Link>
           <p>
-            Chưa có tài khoản?{" "}
+            Don't have an account yet?{" "}
             <Link href={`/auth/signup${nextQuery}`} className="font-bold text-emerald-700 hover:text-emerald-800">
-              Tạo tài khoản
+              Create an account
             </Link>
           </p>
         </div>

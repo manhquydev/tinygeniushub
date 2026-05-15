@@ -14,13 +14,13 @@ export interface KidAvatarOption {
 export const KID_AVATAR_OPTIONS: KidAvatarOption[] = [
   {
     id: "basic",
-    label: "Cáo Con Cơ Bản",
-    description: "Phiên bản tiêu chuẩn",
+    label: "Basic Fox Cub",
+    description: "Standard version",
   },
   {
     id: "girl-bow",
-    label: "Cáo Con Nơ Hồng",
-    description: "Nữ tính, dịu dàng",
+    label: "Fox with Pink Bow",
+    description: "Feminine, gentle",
     accessory: (
       <g>
         <path d="M 189 133 C 181 126, 172 128, 170 136 C 168 145, 176 150, 186 148 Z" fill="#f472b6" />
@@ -36,8 +36,8 @@ export const KID_AVATAR_OPTIONS: KidAvatarOption[] = [
   },
   {
     id: "nerdy-glasses",
-    label: "Cáo Con Kính Cận",
-    description: "Thông minh, ham học",
+    label: "Fox Cub Glasses",
+    description: "Smart, eager to learn",
     accessory: (
       <g>
         <circle cx="186" cy="160" r="12.5" fill="none" stroke="#1e293b" strokeWidth="2.4" />
@@ -50,8 +50,8 @@ export const KID_AVATAR_OPTIONS: KidAvatarOption[] = [
   },
   {
     id: "sporty-cap",
-    label: "Cáo Con Năng Động",
-    description: "Mũ lưỡi trai cá tính",
+    label: "Active Fox Cub",
+    description: "Personality baseball cap",
     accessory: (
       <g>
         <path d="M 170 144 C 175 129, 189 122, 201 122 C 214 122, 226 128, 230 143" fill="#f59e0b" />
@@ -63,8 +63,8 @@ export const KID_AVATAR_OPTIONS: KidAvatarOption[] = [
   },
   {
     id: "astro-helmet",
-    label: "Cáo Con Phi Hành Gia",
-    description: "Mơ mộng, khám phá",
+    label: "Astronaut Fox",
+    description: "Dream, explore",
     accessory: (
       <g>
         <ellipse cx="200" cy="166.5" rx="35.5" ry="33.5" fill="none" stroke="#e0f2fe" strokeWidth="2.1" />

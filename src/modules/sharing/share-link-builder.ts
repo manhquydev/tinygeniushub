@@ -32,9 +32,12 @@ export function buildShareMessage(input: ShareLinkInput, platform: SharePlatform
   const link = buildReferralUrl(referralCode, platform, utmCampaign);
   const name = childFirstName.trim().slice(0, 30);
 
-  const stats = streakDays >= 7 ? `${streakDays} ngày liên tiếp` : `${lessonsThisWeek} bài học tuần này`;
+  const stats =
+    streakDays >= 7
+      ? `${streakDays} consecutive days`
+      : `${lessonsThisWeek} ${lessonsThisWeek === 1 ? "lesson" : "lessons"} this week`;
 
-  return `Bé ${name} vừa hoàn thành ${stats} với TinyGenius Hub. Xem khóa học và mua trực tiếp qua chuyển khoản/QR: ${link}`;
+  return `Little ${name} just completed ${stats} with TinyGenius Hub. View the course and buy directly via bank transfer/QR: ${link}`;
 }
 
 export function buildPlatformShareUrl(input: ShareLinkInput, platform: SharePlatform): string {

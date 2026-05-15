@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BlogNewsletterWidget } from "@/components/blog/blog-newsletter-widget";
 import { BlogTrendingPosts } from "@/components/blog/blog-trending-posts";
+import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import type { BlogCategory, BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 type BlogSidebarProps = {
@@ -50,7 +51,7 @@ export function BlogSidebar({ categories, trendingPosts }: BlogSidebarProps) {
     <aside className="space-y-6">
       <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-500">
-          Chủ đề
+          Topic
         </h3>
         <div className="flex flex-wrap gap-2">
           {categories.map((category) => (
@@ -60,7 +61,7 @@ export function BlogSidebar({ categories, trendingPosts }: BlogSidebarProps) {
               className="inline-flex items-center rounded-full px-3 py-1.5 text-xs font-semibold"
               style={getCategoryBadgeStyle(category.color)}
             >
-              {category.nameVi}
+              {getBlogCategoryDisplayName(category)}
             </Link>
           ))}
         </div>
@@ -68,7 +69,7 @@ export function BlogSidebar({ categories, trendingPosts }: BlogSidebarProps) {
 
       <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-500">
-          Đang được đọc nhiều
+          Being read a lot
         </h3>
         <BlogTrendingPosts posts={trendingPosts} />
       </section>

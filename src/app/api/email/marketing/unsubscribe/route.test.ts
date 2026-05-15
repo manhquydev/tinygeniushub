@@ -49,7 +49,7 @@ describe("marketing email unsubscribe route", () => {
     const html = await response.text();
 
     expect(response.status).toBe(200);
-    expect(html).toContain("Liên kết hủy đăng ký không hợp lệ.");
+    expect(html).toContain("The unsubscribe link is not valid.");
     expect(parentFindUniqueMock).not.toHaveBeenCalled();
   });
 
@@ -63,7 +63,7 @@ describe("marketing email unsubscribe route", () => {
     const html = await response.text();
 
     expect(response.status).toBe(200);
-    expect(html).toContain("Không tìm thấy tài khoản tương ứng với liên kết này.");
+    expect(html).toContain("No account found corresponding to this link.");
   });
 
   it("returns invalid page when token signature does not match", async () => {
@@ -80,7 +80,7 @@ describe("marketing email unsubscribe route", () => {
     const html = await response.text();
 
     expect(response.status).toBe(200);
-    expect(html).toContain("Liên kết hủy đăng ký không hợp lệ hoặc đã hết hạn.");
+    expect(html).toContain("The unsubscribe link is invalid or has expired.");
     expect(parentPreferencesUpsertMock).not.toHaveBeenCalled();
   });
 
@@ -111,6 +111,6 @@ describe("marketing email unsubscribe route", () => {
         marketingEmailOptIn: false,
       },
     });
-    expect(html).toContain("Bạn đã hủy nhận email marketing thành công.");
+    expect(html).toContain("You have successfully unsubscribed from marketing emails.");
   });
 });

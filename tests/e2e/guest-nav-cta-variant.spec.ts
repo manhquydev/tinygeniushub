@@ -15,7 +15,7 @@ test.describe("guest nav CTA variants", () => {
 
     const navCta = page.locator("header.app-nav a.solid-button").first();
     await expect(navCta).toBeVisible();
-    await expect(navCta).toContainText("Xem gói học");
+    await expect(navCta).toContainText("See study package");
   });
 
   test("shows variant A CTA label when ab_pricing_v=A cookie is set", async ({ page, context, baseURL }) => {
@@ -32,6 +32,6 @@ test.describe("guest nav CTA variants", () => {
 
     const navCta = page.locator("header.app-nav a.solid-button").first();
     await expect(navCta).toBeVisible();
-    await expect(navCta).toContainText("Bắt đầu miễn phí");
+    await expect(navCta).toContainText("Get started for free");
   });
 });

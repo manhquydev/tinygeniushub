@@ -1,5 +1,23 @@
 # Project Changelog
 
+## [0.5.3] - 2026-05-14
+
+### Fixed
+- Mitigated intermittent production `502 Bad Gateway` on `www.tinygeniushubvn.tech` by increasing Nginx upstream response-header buffers (`proxy_buffer_size`, `proxy_buffers`, `proxy_busy_buffers_size`) in deployment setup templates.
+- Applied the same buffering fix directly on VPS vhosts (`tinygeniushub-www-ssl`, `tinygeniushub-http`) and reloaded Nginx after config validation.
+
+## [0.5.2] - 2026-05-14
+
+### Added
+- Added guest language switcher with persistent `tgh_locale` cookie support for English and Vietnamese.
+- Added unit and Playwright coverage for English-default locale behavior and Vietnamese switching.
+
+### Changed
+- Navigation copy now resolves from locale catalogs instead of hardcoded runtime labels.
+- Public SEO/feed language metadata now prefers English while advertising Vietnamese support where relevant.
+- Docker image now installs pnpm and generates Prisma client during build so web/worker startup does not need package registry access.
+- Docker build context excludes local tooling and temp output directories.
+
 ## [0.5.1] - 2026-05-13
 
 ### Changed

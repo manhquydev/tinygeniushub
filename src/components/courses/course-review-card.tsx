@@ -15,7 +15,7 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export function CourseReviewCard({ review }: Props) {
-  const displayName = review.parent.displayName ?? "Phụ huynh";
+  const displayName = review.parent.displayName ?? "Parents";
   const dateLabel = review.createdAt.toLocaleDateString("vi-VN", {
     year: "numeric",
     month: "long",

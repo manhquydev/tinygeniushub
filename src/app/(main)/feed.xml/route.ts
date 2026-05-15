@@ -54,8 +54,8 @@ function buildRssXml(input: {
 <channel>
   <title>TinyGenius Hub Blog</title>
   <link>${escapeXml(`${input.siteUrl}/blog`)}</link>
-  <description>Bài viết mới nhất từ TinyGenius Hub.</description>
-  <language>vi</language>
+  <description>Latest article from TinyGenius Hub.</description>
+  <language>en</language>
   <lastBuildDate>${toRssDate(new Date())}</lastBuildDate>
 ${itemsXml}
 </channel>

@@ -1,3 +1,6 @@
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 import { AuthForm } from "@/components/auth-form";
 import { AuthSplitShell } from "@/components/auth-split-shell";
 
@@ -14,12 +17,14 @@ function readSingleParam(value?: string | string[]) {
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const nextPath = readSingleParam(resolvedSearchParams?.next);
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
 
   return (
     <AuthSplitShell
-      badge="Truy cập phụ huynh"
-      title="Chào mừng ba mẹ quay lại hành trình tự học"
-      description="Đăng nhập để xem tiến độ học tập, mở bài học hôm nay và đồng hành cùng bé mỗi ngày."
+      badge={translate("auth.login.badge", undefined, locale)}
+      title={translate("auth.login.title", undefined, locale)}
+      description={translate("auth.login.description", undefined, locale)}
       backgroundImageSrc="/images/bg/bg_hero_cloud_learning.png"
       stickerSrc="/kisu-assets/stickers/sticker_cheer.png"
     >

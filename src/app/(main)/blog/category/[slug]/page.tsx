@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogCategoryFilter } from "@/components/blog/blog-category-filter";
 import { prisma } from "@/lib/db";
+import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import { blogService } from "@/modules/blog/blog-service";
 
 export const revalidate = 1800;
@@ -83,6 +84,7 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
       id: true,
       slug: true,
       nameVi: true,
+      nameEn: true,
       description: true,
       emoji: true,
       color: true,
@@ -92,6 +94,7 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
   if (!category) {
     notFound();
   }
+  const categoryDisplayName = getBlogCategoryDisplayName(category);
 
   const result = await blogService.listPosts({
     page,
@@ -108,16 +111,16 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
             className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold"
             style={getCategoryBadgeStyle(category.color)}
           >
-            {category.nameVi}
+            {categoryDisplayName}
           </span>
-          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">{category.nameVi}</h1>
+          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">{categoryDisplayName}</h1>
           {category.description ? <p className="max-w-[70ch] text-slate-600">{category.description}</p> : null}
         </div>
       </section>
 
       <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <p className="text-sm font-semibold text-slate-600">
-          {result.total} bài viết
+          {result.total} posts
         </p>
         <BlogCategoryFilter basePath={`/blog/category/${category.slug}`} currentSort={sort} />
       </section>
@@ -134,16 +137,16 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
             href={buildCategoryPageHref(category.slug, page - 1, sort)}
             className="inline-flex min-h-10 items-center rounded-xl border border-slate-300 px-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
           >
-            ← Trang trước
+            ← Previous page
           </Link>
         ) : (
           <span className="inline-flex min-h-10 items-center rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-400">
-            ← Trang trước
+            ← Previous page
           </span>
         )}
 
         <span className="text-sm font-semibold text-slate-600">
-          Trang {result.page}/{result.totalPages}
+          Page {result.page}/{result.totalPages}
         </span>
 
         {result.page < result.totalPages ? (
@@ -151,11 +154,11 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
             href={buildCategoryPageHref(category.slug, page + 1, sort)}
             className="inline-flex min-h-10 items-center rounded-xl border border-slate-300 px-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
           >
-            Trang sau →
+            Next page →
           </Link>
         ) : (
           <span className="inline-flex min-h-10 items-center rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-400">
-            Trang sau →
+            Next page →
           </span>
         )}
       </nav>

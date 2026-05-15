@@ -31,7 +31,7 @@ export function AdminSoTAnalyticsSection({ snapshot }: { snapshot: AdminSoTDashb
   }));
 
   return (
-    <AdminSectionCard title="SoT: GA4 + SQL Audit (7 ngày)" icon={<Database size={16} />}>
+    <AdminSectionCard title="SoT: GA4 + SQL Audit (7 days)" icon={<Database size={16} />}>
       <div className="space-y-4">
         <div className="grid grid-cols-1 gap-4 xl:grid-cols-4">
           <AdminStatCard

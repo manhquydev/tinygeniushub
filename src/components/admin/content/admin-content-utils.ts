@@ -8,22 +8,22 @@ export function shortText(value: string, max = 50) {
 export function getActivityTypeLabel(type: ActivityType) {
   switch (type) {
     case "MCQ":
-      return "Trắc nghiệm";
+      return "Multiple choice";
     case "TRUE_FALSE":
-      return "Đúng/Sai";
+      return "True/False";
     case "WORD_MATCH":
-      return "Nối từ";
+      return "Connect words";
     case "FILL_BLANK":
-      return "Điền chỗ trống";
+      return "Fill in the blanks";
     default:
       return type;
   }
 }
 
 export function toTrackLabel(code: string) {
-  if (code === "ENGLISH") return "Tiếng Anh";
-  if (code === "MATH") return "Toán";
-  if (code === "HABIT") return "Thói quen";
+  if (code === "ENGLISH") return "English";
+  if (code === "MATH") return "Maths";
+  if (code === "HABIT") return "Habit";
   return code;
 }
 

@@ -73,18 +73,19 @@ describe("AppNavClient", () => {
   it("renders guest funnel-first links and tracks top-nav clicks", () => {
     render(<AppNavClient hasParent={false} isAdmin={false} guestCtaVariant="A" />);
 
-    expect(screen.getByRole("link", { name: "Khóa học" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Bảng giá" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Cách hoạt động" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Đăng nhập" })).toBeInTheDocument();
-    expect(screen.getByText("Bắt đầu miễn phí")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Courses" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "How it works" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Pricing" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "For schools" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Log in" })).toBeInTheDocument();
+    expect(screen.getByText("Get started for free")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("link", { name: "Bảng giá" }));
+    fireEvent.click(screen.getByRole("link", { name: "Courses" }));
     expect(trackEvent).toHaveBeenCalledWith("nav_click", {
       state: "guest",
       location: "desktop_top",
-      label: "Bảng giá",
-      href: "/pricing",
+      label: "Courses",
+      href: "/courses",
     });
   });
 
@@ -94,19 +95,19 @@ describe("AppNavClient", () => {
     const { container } = render(<AppNavClient hasParent={true} isAdmin={true} guestCtaVariant="A" />);
 
     expect(container.firstChild).toBeNull();
-    expect(screen.queryByRole("link", { name: "Khóa học" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Courses" })).not.toBeInTheDocument();
   });
 
   it("renders variant B CTA and tracks click label correctly", () => {
     render(<AppNavClient hasParent={false} isAdmin={false} guestCtaVariant="B" />);
 
-    const cta = screen.getByRole("link", { name: /Xem khóa học/i });
+    const cta = screen.getByRole("link", { name: /View courses/i });
     fireEvent.click(cta);
 
     expect(trackEvent).toHaveBeenCalledWith("nav_click", {
       state: "guest",
       location: "desktop_top",
-      label: "Xem khóa học",
+      label: "View courses",
       href: "/auth/signup",
     });
   });
@@ -114,27 +115,27 @@ describe("AppNavClient", () => {
   it("shows parent activation links and support menu only on demand", () => {
     render(<AppNavClient hasParent={true} isAdmin={false} guestCtaVariant="A" />);
 
-    expect(screen.getByRole("link", { name: "Tổng quan" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Hồ sơ bé" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Khóa học" })).toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "Giới thiệu" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Overview" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Children" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Courses" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "About" })).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Trợ giúp" }));
+    fireEvent.click(screen.getByRole("button", { name: "Support" }));
 
     expect(screen.getByRole("menuitem", { name: "Blog" })).toBeInTheDocument();
-    expect(screen.getByRole("menuitem", { name: "Giới thiệu" })).toBeInTheDocument();
-    expect(screen.getByRole("menuitem", { name: "Trợ giúp" })).toBeInTheDocument();
+    expect(screen.getByRole("menuitem", { name: "About" })).toBeInTheDocument();
+    expect(screen.getByRole("menuitem", { name: "Contact" })).toBeInTheDocument();
   });
 
   it("tracks logout click for parent nav", () => {
     render(<AppNavClient hasParent={true} isAdmin={false} guestCtaVariant="A" />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Đăng xuất" }));
+    fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
 
     expect(trackEvent).toHaveBeenCalledWith("nav_click", {
       state: "parent",
       location: "desktop_top",
-      label: "Đăng xuất",
+      label: "Sign out",
       href: "/auth/logout",
     });
   });

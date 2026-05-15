@@ -5,7 +5,7 @@ const MOCK_ORG_ID = "org-e2e-001";
 const MOCK_PROGRESS = [
   {
     id: "member-1",
-    displayName: "Nguyễn An",
+    displayName: "Nguyen An",
     email: "nguyen.an@school.vn",
     lastActiveAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
     lessonsCompleted: 12,
@@ -14,7 +14,7 @@ const MOCK_PROGRESS = [
   },
   {
     id: "member-2",
-    displayName: "Trần Bình",
+    displayName: "Tran Binh",
     email: "tran.binh@school.vn",
     lastActiveAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
     lessonsCompleted: 2,
@@ -57,9 +57,9 @@ test("bulk enroll CSV submission succeeds with valid rows", async ({ page }) => 
 
   const csvPayload = [
     "email,displayName",
-    "student1@school.vn,Học Sinh 1",
-    "student2@school.vn,Học Sinh 2",
-    "student3@school.vn,Học Sinh 3",
+    "student1@school.vn,Student 1",
+    "student2@school.vn,Student 2",
+    "student3@school.vn,Student 3",
   ].join("\n");
 
   const resp = await page.request.post(`/api/organizations/${MOCK_ORG_ID}/bulk-enroll`, {
@@ -82,14 +82,14 @@ test("bulk enroll with invalid CSV rows returns validation error", async ({ page
       body: JSON.stringify({
         ok: false,
         error: "INVALID_CSV",
-        details: [{ row: 2, message: "Email không hợp lệ" }],
+        details: [{ row: 2, message: "Invalid email" }],
       }),
     });
   });
 
   const resp = await page.request.post(`/api/organizations/${MOCK_ORG_ID}/bulk-enroll`, {
     headers: { "Content-Type": "application/json" },
-    data: JSON.stringify({ csv: "email,displayName\nnot-an-email,Học Sinh X" }),
+    data: JSON.stringify({ csv: "email,displayName\\nnot-an-email,Student X" }),
   });
   expect(resp.status()).toBe(422);
   const body = (await resp.json()) as { ok?: boolean; error?: string };
@@ -118,5 +118,5 @@ test("progress API returns at-risk flag for inactive students", async ({ page })
 
   const atRiskMembers = members.filter((m) => m.atRisk);
   expect(atRiskMembers.length).toBe(1);
-  expect(atRiskMembers[0].displayName).toBe("Trần Bình");
+  expect(atRiskMembers[0].displayName).toBe("Tran Binh");
 });

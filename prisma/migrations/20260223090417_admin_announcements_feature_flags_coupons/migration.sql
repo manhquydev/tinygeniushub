@@ -55,9 +55,9 @@ CREATE INDEX "CouponCode_createdAt_idx" ON "public"."CouponCode"("createdAt" DES
 -- Seed default feature flags
 INSERT INTO "public"."FeatureFlag" ("key", "enabled", "description", "updatedAt", "updatedBy")
 VALUES
-  ('PARENT_V2_DASHBOARD', false, 'Dashboard phụ huynh phiên bản mới', CURRENT_TIMESTAMP, 'system'),
-  ('BETA_LESSON_EDITOR', false, 'Trình soạn nội dung beta', CURRENT_TIMESTAMP, 'system'),
-  ('CAREGIVER_VIDEO_CALL', false, 'Tính năng video call người chăm sóc (sắp ra mắt)', CURRENT_TIMESTAMP, 'system'),
-  ('REFERRAL_V2', false, 'Hệ thống giới thiệu v2', CURRENT_TIMESTAMP, 'system'),
-  ('AI_LESSON_SUGGESTIONS', false, 'Gợi ý bài học bằng AI (sắp ra mắt)', CURRENT_TIMESTAMP, 'system')
+  ('PARENT_V2_DASHBOARD', false, 'New version of parent dashboard', CURRENT_TIMESTAMP, 'system'),
+  ('BETA_LESSON_EDITOR', false, 'Beta content editor', CURRENT_TIMESTAMP, 'system'),
+  ('CAREGIVER_VIDEO_CALL', false, 'Caregiver video call feature (coming soon)', CURRENT_TIMESTAMP, 'system'),
+  ('REFERRAL_V2', false, 'Referral system v2', CURRENT_TIMESTAMP, 'system'),
+  ('AI_LESSON_SUGGESTIONS', false, 'AI lesson suggestions (coming soon)', CURRENT_TIMESTAMP, 'system')
 ON CONFLICT ("key") DO NOTHING;

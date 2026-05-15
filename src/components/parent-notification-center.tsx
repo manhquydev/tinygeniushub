@@ -54,7 +54,7 @@ function formatRelativeTime(timestamp: string) {
   const diffMs = Date.now() - createdAt.getTime();
 
   if (Number.isNaN(diffMs) || diffMs < 0) {
-    return "Vừa xong";
+    return "Just finished";
   }
 
   const minuteMs = 60_000;
@@ -62,15 +62,15 @@ function formatRelativeTime(timestamp: string) {
   const dayMs = 24 * hourMs;
 
   if (diffMs < minuteMs) {
-    return "Vừa xong";
+    return "Just finished";
   }
 
   if (diffMs < hourMs) {
-    return `${Math.floor(diffMs / minuteMs)} phút trước`;
+    return `${Math.floor(diffMs / minuteMs)}minutes ago`;
   }
 
   if (diffMs < dayMs) {
-    return `${Math.floor(diffMs / hourMs)} giờ trước`;
+    return `${Math.floor(diffMs / hourMs)}hours ago`;
   }
 
   return createdAt.toLocaleDateString("vi-VN", {
@@ -114,14 +114,14 @@ export function ParentNotificationCenter() {
       const body = (await response.json()) as NotificationResponse;
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Không thể tải thông báo");
+        setError(body.error?.message ?? "Unable to load notification");
         setNotifications([]);
         return;
       }
 
       setNotifications(body.data?.notifications ?? []);
     } catch (fetchError) {
-      setError(fetchError instanceof Error ? fetchError.message : "Lỗi không xác định");
+      setError(fetchError instanceof Error ? fetchError.message : "Unknown error");
       setNotifications([]);
     } finally {
       setLoading(false);
@@ -193,7 +193,7 @@ export function ParentNotificationCenter() {
 
     const body = (await response.json()) as NotificationResponse;
     if (!response.ok || !body.ok) {
-      throw new Error(body.error?.message ?? "Không thể cập nhật trạng thái thông báo");
+      throw new Error(body.error?.message ?? "Unable to update notification status");
     }
   }
 
@@ -209,7 +209,7 @@ export function ParentNotificationCenter() {
       await markOneAsRead(notificationId);
     } catch (markError) {
       setNotifications((current) => current.map((item) => (item.id === notificationId ? { ...item, read: false } : item)));
-      setError(markError instanceof Error ? markError.message : "Lỗi không xác định");
+      setError(markError instanceof Error ? markError.message : "Unknown error");
     }
   }
 
@@ -228,7 +228,7 @@ export function ParentNotificationCenter() {
       setNotifications((current) =>
         current.map((item) => (failedIds.includes(item.id) ? { ...item, read: false } : item)),
       );
-      setError("Một số thông báo chưa thể cập nhật trạng thái đã đọc.");
+      setError("Some notifications cannot update their read status.");
     }
   }
 
@@ -240,7 +240,7 @@ export function ParentNotificationCenter() {
         className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition hover:-translate-y-0.5 hover:text-slate-900"
         aria-expanded={open}
         aria-haspopup="menu"
-        aria-label="Mở trung tâm thông báo"
+        aria-label="Open notification center"
       >
         <Bell size={18} />
         {unreadCount > 0 ? (
@@ -261,8 +261,8 @@ export function ParentNotificationCenter() {
           >
             <header className="flex items-center justify-between border-b border-slate-200 bg-slate-50/80 px-3 py-2.5">
               <div>
-                <p className="text-sm font-black text-slate-900">Thông báo</p>
-                <p className="text-xs text-slate-500">Cập nhật mới nhất cho phụ huynh</p>
+                <p className="text-sm font-black text-slate-900">Notification</p>
+                <p className="text-xs text-slate-500">Latest updates for parents</p>
               </div>
               <button
                 type="button"
@@ -273,7 +273,7 @@ export function ParentNotificationCenter() {
                 className="inline-flex items-center gap-1 rounded-full border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600 transition hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <CheckCheck size={13} />
-                Đã đọc hết
+                Read it all
               </button>
             </header>
 
@@ -288,7 +288,7 @@ export function ParentNotificationCenter() {
                     }}
                     className="mt-2 inline-flex items-center rounded-full border border-rose-300 bg-white px-2.5 py-1 text-xs font-semibold text-rose-700 transition hover:-translate-y-0.5"
                   >
-                    Thử lại
+                    Retry
                   </button>
                 </div>
               ) : null}
@@ -297,7 +297,7 @@ export function ParentNotificationCenter() {
 
               {!loading && notifications.length === 0 ? (
                 <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm text-slate-500">
-                  Chưa có thông báo nào.
+                  There are no announcements yet.
                 </p>
               ) : null}
 

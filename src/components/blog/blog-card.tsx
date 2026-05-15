@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 function formatDate(value: Date | null) {
   if (!value) {
-    return "Chưa xuất bản";
+    return "Unpublished";
   }
 
-  return new Intl.DateTimeFormat("vi-VN", {
+  return new Intl.DateTimeFormat("en-US", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -74,7 +75,7 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-slate-100 text-sm font-medium text-slate-500">
-              Không có ảnh
+              No photos available
             </div>
           )}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
@@ -86,7 +87,7 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
               className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold"
               style={getCategoryBadgeStyle(post.category.color)}
             >
-              {post.category.nameVi}
+              {getBlogCategoryDisplayName(post.category)}
             </span>
             {post.tags.length > 0 ? (
               <div className="flex flex-wrap gap-1.5">
@@ -119,15 +120,15 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
             )}
             <span>{post.author.displayName}</span>
             <span>·</span>
-            <span>{post.readingTimeMin} phút đọc</span>
+            <span>{post.readingTimeMin} min read</span>
             <span>·</span>
             <span>{formatDate(post.publishedAt)}</span>
           </div>
 
           <div className="flex items-center gap-3 text-xs text-slate-500">
-            <span>{post.viewCount} lượt xem</span>
+            <span>{post.viewCount} views</span>
             <span>·</span>
-            <span>{post.likeCount} lượt thích</span>
+            <span>{post.likeCount} likes</span>
           </div>
         </div>
       </Link>

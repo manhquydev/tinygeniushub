@@ -247,7 +247,7 @@ test.describe("Kid Course Mobile UI", () => {
 
     const journeyState = page.getByTestId("kid-course-journey-state");
     await expect(journeyState).toBeVisible();
-    await expect(journeyState).toContainText(/Mầm mới|Đang lớn lên|Tạm nghỉ|Đã nở hoa/);
+    await expect(journeyState).toContainText(/Mam moi|Dang lon len|Tam nghi|Da no hoa/);
 
     await expect
       .poll(async () => page.locator('article[data-testid^="kid-course-tier-"]').count(), {
@@ -261,7 +261,7 @@ test.describe("Kid Course Mobile UI", () => {
     const lockButton = page.locator(".ksg2-node-lock").first();
     if ((await lockButton.count()) > 0) {
       await lockButton.click();
-      await expect(page.locator(".ksg2-status")).toContainText(/mở khóa tầng mới/i);
+      await expect(page.locator(".ksg2-status")).toContainText(/mo khoa tang moi/i);
     }
 
     await page.screenshot({

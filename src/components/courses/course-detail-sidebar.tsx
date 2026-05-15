@@ -19,7 +19,7 @@ type Props = {
 };
 
 function formatCurrency(amount: number) {
-  return `${amount.toLocaleString("vi-VN")}đ`;
+  return `${amount.toLocaleString("vi-VN")}D`;
 }
 
 function formatSaleEndAt(value: Date | null) {
@@ -48,12 +48,12 @@ export function CourseDetailSidebar({
   const isPendingPricing = pricing.statusLabel === "pending";
   const saleEndsAtLabel = formatSaleEndAt(pricing.saleEndsAt ?? null);
   const trialAnchorHref = "#curriculum-preview";
-  const checkoutCtaLabel = isFreeSale ? "Nhận khóa miễn phí ngay" : checkoutLabel;
+  const checkoutCtaLabel = isFreeSale ? "Get your free key now" : checkoutLabel;
 
   return (
     <div className="sticky top-6 space-y-4">
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700">Giá khóa học</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700">Course price</p>
         <div className="mt-1 flex items-end gap-2">
           <p className="text-3xl font-black tracking-[-0.02em] text-emerald-700">{formatCurrency(currentPriceVnd)}</p>
           {showDiscount ? (
@@ -62,20 +62,20 @@ export function CourseDetailSidebar({
         </div>
         {showDiscount ? (
           <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-emerald-700">
-            {isFreeSale ? "Ưu đãi 100% tạm thời" : "Đang giảm so với giá gốc"}
+            {isFreeSale ? "Temporary 100% discount" : "Discounted from original price"}
           </p>
         ) : null}
         {showDiscount && saleEndsAtLabel ? (
-          <p className="mt-1 text-xs text-emerald-700/80">Kết thúc ưu đãi: {saleEndsAtLabel}</p>
+          <p className="mt-1 text-xs text-emerald-700/80">Sale ends: {saleEndsAtLabel}</p>
         ) : null}
         <p className="mt-1 text-xs text-emerald-700/80">
           {pricing.isPurchasable
             ? isFreeSale
-              ? "Đăng ký ngay để mở toàn bộ khóa học với ưu đãi 0đ trong thời gian giới hạn."
-              : "Mua 1 lần, vào học ngay sau khi thanh toán thành công."
+              ? "Register now to open the entire course with a 0 VND discount for a limited time."
+              : "Buy once, start studying immediately after successful payment."
             : isPendingPricing
-              ? `Khóa này đang tạm ngưng đăng ký online. Trong lúc chờ, phụ huynh có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
-              : `Phụ huynh vẫn có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu trước khi chốt lộ trình.`}
+              ? `This course is temporarily suspending online registration. While waiting, parents can preview ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} first lesson.`
+              : `Parents can still check it out${COURSE_TRIAL_PREVIEW_LESSON_LIMIT}First lesson before finalizing the route.`}
         </p>
       </div>
 
@@ -83,21 +83,21 @@ export function CourseDetailSidebar({
         <div className="grid gap-3 rounded-2xl border border-emerald-200 bg-white p-4">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
             <CircleCheckBig className="h-4 w-4" />
-            Bạn đã sở hữu khóa học này.
+            You already own this course.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href={childEntryHref} className="solid-button">
-              Vào học ngay <ChevronRight className="ml-1 h-4 w-4" />
+              Start learning now <ChevronRight className="ml-1 h-4 w-4" />
             </Link>
             <Link href="/parent/courses" className="ghost-button">
-              Xem khóa đã mua
+              View purchased keys
             </Link>
           </div>
         </div>
       ) : (
         <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4">
           <Link href={trialAnchorHref} className="ghost-button">
-            Xem học thử trước
+            See trial lessons first
           </Link>
           {pricing.isPurchasable ? (
             <CourseCheckoutButton
@@ -109,19 +109,19 @@ export function CourseDetailSidebar({
             />
           ) : (
             <Link href="/contact" className="ghost-button">
-              Nhận tư vấn nhanh
+              Get quick advice
             </Link>
           )}
           {!isAuthenticated && pricing.isPurchasable ? (
             <p className="text-xs text-slate-500">
-              Đăng nhập để hoàn tất đăng ký, rồi quay lại đúng khóa học này.
+              Log in to complete your registration, then return to this course.
             </p>
           ) : null}
           {!pricing.isPurchasable ? (
             <p className="text-xs text-amber-700">
               {isPendingPricing
-                ? `Khóa này đang tạm ngưng đăng ký online. Phụ huynh vẫn xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`
-                : `Đăng ký online đang tạm ngưng. Phụ huynh vẫn có thể xem thử ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} bài đầu.`}
+                ? `This course is temporarily suspending online registration. Parents can still check out the first ${COURSE_TRIAL_PREVIEW_LESSON_LIMIT} lesson.`
+                : `Online registration is temporarily suspended. Parents can still check it out${COURSE_TRIAL_PREVIEW_LESSON_LIMIT}first post.`}
             </p>
           ) : null}
         </div>
@@ -130,14 +130,14 @@ export function CourseDetailSidebar({
       <div className="grid gap-2 rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
         <p className="inline-flex items-start gap-2">
           <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
-          Mua một lần, vào học ngay. Nếu chưa chắc level, hãy xem học thử trước.
+          Buy once, start learning right away. If you're not sure about the level, take a trial class first.
         </p>
       </div>
 
       {!isOwned && pricing.isPurchasable ? (
         <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between gap-3 border-t border-slate-200 bg-white/95 px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.08em] text-slate-500">Giá</p>
+            <p className="text-[10px] uppercase tracking-[0.08em] text-slate-500">Price</p>
             <p className="text-base font-black text-emerald-700">{formatCurrency(pricing.salePriceVnd)}</p>
           </div>
           <CourseCheckoutButton
@@ -151,11 +151,11 @@ export function CourseDetailSidebar({
       ) : !isOwned ? (
         <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between gap-3 border-t border-emerald-200 bg-emerald-50/95 px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.08em] text-emerald-700">Giá hiện tại</p>
+            <p className="text-[10px] uppercase tracking-[0.08em] text-emerald-700">Current price</p>
             <p className="text-sm font-black text-emerald-800">{formatCurrency(currentPriceVnd)}</p>
           </div>
           <Link href={trialAnchorHref} className="solid-button text-sm">
-            Xem học thử
+            See trial lesson
           </Link>
         </div>
       ) : null}

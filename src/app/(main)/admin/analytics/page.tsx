@@ -12,6 +12,7 @@ import {
   RefreshCw,
   Filter,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
@@ -179,6 +180,7 @@ function formatVND(amount: number): string {
 }
 
 export default function AdminAnalyticsPage() {
+  const t = useTranslations("admin.analytics");
   const [snapshot, setSnapshot] = useState<UnifiedSnapshot | null>(null);
   const [timeSeries, setTimeSeries] = useState<TimeSeriesData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -232,19 +234,19 @@ export default function AdminAnalyticsPage() {
       case "overview":
         data = [
           {
-            metric: "Tổng phụ huynh",
+            metric: "General parents",
             value: snapshot.overview.counts.parents,
           },
           {
-            metric: "Tổng học sinh",
+            metric: "Total students",
             value: snapshot.overview.counts.children,
           },
           {
-            metric: "Doanh thu 30 ngày",
+            metric: "30-day revenue",
             value: snapshot.overview.counts.successfulRevenueVnd30d,
           },
           {
-            metric: "Thanh toán thành công 30 ngày",
+            metric: "Successful payment within 30 days",
             value: snapshot.overview.counts.successfulPayments30d,
           },
         ];
@@ -292,7 +294,7 @@ export default function AdminAnalyticsPage() {
       <div className="flex items-center justify-center h-96">
         <div className="text-[var(--admin-text-secondary)]">
           <RefreshCw className="animate-spin h-8 w-8 mx-auto mb-4" />
-          <p>Đang tải dữ liệu phân tích...</p>
+          <p>{t("loadingText")}</p>
         </div>
       </div>
     );
@@ -302,9 +304,9 @@ export default function AdminAnalyticsPage() {
     return (
       <div className="flex items-center justify-center h-96">
         <div className="text-rose-500">
-          <p>Lỗi: {error || "Không thể tải dữ liệu"}</p>
+          <p>Error: {error || t("loadingText")}</p>
           <Button onClick={fetchData} variant="outline" className="mt-4">
-            Thử lại
+            {t("errorRetry")}
           </Button>
         </div>
       </div>
@@ -327,17 +329,17 @@ export default function AdminAnalyticsPage() {
     <div className="space-y-6">
       {/* Header */}
       <AdminPageHeader
-        title="Phân tích quản trị"
-        description="Tổng quan toàn diện về hoạt động học tập, doanh thu, và chỉ số người dùng."
+        title={t("title")}
+        description={t("description")}
         icon={<BarChart2 size={18} />}
-        eyebrow="Unified Analytics Dashboard"
+        eyebrow={t("eyebrow")}
       />
 
       {/* Controls */}
       <div className="flex flex-wrap items-center gap-4 bg-[var(--admin-card-bg)] p-4 rounded-lg border border-[var(--admin-card-border)]">
         <div className="flex items-center gap-2">
           <Filter size={16} className="text-[var(--admin-text-secondary)]" />
-          <span className="text-sm font-medium text-[var(--admin-text-primary)]">Bộ lọc:</span>
+          <span className="text-sm font-medium text-[var(--admin-text-primary)]">{t("filterLabel")}</span>
         </div>
         <DateRangePicker onChange={setDateRange} defaultValue={dateRange} />
         <Button
@@ -348,30 +350,30 @@ export default function AdminAnalyticsPage() {
           className="ml-auto"
         >
           <RefreshCw size={16} className={cn("mr-2", refreshing && "animate-spin")} />
-          Làm mới
+          {t("refreshButton")}
         </Button>
       </div>
 
       {/* Realtime Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <AdminStatCard
-          label="Người dùng đang hoạt động"
+          label={t("stats.activeUser")}
           value={snapshot.realtime.activeUsers}
           icon={<Activity size={16} />}
           trend={{ value: snapshot.realtime.activeUsers, label: "Real-time" }}
         />
         <AdminStatCard
-          label="Phiên đang hoạt động"
+          label={t("stats.activeSession")}
           value={snapshot.realtime.activeSessions}
           icon={<Users size={16} />}
         />
         <AdminStatCard
-          label="Tổng doanh thu 30 ngày"
+          label={t("stats.revenue30d")}
           value={formatVND(snapshot.revenue.totalRevenue30d)}
           icon={<DollarSign size={16} />}
         />
         <AdminStatCard
-          label="Tỷ lệ giữ chân"
+          label={t("stats.retentionRate")}
           value={`${snapshot.retention.retentionRate}%`}
           icon={<TrendingUp size={16} />}
         />
@@ -379,12 +381,12 @@ export default function AdminAnalyticsPage() {
 
       {/* Time Series Chart */}
       <AdminSectionCard
-        title="Xu hướng theo thời gian"
+        title={t("trendsOverTime")}
         icon={<TrendingUp size={16} />}
         headerActions={
           <Button variant="outline" size="sm" onClick={() => handleExport("timeseries")}>
             <Download size={16} className="mr-2" />
-            Xuất CSV
+            {t("exportCsv")}
           </Button>
         }
       >
@@ -395,7 +397,7 @@ export default function AdminAnalyticsPage() {
           />
         ) : (
           <div className="text-center py-8 text-[var(--admin-text-secondary)]">
-            Không có dữ liệu xu hướng
+            {t("noTrendData")}
           </div>
         )}
       </AdminSectionCard>
@@ -403,12 +405,12 @@ export default function AdminAnalyticsPage() {
       {/* Tabs */}
       <Tabs defaultValue="overview" className="space-y-4">
         <TabsList className="bg-[var(--admin-card-bg)]">
-          <TabsTrigger value="overview">Tổng quan</TabsTrigger>
-          <TabsTrigger value="learning">Học tập</TabsTrigger>
-          <TabsTrigger value="revenue">Doanh thu</TabsTrigger>
-          <TabsTrigger value="retention">Giữ chân</TabsTrigger>
-          <TabsTrigger value="realtime">Real-time</TabsTrigger>
-          <TabsTrigger value="content">Nội dung</TabsTrigger>
+          <TabsTrigger value="overview">{t("tabs.overview")}</TabsTrigger>
+          <TabsTrigger value="learning">{t("tabs.learning")}</TabsTrigger>
+          <TabsTrigger value="revenue">{t("tabs.revenue")}</TabsTrigger>
+          <TabsTrigger value="retention">{t("tabs.retention")}</TabsTrigger>
+          <TabsTrigger value="realtime">{t("tabs.realtime")}</TabsTrigger>
+          <TabsTrigger value="content">{t("tabs.content")}</TabsTrigger>
         </TabsList>
 
         {/* Overview Tab */}
@@ -416,67 +418,67 @@ export default function AdminAnalyticsPage() {
           <div className="flex justify-end">
             <Button variant="outline" size="sm" onClick={() => handleExport("overview")}>
               <Download size={16} className="mr-2" />
-              Xuất CSV
+              Export CSV
             </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <AdminStatCard
-              label="Tổng phụ huynh"
+              label={t("stats.parents")}
               value={snapshot.overview.counts.parents}
               icon={<Users size={16} />}
             />
             <AdminStatCard
-              label="Tổng học sinh"
+              label={t("stats.children")}
               value={snapshot.overview.counts.children}
               icon={<BookOpen size={16} />}
             />
             <AdminStatCard
-              label="Mã giới thiệu"
+              label={t("stats.referralCode")}
               value={snapshot.overview.counts.referralCodes}
               trend={{
                 value: snapshot.overview.counts.paidReferrals,
-                label: `${snapshot.overview.counts.paidReferrals} đã thanh toán`,
+                label: String(snapshot.overview.counts.paidReferrals),
               }}
             />
             <AdminStatCard
-              label="Đơn khóa học (30 ngày)"
+              label={t("stats.coursesOrdered")}
               value={snapshot.revenue.courseOrderCount30d}
               trend={{
                 value: snapshot.revenue.uniqueBuyers30d,
-                label: `${snapshot.revenue.uniqueBuyers30d} phụ huynh mua khóa`,
+                label: String(snapshot.revenue.uniqueBuyers30d),
               }}
             />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <AdminSectionCard title="Thanh toán gần đây" icon={<DollarSign size={16} />}>
+            <AdminSectionCard title={t("recentPayments")} icon={<DollarSign size={16} />}>
               <AdminDataTable
                 columns={[
-                  { key: "parent.email", label: "Phụ huynh" },
-                  { key: "amountVnd", label: "Số tiền" },
-                  { key: "status", label: "Trạng thái" },
+                  { key: "parent.email", label: t("colParent") },
+                  { key: "amountVnd", label: t("colAmount") },
+                  { key: "status", label: t("colStatus") },
                 ]}
                 data={snapshot.overview.recentPayments.map((p) => ({
                   ...p,
                   amountVnd: formatVND(p.amountVnd),
                 }))}
-                emptyMessage="Chưa có thanh toán nào"
+                emptyMessage={t("noPayments")}
               />
             </AdminSectionCard>
 
-            <AdminSectionCard title="Sự kiện Webhook gần đây" icon={<Activity size={16} />}>
+            <AdminSectionCard title={t("recentWebhooks")} icon={<Activity size={16} />}>
               <AdminDataTable
                 columns={[
-                  { key: "provider", label: "Provider" },
-                  { key: "status", label: "Trạng thái" },
-                  { key: "createdAt", label: "Thời gian" },
+                  { key: "provider", label: t("colProvider") },
+                  { key: "status", label: t("colStatus") },
+                  { key: "createdAt", label: t("colTime") },
                 ]}
                 data={snapshot.overview.recentWebhookEvents.map((w) => ({
                   ...w,
-                  createdAt: new Date(w.createdAt).toLocaleString("vi-VN"),
+                  createdAt: new Date(w.createdAt).toLocaleString(),
                 }))}
-                emptyMessage="Chưa có sự kiện webhook nào"
+                emptyMessage={t("noWebhooks")}
               />
             </AdminSectionCard>
           </div>
@@ -487,46 +489,46 @@ export default function AdminAnalyticsPage() {
           <div className="flex justify-end">
             <Button variant="outline" size="sm" onClick={() => handleExport("learning")}>
               <Download size={16} className="mr-2" />
-              Xuất CSV
+              Export CSV
             </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <AdminSectionCard title="Học sinh hoạt động" icon={<Users size={16} />}>
+            <AdminSectionCard title={t("activeStudents")} icon={<Users size={16} />}>
               <div className="grid grid-cols-2 gap-3 mt-2">
                 <AdminStatCard
-                  label="7 ngày"
+                  label={t("last7Days")}
                   value={snapshot.learning.activeChildrenLast7d}
                   trend={{
                     value: snapshot.learning.activeChildrenLast7d,
                     label: `${asPercent(
                       snapshot.learning.activeChildrenLast7d,
                       snapshot.overview.counts.children
-                    )}% tổng số`,
+                    )}%`,
                   }}
                 />
                 <AdminStatCard
-                  label="30 ngày"
+                  label={t("last30Days")}
                   value={snapshot.learning.activeChildrenLast30d}
                   trend={{
                     value: snapshot.learning.activeChildrenLast30d,
                     label: `${asPercent(
                       snapshot.learning.activeChildrenLast30d,
                       snapshot.overview.counts.children
-                    )}% tổng số`,
+                    )}%`,
                   }}
                 />
               </div>
             </AdminSectionCard>
 
-            <AdminSectionCard title="Tổng kết bài học (30 ngày)" icon={<BookOpen size={16} />}>
+            <AdminSectionCard title={t("lessonSummary")} icon={<BookOpen size={16} />}>
               <div className="grid grid-cols-2 gap-3 mt-2">
                 <AdminStatCard
-                  label="Bài học hoàn thành"
+                  label={t("lessonsCompleted")}
                   value={snapshot.learning.totalLessonsCompleted30d.toLocaleString()}
                 />
                 <AdminStatCard
-                  label="Phút / bé / ngày"
+                  label={t("minutesPerDay")}
                   value={snapshot.learning.avgMinutesPerChildPerDay}
                 />
               </div>
@@ -536,19 +538,19 @@ export default function AdminAnalyticsPage() {
           <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-sm font-semibold text-[var(--admin-text-secondary)]">
-                Phân bố chuỗi ngày học
+                {t("streakDistribution")}
               </h3>
               <span className="text-xs text-[var(--admin-text-muted)]">
-                Tổng: {streakTotal} học sinh
+                {t("totalStudents", { total: streakTotal })}
               </span>
             </div>
             <div className="space-y-3">
               {(
                 [
-                  ["zero", "0 ngày", snapshot.learning.streakDistribution.zero],
-                  ["low", "1-3 ngày", snapshot.learning.streakDistribution.low],
-                  ["medium", "4-7 ngày", snapshot.learning.streakDistribution.medium],
-                  ["high", "Trên 7 ngày", snapshot.learning.streakDistribution.high],
+                  ["zero", t("streak0"), snapshot.learning.streakDistribution.zero],
+                  ["low", t("streak1to3"), snapshot.learning.streakDistribution.low],
+                  ["medium", t("streak4to7"), snapshot.learning.streakDistribution.medium],
+                  ["high", t("streak7plus"), snapshot.learning.streakDistribution.high],
                 ] as const
               ).map(([key, label, value]) => {
                 const percent = asPercent(value, streakTotal);
@@ -575,14 +577,14 @@ export default function AdminAnalyticsPage() {
             </div>
           </div>
 
-          <AdminSectionCard title="Bài học phổ biến nhất" icon={<BookOpen size={16} />}>
+          <AdminSectionCard title={t("topLessons")} icon={<BookOpen size={16} />}>
             <AdminDataTable
               columns={[
-                { key: "title", label: "Tên bài" },
-                { key: "completionCount", label: "Lượt hoàn thành" },
+                { key: "title", label: t("colTitle") },
+                { key: "completionCount", label: t("colCompletions") },
               ]}
               data={topLessonsData as Record<string, unknown>[]}
-              emptyMessage="Chưa có dữ liệu hoàn thành trong 30 ngày qua."
+              emptyMessage={t("noLessons")}
             />
           </AdminSectionCard>
         </TabsContent>
@@ -592,7 +594,7 @@ export default function AdminAnalyticsPage() {
           <div className="flex justify-end mb-4">
             <Button variant="outline" size="sm" onClick={() => handleExport("revenue")}>
               <Download size={16} className="mr-2" />
-              Xuất CSV
+              Export CSV
             </Button>
           </div>
           <RevenueDashboard />
@@ -602,16 +604,16 @@ export default function AdminAnalyticsPage() {
         <TabsContent value="retention" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <AdminStatCard
-              label="Phụ huynh mới (7 ngày)"
+              label={t("newParents7d")}
               value={snapshot.retention.newParents7d}
-              trend={{ value: snapshot.retention.newParents30d, label: `${snapshot.retention.newParents30d} trong 30 ngày` }}
+              trend={{ value: snapshot.retention.newParents30d, label: String(snapshot.retention.newParents30d) }}
             />
             <AdminStatCard
-              label="Phụ huynh mua khóa (30 ngày)"
+              label={t("buyerParents30d")}
               value={snapshot.revenue.uniqueBuyers30d}
             />
             <AdminStatCard
-              label="Tỷ lệ giữ chân"
+              label={t("stats.retentionRate")}
               value={`${snapshot.retention.retentionRate}%`}
               className={cn(
                 getRetentionTone(snapshot.retention.retentionRate) === "text-emerald-700" &&
@@ -623,39 +625,39 @@ export default function AdminAnalyticsPage() {
               )}
             />
             <AdminStatCard
-              label="Số ngày đến bài đầu tiên"
+              label={t("daysToFirstLesson")}
               value={snapshot.retention.avgDaysToFirstLesson}
               trend={{
                 value: snapshot.retention.avgLessonsPerChildPerWeek,
-                label: `${snapshot.retention.avgLessonsPerChildPerWeek} bài/bé/tuần`,
+                label: String(snapshot.retention.avgLessonsPerChildPerWeek),
               }}
             />
           </div>
 
-          <AdminSectionCard title="SoT Analytics" icon={<Activity size={16} />}>
+          <AdminSectionCard title={t("sotAnalytics")} icon={<Activity size={16} />}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-4 bg-[var(--admin-sidebar-accent)] rounded-lg">
-                <p className="text-sm text-[var(--admin-text-secondary)]">Tỷ lệ chuyển đổi (7 ngày)</p>
+                <p className="text-sm text-[var(--admin-text-secondary)]">{t("conversionRate")}</p>
                 <p className="text-2xl font-bold text-[var(--admin-text-primary)]">
                   {snapshot.sot.sqlAudit.checkoutToPurchaseRate7d}%
                 </p>
                 <p className="text-xs text-[var(--admin-text-muted)] mt-1">
-                  Checkout → Purchase
+                  {t("checkoutToPurchase")}
                 </p>
               </div>
               <div className="p-4 bg-[var(--admin-sidebar-accent)] rounded-lg">
-                <p className="text-sm text-[var(--admin-text-secondary)]">Video hoàn thành</p>
+                <p className="text-sm text-[var(--admin-text-secondary)]">{t("videoCompleted")}</p>
                 <p className="text-2xl font-bold text-[var(--admin-text-primary)]">
                   {snapshot.sot.sqlAudit.counts7d["learning.lesson.video.watch.completed"] || 0}
                 </p>
-                <p className="text-xs text-[var(--admin-text-muted)] mt-1">7 ngày qua</p>
+                <p className="text-xs text-[var(--admin-text-muted)] mt-1">{t("last7Days")}</p>
               </div>
               <div className="p-4 bg-[var(--admin-sidebar-accent)] rounded-lg">
-                <p className="text-sm text-[var(--admin-text-secondary)]">GA4 Sessions</p>
+                <p className="text-sm text-[var(--admin-text-secondary)]">{t("ga4Sessions")}</p>
                 <p className="text-2xl font-bold text-[var(--admin-text-primary)]">
                   {snapshot.sot.ga4.sessions7d.toLocaleString()}
                 </p>
-                <p className="text-xs text-[var(--admin-text-muted)] mt-1">7 ngày qua</p>
+                <p className="text-xs text-[var(--admin-text-muted)] mt-1">{t("last7Days")}</p>
               </div>
             </div>
           </AdminSectionCard>
@@ -674,7 +676,7 @@ export default function AdminAnalyticsPage() {
 
       {/* Footer */}
       <div className="text-xs text-[var(--admin-text-muted)] text-right">
-        Cập nhật lần cuối: {new Date(snapshot.timestamp).toLocaleString("vi-VN")}
+        {t("lastUpdated", { timestamp: new Date(snapshot.timestamp).toLocaleString() })}
       </div>
     </div>
   );

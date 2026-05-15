@@ -1,5 +1,6 @@
 import { addDays, startOfDay } from "date-fns";
 import { fromZonedTime, toZonedTime } from "date-fns-tz";
+import { getLocale } from "next-intl/server";
 import { KidSkyGardenScene } from "@/components/kid-sky-garden/KidSkyGardenScene";
 import { mapLessonLikeToSkyGardenLesson } from "@/components/kid-sky-garden/mappers";
 import { KidMissionPanel } from "@/components/kid-mission-panel";
@@ -9,6 +10,8 @@ import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
 import { isKidSkyGardenMvpEnabled } from "@/lib/feature-flags";
 import { getRealKidGardenMission } from "@/modules/content/service";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 interface KidTodayPageProps {
   searchParams?:
@@ -46,6 +49,7 @@ function readSingleQueryParam(value?: string | string[]) {
 
 export default async function KidTodayPage({ searchParams }: KidTodayPageProps) {
   const parent = await requireParent();
+  const locale = resolveAppLocale(await getLocale());
   const useSkyGardenMvp = await isKidSkyGardenMvpEnabled();
 
   const children = await prisma.childProfile.findMany({
@@ -62,9 +66,9 @@ export default async function KidTodayPage({ searchParams }: KidTodayPageProps) 
     return (
       <section className="kid-empty-state">
         <Mascot variant="duo" state="thinking" actionProp="reading" size={210} motionLevel="soft" pauseWhenOffscreen />
-        <h2>{"Ch\u01b0a c\u00f3 g\u00ec \u1edf \u0111\u00e2y c\u1ea3..."}</h2>
-        <h1>{"Ch\u1ebf \u0111\u1ed9 h\u1ecdc t\u1eadp ch\u01b0a s\u1eb5n s\u00e0ng"}</h1>
-        <p>{"H\u00e3y t\u1ea1o \u00edt nh\u1ea5t m\u1ed9t h\u1ed3 s\u01a1 b\u00e9 trong khu v\u1ef1c Ph\u1ee5 huynh tr\u01b0\u1edbc khi v\u00e0o h\u00e0nh tr\u00ecnh."}</p>
+        <h2>{translate("kid.today.emptyState.subheading", undefined, locale)}</h2>
+        <h1>{translate("kid.today.emptyState.heading", undefined, locale)}</h1>
+        <p>{translate("kid.today.emptyState.body", undefined, locale)}</p>
       </section>
     );
   }

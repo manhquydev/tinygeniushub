@@ -40,7 +40,7 @@ function buildParentLabel(displayName: string | null, email: string) {
   }
 
   const localPart = email.split("@")[0]?.trim();
-  return localPart && localPart.length > 0 ? localPart : "ba mẹ";
+  return localPart && localPart.length > 0 ? localPart : "parents";
 }
 
 function buildVerificationUrl(token: string) {
@@ -77,18 +77,18 @@ export async function issueParentEmailVerificationChallenge(input: {
   const verificationUrl = buildVerificationUrl(token);
   const parentLabel = buildParentLabel(input.parent.displayName, input.parent.email);
   const text = [
-    `Xin chào ${parentLabel},`,
+    `Hello${parentLabel},`,
     "",
-    "Vui lòng xác minh email để kích hoạt tài khoản TinyGenius Hub.",
-    `Nhấn vào liên kết xác minh: ${verificationUrl}`,
-    `Liên kết có hiệu lực trong ${ttlMinutes} phút.`,
+    "Please verify your email to activate your TinyGenius Hub account.",
+    `Click on the verification link:${verificationUrl}`,
+    `The link is valid in${ttlMinutes}minute.`,
     "",
-    "Nếu bạn không thực hiện đăng ký, vui lòng bỏ qua email này.",
+    "If you did not register, please ignore this email.",
   ].join("\n");
 
   await enqueueTransactionalEmail({
     to: input.parent.email,
-    subject: "Xác minh email tài khoản TinyGenius Hub",
+    subject: "Verify TinyGenius Hub account email",
     text,
     tags: [
       { name: "feature", value: "parent_email_verify" },

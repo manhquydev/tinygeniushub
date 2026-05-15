@@ -85,23 +85,23 @@ async function seedContent() {
   const englishUnits: UnitSeed[] = [
     {
       orderNo: 1,
-      title: "Lời Chào & Gia Đình",
+      title: "Greetings & Family",
       lessons: [
         {
           orderNo: 1,
           slug: "english-l1-u1-hello-bye-bye",
           title: "Hello & Bye Bye",
-          objective: "Bé nhận biết lời chào và tạm biệt bằng tiếng Anh trong ngữ cảnh quen thuộc.",
+          objective: "Children recognize greetings and goodbyes in English in familiar contexts.",
           estimatedMinutes: 15,
           trialEnabled: true,
           activity: {
-            prompt: "Chọn câu chào phù hợp",
+            prompt: "Choose the appropriate greeting",
             spec: {
               type: "MULTIPLE_CHOICE",
-              question: "Nghe và chọn đúng: Khi gặp bạn ta nói gì?",
+              question: "Listen and choose correctly: What do we say when we meet a friend?",
               options: ["Hello!", "Goodbye!", "Thank you!", "Sorry!"],
               correctIndex: 0,
-              explanation: '"Hello" có nghĩa là "Xin chào" - dùng khi gặp bạn!',
+              explanation: '"Hello" means "Hello" - used when meeting a friend!',
             },
           },
         },
@@ -109,17 +109,17 @@ async function seedContent() {
           orderNo: 2,
           slug: "english-l1-u1-mum-dad-baby",
           title: "Mum, Dad, Baby",
-          objective: "Bé gọi đúng các thành viên gia đình gần gũi bằng từ tiếng Anh cơ bản.",
+          objective: "The child correctly calls close family members using basic English words.",
           estimatedMinutes: 15,
           trialEnabled: true,
           activity: {
-            prompt: "Nối từ tiếng Anh với nghĩa tiếng Việt",
+            prompt: "Match the English word with the Vietnamese meaning",
             spec: {
               type: "MATCH_PAIRS",
               pairs: [
-                { left: "Mum", right: "Mẹ" },
-                { left: "Dad", right: "Bố" },
-                { left: "Baby", right: "Em bé" },
+                { left: "Mum", right: "Mom" },
+                { left: "Dad", right: "Dad" },
+                { left: "Baby", right: "Baby" },
               ],
             },
           },
@@ -128,16 +128,16 @@ async function seedContent() {
           orderNo: 3,
           slug: "english-l1-u1-how-are-you",
           title: "How Are You?",
-          objective: "Bé bước đầu sử dụng mẫu câu hỏi thăm đơn giản trong giao tiếp.",
+          objective: "The child initially uses a simple question form in communication.",
           estimatedMinutes: 15,
           trialEnabled: false,
           activity: {
-            prompt: "Điền từ còn thiếu trong câu hỏi",
+            prompt: "Fill in the missing word in the question",
             spec: {
               type: "FILL_BLANK",
               sentence: "How ___ you?",
               answer: "are",
-              hint: "Điền vào chỗ trống để hoàn thành câu hỏi!",
+              hint: "Fill in the blanks to complete the question!",
             },
           },
         },
@@ -145,23 +145,23 @@ async function seedContent() {
     },
     {
       orderNo: 2,
-      title: "Màu Sắc & Hình Dạng",
+      title: "Color & Shape",
       lessons: [
         {
           orderNo: 1,
           slug: "english-l1-u2-red-blue-yellow",
           title: "Red, Blue, Yellow",
-          objective: "Bé nhận diện ba màu cơ bản trong sinh hoạt hằng ngày.",
+          objective: "Baby recognizes three basic colors in daily activities.",
           estimatedMinutes: 15,
           trialEnabled: true,
           activity: {
-            prompt: "Chọn màu đúng",
+            prompt: "Choose the correct color",
             spec: {
               type: "MULTIPLE_CHOICE",
-              question: "Màu của bầu trời là màu gì?",
+              question: "What color is the sky?",
               options: ["Red", "Blue", "Yellow", "Green"],
               correctIndex: 1,
-              explanation: 'Bầu trời màu xanh - "Blue" nghĩa là màu xanh dương!',
+              explanation: 'The sky is blue - "Blue" means blue!',
             },
           },
         },
@@ -169,17 +169,17 @@ async function seedContent() {
           orderNo: 2,
           slug: "english-l1-u2-circle-and-square",
           title: "Circle and Square",
-          objective: "Bé phân biệt hai hình dạng cơ bản: hình tròn và hình vuông.",
+          objective: "Children distinguish between two basic shapes: circle and square.",
           estimatedMinutes: 15,
           trialEnabled: false,
           activity: {
-            prompt: "Nối tên hình với hình dạng",
+            prompt: "Match the shape name with the shape",
             spec: {
               type: "MATCH_PAIRS",
               pairs: [
-                { left: "Circle", right: "Hình tròn" },
-                { left: "Square", right: "Hình vuông" },
-                { left: "Triangle", right: "Hình tam giác" },
+                { left: "Circle", right: "Circle" },
+                { left: "Square", right: "Square" },
+                { left: "Triangle", right: "Triangle" },
               ],
             },
           },
@@ -188,16 +188,16 @@ async function seedContent() {
           orderNo: 3,
           slug: "english-l1-u2-big-and-small",
           title: "Big and Small",
-          objective: "Bé hiểu và dùng được cặp từ chỉ kích thước lớn - nhỏ.",
+          objective: "The child understands and can use pairs of words indicating large - small sizes.",
           estimatedMinutes: 15,
           trialEnabled: false,
           activity: {
-            prompt: "Đúng hay sai về kích thước",
+            prompt: "Right or wrong about size",
             spec: {
               type: "TRUE_FALSE",
-              statement: '"Big" nghĩa là "to/lớn".',
+              statement: '"Big" means "big/large".',
               isTrue: true,
-              explanation: "Đúng! Big dùng để mô tả đồ vật có kích thước lớn.",
+              explanation: "Correct! Big is used to describe large sized objects.",
             },
           },
         },
@@ -208,20 +208,20 @@ async function seedContent() {
   const mathUnits: UnitSeed[] = [
     {
       orderNo: 1,
-      title: "Đếm 1-5",
+      title: "Count 1-5",
       lessons: [
         {
           orderNo: 1,
           slug: "math-l1-u1-count-to-3",
           title: "Count to 3",
-          objective: "Bé sắp xếp đúng thứ tự số từ 1 đến 3.",
+          objective: "The child arranges the numbers from 1 to 3 in the correct order.",
           estimatedMinutes: 15,
           trialEnabled: true,
           activity: {
-            prompt: "Sắp xếp số theo thứ tự đúng",
+            prompt: "Arrange the numbers in the correct order",
             spec: {
               type: "SORT_ORDER",
-              items: ["Ba", "Một", "Hai"],
+              items: ["Ba", "One", "Hai"],
               correctOrder: [1, 2, 0],
             },
           },
@@ -230,14 +230,14 @@ async function seedContent() {
           orderNo: 2,
           slug: "math-l1-u1-count-to-5",
           title: "Count to 5",
-          objective: "Bé đếm và sắp xếp đúng dãy số từ 1 đến 5.",
+          objective: "Children count and arrange the correct number sequence from 1 to 5.",
           estimatedMinutes: 15,
           trialEnabled: true,
           activity: {
-            prompt: "Sắp xếp dãy số 1 đến 5",
+            prompt: "Arrange numbers 1 to 5",
             spec: {
               type: "SORT_ORDER",
-              items: ["Năm", "Hai", "Bốn", "Một", "Ba"],
+              items: ["Five", "Hai", "Four", "One", "Ba"],
               correctOrder: [3, 1, 4, 2, 0],
             },
           },
@@ -246,16 +246,16 @@ async function seedContent() {
           orderNo: 3,
           slug: "math-l1-u1-which-is-more",
           title: "Which is More?",
-          objective: "Bé so sánh số lượng và nhận biết khái niệm nhiều hơn.",
+          objective: "Children compare quantities and recognize concepts more.",
           estimatedMinutes: 15,
           trialEnabled: false,
           activity: {
-            prompt: "Đúng hay sai về so sánh số lượng",
+            prompt: "True or false about comparing quantities",
             spec: {
               type: "TRUE_FALSE",
-              statement: "5 nhiều hơn 3",
+              statement: "5 is more than 3",
               isTrue: true,
-              explanation: "Đúng! 5 > 3. Năm kẹo nhiều hơn ba kẹo!",
+              explanation: "Yes! 5 > 3. Five candies is more than three candies!",
             },
           },
         },
@@ -263,23 +263,23 @@ async function seedContent() {
     },
     {
       orderNo: 2,
-      title: "Hình Khối & Không Gian",
+      title: "Shapes & Space",
       lessons: [
         {
           orderNo: 1,
           slug: "math-l1-u2-hinh-tron-va-hinh-vuong",
-          title: "Hình tròn & Hình vuông",
-          objective: "Bé nhận diện các hình cơ bản trong môi trường xung quanh.",
+          title: "Circle & Square",
+          objective: "Baby recognizes basic shapes in the surrounding environment.",
           estimatedMinutes: 15,
           trialEnabled: true,
           activity: {
-            prompt: "Nối tên hình với ví dụ thực tế",
+            prompt: "Match the picture name with a real-life example",
             spec: {
               type: "MATCH_PAIRS",
               pairs: [
-                { left: "Hình tròn", right: "Quả bóng" },
-                { left: "Hình vuông", right: "Ô cửa sổ" },
-                { left: "Hình chữ nhật", right: "Cuốn sách" },
+                { left: "Circle", right: "Ball" },
+                { left: "Square", right: "Window box" },
+                { left: "Rectangle", right: "The book" },
               ],
             },
           },
@@ -287,35 +287,35 @@ async function seedContent() {
         {
           orderNo: 2,
           slug: "math-l1-u2-lon-hon-va-nho-hon",
-          title: "Lớn hơn & Nhỏ hơn",
-          objective: "Bé so sánh kích thước đồ vật bằng cặp khái niệm lớn - nhỏ.",
+          title: "Bigger & Smaller",
+          objective: "Children compare the size of objects using the concept pair big - small.",
           estimatedMinutes: 15,
           trialEnabled: false,
           activity: {
-            prompt: "Chọn vật lớn hơn",
+            prompt: "Choose a larger object",
             spec: {
               type: "MULTIPLE_CHOICE",
-              question: "Trong hai vật sau, vật nào lớn hơn?",
-              options: ["Viên bi", "Quả bóng", "Cục tẩy", "Nhãn dán"],
+              question: "Of the following two objects, which is larger?",
+              options: ["Marbles", "Ball", "Eraser", "Sticker"],
               correctIndex: 1,
-              explanation: "Quả bóng lớn hơn viên bi, cục tẩy và nhãn dán.",
+              explanation: "Balls are bigger than marbles, erasers, and stickers.",
             },
           },
         },
         {
           orderNo: 3,
           slug: "math-l1-u2-cao-hon-va-ngan-hon",
-          title: "Cao hơn & Ngắn hơn",
-          objective: "Bé nhận biết so sánh chiều cao và độ dài đơn giản.",
+          title: "Taller & Shorter",
+          objective: "Children recognize simple height and length comparisons.",
           estimatedMinutes: 15,
           trialEnabled: false,
           activity: {
-            prompt: "Đúng hay sai về so sánh chiều cao",
+            prompt: "True or false about height comparison",
             spec: {
               type: "TRUE_FALSE",
-              statement: "Cây cao hơn bút chì",
+              statement: "The tree is taller than a pencil",
               isTrue: true,
-              explanation: "Đúng! Cây thường cao hơn rất nhiều so với bút chì.",
+              explanation: "Yes! Trees are usually much taller than pencils.",
             },
           },
         },
@@ -329,7 +329,7 @@ async function seedContent() {
       title: "English Journey",
       level: {
         orderNo: 1,
-        title: "Khám Phá Từ Đầu Tiên",
+        title: "First Word Discovery",
         units: englishUnits,
       },
     },
@@ -338,7 +338,7 @@ async function seedContent() {
       title: "Math Journey",
       level: {
         orderNo: 1,
-        title: "Những Con Số Kỳ Diệu",
+        title: "Magic Numbers",
         units: mathUnits,
       },
     },
@@ -376,21 +376,21 @@ async function seedContent() {
         const offlineCardMarkdown = [
           `## ${lessonSeed.title}`,
           "",
-          `**Mục tiêu:** ${lessonSeed.objective}`,
+          `**Goal:**${lessonSeed.objective}`,
           "",
-          "**Hoạt động offline:**",
-          "- Dùng thẻ hình ảnh hoặc đồ vật thật",
-          "- Lặp lại 3 lần cùng con",
-          "- Khen khi con trả lời đúng",
+          "**Offline activities:**",
+          "- Use picture cards or real objects",
+          "- Repeat 3 times with your child",
+          "- Praise your child when they answer correctly",
         ].join("\n");
 
         const parentScriptMarkdown = [
-          "## Hướng Dẫn Ba Mẹ",
+          "## Instructions for Parents",
           "",
-          "1. Ngồi cùng con, tắt TV/điện thoại",
-          `2. Xem video bài ${lessonSeed.title} cùng con`,
-          '3. Hỏi lại: "Con vừa học được gì?"',
-          "4. Làm hoạt động offline với con",
+          "1. Sit with your child, turn off the TV/phone",
+          `2. Watch the video article${lessonSeed.title}with my child`,
+          '3. Ask again: "What did you just learn?"',
+          "4. Do offline activities with your child",
         ].join("\n");
 
         const lesson = await prisma.lesson.upsert({
@@ -535,14 +535,14 @@ async function seedBlog() {
   console.log("Seeding blog data...");
 
   const categories = [
-    { slug: "phat-trien-tre", nameVi: "Phát Triển Trẻ Em", emoji: "🌱", color: "#10b981", orderNo: 1 },
-    { slug: "phuong-phap-hoc", nameVi: "Phương Pháp Học Tập", emoji: "📚", color: "#3b82f6", orderNo: 2 },
-    { slug: "tieng-anh-som", nameVi: "Tiếng Anh Cho Trẻ", emoji: "🌏", color: "#8b5cf6", orderNo: 3 },
-    { slug: "toan-tu-duy", nameVi: "Toán Tư Duy", emoji: "🔢", color: "#f59e0b", orderNo: 4 },
-    { slug: "dinh-huong-phu-huynh", nameVi: "Hướng Dẫn Phụ Huynh", emoji: "👪", color: "#ef4444", orderNo: 5 },
-    { slug: "cong-nghe-giao-duc", nameVi: "Công Nghệ Giáo Dục", emoji: "💻", color: "#06b6d4", orderNo: 6 },
-    { slug: "suc-khoe-tam-than", nameVi: "Sức Khỏe và Cân Bằng", emoji: "💙", color: "#ec4899", orderNo: 7 },
-    { slug: "thanh-tich-hoc-tap", nameVi: "Câu Chuyện Thành Công", emoji: "⭐", color: "#84cc16", orderNo: 8 },
+    { slug: "phat-trien-tre", nameVi: "Child Development", emoji: "🌱", color: "#10b981", orderNo: 1 },
+    { slug: "phuong-phap-hoc", nameVi: "Learning Methods", emoji: "📚", color: "#3b82f6", orderNo: 2 },
+    { slug: "tieng-anh-som", nameVi: "English for Children", emoji: "🌏", color: "#8b5cf6", orderNo: 3 },
+    { slug: "toan-tu-duy", nameVi: "Math Thinking", emoji: "🔢", color: "#f59e0b", orderNo: 4 },
+    { slug: "dinh-huong-phu-huynh", nameVi: "Parental Instructions", emoji: "👪", color: "#ef4444", orderNo: 5 },
+    { slug: "cong-nghe-giao-duc", nameVi: "Educational Technology", emoji: "💻", color: "#06b6d4", orderNo: 6 },
+    { slug: "suc-khoe-tam-than", nameVi: "Health and Balance", emoji: "💙", color: "#ec4899", orderNo: 7 },
+    { slug: "thanh-tich-hoc-tap", nameVi: "Success Story", emoji: "⭐", color: "#84cc16", orderNo: 8 },
   ];
 
   for (const cat of categories) {
@@ -556,14 +556,14 @@ async function seedBlog() {
   await prisma.blogAuthor.upsert({
     where: { slug: "ban-bien-tap" },
     update: {
-      displayName: "Ban Biên Tập",
-      role: "Biên tập viên TinyGenius Hub",
+      displayName: "Editorial Board",
+      role: "TinyGenius Hub Editor",
       active: true,
     },
     create: {
       slug: "ban-bien-tap",
-      displayName: "Ban Biên Tập",
-      role: "Biên tập viên TinyGenius Hub",
+      displayName: "Editorial Board",
+      role: "TinyGenius Hub Editor",
       active: true,
     },
   });
@@ -571,14 +571,14 @@ async function seedBlog() {
   await prisma.blogAuthor.upsert({
     where: { slug: "chuyen-gia-giao-duc" },
     update: {
-      displayName: "Chuyên Gia Giáo Dục",
-      role: "Chuyên gia Tâm lý Giáo dục",
+      displayName: "Education Expert",
+      role: "Educational Psychologist",
       active: true,
     },
     create: {
       slug: "chuyen-gia-giao-duc",
-      displayName: "Chuyên Gia Giáo Dục",
-      role: "Chuyên gia Tâm lý Giáo dục",
+      displayName: "Education Expert",
+      role: "Educational Psychologist",
       active: true,
     },
   });
@@ -624,29 +624,28 @@ async function seedBlog() {
       slug: "5-meo-hoc-tieng-anh-tai-nha",
       type: "TIP" as const,
       status: "PUBLISHED" as const,
-      titleVi: "5 mẹo học tiếng Anh tại nhà cho bé 3-5 tuổi",
+      titleVi: "5 tips for learning English at home for 3-5 year olds",
       excerptVi:
-        "Các hoạt động ngắn 5-10 phút giúp bé làm quen tiếng Anh tự nhiên mỗi ngày.",
-      contentMarkdown: `## Bắt đầu từ thói quen nhỏ
+        "Short 5-10 minute activities help children become familiar with English naturally every day.",
+      contentMarkdown: `## Start with small habits
 
-Hãy dành 5 phút đầu ngày để nghe và lặp lại 3 từ mới.
+Take the first 5 minutes of the day to listen and repeat 3 new words.
 
-## Học qua bài hát
+## Learn through songs
 
-Bật bài hát thiếu nhi tiếng Anh và cho bé vận động theo nhịp.
+Turn on an English children's song and let your baby move to the rhythm.
 
-## Gắn từ vào đồ vật
+## Attach words to objects
 
-Dán nhãn từ vựng lên đồ dùng quen thuộc trong nhà.
+Label vocabulary on household familiar items.
 
-## Kể chuyện tranh
+## Tell a comic story
 
-Đọc truyện ngắn có hình minh họa và đặt câu hỏi đơn giản.
+Read short stories with illustrations and ask simple questions.
 
-## Khen ngợi đúng lúc
+## Praise at the right time
 
-Ghi nhận nỗ lực của bé để duy trì động lực học tập.
-`,
+Recognize your child's efforts to maintain learning motivation.`,
       categoryId: tiengAnh.id,
       ageGroup: "AGE_6_8" as const,
       readingTimeMin: 5,
@@ -661,9 +660,9 @@ Ghi nhận nỗ lực của bé để duy trì động lực học tập.
       slug: "tre-hoc-toan-tu-duy-nhu-the-nao",
       type: "GUIDE" as const,
       status: "PUBLISHED" as const,
-      titleVi: "Trẻ em phát triển tư duy toán học như thế nào",
+      titleVi: "How children develop mathematical thinking",
       excerptVi:
-        "Tư duy toán học không chỉ là tính toán nhanh mà còn là cách giải quyết vấn đề trong đời sống hằng ngày.",
+        "Mathematical thinking is not only about quick calculations but also about solving problems in everyday life.",
       contentMarkdown: `# How Children Develop Mathematical Thinking
 
 Mathematical thinking is about logic, patterns, and problem-solving not just arithmetic.
@@ -694,9 +693,9 @@ Children learn math most effectively through play. Puzzle games, strategy board 
       slug: "phuong-phap-giao-duc-som-hieu-qua-2026",
       type: "ARTICLE" as const,
       status: "PUBLISHED" as const,
-      titleVi: "Phương pháp giáo dục sớm hiệu quả nhất cho trẻ năm 2026",
+      titleVi: "The most effective early education method for children in 2026",
       excerptVi:
-        "Montessori, STEAM hay Waldorf? Chuyên gia giáo dục khuyến nghị cách tiếp cận nào phù hợp nhất cho trẻ em Việt Nam năm 2026?",
+        "Montessori, STEAM or Waldorf? What approach do educational experts recommend that is most suitable for Vietnamese children in 2026?",
       contentMarkdown: `# Most Effective Early Education Methods in 2026
 
 Modern early childhood education combines proven methods with new research on how children learn.
@@ -836,18 +835,18 @@ async function seedBlogArticles() {
   };
 
   const articles: ArticleDef[] = [
-    // Tiếng Anh sớm (01, 02, 03)
+    // Early English (01, 02, 03)
     { slug: "top-7-app-tieng-anh-cho-be", filename: "01-top-7-app-tieng-anh.md", categoryId: catTiengAnh.id },
     { slug: "day-tieng-anh-cho-be-tai-nha", filename: "02-day-tieng-anh-tai-nha.md", categoryId: catTiengAnh.id },
     { slug: "bai-hat-tieng-anh-cho-be", filename: "03-bai-hat-tieng-anh-cho-be.md", categoryId: catTiengAnh.id },
-    // Toán tư duy (04, 05, 06)
+    // Mental Math (04, 05, 06)
     { slug: "day-toan-cho-tre-3-tuoi", filename: "04-day-toan-cho-tre-3-tuoi.md", categoryId: catToanTuDuy.id },
     { slug: "tro-choi-hoc-toan-cho-be", filename: "05-tro-choi-hoc-toan-cho-be.md", categoryId: catToanTuDuy.id },
     { slug: "app-hoc-toan-cho-be", filename: "06-app-hoc-toan-cho-be.md", categoryId: catToanTuDuy.id },
-    // Công nghệ giáo dục (07, 08)
+    // Educational Technology (07, 08)
     { slug: "ung-dung-giao-duc-cho-be", filename: "07-ung-dung-giao-duc-cho-be.md", categoryId: catCongNghe.id },
     { slug: "app-hoc-cho-be-3-tuoi", filename: "08-app-hoc-cho-be-3-tuoi.md", categoryId: catCongNghe.id },
-    // Phát triển trẻ (09, 10)
+    // Youth development (09, 10)
     { slug: "giao-duc-som-cho-tre", filename: "09-giao-duc-som-cho-tre.md", categoryId: catPhatTrien.id },
     { slug: "phuong-phap-giao-duc-som", filename: "10-phuong-phap-giao-duc-som.md", categoryId: catPhatTrien.id },
   ];

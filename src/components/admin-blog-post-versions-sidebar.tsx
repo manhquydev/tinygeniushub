@@ -28,15 +28,15 @@ type AdminBlogPostVersionsSidebarProps = {
 function getStatusLabel(status: BlogPostStatus) {
   switch (status) {
     case "DRAFT":
-      return "Nháp";
+      return "Draft";
     case "REVIEW":
-      return "Chờ duyệt";
+      return "Waiting for approval";
     case "PUBLISHED":
-      return "Đã xuất bản";
+      return "Published";
     case "SCHEDULED":
-      return "Lên lịch";
+      return "Schedule";
     case "ARCHIVED":
-      return "Lưu trữ";
+      return "Storage";
     default:
       return status;
   }
@@ -64,7 +64,7 @@ export function AdminBlogPostVersionsSidebar({ postId, onRestore }: AdminBlogPos
       const payload = (await response.json()) as { versions: AdminBlogPostVersion[] };
       setVersions(payload.versions);
     } catch {
-      setMessage("Không thể tải lịch sử phiên bản.");
+      setMessage("Unable to load version history.");
     } finally {
       setLoading(false);
     }
@@ -87,10 +87,10 @@ export function AdminBlogPostVersionsSidebar({ postId, onRestore }: AdminBlogPos
         throw new Error("SAVE_VERSION_FAILED");
       }
 
-      setMessage("Đã lưu phiên bản hiện tại.");
+      setMessage("Saved current version.");
       await fetchVersions();
     } catch {
-      setMessage("Không thể lưu phiên bản. Vui lòng thử lại.");
+      setMessage("Unable to save version. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -99,17 +99,17 @@ export function AdminBlogPostVersionsSidebar({ postId, onRestore }: AdminBlogPos
   return (
     <aside className="rounded-3xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
       <div className="flex items-center justify-between gap-2">
-        <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Lịch sử phiên bản</h3>
+        <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Version history</h3>
         <Button type="button" size="sm" variant="outline" onClick={() => void saveVersion()} disabled={busy || loading}>
-          {busy ? "Đang lưu..." : "Lưu phiên bản"}
+          {busy ? "Saving..." : "Save version"}
         </Button>
       </div>
 
       <div className="mt-3 space-y-2">
-        {loading ? <p className="text-sm text-[var(--admin-text-secondary)]">Đang tải...</p> : null}
+        {loading ? <p className="text-sm text-[var(--admin-text-secondary)]">Loading...</p> : null}
 
         {!loading && versions.length === 0 ? (
-          <p className="text-sm text-[var(--admin-text-secondary)]">Chưa có phiên bản nào.</p>
+          <p className="text-sm text-[var(--admin-text-secondary)]">There are no versions yet.</p>
         ) : null}
 
         {versions.map((version) => (
@@ -123,8 +123,8 @@ export function AdminBlogPostVersionsSidebar({ postId, onRestore }: AdminBlogPos
                 minute: "2-digit",
               }).format(new Date(version.createdAt))}
             </p>
-            <p className="mt-1 text-xs text-[var(--admin-text-secondary)]">Trạng thái: {getStatusLabel(version.status)}</p>
-            <p className="text-xs text-[var(--admin-text-secondary)]">Người lưu: {version.savedBy ?? "Hệ thống"}</p>
+            <p className="mt-1 text-xs text-[var(--admin-text-secondary)]">Status: {getStatusLabel(version.status)}</p>
+            <p className="text-xs text-[var(--admin-text-secondary)]">Saved by: {version.savedBy ?? "System"}</p>
             <Button
               type="button"
               size="sm"
@@ -142,7 +142,7 @@ export function AdminBlogPostVersionsSidebar({ postId, onRestore }: AdminBlogPos
                 })
               }
             >
-              Khôi phục vào form
+              Restore to form
             </Button>
           </div>
         ))}

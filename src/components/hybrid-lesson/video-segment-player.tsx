@@ -108,7 +108,7 @@ export function VideoSegmentPlayer({ src, poster, onEnded, preloadSrc }: VideoSe
             cursor: "pointer",
             boxShadow: "0 8px 32px rgba(59,130,246,0.4)",
           }}
-          aria-label="Bắt đầu xem"
+          aria-label="Start watching"
         >
           <Play size={48} fill="#fff" />
         </m.button>

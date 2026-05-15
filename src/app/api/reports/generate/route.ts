@@ -78,8 +78,8 @@ export async function POST(request: NextRequest) {
         reports.map((report) =>
           createNotification(userId, {
             type: NotificationType.REPORT,
-            title: "B\u00e1o c\u00e1o tu\u1ea7n \u0111\u00e3 s\u1eb5n s\u00e0ng",
-            message: `B\u00e1o c\u00e1o tu\u1ea7n c\u1ee7a ${childNameById.get(report.childId) ?? "b\u00e9"} \u0111\u00e3 s\u1eb5n s\u00e0ng!`,
+            title: "Weekly report is ready",
+            message: `${childNameById.get(report.childId) ?? "Your child"}'s weekly report is ready!`,
             href: "/parent/reports",
           }),
         ),

@@ -13,6 +13,7 @@ export interface BlogAuthorSummary {
 
 export interface BlogCategorySummary {
   nameVi: string;
+  nameEn: string | null;
   slug: string;
   emoji: string | null;
   color: string | null;

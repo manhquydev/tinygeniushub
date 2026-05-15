@@ -40,6 +40,7 @@ const postCardSelect = {
   category: {
     select: {
       nameVi: true,
+      nameEn: true,
       slug: true,
       emoji: true,
       color: true,
@@ -112,6 +113,7 @@ function mapPostCard(row: PostCardRow): BlogPostCardDTO {
     },
     category: {
       nameVi: row.category.nameVi,
+      nameEn: row.category.nameEn,
       slug: row.category.slug,
       emoji: row.category.emoji,
       color: row.category.color,

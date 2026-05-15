@@ -26,8 +26,8 @@ type Props = {
 };
 
 const ROLE_LABELS: Record<string, string> = {
-  STUDENT_PARENT: "Phụ huynh học sinh",
-  TEACHER_ADMIN: "Giáo viên quản lý",
+  STUDENT_PARENT: "Parents of students",
+  TEACHER_ADMIN: "Management teacher",
 };
 
 export function AdminOrgMemberPanel({ orgId, orgName }: Props) {
@@ -46,12 +46,12 @@ export function AdminOrgMemberPanel({ orgId, orgName }: Props) {
       const res = await fetch(`/api/admin/organizations/${orgId}/members`);
       if (!res.ok) {
         const json = await res.json() as { error?: { message?: string } };
-        throw new Error(json.error?.message ?? "Không thể tải danh sách thành viên");
+        throw new Error(json.error?.message ?? "Unable to load member list");
       }
       const json = await res.json() as { data: { members: OrgMember[] } };
       setMembers(json.data?.members ?? []);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Lỗi không xác định");
+      setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setLoading(false);
     }
@@ -73,29 +73,29 @@ export function AdminOrgMemberPanel({ orgId, orgName }: Props) {
       });
       if (!res.ok) {
         const json = await res.json() as { error?: { message?: string } };
-        throw new Error(json.error?.message ?? "Thêm thành viên thất bại");
+        throw new Error(json.error?.message ?? "Adding members failed");
       }
       setParentId("");
       void fetchMembers();
     } catch (err) {
-      setAddError(err instanceof Error ? err.message : "Lỗi không xác định");
+      setAddError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setAdding(false);
     }
   }
 
   async function handleRemove(memberId: string) {
-    if (!confirm("Xác nhận xóa thành viên này?")) return;
+    if (!confirm("Confirm deletion of this member?")) return;
     try {
       const res = await fetch(`/api/admin/organizations/${orgId}/members`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ parentId: memberId }),
       });
-      if (!res.ok) throw new Error("Xóa thất bại");
+      if (!res.ok) throw new Error("Delete failed");
       setMembers((prev) => prev.filter((m) => m.parentId !== memberId));
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Lỗi xóa thành viên");
+      setError(err instanceof Error ? err.message : "Error deleting member");
     }
   }
 
@@ -104,7 +104,7 @@ export function AdminOrgMemberPanel({ orgId, orgName }: Props) {
       <div className="flex items-center gap-2">
         <Users size={14} className="text-[var(--admin-text-secondary)]" />
         <h3 className="text-xs font-semibold text-[var(--admin-text-secondary)] uppercase tracking-wide">
-          Thành viên — {orgName}
+          Member — {orgName}
         </h3>
         <Badge variant="secondary">{members.length}</Badge>
       </div>
@@ -115,26 +115,26 @@ export function AdminOrgMemberPanel({ orgId, orgName }: Props) {
           <Input
             value={parentId}
             onChange={(e) => setParentId(e.target.value)}
-            placeholder="ID phụ huynh"
+            placeholder="Parent ID"
             className="h-7 text-xs w-56"
             required
           />
         </div>
         <div className="grid gap-1">
-          <Label className="text-xs">Vai trò</Label>
+          <Label className="text-xs">Role</Label>
           <Select value={role} onValueChange={setRole}>
             <SelectTrigger className="h-7 text-xs w-44">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="STUDENT_PARENT">Phụ huynh học sinh</SelectItem>
-              <SelectItem value="TEACHER_ADMIN">Giáo viên quản lý</SelectItem>
+              <SelectItem value="STUDENT_PARENT">Parents of students</SelectItem>
+              <SelectItem value="TEACHER_ADMIN">Management teacher</SelectItem>
             </SelectContent>
           </Select>
         </div>
         <Button type="submit" disabled={adding} size="sm" className="h-7 text-xs gap-1 bg-teal-600 hover:bg-teal-700">
           <UserPlus size={12} />
-          {adding ? "Đang thêm..." : "Thêm"}
+          {adding ? "Adding..." : "More"}
         </Button>
       </form>
 
@@ -142,22 +142,22 @@ export function AdminOrgMemberPanel({ orgId, orgName }: Props) {
       {error && <p className="text-xs text-rose-600">{error}</p>}
 
       {loading ? (
-        <p className="text-xs text-[var(--admin-text-secondary)]">Đang tải...</p>
+        <p className="text-xs text-[var(--admin-text-secondary)]">Loading...</p>
       ) : (
         <div className="rounded border border-[var(--admin-card-border)] overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
                 <TableHead className="text-xs">Email</TableHead>
-                <TableHead className="text-xs">Vai trò</TableHead>
-                <TableHead className="text-xs">Thao tác</TableHead>
+                <TableHead className="text-xs">Role</TableHead>
+                <TableHead className="text-xs">Operation</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {members.length === 0 && (
                 <TableRow>
                   <TableCell colSpan={3} className="text-center text-xs text-[var(--admin-text-secondary)] py-4">
-                    Chưa có thành viên.
+                    No members yet.
                   </TableCell>
                 </TableRow>
               )}
@@ -178,7 +178,7 @@ export function AdminOrgMemberPanel({ orgId, orgName }: Props) {
                       variant="ghost"
                       className="h-6 w-6 p-0 text-rose-500 hover:text-rose-700"
                       onClick={() => void handleRemove(m.parentId)}
-                      title="Xóa thành viên"
+                      title="Delete members"
                     >
                       <Trash2 size={12} />
                     </Button>

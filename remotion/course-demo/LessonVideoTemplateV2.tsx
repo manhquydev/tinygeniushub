@@ -170,7 +170,7 @@ function PhaseView({ phase, phaseIndex, allPhases, lessonTitle, mascotVariant }:
             )}
           </div>
         </div>
-        <BottomPrompt text="Con hãy chọn đáp án đúng!" />
+        <BottomPrompt text="Please choose the correct answer!" />
         {phase.soundProxy && (
           <div style={{ position: "absolute", top: 160, left: "50%" }}>
             <SoundProxy type={phase.soundProxy} x={0} y={0} />

@@ -126,6 +126,6 @@ describe("enrichWeeklyReport", () => {
 
     const math = result.skillsProgress[0];
     expect(math.needsAttention).toHaveLength(1);
-    expect(math.needsAttention[0].reason).toContain("Chưa luyện tập");
+    expect(math.needsAttention[0].reason).toContain("Haven't practiced yet");
   });
 });

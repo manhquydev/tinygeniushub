@@ -250,7 +250,7 @@ export async function executeAdminBulkUsersAction(input: unknown) {
 
   const message =
     payload.payload?.message ??
-    "Phụ huynh vui lòng kiểm tra cập nhật mới trong bảng điều khiển.";
+    "Parents please check for new updates in the dashboard.";
 
   const results = await Promise.all(
     uniqueParentIds.map(async (parentId) => {
@@ -261,7 +261,7 @@ export async function executeAdminBulkUsersAction(input: unknown) {
         parentEmail: parent.email,
         notification: {
           type: "TIP",
-          title: "Thông báo từ quản trị viên",
+          title: "Notice from admin",
           message,
           href: "/parent/dashboard",
         },

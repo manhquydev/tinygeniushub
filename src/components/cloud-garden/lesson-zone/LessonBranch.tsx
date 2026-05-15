@@ -87,7 +87,7 @@ export function LessonBranch({
         {/* Back button — inline chevron SVG */}
         <button
           onClick={onBack}
-          aria-label="Quay l\u1ea1i b\u1ea3n \u0111\u1ed3"
+          aria-label="Back to map"
           style={{
             background: "rgba(255,255,255,0.18)",
             border: "1px solid rgba(255,255,255,0.3)",
@@ -109,7 +109,7 @@ export function LessonBranch({
         </button>
 
         <div>
-          <div className="cg-subtext" style={{ fontSize: "0.72rem", opacity: 0.75 }}>{"Khu v\u01b0\u1eddn"}</div>
+          <div className="cg-subtext" style={{ fontSize: "0.72rem", opacity: 0.75 }}>Garden</div>
           <h1 className="cg-heading" style={{ fontSize: "clamp(1.2rem, 3.5vw, 1.8rem)" }}>
             {zoneTitle}
           </h1>

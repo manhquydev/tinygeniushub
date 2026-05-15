@@ -15,8 +15,8 @@ const resetPasswordSchema = z.object({
   newPassword: z.string().min(8).max(120),
 });
 
-const RESET_SUCCESS_MESSAGE = "Đặt lại mật khẩu thành công. Vui lòng đăng nhập lại với mật khẩu mới.";
-const RESET_INVALID_MESSAGE = "Liên kết đặt lại mật khẩu không hợp lệ hoặc đã hết hạn.";
+const RESET_SUCCESS_MESSAGE = "Reset password successfully. Please log in again with new password.";
+const RESET_INVALID_MESSAGE = "The password reset link is invalid or has expired.";
 
 export async function POST(request: Request) {
   let clientIp = "unknown";

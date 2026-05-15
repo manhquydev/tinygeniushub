@@ -38,8 +38,8 @@ export type AdminNavGroup = {
 export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "overview",
-    title: "Tổng quan",
-    description: "KPI tổng quan, xu hướng tăng trưởng, health snapshot.",
+    title: "Overview",
+    description: "Overview KPI, growth trend, health snapshot.",
     href: "/admin/overview",
     icon: LayoutDashboard,
     health: "complete",
@@ -47,7 +47,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "analytics",
     title: "Analytics",
-    description: "Học tập, retention, insight vận hành.",
+    description: "Learning, retention, operational insight.",
     href: "/admin/analytics",
     icon: BarChart3,
     health: "complete",
@@ -63,7 +63,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "users",
     title: "Users",
-    description: "Quản lý phụ huynh, ghi chú, email, subscription.",
+    description: "Parental management, notes, email, subscription.",
     href: "/admin/users",
     icon: Users,
     health: "complete",
@@ -71,7 +71,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "courses",
     title: "Courses",
-    description: "Danh mục khóa học, publish state, lesson mapping.",
+    description: "Course catalog, publish state, lesson mapping.",
     href: "/admin/courses",
     icon: GraduationCap,
     health: "partial",
@@ -95,7 +95,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "gift-codes",
     title: "Gift Codes",
-    description: "Tạo mã quà tặng và theo dõi sử dụng.",
+    description: "Generate gift codes and track usage.",
     href: "/admin/gift-codes",
     icon: Gift,
     health: "partial",
@@ -103,7 +103,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "blog",
     title: "Blog CMS",
-    description: "Bài viết, tác giả, danh mục, newsletter, moderation.",
+    description: "Articles, author, category, newsletter, moderation.",
     href: "/admin/blog",
     icon: Newspaper,
     health: "complete",
@@ -111,7 +111,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "organizations",
     title: "Organizations",
-    description: "Teacher org, member và progress theo lớp.",
+    description: "Teacher org, member and progress by class.",
     href: "/admin/organizations",
     icon: Building2,
     health: "partial",
@@ -120,7 +120,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "staff",
     title: "Staff",
-    description: "Tài khoản admin và phân quyền vận hành.",
+    description: "Admin account and operating rights.",
     href: "/admin/staff",
     icon: UserCog,
     health: "complete",
@@ -138,7 +138,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "audit-log",
     title: "Audit Log",
-    description: "Nhật ký thao tác quản trị và điều tra sự cố.",
+    description: "Log of administrative operations and incident investigation.",
     href: "/admin/log",
     icon: FileSpreadsheet,
     health: "complete",
@@ -147,7 +147,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "impersonation",
     title: "Impersonation",
-    description: "API sẵn có, chưa có màn hình vận hành chuyên biệt.",
+    description: "API available, no dedicated operating screen yet.",
     href: null,
     icon: ShieldUser,
     health: "gap",
@@ -156,7 +156,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "skills-mapping",
     title: "Skills Mapping",
-    description: "Skills/lesson mapping API chưa có UI chuyên biệt.",
+    description: "Skills/lesson mapping API does not yet have a dedicated UI.",
     href: null,
     icon: Sparkles,
     health: "gap",

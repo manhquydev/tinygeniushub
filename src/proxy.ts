@@ -92,6 +92,12 @@ export function proxy(request: NextRequest) {
   const maintenance = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true";
   const { pathname } = request.nextUrl;
 
+  if (pathname === "/pricing" || pathname === "/for-schools") {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = "/courses";
+    return NextResponse.redirect(redirectUrl, 308);
+  }
+
   if (maintenance && pathname !== "/maintenance") {
     if (pathname.startsWith("/_next") || pathname.startsWith("/api") || pathname.includes(".")) {
       return NextResponse.next();
@@ -114,8 +120,8 @@ export function proxy(request: NextRequest) {
 
   if (shouldManageAnalyticsCookies(request, pathname)) {
     if (analyticsAllowed) {
-      // Assign A/B pricing variant on first visit to pricing or homepage.
-      if (pathname === "/" || pathname === "/pricing") {
+      // Assign A/B pricing variant on first homepage visit.
+      if (pathname === "/") {
         assignAbVariantCookie(request, response, AB_PRICING_COOKIE);
       }
 

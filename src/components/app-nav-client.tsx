@@ -6,7 +6,9 @@ import dynamic from "next/dynamic";
 import { Menu, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { defaultLocale, type AppLocale } from "@/i18n/locales";
 import { trackEvent } from "@/lib/analytics/track-event";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 const ParentNotificationCenter = dynamic(
   () => import("./parent-notification-center").then((module) => module.ParentNotificationCenter),
@@ -22,6 +24,8 @@ interface AppNavClientProps {
   hasParent: boolean;
   isAdmin: boolean;
   guestCtaVariant: "A" | "B";
+  currentLocale?: AppLocale;
+  copy?: AppNavCopy;
 }
 
 type NavMatchMode = "exact" | "prefix";
@@ -34,6 +38,84 @@ type NavItemConfig = {
 };
 
 type NavTrackingLocation = "desktop_top" | "mobile_panel";
+
+export type AppNavCopy = {
+  language: {
+    ariaLabel: string;
+    english: string;
+    vietnamese: string;
+  };
+  guest: {
+    courses: string;
+    pricing: string;
+    howItWorks: string;
+    forSchools: string;
+    login: string;
+    ctaDefaultFull: string;
+    ctaDefaultShort: string;
+    ctaCourseFull: string;
+    ctaCourseShort: string;
+  };
+  parent: {
+    overview: string;
+    childProfiles: string;
+    courses: string;
+    reports: string;
+    billing: string;
+    admin: string;
+    help: string;
+    blog: string;
+    about: string;
+    contact: string;
+    logout: string;
+    loggingOut: string;
+  };
+  mobile: {
+    openMenu: string;
+    closeMenu: string;
+    openMenuText: string;
+    closeMenuText: string;
+  };
+};
+
+export const defaultAppNavCopy: AppNavCopy = {
+  language: {
+    ariaLabel: "Choose display language",
+    english: "English",
+    vietnamese: "Vietnamese",
+  },
+  guest: {
+    courses: "Courses",
+    pricing: "Pricing",
+    howItWorks: "How it works",
+    forSchools: "For schools",
+    login: "Log in",
+    ctaDefaultFull: "Get started for free",
+    ctaDefaultShort: "Start",
+    ctaCourseFull: "View courses",
+    ctaCourseShort: "Courses",
+  },
+  parent: {
+    overview: "Overview",
+    childProfiles: "Children",
+    courses: "Courses",
+    reports: "Reports",
+    billing: "Billing",
+    admin: "Admin",
+    help: "Support",
+    blog: "Blog",
+    about: "About",
+    contact: "Contact",
+    logout: "Sign out",
+    loggingOut: "Signing out...",
+  },
+  mobile: {
+    openMenu: "Open the navigation menu",
+    closeMenu: "Close navigation menu",
+    openMenuText: "Open the menu",
+    closeMenuText: "Close the menu",
+  },
+};
 
 function isPathActive(pathname: string, href: string, mode: NavMatchMode = "prefix") {
   if (href === "/") {
@@ -84,7 +166,13 @@ function NavTextLink({ item, pathname, onIntercept, onTrack, onNavigate, classNa
   );
 }
 
-export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClientProps) {
+export function AppNavClient({
+  hasParent,
+  isAdmin,
+  guestCtaVariant,
+  currentLocale = defaultLocale,
+  copy = defaultAppNavCopy,
+}: AppNavClientProps) {
   const pathname = usePathname() ?? "";
   const router = useRouter();
   const isAdminRoute = pathname.startsWith("/admin");
@@ -97,29 +185,27 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
   const isKidUI = pathname.startsWith("/kid");
 
   const parentLinks: NavItemConfig[] = [
-    { href: "/parent/dashboard", label: "Tổng quan", matchMode: "prefix" },
-    { href: "/parent/children", label: "Hồ sơ bé", matchMode: "prefix" },
-    { href: "/parent/courses", label: "Khóa học", matchMode: "prefix" },
-    { href: "/parent/reports", label: "Báo cáo", matchMode: "prefix" },
-    { href: "/parent/billing", label: "Thanh toán", matchMode: "prefix" },
-    ...(isAdmin ? [{ href: "/admin", label: "Admin", matchMode: "prefix" as const }] : []),
+    { href: "/parent/dashboard", label: copy.parent.overview, matchMode: "prefix" },
+    { href: "/parent/children", label: copy.parent.childProfiles, matchMode: "prefix" },
+    { href: "/parent/courses", label: copy.parent.courses, matchMode: "prefix" },
+    { href: "/parent/reports", label: copy.parent.reports, matchMode: "prefix" },
+    { href: "/parent/billing", label: copy.parent.billing, matchMode: "prefix" },
+    ...(isAdmin ? [{ href: "/admin", label: copy.parent.admin, matchMode: "prefix" as const }] : []),
   ];
 
   const guestLinks: NavItemConfig[] = [
-    { href: "/courses", label: "Khóa học", matchMode: "prefix" },
-    { href: "/pricing", label: "Bảng giá", matchMode: "prefix" },
-    { href: "/#features", label: "Cách hoạt động", matchMode: "exact" },
-    { href: "/for-schools", label: "Cho trường học", hideOnMobile: true, matchMode: "prefix" },
+    { href: "/courses", label: copy.guest.courses, matchMode: "prefix" },
+    { href: "/#features", label: copy.guest.howItWorks, matchMode: "exact" },
   ];
   const parentSupportLinks: NavItemConfig[] = [
-    { href: "/blog", label: "Blog", matchMode: "prefix" },
-    { href: "/about", label: "Giới thiệu", matchMode: "prefix" },
-    { href: "/contact", label: "Trợ giúp", matchMode: "prefix" },
+    { href: "/blog", label: copy.parent.blog, matchMode: "prefix" },
+    { href: "/about", label: copy.parent.about, matchMode: "prefix" },
+    { href: "/contact", label: copy.parent.contact, matchMode: "prefix" },
   ];
   const currentLinks = hasParent ? parentLinks : guestLinks;
   const mobileLinks = currentLinks.map((item) => ({ ...item, hideOnMobile: false }));
-  const guestCtaLabelFull = guestCtaVariant === "B" ? "Xem khóa học" : "Bắt đầu miễn phí";
-  const guestCtaLabelShort = guestCtaVariant === "B" ? "Xem khóa" : "Bắt đầu";
+  const guestCtaLabelFull = guestCtaVariant === "B" ? copy.guest.ctaCourseFull : copy.guest.ctaDefaultFull;
+  const guestCtaLabelShort = guestCtaVariant === "B" ? copy.guest.ctaCourseShort : copy.guest.ctaDefaultShort;
 
   const trackNavClick = (item: NavItemConfig, location: NavTrackingLocation) => {
     trackEvent("nav_click", {
@@ -198,7 +284,7 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
           <Link
             href="/"
             className="brand brand-feature-logo"
-            aria-label="Trang chủ TinyGenius Hub"
+            aria-label="TinyGenius Hub home page"
             onClick={(event) => handleInterceptNavigation(event, "/")}
           >
             <Image
@@ -216,11 +302,11 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
             className="nav-mobile-toggle"
             aria-expanded={mobileMenuOpen}
             aria-controls="primary-nav-mobile"
-            aria-label={mobileMenuOpen ? "Đóng menu điều hướng" : "Mở menu điều hướng"}
+            aria-label={mobileMenuOpen ? copy.mobile.closeMenu : copy.mobile.openMenu}
             onClick={() => setMobileMenuOpen((current) => !current)}
           >
             {mobileMenuOpen ? <X size={18} aria-hidden /> : <Menu size={18} aria-hidden />}
-            <span>{mobileMenuOpen ? "Đóng menu" : "Mở menu"}</span>
+            <span>{mobileMenuOpen ? copy.mobile.closeMenuText : copy.mobile.openMenuText}</span>
           </button>
 
           <nav className="nav-links nav-links-desktop">
@@ -248,13 +334,13 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
                     aria-controls="parent-support-menu"
                     onClick={() => setSupportMenuOpen((current) => !current)}
                   >
-                    Trợ giúp
+                    {copy.parent.help}
                   </button>
                   {supportMenuOpen ? (
                     <div
                       id="parent-support-menu"
                       role="menu"
-                      aria-label="Menu trợ giúp"
+                      aria-label={copy.parent.help}
                       className="absolute right-0 top-[calc(100%+0.55rem)] z-[120] grid min-w-[11rem] gap-1 rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_14px_32px_rgba(15,23,42,0.16)]"
                     >
                       {parentSupportLinks.map((item) => (
@@ -279,18 +365,18 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
                   type="button"
                   className="ghost-button"
                   onClick={(event) => {
-                    trackNavClick({ href: "/auth/logout", label: "Đăng xuất" }, "desktop_top");
+                    trackNavClick({ href: "/auth/logout", label: copy.parent.logout }, "desktop_top");
                     handleInterceptLogout(event);
                   }}
                   disabled={loggingOut}
                 >
-                    {loggingOut ? "Đang xuất..." : "Đăng xuất"}
+                    {loggingOut ? copy.parent.loggingOut : copy.parent.logout}
                   </button>
               </>
             ) : (
               <>
                 <NavTextLink
-                  item={{ href: "/auth/login", label: "Đăng nhập", hideOnMobile: true, matchMode: "prefix" }}
+                  item={{ href: "/auth/login", label: copy.guest.login, hideOnMobile: true, matchMode: "prefix" }}
                   pathname={pathname}
                   onIntercept={handleInterceptNavigation}
                   onTrack={(item) => trackNavClick(item, "desktop_top")}
@@ -313,11 +399,15 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
                 </Link>
               </>
             )}
+
+            <LanguageSwitcher currentLocale={currentLocale} labels={copy.language} className="nav-desktop-language" />
           </nav>
         </div>
 
         {mobileMenuOpen ? (
           <div id="primary-nav-mobile" className="container nav-mobile-panel">
+            <LanguageSwitcher currentLocale={currentLocale} labels={copy.language} className="nav-mobile-language" />
+
             {mobileLinks.map((item) => (
               <NavTextLink
                 key={`${item.href}-mobile`}
@@ -350,19 +440,19 @@ export function AppNavClient({ hasParent, isAdmin, guestCtaVariant }: AppNavClie
                     type="button"
                     className="ghost-button nav-mobile-button"
                     onClick={(event) => {
-                      trackNavClick({ href: "/auth/logout", label: "Đăng xuất" }, "mobile_panel");
+                      trackNavClick({ href: "/auth/logout", label: copy.parent.logout }, "mobile_panel");
                       handleInterceptLogout(event);
                       setMobileMenuOpen(false);
                     }}
                     disabled={loggingOut}
                   >
-                    {loggingOut ? "Đang xuất..." : "Đăng xuất"}
+                    {loggingOut ? copy.parent.loggingOut : copy.parent.logout}
                   </button>
               </div>
             ) : (
               <div className="nav-mobile-actions">
                 <NavTextLink
-                  item={{ href: "/auth/login", label: "Đăng nhập", matchMode: "prefix" }}
+                  item={{ href: "/auth/login", label: copy.guest.login, matchMode: "prefix" }}
                   pathname={pathname}
                   onIntercept={handleInterceptNavigation}
                   onTrack={(item) => trackNavClick(item, "mobile_panel")}

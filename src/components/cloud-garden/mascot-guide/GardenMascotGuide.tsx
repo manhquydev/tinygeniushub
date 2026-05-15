@@ -55,7 +55,7 @@ export function GardenMascotGuide({
   return (
     <div
       className={`cg-mascot-guide ${className ?? ""}`.trim()}
-      aria-label={`Nh\u00e2n v\u1eadt h\u01b0\u1edbng d\u1eabn: ${dialogue}`}
+      aria-label={`Guide character: ${dialogue}`}
     >
       {/* Dialogue bubble above mascot */}
       <SpeechBubble text={dialogue} visible={showBubble} position="left" />
@@ -63,7 +63,7 @@ export function GardenMascotGuide({
       {/* Mascot (existing component, variant="small" = Cu Con) */}
       <button
         onClick={handleMascotTap}
-        aria-label="Nh\u1ea5n v\u00e0o Cu Con \u0111\u1ec3 nghe g\u1ee3i \u00fd"
+        aria-label="Tap the guide to hear a suggestion"
         style={{
           background: "none",
           border: "none",

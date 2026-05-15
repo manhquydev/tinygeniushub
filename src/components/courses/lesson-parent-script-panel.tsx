@@ -36,7 +36,7 @@ export function LessonParentScriptPanel({ markdown }: Props) {
         }}
       >
         <BookOpen size={16} style={{ color: "#7c3aed", flexShrink: 0 }} />
-        <span style={{ flex: 1 }}>Hướng dẫn cho Ba Mẹ</span>
+        <span style={{ flex: 1 }}>Instructions for Parents</span>
         {open ? (
           <ChevronUp size={16} style={{ color: "#64748b" }} />
         ) : (

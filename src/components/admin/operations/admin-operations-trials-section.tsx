@@ -14,7 +14,7 @@ type AdminOperationsTrialsSectionProps = {
 export function AdminOperationsTrialsSection(props: AdminOperationsTrialsSectionProps) {
   return (
     <div className="space-y-3">
-      <h3 className="text-sm font-semibold text-[var(--admin-text-primary)]">Bài học dùng thử</h3>
+      <h3 className="text-sm font-semibold text-[var(--admin-text-primary)]">Trial lesson</h3>
       <div className="space-y-2">
         {props.lessons.map((lesson) => (
           <div key={lesson.id} className="flex items-center justify-between gap-3 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-3 py-2">
@@ -24,7 +24,7 @@ export function AdminOperationsTrialsSection(props: AdminOperationsTrialsSection
             </div>
             <div className="flex items-center gap-3 shrink-0">
               <Badge variant="outline" className={lesson.trialEnabled ? "bg-emerald-50 text-emerald-700 border-emerald-200 text-xs" : "bg-slate-800 text-slate-400 border-slate-700 text-xs"}>
-                {lesson.trialEnabled ? "BẬT" : "TẮT"}
+                {lesson.trialEnabled ? "ON" : "TURN OFF"}
               </Badge>
               <Button
                 variant={lesson.trialEnabled ? "destructive" : "default"}
@@ -33,12 +33,12 @@ export function AdminOperationsTrialsSection(props: AdminOperationsTrialsSection
                 disabled={props.updatingLessonId === lesson.id}
                 className="h-7 text-xs"
               >
-                {props.updatingLessonId === lesson.id ? "Đang cập nhật..." : lesson.trialEnabled ? "Tắt dùng thử" : "Bật dùng thử"}
+                {props.updatingLessonId === lesson.id ? "Updating..." : lesson.trialEnabled ? "Turn off trial" : "Enable trial"}
               </Button>
             </div>
           </div>
         ))}
-        {props.lessons.length === 0 && <p className="text-sm text-slate-500">Chưa có bài học nào.</p>}
+        {props.lessons.length === 0 && <p className="text-sm text-slate-500">There are no lessons yet.</p>}
       </div>
     </div>
   );

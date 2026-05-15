@@ -1,0 +1,28 @@
+- generic [active] [ref=e1]:
+  - status "Loading content" [ref=e5]:
+    - generic [ref=e6]:
+      - img "The Fox mascot is running on the rainbow track to prepare for the lesson" [ref=e8]
+      - generic [ref=e9]:
+        - paragraph [ref=e10]: Preparing for a learning journey...
+        - paragraph [ref=e11]: The system is loading appropriate content for your baby, it only takes a few seconds.
+  - complementary [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - heading "Cookie settings" [level=2] [ref=e15]
+        - paragraph [ref=e16]: We always use necessary cookies for login operations and security. Analytical/marketing cookies are enabled only when you agree.
+        - paragraph [ref=e17]:
+          - text: See details at
+          - link "Cookie Policy" [ref=e18] [cursor=pointer]:
+            - /url: /cookie-policy
+          - text: .
+      - button "Close cookie notification" [ref=e19]: Close
+    - generic [ref=e20]:
+      - paragraph [ref=e21]:
+        - text: "Current status:"
+        - strong [ref=e22]: Not selected yet
+      - generic [ref=e23]:
+        - button "Only necessary cookies" [ref=e24]
+        - button "Accept all" [ref=e25]
+  - button "Open Next.js Dev Tools" [ref=e31] [cursor=pointer]:
+    - img [ref=e32]
+  - alert [ref=e35]

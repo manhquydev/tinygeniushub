@@ -21,21 +21,21 @@ async function screenshot(page: Page, name: string) {
 // Open the lesson from the selector page and wait for Hook step
 async function openLesson(page: Page) {
   await page.goto("/interactive-lesson-preview");
-  const startBtn = page.getByRole("button", { name: "Bắt đầu: Âm /a/ và /m/" });
+  const startBtn = page.getByRole("button", { name: "Start: Sounds /a/ and /m/" });
   await expect(startBtn).toBeVisible({ timeout: 5000 });
   await startBtn.click();
-  // Hook step: speech bubble "Chào con!" should appear
-  await expect(page.getByText("Chào con!")).toBeVisible({ timeout: 8000 });
+  // Hook step: speech bubble "Hello child!" should appear
+  await expect(page.getByText("Hello child!")).toBeVisible({ timeout: 8000 });
 }
 
 // Advance from Hook to Concept step.
 // The hook step auto-advances after audio error (2s) + autoAdvanceMs (2.5s) = ~4.5s.
-// We click "Bắt đầu" if still present, otherwise wait for auto-advance.
+// We click "Begin" if still present, otherwise wait for auto-advance.
 async function advanceFromHookToConcept(page: Page) {
-  const conceptIndicator = page.getByText(/Phát âm:/);
-  const batDauBtn = page.getByRole("button", { name: "Bắt đầu", exact: true });
+  const conceptIndicator = page.getByText(/Phat am:/);
+  const batDauBtn = page.getByRole("button", { name: "Begin", exact: true });
 
-  // Try to click "Bắt đầu" quickly — if it detaches (auto-advance already fired), that's fine
+  // Try to click "Begin" quickly — if it detaches (auto-advance already fired), that's fine
   try {
     await batDauBtn.click({ timeout: 3000 });
   } catch {
@@ -53,13 +53,13 @@ async function navigateToConcept(page: Page) {
 }
 
 // Navigate to Demonstrate step
-// Concept step: no autoAdvanceMs, waits for "Tiếp tục" after audio ends
-// Audio mock returns empty 200 → audio errors → 2s fallback → onEnd → canAdvance=true → "Tiếp tục" shown after 500ms
+// Concept step: no autoAdvanceMs, waits for "Continue" after audio ends
+// Audio mock returns empty 200 → audio errors → 2s fallback → onEnd → canAdvance=true → "Continue" shown after 500ms
 async function navigateToDemonstrate(page: Page) {
   await navigateToConcept(page);
 
-  // Wait for "Tiếp tục" button (concept step, no auto-advance)
-  const tiepTucBtn = page.getByRole("button", { name: "Tiếp tục", exact: true });
+  // Wait for "Continue" button (concept step, no auto-advance)
+  const tiepTucBtn = page.getByRole("button", { name: "Continue", exact: true });
   await tiepTucBtn.waitFor({ timeout: 10000 });
   await tiepTucBtn.click();
 
@@ -70,21 +70,21 @@ async function navigateToDemonstrate(page: Page) {
 
 // Navigate to Activity step
 // Demonstrate: intro audio errors → 2s → handleIntroEnd → keywords phase
-// Per-keyword audio errors → 2s each → 3 keywords = ~6s more → done → "Tiếp tục"
+// Per-keyword audio errors → 2s each → 3 keywords = ~6s more → done → "Continue"
 async function navigateToActivity(page: Page) {
   await navigateToDemonstrate(page);
 
-  // Wait for all keyword cards to be revealed and "Tiếp tục" to appear
-  // Total expected: 2s per keyword × 3 = ~6s from demonstrate start
+  // Wait for all keyword cards to be revealed and "Continue" to appear
+  // Total expected: 2s per keyword x 3 = ~6s from demonstrate start
   await expect(page.getByText("apple").first()).toBeVisible({ timeout: 14000 });
   await expect(page.getByText("map").first()).toBeVisible({ timeout: 18000 });
 
-  const tiepTucBtn = page.getByRole("button", { name: "Tiếp tục", exact: true });
+  const tiepTucBtn = page.getByRole("button", { name: "Continue", exact: true });
   await tiepTucBtn.waitFor({ timeout: 10000 });
   await tiepTucBtn.click();
 
-  // Activity step: quiz prompt "Từ nào có âm /a/?" rendered by ActivityRenderer
-  await expect(page.getByText(/Từ nào có âm/)).toBeVisible({ timeout: 10000 });
+  // Activity step: quiz prompt "Which word has the /a/ sound?" rendered by ActivityRenderer
+  await expect(page.getByText(/Tu nao co am/)).toBeVisible({ timeout: 10000 });
 }
 
 // Navigate to Celebrate step (answer quiz correctly)
@@ -93,10 +93,10 @@ async function navigateToCelebrate(page: Page) {
   // "apple" is the correct answer (index 0)
   await expect(page.getByText("apple").first()).toBeVisible({ timeout: 8000 });
   await page.getByText("apple").first().click();
-  await expect(page.getByText("Giỏi lắm!")).toBeVisible({ timeout: 8000 });
+  await expect(page.getByText("Very good!")).toBeVisible({ timeout: 8000 });
 }
 
-test.describe("Interactive Lesson Preview — Âm /a/ và /m/", () => {
+test.describe("Interactive Lesson Preview — Sounds /a/ and /m/", () => {
   test.beforeEach(async ({ page }) => {
     // Intercept audio files — return empty body to force quick error fallback in AudioPlayer
     await page.route("**/audio/**/*.mp3", (route) => route.fulfill({ status: 200, body: "" }));
@@ -110,29 +110,29 @@ test.describe("Interactive Lesson Preview — Âm /a/ và /m/", () => {
     await screenshot(page, "01-page-loaded");
   });
 
-  test("02 | first lesson 'Âm /a/ và /m/' selected by default with ▶ indicator", async ({ page }) => {
+  test("02 | first lesson 'Sounds /a/ and /m/' selected by default with ▶ indicator", async ({ page }) => {
     await page.goto("/interactive-lesson-preview");
-    await expect(page.getByRole("button", { name: /▶ Âm \/a\/ và \/m\// })).toBeVisible();
+    await expect(page.getByRole("button", { name: /▶ Am \/a\/ va \/m\// })).toBeVisible();
     await screenshot(page, "02-first-lesson-selected");
   });
 
   // ── Hook step ──────────────────────────────────────────────────────────────
 
-  test("03 | clicking start opens lesson flow with Hook speech bubble 'Chào con!'", async ({ page }) => {
+  test("03 | clicking start opens lesson flow with Hook speech bubble 'Hello!'", async ({ page }) => {
     await openLesson(page);
-    await expect(page.getByText("Chào con!")).toBeVisible();
+    await expect(page.getByText("Hello child!")).toBeVisible();
     await screenshot(page, "03-hook-speech-bubble");
   });
 
-  test("04 | hook step: pulsing 'Bắt đầu' button visible", async ({ page }) => {
+  test("04 | hook step: pulsing 'Start' button visible", async ({ page }) => {
     await openLesson(page);
-    await expect(page.getByRole("button", { name: "Bắt đầu", exact: true })).toBeVisible({ timeout: 5000 });
+    await expect(page.getByRole("button", { name: "Begin", exact: true })).toBeVisible({ timeout: 5000 });
     await screenshot(page, "04-hook-batdau-button");
   });
 
   test("05 | hook step: lesson title visible in header bar", async ({ page }) => {
     await openLesson(page);
-    await expect(page.getByText("Âm /a/ và /m/").first()).toBeVisible();
+    await expect(page.getByText("Sounds /a/ and /m/").first()).toBeVisible();
     await screenshot(page, "05-hook-header-title");
   });
 
@@ -140,21 +140,21 @@ test.describe("Interactive Lesson Preview — Âm /a/ và /m/", () => {
 
   test("06 | concept step: keyword display with subtext appears", async ({ page }) => {
     await navigateToConcept(page);
-    await expect(page.getByText(/Phát âm:/)).toBeVisible();
+    await expect(page.getByText(/Phat am:/)).toBeVisible();
     await screenshot(page, "06-concept-subtext");
   });
 
-  test("07 | concept step: speaker replay button (title='Nghe lại') visible", async ({ page }) => {
+  test("07 | concept step: speaker replay button (title='Listen again') visible", async ({ page }) => {
     await navigateToConcept(page);
-    // The speaker button has title="Nghe lại" and is rendered when step.audioUrl is set
-    await expect(page.getByTitle("Nghe lại")).toBeVisible({ timeout: 8000 });
+    // The speaker button has title="Listen again" and is rendered when step.audioUrl is set
+    await expect(page.getByTitle("Listen again")).toBeVisible({ timeout: 8000 });
     await screenshot(page, "07-concept-speaker-button");
   });
 
-  test("08 | concept step: speech bubble 'Đây là âm A' visible", async ({ page }) => {
+  test("08 | concept step: speech bubble 'This is the A sound' visible", async ({ page }) => {
     await navigateToConcept(page);
     // Speech bubble renders text inside a <span> with role="status" on parent
-    await expect(page.getByText("Đây là âm A")).toBeVisible({ timeout: 8000 });
+    await expect(page.getByText("This is the A sound")).toBeVisible({ timeout: 8000 });
     await screenshot(page, "08-concept-speech-bubble");
   });
 
@@ -185,9 +185,9 @@ test.describe("Interactive Lesson Preview — Âm /a/ và /m/", () => {
 
   // ── Activity step ──────────────────────────────────────────────────────────
 
-  test("12 | activity step: quiz prompt 'Từ nào có âm /a/?' visible", async ({ page }) => {
+  test("12 | activity step: quiz prompt 'Which word has the /a/ sound?' visible. visible", async ({ page }) => {
     await navigateToActivity(page);
-    await expect(page.getByText(/Từ nào có âm/)).toBeVisible();
+    await expect(page.getByText(/Tu nao co am/)).toBeVisible();
     await screenshot(page, "12-activity-quiz-prompt");
   });
 
@@ -202,15 +202,15 @@ test.describe("Interactive Lesson Preview — Âm /a/ và /m/", () => {
 
   // ── Celebrate step ─────────────────────────────────────────────────────────
 
-  test("14 | correct answer 'apple' advances to celebrate with 'Giỏi lắm!'", async ({ page }) => {
+  test("14 | correct answer 'apple' advances to celebrate with 'Good job!'", async ({ page }) => {
     await navigateToCelebrate(page);
-    await expect(page.getByText("Giỏi lắm!")).toBeVisible();
+    await expect(page.getByText("Very good!")).toBeVisible();
     await screenshot(page, "14-celebrate-speech-bubble");
   });
 
-  test("15 | celebrate step: 'Tiếp tục ngay...' progress hint visible", async ({ page }) => {
+  test("15 | celebrate step: 'Continue now...' progress hint visible", async ({ page }) => {
     await navigateToCelebrate(page);
-    await expect(page.getByText("Tiếp tục ngay...")).toBeVisible({ timeout: 6000 });
+    await expect(page.getByText("Continue now...")).toBeVisible({ timeout: 6000 });
     await screenshot(page, "15-celebrate-progress-hint");
   });
 

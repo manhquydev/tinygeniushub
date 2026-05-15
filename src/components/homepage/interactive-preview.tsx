@@ -9,7 +9,7 @@
  * - Preview mode: Only "Today" zone unlocked, others locked
  * - SpeechBubble mascot guidance
  * - Locked zone click → Sign-up modal
- * - Footer CTA: "Đăng ký ngay để con học thử"
+ * - Footer CTA: "Register now for your child to try it out"
  * 
  * Conversion funnel: Try zone → See "locked" → Sign up
  */
@@ -78,7 +78,7 @@ export function InteractivePreview() {
             textAlign: "center",
           }}
         >
-          👋 Chào con! Chọn vùng mây để khám phá
+          👋 Hello baby! Choose a cloud area to explore
         </div>
 
         {/* CloudWorldMap preview */}
@@ -103,7 +103,7 @@ export function InteractivePreview() {
                   color: "var(--cgh-teal)",
                 }}
               >
-                Đang tải khu vườn...
+                Loading garden...
               </div>
             }
           >
@@ -133,7 +133,7 @@ export function InteractivePreview() {
               marginBottom: "1rem",
             }}
           >
-            ☝️ Đây là giao diện con bạn sẽ thấy mỗi ngày
+            ☝️ This is the interface your child will see every day
           </p>
 
           <a
@@ -152,7 +152,7 @@ export function InteractivePreview() {
               transition: "all 0.2s",
             }}
           >
-            Đăng ký ngay để con học thử
+            Register now for your child to try it out
           </a>
         </div>
       </section>

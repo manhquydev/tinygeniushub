@@ -21,11 +21,11 @@ async function sendWaitlistEmails(email: string, childAge: number | null, ip: st
   if (adminRecipient) {
     await enqueueTransactionalEmail({
       to: adminRecipient,
-      subject: "[Waitlist] Đăng ký mới",
+      subject: "[Waitlist] New registration",
       text: [
-        "Có đăng ký waitlist mới từ website.",
+        "There is a new waitlist registration from the website.",
         `Email: ${email}`,
-        `Độ tuổi bé: ${childAge ?? "không cung cấp"}`,
+        `Baby's age:${childAge ?? "does not provide"}`,
         `IP: ${ip}`,
       ].join("\n"),
       tags: [{ name: "feature", value: "waitlist_admin" }],
@@ -34,13 +34,13 @@ async function sendWaitlistEmails(email: string, childAge: number | null, ip: st
 
   await enqueueTransactionalEmail({
     to: email,
-    subject: "Đã nhận đăng ký danh sách chờ",
+    subject: "Waitlist registration received",
     text: [
-      "TinyGenius Hub đã nhận đăng ký của bạn.",
-      childAge ? `Thông tin độ tuổi bé: ${childAge} tuổi.` : "Bạn chưa cung cấp độ tuổi bé.",
-      "Đội ngũ sẽ gửi cập nhật sớm qua email này.",
+      "TinyGenius Hub has received your registration.",
+      childAge ? `Baby age information:${childAge}year old.` : "You have not provided the child's age.",
+      "The team will send updates soon via this email.",
       "",
-      "Trân trọng,",
+      "Best regards,",
       "TinyGenius Hub",
     ].join("\n"),
     tags: [{ name: "feature", value: "waitlist_confirmation" }],

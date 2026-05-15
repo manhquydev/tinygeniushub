@@ -22,13 +22,13 @@ function severityStyle(percent: number): { border: string; badge: string; label:
     return {
       border: "border-red-300 bg-red-50",
       badge: "bg-red-100 text-red-700",
-      label: "Khẩn cấp",
+      label: "Urgent",
     };
   }
   return {
     border: "border-yellow-300 bg-yellow-50",
     badge: "bg-yellow-100 text-yellow-700",
-    label: "Cần chú ý",
+    label: "Need attention",
   };
 }
 
@@ -36,7 +36,7 @@ export function SkillGapAlert({ gapAlerts }: Props) {
   if (gapAlerts.length === 0) {
     return (
       <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-700">
-        Tốt lắm! Không có kỹ năng nào cần chú ý đặc biệt trong lớp.
+        Very good! There are no skills that require special attention in class.
       </div>
     );
   }
@@ -48,7 +48,7 @@ export function SkillGapAlert({ gapAlerts }: Props) {
   return (
     <div className="space-y-3">
       <p className="text-sm font-medium text-gray-700">
-        Phát hiện {gapAlerts.length} kỹ năng cần hỗ trợ thêm
+        Detect {gapAlerts.length} skills that need additional support
       </p>
       {sorted.map((alert) => {
         const style = severityStyle(alert.belowProficientPercent);
@@ -66,8 +66,8 @@ export function SkillGapAlert({ gapAlerts }: Props) {
                   <span className="font-medium text-gray-800">{alert.nameVi}</span>
                 </div>
                 <p className="text-sm text-gray-600">
-                  {alert.affectedStudentCount} học sinh ({Math.round(alert.belowProficientPercent * 100)}%)
-                  chưa đạt mức thành thạo
+                  {alert.affectedStudentCount} students ({Math.round(alert.belowProficientPercent * 100)}%)
+                  have not yet reached proficiency level
                 </p>
                 <p className="text-sm text-gray-500 mt-1 italic">{alert.suggestedAction}</p>
               </div>

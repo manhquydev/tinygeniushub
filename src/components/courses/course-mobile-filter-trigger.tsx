@@ -44,7 +44,7 @@ export function CourseMobileFilterTrigger({
             className="flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400"
           >
             <Filter className="h-3.5 w-3.5" />
-            Bộ lọc
+            Filter
             {activeFilterCount > 0 ? (
               <span className="ml-1 rounded-full bg-emerald-600 px-1.5 py-0.5 text-[10px] font-bold text-white">
                 {activeFilterCount}
@@ -54,7 +54,7 @@ export function CourseMobileFilterTrigger({
         </SheetTrigger>
         <SheetContent side="left" className="w-[300px] overflow-y-auto">
           <SheetHeader>
-            <SheetTitle>Bộ lọc khóa học</SheetTitle>
+            <SheetTitle>Course filter</SheetTitle>
           </SheetHeader>
           <div className="mt-4">
             <CourseFilterSidebar

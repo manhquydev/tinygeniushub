@@ -782,7 +782,7 @@ model BlogAuthor {
   id          String     @id @default(cuid())
   slug        String     @unique
   displayName String
-  role        String     @default("Biên tập viên")
+  role        String     @default("Editor")
   bio         String?
   avatarUrl   String?
   linkedinUrl String?

@@ -141,8 +141,8 @@ export function LessonWizardBridge({
 
   // Build lesson objective from assignment data
   const lessonObjective = assignment.lessonPackage
-    ? `Học ${getSubjectNameVi(assignment.subjectCode as AbekaSubjectCode)} - Bài ${assignment.lesson?.lessonNumber}`
-    : 'Hoàn thành bài học hôm nay';
+    ? `Learn${getSubjectNameVi(assignment.subjectCode as AbekaSubjectCode)}- Post${assignment.lesson?.lessonNumber}`
+    : 'Complete today\'s lesson';
 
   // Get video source from video info or assignment
   const videoSource = videoInfo?.videoUrl || null;
@@ -154,7 +154,7 @@ export function LessonWizardBridge({
       <LessonWizardFlow
         childId={childId}
         lessonId={assignment.lessonId}
-        title={assignment.lesson?.title || `Bài ${assignment.lesson?.lessonNumber}`}
+        title={assignment.lesson?.title || `Post${assignment.lesson?.lessonNumber}`}
         objective={lessonObjective}
         estimatedMinutes={videoInfo?.durationMinutes || assignment.lessonPackage?.durationMinutes || 15}
         videoSource={videoSource}
@@ -178,13 +178,13 @@ export function LessonWizardBridge({
 function getSubjectNameVi(code: AbekaSubjectCode): string {
   const names: Record<AbekaSubjectCode, string> = {
     PHONICS: 'Phonics',
-    ARITHMETIC: 'Số học',
-    BIBLE: 'Kinh Thánh',
-    WRITING: 'Chữ viết',
-    SCIENCE: 'Khoa học',
-    HISTORY: 'Lịch sử',
-    ACTIVITIES: 'Hoạt động',
-    READING: 'Đọc hiểu',
+    ARITHMETIC: 'Arithmetic',
+    BIBLE: 'Bible',
+    WRITING: 'Writing',
+    SCIENCE: 'Science',
+    HISTORY: 'History',
+    ACTIVITIES: 'Work',
+    READING: 'Read comprehension',
   };
   return names[code] || code;
 }

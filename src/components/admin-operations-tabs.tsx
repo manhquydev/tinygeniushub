@@ -44,11 +44,11 @@ interface Props {
 }
 
 const TABS = [
-  { id: "payments", label: "Thanh toán", icon: CreditCard },
-  { id: "webhooks", label: "Sự kiện webhook", icon: Webhook },
-  { id: "trials", label: "Bài học dùng thử", icon: BookOpen },
-  { id: "announcements", label: "Thông báo", icon: Bell },
-  { id: "coupons", label: "Mã giảm giá", icon: Tag },
+  { id: "payments", label: "Pay", icon: CreditCard },
+  { id: "webhooks", label: "Webhook events", icon: Webhook },
+  { id: "trials", label: "Trial lesson", icon: BookOpen },
+  { id: "announcements", label: "Notification", icon: Bell },
+  { id: "coupons", label: "Discount code", icon: Tag },
   { id: "footer-social", label: "Footer social", icon: Share2 },
 ] as const;
 

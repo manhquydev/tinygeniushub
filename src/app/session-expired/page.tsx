@@ -1,11 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 import { sanitizeNextPath } from "@/lib/auth/safe-next-path";
 
-export const metadata: Metadata = {
-  title: "Phiên đăng nhập đã hết hạn",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+  return {
+    title: translate("specialPages.sessionExpired.metadata.title", undefined, locale),
+  };
+}
 
 const CLOUD_GARDEN_SYSTEM_IMAGE = "/images/system/cloud-garden/system_offline_error.png";
 
@@ -22,6 +29,9 @@ function resolveNextPath(searchParams: { next?: string | string[] } | undefined)
 }
 
 export default async function SessionExpiredPage({ searchParams }: SessionExpiredPageProps) {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const nextPath = sanitizeNextPath(resolveNextPath(resolvedSearchParams));
   const loginHref = nextPath ? `/auth/login?next=${encodeURIComponent(nextPath)}` : "/auth/login";
@@ -46,14 +56,14 @@ export default async function SessionExpiredPage({ searchParams }: SessionExpire
             className="h-8 w-auto object-contain sm:h-9"
           />
           <p className="inline-flex items-center rounded-full border border-sky-200/35 bg-sky-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-sky-100/95">
-            Session expired
+            {translate("specialPages.sessionExpired.badge", undefined, locale)}
           </p>
         </div>
 
         <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/50">
           <Image
             src={CLOUD_GARDEN_SYSTEM_IMAGE}
-            alt="Khung cảnh Cloud Garden khi phiên đăng nhập cần được làm mới"
+            alt={translate("specialPages.sessionExpired.imageAlt", undefined, locale)}
             width={1368}
             height={768}
             priority
@@ -63,10 +73,10 @@ export default async function SessionExpiredPage({ searchParams }: SessionExpire
 
         <div className="grid gap-3 text-left">
           <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl">
-            Phiên đăng nhập đã hết hạn
+            {translate("specialPages.sessionExpired.title", undefined, locale)}
           </h1>
           <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
-            Vì lý do bảo mật, bạn cần đăng nhập lại để tiếp tục truy cập trang này.
+            {translate("specialPages.sessionExpired.subtitle", undefined, locale)}
           </p>
         </div>
 
@@ -80,13 +90,13 @@ export default async function SessionExpiredPage({ searchParams }: SessionExpire
               animation: "notFoundShimmer 2.5s linear infinite",
             }}
           >
-            Đăng nhập lại
+            {translate("specialPages.sessionExpired.ctaLogin", undefined, locale)}
           </Link>
           <Link
             href="/"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
           >
-            Về trang chủ
+            {translate("specialPages.sessionExpired.ctaHome", undefined, locale)}
           </Link>
         </div>
       </section>

@@ -25,12 +25,12 @@ export function AdminLoginForm() {
 
             if (!res.ok) {
                 const data = await res.json().catch(() => null);
-                setError(data?.error?.message || "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.");
+                setError(data?.error?.message || "Login failed. Please check the information again.");
                 setIsLoading(false);
                 return;
             }
         } catch {
-            setError("Lỗi kết nối. Vui lòng thử lại.");
+            setError("Connection error. Please try again.");
             setIsLoading(false);
             return;
         }
@@ -45,9 +45,9 @@ export function AdminLoginForm() {
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-500/20 text-teal-400">
                     <Shield size={32} />
                 </div>
-                <h1 className="mt-4 text-2xl font-bold tracking-tight">Cổng Nội Bộ</h1>
+                <h1 className="mt-4 text-2xl font-bold tracking-tight">Internal Gate</h1>
                 <p className="mt-2 text-center text-sm text-slate-400">
-                    Hệ thống dành riêng cho Ban Quản Trị TinyGenius Hub
+                    The system is exclusively for the TinyGenius Hub Administration Board
                 </p>
             </div>
 
@@ -60,7 +60,7 @@ export function AdminLoginForm() {
                     )}
 
                     <div className="space-y-1.5">
-                        <label className="text-sm font-semibold text-slate-700">Email quản trị</label>
+                        <label className="text-sm font-semibold text-slate-700">Administrative email</label>
                         <input
                             type="email"
                             value={email}
@@ -73,7 +73,7 @@ export function AdminLoginForm() {
                     </div>
 
                     <div className="space-y-1.5">
-                        <label className="text-sm font-semibold text-slate-700">Mật khẩu</label>
+                        <label className="text-sm font-semibold text-slate-700">Password</label>
                         <input
                             type="password"
                             value={password}
@@ -95,7 +95,7 @@ export function AdminLoginForm() {
                         ) : (
                             <KeyRound size={18} />
                         )}
-                        <span>{isLoading ? "Đang xác thực..." : "Đăng nhập an toàn"}</span>
+                        <span>{isLoading ? "Verifying..." : "Sign in securely"}</span>
                     </button>
                 </form>
             </div>

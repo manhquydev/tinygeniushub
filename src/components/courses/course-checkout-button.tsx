@@ -31,11 +31,11 @@ type CheckoutResponse = {
 
 function resolveCheckoutErrorMessage(response: CheckoutResponse | null, status: number) {
   if (status === 429) {
-    return "Bạn thao tác hơi nhanh. Vui lòng thử lại sau ít giây.";
+    return "You act a bit quickly. Please try again in a few seconds.";
   }
 
   if (status >= 500) {
-    return "Hệ thống thanh toán đang bận. Bạn vui lòng thử lại sau.";
+    return "The payment system is busy. Please try again later.";
   }
 
   const code =
@@ -44,14 +44,14 @@ function resolveCheckoutErrorMessage(response: CheckoutResponse | null, status: 
       : null;
 
   if (code === "COURSE_PRICE_NOT_AVAILABLE") {
-    return "Khóa học này đang tạm ngưng đăng ký online. Bạn có thể xem học thử hoặc nhận tư vấn ngay.";
+    return "This course is temporarily suspending online registration. You can watch a trial lesson or get advice right away.";
   }
 
   if (code === "ALREADY_ENROLLED") {
-    return "Tài khoản của bạn đã sở hữu khóa học này.";
+    return "Your account already owns this course.";
   }
 
-  return "Không thể hoàn tất thanh toán lúc này. Vui lòng thử lại sau ít phút.";
+  return "Payment cannot be completed at this time. Please try again in a few minutes.";
 }
 
 function buildAuthEntryUrl(courseSlug: string) {
@@ -118,7 +118,7 @@ export function CourseCheckoutButton({
 
       window.location.href = json.data.checkoutUrl;
     } catch {
-      setError("Không thể kết nối, vui lòng thử lại.");
+      setError("Unable to connect, please try again.");
     } finally {
       setLoading(false);
     }
@@ -132,7 +132,7 @@ export function CourseCheckoutButton({
         className={className ?? "solid-button"}
         style={{ width: "fit-content", opacity: loading ? 0.7 : 1 }}
       >
-        {loading ? "Đang xử lý..." : showPriceTag ? `${label} - ${priceVnd.toLocaleString("vi-VN")}đ` : label}
+        {loading ? "Processing..." : showPriceTag ? `${label} - ${priceVnd.toLocaleString("vi-VN")}D` : label}
       </button>
       {error ? (
         <p className="error-text" style={{ fontSize: "0.85rem" }}>

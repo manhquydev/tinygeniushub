@@ -57,10 +57,10 @@ export function StreakDisplay({
         </div>
         {showLabel && (
           <div className="text-xs text-slate-500">
-            ngày liên tiếp
+            consecutive days
             {longestStreak && (
               <span className="ml-1 text-slate-400">
-                (kỷ lục: {longestStreak})
+                (record: {longestStreak})
               </span>
             )}
           </div>
@@ -75,7 +75,7 @@ export function StreakDisplay({
             color={abekaColors.amberDiep}
           />
           <div className="text-[10px] text-slate-400 mt-0.5 text-center">
-            Còn {nextMilestone - streak} ngày
+            {nextMilestone - streak} days left
           </div>
         </div>
       )}

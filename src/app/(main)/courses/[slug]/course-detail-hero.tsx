@@ -43,12 +43,12 @@ export function CourseDetailHero({
 
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Tổng bài học</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">{lessonCount} bài</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Total lesson</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">{lessonCount} lessons</p>
             </div>
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Thời hạn truy cập</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">{durationDays} ngày</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Access period</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">{durationDays} days</p>
             </div>
           </div>
 

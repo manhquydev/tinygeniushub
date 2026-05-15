@@ -88,10 +88,10 @@ test.describe("admin footer social links", () => {
             response.url().includes("/api/admin/site-settings/footer-social-links") &&
             response.request().method() === "PATCH",
         ),
-        page.getByRole("button", { name: /Lưu social links/i }).click(),
+        page.getByRole("button", { name: /Luu social links/i }).click(),
       ]);
 
-      await expect(page.getByText("Đã lưu link social ở footer.")).toBeVisible();
+      await expect(page.getByText("Saved social link in footer.")).toBeVisible();
 
       await page.goto("/");
       await expect(page.getByLabel(/facebook/i)).toHaveAttribute("href", nextLinks.facebook);

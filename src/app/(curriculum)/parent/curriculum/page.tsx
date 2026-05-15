@@ -65,7 +65,7 @@ const mockSubjectProgress: SubjectProgress[] = [
   },
   {
     subjectCode: "ARITHMETIC",
-    subjectName: "Toán",
+    subjectName: "Maths",
     lessonsCompleted: 45,
     totalLessons: 100,
     progressPercentage: 45,
@@ -74,7 +74,7 @@ const mockSubjectProgress: SubjectProgress[] = [
   },
   {
     subjectCode: "BIBLE",
-    subjectName: "Kinh Thánh",
+    subjectName: "Bible",
     lessonsCompleted: 70,
     totalLessons: 100,
     progressPercentage: 70,
@@ -83,7 +83,7 @@ const mockSubjectProgress: SubjectProgress[] = [
   },
   {
     subjectCode: "WRITING",
-    subjectName: "Viết",
+    subjectName: "Write",
     lessonsCompleted: 35,
     totalLessons: 100,
     progressPercentage: 35,
@@ -96,7 +96,7 @@ const mockRecentActivity: ActivityItem[] = [
   {
     id: "1",
     type: "lesson_completed",
-    description: "Hoàn thành Bài 45 - Phonics",
+    description: "Complete Lesson 45 - Phonics",
     subjectCode: "PHONICS",
     lessonNumber: 45,
     timestamp: new Date(),
@@ -105,7 +105,7 @@ const mockRecentActivity: ActivityItem[] = [
   {
     id: "2",
     type: "lesson_started",
-    description: "Đang học Bài 45 - Arithmetic",
+    description: "Studying Lesson 45 - Arithmetic",
     subjectCode: "ARITHMETIC",
     lessonNumber: 45,
     timestamp: new Date(Date.now() - 3600000),
@@ -114,7 +114,7 @@ const mockRecentActivity: ActivityItem[] = [
   {
     id: "3",
     type: "lesson_completed",
-    description: "Hoàn thành Bài 44 - Tất cả môn",
+    description: "Complete Lesson 44 - All subjects",
     timestamp: new Date(Date.now() - 86400000),
     status: "completed",
   },
@@ -180,10 +180,10 @@ export default function ParentCurriculumDashboard() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-800">
-            📊 Tiến Độ Học Tập
+            📊 Academic Progress
           </h1>
           <p className="text-slate-500">
-            Theo dõi tiến độ và quản lý lịch học của con
+            Track progress and manage your child's school schedule
           </p>
         </div>
 
@@ -219,7 +219,7 @@ export default function ParentCurriculumDashboard() {
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
                   <BookOpen className="h-4 w-4" />
-                  Tiến độ theo môn
+                  Progress by subject
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -232,11 +232,11 @@ export default function ParentCurriculumDashboard() {
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  Lịch tuần này
+                  This week's schedule
                 </CardTitle>
                 <Link href="/parent/curriculum/planner">
                   <Button variant="ghost" size="sm">
-                    Chỉnh sửa
+                    Edit
                     <ChevronRight className="h-4 w-4 ml-1" />
                   </Button>
                 </Link>
@@ -268,7 +268,7 @@ export default function ParentCurriculumDashboard() {
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
                   <TrendingUp className="h-4 w-4" />
-                  Hoạt động gần đây
+                  Recent activity
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -286,24 +286,24 @@ export default function ParentCurriculumDashboard() {
             {/* Quick Actions */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">🎯 Thao tác nhanh</CardTitle>
+                <CardTitle className="text-base">🎯 Quick action</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <Link href="/parent/curriculum/browser" className="block">
                   <Button variant="outline" className="w-full justify-start gap-2">
                     <BookOpen className="h-4 w-4" />
-                    Duyệt giáo trình
+                    Browse the curriculum
                   </Button>
                 </Link>
                 <Link href="/parent/curriculum/planner" className="block">
                   <Button variant="outline" className="w-full justify-start gap-2">
                     <Calendar className="h-4 w-4" />
-                    Lập kế hoạch tuần
+                    Make a weekly plan
                   </Button>
                 </Link>
                 <Button variant="outline" className="w-full justify-start gap-2">
                   <Users className="h-4 w-4" />
-                  Chuyển đổi học sinh
+                  Student conversion
                 </Button>
               </CardContent>
             </Card>
@@ -313,7 +313,7 @@ export default function ParentCurriculumDashboard() {
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
                   <Flame className="h-4 w-4" />
-                  Chuỗi ngày học
+                  Series of school days
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -332,7 +332,7 @@ export default function ParentCurriculumDashboard() {
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
                   <Users className="h-4 w-4" />
-                  Tất cả con
+                  All of you
                 </CardTitle>
               </CardHeader>
               <CardContent>

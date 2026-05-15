@@ -28,10 +28,10 @@ export function DailyGoalReachedScreen({
         </div>
 
         <h2 className="mt-3 text-balance text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-3xl">
-          Hôm nay {childName} đã học đủ {dailyGoalMinutes} phút rồi! 🎉
+          {childName} studied for enough {dailyGoalMinutes} minutes today! 🎉
         </h2>
         <p className="mt-2 text-sm font-medium text-slate-700 sm:text-base">
-          Đã học {totalMinutesToday} phút. Nghỉ ngơi để não bộ ghi nhớ tốt hơn nhé!
+          Studied {totalMinutesToday} minutes. Rest so your brain remembers better!
         </p>
 
         <button
@@ -40,7 +40,7 @@ export function DailyGoalReachedScreen({
           onClick={onRequestExtraLearning}
         >
           <LockOpen size={16} />
-          Bố/Mẹ cho học thêm
+          Dad/Mom gave me extra lessons
         </button>
       </div>
     </div>

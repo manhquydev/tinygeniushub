@@ -10,23 +10,23 @@ const STEPS: ReadonlyArray<{
 }> = [
   {
     icon: UserPlus,
-    title: "Tạo tài khoản và hồ sơ của bé",
-    description: "Đăng ký nhanh và thiết lập hồ sơ học tập của con.",
+    title: "Create your child's account and profile",
+    description: "Quickly register and set up your child's learning profile.",
   },
   {
     icon: Baby,
-    title: "Bắt đầu bằng bài học mẫu",
-    description: "Xem trước phong cách và độ khó bài học trước khi mua.",
+    title: "Start with a sample lesson",
+    description: "Preview lesson style and difficulty before purchasing.",
   },
   {
     icon: Play,
-    title: "Chọn khóa học phù hợp",
-    description: "Chọn khóa đúng nhu cầu và hoàn tất thanh toán trong vài bước.",
+    title: "Choose the right course",
+    description: "Choose the right lock for your needs and complete payment in a few steps.",
   },
   {
     icon: BarChart3,
-    title: "Theo dõi tiến độ hằng tuần",
-    description: "Xem bảng theo dõi phụ huynh và báo cáo tuần để nắm rõ kết quả học tập.",
+    title: "Track progress weekly",
+    description: "View parent tracking sheets and weekly reports to clearly understand learning results.",
   },
 ];
 
@@ -36,8 +36,8 @@ export function SectionHowItWorks() {
       <div className="hp-section-inner">
         <ScrollReveal>
           <div className="hp-section-heading">
-            <h2>Bắt đầu nhanh, học đều mỗi ngày</h2>
-            <p className="muted-text">Quy trình đơn giản: xem thử, chọn khóa và theo dõi tiến bộ rõ ràng.</p>
+            <h2>Start quickly, study every day</h2>
+            <p className="muted-text">The process is simple: preview, choose a course, and track clear progress.</p>
           </div>
         </ScrollReveal>
 

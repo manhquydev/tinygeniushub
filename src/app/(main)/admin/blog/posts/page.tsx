@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { type BlogPostStatus, Prisma } from "@prisma/client";
+import { getLocale } from "next-intl/server";
 import { AdminBlogPostsTable } from "@/components/admin-blog-posts-table";
 import { Button } from "@/components/ui/button";
 import { requireAdminParent } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 import { cn } from "@/lib/utils";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
 type SearchParams = {
   page?: string | string[];
@@ -26,21 +29,11 @@ function getFirstValue(value: string | string[] | undefined) {
   return value;
 }
 
-function getStatusLabel(status: BlogPostStatus) {
-  switch (status) {
-    case "DRAFT":
-      return "Nháp";
-    case "REVIEW":
-      return "Chờ duyệt";
-    case "PUBLISHED":
-      return "Đã xuất bản";
-    case "SCHEDULED":
-      return "Lên lịch";
-    case "ARCHIVED":
-      return "Lưu trữ";
-    default:
-      return status;
-  }
+function getStatusLabel(
+  status: BlogPostStatus,
+  labels: Record<string, string>,
+): string {
+  return labels[status] ?? status;
 }
 
 function buildHref(page: number, status?: BlogPostStatus, q?: string) {
@@ -57,6 +50,15 @@ function buildHref(page: number, status?: BlogPostStatus, q?: string) {
 
 export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPostsPageProps) {
   await requireAdminParent();
+  const locale = resolveAppLocale(await getLocale());
+  const t = (key: string) => translate(`admin.blog.posts.${key}`, undefined, locale);
+  const statusLabels: Record<string, string> = {
+    DRAFT: t("statusDraft"),
+    REVIEW: t("statusReview"),
+    PUBLISHED: t("statusPublished"),
+    SCHEDULED: t("statusScheduled"),
+    ARCHIVED: t("statusArchived"),
+  };
 
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const currentPage = Math.max(1, Number(getFirstValue(resolvedSearchParams?.page) ?? "1") || 1);
@@ -100,32 +102,32 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
       <div className="rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">Quản lý bài viết</h1>
-            <p className="mt-1 text-sm text-[var(--admin-text-muted)]">Lọc theo trạng thái hoặc tiêu đề.</p>
+            <h1 className="text-xl font-bold text-[var(--admin-text-primary)]">{t("title")}</h1>
+            <p className="mt-1 text-sm text-[var(--admin-text-muted)]">{t("description")}</p>
           </div>
           <Button asChild className="bg-teal-600 hover:bg-teal-700">
-            <Link href="/admin/blog/posts/new">Viết bài mới</Link>
+            <Link href="/admin/blog/posts/new">{t("writeNewPost")}</Link>
           </Button>
         </div>
 
         <form method="GET" className="mt-4 grid gap-3 md:grid-cols-[220px_1fr_auto]">
           <select name="status" defaultValue={status ?? ""} className="h-10 rounded-lg border border-[var(--admin-card-border)] px-3 text-sm">
-            <option value="">Tất cả trạng thái</option>
-            <option value="DRAFT">{getStatusLabel("DRAFT")}</option>
-            <option value="REVIEW">{getStatusLabel("REVIEW")}</option>
-            <option value="PUBLISHED">{getStatusLabel("PUBLISHED")}</option>
-            <option value="SCHEDULED">{getStatusLabel("SCHEDULED")}</option>
-            <option value="ARCHIVED">{getStatusLabel("ARCHIVED")}</option>
+            <option value="">{t("allStatuses")}</option>
+            <option value="DRAFT">{getStatusLabel("DRAFT", statusLabels)}</option>
+            <option value="REVIEW">{getStatusLabel("REVIEW", statusLabels)}</option>
+            <option value="PUBLISHED">{getStatusLabel("PUBLISHED", statusLabels)}</option>
+            <option value="SCHEDULED">{getStatusLabel("SCHEDULED", statusLabels)}</option>
+            <option value="ARCHIVED">{getStatusLabel("ARCHIVED", statusLabels)}</option>
           </select>
           <input
             type="search"
             name="q"
             defaultValue={q}
-            placeholder="Tìm tiêu đề"
+            placeholder={t("searchPlaceholder")}
             className="h-10 rounded-lg border border-[var(--admin-card-border)] px-3 text-sm"
           />
           <Button type="submit" variant="outline">
-            Lọc
+            {t("filterButton")}
           </Button>
         </form>
       </div>
@@ -151,7 +153,7 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-3">
         <div className="flex gap-2">
           <Button asChild variant="outline" size="sm" className={cn(currentPage === 1 && "pointer-events-none opacity-50")}>
-            <Link href={buildHref(Math.max(1, currentPage - 1), status, q || undefined)}>Trước</Link>
+            <Link href={buildHref(Math.max(1, currentPage - 1), status, q || undefined)}>{t("previousPage")}</Link>
           </Button>
           <Button
             asChild
@@ -159,7 +161,7 @@ export default async function AdminBlogPostsPage({ searchParams }: AdminBlogPost
             size="sm"
             className={cn(currentPage === totalPages && "pointer-events-none opacity-50")}
           >
-            <Link href={buildHref(Math.min(totalPages, currentPage + 1), status, q || undefined)}>Sau</Link>
+            <Link href={buildHref(Math.min(totalPages, currentPage + 1), status, q || undefined)}>{t("nextPage")}</Link>
           </Button>
         </div>
         <div className="flex flex-wrap items-center gap-2">

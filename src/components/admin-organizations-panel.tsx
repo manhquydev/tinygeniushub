@@ -83,14 +83,14 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
       });
       if (!res.ok) {
         const json = await res.json() as { error?: { message?: string } };
-        throw new Error(json.error?.message ?? "Lỗi tạo tổ chức");
+        throw new Error(json.error?.message ?? "Error creating organization");
       }
       const json = await res.json() as { data: { org: Organization } };
       setOrgs((prev) => [json.data.org, ...prev]);
       setShowCreateForm(false);
       setForm(EMPTY_FORM);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Lỗi không xác định");
+      setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setCreating(false);
     }
@@ -104,10 +104,10 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
         body: JSON.stringify({ isActive: !org.isActive }),
       });
       const json = await res.json() as { data?: { org: Organization }; error?: { message?: string } };
-      if (!res.ok || !json.data?.org) throw new Error(json.error?.message ?? "Cập nhật thất bại");
+      if (!res.ok || !json.data?.org) throw new Error(json.error?.message ?? "Update failed");
       setOrgs((prev) => prev.map((o) => (o.id === org.id ? json.data!.org : o)));
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Lỗi không xác định");
+      setError(err instanceof Error ? err.message : "Unknown error");
     }
   }
 
@@ -118,24 +118,24 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <Building2 size={18} className="text-[var(--admin-text-secondary)]" />
-          <h1 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Tổ chức (B2B)</h1>
+          <h1 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Organization (B2B)</h1>
           <Badge variant="secondary">{orgs.length}</Badge>
         </div>
         <Button size="sm" className="h-8 text-xs gap-1 bg-teal-600 hover:bg-teal-700" onClick={() => { setShowCreateForm(true); setSelectedOrgId(null); }}>
           <Plus size={13} />
-          Thêm tổ chức
+          Add organization
         </Button>
       </div>
 
       {showCreateForm && (
         <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-4 space-y-3">
-          <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Tạo tổ chức mới</h2>
+          <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Create a new organization</h2>
           {error && <p className="text-xs text-rose-600">{error}</p>}
           <form onSubmit={(e) => void handleCreate(e)} className="space-y-3">
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="grid gap-1.5">
-                <Label htmlFor="org-name">Tên tổ chức *</Label>
-                <Input id="org-name" type="text" required value={form.name} onChange={(e) => handleNameChange(e.target.value)} placeholder="Trường Mầm Non Ánh Sao" />
+                <Label htmlFor="org-name">Organization name *</Label>
+                <Input id="org-name" type="text" required value={form.name} onChange={(e) => handleNameChange(e.target.value)} placeholder="Starlight Kindergarten" />
               </div>
               <div className="grid gap-1.5">
                 <Label htmlFor="org-slug">Slug *</Label>
@@ -148,7 +148,7 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
                 <Input id="org-domain" type="text" value={form.domain} onChange={(e) => setForm((p) => ({ ...p, domain: e.target.value }))} placeholder="anhsao.edu.vn" />
               </div>
               <div className="grid gap-1.5">
-                <Label htmlFor="org-color">Màu thương hiệu</Label>
+                <Label htmlFor="org-color">Brand color</Label>
                 <div className="flex gap-2 items-center">
                   <input type="color" value={form.primaryColor} onChange={(e) => setForm((p) => ({ ...p, primaryColor: e.target.value }))} className="h-9 w-10 rounded border border-[var(--admin-card-border)] p-0.5 cursor-pointer" />
                   <Input id="org-color" type="text" value={form.primaryColor} onChange={(e) => setForm((p) => ({ ...p, primaryColor: e.target.value }))} className="flex-1" />
@@ -157,11 +157,11 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="grid gap-1.5">
-                <Label htmlFor="org-billing-start">Billing bắt đầu</Label>
+                <Label htmlFor="org-billing-start">Billing begins</Label>
                 <Input id="org-billing-start" type="date" value={form.billingStart} onChange={(e) => setForm((p) => ({ ...p, billingStart: e.target.value }))} />
               </div>
               <div className="grid gap-1.5">
-                <Label htmlFor="org-billing-end">Billing kết thúc</Label>
+                <Label htmlFor="org-billing-end">Billing ends</Label>
                 <Input id="org-billing-end" type="date" value={form.billingEnd} onChange={(e) => setForm((p) => ({ ...p, billingEnd: e.target.value }))} />
               </div>
             </div>
@@ -171,9 +171,9 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
             </div>
             <div className="flex gap-2">
               <Button type="submit" disabled={creating} className="bg-teal-600 hover:bg-teal-700">
-                {creating ? "Đang tạo..." : "Tạo tổ chức"}
+                {creating ? "Creating..." : "Create an organization"}
               </Button>
-              <Button type="button" variant="outline" onClick={() => { setShowCreateForm(false); setError(null); }}>Hủy</Button>
+              <Button type="button" variant="outline" onClick={() => { setShowCreateForm(false); setError(null); }}>Cancel</Button>
             </div>
           </form>
         </div>
@@ -183,17 +183,17 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
         <Table>
           <TableHeader>
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
-              <TableHead className="text-xs">Tổ chức</TableHead>
+              <TableHead className="text-xs">Organization</TableHead>
               <TableHead className="text-xs">Domain</TableHead>
               <TableHead className="text-xs">Billing</TableHead>
-              <TableHead className="text-xs">Trạng thái</TableHead>
-              <TableHead className="text-xs">Thao tác</TableHead>
+              <TableHead className="text-xs">Status</TableHead>
+              <TableHead className="text-xs">Operation</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {orgs.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-xs text-[var(--admin-text-secondary)] py-8">Chưa có tổ chức nào.</TableCell>
+                <TableCell colSpan={5} className="text-center text-xs text-[var(--admin-text-secondary)] py-8">There are no organizations yet.</TableCell>
               </TableRow>
             )}
             {orgs.map((org) => (
@@ -209,20 +209,20 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
                 </TableCell>
                 <TableCell className="text-xs text-[var(--admin-text-secondary)]">{org.domain ?? "—"}</TableCell>
                 <TableCell className="text-xs">
-                  {org.billingStart ? <span>{formatDate(org.billingStart)} → {formatDate(org.billingEnd)}</span> : <span className="text-[var(--admin-text-muted)]">Chưa thiết lập</span>}
+                  {org.billingStart ? <span>{formatDate(org.billingStart)} → {formatDate(org.billingEnd)}</span> : <span className="text-[var(--admin-text-muted)]">Not set up yet</span>}
                 </TableCell>
                 <TableCell>
                   <Badge variant="outline" className={cn("text-xs border", org.isActive ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-rose-50 text-rose-700 border-rose-200")}>
-                    {org.isActive ? "Đang hoạt động" : "Đã vô hiệu"}
+                    {org.isActive ? "Active" : "Disabled"}
                   </Badge>
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-1">
                     <Button size="sm" variant="outline" className="h-7 text-xs gap-1" onClick={() => setSelectedOrgId(selectedOrgId === org.id ? null : org.id)}>
-                      <Users size={11} /> Chi tiết
+                      <Users size={11} /> Details
                     </Button>
                     <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => void handleToggleActive(org)}>
-                      {org.isActive ? "Vô hiệu" : "Kích hoạt"}
+                      {org.isActive ? "Invalid" : "Activate"}
                     </Button>
                   </div>
                 </TableCell>
@@ -246,17 +246,17 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
             </div>
             <div className="flex items-center gap-2 text-xs text-[var(--admin-text-secondary)]">
               <Palette size={13} />
-              <span className="font-medium">Màu:</span>
+              <span className="font-medium">Color:</span>
               {selectedOrg.primaryColor && <span className="inline-block h-3 w-3 rounded" style={{ background: selectedOrg.primaryColor }} />}
               <span>{selectedOrg.primaryColor ?? "—"}</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-[var(--admin-text-secondary)]">
               <Calendar size={13} />
               <span className="font-medium">Billing:</span>
-              <span>{selectedOrg.billingStart ? `${formatDate(selectedOrg.billingStart)} → ${formatDate(selectedOrg.billingEnd)}` : "Chưa thiết lập"}</span>
+              <span>{selectedOrg.billingStart ? `${formatDate(selectedOrg.billingStart)} → ${formatDate(selectedOrg.billingEnd)}` : "Not set up yet"}</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-[var(--admin-text-secondary)]">
-              <span className="font-medium">Ngày tạo:</span>
+              <span className="font-medium">Creation date:</span>
               <span>{formatDate(selectedOrg.createdAt)}</span>
             </div>
           </div>
@@ -265,7 +265,7 @@ export function AdminOrganizationsPanel({ initialOrgs }: { initialOrgs: Organiza
             <img src={selectedOrg.logoUrl} alt="Logo" className="h-12 rounded" />
           )}
           <p className="text-xs text-[var(--admin-text-secondary)]">
-            Để quản lý thành viên, dùng API: <code>POST /api/admin/organizations/{selectedOrg.id}/members</code>
+            To manage members, use the API: <code>POST /api/admin/organizations/{selectedOrg.id}/members</code>
           </p>
         </div>
       )}

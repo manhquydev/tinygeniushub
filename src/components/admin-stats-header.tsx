@@ -36,27 +36,27 @@ export function AdminStatsHeader({ overview, retention }: AdminStatsHeaderProps)
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
       <AdminStatCard
-        label="Phụ huynh"
+        label="Parents"
         value={overview.counts.parents}
         icon={<Users size={16} />}
       />
       <AdminStatCard
-        label="Gói đang hoạt động"
+        label="Package is active"
         value={activeSubscriptionCount}
         icon={<CircleDot size={16} />}
       />
       <AdminStatCard
-        label="Doanh thu 30 ngày"
+        label="30-day revenue"
         value={`${toCurrencyVnd(overview.counts.successfulRevenueVnd30d)} ₫`}
         icon={<TrendingUp size={16} />}
       />
       <AdminStatCard
-        label="Bé hoạt động 7 ngày"
+        label="Baby is active for 7 days"
         value={overview.activeChildrenLast7d}
         icon={<BookOpen size={16} />}
       />
       <AdminStatCard
-        label="Rời bỏ 30 ngày"
+        label="Leave 30 days"
         value={retention.churned30d}
         icon={<TrendingDown size={16} />}
       />

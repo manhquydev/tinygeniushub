@@ -21,7 +21,7 @@ function buildChips(filters: CourseFilterParams): FilterChip[] {
   const chips: FilterChip[] = [];
 
   if (filters.q) {
-    chips.push({ key: "q", label: `Tìm: ${filters.q}` });
+    chips.push({ key: "q", label: `Find:${filters.q}` });
   }
 
   if (filters.program && PROGRAM_LABELS[filters.program]) {
@@ -45,9 +45,9 @@ function buildChips(filters: CourseFilterParams): FilterChip[] {
   }
 
   if (filters.minPrice !== undefined || filters.maxPrice !== undefined) {
-    const min = filters.minPrice ? `${filters.minPrice.toLocaleString("vi-VN")}đ` : "0";
-    const max = filters.maxPrice ? `${filters.maxPrice.toLocaleString("vi-VN")}đ` : "∞";
-    chips.push({ key: "price", label: `Giá: ${min} – ${max}` });
+    const min = filters.minPrice ? `${filters.minPrice.toLocaleString("vi-VN")}D` : "0";
+    const max = filters.maxPrice ? `${filters.maxPrice.toLocaleString("vi-VN")}D` : "∞";
+    chips.push({ key: "price", label: `Price:${min} – ${max}` });
   }
 
   return chips;
@@ -75,13 +75,13 @@ export function CourseActiveFilters({ filters }: CourseActiveFiltersProps) {
   }
 
   return (
-    <div className="flex gap-2 overflow-x-auto pb-1" aria-label="Bộ lọc đang áp dụng">
+    <div className="flex gap-2 overflow-x-auto pb-1" aria-label="Filters are applying">
       {chips.map((chip) => (
         <button
           key={chip.key}
           onClick={() => removeFilter(chip.key)}
           className="flex shrink-0 items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-100"
-          aria-label={`Xóa bộ lọc ${chip.label}`}
+          aria-label={`Clear filter${chip.label}`}
         >
           {chip.label}
           <X className="h-3 w-3" />

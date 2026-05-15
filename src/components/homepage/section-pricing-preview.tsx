@@ -47,16 +47,16 @@ export function SectionPricingPreview() {
               ))}
             </ul>
 
-            <Link href="/pricing" className="solid-button full-width hp-price-cta-main">
-              View pricing details
+            <Link href="/courses" className="solid-button full-width hp-price-cta-main">
+              View course options
               <ArrowRight size={14} aria-hidden />
             </Link>
             <p className="hp-price-cta-note">No card-on-file required</p>
           </article>
         </div>
 
-        <Link href="/pricing" className="hp-more-link">
-          Full payment policy →
+        <Link href="/courses" className="hp-more-link">
+          See all courses →
         </Link>
       </div>
     </section>

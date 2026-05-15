@@ -49,27 +49,27 @@ const MASTERY_META: Record<
   { label: string; badgeClass: string; barClass: string }
 > = {
   NOT_STARTED: {
-    label: "Chưa bắt đầu",
+    label: "Haven't started yet",
     badgeClass: "border-slate-200 bg-slate-100 text-slate-500",
     barClass: "from-slate-300 to-slate-400",
   },
   NOVICE: {
-    label: "Mới học",
+    label: "Just learned",
     badgeClass: "border-orange-200 bg-orange-50 text-orange-600",
     barClass: "from-orange-400 to-amber-500",
   },
   DEVELOPING: {
-    label: "Đang phát triển",
+    label: "Developing",
     badgeClass: "border-amber-200 bg-amber-50 text-amber-700",
     barClass: "from-amber-400 to-yellow-500",
   },
   PROFICIENT: {
-    label: "Thành thạo",
+    label: "Proficient",
     badgeClass: "border-emerald-200 bg-emerald-50 text-emerald-700",
     barClass: "from-emerald-400 to-teal-500",
   },
   MASTERED: {
-    label: "Xuất sắc",
+    label: "Excellent",
     badgeClass: "border-cyan-200 bg-cyan-50 text-cyan-700",
     barClass: "from-cyan-400 to-sky-500",
   },
@@ -78,13 +78,13 @@ const MASTERY_META: Record<
 const DOMAIN_BLOCKS: DomainBlock[] = [
   {
     domain: "MATH",
-    title: "Toán tư duy",
-    subtitle: "Nền tảng số và phép tính lớp 1-3",
+    title: "Mental math",
+    subtitle: "Number foundations and calculations for grades 1-3",
     skills: [
       {
         id: "mock-math-counting",
         code: "MATH_COUNTING",
-        nameVi: "Đếm số",
+        nameVi: "Count numbers",
         masteryScore: 0.85,
         masteryLevel: "PROFICIENT",
         isLocked: false,
@@ -93,7 +93,7 @@ const DOMAIN_BLOCKS: DomainBlock[] = [
       {
         id: "mock-math-add",
         code: "MATH_ADDITION",
-        nameVi: "Phép cộng",
+        nameVi: "Addition",
         masteryScore: 0.62,
         masteryLevel: "DEVELOPING",
         isLocked: false,
@@ -102,7 +102,7 @@ const DOMAIN_BLOCKS: DomainBlock[] = [
       {
         id: "mock-math-sub",
         code: "MATH_SUBTRACTION",
-        nameVi: "Phép trừ",
+        nameVi: "Subtraction",
         masteryScore: 0.41,
         masteryLevel: "DEVELOPING",
         isLocked: false,
@@ -111,7 +111,7 @@ const DOMAIN_BLOCKS: DomainBlock[] = [
       {
         id: "mock-math-geo",
         code: "MATH_GEOMETRY",
-        nameVi: "Hình học",
+        nameVi: "Geometry",
         masteryScore: 0,
         masteryLevel: "NOT_STARTED",
         isLocked: true,
@@ -120,7 +120,7 @@ const DOMAIN_BLOCKS: DomainBlock[] = [
       {
         id: "mock-math-measure",
         code: "MATH_MEASUREMENT",
-        nameVi: "Đo lường",
+        nameVi: "Measurement",
         masteryScore: 0,
         masteryLevel: "NOT_STARTED",
         isLocked: true,
@@ -130,8 +130,8 @@ const DOMAIN_BLOCKS: DomainBlock[] = [
   },
   {
     domain: "ENGLISH_PHONICS",
-    title: "Tiếng Anh Phonics",
-    subtitle: "Âm vị, từ vựng nền và phát âm cơ bản",
+    title: "English Phonics",
+    subtitle: "Phonemes, background vocabulary and basic pronunciation",
     skills: [
       {
         id: "mock-phonics-alpha",
@@ -182,9 +182,9 @@ const WEEKLY_TREND_DATA = [
 ];
 
 const RADAR_DATA = [
-  { skill: "Đếm số", score: 85 },
-  { skill: "Cộng/Trừ", score: 62 },
-  { skill: "Hình học", score: 28 },
+  { skill: "Count numbers", score: 85 },
+  { skill: "Add/Subtract", score: 62 },
+  { skill: "Geometry", score: 28 },
   { skill: "Alphabet", score: 95 },
   { skill: "CVC", score: 68 },
   { skill: "Blends", score: 22 },
@@ -208,10 +208,10 @@ export function SkillProgressMapClient({
             Skill Progress Map
           </p>
           <h1 className="text-2xl font-black tracking-[-0.02em] sm:text-3xl">
-            Bản đồ kỹ năng của {childName}
+            {childName}'s skill map
           </h1>
           <p className="max-w-[65ch] text-sm text-cyan-50 sm:text-base">
-            Phiên bản UI mock để kiểm thử trải nghiệm. Khi backend hoàn thiện, dữ liệu sẽ tự thay bằng API thật.
+            UI mock version to test the experience. When the backend is complete, the data will be replaced with the real API.
           </p>
         </div>
       </section>
@@ -220,7 +220,7 @@ export function SkillProgressMapClient({
         <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_10px_28px_rgba(15,23,42,0.06)]">
           <div className="mb-3 flex items-center gap-2 text-slate-800">
             <TrendingUp className="h-4 w-4 text-cyan-600" />
-            <h2 className="text-sm font-bold uppercase tracking-[0.08em]">Nhịp tiến bộ 5 tuần</h2>
+            <h2 className="text-sm font-bold uppercase tracking-[0.08em]">5-week progress rhythm</h2>
           </div>
           <div className="h-52">
             <ResponsiveContainer width="100%" height="100%">
@@ -230,7 +230,7 @@ export function SkillProgressMapClient({
                 <YAxis domain={[0, 100]} tick={{ fill: "#64748b", fontSize: 12 }} />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="math" stroke="#0891b2" strokeWidth={2.8} dot={{ r: 3 }} name="Toán" />
+                <Line type="monotone" dataKey="math" stroke="#0891b2" strokeWidth={2.8} dot={{ r: 3 }} name="Maths" />
                 <Line type="monotone" dataKey="phonics" stroke="#0ea5e9" strokeWidth={2.8} dot={{ r: 3 }} name="Phonics" />
               </LineChart>
             </ResponsiveContainer>
@@ -240,7 +240,7 @@ export function SkillProgressMapClient({
         <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_10px_28px_rgba(15,23,42,0.06)]">
           <div className="mb-3 flex items-center gap-2 text-slate-800">
             <BarChart3 className="h-4 w-4 text-emerald-600" />
-            <h2 className="text-sm font-bold uppercase tracking-[0.08em]">Mức độ thành thạo theo cụm</h2>
+            <h2 className="text-sm font-bold uppercase tracking-[0.08em]">Proficiency by cluster</h2>
           </div>
           <div className="h-52">
             <ResponsiveContainer width="100%" height="100%">
@@ -296,7 +296,7 @@ export function SkillProgressMapClient({
                     <div className="mb-2 flex items-center justify-between gap-2">
                       <div className="min-w-0">
                         <p className="truncate text-sm font-semibold text-slate-800">{skill.nameVi}</p>
-                        <p className="text-xs text-slate-400">{skill.totalAttempts} lượt luyện tập</p>
+                        <p className="text-xs text-slate-400">{skill.totalAttempts} practice attempts</p>
                       </div>
 
                       {skill.isLocked ? (
@@ -327,7 +327,7 @@ export function SkillProgressMapClient({
                           className="inline-flex items-center gap-1 text-xs font-semibold text-cyan-700 transition-colors hover:text-cyan-900"
                         >
                           <Brain className="h-3.5 w-3.5" />
-                          Xem chi tiết kỹ năng
+                          View skill details
                         </Link>
                       </div>
                     )}

@@ -11,16 +11,16 @@ export default async function ReaderBookmarksPage() {
     <div className="page-stack space-y-6">
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
         <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">
-          Bài viết đã lưu
+          Article saved
         </h1>
         <p className="mt-2 text-sm text-slate-600">
-          Bạn đã lưu {bookmarks.total} bài viết.
+          You have saved {bookmarks.total} posts.
         </p>
       </section>
 
       {bookmarks.items.length === 0 ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm">
-          Chưa có bài viết nào được lưu. Hãy vào trang Blog và bấm "Lưu bài viết".
+          No saved articles yet. Visit the Blog page and click "Save article".
         </section>
       ) : (
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -50,7 +50,7 @@ export default async function ReaderBookmarksPage() {
                   href={`/blog/${item.post.slug}`}
                   className="inline-flex text-sm font-semibold text-teal-700 transition hover:text-teal-800"
                 >
-                  Đọc bài viết →
+                  Read article →
                 </Link>
               </div>
             </article>

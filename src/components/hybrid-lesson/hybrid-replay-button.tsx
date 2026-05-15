@@ -7,7 +7,7 @@ interface HybridReplayButtonProps {
   onClick: () => void;
 }
 
-/** "Xem lại" button — replays concept video from activity screen */
+/** "Review" button — replays concept video from activity screen */
 export function HybridReplayButton({ onClick }: HybridReplayButtonProps) {
   return (
     <m.button
@@ -34,10 +34,10 @@ export function HybridReplayButton({ onClick }: HybridReplayButtonProps) {
         backdropFilter: "blur(4px)",
         zIndex: 10,
       }}
-      aria-label="Xem lại bài giảng"
+      aria-label="Review the lecture"
     >
       <RotateCcw size={16} />
-      Xem lại
+      Review
     </m.button>
   );
 }

@@ -27,12 +27,12 @@ const navItems: NavItem[] = [
   },
   {
     href: "/parent/curriculum/browser",
-    label: "Duyệt Giáo Trình",
+    label: "Browse Syllabus",
     icon: <BookOpen className="h-4 w-4" />,
   },
   {
     href: "/parent/curriculum/planner",
-    label: "Lập Kế Hoạch",
+    label: "Planning",
     icon: <Calendar className="h-4 w-4" />,
   },
 ];
@@ -55,7 +55,7 @@ export default function CurriculumParentLayout({
               <Link href="/parent/dashboard">
                 <Button variant="ghost" size="sm" className="gap-2">
                   <ChevronLeft className="h-4 w-4" />
-                  Quay lại
+                  Come back
                 </Button>
               </Link>
               

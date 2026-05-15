@@ -26,7 +26,7 @@ async function logAdminAction(input: { action: string; target?: string; detail?:
       keepalive: true,
     });
   } catch {
-    // Ghi log lỗi không được làm gián đoạn thao tác vận hành.
+    // Error logging must not interrupt operations.
   }
 }
 
@@ -53,15 +53,15 @@ export function useAdminOperationsController(input: UseAdminOperationsController
     setLoadingPayments(true); setError(null); setInfo(null);
     try {
       const limitValue = normalizeLimit(limit);
-      if (limitValue === null) { setError(`Giới hạn phải là số nguyên trong khoảng ${MIN_LIMIT}-${MAX_LIMIT}.`); return; }
+      if (limitValue === null) { setError(`The limit must be an integer in the range${MIN_LIMIT}-${MAX_LIMIT}.`); return; }
       const params = new URLSearchParams({ limit: String(limitValue) });
       if (paymentStatus !== "ALL") params.set("status", paymentStatus);
       const response = await fetch(`/api/admin/payments?${params.toString()}`);
       const body = await response.json();
-      if (!response.ok || !body.ok || !Array.isArray(body.data?.payments)) { setError(body.error?.message ?? "Không tải được giao dịch."); return; }
+      if (!response.ok || !body.ok || !Array.isArray(body.data?.payments)) { setError(body.error?.message ?? "Unable to load transaction."); return; }
       setPayments(body.data.payments as PaymentRow[]);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Lỗi không xác định.");
+      setError(e instanceof Error ? e.message : "Unknown error.");
     } finally { setLoadingPayments(false); }
   }
 
@@ -69,15 +69,15 @@ export function useAdminOperationsController(input: UseAdminOperationsController
     setLoadingWebhooks(true); setError(null); setInfo(null);
     try {
       const limitValue = normalizeLimit(limit);
-      if (limitValue === null) { setError(`Giới hạn phải là số nguyên trong khoảng ${MIN_LIMIT}-${MAX_LIMIT}.`); return; }
+      if (limitValue === null) { setError(`The limit must be an integer in the range${MIN_LIMIT}-${MAX_LIMIT}.`); return; }
       const params = new URLSearchParams({ limit: String(limitValue) });
       if (webhookStatus !== "ALL") params.set("status", webhookStatus);
       const response = await fetch(`/api/admin/webhooks?${params.toString()}`);
       const body = await response.json();
-      if (!response.ok || !body.ok || !Array.isArray(body.data?.webhooks)) { setError(body.error?.message ?? "Không tải được webhook."); return; }
+      if (!response.ok || !body.ok || !Array.isArray(body.data?.webhooks)) { setError(body.error?.message ?? "Webhook failed to load."); return; }
       setWebhooks(body.data.webhooks as WebhookRow[]);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Lỗi không xác định.");
+      setError(e instanceof Error ? e.message : "Unknown error.");
     } finally { setLoadingWebhooks(false); }
   }
 
@@ -88,12 +88,12 @@ export function useAdminOperationsController(input: UseAdminOperationsController
         method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ trialEnabled: !trialEnabled }),
       });
       const body = await response.json();
-      if (!response.ok || !body.ok) { setError(body.error?.message ?? "Không cập nhật được trạng thái bài học dùng thử."); return; }
+      if (!response.ok || !body.ok) { setError(body.error?.message ?? "Unable to update trial lesson status."); return; }
       setLessons((current) => current.map((lesson) => (lesson.id === lessonId ? { ...lesson, trialEnabled: !trialEnabled } : lesson)));
-      setInfo("Đã cập nhật trạng thái dùng thử.");
+      setInfo("Updated trial status.");
       await logAdminAction({ action: "TOGGLE_TRIAL", target: lessonId, detail: { nextTrialEnabled: !trialEnabled } });
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Lỗi không xác định.");
+      setError(e instanceof Error ? e.message : "Unknown error.");
     } finally { setUpdatingLessonId(null); }
   }
 
@@ -109,21 +109,21 @@ export function useAdminOperationsController(input: UseAdminOperationsController
       const trimmedNote = reconcileNote.trim();
       if (trimmedNote.length > 0) payload.note = trimmedNote;
       if (reconcileWebhookResolution !== "NONE") {
-        if (!reconcileWebhookId) { setError("Hãy chọn sự kiện webhook khi có cập nhật webhook."); return; }
+        if (!reconcileWebhookId) { setError("Select the webhook event when a webhook update occurs."); return; }
         payload.webhookEventId = reconcileWebhookId; payload.webhookResolution = reconcileWebhookResolution;
       }
       const response = await fetch(`/api/admin/payments/${payment.id}/reconcile`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) });
       const body = await response.json() as { ok?: boolean; error?: { message?: string }; data?: { payment?: { id: string; status: string; processedAt: string }; syncedEnrollmentCount?: number; webhookUpdate?: { id: string; status: string } | null } };
-      if (!response.ok || !body.ok || !body.data?.payment) { setError(body.error?.message ?? "Đối soát thủ công thất bại."); return; }
+      if (!response.ok || !body.ok || !body.data?.payment) { setError(body.error?.message ?? "Manual reconciliation failed."); return; }
       setPayments((current) => current.map((item) => item.id === payment.id ? { ...item, status: body.data?.payment?.status ?? item.status, processedAt: body.data?.payment?.processedAt ?? item.processedAt } : item));
       if (body.data?.webhookUpdate) setWebhooks((current) => current.map((item) => item.id === body.data?.webhookUpdate?.id ? { ...item, status: body.data?.webhookUpdate?.status ?? item.status } : item));
       await logAdminAction({ action: "PAYMENT_MANUAL_RECONCILE", target: payment.id, detail: { reconcileAction, webhookEventId: reconcileWebhookId || null, webhookResolution: reconcileWebhookResolution === "NONE" ? null : reconcileWebhookResolution } });
       const syncedCount = body.data?.syncedEnrollmentCount ?? 0;
       setOpenReconcilePaymentId(null);
       await Promise.all([refreshPayments(), refreshWebhooks()]);
-      setInfo(`Đã đối soát thanh toán. Số ghi danh đồng bộ: ${syncedCount}.`);
+      setInfo(`Payment has been reconciled. Synchronized registration number:${syncedCount}.`);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Đối soát thủ công thất bại.");
+      setError(e instanceof Error ? e.message : "Manual reconciliation failed.");
     } finally { setReconcilingPaymentId(null); }
   }
 

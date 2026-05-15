@@ -26,10 +26,10 @@ const QUICK_GOAL_OPTIONS = [15, 20, 30, 0] as const;
 
 function getGoalLabel(minutes: number) {
   if (minutes === 0) {
-    return "Không giới hạn";
+    return "Unlimited";
   }
 
-  return `${minutes} phút`;
+  return `${minutes}minute`;
 }
 
 export function DailyGoalSetter({
@@ -74,7 +74,7 @@ export function DailyGoalSetter({
 
       const body = (await response.json()) as GoalResponse;
       if (!response.ok || !body.ok) {
-        throw new Error(body.error?.message ?? "Không thể cập nhật mục tiêu");
+        throw new Error(body.error?.message ?? "Unable to update target");
       }
 
       const persistedGoal = body.data?.child?.dailyGoalMinutes;
@@ -83,7 +83,7 @@ export function DailyGoalSetter({
       }
     } catch (goalError) {
       onDailyGoalChange(previousGoal);
-      setError(goalError instanceof Error ? goalError.message : "Lỗi không xác định");
+      setError(goalError instanceof Error ? goalError.message : "Unknown error");
     } finally {
       setPending(false);
     }
@@ -92,10 +92,10 @@ export function DailyGoalSetter({
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Mục tiêu học hôm nay</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Learning goals today</p>
         {goalReached ? (
           <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700">
-            🎉 Đã đạt mục tiêu hôm nay!
+            🎉 Goal reached today!
           </span>
         ) : null}
       </div>
@@ -104,7 +104,7 @@ export function DailyGoalSetter({
         <div className="mt-2 space-y-1.5">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-600">
             <span>
-              {totalMinutesToday}/{dailyGoalMinutes} phút
+              {totalMinutesToday}/{dailyGoalMinutes}minute
             </span>
             <span>{progressPercent}%</span>
           </div>
@@ -117,7 +117,7 @@ export function DailyGoalSetter({
           </div>
         </div>
       ) : (
-        <p className="mt-2 text-xs font-medium text-slate-600">Không giới hạn thời gian học trong ngày.</p>
+        <p className="mt-2 text-xs font-medium text-slate-600">There is no limit to study time during the day.</p>
       )}
 
       <div className="mt-3 flex flex-wrap gap-2">

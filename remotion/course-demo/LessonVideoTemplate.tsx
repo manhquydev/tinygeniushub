@@ -281,7 +281,7 @@ function OutroLayout({ section, sectionIndex, allSections, lessonTitle, mascotY,
               textAlign: "center",
             }}
           >
-            Cùng Con Tú Học
+            Study with Tu Tu
           </div>
         </div>
       </div>

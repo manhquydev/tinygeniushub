@@ -32,7 +32,7 @@ export function LessonPlayerSidebar({
         {courseTitle}
       </h2>
       <p style={{ fontSize: "0.78rem", marginBottom: "0.5rem" }} className="muted-text">
-        {completedCount}/{totalCount} bài hoàn thành
+        {completedCount}/{totalCount} lessons completed
       </p>
       {/* Progress bar */}
       <div

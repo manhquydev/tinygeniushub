@@ -775,7 +775,7 @@ export async function createJourneyFromCourse(input: z.infer<typeof createJourne
         courseId: course.id,
         sourceEnrollmentId,
         status: progress.status,
-        seedName: params.seedName ?? `Hạt ${course.title}`,
+        seedName: params.seedName ?? `Seed${course.title}`,
         currentTierNo: progress.currentTierNo,
         currentTierProgress: progress.currentTierProgress,
         plantedAt: now,

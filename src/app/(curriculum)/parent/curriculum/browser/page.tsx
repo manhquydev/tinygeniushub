@@ -15,9 +15,9 @@ import type {
 const mockGrades: AbekaGrade[] = [
   { id: "1", code: "K4", name: "K4", nameVi: "K4", orderIndex: 1, totalLessons: 170, color: "#FF9F43" },
   { id: "2", code: "K5", name: "K5", nameVi: "K5", orderIndex: 2, totalLessons: 170, color: "#FF9F43" },
-  { id: "3", code: "G1", name: "Lớp 1", nameVi: "Lớp 1", orderIndex: 3, totalLessons: 170, color: "#F368E0" },
-  { id: "4", code: "G2", name: "Lớp 2", nameVi: "Lớp 2", orderIndex: 4, totalLessons: 170, color: "#F368E0" },
-  { id: "5", code: "G3", name: "Lớp 3", nameVi: "Lớp 3", orderIndex: 5, totalLessons: 170, color: "#54A0FF" },
+  { id: "3", code: "G1", name: "Grade 1", nameVi: "Grade 1", orderIndex: 3, totalLessons: 170, color: "#F368E0" },
+  { id: "4", code: "G2", name: "Grade 2", nameVi: "Grade 2", orderIndex: 4, totalLessons: 170, color: "#F368E0" },
+  { id: "5", code: "G3", name: "Grade 3", nameVi: "Grade 3", orderIndex: 5, totalLessons: 170, color: "#54A0FF" },
 ];
 
 const mockLessons: AbekaLesson[] = [

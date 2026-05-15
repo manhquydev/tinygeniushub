@@ -35,7 +35,7 @@ export function BlogNewsletterWidget() {
       setSuccess(true);
       setEmail("");
     } catch {
-      setError("Đăng ký chưa thành công. Vui lòng thử lại.");
+      setError("Registration has not been successful. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -47,14 +47,14 @@ export function BlogNewsletterWidget() {
         <p className="inline-flex w-fit items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
           <Mail size={14} /> Newsletter
         </p>
-        <h3 className="text-2xl font-black tracking-[-0.02em] sm:text-3xl">Nhận bài viết mới mỗi tuần</h3>
+        <h3 className="text-2xl font-black tracking-[-0.02em] sm:text-3xl">Receive new articles every week</h3>
         <p className="max-w-[60ch] text-sm text-teal-50 sm:text-base">
-          Mẹo dạy con tại nhà, bài học mẫu và hướng dẫn thực hành dành riêng cho phụ huynh Việt Nam.
+          Tips for teaching children at home, sample lessons and practical instructions specifically for Vietnamese parents.
         </p>
 
         {success ? (
           <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
-            <CheckCircle2 size={18} /> Cảm ơn! Hãy kiểm tra email của bạn.
+            <CheckCircle2 size={18} /> Thanks! Check email your inbox.
           </div>
         ) : (
           <form onSubmit={onSubmit} className="grid gap-3 sm:grid-cols-[1fr_auto]">
@@ -75,14 +75,14 @@ export function BlogNewsletterWidget() {
               disabled={loading}
               className="min-h-11 rounded-xl border border-white/30 bg-slate-900 px-4 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {loading ? "Đang gửi..." : "Đăng ký"}
+              {loading ? "Sending..." : "Register"}
             </button>
           </form>
         )}
 
         {error ? <p className="text-sm font-medium text-rose-100">{error}</p> : null}
 
-        <p className="text-xs text-teal-50/90">Chúng tôi tôn trọng quyền riêng tư và bạn có thể hủy đăng ký bất kỳ lúc nào.</p>
+        <p className="text-xs text-teal-50/90">We respect your privacy and you can unsubscribe at any time.</p>
       </div>
     </section>
   );

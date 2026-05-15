@@ -58,47 +58,47 @@ type NavGroup = {
 
 const NAV_GROUPS: NavGroup[] = [
   {
-    label: "Tổng quan",
-    items: [{ href: "/admin/overview", label: "Tổng quan", icon: LayoutDashboard }],
+    label: "Overview",
+    items: [{ href: "/admin/overview", label: "Overview", icon: LayoutDashboard }],
   },
   {
-    label: "Dữ liệu",
+    label: "Data",
     items: [
-      { href: "/admin/analytics", label: "Phân tích", icon: BarChart2 },
-      { href: "/admin/users", label: "Người dùng", icon: Users },
-      { href: "/admin/courses", label: "Khoá học", icon: GraduationCap },
-      { href: "/admin/organizations", label: "Tổ chức", icon: Building2, superAdminOnly: true },
+      { href: "/admin/analytics", label: "Analysis", icon: BarChart2 },
+      { href: "/admin/users", label: "User", icon: Users },
+      { href: "/admin/courses", label: "Courses", icon: GraduationCap },
+      { href: "/admin/organizations", label: "Organization", icon: Building2, superAdminOnly: true },
     ],
   },
   {
-    label: "Vận hành",
+    label: "Operate",
     items: [
-      { href: "/admin/operations", label: "Vận hành", icon: Settings },
-      { href: "/admin/gift-codes", label: "Mã quà tặng", icon: Gift },
-      { href: "/admin/content", label: "Nội dung", icon: BookOpen },
-      { href: "/admin/site-settings", label: "Cài đặt trang", icon: Link2 },
+      { href: "/admin/operations", label: "Operate", icon: Settings },
+      { href: "/admin/gift-codes", label: "Gift code", icon: Gift },
+      { href: "/admin/content", label: "Content", icon: BookOpen },
+      { href: "/admin/site-settings", label: "Page settings", icon: Link2 },
       {
         href: "/admin/blog",
         label: "Blog",
         icon: PenSquare,
         children: [
-          { href: "/admin/blog/posts", label: "Bài viết", icon: PenSquare },
-          { href: "/admin/blog/categories", label: "Danh mục", icon: Tag },
-          { href: "/admin/blog/authors", label: "Tác giả", icon: Users },
-          { href: "/admin/blog/newsletter", label: "Bản tin", icon: Newspaper },
+          { href: "/admin/blog/posts", label: "Article", icon: PenSquare },
+          { href: "/admin/blog/categories", label: "Category", icon: Tag },
+          { href: "/admin/blog/authors", label: "Author", icon: Users },
+          { href: "/admin/blog/newsletter", label: "Newsletter", icon: Newspaper },
           { href: "/admin/blog/analytics", label: "Analytics", icon: BarChart2 },
-          { href: "/admin/blog/comments", label: "Bình luận", icon: MessageCircle },
+          { href: "/admin/blog/comments", label: "Comment", icon: MessageCircle },
         ],
       },
     ],
   },
   {
-    label: "Hệ thống",
+    label: "System",
     superAdminOnly: true,
     items: [
-      { href: "/admin/staff", label: "Nhân sự", icon: UserCheck, superAdminOnly: true },
-      { href: "/admin/security", label: "Bảo mật", icon: ShieldAlert, superAdminOnly: true },
-      { href: "/admin/log", label: "Nhật ký", icon: Clock, superAdminOnly: true },
+      { href: "/admin/staff", label: "Human resources", icon: UserCheck, superAdminOnly: true },
+      { href: "/admin/security", label: "Security", icon: ShieldAlert, superAdminOnly: true },
+      { href: "/admin/log", label: "Diary", icon: Clock, superAdminOnly: true },
     ],
   },
 ];
@@ -250,11 +250,11 @@ export function AdminShellNav({ role }: { role: string }) {
           <button
             type="submit"
             className="flex items-center gap-2 text-sm text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#1e293b] rounded-md px-2 py-1.5 w-full transition-colors group-data-[collapsible=icon]:w-auto group-data-[collapsible=icon]:justify-center"
-            title="Đăng xuất"
-            aria-label="Đăng xuất"
+            title="Sign out"
+            aria-label="Sign out"
           >
             <LogOut size={16} className="shrink-0" />
-            <span className="group-data-[collapsible=icon]:hidden">Đăng xuất</span>
+            <span className="group-data-[collapsible=icon]:hidden">Sign out</span>
           </button>
         </form>
       </SidebarFooter>

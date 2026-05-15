@@ -22,9 +22,9 @@ export function AdminRefreshRelatedButton({ postId }: { postId: string }) {
         throw new Error("REFRESH_FAILED");
       }
 
-      setMessage("Đã cập nhật bài liên quan.");
+      setMessage("Updated related post.");
     } catch {
-      setError("Không thể cập nhật bài liên quan.");
+      setError("Unable to update related posts.");
     } finally {
       setLoading(false);
     }
@@ -33,7 +33,7 @@ export function AdminRefreshRelatedButton({ postId }: { postId: string }) {
   return (
     <div className="flex flex-col gap-2">
       <Button type="button" variant="outline" onClick={handleRefresh} disabled={loading} className="w-fit">
-        {loading ? "Đang cập nhật..." : "Cập nhật bài liên quan"}
+        {loading ? "Updating..." : "Update related articles"}
       </Button>
       {message ? <p className="text-sm font-semibold text-emerald-700">{message}</p> : null}
       {error ? <p className="text-sm font-semibold text-rose-700">{error}</p> : null}

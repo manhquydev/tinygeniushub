@@ -7,28 +7,28 @@ const TESTIMONIALS = [
   {
     initials: "TL",
     colorClass: "hp-avatar-pink",
-    name: "Chị Thanh Lan",
-    context: "Mẹ bé Minh, 4 tuổi · Đang dùng 3 tháng",
+    name: "Ms. Thanh Lan",
+    context: "Minh's mother, 4 years old · Been using for 3 months",
     quote:
-      "Tôi từng nghĩ con 4 tuổi chưa cần học Toán có hệ thống. Nhưng sau 6 tuần dùng TinyGenius Hub, bé Minh đã biết cộng trừ trong phạm vi 20 — trong khi các bạn cùng lớp vẫn đang luyện đếm 1–10. Điều tôi thích nhất là báo cáo tuần: tôi thấy rõ tuần này con học bài nào, điểm quiz ra sao, và tuần tới nên tập trung gì. Lần đầu tiên tôi thật sự biết con đang học được gì.",
+      "I used to think my 4-year-old child didn't need to learn Math systematically. But after 6 weeks of using the TinyGenius Hub, Minh was able to add and subtract within 20 — while his classmates were still practicing counting 1–10. What I like most is the weekly report: I can clearly see what lessons my child learned this week, how they scored on the quiz, and what to focus on next week. For the first time, I really knew what my child was learning.",
     rating: 5,
   },
   {
     initials: "HN",
     colorClass: "hp-avatar-blue",
-    name: "Anh Hoàng Nam",
-    context: "Ba bé An và bé Khánh, 3 và 5 tuổi · Gói Family+",
+    name: "Mr. Hoang Nam",
+    context: "Three children, An and Khanh, 3 and 5 years old · Family+ package",
     quote:
-      "Tôi mua gói Family+ vì có hai đứa, và đó là quyết định đúng nhất năm nay. Hai đứa nhà tôi giờ tranh nhau học mỗi tối — bé lớn 5 tuổi đã đếm được 1–50 và phát âm tiếng Anh rõ hơn hẳn sau đúng 4 tuần. Trước đây tôi dạy hoài mà không vào — chỉ vì không có lộ trình. Bây giờ bé tự học, tôi chỉ cần đọc báo cáo tuần là biết con đang ở đâu.",
+      "I bought the Family+ package because I have two kids, and it was the best decision this year. My two children now compete to study every night — the older child, 5 years old, can count 1–50 and pronounce English much better after exactly 4 weeks. Before, I taught all the time but didn't get in — just because there was no roadmap. Now the child learns on his own, I just need to read the weekly report to know where he is.",
     rating: 5,
   },
   {
     initials: "MT",
     colorClass: "hp-avatar-green",
-    name: "Chị Mai Trang",
-    context: "Mẹ bé Sóc, 2.5 tuổi · Đang dùng 6 tuần",
+    name: "Ms. Mai Trang",
+    context: "Mother of Soc, 2.5 years old · Been using for 6 weeks",
     quote:
-      "Ban đầu tôi nghi ngờ — bé 2.5 tuổi có học được không? Thật ra bé học được nhiều hơn tôi tưởng rất nhiều. Sau 6 tuần, bé Sóc nhận biết được 8 hình khối cơ bản và phát âm được 12 âm tiếng Anh đầu tiên. Tuần trước tôi chia sẻ báo cáo tiến bộ với ông bà — ông bà xúc động lắm, bảo đây mới là màn hình có ích. Tôi cũng thấy yên tâm vì hoàn toàn không có quảng cáo.",
+      "At first I was skeptical — can a 2.5 year old learn? Actually, the baby learned a lot more than I thought. After 6 weeks, baby Soc recognizes 8 basic shapes and pronounces the first 12 English sounds. Last week I shared the progress report with my grandparents — they were very touched, saying this was a useful monitor. I also feel secure because there are absolutely no ads.",
     rating: 5,
   },
 ] as const;
@@ -39,9 +39,9 @@ export function SectionTestimonials() {
       <div className="hp-section-inner">
         <ScrollReveal>
           <div className="hp-section-heading">
-            <h2>Phụ huynh nói gì sau khi dùng thật sự?</h2>
+            <h2>What do parents say after actually using it?</h2>
             <p className="muted-text">
-              Hơn 1.200 phụ huynh đang đồng hành cùng con mỗi ngày
+              More than 1,200 parents are accompanying their children every day
             </p>
           </div>
         </ScrollReveal>
@@ -67,7 +67,7 @@ export function SectionTestimonials() {
                 </p>
 
                 <div className="hp-stars">
-                  <span className="sr-only">{`${t.rating} trên 5 sao`}</span>
+                  <span className="sr-only">{`${t.rating}out of 5 stars`}</span>
                   {Array.from({ length: 5 }, (_, si) => (
                     <Star
                       key={si}

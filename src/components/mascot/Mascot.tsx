@@ -17,12 +17,12 @@ const VARIANT_ASSET_MAP: Record<MascotVariant, string> = {
 };
 
 const VARIANT_ALT_MAP: Record<MascotVariant, string> = {
-  big: "Linh vật cáo TinyGeniusHub",
-  small: "Linh vật cáo TinyGeniusHub",
-  duo: "Logo linh vật TinyGeniusHub",
-  dad: "Linh vật cáo TinyGeniusHub",
-  sister: "Linh vật cáo TinyGeniusHub",
-  baby: "Linh vật cáo TinyGeniusHub",
+  big: "Fox mascot TinyGeniusHub",
+  small: "Fox mascot TinyGeniusHub",
+  duo: "TinyGeniusHub mascot logo",
+  dad: "Fox mascot TinyGeniusHub",
+  sister: "Fox mascot TinyGeniusHub",
+  baby: "Fox mascot TinyGeniusHub",
   family: "Logo TinyGeniusHub",
 };
 

@@ -115,16 +115,16 @@ function buildUnsubscribeUrl(unsubToken: string) {
 }
 
 function buildNewsletterVerifyText(payload: VerifyBlogNewsletterJobPayload, unsubscribeUrl: string) {
-  const name = payload.nameVi?.trim() || "phụ huynh";
+  const name = payload.nameVi?.trim() || "parents";
   const verifyUrl = buildVerifyUrl(payload.verifyToken);
   return [
-    `Xin chào ${name},`,
+    `Hello${name},`,
     "",
-    "Vui lòng xác nhận đăng ký bản tin blog của bạn.",
-    `Nhấn vào link này để xác nhận: ${verifyUrl}`,
+    "Please confirm your blog newsletter subscription.",
+    `Click this link to confirm:${verifyUrl}`,
     "",
-    "Nếu bạn không yêu cầu đăng ký, có thể bỏ qua email này.",
-    "Hoặc hủy đăng ký tại đây:",
+    "If you did not request registration, you can ignore this email.",
+    "Or unsubscribe here:",
     unsubscribeUrl,
   ].join("\n");
 }
@@ -134,15 +134,15 @@ function buildWeeklyNewsletterText(
   posts: NewsletterPost[],
   unsubscribeUrl: string,
 ) {
-  const name = subscriberName?.trim() || "phụ huynh";
-  const lines = [`Xin chào ${name},`, "", "Đây là bản tin blog tuần này."];
+  const name = subscriberName?.trim() || "parents";
+  const lines = [`Hello${name},`, "", "This is this week's blog news."];
   for (const post of posts) {
     lines.push(`- ${post.titleVi}: ${buildPostUrl(post.slug)}`);
   }
   lines.push(
     "",
-    "Cảm ơn bạn đã theo dõi blog của chúng tôi.",
-    "Bạn có thể ngừng nhận bản tin tại đây:",
+    "Thank you for following our blog.",
+    "You can stop receiving the newsletter here:",
     unsubscribeUrl,
   );
   return lines.join("\n");
@@ -189,7 +189,7 @@ async function sendVerifyNewsletterEmail(payload: VerifyBlogNewsletterJobPayload
 
   const delivery = await sendNewsletterEmail({
     to: subscriber.email,
-    subject: "Xác nhận đăng ký bản tin blog",
+    subject: "Confirm blog newsletter subscription",
     text: buildNewsletterVerifyText(payload, buildUnsubscribeUrl(subscriber.unsubToken)),
     tags: [
       { name: "feature", value: "blog_newsletter_verify" },
@@ -255,7 +255,7 @@ async function sendWeeklyNewsletterEmail(payload: DispatchBlogNewsletterJobPaylo
 
   const delivery = await sendNewsletterEmail({
     to: subscriber.email,
-    subject: "Bản tin blog tuần này",
+    subject: "Blog news this week",
     text: buildWeeklyNewsletterText(subscriber.nameVi, posts, buildUnsubscribeUrl(subscriber.unsubToken)),
     tags: [
       { name: "feature", value: "blog_newsletter_weekly" },

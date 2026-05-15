@@ -27,17 +27,17 @@ export async function CourseReviewsSection({ courseId, courseSlug, parentId, isO
 
   return (
     <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-      <h2 className="text-lg font-extrabold text-slate-900">Đánh giá từ phụ huynh</h2>
+      <h2 className="text-lg font-extrabold text-slate-900">Reviews from parents</h2>
 
       <div className="mt-4 grid gap-6 md:grid-cols-[180px_1fr]">
         <div className="space-y-3">
           {total > 0 ? (
             <div className="text-center">
               <p className="text-4xl font-black text-slate-900">{avgRating.toFixed(1)}</p>
-              <p className="text-xs text-slate-500">{total} đánh giá</p>
+              <p className="text-xs text-slate-500">{total} reviews</p>
             </div>
           ) : (
-            <p className="text-sm text-slate-500">Chưa có đánh giá.</p>
+            <p className="text-sm text-slate-500">There are no reviews yet.</p>
           )}
           <CourseRatingDistribution distribution={distribution} total={total} />
         </div>
@@ -46,7 +46,7 @@ export async function CourseReviewsSection({ courseId, courseSlug, parentId, isO
           {reviews.length > 0 ? (
             reviews.map((review) => <CourseReviewCard key={review.id} review={review} />)
           ) : (
-            <p className="text-sm text-slate-500">Hãy là người đầu tiên đánh giá khóa học này.</p>
+            <p className="text-sm text-slate-500">Be the first to review this course.</p>
           )}
         </div>
       </div>
@@ -54,12 +54,12 @@ export async function CourseReviewsSection({ courseId, courseSlug, parentId, isO
       <div className="mt-6 border-t border-slate-100 pt-6">
         {isOwned && parentId ? (
           <div>
-            <h3 className="mb-3 text-base font-bold text-slate-900">Viết đánh giá của bạn</h3>
+            <h3 className="mb-3 text-base font-bold text-slate-900">Write your review</h3>
             <CourseReviewForm courseSlug={courseSlug} />
           </div>
         ) : (
           <p className="text-sm text-slate-500">
-            Mua khóa để viết đánh giá.
+            Purchase key to write a review.
           </p>
         )}
       </div>

@@ -1,72 +1,69 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
-export const metadata: Metadata = {
-  title: "Giới thiệu",
-  description:
-    "Câu chuyện hình thành TinyGenius Hub và lý do chúng tôi xây nền tảng học tập lấy trẻ làm trung tâm cho gia đình Việt.",
-  alternates: { canonical: "https://www.tinygeniushubvn.tech/about" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+  return {
+    title: translate("about.metadata.title", undefined, locale),
+    description: translate("about.metadata.description", undefined, locale),
+    alternates: { canonical: "https://www.tinygeniushubvn.tech/about" },
+  };
+}
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+
   return (
     <div>
       <section className="about-hero">
-        <h1>Câu chuyện của chúng tôi</h1>
-        <p className="about-lead">
-          TinyGenius Hub được xây dựng bởi những phụ huynh thấu hiểu thách thức khi giúp con học đều đặn mỗi ngày
-          tại nhà.
-        </p>
+        <h1>{translate("about.hero.title", undefined, locale)}</h1>
+        <p className="about-lead">{translate("about.hero.lead", undefined, locale)}</p>
       </section>
 
       <section className="about-mission">
         <article className="mission-card">
-          <h2>Sứ mệnh</h2>
-          <p>
-            Giúp trẻ hình thành thói quen tự học từ sớm bằng lộ trình rõ ràng, bài học vui nhộn và dữ liệu tiến bộ dễ
-            theo dõi cho phụ huynh.
-          </p>
+          <h2>{translate("about.mission.missionTitle", undefined, locale)}</h2>
+          <p>{translate("about.mission.missionDesc", undefined, locale)}</p>
         </article>
         <article className="mission-card">
-          <h2>Tầm nhìn</h2>
-          <p>Trở thành người bạn đồng hành học tập tại nhà đáng tin cậy nhất cho gia đình Việt có con từ 2-6 tuổi.</p>
+          <h2>{translate("about.mission.visionTitle", undefined, locale)}</h2>
+          <p>{translate("about.mission.visionDesc", undefined, locale)}</p>
         </article>
       </section>
 
       <section className="about-why">
-        <h2>Vì sao chúng tôi xây nền tảng này?</h2>
-        <p>
-          Phụ huynh thường băn khoăn: con đang học đúng nhịp chưa, bước tiếp theo là gì, và làm sao nhìn thấy tiến bộ
-          thật thay vì chỉ đoán?
-        </p>
-        <p>
-          TinyGenius Hub ra đời để trả lời các câu hỏi đó bằng hệ bài học có cấu trúc, chỉ số tiến bộ đo được và báo
-          cáo tuần rõ ràng.
-        </p>
+        <h2>{translate("about.why.title", undefined, locale)}</h2>
+        <p>{translate("about.why.p1", undefined, locale)}</p>
+        <p>{translate("about.why.p2", undefined, locale)}</p>
       </section>
 
       <section className="about-values">
-        <h2>Giá trị cốt lõi</h2>
+        <h2>{translate("about.values.title", undefined, locale)}</h2>
         <div className="values-grid">
           <article>
-            <h3>Dựa trên bằng chứng</h3>
-            <p>Hoạt động được thiết kế theo đặc điểm phát triển và khả năng ghi nhớ của từng độ tuổi.</p>
+            <h3>{translate("about.values.evidence.title", undefined, locale)}</h3>
+            <p>{translate("about.values.evidence.desc", undefined, locale)}</p>
           </article>
           <article>
-            <h3>Lấy trẻ làm trung tâm</h3>
-            <p>Bài học ngắn và tiến trình có hướng dẫn giúp giảm áp lực, giữ động lực học cho bé.</p>
+            <h3>{translate("about.values.childCentered.title", undefined, locale)}</h3>
+            <p>{translate("about.values.childCentered.desc", undefined, locale)}</p>
           </article>
           <article>
-            <h3>Minh bạch với phụ huynh</h3>
-            <p>Phụ huynh thấy rõ con đã học gì, tiến bộ ở đâu và nên làm gì tiếp theo.</p>
+            <h3>{translate("about.values.transparent.title", undefined, locale)}</h3>
+            <p>{translate("about.values.transparent.desc", undefined, locale)}</p>
           </article>
         </div>
       </section>
 
       <section className="about-cta">
-        <h2>Bắt đầu cùng TinyGenius Hub</h2>
-        <p>Tạo tài khoản phụ huynh và khám phá khóa học phù hợp nhất với mục tiêu của con.</p>
-        <Link href="/courses">Khám phá khóa học</Link>
+        <h2>{translate("about.cta.title", undefined, locale)}</h2>
+        <p>{translate("about.cta.subtitle", undefined, locale)}</p>
+        <Link href="/courses">{translate("about.cta.link", undefined, locale)}</Link>
       </section>
     </div>
   );

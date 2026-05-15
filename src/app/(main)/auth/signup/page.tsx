@@ -1,3 +1,6 @@
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 import { AuthForm } from "@/components/auth-form";
 import { AuthSplitShell } from "@/components/auth-split-shell";
 
@@ -14,12 +17,14 @@ function readSingleParam(value?: string | string[]) {
 export default async function SignupPage({ searchParams }: SignupPageProps) {
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const nextPath = readSingleParam(resolvedSearchParams?.next);
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
 
   return (
     <AuthSplitShell
-      badge="Mở khóa hành trình học"
-      title="Tạo tài khoản để bắt đầu hành trình cùng con"
-      description="Tạo tài khoản phụ huynh, xem bài học mẫu và chọn khóa phù hợp cho bé chỉ trong vài bước."
+      badge={translate("auth.signup.badge", undefined, locale)}
+      title={translate("auth.signup.title", undefined, locale)}
+      description={translate("auth.signup.description", undefined, locale)}
       actionProp="reading"
       backgroundImageSrc="/images/bg/bg_map_math_island.png"
       stickerSrc="/kisu-assets/stickers/sticker_reward_coin.png"

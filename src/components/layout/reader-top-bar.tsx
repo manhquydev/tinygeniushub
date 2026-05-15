@@ -29,9 +29,9 @@ export function ReaderTopBar({ displayName }: ReaderTopBarProps) {
     <div className="border-b border-slate-200 bg-slate-50/90">
       <div className="container flex flex-wrap items-center justify-between gap-2 py-2">
         <div className="flex items-center gap-3 text-sm text-slate-700">
-          <span className="font-semibold">Xin chào, {displayName}</span>
+          <span className="font-semibold">Hello, {displayName}</span>
           <Link href="/reader/bookmarks" className="font-semibold text-teal-700 hover:text-teal-800">
-            Bài viết đã lưu
+            Article saved
           </Link>
         </div>
         <div className="flex items-center gap-2">
@@ -42,7 +42,7 @@ export function ReaderTopBar({ displayName }: ReaderTopBarProps) {
             onClick={() => void logout()}
             disabled={loggingOut}
           >
-            {loggingOut ? "Đang đăng xuất..." : "Đăng xuất"}
+            {loggingOut ? "Signing out..." : "Sign out"}
           </button>
         </div>
       </div>

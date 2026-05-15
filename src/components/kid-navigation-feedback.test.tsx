@@ -72,18 +72,18 @@ describe("KidNavigationFeedbackProvider", () => {
     fireEvent.click(screen.getByRole("button", { name: "Navigate" }));
 
     expect(document.querySelector(".kid-nav-feedback-topbar")).toBeNull();
-    expect(screen.queryByText("Đang mở trang mới...")).toBeNull();
+    expect(screen.queryByText("Opening a new page...")).toBeNull();
 
     act(() => {
       vi.advanceTimersByTime(200);
     });
     expect(document.querySelector(".kid-nav-feedback-topbar")).not.toBeNull();
-    expect(screen.queryByText("Đang mở trang mới...")).toBeNull();
+    expect(screen.queryByText("Opening a new page...")).toBeNull();
 
     act(() => {
       vi.advanceTimersByTime(220);
     });
-    expect(screen.getByText("Đang mở trang mới...")).toBeInTheDocument();
+    expect(screen.getByText("Opening a new page...")).toBeInTheDocument();
   });
 
   it("completes pending state when route key changes", async () => {

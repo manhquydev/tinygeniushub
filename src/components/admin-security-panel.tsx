@@ -120,7 +120,7 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
       const response = await fetch("/api/admin/security/rate-limits");
       const body = await response.json();
       if (!response.ok || !body.ok || !Array.isArray(body.data?.policies) || !body.data?.controls) {
-        setError(body.error?.message ?? "Không tải được cấu hình bảo mật.");
+        setError(body.error?.message ?? "Failed to load security configuration.");
         return;
       }
 
@@ -129,9 +129,9 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
       setSecurityControls(controls);
       setBlockedIpCidrsRaw(controls.blockedIpCidrs.join("\n"));
       setReadinessAllowlistRaw(controls.readinessAllowlistCidrs.join("\n"));
-      setInfo("Đã làm mới cấu hình bảo mật.");
+      setInfo("Refreshed security configuration.");
     } catch (fetchError) {
-      setError(fetchError instanceof Error ? fetchError.message : "Lỗi không xác định.");
+      setError(fetchError instanceof Error ? fetchError.message : "Unknown error.");
     } finally {
       setLoadingSecurityPolicies(false);
     }
@@ -159,7 +159,7 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          reason: "Cập nhật từ trang bảo mật quản trị",
+          reason: "Update from the admin security page",
           overrides,
           controls: {
             ddosMode: securityControls.ddosMode,
@@ -174,7 +174,7 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
 
       const body = await response.json();
       if (!response.ok || !body.ok || !Array.isArray(body.data?.policies) || !body.data?.controls) {
-        setError(body.error?.message ?? "Không lưu được cấu hình bảo mật.");
+        setError(body.error?.message ?? "Unable to save security configuration.");
         return;
       }
 
@@ -183,9 +183,9 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
       setSecurityControls(controls);
       setBlockedIpCidrsRaw(controls.blockedIpCidrs.join("\n"));
       setReadinessAllowlistRaw(controls.readinessAllowlistCidrs.join("\n"));
-      setInfo("Đã lưu cấu hình bảo mật.");
+      setInfo("Security configuration saved.");
     } catch (updateError) {
-      setError(updateError instanceof Error ? updateError.message : "Lỗi không xác định.");
+      setError(updateError instanceof Error ? updateError.message : "Unknown error.");
     } finally {
       setSavingSecurityPolicies(false);
     }
@@ -200,7 +200,7 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
       const response = await fetch("/api/admin/security/edge-export");
       const body = await response.json();
       if (!response.ok || !body.ok || !body.data?.edgePolicy) {
-        setError(body.error?.message ?? "Không xuất được edge policy.");
+        setError(body.error?.message ?? "Unable to export edge policy.");
         return;
       }
 
@@ -215,9 +215,9 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
       link.click();
       link.remove();
       URL.revokeObjectURL(blobUrl);
-      setInfo("Đã xuất tệp edge policy.");
+      setInfo("Edge policy file exported.");
     } catch (exportError) {
-      setError(exportError instanceof Error ? exportError.message : "Lỗi không xác định.");
+      setError(exportError instanceof Error ? exportError.message : "Unknown error.");
     } finally {
       setExportingEdgePolicy(false);
     }
@@ -226,8 +226,8 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Bảo mật hệ thống</h2>
-        <p className="text-xs text-[var(--admin-text-secondary)]">Điều chỉnh giới hạn truy cập theo endpoint, đồng thời quản lý danh sách chặn và danh sách cho phép.</p>
+        <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">System security</h2>
+        <p className="text-xs text-[var(--admin-text-secondary)]">Adjust access limits by endpoint, and manage block lists and allow lists.</p>
       </div>
 
       <div
@@ -236,10 +236,10 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
       >
         <div className="space-y-1">
           <h3 className="text-sm font-semibold text-[var(--admin-text-primary)]">
-            Module xác minh email phụ huynh
+            Parent email verification module
           </h3>
           <p className="text-xs text-[var(--admin-text-secondary)]">
-            Chỉ áp dụng cho tài khoản parent dùng dịch vụ. Reader chỉ đọc nội dung website không bị ảnh hưởng.
+            Only applies to parent accounts using the service. Readers only read website content and are not affected.
           </p>
         </div>
 
@@ -247,10 +247,10 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
           <div className="flex items-center justify-between rounded-md border border-[var(--admin-card-border)] px-3 py-2">
             <div className="space-y-0.5">
               <p className="text-sm font-medium text-[var(--admin-text-primary)]">
-                Bắt buộc verify email trước khi login
+                Required to verify email before logging in
               </p>
               <p className="text-xs text-[var(--admin-text-secondary)]">
-                Tắt khi dịch vụ email gặp sự cố khẩn cấp để tránh gián đoạn đăng nhập.
+                Turn off when email service encounters emergency problems to avoid login interruptions.
               </p>
             </div>
             <Switch
@@ -265,7 +265,7 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
           </div>
 
           <div className="grid gap-1.5">
-            <Label htmlFor="parent-email-verify-ttl">TTL token xác minh (phút)</Label>
+            <Label htmlFor="parent-email-verify-ttl">TTL token verification (minutes)</Label>
             <Input
               id="parent-email-verify-ttl"
               type="number"
@@ -284,7 +284,7 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
               }}
             />
             <p className="text-xs text-[var(--admin-text-secondary)]">
-              Mặc định 15 phút. Có thể tùy biến qua giao diện thay vì sửa code.
+              Default 15 minutes. Can be customized through the interface instead of editing the code.
             </p>
           </div>
         </div>
@@ -292,7 +292,7 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
 
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="grid gap-1.5">
-          <Label>Chế độ DDoS</Label>
+          <Label>DDoS mode</Label>
           <Select
             value={securityControls.ddosMode}
             onValueChange={(value) => setSecurityControls((current) => ({ ...current, ddosMode: value as SecurityControls["ddosMode"] }))}
@@ -306,7 +306,7 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
           </Select>
         </div>
         <div className="grid gap-1.5">
-          <Label htmlFor="limit-multiplier">Hệ số giới hạn toàn cục</Label>
+          <Label htmlFor="limit-multiplier">Global limiting factor</Label>
           <Input
             id="limit-multiplier"
             type="number"
@@ -321,24 +321,24 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
 
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="grid gap-1.5">
-          <Label htmlFor="blocked-cidrs">Danh sách chặn IP/CIDR (mỗi dòng hoặc phân tách bởi dấu phẩy)</Label>
+          <Label htmlFor="blocked-cidrs">IP/CIDR block list (per line or separated by commas)</Label>
           <Textarea id="blocked-cidrs" value={blockedIpCidrsRaw} onChange={(event) => setBlockedIpCidrsRaw(event.target.value)} rows={4} placeholder={"198.51.100.10\n203.0.113.0/24"} />
         </div>
         <div className="grid gap-1.5">
-          <Label htmlFor="allowlist-cidrs">Danh sách cho phép readiness IP/CIDR</Label>
+          <Label htmlFor="allowlist-cidrs">IP/CIDR readiness whitelist</Label>
           <Textarea id="allowlist-cidrs" value={readinessAllowlistRaw} onChange={(event) => setReadinessAllowlistRaw(event.target.value)} rows={4} placeholder={"10.0.0.0/8\n192.168.0.0/16"} />
         </div>
       </div>
 
       <div className="flex flex-wrap gap-2">
         <Button type="button" variant="outline" onClick={refreshSecurityPolicies} disabled={loadingSecurityPolicies}>
-          {loadingSecurityPolicies ? "Đang tải cấu hình..." : "Làm mới cấu hình"}
+          {loadingSecurityPolicies ? "Loading configuration..." : "Refresh configuration"}
         </Button>
         <Button type="button" className="bg-teal-600 hover:bg-teal-700" onClick={saveSecurityPolicies} disabled={savingSecurityPolicies}>
-          {savingSecurityPolicies ? "Đang lưu..." : "Lưu cấu hình"}
+          {savingSecurityPolicies ? "Saving..." : "Save configuration"}
         </Button>
         <Button type="button" variant="outline" onClick={exportEdgePolicy} disabled={exportingEdgePolicy}>
-          {exportingEdgePolicy ? "Đang xuất..." : "Xuất edge policy JSON"}
+          {exportingEdgePolicy ? "Exporting..." : "Export edge policy JSON"}
         </Button>
       </div>
 
@@ -346,13 +346,13 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
         <Table>
           <TableHeader>
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
-              <TableHead className="text-xs">Chính sách</TableHead>
-              <TableHead className="text-xs">Chiến lược khóa</TableHead>
-              <TableHead className="text-xs">Giới hạn</TableHead>
-              <TableHead className="text-xs">Cửa sổ (ms)</TableHead>
-              <TableHead className="text-xs">Mặc định</TableHead>
-              <TableHead className="text-xs">Đang áp dụng</TableHead>
-              <TableHead className="text-xs">Khoảng hợp lệ</TableHead>
+              <TableHead className="text-xs">Policy</TableHead>
+              <TableHead className="text-xs">Locking strategy</TableHead>
+              <TableHead className="text-xs">Limit</TableHead>
+              <TableHead className="text-xs">Window (ms)</TableHead>
+              <TableHead className="text-xs">Default</TableHead>
+              <TableHead className="text-xs">Applying</TableHead>
+              <TableHead className="text-xs">Valid range</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -392,7 +392,7 @@ export function AdminSecurityPanel({ initialSecurityPolicies, initialSecurityCon
               </TableRow>
             ))}
             {securityPolicies.length === 0 ? (
-              <TableRow><TableCell colSpan={7} className="text-xs text-[var(--admin-text-secondary)]">Chưa có cấu hình giới hạn truy cập.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={7} className="text-xs text-[var(--admin-text-secondary)]">There are no access restrictions configured.</TableCell></TableRow>
             ) : null}
           </TableBody>
         </Table>

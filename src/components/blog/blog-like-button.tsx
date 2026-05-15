@@ -58,9 +58,9 @@ export function BlogLikeButton({
       }
     } catch (likeError) {
       if (likeError instanceof Error && likeError.message === "RATE_LIMITED") {
-        setError("Bạn thao tác quá nhanh. Vui lòng thử lại sau.");
+        setError("You act too fast. Please try again later.");
       } else {
-        setError("Không thể ghi nhận lượt thích lúc này.");
+        setError("Likes cannot be recorded at this time.");
       }
     } finally {
       setLoading(false);
@@ -76,7 +76,7 @@ export function BlogLikeButton({
         disabled={loading || liked}
         onClick={() => void handleLike()}
       >
-        {liked ? "Đã thích" : "Thích bài viết"} ({likeCount})
+        {liked ? "Liked" : "Liked the article"} ({likeCount})
       </Button>
       {error ? <p className="text-xs text-rose-600">{error}</p> : null}
     </div>

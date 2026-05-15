@@ -32,7 +32,7 @@ export function AdminStaffPanel() {
       const data = await listAdminStaff();
       setUsers(data);
     } catch (err: unknown) {
-      setError(getErrorMessage(err, "Không tải được danh sách nhân sự. Kiểm tra quyền SUPER_ADMIN."));
+      setError(getErrorMessage(err, "Unable to download personnel list. Check SUPER_ADMIN permissions."));
     } finally {
       setLoading(false);
     }
@@ -46,7 +46,7 @@ export function AdminStaffPanel() {
     return (
       <div className="flex items-center justify-center p-12 text-[var(--admin-text-secondary)]">
         <Loader2 size={20} className="mr-2 animate-spin text-teal-500" />
-        Đang tải danh sách nhân sự...
+        Loading personnel list...
       </div>
     );
   }
@@ -64,10 +64,10 @@ export function AdminStaffPanel() {
       <header className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-[var(--admin-text-primary)]">
-            Quản lý Nhân sự
+            Human Resources Management
           </h1>
           <p className="mt-1 text-sm text-[var(--admin-text-secondary)]">
-            Danh sách tài khoản Admin và quyền hạn trong hệ thống.
+            List of Admin accounts and rights in the system.
           </p>
         </div>
         <button
@@ -75,7 +75,7 @@ export function AdminStaffPanel() {
           className="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-700"
         >
           <Plus size={16} />
-          Thêm nhân sự
+          More personnel
         </button>
       </header>
 
@@ -83,11 +83,11 @@ export function AdminStaffPanel() {
         <table className="w-full text-left text-sm">
           <thead className="border-b border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)]">
             <tr className="text-xs uppercase tracking-wider text-[var(--admin-text-secondary)]">
-              <th className="px-4 py-3 font-semibold">Tài khoản</th>
-              <th className="px-4 py-3 font-semibold">Vai trò</th>
-              <th className="px-4 py-3 font-semibold">Trạng thái</th>
-              <th className="px-4 py-3 font-semibold">Lần cuối đăng nhập</th>
-              <th className="px-4 py-3 text-right font-semibold">Thao tác</th>
+              <th className="px-4 py-3 font-semibold">Account</th>
+              <th className="px-4 py-3 font-semibold">Role</th>
+              <th className="px-4 py-3 font-semibold">Status</th>
+              <th className="px-4 py-3 font-semibold">Last login</th>
+              <th className="px-4 py-3 text-right font-semibold">Operation</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[var(--admin-card-border)]">
@@ -104,12 +104,12 @@ export function AdminStaffPanel() {
                   {u.isActive ? (
                     <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
                       <ShieldCheck size={13} />
-                      Hoạt động
+                      Work
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-700">
                       <ShieldAlert size={13} />
-                      Vô hiệu hóa
+                      Disable
                     </span>
                   )}
                 </td>
@@ -127,7 +127,7 @@ export function AdminStaffPanel() {
                     className="inline-flex items-center gap-1 text-xs font-medium text-teal-600 hover:text-teal-700 hover:underline"
                   >
                     <Pencil size={13} />
-                    Chỉnh sửa
+                    Edit
                   </button>
                 </td>
               </tr>
@@ -138,7 +138,7 @@ export function AdminStaffPanel() {
                   colSpan={5}
                   className="p-8 text-center text-sm text-[var(--admin-text-secondary)]"
                 >
-                  Chưa có tài khoản quản trị nào.
+                  There are no admin accounts yet.
                 </td>
               </tr>
             )}
@@ -179,8 +179,8 @@ function RoleBadge({ role }: { role: AdminRole }) {
 
   const labels: Record<string, string> = {
     SUPER_ADMIN: "Super Admin",
-    SUPPORT_AGENT: "Hỗ trợ",
-    CONTENT_EDITOR: "Biên tập",
+    SUPPORT_AGENT: "Support",
+    CONTENT_EDITOR: "Editor",
   };
 
   return (
@@ -214,16 +214,16 @@ function CreateStaffModal({
       await createAdminStaff({ email, password, displayName, role });
       onSuccess();
     } catch (err: unknown) {
-      setErrorMsg(getErrorMessage(err, "Có lỗi xảy ra khi tạo tài khoản."));
+      setErrorMsg(getErrorMessage(err, "An error occurred while creating the account."));
     } finally {
       setIsSubmitting(false);
     }
   }
 
   return (
-    <ModalShell title="Thêm nhân sự quản trị" onClose={onClose}>
+    <ModalShell title="Add administrative staff" onClose={onClose}>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <FormField label="Tên hiển thị">
+        <FormField label="Display name">
           <input
             required
             value={displayName}
@@ -231,7 +231,7 @@ function CreateStaffModal({
             className="form-input"
           />
         </FormField>
-        <FormField label="Email đăng nhập">
+        <FormField label="Login email">
           <input
             required
             type="email"
@@ -240,7 +240,7 @@ function CreateStaffModal({
             className="form-input"
           />
         </FormField>
-        <FormField label="Mật khẩu (tối thiểu 8 ký tự)">
+        <FormField label="Password (minimum 8 characters)">
           <input
             required
             type="password"
@@ -250,15 +250,15 @@ function CreateStaffModal({
             className="form-input"
           />
         </FormField>
-        <FormField label="Vai trò">
+        <FormField label="Role">
           <select
             value={role}
             onChange={(e) => setRole(e.target.value as AdminRole)}
             className="form-input"
           >
-            <option value="SUPPORT_AGENT">Hỗ trợ khách hàng (SUPPORT_AGENT)</option>
-            <option value="CONTENT_EDITOR">Biên tập nội dung (CONTENT_EDITOR)</option>
-            <option value="SUPER_ADMIN">Quản trị viên cấp cao (SUPER_ADMIN)</option>
+            <option value="SUPPORT_AGENT">Customer Support (SUPPORT_AGENT)</option>
+            <option value="CONTENT_EDITOR">Content editor (CONTENT_EDITOR)</option>
+            <option value="SUPER_ADMIN">Super Administrator (SUPER_ADMIN)</option>
           </select>
         </FormField>
         {errorMsg ? (
@@ -272,7 +272,7 @@ function CreateStaffModal({
             disabled={isSubmitting}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-teal-700 disabled:opacity-70"
           >
-            {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : "Tạo tài khoản"}
+            {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : "Create an account"}
           </button>
         </div>
       </form>
@@ -303,20 +303,20 @@ function EditStaffModal({
       await updateAdminStaff({ id: user.id, displayName, role, isActive });
       onSuccess();
     } catch (err: unknown) {
-      setErrorMsg(getErrorMessage(err, "Có lỗi xảy ra khi cập nhật."));
+      setErrorMsg(getErrorMessage(err, "An error occurred while updating."));
     } finally {
       setIsSubmitting(false);
     }
   }
 
   return (
-    <ModalShell title="Thiết lập tài khoản" onClose={onClose}>
+    <ModalShell title="Set up an account" onClose={onClose}>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="rounded-lg bg-[var(--admin-sidebar-accent)] px-3 py-2 text-sm">
-          <span className="text-[var(--admin-text-secondary)]">Đang chỉnh sửa: </span>
+          <span className="text-[var(--admin-text-secondary)]">Editing:</span>
           <span className="font-semibold text-[var(--admin-text-primary)]">{user.email}</span>
         </div>
-        <FormField label="Tên hiển thị">
+        <FormField label="Display name">
           <input
             required
             value={displayName}
@@ -324,15 +324,15 @@ function EditStaffModal({
             className="form-input"
           />
         </FormField>
-        <FormField label="Vai trò">
+        <FormField label="Role">
           <select
             value={role}
             onChange={(e) => setRole(e.target.value as AdminRole)}
             className="form-input"
           >
-            <option value="SUPPORT_AGENT">Hỗ trợ khách hàng (SUPPORT_AGENT)</option>
-            <option value="CONTENT_EDITOR">Biên tập nội dung (CONTENT_EDITOR)</option>
-            <option value="SUPER_ADMIN">Quản trị viên cấp cao (SUPER_ADMIN)</option>
+            <option value="SUPPORT_AGENT">Customer Support (SUPPORT_AGENT)</option>
+            <option value="CONTENT_EDITOR">Content editor (CONTENT_EDITOR)</option>
+            <option value="SUPER_ADMIN">Super Administrator (SUPER_ADMIN)</option>
           </select>
         </FormField>
         <div className="flex items-center gap-3">
@@ -347,7 +347,7 @@ function EditStaffModal({
             htmlFor="isActiveCheckbox"
             className="cursor-pointer text-sm font-medium text-[var(--admin-text-secondary)]"
           >
-            Tài khoản đang hoạt động
+            Account is active
           </label>
         </div>
         {errorMsg ? (
@@ -361,7 +361,7 @@ function EditStaffModal({
             disabled={isSubmitting}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-teal-700 disabled:opacity-70"
           >
-            {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : "Lưu thay đổi"}
+            {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : "Save changes"}
           </button>
         </div>
       </form>

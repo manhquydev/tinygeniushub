@@ -51,7 +51,7 @@ export default function InteractiveLessonPreviewPage() {
           boxShadow: "0 4px 16px rgba(59,130,246,0.3)",
         }}
       >
-        Bắt đầu: {lesson.title}
+        Start: {lesson.title}
       </button>
 
       {showLesson && (
@@ -60,7 +60,7 @@ export default function InteractiveLessonPreviewPage() {
           childId="preview-child"
           lessonId={lesson.id}
           previewMode
-          onCompleted={() => { setShowLesson(false); alert("Hoàn thành!"); }}
+          onCompleted={() => { setShowLesson(false); alert("Complete!"); }}
           onClose={() => setShowLesson(false)}
         />
       )}

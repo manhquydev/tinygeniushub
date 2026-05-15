@@ -51,14 +51,14 @@ function formatDate(value: string) {
 
 function resolveStatusLabel(status: CaregiverStatus) {
   if (status === "accepted") {
-    return "Đã chấp nhận";
+    return "Accepted";
   }
 
   if (status === "expired") {
-    return "Đã hết hạn";
+    return "Expired";
   }
 
-  return "Đang chờ";
+  return "Waiting";
 }
 
 function resolveStatusClass(status: CaregiverStatus) {
@@ -98,7 +98,7 @@ export function CaregiverManager({
     event.preventDefault();
     const normalizedEmail = email.trim().toLowerCase();
     if (!normalizedEmail) {
-      setError("Vui lòng nhập email caregiver.");
+      setError("Please enter caregiver email.");
       setInfo(null);
       return;
     }
@@ -120,7 +120,7 @@ export function CaregiverManager({
       const body = (await response.json()) as CaregiverMutationResponse;
 
       if (!response.ok || !body.ok || !body.data) {
-        setError(body.error?.message ?? "Không thể gửi lời mời caregiver");
+        setError(body.error?.message ?? "Unable to send caregiver invitation");
         return;
       }
 
@@ -132,12 +132,12 @@ export function CaregiverManager({
       setEmail("");
 
       if (body.data.emailDelivery && body.data.emailDelivery.attempted && !body.data.emailDelivery.sent) {
-        setInfo("Đã tạo lời mời, nhưng gửi email thất bại. Vui lòng thử lại sau.");
+        setInfo("Invitation created, but sending email failed. Please try again later.");
       } else {
-        setInfo("Đã gửi lời mời caregiver.");
+        setInfo("Caregiver invitation sent.");
       }
     } catch (inviteError) {
-      setError(inviteError instanceof Error ? inviteError.message : "Lỗi không xác định");
+      setError(inviteError instanceof Error ? inviteError.message : "Unknown error");
     } finally {
       setLoading(false);
     }
@@ -155,7 +155,7 @@ export function CaregiverManager({
       const body = (await response.json()) as CaregiverMutationResponse;
 
       if (!response.ok || !body.ok || !body.data) {
-        setError(body.error?.message ?? "Không thể thu hồi lời mời");
+        setError(body.error?.message ?? "Invitations cannot be revoked");
         return;
       }
 
@@ -164,9 +164,9 @@ export function CaregiverManager({
         caregiverLimit: body.data.caregiverLimit,
         usedSlots: body.data.usedSlots,
       });
-      setInfo("Đã thu hồi lời mời caregiver.");
+      setInfo("Caregiver invitation revoked.");
     } catch (revokeError) {
-      setError(revokeError instanceof Error ? revokeError.message : "Lỗi không xác định");
+      setError(revokeError instanceof Error ? revokeError.message : "Unknown error");
     } finally {
       setLoading(false);
     }
@@ -176,13 +176,13 @@ export function CaregiverManager({
     <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
       <div className="flex flex-wrap items-end justify-between gap-2">
         <div>
-          <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Quản lý caregiver</h2>
+          <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Caregiver management</h2>
           <p className="mt-1 text-sm leading-relaxed text-slate-500">
-            Mời người thân cùng theo dõi tiến độ học tập và đồng hành với bé.
+            Invite relatives to monitor your child's learning progress and accompany your child.
           </p>
         </div>
         <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
-          {usedSlots}/{caregiverLimit} đã dùng
+          {usedSlots}/{caregiverLimit} used
         </span>
       </div>
 
@@ -202,7 +202,7 @@ export function CaregiverManager({
           disabled={loading || reachedLimit}
         >
           <UserRoundPlus size={18} />
-          {loading ? "Đang gửi..." : reachedLimit ? "Đã hết slot" : "Mời caregiver"}
+          {loading ? "Sending..." : reachedLimit ? "Slots are running out" : "Invite caregiver"}
         </button>
       </form>
 
@@ -227,7 +227,7 @@ export function CaregiverManager({
                   <p className="truncate text-sm font-bold">{invite.email}</p>
                 </div>
                 <p className="mt-1 text-xs text-slate-500">
-                  Mời: {formatDate(invite.createdAt)} - Hết hạn: {formatDate(invite.expiresAt)}
+                  Invited: {formatDate(invite.createdAt)} - Expires: {formatDate(invite.expiresAt)}
                 </p>
               </div>
 
@@ -246,7 +246,7 @@ export function CaregiverManager({
                 disabled={loading}
               >
                 <Trash2 size={14} />
-                Thu hồi
+                Recall
               </button>
             </div>
           </article>
@@ -255,12 +255,12 @@ export function CaregiverManager({
 
       {caregivers.length === 0 ? (
         <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm font-medium text-slate-500">
-          Chưa có caregiver nào được mời.
+          No caregivers have been invited yet.
         </div>
       ) : null}
 
       <div className="mt-4 text-xs text-slate-500">
-        Liên kết mời caregiver sẽ có dạng <code>/accept-invite?token=...</code> và hết hạn theo thời gian quy định.
+        The caregiver invite link will look like <code>/accept-invite?token=...</code> and expires according to the configured duration.
       </div>
     </section>
   );

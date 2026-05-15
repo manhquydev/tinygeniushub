@@ -1,14 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 
-export const metadata: Metadata = {
-  title: "Mất kết nối",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+  return {
+    title: translate("specialPages.offline.metadata.title", undefined, locale),
+  };
+}
 
 const CLOUD_GARDEN_SYSTEM_IMAGE = "/images/system/cloud-garden/system_offline_error.png";
 
-export default function OfflinePage() {
+export default async function OfflinePage() {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+
   return (
     <main className="relative isolate min-h-screen overflow-hidden bg-[#050d1a] px-4 py-8 text-slate-100 sm:px-6 sm:py-10">
       <div
@@ -20,13 +30,13 @@ export default function OfflinePage() {
 
       <section className="relative mx-auto flex w-full max-w-5xl flex-col gap-5 rounded-[2rem] border border-white/20 bg-slate-950/72 p-4 shadow-[0_28px_60px_rgba(2,6,23,0.55)] backdrop-blur-xl sm:gap-6 sm:p-8">
         <p className="inline-flex w-fit items-center rounded-full border border-sky-200/35 bg-sky-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-sky-100/95">
-          Mất kết nối mạng
+          {translate("specialPages.offline.badge", undefined, locale)}
         </p>
 
         <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/50">
           <Image
             src={CLOUD_GARDEN_SYSTEM_IMAGE}
-            alt="Khung cảnh Cloud Garden khi hệ thống tạm thời mất kết nối mạng"
+            alt={translate("specialPages.offline.imageAlt", undefined, locale)}
             width={1368}
             height={768}
             priority
@@ -36,11 +46,10 @@ export default function OfflinePage() {
 
         <div className="grid gap-3 text-left">
           <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl">
-            Không thể kết nối Internet
+            {translate("specialPages.offline.title", undefined, locale)}
           </h1>
           <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
-            Vui lòng kiểm tra Wi-Fi hoặc dữ liệu di động, sau đó thử tải lại. Khi mạng ổn định, hệ thống sẽ tự tiếp tục
-            phiên học của bé.
+            {translate("specialPages.offline.subtitle", undefined, locale)}
           </p>
         </div>
 
@@ -54,13 +63,13 @@ export default function OfflinePage() {
               animation: "notFoundShimmer 2.5s linear infinite",
             }}
           >
-            Thử lại ngay
+            {translate("specialPages.offline.ctaRetry", undefined, locale)}
           </Link>
           <Link
             href="/contact"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
           >
-            Liên hệ hỗ trợ
+            {translate("specialPages.offline.ctaContact", undefined, locale)}
           </Link>
         </div>
       </section>

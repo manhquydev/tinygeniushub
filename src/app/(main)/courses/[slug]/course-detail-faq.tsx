@@ -1,30 +1,30 @@
 const FAQ_ITEMS = [
   {
-    q: "Con tôi cần có nền tảng gì trước khi học không?",
-    a: "Không cần nền tảng trước. Mỗi khóa được thiết kế theo lộ trình từ đầu, phụ huynh chỉ cần làm theo hướng dẫn từng bài.",
+    q: "Does my child need any background before studying?",
+    a: "No prior background required. Each course is designed according to a roadmap from the beginning, parents just need to follow the instructions for each lesson.",
   },
   {
-    q: "Phụ huynh có phải ngồi cùng con trong suốt buổi học không?",
-    a: "Không bắt buộc ngồi suốt. Tuy nhiên, với bé dưới 7 tuổi, phụ huynh nên hỗ trợ trong 10 phút đầu để bé quen với giao diện.",
+    q: "Do parents have to sit with their children during the lesson?",
+    a: "No need to sit all the time. However, for children under 7 years old, parents should assist in the first 10 minutes to help the child get used to the interface.",
   },
   {
-    q: "Mỗi buổi học mất bao lâu?",
-    a: "Mỗi bài học thường kéo dài 10-20 phút, phù hợp để học theo ngày. Nhịp gợi ý là 4-5 bài/tuần để duy trì tiến bộ đều đặn.",
+    q: "How long does each lesson take?",
+    a: "Each lesson usually lasts 10-20 minutes, suitable for daily study. The suggested rhythm is 4-5 exercises/week to maintain steady progress.",
   },
   {
-    q: "Sau khi mua, tôi có thể học ngay không?",
-    a: "Có. Sau khi thanh toán thành công, bé có thể vào học ngay.",
+    q: "After purchasing, can I learn immediately?",
+    a: "Have. After successful payment, your child can start school immediately.",
   },
   {
-    q: "Nếu không phù hợp, tôi có được hoàn tiền không?",
-    a: "Có. Chính sách hoàn tiền trong 30 ngày đầu nếu khóa học chưa phù hợp với nhu cầu của bé.",
+    q: "If it's not suitable, can I get a refund?",
+    a: "Have. Refund policy within the first 30 days if the course does not suit your child's needs.",
   },
 ] as const;
 
 export function CourseDetailFaq() {
   return (
     <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-      <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Câu hỏi thường gặp từ phụ huynh</h2>
+      <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Frequently asked questions from parents</h2>
       <div className="mt-4 grid gap-2">
         {FAQ_ITEMS.map((item, idx) => (
           <details key={idx} className="group rounded-2xl border border-slate-200 bg-slate-50">

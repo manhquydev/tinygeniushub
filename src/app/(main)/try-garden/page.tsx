@@ -1,48 +1,57 @@
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 import { TryGardenClient } from "./try-garden-client";
 
 /**
- * /try-garden - Trang xem thử công khai.
+ * /try-garden - Public preview page.
+ * Body delegates entirely to TryGardenClient (client component).
+ * Only metadata is wired here.
  */
-export const metadata: Metadata = {
-  title: "Khu Vườn Trên Mây - Xem thử khóa học | TinyGenius Hub",
-  description:
-    "Khám phá Khu Vườn Trên Mây với trải nghiệm xem thử bài học tương tác cho bé 2-6 tuổi trước khi mua khóa.",
-  keywords: ["xem thử khóa học", "học sớm cho bé", "toán tư duy cho bé", "tiếng Anh phonics", "TinyGenius Hub"],
-  openGraph: {
-    title: "Khu Vườn Trên Mây - Xem thử khóa học",
-    description: "Khám phá thế giới học tập và xem thử bài học trước khi mua.",
-    url: "https://www.tinygeniushubvn.tech/try-garden",
-    siteName: "TinyGenius Hub",
-    images: [
-      {
-        url: "/og-images/try-garden.png",
-        width: 1200,
-        height: 630,
-        alt: "Khu Vườn Trên Mây - Xem thử",
-      },
-    ],
-    locale: "vi_VN",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Khu Vườn Trên Mây - Xem thử khóa học",
-    description: "Xem bài học mẫu và chọn khóa học phù hợp với bé.",
-    images: ["/og-images/try-garden.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const rawLocale = await getLocale();
+  const locale = resolveAppLocale(rawLocale);
+  return {
+    title: translate("tryGarden.metadata.title", undefined, locale),
+    description: translate("tryGarden.metadata.description", undefined, locale),
+    keywords: ["check out the course", "early learning for children", "mental math for children", "English phonics", "TinyGenius Hub"],
+    openGraph: {
+      title: translate("tryGarden.metadata.ogTitle", undefined, locale),
+      description: translate("tryGarden.metadata.ogDescription", undefined, locale),
+      url: "https://www.tinygeniushubvn.tech/try-garden",
+      siteName: "TinyGenius Hub",
+      images: [
+        {
+          url: "/og-images/try-garden.png",
+          width: 1200,
+          height: 630,
+          alt: translate("tryGarden.metadata.ogImageAlt", undefined, locale),
+        },
+      ],
+      locale: "en_US",
+      alternateLocale: ["vi_VN"],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: translate("tryGarden.metadata.twitterTitle", undefined, locale),
+      description: translate("tryGarden.metadata.twitterDescription", undefined, locale),
+      images: ["/og-images/try-garden.png"],
+    },
+    robots: {
       index: true,
       follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
     },
-  },
-  alternates: {
-    canonical: "https://www.tinygeniushubvn.tech/try-garden",
-  },
-};
+    alternates: {
+      canonical: "https://www.tinygeniushubvn.tech/try-garden",
+    },
+  };
+}
 
 export default function TryGardenPage() {
   return <TryGardenClient />;

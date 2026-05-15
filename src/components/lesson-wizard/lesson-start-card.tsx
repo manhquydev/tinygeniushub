@@ -145,7 +145,7 @@ function LessonLaunchButton({
         }}
       >
         <Play size={22} fill="currentColor" />{" "}
-        {!isReady ? "Đang tải..." : isLaunching ? "Khởi động..." : "Bắt đầu bài học"}
+        {!isReady ? "Loading..." : isLaunching ? "Start up..." : "Start the lesson"}
       </m.button>
     </div>
   );
@@ -249,14 +249,14 @@ export function LessonStartCard(props: LessonStartCardProps) {
             color: "#b45309",
           }}
         >
-          Nhiệm vụ hôm nay
+          Today's mission
         </span>
         <strong style={{ fontSize: "1.5rem", color: "var(--brand-700)", lineHeight: "1.2" }}>{props.title}</strong>
         <p className="text-ink-500" style={{ fontSize: "1.05rem", maxWidth: "30ch" }}>
           {props.objective}
         </p>
         <p className="muted-text text-sm">
-          Thời lượng: <strong style={{ color: "var(--brand-700)" }}>{props.estimatedMinutes} phút</strong>
+          Duration: <strong style={{ color: "var(--brand-700)" }}>{props.estimatedMinutes} minutes</strong>
         </p>
 
         <LessonLaunchButton
@@ -283,7 +283,7 @@ export function LessonStartCard(props: LessonStartCardProps) {
                 color: "#0c4a6e",
               }}
             >
-              Đang chuẩn bị bài học...
+              Preparing lessons...
             </span>
           </div>
         ) : null}

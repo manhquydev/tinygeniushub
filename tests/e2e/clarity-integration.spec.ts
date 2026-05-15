@@ -17,7 +17,7 @@ test.describe("Clarity Integration", () => {
     expect(clarityBefore).toBeUndefined();
 
     // Accept all cookies (includes analytics consent)
-    await page.getByRole("button", { name: /chấp nhận tất cả/i }).click();
+    await page.getByRole("button", { name: /Accept all/i }).click();
 
     // Wait for page to reload after consent
     await page.waitForLoadState("networkidle");
@@ -42,7 +42,7 @@ test.describe("Clarity Integration", () => {
     await expect(page.locator("script#ccth-clarity-src")).not.toBeAttached();
 
     // Accept only necessary cookies
-    await page.getByRole("button", { name: /chỉ cookie cần thiết/i }).click();
+    await page.getByRole("button", { name: /Only necessary cookies/i }).click();
 
     // Wait for page to reload
     await page.waitForLoadState("networkidle");
@@ -62,7 +62,7 @@ test.describe("Clarity Integration", () => {
     await page.goto("/");
 
     // Accept all cookies
-    await page.getByRole("button", { name: /chấp nhận tất cả/i }).click();
+    await page.getByRole("button", { name: /Accept all/i }).click();
 
     // Wait for page reload and script load
     await page.waitForLoadState("networkidle");
@@ -97,7 +97,7 @@ test.describe("Clarity Integration", () => {
     await page.goto("/");
 
     // Accept all cookies
-    await page.getByRole("button", { name: /chấp nhận tất cả/i }).click();
+    await page.getByRole("button", { name: /Accept all/i }).click();
     await page.waitForLoadState("networkidle");
 
     // Wait for initial script
@@ -122,7 +122,7 @@ test.describe("Clarity Integration", () => {
   test("clarity respects consent after page navigation", async ({ page }) => {
     // First visit with analytics consent
     await page.goto("/");
-    await page.getByRole("button", { name: /chấp nhận tất cả/i }).click();
+    await page.getByRole("button", { name: /Accept all/i }).click();
     await page.waitForLoadState("networkidle");
     await page.waitForSelector("script#ccth-clarity-src", { timeout: 5000 });
 
@@ -154,7 +154,7 @@ test.describe("Clarity Integration", () => {
     });
 
     await page.goto("/");
-    await page.getByRole("button", { name: /chấp nhận tất cả/i }).click();
+    await page.getByRole("button", { name: /Accept all/i }).click();
     await page.waitForLoadState("networkidle");
 
     // Wait for script to load
@@ -179,7 +179,7 @@ test.describe("Clarity Integration", () => {
     expect(initialState).toBeUndefined();
 
     // Accept consent
-    await page.getByRole("button", { name: /chấp nhận tất cả/i }).click();
+    await page.getByRole("button", { name: /Accept all/i }).click();
     await page.waitForLoadState("networkidle");
 
     // Wait for script

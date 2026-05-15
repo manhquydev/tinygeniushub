@@ -22,8 +22,8 @@ import { CourseSortSelect } from "@/components/courses/course-sort-select";
 import { CourseCatalogViewTracker } from "@/components/courses/course-storefront-tracking";
 
 export const metadata: Metadata = {
-  title: "Khóa học cho bé - TinyGenius Hub",
-  description: "Xem nhanh khóa học, học thử trước, chọn mua đúng nhu cầu của gia đình.",
+  title: "Baby courses - TinyGenius Hub",
+  description: "Quickly view the course, try it out first, choose to buy according to your family's needs.",
   alternates: { canonical: "https://www.tinygeniushubvn.tech/courses" },
 };
 
@@ -186,8 +186,8 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
       />
 
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-3xl">Danh sách khóa học</h1>
-        <p className="mt-2 text-sm text-slate-600">Xem học thử trước khi mua để chọn đúng khóa cho bé.</p>
+        <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-3xl">Course list</h1>
+        <p className="mt-2 text-sm text-slate-600">Take a trial lesson before buying to choose the right course for your child.</p>
       </section>
 
       <section className="grid gap-5 lg:grid-cols-[280px_minmax(0,1fr)] xl:grid-cols-[300px_minmax(0,1fr)]">
@@ -220,14 +220,14 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                 />
                 <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
                   <SlidersHorizontal className="h-3.5 w-3.5" />
-                  Bộ lọc
+                  Filter
                 </span>
               </div>
               <CourseSortSelect currentSort={filters.sort} />
             </div>
             <p className="mt-3 text-sm text-slate-600">
-              Hiển thị <span className="font-bold text-slate-900">{visibleCourses.length}</span> /{" "}
-              <span className="font-bold text-slate-900">{filteredCourses.length}</span> khóa phù hợp.
+              Showing <span className="font-bold text-slate-900">{visibleCourses.length}</span> /{" "}
+              <span className="font-bold text-slate-900">{filteredCourses.length}</span> matching courses.
             </p>
             <div className="mt-3">
               <CourseActiveFilters filters={filters} />
@@ -236,20 +236,20 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
 
           {courses.length === 0 ? (
             <section className="card items-center text-center" style={{ padding: "2.5rem 1.5rem" }}>
-              <p className="text-lg font-bold text-slate-900">Sắp ra mắt khóa học mới</p>
+              <p className="text-lg font-bold text-slate-900">New course coming soon</p>
               <p className="max-w-md text-sm leading-relaxed text-slate-600">
-                Chúng tôi đang cập nhật thêm nội dung mới. Đăng ký để nhận thông báo ngay khi khóa học được mở bán.
+                We are updating new content. Sign up to receive notifications as soon as the course goes on sale.
               </p>
               <Link href="/waitlist" className="solid-button" style={{ marginTop: "0.5rem", width: "fit-content" }}>
-                Nhận thông báo sớm
+                Receive early notifications
               </Link>
             </section>
           ) : visibleCourses.length === 0 ? (
             <section className="card items-center text-center" style={{ padding: "2.2rem 1.25rem" }}>
-              <p className="text-lg font-bold text-slate-900">Chưa tìm thấy khóa phù hợp</p>
-              <p className="max-w-md text-sm leading-relaxed text-slate-600">Thử nới bộ lọc để xem thêm lựa chọn cho con.</p>
+              <p className="text-lg font-bold text-slate-900">No matching key found</p>
+              <p className="max-w-md text-sm leading-relaxed text-slate-600">Try loosening the filter to see more options for your child.</p>
               <Link href="/courses" className="ghost-button" style={{ width: "fit-content" }}>
-                Xóa bộ lọc
+                Clear filter
               </Link>
             </section>
           ) : (
@@ -262,7 +262,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                       course={course}
                       variant={coursesVariant}
                       index={startIndex + index}
-                      detailCtaLabel="Xem chi tiết"
+                      detailCtaLabel="See details"
                     />
                   );
                 })}

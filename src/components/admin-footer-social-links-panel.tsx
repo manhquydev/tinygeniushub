@@ -31,13 +31,13 @@ export function AdminFooterSocialLinksPanel() {
       const body = await response.json();
 
       if (!response.ok || !body.ok || !body.data?.links) {
-        setError(body.error?.message ?? "Không tải được cấu hình footer social.");
+        setError(body.error?.message ?? "Unable to load social footer configuration.");
         return;
       }
 
       setLinks(body.data.links as FooterSocialLinks);
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "Lỗi không xác định.");
+      setError(loadError instanceof Error ? loadError.message : "Unknown error.");
     } finally {
       setLoading(false);
     }
@@ -65,14 +65,14 @@ export function AdminFooterSocialLinksPanel() {
       const body = await response.json();
 
       if (!response.ok || !body.ok || !body.data?.links) {
-        setError(body.error?.message ?? "Không cập nhật được link social.");
+        setError(body.error?.message ?? "Unable to update social links.");
         return;
       }
 
       setLinks(body.data.links as FooterSocialLinks);
-      setInfo("Đã lưu link social ở footer.");
+      setInfo("Saved social link in footer.");
     } catch (saveError) {
-      setError(saveError instanceof Error ? saveError.message : "Lỗi không xác định.");
+      setError(saveError instanceof Error ? saveError.message : "Unknown error.");
     } finally {
       setSaving(false);
     }
@@ -82,11 +82,11 @@ export function AdminFooterSocialLinksPanel() {
     <div className="space-y-3">
       <div>
         <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--admin-text-secondary)]">Footer social links</h3>
-        <p className="text-xs text-[var(--admin-text-secondary)]">Đổi URL đích cho các nền tảng mạng xã hội ở chân trang.</p>
+        <p className="text-xs text-[var(--admin-text-secondary)]">Change the destination URL for social media platforms in the footer.</p>
       </div>
 
       {loading ? (
-        <p className="text-xs text-[var(--admin-text-secondary)]">Đang tải...</p>
+        <p className="text-xs text-[var(--admin-text-secondary)]">Loading...</p>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2">
           {FOOTER_SOCIAL_FIELDS.map((field) => (
@@ -103,7 +103,7 @@ export function AdminFooterSocialLinksPanel() {
           ))}
           <div className="sm:col-span-2">
             <Button type="button" className="bg-teal-600 hover:bg-teal-700" onClick={() => void handleSave()} disabled={saving}>
-              {saving ? "Đang lưu..." : "Lưu social links"}
+              {saving ? "Saving..." : "Save social links"}
             </Button>
           </div>
         </div>

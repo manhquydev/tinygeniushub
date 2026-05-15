@@ -116,8 +116,8 @@ export async function POST(request: NextRequest) {
           data: {
             userId: childId,
             type: 'ACHIEVEMENT',
-            title: 'Huy hiệu mới!',
-            message: `Con vừa nhận được huy hiệu "${earned.badge.nameVi}"!`,
+            title: 'New badge!',
+            message: `I just received my badge.${earned.badge.nameVi}"!`,
             href: '/abeka/badges',
           },
         });

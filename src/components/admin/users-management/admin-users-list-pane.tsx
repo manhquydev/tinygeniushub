@@ -51,19 +51,19 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
       {/* Filters */}
       <div className="flex flex-wrap items-end gap-3">
         <div className="flex-1 min-w-[180px]">
-          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Tìm kiếm</p>
+          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Search</p>
           <div className="relative">
             <Search size={14} className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)]" />
             <Input
               value={props.query}
               onChange={(e) => props.onQueryChange(e.target.value)}
-              placeholder="Email hoặc tên phụ huynh"
+              placeholder="Parent email or name"
               className="pl-8 h-8 text-sm"
             />
           </div>
         </div>
         <div className="w-36">
-          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Trạng thái</p>
+          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Status</p>
           <Select value={props.statusFilter} onValueChange={(v) => props.onStatusFilterChange(v as UsersStatusFilter)}>
             <SelectTrigger className="h-8 text-xs">
               <SelectValue />
@@ -74,16 +74,16 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
           </Select>
         </div>
         <div className="w-36">
-          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Sắp xếp</p>
+          <p className="text-xs text-[var(--admin-text-secondary)] mb-1">Arrange</p>
           <Select value={props.sortBy} onValueChange={(v) => props.onSortByChange(v as UsersSort)}>
             <SelectTrigger className="h-8 text-xs">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="createdAt_desc" className="text-xs">Mới nhất</SelectItem>
-              <SelectItem value="createdAt_asc" className="text-xs">Cũ nhất</SelectItem>
-              <SelectItem value="plan_desc" className="text-xs">Plan giảm dần</SelectItem>
-              <SelectItem value="plan_asc" className="text-xs">Plan tăng dần</SelectItem>
+              <SelectItem value="createdAt_desc" className="text-xs">Latest</SelectItem>
+              <SelectItem value="createdAt_asc" className="text-xs">Oldest</SelectItem>
+              <SelectItem value="plan_desc" className="text-xs">Plan gradually reduced</SelectItem>
+              <SelectItem value="plan_asc" className="text-xs">Plan increases gradually</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -100,10 +100,10 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
                   onCheckedChange={(checked) => props.onToggleSelectAll(!!checked)}
                 />
               </TableHead>
-              <TableHead className="text-xs">Phụ huynh</TableHead>
-              <TableHead className="text-xs">Trạng thái</TableHead>
-              <TableHead className="text-xs">Bé</TableHead>
-              <TableHead className="text-xs">Thanh toán</TableHead>
+              <TableHead className="text-xs">Parents</TableHead>
+              <TableHead className="text-xs">Status</TableHead>
+              <TableHead className="text-xs">Little</TableHead>
+              <TableHead className="text-xs">Pay</TableHead>
               <TableHead className="text-xs">Tham gia</TableHead>
             </TableRow>
           </TableHeader>
@@ -146,23 +146,23 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
       {/* Bulk actions */}
       {props.selectedParentIds.length > 0 && (
         <div className="rounded-lg border border-teal-200 bg-teal-50 p-3">
-          <p className="text-sm font-semibold text-teal-700 mb-2">Đã chọn {props.selectedParentIds.length} người dùng</p>
+          <p className="text-sm font-semibold text-teal-700 mb-2">Selected {props.selectedParentIds.length} users</p>
           <div className="flex flex-wrap items-center gap-2">
             <Select value={props.bulkAction} onValueChange={(v) => props.onBulkActionChange(v as BulkAction)}>
               <SelectTrigger className="h-8 w-44 text-xs">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="SUSPEND" className="text-xs">Tạm khóa</SelectItem>
-                <SelectItem value="ACTIVATE" className="text-xs">Kích hoạt lại</SelectItem>
-                <SelectItem value="SEND_NOTIFICATION" className="text-xs">Gửi thông báo</SelectItem>
+                <SelectItem value="SUSPEND" className="text-xs">Temporarily locked</SelectItem>
+                <SelectItem value="ACTIVATE" className="text-xs">Reactivate</SelectItem>
+                <SelectItem value="SEND_NOTIFICATION" className="text-xs">Send notification</SelectItem>
               </SelectContent>
             </Select>
             {props.bulkAction === "SEND_NOTIFICATION" && (
               <Input
                 value={props.bulkMessage}
                 onChange={(e) => props.onBulkMessageChange(e.target.value)}
-                placeholder="Nội dung thông báo"
+                placeholder="Notification content"
                 className="h-8 min-w-[200px] flex-1 text-xs"
               />
             )}
@@ -172,7 +172,7 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
               disabled={props.bulkLoading}
               className="h-8 text-xs bg-teal-600 hover:bg-teal-700"
             >
-              {props.bulkLoading ? "Đang xử lý..." : "Thực hiện"}
+              {props.bulkLoading ? "Processing..." : "Perform"}
             </Button>
           </div>
           {props.bulkResultMessage && <p className="mt-2 text-xs text-teal-700">{props.bulkResultMessage}</p>}
@@ -181,17 +181,17 @@ export function AdminUsersListPane(props: AdminUsersListPaneProps) {
 
       {/* Pagination */}
       <div className="flex items-center justify-between text-xs text-[var(--admin-text-secondary)]">
-        <p>Tổng {props.totalUsers} người dùng — Trang {props.page}/{props.totalPages}</p>
+        <p>Total {props.totalUsers} users — Page {props.page}/{props.totalPages}</p>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={props.onPrevPage} disabled={!props.canGoPrev || props.searchLoading} className="h-7 text-xs">Trang trước</Button>
-          <Button variant="outline" size="sm" onClick={props.onNextPage} disabled={!props.canGoNext || props.searchLoading} className="h-7 text-xs">Trang sau</Button>
+          <Button variant="outline" size="sm" onClick={props.onPrevPage} disabled={!props.canGoPrev || props.searchLoading} className="h-7 text-xs">Previous page</Button>
+          <Button variant="outline" size="sm" onClick={props.onNextPage} disabled={!props.canGoNext || props.searchLoading} className="h-7 text-xs">Page sau</Button>
         </div>
       </div>
 
       {!props.searchLoading && props.users.length === 0 && !props.searchError && (
         <div className="rounded-xl border border-dashed border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-4 text-center text-sm text-[var(--admin-text-secondary)]">
           <SearchX size={28} className="mx-auto mb-2 text-[var(--admin-text-muted)]" />
-          <p>Không có người dùng phù hợp với bộ lọc hiện tại.</p>
+          <p>There are no users matching the current filter.</p>
         </div>
       )}
       {props.searchError && (

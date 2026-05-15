@@ -52,11 +52,11 @@ export function AdminSkillCreateForm({ onCreated, onCancel }: Props) {
         }),
       });
       const json = await res.json() as { error?: { message?: string } };
-      if (!res.ok) throw new Error(json.error?.message ?? "Tạo skill thất bại");
+      if (!res.ok) throw new Error(json.error?.message ?? "Skill creation failed");
       setForm(EMPTY_FORM);
       onCreated();
     } catch (err) {
-      setCreateError(err instanceof Error ? err.message : "Lỗi không xác định");
+      setCreateError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setCreating(false);
     }
@@ -64,7 +64,7 @@ export function AdminSkillCreateForm({ onCreated, onCancel }: Props) {
 
   return (
     <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-4 space-y-3">
-      <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Tạo skill mới</h2>
+      <h2 className="text-sm font-semibold text-[var(--admin-text-secondary)]">Create new skills</h2>
       {createError && <p className="text-xs text-rose-600">{createError}</p>}
       <form onSubmit={(e) => void handleCreate(e)} className="space-y-3">
         <div className="grid gap-3 sm:grid-cols-2">
@@ -77,37 +77,37 @@ export function AdminSkillCreateForm({ onCreated, onCancel }: Props) {
             <Select value={form.domain} onValueChange={(v) => setForm((p) => ({ ...p, domain: v }))}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="MATH">Toán học</SelectItem>
-                <SelectItem value="ENGLISH_PHONICS">Phonics Tiếng Anh</SelectItem>
+                <SelectItem value="MATH">Mathematics</SelectItem>
+                <SelectItem value="ENGLISH_PHONICS">English Phonics</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="grid gap-1.5">
-            <Label htmlFor="sk-name-vi">Tên Tiếng Việt *</Label>
-            <Input id="sk-name-vi" required value={form.nameVi} onChange={(e) => setForm((p) => ({ ...p, nameVi: e.target.value }))} placeholder="Phép cộng cơ bản" />
+            <Label htmlFor="sk-name-vi">Vietnamese name *</Label>
+            <Input id="sk-name-vi" required value={form.nameVi} onChange={(e) => setForm((p) => ({ ...p, nameVi: e.target.value }))} placeholder="Basic addition" />
           </div>
           <div className="grid gap-1.5">
-            <Label htmlFor="sk-name-en">Tên Tiếng Anh</Label>
+            <Label htmlFor="sk-name-en">English name</Label>
             <Input id="sk-name-en" value={form.nameEn} onChange={(e) => setForm((p) => ({ ...p, nameEn: e.target.value }))} placeholder="Basic Addition" />
           </div>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="grid gap-1.5">
-            <Label htmlFor="sk-grade">Lớp (1–12) *</Label>
+            <Label htmlFor="sk-grade">Grades (1–12) *</Label>
             <Input id="sk-grade" type="number" min={1} max={12} required value={form.gradeLevel} onChange={(e) => setForm((p) => ({ ...p, gradeLevel: Number(e.target.value) }))} />
           </div>
           <div className="grid gap-1.5">
-            <Label htmlFor="sk-order">Thứ tự</Label>
+            <Label htmlFor="sk-order">Order</Label>
             <Input id="sk-order" type="number" min={0} value={form.orderNo} onChange={(e) => setForm((p) => ({ ...p, orderNo: Number(e.target.value) }))} />
           </div>
         </div>
         <div className="flex gap-2">
           <Button type="submit" disabled={creating} className="bg-teal-600 hover:bg-teal-700">
-            {creating ? "Đang tạo..." : "Tạo skill"}
+            {creating ? "Creating..." : "Create skills"}
           </Button>
-          <Button type="button" variant="outline" onClick={onCancel}>Hủy</Button>
+          <Button type="button" variant="outline" onClick={onCancel}>Cancel</Button>
         </div>
       </form>
     </div>

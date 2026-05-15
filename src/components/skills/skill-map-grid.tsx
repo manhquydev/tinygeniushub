@@ -27,8 +27,8 @@ interface SkillMapGridProps {
 }
 
 const DOMAIN_LABELS: Record<SkillDomain, string> = {
-  MATH: "Toán Tư Duy",
-  ENGLISH_PHONICS: "Tiếng Anh Phonics",
+  MATH: "Math Thinking",
+  ENGLISH_PHONICS: "English Phonics",
 };
 
 export function SkillMapGrid({ childId, domain, overallProgress, masteredCount, totalSkills, skills }: SkillMapGridProps) {
@@ -40,13 +40,13 @@ export function SkillMapGrid({ childId, domain, overallProgress, masteredCount, 
       <div className="bg-gradient-to-r from-slate-50 to-white px-4 py-3 border-b border-slate-100">
         <h2 className="font-bold text-slate-800 text-base">{DOMAIN_LABELS[domain]}</h2>
         <p className="text-xs text-slate-500 mt-0.5">
-          {masteredCount}/{totalSkills} kỹ năng thành thạo · {pct}% tổng tiến độ
+          {masteredCount}/{totalSkills} skills proficient · {pct}% overall progress
         </p>
       </div>
 
       {skills.length === 0 && (
         <div className="px-4 py-8 text-center">
-          <p className="text-slate-400 text-sm">Chưa có kỹ năng nào. Bắt đầu làm bài kiểm tra để xem bản đồ kỹ năng!</p>
+          <p className="text-slate-400 text-sm">No skills yet. Start taking the test to see the skill map!</p>
         </div>
       )}
 
@@ -101,7 +101,7 @@ function LockedSkillRow({ skill }: { skill: SkillEntry }) {
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between gap-2 mb-1">
           <span className="text-sm font-medium text-slate-500 truncate">{skill.nameVi}</span>
-          <span className="text-xs text-slate-400 flex items-center gap-1">🔒 Chưa mở</span>
+          <span className="text-xs text-slate-400 flex items-center gap-1">🔒 Not opened yet</span>
         </div>
         <div className="h-2 bg-slate-100 rounded-full" />
       </div>

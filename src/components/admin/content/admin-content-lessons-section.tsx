@@ -45,7 +45,7 @@ export function AdminContentLessonsSection(props: AdminContentLessonsSectionProp
         </div>
         <Button size="sm" onClick={props.onOpenCreateLessonModal} className="h-8 text-xs gap-1 bg-teal-600 hover:bg-teal-700">
           <Plus size={13} />
-          Thêm bài học
+          More lessons
         </Button>
       </div>
 
@@ -54,11 +54,11 @@ export function AdminContentLessonsSection(props: AdminContentLessonsSectionProp
           <TableHeader>
             <TableRow className="bg-[var(--admin-sidebar-accent)] hover:bg-[var(--admin-sidebar-accent)]">
               <TableHead className="text-xs w-8">#</TableHead>
-              <TableHead className="text-xs">Tên</TableHead>
-              <TableHead className="text-xs">Phút</TableHead>
-              <TableHead className="text-xs">Dùng thử</TableHead>
+              <TableHead className="text-xs">Name</TableHead>
+              <TableHead className="text-xs">Minute</TableHead>
+              <TableHead className="text-xs">Try it out</TableHead>
               <TableHead className="text-xs">Activities</TableHead>
-              <TableHead className="text-xs">Hành động</TableHead>
+              <TableHead className="text-xs">Act</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -79,7 +79,7 @@ export function AdminContentLessonsSection(props: AdminContentLessonsSectionProp
                     <TableCell className="text-xs">{lesson.estimatedMinutes}</TableCell>
                     <TableCell>
                       <Badge variant="outline" className={cn("text-xs border", lesson.trialEnabled ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-[var(--admin-sidebar-accent)] text-[var(--admin-text-secondary)] border-[var(--admin-card-border)]")}>
-                        {lesson.trialEnabled ? "Bật" : "Tắt"}
+                        {lesson.trialEnabled ? "Turn on" : "Turn off"}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-xs">{lesson._count.activities}</TableCell>
@@ -89,7 +89,7 @@ export function AdminContentLessonsSection(props: AdminContentLessonsSectionProp
                           <Pencil size={12} />
                         </Button>
                         <Button variant="outline" size="sm" className="h-7 text-xs" onClick={() => void props.onToggleTrial(lesson)}>
-                          Dùng thử
+                          Try it out
                         </Button>
                         <Button variant="destructive" size="icon" className="h-7 w-7" onClick={() => void props.onDeleteLesson(lesson)}>
                           <Trash2 size={12} />
@@ -115,10 +115,10 @@ export function AdminContentLessonsSection(props: AdminContentLessonsSectionProp
               );
             })}
             {props.loadingLessons && (
-              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Đang tải bài học...</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">Loading lessons...</TableCell></TableRow>
             )}
             {!props.loadingLessons && props.lessons.length === 0 && (
-              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">{props.selectedUnit ? "Chưa có bài học." : "Chọn đơn vị để xem bài học."}</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} className="text-xs text-[var(--admin-text-secondary)]">{props.selectedUnit ? "No lessons yet." : "Select a unit to view lessons."}</TableCell></TableRow>
             )}
           </TableBody>
         </Table>

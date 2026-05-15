@@ -123,23 +123,23 @@ export async function GET(
     });
 
     const trend = getWeeklyTrend(report.childId, report, previousReport);
-    const lessonsTrend = buildTrendVisual(trend.lessonsChange, "bài");
-    const minutesTrend = buildTrendVisual(trend.minutesChange, "phút");
-    const streakTrend = buildTrendVisual(trend.streakChange, "ngày");
+    const lessonsTrend = buildTrendVisual(trend.lessonsChange, "post");
+    const minutesTrend = buildTrendVisual(trend.minutesChange, "minute");
+    const streakTrend = buildTrendVisual(trend.streakChange, "day");
     const recommendations = parseRecommendations(report.recommendations);
     const recommendationsHtml =
       recommendations.length > 0
         ? `<ul>${recommendations
             .map((item) => `<li>${escapeHtml(item)}</li>`)
             .join("")}</ul>`
-        : "<p>Tiếp tục duy trì nhịp học ngắn mỗi ngày để bé giữ đà tiến bộ ổn định.</p>";
+        : "<p>Continue to maintain a short learning rhythm every day to keep your child's progress steady.</p>";
 
     const html = `<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Báo cáo tuần - ${escapeHtml(report.child.nickname)}</title>
+    <title>Weekly report - ${escapeHtml(report.child.nickname)}</title>
     <style>
       :root {
         color-scheme: light;
@@ -296,45 +296,45 @@ export async function GET(
       <header class="header">
         <div>
           <div class="brand">TinyGenius Hub</div>
-          <div class="subtitle">Báo cáo học tập tuần</div>
+          <div class="subtitle">Weekly study report</div>
         </div>
         <div class="meta">
-          <div>Ngày tạo: ${escapeHtml(formatDate(report.generatedAt))}</div>
-          <div>Tuần: ${escapeHtml(formatDate(report.weekStart))} - ${escapeHtml(formatDate(report.weekEnd))}</div>
+          <div>Created: ${escapeHtml(formatDate(report.generatedAt))}</div>
+          <div>Week: ${escapeHtml(formatDate(report.weekStart))} - ${escapeHtml(formatDate(report.weekEnd))}</div>
         </div>
       </header>
 
       <h1>${escapeHtml(report.child.nickname)}</h1>
-      <p class="subtitle">Tổng quan tiến độ tuần hiện tại và xu hướng so với tuần trước.</p>
+      <p class="subtitle">Overview of current week's progress and trend compared to last week.</p>
 
       <section class="metrics">
         <article class="metric">
-          <div class="metric-label">Bài học hoàn thành</div>
+          <div class="metric-label">Lesson completed</div>
           <div class="metric-value">${report.lessonsCompleted}</div>
           <span class="trend ${lessonsTrend.className}">${escapeHtml(lessonsTrend.text)}</span>
         </article>
         <article class="metric">
-          <div class="metric-label">Thời gian học</div>
+          <div class="metric-label">Study time</div>
           <div class="metric-value">${report.minutesLearned}</div>
           <span class="trend ${minutesTrend.className}">${escapeHtml(minutesTrend.text)}</span>
         </article>
         <article class="metric">
-          <div class="metric-label">Chuỗi liên tục</div>
+          <div class="metric-label">Continuous series</div>
           <div class="metric-value">${report.streakDays}</div>
           <span class="trend ${streakTrend.className}">${escapeHtml(streakTrend.text)}</span>
         </article>
       </section>
 
       <section class="section">
-        <h2>Gợi ý tuần tiếp theo</h2>
+        <h2>Suggestions for next week</h2>
         ${recommendationsHtml}
       </section>
 
       <div class="print-actions">
-        <button class="print-button" onclick="window.print()">In / Lưu PDF</button>
+        <button class="print-button" onclick="window.print()">Print/Save PDF</button>
       </div>
 
-      <footer class="footer">Báo cáo được tạo tự động</footer>
+      <footer class="footer">The report is automatically generated</footer>
     </main>
   </body>
 </html>`;

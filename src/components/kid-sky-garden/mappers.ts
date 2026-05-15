@@ -24,15 +24,15 @@ const JOURNEY_META: Record<
   }
 > = {
   ENGLISH: {
-    title: "Khóa Tiếng Anh",
+    title: "English Course",
     accent: "#2563eb",
   },
   MATH: {
-    title: "Khóa Toán",
+    title: "Math Course",
     accent: "#f97316",
   },
   HABIT: {
-    title: "Khóa Thói quen",
+    title: "Lock Habits",
     accent: "#16a34a",
   },
 };
@@ -55,17 +55,17 @@ export function mapLessonLikeToSkyGardenLesson(lesson: LessonLike, index: number
     title:
       typeof lesson.title === "string" && lesson.title.length > 0
         ? lesson.title
-        : `Bài học ${index + 1}`,
+        : `Lesson${index + 1}`,
     objective:
       typeof lesson.objective === "string" && lesson.objective.length > 0
         ? lesson.objective
-        : "Cùng hoàn thành thử thách ở tầng mây này nhé!",
+        : "Let's complete this challenge in the clouds!",
     estimatedMinutes: typeof lesson.estimatedMinutes === "number" ? lesson.estimatedMinutes : 15,
     trackCode,
     unitTitle:
       typeof lesson.unitTitle === "string" && lesson.unitTitle.length > 0
         ? lesson.unitTitle
-        : "Mở đầu",
+        : "Opening",
     journeyTitle: lesson.journeyTitle ?? journey.title,
     journeyAccent: lesson.journeyAccent ?? journey.accent ?? DEFAULT_COURSE_ACCENT,
     videoSource: lesson.videoSource ?? null,
