@@ -27,12 +27,10 @@ test("guest can navigate homepage -> courses -> blog -> blog detail", async ({ p
   await expect(page.getByText("404")).toHaveCount(0);
 });
 
-test("pricing and for-schools routes are hidden", async ({ page }) => {
-  const pricingResponse = await page.goto("/pricing");
-  expect(pricingResponse?.status()).toBe(404);
-  await expect(page.getByText("404")).toBeVisible();
+test("pricing and for-schools routes are hidden by redirecting to courses", async ({ page }) => {
+  await page.goto("/pricing");
+  await expect(page).toHaveURL(/\/courses(?:\?.*)?$/);
 
-  const forSchoolsResponse = await page.goto("/for-schools");
-  expect(forSchoolsResponse?.status()).toBe(404);
-  await expect(page.getByText("404")).toBeVisible();
+  await page.goto("/for-schools");
+  await expect(page).toHaveURL(/\/courses(?:\?.*)?$/);
 });
