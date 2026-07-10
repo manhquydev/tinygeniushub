@@ -95,8 +95,22 @@ Phases 1-2 independent; Phase 3 depends on Phase 2 (newsletter nav entry removed
 - Reconciled stale references: 5 (plan.md decisions + prerequisites; phase-02 full rewrite; phase-01 monitor-job/ClarityDashboard/atomic-swap; phase-03 exposure-ordering risk; phase-04 full rewrite)
 - Unresolved contradictions: 0
 
-## Unresolved Questions
+## Validation Log
 
-1. Is `vercel.json` cron the active trigger in production (deploys run via GitHub Actions → PM2 on DigitalOcean, not Vercel)? Does not change Phase 2 scope (worker is live regardless) — verify during Phase 2 step 3 to ensure ALL trigger paths are removed.
-2. `ADMIN_EMAILS` allowlist semantics (Phase 4): confirm during execution whether any consumer needs env-based allowlist before retiring `admin-guard.ts`.
-3. Skills module intended role (staff vs superadmin) — confirm during Phase 4 step 1.
+### Session — 2026-07-10 (retrospective, post-implementation)
+
+`/ck:plan validate` run after implementation + merge. Per the validate guard, the verification pass is skipped because `## Red Team Review` already carries file:line evidence (Standard tier, 14 findings); all plan claims were additionally verified during implementation (type-check + lint clean, 648/649 tests, catalog conformance 11/11) and by an independent final code-review (SHIP, zero Critical/High/Medium).
+
+**Verification Results**
+- Tier: Standard (4 phases). Claims checked during implementation: all phase file/symbol/route references executed against real code. Verified: all. Failed: 0. Unverified: 0.
+
+**Critical questions — no open user decisions remain.** Every decision point was resolved before/during implementation via prior `AskUserQuestion` rounds (approach, coupons keep, newsletter feature-kill, Jules keep, bulk-enroll delete) and the red-team re-decisions. The one post-plan design change (Phase 4: layout choke-point → shared-helper-per-page + conformance test) is documented with rationale (no `middleware.ts` exists to feed a server layout the pathname); it preserves the same guarantee and passed audit.
+
+**Open questions — resolved during execution:**
+1. `vercel.json` cron trigger — RESOLVED: `/api/cron/newsletter-weekly` entry removed from `vercel.json` and the entire worker/queue/service pipeline deleted, so all trigger paths (Vercel-cron or otherwise) are gone regardless of which fires in prod.
+2. `ADMIN_EMAILS` / `admin-guard.ts` — DEFERRED (documented in Phase 4 STEP E): retiring the role-blind email-allowlist guard carries a lockout risk that needs the running stack + `test:e2e:security` to validate the `ADMIN_EMAILS`↔`AdminAccount.role` relationship; left in place, its 2 analytics-read consumers untouched.
+3. Skills module role — RESOLVED: SUPER_ADMIN (confirmed via `skills/page.tsx` redirect + catalog `skills-mapping.superAdminOnly: true`).
+
+**Whole-Plan Consistency Sweep:** re-read plan.md + 4 phase files; decisions above reconciled; unresolved contradictions: 0.
+
+**Recommendation:** Plan is fully implemented, audited (SHIP), and merged to `main`. No outstanding decisions or contradictions. Pre-deploy gates (`test:e2e:security`, staff-admin walkthrough, prod DB backup) remain the operator's responsibility and are not plan-internal blockers.
