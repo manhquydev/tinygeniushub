@@ -4,7 +4,7 @@
  */
 
 import type { NextRequest } from "next/server";
-import { requireAdminFromRequest } from "@/lib/auth/admin";
+import { requireSuperAdmin } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    await requireAdminFromRequest(request);
+    await requireSuperAdmin(request);
     const { id } = await params;
     const body = prerequisiteSchema.parse(await request.json());
     await addPrerequisite(id, body.prerequisiteId);
@@ -36,7 +36,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    await requireAdminFromRequest(request);
+    await requireSuperAdmin(request);
     const { id } = await params;
     const body = prerequisiteSchema.parse(await request.json());
     await removePrerequisite(id, body.prerequisiteId);

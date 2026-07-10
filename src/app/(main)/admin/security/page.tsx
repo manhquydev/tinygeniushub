@@ -6,8 +6,10 @@ import { AdminSecurityPanel } from "@/components/admin-security-panel";
 import { getAdminSecuritySettings } from "@/modules/platform/security-policy-service";
 import { translate } from "@/i18n/translator";
 import { resolveAppLocale } from "@/i18n/locales";
+import { requireSuperAdminParent } from "@/lib/auth/admin";
 
 export default async function AdminSecurityPage() {
+  await requireSuperAdminParent();
   const locale = resolveAppLocale(await getLocale());
   const t = (key: string) => translate(`admin.security.${key}`, undefined, locale);
   const securitySettings = await getAdminSecuritySettings();

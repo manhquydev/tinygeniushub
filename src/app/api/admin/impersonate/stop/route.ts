@@ -1,5 +1,5 @@
 ﻿import type { NextRequest } from "next/server";
-import { requireAdminFromRequest } from "@/lib/auth/admin";
+import { requireSuperAdmin } from "@/lib/auth/admin";
 import { clearImpersonationCookie } from "@/lib/auth/impersonation";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    const admin = await requireAdminFromRequest(request);
+    const admin = await requireSuperAdmin(request);
 
     const response = ok({ redirectTo: "/admin" });
     clearImpersonationCookie(response);
