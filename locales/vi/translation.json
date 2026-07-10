@@ -5452,7 +5452,7 @@
     },
     "blog": {
       "title": "Quản lý Blog",
-      "description": "Nội dung, bản tin và phân tích blog.",
+      "description": "Nội dung và phân tích blog.",
       "viewPublicBlog": "Xem blog công khai",
       "writeNewPost": "Viết bài mới",
       "writeNewPostDesc": "Tạo bài blog ngay",
@@ -5463,12 +5463,10 @@
       "quickManagement": "Quản lý nhanh",
       "navCategories": "Danh mục",
       "navAuthors": "Tác giả",
-      "navNewsletter": "Bản tin",
       "navAnalytics": "Phân tích Blog",
       "navComments": "Bình luận",
       "statPublished": "Đã xuất bản",
       "statDraft": "Bản nháp",
-      "statSubscribers": "Người đăng ký",
       "statTotalViews": "Tổng lượt xem",
       "posts": {
         "title": "Quản lý bài viết",
@@ -5512,21 +5510,6 @@
         "description": "Duyệt hoặc đánh dấu bình luận đang chờ là spam.",
         "empty": "Không có bình luận nào đang chờ duyệt."
       },
-      "newsletter": {
-        "title": "Người đăng ký bản tin",
-        "description": "Quản lý danh sách đã xác thực để nhận bản tin.",
-        "statActive": "Đang nhận bản tin",
-        "statUnsubscribed": "Đã hủy đăng ký",
-        "colEmail": "Email",
-        "colName": "Tên",
-        "colDate": "Thời gian đăng ký",
-        "colVerified": "Xác thực",
-        "verifiedBadge": "Đã xác minh",
-        "empty": "Không có người đăng ký nào.",
-        "previousPage": "Trước",
-        "nextPage": "Sau",
-        "pageInfo": "Trang {current}/{total}"
-      },
       "newPost": {
         "title": "Tạo bài mới"
       },
@@ -5538,7 +5521,6 @@
         "description": "Theo dõi lượt xem, tương tác và tăng trưởng người đăng ký.",
         "statTotalViews": "Tổng lượt xem",
         "statTotalLikes": "Tổng lượt thích",
-        "statSubscribers": "Người đăng ký hoạt động",
         "statPublished": "Bài đã xuất bản",
         "colPost": "Bài viết",
         "colView": "Lượt xem",

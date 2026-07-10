@@ -103,7 +103,7 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "blog",
     title: "Blog CMS",
-    description: "Articles, author, category, newsletter, moderation.",
+    description: "Articles, author, category, moderation.",
     href: "/admin/blog",
     icon: Newspaper,
     health: "complete",

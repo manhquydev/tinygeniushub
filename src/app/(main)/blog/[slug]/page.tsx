@@ -7,7 +7,6 @@ import { BlogBookmarkButton } from "@/components/blog/blog-bookmark-button";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogCommentsSection } from "@/components/blog/blog-comments-section";
 import { BlogLikeButton } from "@/components/blog/blog-like-button";
-import { BlogNewsletterWidget } from "@/components/blog/blog-newsletter-widget";
 import { BlogReadingProgress } from "@/components/blog/blog-reading-progress";
 import { BlogShare } from "@/components/blog/blog-share";
 import { BlogToc } from "@/components/blog/blog-toc";
@@ -182,7 +181,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <aside className="space-y-4">
           <BlogToc headings={headings} />
-          <BlogNewsletterWidget />
         </aside>
       </div>
 

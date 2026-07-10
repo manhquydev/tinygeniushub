@@ -9,7 +9,6 @@ type RangeValue = "7d" | "30d" | "90d";
 type AnalyticsPayload = {
   totalViews: number;
   totalLikes: number;
-  totalSubscribers: number;
   totalPublishedPosts: number;
   topPosts: Array<{
     titleVi: string;
@@ -139,10 +138,6 @@ export default function AdminBlogAnalyticsPage() {
             <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--admin-text-muted)]">{t("statTotalLikes")}</p>
               <p className="mt-2 text-3xl font-black text-[var(--admin-text-primary)]">{data.totalLikes.toLocaleString()}</p>
-            </article>
-            <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--admin-text-muted)]">{t("statSubscribers")}</p>
-              <p className="mt-2 text-3xl font-black text-[var(--admin-text-primary)]">{data.totalSubscribers.toLocaleString()}</p>
             </article>
             <article className="rounded-2xl border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] p-4 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--admin-text-muted)]">{t("statPublished")}</p>

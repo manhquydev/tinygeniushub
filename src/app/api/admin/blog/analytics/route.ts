@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
     const days = resolveDays(range);
     const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
 
-    const [totalViews, totalLikes, totalSubscribers, totalPublishedPosts, topPosts, viewsByDay, categoryBreakdown, categories] =
+    const [totalViews, totalLikes, totalPublishedPosts, topPosts, viewsByDay, categoryBreakdown, categories] =
       await prisma.$transaction([
         prisma.blogPost.aggregate({
           _sum: { viewCount: true },
@@ -33,9 +33,6 @@ export async function GET(request: NextRequest) {
         prisma.blogPost.aggregate({
           _sum: { likeCount: true },
           where: { status: "PUBLISHED" },
-        }),
-        prisma.blogNewsletterSubscriber.count({
-          where: { verified: true, unsubscribedAt: null },
         }),
         prisma.blogPost.count({
           where: { status: "PUBLISHED" },
@@ -78,7 +75,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       totalViews: totalViews._sum.viewCount ?? 0,
       totalLikes: totalLikes._sum.likeCount ?? 0,
-      totalSubscribers,
       totalPublishedPosts,
       topPosts,
       viewsByDay,

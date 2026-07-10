@@ -12,13 +12,10 @@ export default async function AdminBlogDashboardPage() {
   const t = (key: string, values?: TranslationValues) =>
     translate(`admin.blog.${key}`, values, locale);
 
-  const [publishedCount, draftCount, subscriberCount, topPost, viewsAggregate] =
+  const [publishedCount, draftCount, topPost, viewsAggregate] =
     await Promise.all([
       prisma.blogPost.count({ where: { status: "PUBLISHED" } }),
       prisma.blogPost.count({ where: { status: "DRAFT" } }),
-      prisma.blogNewsletterSubscriber.count({
-        where: { verified: true, unsubscribedAt: null },
-      }),
       prisma.blogPost.findFirst({
         where: { status: "PUBLISHED" },
         orderBy: { viewCount: "desc" },
@@ -60,7 +57,7 @@ export default async function AdminBlogDashboardPage() {
       </div>
 
       {/* KPI stats */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-3">
         <StatCard
           label={t("statPublished")}
           value={publishedCount}
@@ -72,12 +69,6 @@ export default async function AdminBlogDashboardPage() {
           value={draftCount}
           icon={BookOpen}
           accent="amber"
-        />
-        <StatCard
-          label={t("statSubscribers")}
-          value={subscriberCount.toLocaleString()}
-          icon={Users}
-          accent="teal"
         />
         <StatCard
           label={t("statTotalViews")}
@@ -163,7 +154,6 @@ export default async function AdminBlogDashboardPage() {
           {[
             { href: "/admin/blog/categories", label: t("navCategories") },
             { href: "/admin/blog/authors", label: t("navAuthors") },
-            { href: "/admin/blog/newsletter", label: t("navNewsletter") },
             { href: "/admin/blog/analytics", label: t("navAnalytics") },
             { href: "/admin/blog/comments", label: t("navComments") },
           ].map((item) => (

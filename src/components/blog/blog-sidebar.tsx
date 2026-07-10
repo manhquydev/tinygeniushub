@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BlogNewsletterWidget } from "@/components/blog/blog-newsletter-widget";
 import { BlogTrendingPosts } from "@/components/blog/blog-trending-posts";
 import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import type { BlogCategory, BlogPostCardDTO } from "@/modules/blog/blog-types";
@@ -73,8 +72,6 @@ export function BlogSidebar({ categories, trendingPosts }: BlogSidebarProps) {
         </h3>
         <BlogTrendingPosts posts={trendingPosts} />
       </section>
-
-      <BlogNewsletterWidget />
     </aside>
   );
 }

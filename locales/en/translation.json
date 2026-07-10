@@ -5452,7 +5452,7 @@
     },
     "blog": {
       "title": "Blog Management",
-      "description": "Content, newsletter and blog analytics.",
+      "description": "Content and blog analytics.",
       "viewPublicBlog": "View public blog",
       "writeNewPost": "Write a new post",
       "writeNewPostDesc": "Create a blog post now",
@@ -5463,12 +5463,10 @@
       "quickManagement": "Quick management",
       "navCategories": "Category",
       "navAuthors": "Author",
-      "navNewsletter": "Newsletter",
       "navAnalytics": "Blog Analysis",
       "navComments": "Comment",
       "statPublished": "Published",
       "statDraft": "Draft",
-      "statSubscribers": "Subscriber",
       "statTotalViews": "Total views",
       "posts": {
         "title": "Article management",
@@ -5512,21 +5510,6 @@
         "description": "Browse or mark pending comments as spam.",
         "empty": "There are no comments pending approval."
       },
-      "newsletter": {
-        "title": "Newsletter subscribers",
-        "description": "Manage the list that has been authenticated to receive the newsletter.",
-        "statActive": "Receiving newsletter",
-        "statUnsubscribed": "Unsubscribed",
-        "colEmail": "Email",
-        "colName": "Name",
-        "colDate": "Registration time",
-        "colVerified": "Authentic",
-        "verifiedBadge": "Verified",
-        "empty": "There are no subscribers.",
-        "previousPage": "Before",
-        "nextPage": "After",
-        "pageInfo": "Page {current}/{total}"
-      },
       "newPost": {
         "title": "Create new post"
       },
@@ -5538,7 +5521,6 @@
         "description": "Track view, engagement, and subscriber growth.",
         "statTotalViews": "Total views",
         "statTotalLikes": "Total likes",
-        "statSubscribers": "Active subscriber",
         "statPublished": "Article published",
         "colPost": "Article",
         "colView": "View",

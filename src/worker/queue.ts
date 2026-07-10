@@ -7,21 +7,6 @@ import type { BulkEnrollRow } from "@/modules/organizations/bulk-enroll-service"
 
 export const redisConnection = createRedisConnectionOptions(env.REDIS_URL);
 
-export function getNewsletterWeekStart(date = new Date()) {
-  const weekStart = new Date(date);
-  weekStart.setUTCHours(0, 0, 0, 0);
-
-  const dayOfWeek = weekStart.getUTCDay();
-  const mondayOffset = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
-  weekStart.setUTCDate(weekStart.getUTCDate() - mondayOffset);
-
-  return weekStart;
-}
-
-export function getNewsletterWeekKey(date = new Date()) {
-  return getNewsletterWeekStart(date).toISOString().slice(0, 10);
-}
-
 export const reportsQueue = new Queue("weekly-reports", {
   connection: redisConnection,
 });
@@ -31,10 +16,6 @@ export const retentionQueue = new Queue("portfolio-retention", {
 });
 
 export const weeklyReportEmailQueue = new Queue("weekly-report-emails", {
-  connection: redisConnection,
-});
-
-export const blogNewsletterQueue = new Queue("blog-newsletter", {
   connection: redisConnection,
 });
 
@@ -122,52 +103,6 @@ export async function enqueueWeeklyReportEmails() {
       removeOnFail: 50,
     },
   );
-}
-
-export async function enqueueBlogNewsletterEmail(payload: {
-  subscriberId: string;
-  email: string;
-  nameVi: string | null;
-  posts: Array<{
-    id: string;
-    slug: string;
-    titleVi: string;
-    publishedAt: string | null;
-  }>;
-}) {
-  return blogNewsletterQueue.add("dispatch-blog-newsletter-email", payload, {
-    removeOnComplete: true,
-    removeOnFail: 50,
-  });
-}
-
-export async function enqueueSendBlogNewsletter(payload: {
-  subscriberId: string;
-  subscriberEmail: string;
-  nameVi: string | null;
-  postIds: string[];
-  newsletterWeekStartAt: string;
-}) {
-  const weekKey = getNewsletterWeekKey(new Date(payload.newsletterWeekStartAt));
-
-  return blogNewsletterQueue.add("send-blog-newsletter", payload, {
-    jobId: `blog-newsletter:weekly:${payload.subscriberId}:${weekKey}`,
-    removeOnComplete: true,
-    removeOnFail: 50,
-  });
-}
-
-export async function enqueueVerifyBlogNewsletterEmail(payload: {
-  subscriberId: string;
-  email: string;
-  nameVi: string | null;
-  verifyToken: string;
-}) {
-  return blogNewsletterQueue.add("verify-blog-newsletter-email", payload, {
-    jobId: `blog-newsletter:verify:${payload.verifyToken}`,
-    removeOnComplete: true,
-    removeOnFail: 50,
-  });
 }
 
 export async function enqueueVerifyBlogComment(payload: {

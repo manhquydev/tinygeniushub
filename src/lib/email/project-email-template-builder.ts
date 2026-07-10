@@ -25,8 +25,6 @@ const FEATURE_TITLES: Record<string, string> = {
   contact_form_ack: "We have received your support request",
   waitlist_confirmation: "Waitlist registration confirmation",
   waitlist_admin: "Notice of new waitlist registration",
-  blog_newsletter_verify: "Confirm newsletter subscription",
-  blog_newsletter_weekly: "Blog news this week",
   blog_comment_verify: "Confirmed comment",
   blog_comment_reply: "There is a new response to your comment",
   admin_manual_email: "Notification from support",
@@ -293,10 +291,6 @@ function resolveCtaLabel(feature: string) {
 
   if (feature === "blog_comment_verify") {
     return "Confirmed comment";
-  }
-
-  if (feature === "blog_newsletter_verify") {
-    return "Confirm registration";
   }
 
   if (feature === "blog_comment_reply") {

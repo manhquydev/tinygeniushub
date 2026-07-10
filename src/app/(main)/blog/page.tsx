@@ -10,20 +10,6 @@ import { blogService } from "@/modules/blog/blog-service";
 export const revalidate = 600;
 export const metadata = generateBlogListMetadata();
 
-type BlogPageProps = {
-  searchParams?: Promise<{
-    subscribed?: string | string[];
-    unsubscribed?: string | string[];
-  }>;
-};
-
-function firstParamValue(value: string | string[] | undefined) {
-  if (Array.isArray(value)) {
-    return value[0];
-  }
-  return value;
-}
-
 function normalizeCategoryColor(value: string | null | undefined) {
   const fallback = "#0f766e";
   if (!value) {
@@ -61,9 +47,7 @@ function getCategoryBadgeStyle(color: string | null | undefined) {
   };
 }
 
-export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const resolvedSearchParams = searchParams ? await searchParams : undefined;
-
+export default async function BlogPage() {
   const [featuredPosts, latestPostsResult, categories, trendingPosts] = await Promise.all([
     blogService.getFeaturedPosts(),
     blogService.listPosts({ page: 1, limit: 8 }),
@@ -72,32 +56,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   ]);
 
   const heroPost = featuredPosts[0] ?? latestPostsResult.posts[0] ?? null;
-  const subscribedParam = firstParamValue(resolvedSearchParams?.subscribed);
-  const subscribed = subscribedParam === "true";
-  const subscribeFailed = subscribedParam === "false";
-  const unsubscribed = firstParamValue(resolvedSearchParams?.unsubscribed) === "true";
   const hasLatestPosts = latestPostsResult.posts.length > 0;
 
   return (
     <div className="page-stack">
-      {subscribed ? (
-        <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-semibold text-emerald-700">
-          You have successfully subscribed to the newsletter.
-        </section>
-      ) : null}
-
-      {subscribeFailed ? (
-        <section className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold text-amber-700">
-          The newsletter validation link is invalid or has expired.
-        </section>
-      ) : null}
-
-      {unsubscribed ? (
-        <section className="rounded-2xl border border-sky-200 bg-sky-50 p-4 text-sm font-semibold text-sky-700">
-          You have unsubscribed from the newsletter.
-        </section>
-      ) : null}
-
       {heroPost ? <BlogCardFeatured post={heroPost} /> : null}
 
       <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
