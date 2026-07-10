@@ -9,11 +9,9 @@ import { AdminEmptyState } from "@/components/admin/ui/admin-empty-state";
 import { getVisibleAdminModules } from "@/components/admin/admin-module-catalog";
 import { AdminStatsHeader } from "@/components/admin-stats-header";
 import { getAdminSession } from "@/modules/admin/admin-auth-service";
-import {
-  getAdminLearningAnalytics,
-  getAdminOverview,
-  getAdminRetentionAnalytics,
-} from "@/modules/admin/service";
+import { getAdminLearningAnalytics } from "@/modules/admin/admin-learning-analytics-service";
+import { getAdminOverview } from "@/modules/admin/admin-overview-service";
+import { getAdminRetentionAnalytics } from "@/modules/admin/admin-retention-analytics-service";
 import { translate, type TranslationValues } from "@/i18n/translator";
 import { resolveAppLocale } from "@/i18n/locales";
 
