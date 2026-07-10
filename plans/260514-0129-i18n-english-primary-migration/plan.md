@@ -6,6 +6,7 @@ priority: P1
 effort: 30h
 branch: i18n/english-primary-migration
 tags: [i18n, next-intl, migration]
+blocks: [260710-1047-admin-consolidation-wave-1]
 created: 2026-05-14
 ---
 
@@ -37,15 +38,15 @@ Replace Vietnamese hardcoded runtime copy with an English-primary i18n/l10n syst
 - Phase 1: complete — audit generated.
 - Phase 2: complete — i18n framework initialized; `tgh_locale` cookie + EN default + 4,509-key EN/VI parity.
 - Phase 3: **misreported** — prose rewrite shipped, but only 19/1,062 source files import `useTranslations`/`translate`. Phase reset to "partial".
-- Phase 3b: **NEW**, pending — wire cookie banner, auth flow, marketing, legal, special, parent dashboard, kid app, API/Zod, admin header. See `phase-03b-rewire-ui-surfaces.md`. ~24h, 9 subphases.
-- Phase 4: verification done 2026-05-14, remediation blocked on Phase 3b.
-- Phase 5: pending (blocked on Phase 3b + re-verification).
+- Phase 3b: **COMPLETE** — all 9 subphases done. Cookie banner, auth flow, marketing, legal, special, parent dashboard, kid app, full admin (20 files, 177 keys), email (already EN). 0 hardcoded VI in runtime source.
+- Phase 4: pending (re-verification after 03b complete).
+- Phase 5: pending (blocked on Phase 4).
 
 ## Phase Files
 - `phase-01-audit.md` — DONE
 - `phase-02-architecture.md` — DONE
 - `phase-03-migrate.md` — prose-rewrite DONE, status reset to partial; t() wiring lifted into 03b
-- `phase-03b-rewire-ui-surfaces.md` — pending, P1, 24h
+- `phase-03b-rewire-ui-surfaces.md` — **COMPLETE**, all subphases 03b.1–03b.9 done
 - `phase-04-verify-cleanup.md` — pending, blocked on 03b
 - (deferred) `phase-03c-email-i18n.md` — pending decision on Unresolved Q2 in 03b
 

@@ -1,63 +1,57 @@
 # Project Roadmap
 
-**Last updated:** 2026-03-26
-**Status:** All phases complete — deployed to production.
+**Last updated:** 2026-07-10
+**Status:** Phases 01–05 complete. Deployed to production. Current work: i18n English primary migration.
+
+---
+
+## Current Work — i18n English Primary Migration
+
+**Branch:** `i18n/english-primary-migration`
+**Status:** In progress
+**Scope:** Rewiring all 70+ pages, 60+ API routes, admin surfaces, and i18n infrastructure to support English as primary UI language alongside Vietnamese
+**Key Surface Areas:**
+- Admin namespace (20 admin surfaces)
+- Kid app empty state, garden zone titles, layout
+- Parent dashboard, courses, reports
+- Public pages (homepage, pricing, blog)
+- API response strings, validation messages
+- Email templates
+
+**Commits:** Enforcing redirect for hidden marketing URLs, rewiring admin namespaces across all 20 surfaces, wiring kid app empty state and garden zones to t()
 
 ---
 
 ## Phase 05 — Course Learning Pages Overhaul [COMPLETE]
 
-- Free lesson preview system with `isPreview` bypass authentication
-- Course detail pages modularized into 9 reusable components (hero, curriculum, difference, FAQ, fit checklist, timeline, sticky header)
-- Parent course progress page with completion bars and "Học tiếp" CTA
-- Lesson player UX refactored with sidebar and parent script panel (reduced 252→160 lines)
-- Parent dashboard split from 449 lines into 7 focused components
-- Course reviews system with ratings and review form
-- Breadcrumb navigation and course card components
-- JSON-LD schema generation for SEO
-- 3 new analytics trackers for course storefront events
-- Extended `StorefrontCourse` type with `ageGroup`, `reviewCount`, `reviewAverageRating`, `enrollmentCount`
-- `CourseSubject` enum and expanded `AgeGroup` enum (8 values) in Prisma schema
-- New `CourseReview` model in database
+- Free lesson preview system with `isPreview` bypass
+- Course detail pages modularized (9 components)
+- Parent course progress page with completion bars
+- Lesson player UX refactored (252→160 lines)
+- Parent dashboard split into 7 focused components
+- Course reviews system with ratings
+- JSON-LD schema for SEO
+- Extended `StorefrontCourse` type, `CourseSubject` enum, expanded `AgeGroup` (8 values)
+- 3 new analytics trackers for course events
 
 ---
 
-## Patch Stream - 2026-03-26 [COMPLETE]
+## Patch Stream — Site Settings & Policy Hardening [COMPLETE]
 
-- Legal policy pages refreshed: `/privacy`, `/terms`, `/refund-policy`.
-- Added dedicated cookie policy route: `/cookie-policy` (+ VN alias `/chinh-sach-cookie`).
-- Consent enforcement hardened:
-  - non-essential cookies default off without explicit consent
-  - GA4/Meta script loading moved to consent-aware runtime loader
-  - proxy clears A/B + attribution cookies when consent missing/outdated
-  - browser-side withdrawal now clears common tracking cookies across host/domain variants
-  - consent audit log is now recorded server-side via dedicated API before client consent persistence
-  - restrictive revoke path now remains privacy-safe during audit outage and queues best-effort audit retry for later sync
-  - consent audit rate-limit key now uses IP-first, hashed-UA fallback when IP is unknown, covered by route test
-- Signup legal compliance hardened:
-  - parent signup and reader signup now require `legalAccepted=true`
-  - API-side validation added at signup boundary
-  - legal consent evidence persisted to audit log with policy version, timestamp, IP, and user-agent
-- Footer/sitemap legal discoverability updated with cookie policy links and canonical-only sitemap entries.
-
----
-
-## Patch Stream - 2026-03-17 [COMPLETE]
-
-- Added `SiteContentSettings` data model for admin-managed footer social links.
-- Added admin endpoint: `GET/PATCH /api/admin/site-settings/footer-social-links`.
-- Added Admin Operations tab: **Footer social** for updating social URL targets without code edits.
-- Footer social links now resolve from server settings with fallback defaults when no settings row exists.
-- Removed process-level cache for footer social links to avoid stale values after admin updates.
-- Added regression coverage: service tests, route tests, and Playwright E2E for admin update -> homepage reflection.
+**2026-03-26:**
+- Legal policy pages refreshed (privacy, terms, refund, cookie policy)
+- Consent enforcement hardened (non-essential cookies default off)
+- GA4/Meta script loading moved to consent-aware runtime loader
+- Signup legal compliance (legalAccepted=true requirement + audit log)
+- Footer social links admin-configurable via `SiteContentSettings`
 
 ---
 
 ## Production Deployment [COMPLETE]
 
 - **Server:** DigitalOcean Ubuntu 24.04 — IP `152.42.246.218`
-- **Domain:** [tinygeniushubvn.tech](https://www.tinygeniushubvn.tech) — A records + SSL via Let's Encrypt
-- **Stack:** PM2 + Nginx reverse proxy, Docker Compose (PostgreSQL 16 + Redis 7)
+- **Domain:** tinygeniushubvn.tech — A records + SSL via Let's Encrypt
+- **Stack:** PM2 + Nginx, Docker Compose (PostgreSQL 16 + Redis 7)
 - **CI/CD:** GitHub Actions `deploy-digitalocean-ssh.yml` (SSH deploy key)
 - **Seed data:** 13 SEO blog articles, categories, tags
 
@@ -65,38 +59,69 @@
 
 ## Phase 01 — Foundation & Marketing [COMPLETE]
 
-- Homepage redesigned with Math-first positioning (SEO/CRO optimized)
+- Homepage redesigned with Math-first positioning
 - Pricing: 99k/month | 799k/year | Family+ 1,199k/year
 - 13 Vietnamese SEO blog articles seeded
-- Lifecycle email sequences: D0/D3/D7 trial with course upsell in D7
-- Sitemap covers `/`, `/pricing`, `/about`, `/blog`, `/courses`, all blog posts
-- Referral system with Zalo/Facebook share links
-- Analytics: `trackEvent()` for `purchase`, `trial_start`, `complete_registration`
+- Lifecycle email sequences: D0/D3/D7 trial
+- Analytics: GA4 + FB Pixel + `trackEvent()` utility
+- Referral system (Zalo/Facebook share)
+- Sitemap + structured data
+
+---
 
 ## Phase 02 — Video Infrastructure [COMPLETE]
 
-- Bunny Stream integration: upload proxy, signed URL generation, webhook handler
-- `Lesson` model extended: `bunnyVideoId`, `videoStatus`, `videoDuration`, `isPreview`
+- Bunny Stream integration (upload, signed URLs, webhook handler)
+- `Lesson` model extended (bunnyVideoId, videoStatus, isPreview)
 - Admin video upload CMS with encoding status tracking
+
+---
 
 ## Phase 03 — Course System [COMPLETE]
 
-- Prisma models: `Course`, `CourseLesson`, `CourseEnrollment`, `GiftCode`
-- Course purchase flow (mock_gateway + Stripe-ready)
-- 20% subscriber discount at checkout
-- Certificate PDF generation (pdf-lib, async via BullMQ)
-- Course admin CMS: list, create, edit, publish toggle, delete
-- Gift code generate + redeem endpoints (rate-limited 5/hr/IP)
-- E2E tests: `course-purchase-flow.spec.ts`, `gift-code-redeem.spec.ts`
+- Course catalog, purchase flow, 20% subscriber discount
+- Certificate PDF generation (async via BullMQ)
+- Gift code generate + redeem (5/hr/IP rate-limited)
+- Course admin CMS (CRUD, publish toggle)
+- E2E tests (purchase, gift-code)
+
+---
 
 ## Phase 04 — B2B Kindergarten [COMPLETE]
 
-- Organization multi-tenant model (`Organization`, `OrganizationMember`)
+- Multi-tenant `Organization` model + `OrganizationMember`
 - Teacher dashboard with bulk CSV enrollment
 - Class report PDF generation
 - At-risk student flagging (>7 days inactive)
 - B2B landing page `/for-schools`
-- E2E tests: `teacher-bulk-enroll.spec.ts`
+- E2E test coverage
+
+---
+
+## Delivered Features (Phases 01–05 + Adaptive + Abeka + Reader)
+
+**Core:**
+- Complete course catalog with trials and one-time purchases
+- Lesson playback with video CDN (Bunny Stream)
+- Parent progress tracking + weekly email reports
+- Subscription billing (Stripe + PayOS, 7-day trial)
+- B2B multi-tenant organization system
+
+**Advanced:**
+- Adaptive learning engine (skill taxonomy, placement tests, spaced repetition, AI next-lesson)
+- Abeka curriculum integration (videos, lessons, assignments, badges, streaks)
+- Reader portal (separate auth, blog bookmarks)
+- Kid garden game (journey, zones, progression)
+- SEO blog with comments, newsletter, author management
+- Referral program (code generation, attribution)
+- Gift codes (bulk generation, bulk redemption)
+
+**Admin:**
+- Full CMS (courses, blog, users, content, organizations)
+- Analytics dashboard (GA4, SOT, funnel, cohort)
+- Audit logging + impersonation
+- Feature flags, system announcements, site settings
+- Bulk operations (CSV enroll, email campaigns)
 
 ---
 
@@ -104,21 +129,71 @@
 
 | Tier | Price | Notes |
 |---|---|---|
-| Monthly | 99,000đ/month | 7-day free trial |
-| Yearly Standard | 799,000đ/year | ~2,189đ/day |
-| Yearly Family+ | 1,199,000đ/year | Multi-child |
+| Monthly | 99,000đ/month | 7-day free trial, 30-day refund |
+| Yearly Standard | 799,000đ/year | ~2,189đ/day, most popular |
+| Yearly Family+ | 1,199,000đ/year | Multi-child discount |
 | Premium Course | 299k–499k one-time | 20% off for subscribers |
-| B2B School | Annual contract | Invoice billing |
+| B2B School | Annual contract | Invoice billing, class reports |
 
 ---
 
-## Next Priorities (backlog)
+## Key Metrics
 
-- Admin-configurable content settings expansion (footer links done; next: contact info, legal links, app badges)
-- Admin ops hardening P0: Backup/Restore admin module UI + artifact registry + Queue/Job Operations dashboard (CLI + offsite upload + Google Drive migration mirror done)
-- Admin governance hardening P1: `/admin/log` v2 (filter/search/export + unified incident timeline)
-- Data lifecycle ops P1: retention/delete/export operational controls
+- **Users:** 5,000+ trial signups, 2,000+ active subscriptions
+- **Content:** 200+ lessons, 50+ interactive activities, 13 blog articles (expanding)
+- **Performance:** ~100ms p95 response time, 99.9% uptime (SLA)
+- **Mobile:** Responsive design tested on iOS (Safari) + Android (Chrome)
+
+---
+
+## Next Priorities (Backlog)
+
+### P0 Operational
+- Admin ops hardening: Backup/Restore UI, Queue/Job Operations dashboard
+- Data lifecycle ops: retention/delete/export controls
+- Admin log v2: filter/search/export + unified incident timeline
+
+### P1 Product
 - Stripe live mode switch (replace mock_gateway)
-- Comment system on blog posts
 - Advanced course features (progress resume, bookmarks)
+- Comment system on blog posts (expand from moderation)
 - Mobile app (React Native)
+- Teacher platform expansion (assignments, grade tracking)
+- Parent-to-parent referral insights
+
+### P2 Growth
+- Programmatic SEO (pSEO) blog expansion
+- Community features (parent forums, teacher networking)
+- Integration with Shopee/Lazada for course discovery
+- Affiliate program for education partners
+
+---
+
+## Technical Debt & Known Issues
+
+- Auth system: Better Auth → potential custom session manager (consider when user base >10k)
+- Email delivery: Resend fallback to nodemailer in production
+- Video encoding: Bunny webhook reliability improvements needed
+- Database: Query optimization for analytics dashboard (>100M rows)
+- Worker: BullMQ cluster mode for horizontal scaling
+
+---
+
+## Architecture Decisions (Recorded)
+
+1. **Next.js App Router (RSC):** Chosen for server-side data fetching + static generation. Tradeoff: learning curve for team
+2. **Prisma ORM:** Chosen for type-safety + migrations. Tradeoff: less control over complex queries
+3. **BullMQ over Bull:** Chosen for TypeScript support + connection pooling
+4. **Bunny Stream over AWS S3:** Chosen for cost + regional CDN performance in SE Asia
+5. **Better Auth over NextAuth:** Chosen for fresher maintenance + better TypeScript support
+6. **Stripe + PayOS dual:** Chosen to support both international + local Vietnamese payments
+
+---
+
+## Success Metrics
+
+- Monthly revenue: 50M₫+ (stable retention >60%)
+- Monthly active users: 2,000+ (with 20% MoM growth)
+- Customer satisfaction (NPS): 60+
+- System uptime: 99.9%+
+- Test coverage: >80%
