@@ -1,7 +1,7 @@
 import { AdminExportData } from "@/components/admin-export-data";
 import { AdminOperationsTabs } from "@/components/admin-operations-tabs";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
-import { getAdminOverview } from "@/modules/admin/service";
+import { getAdminOverview } from "@/modules/admin/admin-overview-service";
 import { prisma } from "@/lib/db";
 import { Settings2 } from "lucide-react";
 import { getLocale } from "next-intl/server";

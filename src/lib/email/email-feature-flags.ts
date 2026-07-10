@@ -18,11 +18,6 @@ export const EMAIL_FEATURE_FLAG_DEFINITIONS: EmailFeatureFlagDefinition[] = [
     featureTags: ["lifecycle"],
   },
   {
-    key: "EMAIL_MARKETING_BLOG_NEWSLETTER_ENABLED",
-    description: "Enable/disable blog email newsletter (subscription confirmation + weekly newsletter).",
-    featureTags: ["blog_newsletter_verify", "blog_newsletter_weekly"],
-  },
-  {
     key: "EMAIL_BLOG_COMMENT_NOTIFICATIONS_ENABLED",
     description: "Enable/disable comment verification emails and blog comment response notifications.",
     featureTags: ["blog_comment_verify", "blog_comment_reply"],

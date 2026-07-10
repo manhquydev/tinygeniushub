@@ -1,7 +1,6 @@
 ﻿import { createPortfolioRetentionWorker } from "@/worker/jobs/purge-expired-media";
 import { createWeeklyReportsWorker } from "@/worker/jobs/generate-weekly-reports";
 import { createWeeklyReportEmailsWorker } from "@/worker/jobs/dispatch-weekly-report-emails";
-import { createBlogNewsletterWorker } from "@/worker/jobs/dispatch-blog-newsletter-emails";
 import { createVerifyBlogCommentEmailWorker } from "@/worker/jobs/verify-blog-comment-email";
 import { createNotifyBlogCommentReplyWorker } from "@/worker/jobs/notify-blog-comment-reply";
 import { createLifecycleEmailsWorker } from "@/worker/jobs/dispatch-lifecycle-emails";
@@ -14,7 +13,6 @@ import { logError, logInfo } from "@/lib/observability/logger";
 const weeklyWorker = createWeeklyReportsWorker();
 const retentionWorker = createPortfolioRetentionWorker();
 const weeklyEmailWorker = createWeeklyReportEmailsWorker();
-const blogNewsletterWorker = createBlogNewsletterWorker();
 const verifyBlogCommentEmailWorker = createVerifyBlogCommentEmailWorker();
 const notifyBlogCommentReplyWorker = createNotifyBlogCommentReplyWorker();
 const lifecycleEmailWorker = createLifecycleEmailsWorker();
@@ -36,12 +34,6 @@ retentionWorker.on("completed", (job) => {
 
 weeklyEmailWorker.on("completed", (job) => {
   logInfo("worker.weekly_report_email.completed", {
-    jobId: job.id,
-  });
-});
-
-blogNewsletterWorker.on("completed", (job) => {
-  logInfo("worker.blog_newsletter_email.completed", {
     jobId: job.id,
   });
 });
@@ -100,13 +92,6 @@ retentionWorker.on("failed", (job, error) => {
 
 weeklyEmailWorker.on("failed", (job, error) => {
   logError("worker.weekly_report_email.failed", {
-    jobId: job?.id,
-    error,
-  });
-});
-
-blogNewsletterWorker.on("failed", (job, error) => {
-  logError("worker.blog_newsletter_email.failed", {
     jobId: job?.id,
     error,
   });
@@ -202,7 +187,6 @@ process.on("SIGINT", async () => {
     weeklyWorker.close(),
     retentionWorker.close(),
     weeklyEmailWorker.close(),
-    blogNewsletterWorker.close(),
     verifyBlogCommentEmailWorker.close(),
     notifyBlogCommentReplyWorker.close(),
     lifecycleEmailWorker.close(),

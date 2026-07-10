@@ -1,5 +1,5 @@
 ﻿import type { NextRequest } from "next/server";
-import { requireAdminFromRequest } from "@/lib/auth/admin";
+import { requireSuperAdmin } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
@@ -27,7 +27,7 @@ export async function PATCH(
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    await requireAdminFromRequest(request);
+    await requireSuperAdmin(request);
     const { id } = await params;
     const body = updateOrgSchema.parse(await request.json());
     const org = await updateOrganization(id, {
@@ -54,7 +54,7 @@ export async function DELETE(
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    await requireAdminFromRequest(request, ["SUPER_ADMIN"]);
+    await requireSuperAdmin(request);
     const { id } = await params;
     const existing = await getOrganization(id);
     if (!existing) {

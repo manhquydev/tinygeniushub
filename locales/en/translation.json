@@ -5341,6 +5341,37 @@
       "roleSuperAdmin": "Super admin",
       "roleStaffAdmin": "Staff admin"
     },
+    "navGroup": {
+      "core-control": "Core Control",
+      "operations": "Operations",
+      "publishing": "Publishing",
+      "governance": "Governance"
+    },
+    "nav": {
+      "overview": { "title": "Overview" },
+      "analytics": { "title": "Analytics" },
+      "users": { "title": "Users" },
+      "courses": { "title": "Courses" },
+      "content": { "title": "Content" },
+      "operations": { "title": "Operations" },
+      "gift-codes": { "title": "Gift Codes" },
+      "site-settings": { "title": "Site Settings" },
+      "blog": {
+        "title": "Blog CMS",
+        "posts": "Posts",
+        "categories": "Categories",
+        "authors": "Authors",
+        "analytics": "Analytics",
+        "comments": "Comments"
+      },
+      "organizations": { "title": "Organizations" },
+      "staff": { "title": "Staff" },
+      "security": { "title": "Security" },
+      "audit-log": { "title": "Audit Log" },
+      "impersonation": { "title": "Impersonation" },
+      "skills-mapping": { "title": "Skills Mapping" },
+      "feature-flags": { "title": "Feature Flags" }
+    },
     "overview": {
       "title": "Admin Command Center",
       "description": "Module operating table according to maturity level, operational health and core business indicators.",
@@ -5366,10 +5397,15 @@
     },
     "security": {
       "title": "System security",
-      "description": "DDoS mode, rate limits, IP blocklist and feature flags.",
+      "description": "DDoS mode, rate limits, and IP blocklist.",
       "eyebrow": "System Governance",
       "openEmailVerification": "Open the email verification module",
       "superAdminOnly": "SUPER_ADMIN only"
+    },
+    "featureFlags": {
+      "title": "Feature Flags",
+      "description": "Toggle platform feature flags and rollout controls.",
+      "eyebrow": "System Governance"
     },
     "skills": {
       "title": "Skills Mapping",
@@ -5452,7 +5488,7 @@
     },
     "blog": {
       "title": "Blog Management",
-      "description": "Content, newsletter and blog analytics.",
+      "description": "Content and blog analytics.",
       "viewPublicBlog": "View public blog",
       "writeNewPost": "Write a new post",
       "writeNewPostDesc": "Create a blog post now",
@@ -5463,12 +5499,10 @@
       "quickManagement": "Quick management",
       "navCategories": "Category",
       "navAuthors": "Author",
-      "navNewsletter": "Newsletter",
       "navAnalytics": "Blog Analysis",
       "navComments": "Comment",
       "statPublished": "Published",
       "statDraft": "Draft",
-      "statSubscribers": "Subscriber",
       "statTotalViews": "Total views",
       "posts": {
         "title": "Article management",
@@ -5512,21 +5546,6 @@
         "description": "Browse or mark pending comments as spam.",
         "empty": "There are no comments pending approval."
       },
-      "newsletter": {
-        "title": "Newsletter subscribers",
-        "description": "Manage the list that has been authenticated to receive the newsletter.",
-        "statActive": "Receiving newsletter",
-        "statUnsubscribed": "Unsubscribed",
-        "colEmail": "Email",
-        "colName": "Name",
-        "colDate": "Registration time",
-        "colVerified": "Authentic",
-        "verifiedBadge": "Verified",
-        "empty": "There are no subscribers.",
-        "previousPage": "Before",
-        "nextPage": "After",
-        "pageInfo": "Page {current}/{total}"
-      },
       "newPost": {
         "title": "Create new post"
       },
@@ -5538,7 +5557,6 @@
         "description": "Track view, engagement, and subscriber growth.",
         "statTotalViews": "Total views",
         "statTotalLikes": "Total likes",
-        "statSubscribers": "Active subscriber",
         "statPublished": "Article published",
         "colPost": "Article",
         "colView": "View",

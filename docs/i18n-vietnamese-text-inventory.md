@@ -1,6 +1,6 @@
 # Vietnamese Text Inventory
 
-Generated: 2026-05-14T18:54:28.827Z
+Generated: 2026-05-14T21:27:25.279Z
 
 ## Scope
 
@@ -10,17 +10,18 @@ Generated: 2026-05-14T18:54:28.827Z
 
 ## Summary
 
-- Files scanned: 17225
-- Vietnamese-containing lines: 6106
+- Files scanned: 17227
+- Vietnamese-containing lines: 6353
 
 ### By Area
 
 - docs-data-assets: 6075
-- runtime-source: 31
+- runtime-source: 278
 
 ### By Top Directory
 
 - docs: 5985
+- scripts: 247
 - assets: 76
 - src: 31
 - data: 14
@@ -29,6 +30,7 @@ Generated: 2026-05-14T18:54:28.827Z
 
 - .md: 5273
 - .json: 644
+- .mjs: 247
 - .sql: 122
 - .svg: 36
 - .tsx: 31
@@ -45,6 +47,7 @@ Generated: 2026-05-14T18:54:28.827Z
 - docs/api/littlefox/FS0076.json: 180
 - docs/business/free-tools-strategy-vietnam.md: 178
 - docs/research/abeka-content-mapping-analysis.md: 171
+- scripts/i18n/add-admin-namespace.mjs: 166
 - docs/research/vietnam-market-phase2-synthesis-report.md: 161
 - docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/uiux-parent-course-clarity-audit.md: 154
 - docs/review/package-design-review.md: 133
@@ -58,6 +61,7 @@ Generated: 2026-05-14T18:54:28.827Z
 - docs/business/go-to-market-sales-playbook.md: 92
 - docs/handover/packages/2026-03-19-parent-course-clarity-package/03-implementation-brief/courses-ui-content-blueprint.md: 84
 - docs/marketing/blog-drafts/blog-02-so-sanh-app-hoc-tieng-anh-cho-be.md: 81
+- scripts/i18n/add-parent-namespace.mjs: 81
 - docs/PRODUCTION-SETUP-SUMMARY.md: 79
 - docs/DOCUMENTATION-ASSESSMENT-FINAL.md: 77
 - docs/handover/packages/2026-03-19-parent-course-clarity-package/02-agent-reports/planner-parent-course-clarity-plan.md: 75
@@ -133,8 +137,6 @@ Generated: 2026-05-14T18:54:28.827Z
 - assets/logos/cungcontuhoc-2026-02-21/logo-cungcontuhoc-wordmark.svg: 3
 - docs/api/littlefox/FS0020/005.json: 3
 - docs/api/littlefox/FS0020/006.json: 3
-- docs/api/littlefox/FS0020/007.json: 3
-- docs/api/littlefox/FS0020/008.json: 3
 
 ## Findings
 
@@ -6843,6 +6845,259 @@ Generated: 2026-05-14T18:54:28.827Z
 - docs-data-assets:23909: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_c7bd997d7715f18f', 'col_8c5999ad2228a1d6', 69, '69. Eva Perón', 'Superstars in History 33: Eva Perón', 'https://cdn.littlefox.com/contents_5/hls/1080/cb21265a88/1671165973cf79ae6addba60ad018347359bd144d2/stream.m3u8?_=1671166045', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0009155&cn=0', `
 - docs-data-assets:32105: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_897953091d85ee07', 'col_cdf55ae55f2eee62', 2, '2. Tone Change Rules 2: Tone Change Rules with Yī', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/784c88d828/15730041396c990b7aca7bc7058f5e98ea909e924b/stream.m3u8?_=1573004139', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0007100&cn`
 - docs-data-assets:32106: `INSERT INTO content_video (video_key, collection_key, item_order, title, description, video_url, stream_type, host, ext, api_url, subtitle_url, image_url, raw_json) VALUES ('vid_688c5b3a9c2b346e', 'col_cdf55ae55f2eee62', 3, '3. Tone Change Rules 3: Tone Change Rules with Bù', NULL, 'https://cdn.littlefox.com/contents_5/cn/hls/1080/7c154d27c8/15730042668e930496927757aac0dbd2438cb3f4f6/stream.m3u8?_=1573004267', 'hls', 'cdn.littlefox.com', 'm3u8', 'https://hoctienganh.xyz/api/playlf?id=C0007101&cn`
+
+### scripts/i18n/add-admin-namespace.mjs
+
+- runtime-source:247: `metadataTitle: "Đăng nhập Admin",`
+- runtime-source:250: `title: "Quản trị hệ thống",`
+- runtime-source:255: `title: "Trung tâm điều hành",`
+- runtime-source:257: `"Bảng vận hành module theo cấp độ trưởng thành, tình trạng sức khỏe và chỉ số kinh doanh cốt lõi.",`
+- runtime-source:258: `eyebrow: "Phiên đánh giá",`
+- runtime-source:259: `moduleMap: "Bản đồ hoàn thiện module",`
+- runtime-source:260: `moduleComplete: "{count} hoàn chỉnh",`
+- runtime-source:261: `modulePartial: "{count} một phần",`
+- runtime-source:262: `moduleGap: "{count} thiếu",`
+- runtime-source:263: `subscriptionSection: "Trạng thái đăng ký",`
+- runtime-source:264: `subscriptionEmpty: "Chưa có dữ liệu đăng ký.",`
+- runtime-source:265: `webhookSection: "Trạng thái webhook",`
+- runtime-source:266: `webhookEmpty: "Chưa có dữ liệu webhook.",`
+- runtime-source:267: `referralSection: "Giới thiệu và liên kết",`
+- runtime-source:268: `referralCode: "Mã giới thiệu",`
+- runtime-source:269: `referralReturns: "Lượt quay lại",`
+- runtime-source:270: `referralPaid: "Giới thiệu có trả phí",`
+- runtime-source:271: `referralRewards: "Phần thưởng đã cấp",`
+- runtime-source:274: `title: "Vận hành hệ thống",`
+- runtime-source:275: `description: "Thanh toán, webhook, cờ thử nghiệm, thông báo và dữ liệu xuất.",`
+- runtime-source:279: `title: "Bảo mật hệ thống",`
+- runtime-source:280: `description: "Chế độ DDoS, giới hạn tốc độ, danh sách chặn IP và cờ tính năng.",`
+- runtime-source:281: `eyebrow: "Quản trị hệ thống",`
+- runtime-source:282: `openEmailVerification: "Mở module xác minh email",`
+- runtime-source:283: `superAdminOnly: "Chỉ SUPER_ADMIN",`
+- runtime-source:286: `title: "Bản đồ kỹ năng",`
+- runtime-source:287: `description: "Quản lý phân loại kỹ năng học tập và ánh xạ bài học.",`
+- runtime-source:288: `eyebrow: "Quản trị",`
+- runtime-source:291: `title: "Đăng nhập thay",`
+- runtime-source:293: `"Mô phỏng phiên đăng nhập người dùng để hỗ trợ hoặc gỡ lỗi. Chỉ Super Admin.",`
+- runtime-source:294: `eyebrow: "Hệ thống",`
+- runtime-source:297: `title: "Cài đặt trang",`
+- runtime-source:299: `"Quản lý liên kết mạng xã hội và cài đặt nội dung hiển thị trên website.",`
+- runtime-source:300: `eyebrow: "Cài đặt trang",`
+- runtime-source:303: `title: "Phân tích quản lý",`
+- runtime-source:305: `"Tổng quan toàn diện về hoạt động học tập, doanh thu và chỉ số người dùng.",`
+- runtime-source:306: `eyebrow: "Bảng phân tích thống nhất",`
+- runtime-source:307: `filterLabel: "Lọc:",`
+- runtime-source:308: `refreshButton: "Làm mới",`
+- runtime-source:309: `loadingText: "Đang tải dữ liệu phân tích...",`
+- runtime-source:310: `errorRetry: "Thử lại",`
+- runtime-source:311: `noTrendData: "Không có dữ liệu xu hướng",`
+- runtime-source:312: `trendsOverTime: "Xu hướng theo thời gian",`
+- runtime-source:313: `exportCsv: "Xuất CSV",`
+- runtime-source:315: `overview: "Tổng quan",`
+- runtime-source:316: `learning: "Học tập",`
+- runtime-source:318: `retention: "Giữ chân",`
+- runtime-source:319: `realtime: "Thời gian thực",`
+- runtime-source:320: `content: "Nội dung",`
+- runtime-source:323: `activeUser: "Người dùng hoạt động",`
+- runtime-source:324: `activeSession: "Phiên đang hoạt động",`
+- runtime-source:325: `revenue30d: "Tổng doanh thu 30 ngày",`
+- runtime-source:326: `retentionRate: "Tỷ lệ giữ chân",`
+- runtime-source:327: `parents: "Phụ huynh",`
+- runtime-source:328: `children: "Tổng học sinh",`
+- runtime-source:329: `referralCode: "Mã giới thiệu",`
+- runtime-source:330: `coursesOrdered: "Khóa học lẻ (30 ngày)",`
+- runtime-source:332: `recentPayments: "Thanh toán gần đây",`
+- runtime-source:333: `recentWebhooks: "Sự kiện Webhook gần đây",`
+- runtime-source:334: `colParent: "Phụ huynh",`
+- runtime-source:335: `colAmount: "Số tiền",`
+- runtime-source:336: `colStatus: "Trạng thái",`
+- runtime-source:337: `colProvider: "Nhà cung cấp",`
+- runtime-source:338: `colTime: "Thời gian",`
+- runtime-source:339: `noPayments: "Chưa có thanh toán nào",`
+- runtime-source:340: `noWebhooks: "Chưa có sự kiện webhook nào",`
+- runtime-source:341: `activeStudents: "Học sinh hoạt động",`
+- runtime-source:342: `last7Days: "7 ngày",`
+- runtime-source:343: `last30Days: "30 ngày",`
+- runtime-source:344: `lessonSummary: "Tóm tắt bài học (30 ngày)",`
+- runtime-source:345: `lessonsCompleted: "Bài học hoàn thành",`
+- runtime-source:346: `minutesPerDay: "Phút / bé / ngày",`
+- runtime-source:347: `streakDistribution: "Phân phối ngày học liên tiếp",`
+- runtime-source:348: `totalStudents: "Tổng: {total} học sinh",`
+- runtime-source:349: `streak0: "0 ngày",`
+- runtime-source:350: `streak1to3: "1-3 ngày",`
+- runtime-source:351: `streak4to7: "4-7 ngày",`
+- runtime-source:352: `streak7plus: "Trên 7 ngày",`
+- runtime-source:353: `topLessons: "Bài học phổ biến nhất",`
+- runtime-source:354: `colTitle: "Tiêu đề",`
+- runtime-source:355: `colCompletions: "Lượt hoàn thành",`
+- runtime-source:356: `noLessons: "Không có dữ liệu hoàn thành trong 30 ngày qua.",`
+- runtime-source:357: `newParents7d: "Phụ huynh mới (7 ngày)",`
+- runtime-source:358: `buyerParents30d: "Phụ huynh mua khóa học (30 ngày)",`
+- runtime-source:359: `daysToFirstLesson: "Số ngày đến bài học đầu tiên",`
+- runtime-source:360: `sotAnalytics: "Phân tích SoT",`
+- runtime-source:361: `conversionRate: "Tỷ lệ chuyển đổi (7 ngày)",`
+- runtime-source:362: `checkoutToPurchase: "Thanh toán → Mua hàng",`
+- runtime-source:363: `videoCompleted: "Video hoàn thành",`
+- runtime-source:364: `ga4Sessions: "Phiên GA4",`
+- runtime-source:365: `lastUpdated: "Cập nhật lần cuối: {timestamp}",`
+- runtime-source:368: `title: "Quản lý Blog",`
+- runtime-source:369: `description: "Nội dung, bản tin và phân tích blog.",`
+- runtime-source:370: `viewPublicBlog: "Xem blog công khai",`
+- runtime-source:371: `writeNewPost: "Viết bài mới",`
+- runtime-source:372: `writeNewPostDesc: "Tạo bài blog ngay",`
+- runtime-source:373: `articleManagement: "Quản lý bài viết",`
+- runtime-source:374: `articlesDesc: "{published} đã xuất bản, {draft} bản nháp",`
+- runtime-source:375: `mostViewedArticle: "Bài viết xem nhiều nhất",`
+- runtime-source:376: `viewArticle: "Xem bài →",`
+- runtime-source:377: `quickManagement: "Quản lý nhanh",`
+- runtime-source:378: `navCategories: "Danh mục",`
+- runtime-source:379: `navAuthors: "Tác giả",`
+- runtime-source:380: `navNewsletter: "Bản tin",`
+- runtime-source:381: `navAnalytics: "Phân tích Blog",`
+- runtime-source:382: `navComments: "Bình luận",`
+- runtime-source:383: `statPublished: "Đã xuất bản",`
+- runtime-source:384: `statDraft: "Bản nháp",`
+- runtime-source:385: `statSubscribers: "Người đăng ký",`
+- runtime-source:386: `statTotalViews: "Tổng lượt xem",`
+- runtime-source:388: `title: "Quản lý bài viết",`
+- runtime-source:389: `description: "Lọc theo trạng thái hoặc tiêu đề.",`
+- runtime-source:390: `writeNewPost: "Viết bài mới",`
+- runtime-source:391: `allStatuses: "Tất cả trạng thái",`
+- runtime-source:392: `filterButton: "Lọc",`
+- runtime-source:393: `searchPlaceholder: "Tìm tiêu đề",`
+- runtime-source:394: `previousPage: "Trước",`
+- runtime-source:396: `statusDraft: "Bản nháp",`
+- runtime-source:397: `statusReview: "Chờ duyệt",`
+- runtime-source:398: `statusPublished: "Đã xuất bản",`
+- runtime-source:399: `statusScheduled: "Lên lịch",`
+- runtime-source:400: `statusArchived: "Lưu trữ",`
+- runtime-source:403: `title: "Quản lý tác giả blog",`
+- runtime-source:404: `colName: "Tên",`
+- runtime-source:405: `colRole: "Vai trò",`
+- runtime-source:407: `colActivate: "Kích hoạt",`
+- runtime-source:408: `colPostCount: "Số bài viết",`
+- runtime-source:409: `active: "Bật",`
+- runtime-source:410: `inactive: "Tắt",`
+- runtime-source:413: `title: "Quản lý danh mục blog",`
+- runtime-source:415: `colName: "Tên",`
+- runtime-source:417: `colColor: "Màu sắc",`
+- runtime-source:418: `colOrder: "Thứ tự",`
+- runtime-source:419: `colActivate: "Kích hoạt",`
+- runtime-source:420: `colPostCount: "Số bài viết",`
+- runtime-source:421: `active: "Bật",`
+- runtime-source:422: `inactive: "Tắt",`
+- runtime-source:425: `title: "Quản lý bình luận",`
+- runtime-source:426: `description: "Duyệt hoặc đánh dấu bình luận đang chờ là spam.",`
+- runtime-source:427: `empty: "Không có bình luận nào đang chờ duyệt.",`
+- runtime-source:430: `title: "Người đăng ký bản tin",`
+- runtime-source:431: `description: "Quản lý danh sách đã xác thực để nhận bản tin.",`
+- runtime-source:432: `statActive: "Đang nhận bản tin",`
+- runtime-source:433: `statUnsubscribed: "Đã hủy đăng ký",`
+- runtime-source:435: `colName: "Tên",`
+- runtime-source:436: `colDate: "Thời gian đăng ký",`
+- runtime-source:437: `colVerified: "Xác thực",`
+- runtime-source:438: `verifiedBadge: "Đã xác minh",`
+- runtime-source:439: `empty: "Không có người đăng ký nào.",`
+- runtime-source:440: `previousPage: "Trước",`
+- runtime-source:445: `title: "Tạo bài mới",`
+- runtime-source:448: `title: "Chỉnh sửa bài viết",`
+- runtime-source:451: `title: "Phân tích Blog",`
+- runtime-source:452: `description: "Theo dõi lượt xem, tương tác và tăng trưởng người đăng ký.",`
+- runtime-source:453: `statTotalViews: "Tổng lượt xem",`
+- runtime-source:454: `statTotalLikes: "Tổng lượt thích",`
+- runtime-source:455: `statSubscribers: "Người đăng ký hoạt động",`
+- runtime-source:456: `statPublished: "Bài đã xuất bản",`
+- runtime-source:457: `colPost: "Bài viết",`
+- runtime-source:458: `colView: "Lượt xem",`
+- runtime-source:459: `colLikes: "Thích",`
+- runtime-source:460: `colReadingTime: "Thời gian đọc",`
+- runtime-source:461: `readingTimeMin: "{min} phút",`
+- runtime-source:462: `viewsByDay: "Lượt xem theo ngày",`
+- runtime-source:463: `viewsPerCategory: "Phân bổ theo danh mục",`
+- runtime-source:464: `errorLoadFailed: "Không thể tải dữ liệu phân tích blog.",`
+
+### scripts/i18n/add-parent-namespace.mjs
+
+- runtime-source:136: `badge: "Bảng Điều Khiển",`
+- runtime-source:137: `heading: "Trung tâm quản lý",`
+- runtime-source:138: `greeting: "Xin chào, {name}",`
+- runtime-source:139: `recentCompletionMessage: "Chúc mừng! Bé vừa hoàn thành một bài học mới.",`
+- runtime-source:140: `defaultMessage: "Xin chào ba mẹ! Các bé đang học rất tốt mỗi ngày.",`
+- runtime-source:143: `children: { label: "Hồ sơ bé", hint: "{count}/{limit} hồ sơ" },`
+- runtime-source:144: `lessons: { label: "Bài học hoàn thành", hint: "Mục tiêu: {goal} bài" },`
+- runtime-source:145: `reports: { label: "Báo cáo tuần", hint: "Mục tiêu: {goal} báo cáo" },`
+- runtime-source:146: `progressLabel: "{percent}% mục tiêu",`
+- runtime-source:149: `heading: "Hồ sơ bé",`
+- runtime-source:150: `description: "Tổng quan tiến độ học tập trong tuần và truy cập nhanh vào bài học.",`
+- runtime-source:151: `activeProfiles: "{count} hồ sơ đang hoạt động",`
+- runtime-source:152: `noProfiles: "Chưa có hồ sơ bé nào. Thêm hồ sơ để bắt đầu hành trình học tập.",`
+- runtime-source:155: `heading: "Lối tắt nhanh",`
+- runtime-source:156: `manageChildren: "Quản lý hồ sơ bé",`
+- runtime-source:157: `enterKidApp: "Vào khu vực học của bé",`
+- runtime-source:158: `premiumCourses: "Khóa học cao cấp",`
+- runtime-source:159: `weeklyReports: "Xem báo cáo tuần",`
+- runtime-source:160: `enterGiftCode: "Nhập mã quà tặng",`
+- runtime-source:163: `heading: "Giới thiệu bạn bè — cùng nhận thưởng",`
+- runtime-source:165: `"Mỗi gia đình bạn giới thiệu nhận được {welcomeOffer}. Bạn nhận {rewardVouchers} sau khi họ thanh toán.",`
+- runtime-source:166: `welcomeOffer: "ưu đãi chào mừng",`
+- runtime-source:167: `rewardVouchers: "phiếu thưởng",`
+- runtime-source:168: `shareNow: "Chia sẻ ngay",`
+- runtime-source:169: `sectionHeading: "Chương trình giới thiệu",`
+- runtime-source:170: `code: "Mã giới thiệu",`
+- runtime-source:171: `notCreated: "Chưa tạo",`
+- runtime-source:172: `totalReferrals: "Tổng giới thiệu",`
+- runtime-source:173: `paidReferrals: "Đã thanh toán",`
+- runtime-source:174: `receivedReward: "Đã nhận thưởng",`
+- runtime-source:177: `heading: "Báo cáo mới nhất",`
+- runtime-source:178: `noReports: "Chưa có báo cáo tuần nào.",`
+- runtime-source:179: `lessonsSummary: "{lessons} bài • {minutes} phút • {streak} ngày liên tiếp",`
+- runtime-source:182: `minutesStreak: "{minutes} phút học • {streak} ngày liên tiếp",`
+- runtime-source:183: `lessonsProgress: "{lessons}/{goal} bài trong tuần",`
+- runtime-source:184: `viewSkillMap: "Xem bản đồ kỹ năng",`
+- runtime-source:185: `continueStudying: "Tiếp tục học",`
+- runtime-source:186: `recentLessons: "Bài học gần đây",`
+- runtime-source:189: `overview: "Tổng quan",`
+- runtime-source:190: `skillMap: "Bản đồ kỹ năng",`
+- runtime-source:191: `practicePrompt: "Sẵn sàng luyện tập thêm?",`
+- runtime-source:192: `goToSchool: "Vào khu vực học",`
+- runtime-source:196: `badge: "Quản Lý Bé",`
+- runtime-source:197: `heading: "Quản lý hồ sơ bé",`
+- runtime-source:199: `"Mỗi tài khoản hỗ trợ một hồ sơ học tập chính. Cập nhật thông tin bé và truy cập nhanh vào bài học hàng ngày.",`
+- runtime-source:202: `badge: "Báo Cáo Học Tập",`
+- runtime-source:203: `heading: "Trung tâm phân tích học tập",`
+- runtime-source:205: `"Theo dõi hiệu suất học tập hàng tuần của mỗi bé: thời gian học, kết quả kỹ năng và gợi ý hành động cụ thể để ba mẹ hỗ trợ hiệu quả hơn.",`
+- runtime-source:208: `metadataTitle: "Thanh Toán & Hóa Đơn - TinyGenius Hub",`
+- runtime-source:209: `heading: "Thanh toán và hóa đơn",`
+- runtime-source:210: `description: "Trang này quản lý việc mua khóa học. Thanh toán qua chuyển khoản PayOS.",`
+- runtime-source:211: `totalPaid: "Tổng đã trả",`
+- runtime-source:212: `successfulTransaction: "Thành công",`
+- runtime-source:213: `processing: "Đang xử lý",`
+- runtime-source:214: `failure: "Thất bại",`
+- runtime-source:216: `SUCCEEDED: "Thành công",`
+- runtime-source:217: `PENDING: "Đang xử lý",`
+- runtime-source:218: `FAILED: "Thất bại",`
+- runtime-source:219: `REFUNDED: "Đã hoàn tiền",`
+- runtime-source:221: `providerSimulation: "Mô phỏng",`
+- runtime-source:222: `servicePayment: "Thanh toán dịch vụ",`
+- runtime-source:223: `buyBundle: "Mua gói khóa học",`
+- runtime-source:224: `buyCourse: "Mua khóa học",`
+- runtime-source:226: `heading: "Lịch sử giao dịch gần đây",`
+- runtime-source:227: `description: "Theo dõi chi tiết và trạng thái từng giao dịch.",`
+- runtime-source:228: `empty: "Chưa có giao dịch nào. Truy cập trang khóa học để bắt đầu.",`
+- runtime-source:231: `heading: "Thông tin tài khoản",`
+- runtime-source:232: `paymentModel: { label: "Hình thức thanh toán", value: "Mua theo khóa học" },`
+- runtime-source:233: `currentMethod: { label: "Phương thức hiện tại", value: "PayOS - chuyển khoản ngân hàng" },`
+- runtime-source:235: `label: "Tự động gia hạn",`
+- runtime-source:236: `value: "Không áp dụng cho hình thức mua theo khóa",`
+- runtime-source:240: `heading: "Lưu ý khi thanh toán qua chuyển khoản",`
+- runtime-source:241: `autoRecord: "Sau khi chuyển khoản thành công, hệ thống tự động ghi nhận và mở khóa học.",`
+- runtime-source:243: `'Nếu trạng thái vẫn là "Đang xử lý", vui lòng chờ thêm vài phút để webhook đồng bộ.',`
+- runtime-source:245: `"Cần hỗ trợ thanh toán? Gửi mã đơn hàng qua trang liên hệ để được xử lý nhanh.",`
+- runtime-source:246: `buyCourses: "Mua thêm khóa học",`
+- runtime-source:247: `contactSupportBtn: "Liên hệ hỗ trợ",`
+- runtime-source:248: `purchasedKey: "Đến khóa học đã mua",`
+- runtime-source:251: `heading: "Cần xuất hóa đơn hoặc đối soát giao dịch?",`
+- runtime-source:253: `"Vui lòng gửi thời gian giao dịch, số tiền và nhà cung cấp để chúng tôi hỗ trợ nhanh chóng.",`
+- runtime-source:254: `sendRequest: "Gửi yêu cầu đối soát",`
 
 ### src/components/site-footer.test.tsx
 

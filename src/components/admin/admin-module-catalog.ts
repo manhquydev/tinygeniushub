@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  BarChart2,
   BarChart3,
   BookOpen,
   BriefcaseBusiness,
@@ -8,16 +9,27 @@ import {
   Gift,
   GraduationCap,
   LayoutDashboard,
-  MousePointerClick,
+  Link2,
+  MessageCircle,
   Newspaper,
+  PenSquare,
   ShieldCheck,
   ShieldUser,
   Sparkles,
+  Tag,
+  ToggleLeft,
   UserCog,
   Users,
 } from "lucide-react";
 
 export type AdminHealth = "complete" | "partial" | "gap";
+
+export type AdminModuleChild = {
+  key: string;
+  title: string;
+  href: string;
+  icon: LucideIcon;
+};
 
 export type AdminModule = {
   key: string;
@@ -27,6 +39,7 @@ export type AdminModule = {
   icon: LucideIcon;
   health: AdminHealth;
   superAdminOnly?: boolean;
+  children?: AdminModuleChild[];
 };
 
 export type AdminNavGroup = {
@@ -50,14 +63,6 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
     description: "Learning, retention, operational insight.",
     href: "/admin/analytics",
     icon: BarChart3,
-    health: "complete",
-  },
-  {
-    key: "clarity",
-    title: "User Behavior",
-    description: "Microsoft Clarity heatmaps & recordings",
-    href: "/admin/analytics/clarity",
-    icon: MousePointerClick,
     health: "complete",
   },
   {
@@ -101,12 +106,27 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
     health: "partial",
   },
   {
+    key: "site-settings",
+    title: "Site Settings",
+    description: "Manage social links and site content settings.",
+    href: "/admin/site-settings",
+    icon: Link2,
+    health: "complete",
+  },
+  {
     key: "blog",
     title: "Blog CMS",
-    description: "Articles, author, category, newsletter, moderation.",
+    description: "Articles, author, category, moderation.",
     href: "/admin/blog",
     icon: Newspaper,
     health: "complete",
+    children: [
+      { key: "posts", title: "Posts", href: "/admin/blog/posts", icon: PenSquare },
+      { key: "categories", title: "Categories", href: "/admin/blog/categories", icon: Tag },
+      { key: "authors", title: "Authors", href: "/admin/blog/authors", icon: Users },
+      { key: "analytics", title: "Analytics", href: "/admin/blog/analytics", icon: BarChart2 },
+      { key: "comments", title: "Comments", href: "/admin/blog/comments", icon: MessageCircle },
+    ],
   },
   {
     key: "organizations",
@@ -147,19 +167,28 @@ export const ADMIN_MODULE_CATALOG: AdminModule[] = [
   {
     key: "impersonation",
     title: "Impersonation",
-    description: "API available, no dedicated operating screen yet.",
-    href: null,
+    description: "Simulate a parent login session for support or debugging.",
+    href: "/admin/impersonation",
     icon: ShieldUser,
-    health: "gap",
+    health: "complete",
     superAdminOnly: true,
   },
   {
     key: "skills-mapping",
     title: "Skills Mapping",
-    description: "Skills/lesson mapping API does not yet have a dedicated UI.",
-    href: null,
+    description: "Manage learning skills classification and lesson mapping.",
+    href: "/admin/skills",
     icon: Sparkles,
-    health: "gap",
+    health: "complete",
+    superAdminOnly: true,
+  },
+  {
+    key: "feature-flags",
+    title: "Feature Flags",
+    description: "Toggle platform feature flags and rollout controls.",
+    href: "/admin/feature-flags",
+    icon: ToggleLeft,
+    health: "complete",
     superAdminOnly: true,
   },
 ];
@@ -168,12 +197,12 @@ export const ADMIN_NAV_GROUPS: AdminNavGroup[] = [
   {
     key: "core-control",
     title: "Core Control",
-    moduleKeys: ["overview", "analytics", "clarity", "users", "courses", "content"],
+    moduleKeys: ["overview", "analytics", "users", "courses", "content"],
   },
   {
     key: "operations",
     title: "Operations",
-    moduleKeys: ["operations", "gift-codes"],
+    moduleKeys: ["operations", "gift-codes", "site-settings"],
   },
   {
     key: "publishing",
@@ -183,7 +212,15 @@ export const ADMIN_NAV_GROUPS: AdminNavGroup[] = [
   {
     key: "governance",
     title: "Governance",
-    moduleKeys: ["organizations", "staff", "security", "audit-log", "impersonation", "skills-mapping"],
+    moduleKeys: [
+      "organizations",
+      "staff",
+      "security",
+      "audit-log",
+      "impersonation",
+      "skills-mapping",
+      "feature-flags",
+    ],
   },
 ];
 

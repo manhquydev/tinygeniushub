@@ -974,25 +974,6 @@ model BlogPostRelation {
   @@id([sourcePostId, relatedPostId])
 }
 
-model BlogNewsletterSubscriber {
-  id             String     @id @default(cuid())
-  email          String     @unique
-  nameVi         String?
-  verified       Boolean    @default(false)
-  verifyToken    String?    @unique
-  parentId       String?
-  ageGroups      AgeGroup[] @default([ALL_AGES])
-  categoryIds    String[]   @default([])
-  frequency      String     @default("WEEKLY")
-  unsubToken     String     @unique @default(cuid())
-  subscribedAt   DateTime   @default(now())
-  unsubscribedAt DateTime?
-  lastEmailAt    DateTime?
-
-  @@index([verified, unsubscribedAt])
-  @@index([lastEmailAt])
-}
-
 model BlogReadHistory {
   id         String   @id @default(cuid())
   postId     String

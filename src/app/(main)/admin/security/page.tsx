@@ -2,13 +2,14 @@ import Link from "next/link";
 import { ShieldAlert } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
-import { AdminFeatureFlagsPanel } from "@/components/admin-feature-flags-panel";
 import { AdminSecurityPanel } from "@/components/admin-security-panel";
 import { getAdminSecuritySettings } from "@/modules/platform/security-policy-service";
 import { translate } from "@/i18n/translator";
 import { resolveAppLocale } from "@/i18n/locales";
+import { requireSuperAdminParent } from "@/lib/auth/admin";
 
 export default async function AdminSecurityPage() {
+  await requireSuperAdminParent();
   const locale = resolveAppLocale(await getLocale());
   const t = (key: string) => translate(`admin.security.${key}`, undefined, locale);
   const securitySettings = await getAdminSecuritySettings();
@@ -40,7 +41,6 @@ export default async function AdminSecurityPage() {
         initialSecurityPolicies={securitySettings.policies}
         initialSecurityControls={securitySettings.controls}
       />
-      <AdminFeatureFlagsPanel />
     </div>
   );
 }

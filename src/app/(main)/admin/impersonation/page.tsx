@@ -1,5 +1,5 @@
 import { getLocale } from "next-intl/server";
-import { requireAdminParent } from "@/lib/auth/admin";
+import { requireSuperAdminParent } from "@/lib/auth/admin";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { AdminImpersonationPanel } from "@/components/admin/impersonation/admin-impersonation-panel";
 import { ShieldUser } from "lucide-react";
@@ -7,7 +7,7 @@ import { translate } from "@/i18n/translator";
 import { resolveAppLocale } from "@/i18n/locales";
 
 export default async function AdminImpersonationPage() {
-  await requireAdminParent();
+  await requireSuperAdminParent();
   const locale = resolveAppLocale(await getLocale());
   const t = (key: string) => translate(`admin.impersonation.${key}`, undefined, locale);
 

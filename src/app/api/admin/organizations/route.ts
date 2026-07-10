@@ -1,5 +1,5 @@
 ﻿import type { NextRequest } from "next/server";
-import { requireAdminFromRequest } from "@/lib/auth/admin";
+import { requireSuperAdmin } from "@/lib/auth/admin";
 import { ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
@@ -19,7 +19,7 @@ const createOrgSchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
-    await requireAdminFromRequest(request);
+    await requireSuperAdmin(request);
     const organizations = await listAllOrganizations();
     return ok({ organizations });
   } catch (error) {
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    await requireAdminFromRequest(request);
+    await requireSuperAdmin(request);
     const body = createOrgSchema.parse(await request.json());
     const org = await createOrganization({
       name: body.name,

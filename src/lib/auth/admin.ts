@@ -31,3 +31,21 @@ export async function requireAdminFromRequest(
   const session = await requireAdminSession(allowedRoles);
   return session.user;
 }
+
+/**
+ * Server-page gate for surfaces restricted to SUPER_ADMIN (e.g. staff, security,
+ * audit log, organizations, impersonation, skills mapping, feature flags).
+ * Redirects non-super-admins to /admin instead of exposing the page.
+ */
+export async function requireSuperAdminParent() {
+  const admin = await requireAdminParent();
+  if (admin.role !== "SUPER_ADMIN") {
+    redirect("/admin");
+  }
+  return admin;
+}
+
+/** API-route gate for handlers restricted to SUPER_ADMIN. */
+export async function requireSuperAdmin(request: NextRequest) {
+  return requireAdminFromRequest(request, ["SUPER_ADMIN"]);
+}

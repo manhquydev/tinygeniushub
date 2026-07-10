@@ -1,5 +1,23 @@
 # Project Changelog
 
+## [Unreleased] — Admin Consolidation Wave 1
+
+Branch `feat/admin-consolidation-wave-1` (not yet deployed). Cut dead admin code, unify nav, centralize authz. See `plans/260710-1047-admin-consolidation-wave-1/`.
+
+### Added
+- `admin-module-catalog.ts` is now the single source of truth for the admin sidebar; nav generated via `buildAdminNavModel(role)` (hardcoded `NAV_GROUPS` removed).
+- Dedicated `/admin/feature-flags` page (moved out of the Security page); `/admin/skills` and `/admin/impersonation` now reachable from the sidebar.
+- Shared `requireSuperAdminParent()` (pages) and `requireSuperAdmin()` (APIs) helpers, plus a catalog conformance test asserting every `superAdminOnly` page enforces the gate.
+- `docs/security/super-admin-break-glass-runbook.md`.
+
+### Fixed
+- Authorization gaps where a superAdminOnly page was gated but its API was not: `organizations` (GET/POST/PATCH/members), `skills` (list/[id]/prerequisites), `feature-flags` list, `impersonate/stop` now require SUPER_ADMIN.
+
+### Removed
+- Blog newsletter feature end-to-end (weekly cron, BullMQ worker/queue wiring, service, public/admin routes, admin page, subscribe widget) and the `BlogNewsletterSubscriber` model (drop migration). **Deploy note:** back up DB before prod deploy; post-deploy rollback needs full DB restore, not code-only.
+- Dead admin analytics: monolith `admin-analytics-service` (duplicate of standalone overview/learning/retention services), `admin-time-series`/`cohort`/`funnel` services, orphaned alerts lib, 6 unmounted analytics routes, 5 unmounted chart components.
+- Orphan `admin/bulk-enroll` API (teacher/org variants retained).
+
 ## [0.5.3] - 2026-05-14
 
 ### Fixed

@@ -13,6 +13,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const {
   loadConfig,
   writeEnv,
@@ -34,13 +35,11 @@ const {
   detectProjectType,
   detectPackageManager,
   detectFramework,
-  getPythonVersion,
-  getGitRemoteUrl,
   getGitBranch,
+  getGitRoot,
   getCodingLevelStyleName,
   getCodingLevelGuidelines,
-  buildContextOutput,
-  execSafe
+  buildContextOutput
 } = require('./lib/project-detector.cjs');
 
 /**
@@ -86,14 +85,12 @@ async function main() {
     // Extract task list ID for Claude Code Tasks coordination (shared helper)
     const taskListId = extractTaskListId(resolved);
 
-    // Collect static environment info (computed once per session)
+    // Keep startup metadata cheap — expensive enrichment deferred (fixes Bun crash on Windows)
     const staticEnv = {
       nodeVersion: process.version,
-      pythonVersion: getPythonVersion(),
       osPlatform: process.platform,
-      gitUrl: getGitRemoteUrl(),
       gitBranch: getGitBranch(),
-      gitRoot: execSafe('git rev-parse --show-toplevel'),
+      gitRoot: getGitRoot(),
       user: process.env.USERNAME || process.env.USER || process.env.LOGNAME || os.userInfo().username,
       locale: process.env.LANG || '',
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -142,11 +139,9 @@ async function main() {
       writeEnv(envFile, 'CK_PACKAGE_MANAGER', detections.pm || '');
       writeEnv(envFile, 'CK_FRAMEWORK', detections.framework || '');
 
-      // NEW: Static environment info (so other hooks don't need to recompute)
+      // Static environment info (so other hooks don't need to recompute)
       writeEnv(envFile, 'CK_NODE_VERSION', staticEnv.nodeVersion);
-      writeEnv(envFile, 'CK_PYTHON_VERSION', staticEnv.pythonVersion || '');
       writeEnv(envFile, 'CK_OS_PLATFORM', staticEnv.osPlatform);
-      writeEnv(envFile, 'CK_GIT_URL', staticEnv.gitUrl || '');
       writeEnv(envFile, 'CK_GIT_BRANCH', staticEnv.gitBranch || '');
       writeEnv(envFile, 'CK_USER', staticEnv.user);
       writeEnv(envFile, 'CK_LOCALE', staticEnv.locale);

@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
 import { getLocale } from "next-intl/server";
-import { requireAdminParent } from "@/lib/auth/admin";
+import { requireSuperAdminParent } from "@/lib/auth/admin";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { AdminSkillsPanel } from "@/components/admin/skills/admin-skills-panel";
 import { listAllSkillsAsTree } from "@/modules/adaptive/skill-taxonomy-service";
@@ -9,8 +8,7 @@ import { translate } from "@/i18n/translator";
 import { resolveAppLocale } from "@/i18n/locales";
 
 export default async function AdminSkillsPage() {
-  const admin = await requireAdminParent();
-  if (admin.role !== "SUPER_ADMIN") redirect("/admin");
+  await requireSuperAdminParent();
 
   const locale = resolveAppLocale(await getLocale());
   const t = (key: string) => translate(`admin.skills.${key}`, undefined, locale);

@@ -3,7 +3,7 @@
  */
 
 import type { NextRequest } from "next/server";
-import { requireAdminFromRequest } from "@/lib/auth/admin";
+import { requireSuperAdmin } from "@/lib/auth/admin";
 import { fail, ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
@@ -23,7 +23,7 @@ const updateSkillSchema = z.object({
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    await requireAdminFromRequest(request);
+    await requireSuperAdmin(request);
     const { id } = await params;
     const skill = await getSkillWithPrerequisites(id);
     if (!skill) return fail("Skill not found", 404);
@@ -38,7 +38,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     assertTrustedOrigin(request);
     const rateLimit = await enforceAdminMutationRateLimit(request);
     if (rateLimit) return rateLimit;
-    await requireAdminFromRequest(request);
+    await requireSuperAdmin(request);
     const { id } = await params;
     const body = updateSkillSchema.parse(await request.json());
     const skill = await updateSkill(id, body);
