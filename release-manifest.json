@@ -1,6 +1,6 @@
 {
-  "version": "1.3.1",
-  "generatedAt": "2026-03-28T20:06:22.016Z",
+  "version": "1.3.2",
+  "generatedAt": "2026-04-10T07:27:24.477Z",
   "files": [
     {
       "path": ".gitignore",
@@ -777,6 +777,12 @@
       "lastModified": "2026-01-25T19:57:14+07:00"
     },
     {
+      "path": "hooks/lib/git-info-cache.cjs",
+      "checksum": "d54b164ca22ac3881f3ca9a240fdd1301ac67fb2b5715523a4f5db499d46d18f",
+      "size": 5764,
+      "lastModified": "2026-04-10T03:26:41-04:00"
+    },
+    {
       "path": "hooks/lib/privacy-checker.cjs",
       "checksum": "7d2c0003c867f6b81f816533ac74b81402a2905ac2a7d8d1cd9eb233027de965",
       "size": 10595,
@@ -874,9 +880,9 @@
     },
     {
       "path": "hooks/post-edit-simplify-reminder.cjs",
-      "checksum": "b501e90e1d6e6544466710a3eca6d689192f76fb1b5806b8003d2daae19f4b06",
-      "size": 3713,
-      "lastModified": "2026-01-25T19:57:14+07:00"
+      "checksum": "39b5a64bebca85dde832a45312d3f83a850b483f80ef46995494ecf31d427b0a",
+      "size": 3910,
+      "lastModified": "2026-04-10T03:26:41-04:00"
     },
     {
       "path": "hooks/privacy-block.cjs",
@@ -964,9 +970,9 @@
     },
     {
       "path": "hooks/session-init.cjs",
-      "checksum": "3d49e6558b34d0d84eb40a744e08f3dbc3a2b6528142cbcbcb76f1fd97b203e5",
-      "size": 9158,
-      "lastModified": "2026-01-25T19:57:14+07:00"
+      "checksum": "b67b674e501ae440f094442bbf23e60a8ab8a3f21af9aabaf45f611c8dc9ce2a",
+      "size": 8930,
+      "lastModified": "2026-04-10T03:26:41-04:00"
     },
     {
       "path": "hooks/subagent-init.cjs",
@@ -1006,9 +1012,9 @@
     },
     {
       "path": "metadata.json",
-      "checksum": "60bd102c15d821e42f4214b786559b936ae61826cf7ead8215efd25558da8ec4",
+      "checksum": "607a100f5ba066312383869a7c9b3d298fe10c954778ea4ec6b0d2b13655d529",
       "size": 580,
-      "lastModified": "2026-03-28T16:00:46-04:00"
+      "lastModified": "2026-03-28T20:06:37Z"
     },
     {
       "path": "output-styles/coding-level-0-eli5.md",
@@ -1162,9 +1168,9 @@
     },
     {
       "path": "settings.json",
-      "checksum": "a7a7949961c33f0562c71e64a1171702ebb4d67b49a83a398aec4c8c88ac538d",
-      "size": 2841,
-      "lastModified": "2026-01-26T22:04:57+07:00"
+      "checksum": "0d3d5480c72764d2819c912c73360c8b38514488f462163812652b523d71913a",
+      "size": 3088,
+      "lastModified": "2026-04-10T03:26:41-04:00"
     },
     {
       "path": "skills/INSTALLATION.md",
@@ -9022,9 +9028,9 @@
     },
     {
       "path": "statusline.cjs",
-      "checksum": "7356ce832e8f1f2b049c005f6497ae73717f22abbb72655a923f8ea553b81fb3",
-      "size": 20180,
-      "lastModified": "2026-01-25T19:57:14+07:00"
+      "checksum": "66886487bdee783a69d44599e50826a81be589c5d208a3104fc16bf03dc3a8e1",
+      "size": 19375,
+      "lastModified": "2026-04-10T03:26:41-04:00"
     },
     {
       "path": "statusline.ps1",
@@ -15777,7 +15783,7 @@
     },
     {
       "path": "AGENTS.md",
-      "checksum": "a1eeff5615f7094898a5392edd168bea32d6b6806493bf999033376b09d639e3",
+      "checksum": "8380455244080607cbc031acd913cce9c82ebb6c361375267dcbb8469944a04a",
       "size": 2277
     }
   ]

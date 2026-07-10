@@ -16,6 +16,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { isHookEnabled } = require('./lib/ck-config-utils.cjs');
+const { invalidateCache } = require('./lib/git-info-cache.cjs');
 
 // Early exit if hook disabled in config
 if (!isHookEnabled('post-edit-simplify-reminder')) {
@@ -92,6 +93,9 @@ function main() {
       console.log(JSON.stringify({ continue: true }));
       return;
     }
+
+    // Invalidate git cache so statusline shows fresh state after file changes
+    invalidateCache(hookData.cwd || process.cwd());
 
     // Load session data
     const session = loadSessionData();

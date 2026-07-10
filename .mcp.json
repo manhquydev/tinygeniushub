@@ -1,0 +1,44 @@
+{
+  "mcpServers": {
+    "context-memory": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\manhquy\\.codex\\mcp-servers\\context-memory-mcp\\src\\index.js"
+      ]
+    },
+    "obsidian-memory": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\manhquy\\.codex\\mcp-servers\\obsidian-memory-mcp\\dist\\index.js"
+      ],
+      "env": {
+        "MEMORY_DIR": "C:\\Users\\manhquy\\obsidian\\ai-memory\\entities"
+      }
+    },
+    "gitnexus": {
+      "command": "C:\\Program Files\\nodejs\\npx.cmd",
+      "args": ["-y", "gitnexus", "mcp"]
+    },
+    "code-index-mcp": {
+      "command": "C:\\Users\\manhquy\\.codex\\mcp-servers\\code-index-mcp\\.venv\\Scripts\\code-index-mcp.exe",
+      "args": [
+        "--indexer-path",
+        "C:\\Users\\manhquy\\.codex\\mcp-data\\code-index-mcp"
+      ]
+    },
+    "code-rag-mcp": {
+      "command": "C:\\Users\\manhquy\\.codex\\mcp-servers\\code-rag-mcp\\.venv\\Scripts\\code-rag-mcp.exe",
+      "args": [],
+      "env": {
+        "CODE_RAG_DATABASE_PATH": "C:\\Users\\manhquy\\.codex\\mcp-data\\code-rag-mcp",
+        "CODE_RAG_RERANKER_ENABLED": "false",
+        "CODE_RAG_EMBEDDING_MODEL": "sentence-transformers/all-MiniLM-L6-v2",
+        "CODE_RAG_SHARED_SERVER": "false"
+      }
+    },
+    "codebase-mcp": {
+      "command": "C:\\Program Files\\nodejs\\npx.cmd",
+      "args": ["-y", "codebase-mcp", "serve"]
+    }
+  }
+}
