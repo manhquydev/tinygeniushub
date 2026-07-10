@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ShieldAlert } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
-import { AdminFeatureFlagsPanel } from "@/components/admin-feature-flags-panel";
 import { AdminSecurityPanel } from "@/components/admin-security-panel";
 import { getAdminSecuritySettings } from "@/modules/platform/security-policy-service";
 import { translate } from "@/i18n/translator";
@@ -40,7 +39,6 @@ export default async function AdminSecurityPage() {
         initialSecurityPolicies={securitySettings.policies}
         initialSecurityControls={securitySettings.controls}
       />
-      <AdminFeatureFlagsPanel />
     </div>
   );
 }

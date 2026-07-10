@@ -5341,6 +5341,37 @@
       "roleSuperAdmin": "Super admin",
       "roleStaffAdmin": "Staff admin"
     },
+    "navGroup": {
+      "core-control": "Điều khiển chính",
+      "operations": "Vận hành",
+      "publishing": "Xuất bản",
+      "governance": "Quản trị hệ thống"
+    },
+    "nav": {
+      "overview": { "title": "Tổng quan" },
+      "analytics": { "title": "Phân tích" },
+      "users": { "title": "Người dùng" },
+      "courses": { "title": "Khóa học" },
+      "content": { "title": "Nội dung" },
+      "operations": { "title": "Vận hành" },
+      "gift-codes": { "title": "Mã quà tặng" },
+      "site-settings": { "title": "Cài đặt trang" },
+      "blog": {
+        "title": "Blog CMS",
+        "posts": "Bài viết",
+        "categories": "Danh mục",
+        "authors": "Tác giả",
+        "analytics": "Phân tích",
+        "comments": "Bình luận"
+      },
+      "organizations": { "title": "Tổ chức" },
+      "staff": { "title": "Nhân sự" },
+      "security": { "title": "Bảo mật" },
+      "audit-log": { "title": "Nhật ký kiểm toán" },
+      "impersonation": { "title": "Đăng nhập thay" },
+      "skills-mapping": { "title": "Ánh xạ kỹ năng" },
+      "feature-flags": { "title": "Cờ tính năng" }
+    },
     "overview": {
       "title": "Trung tâm điều hành",
       "description": "Bảng vận hành module theo cấp độ trưởng thành, tình trạng sức khỏe và chỉ số kinh doanh cốt lõi.",
@@ -5366,10 +5397,15 @@
     },
     "security": {
       "title": "Bảo mật hệ thống",
-      "description": "Chế độ DDoS, giới hạn tốc độ, danh sách chặn IP và cờ tính năng.",
+      "description": "Chế độ DDoS, giới hạn tốc độ và danh sách chặn IP.",
       "eyebrow": "Quản trị hệ thống",
       "openEmailVerification": "Mở module xác minh email",
       "superAdminOnly": "Chỉ SUPER_ADMIN"
+    },
+    "featureFlags": {
+      "title": "Cờ tính năng",
+      "description": "Bật/tắt cờ tính năng và kiểm soát triển khai.",
+      "eyebrow": "Quản trị hệ thống"
     },
     "skills": {
       "title": "Bản đồ kỹ năng",

@@ -2,27 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo, useState, type ElementType } from "react";
-import {
-  BarChart2,
-  BookOpen,
-  Building2,
-  ChevronDown,
-  ChevronRight,
-  Clock,
-  Gift,
-  GraduationCap,
-  LayoutDashboard,
-  Link2,
-  LogOut,
-  MessageCircle,
-  PenSquare,
-  Settings,
-  ShieldAlert,
-  Tag,
-  UserCheck,
-  Users,
-} from "lucide-react";
+import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
+import { ChevronDown, ChevronRight, LogOut, ShieldAlert } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -40,101 +22,64 @@ import {
 } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
+import {
+  ADMIN_NAV_GROUPS,
+  getVisibleAdminModules,
+  type AdminModule,
+  type AdminModuleChild,
+  type AdminNavGroup,
+} from "@/components/admin/admin-module-catalog";
 
-type NavItem = {
-  href: string;
-  label: string;
-  icon: ElementType;
-  children?: NavItem[];
-  superAdminOnly?: boolean;
+type NavModel = {
+  groups: { group: AdminNavGroup; modules: AdminModule[] }[];
 };
 
-type NavGroup = {
-  label: string;
-  items: NavItem[];
-  superAdminOnly?: boolean;
-};
+/** Pure builder: catalog + role -> nav groups, filtering out empty groups and href-less modules. */
+export function buildAdminNavModel(role: string): NavModel {
+  const visibleModules = getVisibleAdminModules(role);
+  const visibleByKey = new Map(visibleModules.map((module) => [module.key, module]));
 
-const NAV_GROUPS: NavGroup[] = [
-  {
-    label: "Overview",
-    items: [{ href: "/admin/overview", label: "Overview", icon: LayoutDashboard }],
-  },
-  {
-    label: "Data",
-    items: [
-      { href: "/admin/analytics", label: "Analysis", icon: BarChart2 },
-      { href: "/admin/users", label: "User", icon: Users },
-      { href: "/admin/courses", label: "Courses", icon: GraduationCap },
-      { href: "/admin/organizations", label: "Organization", icon: Building2, superAdminOnly: true },
-    ],
-  },
-  {
-    label: "Operate",
-    items: [
-      { href: "/admin/operations", label: "Operate", icon: Settings },
-      { href: "/admin/gift-codes", label: "Gift code", icon: Gift },
-      { href: "/admin/content", label: "Content", icon: BookOpen },
-      { href: "/admin/site-settings", label: "Page settings", icon: Link2 },
-      {
-        href: "/admin/blog",
-        label: "Blog",
-        icon: PenSquare,
-        children: [
-          { href: "/admin/blog/posts", label: "Article", icon: PenSquare },
-          { href: "/admin/blog/categories", label: "Category", icon: Tag },
-          { href: "/admin/blog/authors", label: "Author", icon: Users },
-          { href: "/admin/blog/analytics", label: "Analytics", icon: BarChart2 },
-          { href: "/admin/blog/comments", label: "Comment", icon: MessageCircle },
-        ],
-      },
-    ],
-  },
-  {
-    label: "System",
-    superAdminOnly: true,
-    items: [
-      { href: "/admin/staff", label: "Human resources", icon: UserCheck, superAdminOnly: true },
-      { href: "/admin/security", label: "Security", icon: ShieldAlert, superAdminOnly: true },
-      { href: "/admin/log", label: "Diary", icon: Clock, superAdminOnly: true },
-    ],
-  },
-];
+  const groups = ADMIN_NAV_GROUPS.map((group) => {
+    const modules = group.moduleKeys
+      .map((key) => visibleByKey.get(key))
+      .filter((module): module is AdminModule => Boolean(module) && (module!.href !== null || Boolean(module!.children?.length)));
+    return { group, modules };
+  }).filter((entry) => entry.modules.length > 0);
+
+  return { groups };
+}
 
 function isPathActive(pathname: string, href: string) {
   if (href === "/admin/overview") return pathname === href;
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-function hasActiveChild(pathname: string, item: NavItem) {
-  return (item.children ?? []).some((child) => isPathActive(pathname, child.href));
+function hasActiveChild(pathname: string, children: AdminModuleChild[]) {
+  return children.some((child) => isPathActive(pathname, child.href));
 }
 
-function isVisible(item: NavItem | NavGroup, isSuperAdmin: boolean) {
-  return !item.superAdminOnly || isSuperAdmin;
-}
-
-function NavItemWithChildren({
-  item,
+function ModuleWithChildren({
+  module,
+  label,
   pathname,
-  isSuperAdmin,
+  t,
 }: {
-  item: NavItem & { children: NavItem[] };
+  module: AdminModule & { children: AdminModuleChild[] };
+  label: string;
   pathname: string;
-  isSuperAdmin: boolean;
+  t: ReturnType<typeof useTranslations>;
 }) {
-  const Icon = item.icon;
-  const visibleChildren = item.children.filter((child) => isVisible(child, isSuperAdmin));
-  const active = isPathActive(pathname, item.href) || hasActiveChild(pathname, item);
+  const Icon = module.icon;
+  const active = (module.href ? isPathActive(pathname, module.href) : false) || hasActiveChild(pathname, module.children);
   const [open, setOpen] = useState(active);
 
   return (
     <Collapsible open={open} onOpenChange={setOpen} className="group/collapsible">
       <SidebarMenuItem>
         <CollapsibleTrigger asChild>
-          <SidebarMenuButton isActive={active} tooltip={item.label} aria-label={item.label} className="text-sidebar-foreground">
+          <SidebarMenuButton isActive={active} tooltip={label} aria-label={label} className="text-sidebar-foreground">
             <Icon size={16} className="shrink-0" />
-            <span>{item.label}</span>
+            <span>{label}</span>
             {open ? (
               <ChevronDown size={14} className="ml-auto" />
             ) : (
@@ -144,15 +89,17 @@ function NavItemWithChildren({
         </CollapsibleTrigger>
         <CollapsibleContent>
           <SidebarMenuSub>
-            {visibleChildren.map((child) => {
+            {module.children.map((child) => {
               const ChildIcon = child.icon;
               const childActive = isPathActive(pathname, child.href);
+              const childKey = `nav.${module.key}.${child.key}`;
+              const childLabel = t.has(childKey as never) ? t(childKey as never) : child.title;
               return (
                 <SidebarMenuSubItem key={child.href}>
                   <SidebarMenuSubButton asChild isActive={childActive}>
                     <Link href={child.href}>
                       <ChildIcon size={14} className="shrink-0" />
-                      <span>{child.label}</span>
+                      <span>{childLabel}</span>
                     </Link>
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
@@ -168,16 +115,9 @@ function NavItemWithChildren({
 export function AdminShellNav({ role }: { role: string }) {
   const pathname = usePathname();
   const isSuperAdmin = role === "SUPER_ADMIN";
+  const t = useTranslations("admin");
 
-  const visibleGroups = useMemo(() => {
-    return NAV_GROUPS.map((group) => ({
-      ...group,
-      items: group.items.filter((item) => isVisible(item, isSuperAdmin)),
-    })).filter((group) => {
-      if (!isVisible(group, isSuperAdmin)) return false;
-      return group.items.length > 0;
-    });
-  }, [isSuperAdmin]);
+  const navModel = useMemo(() => buildAdminNavModel(role), [role]);
 
   return (
     <Sidebar
@@ -208,31 +148,34 @@ export function AdminShellNav({ role }: { role: string }) {
       </SidebarHeader>
 
       <SidebarContent className="px-2 py-2">
-        {visibleGroups.map((group) => (
-          <SidebarGroup key={group.label}>
+        {navModel.groups.map(({ group, modules }) => (
+          <SidebarGroup key={group.key}>
             <SidebarGroupLabel className="text-xs uppercase tracking-wider text-[#94a3b8] px-2 mb-1">
-              {group.label}
+              {t.has(`navGroup.${group.key}` as never) ? t(`navGroup.${group.key}` as never) : group.title}
             </SidebarGroupLabel>
             <SidebarMenu>
-              {group.items.map((item) => {
-                if (item.children) {
+              {modules.map((module) => {
+                const titleKey = `nav.${module.key}.title`;
+                const label = t.has(titleKey as never) ? t(titleKey as never) : module.title;
+                if (module.children?.length) {
                   return (
-                    <NavItemWithChildren
-                      key={item.href}
-                      item={item as NavItem & { children: NavItem[] }}
+                    <ModuleWithChildren
+                      key={module.key}
+                      module={module as AdminModule & { children: AdminModuleChild[] }}
+                      label={label}
                       pathname={pathname}
-                      isSuperAdmin={isSuperAdmin}
+                      t={t}
                     />
                   );
                 }
-                const Icon = item.icon;
-                const active = isPathActive(pathname, item.href);
+                const Icon = module.icon;
+                const active = isPathActive(pathname, module.href as string);
                 return (
-                  <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton asChild isActive={active} tooltip={item.label} aria-label={item.label} className="text-sidebar-foreground">
-                      <Link href={item.href}>
+                  <SidebarMenuItem key={module.key}>
+                    <SidebarMenuButton asChild isActive={active} tooltip={label} aria-label={label} className="text-sidebar-foreground">
+                      <Link href={module.href as string}>
                         <Icon size={16} className="shrink-0" />
-                        <span>{item.label}</span>
+                        <span>{label}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
