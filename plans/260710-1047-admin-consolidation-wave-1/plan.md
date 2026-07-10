@@ -1,14 +1,22 @@
 ---
-title: "Admin Consolidation Wave 1 - Cut Dead Code, Unify Nav, Centralize Gating"
-description: "Delete dead/orphan admin business logic (analytics, newsletter feature-kill, orphan APIs), unify sidebar nav from module catalog, centralize SUPER_ADMIN gating. TDD: lock behavior before each cut."
-status: pending
+title: 'Admin Consolidation Wave 1 - Cut Dead Code, Unify Nav, Centralize Gating'
+description: >-
+  Delete dead/orphan admin business logic (analytics, newsletter feature-kill,
+  orphan APIs), unify sidebar nav from module catalog, centralize SUPER_ADMIN
+  gating. TDD: lock behavior before each cut.
+status: completed
 priority: P1
-branch: "i18n/english-primary-migration"
-tags: [admin, cleanup, refactor, tdd]
-blockedBy: [260514-0129-i18n-english-primary-migration]
+branch: i18n/english-primary-migration
+tags:
+  - admin
+  - cleanup
+  - refactor
+  - tdd
+blockedBy:
+  - 260514-0129-i18n-english-primary-migration
 blocks: []
-created: "2026-07-10T03:54:51.038Z"
-createdBy: "ck:plan"
+created: '2026-07-10T03:54:51.038Z'
+createdBy: 'ck:plan'
 source: skill
 ---
 
@@ -37,10 +45,10 @@ Wave 1 of the admin consolidation roadmap: remove dead/orphan business logic sur
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | [Cut dead analytics services and routes](./phase-01-cut-dead-analytics-services-and-routes.md) | Pending |
-| 2 | [Delete newsletter feature and orphan admin APIs](./phase-02-delete-newsletter-feature-and-orphan-admin-apis.md) | Pending |
-| 3 | [Generate nav from module catalog and unbury feature flags](./phase-03-generate-nav-from-module-catalog-and-unbury-feature-flags.md) | Pending |
-| 4 | [Centralize SUPER_ADMIN gating](./phase-04-centralize-super-admin-gating.md) | Pending |
+| 1 | [Cut dead analytics services and routes](./phase-01-cut-dead-analytics-services-and-routes.md) | Completed |
+| 2 | [Delete newsletter feature and orphan admin APIs](./phase-02-delete-newsletter-feature-and-orphan-admin-apis.md) | Completed |
+| 3 | [Generate nav from module catalog and unbury feature flags](./phase-03-generate-nav-from-module-catalog-and-unbury-feature-flags.md) | Completed |
+| 4 | [Centralize SUPER_ADMIN gating](./phase-04-centralize-super-admin-gating.md) | Completed |
 
 Phases 1-2 independent; Phase 3 depends on Phase 2 (newsletter nav entry removed); Phase 4 depends on Phase 3 — note Phase 3 risk section: superAdminOnly pages exposed in nav should get the Phase 4 layout gate (or an interim per-page check) at the same time.
 
@@ -66,10 +74,10 @@ Phases 1-2 independent; Phase 3 depends on Phase 2 (newsletter nav entry removed
 
 | # | Finding | Severity | Disposition | Applied To |
 |---|---------|----------|-------------|------------|
-| 1 | Newsletter "no send pipeline" premise false — live cron+BullMQ pipeline | Critical | Accept → user re-decided: intentional feature-kill | Phase 2 (rewritten), plan.md |
-| 2 | Barrel repoint as 2 sequential steps → TS2308 across 34 consumers | Critical | Accept | Phase 1 step 3 (atomic swap) |
-| 3 | Fast rollback is code-only; unsafe after destructive migration | Critical | Accept | Phase 2 risks |
-| 4 | `/api/admin/organizations*` not SUPER_ADMIN-gated despite catalog flag | Critical | Accept | Phase 4 (explicit fix + conformance test) |
+| 1 | Newsletter "no send pipeline" premise false — live cron+BullMQ pipeline | Critical | Accept → user re-decided: intentional feature-kill | Completed |
+| 2 | Barrel repoint as 2 sequential steps → TS2308 across 34 consumers | Critical | Accept | Completed |
+| 3 | Fast rollback is code-only; unsafe after destructive migration | Critical | Accept | Completed |
+| 4 | `/api/admin/organizations*` not SUPER_ADMIN-gated despite catalog flag | Critical | Accept | Completed |
 | 5 | `admin/integrations` is live Jules read-side, not orphan | High | Accept → user: KEEP | Phase 2 (removed from delete list) |
 | 6 | staff/security/log/impersonation pages lack role checks; per-page opt-in pattern already failed 3/4 times | High | Accept | Phase 4 (layout choke point) |
 | 7 | Second role-blind auth system `admin-guard.ts` unaccounted | High | Accept | Phase 4 (migrate + retire) |

@@ -1,10 +1,10 @@
 ---
 phase: 2
-title: "Delete newsletter feature and orphan admin APIs"
-status: pending
+title: Delete newsletter feature and orphan admin APIs
+status: completed
 priority: P1
 dependencies: []
-effort: "5h"
+effort: 5h
 ---
 
 # Phase 2: Delete newsletter feature and orphan admin APIs

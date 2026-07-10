@@ -1,10 +1,11 @@
 ---
 phase: 3
-title: "Generate nav from module catalog and unbury feature flags"
-status: pending
+title: Generate nav from module catalog and unbury feature flags
+status: completed
 priority: P1
-dependencies: [2]
-effort: "5h"
+dependencies:
+  - 2
+effort: 5h
 ---
 
 # Phase 3: Generate nav from module catalog and unbury feature flags

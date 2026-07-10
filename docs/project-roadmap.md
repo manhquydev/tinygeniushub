@@ -1,24 +1,22 @@
 # Project Roadmap
 
 **Last updated:** 2026-07-10
-**Status:** Phases 01–05 complete. Deployed to production. Current work: i18n English primary migration.
+**Status:** Phases 01–05 complete. Deployed to production. i18n English-primary migration merged (PR #9). Current work: Admin Consolidation Wave 1 (feature branch, pre-merge).
 
 ---
 
-## Current Work — i18n English Primary Migration
+## Current Work — Admin Consolidation Wave 1
 
-**Branch:** `i18n/english-primary-migration`
-**Status:** In progress
-**Scope:** Rewiring all 70+ pages, 60+ API routes, admin surfaces, and i18n infrastructure to support English as primary UI language alongside Vietnamese
-**Key Surface Areas:**
-- Admin namespace (20 admin surfaces)
-- Kid app empty state, garden zone titles, layout
-- Parent dashboard, courses, reports
-- Public pages (homepage, pricing, blog)
-- API response strings, validation messages
-- Email templates
-
-**Commits:** Enforcing redirect for hidden marketing URLs, rewiring admin namespaces across all 20 surfaces, wiring kid app empty state and garden zones to t()
+**Branch:** `feat/admin-consolidation-wave-1`
+**Status:** Code complete on branch; not merged/deployed. Plan: `plans/260710-1047-admin-consolidation-wave-1/`.
+**Scope:** "Cut first, standardize later" — remove dead/orphan admin business logic, unify sidebar nav from the module catalog, centralize SUPER_ADMIN gating.
+**Done (all 4 phases, TDD):**
+- Deleted dead analytics services/routes/components; repointed live consumers to standalone services.
+- Removed the newsletter feature end-to-end (intentional feature-kill; drop migration) + orphan `admin/bulk-enroll`.
+- Nav generated from `admin-module-catalog.ts`; feature-flags own page; skills/impersonation reachable.
+- Centralized SUPER_ADMIN gating; fixed live authz gaps (organizations/skills/feature-flags/impersonate APIs); conformance test + break-glass runbook.
+**Pre-merge gates outstanding (need running stack):** `pnpm test:e2e:security`, manual staff-admin walkthrough, prod DB backup before the newsletter drop migration deploys.
+**Deferred:** `admin-guard.ts` retirement (lockout risk, needs stack); Wave 2 (UI/i18n panel standardization); Wave 3 (coupons→checkout, Jules admin UI).
 
 ---
 

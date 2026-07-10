@@ -1,10 +1,10 @@
 ---
 phase: 1
-title: "Cut dead analytics services and routes"
-status: pending
+title: Cut dead analytics services and routes
+status: completed
 priority: P1
 dependencies: []
-effort: "4h"
+effort: 4h
 ---
 
 # Phase 1: Cut dead analytics services and routes

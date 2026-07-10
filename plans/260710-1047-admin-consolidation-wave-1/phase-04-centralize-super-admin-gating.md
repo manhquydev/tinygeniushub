@@ -1,10 +1,11 @@
 ---
 phase: 4
-title: "Centralize SUPER_ADMIN gating"
-status: pending
+title: Centralize SUPER_ADMIN gating
+status: completed
 priority: P1
-dependencies: [3]
-effort: "6h"
+dependencies:
+  - 3
+effort: 6h
 ---
 
 # Phase 4: Centralize SUPER_ADMIN gating
