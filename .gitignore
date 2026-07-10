@@ -66,3 +66,10 @@ parent_onboarding_plan.md
 
 .vercel
 .gitnexus
+
+# local vps deploy scripts (may contain sensitive data)
+/vps
+
+# browser automation / hook logs
+.playwright-mcp
+.claude/hooks/.logs

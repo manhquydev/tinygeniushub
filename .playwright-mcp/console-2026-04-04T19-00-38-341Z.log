@@ -1,3 +1,0 @@
-[    1086ms] Uncaught TypeError: a[c] is not a function
-    at <anonymous> (https://www.clarity.ms/tag/w49qfrxwu5:0:166)
-    at <anonymous> (https://www.clarity.ms/tag/w49qfrxwu5:0:507)
