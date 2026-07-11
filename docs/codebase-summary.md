@@ -8,7 +8,7 @@
 
 - **Project:** TinyGenius Hub — Vietnamese EdTech for ages 2–6 (Math + English Phonics)
 - **Production URL:** https://www.tinygeniushubvn.tech
-- **Current Branch:** `i18n/english-primary-migration` — active i18n work
+- **Current Branch:** `main` — production
 - **Stack:** Next.js 16 (App Router) + React 19 + TypeScript + Prisma + PostgreSQL 16 + Redis + BullMQ
 - **Deployment:** DigitalOcean Ubuntu 24.04 (PM2 + Nginx) + Docker Compose (postgres, redis, web, worker)
 - **CDN:** Bunny Stream (video), Cloudflare R2 (media storage)
@@ -41,7 +41,7 @@
 **Blog:** `/blog`, `/blog/[slug]`, `/blog/category/[slug]`, `/blog/search`
 **Parent:** `/parent/dashboard`, `/parent/dashboard/[childId]/skills`, `/parent/(children|reports|billing|courses)`
 **Admin:** `/admin/(overview|courses|content|users|staff|organizations|gift-codes|analytics|security|operations|skills|impersonation|site-settings|log)`
-**Admin Blog:** `/admin/blog/(posts|authors|categories|comments|analytics|newsletter)`
+**Admin Blog:** `/admin/blog/(posts|authors|categories|comments|analytics)`
 **Teacher:** `/teacher/(dashboard|bulk-enroll)`
 **Reader:** `/reader/(login|signup|bookmarks)`
 **Kid App:** `/kid`, `/kid/today`, `/kid/courses`, `/kid/garden/[zone]`
@@ -129,7 +129,7 @@ src/
 │   ├── adaptive/                 # Placement tests, skill taxonomy, spaced repetition, next-lesson sequencing
 │   ├── admin/                    # Admin services (analytics, GA4, SOT, funnel, cohort)
 │   ├── billing/                  # Stripe + PayOS, subscriptions, renewals
-│   ├── blog/                     # Blog CMS, comments, newsletter
+│   ├── blog/                     # Blog CMS, comments
 │   ├── content/                  # Curriculum content service
 │   ├── courses/                  # Course catalog, trials, bundles, gift codes, pilot SKUs
 │   ├── garden/                   # Kid garden game (journey/zone progression)
@@ -173,7 +173,7 @@ src/
 | **adaptive** | Skill taxonomy, placement tests, spaced repetition, next-lesson AI | placement-test-service, skill-service, review-queue-service |
 | **admin** | Analytics, user mgmt, GA4, funnel/cohort analysis | admin-analytics-service, admin-user-service, admin-billing-service |
 | **billing** | Stripe + PayOS, subscriptions, renewals | billing-service, plan-config |
-| **blog** | Blog CMS, comment moderation, newsletter | blog-service, comment-service |
+| **blog** | Blog CMS, comment moderation | blog-service, comment-service |
 | **content** | Curriculum content definitions, activity types | content-service |
 | **courses** | Course catalog, checkout, gift codes, certificates | course-service, checkout-service, gift-code-service, certificate-service |
 | **garden** | Kid garden game — journey progression, zone unlocking | garden-service |
@@ -198,7 +198,7 @@ src/
 - **Curriculum:** Track→Level→Unit→Lesson→Activity (cascade chain), CourseLesson, CourseEnrollment, ChildCourseJourneyTier
 - **Adaptive:** Skill (self-ref tree), ChildSkillState, SkillAttempt, ReviewQueue, PlacementTest, PlacementTestAttempt
 - **Abeka Curriculum:** AbekaVideo, AbekaGrade, AbekaLesson, AbekaLearningJourney, AbekaAssignment, AbekaWatchProgress, AbekaBadge, AbekaStreak, AbekaSkillNode
-- **Blog:** BlogPost, BlogCategory, BlogTag, BlogAuthor, BlogComment, BlogPostVersion, BlogBookmark, BlogNewsletterSubscriber
+- **Blog:** BlogPost, BlogCategory, BlogTag, BlogAuthor, BlogComment, BlogPostVersion, BlogBookmark
 - **Courses:** Course, CourseReview, GiftCode, CurriculumPackage
 - **Organizations:** Organization, OrganizationMember
 - **Garden:** (Game progression data)
@@ -214,7 +214,6 @@ src/
 | weekly-reports | generate-weekly-reports |
 | portfolio-retention | purge-expired-media |
 | weekly-report-emails | dispatch-weekly-report-emails |
-| blog-newsletter | dispatch-blog-newsletter-email, verify-blog-newsletter-email |
 | blog-comment-emails | verify-blog-comment |
 | blog-comment-reply-emails | notify-comment-reply |
 | lifecycle-emails | send-lifecycle-email, dispatch-pending-lifecycle-emails |

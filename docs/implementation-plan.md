@@ -1,4 +1,15 @@
-﻿# Implementation Plan (Execution Snapshot)
+﻿# Implementation Plan (SUPERSEDED — Historical)
+
+**⚠️ Deprecated:** This document describes the Feb 2026 MVP rebuild phase. The project has evolved beyond this scope. Current work is tracked in:
+- `docs/project-roadmap.md` — current phases + delivered features
+- `plans/260710-1047-admin-consolidation-wave-1/` — latest completed phase
+- `plans/260710-1330-admin-consolidation-wave-2/` — current work in progress
+
+This file is retained for historical reference only.
+
+---
+
+# Implementation Plan (Execution Snapshot)
 
 ## Source of Truth
 - Primary source: `docs/handover/handover-master-agent-ready.md`

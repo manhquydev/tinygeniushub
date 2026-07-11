@@ -71,7 +71,7 @@
 ### Reader (Content Consumer — Blog)
 - **Goals:** Learn about child development, early education tips
 - **Channels:** Google, Facebook, referral
-- **Motivation:** Free content, newsletter signup, comment engagement
+- **Motivation:** Free content, comment engagement
 
 ---
 
@@ -123,7 +123,6 @@
 ### Reader Portal ✓
 - Separate auth system (email/password)
 - Blog bookmarking system
-- Newsletter signup + verification
 - Comment moderation + notifications
 - Related article recommendations
 

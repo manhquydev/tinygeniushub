@@ -110,7 +110,7 @@
 - Abeka curriculum integration (videos, lessons, assignments, badges, streaks)
 - Reader portal (separate auth, blog bookmarks)
 - Kid garden game (journey, zones, progression)
-- SEO blog with comments, newsletter, author management
+- SEO blog with comments and author management
 - Referral program (code generation, attribution)
 - Gift codes (bulk generation, bulk redemption)
 

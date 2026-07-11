@@ -141,7 +141,6 @@ On failure: retry (exponential backoff) or dead-letter queue
 | `lifecycle-emails` | send-lifecycle-email | Signup → D0/D3/D7 | Resend API |
 | `weekly-reports` | generate-weekly-reports | Cron (Sunday 8am) | Progress calculation |
 | `weekly-report-emails` | dispatch-weekly-report-emails | Cron (Sunday 9am) | Resend + templating |
-| `blog-newsletter` | dispatch-blog-newsletter-email | Admin trigger | Resend + list |
 | `transactional-emails` | send-transactional-email | Invoice, receipt | Resend |
 | `certificates` | generate-certificate | Course completion | pdf-lib + R2 upload |
 | `bulk-enroll` | bulk-enroll | Teacher CSV upload | Prisma batch insert |
@@ -191,7 +190,7 @@ Better Auth (Parent + Admin):
 
 Reader (Separate Auth):
   - Independent `ReaderAccount` + `Session`
-  - Used for blog comments, newsletter signup
+  - Used for blog comments and bookmarking
   - No access to parent/child data
 ```
 
@@ -359,10 +358,9 @@ Push to main branch
 
 ### Vercel (Preview / Staging)
 ```
-vercel.json configured with 5 cron routes:
+vercel.json configured with 4 cron routes:
   - /api/cron/weekly-reports (Sunday 8am)
   - /api/cron/streak-alerts (Daily 6am)
-  - /api/cron/newsletter-digest (Monday 9am)
   - /api/cron/cleanup-media (Nightly 2am)
   - /api/cron/publish-scheduled-posts (Every hour)
 ```

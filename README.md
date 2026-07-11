@@ -20,16 +20,12 @@ MVP foundation rebuilt from handover docs (`docs/handover/handover-master-agent-
 - CI release gate workflow with security/perf evidence artifacts.
 - Observability baseline: structured logs + health/readiness APIs.
 
-### Technical modules
-- `identity`
-- `content`
-- `learning`
-- `progress`
-- `billing`
-- `reports`
-- `admin`
-- `referral`
-- `platform`
+### Technical modules (17)
+- Core: `identity`, `content`, `learning`, `progress`, `platform`
+- Monetization: `billing`, `courses`, `referral`
+- Content: `blog`, `garden`, `reader`
+- Institutional: `admin`, `organizations`, `caregivers`
+- Advanced: `adaptive`, `reports`, `sharing`
 
 ## Setup
 
