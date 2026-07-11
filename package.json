@@ -193,7 +193,6 @@
     }
   },
   "description": "MVP foundation rebuilt from handover docs (`docs/handover/handover-master-agent-ready.md`) using:\r - Next.js 16 + React 19 + TypeScript\r - Prisma + PostgreSQL 16\r - Redis + BullMQ worker scaffold\r - Modular monolith domain boundaries",
-  "main": ".tmp-prod-blocked-ip-vantage-test.js",
   "directories": {
     "doc": "docs",
     "test": "tests"
