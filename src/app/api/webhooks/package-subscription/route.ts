@@ -14,6 +14,7 @@ import { logInfo, logWarn, logError } from "@/lib/observability/logger";
 import { enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
 import { handleRouteError } from "@/lib/route-error";
 import { fail, ok } from "@/lib/http";
+import { isValidBillingSignature } from "@/modules/billing/webhook-service";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 import { getRateLimitPolicy } from "@/modules/platform/security-policy-service";
 import { PaymentStatus } from "@prisma/client";
@@ -83,18 +84,34 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const payload = await request.json() as WebhookPayload;
+    const rawBody = await request.text();
+    if (Buffer.byteLength(rawBody, "utf8") > env.BILLING_WEBHOOK_MAX_BYTES) {
+      logWarn("billing.webhook.package.payload_too_large", { ip: clientIp });
+      return fail("Payload too large", 413);
+    }
 
-    // Validate required fields
+    const signature = request.headers.get("x-provider-signature");
+    const signatureValid = isValidBillingSignature(rawBody, signature);
+    if (!signatureValid) {
+      logWarn("billing.webhook.package.invalid_signature", { ip: clientIp });
+      return fail(env.NODE_ENV === "production" ? "Not found" : "Unauthorized", env.NODE_ENV === "production" ? 404 : 401);
+    }
+
+    let payload: WebhookPayload;
+    try {
+      payload = JSON.parse(rawBody) as WebhookPayload;
+    } catch {
+      return fail("Invalid webhook payload", 400);
+    }
+
     if (!payload.paymentId || !payload.parentId || !payload.status) {
       logWarn("billing.webhook.package.invalid_payload", {
         ip: clientIp,
-        payload: JSON.stringify(payload),
+        payload: rawBody,
       });
       return fail("Invalid webhook payload", 400);
     }
 
-    // Process based on status
     const result = await processWebhook(payload);
 
     logInfo("billing.webhook.package.processed", {

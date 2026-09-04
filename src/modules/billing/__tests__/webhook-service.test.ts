@@ -21,6 +21,14 @@ const { prismaMock, txMock, createAuditLogMock } = vi.hoisted(() => {
     paymentRecord: {
       upsert: vi.fn(),
     },
+    offering: {
+      findUnique: vi.fn(),
+    },
+    entitlement: {
+      findFirst: vi.fn(),
+      create: vi.fn(),
+      update: vi.fn(),
+    },
   };
 
   return {
@@ -106,6 +114,9 @@ describe("processBillingWebhook", () => {
     txMock.subscription.update.mockResolvedValue({ id: "sub-1", status: SubscriptionStatus.ACTIVE_STANDARD });
     txMock.subscription.create.mockResolvedValue({ id: "sub-2", status: SubscriptionStatus.ACTIVE_STANDARD });
     txMock.paymentRecord.upsert.mockResolvedValue({ id: "pay-1" });
+    txMock.offering.findUnique.mockResolvedValue({ id: "offering-pass", code: "platform-pass" });
+    txMock.entitlement.findFirst.mockResolvedValue(null);
+    txMock.entitlement.create.mockResolvedValue({ id: "ent-1", status: "ACTIVE" });
     createAuditLogMock.mockResolvedValue(undefined);
   });
 
@@ -142,6 +153,15 @@ describe("processBillingWebhook", () => {
       }),
     );
     expect(createAuditLogMock).toHaveBeenCalledTimes(1);
+    expect(txMock.entitlement.create).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        parentId: "parent-1",
+        offeringId: "offering-pass",
+        status: "ACTIVE",
+        sourcePaymentId: "pay-1",
+        validUntil: expect.any(Date),
+      }),
+    });
   });
 
   it("is idempotent for duplicate provider+eventId already processed", async () => {
@@ -163,6 +183,7 @@ describe("processBillingWebhook", () => {
     expect(txMock.webhookEvent.create).not.toHaveBeenCalled();
     expect(txMock.paymentRecord.upsert).not.toHaveBeenCalled();
     expect(txMock.subscription.update).not.toHaveBeenCalled();
+    expect(txMock.entitlement.create).not.toHaveBeenCalled();
   });
 
   it("does not touch DB when signature is missing or invalid", () => {
@@ -195,5 +216,115 @@ describe("processBillingWebhook", () => {
         }),
       }),
     );
+  });
+
+  it("extends existing ACTIVE ticket instead of creating a duplicate", async () => {
+    txMock.entitlement.findFirst.mockResolvedValue({
+      id: "ent-1",
+      parentId: "parent-1",
+      offeringId: "offering-pass",
+      status: "ACTIVE",
+      validUntil: new Date("2026-06-01T00:00:00.000Z"),
+      sourcePaymentId: "pay-old",
+    });
+    txMock.entitlement.update.mockResolvedValue({ id: "ent-1" });
+
+    await processBillingWebhook({
+      payload: basePayload,
+    });
+
+    expect(txMock.entitlement.create).not.toHaveBeenCalled();
+    expect(txMock.entitlement.update).toHaveBeenCalledWith({
+      where: { id: "ent-1" },
+      data: {
+        status: "ACTIVE",
+        validUntil: new Date("2027-02-20T10:00:00.000Z"),
+        sourcePaymentId: "pay-1",
+      },
+    });
+  });
+
+  it("uses addMonths for MONTHLY_STANDARD period end", async () => {
+    await processBillingWebhook({
+      payload: {
+        ...basePayload,
+        eventId: "evt_month",
+        transactionId: "txn_month",
+        planCode: "MONTHLY_STANDARD",
+        amountVnd: 149_000,
+      },
+    });
+
+    expect(txMock.entitlement.create).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        validUntil: new Date("2026-03-20T10:00:00.000Z"),
+      }),
+    });
+  });
+
+  it("marks entitlement GRACE on payment_failed", async () => {
+    txMock.entitlement.findFirst.mockResolvedValue({
+      id: "ent-1",
+      status: "ACTIVE",
+      validUntil: new Date("2026-03-20T10:00:00.000Z"),
+    });
+    txMock.entitlement.update.mockResolvedValue({ id: "ent-1" });
+
+    await processBillingWebhook({
+      payload: {
+        ...basePayload,
+        eventId: "evt_fail",
+        transactionId: "txn_fail",
+        eventType: "payment_failed",
+      },
+    });
+
+    expect(txMock.subscription.update).toHaveBeenCalledWith({
+      where: { parentId: "parent-1" },
+      data: { status: SubscriptionStatus.GRACE },
+    });
+    expect(txMock.entitlement.update).toHaveBeenCalledWith({
+      where: { id: "ent-1" },
+      data: {
+        status: "GRACE",
+        validUntil: new Date("2026-02-23T10:00:00.000Z"),
+      },
+    });
+    expect(txMock.entitlement.create).not.toHaveBeenCalled();
+  });
+
+  it("expires entitlement on subscription_deleted", async () => {
+    txMock.entitlement.findFirst.mockResolvedValue({
+      id: "ent-1",
+      status: "GRACE",
+      validUntil: new Date("2026-02-23T10:00:00.000Z"),
+    });
+    txMock.entitlement.update.mockResolvedValue({ id: "ent-1" });
+
+    const result = await processBillingWebhook({
+      payload: {
+        ...basePayload,
+        eventId: "evt_deleted",
+        transactionId: "sub_gone",
+        eventType: "subscription_deleted",
+      },
+    });
+
+    expect(result).toMatchObject({
+      duplicate: false,
+      paymentStatus: null,
+    });
+    expect(txMock.subscription.update).toHaveBeenCalledWith({
+      where: { parentId: "parent-1" },
+      data: {
+        status: SubscriptionStatus.EXPIRED,
+        autoRenew: false,
+      },
+    });
+    expect(txMock.entitlement.update).toHaveBeenCalledWith({
+      where: { id: "ent-1" },
+      data: { status: "EXPIRED" },
+    });
+    expect(txMock.paymentRecord.upsert).not.toHaveBeenCalled();
   });
 });

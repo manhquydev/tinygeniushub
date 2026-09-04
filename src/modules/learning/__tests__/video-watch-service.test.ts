@@ -1,7 +1,6 @@
-import { SubscriptionStatus } from "@prisma/client";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { prismaMock, createAuditLogMock, redisStore, redisMock, randomUuidMock } = vi.hoisted(() => {
+const { prismaMock, createAuditLogMock, redisStore, redisMock, randomUuidMock, assertCanLearnMock } = vi.hoisted(() => {
   const redisStore = new Map<string, Record<string, string>>();
 
   const redisMock = {
@@ -49,6 +48,7 @@ const { prismaMock, createAuditLogMock, redisStore, redisMock, randomUuidMock } 
     redisStore,
     redisMock,
     randomUuidMock: vi.fn(() => "nonce-fixed-12345678"),
+    assertCanLearnMock: vi.fn(),
   };
 });
 
@@ -70,6 +70,9 @@ vi.mock("@/lib/redis-client", () => ({
 vi.mock("@/modules/platform/audit-service", () => ({
   createAuditLog: createAuditLogMock,
 }));
+vi.mock("@/modules/entitlement/assert-can-learn", () => ({
+  assertCanLearn: assertCanLearnMock,
+}));
 
 vi.mock("node:crypto", async () => {
   const actual = await vi.importActual<typeof import("node:crypto")>("node:crypto");
@@ -79,6 +82,7 @@ vi.mock("node:crypto", async () => {
   };
 });
 
+import { DomainError } from "@/modules/platform/errors";
 import {
   assertLessonVideoWatchCompleted,
   buildLessonWatchResourceId,
@@ -112,20 +116,16 @@ describe("video watch service integration paths", () => {
     vi.clearAllMocks();
     redisStore.clear();
 
-    prismaMock.childProfile.findFirst.mockResolvedValue({
-      id: "child-1",
-    });
-    prismaMock.lesson.findUnique.mockResolvedValue({
-      id: "lesson-1",
-      trialEnabled: true,
-      estimatedMinutes: 5,
-      videoSource: "https://cdn.example.com/video.mp4",
-    });
-    prismaMock.subscription.findUnique.mockResolvedValue({
-      status: SubscriptionStatus.ACTIVE_STANDARD,
-    });
     prismaMock.auditLog.findFirst.mockResolvedValue(null);
-    createAuditLogMock.mockResolvedValue(undefined);
+    assertCanLearnMock.mockResolvedValue({
+      child: { id: "child-1" },
+      lesson: {
+        id: "lesson-1",
+        trialEnabled: true,
+        estimatedMinutes: 5,
+        videoSource: "https://cdn.example.com/video.mp4",
+      },
+    });
     redisMock.status = "ready";
   });
 
@@ -163,11 +163,14 @@ describe("video watch service integration paths", () => {
   });
 
   it("skips watch session requirement when lesson has no video source", async () => {
-    prismaMock.lesson.findUnique.mockResolvedValueOnce({
-      id: "lesson-1",
-      trialEnabled: true,
-      estimatedMinutes: 5,
-      videoSource: null,
+    assertCanLearnMock.mockResolvedValueOnce({
+      child: { id: "child-1" },
+      lesson: {
+        id: "lesson-1",
+        trialEnabled: true,
+        estimatedMinutes: 5,
+        videoSource: null,
+      },
     });
 
     const result = await createLessonVideoWatchSession({
@@ -186,6 +189,23 @@ describe("video watch service integration paths", () => {
       expiresAt: null,
     });
     expect(createAuditLogMock).not.toHaveBeenCalled();
+  });
+
+  it("denies watch session start without a household ticket", async () => {
+    assertCanLearnMock.mockRejectedValueOnce(
+      new DomainError("Household ticket required to learn this lesson", 403, "LEARN_ACCESS_DENIED"),
+    );
+
+    await expect(
+      createLessonVideoWatchSession({
+        parentId: "parent-1",
+        lessonId: "lesson-1",
+        payload: { childId: "child-1" },
+      }),
+    ).rejects.toMatchObject({
+      code: "LEARN_ACCESS_DENIED",
+      status: 403,
+    });
   });
 
   it("accepts valid heartbeat sequence and updates watched seconds", async () => {

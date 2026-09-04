@@ -44,6 +44,14 @@ type TxContext = {
   paymentRecord: {
     upsert: ReturnType<typeof vi.fn>;
   };
+  offering: {
+    findUnique: ReturnType<typeof vi.fn>;
+  };
+  entitlement: {
+    findFirst: ReturnType<typeof vi.fn>;
+    create: ReturnType<typeof vi.fn>;
+    update: ReturnType<typeof vi.fn>;
+  };
 };
 
 function createTxContext(): TxContext {
@@ -63,6 +71,14 @@ function createTxContext(): TxContext {
     },
     paymentRecord: {
       upsert: vi.fn(),
+    },
+    offering: {
+      findUnique: vi.fn().mockResolvedValue({ id: "offering-pass", code: "platform-pass" }),
+    },
+    entitlement: {
+      findFirst: vi.fn().mockResolvedValue(null),
+      create: vi.fn().mockResolvedValue({ id: "ent-1" }),
+      update: vi.fn(),
     },
   };
 }
@@ -192,6 +208,7 @@ describe("processBillingWebhook", () => {
       }),
     );
     expect(createAuditLogMock).toHaveBeenCalledTimes(1);
+    expect(tx.entitlement.create).toHaveBeenCalledTimes(1);
   });
 
   it("moves existing subscription to grace when payment fails", async () => {
@@ -230,6 +247,7 @@ describe("processBillingWebhook", () => {
         status: SubscriptionStatus.GRACE,
       },
     });
+    expect(tx.entitlement.create).not.toHaveBeenCalled();
   });
 
   it("marks subscription refunded and disables auto-renew on refund event", async () => {
@@ -269,6 +287,7 @@ describe("processBillingWebhook", () => {
         autoRenew: false,
       },
     });
+    expect(tx.entitlement.create).not.toHaveBeenCalled();
   });
 
   it("handles unique-collision fallback and returns duplicate when recovered row is processed", async () => {

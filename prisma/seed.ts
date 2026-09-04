@@ -8,10 +8,12 @@ import {
   TrackCode,
   PlanCode,
   SubscriptionStatus,
+  OfferingKind,
 } from "@prisma/client";
 import { addDays } from "date-fns";
 import { hashSync } from "bcryptjs";
 import type { ActivitySpec } from "../src/modules/content/activity-types";
+import { SEED_OFFERINGS } from "../src/modules/entitlement/offering-types";
 
 const prisma = new PrismaClient();
 const shouldSeedBlogDemoContent = process.env.SEED_BLOG_DEMO_CONTENT === "true";
@@ -743,8 +745,34 @@ The most effective early education balances structured learning with free play, 
   console.log("Blog seed completed: 8 categories, 2 authors, 10 tags, 3 posts.");
 }
 
+async function seedOfferings() {
+  const recurringPriceId =
+    process.env.STRIPE_PRICE_ID_YEARLY || process.env.STRIPE_PRICE_ID_MONTHLY || null;
+
+  for (const offering of SEED_OFFERINGS) {
+    const stripePriceId = offering.kind === "RECURRING" ? recurringPriceId : null;
+    await prisma.offering.upsert({
+      where: { code: offering.code },
+      update: {
+        kind: offering.kind as OfferingKind,
+        catalogKey: offering.catalogKey,
+        active: true,
+        ...(stripePriceId ? { stripePriceId } : {}),
+      },
+      create: {
+        code: offering.code,
+        kind: offering.kind as OfferingKind,
+        catalogKey: offering.catalogKey,
+        active: true,
+        stripePriceId,
+      },
+    });
+  }
+}
+
 async function main() {
   await seedAdminSecuritySettings();
+  await seedOfferings();
   await seedContent();
   await seedDemoParent();
   await seedBlog();

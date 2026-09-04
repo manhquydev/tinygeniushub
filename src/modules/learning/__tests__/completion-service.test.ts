@@ -2,34 +2,39 @@ import { RetentionPolicy, SubscriptionStatus } from "@prisma/client";
 import { subDays } from "date-fns";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { prismaMock, assertLessonVideoWatchCompletedMock, isPrismaUniqueConstraintErrorMock, syncJourneyProgressMock } = vi.hoisted(
-  () => ({
-    prismaMock: {
-      childProfile: {
-        findFirst: vi.fn(),
-      },
-      lesson: {
-        findUnique: vi.fn(),
-      },
-      subscription: {
-        findUnique: vi.fn(),
-      },
-      lessonCompletion: {
-        findUnique: vi.fn(),
-      },
-      childCourseJourney: {
-        findMany: vi.fn(),
-      },
-      course: {
-        findMany: vi.fn().mockResolvedValue([]),
-      },
-      $transaction: vi.fn(),
+const {
+  prismaMock,
+  assertLessonVideoWatchCompletedMock,
+  isPrismaUniqueConstraintErrorMock,
+  syncJourneyProgressMock,
+  assertCanLearnMock,
+} = vi.hoisted(() => ({
+  prismaMock: {
+    childProfile: {
+      findFirst: vi.fn(),
     },
-    assertLessonVideoWatchCompletedMock: vi.fn(),
-    isPrismaUniqueConstraintErrorMock: vi.fn(),
-    syncJourneyProgressMock: vi.fn(),
-  }),
-);
+    lesson: {
+      findUnique: vi.fn(),
+    },
+    subscription: {
+      findUnique: vi.fn(),
+    },
+    lessonCompletion: {
+      findUnique: vi.fn(),
+    },
+    childCourseJourney: {
+      findMany: vi.fn(),
+    },
+    course: {
+      findMany: vi.fn().mockResolvedValue([]),
+    },
+    $transaction: vi.fn(),
+  },
+  assertLessonVideoWatchCompletedMock: vi.fn(),
+  isPrismaUniqueConstraintErrorMock: vi.fn(),
+  syncJourneyProgressMock: vi.fn(),
+  assertCanLearnMock: vi.fn(),
+}));
 
 vi.mock("@/lib/db", () => ({
   prisma: prismaMock,
@@ -42,6 +47,9 @@ vi.mock("@/lib/prisma-error", () => ({
 vi.mock("@/modules/garden/journey-service", () => ({
   syncJourneyProgress: syncJourneyProgressMock,
 }));
+vi.mock("@/modules/entitlement/assert-can-learn", () => ({
+  assertCanLearn: assertCanLearnMock,
+}));
 
 vi.mock("@/modules/learning/video-watch-service", async () => {
   const actual = await vi.importActual<typeof import("@/modules/learning/video-watch-service")>(
@@ -53,6 +61,7 @@ vi.mock("@/modules/learning/video-watch-service", async () => {
   };
 });
 
+import { DomainError } from "@/modules/platform/errors";
 import { completeLesson, computeStreakCount } from "@/modules/learning/completion-service";
 
 type TxContext = {
@@ -164,6 +173,10 @@ describe("completeLesson", () => {
       portfolioRetentionMaxDays: 365,
     });
     prismaMock.childCourseJourney.findMany.mockResolvedValue([]);
+    assertCanLearnMock.mockResolvedValue({
+      child: { id: "child-1", parentId: "parent-1", adaptiveEnabled: false },
+      lesson: lessonFixture,
+    });
     assertLessonVideoWatchCompletedMock.mockResolvedValue(undefined);
     isPrismaUniqueConstraintErrorMock.mockReturnValue(false);
     syncJourneyProgressMock.mockResolvedValue({
@@ -176,7 +189,7 @@ describe("completeLesson", () => {
   });
 
   it("returns CHILD_NOT_FOUND when child does not belong to parent", async () => {
-    prismaMock.childProfile.findFirst.mockResolvedValueOnce(null);
+    assertCanLearnMock.mockRejectedValueOnce(new DomainError("Child profile not found", 404, "CHILD_NOT_FOUND"));
 
     await expect(
       completeLesson({
@@ -297,14 +310,9 @@ describe("completeLesson", () => {
   });
 
   it("blocks trial users from non-trial lessons", async () => {
-    prismaMock.subscription.findUnique.mockResolvedValueOnce({
-      status: SubscriptionStatus.TRIALING,
-      portfolioRetentionMaxDays: 90,
-    });
-    prismaMock.lesson.findUnique.mockResolvedValueOnce({
-      ...lessonFixture,
-      trialEnabled: false,
-    });
+    assertCanLearnMock.mockRejectedValueOnce(
+      new DomainError("Trial account can only access trial-enabled lessons", 403, "TRIAL_LESSON_RESTRICTED"),
+    );
 
     await expect(
       completeLesson({
@@ -320,6 +328,81 @@ describe("completeLesson", () => {
     ).rejects.toMatchObject({
       code: "TRIAL_LESSON_RESTRICTED",
       status: 403,
+    });
+  });
+
+  it("denies complete without a household ticket", async () => {
+    assertCanLearnMock.mockRejectedValueOnce(
+      new DomainError("Household ticket required to learn this lesson", 403, "LEARN_ACCESS_DENIED"),
+    );
+
+    await expect(
+      completeLesson({
+        parentId: "parent-1",
+        lessonId: "lesson-1",
+        payload: {
+          childId: "child-1",
+          quizScore: 95,
+          minutesLearned: 20,
+          checklist: ["task-1"],
+        },
+      }),
+    ).rejects.toMatchObject({
+      code: "LEARN_ACCESS_DENIED",
+      status: 403,
+    });
+  });
+
+  it("stores independent completions for two children in the same household", async () => {
+    assertCanLearnMock.mockImplementation(async ({ childId }: { childId: string }) => ({
+      child: { id: childId, parentId: "parent-1", adaptiveEnabled: false },
+      lesson: lessonFixture,
+    }));
+
+    async function completeFor(childId: string, completionId: string) {
+      const tx = createTxContext();
+      tx.lessonCompletion.findUnique.mockResolvedValueOnce(null);
+      tx.lessonCompletion.create.mockResolvedValueOnce({
+        id: completionId,
+        completedAt: new Date("2026-02-20T10:00:00.000Z"),
+      });
+      tx.evidence.create.mockResolvedValueOnce({ id: `evidence-${childId}` });
+      tx.rewardGrant.create.mockResolvedValueOnce({ id: `reward-${childId}` });
+      tx.lessonCompletion.findFirst.mockResolvedValueOnce(null);
+      tx.progressState.findUnique.mockResolvedValueOnce({ streakCount: 0 });
+      tx.progressState.upsert.mockResolvedValueOnce({ id: `progress-${childId}` });
+      prismaMock.$transaction.mockImplementationOnce(
+        async (callback: (input: TxContext) => Promise<unknown>) => callback(tx),
+      );
+
+      const result = await completeLesson({
+        parentId: "parent-1",
+        lessonId: "lesson-1",
+        payload: {
+          childId,
+          quizScore: 90,
+          minutesLearned: 15,
+          checklist: ["task-1"],
+        },
+      });
+
+      expect(tx.lessonCompletion.findUnique).toHaveBeenCalledWith({
+        where: { childId_lessonId: { childId, lessonId: "lesson-1" } },
+        include: { evidence: true },
+      });
+      expect(tx.lessonCompletion.create).toHaveBeenCalledWith({
+        data: expect.objectContaining({ childId, lessonId: "lesson-1" }),
+      });
+      return result;
+    }
+
+    await expect(completeFor("child-a", "completion-a")).resolves.toMatchObject({
+      idempotent: false,
+      completion: { id: "completion-a" },
+    });
+    await expect(completeFor("child-b", "completion-b")).resolves.toMatchObject({
+      idempotent: false,
+      completion: { id: "completion-b" },
     });
   });
 

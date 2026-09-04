@@ -1,9 +1,10 @@
-import { RetentionPolicy, RewardType, SubscriptionStatus } from "@prisma/client";
+import { RetentionPolicy, RewardType } from "@prisma/client";
 import { addDays, differenceInCalendarDays, startOfDay } from "date-fns";
 import { prisma } from "@/lib/db";
 import { isPrismaUniqueConstraintError } from "@/lib/prisma-error";
 import { assertLessonVideoWatchCompleted } from "@/modules/learning/video-watch-service";
 import { trackPilotLessonCompletedForParent } from "@/modules/courses/pilot-funnel-tracking-service";
+import { assertCanLearn } from "@/modules/entitlement/assert-can-learn";
 import { DomainError } from "@/modules/platform/errors";
 import { recordSkillAttempt } from "@/modules/adaptive/skill-attempt-service";
 import { syncJourneyProgress } from "@/modules/garden/journey-service";
@@ -123,18 +124,13 @@ export async function completeLesson(params: {
 }) {
   const payload = completeLessonSchema.parse(params.payload);
 
-  const [child, lesson, subscription] = await Promise.all([
-    prisma.childProfile.findFirst({
-      where: {
-        id: payload.childId,
-        parentId: params.parentId,
-      },
-      select: {
-        id: true,
-        parentId: true,
-        adaptiveEnabled: true,
-      },
-    }),
+  const { child } = await assertCanLearn({
+    parentId: params.parentId,
+    childId: payload.childId,
+    lessonId: params.lessonId,
+  });
+
+  const [lesson, subscription] = await Promise.all([
     prisma.lesson.findUnique({
       where: { id: params.lessonId },
       include: {
@@ -152,32 +148,8 @@ export async function completeLesson(params: {
     prisma.subscription.findUnique({ where: { parentId: params.parentId } }),
   ]);
 
-  if (!child) {
-    throw new DomainError("Child profile not found", 404, "CHILD_NOT_FOUND");
-  }
-
   if (!lesson) {
     throw new DomainError("Lesson not found", 404, "LESSON_NOT_FOUND");
-  }
-
-  if (!subscription) {
-    throw new DomainError("Subscription not found", 404, "SUBSCRIPTION_NOT_FOUND");
-  }
-
-  const activeStatuses = new Set<SubscriptionStatus>([
-    SubscriptionStatus.TRIALING,
-    SubscriptionStatus.ACTIVE_STANDARD,
-    SubscriptionStatus.ACTIVE_FAMILYPLUS,
-    SubscriptionStatus.GRACE,
-    SubscriptionStatus.CANCELED_AT_PERIOD_END,
-  ]);
-
-  if (!activeStatuses.has(subscription.status)) {
-    throw new DomainError("Subscription is not eligible for lesson completion", 403, "SUBSCRIPTION_INACTIVE");
-  }
-
-  if (subscription.status === SubscriptionStatus.TRIALING && !lesson.trialEnabled) {
-    throw new DomainError("Trial account can only access trial-enabled lessons", 403, "TRIAL_LESSON_RESTRICTED");
   }
 
   try {
@@ -218,7 +190,7 @@ export async function completeLesson(params: {
         },
       });
 
-      const canUseExtendedRetention = subscription.portfolioRetentionMaxDays >= 365;
+      const canUseExtendedRetention = (subscription?.portfolioRetentionMaxDays ?? 90) >= 365;
       const useExtendedRetention = payload.useExtendedRetention && canUseExtendedRetention;
       const retentionDays = useExtendedRetention ? 365 : 90;
 

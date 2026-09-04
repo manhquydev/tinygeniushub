@@ -4,14 +4,18 @@ import { createCheckoutSchema, resolveCheckoutAbsoluteUrl } from "@/modules/bill
 import { getPayablePlanConfig } from "@/modules/billing/plan-config";
 
 describe("createCheckoutSchema", () => {
-  it("accepts yearly payable plans only", () => {
-    const parsed = createCheckoutSchema.parse({
+  it("accepts yearly and monthly payable plans", () => {
+    const yearly = createCheckoutSchema.parse({
       planCode: "YEARLY_STANDARD",
       successPath: "/parent/dashboard",
       cancelPath: "/courses",
     });
+    const monthly = createCheckoutSchema.parse({
+      planCode: "MONTHLY_STANDARD",
+    });
 
-    expect(parsed.planCode).toBe("YEARLY_STANDARD");
+    expect(yearly.planCode).toBe("YEARLY_STANDARD");
+    expect(monthly.planCode).toBe("MONTHLY_STANDARD");
   });
 
   it("rejects TRIAL plan", () => {

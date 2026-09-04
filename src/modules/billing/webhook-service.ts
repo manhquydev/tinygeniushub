@@ -4,24 +4,26 @@ import {
   SubscriptionStatus,
   WebhookStatus,
 } from "@prisma/client";
-import { addYears } from "date-fns";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/db";
 import { isPrismaUniqueConstraintError } from "@/lib/prisma-error";
-import { getPayablePlanConfig, toPrismaPlanCode } from "@/modules/billing/plan-config";
+import { payablePlanCodeSchema, getPayablePlanConfig, toPrismaPlanCode } from "@/modules/billing/plan-config";
+import { resolveGraceUntil, resolvePeriodEnd } from "@/modules/billing/billing-period";
+import { expirePlanOfferingInTx, grantPlanOfferingInTx, markPlanOfferingGraceInTx } from "@/modules/entitlement/grant-from-billing";
 import { createAuditLog } from "@/modules/platform/audit-service";
 import { z } from "zod";
 
 export const billingWebhookSchema = z.object({
   provider: z.string().min(1),
   eventId: z.string().min(1),
-  eventType: z.enum(["payment_succeeded", "payment_failed", "payment_refunded"]),
+  eventType: z.enum(["payment_succeeded", "payment_failed", "payment_refunded", "subscription_deleted"]),
   transactionId: z.string().min(1),
   parentId: z.string().min(1).optional(),
   parentEmail: z.string().email(),
   amountVnd: z.number().int().min(0),
-  planCode: z.enum(["YEARLY_STANDARD", "YEARLY_FAMILY_PLUS"]),
+  planCode: payablePlanCodeSchema,
   occurredAt: z.coerce.date().optional(),
+  periodEnd: z.coerce.date().optional(),
   raw: z.unknown().optional(),
 });
 
@@ -62,7 +64,11 @@ function resolvePaymentStatus(eventType: z.infer<typeof billingWebhookSchema>["e
     return PaymentStatus.FAILED;
   }
 
-  return PaymentStatus.REFUNDED;
+  if (eventType === "payment_refunded") {
+    return PaymentStatus.REFUNDED;
+  }
+
+  return null;
 }
 
 function hashWebhookLockKey(provider: string, eventId: string): bigint {
@@ -175,12 +181,11 @@ export async function processBillingWebhook(params: {
         message: "Parent not found. Event ignored.",
       };
     }
-
     const paymentStatus = resolvePaymentStatus(payload.eventType);
     const planCode = toPrismaPlanCode(payload.planCode);
 
     const periodStart = payload.occurredAt ?? new Date();
-    const periodEnd = addYears(periodStart, 1);
+    const periodEnd = resolvePeriodEnd(payload.planCode, periodStart, payload.periodEnd);
 
     const planConfig = resolveSubscriptionPlanConfig(payload.planCode);
     let subscription = parent.subscription;
@@ -216,6 +221,11 @@ export async function processBillingWebhook(params: {
           status: SubscriptionStatus.GRACE,
         },
       });
+      await markPlanOfferingGraceInTx(tx, {
+        parentId: parent.id,
+        planCode: payload.planCode,
+        validUntil: resolveGraceUntil(payload.occurredAt ?? new Date()),
+      });
     }
 
     if (paymentStatus === PaymentStatus.REFUNDED && subscription) {
@@ -228,30 +238,48 @@ export async function processBillingWebhook(params: {
       });
     }
 
-    await tx.paymentRecord.upsert({
-      where: {
-        provider_providerTransactionId: {
-          provider: payload.provider,
-          providerTransactionId: payload.transactionId,
-        },
-      },
-      update: {
-        amountVnd: payload.amountVnd,
-        status: paymentStatus,
-        rawPayload: payload.raw ?? payload,
-        processedAt: new Date(),
-        subscriptionId: subscription?.id,
-      },
-      create: {
+    if (payload.eventType === "subscription_deleted") {
+      if (subscription) {
+        subscription = await tx.subscription.update({
+          where: { parentId: parent.id },
+          data: {
+            status: SubscriptionStatus.EXPIRED,
+            autoRenew: false,
+          },
+        });
+      }
+      await expirePlanOfferingInTx(tx, {
         parentId: parent.id,
-        subscriptionId: subscription?.id,
-        provider: payload.provider,
-        providerTransactionId: payload.transactionId,
-        amountVnd: payload.amountVnd,
-        status: paymentStatus,
-        rawPayload: payload.raw ?? payload,
-      },
-    });
+        planCode: payload.planCode,
+      });
+    }
+
+    const paymentRecord = paymentStatus
+      ? await tx.paymentRecord.upsert({
+          where: {
+            provider_providerTransactionId: {
+              provider: payload.provider,
+              providerTransactionId: payload.transactionId,
+            },
+          },
+          update: {
+            amountVnd: payload.amountVnd,
+            status: paymentStatus,
+            rawPayload: payload.raw ?? payload,
+            processedAt: new Date(),
+            subscriptionId: subscription?.id,
+          },
+          create: {
+            parentId: parent.id,
+            subscriptionId: subscription?.id,
+            provider: payload.provider,
+            providerTransactionId: payload.transactionId,
+            amountVnd: payload.amountVnd,
+            status: paymentStatus,
+            rawPayload: payload.raw ?? payload,
+          },
+        })
+      : null;
 
     await tx.webhookEvent.update({
       where: { id: webhookEvent.id },
@@ -266,6 +294,16 @@ export async function processBillingWebhook(params: {
         },
       },
     });
+
+    if (paymentStatus === PaymentStatus.SUCCEEDED && paymentRecord) {
+      await grantPlanOfferingInTx(tx, {
+        parentId: parent.id,
+        planCode: payload.planCode,
+        validFrom: periodStart,
+        validUntil: periodEnd,
+        sourcePaymentId: paymentRecord.id,
+      });
+    }
 
     await createAuditLog({
       dbClient: tx,

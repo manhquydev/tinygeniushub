@@ -1,8 +1,8 @@
 import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
-import { SubscriptionStatus } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
 import { getRedisClient } from "@/lib/redis-client";
+import { assertCanLearn } from "@/modules/entitlement/assert-can-learn";
 import { createAuditLog } from "@/modules/platform/audit-service";
 import { DomainError } from "@/modules/platform/errors";
 import { z } from "zod";
@@ -86,15 +86,6 @@ export function resolveCreditedWatchSecondsFromHeartbeat(input: {
   return Math.max(0, Math.min(rawWatchSeconds, maxCreditableByElapsed, input.requiredWatchSeconds));
 }
 
-function isActiveSubscriptionStatus(status: SubscriptionStatus) {
-  return new Set<SubscriptionStatus>([
-    SubscriptionStatus.TRIALING,
-    SubscriptionStatus.ACTIVE_STANDARD,
-    SubscriptionStatus.ACTIVE_FAMILYPLUS,
-    SubscriptionStatus.GRACE,
-    SubscriptionStatus.CANCELED_AT_PERIOD_END,
-  ]).has(status);
-}
 
 async function hasRecentCompletedVideoWatch(input: {
   parentId: string;
@@ -261,60 +252,8 @@ async function resolveWatchAccessContext(input: {
   childId: string;
   lessonId: string;
 }) {
-  const [child, lesson, subscription] = await Promise.all([
-    prisma.childProfile.findFirst({
-      where: {
-        id: input.childId,
-        parentId: input.parentId,
-      },
-      select: {
-        id: true,
-      },
-    }),
-    prisma.lesson.findUnique({
-      where: { id: input.lessonId },
-      select: {
-        id: true,
-        trialEnabled: true,
-        estimatedMinutes: true,
-        videoSource: true,
-      },
-    }),
-    prisma.subscription.findUnique({
-      where: {
-        parentId: input.parentId,
-      },
-      select: {
-        status: true,
-      },
-    }),
-  ]);
-
-  if (!child) {
-    throw new DomainError("Child profile not found", 404, "CHILD_NOT_FOUND");
-  }
-
-  if (!lesson) {
-    throw new DomainError("Lesson not found", 404, "LESSON_NOT_FOUND");
-  }
-
-  if (!subscription) {
-    throw new DomainError("Subscription not found", 404, "SUBSCRIPTION_NOT_FOUND");
-  }
-
-  if (!isActiveSubscriptionStatus(subscription.status)) {
-    throw new DomainError("Subscription is not eligible for lesson access", 403, "SUBSCRIPTION_INACTIVE");
-  }
-
-  if (subscription.status === SubscriptionStatus.TRIALING && !lesson.trialEnabled) {
-    throw new DomainError("Trial account can only access trial-enabled lessons", 403, "TRIAL_LESSON_RESTRICTED");
-  }
-
-  return {
-    child,
-    lesson,
-    subscription,
-  };
+  const { child, lesson } = await assertCanLearn(input);
+  return { child, lesson };
 }
 
 export async function createLessonVideoWatchSession(params: {

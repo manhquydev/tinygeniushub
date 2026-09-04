@@ -5,6 +5,7 @@ import { isValidPayosSignature } from "@/modules/billing/payos-client";
 import { getPublishedCoursesByBundleSlug } from "@/modules/courses/course-bundle-service";
 import { parsePilotAttributionSnapshot } from "@/modules/courses/pilot-attribution";
 import { trackPilotPurchaseSucceeded } from "@/modules/courses/pilot-funnel-tracking-service";
+import { grantCourseOfferingInTx } from "@/modules/entitlement/grant-from-billing";
 import { createAuditLog } from "@/modules/platform/audit-service";
 
 const payosWebhookDataSchema = z.object({
@@ -268,6 +269,11 @@ export async function processPayosCourseWebhook(rawPayload: unknown) {
                 paymentId: paymentRecord.id,
               },
             });
+            await grantCourseOfferingInTx(tx, {
+              parentId: paymentRecord.parentId,
+              courseId: course.id,
+              sourcePaymentId: paymentRecord.id,
+            });
 
             await trackPilotPurchaseSucceeded({
               dbClient: tx,
@@ -315,6 +321,11 @@ export async function processPayosCourseWebhook(rawPayload: unknown) {
               parentId: paymentRecord.parentId,
               paymentId: paymentRecord.id,
             },
+          });
+          await grantCourseOfferingInTx(tx, {
+            parentId: paymentRecord.parentId,
+            courseId,
+            sourcePaymentId: paymentRecord.id,
           });
 
           if (courseSlug) {
