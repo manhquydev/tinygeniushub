@@ -129,7 +129,7 @@ describe("registerParent", () => {
       where: {
         parentId: "parent-1",
         offeringId: "offering-pass",
-        status: "ACTIVE",
+        status: { in: ["ACTIVE", "GRACE"] },
       },
     });
     expect(txEntitlementCreateMock).toHaveBeenCalledWith({
