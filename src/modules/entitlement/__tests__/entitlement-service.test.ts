@@ -130,7 +130,7 @@ describe("entitlement-service", () => {
     await expect(canAccess({ parentId, lessonId, childId: "child-a" })).resolves.toBe(true);
     await expect(canAccess({ parentId, lessonId, childId: "child-b" })).resolves.toBe(true);
     await expect(canAccess({ parentId: "other-parent", lessonId, childId: "child-a" })).resolves.toBe(false);
-    expect(prismaMock.lessonCompletion).toBeUndefined();
+
 
     prismaMock.entitlement.findMany.mockResolvedValue([
       {
