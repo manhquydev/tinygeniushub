@@ -105,29 +105,6 @@ export async function isPublicPreviewEligibleLesson(
   return isLessonWithinPublicPreviewWindow(orderedLessons, lessonId);
 }
 
-export async function isParentEnrolledForLesson(
-  db: Pick<PrismaClient, "courseLesson">,
-  input: { parentId: string; lessonId: string },
-) {
-  const enrolledLesson = await db.courseLesson.findFirst({
-    where: {
-      lessonId: input.lessonId,
-      course: {
-        enrollments: {
-          some: {
-            parentId: input.parentId,
-          },
-        },
-      },
-    },
-    select: {
-      id: true,
-    },
-  });
-
-  return Boolean(enrolledLesson);
-}
-
 export function buildGuestPreviewPlaybackToken(input: { lessonId: string; ttlSeconds?: number }) {
   const ttl = Math.max(30, input.ttlSeconds ?? COURSE_GUEST_PREVIEW_TOKEN_TTL_SECONDS);
   const claims: GuestPreviewPlaybackClaims = {

@@ -78,6 +78,34 @@ export async function loadHouseholdLearnAccess(parentId: string): Promise<Househ
   };
 }
 
+export async function evaluateHouseholdLearnAccess(input: {
+  parentId: string;
+  lessonId: string;
+  trialEnabled: boolean;
+}): Promise<{ ok: true } | { ok: false; code: "LEARN_ACCESS_DENIED" | "TRIAL_LESSON_RESTRICTED" }> {
+  const [ticketOk, subscription] = await Promise.all([
+    canAccess({ parentId: input.parentId, lessonId: input.lessonId }),
+    prisma.subscription.findUnique({
+      where: { parentId: input.parentId },
+      select: { status: true, planCode: true },
+    }),
+  ]);
+
+  if (!ticketOk) {
+    return { ok: false, code: "LEARN_ACCESS_DENIED" };
+  }
+
+  const trialTicketActive = Boolean(
+    subscription &&
+      (subscription.status === SubscriptionStatus.TRIALING || subscription.planCode === PlanCode.TRIAL),
+  );
+  if (trialTicketActive && !input.trialEnabled) {
+    return { ok: false, code: "TRIAL_LESSON_RESTRICTED" };
+  }
+
+  return { ok: true };
+}
+
 export async function assertCanLearn(input: { parentId: string; childId: string; lessonId: string }) {
   const child = await prisma.childProfile.findFirst({
     where: { id: input.childId, parentId: input.parentId },
@@ -100,25 +128,16 @@ export async function assertCanLearn(input: { parentId: string; childId: string;
     throw new DomainError("Lesson not found", 404, "LESSON_NOT_FOUND");
   }
 
-  const [ticketOk, subscription] = await Promise.all([
-    canAccess({ parentId: input.parentId, lessonId: input.lessonId }),
-    prisma.subscription.findUnique({
-      where: { parentId: input.parentId },
-      select: { status: true, planCode: true },
-    }),
-  ]);
-
-  const trialTicketActive = Boolean(
-    ticketOk &&
-      subscription &&
-      (subscription.status === SubscriptionStatus.TRIALING || subscription.planCode === PlanCode.TRIAL),
-  );
-  if (trialTicketActive && !lesson.trialEnabled) {
-    throw new DomainError("Trial account can only access trial-enabled lessons", 403, "TRIAL_LESSON_RESTRICTED");
-  }
-  if (ticketOk) {
+  const access = await evaluateHouseholdLearnAccess({
+    parentId: input.parentId,
+    lessonId: input.lessonId,
+    trialEnabled: lesson.trialEnabled,
+  });
+  if (access.ok) {
     return { child, lesson };
   }
-
+  if (access.code === "TRIAL_LESSON_RESTRICTED") {
+    throw new DomainError("Trial account can only access trial-enabled lessons", 403, "TRIAL_LESSON_RESTRICTED");
+  }
   throw new DomainError("Household ticket required to learn this lesson", 403, "LEARN_ACCESS_DENIED");
 }

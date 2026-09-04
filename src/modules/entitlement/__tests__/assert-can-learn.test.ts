@@ -17,7 +17,7 @@ vi.mock("@/modules/entitlement/entitlement-service", () => ({
   canAccess: canAccessMock,
 }));
 
-import { assertCanLearn, loadHouseholdLearnAccess } from "@/modules/entitlement/assert-can-learn";
+import { assertCanLearn, evaluateHouseholdLearnAccess, loadHouseholdLearnAccess } from "@/modules/entitlement/assert-can-learn";
 
 const parentId = "parent-1";
 const lessonId = "lesson-1";
@@ -94,6 +94,40 @@ describe("assertCanLearn", () => {
       code: "TRIAL_LESSON_RESTRICTED",
       status: 403,
     });
+  });
+});
+
+describe("evaluateHouseholdLearnAccess", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    prismaMock.subscription.findUnique.mockResolvedValue(null);
+    canAccessMock.mockResolvedValue(false);
+  });
+
+  it("allows a ticketed parent without CourseEnrollment", async () => {
+    canAccessMock.mockResolvedValueOnce(true);
+
+    await expect(
+      evaluateHouseholdLearnAccess({ parentId, lessonId, trialEnabled: true }),
+    ).resolves.toEqual({ ok: true });
+  });
+
+  it("denies a parent with no household ticket", async () => {
+    await expect(
+      evaluateHouseholdLearnAccess({ parentId, lessonId, trialEnabled: true }),
+    ).resolves.toEqual({ ok: false, code: "LEARN_ACCESS_DENIED" });
+  });
+
+  it("restricts trial households from non-trial lessons", async () => {
+    canAccessMock.mockResolvedValueOnce(true);
+    prismaMock.subscription.findUnique.mockResolvedValueOnce({
+      status: SubscriptionStatus.TRIALING,
+      planCode: PlanCode.TRIAL,
+    });
+
+    await expect(
+      evaluateHouseholdLearnAccess({ parentId, lessonId, trialEnabled: false }),
+    ).resolves.toEqual({ ok: false, code: "TRIAL_LESSON_RESTRICTED" });
   });
 });
 

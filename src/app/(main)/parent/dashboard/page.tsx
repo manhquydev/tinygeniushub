@@ -4,6 +4,7 @@ import { DailyActivityFeed } from "@/components/daily-activity-feed";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
 import { getReferralSummaryForParentReadOnly } from "@/modules/referral/service";
+import { getHouseholdSlotLimits } from "@/modules/progress/children-service";
 import { DashboardMetricCards, type DashboardMetric } from "@/components/parent/dashboard-metric-cards";
 import { DashboardHeroSection } from "@/components/parent/dashboard-hero-section";
 import { DashboardChildrenSection } from "@/components/parent/dashboard-children-section";
@@ -19,7 +20,7 @@ export default async function ParentDashboardPage() {
   const parent = await requireParent();
   const locale = resolveAppLocale(await getLocale());
 
-  const [children, reports, completionCount, referral, latestCompletion, recentCompletions] =
+  const [children, reports, completionCount, referral, latestCompletion, recentCompletions, slotLimits] =
     await Promise.all([
       prisma.childProfile.findMany({ where: { parentId: parent.id }, orderBy: { createdAt: "asc" }, select: { id: true, nickname: true, adaptiveEnabled: true } }),
       prisma.weeklyReport.findMany({ where: { child: { parentId: parent.id } }, orderBy: { generatedAt: "desc" }, take: 5, include: { child: { select: { id: true, nickname: true } } } }),
@@ -27,6 +28,7 @@ export default async function ParentDashboardPage() {
       getReferralSummaryForParentReadOnly(parent.id),
       prisma.lessonCompletion.findFirst({ where: { child: { parentId: parent.id } }, orderBy: { completedAt: "desc" }, select: { completedAt: true } }),
       prisma.lessonCompletion.findMany({ where: { child: { parentId: parent.id } }, orderBy: { completedAt: "desc" }, take: 15, select: { childId: true, completedAt: true, lesson: { select: { title: true } } } }),
+      getHouseholdSlotLimits(parent.id),
     ]);
 
   const latestReportGeneratedAt = reports[0]?.generatedAt ?? null;
@@ -39,7 +41,7 @@ export default async function ParentDashboardPage() {
     completionsByChild.set(c.childId, arr);
   }
 
-  const childLimit = 1;
+  const childLimit = Math.max(1, slotLimits.childProfileLimit);
   const completionGoal = Math.max(12, children.length * 6);
   const reportsGoal = Math.max(1, children.length);
   const latestReportByChild = reports.reduce<Map<string, (typeof reports)[number]>>((acc, r) => { if (!acc.has(r.child.id)) acc.set(r.child.id, r); return acc; }, new Map());

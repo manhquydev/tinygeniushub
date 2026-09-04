@@ -18,7 +18,7 @@ export function DashboardShortcutsSection({ firstChildId }: Props) {
           {t("manageChildren")}
         </Link>
         <Link
-          href={firstChildId ? `/kid/courses?childId=${encodeURIComponent(firstChildId)}` : "/kid/courses"}
+          href={firstChildId ? `/kid/today?childId=${encodeURIComponent(firstChildId)}` : "/kid/today"}
           className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
         >
           {t("enterKidApp")}
