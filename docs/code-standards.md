@@ -1,6 +1,8 @@
 # Code Standards & Conventions
 
-**Last updated:** 2026-07-10
+**Last updated:** 2026-09-04
+
+Architecture law: `docs/decisions/260904-1102-platform-kernel.md`. Domain logic lives in `src/modules/*`. Access to playable content goes through entitlement tickets (parent-scoped), not course/Abeka tables. Files ≤200 lines.
 
 This document establishes coding patterns, naming conventions, and architectural decisions for TinyGenius Hub development.
 

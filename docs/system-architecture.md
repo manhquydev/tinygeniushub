@@ -1,6 +1,8 @@
 # System Architecture
 
-**Last updated:** 2026-07-10
+**Last updated:** 2026-09-04
+
+**Authority:** accepted ADR `docs/decisions/260904-1102-platform-kernel.md` and contract `docs/platform-kernel.md`. Course/Abeka/storefront diagrams below are historical topology, not the access model. Kernel = household + ticket + lesson + skill. Catalogs plug in; they do not own complete/watch/pay.
 
 High-level architecture, data flows, and deployment topology for TinyGenius Hub.
 

@@ -6,6 +6,9 @@ MVP foundation rebuilt from handover docs (`docs/handover/handover-master-agent-
 - Redis + BullMQ worker scaffold
 - Modular monolith domain boundaries
 
+**Architecture (2026-09-04):** this product is a **learning kernel**, not a single-course app. Accepted decisions: `docs/decisions/260904-1102-platform-kernel.md`. Contract: `docs/platform-kernel.md`. Parent is the only learner login; children are profiles; tickets are household-scoped; progress is per child; catalogs (Track/Course/Abeka) plug into Lesson+Skill. Claims below may lag code — ADR wins.
+
+
 ## Implemented Scope
 
 ### Product flows
