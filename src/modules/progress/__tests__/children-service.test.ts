@@ -12,6 +12,9 @@ const { prismaMock } = vi.hoisted(() => ({
       update: vi.fn(),
       delete: vi.fn(),
     },
+    subscription: {
+      findUnique: vi.fn(),
+    },
   },
 }));
 
@@ -22,6 +25,7 @@ vi.mock("@/lib/db", () => ({
 import {
   createChildProfile,
   deleteChildProfile,
+  getHouseholdSlotLimits,
   isProfileLimitReached,
   listChildProfiles,
   updateChildProfile,
@@ -104,6 +108,36 @@ describe("children-service", () => {
     });
 
     expect(prismaMock.childProfile.create).not.toHaveBeenCalled();
+  });
+
+  it("allows a second child when subscription childProfileLimit is 3", async () => {
+    prismaMock.childProfile.count.mockResolvedValueOnce(1);
+    prismaMock.subscription.findUnique.mockResolvedValueOnce({ childProfileLimit: 3 });
+    prismaMock.childProfile.create.mockResolvedValueOnce({
+      id: "child-2",
+      nickname: "Kid Two",
+      ageBand: "4-5",
+    });
+
+    await expect(
+      createChildProfile("parent-1", {
+        nickname: "Kid Two",
+        ageBand: "4-5",
+      }),
+    ).resolves.toMatchObject({ id: "child-2" });
+    expect(prismaMock.childProfile.create).toHaveBeenCalled();
+  });
+
+  it("reads household slot limits from the subscription", async () => {
+    prismaMock.subscription.findUnique.mockResolvedValueOnce({
+      childProfileLimit: 3,
+      caregiverLimit: 2,
+    });
+
+    await expect(getHouseholdSlotLimits("parent-1")).resolves.toEqual({
+      childProfileLimit: 3,
+      caregiverLimit: 2,
+    });
   });
 
   it("retries create when serializable transaction conflicts once", async () => {

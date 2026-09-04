@@ -1,6 +1,7 @@
-import { NextRequest } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { z } from 'zod';
+import { NextRequest } from "next/server";
+import { requireParentAndOwnedChild } from "@/lib/auth/require-parent-child";
+import { prisma } from "@/lib/prisma";
+import { z } from "zod";
 
 const createJourneySchema = z.object({
   childId: z.string(),
@@ -54,23 +55,16 @@ export async function GET(request: NextRequest) {
  * POST /api/abeka/plans/journeys
  * Create new learning journey for a child
  */
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    // TODO: Add authentication
-    // const session = await requireAuth();
-    // if (!session) return Response.json({ error: 'Unauthorized' }, { status: 401 });
-
     const body = await request.json();
     const data = createJourneySchema.parse(body);
 
-    // Verify child exists (and belongs to parent when auth is added)
-    const child = await prisma.childProfile.findUnique({
-      where: { id: data.childId },
-    });
-
-    if (!child) {
-      return Response.json({ error: 'Child not found' }, { status: 404 });
+    const authed = await requireParentAndOwnedChild(request, data.childId);
+    if (!authed.ok) {
+      return authed.response;
     }
+
 
     // Get grade info
     const grade = await prisma.abekaGrade.findUnique({
@@ -93,7 +87,7 @@ export async function POST(request: Request) {
         minutesPerDay: data.minutesPerDay,
         totalLessons: grade.totalLessons,
         currentLessonNo: 1,
-        createdById: 'system', // TODO: Replace with session.user.id when auth is added
+        createdById: authed.parent.id,
       },
     });
 

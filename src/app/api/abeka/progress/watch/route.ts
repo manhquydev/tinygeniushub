@@ -1,6 +1,7 @@
-import { NextRequest } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { z } from 'zod';
+import { NextRequest } from "next/server";
+import { requireParentAndOwnedChild } from "@/lib/auth/require-parent-child";
+import { prisma } from "@/lib/prisma";
+import { z } from "zod";
 
 const updateProgressSchema = z.object({
   childId: z.string(),
@@ -57,27 +58,22 @@ export async function GET(request: NextRequest) {
  * POST /api/abeka/progress/watch
  * Update video watch progress
  */
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const data = updateProgressSchema.parse(body);
 
-    // Verify child exists
-    const child = await prisma.childProfile.findUnique({
-      where: { id: data.childId },
-    });
-
-    if (!child) {
-      return Response.json({ error: 'Child not found' }, { status: 404 });
+    const authed = await requireParentAndOwnedChild(request, data.childId);
+    if (!authed.ok) {
+      return authed.response;
     }
 
-    // Verify video exists and get grade info
     const video = await prisma.abekaVideo.findUnique({
       where: { id: data.videoId },
     });
 
     if (!video) {
-      return Response.json({ error: 'Video not found' }, { status: 404 });
+      return Response.json({ error: "Video not found" }, { status: 404 });
     }
 
     // Check if progress record exists

@@ -96,6 +96,19 @@ enum AdminRole {
   SUPPORT_AGENT
 }
 
+enum OfferingKind {
+  RECURRING
+  ONE_TIME_PROGRAM
+  ONE_TIME_LEVEL
+}
+
+enum EntitlementStatus {
+  ACTIVE
+  GRACE
+  CANCELED
+  EXPIRED
+}
+
 model ParentAccount {
   id                      String                  @id @default(cuid())
   email                   String                  @unique
@@ -127,6 +140,7 @@ model ParentAccount {
   // Abeka Parent Preferences
   abekaParentPreferences AbekaParentPreferences?
   emailVerificationTokens ParentEmailVerificationToken[]
+  entitlements            Entitlement[]
 }
 
 model Session {
@@ -547,6 +561,7 @@ model PaymentRecord {
   rawPayload            Json
   parent                ParentAccount @relation(fields: [parentId], references: [id], onDelete: Cascade)
   subscription          Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+  entitlements          Entitlement[]
 
   @@unique([provider, providerTransactionId])
   @@index([parentId, processedAt])
@@ -1873,3 +1888,36 @@ model AbekaParentPreferences {
 }
 
 // ========== END ABEKA CURRICULUM SYSTEM ==========
+
+model Offering {
+  id            String        @id @default(cuid())
+  code          String        @unique
+  kind          OfferingKind
+  catalogKey    String
+  stripePriceId String?
+  active        Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  entitlements  Entitlement[]
+
+  @@index([catalogKey, active])
+}
+
+model Entitlement {
+  id              String            @id @default(cuid())
+  parentId        String
+  offeringId      String
+  status          EntitlementStatus
+  validFrom       DateTime
+  validUntil      DateTime?
+  sourcePaymentId String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  parent          ParentAccount     @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  offering        Offering          @relation(fields: [offeringId], references: [id], onDelete: Restrict)
+  sourcePayment   PaymentRecord?    @relation(fields: [sourcePaymentId], references: [id], onDelete: SetNull)
+
+  @@index([parentId, status])
+  @@index([offeringId, status])
+  @@index([sourcePaymentId])
+}

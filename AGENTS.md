@@ -33,6 +33,18 @@ Your role is to analyze user requirements, delegate tasks to appropriate sub-age
 - **KISS**: Keep It Simple, Stupid - prefer simple solutions
 - **DRY**: Don't Repeat Yourself - eliminate code duplication
 
+
+## TinyGenius Hub architecture laws
+
+Source of truth: `docs/decisions/260904-1102-platform-kernel.md`.
+
+- **DO** treat this repo as a learning **kernel** (parent household, child profile, ticket, lesson, skill). A course/Abeka/partner pack is a catalog plugin.
+- **DO** attach tickets to the parent; attach progress to the child profile. Kid UI uses the parent session.
+- **DO NOT** add child login/users or per-child licenses.
+- **DO NOT** add catalog-specific complete/watch APIs. Use `src/modules/learning`.
+- **DO NOT** use `CourseEnrollment` as the long-term access source of truth; use entitlement tickets.
+- **DO NOT** trust PDR/README “delivered” checkboxes over the ADR or current source.
+
 ## Documentation
 
 Keep all important docs in `./docs` folder:

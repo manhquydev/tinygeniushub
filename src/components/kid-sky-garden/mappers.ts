@@ -9,7 +9,8 @@ type LessonLike = {
   unitTitle?: string;
   videoSource?: string | null;
   bunnyVideoId?: string | null;
-  videoStatus?: string;
+  videoStatus?: string | null;
+
   isCompleted?: boolean;
   tierIndex?: number;
   journeyTitle?: string;
@@ -70,7 +71,8 @@ export function mapLessonLikeToSkyGardenLesson(lesson: LessonLike, index: number
     journeyAccent: lesson.journeyAccent ?? journey.accent ?? DEFAULT_COURSE_ACCENT,
     videoSource: lesson.videoSource ?? null,
     bunnyVideoId: lesson.bunnyVideoId ?? null,
-    videoStatus: lesson.videoStatus,
+    videoStatus: lesson.videoStatus ?? undefined,
+
     isCompleted: Boolean(lesson.isCompleted),
     tierIndex: lesson.tierIndex,
   };

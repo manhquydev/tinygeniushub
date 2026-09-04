@@ -3,7 +3,19 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { DomainError } from "@/modules/platform/errors";
 
-const CHILD_PROFILE_LIMIT = 1;
+const CHILD_PROFILE_LIMIT_FALLBACK = 1;
+const CAREGIVER_LIMIT_FALLBACK = 2;
+
+export async function getHouseholdSlotLimits(parentId: string) {
+  const subscription = await prisma.subscription.findUnique({
+    where: { parentId },
+    select: { childProfileLimit: true, caregiverLimit: true },
+  });
+  return {
+    childProfileLimit: subscription?.childProfileLimit ?? CHILD_PROFILE_LIMIT_FALLBACK,
+    caregiverLimit: subscription?.caregiverLimit ?? CAREGIVER_LIMIT_FALLBACK,
+  };
+}
 
 export const childProfileInputSchema = z.object({
   nickname: z.string().min(1).max(60),
@@ -35,10 +47,17 @@ export async function createChildProfile(parentId: string, input: z.infer<typeof
     try {
       return await prisma.$transaction(
         async (tx) => {
-          const profileCount = await tx.childProfile.count({ where: { parentId } });
-          if (isProfileLimitReached(profileCount, CHILD_PROFILE_LIMIT)) {
+          const [profileCount, subscription] = await Promise.all([
+            tx.childProfile.count({ where: { parentId } }),
+            tx.subscription.findUnique({
+              where: { parentId },
+              select: { childProfileLimit: true },
+            }),
+          ]);
+          const limit = subscription?.childProfileLimit ?? CHILD_PROFILE_LIMIT_FALLBACK;
+          if (isProfileLimitReached(profileCount, limit)) {
             throw new DomainError(
-              "Each parent account supports one primary child profile.",
+              "Child profile limit reached for this household.",
               409,
               "PROFILE_LIMIT_REACHED",
             );

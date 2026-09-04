@@ -698,7 +698,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                       </div>
 
                       <Link
-                        href={`/kid/courses?childId=${encodeURIComponent(child.id)}`}
+                        href={`/kid/today?childId=${encodeURIComponent(child.id)}`}
                         className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
                       >
                         <PlayCircle size={16} />

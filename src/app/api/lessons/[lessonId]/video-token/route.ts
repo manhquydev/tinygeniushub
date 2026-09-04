@@ -12,9 +12,9 @@ import { bunnySignedEmbedUrl } from "@/lib/bunny-stream-client";
 import { prisma } from "@/lib/db";
 import {
   buildGuestPreviewPlaybackToken,
-  isParentEnrolledForLesson,
   isPublicPreviewEligibleLesson,
 } from "@/modules/courses/course-trial-policy";
+import { evaluateHouseholdLearnAccess } from "@/modules/entitlement/assert-can-learn";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
 function detectProtectedStreamType(url: string): "hls" | "file" {
@@ -57,13 +57,14 @@ export async function GET(
       });
     }
     if (parent) {
-      const hasEnrollment = await isParentEnrolledForLesson(prisma, {
+      const access = await evaluateHouseholdLearnAccess({
         parentId: parent.id,
         lessonId: lesson.id,
+        trialEnabled: lesson.trialEnabled,
       });
-      if (!hasEnrollment && !previewEligible) {
-        return fail("Preview not available for this lesson", 403, {
-          code: "PREVIEW_NOT_ELIGIBLE",
+      if (!access.ok && !previewEligible) {
+        return fail("Household ticket required to play this lesson", 403, {
+          code: access.code,
         });
       }
     }

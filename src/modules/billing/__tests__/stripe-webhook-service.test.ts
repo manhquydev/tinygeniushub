@@ -135,4 +135,97 @@ describe("mapStripeEventToBillingWebhookPayload", () => {
 
     expect(payload).toBeNull();
   });
+
+  it("maps MONTHLY_STANDARD invoice.paid without UNMAPPABLE", () => {
+    const payload = mapStripeEventToBillingWebhookPayload({
+      id: "evt_invoice_paid",
+      type: "invoice.paid",
+      created: 1_777_777_777,
+      data: {
+        object: {
+          id: "in_test_1",
+          amount_paid: 149000,
+          customer_email: "parent@example.com",
+          subscription: "sub_test_1",
+          metadata: {},
+          subscription_details: {
+            metadata: {
+              planCode: "MONTHLY_STANDARD",
+              parentId: "parent-1",
+              parentEmail: "parent@example.com",
+            },
+          },
+          lines: {
+            data: [{ period: { end: 1_780_369_777 } }],
+          },
+        },
+      },
+    });
+
+    expect(payload).toEqual(
+      expect.objectContaining({
+        eventType: "payment_succeeded",
+        planCode: "MONTHLY_STANDARD",
+        transactionId: "sub_test_1",
+        periodEnd: new Date(1_780_369_777 * 1000),
+      }),
+    );
+  });
+
+  it("maps invoice.payment_failed to payment_failed", () => {
+    const payload = mapStripeEventToBillingWebhookPayload({
+      id: "evt_invoice_fail",
+      type: "invoice.payment_failed",
+      created: 1_777_777_777,
+      data: {
+        object: {
+          id: "in_fail",
+          amount_due: 149000,
+          customer_email: "parent@example.com",
+          metadata: {},
+          subscription_details: {
+            metadata: { planCode: "MONTHLY_STANDARD", parentEmail: "parent@example.com" },
+          },
+        },
+      },
+    });
+
+    expect(payload?.eventType).toBe("payment_failed");
+    expect(payload?.planCode).toBe("MONTHLY_STANDARD");
+  });
+
+  it("maps customer.subscription.deleted to subscription_deleted", () => {
+    const payload = mapStripeEventToBillingWebhookPayload({
+      id: "evt_sub_deleted",
+      type: "customer.subscription.deleted",
+      created: 1_777_777_777,
+      data: {
+        object: {
+          id: "sub_gone",
+          status: "canceled",
+          metadata: { planCode: "YEARLY_STANDARD", parentEmail: "parent@example.com" },
+        },
+      },
+    });
+
+    expect(payload?.eventType).toBe("subscription_deleted");
+    expect(payload?.transactionId).toBe("sub_gone");
+  });
+
+  it("maps past_due subscription.updated to payment_failed", () => {
+    const payload = mapStripeEventToBillingWebhookPayload({
+      id: "evt_sub_past_due",
+      type: "customer.subscription.updated",
+      created: 1_777_777_777,
+      data: {
+        object: {
+          id: "sub_past",
+          status: "past_due",
+          metadata: { planCode: "YEARLY_STANDARD", parentEmail: "parent@example.com" },
+        },
+      },
+    });
+
+    expect(payload?.eventType).toBe("payment_failed");
+  });
 });

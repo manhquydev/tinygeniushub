@@ -8,10 +8,13 @@ import {
   TrackCode,
   PlanCode,
   SubscriptionStatus,
+  OfferingKind,
 } from "@prisma/client";
 import { addDays } from "date-fns";
 import { hashSync } from "bcryptjs";
 import type { ActivitySpec } from "../src/modules/content/activity-types";
+import { SEED_OFFERINGS } from "../src/modules/entitlement/offering-types";
+import { grantPlanOfferingInTx } from "../src/modules/entitlement/grant-from-billing";
 
 const prisma = new PrismaClient();
 const shouldSeedBlogDemoContent = process.env.SEED_BLOG_DEMO_CONTENT === "true";
@@ -472,6 +475,9 @@ async function seedDemoParent() {
     },
   });
 
+  const trialStart = new Date();
+  const trialEnd = addDays(trialStart, 7);
+
   await prisma.subscription.upsert({
     where: { parentId: parent.id },
     update: {
@@ -480,6 +486,8 @@ async function seedDemoParent() {
       childProfileLimit: 3,
       caregiverLimit: 2,
       portfolioRetentionMaxDays: 90,
+      currentPeriodStart: trialStart,
+      currentPeriodEnd: trialEnd,
     },
     create: {
       parentId: parent.id,
@@ -488,10 +496,34 @@ async function seedDemoParent() {
       childProfileLimit: 3,
       caregiverLimit: 2,
       portfolioRetentionMaxDays: 90,
-      currentPeriodEnd: addDays(new Date(), 7),
+      currentPeriodStart: trialStart,
+      currentPeriodEnd: trialEnd,
       autoRenew: true,
     },
   });
+
+  await prisma.$transaction(async (tx) => {
+    await grantPlanOfferingInTx(tx, {
+      parentId: parent.id,
+      planCode: PlanCode.TRIAL,
+      validFrom: trialStart,
+      validUntil: trialEnd,
+    });
+  });
+
+  const existingChild = await prisma.childProfile.findFirst({
+    where: { parentId: parent.id },
+    select: { id: true },
+  });
+  if (!existingChild) {
+    await prisma.childProfile.create({
+      data: {
+        parentId: parent.id,
+        nickname: "Kisu",
+        ageBand: "4-5",
+      },
+    });
+  }
 
   await prisma.user.upsert({
     where: { id: parent.id },
@@ -743,8 +775,34 @@ The most effective early education balances structured learning with free play, 
   console.log("Blog seed completed: 8 categories, 2 authors, 10 tags, 3 posts.");
 }
 
+async function seedOfferings() {
+  const recurringPriceId =
+    process.env.STRIPE_PRICE_ID_YEARLY || process.env.STRIPE_PRICE_ID_MONTHLY || null;
+
+  for (const offering of SEED_OFFERINGS) {
+    const stripePriceId = offering.kind === "RECURRING" ? recurringPriceId : null;
+    await prisma.offering.upsert({
+      where: { code: offering.code },
+      update: {
+        kind: offering.kind as OfferingKind,
+        catalogKey: offering.catalogKey,
+        active: true,
+        ...(stripePriceId ? { stripePriceId } : {}),
+      },
+      create: {
+        code: offering.code,
+        kind: offering.kind as OfferingKind,
+        catalogKey: offering.catalogKey,
+        active: true,
+        stripePriceId,
+      },
+    });
+  }
+}
+
 async function main() {
   await seedAdminSecuritySettings();
+  await seedOfferings();
   await seedContent();
   await seedDemoParent();
   await seedBlog();

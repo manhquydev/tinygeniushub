@@ -1,9 +1,11 @@
 import { env } from "@/lib/env";
+import { payablePlanCodeSchema } from "@/modules/billing/plan-config";
 import type {
   BillingProviderAdapter,
   CheckoutSessionResult,
   CreateCheckoutSessionInput,
 } from "@/modules/billing/providers/types";
+import { resolveStripeRecurringPriceId } from "@/modules/billing/stripe-recurring-price";
 import { DomainError } from "@/modules/platform/errors";
 
 type StripeCheckoutSessionResponse = {
@@ -38,6 +40,44 @@ function toStripeSession(raw: StripeCheckoutSessionResponse): CheckoutSessionRes
   };
 }
 
+function buildCheckoutForm(input: CreateCheckoutSessionInput) {
+  const form = new URLSearchParams();
+  form.set("success_url", input.successUrl);
+  form.set("cancel_url", input.cancelUrl);
+  form.set("client_reference_id", input.parentId);
+  form.set("metadata[parentId]", input.parentId);
+  form.set("metadata[parentEmail]", input.parentEmail);
+  form.set("metadata[planCode]", input.planCode);
+  form.set("line_items[0][quantity]", "1");
+
+  if (payablePlanCodeSchema.safeParse(input.planCode).success) {
+    const priceId = resolveStripeRecurringPriceId({
+      planCode: input.planCode,
+      offeringStripePriceId: input.stripePriceId,
+    });
+    if (!priceId) {
+      throw new DomainError(
+        "Stripe recurring price id is not configured",
+        500,
+        "BILLING_PROVIDER_MISCONFIGURED",
+      );
+    }
+
+    form.set("mode", "subscription");
+    form.set("line_items[0][price]", priceId);
+    form.set("subscription_data[metadata][parentId]", input.parentId);
+    form.set("subscription_data[metadata][parentEmail]", input.parentEmail);
+    form.set("subscription_data[metadata][planCode]", input.planCode);
+    return form;
+  }
+
+  form.set("mode", "payment");
+  form.set("line_items[0][price_data][currency]", "vnd");
+  form.set("line_items[0][price_data][unit_amount]", String(input.amountVnd));
+  form.set("line_items[0][price_data][product_data][name]", getPlanDisplayName(input.planCode));
+  return form;
+}
+
 export class StripeBillingProviderAdapter implements BillingProviderAdapter {
   readonly code = "stripe";
 
@@ -46,18 +86,7 @@ export class StripeBillingProviderAdapter implements BillingProviderAdapter {
       throw new DomainError("Stripe secret key is not configured", 500, "BILLING_PROVIDER_MISCONFIGURED");
     }
 
-    const form = new URLSearchParams();
-    form.set("mode", "payment");
-    form.set("success_url", input.successUrl);
-    form.set("cancel_url", input.cancelUrl);
-    form.set("client_reference_id", input.parentId);
-    form.set("metadata[parentId]", input.parentId);
-    form.set("metadata[parentEmail]", input.parentEmail);
-    form.set("metadata[planCode]", input.planCode);
-    form.set("line_items[0][quantity]", "1");
-    form.set("line_items[0][price_data][currency]", "vnd");
-    form.set("line_items[0][price_data][unit_amount]", String(input.amountVnd));
-    form.set("line_items[0][price_data][product_data][name]", getPlanDisplayName(input.planCode));
+    const form = buildCheckoutForm(input);
 
     let response: Response;
     try {

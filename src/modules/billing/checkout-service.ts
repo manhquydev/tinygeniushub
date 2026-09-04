@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
 import { getPayablePlanConfig, payablePlanCodeSchema } from "@/modules/billing/plan-config";
 import { resolveBillingProvider } from "@/modules/billing/providers";
+import { PLATFORM_PASS_CODE } from "@/modules/entitlement/offering-types";
 import { createAuditLog } from "@/modules/platform/audit-service";
 import { DomainError } from "@/modules/platform/errors";
 
@@ -50,6 +51,10 @@ export async function createBillingCheckoutSession(params: {
   const successUrl = resolveCheckoutAbsoluteUrl(payload.successPath);
   const cancelUrl = resolveCheckoutAbsoluteUrl(payload.cancelPath);
   const provider = resolveBillingProvider();
+  const offering = await prisma.offering.findUnique({
+    where: { code: PLATFORM_PASS_CODE },
+    select: { stripePriceId: true },
+  });
 
   const session = await provider.createCheckoutSession({
     parentId: parent.id,
@@ -58,6 +63,7 @@ export async function createBillingCheckoutSession(params: {
     amountVnd: planConfig.amountVnd,
     successUrl,
     cancelUrl,
+    stripePriceId: offering?.stripePriceId,
   });
 
   await createAuditLog({

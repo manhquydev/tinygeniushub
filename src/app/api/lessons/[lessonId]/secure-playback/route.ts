@@ -10,10 +10,10 @@ import {
 } from "@/lib/secure-video-source";
 import { prisma } from "@/lib/db";
 import {
-  isParentEnrolledForLesson,
   isPublicPreviewEligibleLesson,
   verifyGuestPreviewPlaybackToken,
 } from "@/modules/courses/course-trial-policy";
+import { evaluateHouseholdLearnAccess } from "@/modules/entitlement/assert-can-learn";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
 // GET /api/lessons/[lessonId]/secure-playback?token=...
@@ -39,15 +39,22 @@ export async function GET(
         return fail("Invalid playback token", 403);
       }
 
-      const hasEnrollment = await isParentEnrolledForLesson(prisma, {
-        parentId: parent.id,
-        lessonId,
+      const lessonAccess = await prisma.lesson.findUnique({
+        where: { id: lessonId },
+        select: { trialEnabled: true },
       });
-      if (!hasEnrollment) {
+      const access = lessonAccess
+        ? await evaluateHouseholdLearnAccess({
+            parentId: parent.id,
+            lessonId,
+            trialEnabled: lessonAccess.trialEnabled,
+          })
+        : { ok: false as const, code: "LEARN_ACCESS_DENIED" as const };
+      if (!access.ok) {
         const eligible = await isPublicPreviewEligibleLesson(prisma, lessonId);
         if (!eligible) {
-          return fail("Preview not available for this lesson", 403, {
-            code: "PREVIEW_NOT_ELIGIBLE",
+          return fail("Household ticket required to play this lesson", 403, {
+            code: access.code,
           });
         }
       }

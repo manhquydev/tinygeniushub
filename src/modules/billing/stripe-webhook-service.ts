@@ -1,19 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { env } from "@/lib/env";
-import { billingWebhookSchema } from "@/modules/billing/webhook-service";
-import { DomainError } from "@/modules/platform/errors";
-import { z } from "zod";
 
-type BillingWebhookPayload = z.infer<typeof billingWebhookSchema>;
-
-const stripeEventSchema = z.object({
-  id: z.string().min(1),
-  type: z.string().min(1),
-  created: z.number().int().positive().optional(),
-  data: z.object({
-    object: z.record(z.string(), z.unknown()),
-  }),
-});
+export { mapStripeEventToBillingWebhookPayload } from "@/modules/billing/stripe-webhook-map";
 
 function parseStripeSignatureHeader(signatureHeader: string | null) {
   if (!signatureHeader) {
@@ -106,77 +94,4 @@ export function isValidStripeWebhookSignature(input: {
   }
 
   return false;
-}
-
-const payablePlanCodeSchema = z.enum(["YEARLY_STANDARD", "YEARLY_FAMILY_PLUS"]);
-
-export function mapStripeEventToBillingWebhookPayload(
-  rawEvent: unknown,
-): BillingWebhookPayload | null {
-  const event = stripeEventSchema.parse(rawEvent);
-  if (
-    event.type !== "checkout.session.completed" &&
-    event.type !== "checkout.session.async_payment_succeeded" &&
-    event.type !== "checkout.session.async_payment_failed" &&
-    event.type !== "charge.refunded"
-  ) {
-    return null;
-  }
-
-  const object = event.data.object;
-  const metadataRaw = object.metadata;
-  const metadata =
-    metadataRaw && typeof metadataRaw === "object" && !Array.isArray(metadataRaw)
-      ? (metadataRaw as Record<string, unknown>)
-      : {};
-
-  const planCodeRaw = metadata.planCode;
-  const planCode = payablePlanCodeSchema.safeParse(planCodeRaw);
-  if (!planCode.success) {
-    throw new DomainError("Stripe webhook missing valid planCode metadata", 400, "STRIPE_WEBHOOK_UNMAPPABLE");
-  }
-
-  const parentEmailRaw =
-    metadata.parentEmail ??
-    (object.customer_email as unknown) ??
-    ((object.customer_details as { email?: unknown } | undefined)?.email as unknown) ??
-    ((object.billing_details as { email?: unknown } | undefined)?.email as unknown);
-  if (typeof parentEmailRaw !== "string" || parentEmailRaw.length === 0) {
-    throw new DomainError("Stripe webhook missing parent email", 400, "STRIPE_WEBHOOK_UNMAPPABLE");
-  }
-
-  const amountRaw = object.amount_total ?? object.amount_subtotal ?? object.amount_refunded ?? object.amount;
-  if (typeof amountRaw !== "number" || !Number.isInteger(amountRaw) || amountRaw < 0) {
-    throw new DomainError("Stripe webhook missing amount_total", 400, "STRIPE_WEBHOOK_UNMAPPABLE");
-  }
-
-  const sessionId = object.id;
-  if (typeof sessionId !== "string" || sessionId.length === 0) {
-    throw new DomainError("Stripe webhook missing checkout session id", 400, "STRIPE_WEBHOOK_UNMAPPABLE");
-  }
-
-  const paymentIntentRaw = object.payment_intent;
-  const transactionId =
-    typeof paymentIntentRaw === "string" && paymentIntentRaw.length > 0 ? paymentIntentRaw : sessionId;
-
-  const parentIdRaw = metadata.parentId;
-  const parentId = typeof parentIdRaw === "string" && parentIdRaw.length > 0 ? parentIdRaw : undefined;
-
-  const occurredAt = event.created ? new Date(event.created * 1000) : new Date();
-  const paymentSucceeded =
-    event.type === "checkout.session.completed" || event.type === "checkout.session.async_payment_succeeded";
-  const paymentRefunded = event.type === "charge.refunded";
-
-  return {
-    provider: "stripe",
-    eventId: event.id,
-    eventType: paymentSucceeded ? "payment_succeeded" : paymentRefunded ? "payment_refunded" : "payment_failed",
-    transactionId,
-    parentId,
-    parentEmail: parentEmailRaw,
-    amountVnd: amountRaw,
-    planCode: planCode.data,
-    occurredAt,
-    raw: rawEvent,
-  };
 }

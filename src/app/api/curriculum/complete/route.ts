@@ -1,6 +1,7 @@
-import { NextRequest } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { z } from 'zod';
+import { NextRequest } from "next/server";
+import { requireParentAndOwnedChild } from "@/lib/auth/require-parent-child";
+import { prisma } from "@/lib/prisma";
+import { z } from "zod";
 
 const completeLessonSchema = z.object({
   childId: z.string(),
@@ -23,6 +24,10 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const data = completeLessonSchema.parse(body);
+    const authed = await requireParentAndOwnedChild(request, data.childId);
+    if (!authed.ok) {
+      return authed.response;
+    }
 
     // Get assignment with related data to verify ownership
     const assignment = await prisma.abekaAssignment.findUnique({

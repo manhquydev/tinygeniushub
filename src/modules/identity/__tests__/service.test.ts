@@ -8,6 +8,9 @@ const {
   txParentCreateMock,
   txParentPreferencesCreateMock,
   txSubscriptionCreateMock,
+  txOfferingFindUniqueMock,
+  txEntitlementFindFirstMock,
+  txEntitlementCreateMock,
   txUserUpsertMock,
   txAccountUpsertMock,
   txAuditLogCreateMock,
@@ -20,6 +23,9 @@ const {
   txParentCreateMock: vi.fn(),
   txParentPreferencesCreateMock: vi.fn(),
   txSubscriptionCreateMock: vi.fn(),
+  txOfferingFindUniqueMock: vi.fn(),
+  txEntitlementFindFirstMock: vi.fn(),
+  txEntitlementCreateMock: vi.fn(),
   txUserUpsertMock: vi.fn(),
   txAccountUpsertMock: vi.fn(),
   txAuditLogCreateMock: vi.fn(),
@@ -57,6 +63,9 @@ describe("registerParent", () => {
     });
     txParentPreferencesCreateMock.mockResolvedValue({});
     txSubscriptionCreateMock.mockResolvedValue({});
+    txOfferingFindUniqueMock.mockResolvedValue({ id: "offering-pass", code: "platform-pass" });
+    txEntitlementFindFirstMock.mockResolvedValue(null);
+    txEntitlementCreateMock.mockResolvedValue({ id: "ent-trial", status: "ACTIVE" });
     txUserUpsertMock.mockResolvedValue({});
     txAccountUpsertMock.mockResolvedValue({});
     txAuditLogCreateMock.mockResolvedValue({});
@@ -66,6 +75,8 @@ describe("registerParent", () => {
         parentAccount: { create: txParentCreateMock },
         parentPreferences: { create: txParentPreferencesCreateMock },
         subscription: { create: txSubscriptionCreateMock },
+        offering: { findUnique: txOfferingFindUniqueMock },
+        entitlement: { findFirst: txEntitlementFindFirstMock, create: txEntitlementCreateMock },
         user: { upsert: txUserUpsertMock },
         account: { upsert: txAccountUpsertMock },
         auditLog: { create: txAuditLogCreateMock },
@@ -111,6 +122,25 @@ describe("registerParent", () => {
         autoRenew: true,
       }),
     });
+    expect(txOfferingFindUniqueMock).toHaveBeenCalledWith({
+      where: { code: "platform-pass" },
+    });
+    expect(txEntitlementFindFirstMock).toHaveBeenCalledWith({
+      where: {
+        parentId: "parent-1",
+        offeringId: "offering-pass",
+        status: { in: ["ACTIVE", "GRACE"] },
+      },
+    });
+    expect(txEntitlementCreateMock).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        parentId: "parent-1",
+        offeringId: "offering-pass",
+        status: "ACTIVE",
+        validUntil: expect.any(Date),
+      }),
+    });
+    expect(txEntitlementCreateMock.mock.calls[0][0].data).not.toHaveProperty("childId");
     expect(txUserUpsertMock).toHaveBeenCalledWith({
       where: { id: "parent-1" },
       create: expect.objectContaining({

@@ -8,6 +8,7 @@ export type CreateCheckoutSessionInput = {
   amountVnd: number;
   successUrl: string;
   cancelUrl: string;
+  stripePriceId?: string | null;
   metadata?: Record<string, string>;
 };
 

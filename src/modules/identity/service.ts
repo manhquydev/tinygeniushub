@@ -3,6 +3,7 @@ import { Prisma, PlanCode, SubscriptionStatus } from "@prisma/client";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { prisma } from "@/lib/db";
 import { LEGAL_POLICY_VERSION } from "@/lib/legal/legal-policy-version";
+import { grantPlanOfferingInTx } from "@/modules/entitlement/grant-from-billing";
 import { createAuditLog } from "@/modules/platform/audit-service";
 import { DomainError } from "@/modules/platform/errors";
 import { z } from "zod";
@@ -61,6 +62,9 @@ export async function registerParent(
         },
       });
 
+      const trialStart = new Date();
+      const trialEnd = addDays(trialStart, 7);
+
       await tx.subscription.create({
         data: {
           parentId: parent.id,
@@ -69,10 +73,17 @@ export async function registerParent(
           childProfileLimit: 3,
           caregiverLimit: 2,
           portfolioRetentionMaxDays: 90,
-          currentPeriodStart: new Date(),
-          currentPeriodEnd: addDays(new Date(), 7),
+          currentPeriodStart: trialStart,
+          currentPeriodEnd: trialEnd,
           autoRenew: true,
         },
+      });
+
+      await grantPlanOfferingInTx(tx, {
+        parentId: parent.id,
+        planCode: PlanCode.TRIAL,
+        validFrom: trialStart,
+        validUntil: trialEnd,
       });
 
       await tx.user.upsert({

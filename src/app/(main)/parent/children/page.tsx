@@ -3,6 +3,7 @@ import { CaregiverManager } from "@/components/caregiver-manager";
 import { ChildrenManager } from "@/components/children-manager";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
+import { getHouseholdSlotLimits } from "@/modules/progress/children-service";
 import { translate } from "@/i18n/translator";
 import { resolveAppLocale } from "@/i18n/locales";
 
@@ -12,7 +13,7 @@ export default async function ParentChildrenPage() {
   const parent = await requireParent();
   const locale = resolveAppLocale(await getLocale());
 
-  const [children, caregiverInvites, caregiversCount] = await Promise.all([
+  const [children, caregiverInvites, caregiversCount, slotLimits] = await Promise.all([
     prisma.childProfile.findMany({
       where: { parentId: parent.id },
       orderBy: { createdAt: "asc" },
@@ -39,10 +40,11 @@ export default async function ParentChildrenPage() {
         parentId: parent.id,
       },
     }),
+    getHouseholdSlotLimits(parent.id),
   ]);
 
-  const caregiverLimit = 2;
-  const childLimit = 1;
+  const caregiverLimit = slotLimits.caregiverLimit;
+  const childLimit = slotLimits.childProfileLimit;
   const now = new Date();
   const pendingInvites = caregiverInvites.filter(
     (invite) => !invite.accepted && invite.expiresAt.getTime() > now.getTime(),
