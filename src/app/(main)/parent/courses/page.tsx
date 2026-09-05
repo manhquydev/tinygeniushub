@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Award, BookOpen, CalendarDays, ChevronRight, Clock3, Grid3X3, List, Search } from "lucide-react";
+import { BookOpen, CalendarDays, ChevronRight, Clock3, Grid3X3, List, Search } from "lucide-react";
 import { requireParent } from "@/lib/auth/require-parent";
-import { getParentEnrollments, getCourseProgressForParent } from "@/modules/courses/course-service";
+import { getCourseProgressForParent } from "@/modules/courses/course-service";
+import { listEntitledCoursesForParent } from "@/modules/courses/entitled-course-lists";
 import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { isLegacyBundleRouteSlug } from "@/modules/courses/legacy-bundle-routes";
 import { CourseCheckoutStatusBanner } from "@/components/courses/course-checkout-status-banner";
@@ -72,8 +73,8 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
   const view = parseView(firstString(resolvedParams.view));
 
   const parent = await requireParent();
-  const enrollments = await getParentEnrollments(parent.id);
-  const courseIds = enrollments.map((enrollment) => enrollment.course.id);
+  const entitledCourses = await listEntitledCoursesForParent(parent.id);
+  const courseIds = entitledCourses.map((row) => row.course.id);
 
   const [progress, firstChild] = await Promise.all([
     getCourseProgressForParent(parent.id, courseIds),
@@ -86,21 +87,24 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
   const normalizedQuery = query.toLowerCase();
 
-  const rows = enrollments.map((enrollment) => {
-    const pricing = resolveCourseDisplayPricing(enrollment.course);
-    const detailHref = isLegacyBundleRouteSlug(enrollment.course.slug) ? "/courses" : `/courses/${enrollment.course.slug}`;
-    const prog = progress.get(enrollment.course.id);
+  const rows = entitledCourses.map((item) => {
+    const { course, validFrom } = item;
+    const pricing = resolveCourseDisplayPricing(course);
+    const detailHref = isLegacyBundleRouteSlug(course.slug) ? "/courses" : `/courses/${course.slug}`;
+    const prog = progress.get(course.id);
     const completedLessons = prog?.completed ?? 0;
-    const totalLessons = enrollment.course._count?.lessons ?? 0;
+    const totalLessons = course.totalLessons;
     const progressPct = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
-    const statusValue: ParentCourseStatus = enrollment.completedAt
-      ? "completed"
-      : completedLessons === 0
-        ? "not_started"
-        : "learning";
+    const statusValue: ParentCourseStatus =
+      totalLessons > 0 && progressPct >= 100
+        ? "completed"
+        : completedLessons === 0
+          ? "not_started"
+          : "learning";
 
     return {
-      enrollment,
+      course,
+      validFrom,
       pricing,
       detailHref,
       completedLessons,
@@ -111,7 +115,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
   });
 
   const filteredRows = rows.filter((row) => {
-    const searchable = `${row.enrollment.course.title} ${row.enrollment.course.description}`.toLowerCase();
+    const searchable = `${row.course.title} ${row.course.description}`.toLowerCase();
     if (normalizedQuery && !searchable.includes(normalizedQuery)) return false;
     if (status !== "all" && row.statusValue !== status) return false;
     return true;
@@ -119,14 +123,14 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
   const sortedRows = [...filteredRows].sort((a, b) => {
     if (sort === "title_asc") {
-      return a.enrollment.course.title.localeCompare(b.enrollment.course.title, "vi", {
+      return a.course.title.localeCompare(b.course.title, "vi", {
         sensitivity: "base",
       });
     }
     if (sort === "progress_desc") {
       return b.progressPct - a.progressPct;
     }
-    return b.enrollment.enrolledAt.getTime() - a.enrollment.enrolledAt.getTime();
+    return b.validFrom.getTime() - a.validFrom.getTime();
   });
 
   const totalCourses = rows.length;
@@ -177,7 +181,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
         </div>
       </section>
 
-      {enrollments.length === 0 ? (
+      {entitledCourses.length === 0 ? (
         <section className="card items-center text-center" style={{ padding: "2.25rem 1.25rem" }}>
           <p className="text-lg font-bold text-slate-900">You have not purchased any courses yet</p>
           <p className="max-w-md text-sm leading-relaxed text-slate-600">
@@ -302,19 +306,19 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
           ) : view === "grid" ? (
             <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               {sortedRows.map((row) => {
-                const { enrollment, pricing, detailHref, completedLessons, totalLessons, progressPct, statusValue } = row;
+                const { course, validFrom, pricing, detailHref, completedLessons, totalLessons, progressPct, statusValue } = row;
                 const continueHref = firstChild
-                  ? `/kid/courses/${enrollment.course.slug}?childId=${firstChild.id}`
-                  : `/kid/courses/${enrollment.course.slug}`;
+                  ? `/kid/courses/${course.slug}?childId=${firstChild.id}`
+                  : `/kid/courses/${course.slug}`;
 
                 return (
-                  <article key={enrollment.id} className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                  <article key={course.id} className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
                     <div className="flex gap-3">
-                      {enrollment.course.coverImageUrl ? (
+                      {course.coverImageUrl ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
-                          src={enrollment.course.coverImageUrl}
-                          alt={enrollment.course.title}
+                          src={course.coverImageUrl}
+                          alt={course.title}
                           className="h-20 w-28 shrink-0 rounded-xl object-cover"
                         />
                       ) : (
@@ -341,17 +345,17 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                             {progressPct}%
                           </span>
                         </div>
-                        <h2 className="line-clamp-2 text-sm font-extrabold text-slate-900">{enrollment.course.title}</h2>
-                        <p className="mt-1 line-clamp-2 text-xs text-slate-600">{enrollment.course.description}</p>
+                        <h2 className="line-clamp-2 text-sm font-extrabold text-slate-900">{course.title}</h2>
+                        <p className="mt-1 line-clamp-2 text-xs text-slate-600">{course.description}</p>
                       </div>
                     </div>
 
                     <div className="flex flex-wrap gap-1.5 text-[11px] text-slate-600">
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
-                        <CalendarDays className="h-3 w-3" /> {formatDate(enrollment.enrolledAt)}
+                        <CalendarDays className="h-3 w-3" /> {formatDate(validFrom)}
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
-                        <Clock3 className="h-3 w-3" /> {enrollment.course.durationDays} days
+                        <Clock3 className="h-3 w-3" /> {course.durationDays} days
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
                         {completedLessons}/{totalLessons} lessons
@@ -372,7 +376,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                           style={{ width: `${progressPct}%` }}
                         />
                       </div>
-                      <p className="mt-1 text-[11px] text-slate-400">Access for {enrollment.course.durationDays} days from purchase</p>
+                      <p className="mt-1 text-[11px] text-slate-400">Access for {course.durationDays} days from purchase</p>
                     </div>
 
                     <div className="flex flex-wrap gap-1.5">
@@ -388,16 +392,6 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                       >
                         See key
                       </Link>
-                      {enrollment.certificateUrl ? (
-                        <a
-                          href={enrollment.certificateUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:border-slate-400"
-                        >
-                          <Award className="mr-1 h-3.5 w-3.5" /> Certificate
-                        </a>
-                      ) : null}
                     </div>
                   </article>
                 );
@@ -406,22 +400,22 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
           ) : (
             <section className="grid gap-3">
               {sortedRows.map((row) => {
-                const { enrollment, pricing, detailHref, completedLessons, totalLessons, progressPct, statusValue } = row;
+                const { course, validFrom, pricing, detailHref, completedLessons, totalLessons, progressPct, statusValue } = row;
                 const continueHref = firstChild
-                  ? `/kid/courses/${enrollment.course.slug}?childId=${firstChild.id}`
-                  : `/kid/courses/${enrollment.course.slug}`;
+                  ? `/kid/courses/${course.slug}?childId=${firstChild.id}`
+                  : `/kid/courses/${course.slug}`;
 
                 return (
                   <article
-                    key={enrollment.id}
+                    key={course.id}
                     className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm md:grid-cols-[180px_minmax(0,1fr)_auto]"
                   >
                     <div>
-                      {enrollment.course.coverImageUrl ? (
+                      {course.coverImageUrl ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
-                          src={enrollment.course.coverImageUrl}
-                          alt={enrollment.course.title}
+                          src={course.coverImageUrl}
+                          alt={course.title}
                           className="h-24 w-full rounded-xl object-cover"
                         />
                       ) : (
@@ -450,10 +444,10 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                           {progressPct}% progress
                         </span>
                       </div>
-                      <h2 className="line-clamp-1 text-sm font-extrabold text-slate-900">{enrollment.course.title}</h2>
-                      <p className="mt-1 line-clamp-2 text-xs text-slate-600">{enrollment.course.description}</p>
+                      <h2 className="line-clamp-1 text-sm font-extrabold text-slate-900">{course.title}</h2>
+                      <p className="mt-1 line-clamp-2 text-xs text-slate-600">{course.description}</p>
                       <div className="mt-2 flex flex-wrap gap-1.5 text-[11px] text-slate-500">
-                        <span>Enrolled {formatDate(enrollment.enrolledAt)}</span>
+                        <span>Started {formatDate(validFrom)}</span>
                         <span>•</span>
                         <span>{completedLessons}/{totalLessons} lessons</span>
                         <span>•</span>
@@ -474,16 +468,6 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                       >
                         See key
                       </Link>
-                      {enrollment.certificateUrl ? (
-                        <a
-                          href={enrollment.certificateUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:border-slate-400"
-                        >
-                          <Award className="mr-1 h-3.5 w-3.5" /> Certificate
-                        </a>
-                      ) : null}
                     </div>
                   </article>
                 );

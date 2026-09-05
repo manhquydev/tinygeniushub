@@ -2,7 +2,8 @@ import type { NextRequest } from "next/server";
 import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { getParentFromRequest } from "@/lib/auth/session";
-import { getEnrolledCoursesForKidDashboard } from "@/modules/courses/course-service";
+import { prisma } from "@/lib/db";
+import { listEntitledCoursesForChild } from "@/modules/courses/entitled-course-lists";
 
 /**
  * GET /api/courses/enrolled?childId=xxx
@@ -21,8 +22,15 @@ export async function GET(request: NextRequest) {
     if (!childId) {
       return fail("childId is required", 400);
     }
+    const child = await prisma.childProfile.findFirst({
+      where: { id: childId, parentId: parent.id },
+      select: { id: true },
+    });
+    if (!child) {
+      return fail("Child profile not found", 404);
+    }
 
-    const courses = await getEnrolledCoursesForKidDashboard({
+    const courses = await listEntitledCoursesForChild({
       parentId: parent.id,
       childId,
     });

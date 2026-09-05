@@ -6,7 +6,7 @@ import { logInfo, logWarn } from "@/lib/observability/logger";
 import { parsePilotAttributionSnapshot } from "@/modules/courses/pilot-attribution";
 import { getPublishedCoursesByBundleSlug } from "@/modules/courses/course-bundle-service";
 import { trackPilotPurchaseSucceeded } from "@/modules/courses/pilot-funnel-tracking-service";
-import { enrollParent } from "@/modules/courses/course-service";
+import { grantCourseOfferingInTx } from "@/modules/entitlement/grant-from-billing";
 import { createAuditLog } from "@/modules/platform/audit-service";
 
 function redirectTo(pathnameWithQuery: string) {
@@ -255,6 +255,11 @@ export async function GET(request: NextRequest) {
               paymentId: paymentRecord.id,
             },
           });
+          await grantCourseOfferingInTx(tx, {
+            parentId,
+            courseId: course.id,
+            sourcePaymentId: paymentRecord.id,
+          });
         }
       });
 
@@ -323,16 +328,30 @@ export async function GET(request: NextRequest) {
       return redirectTo("/courses?error=invalid_checkout");
     }
 
-    const existing = await prisma.courseEnrollment.findUnique({
-      where: { courseId_parentId: { courseId, parentId } },
+    await prisma.$transaction(async (tx) => {
+      await tx.courseEnrollment.upsert({
+        where: {
+          courseId_parentId: {
+            courseId,
+            parentId,
+          },
+        },
+        update: {
+          paymentId: paymentRecord.id,
+        },
+        create: {
+          courseId,
+          parentId,
+          paymentId: paymentRecord.id,
+        },
+      });
+      await grantCourseOfferingInTx(tx, {
+        parentId,
+        courseId,
+        sourcePaymentId: paymentRecord.id,
+      });
     });
-
-    if (!existing) {
-      await enrollParent(courseId, parentId, paymentRecord.id);
-      logInfo("courses.mock_checkout.enrolled", { courseId, parentId, sessionId });
-    } else {
-      logInfo("courses.mock_checkout.already_enrolled", { courseId, parentId });
-    }
+    logInfo("courses.mock_checkout.enrolled", { courseId, parentId, sessionId });
 
     await markMockPaymentSucceeded({
       paymentRecordId: paymentRecord.id,

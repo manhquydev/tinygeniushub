@@ -5,19 +5,19 @@
 
 import { fail, ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
-import { getParentFromRequest } from "@/lib/auth/session";
+import { requireParentAndOwnedChild } from "@/lib/auth/require-parent-child";
 import { getReviewQueue } from "@/modules/adaptive/spaced-repetition-service";
 import type { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
-    const parent = await getParentFromRequest(request);
-    if (!parent) return fail("Unauthorized", 401);
-
     const childId = request.nextUrl.searchParams.get("childId");
     if (!childId) return fail("Missing childId", 400);
 
-    const items = await getReviewQueue(childId);
+    const auth = await requireParentAndOwnedChild(request, childId);
+    if (!auth.ok) return auth.response;
+
+    const items = await getReviewQueue(auth.child.id);
     const now = new Date();
     const dueCount = items.filter((item) => item.scheduledAt <= now).length;
 

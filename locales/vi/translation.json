@@ -5261,6 +5261,15 @@
       "metadataTitle": "Thanh Toán & Hóa Đơn - TinyGenius Hub",
       "heading": "Thanh toán và hóa đơn",
       "description": "Trang này quản lý việc mua khóa học. Thanh toán qua chuyển khoản PayOS.",
+      "tickets": {
+        "heading": "Vé học của hộ gia đình",
+        "empty": "Chưa có vé học.",
+        "code": "Gói",
+        "catalog": "Catalog",
+        "status": "Trạng thái",
+        "validUntil": "Hết hạn",
+        "openEnded": "Không hết hạn"
+      },
       "totalPaid": "Tổng đã trả",
       "successfulTransaction": "Thành công",
       "processing": "Đang xử lý",

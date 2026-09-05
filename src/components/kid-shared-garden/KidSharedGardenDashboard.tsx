@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import { useKidNavigationFeedback } from "@/components/kid-navigation-feedback";
-import type { EnrolledCourseForKidDashboard } from "@/modules/courses/course-service";
+import type { EntitledCourseForChild } from "@/modules/courses/entitled-course-lists";
 import "./kid-shared-garden.css";
 
 interface KidSharedGardenDashboardProps {
@@ -13,7 +13,7 @@ interface KidSharedGardenDashboardProps {
     nickname: string;
   }>;
   activeChildId: string;
-  enrolledCourses: EnrolledCourseForKidDashboard[];
+  enrolledCourses: EntitledCourseForChild[];
 }
 
 type TapFxState = {
@@ -22,12 +22,12 @@ type TapFxState = {
   y: number;
 };
 
-function getProgressPercent(journey: EnrolledCourseForKidDashboard["journey"], totalLessons: number) {
+function getProgressPercent(journey: EntitledCourseForChild["journey"], totalLessons: number) {
   if (!journey || totalLessons <= 0) return 0;
   return Math.min(100, Math.round((journey.completedLessons / totalLessons) * 100));
 }
 
-function readPlotVisual(journey: EnrolledCourseForKidDashboard["journey"]) {
+function readPlotVisual(journey: EntitledCourseForChild["journey"]) {
   if (!journey) {
     return {
       statusLabel: "Haven't sown seeds yet",

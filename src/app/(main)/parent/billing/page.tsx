@@ -6,6 +6,8 @@ import { prisma } from "@/lib/db";
 import { getParentFromServerCookie } from "@/lib/auth/session";
 import { translate } from "@/i18n/translator";
 import { resolveAppLocale } from "@/i18n/locales";
+import { BillingTickets } from "@/components/parent/billing-tickets";
+import { listEntitlements } from "@/modules/entitlement/entitlement-service";
 
 export async function generateMetadata() {
   const locale = resolveAppLocale(await getLocale());
@@ -49,12 +51,15 @@ export default async function ParentBillingPage() {
   const locale = resolveAppLocale(await getLocale());
   const t = (key: string) => translate(`parent.billing.${key}`, undefined, locale);
 
-  const payments = await prisma.paymentRecord.findMany({
-    where: { parentId: parent.id },
-    orderBy: { processedAt: "desc" },
-    take: 20,
-    select: { id: true, provider: true, amountVnd: true, status: true, processedAt: true, rawPayload: true },
-  });
+  const [payments, entitlements] = await Promise.all([
+    prisma.paymentRecord.findMany({
+      where: { parentId: parent.id },
+      orderBy: { processedAt: "desc" },
+      take: 20,
+      select: { id: true, provider: true, amountVnd: true, status: true, processedAt: true, rawPayload: true },
+    }),
+    listEntitlements(parent.id),
+  ]);
 
   const succeededPayments = payments.filter((p) => p.status === "SUCCEEDED");
   const pendingPayments = payments.filter((p) => p.status === "PENDING");
@@ -102,6 +107,23 @@ export default async function ParentBillingPage() {
           </div>
         </div>
       </section>
+
+      <BillingTickets
+        heading={t("tickets.heading")}
+        empty={t("tickets.empty")}
+        codeLabel={t("tickets.code")}
+        catalogLabel={t("tickets.catalog")}
+        statusLabel={t("tickets.status")}
+        validUntilLabel={t("tickets.validUntil")}
+        openEnded={t("tickets.openEnded")}
+        tickets={entitlements.map((row) => ({
+          id: row.id,
+          status: row.status,
+          validUntil: row.validUntil ? row.validUntil.toISOString() : null,
+          offeringCode: row.offering.code,
+          catalogKey: row.offering.catalogKey,
+        }))}
+      />
 
       <section className="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
         <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">

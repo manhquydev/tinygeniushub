@@ -68,7 +68,7 @@ export function DashboardChildCard({
             </Link>
           ) : null}
           <Link
-            href={`/kid/courses?childId=${encodeURIComponent(child.id)}`}
+            href={`/kid/today?childId=${encodeURIComponent(child.id)}`}
             className="inline-flex min-h-11 items-center justify-center gap-1 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 px-4 text-sm font-bold text-white shadow-[0_6px_16px_rgba(13,148,136,0.28)] transition hover:-translate-y-0.5"
           >
             {t("continueStudying")}

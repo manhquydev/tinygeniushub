@@ -13,6 +13,7 @@ import { resolveCourseCoverImage } from "@/modules/courses/course-media";
 import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { COURSE_TRIAL_PREVIEW_LESSON_LIMIT } from "@/modules/courses/course-trial-constants";
 import { isLegacyBundleRouteSlug } from "@/modules/courses/legacy-bundle-routes";
+import { listLiveCourseIds } from "@/modules/entitlement/course-tickets";
 import { CourseDetailCurriculum } from "./course-detail-curriculum";
 import { CourseDetailFaq } from "./course-detail-faq";
 import { CourseDetailHero } from "./course-detail-hero";
@@ -115,18 +116,15 @@ export default async function CourseDetailPage({ params }: Props) {
   let isOwned = false;
   let childEntryHref = `/kid/courses/${encodeURIComponent(course.slug)}`;
   if (parent) {
-    const [enrollment, firstChild] = await Promise.all([
-      prisma.courseEnrollment.findUnique({
-        where: { courseId_parentId: { courseId: course.id, parentId: parent.id } },
-        select: { id: true },
-      }),
+    const [ticketedIds, firstChild] = await Promise.all([
+      listLiveCourseIds(parent.id),
       prisma.childProfile.findFirst({
         where: { parentId: parent.id },
         orderBy: { createdAt: "asc" },
         select: { id: true },
       }),
     ]);
-    isOwned = Boolean(enrollment);
+    isOwned = ticketedIds.includes(course.id);
     if (firstChild) childEntryHref = `${childEntryHref}?childId=${encodeURIComponent(firstChild.id)}`;
   }
 

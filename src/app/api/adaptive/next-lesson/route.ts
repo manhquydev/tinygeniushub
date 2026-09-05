@@ -6,7 +6,7 @@
 
 import { fail, ok } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
-import { getParentFromRequest } from "@/lib/auth/session";
+import { requireParentAndOwnedChild } from "@/lib/auth/require-parent-child";
 import { isAdaptiveEnabledForChild } from "@/lib/feature-flags";
 import { getNextLesson } from "@/modules/adaptive/content-sequencing-engine";
 import type { SkillDomain } from "@/modules/adaptive/types";
@@ -16,9 +16,6 @@ const VALID_DOMAINS: SkillDomain[] = ["MATH", "ENGLISH_PHONICS"];
 
 export async function GET(request: NextRequest) {
   try {
-    const parent = await getParentFromRequest(request);
-    if (!parent) return fail("Unauthorized", 401);
-
     const { searchParams } = request.nextUrl;
     const childId = searchParams.get("childId");
     const domainParam = searchParams.get("domain");
@@ -28,12 +25,15 @@ export async function GET(request: NextRequest) {
       return fail(`Invalid domain. Must be one of: ${VALID_DOMAINS.join(", ")}`, 400);
     }
 
-    const adaptiveEnabled = await isAdaptiveEnabledForChild(childId);
+    const auth = await requireParentAndOwnedChild(request, childId);
+    if (!auth.ok) return auth.response;
+
+    const adaptiveEnabled = await isAdaptiveEnabledForChild(auth.child.id);
     if (!adaptiveEnabled) {
       return ok({ lesson: null, source: "sequential", reason: "Adaptive not enabled" });
     }
 
-    const result = await getNextLesson(childId, domainParam as SkillDomain);
+    const result = await getNextLesson(auth.child.id, domainParam as SkillDomain);
     if (!result) {
       return ok({ lesson: null, source: "adaptive", reason: "No lesson available or cold start" });
     }

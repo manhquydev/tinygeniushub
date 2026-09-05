@@ -6,6 +6,7 @@ import { isParentAdmin } from "@/lib/auth/admin";
 import { prisma } from "@/lib/db";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import { completeCourse } from "@/modules/courses/course-service";
+import { listLiveCourseIds } from "@/modules/entitlement/course-tickets";
 import { assertRequestAllowedBySecurityControls } from "@/modules/platform/security-access-guard";
 
 export async function POST(
@@ -23,8 +24,6 @@ export async function POST(
 
     const { slug } = await params;
     const body = (await request.json()) as { parentId?: string };
-
-    // Admin can complete on behalf of any parent; otherwise must be enrolled parent
     const targetParentId = isParentAdmin(parent) ? (body.parentId ?? parent.id) : parent.id;
 
     const course = await prisma.course.findUnique({ where: { slug } });
@@ -32,11 +31,20 @@ export async function POST(
       return fail("Course not found", 404);
     }
 
-    const enrollment = await prisma.courseEnrollment.findUnique({
+    const ticketedIds = await listLiveCourseIds(targetParentId);
+    if (!ticketedIds.includes(course.id)) {
+      return fail("Household ticket required to complete this course", 403, {
+        code: "LEARN_ACCESS_DENIED",
+      });
+    }
+
+    let enrollment = await prisma.courseEnrollment.findUnique({
       where: { courseId_parentId: { courseId: course.id, parentId: targetParentId } },
     });
     if (!enrollment) {
-      return fail("Not enrolled in this course", 403);
+      enrollment = await prisma.courseEnrollment.create({
+        data: { courseId: course.id, parentId: targetParentId },
+      });
     }
 
     const updated = await completeCourse(enrollment.id);
