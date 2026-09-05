@@ -5261,6 +5261,15 @@
       "metadataTitle": "Payments & Invoices - TinyGenius Hub",
       "heading": "Payments and invoices",
       "description": "This page covers course purchases. Payments are processed via PayOS bank transfer.",
+      "tickets": {
+        "heading": "Household tickets",
+        "empty": "No live or past tickets yet.",
+        "code": "Offering",
+        "catalog": "Catalog",
+        "status": "Status",
+        "validUntil": "Valid until",
+        "openEnded": "No expiry"
+      },
       "totalPaid": "Total paid",
       "successfulTransaction": "Successful",
       "processing": "Processing",

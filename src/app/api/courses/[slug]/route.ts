@@ -2,8 +2,9 @@ import type { NextRequest } from "next/server";
 import { ok, fail } from "@/lib/http";
 import { handleRouteError } from "@/lib/route-error";
 import { getParentFromRequest } from "@/lib/auth/session";
-import { getCourse, getEnrollment } from "@/modules/courses/course-service";
+import { getCourse } from "@/modules/courses/course-service";
 import { getCourseBundleByCourseSlug } from "@/modules/courses/course-bundles";
+import { listLiveCourseIds } from "@/modules/entitlement/course-tickets";
 import { getBundleStorefrontContent } from "@/modules/courses/course-storefront-content";
 import {
   buildStorefrontCourseContract,
@@ -24,8 +25,8 @@ export async function GET(
     const parent = await getParentFromRequest(request);
     let enrolled = false;
     if (parent) {
-      const enrollment = await getEnrollment(course.id, parent.id);
-      enrolled = Boolean(enrollment);
+      const ticketedIds = await listLiveCourseIds(parent.id);
+      enrolled = ticketedIds.includes(course.id);
     }
 
     const bundle = getCourseBundleByCourseSlug(course.slug);
