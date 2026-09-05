@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { KidSharedGardenDashboard } from "@/components/kid-shared-garden/KidSharedGardenDashboard";
 import { requireParent } from "@/lib/auth/require-parent";
 import { prisma } from "@/lib/db";
-import { getEnrolledCoursesForKidDashboard } from "@/modules/courses/course-service";
+import { listEntitledCoursesForChild } from "@/modules/courses/entitled-course-lists";
 
 interface KidGardenPageProps {
   searchParams?:
@@ -41,7 +41,7 @@ export default async function KidGardenPage({ searchParams }: KidGardenPageProps
   const queryChildId = readSingleQueryParam(resolvedSearchParams?.childId);
   const activeChild = children.find((child) => child.id === queryChildId) ?? children[0]!;
 
-  const enrolledCourses = await getEnrolledCoursesForKidDashboard({
+  const enrolledCourses = await listEntitledCoursesForChild({
     parentId: parent.id,
     childId: activeChild.id,
   });

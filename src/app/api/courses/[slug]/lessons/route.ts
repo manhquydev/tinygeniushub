@@ -49,7 +49,9 @@ export async function GET(
       return fail("Course not found", 404);
     }
     if (!access.hasAccess) {
-      return fail("Not enrolled in this course", 403);
+      return fail("Household ticket required to access this course", 403, {
+        code: "LEARN_ACCESS_DENIED",
+      });
     }
 
     // Load course lessons with completion status for child

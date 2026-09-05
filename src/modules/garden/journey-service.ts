@@ -6,6 +6,7 @@ import type {
 import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { DomainError } from "@/modules/platform/errors";
+import { assertParentHasCourseTicket } from "@/modules/garden/assert-course-ticket";
 
 type DbClient = Prisma.TransactionClient | typeof prisma;
 
@@ -392,6 +393,20 @@ async function resolveCourseEnrollment(db: DbClient, params: {
   courseId: string;
   sourceEnrollmentId?: string;
 }) {
+  if (params.sourceEnrollmentId) {
+    const sourceEnrollment = await db.courseEnrollment.findFirst({
+      where: {
+        id: params.sourceEnrollmentId,
+        parentId: params.parentId,
+        courseId: params.courseId,
+      },
+      select: { id: true },
+    });
+    if (sourceEnrollment) {
+      return sourceEnrollment.id;
+    }
+  }
+
   const enrollment = await db.courseEnrollment.findUnique({
     where: {
       courseId_parentId: {
@@ -402,32 +417,7 @@ async function resolveCourseEnrollment(db: DbClient, params: {
     select: { id: true },
   });
 
-  if (!enrollment) {
-    throw new DomainError("Course enrollment not found", 404, "COURSE_ENROLLMENT_NOT_FOUND");
-  }
-
-  if (!params.sourceEnrollmentId) {
-    return enrollment.id;
-  }
-
-  if (params.sourceEnrollmentId === enrollment.id) {
-    return enrollment.id;
-  }
-
-  const sourceEnrollment = await db.courseEnrollment.findFirst({
-    where: {
-      id: params.sourceEnrollmentId,
-      parentId: params.parentId,
-      courseId: params.courseId,
-    },
-    select: { id: true },
-  });
-
-  if (!sourceEnrollment) {
-    throw new DomainError("Source enrollment is invalid", 400, "INVALID_SOURCE_ENROLLMENT");
-  }
-
-  return sourceEnrollment.id;
+  return enrollment?.id ?? null;
 }
 
 async function loadJourneySnapshot(db: DbClient, journeyId: string): Promise<ChildCourseJourneySnapshot> {
@@ -736,6 +726,11 @@ export async function createJourneyFromCourse(input: z.infer<typeof createJourne
     const course = await resolveCourse(tx, {
       courseId: params.courseId,
       courseSlug: params.courseSlug,
+    });
+
+    await assertParentHasCourseTicket({
+      parentId: params.parentId,
+      courseId: course.id,
     });
 
     const sourceEnrollmentId = await resolveCourseEnrollment(tx, {
