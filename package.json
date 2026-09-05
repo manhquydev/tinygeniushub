@@ -119,7 +119,7 @@
     "@remotion/renderer": "^4.0.429",
     "@tanstack/react-query": "^5.96.2",
     "bcryptjs": "^3.0.3",
-    "better-auth": "^1.4.18",
+    "better-auth": "^1.6.22",
     "bullmq": "^5.69.3",
     "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
