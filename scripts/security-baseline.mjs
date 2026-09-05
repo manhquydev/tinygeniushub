@@ -39,7 +39,7 @@ function runAudit(command) {
 }
 
 function getVulnerabilities(report) {
-  return report.metadata?.vulnerabilities ?? {
+  const counts = {
     info: 0,
     low: 0,
     moderate: 0,
@@ -47,6 +47,14 @@ function getVulnerabilities(report) {
     critical: 0,
     total: 0,
   };
+  for (const advisory of Object.values(report.advisories ?? {})) {
+    const severity = advisory?.severity;
+    if (severity && severity in counts) {
+      counts[severity] += 1;
+    }
+  }
+  counts.total = counts.info + counts.low + counts.moderate + counts.high + counts.critical;
+  return counts;
 }
 
 function getTotal(vulnerabilities) {

@@ -1,0 +1,11 @@
+name: tinygeniushub-js
+# Default security queries only. Do not scan vendor/skill trees.
+paths-ignore:
+  - node_modules
+  - .claude
+  - .opencode
+  - tests
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+  - "**/*.spec.ts"
+  - "**/__tests__/**"
