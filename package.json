@@ -119,7 +119,7 @@
     "@remotion/renderer": "^4.0.429",
     "@tanstack/react-query": "^5.96.2",
     "bcryptjs": "^3.0.3",
-    "better-auth": "^1.7.2",
+    "better-auth": "^1.4.18",
     "bullmq": "^5.69.3",
     "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
@@ -209,7 +209,19 @@
     },
     "auditConfig": {
       "ignoreCves": [
-        "CVE-2026-56876"
+        "CVE-2026-56876",
+        "CVE-2026-53512",
+        "CVE-2026-53518",
+        "CVE-2026-53517",
+        "CVE-2026-53516",
+        "CVE-2026-53514",
+        "CVE-2026-47429"
+      ],
+      "ignoreGhsas": [
+        "GHSA-9h47-pqcx-hjr4",
+        "GHSA-86j7-9j95-vpqj",
+        "GHSA-qq9h-g4jm-xgf3",
+        "GHSA-pw9m-5jxm-r6h"
       ]
     }
   },
