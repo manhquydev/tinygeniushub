@@ -28,6 +28,12 @@ jobs:
       NODE_ENV: test
       NEXT_TELEMETRY_DISABLED: "1"
       CI: "true"
+      RATE_LIMIT_TRUST_PROXY: "true"
+      COURSE_PAYMENT_PROVIDER: payos
+      PAYOS_CLIENT_ID: e2e-payos-client-id
+      PAYOS_API_KEY: e2e-payos-api-key
+      PAYOS_CHECKSUM_KEY: e2e-payos-checksum-key
+      ALLOW_PROD_MOCK_CHECKOUT_CALLBACK: "false"
     services:
       postgres:
         image: postgres:16-alpine
