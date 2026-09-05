@@ -21,7 +21,7 @@ services:
       - app_internal
 
   redis:
-    image: redis:7-alpine
+    image: redis:8-alpine
     restart: unless-stopped
     ports:
       # Host port defaults to 6380 to avoid clashing with a system Redis on 6379.
