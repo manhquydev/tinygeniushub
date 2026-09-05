@@ -115,6 +115,7 @@ jobs:
         run: |
           pnpm prisma migrate deploy
           pnpm db:seed
+          pnpm tsx prisma/scripts/import-three-courses-bootstrap.ts --publish
           node -e "const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); const controls = { ddosMode: 'normal', globalLimitMultiplier: 1, blockedIpCidrs: [], readinessAllowlistCidrs: [], parentEmailVerificationRequired: false, parentEmailVerificationTokenTtlMinutes: 15 }; prisma.adminSecuritySettings.upsert({ where: { id: 'default' }, update: { securityControls: controls, updatedByActorId: 'ci-release-check' }, create: { id: 'default', rateLimitPolicies: {}, securityControls: controls, updatedByActorId: 'ci-release-check' } }).then(() => prisma.\$disconnect()).catch(async (error) => { console.error(error); await prisma.\$disconnect(); process.exit(1); });"
 
 
