@@ -189,7 +189,8 @@
       "effect": "3.20.0",
       "kysely": "0.28.14",
       "fast-xml-parser": "5.5.7",
-      "dompurify": "3.3.2"
+      "dompurify": "3.3.2",
+      "qs": "6.16.0"
     }
   },
   "description": "MVP foundation rebuilt from handover docs (`docs/handover/handover-master-agent-ready.md`) using:\r - Next.js 16 + React 19 + TypeScript\r - Prisma + PostgreSQL 16\r - Redis + BullMQ worker scaffold\r - Modular monolith domain boundaries",
