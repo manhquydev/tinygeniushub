@@ -131,7 +131,7 @@ describe("auth signup route", () => {
     const body = await response.json();
 
     expect(response.status).toBe(400);
-    expect(body.error.message).toBe("Invalid request payload");
+    expect(body.error.message).toBe("Invalid request payload.");
     expect(Array.isArray(body.error.details?.issues)).toBe(true);
     expect(registerParentMock).not.toHaveBeenCalled();
   });
@@ -156,7 +156,7 @@ describe("auth signup route", () => {
     const body = await response.json();
 
     expect(response.status).toBe(400);
-    expect(body.error.message).toBe("Invalid request payload");
+    expect(body.error.message).toBe("Invalid request payload.");
     expect(body.error.details?.issues?.[0]?.path).toContain("legalAccepted");
     expect(registerParentMock).not.toHaveBeenCalled();
   });

@@ -45,7 +45,7 @@ describe("blog preview-markdown route", () => {
     const body = await response.json();
 
     expect(response.status).toBe(400);
-    expect(body.error.message).toBe("Invalid JSON payload");
+    expect(body.error.message).toBe("Invalid JSON payload.");
   });
 
   it("renders markdown for authorized admin requests", async () => {

@@ -152,7 +152,7 @@ describe("admin log route", () => {
 
     expect(response.status).toBe(400);
     expect(body.ok).toBe(false);
-    expect(body.error.message).toBe("Invalid request payload");
+    expect(body.error.message).toBe("Invalid request payload.");
     expect(createAdminActionLogMock).not.toHaveBeenCalled();
   });
 

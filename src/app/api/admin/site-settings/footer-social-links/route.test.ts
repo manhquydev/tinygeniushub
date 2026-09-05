@@ -146,7 +146,7 @@ describe("admin footer social links route", () => {
 
     expect(response.status).toBe(400);
     expect(body.ok).toBe(false);
-    expect(body.error.message).toBe("Invalid request payload");
+    expect(body.error.message).toBe("Invalid request payload.");
     expect(updateFooterSocialLinksMock).not.toHaveBeenCalled();
   });
 
