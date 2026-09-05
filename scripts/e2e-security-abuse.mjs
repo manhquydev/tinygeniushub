@@ -371,10 +371,21 @@ async function getAdminSecuritySettings(baseUrl, adminHeaders) {
 }
 
 async function patchAdminSecuritySettings(baseUrl, adminHeaders, payload) {
+  const body = payload.controls
+    ? {
+        ...payload,
+        controls: {
+          ...payload.controls,
+          parentEmailVerificationRequired: false,
+          parentEmailVerificationTokenTtlMinutes:
+            payload.controls.parentEmailVerificationTokenTtlMinutes ?? 15,
+        },
+      }
+    : payload;
   const patch = await requestJson(baseUrl, "/api/admin/security/rate-limits", {
     method: "PATCH",
     headers: adminHeaders,
-    body: payload,
+    body,
   });
   assert(patch.response.status === 200, `Admin security PATCH failed: status=${patch.response.status}`);
   assert(patch.json?.ok === true, "Admin security PATCH did not return ok=true");

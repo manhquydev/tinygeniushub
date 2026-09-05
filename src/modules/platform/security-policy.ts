@@ -450,6 +450,15 @@ export const adminSecurityControlsSchema = z.object({
 
 export type AdminSecurityControls = z.infer<typeof adminSecurityControlsSchema>;
 
+export const adminSecurityControlsPatchSchema = z.object({
+  ddosMode: ddosModeSchema.optional(),
+  globalLimitMultiplier: z.coerce.number().min(0.2).max(1).optional(),
+  blockedIpCidrs: ipNetworkListSchema.optional(),
+  readinessAllowlistCidrs: ipNetworkListSchema.optional(),
+  parentEmailVerificationRequired: z.boolean().optional(),
+  parentEmailVerificationTokenTtlMinutes: z.coerce.number().int().min(5).max(1440).optional(),
+});
+
 export const ddosModeRateLimitMultipliers: Record<DdosMode, number> = {
   normal: 1,
   elevated: 0.8,
@@ -479,7 +488,7 @@ export const rateLimitPolicyOverridesSchema = z
 
 export const updateAdminRateLimitPoliciesSchema = z.object({
   overrides: rateLimitPolicyOverridesSchema,
-  controls: adminSecurityControlsSchema.optional(),
+  controls: adminSecurityControlsPatchSchema.optional(),
   reason: z.string().trim().min(8).max(300).optional(),
 });
 
