@@ -3,7 +3,8 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, isToday, addMonths, subMonths, isBefore, startOfDay } from "date-fns";
-import { vi } from "date-fns/locale";
+import { enUS, vi } from "date-fns/locale";
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -23,13 +24,16 @@ export function Calendar({
   className 
 }: CalendarProps) {
   const [currentMonth, setCurrentMonth] = React.useState(new Date());
+  const locale = useLocale();
+  const t = useTranslations("chrome.calendar.weekdays");
+  const dateFnsLocale = locale === "vi" ? vi : enUS;
 
   const days = eachDayOfInterval({
     start: startOfMonth(currentMonth),
     end: endOfMonth(currentMonth),
   });
 
-  const weekDays = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+  const weekDays = [t("sun"), t("mon"), t("tue"), t("wed"), t("thu"), t("fri"), t("sat")];
 
   const handlePrevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));
   const handleNextMonth = () => setCurrentMonth(addMonths(currentMonth, 1));
@@ -56,7 +60,7 @@ export function Calendar({
           <ChevronLeft className="h-4 w-4" />
         </Button>
         <span className="text-sm font-medium">
-          {format(currentMonth, "MMMM yyyy", { locale: vi })}
+          {format(currentMonth, "MMMM yyyy", { locale: dateFnsLocale })}
         </span>
         <Button
           variant="ghost"

@@ -13,6 +13,7 @@ import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import confetti from "canvas-confetti";
 import { ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { KidMotionProvider } from "@/components/animation/kid-motion-provider";
 import {
   KidMascot,
@@ -97,20 +98,8 @@ const JOURNEY_PLANETS = [
   { id: "planet-4", top: "22%", left: "82%", size: "88px", className: "journey-planet-d" },
 ];
 
-const mascotMessages = [
-  "Keep learning at your own pace!",
-  "I am here to help you!",
-  "Take it step by step.",
-  "Keep going!",
-  "You are doing great today!",
-];
-
-const completionMessages = [
-  "Great work! You completed another lesson.",
-  "Wonderful! Your mission map is lighting up.",
-  "Excellent! You are making fast progress.",
-  "Yay! Keep it up.",
-];
+const MASCOT_TIP_KEYS = ["pace", "help", "step", "keepGoing", "greatToday"] as const;
+const COMPLETION_TIP_KEYS = ["greatWork", "mapLighting", "fastProgress", "yay"] as const;
 
 const MASCOT_ACTION_PROPS: KidMascotActionProp[] = ["reading", "math", "exploring"];
 const NODE_GAZE_DIRECTIONS: KidMascotGazeDirection[] = ["left", "center", "right"];
@@ -126,7 +115,7 @@ interface JourneyNodeMascotProfile {
   gazeDirection: KidMascotGazeDirection;
   motionLevel: "full" | "soft" | "minimal";
   size: number;
-  title: string;
+  titleKey: "nodeCompletedAria" | "nodeActiveAria" | "nodeLockedAria";
 }
 
 interface GuideMascotProfile {
@@ -192,7 +181,7 @@ function resolveJourneyNodeMascotProfile({
       gazeDirection,
       motionLevel: isCelebratingCompletion ? "full" : "soft",
       size: isCelebratingCompletion ? 66 : 56,
-      title: "Mascot landmark completed",
+      titleKey: "nodeCompletedAria",
     };
   }
 
@@ -203,7 +192,7 @@ function resolveJourneyNodeMascotProfile({
       gazeDirection,
       motionLevel: "full",
       size: 64,
-      title: "Mascot mold is studying",
+      titleKey: "nodeActiveAria",
     };
   }
 
@@ -213,7 +202,7 @@ function resolveJourneyNodeMascotProfile({
     gazeDirection,
     motionLevel: "minimal",
     size: 52,
-    title: "Mascot landmark is about to unlock",
+    titleKey: "nodeLockedAria",
   };
 }
 
@@ -294,6 +283,7 @@ export function KidMissionPanel({
 }: KidMissionPanelProps) {
   const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
+  const t = useTranslations("kid.gardenHud.mission");
   const journeyContainerRef = useRef<HTMLDivElement | null>(null);
   const dragActiveRef = useRef(false);
   const dragPointerIdRef = useRef<number | null>(null);
@@ -314,7 +304,7 @@ export function KidMissionPanel({
   const [completedLessonIds, setCompletedLessonIds] = useState<Record<string, true>>({});
   const [completedLessonFx, setCompletedLessonFx] = useState<{ lessonId: string; pulse: number } | null>(null);
   const [mascotState, setMascotState] = useState<KidMascotState>("idle");
-  const [mascotMessage, setMascotMessage] = useState("Tap me when you need help. Let's learn!");
+  const [mascotMessage, setMascotMessage] = useState(() => t("mascotIdle"));
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
   const [isParentGateOpen, setIsParentGateOpen] = useState(false);
@@ -450,8 +440,8 @@ export function KidMissionPanel({
 
   const handleMascotClick = () => {
     playYay();
-    const randomMsg = mascotMessages[Math.floor(Math.random() * mascotMessages.length)];
-    setMascotMessage(randomMsg);
+    const tipKey = MASCOT_TIP_KEYS[Math.floor(Math.random() * MASCOT_TIP_KEYS.length)];
+    setMascotMessage(t(`mascotTips.${tipKey}`));
     setMascotStateForDuration("happy", 1200);
     resetInactivityTimer();
   };
@@ -646,7 +636,7 @@ export function KidMissionPanel({
   const ensureGoalAllowsLessonStart = useCallback(async () => {
     const allowed = await refreshGoalGuardForChild(activeChildId, { silent: true });
     if (!allowed) {
-      setMascotMessage("You've studied enough today, let's rest a bit!");
+      setMascotMessage(t("goalRest"));
       setIsProfilePopupOpen(false);
       resetInactivityTimer();
     }
@@ -672,7 +662,7 @@ export function KidMissionPanel({
         ...current,
         [activeChildId]: true,
       }));
-      setMascotMessage("Mom and Dad agreed, I can study a little more!");
+      setMascotMessage(t("goalOverrideOk"));
       setMascotStateForDuration("happy", 1400, true);
       resetInactivityTimer();
       return;
@@ -686,7 +676,7 @@ export function KidMissionPanel({
     setSelectedLessonId(lessonId);
     setSelectedLessonPulse((previous) => previous + 1);
     if (selectedLesson) {
-      setMascotMessage(`Starting ${selectedLesson.title}!`);
+      setMascotMessage(t("startingLesson", { lesson: selectedLesson.title }));
     }
     setIsProfilePopupOpen(false);
     resetInactivityTimer();
@@ -702,7 +692,8 @@ export function KidMissionPanel({
       pulse: previous?.lessonId === lessonId ? previous.pulse + 1 : 1,
     }));
     setSelectedLessonId(lessonId);
-    setMascotMessage(completionMessages[Math.floor(Math.random() * completionMessages.length)]);
+    const tipKey = COMPLETION_TIP_KEYS[Math.floor(Math.random() * COMPLETION_TIP_KEYS.length)];
+    setMascotMessage(t(`completionTips.${tipKey}`));
 
     if (!prefersReducedMotion) {
       const confettiColors = ["#fde047", "#f59e0b", "#0ea5e9", "#22c55e", "#f472b6"];
@@ -767,7 +758,7 @@ export function KidMissionPanel({
       }
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Unable to load today's lesson.");
+        setError(body.error?.message ?? t("loadError"));
         setLessons([]);
         return;
       }
@@ -780,7 +771,7 @@ export function KidMissionPanel({
       if (currentFetchSeq !== fetchSeqRef.current) {
         return;
       }
-      setError(loadError instanceof Error ? loadError.message : "Unknown error.");
+      setError(loadError instanceof Error ? loadError.message : t("unknownError"));
       setLessons([]);
     } finally {
       if (currentFetchSeq === fetchSeqRef.current) {
@@ -817,7 +808,7 @@ export function KidMissionPanel({
               }}
             >
               <ArrowLeft size={20} />
-              <span>Back</span>
+              <span>{t("back")}</span>
             </button>
           </m.div>
 
@@ -879,14 +870,14 @@ export function KidMissionPanel({
             aria-pressed={!isSoundEnabled}
           >
             {isSoundEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
-            <span>{isSoundEnabled ? "Sound" : "Muted"}</span>
+            <span>{isSoundEnabled ? t("soundOn") : t("soundOff")}</span>
           </m.button>
         </m.header>
 
         <m.section className="kid-stage" variants={fadeInUp} initial="hidden" animate="visible" transition={{ delay: 0.04 }}>
           <div className="kid-stage-copy">
-            <h1>Today's journey map</h1>
-            <p>Move through each planet, unlock new lessons, and collect reward stars.</p>
+            <h1>{t("heading")}</h1>
+            <p>{t("subtitle")}</p>
           </div>
 
           <AnimatePresence mode="wait" initial={false}>
@@ -901,7 +892,7 @@ export function KidMissionPanel({
                 exit={{ opacity: 0, scale: 0.8 }}
               >
                 <div className="kid-spinner" />
-                <p>Preparing the lesson map...</p>
+                <p>{t("preparingMap")}</p>
               </m.div>
             ) : null}
           </AnimatePresence>
@@ -1063,7 +1054,7 @@ export function KidMissionPanel({
                             style={nodeMascotStyle}
                             animate={nodeMascotAnimate}
                             transition={nodeMascotTransition}
-                            aria-label={nodeMascot.title}
+                            aria-label={t(nodeMascot.titleKey)}
                           >
                             <KidMascot
                               size={nodeMascot.size}
@@ -1073,7 +1064,7 @@ export function KidMissionPanel({
                               motionLevel={mascotMotionLevel}
                               pauseWhenOffscreen
                               className="journey-node-mascot-icon"
-                              title={nodeMascot.title}
+                              title={t(nodeMascot.titleKey)}
                             />
                           </m.div>
 
@@ -1138,8 +1129,8 @@ export function KidMissionPanel({
                 <m.div className="kid-floating-status" variants={popIn}>
                   <div className="mascot-empty-state mascot-empty-state-inline">
                     <Mascot variant="small" state="sleepy" size={132} actionProp="none" motionLevel="minimal" pauseWhenOffscreen />
-                    <h3>Nothing here yet...</h3>
-                    <p className="muted-text">No suitable lessons are available for this profile yet.</p>
+                    <h3>{t("emptyHeading")}</h3>
+                    <p className="muted-text">{t("emptyBody")}</p>
                   </div>
                 </m.div>
               ) : null}
@@ -1177,7 +1168,7 @@ export function KidMissionPanel({
                 whileHover={prefersReducedMotion ? undefined : { scale: 1.08 }}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.92 }}
                 role="button"
-                aria-label="Guide mascot"
+                aria-label={t("guideAria")}
               >
                 <Mascot
                   variant="duo"
@@ -1193,7 +1184,7 @@ export function KidMissionPanel({
                   motionLevel={prefersReducedMotion ? "minimal" : guideMascotProfile.motionLevel}
                   pauseWhenOffscreen
                   className="pointer-events-none"
-                  title="Mascot instructions"
+                  title={t("guideTitle")}
                 />
               </m.div>
             </m.div>

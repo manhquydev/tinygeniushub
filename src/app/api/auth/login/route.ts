@@ -4,7 +4,7 @@ import { prisma } from "@/lib/db";
 import { fail, ok } from "@/lib/http";
 import { logInfo, logWarn } from "@/lib/observability/logger";
 import { buildRateLimitIdentity, enforceRateLimit, getRequestIp } from "@/lib/rate-limit";
-import { handleRouteError } from "@/lib/route-error";
+import { handleRouteError, translateError } from "@/lib/route-error";
 import { assertTrustedOrigin } from "@/lib/security/csrf";
 import {
   isParentEmailVerified,
@@ -17,15 +17,11 @@ import { getAdminSecurityControls, getRateLimitPolicy } from "@/modules/platform
 
 const LOGIN_FAILURE_MIN_DURATION_MS = 250;
 
-function normalizeLoginError(error: unknown) {
+async function normalizeLoginError(error: unknown) {
   const normalized = normalizeBetterAuthError(error);
-  if (
-    normalized instanceof DomainError &&
-    normalized.status === 401 &&
-    normalized.code === "AUTH_API_ERROR"
-  ) {
+  if (normalized instanceof DomainError && normalized.status === 401) {
     // Keep one generic credential failure message to reduce account-enumeration signals.
-    return new DomainError("Invalid credentials", 401, "AUTH_API_ERROR");
+    return new DomainError(await translateError("errors.invalidCredentials"), 401, normalized.code);
   }
 
   return normalized;
@@ -72,7 +68,7 @@ export async function POST(request: Request) {
         retryAfterMs: ipRateLimit.retryAfterMs,
       });
 
-      return fail("Too many login attempts. Please retry later.", 429, {
+      return fail(await translateError("errors.loginRateLimited"), 429, {
         retryAfterMs: ipRateLimit.retryAfterMs,
       });
     }
@@ -96,7 +92,7 @@ export async function POST(request: Request) {
         retryAfterMs: emailRateLimit.retryAfterMs,
       });
 
-      return fail("Too many login attempts. Please retry later.", 429, {
+      return fail(await translateError("errors.loginRateLimited"), 429, {
         retryAfterMs: emailRateLimit.retryAfterMs,
       });
     }
@@ -124,14 +120,14 @@ export async function POST(request: Request) {
             message: challengeError instanceof Error ? challengeError.message : "unknown_error",
           });
           throw new DomainError(
-            "The email has not been verified and the system has not yet sent the verification email back. Please try again later.",
+            await translateError("errors.emailNotVerifiedDeliveryFailed"),
             403,
             "EMAIL_NOT_VERIFIED_DELIVERY_FAILED",
           );
         }
 
         throw new DomainError(
-          "Email has not been verified. We have sent you a verification email again, please check your inbox.",
+          await translateError("errors.emailNotVerified"),
           403,
           "EMAIL_NOT_VERIFIED",
         );
@@ -157,7 +153,7 @@ export async function POST(request: Request) {
         identityHash: emailIdentityHash,
       });
       await waitMinimumLoginFailureDuration(requestStartedAtMs);
-      return fail("Invalid credentials", 401);
+      return fail(await translateError("errors.invalidCredentials"), 401);
     }
 
     if (authUserId !== parent.id) {
@@ -167,7 +163,7 @@ export async function POST(request: Request) {
         identityHash: emailIdentityHash,
       });
       await waitMinimumLoginFailureDuration(requestStartedAtMs);
-      return fail("Invalid credentials", 401);
+      return fail(await translateError("errors.invalidCredentials"), 401);
     }
 
     await prisma.parentAccount.update({
@@ -191,7 +187,7 @@ export async function POST(request: Request) {
 
     return response;
   } catch (error) {
-    const normalizedError = normalizeLoginError(error);
+    const normalizedError = await normalizeLoginError(error);
     if (normalizedError instanceof DomainError && normalizedError.status === 401) {
       logWarn("auth.login.failed", {
         reason: "invalid_credentials",

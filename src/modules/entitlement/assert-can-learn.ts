@@ -1,5 +1,6 @@
 import { PlanCode, SubscriptionStatus } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { translateError } from "@/lib/route-error";
 import { canAccess } from "@/modules/entitlement/entitlement-service";
 import { LIVE_ENTITLEMENT_STATUSES, PLATFORM_PASS_KEY } from "@/modules/entitlement/offering-types";
 import { DomainError } from "@/modules/platform/errors";
@@ -112,7 +113,7 @@ export async function assertCanLearn(input: { parentId: string; childId: string;
     select: { id: true, parentId: true, adaptiveEnabled: true },
   });
   if (!child) {
-    throw new DomainError("Child profile not found", 404, "CHILD_NOT_FOUND");
+    throw new DomainError(await translateError("errors.childNotFound"), 404, "CHILD_NOT_FOUND");
   }
 
   const lesson = await prisma.lesson.findUnique({
@@ -125,7 +126,7 @@ export async function assertCanLearn(input: { parentId: string; childId: string;
     },
   });
   if (!lesson) {
-    throw new DomainError("Lesson not found", 404, "LESSON_NOT_FOUND");
+    throw new DomainError(await translateError("errors.lessonNotFound"), 404, "LESSON_NOT_FOUND");
   }
 
   const access = await evaluateHouseholdLearnAccess({
@@ -137,7 +138,7 @@ export async function assertCanLearn(input: { parentId: string; childId: string;
     return { child, lesson };
   }
   if (access.code === "TRIAL_LESSON_RESTRICTED") {
-    throw new DomainError("Trial account can only access trial-enabled lessons", 403, "TRIAL_LESSON_RESTRICTED");
+    throw new DomainError(await translateError("errors.trialLessonRestricted"), 403, "TRIAL_LESSON_RESTRICTED");
   }
-  throw new DomainError("Household ticket required to learn this lesson", 403, "LEARN_ACCESS_DENIED");
+  throw new DomainError(await translateError("errors.learnAccessDenied"), 403, "LEARN_ACCESS_DENIED");
 }

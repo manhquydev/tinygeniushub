@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import * as m from "motion/react-m";
+import { useTranslations } from "next-intl";
 import { bounceIn, wobble } from "@/components/animation/kid-motion-variants";
 import type { KidMascotGazeDirection } from "@/components/animation/kid-mascot";
 import type { ActivitySpec, ActivityType } from "@/modules/content/activity-types";
@@ -146,6 +147,7 @@ export function ActivityRenderer({
   onHoverOption,
   onHoverOptionEnd,
 }: ActivityRendererProps) {
+  const t = useTranslations("kid.lesson.renderer");
   const mcqChoices = useMemo(() => asMcqChoices(activity.spec), [activity.spec]);
   const tfAnswer = useMemo(() => asTrueFalseAnswer(activity.spec), [activity.spec]);
   const wordPairs = useMemo(() => asWordMatchPairs(activity.spec), [activity.spec]);
@@ -322,7 +324,7 @@ export function ActivityRenderer({
             onMouseLeave={onHoverOptionEnd}
             disabled={disabled}
           >
-            <strong>Correct</strong>
+            <strong>{t("trueLabel")}</strong>
           </button>
 
           <button
@@ -333,7 +335,7 @@ export function ActivityRenderer({
             onMouseLeave={onHoverOptionEnd}
             disabled={disabled}
           >
-            <strong>Sai</strong>
+            <strong>{t("falseLabel")}</strong>
           </button>
         </div>
       </div>
@@ -424,7 +426,7 @@ export function ActivityRenderer({
             onBlur={onHoverOptionEnd}
             maxLength={20}
             className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-teal-400"
-            placeholder="Enter the answer"
+            placeholder={t("fillPlaceholder")}
             disabled={disabled}
           />
 
@@ -434,11 +436,11 @@ export function ActivityRenderer({
             onClick={handleFillBlankSubmit}
             disabled={disabled}
           >
-            Check
+            {t("check")}
           </button>
         </m.div>
 
-        {fillHintVisible && fillSpec?.hint ? <p className="text-xs text-amber-300">Hint: {fillSpec.hint}</p> : null}
+        {fillHintVisible && fillSpec?.hint ? <p className="text-xs text-amber-300">{t("hint", { hint: fillSpec.hint })}</p> : null}
       </div>
     );
   }
@@ -482,7 +484,7 @@ export function ActivityRenderer({
     );
   }
 
-  return <p className="lesson-wizard-quiz-copy">This type of operation is not yet supported.</p>;
+  return <p className="lesson-wizard-quiz-copy">{t("unsupported")}</p>;
 }
 
 // Re-export sub-components for direct use if needed

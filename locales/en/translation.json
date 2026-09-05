@@ -28,7 +28,34 @@
     "notFound": "The requested resource was not found.",
     "rateLimited": "Too many requests. Please try again later.",
     "unauthorized": "Please sign in to continue.",
-    "unknown": "Something went wrong."
+    "unknown": "Something went wrong.",
+    "payload": "Invalid request payload.",
+    "invalidPayload": "Invalid request payload.",
+    "invalidJson": "Invalid JSON payload.",
+    "invalidCredentials": "Invalid credentials.",
+    "loginRateLimited": "Too many login attempts. Please try again later.",
+    "emailNotVerified": "Email has not been verified. We sent another verification email — please check your inbox.",
+    "emailNotVerifiedDeliveryFailed": "Email has not been verified, and we could not resend the verification email. Please try again later.",
+    "passwordResetNotEnabled": "Password reset is being configured. Please contact support in the meantime.",
+    "passwordResetRequested": "If this email exists in our system, we will send password reset instructions in a few minutes.",
+    "parentNotFound": "Parent account not found.",
+    "caregiverLimitReached": "Caregiver limit reached for the current plan.",
+    "caregiverAlreadyExists": "This email is already linked as a caregiver.",
+    "caregiverInviteExists": "An invite already exists for this email.",
+    "caregiverInviteNotFound": "Caregiver invite not found.",
+    "caregiverInviteInvalid": "This invitation is not valid.",
+    "caregiverInviteAccepted": "This invitation has already been accepted.",
+    "caregiverInviteExpired": "This invitation has expired.",
+    "giftCodeNotFound": "Invalid gift code.",
+    "giftCodeUsed": "This gift code has already been used.",
+    "giftCodeExpired": "This gift code has expired.",
+    "giftCodePlanInvalid": "This gift code plan is invalid.",
+    "profileLimitReached": "Child profile limit reached for this household.",
+    "profileLimitRetryRequired": "Could not create the child profile due to a concurrent update. Please try again.",
+    "childNotFound": "Child profile not found.",
+    "lessonNotFound": "Lesson not found.",
+    "trialLessonRestricted": "Trial accounts can only open trial-enabled lessons.",
+    "learnAccessDenied": "A household ticket is required to learn this lesson."
   },
   "metadata": {
     "siteDescription": "Learning Journey OS for parents of children ages 2-6. Fifteen minutes a day, with visible progress parents can trust."
@@ -4603,6 +4630,98 @@
       "signupButton": "Create an account",
       "forgotPasswordLabel": "Forgot password?",
       "forgotPasswordLink": "Restore here"
+    },
+    "form": {
+      "fields": {
+        "emailLabel": "Email",
+        "emailPlaceholder": "you@email.com",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "At least 8 characters",
+        "submitLoading": "Processing..."
+      },
+      "login": {
+        "title": "Parent login",
+        "subtitle": "Continue tracking your child's learning progress, reports, and milestones.",
+        "submit": "Go to the dashboard",
+        "errorDefault": "Unable to log in.",
+        "forgotPassword": "Forgot password?",
+        "noAccountYet": "Don't have an account yet?",
+        "createAccount": "Create an account"
+      },
+      "signup": {
+        "title": "Create a parent account",
+        "subtitle": "Create an account to manage your child's profile, preview lessons, and purchase the right courses.",
+        "submit": "Create an account",
+        "errorDefault": "Unable to create account.",
+        "displayNameLabel": "Display name",
+        "displayNamePlaceholder": "Example: Mai's mom",
+        "alreadyHaveAccount": "Already have an account?",
+        "logIn": "Log in",
+        "legal": {
+          "agree": "I agree to the <terms>Terms of use</terms>, <privacy>Privacy policy</privacy>, and <cookie>Cookie policy</cookie>.",
+          "terms": "Terms of use",
+          "privacy": "Privacy policy",
+          "cookie": "Cookie policy"
+        }
+      },
+      "verify": {
+        "pending": "Account created. Please open your email and verify before logging in.",
+        "deliveryIssue": "The account was created, but we could not send a verification email. Try logging in again to resend it, or contact support.",
+        "success": "Email verified. You can log in now.",
+        "expired": "This verification link has expired. Log in so we can send a new verification email.",
+        "invalid": "This verification link is not valid. Log in to receive a new verification email.",
+        "signupSuccess": "Account created successfully. You can log in."
+      },
+      "errors": {
+        "invalidCredentials": "Email or password is incorrect.",
+        "emailNotVerifiedDeliveryFailed": "Email has not been verified, and we could not resend the verification email. Please try again later.",
+        "emailNotVerified": "Email has not been verified. We sent another verification email — please check your inbox.",
+        "emailExists": "This email is already registered. Please log in or use another email.",
+        "invalidEmail": "Invalid email format.",
+        "invalidPassword": "Password must be between 8 and 120 characters.",
+        "invalidDisplayName": "Invalid display name.",
+        "legalRequired": "You need to agree to the Terms, Privacy Policy, and Cookie Policy to register.",
+        "invalidPayload": "The submitted data is invalid.",
+        "rateLimitedWithSeconds": "You're going too fast. Please try again in {seconds} seconds.",
+        "rateLimited": "You're going too fast. Please try again later.",
+        "serverBusy": "The system is busy. Please try again later."
+      }
+    },
+    "forgot": {
+      "title": "Forgot password",
+      "subtitle": "Enter the parent email on the account. We will send a password reset link to your inbox.",
+      "emailLabel": "Account email",
+      "emailPlaceholder": "you@email.com",
+      "submit": "Send reset link",
+      "submitLoading": "Sending...",
+      "returnToLogin": "Return to login",
+      "noAccountYet": "Don't have an account yet?",
+      "createAccount": "Create an account",
+      "successDefault": "If this email exists in our system, we will send password reset instructions in a few minutes.",
+      "errors": {
+        "generic": "The password reset request could not be processed."
+      }
+    },
+    "reset": {
+      "title": "Reset password",
+      "subtitle": "Enter a new password for the parent account. The reset link is only valid for a short time.",
+      "tokenLabel": "Reset verification code",
+      "tokenPlaceholder": "Paste the verification code from the email",
+      "newPasswordLabel": "New password",
+      "newPasswordPlaceholder": "At least 8 characters",
+      "confirmPasswordLabel": "Re-enter the new password",
+      "confirmPasswordPlaceholder": "Re-enter the password",
+      "submit": "Save new password",
+      "submitLoading": "Updating...",
+      "backToForgot": "Back to forgot password",
+      "aboutLogin": "Back to login",
+      "successDefault": "Password reset successfully. You can log in again.",
+      "errors": {
+        "passwordTooShort": "New password must be at least 8 characters.",
+        "passwordMismatch": "The passwords do not match.",
+        "missingToken": "Missing password reset code.",
+        "generic": "Unable to reset password."
+      }
     }
   },
   "setup": {
@@ -4725,6 +4844,27 @@
       "addressLabel": "Contact address",
       "addressValue": "Vietnam (working remotely)",
       "faqHint": "Need quick answers? See frequently asked questions at"
+    },
+    "form": {
+      "nameLabel": "Full name",
+      "namePlaceholder": "Enter your full name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "subjectLabel": "Topic",
+      "subjects": {
+        "technical": "Technical support",
+        "collaboration": "Partnership / B2B",
+        "reportError": "Report a problem",
+        "other": "Other"
+      },
+      "messageLabel": "Message",
+      "messagePlaceholder": "Please describe the details so we can help faster.",
+      "charCount": "{current}/{max}",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "successFallback": "Thank you! We will reply within 24–48 hours.",
+      "submitError": "Unable to submit the form. Please try again.",
+      "unknownError": "Something went wrong. Please try again."
     }
   },
   "forSchools": {
@@ -4789,7 +4929,18 @@
       "countLabel": "50 early registered families"
     },
     "form": {
-      "sectionTitle": "Sign up to receive notifications"
+      "sectionTitle": "Sign up to receive notifications",
+      "success": "Registration successful! We will contact you as soon as we can.",
+      "emailLabel": "Your email",
+      "emailPlaceholder": "example@gmail.com",
+      "ageLabel": "How old is your child?",
+      "optional": "(optional)",
+      "agePlaceholder": "Select age",
+      "ageOption": "{age} years old",
+      "error": "Something went wrong. Please try again.",
+      "submit": "Sign up for updates",
+      "sending": "Sending...",
+      "noSpam": "No spam. We'll only write when we launch or share early-bird offers."
     },
     "earlyBenefits": {
       "title": "Early registration benefits",
@@ -4860,6 +5011,318 @@
     "hero": {
       "title": "Enter the gift code",
       "subtitle": "Received a code from a relative or a promotion? Enter the code below to activate immediately."
+    },
+    "form": {
+      "success": "Activated! Welcome to TinyGenius Hub.",
+      "label": "Gift code",
+      "placeholder": "Enter the code — for example, ABCD-1234",
+      "invalid": "Invalid code. Please check and try again.",
+      "connectError": "Unable to connect. Please try again.",
+      "submit": "Activate code",
+      "activating": "Activating..."
+    }
+  },
+  "courses": {
+    "filter": {
+      "subject": {
+        "MATH": "Math",
+        "ENGLISH": "English",
+        "SCIENCE": "Science",
+        "ART": "Art",
+        "MUSIC": "Music",
+        "OTHER": "Other"
+      },
+      "program": {
+        "abeka": "Abeka",
+        "lfen": "Little Fox English",
+        "lfcn": "Little Fox Chinese"
+      },
+      "phase": {
+        "intro": "Getting started",
+        "starter": "Starter",
+        "foundation": "Foundation",
+        "builder": "Building up"
+      },
+      "ageGroup": {
+        "ALL_AGES": "All ages",
+        "UNDER_3": "Under 3 years",
+        "AGE_3_5": "Ages 3–5",
+        "AGE_4_6": "Ages 4–6",
+        "AGE_6_8": "Ages 6–8",
+        "AGE_7_9": "Ages 7–9",
+        "AGE_9_12": "Ages 9–12",
+        "AGE_10_12": "Ages 10–12"
+      },
+      "duration": {
+        "short": "Short (<30 days)",
+        "medium": "Medium (30–60 days)",
+        "long": "Long (>60 days)"
+      },
+      "sort": {
+        "newest": "Newest",
+        "price_asc": "Price: low to high",
+        "price_desc": "Price: high to low",
+        "duration_asc": "Shortest duration first"
+      }
+    },
+    "banner": {
+      "confirming": {
+        "title": "Confirming payment",
+        "body": "The transaction was recorded. Access will unlock automatically once confirmation finishes.",
+        "timeoutBody": "We're still confirming. You can reload the page in a few minutes."
+      },
+      "pending": {
+        "title": "Payment pending",
+        "timeoutTitle": "Payment is not complete yet",
+        "body": "If you already paid, the system will update on its own in a few minutes.",
+        "timeoutBody": "You can reopen the payment link or check back later."
+      },
+      "success": {
+        "title": "Payment successful",
+        "body": "The course is now active."
+      },
+      "unconfirmed": {
+        "title": "Payment could not be confirmed",
+        "body": "Please try again in a few minutes. If you were charged, contact support."
+      }
+    },
+    "catalog": {
+      "metadata": {
+        "title": "Courses for kids — TinyGenius Hub",
+        "description": "Browse courses, try a lesson first, and buy what fits your family."
+      },
+      "heading": "Course list",
+      "subtitle": "Try a lesson before you buy so you can pick the right course for your child.",
+      "filterBadge": "Filter",
+      "showing": "Showing {visible} / {total} matching courses.",
+      "detailCta": "See details",
+      "emptySoon": {
+        "title": "New courses coming soon",
+        "body": "We're adding new content. Sign up to hear when a course goes on sale.",
+        "cta": "Get early updates"
+      },
+      "emptyFiltered": {
+        "title": "No matching courses",
+        "body": "Try loosening the filters to see more options for your child.",
+        "cta": "Clear filters"
+      },
+      "filter": {
+        "heading": "Filters",
+        "deleteAll": "Clear all",
+        "searchHeading": "Quick search",
+        "searchPlaceholder": "Course or goal name...",
+        "programHeading": "Program",
+        "phaseHeading": "Stage",
+        "subjectHeading": "Subject",
+        "ageHeading": "Age",
+        "priceHeading": "Price (VND)",
+        "minPlaceholder": "Min",
+        "maxPlaceholder": "Max",
+        "durationHeading": "Duration",
+        "deselect": "Deselect",
+        "mobileTrigger": "Filter",
+        "mobileTitle": "Course filters"
+      },
+      "sort": {
+        "ariaLabel": "Sort by",
+        "default": "Default"
+      },
+      "chips": {
+        "ariaLabel": "Active filters",
+        "clearAria": "Clear filter {label}",
+        "find": "Search: {query}",
+        "price": "Price: {min} – {max}",
+        "priceMinZero": "0",
+        "priceMaxUnlimited": "∞"
+      },
+      "currencySuffix": "₫",
+      "card": {
+        "lessonCount": "{count} lessons",
+        "durationWeeks": "{count} weeks",
+        "durationDays": "{count} days",
+        "currentPrice": "Current price",
+        "free": "Free"
+      },
+      "pagination": {
+        "ariaLabel": "Pagination",
+        "previousPageAria": "Previous page",
+        "nextPageAria": "Next page"
+      }
+    },
+    "detail": {
+      "metadata": {
+        "legacyTitle": "Course list — TinyGenius Hub",
+        "legacyDescription": "Courses are listed as independent products.",
+        "notFoundTitle": "This course does not exist",
+        "title": "{title} — TinyGenius Hub"
+      },
+      "checkoutLabelA": "Buy this course",
+      "checkoutLabelB": "Buy this course and start right away",
+      "freeCta": "Get this course free",
+      "breadcrumb": {
+        "home": "Home",
+        "courses": "Courses"
+      },
+      "hero": {
+        "totalLesson": "Total lessons",
+        "lessonCount": "{count} lessons",
+        "accessPeriod": "Access period",
+        "durationDays": "{days} days"
+      },
+      "sticky": {
+        "ownedCta": "Start learning now",
+        "adviceCta": "Get path advice"
+      },
+      "curriculum": {
+        "ownedTitle": "{count} lessons in this course",
+        "trialTitle": "Preview the first {count} lessons",
+        "trialHint": "Tap a lesson to preview the content before you buy.",
+        "fixedTrial": "Included trial",
+        "trialPreviewBody": "Preview the first {count} lessons to see if the course is a good fit.",
+        "trialLockedBody": "After the first {previewCount} lessons, {lockedCount} remaining lessons unlock when you purchase.",
+        "trialFullyOpen": "This course is fully open for trial right now.",
+        "lessonLabel": "Lesson {orderNo}",
+        "tryLearning": "Try this lesson",
+        "duration": "Duration",
+        "minutes": "{count} minutes",
+        "moreLocked": "+{count} more lessons unlock after purchase."
+      },
+      "faq": {
+        "heading": "Questions parents ask often",
+        "background": {
+          "q": "Does my child need any background before starting?",
+          "a": "No prior background is required. Each course starts from the beginning — just follow the lesson instructions."
+        },
+        "sitWithChild": {
+          "q": "Do parents need to sit with their child during lessons?",
+          "a": "Not the whole time. For children under 7, stay for the first 10 minutes so they can learn the interface."
+        },
+        "lessonLength": {
+          "q": "How long is each lesson?",
+          "a": "Most lessons take 10–20 minutes. A good rhythm is 4–5 sessions per week."
+        },
+        "learnImmediately": {
+          "q": "Can we start learning right after purchase?",
+          "a": "Yes. After payment succeeds, your child can start immediately."
+        },
+        "refund": {
+          "q": "If it isn't a fit, can I get a refund?",
+          "a": "Yes. Our refund policy covers the first 30 days if the course does not suit your child."
+        }
+      },
+      "sidebar": {
+        "priceLabel": "Course price",
+        "discountFree": "100% off for a limited time",
+        "discountFromList": "Discounted from list price",
+        "saleEnds": "Sale ends: {datetime}",
+        "buyOnce": "Buy once, then start learning as soon as payment succeeds.",
+        "freeSaleHint": "Register now to open the full course at 0 VND for a limited time.",
+        "pendingPreview": "Online checkout is paused for this course. You can still preview the first {count} lessons.",
+        "suspendedPreview": "You can still preview the first {count} lessons before choosing a path.",
+        "ownedBadge": "You already own this course.",
+        "startLearning": "Start learning now",
+        "viewPurchased": "View purchased courses",
+        "seeTrialFirst": "See trial lessons first",
+        "quickAdvice": "Get quick advice",
+        "loginHint": "Log in to finish registration, then return to this course.",
+        "pendingStillPreview": "Online checkout is paused. You can still preview the first {count} lessons.",
+        "suspendedStillPreview": "Online registration is paused. You can still preview the first {count} lessons.",
+        "trustLine": "Buy once and start right away. Not sure about the level? Try a lesson first.",
+        "mobilePrice": "Price",
+        "mobileCurrentPrice": "Current price",
+        "mobileSeeTrial": "See trial lesson"
+      },
+      "checkout": {
+        "processing": "Processing...",
+        "rateLimited": "You're going a bit fast. Please try again in a few seconds.",
+        "serverBusy": "The payment system is busy. Please try again later.",
+        "priceUnavailable": "Online checkout is paused for this course. You can preview a lesson or ask for advice.",
+        "alreadyEnrolled": "Your account already owns this course.",
+        "genericFail": "Payment can't be completed right now. Please try again in a few minutes.",
+        "connectFail": "Unable to connect. Please try again."
+      },
+      "preview": {
+        "dialogAria": "Trial lesson: {title}",
+        "eyebrow": "Trial lesson",
+        "closeAria": "Close",
+        "loadingVideo": "Loading video...",
+        "readyTitle": "Ready to preview",
+        "readyBody": "Start to open the trial video and check the level.",
+        "opening": "Opening video...",
+        "startPreview": "Start preview",
+        "authTitle": "Log in to preview the first {count} lessons",
+        "authBody": "Sign in to open a trial lesson and see if it's a good fit before you buy.",
+        "signInCta": "Sign in to preview",
+        "unavailableTitle": "Video isn't ready yet",
+        "unavailableBody": "This lesson can't open the video right now. Try again, or review the course details.",
+        "tryingAgain": "Trying again...",
+        "reload": "Reload video",
+        "reloading": "Reloading...",
+        "targetLabel": "Goal:",
+        "viewFullCourse": "View the full course",
+        "closeWindow": "Close preview"
+      }
+    }
+  },
+  "blog": {
+    "chrome": {
+      "metadata": {
+        "title": "TinyGenius Hub Blog",
+        "description": "Ideas, methods, and resources to help parents learn with their children at home."
+      },
+      "rssTitle": "TinyGenius Hub Blog RSS",
+      "listing": {
+        "heading": "Latest articles",
+        "searchLink": "Search articles",
+        "empty": "No published posts yet. New articles will appear here when the team publishes them."
+      },
+      "sidebar": {
+        "topics": "Topics",
+        "trending": "Most read"
+      },
+      "card": {
+        "noPhoto": "No photo available",
+        "unpublished": "Unpublished",
+        "minRead": "{count} min read",
+        "views": "{count} views",
+        "likes": "{count} likes"
+      },
+      "article": {
+        "home": "Home",
+        "blog": "Blog",
+        "related": "Related articles",
+        "back": "← Back to blog"
+      },
+      "search": {
+        "heading": "Search articles",
+        "subtitle": "Enter keywords to find articles that fit your family.",
+        "inputAria": "Search keywords",
+        "placeholder": "For example: English, mental math, life skills...",
+        "found": "Found {total} results for \"{query}\"",
+        "failed": "Search failed. Please try again.",
+        "empty": "No matching articles were found."
+      },
+      "category": {
+        "postCount": "{count} posts",
+        "paginationAria": "Pagination",
+        "previous": "← Previous page",
+        "next": "Next page →",
+        "pageStatus": "Page {page}/{totalPages}",
+        "sortLabel": "Sort",
+        "sortLatest": "Latest",
+        "sortPopular": "Most viewed"
+      },
+      "categories": {
+        "phat-trien-tre": "Child development",
+        "phuong-phap-hoc": "Learning methods",
+        "tieng-anh-som": "English for children",
+        "tieng-anh-cho-tre": "English for children",
+        "toan-tu-duy": "Mental math",
+        "dinh-huong-phu-huynh": "Parent guidance",
+        "cong-nghe-giao-duc": "Education technology",
+        "suc-khoe-can-bang": "Health and balance",
+        "cau-chuyen-thanh-cong": "Success stories"
+      }
     }
   },
   "specialPages": {
@@ -4917,6 +5380,36 @@
       "errorTitle": "Invitation cannot be accepted",
       "fallbackError": "Invitations cannot be processed at this time. Please try again later.",
       "ctaHome": "Return to home page"
+    },
+    "notFound": {
+      "badge": "Error 404",
+      "imageAlt": "The Fox mascot is finding its way in the magical forest",
+      "title": "The page you needed was not found",
+      "subtitle": "The link may have changed or no longer exists. Return to the home page to continue your learning journey with TinyGenius Hub.",
+      "ctaHome": "Return to home page",
+      "ctaBack": "Go back"
+    },
+    "error": {
+      "badge": "System error 500",
+      "imageAlt": "The Fox mascot is fixing system errors in the workshop",
+      "title": "This page is experiencing a temporary error",
+      "subtitle": "The system recorded a problem. Try reloading, or go back to continue your session.",
+      "ctaRetry": "Try again",
+      "ctaBack": "Go back"
+    },
+    "globalError": {
+      "badge": "System error 500",
+      "imageAlt": "The Fox mascot is fixing system errors in the workshop",
+      "title": "The system is experiencing a temporary problem",
+      "subtitle": "We noted the error and are working on it. Reload the page or return home to continue.",
+      "ctaReload": "Reload page",
+      "ctaHome": "Return to home page"
+    },
+    "loading": {
+      "ariaLabel": "Loading content",
+      "imageAlt": "The Fox mascot is running on the rainbow track to prepare for the lesson",
+      "title": "Preparing your learning journey...",
+      "subtitle": "Loading the right content for your child. This only takes a few seconds."
     }
   },
   "privacy": {
@@ -5245,6 +5738,29 @@
         "skillMap": "Skill map",
         "practicePrompt": "Ready for more practice?",
         "goToSchool": "Go to learning area"
+      },
+      "activity": {
+        "heading": "Today's learning activities",
+        "description": "A timeline of today's lessons, ordered by latest completion time.",
+        "timezone": "Time zone: UTC+7",
+        "emptyProfiles": "There are no child profiles to show today's activity.",
+        "today": "Today",
+        "noLessons": "No lessons today",
+        "restHint": "Your child has rested for a while. Try starting with 5 minutes.",
+        "minutesLearned": "{n} minutes learned",
+        "quiz": "Quiz: {score}%",
+        "completedAt": "Completed at {time}",
+        "loadError": "Unable to load today's activity",
+        "unknownError": "Unknown error"
+      },
+      "goal": {
+        "heading": "Today's learning goal",
+        "reached": "Goal reached today!",
+        "unlimited": "Unlimited",
+        "minutesLabel": "{n} minutes",
+        "noLimit": "There is no daily study-time limit.",
+        "updateError": "Unable to update the goal",
+        "unknownError": "Unknown error"
       }
     },
     "children": {
@@ -5318,6 +5834,231 @@
         "description": "Please send the transaction time, amount, and payment provider so we can assist quickly.",
         "sendRequest": "Submit reconciliation request"
       }
+    },
+    "referralClaim": {
+      "heading": "Enter referral code",
+      "yourCode": "Your code: {code}",
+      "notCreated": "Not created yet",
+      "generate": "Generate referral code",
+      "creating": "Creating...",
+      "placeholder": "Enter referral code (example: ABCD1234)",
+      "submit": "Apply code",
+      "processing": "Processing...",
+      "unknownError": "Unknown error.",
+      "generateError": "Unable to generate a referral code.",
+      "createError": "Unable to create a referral code.",
+      "generated": "Referral code generated successfully.",
+      "claimError": "Unable to apply the referral code.",
+      "alreadyAssigned": "This account already has a referral code.",
+      "claimed": "Referral code applied successfully."
+    },
+    "childrenManager": {
+      "heading": "Manage child profiles",
+      "description": "Each account has {limit} primary child profile used throughout the learning journey.",
+      "profilesCount": "{count}/{limit} profiles",
+      "goToAddForm": "Go to the add-profile form",
+      "add": {
+        "heading": "Add a child profile",
+        "description": "Enter basic information to create a new learning profile. This step matches the initial setup flow.",
+        "chooseAvatar": "Choose an avatar",
+        "selectedCharacter": "Selected character: {label}",
+        "nicknamePlaceholder": "Name at home",
+        "ageBandOption": "{band} years old",
+        "hintAtLimit": "You already have a primary profile. Name, age, and avatar can be edited in the list below.",
+        "hintCanEdit": "You can edit the name and avatar after creating the profile.",
+        "submit": "Add profile",
+        "submitting": "Creating...",
+        "submitAtLimit": "Primary profile already exists"
+      },
+      "avatar": {
+        "chooseAria": "Choose character {label}",
+        "representativeTitle": "Character for {nickname}"
+      },
+      "errors": {
+        "nicknameRequired": "Please enter your child's nickname.",
+        "alreadyHasPrimary": "This account already has a primary child profile. Please edit the current profile.",
+        "createFailed": "Unable to create the child profile.",
+        "updateFailed": "Unable to update the child profile.",
+        "deleteFailed": "Unable to delete the child profile.",
+        "unknown": "Unknown error."
+      },
+      "success": {
+        "created": "Child profile created successfully.",
+        "updated": "Child profile updated.",
+        "deleted": "Child profile deleted."
+      },
+      "list": {
+        "heading": "Child list",
+        "description": "Open a card to edit details, change the character, or take your child straight into a lesson.",
+        "empty": "No child profiles yet. Create the first profile above.",
+        "changeAvatar": "Change avatar",
+        "selecting": "Selecting: {label}",
+        "age": "Age: {band}",
+        "editTitle": "Edit profile",
+        "deleteTitle": "Delete profile",
+        "goToLesson": "Go to the lesson",
+        "save": "Save",
+        "saving": "Saving...",
+        "cancel": "Cancel"
+      },
+      "deleteModal": {
+        "closeAria": "Close deletion confirmation",
+        "heading": "Confirm profile deletion",
+        "body": "You are about to delete the profile for {nickname}. This cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "Delete profile",
+        "deleting": "Deleting..."
+      }
+    },
+    "caregiver": {
+      "heading": "Caregiver management",
+      "description": "Invite relatives to follow your child's learning progress.",
+      "usedSlots": "{used}/{limit} used",
+      "form": {
+        "emailPlaceholder": "Caregiver email",
+        "invite": "Invite caregiver",
+        "sending": "Sending...",
+        "slotsExhausted": "No slots left"
+      },
+      "errors": {
+        "emailRequired": "Please enter the caregiver email.",
+        "inviteFailed": "Unable to send the caregiver invitation",
+        "revokeFailed": "Unable to revoke the invitation",
+        "unknown": "Unknown error"
+      },
+      "info": {
+        "inviteSent": "Caregiver invitation sent.",
+        "inviteEmailFailed": "Invitation created, but sending the email failed. Please try again later.",
+        "revoked": "Caregiver invitation revoked."
+      },
+      "status": {
+        "accepted": "Accepted",
+        "expired": "Expired",
+        "pending": "Pending"
+      },
+      "card": {
+        "dates": "Invited: {createdAt} — Expires: {expiresAt}",
+        "revoke": "Revoke"
+      },
+      "empty": "No caregivers have been invited yet.",
+      "inviteHint": "The caregiver invite link looks like /accept-invite?token=... and expires after the configured duration."
+    },
+    "reportsPanel": {
+      "heading": "Weekly learning report",
+      "description": "Track learning progress, skill levels, and suggested next steps for parents.",
+      "actions": {
+        "generate": "Generate report now",
+        "generating": "Creating...",
+        "email": "Email report",
+        "sending": "Sending...",
+        "downloadPdf": "Download PDF"
+      },
+      "errors": {
+        "regenerateFailed": "Unable to regenerate the weekly report",
+        "emailFailed": "Unable to send the weekly email",
+        "unknown": "Unknown error"
+      },
+      "emailResult": "Sent: {sent}, skipped: {skipped}, error/bounce: {bounced}",
+      "empty": {
+        "title": "Nothing here yet...",
+        "body": "No weekly reports have been generated yet."
+      },
+      "card": {
+        "weekRange": "Week: {start} – {end}",
+        "updated": "Updated: {date}",
+        "achievements": "Highlights",
+        "studyTime": "Study time",
+        "minutesPerWeek": "minutes/week",
+        "lesson": "Lessons",
+        "completedLesson": "lessons completed",
+        "streak": "Streak",
+        "consecutiveDays": "consecutive study days",
+        "skills": "Skills assessment",
+        "overviewRadar": "Overview radar",
+        "overallPercent": "{score}%",
+        "skillPercent": "{value}%",
+        "advice": "Advice from AI experts",
+        "adviceFallback": "Learning was steady this week. Keep a short daily session and add family activities on the weekend."
+      },
+      "skills": {
+        "focus": "Focus",
+        "memory": "Memory",
+        "math": "Math",
+        "language": "Language"
+      },
+      "trend": {
+        "up": "+{change} {unit}",
+        "down": "{change} {unit}",
+        "stable": "=",
+        "unitMinute": "min",
+        "unitLesson": "lessons",
+        "unitDay": "days"
+      },
+      "chart": {
+        "ariaLabel": "Weekly progress chart for {nickname}",
+        "title": "Progress over the last 6 weeks — {nickname}",
+        "unit": "Unit: study minutes/week",
+        "svgAria": "Bar chart of study minutes by week",
+        "weekLabel": "W{week}",
+        "legend": "{streakDays} days · {lessonsCompleted} lessons"
+      }
+    },
+    "coursesPage": {
+      "heading": "Manage purchased courses",
+      "description": "Search, filter by status, and switch views as your course list grows.",
+      "stats": {
+        "purchased": "Purchased",
+        "studying": "In progress",
+        "complete": "Completed",
+        "totalProgress": "Overall progress"
+      },
+      "empty": {
+        "title": "You have not purchased any courses yet",
+        "body": "Browse courses that match your child's goals. After payment succeeds, access unlocks on this page.",
+        "cta": "See courses for sale"
+      },
+      "filters": {
+        "searchPlaceholder": "Search by course name or description...",
+        "sortRecent": "Recently purchased",
+        "sortProgress": "Highest progress",
+        "sortTitle": "A–Z",
+        "statusAll": "All",
+        "statusLearning": "In progress",
+        "statusCompleted": "Completed",
+        "statusNotStarted": "Not started",
+        "statusWithCount": "{label} ({count})",
+        "viewGrid": "Grid",
+        "viewList": "List",
+        "reset": "Reset"
+      },
+      "filterEmpty": {
+        "title": "No courses match these filters",
+        "body": "Try a different status, sort order, or search keyword.",
+        "cta": "Clear filters"
+      },
+      "card": {
+        "statusCompleted": "Completed",
+        "statusLearning": "In progress",
+        "statusNotStarted": "Not started",
+        "percent": "{percent}%",
+        "percentProgress": "{percent}% complete",
+        "durationDays": "{count} days",
+        "lessonsCount": "{completed}/{total} lessons",
+        "price": "Price {amount}",
+        "studyProgress": "Learning progress",
+        "accessFor": "Access for {days} days from purchase",
+        "continue": "Continue",
+        "seeKey": "View course",
+        "certificate": "Certificate",
+        "enrolled": "Enrolled {date}"
+      },
+      "currencySuffix": "₫",
+      "buy": {
+        "heading": "Buy new courses",
+        "description": "You can expand your child's learning path at any time.",
+        "seeAll": "See all courses",
+        "paymentHistory": "View payment history"
+      }
     }
   },
   "kid": {
@@ -5339,11 +6080,365 @@
         "music": "Music Garden",
         "story": "Storytelling Garden"
       }
+    },
+    "lesson": {
+      "correct": "Correct",
+      "incorrect": "Incorrect",
+      "done": "Done!",
+      "sentenceProgress": "Question {current} of {total}",
+      "xpChip": "+{xp} XP",
+      "coinsChip": "+{coins} Xu",
+      "minutes": "{minutes} minutes",
+      "track": {
+        "english": "English",
+        "math": "Math",
+        "habit": "Habits",
+        "fallback": "Lesson"
+      },
+      "intro": {
+        "mascotAlt": "Kisu is ready",
+        "startCta": "Start the lesson",
+        "startAria": "Start the lesson",
+        "preparing": "Preparing..."
+      },
+      "video": {
+        "watchToContinue": "Watch the video to continue the lesson",
+        "noVideoFallback": "This lesson does not have a video yet. Continue to the practice section.",
+        "viewed": "Watched",
+        "hintNoVideo": "No video to watch for this lesson",
+        "hintReady": "Ready to continue",
+        "hintWatchMore": "Watch a bit more to unlock",
+        "continueAria": "Continue after watching the video",
+        "continue": "Continue",
+        "continueWithoutVideo": "Continue without video"
+      },
+      "activity": {
+        "sentenceCounter": "Question {current}/{total}",
+        "mascotCorrect": "Great — that's correct!",
+        "mascotWrong": "Not quite. Try again!",
+        "mascotPreparing": "Preparing questions...",
+        "mascotChoose": "Choose the best answer!",
+        "loading": "Loading questions...",
+        "noMoreQuestions": "Lesson complete — no more questions!",
+        "feedbackCorrect": "Exactly!",
+        "feedbackRetry": "Try again!",
+        "stickerCorrectAlt": "Great",
+        "stickerWrongAlt": "Try again"
+      },
+      "completion": {
+        "heroAlt": "Lesson complete",
+        "titleDone": "{title} · Done!",
+        "subtitle": "Your child completed the lesson!",
+        "subtitleWithFloor": "Floor {floor} · Your child completed the lesson!",
+        "progress": "Progress",
+        "progressFloor": "Floor {floor} progress",
+        "nextLesson": "Next lesson",
+        "nextLessonAria": "Skip to the next lesson: {title}",
+        "backToMap": "Return to the map",
+        "backToMapAria": "Return to the learning map"
+      },
+      "renderer": {
+        "trueLabel": "Correct",
+        "falseLabel": "Incorrect",
+        "fillPlaceholder": "Enter the answer",
+        "check": "Check",
+        "hint": "Hint: {hint}",
+        "unsupported": "This activity type is not supported yet."
+      },
+      "wizard": {
+        "evidenceLoading": "Loading the results area...",
+        "exit": "Exit",
+        "stageLabel": "Learning stage",
+        "readyBadge": "Ready to start",
+        "introHeading": "Ready to learn?",
+        "startNow": "Start now!",
+        "watchHeading": "Watch the mission video",
+        "watchHint": "Watch most of the video to unlock the challenge.",
+        "noVideo": "This lesson does not have a video yet.",
+        "viewProgress": "Watch progress",
+        "confirming": "Confirming...",
+        "continueChallenge": "Continue the challenge",
+        "quizTitle": "Show what you know!",
+        "loadingQuestions": "Loading questions...",
+        "questionCounter": "Question {current}/{total}",
+        "fallbackPrompt": "What was the last lesson about?",
+        "fallbackCorrectLabel": "What we just learned",
+        "fallbackCorrectDescription": "This matches the video",
+        "fallbackWrongLabel": "Something else",
+        "fallbackWrongDescription": "This answer is not correct",
+        "uploadHeading": "Send your work to the teachers!",
+        "uploadHint": "Ask a parent to photograph your work for bonus stars.",
+        "sending": "Sending...",
+        "completeMission": "Complete the mission!",
+        "doneHeading": "Great!",
+        "doneBody": "You just finished today's lesson.",
+        "returnToMap": "Return to the map",
+        "statusHeartbeatError": "Unable to update video progress. Please try again.",
+        "statusVideoReady": "The video is ready — let's watch!",
+        "statusSessionError": "Unable to start the video session.",
+        "statusWatchConfirmError": "Unable to confirm that the video was watched.",
+        "statusCompleteError": "Unable to complete the lesson. Please try again.",
+        "statusExact": "Exactly!",
+        "statusTryAgain": "Not quite. Try again!",
+        "statusExactNext": "Exactly! The fox mascot is opening the next stage..."
+      }
+    },
+    "gardenHud": {
+      "opening": "Opening...",
+      "sharedGarden": {
+        "sceneAria": "Children's learning garden",
+        "parentAria": "Return to parent area",
+        "parents": "Parents",
+        "childFallback": "Little one",
+        "chooseChildAria": "Choose a child",
+        "continueAria": "Go to the suggested course",
+        "heroKisuAlt": "Kisu has a suggestion",
+        "heading": "Learning garden",
+        "subtitle": "Tap a planter to continue learning each course.",
+        "kpiAria": "Progress overview",
+        "kpiPurchased": "Purchased courses",
+        "kpiStudying": "In progress",
+        "kpiCompleted": "Completed",
+        "emptyKisuAlt": "Kisu is here to help",
+        "emptyHeading": "This garden has no seeds yet",
+        "emptyBody": "Parents, please open a course first so your child can start planting.",
+        "openCourseList": "Open the course list",
+        "openCourseAria": "Open course {title}",
+        "lessonsCount": "{completed}/{total} lessons",
+        "plot": {
+          "lockedStatus": "Not planted yet",
+          "lockedAction": "Begin",
+          "completedStatus": "In bloom",
+          "completedAction": "Review",
+          "activeStatus": "Growing",
+          "activeAction": "Keep learning",
+          "pausedStatus": "Taking a break",
+          "pausedAction": "Continue",
+          "seededStatus": "New sprout",
+          "seededAction": "Explore"
+        }
+      },
+      "skyGarden": {
+        "track": {
+          "math": "Math",
+          "habit": "Habits",
+          "english": "English"
+        },
+        "childFallback": "Child",
+        "unitOpening": "Opening",
+        "journey": {
+          "completed": "In bloom",
+          "paused": "Taking a break",
+          "active": "Growing",
+          "seeded": "New sprout"
+        },
+        "cloudLayer": "Cloud layer {floor}",
+        "firstClouds": "First clouds",
+        "bloomedPercent": "{percent}% of gardens in bloom",
+        "touchClouds": "Touch the clouds to start",
+        "nextMission": "Next mission: {title}",
+        "tapFirstCloud": "Tap the first cloud to start the journey.",
+        "syncError": "Unable to load journey data.",
+        "syncCatch": "Unable to sync journey data.",
+        "goalReachedContinue": "Today's minute goal is done — you can still keep going!",
+        "openedNewCloud": "Great! A new cloud layer just opened.",
+        "seedReady": "A new seed for {course} is ready.",
+        "seedPlanted": "Seeds planted for {course}. Time to climb the clouds!",
+        "mascotStartGarden": "Start in the garden. Finish a lesson to climb into the clouds.",
+        "mascotConquer": "Clear the current cluster to unlock the cloud area above.",
+        "mascotContinueClouds": "Let's keep going through the clouds.",
+        "mascotChooseJourney": "Pick a favorite journey to start the learning garden.",
+        "sceneAria": "Cloud learning garden",
+        "backToLearningAria": "Return to the learning page",
+        "backToParentsAria": "Back to parents",
+        "childPrefix": "Child:",
+        "selectChildAria": "Select child profile",
+        "flowNavAria": "Journey navigation",
+        "schoolYard": "Schoolyard",
+        "sharedGarden": "Shared garden",
+        "cloudGarden": "Cloud garden",
+        "courseFallbackAlt": "Course",
+        "ownedGarden": "{name}'s cloud garden",
+        "journeyFallbackTitle": "Learning journey",
+        "dailyTarget": "Goal: {minutes} minutes/day",
+        "todayMinutes": "Learned {minutes} minutes today",
+        "minutesLeft": "{minutes} minutes left",
+        "goalReached": "Goal reached!",
+        "syncing": "Syncing garden data...",
+        "enterJourney": "Entering {title}!",
+        "lessonsCount": "{completed}/{total} lessons",
+        "nextLesson": "Next: {title}",
+        "readyToStart": "Ready to start",
+        "mapAria": "Cloud-climbing map",
+        "fogCap": "More clouds above — keep learning to explore",
+        "passedFloors": "Passed {count} floors",
+        "floorLabel": "Floor {floor}",
+        "nodeMinutesObjective": "{minutes} minutes • {objective}",
+        "completedChip": "Completed",
+        "unlockHint": "Finish the current floor to unlock the next one!",
+        "floorLocked": "This floor is not open yet"
+      },
+      "cinematic": {
+        "aria": "Plant seeds for a new course",
+        "kicker": "New course",
+        "title": "Plant the seeds and start the cloud journey",
+        "startClimb": "Start climbing the clouds",
+        "later": "Later"
+      },
+      "mission": {
+        "back": "Back",
+        "soundOn": "Sound on",
+        "soundOff": "Muted",
+        "heading": "Today's journey map",
+        "subtitle": "Move from planet to planet, unlock new lessons, and collect stars.",
+        "preparingMap": "Preparing the lesson map...",
+        "emptyHeading": "Nothing here yet...",
+        "emptyBody": "No matching lessons are available for this profile yet.",
+        "guideAria": "Guide mascot",
+        "guideTitle": "Mascot tips",
+        "nodeCompletedAria": "Completed landmark",
+        "nodeActiveAria": "Currently learning",
+        "nodeLockedAria": "Landmark locked",
+        "loadError": "Unable to load today's lesson.",
+        "unknownError": "Unknown error.",
+        "startingLesson": "Starting {lesson}!",
+        "goalRest": "You've studied enough today — time for a short rest!",
+        "goalOverrideOk": "A parent said yes — you can study a little more!",
+        "mascotIdle": "Tap me if you need help. Let's learn!",
+        "mascotTips": {
+          "pace": "Learn at your own pace!",
+          "help": "I'm here to help!",
+          "step": "One step at a time.",
+          "keepGoing": "Keep going!",
+          "greatToday": "You're doing great today!"
+        },
+        "completionTips": {
+          "greatWork": "Great work! Another lesson done.",
+          "mapLighting": "Wonderful! Your mission map is lighting up.",
+          "fastProgress": "Excellent — you're moving fast.",
+          "yay": "Yay! Keep it up."
+        }
+      },
+      "navFeedback": {
+        "aria": "Opening a new page",
+        "title": "Opening a new page...",
+        "subtitle": "Please wait a moment."
+      }
+    }
+  },
+  "chrome": {
+    "notifications": {
+      "bell": {
+        "ariaLabel": "Notifications",
+        "title": "Notifications",
+        "markAllRead": "Mark all as read",
+        "empty": "No new notifications yet.",
+        "overflowBadge": "{count}+"
+      },
+      "center": {
+        "ariaLabel": "Open notification center",
+        "title": "Notifications",
+        "subtitle": "Latest updates for parents",
+        "readAll": "Mark all as read",
+        "empty": "No notifications yet.",
+        "retry": "Retry",
+        "loadError": "Unable to load notifications",
+        "unknownError": "Unknown error",
+        "updateError": "Unable to update notification status",
+        "partialReadError": "Some notifications could not be marked as read.",
+        "overflowBadge": "{count}+"
+      },
+      "relative": {
+        "justNow": "Just now",
+        "minutesAgo": "{count} minutes ago",
+        "hoursAgo": "{count} hours ago"
+      }
+    },
+    "parentGate": {
+      "modal": {
+        "title": "Parent area",
+        "subtitle": "Please confirm to continue",
+        "prompt": "Answer the math question below to confirm you are a parent:",
+        "wrongAnswer": "Not quite! Making a new question...",
+        "back": "Go back",
+        "confirm": "Confirm"
+      },
+      "dialog": {
+        "title": "Parent confirmation",
+        "closeAriaLabel": "Close parent confirmation",
+        "prompt": "Enter the answer for {left} × {right} to continue",
+        "answerAriaLabel": "Answer that confirms a parent is present",
+        "placeholder": "...",
+        "clearKey": "C",
+        "wrongAnswer": "That's not the right result. Please try again.",
+        "continue": "Continue"
+      }
+    },
+    "impersonation": {
+      "viewingAs": "Viewing as {email}",
+      "stop": "Stop impersonating",
+      "stopping": "Stopping...",
+      "stopError": "Unable to stop impersonation.",
+      "unknownError": "Unknown error."
+    },
+    "mascotHub": {
+      "title": "Mascot support hub",
+      "hello": "Hi parents — how can the fox mascot help?",
+      "chatZalo": "Chat on Zalo",
+      "hotline": "Hotline: {number}",
+      "hotlineNumber": "1900 xxxx",
+      "instructions": "How to use",
+      "csReady": "Our support team is ready • {mode}",
+      "openAriaLabel": "Open support channel",
+      "tooltipFallback": "Need help, parents?",
+      "personas": {
+        "listening": {
+          "message": "The fox mascot is listening to your question.",
+          "label": "Listening mode"
+        },
+        "care": {
+          "message": "Need help, parents?",
+          "label": "Care mode"
+        },
+        "guide": {
+          "message": "The fox mascot has step-by-step guidance for parents.",
+          "label": "Guide mode"
+        },
+        "connect": {
+          "message": "Connect quickly by hotline or Zalo support!",
+          "label": "Connect mode"
+        }
+      }
+    },
+    "calendar": {
+      "weekdays": {
+        "sun": "Sun",
+        "mon": "Mon",
+        "tue": "Tue",
+        "wed": "Wed",
+        "thu": "Thu",
+        "fri": "Fri",
+        "sat": "Sat"
+      }
     }
   },
   "admin": {
     "login": {
-      "metadataTitle": "Admin Login"
+      "metadataTitle": "Admin Login",
+      "form": {
+        "title": "Internal gate",
+        "subtitle": "This sign-in is only for the TinyGenius Hub admin team.",
+        "emailLabel": "Admin email",
+        "emailPlaceholder": "admin@tinygeniushubvn.tech",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "••••••••",
+        "submit": "Sign in securely",
+        "submitLoading": "Verifying...",
+        "errors": {
+          "loginFailed": "Login failed. Please check your details and try again.",
+          "connection": "Connection error. Please try again."
+        }
+      }
     },
     "layout": {
       "title": "Administration",

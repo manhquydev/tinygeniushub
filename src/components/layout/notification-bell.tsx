@@ -2,6 +2,7 @@
 
 import { Bell } from "lucide-react";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 type ReaderNotification = {
@@ -13,8 +14,8 @@ type ReaderNotification = {
   createdAt: string;
 };
 
-function formatNotificationTime(value: string) {
-  return new Intl.DateTimeFormat("vi-VN", {
+function formatNotificationTime(value: string, locale: string) {
+  return new Intl.DateTimeFormat(locale === "vi" ? "vi-VN" : "en-US", {
     day: "2-digit",
     month: "2-digit",
     hour: "2-digit",
@@ -23,6 +24,9 @@ function formatNotificationTime(value: string) {
 }
 
 export function NotificationBell() {
+  const t = useTranslations("chrome.notifications.bell");
+  const tActions = useTranslations("common.actions");
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const [notifications, setNotifications] = useState<ReaderNotification[]>([]);
@@ -137,13 +141,13 @@ export function NotificationBell() {
       <button
         type="button"
         className="relative rounded-full border border-slate-200 p-2 text-slate-600 transition hover:bg-slate-100"
-        aria-label="Notification"
+        aria-label={t("ariaLabel")}
         onClick={() => void openDropdown()}
       >
         <Bell size={16} />
         {unreadCount > 0 ? (
           <span className="absolute -right-1 -top-1 inline-flex min-h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-bold text-white">
-            {unreadCount > 99 ? "99+" : unreadCount}
+            {unreadCount > 99 ? t("overflowBadge", { count: 99 }) : unreadCount}
           </span>
         ) : null}
       </button>
@@ -151,23 +155,23 @@ export function NotificationBell() {
       {open ? (
         <div className="absolute right-0 top-[calc(100%+0.5rem)] z-[150] w-80 rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_16px_30px_rgba(15,23,42,0.16)]">
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-sm font-bold text-slate-900">Notification</p>
+            <p className="text-sm font-bold text-slate-900">{t("title")}</p>
             <button
               type="button"
               className="text-xs font-semibold text-teal-700 hover:text-teal-800"
               onClick={() => void markAllRead()}
             >
-              Mark all read
+              {t("markAllRead")}
             </button>
           </div>
 
           {loading ? (
-            <p className="py-4 text-center text-sm text-slate-500">Loading...</p>
+            <p className="py-4 text-center text-sm text-slate-500">{tActions("loading")}</p>
           ) : null}
 
           {!loading && notifications.length === 0 ? (
             <p className="py-4 text-center text-sm text-slate-500">
-              There are no new announcements yet.
+              {t("empty")}
             </p>
           ) : null}
 
@@ -187,7 +191,7 @@ export function NotificationBell() {
                   </p>
                   <p className="mt-1 text-sm text-slate-600">{notification.message}</p>
                   <p className="mt-1 text-xs text-slate-400">
-                    {formatNotificationTime(notification.createdAt)}
+                    {formatNotificationTime(notification.createdAt, locale)}
                   </p>
                 </article>
               );

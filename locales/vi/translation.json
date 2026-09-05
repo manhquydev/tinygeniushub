@@ -28,7 +28,34 @@
     "notFound": "Không tìm thấy tài nguyên được yêu cầu.",
     "rateLimited": "Có quá nhiều yêu cầu. Vui lòng thử lại sau.",
     "unauthorized": "Vui lòng đăng nhập để tiếp tục.",
-    "unknown": "Đã có lỗi xảy ra."
+    "unknown": "Đã có lỗi xảy ra.",
+    "payload": "Dữ liệu yêu cầu không hợp lệ.",
+    "invalidPayload": "Dữ liệu yêu cầu không hợp lệ.",
+    "invalidJson": "Dữ liệu JSON không hợp lệ.",
+    "invalidCredentials": "Thông tin đăng nhập không đúng.",
+    "loginRateLimited": "Bạn đã thử đăng nhập quá nhiều lần. Vui lòng thử lại sau.",
+    "emailNotVerified": "Email chưa được xác minh. Chúng tôi đã gửi lại email xác minh — hãy kiểm tra hộp thư.",
+    "emailNotVerifiedDeliveryFailed": "Email chưa được xác minh và hệ thống chưa gửi lại được email xác minh. Vui lòng thử lại sau.",
+    "passwordResetNotEnabled": "Chức năng quên mật khẩu đang được cấu hình. Vui lòng liên hệ hỗ trợ trong lúc chờ.",
+    "passwordResetRequested": "Nếu email tồn tại trong hệ thống, chúng tôi sẽ gửi hướng dẫn đặt lại mật khẩu trong vài phút.",
+    "parentNotFound": "Không tìm thấy tài khoản phụ huynh.",
+    "caregiverLimitReached": "Đã đạt giới hạn người chăm sóc cho gói hiện tại.",
+    "caregiverAlreadyExists": "Email này đã được liên kết làm người chăm sóc.",
+    "caregiverInviteExists": "Đã có lời mời cho email này.",
+    "caregiverInviteNotFound": "Không tìm thấy lời mời người chăm sóc.",
+    "caregiverInviteInvalid": "Lời mời này không hợp lệ.",
+    "caregiverInviteAccepted": "Lời mời này đã được chấp nhận trước đó.",
+    "caregiverInviteExpired": "Lời mời này đã hết hạn.",
+    "giftCodeNotFound": "Mã quà tặng không hợp lệ.",
+    "giftCodeUsed": "Mã quà tặng đã được sử dụng.",
+    "giftCodeExpired": "Mã quà tặng đã hết hạn.",
+    "giftCodePlanInvalid": "Gói của mã quà tặng không hợp lệ.",
+    "profileLimitReached": "Đã đạt giới hạn hồ sơ bé cho hộ gia đình này.",
+    "profileLimitRetryRequired": "Không thể tạo hồ sơ bé do có cập nhật đồng thời. Vui lòng thử lại.",
+    "childNotFound": "Không tìm thấy hồ sơ bé.",
+    "lessonNotFound": "Không tìm thấy bài học.",
+    "trialLessonRestricted": "Tài khoản dùng thử chỉ mở được các bài học cho phép dùng thử.",
+    "learnAccessDenied": "Cần vé học của hộ gia đình để học bài này."
   },
   "metadata": {
     "siteDescription": "Learning Journey OS cho phụ huynh có con 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ."
@@ -4603,6 +4630,98 @@
       "signupButton": "Tạo tài khoản",
       "forgotPasswordLabel": "Quên mật khẩu?",
       "forgotPasswordLink": "Khôi phục tại đây"
+    },
+    "form": {
+      "fields": {
+        "emailLabel": "Email",
+        "emailPlaceholder": "ban@email.com",
+        "passwordLabel": "Mật khẩu",
+        "passwordPlaceholder": "Ít nhất 8 ký tự",
+        "submitLoading": "Đang xử lý..."
+      },
+      "login": {
+        "title": "Đăng nhập phụ huynh",
+        "subtitle": "Tiếp tục theo dõi tiến độ học, báo cáo và cột mốc của con.",
+        "submit": "Vào bảng điều khiển",
+        "errorDefault": "Không thể đăng nhập.",
+        "forgotPassword": "Quên mật khẩu?",
+        "noAccountYet": "Chưa có tài khoản?",
+        "createAccount": "Tạo tài khoản"
+      },
+      "signup": {
+        "title": "Tạo tài khoản phụ huynh",
+        "subtitle": "Tạo tài khoản để quản lý hồ sơ con, xem bài học thử và mua khóa học phù hợp.",
+        "submit": "Tạo tài khoản",
+        "errorDefault": "Không thể tạo tài khoản.",
+        "displayNameLabel": "Tên hiển thị",
+        "displayNamePlaceholder": "Ví dụ: Mẹ Mai",
+        "alreadyHaveAccount": "Đã có tài khoản?",
+        "logIn": "Đăng nhập",
+        "legal": {
+          "agree": "Tôi đồng ý với <terms>Điều khoản sử dụng</terms>, <privacy>Chính sách bảo mật</privacy> và <cookie>Chính sách cookie</cookie>.",
+          "terms": "Điều khoản sử dụng",
+          "privacy": "Chính sách bảo mật",
+          "cookie": "Chính sách cookie"
+        }
+      },
+      "verify": {
+        "pending": "Đã tạo tài khoản. Vui lòng mở email và xác minh trước khi đăng nhập.",
+        "deliveryIssue": "Tài khoản đã được tạo nhưng hệ thống chưa gửi được email xác minh. Hãy thử đăng nhập lại để gửi lại email, hoặc liên hệ hỗ trợ.",
+        "success": "Email đã được xác minh. Bạn có thể đăng nhập.",
+        "expired": "Liên kết xác minh đã hết hạn. Hãy đăng nhập để hệ thống gửi email xác minh mới.",
+        "invalid": "Liên kết xác minh không hợp lệ. Hãy đăng nhập để nhận email xác minh mới.",
+        "signupSuccess": "Tạo tài khoản thành công. Bạn có thể đăng nhập."
+      },
+      "errors": {
+        "invalidCredentials": "Email hoặc mật khẩu không đúng.",
+        "emailNotVerifiedDeliveryFailed": "Email chưa được xác minh và hệ thống chưa gửi lại được email xác minh. Vui lòng thử lại sau.",
+        "emailNotVerified": "Email chưa được xác minh. Hệ thống đã gửi lại email xác minh, vui lòng kiểm tra hộp thư.",
+        "emailExists": "Email này đã được đăng ký. Vui lòng đăng nhập hoặc dùng email khác.",
+        "invalidEmail": "Định dạng email không hợp lệ.",
+        "invalidPassword": "Mật khẩu phải từ 8 đến 120 ký tự.",
+        "invalidDisplayName": "Tên hiển thị không hợp lệ.",
+        "legalRequired": "Bạn cần đồng ý Điều khoản, Chính sách bảo mật và Chính sách cookie để đăng ký.",
+        "invalidPayload": "Dữ liệu gửi lên không hợp lệ.",
+        "rateLimitedWithSeconds": "Bạn thao tác quá nhanh. Vui lòng thử lại sau {seconds} giây.",
+        "rateLimited": "Bạn thao tác quá nhanh. Vui lòng thử lại sau.",
+        "serverBusy": "Hệ thống đang bận. Vui lòng thử lại sau."
+      }
+    },
+    "forgot": {
+      "title": "Quên mật khẩu",
+      "subtitle": "Nhập email phụ huynh đã đăng ký. Chúng tôi sẽ gửi liên kết đặt lại mật khẩu vào hộp thư.",
+      "emailLabel": "Email tài khoản",
+      "emailPlaceholder": "ban@email.com",
+      "submit": "Gửi liên kết đặt lại",
+      "submitLoading": "Đang gửi...",
+      "returnToLogin": "Quay lại đăng nhập",
+      "noAccountYet": "Chưa có tài khoản?",
+      "createAccount": "Tạo tài khoản",
+      "successDefault": "Nếu email tồn tại trong hệ thống, chúng tôi sẽ gửi hướng dẫn đặt lại mật khẩu trong vài phút.",
+      "errors": {
+        "generic": "Không thể xử lý yêu cầu đặt lại mật khẩu."
+      }
+    },
+    "reset": {
+      "title": "Đặt lại mật khẩu",
+      "subtitle": "Nhập mật khẩu mới cho tài khoản phụ huynh. Liên kết đặt lại chỉ có hiệu lực trong thời gian ngắn.",
+      "tokenLabel": "Mã xác minh đặt lại",
+      "tokenPlaceholder": "Dán mã xác minh từ email",
+      "newPasswordLabel": "Mật khẩu mới",
+      "newPasswordPlaceholder": "Ít nhất 8 ký tự",
+      "confirmPasswordLabel": "Nhập lại mật khẩu mới",
+      "confirmPasswordPlaceholder": "Nhập lại mật khẩu",
+      "submit": "Lưu mật khẩu mới",
+      "submitLoading": "Đang cập nhật...",
+      "backToForgot": "Quay lại quên mật khẩu",
+      "aboutLogin": "Về trang đăng nhập",
+      "successDefault": "Đặt lại mật khẩu thành công. Bạn có thể đăng nhập lại.",
+      "errors": {
+        "passwordTooShort": "Mật khẩu mới phải có ít nhất 8 ký tự.",
+        "passwordMismatch": "Mật khẩu nhập lại không khớp.",
+        "missingToken": "Thiếu mã xác minh đặt lại mật khẩu.",
+        "generic": "Không thể đặt lại mật khẩu."
+      }
     }
   },
   "setup": {
@@ -4725,6 +4844,27 @@
       "addressLabel": "Địa chỉ liên hệ",
       "addressValue": "Việt Nam (làm việc từ xa)",
       "faqHint": "Cần câu trả lời nhanh? Xem câu hỏi thường gặp tại"
+    },
+    "form": {
+      "nameLabel": "Họ và tên",
+      "namePlaceholder": "Nhập họ và tên",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ban@example.com",
+      "subjectLabel": "Chủ đề",
+      "subjects": {
+        "technical": "Hỗ trợ kỹ thuật",
+        "collaboration": "Hợp tác / B2B",
+        "reportError": "Báo lỗi",
+        "other": "Khác"
+      },
+      "messageLabel": "Nội dung",
+      "messagePlaceholder": "Hãy mô tả chi tiết để chúng tôi hỗ trợ nhanh hơn.",
+      "charCount": "{current}/{max}",
+      "submit": "Gửi liên hệ",
+      "sending": "Đang gửi...",
+      "successFallback": "Cảm ơn bạn! Chúng tôi sẽ phản hồi trong 24–48 giờ.",
+      "submitError": "Không gửi được biểu mẫu. Vui lòng thử lại.",
+      "unknownError": "Đã có lỗi xảy ra. Vui lòng thử lại."
     }
   },
   "forSchools": {
@@ -4789,7 +4929,18 @@
       "countLabel": "50 gia đình đăng ký sớm"
     },
     "form": {
-      "sectionTitle": "Đăng ký nhận thông báo"
+      "sectionTitle": "Đăng ký nhận thông báo",
+      "success": "Đăng ký thành công! Chúng tôi sẽ liên hệ sớm nhất có thể.",
+      "emailLabel": "Email của bạn",
+      "emailPlaceholder": "example@gmail.com",
+      "ageLabel": "Bé bao nhiêu tuổi?",
+      "optional": "(không bắt buộc)",
+      "agePlaceholder": "Chọn tuổi",
+      "ageOption": "{age} tuổi",
+      "error": "Đã có lỗi. Vui lòng thử lại.",
+      "submit": "Đăng ký nhận thông báo",
+      "sending": "Đang gửi...",
+      "noSpam": "Không spam. Chỉ thông báo khi ra mắt và ưu đãi cho người đăng ký sớm."
     },
     "earlyBenefits": {
       "title": "Quyền lợi đăng ký sớm",
@@ -4860,6 +5011,318 @@
     "hero": {
       "title": "Nhập mã quà tặng",
       "subtitle": "Nhận được mã từ người thân hoặc chương trình khuyến mãi? Nhập mã bên dưới để kích hoạt ngay."
+    },
+    "form": {
+      "success": "Đã kích hoạt! Chào mừng đến TinyGenius Hub.",
+      "label": "Mã quà tặng",
+      "placeholder": "Nhập mã — ví dụ ABCD-1234",
+      "invalid": "Mã không hợp lệ. Vui lòng kiểm tra lại.",
+      "connectError": "Không kết nối được. Vui lòng thử lại.",
+      "submit": "Kích hoạt mã",
+      "activating": "Đang kích hoạt..."
+    }
+  },
+  "courses": {
+    "filter": {
+      "subject": {
+        "MATH": "Toán",
+        "ENGLISH": "Tiếng Anh",
+        "SCIENCE": "Khoa học",
+        "ART": "Mỹ thuật",
+        "MUSIC": "Âm nhạc",
+        "OTHER": "Khác"
+      },
+      "program": {
+        "abeka": "Abeka",
+        "lfen": "Little Fox English",
+        "lfcn": "Little Fox Chinese"
+      },
+      "phase": {
+        "intro": "Khởi đầu",
+        "starter": "Nhập môn",
+        "foundation": "Nền tảng",
+        "builder": "Củng cố nền tảng"
+      },
+      "ageGroup": {
+        "ALL_AGES": "Mọi độ tuổi",
+        "UNDER_3": "Dưới 3 tuổi",
+        "AGE_3_5": "3–5 tuổi",
+        "AGE_4_6": "4–6 tuổi",
+        "AGE_6_8": "6–8 tuổi",
+        "AGE_7_9": "7–9 tuổi",
+        "AGE_9_12": "9–12 tuổi",
+        "AGE_10_12": "10–12 tuổi"
+      },
+      "duration": {
+        "short": "Ngắn (<30 ngày)",
+        "medium": "Trung bình (30–60 ngày)",
+        "long": "Dài (>60 ngày)"
+      },
+      "sort": {
+        "newest": "Mới nhất",
+        "price_asc": "Giá tăng dần",
+        "price_desc": "Giá giảm dần",
+        "duration_asc": "Thời lượng ngắn trước"
+      }
+    },
+    "banner": {
+      "confirming": {
+        "title": "Đang xác nhận thanh toán",
+        "body": "Giao dịch đã được ghi nhận. Hệ thống sẽ tự mở khóa khi xác nhận xong.",
+        "timeoutBody": "Hệ thống vẫn đang xác nhận. Bạn có thể tải lại trang sau vài phút."
+      },
+      "pending": {
+        "title": "Thanh toán đang chờ",
+        "timeoutTitle": "Thanh toán chưa hoàn tất",
+        "body": "Nếu bạn đã thanh toán thành công, hệ thống sẽ tự cập nhật trong vài phút.",
+        "timeoutBody": "Bạn có thể mở lại liên kết thanh toán hoặc kiểm tra sau."
+      },
+      "success": {
+        "title": "Thanh toán thành công",
+        "body": "Khóa học đã được kích hoạt."
+      },
+      "unconfirmed": {
+        "title": "Không xác nhận được thanh toán",
+        "body": "Vui lòng thử lại sau vài phút. Nếu đã bị trừ tiền, hãy liên hệ hỗ trợ."
+      }
+    },
+    "catalog": {
+      "metadata": {
+        "title": "Khóa học cho bé — TinyGenius Hub",
+        "description": "Xem nhanh khóa học, học thử trước, rồi chọn mua theo nhu cầu gia đình."
+      },
+      "heading": "Danh sách khóa học",
+      "subtitle": "Học thử một bài trước khi mua để chọn khóa phù hợp cho con.",
+      "filterBadge": "Bộ lọc",
+      "showing": "Đang hiện {visible} / {total} khóa học khớp.",
+      "detailCta": "Xem chi tiết",
+      "emptySoon": {
+        "title": "Khóa học mới sắp ra mắt",
+        "body": "Chúng tôi đang cập nhật nội dung mới. Đăng ký để nhận thông báo khi khóa học mở bán.",
+        "cta": "Nhận thông báo sớm"
+      },
+      "emptyFiltered": {
+        "title": "Không tìm thấy khóa học khớp",
+        "body": "Hãy nới lỏng bộ lọc để xem thêm lựa chọn cho bé.",
+        "cta": "Xóa bộ lọc"
+      },
+      "filter": {
+        "heading": "Bộ lọc",
+        "deleteAll": "Xóa tất cả",
+        "searchHeading": "Tìm nhanh",
+        "searchPlaceholder": "Tên khóa học hoặc mục tiêu...",
+        "programHeading": "Chương trình",
+        "phaseHeading": "Giai đoạn",
+        "subjectHeading": "Môn học",
+        "ageHeading": "Độ tuổi",
+        "priceHeading": "Giá (VND)",
+        "minPlaceholder": "Tối thiểu",
+        "maxPlaceholder": "Tối đa",
+        "durationHeading": "Thời lượng",
+        "deselect": "Bỏ chọn",
+        "mobileTrigger": "Bộ lọc",
+        "mobileTitle": "Lọc khóa học"
+      },
+      "sort": {
+        "ariaLabel": "Sắp xếp theo",
+        "default": "Mặc định"
+      },
+      "chips": {
+        "ariaLabel": "Bộ lọc đang áp dụng",
+        "clearAria": "Xóa bộ lọc {label}",
+        "find": "Tìm: {query}",
+        "price": "Giá: {min} – {max}",
+        "priceMinZero": "0",
+        "priceMaxUnlimited": "∞"
+      },
+      "currencySuffix": "₫",
+      "card": {
+        "lessonCount": "{count} bài",
+        "durationWeeks": "{count} tuần",
+        "durationDays": "{count} ngày",
+        "currentPrice": "Giá hiện tại",
+        "free": "Miễn phí"
+      },
+      "pagination": {
+        "ariaLabel": "Phân trang",
+        "previousPageAria": "Trang trước",
+        "nextPageAria": "Trang sau"
+      }
+    },
+    "detail": {
+      "metadata": {
+        "legacyTitle": "Danh sách khóa học — TinyGenius Hub",
+        "legacyDescription": "Các khóa học được hiển thị theo mô hình độc lập.",
+        "notFoundTitle": "Khóa học không tồn tại",
+        "title": "{title} — TinyGenius Hub"
+      },
+      "checkoutLabelA": "Mua khóa học",
+      "checkoutLabelB": "Mua khóa học và bắt đầu ngay",
+      "freeCta": "Nhận khóa học miễn phí",
+      "breadcrumb": {
+        "home": "Trang chủ",
+        "courses": "Khóa học"
+      },
+      "hero": {
+        "totalLesson": "Tổng số bài",
+        "lessonCount": "{count} bài học",
+        "accessPeriod": "Thời hạn truy cập",
+        "durationDays": "{days} ngày"
+      },
+      "sticky": {
+        "ownedCta": "Vào học ngay",
+        "adviceCta": "Nhận tư vấn lộ trình"
+      },
+      "curriculum": {
+        "ownedTitle": "{count} bài trong khóa học",
+        "trialTitle": "Xem thử {count} bài đầu",
+        "trialHint": "Chạm từng bài để xem nhanh nội dung trước khi quyết định mua.",
+        "fixedTrial": "Học thử cố định",
+        "trialPreviewBody": "Hãy xem trước {count} bài đầu để kiểm tra độ phù hợp trước khi mua.",
+        "trialLockedBody": "Sau {previewCount} bài đầu, {lockedCount} bài còn lại sẽ mở khi mua khóa.",
+        "trialFullyOpen": "Khóa học này hiện đang mở toàn bộ để học thử.",
+        "lessonLabel": "Bài {orderNo}",
+        "tryLearning": "Học thử",
+        "duration": "Thời lượng",
+        "minutes": "{count} phút",
+        "moreLocked": "+{count} bài tiếp theo sẽ mở sau khi mua."
+      },
+      "faq": {
+        "heading": "Câu hỏi phụ huynh thường gặp",
+        "background": {
+          "q": "Bé có cần kiến thức nền trước khi học không?",
+          "a": "Không cần kiến thức nền. Mỗi khóa được thiết kế từ đầu, phụ huynh chỉ cần làm theo hướng dẫn từng bài."
+        },
+        "sitWithChild": {
+          "q": "Phụ huynh có phải ngồi cùng bé suốt buổi học không?",
+          "a": "Không cần ngồi cả buổi. Với bé dưới 7 tuổi, ba mẹ nên hỗ trợ 10 phút đầu để bé quen giao diện."
+        },
+        "lessonLength": {
+          "q": "Mỗi bài học kéo dài bao lâu?",
+          "a": "Mỗi bài thường 10–20 phút, phù hợp học mỗi ngày. Nhịp gợi ý là 4–5 buổi/tuần để tiến bộ đều."
+        },
+        "learnImmediately": {
+          "q": "Sau khi mua có học ngay được không?",
+          "a": "Có. Sau khi thanh toán thành công, bé có thể bắt đầu học ngay."
+        },
+        "refund": {
+          "q": "Nếu không phù hợp, có được hoàn tiền không?",
+          "a": "Có. Chính sách hoàn tiền trong 30 ngày đầu nếu khóa học không phù hợp nhu cầu của bé."
+        }
+      },
+      "sidebar": {
+        "priceLabel": "Giá khóa học",
+        "discountFree": "Giảm 100% trong thời gian có hạn",
+        "discountFromList": "Đã giảm so với giá gốc",
+        "saleEnds": "Ưu đãi kết thúc: {datetime}",
+        "buyOnce": "Mua một lần, bắt đầu học ngay sau khi thanh toán thành công.",
+        "freeSaleHint": "Đăng ký ngay để mở toàn bộ khóa học với giá 0 đồng trong thời gian có hạn.",
+        "pendingPreview": "Khóa này tạm dừng đăng ký trực tuyến. Phụ huynh vẫn có thể xem trước {count} bài đầu.",
+        "suspendedPreview": "Phụ huynh vẫn có thể xem trước {count} bài đầu trước khi chốt lộ trình.",
+        "ownedBadge": "Bạn đã sở hữu khóa học này.",
+        "startLearning": "Bắt đầu học ngay",
+        "viewPurchased": "Xem khóa đã mua",
+        "seeTrialFirst": "Xem bài học thử trước",
+        "quickAdvice": "Nhận tư vấn nhanh",
+        "loginHint": "Đăng nhập để hoàn tất đăng ký, rồi quay lại khóa học này.",
+        "pendingStillPreview": "Khóa này tạm dừng đăng ký trực tuyến. Phụ huynh vẫn có thể xem {count} bài đầu.",
+        "suspendedStillPreview": "Đăng ký trực tuyến đang tạm dừng. Phụ huynh vẫn có thể xem {count} bài đầu.",
+        "trustLine": "Mua một lần, học ngay. Nếu chưa chắc trình độ, hãy học thử trước.",
+        "mobilePrice": "Giá",
+        "mobileCurrentPrice": "Giá hiện tại",
+        "mobileSeeTrial": "Xem bài học thử"
+      },
+      "checkout": {
+        "processing": "Đang xử lý...",
+        "rateLimited": "Bạn thao tác hơi nhanh. Vui lòng thử lại sau vài giây.",
+        "serverBusy": "Hệ thống thanh toán đang bận. Vui lòng thử lại sau.",
+        "priceUnavailable": "Khóa này tạm dừng đăng ký trực tuyến. Bạn có thể xem bài học thử hoặc nhận tư vấn.",
+        "alreadyEnrolled": "Tài khoản của bạn đã sở hữu khóa học này.",
+        "genericFail": "Không hoàn tất được thanh toán lúc này. Vui lòng thử lại sau vài phút.",
+        "connectFail": "Không kết nối được, vui lòng thử lại."
+      },
+      "preview": {
+        "dialogAria": "Học thử: {title}",
+        "eyebrow": "Bài học thử",
+        "closeAria": "Đóng",
+        "loadingVideo": "Đang tải video...",
+        "readyTitle": "Sẵn sàng xem thử",
+        "readyBody": "Bấm bắt đầu để mở video học thử và kiểm tra độ phù hợp.",
+        "opening": "Đang mở video...",
+        "startPreview": "Bắt đầu xem thử",
+        "authTitle": "Bạn cần đăng nhập để xem {count} bài đầu",
+        "authBody": "Hãy đăng nhập để mở bài học thử và kiểm tra độ phù hợp trước khi mua.",
+        "signInCta": "Đăng nhập để xem thử",
+        "unavailableTitle": "Video tạm thời chưa sẵn sàng",
+        "unavailableBody": "Bài này chưa mở được video. Hãy thử lại hoặc xem thông tin khóa học để quyết định.",
+        "tryingAgain": "Đang thử lại...",
+        "reload": "Tải lại video",
+        "reloading": "Đang tải lại...",
+        "targetLabel": "Mục tiêu:",
+        "viewFullCourse": "Xem toàn bộ khóa để mua",
+        "closeWindow": "Đóng cửa sổ học thử"
+      }
+    }
+  },
+  "blog": {
+    "chrome": {
+      "metadata": {
+        "title": "Blog TinyGenius Hub",
+        "description": "Kiến thức, phương pháp và tài nguyên giúp phụ huynh đồng hành cùng con học tại nhà."
+      },
+      "rssTitle": "RSS Blog TinyGenius Hub",
+      "listing": {
+        "heading": "Bài viết mới nhất",
+        "searchLink": "Tìm bài viết",
+        "empty": "Chưa có bài chính thức. Nội dung sẽ xuất hiện khi đội ngũ xuất bản bài mới."
+      },
+      "sidebar": {
+        "topics": "Chủ đề",
+        "trending": "Đang được đọc nhiều"
+      },
+      "card": {
+        "noPhoto": "Chưa có ảnh",
+        "unpublished": "Chưa xuất bản",
+        "minRead": "{count} phút đọc",
+        "views": "{count} lượt xem",
+        "likes": "{count} lượt thích"
+      },
+      "article": {
+        "home": "Trang chủ",
+        "blog": "Blog",
+        "related": "Bài viết liên quan",
+        "back": "← Quay lại Blog"
+      },
+      "search": {
+        "heading": "Tìm bài viết",
+        "subtitle": "Nhập từ khóa để tìm bài viết phù hợp với gia đình bạn.",
+        "inputAria": "Từ khóa tìm kiếm",
+        "placeholder": "Ví dụ: tiếng Anh, toán tư duy, kỹ năng sống...",
+        "found": "Tìm thấy {total} kết quả cho \"{query}\"",
+        "failed": "Tìm kiếm thất bại. Vui lòng thử lại.",
+        "empty": "Không tìm thấy bài viết khớp."
+      },
+      "category": {
+        "postCount": "{count} bài",
+        "paginationAria": "Phân trang",
+        "previous": "← Trang trước",
+        "next": "Trang sau →",
+        "pageStatus": "Trang {page}/{totalPages}",
+        "sortLabel": "Sắp xếp",
+        "sortLatest": "Mới nhất",
+        "sortPopular": "Xem nhiều nhất"
+      },
+      "categories": {
+        "phat-trien-tre": "Phát triển trẻ",
+        "phuong-phap-hoc": "Phương pháp học",
+        "tieng-anh-som": "Tiếng Anh cho trẻ",
+        "tieng-anh-cho-tre": "Tiếng Anh cho trẻ",
+        "toan-tu-duy": "Toán tư duy",
+        "dinh-huong-phu-huynh": "Định hướng phụ huynh",
+        "cong-nghe-giao-duc": "Công nghệ giáo dục",
+        "suc-khoe-can-bang": "Sức khỏe và cân bằng",
+        "cau-chuyen-thanh-cong": "Câu chuyện thành công"
+      }
     }
   },
   "specialPages": {
@@ -4917,6 +5380,36 @@
       "errorTitle": "Không thể chấp nhận lời mời",
       "fallbackError": "Không thể xử lý lời mời lúc này. Vui lòng thử lại sau.",
       "ctaHome": "Quay về trang chủ"
+    },
+    "notFound": {
+      "badge": "Lỗi 404",
+      "imageAlt": "Linh vật Cáo đang tìm đường trong khu rừng kỳ diệu",
+      "title": "Không tìm thấy trang bạn cần",
+      "subtitle": "Liên kết có thể đã thay đổi hoặc không còn tồn tại. Hãy quay về trang chủ để tiếp tục hành trình học cùng TinyGenius Hub.",
+      "ctaHome": "Quay về trang chủ",
+      "ctaBack": "Quay lại"
+    },
+    "error": {
+      "badge": "Lỗi hệ thống 500",
+      "imageAlt": "Linh vật Cáo đang sửa lỗi hệ thống trong xưởng máy",
+      "title": "Trang này đang gặp lỗi tạm thời",
+      "subtitle": "Hệ thống đã ghi nhận sự cố. Bạn có thể thử tải lại hoặc quay lại trang trước để tiếp tục.",
+      "ctaRetry": "Thử lại",
+      "ctaBack": "Quay lại"
+    },
+    "globalError": {
+      "badge": "Lỗi hệ thống 500",
+      "imageAlt": "Linh vật Cáo đang sửa lỗi hệ thống trong xưởng máy",
+      "title": "Hệ thống đang gặp sự cố tạm thời",
+      "subtitle": "Chúng tôi đã ghi nhận lỗi và đang xử lý. Bạn có thể tải lại trang hoặc quay về trang chủ để tiếp tục.",
+      "ctaReload": "Tải lại trang",
+      "ctaHome": "Quay về trang chủ"
+    },
+    "loading": {
+      "ariaLabel": "Đang tải nội dung",
+      "imageAlt": "Linh vật Cáo đang chạy trên đường cầu vồng để chuẩn bị bài học",
+      "title": "Đang chuẩn bị hành trình học...",
+      "subtitle": "Hệ thống đang tải nội dung phù hợp cho bé, chỉ mất vài giây."
     }
   },
   "privacy": {
@@ -5245,6 +5738,29 @@
         "skillMap": "Bản đồ kỹ năng",
         "practicePrompt": "Sẵn sàng luyện tập thêm?",
         "goToSchool": "Vào khu vực học"
+      },
+      "activity": {
+        "heading": "Hoạt động học hôm nay",
+        "description": "Dòng thời gian các bài học trong ngày, theo thời điểm hoàn thành mới nhất.",
+        "timezone": "Múi giờ: UTC+7",
+        "emptyProfiles": "Chưa có hồ sơ bé để hiện hoạt động hôm nay.",
+        "today": "Hôm nay",
+        "noLessons": "Hôm nay chưa có bài học",
+        "restHint": "Bé đã nghỉ một lúc rồi, hãy thử bắt đầu với 5 phút.",
+        "minutesLearned": "Đã học {n} phút",
+        "quiz": "Quiz: {score}%",
+        "completedAt": "Hoàn thành lúc {time}",
+        "loadError": "Không tải được hoạt động hôm nay",
+        "unknownError": "Lỗi không xác định"
+      },
+      "goal": {
+        "heading": "Mục tiêu học hôm nay",
+        "reached": "Đã đạt mục tiêu hôm nay!",
+        "unlimited": "Không giới hạn",
+        "minutesLabel": "{n} phút",
+        "noLimit": "Không giới hạn thời gian học trong ngày.",
+        "updateError": "Không cập nhật được mục tiêu",
+        "unknownError": "Lỗi không xác định"
       }
     },
     "children": {
@@ -5318,6 +5834,231 @@
         "description": "Vui lòng gửi thời gian giao dịch, số tiền và nhà cung cấp để chúng tôi hỗ trợ nhanh chóng.",
         "sendRequest": "Gửi yêu cầu đối soát"
       }
+    },
+    "referralClaim": {
+      "heading": "Nhập mã giới thiệu",
+      "yourCode": "Mã của bạn: {code}",
+      "notCreated": "Chưa tạo",
+      "generate": "Tạo mã giới thiệu",
+      "creating": "Đang tạo...",
+      "placeholder": "Nhập mã giới thiệu (ví dụ: ABCD1234)",
+      "submit": "Áp dụng mã",
+      "processing": "Đang xử lý...",
+      "unknownError": "Lỗi không xác định.",
+      "generateError": "Không tạo được mã giới thiệu.",
+      "createError": "Không tạo được mã giới thiệu.",
+      "generated": "Đã tạo mã giới thiệu thành công.",
+      "claimError": "Không áp dụng được mã giới thiệu.",
+      "alreadyAssigned": "Tài khoản này đã được gán mã giới thiệu trước đó.",
+      "claimed": "Đã nhận mã giới thiệu thành công."
+    },
+    "childrenManager": {
+      "heading": "Quản lý hồ sơ bé",
+      "description": "Mỗi tài khoản có {limit} hồ sơ học tập chính, dùng xuyên suốt hành trình học.",
+      "profilesCount": "{count}/{limit} hồ sơ",
+      "goToAddForm": "Đến biểu mẫu thêm hồ sơ",
+      "add": {
+        "heading": "Thêm hồ sơ bé",
+        "description": "Điền thông tin cơ bản để tạo hồ sơ học tập mới. Bước này đồng bộ với luồng cài đặt ban đầu.",
+        "chooseAvatar": "Chọn avatar",
+        "selectedCharacter": "Nhân vật đã chọn: {label}",
+        "nicknamePlaceholder": "Tên ở nhà",
+        "ageBandOption": "{band} tuổi",
+        "hintAtLimit": "Bạn đã có hồ sơ chính. Tên, tuổi và avatar có thể chỉnh trong danh sách bên dưới.",
+        "hintCanEdit": "Bạn có thể sửa tên và avatar sau khi tạo hồ sơ.",
+        "submit": "Thêm hồ sơ",
+        "submitting": "Đang tạo...",
+        "submitAtLimit": "Đã có hồ sơ chính"
+      },
+      "avatar": {
+        "chooseAria": "Chọn nhân vật {label}",
+        "representativeTitle": "Nhân vật đại diện của {nickname}"
+      },
+      "errors": {
+        "nicknameRequired": "Vui lòng nhập biệt danh của bé.",
+        "alreadyHasPrimary": "Tài khoản đã có hồ sơ bé chính. Vui lòng chỉnh hồ sơ hiện tại.",
+        "createFailed": "Không tạo được hồ sơ bé.",
+        "updateFailed": "Không cập nhật được hồ sơ bé.",
+        "deleteFailed": "Không xóa được hồ sơ bé.",
+        "unknown": "Lỗi không xác định."
+      },
+      "success": {
+        "created": "Đã tạo hồ sơ bé thành công.",
+        "updated": "Đã cập nhật hồ sơ bé.",
+        "deleted": "Đã xóa hồ sơ bé."
+      },
+      "list": {
+        "heading": "Danh sách bé",
+        "description": "Mở từng thẻ để sửa thông tin, đổi nhân vật hoặc cho bé vào bài học ngay.",
+        "empty": "Chưa có hồ sơ bé. Hãy tạo hồ sơ đầu tiên ở trên.",
+        "changeAvatar": "Đổi avatar",
+        "selecting": "Đang chọn: {label}",
+        "age": "Tuổi: {band}",
+        "editTitle": "Sửa hồ sơ",
+        "deleteTitle": "Xóa hồ sơ",
+        "goToLesson": "Vào bài học",
+        "save": "Lưu",
+        "saving": "Đang lưu...",
+        "cancel": "Hủy"
+      },
+      "deleteModal": {
+        "closeAria": "Đóng xác nhận xóa",
+        "heading": "Xác nhận xóa hồ sơ",
+        "body": "Bạn sắp xóa hồ sơ của {nickname}. Thao tác này không thể hoàn tác.",
+        "cancel": "Hủy",
+        "confirm": "Xóa hồ sơ",
+        "deleting": "Đang xóa..."
+      }
+    },
+    "caregiver": {
+      "heading": "Quản lý người chăm sóc",
+      "description": "Mời người thân theo dõi tiến độ học của bé.",
+      "usedSlots": "Đã dùng {used}/{limit}",
+      "form": {
+        "emailPlaceholder": "Email người chăm sóc",
+        "invite": "Mời người chăm sóc",
+        "sending": "Đang gửi...",
+        "slotsExhausted": "Đã hết suất"
+      },
+      "errors": {
+        "emailRequired": "Vui lòng nhập email người chăm sóc.",
+        "inviteFailed": "Không gửi được lời mời người chăm sóc",
+        "revokeFailed": "Không thu hồi được lời mời",
+        "unknown": "Lỗi không xác định"
+      },
+      "info": {
+        "inviteSent": "Đã gửi lời mời người chăm sóc.",
+        "inviteEmailFailed": "Đã tạo lời mời nhưng gửi email thất bại. Vui lòng thử lại sau.",
+        "revoked": "Đã thu hồi lời mời người chăm sóc."
+      },
+      "status": {
+        "accepted": "Đã chấp nhận",
+        "expired": "Hết hạn",
+        "pending": "Đang chờ"
+      },
+      "card": {
+        "dates": "Đã mời: {createdAt} — Hết hạn: {expiresAt}",
+        "revoke": "Thu hồi"
+      },
+      "empty": "Chưa mời người chăm sóc nào.",
+      "inviteHint": "Liên kết mời trông như /accept-invite?token=... và hết hạn theo thời gian đã cấu hình."
+    },
+    "reportsPanel": {
+      "heading": "Báo cáo học tập tuần",
+      "description": "Theo dõi tiến độ học, năng lực kỹ năng và gợi ý hành động cho phụ huynh.",
+      "actions": {
+        "generate": "Tạo báo cáo ngay",
+        "generating": "Đang tạo...",
+        "email": "Gửi báo cáo qua email",
+        "sending": "Đang gửi...",
+        "downloadPdf": "Tải PDF"
+      },
+      "errors": {
+        "regenerateFailed": "Không tạo lại được báo cáo tuần",
+        "emailFailed": "Không gửi được email báo cáo tuần",
+        "unknown": "Lỗi không xác định"
+      },
+      "emailResult": "Đã gửi: {sent}, bỏ qua: {skipped}, lỗi/bounce: {bounced}",
+      "empty": {
+        "title": "Chưa có gì ở đây...",
+        "body": "Chưa có báo cáo tuần nào được tạo."
+      },
+      "card": {
+        "weekRange": "Tuần: {start} – {end}",
+        "updated": "Cập nhật: {date}",
+        "achievements": "Điểm nổi bật",
+        "studyTime": "Thời gian học",
+        "minutesPerWeek": "phút/tuần",
+        "lesson": "Bài học",
+        "completedLesson": "bài đã hoàn thành",
+        "streak": "Chuỗi ngày",
+        "consecutiveDays": "ngày học liên tiếp",
+        "skills": "Đánh giá kỹ năng",
+        "overviewRadar": "Radar tổng quan",
+        "overallPercent": "{score}%",
+        "skillPercent": "{value}%",
+        "advice": "Lời khuyên từ chuyên gia AI",
+        "adviceFallback": "Tuần này bé học ổn định. Phụ huynh nên giữ lịch học ngắn mỗi ngày và tăng hoạt động cùng gia đình vào cuối tuần."
+      },
+      "skills": {
+        "focus": "Tập trung",
+        "memory": "Ghi nhớ",
+        "math": "Toán",
+        "language": "Ngôn ngữ"
+      },
+      "trend": {
+        "up": "+{change} {unit}",
+        "down": "{change} {unit}",
+        "stable": "=",
+        "unitMinute": "phút",
+        "unitLesson": "bài",
+        "unitDay": "ngày"
+      },
+      "chart": {
+        "ariaLabel": "Biểu đồ tiến độ tuần của {nickname}",
+        "title": "Tiến độ 6 tuần gần nhất — {nickname}",
+        "unit": "Đơn vị: phút học/tuần",
+        "svgAria": "Biểu đồ cột phút học theo tuần",
+        "weekLabel": "T{week}",
+        "legend": "{streakDays} ngày · {lessonsCompleted} bài"
+      }
+    },
+    "coursesPage": {
+      "heading": "Quản lý khóa học đã mua",
+      "description": "Tìm kiếm, lọc theo trạng thái và đổi kiểu xem khi danh sách khóa học tăng lên.",
+      "stats": {
+        "purchased": "Đã mua",
+        "studying": "Đang học",
+        "complete": "Hoàn thành",
+        "totalProgress": "Tiến độ tổng"
+      },
+      "empty": {
+        "title": "Bạn chưa mua khóa học nào",
+        "body": "Khám phá các khóa học theo mục tiêu của bé. Sau khi thanh toán thành công, khóa học sẽ mở ngay trên trang này.",
+        "cta": "Xem khóa học đang bán"
+      },
+      "filters": {
+        "searchPlaceholder": "Tìm theo tên khóa học hoặc mô tả...",
+        "sortRecent": "Mới mua",
+        "sortProgress": "Tiến độ cao",
+        "sortTitle": "A–Z",
+        "statusAll": "Tất cả",
+        "statusLearning": "Đang học",
+        "statusCompleted": "Đã hoàn thành",
+        "statusNotStarted": "Chưa bắt đầu",
+        "statusWithCount": "{label} ({count})",
+        "viewGrid": "Lưới",
+        "viewList": "Danh sách",
+        "reset": "Đặt lại"
+      },
+      "filterEmpty": {
+        "title": "Không có khóa học khớp bộ lọc",
+        "body": "Hãy thử đổi trạng thái, cách sắp xếp hoặc từ khóa tìm kiếm.",
+        "cta": "Xóa bộ lọc"
+      },
+      "card": {
+        "statusCompleted": "Đã hoàn thành",
+        "statusLearning": "Đang học",
+        "statusNotStarted": "Chưa bắt đầu",
+        "percent": "{percent}%",
+        "percentProgress": "{percent}% tiến độ",
+        "durationDays": "{count} ngày",
+        "lessonsCount": "{completed}/{total} bài",
+        "price": "Giá {amount}",
+        "studyProgress": "Tiến độ học",
+        "accessFor": "Truy cập {days} ngày kể từ khi mua",
+        "continue": "Tiếp tục",
+        "seeKey": "Xem khóa học",
+        "certificate": "Chứng chỉ",
+        "enrolled": "Ghi danh {date}"
+      },
+      "currencySuffix": "₫",
+      "buy": {
+        "heading": "Mua khóa học mới",
+        "description": "Bạn có thể mở rộng lộ trình học của bé bất cứ lúc nào.",
+        "seeAll": "Xem tất cả khóa học",
+        "paymentHistory": "Xem lịch sử thanh toán"
+      }
     }
   },
   "kid": {
@@ -5339,11 +6080,365 @@
         "music": "Vườn Âm Nhạc",
         "story": "Vườn Truyện"
       }
+    },
+    "lesson": {
+      "correct": "Đúng",
+      "incorrect": "Sai",
+      "done": "Xong!",
+      "sentenceProgress": "Câu {current} / {total}",
+      "xpChip": "+{xp} XP",
+      "coinsChip": "+{coins} Xu",
+      "minutes": "{minutes} phút",
+      "track": {
+        "english": "Tiếng Anh",
+        "math": "Toán",
+        "habit": "Thói quen",
+        "fallback": "Bài học"
+      },
+      "intro": {
+        "mascotAlt": "Kisu đã sẵn sàng",
+        "startCta": "Bắt đầu bài học",
+        "startAria": "Bắt đầu bài học",
+        "preparing": "Đang chuẩn bị..."
+      },
+      "video": {
+        "watchToContinue": "Xem video để tiếp tục bài học",
+        "noVideoFallback": "Bài này chưa có video. Bạn có thể tiếp tục sang phần luyện tập.",
+        "viewed": "Đã xem",
+        "hintNoVideo": "Bài này không cần xem video",
+        "hintReady": "Sẵn sàng tiếp tục",
+        "hintWatchMore": "Hãy xem thêm một chút để mở khóa",
+        "continueAria": "Tiếp tục sau khi xem video",
+        "continue": "Tiếp tục",
+        "continueWithoutVideo": "Tiếp tục không cần video"
+      },
+      "activity": {
+        "sentenceCounter": "Câu {current}/{total}",
+        "mascotCorrect": "Giỏi quá, đúng rồi!",
+        "mascotWrong": "Chưa đúng, hãy thử lại!",
+        "mascotPreparing": "Đang chuẩn bị câu hỏi...",
+        "mascotChoose": "Hãy chọn đáp án đúng nhất!",
+        "loading": "Đang tải câu hỏi...",
+        "noMoreQuestions": "Đã xong bài, không còn câu hỏi nữa!",
+        "feedbackCorrect": "Chính xác!",
+        "feedbackRetry": "Thử lại!",
+        "stickerCorrectAlt": "Giỏi quá",
+        "stickerWrongAlt": "Thử lại"
+      },
+      "completion": {
+        "heroAlt": "Hoàn thành bài học",
+        "titleDone": "{title} · Xong!",
+        "subtitle": "Bé đã hoàn thành bài học!",
+        "subtitleWithFloor": "Tầng {floor} · Bé đã hoàn thành bài học!",
+        "progress": "Tiến độ",
+        "progressFloor": "Tiến độ tầng {floor}",
+        "nextLesson": "Bài tiếp theo",
+        "nextLessonAria": "Chuyển sang bài tiếp theo: {title}",
+        "backToMap": "Quay về bản đồ",
+        "backToMapAria": "Quay về bản đồ học tập"
+      },
+      "renderer": {
+        "trueLabel": "Đúng",
+        "falseLabel": "Sai",
+        "fillPlaceholder": "Nhập câu trả lời",
+        "check": "Kiểm tra",
+        "hint": "Gợi ý: {hint}",
+        "unsupported": "Loại hoạt động này chưa được hỗ trợ."
+      },
+      "wizard": {
+        "evidenceLoading": "Đang tải khu vực gửi kết quả...",
+        "exit": "Thoát",
+        "stageLabel": "Giai đoạn học",
+        "readyBadge": "Sẵn sàng xuất phát",
+        "introHeading": "Sẵn sàng học chưa?",
+        "startNow": "Bắt đầu ngay!",
+        "watchHeading": "Xem video nhiệm vụ",
+        "watchHint": "Hãy xem phần lớn video để mở khóa thử thách.",
+        "noVideo": "Bài học này chưa có video.",
+        "viewProgress": "Tiến độ xem",
+        "confirming": "Đang xác nhận...",
+        "continueChallenge": "Tiếp tục thử thách",
+        "quizTitle": "Cho mình biết nào!",
+        "loadingQuestions": "Đang tải câu hỏi...",
+        "questionCounter": "Câu {current}/{total}",
+        "fallbackPrompt": "Bài học vừa rồi nói về chủ đề gì?",
+        "fallbackCorrectLabel": "Nội dung vừa học",
+        "fallbackCorrectDescription": "Đây là kiến thức trong video",
+        "fallbackWrongLabel": "Chủ đề khác",
+        "fallbackWrongDescription": "Đáp án này chưa đúng",
+        "uploadHeading": "Gửi kết quả cho thầy cô nhé!",
+        "uploadHint": "Nhờ ba mẹ chụp bài làm và gửi lên để nhận thêm sao.",
+        "sending": "Đang gửi...",
+        "completeMission": "Hoàn thành nhiệm vụ!",
+        "doneHeading": "Giỏi quá!",
+        "doneBody": "Bé vừa hoàn thành buổi học hôm nay.",
+        "returnToMap": "Quay về bản đồ",
+        "statusHeartbeatError": "Không cập nhật được tiến độ xem video. Vui lòng thử lại.",
+        "statusVideoReady": "Video đã sẵn sàng, cùng xem nào!",
+        "statusSessionError": "Không khởi tạo được phiên xem video.",
+        "statusWatchConfirmError": "Không xác nhận được việc đã xem video.",
+        "statusCompleteError": "Không hoàn thành được bài học. Vui lòng thử lại.",
+        "statusExact": "Chính xác!",
+        "statusTryAgain": "Chưa đúng, hãy thử lại!",
+        "statusExactNext": "Chính xác! Linh vật Cáo đang mở giai đoạn tiếp theo..."
+      }
+    },
+    "gardenHud": {
+      "opening": "Đang mở...",
+      "sharedGarden": {
+        "sceneAria": "Vườn học của bé",
+        "parentAria": "Quay về khu phụ huynh",
+        "parents": "Ba mẹ",
+        "childFallback": "Bé",
+        "chooseChildAria": "Chọn bé",
+        "continueAria": "Đến khóa học được gợi ý",
+        "heroKisuAlt": "Kisu gợi ý cho bé",
+        "heading": "Vườn học",
+        "subtitle": "Chạm vào chậu cây để bé tiếp tục học từng khóa.",
+        "kpiAria": "Tổng quan tiến độ",
+        "kpiPurchased": "Khóa đã mua",
+        "kpiStudying": "Đang học",
+        "kpiCompleted": "Đã hoàn thành",
+        "emptyKisuAlt": "Kisu đồng hành",
+        "emptyHeading": "Vườn của bé chưa có hạt giống",
+        "emptyBody": "Ba mẹ hãy mở khóa học trước để bé bắt đầu gieo hạt.",
+        "openCourseList": "Mở danh sách khóa học",
+        "openCourseAria": "Mở khóa học {title}",
+        "lessonsCount": "{completed}/{total} bài",
+        "plot": {
+          "lockedStatus": "Chưa gieo hạt",
+          "lockedAction": "Bắt đầu",
+          "completedStatus": "Đã nở hoa",
+          "completedAction": "Ôn lại",
+          "activeStatus": "Đang lớn",
+          "activeAction": "Tiếp tục học",
+          "pausedStatus": "Đang nghỉ",
+          "pausedAction": "Tiếp tục",
+          "seededStatus": "Mầm mới",
+          "seededAction": "Khám phá"
+        }
+      },
+      "skyGarden": {
+        "track": {
+          "math": "Toán",
+          "habit": "Thói quen",
+          "english": "Tiếng Anh"
+        },
+        "childFallback": "Bé",
+        "unitOpening": "Đang mở",
+        "journey": {
+          "completed": "Đã nở hoa",
+          "paused": "Tạm nghỉ",
+          "active": "Đang lớn",
+          "seeded": "Mầm mới"
+        },
+        "cloudLayer": "Tầng mây {floor}",
+        "firstClouds": "Những đám mây đầu tiên",
+        "bloomedPercent": "{percent}% khu vườn đã nở hoa",
+        "touchClouds": "Chạm vào mây để bắt đầu",
+        "nextMission": "Nhiệm vụ tiếp theo: {title}",
+        "tapFirstCloud": "Chạm đám mây đầu tiên để bắt đầu hành trình.",
+        "syncError": "Không tải được dữ liệu hành trình.",
+        "syncCatch": "Không đồng bộ được dữ liệu hành trình.",
+        "goalReachedContinue": "Hôm nay bé đã đủ phút học, nhưng vẫn có thể học tiếp!",
+        "openedNewCloud": "Giỏi quá! Bé vừa mở thêm một tầng mây mới.",
+        "seedReady": "Hạt giống mới cho khóa {course} đã sẵn sàng.",
+        "seedPlanted": "Đã gieo hạt cho khóa {course}. Cùng leo mây nào!",
+        "mascotStartGarden": "Hãy bắt đầu từ khu vườn. Hoàn thành bài học để leo lên mây.",
+        "mascotConquer": "Chinh phục cụm thẻ hiện tại để mở vùng mây phía trên.",
+        "mascotContinueClouds": "Tiếp tục hành trình trên mây nào.",
+        "mascotChooseJourney": "Chọn hành trình yêu thích để bắt đầu vườn học.",
+        "sceneAria": "Vườn học trên mây",
+        "backToLearningAria": "Quay về trang học",
+        "backToParentsAria": "Quay về phụ huynh",
+        "childPrefix": "Bé:",
+        "selectChildAria": "Chọn hồ sơ bé",
+        "flowNavAria": "Điều hướng hành trình",
+        "schoolYard": "Sân trường",
+        "sharedGarden": "Vườn chung",
+        "cloudGarden": "Vườn mây",
+        "courseFallbackAlt": "Khóa học",
+        "ownedGarden": "Vườn mây của {name}",
+        "journeyFallbackTitle": "Hành trình học của bé",
+        "dailyTarget": "Mục tiêu {minutes} phút/ngày",
+        "todayMinutes": "Hôm nay bé đã học {minutes} phút",
+        "minutesLeft": "Còn {minutes} phút",
+        "goalReached": "Bé đã đạt mục tiêu!",
+        "syncing": "Đang đồng bộ dữ liệu vườn...",
+        "enterJourney": "Vào {title} nào!",
+        "lessonsCount": "{completed}/{total} bài",
+        "nextLesson": "Tiếp theo: {title}",
+        "readyToStart": "Sẵn sàng bắt đầu",
+        "mapAria": "Bản đồ leo mây",
+        "fogCap": "Phía trên còn mây, hãy học tiếp để khám phá",
+        "passedFloors": "Đã qua {count} tầng",
+        "floorLabel": "Tầng {floor}",
+        "nodeMinutesObjective": "{minutes} phút • {objective}",
+        "completedChip": "Đã hoàn thành",
+        "unlockHint": "Hoàn thành tầng hiện tại để mở tầng mới!",
+        "floorLocked": "Tầng này chưa được mở"
+      },
+      "cinematic": {
+        "aria": "Gieo hạt cho khóa học mới",
+        "kicker": "Khóa học mới",
+        "title": "Gieo hạt, bắt đầu hành trình trên mây",
+        "startClimb": "Bắt đầu leo mây",
+        "later": "Để sau"
+      },
+      "mission": {
+        "back": "Quay lại",
+        "soundOn": "Có tiếng",
+        "soundOff": "Đã tắt tiếng",
+        "heading": "Bản đồ hành trình hôm nay",
+        "subtitle": "Di chuyển qua từng hành tinh, mở bài học mới và thu thập sao thưởng.",
+        "preparingMap": "Đang chuẩn bị bản đồ bài học...",
+        "emptyHeading": "Chưa có gì ở đây...",
+        "emptyBody": "Chưa có bài học phù hợp cho hồ sơ này.",
+        "guideAria": "Linh vật hướng dẫn",
+        "guideTitle": "Hướng dẫn của linh vật",
+        "nodeCompletedAria": "Mốc đã hoàn thành",
+        "nodeActiveAria": "Đang học",
+        "nodeLockedAria": "Mốc sắp mở khóa",
+        "loadError": "Không tải được bài học hôm nay.",
+        "unknownError": "Lỗi không xác định.",
+        "startingLesson": "Bắt đầu {lesson}!",
+        "goalRest": "Hôm nay học đủ rồi, nghỉ một chút nhé!",
+        "goalOverrideOk": "Ba mẹ đồng ý rồi, mình học thêm một chút được!",
+        "mascotIdle": "Chạm mình nếu cần giúp. Cùng học nào!",
+        "mascotTips": {
+          "pace": "Hãy học theo nhịp của mình!",
+          "help": "Mình ở đây để giúp bé!",
+          "step": "Từng bước một thôi.",
+          "keepGoing": "Cố lên nào!",
+          "greatToday": "Hôm nay bé làm rất tốt!"
+        },
+        "completionTips": {
+          "greatWork": "Giỏi quá! Bé vừa xong thêm một bài.",
+          "mapLighting": "Tuyệt! Bản đồ nhiệm vụ đang sáng lên.",
+          "fastProgress": "Xuất sắc! Bé đang tiến bộ rất nhanh.",
+          "yay": "Yay! Giữ vững nhé."
+        }
+      },
+      "navFeedback": {
+        "aria": "Đang mở trang mới",
+        "title": "Đang mở trang mới...",
+        "subtitle": "Vui lòng chờ một chút."
+      }
+    }
+  },
+  "chrome": {
+    "notifications": {
+      "bell": {
+        "ariaLabel": "Thông báo",
+        "title": "Thông báo",
+        "markAllRead": "Đánh dấu đã đọc hết",
+        "empty": "Chưa có thông báo mới.",
+        "overflowBadge": "{count}+"
+      },
+      "center": {
+        "ariaLabel": "Mở trung tâm thông báo",
+        "title": "Thông báo",
+        "subtitle": "Cập nhật mới nhất cho phụ huynh",
+        "readAll": "Đánh dấu đã đọc hết",
+        "empty": "Chưa có thông báo.",
+        "retry": "Thử lại",
+        "loadError": "Không tải được thông báo",
+        "unknownError": "Lỗi không xác định",
+        "updateError": "Không cập nhật được trạng thái thông báo",
+        "partialReadError": "Một số thông báo chưa cập nhật được trạng thái đã đọc.",
+        "overflowBadge": "{count}+"
+      },
+      "relative": {
+        "justNow": "Vừa xong",
+        "minutesAgo": "{count} phút trước",
+        "hoursAgo": "{count} giờ trước"
+      }
+    },
+    "parentGate": {
+      "modal": {
+        "title": "Khu vực phụ huynh",
+        "subtitle": "Vui lòng xác nhận để tiếp tục",
+        "prompt": "Trả lời phép tính dưới đây để xác nhận bạn là phụ huynh:",
+        "wrongAnswer": "Chưa đúng! Đang tạo câu hỏi mới...",
+        "back": "Quay lại",
+        "confirm": "Xác nhận"
+      },
+      "dialog": {
+        "title": "Xác nhận phụ huynh",
+        "closeAriaLabel": "Đóng xác nhận phụ huynh",
+        "prompt": "Nhập kết quả của {left} × {right} để tiếp tục",
+        "answerAriaLabel": "Kết quả phép tính xác nhận phụ huynh",
+        "placeholder": "...",
+        "clearKey": "C",
+        "wrongAnswer": "Kết quả chưa đúng. Vui lòng thử lại.",
+        "continue": "Tiếp tục"
+      }
+    },
+    "impersonation": {
+      "viewingAs": "Đang xem với tư cách {email}",
+      "stop": "Dừng xem hộ",
+      "stopping": "Đang dừng...",
+      "stopError": "Không dừng được chế độ xem hộ.",
+      "unknownError": "Lỗi không xác định."
+    },
+    "mascotHub": {
+      "title": "Trung tâm hỗ trợ linh vật",
+      "hello": "Xin chào phụ huynh, linh vật Cáo có thể giúp gì?",
+      "chatZalo": "Chat qua Zalo",
+      "hotline": "Hotline: {number}",
+      "hotlineNumber": "1900 xxxx",
+      "instructions": "Hướng dẫn sử dụng",
+      "csReady": "Đội CS luôn sẵn sàng hỗ trợ • {mode}",
+      "openAriaLabel": "Mở kênh hỗ trợ",
+      "tooltipFallback": "Phụ huynh cần hỗ trợ?",
+      "personas": {
+        "listening": {
+          "message": "Linh vật Cáo đang lắng nghe câu hỏi của phụ huynh.",
+          "label": "Chế độ lắng nghe"
+        },
+        "care": {
+          "message": "Phụ huynh cần hỗ trợ?",
+          "label": "Chế độ quan tâm"
+        },
+        "guide": {
+          "message": "Linh vật Cáo có hướng dẫn chi tiết dành cho phụ huynh.",
+          "label": "Chế độ hướng dẫn"
+        },
+        "connect": {
+          "message": "Kết nối nhanh qua hotline hoặc Zalo hỗ trợ!",
+          "label": "Chế độ kết nối"
+        }
+      }
+    },
+    "calendar": {
+      "weekdays": {
+        "sun": "CN",
+        "mon": "T2",
+        "tue": "T3",
+        "wed": "T4",
+        "thu": "T5",
+        "fri": "T6",
+        "sat": "T7"
+      }
     }
   },
   "admin": {
     "login": {
-      "metadataTitle": "Đăng nhập Admin"
+      "metadataTitle": "Đăng nhập Admin",
+      "form": {
+        "title": "Cổng nội bộ",
+        "subtitle": "Đăng nhập này chỉ dành cho ban quản trị TinyGenius Hub.",
+        "emailLabel": "Email quản trị",
+        "emailPlaceholder": "admin@tinygeniushubvn.tech",
+        "passwordLabel": "Mật khẩu",
+        "passwordPlaceholder": "••••••••",
+        "submit": "Đăng nhập an toàn",
+        "submitLoading": "Đang xác minh...",
+        "errors": {
+          "loginFailed": "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.",
+          "connection": "Lỗi kết nối. Vui lòng thử lại."
+        }
+      }
     },
     "layout": {
       "title": "Quản trị hệ thống",

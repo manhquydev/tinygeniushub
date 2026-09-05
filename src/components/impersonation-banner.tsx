@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 type ImpersonationBannerProps = {
@@ -19,6 +20,7 @@ type StopImpersonationResponse = {
 
 export function ImpersonationBanner({ parentEmail }: ImpersonationBannerProps) {
   const router = useRouter();
+  const t = useTranslations("chrome.impersonation");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +35,7 @@ export function ImpersonationBanner({ parentEmail }: ImpersonationBannerProps) {
       const body = (await response.json()) as StopImpersonationResponse;
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Cannot stop alternate view.");
+        setError(body.error?.message ?? t("stopError"));
         return;
       }
 
@@ -41,7 +43,7 @@ export function ImpersonationBanner({ parentEmail }: ImpersonationBannerProps) {
       router.push(redirectTo);
       router.refresh();
     } catch (stopError) {
-      setError(stopError instanceof Error ? stopError.message : "Unknown error.");
+      setError(stopError instanceof Error ? stopError.message : t("unknownError"));
     } finally {
       setLoading(false);
     }
@@ -50,7 +52,7 @@ export function ImpersonationBanner({ parentEmail }: ImpersonationBannerProps) {
   return (
     <div className="fixed inset-x-0 top-0 z-50 border-b border-amber-200 bg-amber-100/95 px-3 py-2 shadow-sm backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 text-sm text-amber-900">
-        <p className="font-semibold">👁 Viewing as {parentEmail}</p>
+        <p className="font-semibold">{t("viewingAs", { email: parentEmail })}</p>
         <button
           type="button"
           onClick={() => {
@@ -59,7 +61,7 @@ export function ImpersonationBanner({ parentEmail }: ImpersonationBannerProps) {
           disabled={loading}
           className="inline-flex min-h-9 items-center justify-center rounded-full border border-amber-400 bg-white px-3 font-semibold text-amber-800 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {loading ? "Stopping..." : "Stop watching"}
+          {loading ? t("stopping") : t("stop")}
         </button>
       </div>
       {error ? <p className="mx-auto mt-1 max-w-6xl text-xs font-medium text-rose-700">{error}</p> : null}

@@ -3,42 +3,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, LayoutGroup, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { Headset, Info, MessageCircle, Phone, PhoneCall } from "lucide-react";
 
-const TOOLTIP_MESSAGE = "Parents need support?";
-const HOTLINE_LABEL = "Hotline: 1900 xxxx";
 const HUB_FRAME_SIZE = 116;
 const MENU_ITEM_SPRING = { type: "spring" as const, stiffness: 320, damping: 24 };
 
-interface SupportPersona {
-  message: string;
-  label: string;
-}
-
-const SUPPORT_PERSONAS: SupportPersona[] = [
-  {
-    message: "The fox mascot is listening to parents' questions.",
-    label: "Listening Mode",
-  },
-  {
-    message: "Parents need support?",
-    label: "Care Mode",
-  },
-  {
-    message: "The fox mascot has detailed instructions available for parents.",
-    label: "Guide Mode",
-  },
-  {
-    message: "Connect quickly via hotline or Zalo now!",
-    label: "Connect Mode",
-  },
-];
+const PERSONA_KEYS = [
+  { message: "personas.listening.message", label: "personas.listening.label" },
+  { message: "personas.care.message", label: "personas.care.label" },
+  { message: "personas.guide.message", label: "personas.guide.label" },
+  { message: "personas.connect.message", label: "personas.connect.label" },
+] as const;
 
 export function MascotSupportHub() {
   const pathname = usePathname();
+  const t = useTranslations("chrome.mascotHub");
   const prefersReducedMotion = useReducedMotion() ?? false;
   const [isPinnedOpen, setIsPinnedOpen] = useState(false);
   const [isHoverOpen, setIsHoverOpen] = useState(false);
@@ -54,8 +37,12 @@ export function MascotSupportHub() {
   const isAdminRoute = pathname?.startsWith("/admin");
   const isHomepage = pathname === "/";
   const open = isPinnedOpen || isHoverOpen;
-  const activePersona = SUPPORT_PERSONAS[personaIndex % SUPPORT_PERSONAS.length] ?? SUPPORT_PERSONAS[0];
-  const tooltipMessage = activePersona?.message ?? TOOLTIP_MESSAGE;
+  const persona = PERSONA_KEYS[personaIndex % PERSONA_KEYS.length] ?? PERSONA_KEYS[0];
+  const activePersona = {
+    message: t(persona.message),
+    label: t(persona.label),
+  };
+  const tooltipMessage = activePersona.message;
   const shouldRunPressAnimation = pressFxPulse > 0;
 
   useEffect(() => {
@@ -90,7 +77,7 @@ export function MascotSupportHub() {
     if (!isHomepage || isKidRoute || open || prefersReducedMotion) return;
 
     const personaTimer = setInterval(() => {
-      setPersonaIndex((current) => (current + 1) % SUPPORT_PERSONAS.length);
+      setPersonaIndex((current) => (current + 1) % PERSONA_KEYS.length);
     }, 5200);
 
     return () => clearInterval(personaTimer);
@@ -221,8 +208,8 @@ export function MascotSupportHub() {
                 }}
               >
                 <div className="mb-3 grid gap-1 text-slate-900">
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700/90">Mascot Support Hub</p>
-                  <p className="text-sm font-semibold leading-relaxed">Hello parents, how can the fox mascot help?</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700/90">{t("title")}</p>
+                  <p className="text-sm font-semibold leading-relaxed">{t("hello")}</p>
                 </div>
 
                 <m.div
@@ -256,7 +243,7 @@ export function MascotSupportHub() {
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-sky-500 text-xs font-black text-white shadow-[0_8px_16px_rgba(14,165,233,0.32)]">
                       Z
                     </span>
-                    <span className="flex-1 text-left">Chat qua Zalo</span>
+                    <span className="flex-1 text-left">{t("chatZalo")}</span>
                     <MessageCircle className="h-4 w-4 text-sky-600 transition group-hover:scale-110" />
                   </m.a>
 
@@ -277,7 +264,7 @@ export function MascotSupportHub() {
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-emerald-500 text-white shadow-[0_8px_16px_rgba(16,185,129,0.3)]">
                       <Phone className="h-4 w-4" />
                     </span>
-                    <span className="text-left">{HOTLINE_LABEL}</span>
+                    <span className="text-left">{t("hotline", { number: t("hotlineNumber") })}</span>
                   </m.a>
 
                   <m.div
@@ -303,14 +290,14 @@ export function MascotSupportHub() {
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-violet-500 text-white shadow-[0_8px_16px_rgba(139,92,246,0.32)]">
                       <Info className="h-4 w-4" />
                     </span>
-                    <span className="text-left">Instructions for use</span>
+                    <span className="text-left">{t("instructions")}</span>
                     </Link>
                   </m.div>
                 </m.div>
 
                 <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/70 px-3 py-1.5 text-[0.72rem] font-semibold text-emerald-700">
                   <Headset className="h-3.5 w-3.5" />
-                  CS team is always ready to support • {activePersona?.label}
+                  {t("csReady", { mode: activePersona.label })}
                 </div>
               </m.div>
             ) : null}
@@ -320,7 +307,7 @@ export function MascotSupportHub() {
             layout
             type="button"
             aria-expanded={open}
-            aria-label="Open support communication channel"
+            aria-label={t("openAriaLabel")}
             onClick={handleHubPress}
             className="relative grid place-items-center overflow-visible rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             style={{

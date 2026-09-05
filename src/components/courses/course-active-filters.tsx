@@ -1,15 +1,10 @@
 "use client";
 
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
-import {
-  AGE_GROUP_LABELS,
-  DURATION_LABELS,
-  PHASE_LABELS,
-  PROGRAM_LABELS,
-  SUBJECT_LABELS,
-  type CourseFilterParams,
-} from "@/lib/courses/course-filter-utils";
+import { resolveAppLocale, type AppLocale } from "@/i18n/locales";
+import { getCourseFilterLabel, type CourseFilterParams } from "@/lib/courses/course-filter-utils";
 
 interface CourseActiveFiltersProps {
   filters: CourseFilterParams;
@@ -17,47 +12,47 @@ interface CourseActiveFiltersProps {
 
 type FilterChip = { key: string; label: string };
 
-function buildChips(filters: CourseFilterParams): FilterChip[] {
-  const chips: FilterChip[] = [];
-
-  if (filters.q) {
-    chips.push({ key: "q", label: `Find:${filters.q}` });
-  }
-
-  if (filters.program && PROGRAM_LABELS[filters.program]) {
-    chips.push({ key: "program", label: PROGRAM_LABELS[filters.program] });
-  }
-
-  if (filters.phase && PHASE_LABELS[filters.phase]) {
-    chips.push({ key: "phase", label: PHASE_LABELS[filters.phase] });
-  }
-
-  if (filters.subject && SUBJECT_LABELS[filters.subject]) {
-    chips.push({ key: "subject", label: SUBJECT_LABELS[filters.subject] });
-  }
-
-  if (filters.ageGroup && AGE_GROUP_LABELS[filters.ageGroup]) {
-    chips.push({ key: "ageGroup", label: AGE_GROUP_LABELS[filters.ageGroup] });
-  }
-
-  if (filters.duration && DURATION_LABELS[filters.duration]) {
-    chips.push({ key: "duration", label: DURATION_LABELS[filters.duration] });
-  }
-
-  if (filters.minPrice !== undefined || filters.maxPrice !== undefined) {
-    const min = filters.minPrice ? `${filters.minPrice.toLocaleString("vi-VN")}D` : "0";
-    const max = filters.maxPrice ? `${filters.maxPrice.toLocaleString("vi-VN")}D` : "∞";
-    chips.push({ key: "price", label: `Price:${min} – ${max}` });
-  }
-
-  return chips;
+function formatPriceBound(value: number | undefined, locale: AppLocale, suffix: string, fallback: string) {
+  if (!value) return fallback;
+  return `${value.toLocaleString(locale === "vi" ? "vi-VN" : "en-US")}${suffix}`;
 }
 
 export function CourseActiveFilters({ filters }: CourseActiveFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations("courses.catalog");
+  const locale = resolveAppLocale(useLocale());
 
-  const chips = buildChips(filters);
+  const chips: FilterChip[] = [];
+  if (filters.q) {
+    chips.push({ key: "q", label: t("chips.find", { query: filters.q }) });
+  }
+  if (filters.program) {
+    chips.push({ key: "program", label: getCourseFilterLabel("program", filters.program, locale) });
+  }
+  if (filters.phase) {
+    chips.push({ key: "phase", label: getCourseFilterLabel("phase", filters.phase, locale) });
+  }
+  if (filters.subject) {
+    chips.push({ key: "subject", label: getCourseFilterLabel("subject", filters.subject, locale) });
+  }
+  if (filters.ageGroup) {
+    chips.push({ key: "ageGroup", label: getCourseFilterLabel("ageGroup", filters.ageGroup, locale) });
+  }
+  if (filters.duration) {
+    chips.push({ key: "duration", label: getCourseFilterLabel("duration", filters.duration, locale) });
+  }
+  if (filters.minPrice !== undefined || filters.maxPrice !== undefined) {
+    const suffix = t("currencySuffix");
+    chips.push({
+      key: "price",
+      label: t("chips.price", {
+        min: formatPriceBound(filters.minPrice, locale, suffix, t("chips.priceMinZero")),
+        max: formatPriceBound(filters.maxPrice, locale, suffix, t("chips.priceMaxUnlimited")),
+      }),
+    });
+  }
+
   if (chips.length === 0) return null;
 
   function removeFilter(key: string) {
@@ -75,13 +70,13 @@ export function CourseActiveFilters({ filters }: CourseActiveFiltersProps) {
   }
 
   return (
-    <div className="flex gap-2 overflow-x-auto pb-1" aria-label="Filters are applying">
+    <div className="flex gap-2 overflow-x-auto pb-1" aria-label={t("chips.ariaLabel")}>
       {chips.map((chip) => (
         <button
           key={chip.key}
           onClick={() => removeFilter(chip.key)}
           className="flex shrink-0 items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-100"
-          aria-label={`Clear filter${chip.label}`}
+          aria-label={t("chips.clearAria", { label: chip.label })}
         >
           {chip.label}
           <X className="h-3 w-3" />

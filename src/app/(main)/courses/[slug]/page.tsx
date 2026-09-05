@@ -2,7 +2,10 @@ import { cache } from "react";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound, permanentRedirect } from "next/navigation";
+import { getLocale } from "next-intl/server";
 import { AB_COURSES_COOKIE, type AbVariant } from "@/lib/ab-test-constants";
+import { resolveAppLocale } from "@/i18n/locales";
+import { translate } from "@/i18n/translator";
 import { getParentFromServerCookie } from "@/lib/auth/session";
 import { prisma } from "@/lib/db";
 import { buildCourseJsonLd, safeJsonLd } from "@/lib/seo/course-jsonld";
@@ -66,21 +69,24 @@ const loadCourseCurriculumLessons = cache(async function loadCourseCurriculumLes
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const locale = resolveAppLocale(await getLocale());
   if (isLegacyBundleRouteSlug(slug)) {
     return {
-      title: "Course List - TinyGenius Hub",
-      description: "Courses are displayed in an independent model.",
+      title: translate("courses.detail.metadata.legacyTitle", undefined, locale),
+      description: translate("courses.detail.metadata.legacyDescription", undefined, locale),
       alternates: { canonical: "https://www.tinygeniushubvn.tech/courses" },
     };
   }
   const course = await loadPublishedCourse(slug);
-  if (!course || !course.isPublished) return { title: "The course does not exist" };
+  if (!course || !course.isPublished) {
+    return { title: translate("courses.detail.metadata.notFoundTitle", undefined, locale) };
+  }
 
   const coverUrl = resolveCourseCoverImage(course.slug, course.coverImageUrl);
   const canonicalUrl = `https://www.tinygeniushubvn.tech/courses/${course.slug}`;
 
   return {
-    title: `${course.title} - TinyGenius Hub`,
+    title: translate("courses.detail.metadata.title", { title: course.title }, locale),
     description: course.description,
     alternates: { canonical: canonicalUrl },
     openGraph: {
@@ -106,11 +112,16 @@ export default async function CourseDetailPage({ params }: Props) {
   const course = await loadPublishedCourse(slug);
   if (!course || !course.isPublished) notFound();
 
-  const cookieStore = await cookies();
+  const [cookieStore, rawLocale] = await Promise.all([cookies(), getLocale()]);
+  const locale = resolveAppLocale(rawLocale);
   const coursesVariant: AbVariant = cookieStore.get(AB_COURSES_COOKIE)?.value === "B" ? "B" : "A";
   const parent = await getParentFromServerCookie();
   const pricing = resolveCourseDisplayPricing(course);
-  const checkoutLabel = coursesVariant === "B" ? "Buy the course and get started right away" : "Buy the course";
+  const checkoutLabel = translate(
+    coursesVariant === "B" ? "courses.detail.checkoutLabelB" : "courses.detail.checkoutLabelA",
+    undefined,
+    locale,
+  );
   const normalizedCover = resolveCourseCoverImage(course.slug, course.coverImageUrl);
 
   let isOwned = false;

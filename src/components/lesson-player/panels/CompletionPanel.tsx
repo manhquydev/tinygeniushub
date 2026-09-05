@@ -3,6 +3,7 @@
 import * as m from "motion/react-m";
 import { useReducedMotion, useAnimation } from "motion/react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 
 interface CompletionPanelProps {
@@ -20,7 +21,6 @@ interface CompletionPanelProps {
 
 const HERO_STICKER = "/kisu-assets/stickers/sticker_party_celebration.png";
 
-// Small TierProgressBar sub-component
 function TierProgressBar({
   label,
   before,
@@ -78,11 +78,11 @@ export function CompletionPanel({
   onNextLesson,
   onBackToMap,
 }: CompletionPanelProps) {
+  const t = useTranslations("kid.lesson");
   const prefersReducedMotion = useReducedMotion() ?? false;
 
   return (
     <div className="lp-main">
-      {/* Hero sticker – physics bounce */}
       <m.div
         initial={prefersReducedMotion ? false : { scale: 0.3, opacity: 0, y: -30 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ export function CompletionPanel({
       >
         <Image
           src={HERO_STICKER}
-          alt="Complete the lesson"
+          alt={t("completion.heroAlt")}
           width={128}
           height={128}
           className="lp-done-hero-sticker"
@@ -98,24 +98,20 @@ export function CompletionPanel({
         />
       </m.div>
 
-      {/* Dark card */}
       <m.div
         className="lp-panel is-dark lp-done-panel"
         initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
       >
-        {/* Title – clean type, no emoji */}
-        <h2 className="lp-done-title">{title} · Xong!</h2>
+        <h2 className="lp-done-title">{t("completion.titleDone", { title })}</h2>
 
-        {/* Decorative accent line */}
         <div className="lp-done-title-line" aria-hidden="true" />
 
         <p className="lp-done-subtitle">
-          {tierLabel ? `Floor${tierLabel} ·` : ""} Child completed the lesson successfully!
+          {tierLabel ? `${tierLabel} · ${t("completion.subtitle")}` : t("completion.subtitle")}
         </p>
 
-        {/* XP / Coin chips */}
         {(earnedXp > 0 || earnedCoins > 0) && (
           <m.div
             className="lp-xp-row"
@@ -126,28 +122,26 @@ export function CompletionPanel({
             {earnedXp > 0 && (
               <span className="lp-xp-chip">
                 <span className="lp-xp-chip-dot xp" aria-hidden="true" />
-                +{earnedXp} XP
+                {t("xpChip", { xp: earnedXp })}
               </span>
             )}
             {earnedCoins > 0 && (
               <span className="lp-xp-chip">
                 <span className="lp-xp-chip-dot coin" aria-hidden="true" />
-                +{earnedCoins} Xu
+                {t("coinsChip", { coins: earnedCoins })}
               </span>
             )}
           </m.div>
         )}
 
-        {/* Tier Progress Bar */}
         {tierProgressAfter > tierProgressBefore && (
           <TierProgressBar
-            label={tierLabel ? `Progress floor${tierLabel}` : "Progress"}
+            label={tierLabel ?? t("completion.progress")}
             before={tierProgressBefore}
             after={tierProgressAfter}
           />
         )}
 
-        {/* Actions */}
         <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem", marginTop: "1.1rem" }}>
           {nextLessonTitle && onNextLesson ? (
             <m.button
@@ -156,9 +150,9 @@ export function CompletionPanel({
               onClick={onNextLesson}
               whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
               whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-              aria-label={`Skip to the next lesson:${nextLessonTitle}`}
+              aria-label={t("completion.nextLessonAria", { title: nextLessonTitle })}
             >
-              Next article
+              {t("completion.nextLesson")}
             </m.button>
           ) : null}
 
@@ -167,10 +161,10 @@ export function CompletionPanel({
             className="lp-btn-ghost"
             onClick={onBackToMap}
             whileHover={prefersReducedMotion ? undefined : { opacity: 0.85 }}
-            aria-label="Return to the learning map"
+            aria-label={t("completion.backToMapAria")}
             style={{ width: "100%" }}
           >
-            Return to the map
+            {t("completion.backToMap")}
           </m.button>
         </div>
       </m.div>

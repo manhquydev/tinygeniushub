@@ -11,6 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const TOP_BAR_DELAY_MS = 120;
 const OVERLAY_DELAY_MS = 400;
@@ -100,6 +101,8 @@ function KidNavigationFeedbackOverlay({
   showOverlay: boolean;
   showTopBar: boolean;
 }) {
+  const t = useTranslations("kid.gardenHud.navFeedback");
+
   return (
     <>
       {showTopBar ? (
@@ -113,11 +116,11 @@ function KidNavigationFeedbackOverlay({
           className="kid-nav-feedback-overlay"
           role="status"
           aria-live="polite"
-          aria-label="Opening a new page"
+          aria-label={t("aria")}
         >
           <div className="kid-nav-feedback-card">
-            <p className="kid-nav-feedback-title">Opening a new page...</p>
-            <p className="kid-nav-feedback-subtitle">Please wait a moment.</p>
+            <p className="kid-nav-feedback-title">{t("title")}</p>
+            <p className="kid-nav-feedback-subtitle">{t("subtitle")}</p>
           </div>
         </div>
       ) : null}

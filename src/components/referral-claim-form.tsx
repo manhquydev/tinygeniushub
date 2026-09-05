@@ -2,12 +2,14 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface ReferralClaimFormProps {
   ownCode: string | null;
 }
 
 export function ReferralClaimForm({ ownCode }: ReferralClaimFormProps) {
+  const t = useTranslations("parent.referralClaim");
   const router = useRouter();
   const [resolvedOwnCode, setResolvedOwnCode] = useState<string | null>(ownCode);
   const [code, setCode] = useState("");
@@ -27,21 +29,21 @@ export function ReferralClaimForm({ ownCode }: ReferralClaimFormProps) {
       });
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Unable to generate referral code.");
+        setError(body.error?.message ?? t("generateError"));
         return;
       }
 
       const nextCode = body.data?.summary?.code as string | null | undefined;
       if (!nextCode) {
-        setError("Unable to create referral code.");
+        setError(t("createError"));
         return;
       }
 
       setResolvedOwnCode(nextCode);
-      setInfo("Referral code successfully generated.");
+      setInfo(t("generated"));
       router.refresh();
     } catch (provisionError) {
-      setError(provisionError instanceof Error ? provisionError.message : "Unknown error.");
+      setError(provisionError instanceof Error ? provisionError.message : t("unknownError"));
     } finally {
       setProvisioning(false);
     }
@@ -65,18 +67,18 @@ export function ReferralClaimForm({ ownCode }: ReferralClaimFormProps) {
 
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Unable to receive referral code.");
+        setError(body.error?.message ?? t("claimError"));
         return;
       }
 
       if (body.data?.result?.idempotent) {
-        setInfo("This account has been assigned a referral code previously.");
+        setInfo(t("alreadyAssigned"));
       } else {
-        setInfo("Received referral code successfully.");
+        setInfo(t("claimed"));
       }
       setCode("");
     } catch (claimError) {
-      setError(claimError instanceof Error ? claimError.message : "Unknown error.");
+      setError(claimError instanceof Error ? claimError.message : t("unknownError"));
     } finally {
       setLoading(false);
     }
@@ -84,12 +86,12 @@ export function ReferralClaimForm({ ownCode }: ReferralClaimFormProps) {
 
   return (
     <div className="card">
-      <h2>Enter referral code</h2>
-      <p className="muted-text">Your code: {resolvedOwnCode ?? "Not created yet"}</p>
+      <h2>{t("heading")}</h2>
+      <p className="muted-text">{t("yourCode", { code: resolvedOwnCode ?? t("notCreated") })}</p>
       {!resolvedOwnCode ? (
         <div className="hero-actions">
           <button type="button" className="solid-button" onClick={handleProvisionOwnCode} disabled={provisioning}>
-            {provisioning ? "Creating..." : "Generate referral code"}
+            {provisioning ? t("creating") : t("generate")}
           </button>
         </div>
       ) : null}
@@ -97,14 +99,14 @@ export function ReferralClaimForm({ ownCode }: ReferralClaimFormProps) {
         <input
           value={code}
           onChange={(event) => setCode(event.target.value)}
-          placeholder="Enter referral code (Example: ABCD1234)"
+          placeholder={t("placeholder")}
           minLength={4}
           maxLength={32}
           required
           disabled={loading}
         />
         <button type="submit" className="ghost-button" disabled={loading}>
-          {loading ? "Processing..." : "Get code"}
+          {loading ? t("processing") : t("submit")}
         </button>
       </form>
       {error ? <p className="error-text">{error}</p> : null}

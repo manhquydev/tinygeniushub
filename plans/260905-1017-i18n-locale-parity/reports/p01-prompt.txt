@@ -1,0 +1,12 @@
+Cook ONLY Phase 1 of plan plans/260905-1017-i18n-locale-parity/phase-01-start.md. Also read plans/260905-1017-i18n-locale-parity/plan.md.
+
+Rules:
+- Edit ONLY locales/en/translation.json, locales/vi/translation.json, and src/i18n/translator.test.ts.
+- Do not edit any src/ UI files.
+- Add every semantic key listed in phase-01 Key inventory, including kid.gardenHud (required) and courses.filter / courses.banner.
+- EN and VI key trees must match. VI must be real Vietnamese. EN natural English. No generated.* hashes. Only {token} interpolation.
+- Extend translator.test.ts with specialPages.notFound.title en vs vi assertion.
+- Skip project-wide lint/test suites. You may run a small node/jq key-tree parity check.
+- Files already huge: add nested objects next to existing specialPages/parent/kid/admin. Do not rewrite unrelated keys.
+- When done, write a one-page summary to plans/260905-1017-i18n-locale-parity/reports/cook-phase-01.md listing namespaces added and parity method.
+- Reply with DONE and the report path.

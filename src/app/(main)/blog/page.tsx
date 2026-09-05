@@ -1,14 +1,33 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { getLocale } from "next-intl/server";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogCardFeatured } from "@/components/blog/blog-card-featured";
 import { BlogSidebar } from "@/components/blog/blog-sidebar";
+import { resolveAppLocale } from "@/i18n/locales";
+import { translate } from "@/i18n/translator";
 import * as blogRepository from "@/modules/blog/blog-repository";
 import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
-import { generateBlogListMetadata } from "@/modules/blog/blog-seo";
 import { blogService } from "@/modules/blog/blog-service";
 
 export const revalidate = 600;
-export const metadata = generateBlogListMetadata();
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = resolveAppLocale(await getLocale());
+  const title = translate("blog.chrome.metadata.title", undefined, locale);
+  const description = translate("blog.chrome.metadata.description", undefined, locale);
+  return {
+    title,
+    description,
+    alternates: { canonical: "/blog" },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: "/blog",
+    },
+  };
+}
 
 function normalizeCategoryColor(value: string | null | undefined) {
   const fallback = "#0f766e";
@@ -48,19 +67,22 @@ function getCategoryBadgeStyle(color: string | null | undefined) {
 }
 
 export default async function BlogPage() {
-  const [featuredPosts, latestPostsResult, categories, trendingPosts] = await Promise.all([
+  const [featuredPosts, latestPostsResult, categories, trendingPosts, rawLocale] = await Promise.all([
     blogService.getFeaturedPosts(),
     blogService.listPosts({ page: 1, limit: 8 }),
     blogRepository.findCategories(),
     blogRepository.findTrendingPosts(5),
+    getLocale(),
   ]);
 
+  const locale = resolveAppLocale(rawLocale);
+  const t = (key: string) => translate(`blog.chrome.listing.${key}`, undefined, locale);
   const heroPost = featuredPosts[0] ?? latestPostsResult.posts[0] ?? null;
   const hasLatestPosts = latestPostsResult.posts.length > 0;
 
   return (
     <div className="page-stack">
-      {heroPost ? <BlogCardFeatured post={heroPost} /> : null}
+      {heroPost ? <BlogCardFeatured post={heroPost} locale={locale} /> : null}
 
       <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="flex gap-2 overflow-x-auto pb-1">
@@ -71,7 +93,7 @@ export default async function BlogPage() {
               className="inline-flex min-h-10 shrink-0 items-center rounded-full px-3 text-sm font-semibold"
               style={getCategoryBadgeStyle(category.color)}
             >
-              {getBlogCategoryDisplayName(category)}
+              {getBlogCategoryDisplayName(category, locale)}
             </Link>
           ))}
         </div>
@@ -79,12 +101,9 @@ export default async function BlogPage() {
 
       <section className="space-y-4">
         <div className="section-header">
-          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Latest article</h1>
-          <Link
-            href="/blog/search"
-            className="text-sm font-semibold text-teal-700 hover:text-teal-800"
-          >
-            Search articles
+          <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">{t("heading")}</h1>
+          <Link href="/blog/search" className="text-sm font-semibold text-teal-700 hover:text-teal-800">
+            {t("searchLink")}
           </Link>
         </div>
 
@@ -92,15 +111,15 @@ export default async function BlogPage() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr]">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
               {latestPostsResult.posts.map((post) => (
-                <BlogCard key={post.id} post={post} />
+                <BlogCard key={post.id} post={post} locale={locale} />
               ))}
             </div>
 
-            <BlogSidebar categories={categories} trendingPosts={trendingPosts} />
+            <BlogSidebar categories={categories} trendingPosts={trendingPosts} locale={locale} />
           </div>
         ) : (
           <section className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm">
-            There is no official post yet. Content will appear as soon as the team publishes a new article.
+            {t("empty")}
           </section>
         )}
       </section>

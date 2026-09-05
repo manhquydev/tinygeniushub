@@ -1,7 +1,10 @@
 ﻿import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getLocale } from "next-intl/server";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogCategoryFilter } from "@/components/blog/blog-category-filter";
+import { resolveAppLocale } from "@/i18n/locales";
+import { translate } from "@/i18n/translator";
 import { prisma } from "@/lib/db";
 import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import { blogService } from "@/modules/blog/blog-service";
@@ -71,7 +74,10 @@ function getCategoryBadgeStyle(color: string | null | undefined) {
 }
 
 export default async function BlogCategoryPage({ params, searchParams }: BlogCategoryPageProps) {
-  const [{ slug }, resolvedSearchParams] = await Promise.all([params, searchParams]);
+  const [{ slug }, resolvedSearchParams, rawLocale] = await Promise.all([params, searchParams, getLocale()]);
+  const locale = resolveAppLocale(rawLocale);
+  const t = (key: string, values?: Record<string, string | number>) =>
+    translate(`blog.chrome.category.${key}`, values, locale);
   const page = resolvePage(resolvedSearchParams?.page);
   const sort = resolveSort(resolvedSearchParams?.sort);
 
@@ -94,7 +100,7 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
   if (!category) {
     notFound();
   }
-  const categoryDisplayName = getBlogCategoryDisplayName(category);
+  const categoryDisplayName = getBlogCategoryDisplayName(category, locale);
 
   const result = await blogService.listPosts({
     page,
@@ -119,34 +125,35 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
       </section>
 
       <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <p className="text-sm font-semibold text-slate-600">
-          {result.total} posts
-        </p>
+        <p className="text-sm font-semibold text-slate-600">{t("postCount", { count: result.total })}</p>
         <BlogCategoryFilter basePath={`/blog/category/${category.slug}`} currentSort={sort} />
       </section>
 
       <section className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {result.posts.map((post) => (
-          <BlogCard key={post.id} post={post} />
+          <BlogCard key={post.id} post={post} locale={locale} />
         ))}
       </section>
 
-      <nav className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm" aria-label="Pagination">
+      <nav
+        className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+        aria-label={t("paginationAria")}
+      >
         {page > 1 ? (
           <Link
             href={buildCategoryPageHref(category.slug, page - 1, sort)}
             className="inline-flex min-h-10 items-center rounded-xl border border-slate-300 px-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
           >
-            ← Previous page
+            {t("previous")}
           </Link>
         ) : (
           <span className="inline-flex min-h-10 items-center rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-400">
-            ← Previous page
+            {t("previous")}
           </span>
         )}
 
         <span className="text-sm font-semibold text-slate-600">
-          Page {result.page}/{result.totalPages}
+          {t("pageStatus", { page: result.page, totalPages: result.totalPages })}
         </span>
 
         {result.page < result.totalPages ? (
@@ -154,11 +161,11 @@ export default async function BlogCategoryPage({ params, searchParams }: BlogCat
             href={buildCategoryPageHref(category.slug, page + 1, sort)}
             className="inline-flex min-h-10 items-center rounded-xl border border-slate-300 px-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
           >
-            Next page →
+            {t("next")}
           </Link>
         ) : (
           <span className="inline-flex min-h-10 items-center rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-400">
-            Next page →
+            {t("next")}
           </span>
         )}
       </nav>

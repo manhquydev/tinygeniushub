@@ -5,7 +5,7 @@ import { env } from "@/lib/env";
 import { fail, ok } from "@/lib/http";
 import { logInfo, logWarn } from "@/lib/observability/logger";
 import { buildRateLimitIdentity, getRequestIp } from "@/lib/rate-limit";
-import { handleRouteError } from "@/lib/route-error";
+import { handleRouteError, translateError } from "@/lib/route-error";
 import {
   assertRouteSecurityPreconditions,
   enforceRouteRateLimitBuckets,
@@ -16,16 +16,13 @@ const forgotPasswordSchema = z.object({
   email: z.string().email(),
 });
 
-const SUCCESS_MESSAGE = "If the email exists in the system, we will send password reset instructions within a few minutes.";
-const RESET_NOT_ENABLED_MESSAGE = "Forgot password function is being configured. Please contact support while waiting for updates.";
-
 export async function POST(request: Request) {
   let clientIp = "unknown";
   let emailIdentityHash: string | undefined;
 
   try {
     await assertRouteSecurityPreconditions(request);
-
+    const successMessage = await translateError("errors.passwordResetRequested");
     clientIp = getRequestIp(request);
     const ipRateLimitDenied = await enforceRouteRateLimitBuckets([
       {
@@ -38,7 +35,7 @@ export async function POST(request: Request) {
             reason: rateLimit.reason,
             retryAfterMs: rateLimit.retryAfterMs,
           });
-          return ok({ message: SUCCESS_MESSAGE });
+          return ok({ message: successMessage });
         },
       },
     ]);
@@ -61,7 +58,7 @@ export async function POST(request: Request) {
             reason: rateLimit.reason,
             retryAfterMs: rateLimit.retryAfterMs,
           });
-          return ok({ message: SUCCESS_MESSAGE });
+          return ok({ message: successMessage });
         },
       },
     ]);
@@ -82,7 +79,7 @@ export async function POST(request: Request) {
       identityHash: emailIdentityHash,
     });
 
-    return ok({ message: SUCCESS_MESSAGE });
+    return ok({ message: successMessage });
   } catch (error) {
     const normalizedError = normalizeBetterAuthError(error);
     if (
@@ -95,7 +92,7 @@ export async function POST(request: Request) {
         identityHash: emailIdentityHash,
       });
 
-      return fail(RESET_NOT_ENABLED_MESSAGE, 503, {
+      return fail(await translateError("errors.passwordResetNotEnabled"), 503, {
         code: "PASSWORD_RESET_NOT_ENABLED",
       });
     }

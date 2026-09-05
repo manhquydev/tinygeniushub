@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Bell, BookOpenCheck, CheckCheck, Flame, Sparkles, Trophy } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ApiSuccess, NotificationDTO } from "@/lib/api-types";
@@ -49,12 +50,16 @@ function getNotificationTone(type: NotificationType) {
   }
 }
 
-function formatRelativeTime(timestamp: string) {
+function formatRelativeTime(
+  timestamp: string,
+  locale: string,
+  t: (key: "justNow" | "minutesAgo" | "hoursAgo", values?: { count: number }) => string,
+) {
   const createdAt = new Date(timestamp);
   const diffMs = Date.now() - createdAt.getTime();
 
   if (Number.isNaN(diffMs) || diffMs < 0) {
-    return "Just finished";
+    return t("justNow");
   }
 
   const minuteMs = 60_000;
@@ -62,18 +67,18 @@ function formatRelativeTime(timestamp: string) {
   const dayMs = 24 * hourMs;
 
   if (diffMs < minuteMs) {
-    return "Just finished";
+    return t("justNow");
   }
 
   if (diffMs < hourMs) {
-    return `${Math.floor(diffMs / minuteMs)}minutes ago`;
+    return t("minutesAgo", { count: Math.floor(diffMs / minuteMs) });
   }
 
   if (diffMs < dayMs) {
-    return `${Math.floor(diffMs / hourMs)}hours ago`;
+    return t("hoursAgo", { count: Math.floor(diffMs / hourMs) });
   }
 
-  return createdAt.toLocaleDateString("vi-VN", {
+  return createdAt.toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US", {
     day: "2-digit",
     month: "2-digit",
   });
@@ -95,6 +100,9 @@ function NotificationLoadingSkeleton() {
 
 export function ParentNotificationCenter() {
   const pathname = usePathname();
+  const t = useTranslations("chrome.notifications.center");
+  const tRelative = useTranslations("chrome.notifications.relative");
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -114,19 +122,19 @@ export function ParentNotificationCenter() {
       const body = (await response.json()) as NotificationResponse;
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Unable to load notification");
+        setError(body.error?.message ?? t("loadError"));
         setNotifications([]);
         return;
       }
 
       setNotifications(body.data?.notifications ?? []);
     } catch (fetchError) {
-      setError(fetchError instanceof Error ? fetchError.message : "Unknown error");
+      setError(fetchError instanceof Error ? fetchError.message : t("unknownError"));
       setNotifications([]);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     void fetchNotifications();
@@ -193,7 +201,7 @@ export function ParentNotificationCenter() {
 
     const body = (await response.json()) as NotificationResponse;
     if (!response.ok || !body.ok) {
-      throw new Error(body.error?.message ?? "Unable to update notification status");
+      throw new Error(body.error?.message ?? t("updateError"));
     }
   }
 
@@ -209,7 +217,7 @@ export function ParentNotificationCenter() {
       await markOneAsRead(notificationId);
     } catch (markError) {
       setNotifications((current) => current.map((item) => (item.id === notificationId ? { ...item, read: false } : item)));
-      setError(markError instanceof Error ? markError.message : "Unknown error");
+      setError(markError instanceof Error ? markError.message : t("unknownError"));
     }
   }
 
@@ -228,7 +236,7 @@ export function ParentNotificationCenter() {
       setNotifications((current) =>
         current.map((item) => (failedIds.includes(item.id) ? { ...item, read: false } : item)),
       );
-      setError("Some notifications cannot update their read status.");
+      setError(t("partialReadError"));
     }
   }
 
@@ -240,12 +248,12 @@ export function ParentNotificationCenter() {
         className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition hover:-translate-y-0.5 hover:text-slate-900"
         aria-expanded={open}
         aria-haspopup="menu"
-        aria-label="Open notification center"
+        aria-label={t("ariaLabel")}
       >
         <Bell size={18} />
         {unreadCount > 0 ? (
           <span className="absolute -right-1 -top-1 inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1 text-[11px] font-bold text-white">
-            {unreadCount > 9 ? "9+" : unreadCount}
+            {unreadCount > 9 ? t("overflowBadge", { count: 9 }) : unreadCount}
           </span>
         ) : null}
       </button>
@@ -261,8 +269,8 @@ export function ParentNotificationCenter() {
           >
             <header className="flex items-center justify-between border-b border-slate-200 bg-slate-50/80 px-3 py-2.5">
               <div>
-                <p className="text-sm font-black text-slate-900">Notification</p>
-                <p className="text-xs text-slate-500">Latest updates for parents</p>
+                <p className="text-sm font-black text-slate-900">{t("title")}</p>
+                <p className="text-xs text-slate-500">{t("subtitle")}</p>
               </div>
               <button
                 type="button"
@@ -273,7 +281,7 @@ export function ParentNotificationCenter() {
                 className="inline-flex items-center gap-1 rounded-full border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600 transition hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <CheckCheck size={13} />
-                Read it all
+                {t("readAll")}
               </button>
             </header>
 
@@ -288,7 +296,7 @@ export function ParentNotificationCenter() {
                     }}
                     className="mt-2 inline-flex items-center rounded-full border border-rose-300 bg-white px-2.5 py-1 text-xs font-semibold text-rose-700 transition hover:-translate-y-0.5"
                   >
-                    Retry
+                    {t("retry")}
                   </button>
                 </div>
               ) : null}
@@ -297,7 +305,7 @@ export function ParentNotificationCenter() {
 
               {!loading && notifications.length === 0 ? (
                 <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm text-slate-500">
-                  There are no announcements yet.
+                  {t("empty")}
                 </p>
               ) : null}
 
@@ -331,7 +339,7 @@ export function ParentNotificationCenter() {
                             {!notification.read ? <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-teal-500" /> : null}
                           </div>
                           <p className="mt-0.5 text-sm leading-relaxed text-slate-600">{notification.message}</p>
-                          <p className="mt-1 text-xs font-medium text-slate-500">{formatRelativeTime(notification.createdAt)}</p>
+                          <p className="mt-1 text-xs font-medium text-slate-500">{formatRelativeTime(notification.createdAt, locale, tRelative)}</p>
                         </div>
                       </div>
                     </Link>

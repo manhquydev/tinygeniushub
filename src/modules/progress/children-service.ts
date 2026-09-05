@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
+import { translateError } from "@/lib/route-error";
 import { DomainError } from "@/modules/platform/errors";
 
 const CHILD_PROFILE_LIMIT_FALLBACK = 1;
@@ -57,7 +58,7 @@ export async function createChildProfile(parentId: string, input: z.infer<typeof
           const limit = subscription?.childProfileLimit ?? CHILD_PROFILE_LIMIT_FALLBACK;
           if (isProfileLimitReached(profileCount, limit)) {
             throw new DomainError(
-              "Child profile limit reached for this household.",
+              await translateError("errors.profileLimitReached"),
               409,
               "PROFILE_LIMIT_REACHED",
             );
@@ -86,7 +87,7 @@ export async function createChildProfile(parentId: string, input: z.infer<typeof
     }
   }
 
-  throw new DomainError("Could not create child profile due to concurrent updates. Please retry.", 409, "PROFILE_LIMIT_RETRY_REQUIRED");
+  throw new DomainError(await translateError("errors.profileLimitRetryRequired"), 409, "PROFILE_LIMIT_RETRY_REQUIRED");
 }
 
 export const childProfileUpdateSchema = z.object({
@@ -119,7 +120,7 @@ export async function updateChildProfile(
   });
 
   if (!child) {
-    throw new DomainError("Child profile not found", 404, "CHILD_NOT_FOUND");
+    throw new DomainError(await translateError("errors.childNotFound"), 404, "CHILD_NOT_FOUND");
   }
 
   return prisma.childProfile.update({
@@ -137,7 +138,7 @@ export async function deleteChildProfile(parentId: string, childId: string) {
   });
 
   if (!child) {
-    throw new DomainError("Child profile not found", 404, "CHILD_NOT_FOUND");
+    throw new DomainError(await translateError("errors.childNotFound"), 404, "CHILD_NOT_FOUND");
   }
 
   await prisma.childProfile.delete({
@@ -164,7 +165,7 @@ export async function updateChildDailyGoal(
     },
   });
   if (!child) {
-    throw new DomainError("Child profile not found", 404, "CHILD_NOT_FOUND");
+    throw new DomainError(await translateError("errors.childNotFound"), 404, "CHILD_NOT_FOUND");
   }
 
   return prisma.childProfile.update({

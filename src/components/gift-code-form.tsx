@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 type RedeemResult = { ok: boolean; error?: string };
 
 export function GiftCodeForm() {
+  const t = useTranslations("giftCode.form");
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -25,10 +27,10 @@ export function GiftCodeForm() {
       if (json.ok) {
         setSuccess(true);
       } else {
-        setError(json.error ?? "Invalid code. Please check again.");
+        setError(json.error ?? t("invalid"));
       }
     } catch {
-      setError("Unable to connect. Please try again.");
+      setError(t("connectError"));
     } finally {
       setLoading(false);
     }
@@ -45,9 +47,7 @@ export function GiftCodeForm() {
           textAlign: "center",
         }}
       >
-        <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "#15803d" }}>
-          Activated! Welcome to TinyGenius Hub 🎉
-        </p>
+        <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "#15803d" }}>{t("success")}</p>
       </div>
     );
   }
@@ -55,14 +55,14 @@ export function GiftCodeForm() {
   return (
     <form onSubmit={handleSubmit} style={{ display: "grid", gap: "0.75rem" }}>
       <label htmlFor="gift-code" style={{ fontWeight: 600 }}>
-        Gift code
+        {t("label")}
       </label>
       <input
         id="gift-code"
         type="text"
         value={code}
         onChange={(e) => setCode(e.target.value.toUpperCase())}
-        placeholder="Enter the code — for example, ABCD-1234"
+        placeholder={t("placeholder")}
         required
         disabled={loading}
         style={{
@@ -84,7 +84,7 @@ export function GiftCodeForm() {
         className="solid-button"
         style={{ width: "fit-content", opacity: loading ? 0.7 : 1 }}
       >
-        {loading ? "Activating..." : "Activate code"}
+        {loading ? t("activating") : t("submit")}
       </button>
     </form>
   );

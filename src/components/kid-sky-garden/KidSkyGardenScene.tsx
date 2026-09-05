@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { ArrowLeft, BookOpenText, Calculator, Leaf } from "lucide-react";
 import { SeedPlantingCinematic } from "@/components/kid-sky-garden/components/SeedPlantingCinematic";
 import { SkyGardenFxCanvas } from "@/components/kid-sky-garden/three/SkyGardenFxCanvas";
@@ -98,15 +99,15 @@ function buildSeedCinematicStorageKey(childId: string, courseId: string) {
   return `${SEED_CINEMATIC_STORAGE_PREFIX}:${childId}:${courseId}`;
 }
 
-function resolveTrackLabel(trackCode: SkyGardenLesson["trackCode"]) {
+function resolveTrackKey(trackCode: SkyGardenLesson["trackCode"]): "math" | "habit" | "english" {
   switch (trackCode) {
     case "MATH":
-      return "Maths";
+      return "math";
     case "HABIT":
-      return "Habit";
+      return "habit";
     case "ENGLISH":
     default:
-      return "English";
+      return "english";
   }
 }
 
@@ -123,17 +124,17 @@ function resolveTrackIcon(trackCode: SkyGardenLesson["trackCode"]) {
   }
 }
 
-function formatKidDisplayName(nickname: string) {
+function formatKidDisplayName(nickname: string, fallback: string) {
   const cleaned = nickname.trim();
   if (!cleaned) {
-    return "Baby";
+    return fallback;
   }
 
   if (cleaned.includes("@")) {
     const localPart = cleaned.split("@")[0]?.trim() ?? "";
     const readable = localPart.replace(/[._-]+/g, " ").trim();
     if (!readable) {
-      return "Baby";
+      return fallback;
     }
     return readable.slice(0, 24);
   }
@@ -157,26 +158,26 @@ function readJourneyVisual(params: {
   switch (fallbackStatus) {
     case "COMPLETED":
       return {
-        label: "Has bloomed",
+        labelKey: "completed" as const,
         tone: "completed" as const,
         fxSrc: "/images/cloud-garden/vfx/vfx_tier_unlocked_badge.png",
       };
     case "PAUSED":
       return {
-        label: "Take a break",
+        labelKey: "paused" as const,
         tone: "paused" as const,
         fxSrc: "/images/cloud-garden/vfx/vfx_seed_sprout.png",
       };
     case "ACTIVE":
       return {
-        label: "Growing up",
+        labelKey: "active" as const,
         tone: "active" as const,
         fxSrc: "/images/cloud-garden/vfx/vfx_tap_star_pop.png",
       };
     case "SEEDED":
     default:
       return {
-        label: "New sprouts",
+        labelKey: "seeded" as const,
         tone: "seeded" as const,
         fxSrc: "/images/cloud-garden/vfx/vfx_seed_sprout.png",
       };
@@ -290,6 +291,8 @@ export function KidSkyGardenScene({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion() ?? false;
+  const t = useTranslations("kid.gardenHud");
+  const childFallback = t("skyGarden.childFallback");
   const routeLocationKey = `${pathname}?${searchParams.toString()}`;
   const routeFocusTierNo = useMemo(() => {
     const raw = searchParams.get("focusTierNo");
@@ -328,7 +331,7 @@ export function KidSkyGardenScene({
 
   const activeChild =
     childrenProfiles.find((child) => child.id === activeChildId) ?? childrenProfiles[0];
-  const activeChildName = formatKidDisplayName(activeChild?.nickname ?? "");
+  const activeChildName = formatKidDisplayName(activeChild?.nickname ?? "", childFallback);
   const avatarLabel = Array.from(activeChildName)[0]?.toUpperCase() ?? "B";
 
   useEffect(() => {
@@ -375,15 +378,15 @@ export function KidSkyGardenScene({
 
       return {
         trackCode: trackCode as SkyGardenLesson["trackCode"],
-        title: trackLessons[0]?.journeyTitle ?? resolveTrackLabel(trackCode),
-        unitTitle: trackLessons[0]?.unitTitle ?? "Opening",
+        title: trackLessons[0]?.journeyTitle ?? t(`skyGarden.track.${resolveTrackKey(trackCode as SkyGardenLesson["trackCode"])}`),
+        unitTitle: trackLessons[0]?.unitTitle ?? t("skyGarden.unitOpening"),
         accent: trackLessons[0]?.journeyAccent ?? "#2563eb",
         totalLessons: trackLessons.length,
         completedLessons,
         nextLessonTitle: nextLesson?.title ?? null,
       };
     });
-  }, [lessons]);
+  }, [lessons, t]);
 
   const showCloudClimbMap = mode === "course" || Boolean(selectedTrack);
   const scopedLessons = useMemo(
@@ -465,14 +468,18 @@ export function KidSkyGardenScene({
   const nextLessonTitle = activeNode?.title ?? null;
   const remainingGoalMinutes = Math.max(progress.dailyGoalMinutes - progress.totalMinutesToday, 0);
   const heroTierLabel =
-    activeNode?.tierIndex != null ? `Cloud layer${activeNode.tierIndex}` : "First clouds";
+    activeNode?.tierIndex != null
+      ? t("skyGarden.cloudLayer", { floor: activeNode.tierIndex })
+      : t("skyGarden.firstClouds");
   const heroProgressLabel =
-    completedCount > 0 ? `${completedPercent}% of gardens have bloomed` : "Touch the clouds to start";
+    completedCount > 0
+      ? t("skyGarden.bloomedPercent", { percent: completedPercent })
+      : t("skyGarden.touchClouds");
   const heroJourneyHint = nextLessonTitle
-    ? `Next mission:${nextLessonTitle}`
+    ? t("skyGarden.nextMission", { title: nextLessonTitle })
     : courseDescription?.trim()
       ? courseDescription.trim()
-      : "Tap on the first cloud to start the journey.";
+      : t("skyGarden.tapFirstCloud");
   const tierSpacing = isCompact ? 330 : 390;
   const baseTierBottom = isCompact ? 150 : 180;
   const mapHeight = Math.max(
@@ -558,7 +565,7 @@ export function KidSkyGardenScene({
 
         if (!lessonsResponse.ok || !lessonsBody.ok) {
           setStatusMessage(
-            lessonsBody.error?.message ?? "Unable to download trip data.",
+            lessonsBody.error?.message ?? t("skyGarden.syncError"),
           );
           return;
         }
@@ -604,7 +611,7 @@ export function KidSkyGardenScene({
         setStatusMessage(
           error instanceof Error
             ? error.message
-            : "Cannot synchronize trip data.",
+            : t("skyGarden.syncCatch"),
         );
       } finally {
         if (!options?.silent) {
@@ -612,7 +619,7 @@ export function KidSkyGardenScene({
         }
       }
     },
-    [childrenProfiles, courseSlug, mode],
+    [childrenProfiles, courseSlug, mode, t],
   );
 
   const handleChildChange = useCallback(
@@ -628,11 +635,11 @@ export function KidSkyGardenScene({
 
   const guardBeforeStart = useCallback(() => {
     if (progress.reached) {
-      setStatusMessage("Today's goal of learning minutes has been reached, but you can still continue!");
+      setStatusMessage(t("skyGarden.goalReachedContinue"));
       // Allow them to continue anyway, don't block logic
     }
     return true;
-  }, [progress.reached]);
+  }, [progress.reached, t]);
 
   const handleLessonComplete = useCallback(
     (lessonId: string) => {
@@ -667,10 +674,10 @@ export function KidSkyGardenScene({
       }
 
       setLessons(updatedLessons);
-      setStatusMessage("Great! Baby has just opened a new layer of clouds.");
+      setStatusMessage(t("skyGarden.openedNewCloud"));
       void syncChildData(activeChildId, { silent: true });
     },
-    [activeChildId, lessons, selectedTrack, syncChildData],
+    [activeChildId, lessons, selectedTrack, syncChildData, t],
   );
 
   useEffect(() => {
@@ -752,9 +759,9 @@ export function KidSkyGardenScene({
 
     if (!hasSeen) {
       setSeedCinematicCourse(initialSeedCourse);
-      setStatusMessage(`New seed for key"${initialSeedCourse.title}" is ready.`);
+      setStatusMessage(t("skyGarden.seedReady", { course: initialSeedCourse.title }));
     }
-  }, [activeChildId, initialSeedCourse]);
+  }, [activeChildId, initialSeedCourse, t]);
 
   useEffect(() => {
     if (!levelUpFxTier) {
@@ -942,18 +949,18 @@ export function KidSkyGardenScene({
     }
 
     setSeedCinematicCourse(null);
-    setStatusMessage(`Seeds have been planted for the course"${seedCinematicCourse.title}". Let's start climbing the clouds!`);
-  }, [activeChildId, seedCinematicCourse]);
+    setStatusMessage(t("skyGarden.seedPlanted", { course: seedCinematicCourse.title }));
+  }, [activeChildId, seedCinematicCourse, t]);
 
   const mascotMessage =
     statusMessage ??
     (showCloudClimbMap
       ? !hasHiddenBelow
-        ? "Let's start with the garden. Complete the lesson to climb to the clouds."
+        ? t("skyGarden.mascotStartGarden")
         : activeNode
-          ? "Conquer the current cluster of cards to unlock the cloud area above."
-          : "Let's continue our journey in the clouds."
-      : "Choose your favorite journey to start your learning garden.");
+          ? t("skyGarden.mascotConquer")
+          : t("skyGarden.mascotContinueClouds")
+      : t("skyGarden.mascotChooseJourney"));
 
   return (
     <section
@@ -961,7 +968,7 @@ export function KidSkyGardenScene({
       style={sceneStyle}
       data-testid={mode === "course" ? "kid-course-scene" : "kid-today-scene"}
       data-performance-profile={performanceProfile}
-      aria-label="Cloud learning garden"
+      aria-label={t("skyGarden.sceneAria")}
       aria-busy={isNavigating || loading}
     >
       {shouldRenderWebGlFx ? <SkyGardenFxCanvas className="ksg2-three-layer" quality={fxQuality} /> : null}
@@ -999,7 +1006,7 @@ export function KidSkyGardenScene({
               }
             }}
             disabled={isNavigating}
-            aria-label={mode === "course" ? "Return to the learning page" : "Back to parents"}
+            aria-label={mode === "course" ? t("skyGarden.backToLearningAria") : t("skyGarden.backToParentsAria")}
           >
             <ArrowLeft size={18} />
           </button>
@@ -1008,25 +1015,25 @@ export function KidSkyGardenScene({
             <span className="ksg2-child-avatar" aria-hidden="true">
               {avatarLabel}
             </span>
-            <span className="ksg2-child-prefix">Little:</span>
+            <span className="ksg2-child-prefix">{t("skyGarden.childPrefix")}</span>
             <select
               value={activeChildId}
               onChange={(event) => {
                 void handleChildChange(event.target.value);
               }}
-              aria-label="Select baby profile"
+              aria-label={t("skyGarden.selectChildAria")}
               disabled={isNavigating}
             >
               {childrenProfiles.map((child) => (
                 <option key={child.id} value={child.id}>
-                  {formatKidDisplayName(child.nickname)}
+                  {formatKidDisplayName(child.nickname, childFallback)}
                 </option>
               ))}
             </select>
           </label>
         </div>
 
-        <div className="ksg2-flow-nav" role="navigation" aria-label="Navigate the journey">
+        <div className="ksg2-flow-nav" role="navigation" aria-label={t("skyGarden.flowNavAria")}>
           <button type="button" className="ksg2-flow-chip" onClick={goToLearningHub} disabled={isNavigating}>
             <Image
               src="/kisu-assets/stickers/sticker_tap_here_smile.png"
@@ -1035,7 +1042,7 @@ export function KidSkyGardenScene({
               height={22}
               className="ksg2-flow-chip-icon"
             />
-            {pendingNavigationAction === "go-learning-hub" ? "Open..." : "School yard"}
+            {pendingNavigationAction === "go-learning-hub" ? t("opening") : t("skyGarden.schoolYard")}
           </button>
           <button type="button" className="ksg2-flow-chip" onClick={goToSharedGarden} disabled={isNavigating}>
             <Image
@@ -1045,7 +1052,7 @@ export function KidSkyGardenScene({
               height={22}
               className="ksg2-flow-chip-icon"
             />
-            {pendingNavigationAction === "go-shared-garden" ? "Open..." : "Shared garden"}
+            {pendingNavigationAction === "go-shared-garden" ? t("opening") : t("skyGarden.sharedGarden")}
           </button>
           <span className="ksg2-flow-chip is-active">
             <Image
@@ -1055,7 +1062,7 @@ export function KidSkyGardenScene({
               height={22}
               className="ksg2-flow-chip-icon"
             />
-            Cloud garden
+            {t("skyGarden.cloudGarden")}
           </span>
         </div>
 
@@ -1065,24 +1072,24 @@ export function KidSkyGardenScene({
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={courseCoverImageUrl ?? "/images/courses/course_cover_littlefox.png"}
-                alt={courseTitle ?? "Course"}
+                alt={courseTitle ?? t("skyGarden.courseFallbackAlt")}
               />
             </div>
 
             <div className="ksg2-course-content">
-              <p className="ksg2-course-tag">{`Cloud garden's${activeChildName}`}</p>
-              <h1>{courseTitle ?? "Baby's learning journey"}</h1>
+              <p className="ksg2-course-tag">{t("skyGarden.ownedGarden", { name: activeChildName })}</p>
+              <h1>{courseTitle ?? t("skyGarden.journeyFallbackTitle")}</h1>
               <p className="ksg2-course-story">{heroJourneyHint}</p>
               <div className="ksg2-course-stats">
                 <span>{heroTierLabel}</span>
                 <span>{heroProgressLabel}</span>
-                {isCompact ? null : <span>{`Target${progress.dailyGoalMinutes}minutes/day`}</span>}
+                {isCompact ? null : <span>{t("skyGarden.dailyTarget", { minutes: progress.dailyGoalMinutes })}</span>}
               </div>
               <span
                 className={`ksg2-journey-state is-${journeyVisual.tone}`}
                 data-testid="kid-course-journey-state"
               >
-                {journeyVisual.label}
+                {t(`skyGarden.journey.${journeyVisual.labelKey}`)}
               </span>
             </div>
 
@@ -1104,16 +1111,16 @@ export function KidSkyGardenScene({
         ) : null}
 
         <div className="ksg2-progress-bar">
-          <span>{`Today the baby learns${progress.totalMinutesToday}minute`}</span>
+          <span>{t("skyGarden.todayMinutes", { minutes: progress.totalMinutesToday })}</span>
           <strong>
             {remainingGoalMinutes > 0
-              ? `${remainingGoalMinutes} minutes left`
-              : "Baby reached his goal!"}
+              ? t("skyGarden.minutesLeft", { minutes: remainingGoalMinutes })
+              : t("skyGarden.goalReached")}
           </strong>
         </div>
       </header>
 
-      {loading ? <p className="ksg2-status">Synchronizing garden data...</p> : null}
+      {loading ? <p className="ksg2-status">{t("skyGarden.syncing")}</p> : null}
       {!loading && statusMessage ? <p className="ksg2-status">{statusMessage}</p> : null}
 
       <main className="ksg2-main">
@@ -1126,7 +1133,7 @@ export function KidSkyGardenScene({
                 className="ksg2-journey-card"
                 onClick={() => {
                   setSelectedTrack(journey.trackCode);
-                  setStatusMessage(`I come in${journey.title}okay!`);
+                  setStatusMessage(t("skyGarden.enterJourney", { title: journey.title }));
                 }}
                 style={{ "--ksg2-accent": journey.accent } as CSSProperties}
               >
@@ -1134,11 +1141,11 @@ export function KidSkyGardenScene({
                 <div className="ksg2-journey-content">
                   <strong>{journey.title}</strong>
                   <span>{journey.unitTitle}</span>
-                  <span>{`${journey.completedLessons}/${journey.totalLessons}post`}</span>
+                  <span>{t("skyGarden.lessonsCount", { completed: journey.completedLessons, total: journey.totalLessons })}</span>
                   <span>
                     {journey.nextLessonTitle
-                      ? `Next:${journey.nextLessonTitle}`
-                      : "Ready to start"}
+                      ? t("skyGarden.nextLesson", { title: journey.nextLessonTitle })
+                      : t("skyGarden.readyToStart")}
                   </span>
                 </div>
               </button>
@@ -1147,14 +1154,14 @@ export function KidSkyGardenScene({
         ) : (
           <section
             className="ksg2-map-wrap"
-            aria-label="Cloud climbing map"
+            aria-label={t("skyGarden.mapAria")}
             ref={mapWrapRef}
             data-testid={mode === "course" ? "kid-course-map" : "kid-today-map"}
           >
             <div className="ksg2-map" style={{ minHeight: `${mapHeight}px` }}>
               {hasHiddenAbove ? (
                 <div className="ksg2-fog-cap" aria-hidden="true">
-                  <span>Clouds above, continue learning to explore</span>
+                  <span>{t("skyGarden.fogCap")}</span>
                 </div>
               ) : null}
 
@@ -1168,7 +1175,7 @@ export function KidSkyGardenScene({
 
               <div className="ksg2-ground-entry" aria-hidden="true">
                 {hasHiddenBelow ? (
-                  <span className="ksg2-ground-anchor">{`Passed${visibleWindowStart}floor`}</span>
+                  <span className="ksg2-ground-anchor">{t("skyGarden.passedFloors", { count: visibleWindowStart })}</span>
                 ) : (
                   <>
                     <Image
@@ -1246,7 +1253,7 @@ export function KidSkyGardenScene({
                           />
                         </>
                       ) : null}
-                      <span className="ksg2-tier-label">{`Cloud layer${tierNo}`}</span>
+                      <span className="ksg2-tier-label">{t("skyGarden.cloudLayer", { floor: tierNo })}</span>
                     </div>
 
                     <div className={`ksg2-node-card state-${node.state}`}>
@@ -1259,7 +1266,7 @@ export function KidSkyGardenScene({
                       />
 
                       <div className="ksg2-node-head">
-                        <span>{resolveTrackLabel(node.trackCode)}</span>
+                        <span>{t(`skyGarden.track.${resolveTrackKey(node.trackCode)}`)}</span>
                         <strong>{node.journeyTitle}</strong>
                       </div>
                       <p className="ksg2-node-unit">{node.unitTitle}</p>
@@ -1272,7 +1279,7 @@ export function KidSkyGardenScene({
                           objective={node.objective}
                           estimatedMinutes={node.estimatedMinutes}
                           trackCode={(node.trackCode === "MATH" || node.trackCode === "HABIT" || node.trackCode === "ENGLISH") ? node.trackCode : "ENGLISH"}
-                          tierLabel={node.tierIndex != null ? `Floor${node.tierIndex}` : null}
+                          tierLabel={node.tierIndex != null ? t("skyGarden.floorLabel", { floor: node.tierIndex }) : null}
                           videoSource={node.videoSource}
                           bunnyVideoId={node.bunnyVideoId}
                           videoStatus={node.videoStatus}
@@ -1282,21 +1289,19 @@ export function KidSkyGardenScene({
                       ) : (
                         <div className="ksg2-node-meta">
                           <h3>{node.title}</h3>
-                          <p>{`${node.estimatedMinutes}minute •${node.objective}`}</p>
+                          <p>{t("skyGarden.nodeMinutesObjective", { minutes: node.estimatedMinutes, objective: node.objective })}</p>
                           {node.state === "completed" ? (
-                            <span className="ksg2-node-chip">Completed</span>
+                            <span className="ksg2-node-chip">{t("skyGarden.completedChip")}</span>
                           ) : (
                             <button
                               type="button"
                               className="ksg2-node-lock"
                               data-testid={`kid-course-tier-lock-${tierNo}`}
                               onClick={() =>
-                                setStatusMessage(
-                                  "Complete the current floor to unlock a new floor!",
-                                )
+                                setStatusMessage(t("skyGarden.unlockHint"))
                               }
                             >
-                              This floor has not been opened yet
+                              {t("skyGarden.floorLocked")}
                             </button>
                           )}
                         </div>

@@ -1,8 +1,11 @@
-import { fail } from "@/lib/http";
+import { cookies } from "next/headers";
+import { ZodError } from "zod";
+import { defaultLocale, localeCookieName, resolveAppLocale, type AppLocale } from "@/i18n/locales";
+import { translate, type TranslationValues } from "@/i18n/translator";
 import { env } from "@/lib/env";
+import { fail } from "@/lib/http";
 import { logError, logWarn } from "@/lib/observability/logger";
 import { DomainError } from "@/modules/platform/errors";
-import { ZodError } from "zod";
 
 function isInvalidJsonSyntaxError(error: unknown) {
   if (!(error instanceof SyntaxError)) {
@@ -13,14 +16,27 @@ function isInvalidJsonSyntaxError(error: unknown) {
   return message.includes("json") || message.includes("unexpected token");
 }
 
-export function handleRouteError(error: unknown, context?: Record<string, unknown>) {
+export async function resolveRequestLocale(): Promise<AppLocale> {
+  try {
+    const cookieStore = await cookies();
+    return resolveAppLocale(cookieStore.get(localeCookieName)?.value);
+  } catch {
+    return defaultLocale;
+  }
+}
+
+export async function translateError(key: string, values?: TranslationValues): Promise<string> {
+  return translate(key, values, await resolveRequestLocale());
+}
+
+export async function handleRouteError(error: unknown, context?: Record<string, unknown>) {
   if (isInvalidJsonSyntaxError(error)) {
     logWarn("route.invalid_json", {
       message: (error as SyntaxError).message,
       context,
     });
 
-    return fail("Invalid JSON payload", 400);
+    return fail(await translateError("errors.invalidJson"), 400);
   }
 
   if (error instanceof ZodError) {
@@ -29,7 +45,7 @@ export function handleRouteError(error: unknown, context?: Record<string, unknow
       context,
     });
 
-    return fail("Invalid request payload", 400, {
+    return fail(await translateError("errors.invalidPayload"), 400, {
       issues: error.issues,
     });
   }
@@ -55,7 +71,7 @@ export function handleRouteError(error: unknown, context?: Record<string, unknow
       context,
     });
 
-    return fail("Internal server error", 500);
+    return fail(await translateError("errors.unknown"), 500);
   }
 
   logError("route.unknown_error", {
@@ -63,5 +79,5 @@ export function handleRouteError(error: unknown, context?: Record<string, unknow
     context,
   });
 
-  return fail("Unexpected error", 500);
+  return fail(await translateError("errors.unknown"), 500);
 }

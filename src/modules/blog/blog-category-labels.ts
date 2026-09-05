@@ -1,26 +1,29 @@
+import { resolveAppLocale, type AppLocale } from "@/i18n/locales";
+import { translate } from "@/i18n/translator";
+
 type BlogCategoryLabelInput = {
   slug: string;
   nameEn?: string | null;
   nameVi?: string | null;
 };
 
-const categoryNameBySlug: Record<string, string> = {
-  "phat-trien-tre": "Child Development",
-  "phuong-phap-hoc": "Learning Methods",
-  "tieng-anh-som": "English for Children",
-  "tieng-anh-cho-tre": "English for Children",
-  "toan-tu-duy": "Mental Math",
-  "dinh-huong-phu-huynh": "Parent Guidance",
-  "cong-nghe-giao-duc": "Educational Technology",
-  "suc-khoe-can-bang": "Health and Balance",
-  "cau-chuyen-thanh-cong": "Success Stories",
-};
+export function getBlogCategoryDisplayName(category: BlogCategoryLabelInput, locale: AppLocale | string): string {
+  const appLocale = resolveAppLocale(locale);
+  const localizedName = appLocale === "vi" ? category.nameVi?.trim() : category.nameEn?.trim();
+  if (localizedName) {
+    return localizedName;
+  }
 
-export function getBlogCategoryDisplayName(category: BlogCategoryLabelInput): string {
-  return category.nameEn?.trim() || categoryNameBySlug[category.slug] || titleizeSlug(category.slug);
+  const catalogKey = `blog.chrome.categories.${category.slug}`;
+  const fromCatalog = translate(catalogKey, undefined, appLocale);
+  if (fromCatalog !== catalogKey) {
+    return fromCatalog;
+  }
+
+  return titleizeSlug(category.slug);
 }
 
-function titleizeSlug(slug: string): string {
+function titleizeSlug(slug: string) {
   return slug
     .split("-")
     .filter(Boolean)

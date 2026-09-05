@@ -31,8 +31,8 @@ export function DashboardReferralSection({ referral }: Props) {
                 </h2>
                 <p className="mt-0.5 text-sm text-slate-600">
                   {t.rich("description", {
-                    welcomeOffer: (chunks) => <strong>{chunks}</strong>,
-                    rewardVouchers: (chunks) => <strong>{chunks}</strong>,
+                    welcomeOffer: t("welcomeOffer"),
+                    rewardVouchers: t("rewardVouchers"),
                   })}
                 </p>
                 <p className="mt-2 inline-block rounded-xl border border-amber-200 bg-white px-3 py-1.5 font-mono text-sm font-bold tracking-widest text-amber-700">

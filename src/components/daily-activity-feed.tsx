@@ -2,6 +2,7 @@
 
 import { BookOpenCheck, Clock3 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { DailyGoalSetter } from "@/components/daily-goal-setter";
 import { Mascot } from "@/components/mascot";
 
@@ -59,15 +60,15 @@ function getInitialState(children: ChildSummary[]): Record<string, FeedState> {
   }, {});
 }
 
-function formatTime(value: string) {
-  return new Date(value).toLocaleTimeString("vi-VN", {
+function formatTime(value: string, locale: string) {
+  return new Date(value).toLocaleTimeString(locale === "vi" ? "vi-VN" : "en-US", {
     hour: "2-digit",
     minute: "2-digit",
   });
 }
 
-function formatTimestamp(value: string) {
-  return new Date(value).toLocaleString("vi-VN", {
+function formatTimestamp(value: string, locale: string) {
+  return new Date(value).toLocaleString(locale === "vi" ? "vi-VN" : "en-US", {
     day: "2-digit",
     month: "2-digit",
     hour: "2-digit",
@@ -90,6 +91,8 @@ function LoadingSkeleton() {
 }
 
 export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
+  const t = useTranslations("parent.dashboard.activity");
+  const locale = useLocale();
   const [feedByChild, setFeedByChild] = useState<Record<string, FeedState>>(() => getInitialState(childProfiles));
 
   useEffect(() => {
@@ -114,7 +117,7 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
           const body = (await response.json()) as ActivityResponse;
 
           if (!response.ok || !body.ok) {
-            throw new Error(body.error?.message ?? "Unable to load today's activity");
+            throw new Error(body.error?.message ?? t("loadError"));
           }
 
           if (!active) {
@@ -140,7 +143,7 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
             ...current,
             [child.id]: {
               loading: false,
-              error: error instanceof Error ? error.message : "Unknown error",
+              error: error instanceof Error ? error.message : t("unknownError"),
               activities: [],
               dailyGoalMinutes: 20,
               totalMinutesToday: 0,
@@ -153,19 +156,19 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
     return () => {
       active = false;
     };
-  }, [childProfiles]);
+  }, [childProfiles, t]);
 
   const orderedChildren = useMemo(
-    () => [...childProfiles].sort((a, b) => a.nickname.localeCompare(b.nickname, "vi")),
-    [childProfiles],
+    () => [...childProfiles].sort((a, b) => a.nickname.localeCompare(b.nickname, locale)),
+    [childProfiles, locale],
   );
 
   if (orderedChildren.length === 0) {
     return (
       <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
-        <h2 className="text-xl font-black tracking-[-0.02em] text-slate-900">Today's learning activities</h2>
+        <h2 className="text-xl font-black tracking-[-0.02em] text-slate-900">{t("heading")}</h2>
         <p className="mt-3 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
-          There are no baby profiles to show today's activity.
+          {t("emptyProfiles")}
         </p>
       </section>
     );
@@ -175,11 +178,11 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
     <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="text-xl font-black tracking-[-0.02em] text-slate-900">Today's learning activities</h2>
-          <p className="mt-1 text-sm text-slate-500">Timeline of the day's lessons according to the latest completion time.</p>
+          <h2 className="text-xl font-black tracking-[-0.02em] text-slate-900">{t("heading")}</h2>
+          <p className="mt-1 text-sm text-slate-500">{t("description")}</p>
         </div>
         <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
-          Time zone: UTC+7
+          {t("timezone")}
         </span>
       </div>
 
@@ -197,7 +200,7 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
             <article key={child.id} className="rounded-2xl border border-slate-200/90 bg-slate-50/60 p-4">
               <div className="flex items-center justify-between gap-2">
                 <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">{child.nickname}</h3>
-                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">Today</span>
+                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-slate-500">{t("today")}</span>
               </div>
 
               <div className="mt-3">
@@ -228,8 +231,8 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
                     <div className="mx-auto mb-2 w-fit">
                       <Mascot variant="small" state="sleepy" size={120} actionProp="none" motionLevel="minimal" pauseWhenOffscreen />
                     </div>
-                    <p className="text-sm font-semibold text-slate-700">There are no lessons today</p>
-                    <p className="mt-1 text-xs text-slate-500">Your baby has rested for a while, try starting with 5 minutes.</p>
+                    <p className="text-sm font-semibold text-slate-700">{t("noLessons")}</p>
+                    <p className="mt-1 text-xs text-slate-500">{t("restHint")}</p>
                   </div>
                 ) : null}
 
@@ -246,12 +249,14 @@ export function DailyActivityFeed({ childProfiles }: DailyActivityFeedProps) {
                             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs font-medium text-slate-600">
                               <span className="inline-flex items-center gap-1">
                                 <Clock3 size={13} />
-                                {formatTime(activity.completedAt)}
+                                {formatTime(activity.completedAt, locale)}
                               </span>
-                              <span>• {activity.minutesLearned} minutes learned</span>
-                              <span>• Quiz: {activity.quizScore}%</span>
+                              <span>• {t("minutesLearned", { n: activity.minutesLearned })}</span>
+                              <span>• {t("quiz", { score: activity.quizScore })}</span>
                             </div>
-                            <p className="mt-1 text-xs text-slate-500">Completed at {formatTimestamp(activity.completedAt)}</p>
+                            <p className="mt-1 text-xs text-slate-500">
+                              {t("completedAt", { time: formatTimestamp(activity.completedAt, locale) })}
+                            </p>
                           </div>
                         </div>
                       </li>
