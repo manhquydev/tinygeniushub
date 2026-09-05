@@ -54,6 +54,11 @@ async function openLessonVideoStep(
     waitUntil: "domcontentloaded",
   });
 
+  const necessaryCookies = page.getByRole("button", { name: "Only necessary cookies" });
+  if (await necessaryCookies.isVisible({ timeout: 3000 }).catch(() => false)) {
+    await necessaryCookies.click();
+  }
+
   const startCardButton = page.locator(".lesson-flow-card button").first();
   await expect(startCardButton).toBeVisible();
   await startCardButton.click();
