@@ -677,8 +677,13 @@ async function main() {
     });
 
     const childId = await ensureChild(baseUrl, parentHeaders);
-    await ensureEnrolledCourse(baseUrl, parentHeaders, childId);
-    const lessonId = await getLessonIdForChild(baseUrl, parentHeaders, childId);
+    let lessonId;
+    try {
+      lessonId = await getLessonIdForChild(baseUrl, parentHeaders, childId);
+    } catch {
+      await ensureEnrolledCourse(baseUrl, parentHeaders, childId);
+      lessonId = await getLessonIdForChild(baseUrl, parentHeaders, childId);
+    }
 
     const watchBurstResponses = await Promise.all(
       Array.from({ length: 25 }, () =>
