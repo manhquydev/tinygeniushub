@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  adminSecurityControlsPatchSchema,
   adminSecurityControlsSchema,
   applySecurityControlsToPolicy,
   clampRateLimitPolicy,
@@ -49,6 +50,20 @@ describe("adminSecurityControlsSchema", () => {
 
     expect(parsed.blockedIpCidrs).toEqual(["203.0.113.0/24", "2001:db8::1"]);
     expect(parsed.readinessAllowlistCidrs).toEqual(["10.0.0.0/8"]);
+  });
+});
+
+describe("adminSecurityControlsPatchSchema", () => {
+  it("does not default omitted parentEmailVerificationRequired", () => {
+    const parsed = adminSecurityControlsPatchSchema.parse({
+      ddosMode: "elevated",
+      globalLimitMultiplier: 0.5,
+      blockedIpCidrs: [],
+      readinessAllowlistCidrs: [],
+    });
+
+    expect(parsed.parentEmailVerificationRequired).toBeUndefined();
+    expect(parsed.parentEmailVerificationTokenTtlMinutes).toBeUndefined();
   });
 });
 

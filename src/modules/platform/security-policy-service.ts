@@ -212,7 +212,12 @@ export async function updateAdminRateLimitPolicies(params: {
     {},
   );
 
-  const nextControls = payload.controls ?? current.controls;
+  const nextControls = payload.controls
+    ? adminSecurityControlsSchema.parse({
+        ...current.controls,
+        ...payload.controls,
+      })
+    : current.controls;
 
   try {
     await prisma.adminSecuritySettings.upsert({
