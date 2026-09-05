@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { X, CheckCircle, AlertCircle, ShieldAlert } from "lucide-react";
 
 interface ParentalGateModalProps {
@@ -9,6 +10,8 @@ interface ParentalGateModalProps {
 }
 
 export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProps) {
+    const t = useTranslations("chrome.parentGate.modal");
+    const tActions = useTranslations("common.actions");
     const [num1, setNum1] = useState(() => Math.floor(Math.random() * 8) + 3);
     const [num2, setNum2] = useState(() => Math.floor(Math.random() * 8) + 3);
     const [answer, setAnswer] = useState("");
@@ -59,14 +62,14 @@ export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProp
                         <ShieldAlert size={28} className="text-brand-600" />
                     </div>
                     <div>
-                        <h2 id="gate-title" className="text-xl font-black text-brand-800 tracking-tight">Parent Area</h2>
-                        <p className="text-brand-600 text-sm font-medium">Please confirm to continue</p>
+                        <h2 id="gate-title" className="text-xl font-black text-brand-800 tracking-tight">{t("title")}</h2>
+                        <p className="text-brand-600 text-sm font-medium">{t("subtitle")}</p>
                     </div>
                     <button
                         type="button"
                         onClick={onCancel}
                         className="absolute top-4 right-4 p-2 text-ink-400 hover:text-ink-600 hover:bg-ink-100 rounded-full transition-colors"
-                        aria-label="Close"
+                        aria-label={tActions("close")}
                     >
                         <X size={24} strokeWidth={2.5} />
                     </button>
@@ -74,7 +77,7 @@ export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProp
 
                 <form onSubmit={handleSubmit} className="p-8">
                     <p className="text-center text-ink-600 font-medium mb-6">
-                        Answer the math question below to confirm you are a parent:
+                        {t("prompt")}
                     </p>
 
                     <div className="flex items-center justify-center gap-4 text-4xl font-black text-ink-800 mb-8 font-display">
@@ -98,7 +101,7 @@ export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProp
                     {error && (
                         <div className="flex items-center justify-center gap-2 text-red-600 font-medium mb-4 animate-in slide-in-from-top-2">
                             <AlertCircle size={20} />
-                            <span>Not accurate! Creating a new question...</span>
+                            <span>{t("wrongAnswer")}</span>
                         </div>
                     )}
 
@@ -108,14 +111,14 @@ export function ParentalGateModal({ onSuccess, onCancel }: ParentalGateModalProp
                             onClick={onCancel}
                             className="flex-1 py-4 font-bold rounded-2xl bg-surface-100 text-ink-600 hover:bg-surface-200 transition-colors"
                         >
-                            Come back
+                            {t("back")}
                         </button>
                         <button
                             type="submit"
                             disabled={!answer || error}
                             className="flex-1 py-4 font-bold rounded-2xl bg-brand-500 text-white shadow-lg hover:bg-brand-600 hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                         >
-                            <CheckCircle size={20} /> Confirm
+                            <CheckCircle size={20} /> {t("confirm")}
                         </button>
                     </div>
                 </form>

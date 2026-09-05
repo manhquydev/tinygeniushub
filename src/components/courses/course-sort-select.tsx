@@ -1,7 +1,9 @@
 "use client";
 
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
-import { SORT_OPTIONS } from "@/lib/courses/course-filter-utils";
+import { resolveAppLocale } from "@/i18n/locales";
+import { SORT_VALUES, getCourseFilterLabel } from "@/lib/courses/course-filter-utils";
 
 interface CourseSortSelectProps {
   currentSort?: string;
@@ -10,6 +12,8 @@ interface CourseSortSelectProps {
 export function CourseSortSelect({ currentSort }: CourseSortSelectProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations("courses.catalog.sort");
+  const locale = resolveAppLocale(useLocale());
 
   function handleChange(value: string) {
     const params = new URLSearchParams(searchParams.toString());
@@ -27,12 +31,12 @@ export function CourseSortSelect({ currentSort }: CourseSortSelectProps) {
       value={currentSort ?? ""}
       onChange={(e) => handleChange(e.target.value)}
       className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-      aria-label="Sort by"
+      aria-label={t("ariaLabel")}
     >
-      <option value="">Default</option>
-      {SORT_OPTIONS.map((opt) => (
-        <option key={opt.value} value={opt.value}>
-          {opt.label}
+      <option value="">{t("default")}</option>
+      {SORT_VALUES.map((value) => (
+        <option key={value} value={value}>
+          {getCourseFilterLabel("sort", value, locale)}
         </option>
       ))}
     </select>

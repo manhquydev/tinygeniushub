@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Check, ChevronUp, Pencil, PlayCircle, PlusCircle, Trash2, TriangleAlert, X } from "lucide-react";
 import { useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
@@ -65,6 +66,8 @@ function AvatarPicker({
   selectedAvatarId,
   onSelectAvatar,
 }: AvatarPickerProps) {
+  const t = useTranslations("parent.childrenManager");
+
   return (
     <div className="space-y-2">
       <p className="text-sm font-semibold text-slate-700">{label}</p>
@@ -80,7 +83,7 @@ function AvatarPicker({
               type="button"
               onClick={() => onSelectAvatar(avatar.id)}
               disabled={disabled}
-              aria-label={`Choose character${avatar.label}`}
+              aria-label={t("avatar.chooseAria", { label: avatar.label })}
               className={`rounded-2xl border bg-white p-2 text-left transition ${
                 selected
                   ? "border-teal-400 shadow-[0_10px_20px_rgba(13,148,136,0.18)] ring-2 ring-teal-300/70"
@@ -135,6 +138,8 @@ function ChildAvatar({
   nickname: string;
   prefersReducedMotion: boolean;
 }) {
+  const t = useTranslations("parent.childrenManager");
+
   const resolvedAvatarId = resolveAvatarId(avatarId);
   const mascotVariant = resolveMascotVariant(resolvedAvatarId);
 
@@ -146,7 +151,7 @@ function ChildAvatar({
         size={60}
         motionLevel={prefersReducedMotion ? "minimal" : "soft"}
         showBaseGlow={false}
-        title={`Representative character of${nickname}`}
+        title={t("avatar.representativeTitle", { nickname })}
       />
     </div>
   );
@@ -154,6 +159,8 @@ function ChildAvatar({
 
 export function ChildrenManager({ initialChildren, childLimit }: ChildrenManagerProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
+  const t = useTranslations("parent.childrenManager");
+
   const [children, setChildren] = useState(initialChildren);
   const [nickname, setNickname] = useState("");
   const [ageBand, setAgeBand] = useState<AgeBand>("3-4");
@@ -315,13 +322,13 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
     event.preventDefault();
     const nicknameTrimmed = nickname.trim();
     if (!nicknameTrimmed) {
-      setError("Please enter your baby's nickname.");
+      setError(t("errors.nicknameRequired"));
       setInfo(null);
       focusCreateSection();
       return;
     }
     if (reachedLimit) {
-      setError("The account already has a primary baby profile. Please edit the current profile.");
+      setError(t("errors.alreadyHasPrimary"));
       setInfo(null);
       focusCreateSection();
       return;
@@ -340,13 +347,13 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
 
       const body = (await response.json()) as ApiResponse<{ child: ChildSummary }>;
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Unable to create baby profile.");
+        setError(body.error?.message ?? t("errors.createFailed"));
         revealFeedback();
         return;
       }
 
       if (!body.data?.child) {
-        setError("Unable to create baby profile.");
+        setError(t("errors.createFailed"));
         revealFeedback();
         return;
       }
@@ -356,7 +363,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
       setNickname("");
       setAgeBand("3-4");
       setAvatarId(defaultAvatarId);
-      setInfo("Baby profile created successfully.");
+      setInfo(t("success.created"));
       spotlightChild(created.id);
       revealFeedback();
 
@@ -366,7 +373,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         });
       }
     } catch (createError) {
-      setError(createError instanceof Error ? createError.message : "Unknown error.");
+      setError(createError instanceof Error ? createError.message : t("errors.unknown"));
       revealFeedback();
     } finally {
       setLoading(false);
@@ -381,7 +388,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
 
     const editNicknameTrimmed = editNickname.trim();
     if (!editNicknameTrimmed) {
-      setError("Please enter your baby's nickname.");
+      setError(t("errors.nicknameRequired"));
       setInfo(null);
       revealFeedback();
       return;
@@ -400,13 +407,13 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
 
       const body = (await response.json()) as ApiResponse<{ child: ChildSummary }>;
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Unable to update baby profile.");
+        setError(body.error?.message ?? t("errors.updateFailed"));
         revealFeedback();
         return;
       }
 
       if (!body.data?.child) {
-        setError("Unable to update baby profile.");
+        setError(t("errors.updateFailed"));
         revealFeedback();
         return;
       }
@@ -414,11 +421,11 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
       const updated = body.data.child as ChildSummary;
       setChildren((current) => current.map((child) => (child.id === updated.id ? updated : child)));
       cancelEdit();
-      setInfo("Baby profile updated.");
+      setInfo(t("success.updated"));
       spotlightChild(updated.id);
       revealFeedback();
     } catch (updateError) {
-      setError(updateError instanceof Error ? updateError.message : "Unknown error.");
+      setError(updateError instanceof Error ? updateError.message : t("errors.unknown"));
       revealFeedback();
     } finally {
       setLoading(false);
@@ -443,7 +450,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
 
       const body = (await response.json()) as ApiResponse<{ success: boolean }>;
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Baby profile cannot be deleted.");
+        setError(body.error?.message ?? t("errors.deleteFailed"));
         revealFeedback();
         return;
       }
@@ -453,7 +460,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         cancelEdit();
       }
       setPendingDeleteChild(null);
-      setInfo("Baby profile deleted.");
+      setInfo(t("success.deleted"));
       revealFeedback();
 
       if (remainingCount === 0) {
@@ -464,7 +471,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         });
       }
     } catch (deleteError) {
-      setError(deleteError instanceof Error ? deleteError.message : "Unknown error.");
+      setError(deleteError instanceof Error ? deleteError.message : t("errors.unknown"));
       revealFeedback();
     } finally {
       setLoading(false);
@@ -476,14 +483,12 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
       <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
-            <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Manage baby records</h2>
-            <p className="mt-1 text-sm leading-relaxed text-slate-500">
-              Each account has a main {childLimit} child profile, used throughout the learning journey.
-            </p>
+            <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">{t("heading")}</h2>
+            <p className="mt-1 text-sm leading-relaxed text-slate-500">{t("description", { limit: childLimit })}</p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
-              {children.length}/{childLimit} profiles
+              {t("profilesCount", { count: children.length, limit: childLimit })}
             </span>
             <button
               type="button"
@@ -491,7 +496,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
               className="inline-flex min-h-10 items-center justify-center gap-1 rounded-full border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:-translate-y-0.5"
             >
               <ChevronUp size={14} />
-              Go to the add profile form
+              {t("goToAddForm")}
             </button>
           </div>
         </div>
@@ -502,14 +507,12 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         className="rounded-3xl border border-slate-200/75 bg-gradient-to-br from-white via-slate-50 to-slate-100 p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]"
       >
         <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
-          <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">Add child accounts</h3>
-          <p className="mt-1 text-sm text-slate-500">
-            Fill in basic information to create a new learning profile for your child. This step is in sync with the initial setup flow.
-          </p>
+          <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">{t("add.heading")}</h3>
+          <p className="mt-1 text-sm text-slate-500">{t("add.description")}</p>
 
           <form className="mt-4 space-y-4" onSubmit={handleCreate}>
             <AvatarPicker
-              label="Choose an avatar"
+              label={t("add.chooseAvatar")}
               selectedAvatarId={avatarId}
               onSelectAvatar={setAvatarId}
               disabled={reachedLimit || loading}
@@ -518,14 +521,14 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
             />
 
             <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-600">
-              Selected character: <span className="font-bold text-slate-900">{selectedCreateAvatar.label}</span>
+              {t("add.selectedCharacter", { label: selectedCreateAvatar.label })}
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-[minmax(0,1fr)_180px]">
               <input
                 ref={createNicknameRef}
                 className={inputBaseClass}
-                placeholder="Name at home"
+                placeholder={t("add.nicknamePlaceholder")}
                 value={nickname}
                 onChange={(event) => setNickname(event.target.value)}
                 required
@@ -540,7 +543,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
               >
                 {ageBandOptions.map((option) => (
                   <option value={option} key={option}>
-                    {option} years old
+                    {t("add.ageBandOption", { band: option })}
                   </option>
                 ))}
               </select>
@@ -548,9 +551,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
 
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="text-xs text-slate-500">
-                {reachedLimit
-                  ? "You already have your main profile. Name, age and avatar can be edited in the list below."
-                  : "You can edit your name and avatar after creating your profile."}
+                {reachedLimit ? t("add.hintAtLimit") : t("add.hintCanEdit")}
               </p>
               <button
                 type="submit"
@@ -558,7 +559,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 disabled={reachedLimit || loading}
               >
                 <PlusCircle size={18} />
-                {reachedLimit ? "Main profile is available" : loading ? "Creating..." : "Add profile"}
+                {reachedLimit ? t("add.submitAtLimit") : loading ? t("add.submitting") : t("add.submit")}
               </button>
             </div>
           </form>
@@ -582,14 +583,12 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
         ref={listSectionRef}
         className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]"
       >
-        <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">Baby list</h3>
-        <p className="mt-1 text-sm leading-relaxed text-slate-500">
-          Click on each card to quickly edit, update characters or take your child right into the lesson.
-        </p>
+        <h3 className="text-lg font-black tracking-[-0.01em] text-slate-900">{t("list.heading")}</h3>
+        <p className="mt-1 text-sm leading-relaxed text-slate-500">{t("list.description")}</p>
 
         {children.length === 0 ? (
           <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm font-medium text-slate-500">
-            There are no baby profiles yet. Let's create your first profile above.
+            {t("list.empty")}
           </div>
         ) : (
           <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -611,7 +610,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                   {isEditing ? (
                     <form className="space-y-3" onSubmit={handleUpdate}>
                       <AvatarPicker
-                        label="Change avatar"
+                        label={t("list.changeAvatar")}
                         selectedAvatarId={editAvatarId}
                         onSelectAvatar={setEditAvatarId}
                         disabled={loading}
@@ -620,7 +619,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                       />
 
                       <div className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-600">
-                        Selecting: <span className="font-semibold text-slate-900">{selectedEditAvatar.label}</span>
+                        {t("list.selecting", { label: selectedEditAvatar.label })}
                       </div>
 
                       <input
@@ -630,7 +629,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                         onChange={(event) => setEditNickname(event.target.value)}
                         required
                         disabled={loading}
-                        placeholder="Name at home"
+                        placeholder={t("add.nicknamePlaceholder")}
                       />
 
                       <select
@@ -641,7 +640,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                       >
                         {ageBandOptions.map((option) => (
                           <option value={option} key={option}>
-                            {option} years old
+                            {t("add.ageBandOption", { band: option })}
                           </option>
                         ))}
                       </select>
@@ -653,7 +652,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                           disabled={loading}
                         >
                           <Check size={16} />
-                          {loading ? "Saving..." : "Save"}
+                          {loading ? t("list.saving") : t("list.save")}
                         </button>
                         <button
                           type="button"
@@ -662,7 +661,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                           disabled={loading}
                         >
                           <X size={16} />
-                          Cancel
+                          {t("list.cancel")}
                         </button>
                       </div>
                     </form>
@@ -673,7 +672,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                           <ChildAvatar avatarId={child.avatarId} nickname={child.nickname} prefersReducedMotion={prefersReducedMotion} />
                           <div className="min-w-0">
                             <p className="truncate text-lg font-black tracking-[-0.01em] text-slate-900">{child.nickname}</p>
-                            <p className="text-sm text-slate-500">Age: {child.ageBand}</p>
+                            <p className="text-sm text-slate-500">{t("list.age", { band: child.ageBand })}</p>
                           </div>
                         </div>
 
@@ -682,7 +681,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition hover:-translate-y-0.5"
                             onClick={() => beginEdit(child)}
                             disabled={loading}
-                            title="Edit profile"
+                            title={t("list.editTitle")}
                           >
                             <Pencil size={15} />
                           </button>
@@ -690,7 +689,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-red-200 bg-red-50 text-red-600 transition hover:-translate-y-0.5"
                             onClick={() => askDelete(child)}
                             disabled={loading}
-                            title="Delete profile"
+                            title={t("list.deleteTitle")}
                           >
                             <Trash2 size={15} />
                           </button>
@@ -702,7 +701,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                         className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5"
                       >
                         <PlayCircle size={16} />
-                        Go to the lesson
+                        {t("list.goToLesson")}
                       </Link>
                     </div>
                   )}
@@ -723,7 +722,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 setPendingDeleteChild(null);
               }
             }}
-            aria-label="Close the deletion confirmation"
+            aria-label={t("deleteModal.closeAria")}
           />
           <div className="relative z-[1] w-full max-w-md rounded-3xl border border-slate-200 bg-white p-5 shadow-[0_24px_48px_rgba(15,23,42,0.28)]">
             <div className="flex items-start gap-3">
@@ -731,10 +730,9 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 <TriangleAlert size={18} />
               </span>
               <div>
-                <h4 className="text-lg font-black text-slate-900">Confirm profile deletion</h4>
+                <h4 className="text-lg font-black text-slate-900">{t("deleteModal.heading")}</h4>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                  You are about to delete the profile for <span className="font-bold text-slate-900">{pendingDeleteChild.nickname}</span>.
-                  This action cannot be undone.
+                  {t("deleteModal.body", { nickname: pendingDeleteChild.nickname })}
                 </p>
               </div>
             </div>
@@ -746,7 +744,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 onClick={() => setPendingDeleteChild(null)}
                 disabled={loading}
               >
-                Cancel
+                {t("deleteModal.cancel")}
               </button>
               <button
                 type="button"
@@ -754,7 +752,7 @@ export function ChildrenManager({ initialChildren, childLimit }: ChildrenManager
                 onClick={handleDeleteConfirmed}
                 disabled={loading}
               >
-                {loading ? "Deleting..." : "Delete profile"}
+                {loading ? t("deleteModal.deleting") : t("deleteModal.confirm")}
               </button>
             </div>
           </div>

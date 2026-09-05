@@ -281,7 +281,7 @@ describe("billing stripe webhook route", () => {
     expect(body).toEqual({
       ok: false,
       error: {
-        message: "Internal server error",
+        message: "Something went wrong.",
       },
     });
     expect(logErrorMock).toHaveBeenCalledWith(

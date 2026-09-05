@@ -1,4 +1,6 @@
-﻿"use client";
+"use client";
+
+import { useTranslations } from "next-intl";
 
 interface SeedPlantingCinematicProps {
   courseTitle: string;
@@ -11,11 +13,13 @@ export function SeedPlantingCinematic({
   onFinish,
   prefersReducedMotion,
 }: SeedPlantingCinematicProps) {
+  const t = useTranslations("kid.gardenHud.cinematic");
+
   return (
-    <div className="ksg2-seed-overlay" role="dialog" aria-modal="true" aria-label="Sow the seeds for a new course">
+    <div className="ksg2-seed-overlay" role="dialog" aria-modal="true" aria-label={t("aria")}>
       <div className="ksg2-seed-card">
-        <p className="ksg2-seed-kicker">New course</p>
-        <h2 className="ksg2-seed-title">Sow beans, start a journey in the clouds</h2>
+        <p className="ksg2-seed-kicker">{t("kicker")}</p>
+        <h2 className="ksg2-seed-title">{t("title")}</h2>
         <p className="ksg2-seed-course">{courseTitle}</p>
 
         <div
@@ -36,10 +40,10 @@ export function SeedPlantingCinematic({
 
         <div className="ksg2-seed-actions">
           <button type="button" className="ksg2-seed-cta" onClick={onFinish}>
-            Start climbing the clouds
+            {t("startClimb")}
           </button>
           <button type="button" className="ksg2-seed-skip" onClick={onFinish}>
-            Later
+            {t("later")}
           </button>
         </div>
       </div>

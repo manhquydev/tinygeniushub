@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { cookies } from "next/headers";
+import { getLocale } from "next-intl/server";
 import { SlidersHorizontal } from "lucide-react";
 import { AB_COURSES_COOKIE, type AbVariant } from "@/lib/ab-test-constants";
+import { resolveAppLocale, type AppLocale } from "@/i18n/locales";
+import { translate } from "@/i18n/translator";
 import {
-  AGE_GROUP_LABELS,
-  PHASE_LABELS,
-  PROGRAM_LABELS,
+  AGE_GROUP_KEYS,
+  SUBJECT_KEYS,
+  getCourseFilterLabel,
   parseFilterParams,
-  SUBJECT_LABELS,
   type CourseFilterParams,
+  type PhaseKey,
+  type ProgramKey,
 } from "@/lib/courses/course-filter-utils";
 import { getStorefrontCourses, type StorefrontCourse } from "@/modules/courses/course-service";
 import { CourseActiveFilters } from "@/components/courses/course-active-filters";
@@ -21,11 +25,14 @@ import { CoursePagination } from "@/components/courses/course-pagination";
 import { CourseSortSelect } from "@/components/courses/course-sort-select";
 import { CourseCatalogViewTracker } from "@/components/courses/course-storefront-tracking";
 
-export const metadata: Metadata = {
-  title: "Baby courses - TinyGenius Hub",
-  description: "Quickly view the course, try it out first, choose to buy according to your family's needs.",
-  alternates: { canonical: "https://www.tinygeniushubvn.tech/courses" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = resolveAppLocale(await getLocale());
+  return {
+    title: translate("courses.catalog.metadata.title", undefined, locale),
+    description: translate("courses.catalog.metadata.description", undefined, locale),
+    alternates: { canonical: "https://www.tinygeniushubvn.tech/courses" },
+  };
+}
 
 type SearchParamsInput = Record<string, string | string[] | undefined>;
 
@@ -34,8 +41,6 @@ interface CoursesPageProps {
 }
 
 const PAGE_SIZE = 9;
-type ProgramKey = keyof typeof PROGRAM_LABELS;
-type PhaseKey = keyof typeof PHASE_LABELS;
 
 function getActiveFilterCount(filters: CourseFilterParams) {
   let count = 0;
@@ -106,69 +111,57 @@ function sortCourses(courses: StorefrontCourse[], sort: CourseFilterParams["sort
   }
 }
 
-function deriveFilterOptions(courses: StorefrontCourse[]) {
-  const isKnownSubject = (value: string | null): value is string => {
-    return typeof value === "string" && value in SUBJECT_LABELS;
-  };
-  const isKnownAgeGroup = (value: string | null): value is string => {
-    return typeof value === "string" && value !== "ALL_AGES" && value in AGE_GROUP_LABELS;
-  };
-
-  const isKnownProgram = (value: ProgramKey | null): value is ProgramKey => {
-    return value !== null;
-  };
-  const isKnownPhase = (value: PhaseKey | null): value is PhaseKey => {
-    return value !== null;
-  };
+function deriveFilterOptions(courses: StorefrontCourse[], locale: AppLocale) {
+  const collator = locale === "vi" ? "vi-VN" : "en-US";
+  const compareLabel = (group: "program" | "phase" | "subject" | "ageGroup", a: string, b: string) =>
+    getCourseFilterLabel(group, a, locale).localeCompare(getCourseFilterLabel(group, b, locale), collator);
 
   const programKeys = Array.from(
-    new Set(
-      courses
-        .map((course) => detectProgramKey(course.slug))
-        .filter(isKnownProgram),
-    ),
-  ).sort((a, b) => PROGRAM_LABELS[a].localeCompare(PROGRAM_LABELS[b], "vi"));
+    new Set(courses.map((course) => detectProgramKey(course.slug)).filter((value): value is ProgramKey => value !== null)),
+  ).sort((a, b) => compareLabel("program", a, b));
 
   const phaseKeys = Array.from(
-    new Set(
-      courses
-        .map((course) => detectPhaseKey(course.slug))
-        .filter(isKnownPhase),
-    ),
-  ).sort((a, b) => PHASE_LABELS[a].localeCompare(PHASE_LABELS[b], "vi"));
+    new Set(courses.map((course) => detectPhaseKey(course.slug)).filter((value): value is PhaseKey => value !== null)),
+  ).sort((a, b) => compareLabel("phase", a, b));
 
   const subjectKeys = Array.from(
     new Set(
       courses
         .map((course) => course.subject)
-        .filter(isKnownSubject),
+        .filter((value): value is string => typeof value === "string" && (SUBJECT_KEYS as readonly string[]).includes(value)),
     ),
-  ).sort((a, b) => SUBJECT_LABELS[a].localeCompare(SUBJECT_LABELS[b], "vi"));
+  ).sort((a, b) => compareLabel("subject", a, b));
 
   const ageGroupKeys = Array.from(
     new Set(
       courses
         .map((course) => course.ageGroup)
-        .filter(isKnownAgeGroup),
+        .filter(
+          (value): value is string =>
+            typeof value === "string" && value !== "ALL_AGES" && (AGE_GROUP_KEYS as readonly string[]).includes(value),
+        ),
     ),
-  ).sort((a, b) => AGE_GROUP_LABELS[a].localeCompare(AGE_GROUP_LABELS[b], "vi"));
+  ).sort((a, b) => compareLabel("ageGroup", a, b));
 
   return { programKeys, phaseKeys, subjectKeys, ageGroupKeys };
 }
 
 export default async function CoursesPage({ searchParams }: CoursesPageProps) {
-  const [courses, cookieStore, resolvedSearchParams] = await Promise.all([
+  const [courses, cookieStore, resolvedSearchParams, rawLocale] = await Promise.all([
     getStorefrontCourses(),
     cookies(),
     searchParams ?? {},
+    getLocale(),
   ]);
 
+  const locale = resolveAppLocale(rawLocale);
+  const t = (key: string, values?: Record<string, string | number>) => translate(`courses.catalog.${key}`, values, locale);
   const coursesVariant: AbVariant = cookieStore.get(AB_COURSES_COOKIE)?.value === "B" ? "B" : "A";
   const filters = parseFilterParams(resolvedSearchParams);
   const activeFilterCount = getActiveFilterCount(filters);
   const filteredCourses = filterCourses(courses, filters);
   const sortedCourses = sortCourses(filteredCourses, filters.sort);
-  const filterOptions = deriveFilterOptions(courses);
+  const filterOptions = deriveFilterOptions(courses, locale);
 
   const totalPages = Math.max(1, Math.ceil(sortedCourses.length / PAGE_SIZE));
   const currentPage = Math.min(filters.page ?? 1, totalPages);
@@ -186,8 +179,8 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
       />
 
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-3xl">Course list</h1>
-        <p className="mt-2 text-sm text-slate-600">Take a trial lesson before buying to choose the right course for your child.</p>
+        <h1 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-3xl">{t("heading")}</h1>
+        <p className="mt-2 text-sm text-slate-600">{t("subtitle")}</p>
       </section>
 
       <section className="grid gap-5 lg:grid-cols-[280px_minmax(0,1fr)] xl:grid-cols-[300px_minmax(0,1fr)]">
@@ -220,14 +213,13 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                 />
                 <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
                   <SlidersHorizontal className="h-3.5 w-3.5" />
-                  Filter
+                  {t("filterBadge")}
                 </span>
               </div>
               <CourseSortSelect currentSort={filters.sort} />
             </div>
             <p className="mt-3 text-sm text-slate-600">
-              Showing <span className="font-bold text-slate-900">{visibleCourses.length}</span> /{" "}
-              <span className="font-bold text-slate-900">{filteredCourses.length}</span> matching courses.
+              {t("showing", { visible: visibleCourses.length, total: filteredCourses.length })}
             </p>
             <div className="mt-3">
               <CourseActiveFilters filters={filters} />
@@ -236,20 +228,18 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
 
           {courses.length === 0 ? (
             <section className="card items-center text-center" style={{ padding: "2.5rem 1.5rem" }}>
-              <p className="text-lg font-bold text-slate-900">New course coming soon</p>
-              <p className="max-w-md text-sm leading-relaxed text-slate-600">
-                We are updating new content. Sign up to receive notifications as soon as the course goes on sale.
-              </p>
+              <p className="text-lg font-bold text-slate-900">{t("emptySoon.title")}</p>
+              <p className="max-w-md text-sm leading-relaxed text-slate-600">{t("emptySoon.body")}</p>
               <Link href="/waitlist" className="solid-button" style={{ marginTop: "0.5rem", width: "fit-content" }}>
-                Receive early notifications
+                {t("emptySoon.cta")}
               </Link>
             </section>
           ) : visibleCourses.length === 0 ? (
             <section className="card items-center text-center" style={{ padding: "2.2rem 1.25rem" }}>
-              <p className="text-lg font-bold text-slate-900">No matching key found</p>
-              <p className="max-w-md text-sm leading-relaxed text-slate-600">Try loosening the filter to see more options for your child.</p>
+              <p className="text-lg font-bold text-slate-900">{t("emptyFiltered.title")}</p>
+              <p className="max-w-md text-sm leading-relaxed text-slate-600">{t("emptyFiltered.body")}</p>
               <Link href="/courses" className="ghost-button" style={{ width: "fit-content" }}>
-                Clear filter
+                {t("emptyFiltered.cta")}
               </Link>
             </section>
           ) : (
@@ -262,7 +252,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                       course={course}
                       variant={coursesVariant}
                       index={startIndex + index}
-                      detailCtaLabel="See details"
+                      detailCtaLabel={t("detailCta")}
                     />
                   );
                 })}

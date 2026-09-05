@@ -1,13 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
+import { resolveAppLocale } from "@/i18n/locales";
 import {
-  AGE_GROUP_LABELS,
-  DURATION_LABELS,
-  PHASE_LABELS,
-  PROGRAM_LABELS,
-  SUBJECT_LABELS,
+  DURATION_KEYS,
+  getCourseFilterLabel,
   type CourseFilterParams,
 } from "@/lib/courses/course-filter-utils";
 
@@ -19,8 +18,6 @@ interface CourseFilterSidebarProps {
   availableAgeGroupKeys: string[];
 }
 
-const DURATION_KEYS = Object.keys(DURATION_LABELS) as Array<keyof typeof DURATION_LABELS>;
-
 export function CourseFilterSidebar({
   currentFilters,
   availableProgramKeys,
@@ -30,6 +27,8 @@ export function CourseFilterSidebar({
 }: CourseFilterSidebarProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations("courses.catalog.filter");
+  const locale = resolveAppLocale(useLocale());
   const [keyword, setKeyword] = useState(currentFilters.q ?? "");
   const [minPrice, setMinPrice] = useState(currentFilters.minPrice?.toString() ?? "");
   const [maxPrice, setMaxPrice] = useState(currentFilters.maxPrice?.toString() ?? "");
@@ -53,7 +52,6 @@ export function CourseFilterSidebar({
     if (typingTimerRef.current) {
       clearTimeout(typingTimerRef.current);
     }
-
     typingTimerRef.current = setTimeout(() => {
       const params = new URLSearchParams(searchParams.toString());
       const currentKeyword = searchParams.get("q") ?? "";
@@ -121,28 +119,28 @@ export function CourseFilterSidebar({
   return (
     <div className="grid gap-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex items-center justify-between">
-        <p className="text-sm font-extrabold text-slate-900">Filter</p>
+        <p className="text-sm font-extrabold text-slate-900">{t("heading")}</p>
         {hasFilters ? (
           <button onClick={clearAll} className="text-xs font-semibold text-emerald-600 hover:text-emerald-800">
-            Delete all
+            {t("deleteAll")}
           </button>
         ) : null}
       </div>
 
       <div className="grid gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Find keys quickly</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">{t("searchHeading")}</p>
         <input
           type="search"
           value={keyword}
           onChange={(event) => setKeyword(event.target.value)}
-          placeholder="Key or target name..."
+          placeholder={t("searchPlaceholder")}
           className="w-full rounded-lg border border-slate-300 px-2.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
         />
       </div>
 
       {availableProgramKeys.length > 0 ? (
         <div className="grid gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Key group</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">{t("programHeading")}</p>
           {availableProgramKeys.map((key) => (
             <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
               <input
@@ -152,7 +150,7 @@ export function CourseFilterSidebar({
                 onChange={() => updateParam("program", key)}
                 className="border-slate-300 text-emerald-600"
               />
-              {PROGRAM_LABELS[key]}
+              {getCourseFilterLabel("program", key, locale)}
             </label>
           ))}
           {currentFilters.program ? (
@@ -160,7 +158,7 @@ export function CourseFilterSidebar({
               onClick={() => updateParam("program", null)}
               className="text-left text-xs text-slate-400 hover:text-slate-600"
             >
-              Deselect
+              {t("deselect")}
             </button>
           ) : null}
         </div>
@@ -168,7 +166,7 @@ export function CourseFilterSidebar({
 
       {availablePhaseKeys.length > 0 ? (
         <div className="grid gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Stage</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">{t("phaseHeading")}</p>
           {availablePhaseKeys.map((key) => (
             <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
               <input
@@ -178,7 +176,7 @@ export function CourseFilterSidebar({
                 onChange={() => updateParam("phase", key)}
                 className="border-slate-300 text-emerald-600"
               />
-              {PHASE_LABELS[key]}
+              {getCourseFilterLabel("phase", key, locale)}
             </label>
           ))}
           {currentFilters.phase ? (
@@ -186,7 +184,7 @@ export function CourseFilterSidebar({
               onClick={() => updateParam("phase", null)}
               className="text-left text-xs text-slate-400 hover:text-slate-600"
             >
-              Deselect
+              {t("deselect")}
             </button>
           ) : null}
         </div>
@@ -194,7 +192,7 @@ export function CourseFilterSidebar({
 
       {availableSubjectKeys.length > 0 ? (
         <div className="grid gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Subject</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">{t("subjectHeading")}</p>
           {availableSubjectKeys.map((key) => (
             <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
               <input
@@ -203,7 +201,7 @@ export function CourseFilterSidebar({
                 onChange={() => updateParam("subject", currentFilters.subject === key ? null : key)}
                 className="rounded border-slate-300 text-emerald-600"
               />
-              {SUBJECT_LABELS[key]}
+              {getCourseFilterLabel("subject", key, locale)}
             </label>
           ))}
         </div>
@@ -211,7 +209,7 @@ export function CourseFilterSidebar({
 
       {availableAgeGroupKeys.length > 0 ? (
         <div className="grid gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Age</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">{t("ageHeading")}</p>
           {availableAgeGroupKeys.map((key) => (
             <label key={key} className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
               <input
@@ -221,7 +219,7 @@ export function CourseFilterSidebar({
                 onChange={() => updateParam("ageGroup", key)}
                 className="border-slate-300 text-emerald-600"
               />
-              {AGE_GROUP_LABELS[key]}
+              {getCourseFilterLabel("ageGroup", key, locale)}
             </label>
           ))}
           {currentFilters.ageGroup ? (
@@ -229,25 +227,25 @@ export function CourseFilterSidebar({
               onClick={() => updateParam("ageGroup", null)}
               className="text-left text-xs text-slate-400 hover:text-slate-600"
             >
-              Deselect
+              {t("deselect")}
             </button>
           ) : null}
         </div>
       ) : null}
 
       <div className="grid gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Price (VND)</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">{t("priceHeading")}</p>
         <div className="grid grid-cols-2 gap-2">
           <input
             type="number"
-            placeholder="Minimum"
+            placeholder={t("minPlaceholder")}
             value={minPrice}
             onChange={(event) => setMinPrice(event.target.value)}
             className="w-full rounded-lg border border-slate-300 px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
           <input
             type="number"
-            placeholder="Max"
+            placeholder={t("maxPlaceholder")}
             value={maxPrice}
             onChange={(event) => setMaxPrice(event.target.value)}
             className="w-full rounded-lg border border-slate-300 px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -256,7 +254,7 @@ export function CourseFilterSidebar({
       </div>
 
       <div className="grid gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Duration</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">{t("durationHeading")}</p>
         <div className="flex flex-wrap gap-2">
           {DURATION_KEYS.map((key) => (
             <button
@@ -268,7 +266,7 @@ export function CourseFilterSidebar({
                   : "border-slate-300 bg-white text-slate-600 hover:border-slate-400"
               }`}
             >
-              {DURATION_LABELS[key]}
+              {getCourseFilterLabel("duration", key, locale)}
             </button>
           ))}
         </div>

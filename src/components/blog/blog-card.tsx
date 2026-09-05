@@ -1,18 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { AppLocale } from "@/i18n/locales";
+import { translate } from "@/i18n/translator";
 import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
-function formatDate(value: Date | null) {
+function formatDate(value: Date | null, locale: AppLocale) {
   if (!value) {
-    return "Unpublished";
+    return translate("blog.chrome.card.unpublished", undefined, locale);
   }
 
-  return new Intl.DateTimeFormat("en-US", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  }).format(value);
+  return value.toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US");
 }
 
 function initials(name: string) {
@@ -60,7 +58,7 @@ function getCategoryBadgeStyle(color: string | null | undefined) {
   };
 }
 
-export function BlogCard({ post }: { post: BlogPostCardDTO }) {
+export function BlogCard({ post, locale }: { post: BlogPostCardDTO; locale: AppLocale }) {
   return (
     <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
       <Link href={`/blog/${post.slug}`} className="group block">
@@ -75,7 +73,7 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-slate-100 text-sm font-medium text-slate-500">
-              No photos available
+              {translate("blog.chrome.card.noPhoto", undefined, locale)}
             </div>
           )}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
@@ -87,7 +85,7 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
               className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold"
               style={getCategoryBadgeStyle(post.category.color)}
             >
-              {getBlogCategoryDisplayName(post.category)}
+              {getBlogCategoryDisplayName(post.category, locale)}
             </span>
             {post.tags.length > 0 ? (
               <div className="flex flex-wrap gap-1.5">
@@ -120,15 +118,15 @@ export function BlogCard({ post }: { post: BlogPostCardDTO }) {
             )}
             <span>{post.author.displayName}</span>
             <span>·</span>
-            <span>{post.readingTimeMin} min read</span>
+            <span>{translate("blog.chrome.card.minRead", { count: post.readingTimeMin }, locale)}</span>
             <span>·</span>
-            <span>{formatDate(post.publishedAt)}</span>
+            <span>{formatDate(post.publishedAt, locale)}</span>
           </div>
 
           <div className="flex items-center gap-3 text-xs text-slate-500">
-            <span>{post.viewCount} views</span>
+            <span>{translate("blog.chrome.card.views", { count: post.viewCount }, locale)}</span>
             <span>·</span>
-            <span>{post.likeCount} likes</span>
+            <span>{translate("blog.chrome.card.likes", { count: post.likeCount }, locale)}</span>
           </div>
         </div>
       </Link>

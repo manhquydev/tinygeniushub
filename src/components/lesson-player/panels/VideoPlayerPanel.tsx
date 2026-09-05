@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import * as m from "motion/react-m";
 import { useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { WatchProgressRing } from "@/components/lesson-player/components/WatchProgressRing";
 import { SecureVideoPlayer } from "@/components/media/secure-video-player";
 
@@ -26,6 +27,7 @@ export function VideoPlayerPanel({
   onContinue,
   onPlaybackStateChange,
 }: VideoPlayerPanelProps) {
+  const t = useTranslations("kid.lesson.video");
   const prefersReducedMotion = useReducedMotion() ?? false;
   const normalizedVideoSource = videoSource ?? "";
   const hasVideo = Boolean(videoSource);
@@ -48,9 +50,14 @@ export function VideoPlayerPanel({
     }
   }, [iframeEngaged, isIframe, onPlaybackStateChange]);
 
+  const hint = !hasVideo
+    ? t("hintNoVideo")
+    : canContinue
+      ? t("hintReady")
+      : t("hintWatchMore");
+
   return (
     <div className="lp-main lp-main-video" style={{ gap: "0.8rem" }}>
-      {/* Video heading – pure CSS design bar, no emoji */}
       <div className="lp-video-head">
         <div className="lp-video-head-bar" aria-hidden="true">
           <span className="lp-video-head-pip" />
@@ -58,12 +65,10 @@ export function VideoPlayerPanel({
           <span className="lp-video-head-pip" />
         </div>
         <h3>{title}</h3>
-        <p>Watch the video to continue the lesson</p>
+        <p>{t("watchToContinue")}</p>
       </div>
 
-      {/* Video panel */}
       <div className="lp-video-panel">
-        {/* Frame */}
         <div
           className="lp-video-frame"
           onClick={() => {
@@ -76,7 +81,7 @@ export function VideoPlayerPanel({
             <div className="lp-video-fallback">
               <div className="lp-video-fallback-icon" aria-hidden="true" />
               <span style={{ fontSize: "0.8rem", textAlign: "center", maxWidth: "26ch" }}>
-                This article does not have a video yet. You can click continue to move to the practice section.
+                {t("noVideoFallback")}
               </span>
             </div>
           ) : isIframe ? (
@@ -98,24 +103,18 @@ export function VideoPlayerPanel({
           )}
         </div>
 
-        {/* Watch Progress */}
         <div className="lp-watch-progress-area">
           <div className="lp-watch-ring-wrap">
-                      <WatchProgressRing percentage={watchProgress} size={62} isReady={canContinue} />
+            <WatchProgressRing percentage={watchProgress} size={62} isReady={canContinue} />
           </div>
           <div className="lp-watch-progress-info">
-            <p className="lp-watch-progress-label">Viewed</p>
+            <p className="lp-watch-progress-label">{t("viewed")}</p>
             <p className="lp-watch-progress-value">{Math.round(watchProgress)}%</p>
             <p className={`lp-watch-progress-hint ${canContinue ? "is-ready" : ""}`}>
-              {!hasVideo
-                ? "No need to watch the video for this lesson"
-                : canContinue
-                ? "Ready to continue"
-                : "Please see more to unlock"}
+              {hint}
             </p>
           </div>
 
-          {/* Continue button */}
           <m.button
             type="button"
             className="lp-btn-primary lp-video-continue-btn"
@@ -124,9 +123,9 @@ export function VideoPlayerPanel({
             onClick={onContinue}
             whileHover={prefersReducedMotion || !canContinue ? undefined : { scale: 1.04 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
-            aria-label="Continue after watching the video"
+            aria-label={t("continueAria")}
           >
-            {hasVideo ? "Continue" : "Continue without video"}
+            {hasVideo ? t("continue") : t("continueWithoutVideo")}
           </m.button>
         </div>
       </div>

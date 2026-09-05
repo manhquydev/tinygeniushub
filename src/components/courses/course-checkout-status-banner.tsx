@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 
 type CheckoutQueryStatus =
@@ -26,6 +27,12 @@ type CheckoutStatusResponse = {
   };
 };
 
+type BannerCopy = {
+  tone: string;
+  titleKey: string;
+  bodyKey: string;
+};
+
 function readQueryStatus(value: string | null): CheckoutQueryStatus | null {
   if (!value) return null;
   if (
@@ -47,7 +54,7 @@ function resolveBannerCopy(input: {
   queryStatus: CheckoutQueryStatus;
   pollStatus: PollStatus | null;
   pollTimedOut: boolean;
-}) {
+}): BannerCopy | null {
   const effectiveStatus =
     input.pollStatus === "failed" || input.pollStatus === "not_found"
       ? input.pollStatus
@@ -58,33 +65,33 @@ function resolveBannerCopy(input: {
       if (input.pollTimedOut) {
         return {
           tone: "border-sky-200 bg-sky-50 text-sky-900 ring-1 ring-sky-100",
-          title: "Confirming payment",
-          body: "The system is completing the confirmation step. You can reload the page after a few minutes.",
+          titleKey: "confirming.title",
+          bodyKey: "confirming.timeoutBody",
         };
       }
       return {
         tone: "border-sky-200 bg-sky-50 text-sky-900 ring-1 ring-sky-100",
-        title: "Confirming payment",
-        body: "The transaction has been recorded. The system will automatically unlock as soon as confirmation is complete.",
+        titleKey: "confirming.title",
+        bodyKey: "confirming.body",
       };
     case "pending":
       if (input.pollTimedOut) {
         return {
           tone: "border-amber-200 bg-amber-50 text-amber-900 ring-1 ring-amber-100",
-          title: "Payment has not been completed",
-          body: "You can reopen the payment link or check back later.",
+          titleKey: "pending.timeoutTitle",
+          bodyKey: "pending.timeoutBody",
         };
       }
       return {
         tone: "border-amber-200 bg-amber-50 text-amber-900 ring-1 ring-amber-100",
-        title: "Payment is pending",
-        body: "If you have successfully paid, the system will update itself in a few minutes.",
+        titleKey: "pending.title",
+        bodyKey: "pending.body",
       };
     case "success":
       return {
         tone: "border-emerald-200 bg-emerald-50 text-emerald-900 ring-1 ring-emerald-100",
-        title: "Payment successful",
-        body: "The course has been activated.",
+        titleKey: "success.title",
+        bodyKey: "success.body",
       };
     case "failed":
     case "cancelled":
@@ -93,8 +100,8 @@ function resolveBannerCopy(input: {
     case "error":
       return {
         tone: "border-slate-200 bg-slate-50 text-slate-900 ring-1 ring-slate-100",
-        title: "Payment cannot be confirmed",
-        body: "Please try again in a few minutes. If money has been deducted, please contact support.",
+        titleKey: "unconfirmed.title",
+        bodyKey: "unconfirmed.body",
       };
     default:
       return null;
@@ -102,6 +109,7 @@ function resolveBannerCopy(input: {
 }
 
 export function CourseCheckoutStatusBanner() {
+  const t = useTranslations("courses.banner");
   const searchParams = useSearchParams();
   const queryStatus = readQueryStatus(searchParams.get("checkout"));
   const orderCode = searchParams.get("orderCode");
@@ -198,8 +206,8 @@ export function CourseCheckoutStatusBanner() {
 
   return (
     <section className={`rounded-2xl border px-4 py-3 text-sm sm:px-5 ${banner.tone}`}>
-      <p className="font-extrabold">{banner.title}</p>
-      <p className="mt-1 leading-relaxed">{banner.body}</p>
+      <p className="font-extrabold">{t(banner.titleKey)}</p>
+      <p className="mt-1 leading-relaxed">{t(banner.bodyKey)}</p>
     </section>
   );
 }

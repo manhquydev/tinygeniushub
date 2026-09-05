@@ -131,7 +131,7 @@ describe("legal cookie consent route", () => {
 
     const body = await response.json();
     expect(response.status).toBe(400);
-    expect(body.error.message).toBe("Invalid request payload");
+    expect(body.error.message).toBe("Invalid request payload.");
     expect(createAuditLogMock).not.toHaveBeenCalled();
   });
 

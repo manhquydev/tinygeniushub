@@ -1,18 +1,20 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
+import { useTranslations } from "next-intl";
 
 export function GlobalLoader() {
   const prefersReducedMotion = useReducedMotion() ?? false;
+  const t = useTranslations("specialPages.loading");
 
   return (
     <div
       className="fixed inset-0 z-[220] grid place-items-center bg-slate-950/72 px-4 backdrop-blur-md"
       role="status"
       aria-live="polite"
-      aria-label="Loading content"
+      aria-label={t("ariaLabel")}
     >
       <div
         aria-hidden
@@ -31,7 +33,7 @@ export function GlobalLoader() {
         <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-slate-900/55">
           <Image
             src="/images/system/cloud-garden/system_loading_hero.png"
-            alt="The Fox mascot is running on the rainbow track to prepare for the lesson"
+            alt={t("imageAlt")}
             width={1368}
             height={768}
             priority
@@ -40,13 +42,10 @@ export function GlobalLoader() {
         </div>
 
         <div className="grid gap-2">
-          <p className="text-sm font-semibold text-cyan-100 sm:text-base">Preparing for a learning journey...</p>
-          <p className="text-xs text-slate-300/90 sm:text-sm">
-            The system is loading appropriate content for your baby, it only takes a few seconds.
-          </p>
+          <p className="text-sm font-semibold text-cyan-100 sm:text-base">{t("title")}</p>
+          <p className="text-xs text-slate-300/90 sm:text-sm">{t("subtitle")}</p>
         </div>
       </m.div>
     </div>
   );
 }
-

@@ -2,7 +2,9 @@
 
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { NextIntlClientProvider } from "next-intl";
 import { KidNavigationFeedbackProvider, useKidNavigationFeedback } from "@/components/kid-navigation-feedback";
+import enMessages from "../../locales/en/translation.json";
 
 const pushMock = vi.fn();
 const replaceMock = vi.fn();
@@ -47,9 +49,11 @@ describe("KidNavigationFeedbackProvider", () => {
 
   it("sets navigating state immediately and calls router.push once", () => {
     render(
-      <KidNavigationFeedbackProvider>
-        <Harness />
-      </KidNavigationFeedbackProvider>,
+      <NextIntlClientProvider locale="en" messages={enMessages}>
+        <KidNavigationFeedbackProvider>
+          <Harness />
+        </KidNavigationFeedbackProvider>
+      </NextIntlClientProvider>,
     );
 
     fireEvent.click(screen.getByRole("button", { name: "Navigate" }));
@@ -64,9 +68,11 @@ describe("KidNavigationFeedbackProvider", () => {
   it("shows top bar then overlay only after configured delay", () => {
     vi.useFakeTimers();
     render(
-      <KidNavigationFeedbackProvider>
-        <Harness />
-      </KidNavigationFeedbackProvider>,
+      <NextIntlClientProvider locale="en" messages={enMessages}>
+        <KidNavigationFeedbackProvider>
+          <Harness />
+        </KidNavigationFeedbackProvider>
+      </NextIntlClientProvider>,
     );
 
     fireEvent.click(screen.getByRole("button", { name: "Navigate" }));
@@ -88,9 +94,11 @@ describe("KidNavigationFeedbackProvider", () => {
 
   it("completes pending state when route key changes", async () => {
     const { rerender } = render(
-      <KidNavigationFeedbackProvider>
-        <Harness />
-      </KidNavigationFeedbackProvider>,
+      <NextIntlClientProvider locale="en" messages={enMessages}>
+        <KidNavigationFeedbackProvider>
+          <Harness />
+        </KidNavigationFeedbackProvider>
+      </NextIntlClientProvider>,
     );
 
     fireEvent.click(screen.getByRole("button", { name: "Navigate" }));
@@ -99,9 +107,11 @@ describe("KidNavigationFeedbackProvider", () => {
     pathnameValue = "/kid/garden";
     queryValue = "childId=child-1";
     rerender(
-      <KidNavigationFeedbackProvider>
-        <Harness />
-      </KidNavigationFeedbackProvider>,
+      <NextIntlClientProvider locale="en" messages={enMessages}>
+        <KidNavigationFeedbackProvider>
+          <Harness />
+        </KidNavigationFeedbackProvider>
+      </NextIntlClientProvider>,
     );
 
     await waitFor(() => {

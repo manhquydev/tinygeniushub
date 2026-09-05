@@ -3,6 +3,7 @@
 import { WeeklyReport } from "@prisma/client";
 import { BookOpenCheck, Brain, Clock3, Flame, Lightbulb, Mail, RefreshCcw, Trophy } from "lucide-react";
 import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import type { ApiSuccess, WeeklyReportDTO } from "@/lib/api-types";
 import { Mascot } from "@/components/mascot";
 import { WeeklyProgressChart } from "@/components/weekly-progress-chart";
@@ -121,23 +122,27 @@ function averageQuiz(skillsSummary: Record<string, TrackSummary> | null) {
   return Math.round(values.reduce((total, score) => total + score, 0) / values.length);
 }
 
-function buildTrendBadge(change: number, unit: string): TrendBadgeModel {
+function buildTrendBadge(
+  change: number,
+  unit: string,
+  t: (key: string, values?: Record<string, string | number>) => string,
+): TrendBadgeModel {
   if (change > 0) {
     return {
-      text: `+${change} ${unit}`,
+      text: t("trend.up", { change, unit }),
       className: "bg-emerald-100 text-emerald-700",
     };
   }
 
   if (change < 0) {
     return {
-      text: `${change} ${unit}`,
+      text: t("trend.down", { change, unit }),
       className: "bg-rose-100 text-rose-700",
     };
   }
 
   return {
-    text: "=",
+    text: t("trend.stable"),
     className: "bg-slate-100 text-slate-600",
   };
 }
@@ -156,25 +161,25 @@ function buildSkillScores(report: ReportWithChild, skillsSummary: Record<string,
   return [
     {
       id: "focus",
-      label: "Concentration level",
+      label: "focus",
       value: focus,
       toneClass: "from-teal-500 to-cyan-500",
     },
     {
       id: "memory",
-      label: "Memory",
+      label: "memory",
       value: memory,
       toneClass: "from-amber-500 to-orange-500",
     },
     {
       id: "math",
-      label: "Mathematics",
+      label: "math",
       value: math,
       toneClass: "from-sky-500 to-blue-500",
     },
     {
       id: "language",
-      label: "Language",
+      label: "language",
       value: language,
       toneClass: "from-violet-500 to-indigo-500",
     },
@@ -205,6 +210,9 @@ function buildRadarPoints(scores: SkillScore[]) {
 }
 
 export function ReportsPanel({ initialReports }: ReportsPanelProps) {
+  const t = useTranslations("parent.reportsPanel");
+  const locale = useLocale();
+  const dateLocale = locale === "vi" ? "vi-VN" : "en-US";
   const [reports, setReports] = useState(initialReports);
   const [loading, setLoading] = useState(false);
   const [sending, setSending] = useState(false);
@@ -223,7 +231,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
       const body = await response.json();
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Unable to regenerate weekly report");
+        setError(body.error?.message ?? t("errors.regenerateFailed"));
         return;
       }
 
@@ -233,7 +241,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
         setReports((refreshBody.data?.reports ?? []) as unknown as ReportWithChild[]);
       }
     } catch (regenerateError) {
-      setError(regenerateError instanceof Error ? regenerateError.message : "Unknown error");
+      setError(regenerateError instanceof Error ? regenerateError.message : t("errors.unknown"));
     } finally {
       setLoading(false);
     }
@@ -251,14 +259,14 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
       const body = await response.json();
 
       if (!response.ok || !body.ok) {
-        setError(body.error?.message ?? "Unable to send weekly email");
+        setError(body.error?.message ?? t("errors.emailFailed"));
         return;
       }
 
       const result = body.data.result as { sent: number; skipped: number; bounced: number };
-      setInfo(`Sent:${result.sent}, skip:${result.skipped}, error/bounce:${result.bounced}`);
+      setInfo(t("emailResult", { sent: result.sent, skipped: result.skipped, bounced: result.bounced }));
     } catch (sendError) {
-      setError(sendError instanceof Error ? sendError.message : "Unknown error");
+      setError(sendError instanceof Error ? sendError.message : t("errors.unknown"));
     } finally {
       setSending(false);
     }
@@ -312,10 +320,8 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
       <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Weekly study report</h2>
-            <p className="mt-1 text-sm leading-relaxed text-slate-500">
-              Monitor learning progress, skill capacity and suggest actions for parents.
-            </p>
+            <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">{t("heading")}</h2>
+            <p className="mt-1 text-sm leading-relaxed text-slate-500">{t("description")}</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <button
@@ -324,7 +330,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
               disabled={loading}
             >
               <RefreshCcw size={15} />
-              {loading ? "Creating..." : "Generate reports now"}
+              {loading ? t("actions.generating") : t("actions.generate")}
             </button>
             <button
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
@@ -332,7 +338,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
               disabled={sending}
             >
               <Mail size={15} />
-              {sending ? "Sending..." : "Email report"}
+              {sending ? t("actions.sending") : t("actions.email")}
             </button>
           </div>
         </div>
@@ -349,8 +355,8 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
         <section className="rounded-3xl border border-slate-200/75 bg-white p-6 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
           <div className="mascot-empty-state">
             <Mascot variant="small" state="sleepy" size={164} actionProp="none" motionLevel="minimal" pauseWhenOffscreen />
-            <h3>Nothing here yet...</h3>
-            <p className="muted-text">No weekly reports have been generated yet.</p>
+            <h3>{t("empty.title")}</h3>
+            <p className="muted-text">{t("empty.body")}</p>
           </div>
         </section>
       ) : (
@@ -360,9 +366,9 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
           const skillScores = buildSkillScores(report, skillsSummary);
           const radarPoints = buildRadarPoints(skillScores);
           const trend = report.trend;
-          const minutesTrend = buildTrendBadge(trend?.minutesChange ?? 0, "minute");
-          const lessonsTrend = buildTrendBadge(trend?.lessonsChange ?? 0, "post");
-          const streakTrend = buildTrendBadge(trend?.streakChange ?? 0, "day");
+          const minutesTrend = buildTrendBadge(trend?.minutesChange ?? 0, t("trend.unitMinute"), t);
+          const lessonsTrend = buildTrendBadge(trend?.lessonsChange ?? 0, t("trend.unitLesson"), t);
+          const streakTrend = buildTrendBadge(trend?.streakChange ?? 0, t("trend.unitDay"), t);
           const overallScore =
             skillScores.length > 0
               ? Math.round(skillScores.reduce((total, skill) => total + skill.value, 0) / skillScores.length)
@@ -374,24 +380,24 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                 <div className="space-y-1">
                   <h3 className="text-xl font-black tracking-[-0.02em] text-slate-900">{report.child.nickname}</h3>
                   <p className="text-sm leading-relaxed text-slate-500">
-                    Week:{" "}
-                    {new Date(report.weekStart).toLocaleDateString("vi-VN", {
-                      weekday: "short",
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    })}{" "}
-                    -{" "}
-                    {new Date(report.weekEnd).toLocaleDateString("vi-VN", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
+                    {t("card.weekRange", {
+                      start: new Date(report.weekStart).toLocaleDateString(dateLocale, {
+                        weekday: "short",
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      }),
+                      end: new Date(report.weekEnd).toLocaleDateString(dateLocale, {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      }),
                     })}
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
-                    Updated: {new Date(report.generatedAt).toLocaleDateString("vi-VN")}
+                    {t("card.updated", { date: new Date(report.generatedAt).toLocaleDateString(dateLocale) })}
                   </span>
                   <button
                     type="button"
@@ -400,7 +406,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                       openPrintableReport(report.id);
                     }}
                   >
-                    Download PDF
+                    {t("actions.downloadPdf")}
                   </button>
                 </div>
               </div>
@@ -410,41 +416,41 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
                     <Trophy size={18} />
                   </div>
-                  <h4 className="text-lg font-black tracking-[-0.01em] text-slate-900">Summary of achievements</h4>
+                  <h4 className="text-lg font-black tracking-[-0.01em] text-slate-900">{t("card.achievements")}</h4>
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                   <article className="rounded-xl border border-slate-200 bg-white p-4">
                     <div className="flex items-center gap-2 text-slate-600">
                       <Clock3 size={16} />
-                      <span className="text-sm font-semibold">Study time</span>
+                      <span className="text-sm font-semibold">{t("card.studyTime")}</span>
                     </div>
                     <span className={`mt-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold ${minutesTrend.className}`}>
                       {minutesTrend.text}
                     </span>
                     <p className="mt-2 text-3xl font-black tracking-[-0.02em] text-slate-900">{report.minutesLearned}</p>
-                    <p className="text-xs font-semibold text-slate-500">minutes/week</p>
+                    <p className="text-xs font-semibold text-slate-500">{t("card.minutesPerWeek")}</p>
                   </article>
                   <article className="rounded-xl border border-slate-200 bg-white p-4">
                     <div className="flex items-center gap-2 text-slate-600">
                       <BookOpenCheck size={16} />
-                      <span className="text-sm font-semibold">Lesson</span>
+                      <span className="text-sm font-semibold">{t("card.lesson")}</span>
                     </div>
                     <span className={`mt-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold ${lessonsTrend.className}`}>
                       {lessonsTrend.text}
                     </span>
                     <p className="mt-2 text-3xl font-black tracking-[-0.02em] text-slate-900">{report.lessonsCompleted}</p>
-                    <p className="text-xs font-semibold text-slate-500">completed lesson</p>
+                    <p className="text-xs font-semibold text-slate-500">{t("card.completedLesson")}</p>
                   </article>
                   <article className="rounded-xl border border-slate-200 bg-white p-4">
                     <div className="flex items-center gap-2 text-slate-600">
                       <Flame size={16} />
-                      <span className="text-sm font-semibold">Continuous series</span>
+                      <span className="text-sm font-semibold">{t("card.streak")}</span>
                     </div>
                     <span className={`mt-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold ${streakTrend.className}`}>
                       {streakTrend.text}
                     </span>
                     <p className="mt-2 text-3xl font-black tracking-[-0.02em] text-slate-900">{report.streakDays}</p>
-                    <p className="text-xs font-semibold text-slate-500">consecutive school days</p>
+                    <p className="text-xs font-semibold text-slate-500">{t("card.consecutiveDays")}</p>
                   </article>
                 </div>
               </div>
@@ -454,14 +460,14 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sky-100 text-sky-700">
                     <Brain size={18} />
                   </div>
-                  <h4 className="text-lg font-black tracking-[-0.01em] text-slate-900">Skills assessment</h4>
+                  <h4 className="text-lg font-black tracking-[-0.01em] text-slate-900">{t("card.skills")}</h4>
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
                   <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-semibold text-slate-500">Overview radar</p>
-                      <span className="rounded-full bg-sky-100 px-2 py-0.5 text-xs font-bold text-sky-700">{overallScore}%</span>
+                      <p className="text-sm font-semibold text-slate-500">{t("card.overviewRadar")}</p>
+                      <span className="rounded-full bg-sky-100 px-2 py-0.5 text-xs font-bold text-sky-700">{t("card.overallPercent", { score: overallScore })}</span>
                     </div>
                     <div className="mt-3 flex justify-center">
                       <svg viewBox="0 0 200 200" className="h-44 w-44">
@@ -479,8 +485,8 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                     {skillScores.map((skill) => (
                       <article key={skill.id} className="rounded-xl border border-slate-200 bg-slate-50/70 p-3">
                         <div className="mb-2 flex items-center justify-between gap-2">
-                          <span className="text-sm font-semibold text-slate-700">{skill.label}</span>
-                          <span className="text-sm font-black text-slate-900">{skill.value}%</span>
+                          <span className="text-sm font-semibold text-slate-700">{t(`skills.${skill.id}`)}</span>
+                          <span className="text-sm font-black text-slate-900">{t("card.skillPercent", { value: skill.value })}</span>
                         </div>
                         <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
                           <span
@@ -499,7 +505,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-100 text-amber-700">
                     <Lightbulb size={18} />
                   </div>
-                  <h4 className="text-lg font-black tracking-[-0.01em] text-amber-900">Advice from AI experts</h4>
+                  <h4 className="text-lg font-black tracking-[-0.01em] text-amber-900">{t("card.advice")}</h4>
                 </div>
 
                 {recommendations?.nextWeek && recommendations.nextWeek.length > 0 ? (
@@ -509,9 +515,7 @@ export function ReportsPanel({ initialReports }: ReportsPanelProps) {
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-sm leading-relaxed text-amber-900/80">
-                    This week, the baby's learning is stable. Parents should maintain a short study schedule each day and increase family interaction activities on weekends.
-                  </p>
+                  <p className="text-sm leading-relaxed text-amber-900/80">{t("card.adviceFallback")}</p>
                 )}
               </div>
             </section>

@@ -3,6 +3,8 @@
 import React from "react";
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { NextIntlClientProvider } from "next-intl";
+import enMessages from "../../locales/en/translation.json";
 
 const playPopMock = vi.fn();
 const playTingMock = vi.fn();
@@ -101,7 +103,7 @@ describe("KidMissionPanel", () => {
     const { KidMissionPanel } = await import("@/components/kid-mission-panel");
 
     render(
-      <KidMissionPanel
+      <NextIntlClientProvider locale="en" messages={enMessages}><KidMissionPanel
         childrenProfiles={[
           { id: "child-1", nickname: "Nina" },
           { id: "child-2", nickname: "Ben" },
@@ -115,7 +117,8 @@ describe("KidMissionPanel", () => {
             estimatedMinutes: 10,
           },
         ]}
-      />,
+      />
+      </NextIntlClientProvider>,
     );
 
     expect(screen.getByText("Learn letter A")).toBeInTheDocument();
@@ -128,7 +131,7 @@ describe("KidMissionPanel", () => {
     const { KidMissionPanel } = await import("@/components/kid-mission-panel");
 
     render(
-      <KidMissionPanel
+      <NextIntlClientProvider locale="en" messages={enMessages}><KidMissionPanel
         childrenProfiles={[{ id: "child-1", nickname: "Nina" }]}
         initialChildId="child-1"
         initialLessons={[
@@ -139,7 +142,8 @@ describe("KidMissionPanel", () => {
             estimatedMinutes: 10,
           },
         ]}
-      />,
+      />
+      </NextIntlClientProvider>,
     );
 
     fireEvent.click(screen.getByRole("button", { name: /start the lesson/i }));
@@ -153,7 +157,7 @@ describe("KidMissionPanel", () => {
     const { KidMissionPanel } = await import("@/components/kid-mission-panel");
 
     render(
-      <KidMissionPanel
+      <NextIntlClientProvider locale="en" messages={enMessages}><KidMissionPanel
         childrenProfiles={[
           { id: "child-1", nickname: "Nina" },
           { id: "child-2", nickname: "Ben" },
@@ -167,7 +171,8 @@ describe("KidMissionPanel", () => {
             estimatedMinutes: 10,
           },
         ]}
-      />,
+      />
+      </NextIntlClientProvider>,
     );
 
     const mascotButton = screen.getByRole("button", { name: /guide mascot/i });

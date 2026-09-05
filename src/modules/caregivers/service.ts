@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { sendCaregiverInviteEmail, type CaregiverInviteEmailDelivery } from "@/lib/email/caregiver-invite-email";
 import { env } from "@/lib/env";
 import { logWarn } from "@/lib/observability/logger";
+import { translateError } from "@/lib/route-error";
 import { DomainError } from "@/modules/platform/errors";
 
 const DEFAULT_CAREGIVER_LIMIT = 2;
@@ -151,19 +152,19 @@ export async function createCaregiverInvite(parentId: string, input: z.infer<typ
   ]);
 
   if (!parent) {
-    throw new DomainError("Parent account not found", 404, "PARENT_NOT_FOUND");
+    throw new DomainError(await translateError("errors.parentNotFound"), 404, "PARENT_NOT_FOUND");
   }
 
   if (caregiversCount + pendingInvites >= caregiverLimit) {
-    throw new DomainError("Caregiver limit reached for current subscription plan", 409, "CAREGIVER_LIMIT_REACHED");
+    throw new DomainError(await translateError("errors.caregiverLimitReached"), 409, "CAREGIVER_LIMIT_REACHED");
   }
 
   if (existingCaregiver) {
-    throw new DomainError("Email is already linked as caregiver", 409, "CAREGIVER_ALREADY_EXISTS");
+    throw new DomainError(await translateError("errors.caregiverAlreadyExists"), 409, "CAREGIVER_ALREADY_EXISTS");
   }
 
   if (existingInvite) {
-    throw new DomainError("Invite already exists for this email", 409, "CAREGIVER_INVITE_EXISTS");
+    throw new DomainError(await translateError("errors.caregiverInviteExists"), 409, "CAREGIVER_INVITE_EXISTS");
   }
 
   const invite = await prisma.caregiverInvite.create({
@@ -232,7 +233,7 @@ export async function revokeCaregiverInvite(parentId: string, inviteId: string) 
   });
 
   if (!invite) {
-    throw new DomainError("Caregiver invite not found", 404, "CAREGIVER_INVITE_NOT_FOUND");
+    throw new DomainError(await translateError("errors.caregiverInviteNotFound"), 404, "CAREGIVER_INVITE_NOT_FOUND");
   }
 
   await prisma.caregiverInvite.delete({
@@ -267,15 +268,15 @@ export async function acceptCaregiverInviteByToken(token: string) {
   });
 
   if (!invite) {
-    throw new DomainError("Invitation is not valid.", 404, "CAREGIVER_INVITE_INVALID");
+    throw new DomainError(await translateError("errors.caregiverInviteInvalid"), 404, "CAREGIVER_INVITE_INVALID");
   }
 
   if (invite.accepted) {
-    throw new DomainError("This invitation has been previously accepted.", 409, "CAREGIVER_INVITE_ACCEPTED");
+    throw new DomainError(await translateError("errors.caregiverInviteAccepted"), 409, "CAREGIVER_INVITE_ACCEPTED");
   }
 
   if (invite.expiresAt.getTime() <= now.getTime()) {
-    throw new DomainError("This invitation has expired.", 410, "CAREGIVER_INVITE_EXPIRED");
+    throw new DomainError(await translateError("errors.caregiverInviteExpired"), 410, "CAREGIVER_INVITE_EXPIRED");
   }
 
   const updatedInvite = await prisma.caregiverInvite.update({

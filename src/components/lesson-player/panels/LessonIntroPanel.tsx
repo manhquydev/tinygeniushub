@@ -3,6 +3,7 @@
 import * as m from "motion/react-m";
 import { useReducedMotion } from "motion/react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface LessonIntroPanelProps {
   title: string;
@@ -20,14 +21,14 @@ const TRACK_CLASS: Record<string, string> = {
   HABIT: "lp-track-habit",
 };
 
-const TRACK_LABEL: Record<string, string> = {
-  ENGLISH: "English",
-  MATH: "Mathematics",
-  HABIT: "Habit",
-};
-
-// Kisu mascot stickers for intro
 const KISU_INTRO = "/kisu-assets/stickers/sticker_combat_ready.png";
+
+function trackKey(trackCode: string): "english" | "math" | "habit" | "fallback" {
+  if (trackCode === "ENGLISH") return "english";
+  if (trackCode === "MATH") return "math";
+  if (trackCode === "HABIT") return "habit";
+  return "fallback";
+}
 
 export function LessonIntroPanel({
   title,
@@ -38,11 +39,12 @@ export function LessonIntroPanel({
   onStart,
   isLoading,
 }: LessonIntroPanelProps) {
+  const t = useTranslations("kid.lesson");
   const prefersReducedMotion = useReducedMotion() ?? false;
+  const trackLabel = t(`track.${trackKey(trackCode)}`);
 
   return (
     <div className="lp-main">
-      {/* Kisu float */}
       <m.div
         className="lp-float-anim"
         initial={prefersReducedMotion ? false : { opacity: 0, y: 22 }}
@@ -51,7 +53,7 @@ export function LessonIntroPanel({
       >
         <Image
           src={KISU_INTRO}
-          alt="Kisu is ready"
+          alt={t("intro.mascotAlt")}
           width={100}
           height={100}
           className="lp-mascot-float"
@@ -59,48 +61,33 @@ export function LessonIntroPanel({
         />
       </m.div>
 
-      {/* Main card */}
       <m.div
         className={`lp-panel ${TRACK_CLASS[trackCode] ?? "lp-track-english"}`}
         initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.93, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
       >
-        {/* Track badge – CSS only, no emoji box */}
         <div className="lp-track-badge">
           <div className="lp-track-badge-mark" />
         </div>
 
-        {/* Tier pill */}
-        {tierLabel ? (
-          <div style={{ textAlign: "center" }}>
-            <span className="lp-tier-pill">
-              {TRACK_LABEL[trackCode] ?? "Lesson"}
-              {" · "}
-              {tierLabel}
-            </span>
-          </div>
-        ) : (
-          <div style={{ textAlign: "center" }}>
-            <span className="lp-tier-pill">{TRACK_LABEL[trackCode] ?? "Lesson"}</span>
-          </div>
-        )}
-
-        {/* Title */}
-        <h1 className="lp-intro-title">{title}</h1>
-
-        {/* Objective */}
-        <p className="lp-intro-objective">{objective}</p>
-
-        {/* Duration meta – CSS clock icon */}
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <span className="lp-intro-meta">
-            <span className="lp-intro-meta-icon" aria-hidden="true" />
-            <strong>{estimatedMinutes}</strong>&nbsp;minutes
+        <div style={{ textAlign: "center" }}>
+          <span className="lp-tier-pill">
+            {tierLabel ? `${trackLabel} · ${tierLabel}` : trackLabel}
           </span>
         </div>
 
-        {/* CTA */}
+        <h1 className="lp-intro-title">{title}</h1>
+
+        <p className="lp-intro-objective">{objective}</p>
+
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <span className="lp-intro-meta">
+            <span className="lp-intro-meta-icon" aria-hidden="true" />
+            {t("minutes", { minutes: estimatedMinutes })}
+          </span>
+        </div>
+
         <m.button
           type="button"
           className="lp-btn-primary lp-pulse-btn lp-bounce-in"
@@ -108,15 +95,15 @@ export function LessonIntroPanel({
           onClick={onStart}
           whileHover={prefersReducedMotion || isLoading ? undefined : { scale: 1.03, y: -2 }}
           whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-          aria-label="Start the lesson"
+          aria-label={t("intro.startAria")}
           style={{ position: "relative", overflow: "hidden", marginTop: "0.5rem" }}
         >
           {isLoading ? (
-            <>
-              <span className="lp-hud-time-pill" style={{ color: "rgba(255,255,255,0.8)", border: "none", background: "none" }}>Preparing...</span>
-            </>
+            <span className="lp-hud-time-pill" style={{ color: "rgba(255,255,255,0.8)", border: "none", background: "none" }}>
+              {t("intro.preparing")}
+            </span>
           ) : (
-            "Start the lesson"
+            t("intro.startCta")
           )}
         </m.button>
       </m.div>

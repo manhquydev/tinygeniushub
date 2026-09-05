@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { Mail, Trash2, UserRoundPlus } from "lucide-react";
 
 type CaregiverStatus = "pending" | "accepted" | "expired";
@@ -41,24 +42,12 @@ interface CaregiverManagerProps {
 const inputBaseClass =
   "min-h-12 rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-800 outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100";
 
-function formatDate(value: string) {
-  return new Date(value).toLocaleDateString("vi-VN", {
+function formatDate(value: string, locale: string) {
+  return new Date(value).toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   });
-}
-
-function resolveStatusLabel(status: CaregiverStatus) {
-  if (status === "accepted") {
-    return "Accepted";
-  }
-
-  if (status === "expired") {
-    return "Expired";
-  }
-
-  return "Waiting";
 }
 
 function resolveStatusClass(status: CaregiverStatus) {
@@ -78,6 +67,8 @@ export function CaregiverManager({
   initialCaregiverLimit,
   initialUsedSlots,
 }: CaregiverManagerProps) {
+  const t = useTranslations("parent.caregiver");
+  const locale = useLocale();
   const [caregivers, setCaregivers] = useState(initialCaregivers);
   const [caregiverLimit, setCaregiverLimit] = useState(initialCaregiverLimit);
   const [usedSlots, setUsedSlots] = useState(initialUsedSlots);
@@ -98,7 +89,7 @@ export function CaregiverManager({
     event.preventDefault();
     const normalizedEmail = email.trim().toLowerCase();
     if (!normalizedEmail) {
-      setError("Please enter caregiver email.");
+      setError(t("errors.emailRequired"));
       setInfo(null);
       return;
     }
@@ -120,7 +111,7 @@ export function CaregiverManager({
       const body = (await response.json()) as CaregiverMutationResponse;
 
       if (!response.ok || !body.ok || !body.data) {
-        setError(body.error?.message ?? "Unable to send caregiver invitation");
+        setError(body.error?.message ?? t("errors.inviteFailed"));
         return;
       }
 
@@ -132,12 +123,12 @@ export function CaregiverManager({
       setEmail("");
 
       if (body.data.emailDelivery && body.data.emailDelivery.attempted && !body.data.emailDelivery.sent) {
-        setInfo("Invitation created, but sending email failed. Please try again later.");
+        setInfo(t("info.inviteEmailFailed"));
       } else {
-        setInfo("Caregiver invitation sent.");
+        setInfo(t("info.inviteSent"));
       }
     } catch (inviteError) {
-      setError(inviteError instanceof Error ? inviteError.message : "Unknown error");
+      setError(inviteError instanceof Error ? inviteError.message : t("errors.unknown"));
     } finally {
       setLoading(false);
     }
@@ -155,7 +146,7 @@ export function CaregiverManager({
       const body = (await response.json()) as CaregiverMutationResponse;
 
       if (!response.ok || !body.ok || !body.data) {
-        setError(body.error?.message ?? "Invitations cannot be revoked");
+        setError(body.error?.message ?? t("errors.revokeFailed"));
         return;
       }
 
@@ -164,9 +155,9 @@ export function CaregiverManager({
         caregiverLimit: body.data.caregiverLimit,
         usedSlots: body.data.usedSlots,
       });
-      setInfo("Caregiver invitation revoked.");
+      setInfo(t("info.revoked"));
     } catch (revokeError) {
-      setError(revokeError instanceof Error ? revokeError.message : "Unknown error");
+      setError(revokeError instanceof Error ? revokeError.message : t("errors.unknown"));
     } finally {
       setLoading(false);
     }
@@ -176,13 +167,11 @@ export function CaregiverManager({
     <section className="rounded-3xl border border-slate-200/75 bg-white p-5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
       <div className="flex flex-wrap items-end justify-between gap-2">
         <div>
-          <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Caregiver management</h2>
-          <p className="mt-1 text-sm leading-relaxed text-slate-500">
-            Invite relatives to monitor your child's learning progress and accompany your child.
-          </p>
+          <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">{t("heading")}</h2>
+          <p className="mt-1 text-sm leading-relaxed text-slate-500">{t("description")}</p>
         </div>
         <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
-          {usedSlots}/{caregiverLimit} used
+          {t("usedSlots", { used: usedSlots, limit: caregiverLimit })}
         </span>
       </div>
 
@@ -192,7 +181,7 @@ export function CaregiverManager({
           className={inputBaseClass}
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          placeholder="email caregiver"
+          placeholder={t("form.emailPlaceholder")}
           disabled={loading || reachedLimit}
           required
         />
@@ -202,7 +191,7 @@ export function CaregiverManager({
           disabled={loading || reachedLimit}
         >
           <UserRoundPlus size={18} />
-          {loading ? "Sending..." : reachedLimit ? "Slots are running out" : "Invite caregiver"}
+          {loading ? t("form.sending") : reachedLimit ? t("form.slotsExhausted") : t("form.invite")}
         </button>
       </form>
 
@@ -227,12 +216,15 @@ export function CaregiverManager({
                   <p className="truncate text-sm font-bold">{invite.email}</p>
                 </div>
                 <p className="mt-1 text-xs text-slate-500">
-                  Invited: {formatDate(invite.createdAt)} - Expires: {formatDate(invite.expiresAt)}
+                  {t("card.dates", {
+                    createdAt: formatDate(invite.createdAt, locale),
+                    expiresAt: formatDate(invite.expiresAt, locale),
+                  })}
                 </p>
               </div>
 
               <span className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${resolveStatusClass(invite.status)}`}>
-                {resolveStatusLabel(invite.status)}
+                {t(`status.${invite.status}`)}
               </span>
             </div>
 
@@ -246,7 +238,7 @@ export function CaregiverManager({
                 disabled={loading}
               >
                 <Trash2 size={14} />
-                Recall
+                {t("card.revoke")}
               </button>
             </div>
           </article>
@@ -255,13 +247,11 @@ export function CaregiverManager({
 
       {caregivers.length === 0 ? (
         <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm font-medium text-slate-500">
-          No caregivers have been invited yet.
+          {t("empty")}
         </div>
       ) : null}
 
-      <div className="mt-4 text-xs text-slate-500">
-        The caregiver invite link will look like <code>/accept-invite?token=...</code> and expires according to the configured duration.
-      </div>
+      <div className="mt-4 text-xs text-slate-500">{t("inviteHint")}</div>
     </section>
   );
 }

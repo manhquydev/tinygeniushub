@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function MainError({
   error,
@@ -12,6 +13,7 @@ export default function MainError({
   reset: () => void;
 }) {
   const router = useRouter();
+  const t = useTranslations("specialPages.error");
   const isDevelopment = process.env.NODE_ENV === "development";
 
   useEffect(() => {
@@ -26,13 +28,13 @@ export default function MainError({
       />
 
       <p className="relative z-10 inline-flex w-fit items-center rounded-full border border-amber-300/65 bg-amber-100/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-amber-900">
-        System error 500
+        {t("badge")}
       </p>
 
       <div className="relative z-10 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/75">
         <Image
           src="/images/system/cloud-garden/system_500_error.png"
-          alt="Fox mascot is fixing system errors in the machine shop"
+          alt={t("imageAlt")}
           width={1368}
           height={768}
           priority
@@ -42,10 +44,10 @@ export default function MainError({
 
       <div className="relative z-10 grid gap-3 text-left">
         <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] sm:text-4xl">
-          This page is experiencing a temporary error
+          {t("title")}
         </h1>
         <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-700 sm:text-base">
-          The system has recorded a problem. You can try reloading or return to the previous page to continue your session.
+          {t("subtitle")}
         </p>
       </div>
 
@@ -55,14 +57,14 @@ export default function MainError({
           onClick={() => reset()}
           className="inline-flex min-h-12 items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-500 px-6 text-sm font-bold text-white shadow-[0_14px_28px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5 hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
         >
-          Retry
+          {t("ctaRetry")}
         </button>
         <button
           type="button"
           onClick={() => router.back()}
           className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-300 bg-white px-6 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
         >
-          Come back
+          {t("ctaBack")}
         </button>
       </div>
 
@@ -72,4 +74,3 @@ export default function MainError({
     </section>
   );
 }
-

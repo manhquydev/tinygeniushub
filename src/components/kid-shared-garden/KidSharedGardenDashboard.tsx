@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowLeft, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useKidNavigationFeedback } from "@/components/kid-navigation-feedback";
 import type { EntitledCourseForChild } from "@/modules/courses/entitled-course-lists";
 import "./kid-shared-garden.css";
@@ -22,6 +23,8 @@ type TapFxState = {
   y: number;
 };
 
+type PlotKind = "locked" | "completed" | "active" | "paused" | "seeded";
+
 function getProgressPercent(journey: EntitledCourseForChild["journey"], totalLessons: number) {
   if (!journey || totalLessons <= 0) return 0;
   return Math.min(100, Math.round((journey.completedLessons / totalLessons) * 100));
@@ -30,8 +33,7 @@ function getProgressPercent(journey: EntitledCourseForChild["journey"], totalLes
 function readPlotVisual(journey: EntitledCourseForChild["journey"]) {
   if (!journey) {
     return {
-      statusLabel: "Haven't sown seeds yet",
-      actionLabel: "Begin",
+      kind: "locked" as const,
       plotSrc: "/images/cloud-garden/ground/course_plot_locked.png",
       tone: "locked" as const,
     };
@@ -40,46 +42,42 @@ function readPlotVisual(journey: EntitledCourseForChild["journey"]) {
   switch (journey.status) {
     case "COMPLETED":
       return {
-        statusLabel: "Has bloomed",
-        actionLabel: "Review",
+        kind: "completed" as const,
         plotSrc: "/images/cloud-garden/ground/course_plot_completed.png",
         tone: "completed" as const,
       };
     case "ACTIVE":
       return {
-        statusLabel: "Growing up",
-        actionLabel: "Continue studying",
+        kind: "active" as const,
         plotSrc: "/images/cloud-garden/ground/course_plot_active.png",
         tone: "active" as const,
       };
     case "PAUSED":
       return {
-        statusLabel: "Taking a break",
-        actionLabel: "Continue",
+        kind: "paused" as const,
         plotSrc: "/images/cloud-garden/ground/course_plot_active.png",
         tone: "active" as const,
       };
     case "SEEDED":
     default:
       return {
-        statusLabel: "New sprouts",
-        actionLabel: "Discover",
+        kind: "seeded" as const,
         plotSrc: "/images/cloud-garden/ground/course_plot_active.png",
         tone: "seeded" as const,
       };
   }
 }
 
-function readContinueLabel(suggestedStatus?: string | null) {
+function readContinueKind(suggestedStatus?: string | null): PlotKind {
   switch (suggestedStatus) {
     case "COMPLETED":
-      return "Review";
+      return "completed";
     case "ACTIVE":
-      return "Continue studying";
+      return "active";
     case "PAUSED":
-      return "Continue";
+      return "paused";
     default:
-      return "Discover";
+      return "seeded";
   }
 }
 
@@ -89,6 +87,7 @@ export function KidSharedGardenDashboard({
   enrolledCourses,
 }: KidSharedGardenDashboardProps) {
   const { navigate, isNavigating } = useKidNavigationFeedback();
+  const t = useTranslations("kid.gardenHud");
   const [childId, setChildId] = useState(activeChildId);
   const [pendingAction, setPendingAction] = useState<string | null>(null);
   const [tapFx, setTapFx] = useState<TapFxState | null>(null);
@@ -219,13 +218,13 @@ export function KidSharedGardenDashboard({
     startNavigation("go-parent-dashboard", "/parent/dashboard");
   }, [startNavigation]);
 
-  const continueLabel = readContinueLabel(suggestedCourse?.journey?.status);
+  const continueLabel = t(`sharedGarden.plot.${readContinueKind(suggestedCourse?.journey?.status)}Action`);
 
   return (
     <div
       className="ksg-scene"
       data-testid="kid-garden-scene"
-      aria-label="Children's learning garden"
+      aria-label={t("sharedGarden.sceneAria")}
       aria-busy={isNavigating}
     >
       <div className="ksg-ambient" data-testid="kid-garden-ambient" aria-hidden="true">
@@ -276,23 +275,23 @@ export function KidSharedGardenDashboard({
             handleGoParentDashboard();
           }}
           disabled={isNavigating}
-          aria-label="Return to parent"
+          aria-label={t("sharedGarden.parentAria")}
         >
           <ArrowLeft size={18} />
-          {pendingAction === "go-parent-dashboard" ? "Open..." : "Parents"}
+          {pendingAction === "go-parent-dashboard" ? t("opening") : t("sharedGarden.parents")}
         </button>
 
         <label className="ksg-child-switch">
           <span className="ksg-child-avatar" aria-hidden="true">
             {avatarLetter}
           </span>
-          <span className="ksg-child-name">{activeChild?.nickname ?? "Little"}</span>
+          <span className="ksg-child-name">{activeChild?.nickname ?? t("sharedGarden.childFallback")}</span>
           {childrenProfiles.length > 1 ? (
             <select
               className="ksg-child-select"
               value={childId}
               onChange={(event) => handleChildChange(event.target.value)}
-              aria-label="Choose baby"
+              aria-label={t("sharedGarden.chooseChildAria")}
               disabled={isNavigating}
             >
               {childrenProfiles.map((child) => (
@@ -312,10 +311,10 @@ export function KidSharedGardenDashboard({
             handleContinueLearning();
           }}
           disabled={!suggestedCourse || isNavigating}
-          aria-label="Go to the suggested course"
+          aria-label={t("sharedGarden.continueAria")}
         >
           <Sparkles size={16} />
-          {pendingAction === "continue-learning" ? "Open..." : continueLabel}
+          {pendingAction === "continue-learning" ? t("opening") : continueLabel}
         </button>
       </header>
 
@@ -323,29 +322,29 @@ export function KidSharedGardenDashboard({
         <section className="ksg-hero">
           <Image
             src="/kisu-assets/stickers/sticker_hint.png"
-            alt="Kisu suggests to the baby"
+            alt={t("sharedGarden.heroKisuAlt")}
             width={128}
             height={128}
             className="ksg-hero-kisu"
           />
           <div className="ksg-hero-content">
-            <h1>Learning garden</h1>
-            <p>Touch the plant pot for your child to continue learning each course.</p>
+            <h1>{t("sharedGarden.heading")}</h1>
+            <p>{t("sharedGarden.subtitle")}</p>
           </div>
         </section>
 
-        <section className="ksg-kpi-strip" aria-label="Progress overview">
+        <section className="ksg-kpi-strip" aria-label={t("sharedGarden.kpiAria")}>
           <article className="ksg-kpi-chip">
             <strong>{summary.totalCourses}</strong>
-            <span>Purchased key</span>
+            <span>{t("sharedGarden.kpiPurchased")}</span>
           </article>
           <article className="ksg-kpi-chip">
             <strong>{summary.activeCourses}</strong>
-            <span>Studying</span>
+            <span>{t("sharedGarden.kpiStudying")}</span>
           </article>
           <article className="ksg-kpi-chip">
             <strong>{summary.completedCourses}</strong>
-            <span>Completed</span>
+            <span>{t("sharedGarden.kpiCompleted")}</span>
           </article>
         </section>
 
@@ -353,13 +352,13 @@ export function KidSharedGardenDashboard({
           <section className="ksg-empty">
             <Image
               src="/images/nodes/kisu_companion_balloon.png"
-              alt="Kisu accompanies"
+              alt={t("sharedGarden.emptyKisuAlt")}
               width={180}
               height={180}
               className="ksg-empty-kisu"
             />
-            <h2>The baby's garden doesn't have any seeds yet</h2>
-            <p>Parents, please open the course first so your child can start sowing seeds.</p>
+            <h2>{t("sharedGarden.emptyHeading")}</h2>
+            <p>{t("sharedGarden.emptyBody")}</p>
             <button
               type="button"
               onClick={(event) => {
@@ -368,7 +367,7 @@ export function KidSharedGardenDashboard({
               }}
               disabled={isNavigating}
             >
-              {pendingAction === "go-parent-courses" ? "Open..." : "Open the course list"}
+              {pendingAction === "go-parent-courses" ? t("opening") : t("sharedGarden.openCourseList")}
             </button>
           </section>
         ) : (
@@ -398,7 +397,7 @@ export function KidSharedGardenDashboard({
                     handleOpenCourse(course.slug);
                   }}
                   aria-disabled={isNavigating}
-                  aria-label={`Open the course${course.title}`}
+                  aria-label={t("sharedGarden.openCourseAria", { title: course.title })}
                   onKeyDown={(event) => {
                     if (isNavigating) {
                       return;
@@ -445,10 +444,10 @@ export function KidSharedGardenDashboard({
 
                   <div className="ksg-plot-meta">
                     <h2>{course.title}</h2>
-                    <p className="ksg-plot-status">{plotVisual.statusLabel}</p>
+                    <p className="ksg-plot-status">{t(`sharedGarden.plot.${plotVisual.kind}Status`)}</p>
 
                     <div className="ksg-progress-row">
-                      <span>{`${completedLessons}/${course.totalLessons}post`}</span>
+                      <span>{t("sharedGarden.lessonsCount", { completed: completedLessons, total: course.totalLessons })}</span>
                       <span>{`${progress}%`}</span>
                     </div>
                     <div className="ksg-progress-track">
@@ -466,7 +465,7 @@ export function KidSharedGardenDashboard({
                       }}
                       disabled={isNavigating}
                     >
-                      {pendingAction === "open-course" ? "Open..." : plotVisual.actionLabel}
+                      {pendingAction === "open-course" ? t("opening") : t(`sharedGarden.plot.${plotVisual.kind}Action`)}
                     </button>
                   </div>
                 </article>

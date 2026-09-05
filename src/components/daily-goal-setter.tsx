@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type GoalResponse = {
   ok: boolean;
@@ -24,20 +25,13 @@ interface DailyGoalSetterProps {
 
 const QUICK_GOAL_OPTIONS = [15, 20, 30, 0] as const;
 
-function getGoalLabel(minutes: number) {
-  if (minutes === 0) {
-    return "Unlimited";
-  }
-
-  return `${minutes}minute`;
-}
-
 export function DailyGoalSetter({
   childId,
   totalMinutesToday,
   dailyGoalMinutes,
   onDailyGoalChange,
 }: DailyGoalSetterProps) {
+  const t = useTranslations("parent.dashboard.goal");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -74,7 +68,7 @@ export function DailyGoalSetter({
 
       const body = (await response.json()) as GoalResponse;
       if (!response.ok || !body.ok) {
-        throw new Error(body.error?.message ?? "Unable to update target");
+        throw new Error(body.error?.message ?? t("updateError"));
       }
 
       const persistedGoal = body.data?.child?.dailyGoalMinutes;
@@ -83,7 +77,7 @@ export function DailyGoalSetter({
       }
     } catch (goalError) {
       onDailyGoalChange(previousGoal);
-      setError(goalError instanceof Error ? goalError.message : "Unknown error");
+      setError(goalError instanceof Error ? goalError.message : t("unknownError"));
     } finally {
       setPending(false);
     }
@@ -92,10 +86,10 @@ export function DailyGoalSetter({
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Learning goals today</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{t("heading")}</p>
         {goalReached ? (
           <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700">
-            🎉 Goal reached today!
+            {t("reached")}
           </span>
         ) : null}
       </div>
@@ -104,7 +98,7 @@ export function DailyGoalSetter({
         <div className="mt-2 space-y-1.5">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-600">
             <span>
-              {totalMinutesToday}/{dailyGoalMinutes}minute
+              {totalMinutesToday}/{t("minutesLabel", { n: dailyGoalMinutes })}
             </span>
             <span>{progressPercent}%</span>
           </div>
@@ -117,7 +111,7 @@ export function DailyGoalSetter({
           </div>
         </div>
       ) : (
-        <p className="mt-2 text-xs font-medium text-slate-600">There is no limit to study time during the day.</p>
+        <p className="mt-2 text-xs font-medium text-slate-600">{t("noLimit")}</p>
       )}
 
       <div className="mt-3 flex flex-wrap gap-2">
@@ -136,7 +130,7 @@ export function DailyGoalSetter({
                 : "border border-slate-300 bg-white text-slate-700 hover:-translate-y-0.5"
                 } disabled:cursor-not-allowed disabled:opacity-60`}
             >
-              {getGoalLabel(option)}
+              {option === 0 ? t("unlimited") : t("minutesLabel", { n: option })}
             </button>
           );
         })}

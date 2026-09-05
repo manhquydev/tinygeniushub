@@ -1,7 +1,8 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type ForgotPasswordResponse = {
   ok?: boolean;
@@ -13,17 +14,55 @@ type ForgotPasswordResponse = {
   };
 };
 
-const DEFAULT_SUCCESS_MESSAGE =
-  "If the email exists in the system, we'll send password reset instructions within minutes.";
+const FORGOT_ERROR_KEYS: Record<string, "errors.generic" | "global"> = {
+  "The password reset request could not be processed.": "errors.generic",
+};
+
+const GLOBAL_ERROR_KEYS: Record<string, string> = {
+  "Forgot password function is being configured. Please contact support while waiting for updates.":
+    "passwordResetNotEnabled",
+  "Invalid request payload": "invalidPayload",
+  "Invalid JSON payload": "invalidJson",
+  "Too many requests. Please retry later.": "rateLimited",
+  "Too many requests": "rateLimited",
+};
+
+function isLikelyEnglishOnlyMessage(message: string) {
+  return /^[\x20-\x7E\u2013\u2014\u2026]+$/.test(message);
+}
 
 export function ForgotPasswordForm() {
+  const t = useTranslations("auth.forgot");
+  const tErrors = useTranslations("errors");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const unknownError = tErrors("unknown");
 
-  function isLikelyEnglishOnlyMessage(message: string) {
-    return /^[A-Za-z0-9\s,.'":;!?()/-]+$/.test(message);
+  function resolveErrorMessage(message: string | undefined) {
+    if (!message) {
+      return t("errors.generic");
+    }
+    const localKey = FORGOT_ERROR_KEYS[message];
+    if (localKey === "errors.generic") {
+      return t("errors.generic");
+    }
+    const globalKey = GLOBAL_ERROR_KEYS[message];
+    if (globalKey) {
+      return tErrors(globalKey);
+    }
+    if (!isLikelyEnglishOnlyMessage(message)) {
+      return message;
+    }
+    return unknownError;
+  }
+
+  function resolveSuccessMessage(message: string | undefined) {
+    if (message && !isLikelyEnglishOnlyMessage(message)) {
+      return message;
+    }
+    return t("successDefault");
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -43,23 +82,14 @@ export function ForgotPasswordForm() {
 
       const body = (await response.json()) as ForgotPasswordResponse;
       if (!response.ok || !body.ok) {
-        const fallback = "The password reset request could not be processed.";
-        const apiMessage = body.error?.message;
-        setError(apiMessage && isLikelyEnglishOnlyMessage(apiMessage) ? fallback : apiMessage ?? fallback);
+        setError(resolveErrorMessage(body.error?.message));
         return;
       }
 
-      setSuccess(body.data?.message ?? DEFAULT_SUCCESS_MESSAGE);
+      setSuccess(resolveSuccessMessage(body.data?.message));
     } catch (submitError) {
-      if (submitError instanceof Error) {
-        setError(
-          isLikelyEnglishOnlyMessage(submitError.message)
-            ? "The password reset request could not be processed."
-            : submitError.message,
-        );
-      } else {
-        setError("The password reset request could not be processed.");
-      }
+      const message = submitError instanceof Error ? submitError.message : undefined;
+      setError(resolveErrorMessage(message));
     } finally {
       setLoading(false);
     }
@@ -71,21 +101,19 @@ export function ForgotPasswordForm() {
       onSubmit={handleSubmit}
     >
       <header className="grid gap-2">
-        <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-[2rem]">Forgot password</h2>
-        <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-          Enter parent's registered email. We will send a password reset link to your inbox.
-        </p>
+        <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-[2rem]">{t("title")}</h2>
+        <p className="text-sm leading-relaxed text-slate-600 sm:text-base">{t("subtitle")}</p>
       </header>
 
       <label className="grid gap-2 text-sm font-semibold text-slate-700">
-        Account email
+        {t("emailLabel")}
         <input
           className="h-12 rounded-xl border border-slate-300/90 bg-white px-3 text-[0.96rem] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required
-          placeholder="ban@email.com"
+          placeholder={t("emailPlaceholder")}
         />
       </label>
 
@@ -97,21 +125,20 @@ export function ForgotPasswordForm() {
         disabled={loading}
         className="solid-button full-width min-h-12 rounded-full text-sm font-bold shadow-[0_14px_28px_rgba(5,150,105,0.3)] disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {loading ? "Sending..." : "Send reset link"}
+        {loading ? t("submitLoading") : t("submit")}
       </button>
 
       <div className="flex flex-col gap-3 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
         <Link href="/auth/login" className="font-semibold text-emerald-700 hover:text-emerald-800">
-          Return to login
+          {t("returnToLogin")}
         </Link>
         <p>
-          Don't have an account yet?{" "}
+          {t("noAccountYet")}{" "}
           <Link href="/auth/signup" className="font-bold text-emerald-700 hover:text-emerald-800">
-            Create an account
+            {t("createAccount")}
           </Link>
         </p>
       </div>
     </form>
   );
 }
-

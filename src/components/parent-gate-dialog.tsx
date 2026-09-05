@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { CheckCircle2, Delete, X } from "lucide-react";
@@ -32,6 +33,7 @@ function createChallenge(): MathChallenge {
 
 export function ParentGateDialog({ open, onClose, onVerified }: ParentGateDialogProps) {
   const prefersReducedMotion = useReducedMotion();
+  const t = useTranslations("chrome.parentGate.dialog");
   const [challenge] = useState<MathChallenge>(() => createChallenge());
   const [answer, setAnswer] = useState("");
   const [isInvalid, setIsInvalid] = useState(false);
@@ -114,13 +116,13 @@ export function ParentGateDialog({ open, onClose, onVerified }: ParentGateDialog
             }
           >
             <div className="parent-gate-head">
-              <h2 id="parent-gate-title">Parental confirmation</h2>
-              <button type="button" className="parent-gate-close" onClick={onClose} aria-label="Close parent confirmation">
+              <h2 id="parent-gate-title">{t("title")}</h2>
+              <button type="button" className="parent-gate-close" onClick={onClose} aria-label={t("closeAriaLabel")}>
                 <X size={20} />
               </button>
             </div>
 
-            <p className="parent-gate-copy">{`Please enter the results of${challenge.left} x ${challenge.right}to continue`}</p>
+            <p className="parent-gate-copy">{t("prompt", { left: challenge.left, right: challenge.right })}</p>
 
             <div className={`parent-gate-answer ${isInvalid ? "parent-gate-answer-error" : ""}`}>
               <input
@@ -140,8 +142,8 @@ export function ParentGateDialog({ open, onClose, onVerified }: ParentGateDialog
                     verifyAnswer();
                   }
                 }}
-                aria-label="The results of the calculation confirm the parent"
-                placeholder="..."
+                aria-label={t("answerAriaLabel")}
+                placeholder={t("placeholder")}
               />
             </div>
 
@@ -155,17 +157,17 @@ export function ParentGateDialog({ open, onClose, onVerified }: ParentGateDialog
                     className={`parent-gate-key ${isAction ? "parent-gate-key-action" : ""}`}
                     onClick={() => handleKeypad(key)}
                   >
-                    {key === "⌫" ? <Delete size={20} /> : key}
+                    {key === "⌫" ? <Delete size={20} /> : key === "C" ? t("clearKey") : key}
                   </button>
                 );
               })}
             </div>
 
-            {isInvalid ? <p className="parent-gate-error">Wrong result. Please try again.</p> : null}
+            {isInvalid ? <p className="parent-gate-error">{t("wrongAnswer")}</p> : null}
 
             <button type="button" className="parent-gate-submit" onClick={verifyAnswer} disabled={answer.length === 0}>
               <CheckCircle2 size={18} />
-              <span>Continue</span>
+              <span>{t("continue")}</span>
             </button>
           </m.div>
         </m.div>

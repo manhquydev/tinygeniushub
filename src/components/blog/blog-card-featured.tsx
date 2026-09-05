@@ -1,18 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { AppLocale } from "@/i18n/locales";
+import { translate } from "@/i18n/translator";
 import { getBlogCategoryDisplayName } from "@/modules/blog/blog-category-labels";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
-function formatDate(value: Date | null) {
+function formatDate(value: Date | null, locale: AppLocale) {
   if (!value) {
-    return "Unpublished";
+    return translate("blog.chrome.card.unpublished", undefined, locale);
   }
 
-  return new Intl.DateTimeFormat("en-US", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  }).format(value);
+  return value.toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US");
 }
 
 function normalizeCategoryColor(value: string | null | undefined) {
@@ -52,7 +50,7 @@ function getCategoryBadgeStyle(color: string | null | undefined) {
   };
 }
 
-export function BlogCardFeatured({ post }: { post: BlogPostCardDTO }) {
+export function BlogCardFeatured({ post, locale }: { post: BlogPostCardDTO; locale: AppLocale }) {
   return (
     <article className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg">
       <Link href={`/blog/${post.slug}`} className="group relative block">
@@ -74,7 +72,7 @@ export function BlogCardFeatured({ post }: { post: BlogPostCardDTO }) {
               className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold"
               style={getCategoryBadgeStyle(post.category.color)}
             >
-              {getBlogCategoryDisplayName(post.category)}
+              {getBlogCategoryDisplayName(post.category, locale)}
             </span>
 
             <h2 className="break-words text-2xl font-black leading-tight tracking-[-0.02em] sm:text-3xl">{post.titleVi}</h2>
@@ -82,15 +80,15 @@ export function BlogCardFeatured({ post }: { post: BlogPostCardDTO }) {
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-100">
               <span>{post.author.displayName}</span>
               <span>·</span>
-              <span>{formatDate(post.publishedAt)}</span>
+              <span>{formatDate(post.publishedAt, locale)}</span>
               <span>·</span>
-              <span>{post.readingTimeMin} min read</span>
+              <span>{translate("blog.chrome.card.minRead", { count: post.readingTimeMin }, locale)}</span>
             </div>
 
             <div className="flex items-center gap-4 text-sm text-slate-100">
-              <span>{post.viewCount} views</span>
+              <span>{translate("blog.chrome.card.views", { count: post.viewCount }, locale)}</span>
               <span>·</span>
-              <span>{post.likeCount} likes</span>
+              <span>{translate("blog.chrome.card.likes", { count: post.likeCount }, locale)}</span>
             </div>
           </div>
         </div>

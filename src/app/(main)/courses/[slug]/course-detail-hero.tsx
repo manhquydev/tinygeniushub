@@ -1,4 +1,7 @@
+import { getLocale } from "next-intl/server";
 import type { AbVariant } from "@/lib/ab-test-constants";
+import { resolveAppLocale } from "@/i18n/locales";
+import { translate } from "@/i18n/translator";
 import type { CourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { CourseDetailSidebar } from "@/components/courses/course-detail-sidebar";
 
@@ -20,7 +23,7 @@ type Props = {
   checkoutLabel: string;
 };
 
-export function CourseDetailHero({
+export async function CourseDetailHero({
   slug,
   title,
   description,
@@ -34,6 +37,10 @@ export function CourseDetailHero({
   variant,
   checkoutLabel,
 }: Props) {
+  const locale = resolveAppLocale(await getLocale());
+  const t = (key: string, values?: Record<string, string | number>) =>
+    translate(`courses.detail.hero.${key}`, values, locale);
+
   return (
     <section className="overflow-hidden rounded-[28px] border border-emerald-100 bg-[linear-gradient(145deg,#f0fdf4_0%,#ffffff_55%,#ecfeff_100%)] p-5 shadow-sm sm:p-8">
       <div className="grid gap-5 lg:grid-cols-[1fr_380px] lg:items-start">
@@ -43,12 +50,12 @@ export function CourseDetailHero({
 
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Total lesson</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">{lessonCount} lessons</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">{t("totalLesson")}</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">{t("lessonCount", { count: lessonCount })}</p>
             </div>
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Access period</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">{durationDays} days</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">{t("accessPeriod")}</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">{t("durationDays", { days: durationDays })}</p>
             </div>
           </div>
 

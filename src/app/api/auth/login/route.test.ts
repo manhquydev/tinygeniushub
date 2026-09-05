@@ -158,7 +158,7 @@ describe("auth login route", () => {
     const body = await response.json();
 
     expect(response.status).toBe(400);
-    expect(body.error.message).toBe("Invalid request payload");
+    expect(body.error.message).toBe("Invalid request payload.");
     expect(Array.isArray(body.error.details?.issues)).toBe(true);
     expect(signInEmailMock).not.toHaveBeenCalled();
   });
@@ -188,7 +188,7 @@ describe("auth login route", () => {
 
     expect(response.status).toBe(429);
     expect(response.headers.get("Retry-After")).toBe("3");
-    expect(body.error.message).toBe("Too many login attempts. Please retry later.");
+    expect(body.error.message).toBe("Too many login attempts. Please try again later.");
     expect(signInEmailMock).not.toHaveBeenCalled();
     expect(logWarnMock).toHaveBeenCalledWith(
       "auth.login.rate_limited",
@@ -230,7 +230,7 @@ describe("auth login route", () => {
 
     expect(response.status).toBe(429);
     expect(response.headers.get("Retry-After")).toBe("4");
-    expect(body.error.message).toBe("Too many login attempts. Please retry later.");
+    expect(body.error.message).toBe("Too many login attempts. Please try again later.");
     expect(signInEmailMock).not.toHaveBeenCalled();
     expect(logWarnMock).toHaveBeenCalledWith(
       "auth.login.rate_limited",
@@ -243,7 +243,7 @@ describe("auth login route", () => {
   });
 
   it("returns 401 when credentials are invalid", async () => {
-    authenticateParentMock.mockRejectedValueOnce(new DomainError("Invalid credentials", 401, "INVALID_CREDENTIALS"));
+    authenticateParentMock.mockRejectedValueOnce(new DomainError("Invalid credentials.", 401, "INVALID_CREDENTIALS"));
 
     const response = await POST(
       new Request("http://localhost/api/auth/login", {
@@ -262,7 +262,7 @@ describe("auth login route", () => {
     const body = await response.json();
 
     expect(response.status).toBe(401);
-    expect(body.error.message).toBe("Invalid credentials");
+    expect(body.error.message).toBe("Invalid credentials.");
     expect(signInEmailMock).not.toHaveBeenCalled();
     expect(logWarnMock).toHaveBeenCalledWith(
       "auth.login.failed",
@@ -374,7 +374,7 @@ describe("auth login route", () => {
     const body = await response.json();
 
     expect(response.status).toBe(401);
-    expect(body.error.message).toBe("Invalid credentials");
+    expect(body.error.message).toBe("Invalid credentials.");
     expect(logWarnMock).toHaveBeenCalledWith(
       "auth.login.failed",
       expect.objectContaining({
@@ -411,7 +411,7 @@ describe("auth login route", () => {
     const body = await response.json();
 
     expect(response.status).toBe(401);
-    expect(body.error.message).toBe("Invalid credentials");
+    expect(body.error.message).toBe("Invalid credentials.");
     expect(body.error.details?.code).toBe("AUTH_API_ERROR");
     expect(logWarnMock).toHaveBeenCalledWith(
       "auth.login.failed",
@@ -445,7 +445,7 @@ describe("auth login route", () => {
         retryAfterMs: 0,
       };
     });
-    authenticateParentMock.mockRejectedValue(new DomainError("Invalid credentials", 401, "INVALID_CREDENTIALS"));
+    authenticateParentMock.mockRejectedValue(new DomainError("Invalid credentials.", 401, "INVALID_CREDENTIALS"));
 
     const attempt1 = await POST(
       new Request("http://localhost/api/auth/login", {
@@ -499,7 +499,7 @@ describe("auth login route", () => {
     expect(attempt2.status).toBe(401);
     expect(attempt3.status).toBe(429);
     expect(attempt3.headers.get("Retry-After")).toBe("5");
-    expect(body3.error.message).toBe("Too many login attempts. Please retry later.");
+    expect(body3.error.message).toBe("Too many login attempts. Please try again later.");
     expect(signInEmailMock).not.toHaveBeenCalled();
     expect(logWarnMock).toHaveBeenCalledWith(
       "auth.login.rate_limited",

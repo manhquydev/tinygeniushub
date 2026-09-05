@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getLocale } from "next-intl/server";
 import { BookOpen, CalendarDays, ChevronRight, Clock3, Grid3X3, List, Search } from "lucide-react";
 import { requireParent } from "@/lib/auth/require-parent";
 import { getCourseProgressForParent } from "@/modules/courses/course-service";
@@ -7,6 +8,8 @@ import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
 import { isLegacyBundleRouteSlug } from "@/modules/courses/legacy-bundle-routes";
 import { CourseCheckoutStatusBanner } from "@/components/courses/course-checkout-status-banner";
 import { prisma } from "@/lib/db";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale, type AppLocale } from "@/i18n/locales";
 
 type ParentCourseStatus = "all" | "learning" | "completed" | "not_started";
 type ParentCourseSort = "recent" | "progress_desc" | "title_asc";
@@ -23,12 +26,12 @@ function firstString(value: string | string[] | undefined): string | undefined {
   return value;
 }
 
-function formatDate(date: Date) {
-  return new Date(date).toLocaleDateString("vi-VN");
+function formatDate(date: Date, locale: AppLocale) {
+  return new Date(date).toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US");
 }
 
-function formatCurrency(value: number) {
-  return `${new Intl.NumberFormat("vi-VN").format(value)}D`;
+function formatCurrency(value: number, locale: AppLocale, suffix: string) {
+  return `${new Intl.NumberFormat(locale === "vi" ? "vi-VN" : "en-US").format(value)}${suffix}`;
 }
 
 function buildHref(
@@ -71,6 +74,11 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
   const status = parseStatus(firstString(resolvedParams.status));
   const sort = parseSort(firstString(resolvedParams.sort));
   const view = parseView(firstString(resolvedParams.view));
+
+  const locale = resolveAppLocale(await getLocale());
+  const t = (key: string, values?: Record<string, string | number>) => translate(`parent.coursesPage.${key}`, values, locale);
+  const intlLocale = locale === "vi" ? "vi" : "en";
+  const currencySuffix = t("currencySuffix");
 
   const parent = await requireParent();
   const entitledCourses = await listEntitledCoursesForParent(parent.id);
@@ -123,7 +131,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
   const sortedRows = [...filteredRows].sort((a, b) => {
     if (sort === "title_asc") {
-      return a.course.title.localeCompare(b.course.title, "vi", {
+      return a.course.title.localeCompare(b.course.title, intlLocale, {
         sensitivity: "base",
       });
     }
@@ -141,10 +149,10 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
   const state = { q: query, status, sort, view };
   const statusOptions: Array<{ key: ParentCourseStatus; label: string; count: number }> = [
-    { key: "all", label: "All", count: totalCourses },
-    { key: "learning", label: "Studying", count: learningCourses },
-    { key: "completed", label: "Completed", count: completedCourses },
-    { key: "not_started", label: "Haven't started yet", count: notStartedCourses },
+    { key: "all", label: t("filters.statusAll"), count: totalCourses },
+    { key: "learning", label: t("filters.statusLearning"), count: learningCourses },
+    { key: "completed", label: t("filters.statusCompleted"), count: completedCourses },
+    { key: "not_started", label: t("filters.statusNotStarted"), count: notStartedCourses },
   ];
 
   return (
@@ -155,27 +163,25 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
         <div className="grid gap-4">
           <h1 className="flex items-center gap-2 text-2xl font-black tracking-[-0.02em] text-slate-900 sm:text-3xl">
             <BookOpen className="h-6 w-6 text-sky-600" />
-            Manage purchased courses
+            {t("heading")}
           </h1>
-          <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-            Quickly search, filter by status, and change view styles to manage course lists more compactly as the number of courses increases.
-          </p>
+          <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">{t("description")}</p>
           <div className="grid gap-3 sm:grid-cols-4">
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Purchased</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">{t("stats.purchased")}</p>
               <p className="mt-1 text-2xl font-black text-slate-900">{totalCourses}</p>
             </div>
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Studying</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">{t("stats.studying")}</p>
               <p className="mt-1 text-2xl font-black text-sky-600">{learningCourses}</p>
             </div>
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Complete</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">{t("stats.complete")}</p>
               <p className="mt-1 text-2xl font-black text-emerald-600">{completedCourses}</p>
             </div>
             <div className="rounded-2xl border border-white bg-white/90 p-3">
-              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">Total progress</p>
-              <p className="mt-1 text-2xl font-black text-slate-900">{completionRate}%</p>
+              <p className="text-xs uppercase tracking-[0.08em] text-slate-500">{t("stats.totalProgress")}</p>
+              <p className="mt-1 text-2xl font-black text-slate-900">{t("card.percent", { percent: completionRate })}</p>
             </div>
           </div>
         </div>
@@ -183,12 +189,10 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
       {entitledCourses.length === 0 ? (
         <section className="card items-center text-center" style={{ padding: "2.25rem 1.25rem" }}>
-          <p className="text-lg font-bold text-slate-900">You have not purchased any courses yet</p>
-          <p className="max-w-md text-sm leading-relaxed text-slate-600">
-            Explore the list of courses according to your child's goals. After successful payment, the lock will open immediately on this page.
-          </p>
+          <p className="text-lg font-bold text-slate-900">{t("empty.title")}</p>
+          <p className="max-w-md text-sm leading-relaxed text-slate-600">{t("empty.body")}</p>
           <Link href="/courses" className="solid-button" style={{ width: "fit-content" }}>
-            See courses available for sale
+            {t("empty.cta")}
           </Link>
         </section>
       ) : (
@@ -208,7 +212,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                     type="search"
                     name="q"
                     defaultValue={query}
-                    placeholder="Search by key name or description..."
+                    placeholder={t("filters.searchPlaceholder")}
                     className="w-full rounded-xl border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
                   />
                 </form>
@@ -221,7 +225,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         : "border-slate-300 bg-white text-slate-600 hover:border-slate-400"
                     }`}
                   >
-                    Just bought
+                    {t("filters.sortRecent")}
                   </Link>
                   <Link
                     href={buildHref(state, { sort: "progress_desc" })}
@@ -231,7 +235,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         : "border-slate-300 bg-white text-slate-600 hover:border-slate-400"
                     }`}
                   >
-                    High progress
+                    {t("filters.sortProgress")}
                   </Link>
                   <Link
                     href={buildHref(state, { sort: "title_asc" })}
@@ -241,7 +245,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         : "border-slate-300 bg-white text-slate-600 hover:border-slate-400"
                     }`}
                   >
-                    A-Z
+                    {t("filters.sortTitle")}
                   </Link>
                 </div>
               </div>
@@ -258,7 +262,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                           : "border-slate-300 bg-white text-slate-600 hover:border-slate-400"
                       }`}
                     >
-                      {option.label} ({option.count})
+                      {t("filters.statusWithCount", { label: option.label, count: option.count })}
                     </Link>
                   ))}
                 </div>
@@ -271,7 +275,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         : "border-slate-300 bg-white text-slate-600 hover:border-slate-400"
                     }`}
                   >
-                    <Grid3X3 className="h-3.5 w-3.5" /> Grid
+                    <Grid3X3 className="h-3.5 w-3.5" /> {t("filters.viewGrid")}
                   </Link>
                   <Link
                     href={buildHref(state, { view: "list" })}
@@ -281,11 +285,11 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         : "border-slate-300 bg-white text-slate-600 hover:border-slate-400"
                     }`}
                   >
-                    <List className="h-3.5 w-3.5" /> List
+                    <List className="h-3.5 w-3.5" /> {t("filters.viewList")}
                   </Link>
                   {(query || status !== "all" || sort !== "recent") && (
                     <Link href="/parent/courses" className="text-xs font-semibold text-slate-500 hover:text-slate-700">
-                      Reset
+                      {t("filters.reset")}
                     </Link>
                   )}
                 </div>
@@ -295,12 +299,10 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
           {sortedRows.length === 0 ? (
             <section className="card items-center text-center" style={{ padding: "2rem 1.25rem" }}>
-              <p className="text-lg font-bold text-slate-900">There is no filter matching lock</p>
-              <p className="max-w-md text-sm leading-relaxed text-slate-600">
-                Try changing the status, sorting, or search keywords to see the list again.
-              </p>
+              <p className="text-lg font-bold text-slate-900">{t("filterEmpty.title")}</p>
+              <p className="max-w-md text-sm leading-relaxed text-slate-600">{t("filterEmpty.body")}</p>
               <Link href="/parent/courses" className="ghost-button" style={{ width: "fit-content" }}>
-                Clear filter
+                {t("filterEmpty.cta")}
               </Link>
             </section>
           ) : view === "grid" ? (
@@ -336,13 +338,13 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                             }`}
                           >
                             {statusValue === "completed"
-                              ? "Completed"
+                              ? t("card.statusCompleted")
                               : statusValue === "learning"
-                                ? "Studying"
-                                : "Haven't started yet"}
+                                ? t("card.statusLearning")
+                                : t("card.statusNotStarted")}
                           </span>
                           <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-600">
-                            {progressPct}%
+                            {t("card.percent", { percent: progressPct })}
                           </span>
                         </div>
                         <h2 className="line-clamp-2 text-sm font-extrabold text-slate-900">{course.title}</h2>
@@ -352,23 +354,23 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
 
                     <div className="flex flex-wrap gap-1.5 text-[11px] text-slate-600">
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
-                        <CalendarDays className="h-3 w-3" /> {formatDate(validFrom)}
+                        <CalendarDays className="h-3 w-3" /> {formatDate(validFrom, locale)}
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
-                        <Clock3 className="h-3 w-3" /> {course.durationDays} days
+                        <Clock3 className="h-3 w-3" /> {t("card.durationDays", { count: course.durationDays })}
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
-                        {completedLessons}/{totalLessons} lessons
+                        {t("card.lessonsCount", { completed: completedLessons, total: totalLessons })}
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1">
-                        Price {formatCurrency(pricing.salePriceVnd)}
+                        {t("card.price", { amount: formatCurrency(pricing.salePriceVnd, locale, currencySuffix) })}
                       </span>
                     </div>
 
                     <div>
                       <div className="mb-1 flex items-center justify-between text-[11px] text-slate-500">
-                        <span>Study progress</span>
-                        <span>{progressPct}%</span>
+                        <span>{t("card.studyProgress")}</span>
+                        <span>{t("card.percent", { percent: progressPct })}</span>
                       </div>
                       <div className="h-1.5 overflow-hidden rounded-full bg-slate-200">
                         <div
@@ -376,7 +378,7 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                           style={{ width: `${progressPct}%` }}
                         />
                       </div>
-                      <p className="mt-1 text-[11px] text-slate-400">Access for {course.durationDays} days from purchase</p>
+                      <p className="mt-1 text-[11px] text-slate-400">{t("card.accessFor", { days: course.durationDays })}</p>
                     </div>
 
                     <div className="flex flex-wrap gap-1.5">
@@ -384,14 +386,15 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         href={continueHref}
                         className="inline-flex items-center rounded-lg bg-emerald-600 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700"
                       >
-                        Continue <ChevronRight className="ml-1 h-3.5 w-3.5" />
+                        {t("card.continue")} <ChevronRight className="ml-1 h-3.5 w-3.5" />
                       </Link>
                       <Link
                         href={detailHref}
                         className="inline-flex items-center rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:border-slate-400"
                       >
-                        See key
+                        {t("card.seeKey")}
                       </Link>
+
                     </div>
                   </article>
                 );
@@ -435,23 +438,23 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                           }`}
                         >
                           {statusValue === "completed"
-                            ? "Completed"
+                            ? t("card.statusCompleted")
                             : statusValue === "learning"
-                              ? "Studying"
-                              : "Haven't started yet"}
+                              ? t("card.statusLearning")
+                              : t("card.statusNotStarted")}
                         </span>
                         <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-600">
-                          {progressPct}% progress
+                          {t("card.percentProgress", { percent: progressPct })}
                         </span>
                       </div>
                       <h2 className="line-clamp-1 text-sm font-extrabold text-slate-900">{course.title}</h2>
                       <p className="mt-1 line-clamp-2 text-xs text-slate-600">{course.description}</p>
                       <div className="mt-2 flex flex-wrap gap-1.5 text-[11px] text-slate-500">
-                        <span>Started {formatDate(validFrom)}</span>
+                        <span>{t("card.enrolled", { date: formatDate(validFrom, locale) })}</span>
                         <span>•</span>
-                        <span>{completedLessons}/{totalLessons} lessons</span>
+                        <span>{t("card.lessonsCount", { completed: completedLessons, total: totalLessons })}</span>
                         <span>•</span>
-                        <span>{formatCurrency(pricing.salePriceVnd)}</span>
+                        <span>{formatCurrency(pricing.salePriceVnd, locale, currencySuffix)}</span>
                       </div>
                     </div>
 
@@ -460,14 +463,15 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
                         href={continueHref}
                         className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700"
                       >
-                        Continue <ChevronRight className="ml-1 h-3.5 w-3.5" />
+                        {t("card.continue")} <ChevronRight className="ml-1 h-3.5 w-3.5" />
                       </Link>
                       <Link
                         href={detailHref}
                         className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:border-slate-400"
                       >
-                        See key
+                        {t("card.seeKey")}
                       </Link>
+
                     </div>
                   </article>
                 );
@@ -478,16 +482,14 @@ export default async function ParentCoursesPage({ searchParams }: ParentCoursesP
       )}
 
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">Buy new courses</h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          You can expand your child's learning path at any time. The new categories will keep the quick filtering and comparison experience intact.
-        </p>
+        <h2 className="text-base font-extrabold text-slate-900 sm:text-lg">{t("buy.heading")}</h2>
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">{t("buy.description")}</p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link href="/courses" className="solid-button">
-            See all courses
+            {t("buy.seeAll")}
           </Link>
           <Link href="/parent/billing" className="ghost-button">
-            View payment history
+            {t("buy.paymentHistory")}
           </Link>
         </div>
       </section>

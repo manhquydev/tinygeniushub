@@ -1,6 +1,7 @@
 import { randomBytes } from "node:crypto";
 import { addDays } from "date-fns";
 import { prisma } from "@/lib/db";
+import { translateError } from "@/lib/route-error";
 import {
   getPayablePlanConfig,
   payablePlanCodeSchema,
@@ -54,13 +55,13 @@ export async function redeemGiftCode(code: string, parentId: string): Promise<vo
   const giftCode = await prisma.giftCode.findUnique({ where: { code } });
 
   if (!giftCode) {
-    throw new DomainError("Invalid gift code", 404, "GIFT_CODE_NOT_FOUND");
+    throw new DomainError(await translateError("errors.giftCodeNotFound"), 404, "GIFT_CODE_NOT_FOUND");
   }
   if (giftCode.usedAt) {
-    throw new DomainError("Gift code already used", 409, "GIFT_CODE_USED");
+    throw new DomainError(await translateError("errors.giftCodeUsed"), 409, "GIFT_CODE_USED");
   }
   if (giftCode.expiresAt < new Date()) {
-    throw new DomainError("Gift code has expired", 410, "GIFT_CODE_EXPIRED");
+    throw new DomainError(await translateError("errors.giftCodeExpired"), 410, "GIFT_CODE_EXPIRED");
   }
 
   // Mark as used
@@ -82,7 +83,7 @@ export async function redeemGiftCode(code: string, parentId: string): Promise<vo
 
   const parsedPlan = payablePlanCodeSchema.safeParse(giftCode.planCode);
   if (!parsedPlan.success) {
-    throw new DomainError("Gift code plan is invalid", 422, "GIFT_CODE_PLAN_INVALID");
+    throw new DomainError(await translateError("errors.giftCodePlanInvalid"), 422, "GIFT_CODE_PLAN_INVALID");
   }
 
   const resolvedPlanCode = parsedPlan.data;

@@ -1,11 +1,13 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function NotFound() {
   const router = useRouter();
+  const t = useTranslations("specialPages.notFound");
 
   return (
     <main className="relative isolate min-h-screen overflow-hidden bg-[#050d1a] px-4 py-8 text-slate-100 sm:px-6 sm:py-10">
@@ -18,13 +20,13 @@ export default function NotFound() {
 
       <section className="relative mx-auto flex w-full max-w-5xl flex-col gap-5 rounded-[2rem] border border-white/20 bg-slate-950/72 p-4 shadow-[0_28px_60px_rgba(2,6,23,0.55)] backdrop-blur-xl sm:gap-6 sm:p-8">
         <p className="inline-flex w-fit items-center rounded-full border border-cyan-200/30 bg-cyan-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-cyan-100/95">
-          Error 404
+          {t("badge")}
         </p>
 
         <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/50">
           <Image
             src="/images/system/cloud-garden/system_404_error.png"
-            alt="The Fox mascot is finding its way in the magical forest"
+            alt={t("imageAlt")}
             width={1368}
             height={768}
             priority
@@ -34,11 +36,10 @@ export default function NotFound() {
 
         <div className="grid gap-3 text-left">
           <h1 className="max-w-[24ch] text-balance text-3xl font-black leading-tight tracking-[-0.02em] text-white sm:text-5xl">
-            The page you needed was not found
+            {t("title")}
           </h1>
           <p className="max-w-[62ch] text-pretty text-sm leading-relaxed text-slate-200/90 sm:text-base">
-            Maybe the link has changed or no longer exists. You can return to the home page to continue your learning journey
-            with TinyGenius Hub.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -52,18 +53,17 @@ export default function NotFound() {
               animation: "notFoundShimmer 2.5s linear infinite",
             }}
           >
-            Return to home page
+            {t("ctaHome")}
           </Link>
           <button
             type="button"
             onClick={() => router.back()}
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200/30 bg-slate-900/45 px-6 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d1a]"
           >
-            Return to previous page
+            {t("ctaBack")}
           </button>
         </div>
       </section>
     </main>
   );
 }
-

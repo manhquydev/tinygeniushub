@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import type { BlogPostCardDTO } from "@/modules/blog/blog-types";
 
 function useDebouncedValue(value: string, delay: number) {
@@ -46,11 +47,13 @@ type SearchResponse = {
 };
 
 export default function BlogSearchPage() {
+  const t = useTranslations("blog.chrome.search");
+  const tCard = useTranslations("blog.chrome.card");
   const searchParams = useSearchParams();
   const urlQuery = (searchParams.get("q") ?? "").trim();
   const [query, setQuery] = useState(urlQuery);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [failed, setFailed] = useState(false);
   const [results, setResults] = useState<BlogPostCardDTO[]>([]);
   const [total, setTotal] = useState(0);
   const debouncedQuery = useDebouncedValue(query, 300);
@@ -66,7 +69,7 @@ export default function BlogSearchPage() {
       setResults([]);
       setTotal(0);
       setLoading(false);
-      setError(null);
+      setFailed(false);
       return;
     }
 
@@ -74,7 +77,7 @@ export default function BlogSearchPage() {
 
     async function runSearch() {
       setLoading(true);
-      setError(null);
+      setFailed(false);
 
       try {
         const response = await fetch(`/api/blog/search?q=${encodeURIComponent(normalizedQuery)}&limit=20`, {
@@ -93,7 +96,7 @@ export default function BlogSearchPage() {
           return;
         }
 
-        setError("Search failed. Please try again.");
+        setFailed(true);
       } finally {
         setLoading(false);
       }
@@ -109,24 +112,22 @@ export default function BlogSearchPage() {
   return (
     <div className="page-stack">
       <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">Search articles</h1>
-        <p className="mt-2 text-sm text-slate-600">Enter keywords to find articles that suit your family's needs.</p>
+        <h1 className="text-3xl font-black tracking-[-0.02em] text-slate-900">{t("heading")}</h1>
+        <p className="mt-2 text-sm text-slate-600">{t("subtitle")}</p>
 
         <label className="mt-4 block">
-          <span className="sr-only">Search keywords</span>
+          <span className="sr-only">{t("inputAria")}</span>
           <input
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="For example: English, mental math, life skills..."
+            placeholder={t("placeholder")}
             className="min-h-12 w-full rounded-2xl border border-slate-300 px-4 text-sm text-slate-900 outline-none ring-teal-200 transition focus:ring-2"
           />
         </label>
 
         {normalizedQuery.length >= 2 ? (
-          <p className="mt-3 text-sm font-semibold text-slate-700">
-            Found {total} results for &quot;{normalizedQuery}&quot;
-          </p>
+          <p className="mt-3 text-sm font-semibold text-slate-700">{t("found", { total, query: normalizedQuery })}</p>
         ) : null}
       </section>
 
@@ -138,13 +139,13 @@ export default function BlogSearchPage() {
         </section>
       ) : null}
 
-      {error ? (
-        <section className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm font-medium text-rose-700">{error}</section>
+      {failed ? (
+        <section className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm font-medium text-rose-700">{t("failed")}</section>
       ) : null}
 
-      {!loading && !error && normalizedQuery.length >= 2 && results.length === 0 ? (
+      {!loading && !failed && normalizedQuery.length >= 2 && results.length === 0 ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-6 text-center text-sm text-slate-600 shadow-sm">
-          No matching articles were found.
+          {t("empty")}
         </section>
       ) : null}
 
@@ -165,7 +166,7 @@ export default function BlogSearchPage() {
                     className="line-clamp-2 text-sm text-slate-600"
                     dangerouslySetInnerHTML={{ __html: highlightQuery(post.excerptVi, normalizedQuery) }}
                   />
-                  <p className="text-xs font-semibold text-slate-500">{post.readingTimeMin} min read</p>
+                  <p className="text-xs font-semibold text-slate-500">{tCard("minRead", { count: post.readingTimeMin })}</p>
                 </div>
               </Link>
             </article>

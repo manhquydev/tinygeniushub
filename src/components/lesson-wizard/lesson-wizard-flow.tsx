@@ -7,6 +7,7 @@ import { AnimatePresence, useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 import { ArrowLeft, ArrowRight, Check, Play, Sparkles, Video } from "lucide-react";
 import confetti from "canvas-confetti";
+import { useTranslations } from "next-intl";
 import { KidMascot, type KidMascotGazeDirection, type KidMascotState } from "@/components/animation/kid-mascot";
 import { bounceIn, swipeLeft, wobble } from "@/components/animation/kid-motion-variants";
 import { ParentGateDialog } from "@/components/parent-gate-dialog";
@@ -15,9 +16,14 @@ import { SecureVideoPlayer } from "@/components/media/secure-video-player";
 import { synth } from "@/lib/audio-utils";
 import type { ActivitySpec, ActivityType } from "@/modules/content/activity-types";
 
+function EvidenceUploadLoading() {
+  const t = useTranslations("kid.lesson.wizard");
+  return <p className="lesson-wizard-helper-text">{t("evidenceLoading")}</p>;
+}
+
 const EvidenceUploadPanel = dynamic(
   () => import("@/components/evidence-upload-panel").then((module) => module.EvidenceUploadPanel),
-  { loading: () => <p className="lesson-wizard-helper-text">Loading results sending area...</p> },
+  { loading: () => <EvidenceUploadLoading /> },
 );
 
 interface LessonWizardFlowProps {
@@ -62,8 +68,8 @@ const LESSON_SPACE_STARS = Array.from({ length: 28 }, (_, index) => {
 });
 
 const LESSON_QUIZ_CHOICES = [
-  { id: "correct", label: "Content just learned", description: "This is the knowledge in the video", isCorrect: true },
-  { id: "wrong", label: "Other topics", description: "This answer is not correct", isCorrect: false },
+  { id: "correct", isCorrect: true },
+  { id: "wrong", isCorrect: false },
 ] as const;
 
 function shouldUseIframePlayer(url: string) {
@@ -91,6 +97,7 @@ export function LessonWizardFlow({
   onCompleted,
 }: LessonWizardFlowProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
+  const t = useTranslations("kid.lesson");
   const [mounted, setMounted] = useState(false);
   const [step, setStep] = useState(0); // 0: Intro, 1: Video, 2: Quiz, 3: Upload, 4: Done
   const [status, setStatus] = useState<string | null>(null);
@@ -194,7 +201,7 @@ export function LessonWizardFlow({
         setWatchHeartbeatSequence(nextSequence);
         applyWatchResult(watchResult);
       } catch {
-        setStatus("Unable to update video viewing progress. Please try again.");
+        setStatus(t("wizard.statusHeartbeatError"));
       } finally {
         heartbeatInFlightRef.current = false;
       }
@@ -336,9 +343,9 @@ export function LessonWizardFlow({
       setWatchReady(false);
       setWatchSessionExpiresAtMs(new Date(session.expiresAt).getTime());
       setWatchHeartbeatSequence(0);
-      setStatus("The video is ready, let's follow along!");
+      setStatus(t("wizard.statusVideoReady"));
     } catch {
-      setStatus("Unable to initialize video viewing session.");
+      setStatus(t("wizard.statusSessionError"));
     } finally {
       setWatchSessionLoading(false);
     }
@@ -363,7 +370,7 @@ export function LessonWizardFlow({
         success = true;
       }
     } catch {
-      setStatus("Unable to confirm viewing of video.");
+      setStatus(t("wizard.statusWatchConfirmError"));
     } finally {
       setWatchLoading(false);
     }
@@ -389,7 +396,7 @@ export function LessonWizardFlow({
       });
       const body = await response.json();
       if (!response.ok || !body.ok) {
-        setStatus("Unable to complete lesson. Please try again.");
+        setStatus(t("wizard.statusCompleteError"));
         return;
       }
 
@@ -479,7 +486,7 @@ export function LessonWizardFlow({
 
       if (isCorrect) {
         synth.playTing();
-        setStatus("Exactly!");
+        setStatus(t("wizard.statusExact"));
         setActivityAnswerLocked(true);
 
         consecutiveCorrectRef.current += 1;
@@ -537,7 +544,7 @@ export function LessonWizardFlow({
       }
 
       synth.playBzz();
-      setStatus("It's not right, please try again!");
+      setStatus(t("wizard.statusTryAgain"));
       setActivityAnswerLocked(true);
       consecutiveCorrectRef.current = 0;
       totalWrongRef.current += 1;
@@ -571,7 +578,7 @@ export function LessonWizardFlow({
     if (isCorrect) {
       synth.playTing();
       setQuizResult("correct");
-      setStatus("Exactly! Fox mascot is opening the next stage...");
+      setStatus(t("wizard.statusExactNext"));
       setMascotStateForDuration("happy", 1200);
 
       quizCelebrateTimerRef.current = window.setTimeout(() => {
@@ -600,7 +607,7 @@ export function LessonWizardFlow({
     synth.playBzz();
     setQuizResult("wrong");
     setWrongAnswerPulse((value) => value + 1);
-    setStatus("It's not right, please try again!");
+    setStatus(t("wizard.statusTryAgain"));
     setMascotStateForDuration("confused", 1100);
   };
 
@@ -655,15 +662,15 @@ export function LessonWizardFlow({
             whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
           >
             <ArrowLeft size={20} />
-            <span>Exit</span>
+            <span>{t("wizard.exit")}</span>
           </m.button>
 
           <div className="lesson-wizard-header-copy">
-            <p>Learning stage</p>
+            <p>{t("wizard.stageLabel")}</p>
             <h2>{title}</h2>
           </div>
 
-          <div className="lesson-wizard-time-pill">{estimatedMinutes} minutes</div>
+          <div className="lesson-wizard-time-pill">{t("minutes", { minutes: estimatedMinutes })}</div>
         </header>
 
         <main className="lesson-wizard-main">
@@ -687,10 +694,10 @@ export function LessonWizardFlow({
 
                 <div className="lesson-wizard-step-badge">
                   <Play size={16} />
-                  <span>Ready to depart</span>
+                  <span>{t("wizard.readyBadge")}</span>
                 </div>
 
-                <h1 className="lesson-wizard-heading">Are you ready to learn?</h1>
+                <h1 className="lesson-wizard-heading">{t("wizard.introHeading")}</h1>
                 <p className="lesson-wizard-objective">{objective}</p>
 
                 <m.button
@@ -702,7 +709,7 @@ export function LessonWizardFlow({
                   transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 18 }}
                 >
                   <Sparkles size={18} />
-                  <span>Get started now!</span>
+                  <span>{t("wizard.startNow")}</span>
                 </m.button>
               </m.section>
             ) : null}
@@ -717,8 +724,8 @@ export function LessonWizardFlow({
                 className="lesson-wizard-panel lesson-wizard-panel-video"
               >
                 <div className="lesson-wizard-video-head">
-                  <h3>Watch the mission video</h3>
-                  <p>Please watch most of the video to unlock the challenge.</p>
+                  <h3>{t("wizard.watchHeading")}</h3>
+                  <p>{t("wizard.watchHint")}</p>
                 </div>
 
                 <div className="lesson-wizard-video-frame">
@@ -735,14 +742,14 @@ export function LessonWizardFlow({
                   ) : (
                     <div className="lesson-wizard-video-fallback">
                       <Video size={30} />
-                      <span>This lesson does not have a video yet.</span>
+                      <span>{t("wizard.noVideo")}</span>
                     </div>
                   )}
                 </div>
 
                 <div className="lesson-wizard-progress-panel">
                   <div className="lesson-wizard-progress-meta">
-                    <span>View progress</span>
+                    <span>{t("wizard.viewProgress")}</span>
                     <strong>{watchProgressPercentage}%</strong>
                   </div>
                   <div className="watch-progress-track lesson-wizard-progress-track">
@@ -761,7 +768,7 @@ export function LessonWizardFlow({
                     whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
                     transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 20 }}
                   >
-                    <span>{watchLoading ? "Confirming..." : "Continue the challenge"}</span>
+                    <span>{watchLoading ? t("wizard.confirming") : t("wizard.continueChallenge")}</span>
                     <ArrowRight size={18} />
                   </m.button>
                 </div>
@@ -785,12 +792,12 @@ export function LessonWizardFlow({
                   <KidMascot size={90} state={mascotState} actionProp="math" gazeDirection={mascotGazeDirection} />
                 </m.div>
 
-                                <h3 className="lesson-wizard-quiz-title">Let me know!</h3>
-                {activityLoading ? <p className="lesson-wizard-quiz-copy">Loading questions...</p> : null}
+                <h3 className="lesson-wizard-quiz-title">{t("wizard.quizTitle")}</h3>
+                {activityLoading ? <p className="lesson-wizard-quiz-copy">{t("wizard.loadingQuestions")}</p> : null}
 
                 {!activityLoading && currentActivity ? (
                   <>
-                    <p className="lesson-wizard-quiz-copy">Question {activityIndex + 1}/{activities.length}</p>
+                    <p className="lesson-wizard-quiz-copy">{t("wizard.questionCounter", { current: activityIndex + 1, total: activities.length })}</p>
                     <ActivityRenderer
                       key={currentActivity.id}
                       activity={currentActivity}
@@ -805,7 +812,7 @@ export function LessonWizardFlow({
 
                 {!activityLoading && activities.length === 0 ? (
                   <>
-                    <p className="lesson-wizard-quiz-copy">What topic was the last lesson?</p>
+                    <p className="lesson-wizard-quiz-copy">{t("wizard.fallbackPrompt")}</p>
                     <div className="lesson-wizard-option-grid">
                       {LESSON_QUIZ_CHOICES.map((choice, index) => {
                         const isCorrectChoice = choice.isCorrect;
@@ -840,8 +847,12 @@ export function LessonWizardFlow({
                             whileTap={prefersReducedMotion || isAnswerLocked ? undefined : { scale: 0.95 }}
                             transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 22 }}
                           >
-                            <strong>{isCorrectChoice ? title : choice.label}</strong>
-                            <span>{choice.description}</span>
+                            <strong>{isCorrectChoice ? title : t("wizard.fallbackWrongLabel")}</strong>
+                            <span>
+                              {choice.isCorrect
+                                ? t("wizard.fallbackCorrectDescription")
+                                : t("wizard.fallbackWrongDescription")}
+                            </span>
                           </m.button>
                         );
                       })}
@@ -860,8 +871,8 @@ export function LessonWizardFlow({
                 exit="exit"
                 className="lesson-wizard-panel lesson-wizard-panel-upload"
               >
-                <h3>Please send the results to your teachers!</h3>
-                <p>Ask your parents to take a photo of your work and post it to receive bonus stars.</p>
+                <h3>{t("wizard.uploadHeading")}</h3>
+                <p>{t("wizard.uploadHint")}</p>
 
                 <div className="lesson-wizard-upload-shell">
                   <EvidenceUploadPanel childId={childId} lessonId={lessonId} />
@@ -876,7 +887,7 @@ export function LessonWizardFlow({
                   whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
                   transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 20 }}
                 >
-                  <span>{loading ? "Sending..." : "Complete the mission!"}</span>
+                  <span>{loading ? t("wizard.sending") : t("wizard.completeMission")}</span>
                 </m.button>
               </m.section>
             ) : null}
@@ -898,8 +909,8 @@ export function LessonWizardFlow({
                   <KidMascot size={124} state="celebrating" actionProp="exploring" />
                 </m.div>
 
-                <h1 className="lesson-wizard-heading lesson-wizard-heading-success">Great!</h1>
-                <p className="lesson-wizard-objective">I just successfully completed today's class.</p>
+                <h1 className="lesson-wizard-heading lesson-wizard-heading-success">{t("wizard.doneHeading")}</h1>
+                <p className="lesson-wizard-objective">{t("wizard.doneBody")}</p>
 
                 <m.button
                   type="button"
@@ -910,7 +921,7 @@ export function LessonWizardFlow({
                   transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 18 }}
                 >
                   <Check size={18} />
-                  <span>Return to the map</span>
+                  <span>{t("wizard.returnToMap")}</span>
                 </m.button>
               </m.section>
             ) : null}

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
+import { getLocale } from "next-intl/server";
 import { BlogAuthorCard } from "@/components/blog/blog-author-card";
 import { BlogBookmarkButton } from "@/components/blog/blog-bookmark-button";
 import { BlogCard } from "@/components/blog/blog-card";
@@ -10,6 +11,8 @@ import { BlogLikeButton } from "@/components/blog/blog-like-button";
 import { BlogReadingProgress } from "@/components/blog/blog-reading-progress";
 import { BlogShare } from "@/components/blog/blog-share";
 import { BlogToc } from "@/components/blog/blog-toc";
+import { resolveAppLocale, type AppLocale } from "@/i18n/locales";
+import { translate } from "@/i18n/translator";
 import { getReaderFromServerCookie } from "@/lib/auth/reader";
 import { env } from "@/lib/env";
 import { extractToc } from "@/modules/blog/blog-markdown";
@@ -40,16 +43,12 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   return generateBlogPostMetadata(post, env.BETTER_AUTH_URL);
 }
 
-function formatDate(value: Date | null) {
+function formatDate(value: Date | null, locale: AppLocale) {
   if (!value) {
-    return "Unpublished";
+    return translate("blog.chrome.card.unpublished", undefined, locale);
   }
 
-  return new Intl.DateTimeFormat("en-US", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  }).format(value);
+  return value.toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US");
 }
 
 function normalizeCategoryColor(value: string | null | undefined) {
@@ -91,15 +90,19 @@ function getCategoryBadgeStyle(color: string | null | undefined) {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const [post, reader] = await Promise.all([
+  const [post, reader, rawLocale] = await Promise.all([
     blogService.getPostBySlug(slug),
     getReaderFromServerCookie(),
+    getLocale(),
   ]);
 
   if (!post) {
     notFound();
   }
 
+  const locale = resolveAppLocale(rawLocale);
+  const t = (key: string, values?: Record<string, string | number>) =>
+    translate(`blog.chrome.article.${key}`, values, locale);
   const bookmarkStatus = reader
     ? await getBookmarkStatus(reader.id, post.id)
     : { bookmarked: false };
@@ -125,7 +128,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
 
       <nav className="text-sm text-slate-500">
-        <Link href="/">Home page</Link> <span className="mx-1">/</span> <Link href="/blog">Blog</Link>
+        <Link href="/">{t("home")}</Link> <span className="mx-1">/</span> <Link href="/blog">{t("blog")}</Link>
       </nav>
 
       <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
@@ -148,7 +151,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold"
               style={getCategoryBadgeStyle(post.category.color)}
             >
-              {getBlogCategoryDisplayName(post.category)}
+              {getBlogCategoryDisplayName(post.category, locale)}
             </span>
 
             <h1 className="text-3xl font-black leading-tight tracking-[-0.02em] text-slate-900 sm:text-4xl">{post.titleVi}</h1>
@@ -156,9 +159,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-600">
               <span className="font-semibold text-slate-800">{post.author.displayName}</span>
               <span>·</span>
-              <span>{formatDate(post.publishedAt)}</span>
+              <span>{formatDate(post.publishedAt, locale)}</span>
               <span>·</span>
-              <span>{post.readingTimeMin} min read</span>
+              <span>{translate("blog.chrome.card.minRead", { count: post.readingTimeMin }, locale)}</span>
             </div>
 
             <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
@@ -186,10 +189,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {post.relatedPosts.length > 0 ? (
         <section className="space-y-4">
-          <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">Related articles</h2>
+          <h2 className="text-2xl font-black tracking-[-0.02em] text-slate-900">{t("related")}</h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {post.relatedPosts.map((relatedPost: typeof post.relatedPosts[number]) => (
-              <BlogCard key={relatedPost.id} post={relatedPost} />
+              <BlogCard key={relatedPost.id} post={relatedPost} locale={locale} />
             ))}
           </div>
         </section>
@@ -204,7 +207,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           href="/blog"
           className="inline-flex items-center text-sm font-semibold text-teal-700 transition hover:text-teal-800"
         >
-          ← Back to Blog
+          {t("back")}
         </Link>
       </div>
     </div>
