@@ -398,6 +398,7 @@ async function main() {
 
   const port = Number(process.env.E2E_PORT ?? (await getFreePort()));
   const baseUrl = `http://127.0.0.1:${port}`;
+  process.env.BETTER_AUTH_URL = process.env.BETTER_AUTH_URL ?? baseUrl;
   const server = startServer(port);
   const ipSeed = (Date.now() % 200) + 20;
   const octet = (offset) => (((ipSeed + offset - 1) % 254) + 1);

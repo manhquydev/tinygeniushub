@@ -18,11 +18,12 @@ jobs:
   release-check:
     name: release-check
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 70
     env:
       DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/tinygeniushub?schema=public
       REDIS_URL: redis://127.0.0.1:6379
       SESSION_SECRET: ci-session-secret-with-at-least-thirty-two-characters
+      BETTER_AUTH_SECRET: ci-better-auth-secret-with-at-least-thirty-two-characters
       BILLING_WEBHOOK_SECRET: ci-webhook-secret
       NODE_ENV: test
       NEXT_TELEMETRY_DISABLED: "1"
@@ -58,7 +59,6 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320
         with:
-          version: 10
           run_install: false
 
       - name: Setup Node.js
@@ -123,6 +123,13 @@ jobs:
 
       - name: Run lesson player video layout guard
         run: pnpm test:e2e:video-layout
+
+      - name: Run security abuse e2e
+        env:
+          E2E_SKIP_BUILD: "1"
+          E2E_ADMIN_EMAIL: demo.admin@tinygeniushubvn.tech
+          E2E_ADMIN_PASSWORD: DemoAdmin123!
+        run: pnpm test:e2e:security
 
       - name: Publish evidence summary
         if: always()
