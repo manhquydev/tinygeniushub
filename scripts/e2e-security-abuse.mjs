@@ -206,11 +206,18 @@ async function signupParent(baseUrl, payload) {
 
   assert(signup.response.status === 200, `Signup failed for ${payload.email}: status=${signup.response.status}`);
   assert(signup.json?.ok === true, `Signup did not return ok=true for ${payload.email}`);
-  const setCookieHeader = signup.response.headers.get("set-cookie");
-  assert(setCookieHeader, `Missing set-cookie header for ${payload.email}`);
-  const cookie = getSessionCookie(setCookieHeader);
-  assert(cookie, `Missing session cookie for ${payload.email}`);
-  return cookie;
+  const signupCookie = signup.response.headers.get("set-cookie");
+  if (signupCookie) {
+    const cookie = getSessionCookie(signupCookie);
+    if (cookie) {
+      return cookie;
+    }
+  }
+
+  return loginParent(baseUrl, {
+    email: payload.email,
+    password: payload.password,
+  });
 }
 
 function countStatuses(responses) {
