@@ -24,6 +24,8 @@ jobs:
       REDIS_URL: redis://127.0.0.1:6379
       SESSION_SECRET: ci-session-secret-with-at-least-thirty-two-characters
       BETTER_AUTH_SECRET: ci-better-auth-secret-with-at-least-thirty-two-characters
+      ADMIN_AUTH_SECRET: ci-admin-auth-secret-with-at-least-thirty-two-characters
+      ADMIN_EMAILS: demo.admin@tinygeniushubvn.tech
       BILLING_WEBHOOK_SECRET: ci-webhook-secret
       NODE_ENV: test
       NEXT_TELEMETRY_DISABLED: "1"
@@ -116,6 +118,7 @@ jobs:
           pnpm prisma migrate deploy
           pnpm db:seed
           pnpm tsx prisma/scripts/import-three-courses-bootstrap.ts --publish
+          ADMIN_EMAILS=demo.admin@tinygeniushubvn.tech ADMIN_SEED_PASSWORD=DemoAdmin123! pnpm admin:seed-super
           node -e "const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); const controls = { ddosMode: 'normal', globalLimitMultiplier: 1, blockedIpCidrs: [], readinessAllowlistCidrs: [], parentEmailVerificationRequired: false, parentEmailVerificationTokenTtlMinutes: 15 }; prisma.adminSecuritySettings.upsert({ where: { id: 'default' }, update: { securityControls: controls, updatedByActorId: 'ci-release-check' }, create: { id: 'default', rateLimitPolicies: {}, securityControls: controls, updatedByActorId: 'ci-release-check' } }).then(() => prisma.\$disconnect()).catch(async (error) => { console.error(error); await prisma.\$disconnect(); process.exit(1); });"
 
 
