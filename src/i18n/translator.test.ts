@@ -60,4 +60,36 @@ describe("i18n translator", () => {
     expect(viHeading).toBe(getMessagesForLocale("vi").parent.dashboard.activity.heading);
     expect(viHeading).not.toBe(enHeading);
   });
+
+  it("translates residual leftover labels by locale", () => {
+    expect(translate("common.actions.done", undefined, "en")).toBe("Done");
+    expect(translate("common.actions.done", undefined, "vi")).toBe(
+      getMessagesForLocale("vi").common.actions.done,
+    );
+    expect(translate("kid.lesson.renderer.done", undefined, "vi")).not.toBe(
+      translate("kid.lesson.renderer.done", undefined, "en"),
+    );
+    expect(translate("metadata.homeTitle", undefined, "vi")).not.toBe(
+      translate("metadata.homeTitle", undefined, "en"),
+    );
+    expect(translate("admin.contentActivity.trueFalse.incorrect", undefined, "en")).toBe("Incorrect");
+    expect(translate("admin.contentActivity.trueFalse.incorrect", undefined, "vi")).toBe(
+      getMessagesForLocale("vi").admin.contentActivity.trueFalse.incorrect,
+    );
+  });
+
+  it("translates curriculum daily-plan chrome by locale", () => {
+    expect(translate("curriculum.dailyPlan.lessonNumber", { n: 3 }, "en")).toBe("Lesson 3");
+    expect(translate("curriculum.dailyPlan.lessonNumber", { n: 3 }, "vi")).toBe("Bài 3");
+    expect(translate("curriculum.subjects.ARITHMETIC", undefined, "vi")).not.toBe(
+      translate("curriculum.subjects.ARITHMETIC", undefined, "en"),
+    );
+  });
+
+  it("translates homepage JSON-LD FAQ by locale", () => {
+    expect(translate("metadata.jsonLd.faq1q", undefined, "en")).toContain("ages");
+    expect(translate("metadata.jsonLd.faq1q", undefined, "vi")).not.toBe(
+      translate("metadata.jsonLd.faq1q", undefined, "en"),
+    );
+  });
 });

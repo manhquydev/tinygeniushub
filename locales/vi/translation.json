@@ -5,6 +5,7 @@
       "cancel": "Hủy",
       "close": "Đóng",
       "continue": "Tiếp tục",
+      "done": "Xong",
       "loading": "Đang tải...",
       "retry": "Thử lại",
       "save": "Lưu",
@@ -58,7 +59,67 @@
     "learnAccessDenied": "Cần vé học của hộ gia đình để học bài này."
   },
   "metadata": {
-    "siteDescription": "Learning Journey OS cho phụ huynh có con 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ."
+    "siteDescription": "Learning Journey OS cho phụ huynh có con 2-6 tuổi. Mỗi ngày 15 phút, phụ huynh thấy rõ con tiến bộ.",
+    "homeTitle": "TinyGenius Hub | Khu vườn mây",
+    "homeDescription": "Nền tảng học tập lấy trẻ làm trung tâm cho bé 2-6 tuổi. Xem bài học mẫu, chọn khóa phù hợp và bắt đầu học ngay.",
+    "homeOgDescription": "Xem bài học mẫu, mua khóa trực tiếp và theo dõi tiến bộ của con qua báo cáo định kỳ.",
+    "homeTwitterDescription": "Khám phá bài học, chọn khóa phù hợp và theo dõi tiến bộ rõ ràng cùng con.",
+    "homeImageAlt": "TinyGenius Hub - Khu vườn mây",
+    "jsonLd": {
+      "websiteDescription": "Nền tảng học tập tương tác cho trẻ em và phụ huynh.",
+      "orgDescription": "Nền tảng giáo dục sớm cho trẻ 2-6 tuổi.",
+      "courseName": "Khu vườn mây - Toán và Tiếng Anh cho bé",
+      "courseDescription": "Chương trình học tương tác cho trẻ 2-6 tuổi, phụ huynh theo dõi tiến bộ rõ ràng.",
+      "educationalLevel": "Mầm non",
+      "audienceType": "Trẻ em từ 2-6 tuổi",
+      "contactType": "Hỗ trợ khách hàng",
+      "faq1q": "Nền tảng phù hợp với độ tuổi nào?",
+      "faq1a": "Chương trình được thiết kế cho trẻ 2-6 tuổi.",
+      "faq2q": "Phụ huynh thanh toán như thế nào?",
+      "faq2a": "Phụ huynh có thể chuyển khoản hoặc quét QR theo hướng dẫn trên trang thanh toán.",
+      "faq3q": "Khi nào khóa học được kích hoạt?",
+      "faq3a": "Khóa học được kích hoạt tự động khi giao dịch xác nhận thành công.",
+      "faq4q": "Có xem thử bài học trước khi mua không?",
+      "faq4a": "Có. Hệ thống luôn hiển thị bài học mẫu để phụ huynh xem trước khi quyết định mua."
+    }
+  },
+  "curriculum": {
+    "dailyPlan": {
+      "hello": "Xin chào!",
+      "helloNamed": "Xin chào {name}!",
+      "progressToday": "Tiến độ hôm nay",
+      "subjectsCount": "{completed}/{total} môn",
+      "timeLabel": "Thời gian",
+      "hours": "{hours}g",
+      "loadError": "Không tải được kế hoạch hôm nay",
+      "loadRetry": "Vui lòng thử lại sau",
+      "rewardsTitle": "Phần thưởng đang chờ!",
+      "rewardsBody": "Hoàn thành tất cả để nhận huy hiệu \"Ngày chăm chỉ\"",
+      "completeTitle": "Chúc mừng! Bé đã hoàn thành mọi bài học hôm nay!",
+      "completeSubtitle": "Nghỉ ngơi và tận hưởng thành quả này!",
+      "lessonNumber": "Bài {n}",
+      "minutes": "{count} phút",
+      "review": "Xem lại",
+      "begin": "Bắt đầu"
+    },
+    "subjects": {
+      "PHONICS": "Đánh vần",
+      "ARITHMETIC": "Toán",
+      "BIBLE": "Kinh Thánh",
+      "WRITING": "Viết",
+      "SCIENCE": "Khoa học",
+      "HISTORY": "Lịch sử",
+      "ACTIVITIES": "Hoạt động",
+      "READING": "Đọc",
+      "ENG": "Tiếng Anh",
+      "MTH": "Toán",
+      "BIB": "Kinh Thánh",
+      "GRM": "Ngữ pháp",
+      "SCI": "Khoa học",
+      "HIS": "Lịch sử",
+      "ART": "Mỹ thuật",
+      "PHY": "Đánh vần"
+    }
   },
   "language": {
     "ariaLabel": "Chọn ngôn ngữ hiển thị",
@@ -6142,6 +6203,7 @@
         "falseLabel": "Sai",
         "fillPlaceholder": "Nhập câu trả lời",
         "check": "Kiểm tra",
+        "done": "Xong ✓",
         "hint": "Gợi ý: {hint}",
         "unsupported": "Loại hoạt động này chưa được hỗ trợ."
       },
@@ -6444,6 +6506,13 @@
       "title": "Quản trị hệ thống",
       "roleSuperAdmin": "Super admin",
       "roleStaffAdmin": "Staff admin"
+    },
+    "contentActivity": {
+      "trueFalse": {
+        "heading": "Đáp án đúng",
+        "correct": "Đúng",
+        "incorrect": "Sai"
+      }
     },
     "navGroup": {
       "core-control": "Điều khiển chính",

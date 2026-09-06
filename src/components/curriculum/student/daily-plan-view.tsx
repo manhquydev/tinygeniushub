@@ -10,14 +10,15 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Play, RotateCcw, Trophy, Clock } from "lucide-react";
 import { format } from "date-fns";
-import { enUS } from "date-fns/locale";
+import { useLocale, useTranslations } from "next-intl";
+import { enUS, vi } from "date-fns/locale";
 import confetti from "canvas-confetti";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { useDailyPlan, useCompleteLesson } from "../shared/api";
-import { SubjectIcon, getSubjectNameVi, getSubjectColor } from "../shared/subject-icon";
+import { SubjectIcon, getSubjectColor } from "../shared/subject-icon";
 import { LessonWizardBridge } from "../lesson-wizard-bridge";
 import type { AbekaAssignment, AbekaSubjectCode } from "../types";
 import { cn } from "@/lib/utils";
@@ -34,6 +35,8 @@ export function DailyPlanView({
   onAssignmentClick,
 }: DailyPlanViewProps) {
   const today = new Date();
+  const t = useTranslations("curriculum.dailyPlan");
+  const dateLocale = useLocale() === "vi" ? vi : enUS;
   const { data: plan, isLoading, error } = useDailyPlan(childId, today);
   const completeLesson = useCompleteLesson();
   const [celebratingId, setCelebratingId] = useState<string | null>(null);
@@ -123,8 +126,8 @@ export function DailyPlanView({
     return (
       <div className="flex h-64 items-center justify-center">
         <div className="text-center">
-          <p className="text-lg text-slate-600">Unable to load plan today</p>
-          <p className="text-sm text-slate-400">Please try again later</p>
+          <p className="text-lg text-slate-600">{t("loadError")}</p>
+          <p className="text-sm text-slate-400">{t("loadRetry")}</p>
         </div>
       </div>
     );
@@ -141,10 +144,10 @@ export function DailyPlanView({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">
-            🌅 Hello{childName ? ` ${childName}` : ""}!
+            {childName ? t("helloNamed", { name: childName }) : t("hello")}
           </h1>
           <p className="text-slate-500">
-            {format(today, "EEEE, MMMM d", { locale: enUS })}
+            {format(today, "EEEE, MMMM d", { locale: dateLocale })}
           </p>
         </div>
         {plan.isCompleted && (
@@ -170,15 +173,15 @@ export function DailyPlanView({
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm opacity-90">Progress today</p>
+              <p className="text-sm opacity-90">{t("progressToday")}</p>
               <p className="text-2xl font-bold">
-                {completedCount}/{plan.assignments.length} subjects
+                {t("subjectsCount", { completed: completedCount, total: plan.assignments.length })}
               </p>
             </div>
             <div className="text-right">
-              <p className="text-sm opacity-90">Time</p>
+              <p className="text-sm opacity-90">{t("timeLabel")}</p>
               <p className="text-2xl font-bold">
-                {Math.round((plan.actualMinutes || 0) / 60 * 10) / 10}h
+                {t("hours", { hours: Math.round((plan.actualMinutes || 0) / 60 * 10) / 10 })}
               </p>
             </div>
           </div>
@@ -219,10 +222,10 @@ export function DailyPlanView({
               </div>
               <div className="flex-1">
                 <p className="font-medium text-amber-900">
-                  🏆 Rewards await!
+                  {t("rewardsTitle")}
                 </p>
                 <p className="text-sm text-amber-700">
-                  Complete all to earn the badge &quot;Diligent Day&quot;
+                  {t("rewardsBody")}
                 </p>
               </div>
             </div>
@@ -238,9 +241,9 @@ export function DailyPlanView({
           className="rounded-2xl bg-green-50 p-4 text-center"
         >
           <p className="text-lg font-bold text-green-800">
-            🎉 Congratulations! Today I completed all the lessons!
+            {t("completeTitle")}
           </p>
-          <p className="text-green-600">Rest and enjoy this achievement!</p>
+          <p className="text-green-600">{t("completeSubtitle")}</p>
         </motion.div>
       )}
       {/* Lesson Wizard Modal */}
@@ -268,6 +271,9 @@ function AssignmentCard({
   onStart,
   isCelebrating,
 }: AssignmentCardProps) {
+  const t = useTranslations("curriculum.dailyPlan");
+  const tSubjects = useTranslations("curriculum.subjects");
+  const tActions = useTranslations("common.actions");
   const isCompleted = assignment.status === "COMPLETED";
   const isInProgress = assignment.status === "IN_PROGRESS";
   const subjectCode = assignment.subjectCode as AbekaSubjectCode;
@@ -304,17 +310,17 @@ function AssignmentCard({
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <h3 className="font-semibold truncate">
-                {getSubjectNameVi(subjectCode)}
+                {tSubjects(subjectCode)}
               </h3>
               {isCompleted && (
                 <Badge variant="default" className="bg-green-500 shrink-0">
                   <Check className="mr-1 h-3 w-3" />
-                  Xong
+                  {tActions("done")}
                 </Badge>
               )}
             </div>
             <p className="text-sm text-slate-500">
-              Lesson {assignment.lesson?.lessonNumber || "--"}
+              {t("lessonNumber", { n: assignment.lesson?.lessonNumber || "--" })}
             </p>
 
             {/* Progress Bar - placeholder since AbekaAssignment doesn't have progressPercent */}
@@ -328,7 +334,7 @@ function AssignmentCard({
             {/* Time estimate */}
             <div className="mt-1 flex items-center gap-1 text-xs text-slate-400">
               <Clock className="h-3 w-3" />
-              <span>{estimatedMinutes} minutes</span>
+              <span>{t("minutes", { count: estimatedMinutes })}</span>
             </div>
           </div>
 
@@ -347,17 +353,17 @@ function AssignmentCard({
             {isCompleted ? (
               <>
                 <RotateCcw className="mr-2 h-4 w-4" />
-                Review
+                {t("review")}
               </>
             ) : isInProgress ? (
               <>
                 <Play className="mr-2 h-4 w-4" />
-                Continue
+                {tActions("continue")}
               </>
             ) : (
               <>
                 <Play className="mr-2 h-4 w-4" />
-                Begin
+                {t("begin")}
               </>
             )}
           </Button>

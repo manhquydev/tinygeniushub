@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Stage, Layer, Rect, Circle, Ellipse } from "react-konva";
 import type { DrawingSpec, DrawingShape } from "@/modules/content/activity-types";
 import type { KidMascotGazeDirection } from "@/components/animation/kid-mascot";
@@ -82,6 +83,7 @@ export function DrawingActivity({
   onHoverOptionEnd,
 }: DrawingActivityProps) {
   const [selectedColor, setSelectedColor] = useState(spec.colorPalette[0] ?? "#ef4444");
+  const t = useTranslations("kid.lesson.renderer");
   const [fills, setFills] = useState<Record<string, string>>(() =>
     Object.fromEntries(spec.shapes.map((s) => [s.id, s.initialFill])),
   );
@@ -168,7 +170,7 @@ export function DrawingActivity({
         onClick={handleDone}
         disabled={disabled}
       >
-        Xong ✓
+        {t("done")}
       </button>
     </div>
   );
