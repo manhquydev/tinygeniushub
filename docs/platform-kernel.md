@@ -42,7 +42,7 @@ One `PaymentRecord` ledger. Webhook → grant/extend ticket. Not three access ta
 
 | Concern | Module |
 |---|---|
-| Tickets / canAccess | `src/modules/entitlement/` (new) |
+| Tickets / canAccess | `src/modules/entitlement/` |
 | Offerings / prices | `src/modules/entitlement/` or `src/modules/billing/` offerings |
 | Playable complete/watch | `src/modules/learning/` |
 | Skills / review | `src/modules/adaptive/` |
