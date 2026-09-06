@@ -1,8 +1,7 @@
 name: Jules Session Monitor
 
+# Internal-dev: GitHub-disabled. Do not poll Jules on a schedule.
 on:
-  schedule:
-    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 concurrency:
