@@ -8,6 +8,7 @@ const {
   assertRequestAllowedBySecurityControlsMock,
   getRateLimitPolicyMock,
   envMock,
+  prismaMock,
 } = vi.hoisted(() => ({
   enforceRateLimitMock: vi.fn(),
   getRequestIpMock: vi.fn(),
@@ -18,6 +19,10 @@ const {
   envMock: {
     NODE_ENV: "test",
     BILLING_WEBHOOK_MAX_BYTES: 256 * 1024,
+  },
+  prismaMock: {
+    paymentRecord: { findFirst: vi.fn(), create: vi.fn(), update: vi.fn() },
+    packageSubscription: { findFirst: vi.fn(), create: vi.fn(), update: vi.fn() },
   },
 }));
 
@@ -50,9 +55,7 @@ vi.mock("@/modules/platform/audit-service", () => ({
   createAuditLog: vi.fn(),
 }));
 vi.mock("@/lib/db", () => ({
-  prisma: {
-    paymentRecord: { findFirst: vi.fn(), create: vi.fn(), update: vi.fn() },
-  },
+  prisma: prismaMock,
 }));
 
 import { POST } from "@/app/api/webhooks/package-subscription/route";
@@ -77,7 +80,9 @@ describe("package-subscription webhook lock", () => {
     );
 
     expect(response.status).toBe(401);
-    expect(isValidBillingSignatureMock).toHaveBeenCalled();
+    expect(isValidBillingSignatureMock).toHaveBeenCalledWith(expect.any(String), null);
+    expect(prismaMock.packageSubscription.create).not.toHaveBeenCalled();
+    expect(prismaMock.packageSubscription.update).not.toHaveBeenCalled();
   });
 
   it("returns 404 for unsigned payloads in production", async () => {
@@ -90,5 +95,8 @@ describe("package-subscription webhook lock", () => {
     );
 
     expect(response.status).toBe(404);
+    expect(isValidBillingSignatureMock).toHaveBeenCalledWith(expect.any(String), null);
+    expect(prismaMock.packageSubscription.create).not.toHaveBeenCalled();
+    expect(prismaMock.packageSubscription.update).not.toHaveBeenCalled();
   });
 });

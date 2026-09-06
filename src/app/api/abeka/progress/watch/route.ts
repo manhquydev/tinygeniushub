@@ -23,6 +23,11 @@ export async function GET(request: NextRequest) {
     if (!childId) {
       return Response.json({ error: 'childId is required' }, { status: 400 });
     }
+    const authed = await requireParentAndOwnedChild(request, childId);
+    if (!authed.ok) {
+      return authed.response;
+    }
+
 
     const where: { childId: string; videoId?: string } = { childId };
     if (videoId) {

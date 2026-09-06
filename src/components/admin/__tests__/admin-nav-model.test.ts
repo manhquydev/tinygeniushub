@@ -1,53 +1,45 @@
 import { describe, expect, it } from "vitest";
-import { buildAdminNavModel } from "@/components/admin-shell-nav";
+import { buildAdminNavModel, type AdminNavModel } from "@/components/admin/admin-module-catalog";
 
-function findModuleKeys(model: ReturnType<typeof buildAdminNavModel>): string[] {
+const OPERATOR_KEYS = [
+  "audit-log",
+  "content",
+  "impersonation",
+  "operations",
+  "overview",
+  "security",
+  "users",
+];
+
+const HIDDEN_KEYS = [
+  "analytics",
+  "blog",
+  "courses",
+  "feature-flags",
+  "gift-codes",
+  "organizations",
+  "site-settings",
+  "skills-mapping",
+  "staff",
+];
+
+function findModuleKeys(model: AdminNavModel): string[] {
   return model.groups.flatMap((entry) => entry.modules.map((module) => module.key));
 }
 
 describe("buildAdminNavModel", () => {
-  it("includes the governance group with all super-admin-only modules for SUPER_ADMIN", () => {
-    const model = buildAdminNavModel("SUPER_ADMIN");
-    const governanceGroup = model.groups.find((entry) => entry.group.key === "governance");
+  it("uses the same operator list for SUPER_ADMIN and staff roles", () => {
+    const superKeys = findModuleKeys(buildAdminNavModel("SUPER_ADMIN")).sort();
+    const staffKeys = findModuleKeys(buildAdminNavModel("SUPPORT_AGENT")).sort();
 
-    expect(governanceGroup).toBeDefined();
-    const governanceKeys = governanceGroup!.modules.map((module) => module.key);
-    expect(governanceKeys).toEqual(
-      expect.arrayContaining([
-        "staff",
-        "security",
-        "audit-log",
-        "impersonation",
-        "skills-mapping",
-        "feature-flags",
-        "organizations",
-      ]),
-    );
+    expect(superKeys).toEqual(OPERATOR_KEYS);
+    expect(staffKeys).toEqual(OPERATOR_KEYS);
   });
 
-  it("excludes superAdminOnly modules and the governance group for a staff role", () => {
-    const model = buildAdminNavModel("SUPPORT_AGENT");
-    const moduleKeys = findModuleKeys(model);
-
-    expect(model.groups.some((entry) => entry.group.key === "governance")).toBe(false);
-    expect(moduleKeys).not.toEqual(
-      expect.arrayContaining(["staff", "security", "audit-log", "impersonation", "skills-mapping", "feature-flags", "organizations"]),
-    );
-  });
-
-  it("keeps the blog module's children for both roles", () => {
-    const superAdminModel = buildAdminNavModel("SUPER_ADMIN");
-    const staffModel = buildAdminNavModel("SUPPORT_AGENT");
-
-    for (const model of [superAdminModel, staffModel]) {
-      const blogModule = model.groups.flatMap((entry) => entry.modules).find((module) => module.key === "blog");
-      expect(blogModule?.children?.map((child) => child.key)).toEqual([
-        "posts",
-        "categories",
-        "authors",
-        "analytics",
-        "comments",
-      ]);
+  it("hides blog, organizations, gift-codes, courses, and staff from primary nav", () => {
+    const keys = findModuleKeys(buildAdminNavModel("SUPER_ADMIN"));
+    for (const key of HIDDEN_KEYS) {
+      expect(keys).not.toContain(key);
     }
   });
 

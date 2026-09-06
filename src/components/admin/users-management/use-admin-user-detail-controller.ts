@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import type { AdminNote, AdminUserDetail, ApiResponse } from "./admin-users-management-types";
+import type { AdminNote, AdminUserDetail, AdminUserTicketAction, ApiResponse } from "./admin-users-management-types";
 
 type UseAdminUserDetailControllerInput = {
   selectedParentId: string | null;
@@ -15,9 +15,10 @@ export function useAdminUserDetailController(input: UseAdminUserDetailController
   const [detailError, setDetailError] = useState<string | null>(null);
   const [detailReloadToken, setDetailReloadToken] = useState(0);
   const [impersonateLoading, setImpersonateLoading] = useState(false);
-  const [subscriptionActionLoading, setSubscriptionActionLoading] = useState(false);
-  const [subscriptionActionFeedback, setSubscriptionActionFeedback] = useState<string | null>(null);
+  const [ticketActionLoading, setTicketActionLoading] = useState(false);
+  const [ticketActionFeedback, setTicketActionFeedback] = useState<string | null>(null);
   const [extendDays, setExtendDays] = useState("30");
+  const [grantOfferingCode, setGrantOfferingCode] = useState("platform-pass");
   const [manualEmailSubject, setManualEmailSubject] = useState("");
   const [manualEmailBody, setManualEmailBody] = useState("");
   const [manualEmailLoading, setManualEmailLoading] = useState(false);
@@ -30,9 +31,21 @@ export function useAdminUserDetailController(input: UseAdminUserDetailController
   const [notesReloadToken, setNotesReloadToken] = useState(0);
 
   useEffect(() => {
-    if (!input.selectedParentId) { setDetail(null); setDetailError(null); setSubscriptionActionFeedback(null); setManualEmailFeedback(null); setManualEmailSubject(""); setManualEmailBody(""); return; }
+    if (!input.selectedParentId) {
+      setDetail(null);
+      setDetailError(null);
+      setTicketActionFeedback(null);
+      setGrantOfferingCode("platform-pass");
+      setManualEmailFeedback(null);
+      setManualEmailSubject("");
+      setManualEmailBody("");
+      return;
+    }
     const selectedParentId = input.selectedParentId;
-    setSubscriptionActionFeedback(null); setManualEmailFeedback(null); setManualEmailSubject(""); setManualEmailBody("");
+    setTicketActionFeedback(null);
+    setManualEmailFeedback(null);
+    setManualEmailSubject("");
+    setManualEmailBody("");
     const controller = new AbortController();
     void (async () => {
       setDetailLoading(true); setDetailError(null);
@@ -40,7 +53,7 @@ export function useAdminUserDetailController(input: UseAdminUserDetailController
         const response = await fetch(`/api/admin/users/${encodeURIComponent(selectedParentId)}`, { method: "GET", signal: controller.signal, cache: "no-store" });
         const body = (await response.json()) as ApiResponse<{ detail?: AdminUserDetail }>;
         if (!response.ok || !body.ok || !body.data?.detail) { setDetailError(body.error?.message ?? "Unable to download detailed information."); setDetail(null); return; }
-        setDetail(body.data.detail);
+        setDetail({ ...body.data.detail, entitlements: body.data.detail.entitlements ?? [] });
       } catch (e) {
         if (e instanceof Error && e.name === "AbortError") return;
         setDetailError(e instanceof Error ? e.message : "Unknown error."); setDetail(null);
@@ -95,19 +108,43 @@ export function useAdminUserDetailController(input: UseAdminUserDetailController
     finally { setNoteSubmitting(false); }
   }
 
-  async function handleSubscriptionAction(action: "extend" | "cancel" | "activate") {
+  async function handleTicketAction(action: AdminUserTicketAction, offeringCode: string) {
     if (!input.selectedParentId) return;
-    if (!detail?.currentSubscription) { setSubscriptionActionFeedback("The user does not have a subscription package to work with."); return; }
+    const code = offeringCode.trim();
+    if (code.length === 0) {
+      setTicketActionFeedback("Enter an offering code.");
+      return;
+    }
+    if (action === "expire" && !window.confirm(`Expire ticket ${code}?`)) return;
     const parsedDays = Number.parseInt(extendDays, 10);
     const days = Number.isFinite(parsedDays) ? parsedDays : 30;
-    setSubscriptionActionLoading(true); setSubscriptionActionFeedback(null);
+    setTicketActionLoading(true);
+    setTicketActionFeedback(null);
     try {
-      const response = await fetch(`/api/admin/users/${encodeURIComponent(input.selectedParentId)}/subscription`, { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ action, days }) });
-      const body = (await response.json()) as ApiResponse<{ subscription?: unknown }>;
-      if (!response.ok || !body.ok) { setSubscriptionActionFeedback(body.error?.message ?? "Unable to update subscription."); return; }
-      setSubscriptionActionFeedback("Subscriptions updated."); setDetailReloadToken((v) => v + 1);
-    } catch (e) { setSubscriptionActionFeedback(e instanceof Error ? e.message : "Unknown error."); }
-    finally { setSubscriptionActionLoading(false); }
+      const payload: { offeringCode: string; action: AdminUserTicketAction; days?: number } = {
+        offeringCode: code,
+        action,
+      };
+      if (action !== "expire") payload.days = days;
+      const response = await fetch(`/api/admin/users/${encodeURIComponent(input.selectedParentId)}/tickets`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const body = (await response.json()) as ApiResponse<unknown>;
+      if (!response.ok || !body.ok) {
+        setTicketActionFeedback(body.error?.message ?? "Unable to update ticket.");
+        return;
+      }
+      setTicketActionFeedback(
+        action === "grant" ? "Ticket granted." : action === "extend" ? "Ticket extended." : "Ticket expired.",
+      );
+      setDetailReloadToken((value) => value + 1);
+    } catch (error) {
+      setTicketActionFeedback(error instanceof Error ? error.message : "Unknown error.");
+    } finally {
+      setTicketActionLoading(false);
+    }
   }
 
   async function handleSendManualEmail() {
@@ -127,9 +164,9 @@ export function useAdminUserDetailController(input: UseAdminUserDetailController
   }
 
   return {
-    detail, detailLoading, detailError, impersonateLoading, subscriptionActionLoading, subscriptionActionFeedback, extendDays, manualEmailSubject, manualEmailBody,
+    detail, detailLoading, detailError, impersonateLoading, ticketActionLoading, ticketActionFeedback, extendDays, grantOfferingCode, manualEmailSubject, manualEmailBody,
     manualEmailLoading, manualEmailFeedback, notes, notesLoading, notesError, noteDraft, noteSubmitting,
-    setExtendDays, setManualEmailSubject, setManualEmailBody, setNoteDraft,
-    handleImpersonate, handleCreateNote, handleSubscriptionAction, handleSendManualEmail,
+    setExtendDays, setGrantOfferingCode, setManualEmailSubject, setManualEmailBody, setNoteDraft,
+    handleImpersonate, handleCreateNote, handleTicketAction, handleSendManualEmail,
   };
 }

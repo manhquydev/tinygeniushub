@@ -141,6 +141,22 @@ describe("grantPlanOfferingInTx", () => {
       code: "OFFERING_NOT_FOUND",
     } satisfies Partial<DomainError>);
   });
+
+  it("refuses a new grant when the offering is inactive", async () => {
+    tx.offering.findUnique.mockResolvedValue({
+      id: offeringId,
+      code: PLATFORM_PASS_CODE,
+      active: false,
+    });
+    tx.entitlement.findFirst.mockResolvedValue(null);
+
+    await expect(grantPlanOfferingInTx(tx as never, { parentId, planCode: "TRIAL" })).rejects.toMatchObject({
+      code: "OFFERING_INACTIVE",
+      status: 409,
+    } satisfies Partial<DomainError>);
+    expect(tx.entitlement.create).not.toHaveBeenCalled();
+  });
+
 });
 
 describe("grantCourseOfferingInTx", () => {
@@ -257,5 +273,21 @@ describe("dunning ticket status", () => {
         sourcePaymentId: "pay-new",
       },
     });
+  });
+
+  it("expires a live ticket when the offering is inactive", async () => {
+    const tx = createTx();
+    tx.offering.findUnique.mockResolvedValue({
+      id: offeringId,
+      code: PLATFORM_PASS_CODE,
+      active: false,
+    });
+    tx.entitlement.findFirst.mockResolvedValue({ id: "ent-1", status: EntitlementStatus.ACTIVE });
+    tx.entitlement.update.mockResolvedValue({ id: "ent-1", status: EntitlementStatus.EXPIRED });
+
+    await expect(expirePlanOfferingInTx(tx as never, { parentId, planCode: "TRIAL" })).resolves.toMatchObject({
+      status: EntitlementStatus.EXPIRED,
+    });
+    expect(tx.entitlement.create).not.toHaveBeenCalled();
   });
 });

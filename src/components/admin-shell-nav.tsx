@@ -23,31 +23,10 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
 import {
-  ADMIN_NAV_GROUPS,
-  getVisibleAdminModules,
+  buildAdminNavModel,
   type AdminModule,
   type AdminModuleChild,
-  type AdminNavGroup,
 } from "@/components/admin/admin-module-catalog";
-
-type NavModel = {
-  groups: { group: AdminNavGroup; modules: AdminModule[] }[];
-};
-
-/** Pure builder: catalog + role -> nav groups, filtering out empty groups and href-less modules. */
-export function buildAdminNavModel(role: string): NavModel {
-  const visibleModules = getVisibleAdminModules(role);
-  const visibleByKey = new Map(visibleModules.map((module) => [module.key, module]));
-
-  const groups = ADMIN_NAV_GROUPS.map((group) => {
-    const modules = group.moduleKeys
-      .map((key) => visibleByKey.get(key))
-      .filter((module): module is AdminModule => Boolean(module) && (module!.href !== null || Boolean(module!.children?.length)));
-    return { group, modules };
-  }).filter((entry) => entry.modules.length > 0);
-
-  return { groups };
-}
 
 function isPathActive(pathname: string, href: string) {
   if (href === "/admin/overview") return pathname === href;

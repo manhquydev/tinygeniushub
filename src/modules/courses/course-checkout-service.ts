@@ -5,7 +5,7 @@ import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
 import { getPublishedCoursesByBundleSlug } from "@/modules/courses/course-bundle-service";
 import { resolveCourseDisplayPricing } from "@/modules/courses/course-pricing";
-import { enrollParent, getEnrollment } from "@/modules/courses/course-service";
+import { getEnrollment } from "@/modules/courses/course-service";
 import { createPayosPaymentLink } from "@/modules/billing/payos-client";
 import {
   createCheckoutReturnState,
@@ -15,6 +15,7 @@ import type { PilotAttributionSnapshot } from "@/modules/courses/pilot-attributi
 import { trackPilotCheckoutStarted } from "@/modules/courses/pilot-funnel-tracking-service";
 import { DomainError } from "@/modules/platform/errors";
 import { createAuditLog } from "@/modules/platform/audit-service";
+import { grantCourseOfferingInTx, offeringCodeForCourse } from "@/modules/entitlement/grant-from-billing";
 
 type CheckoutTarget =
   | {
@@ -280,13 +281,13 @@ async function resolveCheckoutTarget(params: { parentId: string; slug: string })
     throw new DomainError("Course is not available", 404, "COURSE_NOT_PUBLISHED");
   }
 
-  const existing = await getEnrollment(course.id, params.parentId);
-  if (existing) {
-    throw new DomainError("Already enrolled in this course", 409, "ALREADY_ENROLLED");
-  }
-
   const pricing = resolveCourseDisplayPricing(course);
   assertCourseCheckoutPricingAvailable(pricing);
+
+  const existing = await getEnrollment(course.id, params.parentId);
+  if (existing && pricing.salePriceVnd > 0) {
+    throw new DomainError("Already enrolled in this course", 409, "ALREADY_ENROLLED");
+  }
 
   return {
     kind: "course",
@@ -316,10 +317,20 @@ async function createFreeTemporaryCheckoutSession(input: {
   parentId: string;
   target: Extract<CheckoutTarget, { kind: "course" }>;
 }): Promise<CheckoutSession> {
-  await enrollParent(input.target.courseId, input.parentId);
+  const { parentId } = input;
+  const { courseId, courseSlug } = input.target;
+
+  await prisma.$transaction(async (tx) => {
+    await tx.courseEnrollment.upsert({
+      where: { courseId_parentId: { courseId, parentId } },
+      update: {},
+      create: { courseId, parentId },
+    });
+    await grantCourseOfferingInTx(tx, { parentId, courseId });
+  });
 
   return {
-    checkoutUrl: await resolveKidCourseDestination(input.parentId, input.target.courseSlug),
+    checkoutUrl: await resolveKidCourseDestination(parentId, courseSlug),
     externalSessionId: `free_course_${randomUUID()}`,
     expiresAt: addMinutes(new Date(), 15),
   };
@@ -478,6 +489,18 @@ export async function createCourseCheckoutSession(params: {
     parentId: params.parentId,
     slug: params.slug,
   });
+
+  const courseIds = target.kind === "course" ? [target.courseId] : target.courseIds;
+  const inactiveOfferings = await prisma.offering.findMany({
+    where: {
+      code: { in: courseIds.map(offeringCodeForCourse) },
+      active: false,
+    },
+    select: { code: true },
+  });
+  if (inactiveOfferings.length > 0) {
+    throw new DomainError("Offering is inactive", 409, "OFFERING_INACTIVE");
+  }
 
   const provider = target.kind === "course" && target.amountVnd === 0
     ? "free_temporary"

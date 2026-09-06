@@ -1,12 +1,6 @@
-import { PaymentStatus, PlanCode, Prisma, SubscriptionStatus } from "@prisma/client";
-import { addDays } from "date-fns";
+import { PaymentStatus, Prisma, SubscriptionStatus } from "@prisma/client";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
-import { env } from "@/lib/env";
-import { createNotificationForParent } from "@/modules/platform/notification-service";
-import { DomainError } from "@/modules/platform/errors";
-import { enqueueTransactionalEmail } from "@/worker/queue";
-import { createAdminActionLog } from "./admin-user-service";
 
 const subscriptionStatusFilterSchema = z.enum([
   "TRIALING",
@@ -31,16 +25,6 @@ export const adminUsersListQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(100).optional().default(20),
 });
 
-export const adminSubscriptionActionSchema = z.object({
-  action: z.enum(["extend", "cancel", "activate"]),
-  days: z.number().int().min(1).max(3650).optional(),
-});
-
-export const adminEmailActionSchema = z.object({
-  subject: z.string().trim().min(1).max(200),
-  body: z.string().trim().min(1).max(5000),
-});
-
 function normalizeSubscriptionStatusFilter(
   status: z.infer<typeof subscriptionStatusFilterSchema> | undefined,
 ) {
@@ -51,16 +35,6 @@ function normalizeSubscriptionStatusFilter(
     return null;
   }
   return status;
-}
-
-function resolveActiveStatusFromPlanCode(planCode: PlanCode) {
-  if (planCode === PlanCode.TRIAL) {
-    return SubscriptionStatus.TRIALING;
-  }
-  if (planCode === PlanCode.YEARLY_FAMILY_PLUS) {
-    return SubscriptionStatus.ACTIVE_FAMILYPLUS;
-  }
-  return SubscriptionStatus.ACTIVE_STANDARD;
 }
 
 export async function listAdminUsers(input: unknown) {
@@ -168,209 +142,5 @@ export async function listAdminUsers(input: unknown) {
     users,
     total,
     page: query.page,
-  };
-}
-
-export async function updateAdminUserSubscription(input: {
-  parentId: string;
-  action: "extend" | "cancel" | "activate";
-  days?: number;
-  adminEmail: string;
-}) {
-  const payload = adminSubscriptionActionSchema.parse({
-    action: input.action,
-    days: input.days,
-  });
-
-  const subscription = await prisma.subscription.findUnique({
-    where: { parentId: input.parentId },
-    select: {
-      id: true,
-      planCode: true,
-      status: true,
-      currentPeriodEnd: true,
-      autoRenew: true,
-    },
-  });
-
-  if (!subscription) {
-    throw new DomainError("Subscription not found", 404, "SUBSCRIPTION_NOT_FOUND");
-  }
-
-  const now = new Date();
-  let updated:
-    | {
-        id: string;
-        planCode: PlanCode;
-        status: SubscriptionStatus;
-        currentPeriodStart: Date;
-        currentPeriodEnd: Date;
-        autoRenew: boolean;
-        updatedAt: Date;
-      }
-    | null = null;
-
-  if (payload.action === "extend") {
-    const extendDays = payload.days ?? 30;
-    const baseEnd =
-      subscription.currentPeriodEnd.getTime() > now.getTime()
-        ? subscription.currentPeriodEnd
-        : now;
-    updated = await prisma.subscription.update({
-      where: { parentId: input.parentId },
-      data: {
-        status: resolveActiveStatusFromPlanCode(subscription.planCode),
-        autoRenew: true,
-        currentPeriodEnd: addDays(baseEnd, extendDays),
-      },
-      select: {
-        id: true,
-        planCode: true,
-        status: true,
-        currentPeriodStart: true,
-        currentPeriodEnd: true,
-        autoRenew: true,
-        updatedAt: true,
-      },
-    });
-  } else if (payload.action === "cancel") {
-    updated = await prisma.subscription.update({
-      where: { parentId: input.parentId },
-      data: {
-        status: SubscriptionStatus.CANCELED_AT_PERIOD_END,
-        autoRenew: false,
-      },
-      select: {
-        id: true,
-        planCode: true,
-        status: true,
-        currentPeriodStart: true,
-        currentPeriodEnd: true,
-        autoRenew: true,
-        updatedAt: true,
-      },
-    });
-  } else {
-    const nextEnd =
-      subscription.currentPeriodEnd.getTime() > now.getTime()
-        ? subscription.currentPeriodEnd
-        : addDays(now, 30);
-    updated = await prisma.subscription.update({
-      where: { parentId: input.parentId },
-      data: {
-        status: resolveActiveStatusFromPlanCode(subscription.planCode),
-        autoRenew: true,
-        currentPeriodEnd: nextEnd,
-      },
-      select: {
-        id: true,
-        planCode: true,
-        status: true,
-        currentPeriodStart: true,
-        currentPeriodEnd: true,
-        autoRenew: true,
-        updatedAt: true,
-      },
-    });
-  }
-
-  await createAdminActionLog({
-    adminEmail: input.adminEmail,
-    action: "UPDATE_USER_SUBSCRIPTION",
-    target: input.parentId,
-    detail: {
-      action: payload.action,
-      days: payload.days ?? null,
-      before: {
-        status: subscription.status,
-        currentPeriodEnd: subscription.currentPeriodEnd,
-        autoRenew: subscription.autoRenew,
-      },
-      after: {
-        status: updated.status,
-        currentPeriodEnd: updated.currentPeriodEnd,
-        autoRenew: updated.autoRenew,
-      },
-    },
-  });
-
-  return updated;
-}
-
-async function sendAdminManualEmail(params: {
-  to: string;
-  subject: string;
-  body: string;
-}) {
-  try {
-    await enqueueTransactionalEmail({
-      to: params.to,
-      subject: params.subject,
-      text: params.body,
-      tags: [{ name: "feature", value: "admin_manual_email" }],
-    });
-    return { provider: env.REPORT_EMAIL_PROVIDER };
-  } catch (error) {
-    throw new DomainError(
-      error instanceof Error ? `Admin email delivery failed: ${error.message}` : "Admin email delivery failed",
-      502,
-      "ADMIN_EMAIL_DELIVERY_FAILED",
-    );
-  }
-}
-
-export async function sendAdminEmailToParent(input: {
-  parentId: string;
-  subject: string;
-  body: string;
-  adminEmail: string;
-}) {
-  const payload = adminEmailActionSchema.parse({
-    subject: input.subject,
-    body: input.body,
-  });
-
-  const parent = await prisma.parentAccount.findUnique({
-    where: { id: input.parentId },
-    select: {
-      id: true,
-      email: true,
-    },
-  });
-
-  if (!parent) {
-    throw new DomainError("Parent account not found", 404, "PARENT_NOT_FOUND");
-  }
-
-  const delivery = await sendAdminManualEmail({
-    to: parent.email,
-    subject: payload.subject,
-    body: payload.body,
-  });
-
-  await createNotificationForParent({
-    parentId: parent.id,
-    parentEmail: parent.email,
-    notification: {
-      type: "TIP",
-      title: payload.subject,
-      message: payload.body.slice(0, 280),
-      href: "/parent/dashboard",
-    },
-  });
-
-  await createAdminActionLog({
-    adminEmail: input.adminEmail,
-    action: "SEND_USER_EMAIL",
-    target: parent.email,
-    detail: {
-      subject: payload.subject,
-      provider: delivery.provider,
-    },
-  });
-
-  return {
-    sent: true,
-    provider: delivery.provider,
   };
 }

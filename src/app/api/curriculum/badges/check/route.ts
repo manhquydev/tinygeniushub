@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
+import { requireParentAndOwnedChild } from '@/lib/auth/require-parent-child';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
-
 const checkBadgesSchema = z.object({
   childId: z.string(),
 });
@@ -14,6 +14,11 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { childId } = checkBadgesSchema.parse(body);
+
+    const authed = await requireParentAndOwnedChild(request, childId);
+    if (!authed.ok) {
+      return authed.response;
+    }
 
     // Get child journeys to find assignments
     const childJourneys = await prisma.abekaLearningJourney.findMany({

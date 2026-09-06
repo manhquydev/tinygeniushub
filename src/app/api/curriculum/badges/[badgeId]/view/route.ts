@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
+import { getParentFromRequest } from '@/lib/auth/session';
 import { prisma } from '@/lib/prisma';
-
 /**
  * POST /api/curriculum/badges/[badgeId]/view
  * Mark a badge as viewed
@@ -10,6 +10,11 @@ export async function POST(
   { params }: { params: Promise<{ badgeId: string }> }
 ) {
   try {
+    const parent = await getParentFromRequest(request);
+    if (!parent) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { badgeId } = await params;
 
     // Get the badge earning record with badge info
@@ -30,6 +35,14 @@ export async function POST(
       return Response.json({ error: 'Badge not found' }, { status: 404 });
     }
 
+
+    const ownedChild = await prisma.childProfile.findFirst({
+      where: { id: earnedBadge.childId, parentId: parent.id },
+      select: { id: true },
+    });
+    if (!ownedChild) {
+      return Response.json({ error: 'Forbidden' }, { status: 403 });
+    }
     // Mark as viewed
     const updated = await prisma.childEarnedBadge.update({
       where: { id: badgeId },

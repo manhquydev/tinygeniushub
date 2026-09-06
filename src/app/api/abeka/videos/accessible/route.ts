@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { requireParentAndOwnedChild } from '@/lib/auth/require-parent-child';
 import { prisma } from '@/lib/prisma';
 import { packageAccessControl, packageValidator } from '@/lib/abeka/access';
 import { z } from 'zod';
@@ -7,62 +8,39 @@ import { handleRouteError } from '@/lib/route-error';
 
 /**
  * GET /api/abeka/videos/accessible
- * 
- * Get list of videos accessible to the user's current package.
- * Requires parentId in query params (or from session) and childId.
- * 
- * Query Parameters:
- * - parentId: Parent account ID
- * - grade: Filter by grade level ("0"=K4, "1"=K5, "2"=G1, etc.)
- * - subject: Filter by subject code (PHONICS, ARITHMETIC, etc.)
- * - page: Page number (default: 1)
- * - limit: Items per page (default: 20, max: 100)
- * - childId: Child profile ID (required)
- * 
- * Response:
- * ```json
- * {
- *   "ok": true,
- *   "data": {
- *     "videos": [...],
- *     "total": 100,
- *     "page": 1,
- *     "limit": 20,
- *     "hasMore": true,
- *     "accessibleGrades": ["0", "1", "2"],
- *     "packageInfo": {...}
- *   }
- * }
- * ```
+ * Session cookie required. Query parentId is ignored.
  */
 export async function GET(request: NextRequest) {
   try {
-    // 1. Parse query parameters
     const { searchParams } = new URL(request.url);
-    
+    const childIdParam = searchParams.get('childId') ?? '';
+    const authed = await requireParentAndOwnedChild(request, childIdParam);
+    if (!authed.ok) {
+      return authed.response;
+    }
+
     const querySchema = z.object({
-      parentId: z.string().min(1, 'parentId is required'),
       childId: z.string().min(1, 'childId is required'),
       grade: z.string().optional(),
       subject: z.string().optional(),
       page: z.coerce.number().min(1).default(1),
       limit: z.coerce.number().min(1).max(100).default(20),
     });
-    
+
     const parsed = querySchema.safeParse({
-      parentId: searchParams.get('parentId'),
       childId: searchParams.get('childId'),
       grade: searchParams.get('grade') || undefined,
       subject: searchParams.get('subject') || undefined,
       page: searchParams.get('page') || undefined,
       limit: searchParams.get('limit') || undefined,
     });
-    
+
     if (!parsed.success) {
       return fail('Invalid query parameters', 400, parsed.error.issues);
     }
-    
-    const { parentId, childId, grade, subject, page, limit } = parsed.data;
+
+    const { childId, grade, subject, page, limit } = parsed.data;
+    const parentId = authed.parent.id;
     
     // 2. Verify child belongs to parent
     const child = await prisma.childProfile.findFirst({

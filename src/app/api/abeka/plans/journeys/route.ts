@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { requireParentAndOwnedChild } from "@/lib/auth/require-parent-child";
+import { getParentFromRequest } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
@@ -19,14 +20,28 @@ const createJourneySchema = z.object({
  */
 export async function GET(request: NextRequest) {
   try {
-    // TODO: Add authentication
-    // const session = await requireAuth();
-    // if (!session) return Response.json({ error: 'Unauthorized' }, { status: 401 });
-
     const { searchParams } = new URL(request.url);
     const childId = searchParams.get('childId');
 
-    const where: { childId?: string; status?: 'PUBLISHED' } = { status: 'PUBLISHED' };
+    let parentId: string;
+    if (childId) {
+      const authed = await requireParentAndOwnedChild(request, childId);
+      if (!authed.ok) {
+        return authed.response;
+      }
+      parentId = authed.parent.id;
+    } else {
+      const parent = await getParentFromRequest(request);
+      if (!parent) {
+        return Response.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+      parentId = parent.id;
+    }
+
+    const where: { childId?: string; status?: 'PUBLISHED'; child: { parentId: string } } = {
+      status: 'PUBLISHED',
+      child: { parentId },
+    };
     if (childId) {
       where.childId = childId;
     }

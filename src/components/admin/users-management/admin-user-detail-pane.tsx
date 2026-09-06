@@ -3,11 +3,12 @@
 import { Eye } from "lucide-react";
 import type { ReactNode } from "react";
 import { formatDate, toCurrency } from "./admin-users-management-utils";
-import type { AdminNote, AdminUserDetail, AdminUsersListRow } from "./admin-users-management-types";
+import type { AdminNote, AdminUserDetail, AdminUserTicketAction, AdminUsersListRow } from "./admin-users-management-types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { AdminLoadingSkeleton } from "@/components/admin/ui/admin-loading-skeleton";
+import { AdminUserTicketsSection } from "./admin-user-tickets-section";
 
 function SimpleListBlock({ title, empty, children }: { title: string; empty: string; children: ReactNode }) {
   return (
@@ -25,8 +26,9 @@ type AdminUserDetailPaneProps = {
   detailLoading: boolean;
   detailError: string | null;
   impersonateLoading: boolean;
-  subscriptionActionLoading: boolean;
-  subscriptionActionFeedback: string | null;
+  ticketActionLoading: boolean;
+  ticketActionFeedback: string | null;
+  grantOfferingCode: string;
   extendDays: string;
   manualEmailSubject: string;
   manualEmailBody: string;
@@ -42,7 +44,8 @@ type AdminUserDetailPaneProps = {
   onManualEmailBodyChange: (next: string) => void;
   onNoteDraftChange: (next: string) => void;
   onImpersonate: (parentId: string) => Promise<void>;
-  onSubscriptionAction: (action: "extend" | "cancel" | "activate") => Promise<void>;
+  onGrantOfferingCodeChange: (next: string) => void;
+  onTicketAction: (action: AdminUserTicketAction, offeringCode: string) => Promise<void>;
   onSendManualEmail: () => Promise<void>;
   onCreateNote: () => Promise<void>;
 };
@@ -91,33 +94,16 @@ export function AdminUserDetailPane(props: AdminUserDetailPaneProps) {
             </div>
           </div>
 
-          {/* Subscription */}
-          <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3 space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--admin-text-secondary)]">Subscription package</p>
-            {props.detail.currentSubscription ? (
-              <div className="space-y-0.5 text-sm text-[var(--admin-text-secondary)]">
-                <p><span className="font-semibold">Package:</span> {props.detail.currentSubscription.planCode}</p>
-                <p><span className="font-semibold">Status:</span> {props.detail.currentSubscription.status}</p>
-                <p><span className="font-semibold">Term:</span> {formatDate(props.detail.currentSubscription.currentPeriodStart)} - {formatDate(props.detail.currentSubscription.currentPeriodEnd)}</p>
-              </div>
-            ) : (
-              <p className="text-sm text-[var(--admin-text-secondary)]">No subscription yet.</p>
-            )}
-            <div className="flex flex-wrap items-center gap-2 border-t border-[var(--admin-card-border)] pt-2">
-              <Input
-                type="number"
-                min={1}
-                max={3650}
-                value={props.extendDays}
-                onChange={(e) => props.onExtendDaysChange(e.target.value)}
-                className="w-24 h-8 text-xs"
-              />
-              <Button size="sm" onClick={() => void props.onSubscriptionAction("extend")} disabled={props.subscriptionActionLoading || !props.detail.currentSubscription} className="h-7 text-xs bg-teal-600 hover:bg-teal-700">Extend</Button>
-              <Button variant="outline" size="sm" onClick={() => void props.onSubscriptionAction("cancel")} disabled={props.subscriptionActionLoading || !props.detail.currentSubscription} className="h-7 text-xs border-amber-300 text-amber-800">Cancellation at the end of term</Button>
-              <Button variant="outline" size="sm" onClick={() => void props.onSubscriptionAction("activate")} disabled={props.subscriptionActionLoading || !props.detail.currentSubscription} className="h-7 text-xs border-emerald-300 text-emerald-800">Activate</Button>
-            </div>
-            {props.subscriptionActionFeedback && <p className="text-xs text-[var(--admin-text-secondary)]">{props.subscriptionActionFeedback}</p>}
-          </div>
+          <AdminUserTicketsSection
+            entitlements={props.detail.entitlements ?? []}
+            ticketActionLoading={props.ticketActionLoading}
+            ticketActionFeedback={props.ticketActionFeedback}
+            grantOfferingCode={props.grantOfferingCode}
+            extendDays={props.extendDays}
+            onGrantOfferingCodeChange={props.onGrantOfferingCodeChange}
+            onExtendDaysChange={props.onExtendDaysChange}
+            onTicketAction={props.onTicketAction}
+          />
 
           {/* Email */}
           <div className="rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-sidebar-accent)] p-3 space-y-2">
@@ -132,18 +118,7 @@ export function AdminUserDetailPane(props: AdminUserDetailPaneProps) {
             </div>
             {props.manualEmailFeedback && <p className="text-xs text-[var(--admin-text-secondary)]">{props.manualEmailFeedback}</p>}
           </div>
-
-          {/* Lists */}
-          <SimpleListBlock title="Subscription history" empty="No history yet.">
-            {props.detail.subscriptionHistory.slice(0, 8).map((item) => (
-              <div key={item.id} className="mb-1.5 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-2.5 py-2 text-xs">
-                <p className="font-semibold text-[var(--admin-text-primary)]">{item.planCode ?? "Unknown package"} - {item.status}</p>
-                <p className="text-[var(--admin-text-secondary)]">{item.provider} / {item.providerTransactionId} - {formatDate(item.processedAt)}</p>
-              </div>
-            ))}
-          </SimpleListBlock>
-
-          <SimpleListBlock title="Baby (active 30 days)" empty="No baby profile yet.">
+          <SimpleListBlock title="Child profiles" empty="No child profiles yet.">
             {props.detail.children.map((child) => (
               <div key={child.id} className="mb-1.5 rounded-lg border border-[var(--admin-card-border)] bg-[var(--admin-card-bg)] px-2.5 py-2 text-sm text-[var(--admin-text-secondary)]">
                 {child.nickname} - {child.lessonsCompleted30d} lessons / 30 days

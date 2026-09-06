@@ -141,4 +141,21 @@ describe("entitlement-service", () => {
     ]);
     await expect(canAccess({ parentId, lessonId })).resolves.toBe(false);
   });
+
+  it("still allows access when the existing offering is inactive", async () => {
+    prismaMock.lesson.findUnique.mockResolvedValue(lessonRow());
+    prismaMock.entitlement.findMany.mockResolvedValue([
+      {
+        validFrom: new Date("2020-01-01"),
+        validUntil: null,
+        offering: { catalogKey: PLATFORM_PASS_KEY, active: false },
+      },
+    ]);
+
+    await expect(canAccess({ parentId, lessonId })).resolves.toBe(true);
+    expect(prismaMock.entitlement.findMany.mock.calls[0][0].where).toEqual({
+      parentId,
+      status: { in: [EntitlementStatus.ACTIVE, EntitlementStatus.GRACE] },
+    });
+  });
 });
