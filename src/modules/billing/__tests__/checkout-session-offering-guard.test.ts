@@ -30,6 +30,11 @@ vi.mock("@/modules/platform/audit-service", () => ({
 import { createBillingCheckoutSession } from "@/modules/billing/checkout-service";
 
 const parentId = "parent-1";
+const checkoutInput = {
+  planCode: "MONTHLY_STANDARD" as const,
+  successPath: "/parent/dashboard",
+  cancelPath: "/courses",
+};
 
 describe("createBillingCheckoutSession offering guard", () => {
   beforeEach(() => {
@@ -52,7 +57,7 @@ describe("createBillingCheckoutSession offering guard", () => {
     await expect(
       createBillingCheckoutSession({
         parentId,
-        input: { planCode: "MONTHLY_STANDARD" },
+        input: checkoutInput,
       }),
     ).rejects.toMatchObject({
       status: 404,
@@ -72,7 +77,7 @@ describe("createBillingCheckoutSession offering guard", () => {
     await expect(
       createBillingCheckoutSession({
         parentId,
-        input: { planCode: "MONTHLY_STANDARD" },
+        input: checkoutInput,
       }),
     ).rejects.toMatchObject({
       status: 409,
@@ -91,7 +96,7 @@ describe("createBillingCheckoutSession offering guard", () => {
 
     const result = await createBillingCheckoutSession({
       parentId,
-      input: { planCode: "MONTHLY_STANDARD" },
+      input: checkoutInput,
     });
 
     expect(createCheckoutSessionMock).toHaveBeenCalledTimes(1);
