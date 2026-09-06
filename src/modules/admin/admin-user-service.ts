@@ -1,9 +1,16 @@
-﻿import { PaymentStatus, Prisma } from "@prisma/client";
-import { subDays } from "date-fns";
+import { PaymentStatus, Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
-import { createNotificationForParent, resolveUserIdForParent } from "@/modules/platform/notification-service";
 import { DomainError } from "@/modules/platform/errors";
 import { z } from "zod";
+
+export {
+  adminBulkUsersActionSchema,
+  executeAdminBulkUsersAction,
+  getAdminActionLogs,
+  getAdminUnifiedLogs,
+  type AdminUnifiedLogEntry,
+} from "./admin-user-ops-service";
+export { getAdminParentDetail } from "./admin-parent-detail-service";
 
 export const adminActionLogCreateSchema = z.object({
   action: z.string().trim().min(1).max(100),
@@ -11,15 +18,6 @@ export const adminActionLogCreateSchema = z.object({
   detail: z.unknown().optional(),
 });
 
-export const adminBulkUsersActionSchema = z.object({
-  parentIds: z.array(z.string().min(1)).min(1).max(100),
-  action: z.enum(["SUSPEND", "ACTIVATE", "SEND_NOTIFICATION"]),
-  payload: z
-    .object({
-      message: z.string().trim().min(1).max(500).optional(),
-    })
-    .optional(),
-});
 
 export const createAdminNoteSchema = z.object({
   note: z.string().trim().min(1).max(500),
@@ -27,9 +25,7 @@ export const createAdminNoteSchema = z.object({
 
 export async function listAdminUsersForExport() {
   const parents = await prisma.parentAccount.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
     take: 10001,
     select: {
       id: true,
@@ -37,16 +33,8 @@ export async function listAdminUsersForExport() {
       displayName: true,
       createdAt: true,
       lastActiveAt: true,
-      subscription: {
-        select: {
-          status: true,
-        },
-      },
-      _count: {
-        select: {
-          childProfiles: true,
-        },
-      },
+      subscription: { select: { status: true } },
+      _count: { select: { childProfiles: true } },
     },
   });
 
@@ -55,17 +43,13 @@ export async function listAdminUsersForExport() {
     parentIds.length === 0
       ? []
       : await prisma.paymentRecord.groupBy({
-        by: ["parentId"],
-        where: {
-          parentId: {
-            in: parentIds,
+          by: ["parentId"],
+          where: {
+            parentId: { in: parentIds },
+            status: PaymentStatus.SUCCEEDED,
           },
-          status: PaymentStatus.SUCCEEDED,
-        },
-        _count: {
-          parentId: true,
-        },
-      });
+          _count: { parentId: true },
+        });
 
   const successfulPaymentCountByParentId = new Map(
     successfulPaymentsByParent.map((row) => [row.parentId, row._count.parentId]),
@@ -84,96 +68,6 @@ export async function listAdminUsersForExport() {
     })),
     truncated: parents.length > 10000,
   };
-}
-
-export async function getAdminActionLogs(limit = 50) {
-  const normalizedLimit = Math.min(Math.max(limit, 1), 200);
-
-  return prisma.adminActionLog.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: normalizedLimit,
-    select: {
-      id: true,
-      adminEmail: true,
-      action: true,
-      target: true,
-      detail: true,
-      createdAt: true,
-    },
-  });
-}
-
-export type AdminUnifiedLogEntry = {
-  id: string;
-  source: "ADMIN_ACTION" | "AUDIT_LOG";
-  actor: string;
-  action: string;
-  target: string | null;
-  detail: unknown;
-  createdAt: Date;
-};
-
-export async function getAdminUnifiedLogs(limit = 50): Promise<AdminUnifiedLogEntry[]> {
-  const normalizedLimit = Math.min(Math.max(limit, 1), 200);
-
-  const [adminActionLogs, auditLogs] = await Promise.all([
-    prisma.adminActionLog.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-      take: normalizedLimit,
-      select: {
-        id: true,
-        adminEmail: true,
-        action: true,
-        target: true,
-        detail: true,
-        createdAt: true,
-      },
-    }),
-    prisma.auditLog.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-      take: normalizedLimit,
-      select: {
-        id: true,
-        actorType: true,
-        actorId: true,
-        action: true,
-        resourceType: true,
-        resourceId: true,
-        metadata: true,
-        createdAt: true,
-      },
-    }),
-  ]);
-
-  const normalizedAdminActionLogs: AdminUnifiedLogEntry[] = adminActionLogs.map((entry) => ({
-    id: `admin:${entry.id}`,
-    source: "ADMIN_ACTION",
-    actor: entry.adminEmail,
-    action: entry.action,
-    target: entry.target,
-    detail: entry.detail,
-    createdAt: entry.createdAt,
-  }));
-
-  const normalizedAuditLogs: AdminUnifiedLogEntry[] = auditLogs.map((entry) => ({
-    id: `audit:${entry.id}`,
-    source: "AUDIT_LOG",
-    actor: entry.actorId ? `${entry.actorType}:${entry.actorId}` : entry.actorType,
-    action: entry.action,
-    target: entry.resourceId ? `${entry.resourceType}:${entry.resourceId}` : entry.resourceType,
-    detail: entry.metadata,
-    createdAt: entry.createdAt,
-  }));
-
-  return [...normalizedAdminActionLogs, ...normalizedAuditLogs]
-    .sort((left, right) => right.createdAt.getTime() - left.createdAt.getTime())
-    .slice(0, normalizedLimit);
 }
 
 export async function createAdminActionLog(input: {
@@ -208,82 +102,10 @@ export async function createAdminActionLog(input: {
   });
 }
 
-export async function executeAdminBulkUsersAction(input: unknown) {
-  const payload = adminBulkUsersActionSchema.parse(input);
-  const uniqueParentIds = Array.from(new Set(payload.parentIds));
-
-  const parents = await prisma.parentAccount.findMany({
-    where: {
-      id: {
-        in: uniqueParentIds,
-      },
-    },
-    select: {
-      id: true,
-      email: true,
-      displayName: true,
-    },
-  });
-
-  const parentById = new Map(parents.map((parent) => [parent.id, parent]));
-  let succeeded = 0;
-  let failed = 0;
-
-  if (payload.action === "SUSPEND" || payload.action === "ACTIVATE") {
-    if (parents.length > 0) {
-      const updateResult = await prisma.parentAccount.updateMany({
-        where: {
-          id: {
-            in: parents.map((parent) => parent.id),
-          },
-        },
-        data: {
-          suspended: payload.action === "SUSPEND",
-        },
-      });
-      succeeded = updateResult.count;
-    }
-
-    failed = uniqueParentIds.length - succeeded;
-    return { succeeded, failed };
-  }
-
-  const message =
-    payload.payload?.message ??
-    "Parents please check for new updates in the dashboard.";
-
-  const results = await Promise.all(
-    uniqueParentIds.map(async (parentId) => {
-      const parent = parentById.get(parentId);
-      if (!parent) return false;
-      const notification = await createNotificationForParent({
-        parentId: parent.id,
-        parentEmail: parent.email,
-        notification: {
-          type: "TIP",
-          title: "Notice from admin",
-          message,
-          href: "/parent/dashboard",
-        },
-      });
-      return !!notification;
-    }),
-  );
-
-  succeeded = results.filter(Boolean).length;
-  failed = results.filter((r) => !r).length;
-
-  return { succeeded, failed };
-}
-
 export async function getAdminNotes(parentId: string) {
   return prisma.adminNote.findMany({
-    where: {
-      parentId,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
+    where: { parentId },
+    orderBy: { createdAt: "desc" },
     take: 20,
     select: {
       id: true,
@@ -303,12 +125,8 @@ export async function createAdminNote(input: {
   const payload = createAdminNoteSchema.parse({ note: input.note });
 
   const parent = await prisma.parentAccount.findUnique({
-    where: {
-      id: input.parentId,
-    },
-    select: {
-      id: true,
-    },
+    where: { id: input.parentId },
+    select: { id: true },
   });
 
   if (!parent) {
@@ -330,182 +148,3 @@ export async function createAdminNote(input: {
     },
   });
 }
-
-function readStringFromUnknownRecord(input: unknown, key: string) {
-  if (!input || typeof input !== "object" || Array.isArray(input)) {
-    return null;
-  }
-
-  const value = (input as Record<string, unknown>)[key];
-  return typeof value === "string" ? value : null;
-}
-
-export async function getAdminParentDetail(parentId: string) {
-  const since30d = subDays(new Date(), 30);
-
-  const parent = await prisma.parentAccount.findUnique({
-    where: { id: parentId },
-    select: {
-      id: true,
-      email: true,
-      displayName: true,
-      suspended: true,
-      createdAt: true,
-      lastActiveAt: true,
-      subscription: {
-        select: {
-          id: true,
-          planCode: true,
-          status: true,
-          childProfileLimit: true,
-          caregiverLimit: true,
-          currentPeriodStart: true,
-          currentPeriodEnd: true,
-          autoRenew: true,
-          createdAt: true,
-          updatedAt: true,
-        },
-      },
-      childProfiles: {
-        orderBy: {
-          createdAt: "asc",
-        },
-        select: {
-          id: true,
-          nickname: true,
-          createdAt: true,
-        },
-      },
-    },
-  });
-
-  if (!parent) {
-    throw new DomainError("Parent account not found", 404, "PARENT_NOT_FOUND");
-  }
-
-  const [lessonCounts30dByChildRows, allPaymentRecords, caregiverInvites, userId] =
-    await Promise.all([
-      prisma.lessonCompletion.groupBy({
-        by: ["childId"],
-        where: {
-          child: {
-            parentId: parent.id,
-          },
-          completedAt: {
-            gte: since30d,
-          },
-        },
-        _count: { childId: true },
-      }),
-      // Single query for both paymentHistory and subscriptionHistory
-      prisma.paymentRecord.findMany({
-        where: {
-          parentId: parent.id,
-        },
-        orderBy: {
-          processedAt: "desc",
-        },
-        take: 50,
-        select: {
-          id: true,
-          provider: true,
-          providerTransactionId: true,
-          amountVnd: true,
-          currency: true,
-          status: true,
-          processedAt: true,
-          rawPayload: true,
-          subscription: {
-            select: {
-              id: true,
-              planCode: true,
-              status: true,
-              currentPeriodStart: true,
-              currentPeriodEnd: true,
-              autoRenew: true,
-            },
-          },
-        },
-      }),
-      prisma.caregiverInvite.findMany({
-        where: {
-          parentId: parent.id,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-        select: {
-          id: true,
-          email: true,
-          accepted: true,
-          createdAt: true,
-          expiresAt: true,
-        },
-      }),
-      resolveUserIdForParent({
-        parentId: parent.id,
-        parentEmail: parent.email,
-      }),
-    ]);
-
-  const lessonCount30dByChildId = new Map(
-    lessonCounts30dByChildRows.map((row) => [row.childId, row._count.childId]),
-  );
-  const notificationCount = userId
-    ? await prisma.notification.count({
-      where: {
-        userId,
-      },
-    })
-    : 0;
-
-  // Derive paymentHistory (top 10) and subscriptionHistory from the single merged query
-  const paymentHistory = allPaymentRecords.slice(0, 10).map((record) => ({
-    id: record.id,
-    provider: record.provider,
-    providerTransactionId: record.providerTransactionId,
-    amountVnd: record.amountVnd,
-    currency: record.currency,
-    status: record.status,
-    processedAt: record.processedAt,
-  }));
-
-  const subscriptionHistory = allPaymentRecords.map((record) => {
-    const planCode = readStringFromUnknownRecord(record.rawPayload, "planCode");
-    const eventType = readStringFromUnknownRecord(record.rawPayload, "eventType");
-    return {
-      id: record.id,
-      provider: record.provider,
-      providerTransactionId: record.providerTransactionId,
-      amountVnd: record.amountVnd,
-      status: record.status,
-      processedAt: record.processedAt,
-      planCode,
-      eventType,
-      subscription: record.subscription,
-    };
-  });
-
-  return {
-    parent: {
-      id: parent.id,
-      email: parent.email,
-      displayName: parent.displayName,
-      suspended: parent.suspended,
-      createdAt: parent.createdAt,
-      lastActiveAt: parent.lastActiveAt,
-      notificationCount,
-    },
-    currentSubscription: parent.subscription,
-    subscriptionHistory,
-    children: parent.childProfiles.map((childProfile) => ({
-      id: childProfile.id,
-      nickname: childProfile.nickname,
-      createdAt: childProfile.createdAt,
-      lessonsCompleted30d: lessonCount30dByChildId.get(childProfile.id) ?? 0,
-    })),
-    paymentHistory,
-    caregiverInvites,
-  };
-}
-

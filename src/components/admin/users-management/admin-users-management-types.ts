@@ -21,6 +21,17 @@ export type UsersStatusFilter =
   | "REFUNDED"
   | "NONE";
 
+export type AdminUserTicketAction = "grant" | "extend" | "expire";
+
+export type AdminUserEntitlement = {
+  code: string;
+  catalogKey: string;
+  kind: string;
+  status: string;
+  validFrom: string | null;
+  validUntil: string | null;
+};
+
 export type AdminUsersListRow = {
   id: string;
   email: string;
@@ -99,6 +110,7 @@ export type AdminUserDetail = {
     createdAt: string;
     expiresAt: string;
   }>;
+  entitlements: AdminUserEntitlement[];
 };
 
 export type AdminNote = {

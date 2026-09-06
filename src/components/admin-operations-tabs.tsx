@@ -5,7 +5,8 @@ import { AdminAnnouncementPanel } from "@/components/admin-announcement-panel";
 import { AdminCouponPanel } from "@/components/admin-coupon-panel";
 import { AdminFooterSocialLinksPanel } from "@/components/admin-footer-social-links-panel";
 import { AdminOperationsPanel } from "@/components/admin-operations-panel";
-import { Bell, BookOpen, CreditCard, Share2, Tag, Webhook } from "lucide-react";
+import { AdminOperationsOfferingsSection } from "@/components/admin/operations/admin-operations-offerings-section";
+import { Bell, BookOpen, CreditCard, Share2, Tag, Ticket, Webhook } from "lucide-react";
 
 type PaymentRow = {
   id: string;
@@ -47,6 +48,7 @@ const TABS = [
   { id: "payments", label: "Pay", icon: CreditCard },
   { id: "webhooks", label: "Webhook events", icon: Webhook },
   { id: "trials", label: "Trial lesson", icon: BookOpen },
+  { id: "offerings", label: "Offerings", icon: Ticket },
   { id: "announcements", label: "Notification", icon: Bell },
   { id: "coupons", label: "Discount code", icon: Tag },
   { id: "footer-social", label: "Footer social", icon: Share2 },
@@ -97,6 +99,7 @@ export function AdminOperationsTabs({
 
         {activeTab === "announcements" ? <AdminAnnouncementPanel /> : null}
         {activeTab === "coupons" ? <AdminCouponPanel /> : null}
+        {activeTab === "offerings" ? <AdminOperationsOfferingsSection /> : null}
         {activeTab === "footer-social" ? <AdminFooterSocialLinksPanel /> : null}
       </div>
     </div>

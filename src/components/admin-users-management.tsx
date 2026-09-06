@@ -56,8 +56,9 @@ export function AdminUsersManagement() {
           detailLoading={detailVm.detailLoading}
           detailError={detailVm.detailError}
           impersonateLoading={detailVm.impersonateLoading}
-          subscriptionActionLoading={detailVm.subscriptionActionLoading}
-          subscriptionActionFeedback={detailVm.subscriptionActionFeedback}
+          ticketActionLoading={detailVm.ticketActionLoading}
+          ticketActionFeedback={detailVm.ticketActionFeedback}
+          grantOfferingCode={detailVm.grantOfferingCode}
           extendDays={detailVm.extendDays}
           manualEmailSubject={detailVm.manualEmailSubject}
           manualEmailBody={detailVm.manualEmailBody}
@@ -69,11 +70,12 @@ export function AdminUsersManagement() {
           noteDraft={detailVm.noteDraft}
           noteSubmitting={detailVm.noteSubmitting}
           onExtendDaysChange={detailVm.setExtendDays}
+          onGrantOfferingCodeChange={detailVm.setGrantOfferingCode}
           onManualEmailSubjectChange={detailVm.setManualEmailSubject}
           onManualEmailBodyChange={detailVm.setManualEmailBody}
           onNoteDraftChange={detailVm.setNoteDraft}
           onImpersonate={detailVm.handleImpersonate}
-          onSubscriptionAction={detailVm.handleSubscriptionAction}
+          onTicketAction={detailVm.handleTicketAction}
           onSendManualEmail={detailVm.handleSendManualEmail}
           onCreateNote={detailVm.handleCreateNote}
         />

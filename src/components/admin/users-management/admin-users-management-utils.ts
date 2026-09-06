@@ -12,6 +12,17 @@ export function normalizeStatusLabel(status: string | null | undefined) {
   return status;
 }
 
+export function getTicketBadgeClass(status: string) {
+  switch (status) {
+    case "ACTIVE":
+      return "bg-emerald-50 text-emerald-700 border-emerald-200";
+    case "GRACE":
+      return "bg-amber-50 text-amber-700 border-amber-200";
+    default:
+      return "bg-slate-100 text-slate-700 border-slate-200";
+  }
+}
+
 export function getSubscriptionBadgeClass(status: string | null | undefined) {
   switch (status) {
     case "ACTIVE_STANDARD":
