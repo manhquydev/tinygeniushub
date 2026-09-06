@@ -1,7 +1,7 @@
 ---
 title: "i18n locale parity"
 description: "Wire leftover hardcoded EN/VI-mix UI to next-intl so tgh_locale=vi is Vietnamese without mixed English."
-status: pending
+status: completed
 priority: P1
 effort: "3d"
 branch: chore/github-security-scanning
@@ -62,17 +62,17 @@ None. `260904-1103-platform-kernel` is entitlement/billing, different files.
 ## Phases
 
 | Phase | Name | Status |
-|-------|------|--------|
-| 1 | [Catalog keys](./phase-01-start.md) | Pending |
-| 2 | [Error pages](./phase-02-error-pages.md) | Pending |
-| 3 | [Parent dashboard mix](./phase-03-parent-dashboard-mix.md) | Pending |
-| 4 | [Parent managers + courses](./phase-04-parent-managers-courses.md) | Pending |
-| 5 | [Auth forms](./phase-05-auth-forms.md) | Pending |
-| 6 | [Kid lesson leftover](./phase-06-kid-lesson-leftover.md) | Pending |
+|---|---|---|
+| 1 | [Catalog keys](./phase-01-start.md) | Done |
+| 2 | [Error pages](./phase-02-error-pages.md) | Done |
+| 3 | [Parent dashboard mix](./phase-03-parent-dashboard-mix.md) | Done |
+| 4 | [Parent managers + courses](./phase-04-parent-managers-courses.md) | Done |
+| 5 | [Auth forms](./phase-05-auth-forms.md) | Done |
+| 6 | [Kid lesson leftover](./phase-06-kid-lesson-leftover.md) | Done |
 | 7 | [Marketing courses/blog/forms](./phase-07-marketing-courses-blog-forms.md) | Done |
-| 8 | [Shared chrome](./phase-08-shared-chrome.md) | Pending |
-| 9 | [User-visible API errors](./phase-09-user-visible-api-errors.md) | Pending |
-| 10 | [E2E regression](./phase-10-e2e-regression.md) | Pending |
+| 8 | [Shared chrome](./phase-08-shared-chrome.md) | Done |
+| 9 | [User-visible API errors](./phase-09-user-visible-api-errors.md) | Done |
+| 10 | [E2E regression](./phase-10-e2e-regression.md) | Done |
 
 ## Design decisions
 
@@ -85,11 +85,11 @@ None. `260904-1103-platform-kernel` is entitlement/billing, different files.
 
 ## Success Criteria
 
-- [ ] `tgh_locale=vi`: 404, nested 500, global-error, `/parent/dashboard` show Vietnamese body (not EN islands)
-- [ ] `tgh_locale=en`: those pages English; global-error `lang` is `en` not hardcoded `vi`
-- [ ] No new Vietnamese diacritics in `src/` (`pnpm check:i18n`)
-- [ ] `pnpm test:e2e:i18n` plus new coverage in phase 10 pass
-- [ ] Parallel phases never both edit the same file
+- [x] `tgh_locale=vi`: 404, nested 500, global-error, `/parent/dashboard` show Vietnamese body (not EN islands)
+- [x] `tgh_locale=en`: those pages English; global-error `lang` is `en` not hardcoded `vi`
+- [x] No new Vietnamese diacritics in `src/` (`pnpm check:i18n`)
+- [x] `pnpm test:e2e:i18n` plus new coverage in phase 10 pass
+- [x] Parallel phases never both edit the same file
 
 ## Out of scope
 
