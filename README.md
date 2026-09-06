@@ -257,6 +257,4 @@ Implementation plan and phases:
 - Nightly CI workflow: `.github/workflows/nightly-local-full.yml` runs `pnpm test:local:full` on schedule/manual trigger.
 - Production GitHub deploy workflows are disabled (internal-dev). Local: `docker compose up`.
 - SSH deploy runbook (not wired): `docs/deployment/digitalocean-ssh-agent-setup.md`
-- Vercel Cron setup:
-  - `vercel.json` includes weekly report job at Sunday 20:00 VN (`0 13 * * 0` UTC) and streak alert job at 18:00 VN (`0 11 * * *` UTC).
-  - Set `CRON_SECRET` in environment variables and send it via `x-cron-secret` header (or Bearer token in `Authorization`) when invoking cron endpoints.
+- Vercel crons removed (internal-dev). Cron API routes still exist for local/manual calls.
