@@ -1,8 +1,29 @@
 # Project Changelog
 
-## [Unreleased] — Admin Consolidation Wave 1
+## [Unreleased]
 
-Branch `feat/admin-consolidation-wave-1` (not yet deployed). Cut dead admin code, unify nav, centralize authz. See `plans/260710-1047-admin-consolidation-wave-1/`.
+Not on `main`: catalog ticket UI (PR #13), leftover EN/VI mix (PR #23). Dependabot majors (Node 26, Postgres 18, Redis 8, better-auth 1.6) stay open with `CHANGES_REQUESTED` — not security merges. Closed without merge: PR #11 (would delete kernel ADR).
+
+## [0.6.1] - 2026-09-05
+
+### Added
+- Dependabot + CodeQL scanning and security abuse e2e in `release-check` (PR #14). Owners: `.github/dependabot.yml`, `.github/workflows/codeql.yml`.
+
+### Fixed
+- Admin security PATCH keeps `parentEmailVerificationRequired` when omitted (PR #22). Owner: `src/modules/platform/security-policy.ts`.
+
+### Changed
+- GitHub Actions pin bump (PR #21).
+
+## [0.6.0] - 2026-09-04
+
+### Added
+- Learning kernel on `main`: household `Entitlement` tickets, parent-only login, local learning loop (PR #12).
+- ADR `docs/decisions/260904-1102-platform-kernel.md` (access SoT = tickets, not `CourseEnrollment`).
+
+## [0.5.4] - 2026-07-10 — Admin Consolidation Wave 1
+
+Merged PR #10. Cut dead admin code, unify nav, centralize authz. Plan: `plans/260710-1047-admin-consolidation-wave-1/`.
 
 ### Added
 - `admin-module-catalog.ts` is now the single source of truth for the admin sidebar; nav generated via `buildAdminNavModel(role)` (hardcoded `NAV_GROUPS` removed).

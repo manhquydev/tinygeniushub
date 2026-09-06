@@ -4,9 +4,9 @@ This file provides guidance to OpenCode when working with code in this repositor
 
 ## Project Overview
 
-**Name:** claudekit-marketing
+**Name:** tinygeniushub
 **Type:** Node.js/TypeScript
-**Description:** AI-powered marketing automation toolkit built on Claude Code subagent orchestration. Enables autonomous workflows for content creation, campaign management, SEO optimization, and lead generation.
+**Description:** Learning kernel for TinyGenius Hub (parent household, child profiles, entitlement tickets, lessons, skills). Catalogs plug in; they do not own access.
 
 ## Role & Responsibilities
 
@@ -44,18 +44,19 @@ Source of truth: `docs/decisions/260904-1102-platform-kernel.md`.
 - **DO NOT** add catalog-specific complete/watch APIs. Use `src/modules/learning`.
 - **DO NOT** use `CourseEnrollment` as the long-term access source of truth; use entitlement tickets.
 - **DO NOT** trust PDR/README “delivered” checkboxes over the ADR or current source.
+- **DO NOT** merge Dependabot majors (Node 26 Current, Postgres 18, Redis 8, better-auth 1.6) as security fixes. Keep Node 22 LTS, PG 16, Redis 7, better-auth 1.4 until a dedicated upgrade. Email/password-only Better Auth is outside the open plugin GHSAs.
 
 ## Documentation
 
-Keep all important docs in `./docs` folder:
+Keep project docs in `./docs`. Authority:
 
 ```
-./docs
-├── project-overview-pdr.md
-├── code-standards.md
-├── codebase-summary.md
-├── design-guidelines.md
-└── system-architecture.md
+docs/decisions/260904-1102-platform-kernel.md   # SoT
+docs/platform-kernel.md                         # implementer contract
+docs/system-architecture.md
+docs/code-standards.md
+docs/codebase-summary.md                        # navigation only
+docs/project-overview-pdr.md                    # product intent; ADR wins on conflict
 ```
 
 ## External Files

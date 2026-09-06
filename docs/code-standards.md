@@ -1,6 +1,6 @@
 # Code Standards & Conventions
 
-**Last updated:** 2026-09-04
+**Last updated:** 2026-09-05
 
 Architecture law: `docs/decisions/260904-1102-platform-kernel.md`. Domain logic lives in `src/modules/*`. Access to playable content goes through entitlement tickets (parent-scoped), not course/Abeka tables. Files ≤200 lines.
 
@@ -18,14 +18,9 @@ This document establishes coding patterns, naming conventions, and architectural
 
 ### Directory Structure
 ```
-src/
-├── app/                  # Next.js App Router (route groups + API)
-├── components/           # Shared UI components (by domain subdirs)
-├── modules/              # Domain logic (14 self-contained modules)
-├── lib/                  # Utilities (auth, db, analytics, env)
-├── locales/              # i18n translations (en, vi)
-├── worker/               # BullMQ queue definitions + job processors
-└── prisma/               # Database schema + migrations
+src/           # app, components, modules, lib, worker
+locales/       # en|vi translation.json (repo root)
+prisma/        # schema + migrations (repo root)
 ```
 
 ### Module Pattern (src/modules)
@@ -105,7 +100,7 @@ export async function GET(request: Request, { params }: { params: { slug: string
 ### Error Handling
 - Use route-level `error.ts` for error UI boundaries
 - Return typed error responses: `{ error: string, details?: any }`
-- Log via `console.error` + structured logging (Winston/Pino)
+- Log via `src/lib/observability/logger.ts` (JSON to console). No Winston/Pino dependency.
 - Never expose stack traces to client
 
 ---
@@ -286,11 +281,9 @@ export const env = envSchema.parse(process.env)
 
 ## Code Quality
 
-### Linting & Formatting
-- **ESLint:** Enforce rules, catch errors
-- **Prettier:** Code formatting (auto on save)
-- **TypeScript:** Strict mode (`strict: true` in tsconfig)
-- Run pre-commit: `npm run lint && npm run format`
+### Linting
+- **ESLint** + TypeScript strict (`pnpm lint`, `pnpm type-check`)
+- No Prettier/`format` script in `package.json`. Do not invent one.
 
 ### Code Review Checklist
 - [ ] No syntax errors, TypeScript strict
@@ -307,8 +300,8 @@ export const env = envSchema.parse(process.env)
 ### next-intl Usage
 - Translations in `locales/{locale}/translation.json`
 - Use `useTranslations()` hook in client components
-- Wrap app with `<IntlProvider>` (via middleware)
-- Define `i18n.config.ts` with supported locales
+- Locale helper: `src/i18n/locales.ts` (`defaultLocale = "en"`)
+- Catalogs: repo-root `locales/en|vi/translation.json`. No `i18n.config.ts`.
 
 Example:
 ```typescript

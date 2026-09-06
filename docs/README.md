@@ -14,9 +14,9 @@
 
 ## Language Policy
 1. Documentation is maintained in English.
-2. Product user interface language is Vietnamese by default.
+2. Runtime default locale is `en` (`src/i18n/locales.ts`); `vi` catalog exists. Leftover EN/VI mix is unmerged PR #23.
 
 ## Notes
-1. For handover, only the master handover file is mandatory.
+1. For historical onboarding, the master handover file is supporting context only.
 2. Other files under `docs/` are supporting references and may be outdated unless explicitly synchronized.
-3. If a conflict exists, the master handover file takes priority.
+3. If a conflict exists, `docs/decisions/260904-1102-platform-kernel.md` wins, then current source. Handover/PDR checkboxes do not.
