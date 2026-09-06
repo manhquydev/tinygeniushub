@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const {
   enrollmentUpsertMock,
   offeringUpsertMock,
+  offeringFindManyMock,
   entitlementFindFirstMock,
   entitlementCreateMock,
   courseFindUniqueMock,
@@ -14,6 +15,7 @@ const {
 } = vi.hoisted(() => ({
   enrollmentUpsertMock: vi.fn(),
   offeringUpsertMock: vi.fn(),
+  offeringFindManyMock: vi.fn(),
   entitlementFindFirstMock: vi.fn(),
   entitlementCreateMock: vi.fn(),
   courseFindUniqueMock: vi.fn(),
@@ -30,6 +32,7 @@ vi.mock("@/lib/db", () => ({
     courseEnrollment: { findUnique: enrollmentFindUniqueMock },
     childProfile: { findFirst: childFindFirstMock },
     auditLog: { findFirst: auditFindFirstMock },
+    offering: { findMany: offeringFindManyMock },
   },
 }));
 
@@ -97,6 +100,7 @@ describe("createCourseCheckoutSession free checkout", () => {
     });
     childFindFirstMock.mockResolvedValue({ id: "child-1" });
     auditFindFirstMock.mockResolvedValue({ id: "audit-1" });
+    offeringFindManyMock.mockResolvedValue([]);
   });
 
   it("grants a live course ticket when the parent is already enrolled", async () => {
@@ -123,5 +127,23 @@ describe("createCourseCheckoutSession free checkout", () => {
     });
     expect(transactionMock).toHaveBeenCalledTimes(1);
     expect(result.checkoutUrl).toContain(`/kid/courses/${slug}`);
+  });
+
+  it("refuses checkout when the course offering is inactive", async () => {
+    offeringFindManyMock.mockResolvedValue([{ code: `course-${courseId}` }]);
+
+    await expect(
+      createCourseCheckoutSession({
+        parentId,
+        parentEmail: "parent@example.com",
+        slug,
+        attribution: null,
+      }),
+    ).rejects.toMatchObject({
+      status: 409,
+      code: "OFFERING_INACTIVE",
+    });
+
+    expect(transactionMock).not.toHaveBeenCalled();
   });
 });

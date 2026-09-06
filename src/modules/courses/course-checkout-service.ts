@@ -15,7 +15,7 @@ import type { PilotAttributionSnapshot } from "@/modules/courses/pilot-attributi
 import { trackPilotCheckoutStarted } from "@/modules/courses/pilot-funnel-tracking-service";
 import { DomainError } from "@/modules/platform/errors";
 import { createAuditLog } from "@/modules/platform/audit-service";
-import { grantCourseOfferingInTx } from "@/modules/entitlement/grant-from-billing";
+import { grantCourseOfferingInTx, offeringCodeForCourse } from "@/modules/entitlement/grant-from-billing";
 
 type CheckoutTarget =
   | {
@@ -489,6 +489,18 @@ export async function createCourseCheckoutSession(params: {
     parentId: params.parentId,
     slug: params.slug,
   });
+
+  const courseIds = target.kind === "course" ? [target.courseId] : target.courseIds;
+  const inactiveOfferings = await prisma.offering.findMany({
+    where: {
+      code: { in: courseIds.map(offeringCodeForCourse) },
+      active: false,
+    },
+    select: { code: true },
+  });
+  if (inactiveOfferings.length > 0) {
+    throw new DomainError("Offering is inactive", 409, "OFFERING_INACTIVE");
+  }
 
   const provider = target.kind === "course" && target.amountVnd === 0
     ? "free_temporary"

@@ -110,4 +110,42 @@ describe("updateAdminUserSubscription", () => {
     expect(txMock.entitlement.update).not.toHaveBeenCalled();
     expect(subscription.status).toBe(SubscriptionStatus.ACTIVE_STANDARD);
   });
+
+  it("cancel at period end keeps the ticket until currentPeriodEnd", async () => {
+    txMock.subscription.update.mockResolvedValue({
+      id: "sub-1",
+      planCode: PlanCode.YEARLY_STANDARD,
+      status: SubscriptionStatus.CANCELED_AT_PERIOD_END,
+      currentPeriodStart: new Date("2026-01-01T00:00:00.000Z"),
+      currentPeriodEnd: periodEnd,
+      autoRenew: false,
+      updatedAt: new Date("2026-09-05T00:00:00.000Z"),
+    });
+    txMock.entitlement.findFirst.mockResolvedValue({
+      id: "ent-1",
+      status: EntitlementStatus.ACTIVE,
+      validUntil: new Date("2027-01-01T00:00:00.000Z"),
+    });
+    txMock.entitlement.update.mockResolvedValue({
+      id: "ent-1",
+      status: EntitlementStatus.ACTIVE,
+      validUntil: periodEnd,
+    });
+
+    const subscription = await updateAdminUserSubscription({
+      parentId,
+      action: "cancel",
+      adminEmail: "admin@example.com",
+    });
+
+    expect(subscription.status).toBe(SubscriptionStatus.CANCELED_AT_PERIOD_END);
+    expect(txMock.entitlement.create).not.toHaveBeenCalled();
+    expect(txMock.entitlement.update).toHaveBeenCalledWith({
+      where: { id: "ent-1" },
+      data: expect.objectContaining({
+        status: EntitlementStatus.ACTIVE,
+        validUntil: periodEnd,
+      }),
+    });
+  });
 });

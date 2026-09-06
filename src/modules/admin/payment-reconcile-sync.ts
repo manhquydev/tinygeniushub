@@ -62,7 +62,14 @@ async function resolveCourseIdsFromCheckoutTarget(tx: Prisma.TransactionClient, 
         id: true,
       },
     });
-    return rows.map((row) => row.id);
+    if (rows.length !== targetCourseIds.length) {
+      throw new DomainError(
+        "Unable to resolve course list from payment target.",
+        409,
+        "PAYMENT_RECONCILE_TARGET_INVALID",
+      );
+    }
+    return targetCourseIds.filter((courseId) => rows.some((row) => row.id === courseId));
   }
 
   const bundleSlug = typeof target.bundleSlug === "string" ? target.bundleSlug.trim() : "";

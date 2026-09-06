@@ -24,7 +24,7 @@ export type UsersStatusFilter =
 export type AdminUserTicketAction = "grant" | "extend" | "expire";
 
 export type AdminUserEntitlement = {
-  code: string;
+  offeringCode: string;
   catalogKey: string;
   kind: string;
   status: string;

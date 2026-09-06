@@ -161,6 +161,7 @@ export async function resolveWebhookUpdate(input: {
           ? input.note ?? "Ignored by admin manual reconcile"
           : null,
       auditTrail: {
+        ...(asRecord(webhook.auditTrail) ?? {}),
         paymentRecordId: input.paymentRecord.id,
         manualReconcileBy: input.actorEmail,
         manualReconcileAction: input.action,

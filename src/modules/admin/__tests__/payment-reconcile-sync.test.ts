@@ -103,6 +103,26 @@ describe("syncEnrollmentsFromPaymentTarget", () => {
     });
   });
 
+  it("fails closed when a bundle course id cannot be resolved", async () => {
+    const tx = createTx();
+    tx.course.findMany.mockResolvedValue([{ id: "c1" }]);
+
+    await expect(
+      syncEnrollmentsFromPaymentTarget({
+        tx: tx as never,
+        parentId,
+        paymentRecordId,
+        rawPayload: { target: { kind: "bundle", courseIds: ["c1", "missing"] } },
+      }),
+    ).rejects.toMatchObject({
+      status: 409,
+      code: "PAYMENT_RECONCILE_TARGET_INVALID",
+    });
+
+    expect(tx.courseEnrollment.upsert).not.toHaveBeenCalled();
+    expect(tx.entitlement.create).not.toHaveBeenCalled();
+  });
+
   it("fails closed when checkout target cannot be resolved", async () => {
     const tx = createTx();
 

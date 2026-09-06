@@ -53,8 +53,11 @@ export async function createBillingCheckoutSession(params: {
   const provider = resolveBillingProvider();
   const offering = await prisma.offering.findUnique({
     where: { code: PLATFORM_PASS_CODE },
-    select: { stripePriceId: true },
+    select: { stripePriceId: true, active: true },
   });
+  if (offering?.active === false) {
+    throw new DomainError("Offering is inactive", 409, "OFFERING_INACTIVE");
+  }
 
   const session = await provider.createCheckoutSession({
     parentId: parent.id,

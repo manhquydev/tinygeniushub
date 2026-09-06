@@ -78,8 +78,8 @@ export function AdminUserTicketsSection(props: AdminUserTicketsSectionProps) {
               {props.entitlements.map((ticket, index) => {
                 const live = ticket.status === "ACTIVE" || ticket.status === "GRACE";
                 return (
-                  <TableRow key={`${ticket.code}-${ticket.status}-${index}`}>
-                    <TableCell className="text-xs font-medium">{ticket.code}</TableCell>
+                  <TableRow key={`${ticket.offeringCode}-${ticket.status}-${index}`}>
+                    <TableCell className="text-xs font-medium">{ticket.offeringCode}</TableCell>
                     <TableCell className="text-xs">{ticket.catalogKey}</TableCell>
                     <TableCell className="text-xs">{ticket.kind}</TableCell>
                     <TableCell>
@@ -93,7 +93,7 @@ export function AdminUserTicketsSection(props: AdminUserTicketsSectionProps) {
                       <div className="flex flex-wrap gap-1">
                         <Button
                           size="sm"
-                          onClick={() => void props.onTicketAction("extend", ticket.code)}
+                          onClick={() => void props.onTicketAction("extend", ticket.offeringCode)}
                           disabled={props.ticketActionLoading || !live}
                           className="h-7 text-xs bg-teal-600 hover:bg-teal-700"
                         >
@@ -102,7 +102,7 @@ export function AdminUserTicketsSection(props: AdminUserTicketsSectionProps) {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => void props.onTicketAction("expire", ticket.code)}
+                          onClick={() => void props.onTicketAction("expire", ticket.offeringCode)}
                           disabled={props.ticketActionLoading || !live}
                           className="h-7 text-xs border-amber-300 text-amber-800"
                         >

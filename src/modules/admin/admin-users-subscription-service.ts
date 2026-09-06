@@ -1,4 +1,4 @@
-import { PlanCode, SubscriptionStatus } from "@prisma/client";
+import { EntitlementStatus, PlanCode, SubscriptionStatus } from "@prisma/client";
 import { addDays } from "date-fns";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
@@ -76,10 +76,35 @@ export async function updateAdminUserSubscription(input: {
         },
         select: subscriptionSelect,
       });
-      await expirePlanOfferingInTx(tx, {
-        parentId: input.parentId,
-        planCode: subscription.planCode,
-      });
+      if (updated.currentPeriodEnd.getTime() <= now.getTime()) {
+        await expirePlanOfferingInTx(tx, {
+          parentId: input.parentId,
+          planCode: subscription.planCode,
+        });
+      } else {
+        const offeringCode = offeringCodeForPlan(subscription.planCode);
+        const offering = offeringCode
+          ? await tx.offering.findUnique({ where: { code: offeringCode } })
+          : null;
+        const live = offering
+          ? await tx.entitlement.findFirst({
+              where: {
+                parentId: input.parentId,
+                offeringId: offering.id,
+                status: { in: [EntitlementStatus.ACTIVE, EntitlementStatus.GRACE] },
+              },
+            })
+          : null;
+        if (live) {
+          await tx.entitlement.update({
+            where: { id: live.id },
+            data: {
+              status: EntitlementStatus.ACTIVE,
+              validUntil: updated.currentPeriodEnd,
+            },
+          });
+        }
+      }
       return { previous: subscription, next: updated };
     }
 
