@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
+import { requireParentAndOwnedChild } from '@/lib/auth/require-parent-child';
 import { prisma } from '@/lib/prisma';
-
 /**
  * GET /api/curriculum/streak?childId={childId}
  * Get streak data for a child
@@ -13,18 +13,26 @@ export async function GET(request: NextRequest) {
     if (!childId) {
       return Response.json({ error: 'childId is required' }, { status: 400 });
     }
+    const authed = await requireParentAndOwnedChild(request, childId);
+    if (!authed.ok) {
+      return authed.response;
+    }
 
-    // Get or create streak record
-    const streak = await prisma.abekaStreak.upsert({
+
+    const streak = await prisma.abekaStreak.findUnique({
       where: { childId },
-      create: {
-        childId,
+    });
+
+    if (!streak) {
+      return Response.json({
         currentStreak: 0,
         longestStreak: 0,
+        lastActivityDate: null,
+        streakAtRisk: false,
         freezeCount: 0,
-      },
-      update: {},
-    });
+        weekHistory: [],
+      });
+    }
 
     // Get week history
     const today = new Date();
