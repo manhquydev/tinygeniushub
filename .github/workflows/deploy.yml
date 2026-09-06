@@ -1,5 +1,7 @@
 name: Deploy to Production (No SSH Manual)
 
+# Internal-dev: GitHub-disabled. Do not auto-deploy after Release Check.
+# Re-enable only for an intentional one-shot via workflow_dispatch.
 on:
   workflow_dispatch:
     inputs:
@@ -11,13 +13,6 @@ on:
         description: "How many external health probes after deploy"
         required: false
         default: "10"
-  workflow_run:
-    workflows:
-      - Release Check
-    types:
-      - completed
-    branches:
-      - main
 
 concurrency:
   group: deploy-production-tinygeniushub
@@ -25,11 +20,6 @@ concurrency:
 
 jobs:
   deploy:
-    if: >
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'workflow_run' &&
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'main')
     runs-on: [self-hosted, linux, x64, production]
     timeout-minutes: 45
     environment: production
@@ -42,7 +32,6 @@ jobs:
       DEPLOY_ENV_FILE: .env.production
       INPUT_REF: ${{ inputs.ref }}
       INPUT_HEALTH_PROBE_COUNT: ${{ inputs.health_probe_count }}
-      WORKFLOW_RUN_SHA: ${{ github.event.workflow_run.head_sha }}
     steps:
       - name: Resolve deployment variables
         id: vars
@@ -50,13 +39,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
-            deploy_ref="${INPUT_REF:-main}"
-            probe_count="${INPUT_HEALTH_PROBE_COUNT:-10}"
-          else
-            deploy_ref="${WORKFLOW_RUN_SHA}"
-            probe_count="10"
-          fi
+          deploy_ref="${INPUT_REF:-main}"
+          probe_count="${INPUT_HEALTH_PROBE_COUNT:-10}"
 
           app_dir="${PROD_APP_DIR:-/var/www/tinygeniushub}"
           public_base_url="${PROD_PUBLIC_BASE_URL:-https://www.tinygeniushubvn.tech}"

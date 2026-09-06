@@ -1,5 +1,6 @@
 name: Deploy DigitalOcean via SSH (Fallback)
 
+# Internal-dev: GitHub-disabled. Manual fallback only; do not use as production CD.
 on:
   workflow_dispatch:
     inputs:
