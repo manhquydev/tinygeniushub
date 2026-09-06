@@ -20,19 +20,12 @@ MVP foundation rebuilt from handover docs (`docs/handover/handover-master-agent-
 - Weekly report email delivery pipeline (queue + worker + opt-in aware dispatch).
 - Billing webhook ingestion with idempotency and audit trail.
 - Billing checkout session API with provider adapter abstraction (`mock_gateway` default, `stripe` available).
-- CI release gate workflow with security/perf evidence artifacts.
+- CI release gate: `.github/workflows/release-check.yml` plus CodeQL (`.github/workflows/codeql.yml`) and Dependabot (`.github/dependabot.yml`).
 - Observability baseline: structured logs + health/readiness APIs.
 
 ### Technical modules
-- `identity`
-- `content`
-- `learning`
-- `progress`
-- `billing`
-- `reports`
-- `admin`
-- `referral`
-- `platform`
+
+Kernel surface: `identity`, `entitlement`, `content`, `learning`, `progress`, `billing`, `reports`, `admin`, `referral`, `platform`. Full set: `ls src/modules`.
 
 ## Setup
 
@@ -227,7 +220,7 @@ Implementation plan and phases:
 
 ## Notes
 
-- Docs are in English; UI copy is Vietnamese by policy.
+- Docs are in English. Runtime default locale is `en` (`src/i18n/locales.ts`); `vi` catalog exists. Leftover EN/VI mix shipped in PR #23.
 - Set `ADMIN_EMAILS` in `.env` (comma-separated) to enable `/admin` access for specific parent accounts.
 - Configure rate-limit proxy trust with `RATE_LIMIT_TRUST_PROXY` and `RATE_LIMIT_TRUSTED_HOPS` based on deployment topology.
   - IP headers (`x-forwarded-for`, `x-real-ip`) are only trusted when `RATE_LIMIT_TRUST_PROXY=true`.
@@ -262,9 +255,8 @@ Implementation plan and phases:
 - `pnpm test:e2e:security` validates: rate-limit 429, blocked IP policy, readiness allowlist deny, ddos multiplier effect, burst-concurrency throttling (watch/report/readiness), edge export sync.
 - `pnpm test:local:full` runs full local flow end-to-end (infra up, migrate, seed, build, e2e smoke/p0/full/security).
 - Nightly CI workflow: `.github/workflows/nightly-local-full.yml` runs `pnpm test:local:full` on schedule/manual trigger.
-- DigitalOcean SSH deploy automation:
-  - workflow: `.github/workflows/deploy-digitalocean-ssh.yml`
-  - setup guide: `docs/deployment/digitalocean-ssh-agent-setup.md`
+- Production deploy default: `.github/workflows/deploy.yml`. SSH fallback: `.github/workflows/deploy-digitalocean-ssh.yml`.
+- setup guide: `docs/deployment/digitalocean-ssh-agent-setup.md`
 - Vercel Cron setup:
   - `vercel.json` includes weekly report job at Sunday 20:00 VN (`0 13 * * 0` UTC) and streak alert job at 18:00 VN (`0 11 * * *` UTC).
   - Set `CRON_SECRET` in environment variables and send it via `x-cron-secret` header (or Bearer token in `Authorization`) when invoking cron endpoints.

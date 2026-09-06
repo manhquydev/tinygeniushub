@@ -1,24 +1,28 @@
 # Project Roadmap
 
-**Last updated:** 2026-07-10
-**Status:** Phases 01–05 complete. Deployed to production. i18n English-primary migration merged (PR #9). Current work: Admin Consolidation Wave 1 (feature branch, pre-merge).
+**Last updated:** 2026-09-05
+**Status:** `main` is the learning kernel (PR #12). Admin Consolidation Wave 1 merged (PR #10). i18n English-primary catalogs merged (PR #9). Runtime default locale `en` (`src/i18n/locales.ts`).
+
+Authority: `docs/decisions/260904-1102-platform-kernel.md`. Do not treat checkboxes below as access/SoT.
 
 ---
 
-## Current Work — Admin Consolidation Wave 1
+## Current work (unmerged)
 
-**Branch:** `feat/admin-consolidation-wave-1`
-**Status:** Code complete on branch; not merged/deployed. Plan: `plans/260710-1047-admin-consolidation-wave-1/`.
-**Scope:** "Cut first, standardize later" — remove dead/orphan admin business logic, unify sidebar nav from the module catalog, centralize SUPER_ADMIN gating.
-**Done (all 4 phases, TDD):**
-- Deleted dead analytics services/routes/components; repointed live consumers to standalone services.
-- Removed the newsletter feature end-to-end (intentional feature-kill; drop migration) + orphan `admin/bulk-enroll`.
-- Nav generated from `admin-module-catalog.ts`; feature-flags own page; skills/impersonation reachable.
-- Centralized SUPER_ADMIN gating; fixed live authz gaps (organizations/skills/feature-flags/impersonate APIs); conformance test + break-glass runbook.
-**Pre-merge gates outstanding (need running stack):** `pnpm test:e2e:security`, manual staff-admin walkthrough, prod DB backup before the newsletter drop migration deploys.
-**Deferred:** `admin-guard.ts` retirement (lockout risk, needs stack); Wave 2 (UI/i18n panel standardization); Wave 3 (coupons→checkout, Jules admin UI).
+- **PR #13** `feat/kernel-catalog-access` — gate catalog surfaces on household tickets; behind `main`; `release-check` red.
+- **PR #23** `feat/i18n-locale-parity` — leftover EN/VI-mix UI; `release-check` FAILURE / BLOCKED.
+- **Dependabot majors** (#15–#20) — keep Node 22 LTS, Postgres 16, Redis 7, better-auth 1.4. App email/password Better Auth is out of the open better-auth GHSA plugin scopes.
 
----
+## On `main` (2026-09)
+
+- Household `Entitlement` tickets + local learning loop (PR #12). Owner: `src/modules/entitlement`.
+- Dependabot + CodeQL + security e2e CI (PR #14, PR #22).
+- Admin security PATCH does not drop verification flag on partial update (PR #22).
+
+## Admin Consolidation Wave 1 [COMPLETE]
+
+**Merged:** PR #10 (2026-07-10). Plan: `plans/260710-1047-admin-consolidation-wave-1/`.
+**Deferred:** `admin-guard.ts` retirement; Wave 2 (UI/i18n panel standardization); Wave 3 (coupons→checkout, Jules admin UI).
 
 ## Phase 05 — Course Learning Pages Overhaul [COMPLETE]
 
@@ -50,7 +54,7 @@
 - **Server:** DigitalOcean Ubuntu 24.04 — IP `152.42.246.218`
 - **Domain:** tinygeniushubvn.tech — A records + SSL via Let's Encrypt
 - **Stack:** PM2 + Nginx, Docker Compose (PostgreSQL 16 + Redis 7)
-- **CI/CD:** GitHub Actions `deploy-digitalocean-ssh.yml` (SSH deploy key)
+- **CI/CD:** `.github/workflows/deploy.yml` default; `deploy-digitalocean-ssh.yml` fallback; `release-check.yml` + CodeQL + Dependabot
 - **Seed data:** 13 SEO blog articles, categories, tags
 
 ---
@@ -91,7 +95,7 @@
 - Teacher dashboard with bulk CSV enrollment
 - Class report PDF generation
 - At-risk student flagging (>7 days inactive)
-- B2B landing page `/for-schools`
+- `/for-schools` now redirects to `/courses` (not a live B2B landing)
 - E2E test coverage
 
 ---
@@ -110,7 +114,7 @@
 - Abeka curriculum integration (videos, lessons, assignments, badges, streaks)
 - Reader portal (separate auth, blog bookmarks)
 - Kid garden game (journey, zones, progression)
-- SEO blog with comments, newsletter, author management
+- SEO blog with comments and author management (newsletter killed PR #10)
 - Referral program (code generation, attribution)
 - Gift codes (bulk generation, bulk redemption)
 

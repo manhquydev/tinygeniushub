@@ -35,6 +35,8 @@ const EXCLUDED_PATH_SEGMENTS = [
   "locales/",
   "node_modules/",
   "test-results/",
+  "scripts/i18n/",
+  "scripts/seed-local-open-access.ts",
 ];
 const vietnameseDiacriticRegex = new RegExp("[\\u00c0-\\u024f\\u1e00-\\u1eff]", "u");
 const unicodeEscapeRegex = /\\u\{([0-9a-fA-F]+)\}|\\u([0-9a-fA-F]{4})/g;
@@ -74,6 +76,9 @@ async function collectSourceFiles(directory) {
     }
 
     if (!entry.isFile()) {
+      continue;
+    }
+    if (entry.name.includes(".test.")) {
       continue;
     }
 

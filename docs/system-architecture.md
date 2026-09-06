@@ -1,6 +1,6 @@
 # System Architecture
 
-**Last updated:** 2026-09-04
+**Last updated:** 2026-09-05
 
 **Authority:** accepted ADR `docs/decisions/260904-1102-platform-kernel.md` and contract `docs/platform-kernel.md`. Course/Abeka/storefront diagrams below are historical topology, not the access model. Kernel = household + ticket + lesson + skill. Catalogs plug in; they do not own complete/watch/pay.
 
@@ -136,20 +136,21 @@ On success: job marked complete
 On failure: retry (exponential backoff) or dead-letter queue
 ```
 
-### Job Types (10 Queues)
+### Job Types
 
 | Queue | Job | Trigger | Processor |
 |---|---|---|---|
 | `lifecycle-emails` | send-lifecycle-email | Signup → D0/D3/D7 | Resend API |
 | `weekly-reports` | generate-weekly-reports | Cron (Sunday 8am) | Progress calculation |
 | `weekly-report-emails` | dispatch-weekly-report-emails | Cron (Sunday 9am) | Resend + templating |
-| `blog-newsletter` | dispatch-blog-newsletter-email | Admin trigger | Resend + list |
 | `transactional-emails` | send-transactional-email | Invoice, receipt | Resend |
 | `certificates` | generate-certificate | Course completion | pdf-lib + R2 upload |
 | `bulk-enroll` | bulk-enroll | Teacher CSV upload | Prisma batch insert |
 | `portfolio-retention` | purge-expired-media | Cron (nightly) | S3/R2 delete |
 | `blog-comment-emails` | verify-blog-comment | Comment posted | Moderation + email |
 | `blog-comment-reply-emails` | notify-comment-reply | Reply to comment | Resend |
+
+`blog-newsletter` queue was removed in Wave 1 (PR #10).
 
 ### Worker Scalability
 ```
@@ -193,7 +194,7 @@ Better Auth (Parent + Admin):
 
 Reader (Separate Auth):
   - Independent `ReaderAccount` + `Session`
-  - Used for blog comments, newsletter signup
+  - Used for blog comments (newsletter signup killed PR #10)
   - No access to parent/child data
 ```
 
@@ -219,34 +220,23 @@ Route Handler
 ```
 Parent clicks "Buy Course" on /courses/[slug]
   ↓
-  POST /api/courses/[slug]/checkout
+  Checkout API (PayOS/Stripe) — payment collect only
   ↓
-  Create `CourseEnrollment` record
+  Webhook grants/extends household `Entitlement` ticket
+  Owner: `src/modules/entitlement` (ADR kernel)
   ↓
-  Redirect to Stripe checkout session
-  ↓
-  Stripe webhook → /api/billing/webhooks/stripe
-  ↓
-  Update `Subscription.status` = "active"
-  ↓
-  Parent granted access to course lessons
+  `CourseEnrollment` may remain as catalog residue — not access SoT
 ```
 
 ### Lesson Completion
 ```
-Child completes lesson on /kid/[lessonId]
+Child completes lesson (parent session) on kid player
   ↓
   POST /api/lessons/[lessonId]/complete
   ↓
-  Create `LessonCompletion` record
+  Access: household ticket (`src/modules/entitlement`), not CourseEnrollment
   ↓
-  Update `ChildSkillState` (spaced repetition scoring)
-  ↓
-  Enqueue `generate-certificate` job (if course complete)
-  ↓
-  Enqueue `generate-weekly-reports` job (if trigger met)
-  ↓
-  Return success + reward points
+  `src/modules/learning` records completion + reward (idempotent)
 ```
 
 ### Adaptive Next-Lesson Sequencing
@@ -337,8 +327,8 @@ IP: 152.42.246.218
   │   └── Cache headers, CORS, rate-limit
   │
   ├── PM2 process manager
-  │   ├── Node.js web process (npm start)
-  │   └── BullMQ worker process (npm run worker)
+  │   ├── Node.js web process (`pnpm start`)
+  │   └── BullMQ worker process (`pnpm worker:dev` locally; worker service in compose)
   │
   └── Docker Compose
       ├── PostgreSQL 16 (persistent volume /var/lib/postgresql)
@@ -349,8 +339,8 @@ IP: 152.42.246.218
 ```
 Push to main branch
   ↓
-  .github/workflows/deploy-digitalocean-ssh.yml
-  ├── Run tests (npm test)
+  .github/workflows/deploy.yml (default) / deploy-digitalocean-ssh.yml (fallback)
+  ├── Run tests (`pnpm test` via release-check.yml, Node 22)
   ├── Build Docker image
   ├── SSH into VPS
   ├── Pull latest code
@@ -361,12 +351,12 @@ Push to main branch
 
 ### Vercel (Preview / Staging)
 ```
-vercel.json configured with 5 cron routes:
-  - /api/cron/weekly-reports (Sunday 8am)
-  - /api/cron/streak-alerts (Daily 6am)
-  - /api/cron/newsletter-digest (Monday 9am)
-  - /api/cron/cleanup-media (Nightly 2am)
-  - /api/cron/publish-scheduled-posts (Every hour)
+vercel.json crons (owner: `vercel.json`):
+  - /api/cron/weekly-reports (`0 13 * * 0` UTC)
+  - /api/cron/streak-alerts (`0 11 * * *` UTC)
+  - /api/cron/cleanup-pending-media (`0 3 * * *` UTC)
+  - /api/cron/publish-scheduled-posts (`0 6 * * *` UTC)
+No newsletter-digest (removed PR #10).
 ```
 
 ---
@@ -523,14 +513,14 @@ Database corruption:
 
 | Layer | Choice | Why |
 |---|---|---|
-| **Runtime** | Node.js 20 LTS | Stable, TypeScript support |
+| **Runtime** | Node.js 22 | `Dockerfile` `node:22-alpine`; CI `node-version: 22` |
 | **Framework** | Next.js 16 App Router | Server components, built-in optimization |
 | **Language** | TypeScript | Type safety, refactoring confidence |
 | **Database** | PostgreSQL 16 | ACID, relational, proven at scale |
 | **ORM** | Prisma | Type-safe, migrations, excellent DX |
 | **Cache** | Redis 7 | Session store, queue backend, fast |
 | **Queue** | BullMQ | Redis-backed, reliable, TypeScript |
-| **Auth** | Better Auth | Modern, passkey-ready, fresh maintenance |
+| **Auth** | Better Auth | Email/password session cookies. MFA/passkeys out of kernel and not implemented. |
 | **UI** | shadcn/ui | Headless, accessible, Tailwind CSS |
 | **CDN** | Bunny Stream + R2 | Cost-effective, SE Asia performance |
 | **Email** | Resend | Simple API, good deliverability |

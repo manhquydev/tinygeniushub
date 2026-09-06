@@ -5,6 +5,7 @@
 **Product Vision:** Empower Vietnamese parents with affordable, science-backed learning content for early childhood development, using spaced repetition, adaptive sequencing, and parental engagement tools.
 
 **Live:** https://www.tinygeniushubvn.tech
+**Authority:** `docs/decisions/260904-1102-platform-kernel.md`. Checkboxes below may lag code.
 
 ---
 
@@ -104,7 +105,7 @@
 - Bulk CSV enrollment
 - Teacher dashboard (student progress, at-risk flagging)
 - Class progress PDF report
-- B2B landing page `/for-schools`
+- `/for-schools` redirects to `/courses` (not a live B2B landing)
 
 ### Phase 05 — Course Learning Pages Overhaul ✓
 - Free lesson preview system
@@ -115,7 +116,7 @@
 
 ### Adaptive Learning Engine ✓
 - Skill taxonomy (self-referencing tree)
-- Placement test on signup (30 questions)
+- Placement test CAT (`maxItems` default 15 in Prisma; seed 10–15). Not a fixed 30-question form.
 - Spaced repetition review queue
 - AI next-lesson sequencing (based on child skill state)
 - Learning trajectory + adaptive roadmap
@@ -123,7 +124,7 @@
 ### Reader Portal ✓
 - Separate auth system (email/password)
 - Blog bookmarking system
-- Newsletter signup + verification
+- Newsletter signup killed in Wave 1 (PR #10)
 - Comment moderation + notifications
 - Related article recommendations
 
@@ -153,25 +154,24 @@
 - **Uptime:** 99.9% SLA
 
 ### Security & Privacy
-- **Auth:** Better Auth with signed cookies + MFA ready
+- **Auth:** Better Auth email/password signed cookies. MFA/passkeys not implemented (out of kernel).
 - **Data:** Encryption at rest (PostgreSQL + R2)
 - **Compliance:** GDPR-ready, cookie consent enforcement, audit logging
 - **Payment:** PCI DSS (via Stripe + PayOS)
 
 ### Internationalization
-- **Locales:** Vietnamese (primary) + English (migration in progress)
-- **Cookie-based:** Locale switching persistent across sessions
-- **Coverage:** All 70+ pages + email templates
+- **Locales:** runtime default `en` (`src/i18n/locales.ts`) + `vi` catalog
+- **Leftover mix:** unmerged PR #23; English-primary catalog migration already merged (PR #9)
 
 ### Infrastructure
 - **Database:** PostgreSQL 16 (Docker + VPS)
 - **Cache:** Redis 7 (session + task queue)
-- **Task Queue:** BullMQ (10 queues: emails, reports, media cleanup)
+- **Task Queue:** BullMQ (emails, reports, media cleanup; newsletter queue dropped PR #10)
 - **CDN:** Bunny Stream (video), Cloudflare R2 (media storage)
 - **Deployment:** Docker Compose (dev/staging) + PM2/Nginx (production VPS)
 
 ### Observability
-- **Logging:** Structured logging (Winston or Pino)
+- **Logging:** `src/lib/observability/logger.ts` (JSON to console). Not Winston/Pino.
 - **Analytics:** GA4 event tracking, conversion funnels
 - **Monitoring:** Health endpoint + Sentry for errors
 - **Audit:** AuditLog Prisma model (all admin actions)
@@ -187,7 +187,7 @@
 
 ### Maintainability
 - Test coverage >80% (unit + e2e)
-- Modular architecture (14 domain modules)
+- Modular architecture (`src/modules/*`)
 - Clear API contracts + SDK ready
 - Documentation in code + `/docs` folder
 

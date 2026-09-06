@@ -1,6 +1,6 @@
 # Codebase Summary
 
-**Last updated:** 2026-07-10 — Phases 01–05 complete + Adaptive Engine + Abeka Curriculum + Reader Portal. Deployed to production at https://www.tinygeniushubvn.tech.
+**Last updated:** 2026-09-05 — kernel on `main` (PR #12). Inventories below lag; ADR `docs/decisions/260904-1102-platform-kernel.md` wins. Live modules: `ls src/modules`.
 
 ---
 
@@ -8,11 +8,11 @@
 
 - **Project:** TinyGenius Hub — Vietnamese EdTech for ages 2–6 (Math + English Phonics)
 - **Production URL:** https://www.tinygeniushubvn.tech
-- **Current Branch:** `i18n/english-primary-migration` — active i18n work
+- **Current Branch:** `main` — kernel tickets through PR #25. i18n leftover-mix residual in this change.
 - **Stack:** Next.js 16 (App Router) + React 19 + TypeScript + Prisma + PostgreSQL 16 + Redis + BullMQ
 - **Deployment:** DigitalOcean Ubuntu 24.04 (PM2 + Nginx) + Docker Compose (postgres, redis, web, worker)
 - **CDN:** Bunny Stream (video), Cloudflare R2 (media storage)
-- **Tests:** ~110 Vitest unit/integration, ~19 Playwright e2e
+- **Tests:** `pnpm test` / `pnpm test:e2e` (do not trust hand counts here)
 
 ---
 
@@ -22,7 +22,7 @@
 - **Domain:** tinygeniushubvn.tech — A records, SSL via Let's Encrypt
 - **Runtime:** PM2 process manager + Nginx reverse proxy
 - **Services:** Docker Compose — PostgreSQL 16, Redis 7, web (port 3000), worker
-- **CI/CD:** `.github/workflows/deploy-digitalocean-ssh.yml` (GitHub Actions SSH deploy)
+- **CI/CD:** `.github/workflows/release-check.yml`, `codeql.yml`, `deploy.yml` (default prod). Dependabot config: `.github/dependabot.yml`. SSH fallback: `deploy-digitalocean-ssh.yml`.
 
 ---
 
@@ -35,13 +35,13 @@
 - `(admin-login)` — standalone admin login shell
 
 ### Page Groups (70+)
-**Public:** `/`, `/pricing`, `/about`, `/contact`, `/for-schools`
+**Public:** `/`, `/pricing`, `/about`, `/contact`. `/for-schools` redirects to `/courses`.
 **Auth:** `/auth/(login|signup|forgot-password|reset-password)`
 **Courses:** `/courses`, `/courses/[slug]`, `/courses/[slug]/lessons`
 **Blog:** `/blog`, `/blog/[slug]`, `/blog/category/[slug]`, `/blog/search`
 **Parent:** `/parent/dashboard`, `/parent/dashboard/[childId]/skills`, `/parent/(children|reports|billing|courses)`
 **Admin:** `/admin/(overview|courses|content|users|staff|organizations|gift-codes|analytics|security|operations|skills|impersonation|site-settings|log)`
-**Admin Blog:** `/admin/blog/(posts|authors|categories|comments|analytics|newsletter)`
+**Admin Blog:** `/admin/blog/(posts|authors|categories|comments|analytics)`
 **Teacher:** `/teacher/(dashboard|bulk-enroll)`
 **Reader:** `/reader/(login|signup|bookmarks)`
 **Kid App:** `/kid`, `/kid/today`, `/kid/courses`, `/kid/garden/[zone]`
@@ -52,7 +52,7 @@
 
 ## API Routes (60+)
 
-**Auth:** `/api/auth/*` — Better Auth catch-all + sign-in/sign-up/sign-out
+**Auth:** canonical `/api/auth/signup|login|logout` (`/api/auth/[...all]` blocked)
 **Lessons:** `/api/lessons/[lessonId]/*` — watch-session, heartbeat, activities
 **Children:** `/api/children/[childId]/*` — CRUD, skill-map, learning-trajectory, placement-status
 **Adaptive:** `/api/adaptive/*` — placement-test, next-lesson, review-queue
@@ -60,13 +60,13 @@
 **Blog:** `/api/blog/*` — posts, tags, comments
 **Organizations:** `/api/organizations/[orgId]/*` — members, progress, class-report, skill-heatmap
 **Courses:** `/api/courses/*` — catalog, checkout, enrollment, completion, certificates
-**Billing:** `/api/billing/webhooks/stripe`
+**Billing:** `/api/billing/webhooks/{mock,stripe,payos}`, `/api/billing/checkout`
 **Caregivers:** `/api/caregivers/*` — invite, accept
 **Referrals:** `/api/referrals/*` — claim, track
 **Reports:** `/api/reports/*` — weekly-report, progress
 **Notifications:** `/api/notifications/*`
 **Certificates:** `/api/certificates/[enrollmentId]`
-**Cron:** `/api/cron/*` — cleanup-pending-media, publish-scheduled-posts
+**Cron:** `/api/cron/{weekly-reports,streak-alerts,cleanup-pending-media,publish-scheduled-posts}` (`vercel.json`)
 **Health:** `/api/health`
 
 **Middleware:** `src/proxy.ts` (not `middleware.ts`) — A/B test cookies, attribution tracking, consent management
@@ -81,7 +81,7 @@ src/
 │   ├── (main)/                   # Public + authenticated pages
 │   │   ├── admin/                # Admin CMS (blog, courses, users, analytics, security, log)
 │   │   ├── courses/              # Course catalog + detail
-│   │   ├── for-schools/          # B2B kindergarten landing
+│   │   ├── for-schools/          # redirects to /courses
 │   │   ├── gift-code/            # Gift code redemption
 │   │   ├── parent/               # Parent dashboard + children + reports
 │   │   ├── referral/             # Referral program
@@ -125,21 +125,25 @@ src/
 │   ├── auth-form/                # Auth components
 │   ├── language-switcher/        # i18n switcher
 │   └── ui/                       # shadcn/ui base components
-├── modules/                      # Domain logic (14 modules)
+├── modules/                      # Domain logic (`ls src/modules`; not a frozen count)
 │   ├── adaptive/                 # Placement tests, skill taxonomy, spaced repetition, next-lesson sequencing
 │   ├── admin/                    # Admin services (analytics, GA4, SOT, funnel, cohort)
 │   ├── billing/                  # Stripe + PayOS, subscriptions, renewals
-│   ├── blog/                     # Blog CMS, comments, newsletter
+│   ├── blog/                     # Blog CMS, comments (newsletter dropped PR #10)
 │   ├── content/                  # Curriculum content service
-│   ├── courses/                  # Course catalog, trials, bundles, gift codes, pilot SKUs
+│   ├── courses/                  # Course catalog plugin (not access SoT)
+│   ├── entitlement/              # Household tickets — access source of truth
 │   ├── garden/                   # Kid garden game (journey/zone progression)
+│   ├── identity/                 # Parent household identity
 │   ├── learning/                 # Lesson session tracking (video watch, heartbeat, completion)
 │   ├── organizations/            # B2B/schools, bulk enrollment, class skill heatmap
 │   ├── platform/                 # Audit logging, security, access guard, push notifications, R2 storage
 │   ├── progress/                 # Learning progress, evidence media, retention
 │   ├── reader/                   # Separate reader portal (auth + bookmarks)
 │   ├── referral/                 # Referral program (claim, track)
-│   └── reports/                  # Weekly learning reports, Resend email
+│   ├── reports/                  # Weekly learning reports, Resend email
+│   ├── caregivers/
+│   └── sharing/
 ├── worker/                       # BullMQ workers + queue definitions
 │   ├── jobs/                     # Individual job processors
 │   └── queue.ts                  # Queue + enqueue helpers
@@ -156,13 +160,9 @@ src/
 │   ├── seo/                      # SEO helpers
 │   ├── bunny-stream-client.ts    # Bunny CDN signed URLs
 │   └── env.ts                    # Validated env vars
-├── locales/                      # i18n translations
-│   ├── en/translation.json       # English translations
-│   └── vi/translation.json       # Vietnamese translations
-└── prisma/                       # Database schema
-    ├── schema.prisma             # 50+ models, 27 enums
-    └── seed.ts                   # Seed data
 ```
+
+Repo root (not under `src/`): `locales/en|vi/translation.json`, `prisma/schema.prisma`.
 
 ---
 
@@ -173,11 +173,13 @@ src/
 | **adaptive** | Skill taxonomy, placement tests, spaced repetition, next-lesson AI | placement-test-service, skill-service, review-queue-service |
 | **admin** | Analytics, user mgmt, GA4, funnel/cohort analysis | admin-analytics-service, admin-user-service, admin-billing-service |
 | **billing** | Stripe + PayOS, subscriptions, renewals | billing-service, plan-config |
-| **blog** | Blog CMS, comment moderation, newsletter | blog-service, comment-service |
+| **blog** | Blog CMS, comment moderation (newsletter killed PR #10) | blog-service, comment-service |
 | **content** | Curriculum content definitions, activity types | content-service |
-| **courses** | Course catalog, checkout, gift codes, certificates | course-service, checkout-service, gift-code-service, certificate-service |
+| **courses** | Course catalog plugin, checkout, gift codes, certificates | course-service, checkout-service, gift-code-service, certificate-service |
+| **entitlement** | Household tickets (access SoT) | `src/modules/entitlement` |
 | **garden** | Kid garden game — journey progression, zone unlocking | garden-service |
-| **learning** | Lesson session tracking, video watch events, completion | learning-service, lesson-progress-service |
+| **identity** | Parent household identity | `src/modules/identity` |
+| **learning** | Lesson session tracking, video watch, completion | `src/modules/learning` |
 | **organizations** | B2B, bulk enrollment, class skill heatmap | organization-service, bulk-enroll-service, class-report-service |
 | **platform** | Audit logging, R2 storage, push notifications, security | platform-service, storage-adapter |
 | **progress** | Learning progress retention, evidence media upload | progress-service, evidence-media-service |
@@ -198,8 +200,9 @@ src/
 - **Curriculum:** Track→Level→Unit→Lesson→Activity (cascade chain), CourseLesson, CourseEnrollment, ChildCourseJourneyTier
 - **Adaptive:** Skill (self-ref tree), ChildSkillState, SkillAttempt, ReviewQueue, PlacementTest, PlacementTestAttempt
 - **Abeka Curriculum:** AbekaVideo, AbekaGrade, AbekaLesson, AbekaLearningJourney, AbekaAssignment, AbekaWatchProgress, AbekaBadge, AbekaStreak, AbekaSkillNode
-- **Blog:** BlogPost, BlogCategory, BlogTag, BlogAuthor, BlogComment, BlogPostVersion, BlogBookmark, BlogNewsletterSubscriber
+- **Blog:** BlogPost, BlogCategory, BlogTag, BlogAuthor, BlogComment, BlogPostVersion, BlogBookmark
 - **Courses:** Course, CourseReview, GiftCode, CurriculumPackage
+- **Entitlement:** Entitlement (parent-scoped tickets)
 - **Organizations:** Organization, OrganizationMember
 - **Garden:** (Game progression data)
 - **Admin/Platform:** AuditLog, FeatureFlag, CouponCode, SystemAnnouncement, SiteContentSettings
@@ -207,14 +210,13 @@ src/
 
 ---
 
-## BullMQ Workers (10 Queues)
+## BullMQ Workers
 
 | Queue | Jobs |
 |---|---|
 | weekly-reports | generate-weekly-reports |
 | portfolio-retention | purge-expired-media |
 | weekly-report-emails | dispatch-weekly-report-emails |
-| blog-newsletter | dispatch-blog-newsletter-email, verify-blog-newsletter-email |
 | blog-comment-emails | verify-blog-comment |
 | blog-comment-reply-emails | notify-comment-reply |
 | lifecycle-emails | send-lifecycle-email, dispatch-pending-lifecycle-emails |
@@ -226,12 +228,10 @@ src/
 
 ## i18n (next-intl)
 
-**Locales:** `en` (English, primary migration in progress), `vi` (Vietnamese, legacy primary)
-**Config:** Cookie-based locale switching via `next-intl` middleware
-**Translation files:**
-- `locales/en/translation.json` — English translations
-- `locales/vi/translation.json` — Vietnamese translations
-**Current work:** `i18n/english-primary-migration` — rewiring all 70+ pages to support English as primary UI language
+**Locales:** `en` default (`src/i18n/locales.ts`) + `vi` catalog.
+**Config:** Cookie-based locale switching via `next-intl`
+**Translation files:** `locales/en/translation.json`, `locales/vi/translation.json`
+**Leftover mix:** PR #23 `feat/i18n-locale-parity` merged 2026-09-05. Cookie `tgh_locale` drives named UI; homepage H1 still uses `generated.*`.
 
 ---
 
@@ -270,8 +270,8 @@ FEATURE_FLAGS_ENABLED=true
 
 ## Testing
 
-**Unit/Integration:** ~110 Vitest tests in `src/` (services, routes, utilities)
-**E2E:** ~19 Playwright specs in `tests/e2e/` (auth-flow, learning-flow, course-purchase, teacher-bulk-enroll, language-switching, video-playback)
+**Unit/Integration:** `pnpm test`
+**E2E:** `pnpm test:e2e` (owners under `tests/e2e/`)
 **Key test files:**
 - `auth-flow.spec.ts`, `learning-flow-integration.spec.ts`, `course-purchase-flow.spec.ts`, `gift-code-redeem.spec.ts`, `teacher-bulk-enroll.spec.ts`, `language-switching.spec.ts`
 
@@ -285,10 +285,10 @@ FEATURE_FLAGS_ENABLED=true
 - web (Node.js, port 3000)
 - worker (BullMQ processor)
 
-**Vercel (preview):** vercel.json with 5 cron routes
+**Vercel (preview):** `vercel.json` has 4 cron routes.
 **VPS (production):** DigitalOcean Ubuntu 24.04, PM2 + Nginx, Docker Compose
 
-**CI/CD:** `.github/workflows/deploy-digitalocean-ssh.yml` (GitHub Actions SSH deploy)
+**CI/CD:** `release-check.yml` + `codeql.yml` + `deploy.yml`; Dependabot `.github/dependabot.yml`
 
 ---
 

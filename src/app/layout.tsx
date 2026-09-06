@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Nunito } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import { translate } from "@/i18n/translator";
+import { resolveAppLocale } from "@/i18n/locales";
 import { AnalyticsByConsent } from "@/components/legal/analytics-by-consent";
 import { CookieConsentBanner } from "@/components/legal/cookie-consent-banner";
 import "./globals.css";
@@ -18,33 +20,35 @@ const headingFont = Nunito({
   weight: ["700", "800", "900"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "TinyGeniusHub",
-    template: "%s | TinyGeniusHub",
-  },
-  description:
-    "Learning Journey OS for parents of children ages 2-6. Fifteen minutes a day, with visible progress parents can trust.",
-  metadataBase: new URL("https://www.tinygeniushubvn.tech"),
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true },
-  },
-  openGraph: {
-    siteName: "TinyGeniusHub",
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-  },
-  icons: {
-    icon: "/logos/tinygeniushub_app_icon.png",
-    shortcut: "/logos/tinygeniushub_app_icon.png",
-    apple: "/logos/tinygeniushub_app_icon.png",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const appLocale = resolveAppLocale(await getLocale());
+  return {
+    title: {
+      default: "TinyGeniusHub",
+      template: "%s | TinyGeniusHub",
+    },
+    description: translate("metadata.siteDescription", undefined, appLocale),
+    metadataBase: new URL("https://www.tinygeniushubvn.tech"),
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    },
+    openGraph: {
+      siteName: "TinyGeniusHub",
+      locale: appLocale === "vi" ? "vi_VN" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+    icons: {
+      icon: "/logos/tinygeniushub_app_icon.png",
+      shortcut: "/logos/tinygeniushub_app_icon.png",
+      apple: "/logos/tinygeniushub_app_icon.png",
+    },
+  };
+}
 
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
