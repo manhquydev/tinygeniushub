@@ -55,7 +55,10 @@ export async function createBillingCheckoutSession(params: {
     where: { code: PLATFORM_PASS_CODE },
     select: { stripePriceId: true, active: true },
   });
-  if (offering?.active === false) {
+  if (!offering) {
+    throw new DomainError("Offering not found", 404, "OFFERING_NOT_FOUND");
+  }
+  if (offering.active === false) {
     throw new DomainError("Offering is inactive", 409, "OFFERING_INACTIVE");
   }
 
@@ -66,7 +69,7 @@ export async function createBillingCheckoutSession(params: {
     amountVnd: planConfig.amountVnd,
     successUrl,
     cancelUrl,
-    stripePriceId: offering?.stripePriceId,
+    stripePriceId: offering.stripePriceId,
   });
 
   await createAuditLog({
