@@ -69,6 +69,9 @@ export async function grantOfferingInTx(
       status: { in: LIVE_TICKET_STATUSES },
     },
   });
+  if (offering.active === false && !live) {
+    throw new DomainError("Offering is inactive", 409, "OFFERING_INACTIVE");
+  }
 
   if (live) {
     const shouldExtend =
