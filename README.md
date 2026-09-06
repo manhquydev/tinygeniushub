@@ -255,8 +255,8 @@ Implementation plan and phases:
 - `pnpm test:e2e:security` validates: rate-limit 429, blocked IP policy, readiness allowlist deny, ddos multiplier effect, burst-concurrency throttling (watch/report/readiness), edge export sync.
 - `pnpm test:local:full` runs full local flow end-to-end (infra up, migrate, seed, build, e2e smoke/p0/full/security).
 - Nightly CI workflow: `.github/workflows/nightly-local-full.yml` runs `pnpm test:local:full` on schedule/manual trigger.
-- Production deploy default: `.github/workflows/deploy.yml`. SSH fallback: `.github/workflows/deploy-digitalocean-ssh.yml`.
-- setup guide: `docs/deployment/digitalocean-ssh-agent-setup.md`
+- Production GitHub deploy workflows are disabled (internal-dev). Local: `docker compose up`.
+- SSH deploy runbook (not wired): `docs/deployment/digitalocean-ssh-agent-setup.md`
 - Vercel Cron setup:
   - `vercel.json` includes weekly report job at Sunday 20:00 VN (`0 13 * * 0` UTC) and streak alert job at 18:00 VN (`0 11 * * *` UTC).
   - Set `CRON_SECRET` in environment variables and send it via `x-cron-secret` header (or Bearer token in `Authorization`) when invoking cron endpoints.
